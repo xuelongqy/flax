@@ -47,6 +47,8 @@ const _constructorKeys = {
   'parameters',
   'specializations',
   'runtimeParameterTypes',
+  'proxyOnly',
+  'isFactory',
 };
 const _constructorSpecializationKeys = {
   'typeArgumentTypes',
@@ -163,7 +165,7 @@ const _moduleKeys = {
 
 const _sourceIdentityKeys = {'kind', 'originatingUri', 'name'};
 
-const _identityKeys = {'sourceIdentity', 'wireId', 'owner'};
+const _identityKeys = {'sourceIdentity', 'wireId', 'owner', 'localDependency'};
 
 /// binding Manifest ownership row: originating source, authoritative wireId, and
 /// whether this module owns the identity. Module-wide ownership and duplicate
@@ -173,11 +175,17 @@ final class FlaxCodegenManifestIdentity {
     required this.sourceIdentity,
     required this.wireId,
     required this.owner,
+    this.localDependency = false,
   });
 
   final FlaxCodegenSourceIdentity sourceIdentity;
   final FlaxCodegenWireId wireId;
   final bool owner;
+
+  /// This owner is a package-local dependency view, not a source provider.
+  final bool localDependency;
+
+  bool get providerEligible => owner && !localDependency;
 }
 
 /// Fail-closed manifest diagnostics. JSON values have no spans; [source]
@@ -263,6 +271,9 @@ final class FlaxCodegenManifestObject {
     }
     return value;
   }
+
+  String? optionalString(String key) =>
+      _fields.containsKey(key) ? requiredString(key) : null;
 
   String? nullableString(String key) {
     final value = _required(key);
@@ -1431,6 +1442,8 @@ Map<String, Object?> _encodeConstructor(
   _SlotEncodeScope? scope,
 ]) => {
   'name': constructor.name,
+  if (constructor.proxyOnly) 'proxyOnly': true,
+  if (constructor.isFactory) 'isFactory': true,
   'parameters': [
     for (final parameter in constructor.parameters)
       _encodeParameter(parameter, scope),
@@ -1476,6 +1489,12 @@ FlaxCodegenConstructorModel? _decodeConstructor(
     'parameters',
     _decodeParameterFn(diagnostics, scope),
   );
+  final proxyOnly = object._fields.containsKey('proxyOnly')
+      ? object.requiredBool('proxyOnly')
+      : false;
+  final isFactory = object._fields.containsKey('isFactory')
+      ? object.requiredBool('isFactory')
+      : false;
   final runtimeParameterTypes =
       object._fields.containsKey('runtimeParameterTypes')
       ? object.requiredList(
@@ -1556,6 +1575,8 @@ FlaxCodegenConstructorModel? _decodeConstructor(
     parameters,
     specializations: specializations,
     runtimeParameterTypes: runtimeParameterTypes,
+    proxyOnly: proxyOnly ?? false,
+    isFactory: isFactory ?? false,
   );
 }
 
@@ -2983,6 +3004,7 @@ Map<String, Object?> _encodeIdentity(FlaxCodegenManifestIdentity identity) => {
   'sourceIdentity': _encodeSourceIdentity(identity.sourceIdentity),
   'wireId': identity.wireId.value,
   'owner': identity.owner,
+  if (identity.localDependency) 'localDependency': true,
 };
 
 FlaxCodegenManifestIdentity? _decodeIdentity(
@@ -3004,6 +3026,9 @@ FlaxCodegenManifestIdentity? _decodeIdentity(
   );
   final wireValue = object.requiredString('wireId');
   final owner = object.requiredBool('owner');
+  final localDependency = object._fields.containsKey('localDependency')
+      ? object.requiredBool('localDependency') ?? false
+      : false;
   FlaxCodegenWireId? wireId;
   if (wireValue != null) {
     try {
@@ -3022,6 +3047,13 @@ FlaxCodegenManifestIdentity? _decodeIdentity(
     return null;
   }
   var ok = true;
+  if (localDependency && !owner) {
+    diagnostics.add(
+      pointer: object.child('localDependency'),
+      message: 'Only owners can be local dependencies.',
+    );
+    ok = false;
+  }
   if (!_manifestWireKindMatches(sourceIdentity, wireId)) {
     diagnostics.add(
       pointer: object.child('wireId'),
@@ -3041,6 +3073,7 @@ FlaxCodegenManifestIdentity? _decodeIdentity(
     sourceIdentity: sourceIdentity,
     wireId: wireId,
     owner: owner,
+    localDependency: localDependency,
   );
 }
 

@@ -5,30 +5,39 @@ import type * as upstream0 from '@flax/flutter/gestures/_bindings/sdk_gestures_V
 import '@flax/flutter/gestures/_bindings/sdk_gestures_Velocity';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import { _flaxMemberParameters113 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters92 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface DraggableDetails extends Readonly<{ "__flaxBound:package:flutter/src/widgets/drag_target.dart::DraggableDetails": readonly [] }> { readonly __DraggableDetails: unique symbol;
 readonly [_flaxDartTypeValue]: DraggableDetails;
 
+readonly wasAccepted: boolean;
+readonly velocity: upstream0.Velocity;
+readonly offset: upstream1.Offset;
 }
 defineObject("flax.core/sdk_widgets#type:DraggableDetails", ["wasAccepted","velocity","offset"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DraggableDetails", "object", {}, {}), []);
-const _DraggableDetailsProxy = {type: "flax.core/sdk_widgets#type:DraggableDetails", parameters: _flaxMemberParameters113, constructors: {"": _flaxMemberParameters113}, methods: {}, getters: ["wasAccepted","velocity","offset"], setters: [], contextMembers: [], superMembers: ["get:wasAccepted","get:velocity","get:offset"]} as const;
-export interface DraggableDetails {
-readonly [_flaxDartTypeValue]: DraggableDetails;
+export function _DraggableDetailsFactory(options: { wasAccepted?: boolean | undefined; velocity: Readonly<{ "__flaxBound:package:flutter/src/gestures/velocity_tracker.dart::Velocity": readonly [] }>; offset: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> }): DraggableDetails {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:DraggableDetails", "", [{"name":"wasAccepted"},{"name":"velocity","required":true},{"name":"offset","required":true}], [], options) as DraggableDetails;
+}
+const _DraggableDetailsProxy = {type: "flax.core/sdk_widgets#type:DraggableDetails", parameters: _flaxMemberParameters92, constructors: {"": _flaxMemberParameters92}, methods: {}, getters: ["wasAccepted","velocity","offset"], setters: [], contextMembers: [], superMembers: ["get:wasAccepted","get:velocity","get:offset"]} as const;
+export interface _DraggableDetailsNative extends DraggableDetails {
+readonly [_flaxDartTypeValue]: _DraggableDetailsNative;
 
 get wasAccepted(): boolean;
 get velocity(): upstream0.Velocity;
 get offset(): upstream1.Offset;
 }
-export abstract class DraggableDetails extends _FlaxProxyBase {
+export abstract class _DraggableDetailsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DraggableDetails>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: DraggableDetails;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:DraggableDetails", readonly [], false];
 constructor(options: {wasAccepted?: boolean | undefined; velocity: Readonly<{ "__flaxBound:package:flutter/src/gestures/velocity_tracker.dart::Velocity": readonly [] }>; offset: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>}) { super(_DraggableDetailsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(DraggableDetails.prototype, _DraggableDetailsProxy);
-export namespace DraggableDetails { export function implement(args: [options: {wasAccepted?: boolean | undefined; velocity: Readonly<{ "__flaxBound:package:flutter/src/gestures/velocity_tracker.dart::Velocity": readonly [] }>; offset: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>}], implementation: {}): DraggableDetails {
+_flaxDefineProxyBase(_DraggableDetailsNative.prototype, _DraggableDetailsProxy);
+export namespace _DraggableDetailsFactory { export function implement(args: [options: {wasAccepted?: boolean | undefined; velocity: Readonly<{ "__flaxBound:package:flutter/src/gestures/velocity_tracker.dart::Velocity": readonly [] }>; offset: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>}], implementation: {}): DraggableDetails {
 return constructProxy(_DraggableDetailsProxy, args, implementation) as DraggableDetails; } }
-_flaxBindInstanceType<DraggableDetails, typeof DraggableDetails>(DraggableDetails, "flax.core/sdk_widgets#type:DraggableDetails", ["dart:core::Object"]);
+const _DraggableDetailsBinding = _flaxProxyFactory(_DraggableDetailsFactory, _DraggableDetailsNative) as unknown as typeof _DraggableDetailsFactory & (new(options: {wasAccepted?: boolean | undefined; velocity: Readonly<{ "__flaxBound:package:flutter/src/gestures/velocity_tracker.dart::Velocity": readonly [] }>; offset: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>}) => _DraggableDetailsNative);
+export const DraggableDetails: typeof _DraggableDetailsBinding & _FlaxInstanceType<DraggableDetails> & _FlaxDartType<DraggableDetails, readonly ["class", "flax.core/sdk_widgets#type:DraggableDetails", readonly [], false]> = _flaxBindInstanceType<DraggableDetails, typeof _DraggableDetailsBinding>(_DraggableDetailsBinding, "flax.core/sdk_widgets#type:DraggableDetails", ["dart:core::Object"]) as typeof _DraggableDetailsBinding & _FlaxInstanceType<DraggableDetails> & _FlaxDartType<DraggableDetails, readonly ["class", "flax.core/sdk_widgets#type:DraggableDetails", readonly [], false]>;

@@ -15,7 +15,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TapDownDetails extends Omit<upstream0.PositionedGestureDetails, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PositionedGestureDetails>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/tap.dart::TapDownDetails": readonly [];
 }>, Readonly<{
@@ -25,9 +25,36 @@ export interface TapDownDetails extends Omit<upstream0.PositionedGestureDetails,
 }> {
     readonly __TapDownDetails: unique symbol;
     readonly [_flaxDartTypeValue]: TapDownDetails;
+    readonly globalPosition: upstream2.Offset;
+    readonly localPosition: upstream2.Offset;
+    readonly kind: upstream3.PointerDeviceKind | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream4.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream6.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
 }
-export interface TapDownDetails {
-    readonly [_flaxDartTypeValue]: TapDownDetails;
+export declare function _TapDownDetailsFactory(options?: {
+    globalPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    localPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    kind?: upstream3.PointerDeviceKind | null | undefined;
+}): TapDownDetails;
+export interface _TapDownDetailsNative extends TapDownDetails {
+    readonly [_flaxDartTypeValue]: _TapDownDetailsNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream4.DiagnosticLevel | undefined;
@@ -43,7 +70,7 @@ export interface TapDownDetails {
     get localPosition(): upstream2.Offset;
     get kind(): upstream3.PointerDeviceKind | null;
 }
-export declare abstract class TapDownDetails extends _FlaxProxyBase {
+export declare abstract class _TapDownDetailsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TapDownDetails>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TapDownDetails;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:TapDownDetails", readonly [], false];
@@ -61,7 +88,7 @@ export declare abstract class TapDownDetails extends _FlaxProxyBase {
         kind?: upstream3.PointerDeviceKind | null | undefined;
     });
 }
-export declare namespace TapDownDetails {
+export declare namespace _TapDownDetailsFactory {
     function implement(args: [options?: {
         globalPosition?: (Readonly<{
             "__flaxBound:dart:ui::Offset": readonly [];
@@ -76,5 +103,19 @@ export declare namespace TapDownDetails {
         kind?: upstream3.PointerDeviceKind | null | undefined;
     }], implementation: {}): TapDownDetails;
 }
+declare const _TapDownDetailsBinding: typeof _TapDownDetailsFactory & (new (options?: {
+    globalPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    localPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    kind?: upstream3.PointerDeviceKind | null | undefined;
+}) => _TapDownDetailsNative);
+export declare const TapDownDetails: typeof _TapDownDetailsBinding & _FlaxInstanceType<TapDownDetails> & _FlaxDartType<TapDownDetails, readonly ["class", "flax.core/sdk_gestures#type:TapDownDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "globalPosition" | "localPosition" | "kind" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/tap.dart::TapDownDetails" | "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

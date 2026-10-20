@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartList } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartInput } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerLayer';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerLayer';
@@ -51,9 +51,143 @@ export interface AnnotatedRegionLayer<T extends {} = {}> extends Omit<upstream0.
         find: _FlaxSignature2<T>;
         findAllAnnotations: _FlaxSignature3<T>;
     };
+    readonly firstChild: upstream1.Layer | null;
+    readonly lastChild: upstream1.Layer | null;
+    readonly hasChildren: boolean;
+    readonly subtreeHasCompositionCallbacks: boolean;
+    readonly debugDisposed: boolean;
+    readonly debugHandleCount: number;
+    readonly parent: upstream0.ContainerLayer | null;
+    readonly alwaysNeedsAddToScene: boolean;
+    readonly owner: unknown | null;
+    readonly attached: boolean;
+    readonly depth: number;
+    readonly nextSibling: upstream1.Layer | null;
+    readonly previousSibling: upstream1.Layer | null;
+    get debugCreator(): unknown | null;
+    readonly value: T;
+    readonly size: upstream5.Size | null;
+    readonly offset: upstream6.Offset;
+    readonly opaque: boolean;
+    supportsRasterization(): boolean;
+    buildScene(builder: Readonly<{
+        "__flaxBound:dart:ui::SceneBuilder": readonly [];
+    }>): upstream7.Scene;
+    dispose(): void;
+    updateSubtreeNeedsAddToScene(): void;
+    findAnnotations<S extends {} = {}>(result: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotationResult": readonly [_FlaxDartOutput<S>];
+    }>, localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options: {
+        onlyFirst: boolean;
+    }): boolean;
+    attach(owner: {}): void;
+    detach(): void;
+    append(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    redepthChildren(): void;
+    redepthChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    removeAllChildren(): void;
+    addToScene(builder: Readonly<{
+        "__flaxBound:dart:ui::SceneBuilder": readonly [];
+    }>): void;
+    addChildrenToScene(builder: Readonly<{
+        "__flaxBound:dart:ui::SceneBuilder": readonly [];
+    }>): void;
+    applyTransform(child: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null, transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }>): void;
+    debugDescribeChildren(): DartList<upstream11.DiagnosticsNode>;
+    describeClipBounds(): upstream12.Rect | null;
+    addCompositionCallback(callback: ((layer: upstream1.Layer) => void)): (() => void);
+    remove(): void;
+    find<S extends {} = {}>(localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): _FlaxDartOutput<S> | null;
+    findAllAnnotations<S extends {} = {}>(localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): upstream9.AnnotationResult<_FlaxDartOutput<S>>;
+    toStringShort(): string;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream14.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream14.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream15.DiagnosticsTreeStyle | null | undefined;
+    }): upstream11.DiagnosticsNode;
+    toString(options?: {
+        minLevel?: upstream14.DiagnosticLevel | undefined;
+    }): string;
+    set debugCreator(value: unknown | null);
 }
-export interface AnnotatedRegionLayer<T extends {} = {}> {
-    readonly [_flaxDartTypeValue]: AnnotatedRegionLayer<T>;
+export declare function _AnnotatedRegionLayerFactory<T extends {} = {}>(value: (T | _FlaxDartOutput<T>), options?: {
+    size?: (Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    offset?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    opaque?: boolean | undefined;
+}): AnnotatedRegionLayer<T>;
+export declare function _AnnotatedRegionLayerFactory(value: {}, options?: {
+    size?: (Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    offset?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    opaque?: boolean | undefined;
+}): AnnotatedRegionLayer<{}>;
+export interface _AnnotatedRegionLayerNative<T extends {} = {}> extends AnnotatedRegionLayer<T> {
+    readonly [_flaxDartTypeValue]: _AnnotatedRegionLayerNative<T>;
     readonly [_flaxDartMethodCases]?: {
         findAnnotations: _FlaxSignature4<T>;
         find: _FlaxSignature5<T>;
@@ -168,7 +302,7 @@ export interface AnnotatedRegionLayer<T extends {} = {}> {
     get debugCreator(): unknown | null;
     set debugCreator(value: unknown | null);
 }
-export declare abstract class AnnotatedRegionLayer<T extends {} = {}> extends _FlaxProxyBase {
+export declare abstract class _AnnotatedRegionLayerNative<T extends {} = {}> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AnnotatedRegionLayer<{}>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AnnotatedRegionLayer<{}>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:AnnotatedRegionLayer", readonly [readonly ["any", null, readonly [], false]], false];
@@ -188,7 +322,7 @@ export declare abstract class AnnotatedRegionLayer<T extends {} = {}> extends _F
         opaque?: boolean | undefined;
     });
 }
-export declare namespace AnnotatedRegionLayer {
+export declare namespace _AnnotatedRegionLayerFactory {
     function implement<T extends {} = {}>(args: [value: {}, options?: {
         size?: (Readonly<{
             "__flaxBound:dart:ui::Size": readonly [];
@@ -203,7 +337,64 @@ export declare namespace AnnotatedRegionLayer {
         opaque?: boolean | undefined;
     }], implementation: {}): AnnotatedRegionLayer<T>;
 }
+declare const _AnnotatedRegionLayerBinding: typeof _AnnotatedRegionLayerFactory & (new <T extends {} = {}>(value: {}, options?: {
+    size?: (Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    offset?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    opaque?: boolean | undefined;
+}) => _AnnotatedRegionLayerNative<T>);
+export declare const AnnotatedRegionLayer: typeof _AnnotatedRegionLayerBinding & _FlaxInstanceType<AnnotatedRegionLayer<{}>> & _FlaxDartType<AnnotatedRegionLayer<{}>, readonly ["class", "flax.core/sdk_rendering#type:AnnotatedRegionLayer", readonly [readonly ["any", null, readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "firstChild" | "lastChild" | "hasChildren" | "subtreeHasCompositionCallbacks" | "debugDisposed" | "debugHandleCount" | "parent" | "alwaysNeedsAddToScene" | "owner" | "attached" | "depth" | "nextSibling" | "previousSibling" | "debugCreator" | "value" | "size" | "offset" | "opaque" | "supportsRasterization" | "buildScene" | "dispose" | "updateSubtreeNeedsAddToScene" | "findAnnotations" | "attach" | "detach" | "append" | "redepthChildren" | "redepthChild" | "removeAllChildren" | "addToScene" | "addChildrenToScene" | "applyTransform" | "debugDescribeChildren" | "describeClipBounds" | "addCompositionCallback" | "remove" | "find" | "findAllAnnotations" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotatedRegionLayer" | "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer" | "__flaxBound:package:flutter/src/rendering/layer.dart::Layer" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (new (value: {}, options?: {
+        size?: (Readonly<{
+            "__flaxBound:dart:ui::Size": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        offset?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        opaque?: boolean | undefined;
+    }) => _AnnotatedRegionLayerNative<_Selected0>) & {
+        (value: (_Selected0 | DartInput<_Selected0>), options?: {
+            size?: (Readonly<{
+                "__flaxBound:dart:ui::Size": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:ui::OffsetBase": readonly [];
+            }>) | null | undefined;
+            offset?: (Readonly<{
+                "__flaxBound:dart:ui::Offset": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:ui::OffsetBase": readonly [];
+            }>) | null | undefined;
+            opaque?: boolean | undefined;
+        }): _AnnotatedRegionLayerNative<_Selected0>;
+        readonly prototype: _AnnotatedRegionLayerNative<_Selected0>;
+        implement(args: readonly [{}, options?: {
+            size?: (Readonly<{
+                "__flaxBound:dart:ui::Size": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:ui::OffsetBase": readonly [];
+            }>) | null | undefined;
+            offset?: (Readonly<{
+                "__flaxBound:dart:ui::Offset": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:ui::OffsetBase": readonly [];
+            }>) | null | undefined;
+            opaque?: boolean | undefined;
+        }], implementation: Partial<_AnnotatedRegionLayerNative<_Selected0>>): _AnnotatedRegionLayerNative<_Selected0>;
+    } & _FlaxInstanceType<_AnnotatedRegionLayerNative<_Selected0>> & _FlaxDartType<_AnnotatedRegionLayerNative<_Selected0>> : never : never;
+}
 interface _FlaxSignature1<_OwnerType0 extends {}> extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (result: Readonly<{
         "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotationResult": readonly [_Selected0];
@@ -255,7 +446,7 @@ interface _FlaxSignature6<_OwnerType0 extends {}> extends _FlaxDartSignature {
     }>) => upstream9.AnnotationResult<_Selected0> : never : never;
 }
 interface _FlaxSignature7 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (abstract new (value: {}, options?: {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (new (value: {}, options?: {
         size?: (Readonly<{
             "__flaxBound:dart:ui::Size": readonly [];
         }> & Readonly<{
@@ -267,8 +458,21 @@ interface _FlaxSignature7 extends _FlaxDartSignature {
             "__flaxBound:dart:ui::OffsetBase": readonly [];
         }>) | null | undefined;
         opaque?: boolean | undefined;
-    }) => AnnotatedRegionLayer<_Selected0>) & {
-        readonly prototype: AnnotatedRegionLayer<_Selected0>;
+    }) => _AnnotatedRegionLayerNative<_Selected0>) & {
+        (value: (_Selected0 | DartInput<_Selected0>), options?: {
+            size?: (Readonly<{
+                "__flaxBound:dart:ui::Size": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:ui::OffsetBase": readonly [];
+            }>) | null | undefined;
+            offset?: (Readonly<{
+                "__flaxBound:dart:ui::Offset": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:ui::OffsetBase": readonly [];
+            }>) | null | undefined;
+            opaque?: boolean | undefined;
+        }): _AnnotatedRegionLayerNative<_Selected0>;
+        readonly prototype: _AnnotatedRegionLayerNative<_Selected0>;
         implement(args: readonly [{}, options?: {
             size?: (Readonly<{
                 "__flaxBound:dart:ui::Size": readonly [];
@@ -281,7 +485,7 @@ interface _FlaxSignature7 extends _FlaxDartSignature {
                 "__flaxBound:dart:ui::OffsetBase": readonly [];
             }>) | null | undefined;
             opaque?: boolean | undefined;
-        }], implementation: Partial<AnnotatedRegionLayer<_Selected0>>): AnnotatedRegionLayer<_Selected0>;
-    } & _FlaxInstanceType<AnnotatedRegionLayer<_Selected0>> & _FlaxDartType<AnnotatedRegionLayer<_Selected0>> : never : never;
+        }], implementation: Partial<_AnnotatedRegionLayerNative<_Selected0>>): _AnnotatedRegionLayerNative<_Selected0>;
+    } & _FlaxInstanceType<_AnnotatedRegionLayerNative<_Selected0>> & _FlaxDartType<_AnnotatedRegionLayerNative<_Selected0>> : never : never;
 }
 export {};

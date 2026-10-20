@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream2 from '@flax/flutter/material/_bindings/sdk_material_ScaffoldPrelayoutGeometry';
 import '@flax/flutter/material/_bindings/sdk_material_ScaffoldPrelayoutGeometry';
-import { _flaxMemberParameters291, _flaxMemberParameters2, _flaxMemberParameters139 } from "@flax/flutter/material/_bindings/sdk_material.__module";
+import { _flaxMemberParameters294, _flaxMemberParameters2, _flaxMemberParameters141 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,8 +15,8 @@ export interface StandardFabLocation extends Omit<upstream0.FloatingActionButton
 readonly [_flaxDartTypeValue]: StandardFabLocation;
 
 }
-defineObject("flax.core/sdk_material#type:StandardFabLocation", [], [], _flaxBindingMethods("flax.core/sdk_material#type:StandardFabLocation", "object", {"getOffsetX":_flaxMemberParameters291,"getOffsetY":_flaxMemberParameters291,"isMini":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_material#type:FloatingActionButtonLocation");
-const _StandardFabLocationProxy = {type: "flax.core/sdk_material#type:StandardFabLocation", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getOffset":_flaxMemberParameters139,"toString":_flaxMemberParameters2,"getOffsetX":_flaxMemberParameters291,"getOffsetY":_flaxMemberParameters291,"isMini":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["getOffset","toString","isMini"]} as const;
+defineObject("flax.core/sdk_material#type:StandardFabLocation", [], [], _flaxBindingMethods("flax.core/sdk_material#type:StandardFabLocation", "object", {"getOffsetX":_flaxMemberParameters294,"getOffsetY":_flaxMemberParameters294,"isMini":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_material#type:FloatingActionButtonLocation");
+const _StandardFabLocationProxy = {type: "flax.core/sdk_material#type:StandardFabLocation", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getOffset":_flaxMemberParameters141,"toString":_flaxMemberParameters2,"getOffsetX":_flaxMemberParameters294,"getOffsetY":_flaxMemberParameters294,"isMini":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["getOffset","toString","isMini"]} as const;
 export interface StandardFabLocation {
 readonly [_flaxDartTypeValue]: StandardFabLocation;
 

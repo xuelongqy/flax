@@ -43,15 +43,149 @@ import '@flax/dart/ui/_bindings/flutter_TextRange';
 import type * as upstream22 from '@flax/dart/ui/_bindings/sdk_dart_ui_LineMetrics';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_LineMetrics';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextPainter extends Readonly<{
     "__flaxBound:package:flutter/src/painting/text_painter.dart::TextPainter": readonly [];
 }> {
     readonly __TextPainter: unique symbol;
     readonly [_flaxDartTypeValue]: TextPainter;
+    get text(): upstream0.InlineSpan | null;
+    readonly plainText: string;
+    get textAlign(): upstream1.TextAlign;
+    get textDirection(): upstream2.TextDirection | null;
+    get textScaleFactor(): number;
+    get textScaler(): upstream3.TextScaler;
+    get ellipsis(): string | null;
+    get locale(): upstream4.Locale | null;
+    get maxLines(): number | null;
+    get strutStyle(): upstream5.StrutStyle | null;
+    get textWidthBasis(): upstream6.TextWidthBasis;
+    get textHeightBehavior(): upstream7.TextHeightBehavior | null;
+    readonly inlinePlaceholderBoxes: DartList<upstream8.TextBox> | null;
+    readonly preferredLineHeight: number;
+    readonly minIntrinsicWidth: number;
+    readonly maxIntrinsicWidth: number;
+    readonly width: number;
+    readonly height: number;
+    readonly size: upstream9.Size;
+    readonly didExceedMaxLines: boolean;
+    get debugPaintTextLayoutBoxes(): boolean;
+    readonly wordBoundaries: upstream10.WordBoundary;
+    readonly debugDisposed: boolean;
+    markNeedsLayout(): void;
+    setPlaceholderDimensions(value: DartListInput<upstream11.PlaceholderDimensions, Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_painter.dart::PlaceholderDimensions": readonly [];
+    }>> | null): void;
+    computeDistanceToActualBaseline(baseline: upstream12.TextBaseline): number;
+    layout(options?: {
+        maxWidth?: number | undefined;
+        minWidth?: number | undefined;
+    }): void;
+    paint(canvas: Readonly<{
+        "__flaxBound:dart:ui::Canvas": readonly [];
+    }>, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): void;
+    getOffsetAfter(offset: number): number | null;
+    getOffsetBefore(offset: number): number | null;
+    getOffsetForCaret(position: Readonly<{
+        "__flaxBound:dart:ui::TextPosition": readonly [];
+    }>, caretPrototype: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>): upstream14.Offset;
+    getFullHeightForCaret(position: Readonly<{
+        "__flaxBound:dart:ui::TextPosition": readonly [];
+    }>, caretPrototype: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>): number;
+    getBoxesForSelection(selection: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>, options?: {
+        boxHeightStyle?: upstream18.BoxHeightStyle | undefined;
+        boxWidthStyle?: upstream19.BoxWidthStyle | undefined;
+    }): DartList<upstream8.TextBox>;
+    getClosestGlyphForOffset(offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): upstream20.GlyphInfo | null;
+    getPositionForOffset(offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): upstream15.TextPosition;
+    getWordBoundary(position: Readonly<{
+        "__flaxBound:dart:ui::TextPosition": readonly [];
+    }>): upstream21.TextRange;
+    getLineBoundary(position: Readonly<{
+        "__flaxBound:dart:ui::TextPosition": readonly [];
+    }>): upstream21.TextRange;
+    computeLineMetrics(): DartList<upstream22.LineMetrics>;
+    dispose(): void;
+    set text(value: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
+    set textAlign(value: upstream1.TextAlign);
+    set textDirection(value: upstream2.TextDirection | null);
+    set textScaleFactor(value: number);
+    set textScaler(value: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+    }>);
+    set ellipsis(value: string | null);
+    set locale(value: Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null);
+    set maxLines(value: number | null);
+    set strutStyle(value: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/strut_style.dart::StrutStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
+    set textWidthBasis(value: upstream6.TextWidthBasis);
+    set textHeightBehavior(value: Readonly<{
+        "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
+    }> | null);
+    set debugPaintTextLayoutBoxes(value: boolean);
 }
-export interface TextPainter {
-    readonly [_flaxDartTypeValue]: TextPainter;
+export declare function _TextPainterFactory(options?: {
+    text?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textAlign?: upstream1.TextAlign | undefined;
+    textDirection?: upstream2.TextDirection | null | undefined;
+    textScaleFactor?: number | undefined;
+    textScaler?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+    }> | undefined;
+    maxLines?: number | null | undefined;
+    ellipsis?: string | null | undefined;
+    locale?: Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null | undefined;
+    strutStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/strut_style.dart::StrutStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textWidthBasis?: upstream6.TextWidthBasis | undefined;
+    textHeightBehavior?: Readonly<{
+        "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
+    }> | null | undefined;
+}): TextPainter;
+export interface _TextPainterNative extends TextPainter {
+    readonly [_flaxDartTypeValue]: _TextPainterNative;
     markNeedsLayout(): void;
     setPlaceholderDimensions(value: DartListInput<upstream11.PlaceholderDimensions, Readonly<{
         "__flaxBound:package:flutter/src/painting/text_painter.dart::PlaceholderDimensions": readonly [];
@@ -158,7 +292,7 @@ export interface TextPainter {
     }> | null);
     set debugPaintTextLayoutBoxes(value: boolean);
 }
-export declare abstract class TextPainter extends _FlaxProxyBase {
+export declare abstract class _TextPainterNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TextPainter>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TextPainter;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_painting#type:TextPainter", readonly [], false];
@@ -192,7 +326,7 @@ export declare abstract class TextPainter extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace TextPainter {
+export declare namespace _TextPainterFactory {
     function implement(args: [options?: {
         text?: (Readonly<{
             "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
@@ -223,7 +357,36 @@ export declare namespace TextPainter {
         }> | null | undefined;
     }], implementation: {}): TextPainter;
 }
-export declare namespace TextPainter {
+declare const _TextPainterBinding: typeof _TextPainterFactory & (new (options?: {
+    text?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textAlign?: upstream1.TextAlign | undefined;
+    textDirection?: upstream2.TextDirection | null | undefined;
+    textScaleFactor?: number | undefined;
+    textScaler?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+    }> | undefined;
+    maxLines?: number | null | undefined;
+    ellipsis?: string | null | undefined;
+    locale?: Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null | undefined;
+    strutStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/strut_style.dart::StrutStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textWidthBasis?: upstream6.TextWidthBasis | undefined;
+    textHeightBehavior?: Readonly<{
+        "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
+    }> | null | undefined;
+}) => _TextPainterNative);
+export declare namespace _TextPainterFactory {
     function computeWidth(options: {
         ellipsis?: string | null | undefined;
         locale?: Readonly<{
@@ -256,7 +419,7 @@ export declare namespace TextPainter {
         textWidthBasis?: upstream6.TextWidthBasis | undefined;
     }): number;
 }
-export declare namespace TextPainter {
+export declare namespace _TextPainterFactory {
     function computeMaxIntrinsicWidth(options: {
         ellipsis?: string | null | undefined;
         locale?: Readonly<{
@@ -289,9 +452,11 @@ export declare namespace TextPainter {
         textWidthBasis?: upstream6.TextWidthBasis | undefined;
     }): number;
 }
-export declare namespace TextPainter {
+export declare namespace _TextPainterFactory {
     function isHighSurrogate(value: number): boolean;
 }
-export declare namespace TextPainter {
+export declare namespace _TextPainterFactory {
     function isLowSurrogate(value: number): boolean;
 }
+export declare const TextPainter: typeof _TextPainterBinding & _FlaxInstanceType<TextPainter> & _FlaxDartType<TextPainter, readonly ["class", "flax.core/sdk_painting#type:TextPainter", readonly [], false]>;
+export {};

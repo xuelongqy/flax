@@ -17,18 +17,32 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream7 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
-import { _flaxMemberParameters329, _flaxMemberParameters289, _flaxMemberParameters2, _flaxMemberParameters3, _flaxMemberParameters4, _flaxMemberParameters5 } from "@flax/flutter/material/_bindings/sdk_material.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters331, _flaxMemberParameters292, _flaxMemberParameters2, _flaxMemberParameters3, _flaxMemberParameters4, _flaxMemberParameters5 } from "@flax/flutter/material/_bindings/sdk_material.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface VisualDensity extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __VisualDensity: unique symbol;
 readonly [_flaxDartTypeValue]: VisualDensity;
 
+readonly horizontal: number;
+readonly vertical: number;
+readonly baseSizeAdjustment: upstream1.Offset;
+toStringShort(): string;
+toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream5.DiagnosticsTreeStyle | null | undefined}): upstream4.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+copyWith(options?: {horizontal?: number | null | undefined; vertical?: number | null | undefined}): VisualDensity;
+effectiveConstraints(constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): upstream7.BoxConstraints;
 }
-defineObject("flax.core/sdk_material#type:VisualDensity", ["horizontal","vertical","baseSizeAdjustment"], [], _flaxBindingMethods("flax.core/sdk_material#type:VisualDensity", "object", {"copyWith":_flaxMemberParameters329,"effectiveConstraints":_flaxMemberParameters289}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _VisualDensityProxy = {type: "flax.core/sdk_material#type:VisualDensity", parameters: _flaxMemberParameters329, constructors: {"": _flaxMemberParameters329}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"copyWith":_flaxMemberParameters329,"effectiveConstraints":_flaxMemberParameters289}, getters: ["horizontal","vertical","baseSizeAdjustment"], setters: [], contextMembers: [], superMembers: ["get:horizontal","get:vertical","get:baseSizeAdjustment","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith","effectiveConstraints"]} as const;
-export interface VisualDensity {
-readonly [_flaxDartTypeValue]: VisualDensity;
+defineObject("flax.core/sdk_material#type:VisualDensity", ["horizontal","vertical","baseSizeAdjustment"], [], _flaxBindingMethods("flax.core/sdk_material#type:VisualDensity", "object", {"copyWith":_flaxMemberParameters331,"effectiveConstraints":_flaxMemberParameters292}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+export function _VisualDensityFactory(options: { horizontal?: number | undefined; vertical?: number | undefined } = {}): VisualDensity {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_material#type:VisualDensity", "", _flaxMemberParameters331, [], options) as VisualDensity;
+}
+const _VisualDensityProxy = {type: "flax.core/sdk_material#type:VisualDensity", parameters: _flaxMemberParameters331, constructors: {"": _flaxMemberParameters331}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"copyWith":_flaxMemberParameters331,"effectiveConstraints":_flaxMemberParameters292}, getters: ["horizontal","vertical","baseSizeAdjustment"], setters: [], contextMembers: [], superMembers: ["get:horizontal","get:vertical","get:baseSizeAdjustment","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith","effectiveConstraints"]} as const;
+export interface _VisualDensityNative extends VisualDensity {
+readonly [_flaxDartTypeValue]: _VisualDensityNative;
 
 toStringShort(): string;
 toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined}): string;
@@ -40,31 +54,32 @@ get horizontal(): number;
 get vertical(): number;
 get baseSizeAdjustment(): upstream1.Offset;
 }
-export abstract class VisualDensity extends _FlaxProxyBase {
+export abstract class _VisualDensityNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<VisualDensity>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: VisualDensity;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:VisualDensity", readonly [], false];
 constructor(options?: {horizontal?: number | undefined; vertical?: number | undefined}) { super(_VisualDensityProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(VisualDensity.prototype, _VisualDensityProxy);
-export namespace VisualDensity { export function implement(args: [options?: {horizontal?: number | undefined; vertical?: number | undefined}], implementation: {}): VisualDensity {
+_flaxDefineProxyBase(_VisualDensityNative.prototype, _VisualDensityProxy);
+export namespace _VisualDensityFactory { export function implement(args: [options?: {horizontal?: number | undefined; vertical?: number | undefined}], implementation: {}): VisualDensity {
 return constructProxy(_VisualDensityProxy, args, implementation) as VisualDensity; } }
-export namespace VisualDensity { export declare const minimumDensity: number; }
-export namespace VisualDensity { export declare const maximumDensity: number; }
-export namespace VisualDensity { export declare const standard: VisualDensity; }
-export namespace VisualDensity { export declare const comfortable: VisualDensity; }
-export namespace VisualDensity { export declare const compact: VisualDensity; }
-export namespace VisualDensity { export declare const adaptivePlatformDensity: VisualDensity; }
-_flaxDefineStaticGetters(VisualDensity, "flax.core/sdk_material#read:VisualDensity.", ["minimumDensity","maximumDensity","standard","comfortable","compact","adaptivePlatformDensity"]);
-export namespace VisualDensity { export function defaultDensityForPlatform(platform: upstream2.TargetPlatform): VisualDensity {
+const _VisualDensityBinding = _flaxProxyFactory(_VisualDensityFactory, _VisualDensityNative) as unknown as typeof _VisualDensityFactory & (new(options?: {horizontal?: number | undefined; vertical?: number | undefined}) => _VisualDensityNative);
+export namespace _VisualDensityFactory { export declare const minimumDensity: number; }
+export namespace _VisualDensityFactory { export declare const maximumDensity: number; }
+export namespace _VisualDensityFactory { export declare const standard: VisualDensity; }
+export namespace _VisualDensityFactory { export declare const comfortable: VisualDensity; }
+export namespace _VisualDensityFactory { export declare const compact: VisualDensity; }
+export namespace _VisualDensityFactory { export declare const adaptivePlatformDensity: VisualDensity; }
+_flaxDefineStaticGetters(_VisualDensityFactory, "flax.core/sdk_material#read:VisualDensity.", ["minimumDensity","maximumDensity","standard","comfortable","compact","adaptivePlatformDensity"]);
+export namespace _VisualDensityFactory { export function defaultDensityForPlatform(platform: upstream2.TargetPlatform): VisualDensity {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_material#function:VisualDensity.defaultDensityForPlatform", [platform]);
 return _flaxResult as VisualDensity;
 } }
-export namespace VisualDensity { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, b: Readonly<{ "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, t: number): VisualDensity {
+export namespace _VisualDensityFactory { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, b: Readonly<{ "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, t: number): VisualDensity {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_material#function:VisualDensity.lerp", [a, b, t]);
 return _flaxResult as VisualDensity;
 } }
-_flaxBindInstanceType<VisualDensity, typeof VisualDensity>(VisualDensity, "flax.core/sdk_material#type:VisualDensity", ["dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+export const VisualDensity: typeof _VisualDensityBinding & _FlaxInstanceType<VisualDensity> & _FlaxDartType<VisualDensity, readonly ["class", "flax.core/sdk_material#type:VisualDensity", readonly [], false]> = _flaxBindInstanceType<VisualDensity, typeof _VisualDensityBinding>(_VisualDensityBinding, "flax.core/sdk_material#type:VisualDensity", ["dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _VisualDensityBinding & _FlaxInstanceType<VisualDensity> & _FlaxDartType<VisualDensity, readonly ["class", "flax.core/sdk_material#type:VisualDensity", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "horizontal" | "vertical" | "baseSizeAdjustment" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "effectiveConstraints" | "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

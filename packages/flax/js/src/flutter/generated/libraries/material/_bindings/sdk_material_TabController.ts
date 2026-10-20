@@ -13,18 +13,37 @@ import type * as upstream4 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import type * as upstream5 from '@flax/flutter/animation/_bindings/flutter_Curve';
 import '@flax/flutter/animation/_bindings/flutter_Curve';
-import { _flaxMemberParameters301, _flaxMemberParameters302, _flaxMemberParameters52, _flaxMemberParameters2 } from "@flax/flutter/material/_bindings/sdk_material.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters304, _flaxMemberParameters305, _flaxMemberParameters52, _flaxMemberParameters2 } from "@flax/flutter/material/_bindings/sdk_material.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface TabController extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{ "__flaxBound:package:flutter/src/material/tab_controller.dart::TabController": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> { readonly __TabController: unique symbol;
 readonly [_flaxDartTypeValue]: TabController;
 
+readonly hasListeners: boolean;
+readonly animation: upstream4.Animation<number> | null;
+readonly animationDuration: upstream2.Duration;
+readonly length: number;
+get index(): number;
+readonly previousIndex: number;
+readonly indexIsChanging: boolean;
+get offset(): number;
+addListener(listener: (() => void)): void;
+removeListener(listener: (() => void)): void;
+dispose(): void;
+animateTo(value: number, options?: {curve?: Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number] }> | undefined; duration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined}): void;
+set index(value: number);
+set offset(value: number);
 }
-defineObject("flax.core/sdk_material#type:TabController", ["hasListeners","animation","animationDuration","length","index","previousIndex","indexIsChanging","offset"], ["index","offset"], _flaxBindingMethods("flax.core/sdk_material#type:TabController", "object", {"animateTo":_flaxMemberParameters301}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _TabControllerProxy = {type: "flax.core/sdk_material#type:TabController", parameters: _flaxMemberParameters302, constructors: {"": _flaxMemberParameters302}, methods: {"addListener":_flaxMemberParameters52,"removeListener":_flaxMemberParameters52,"dispose":_flaxMemberParameters2,"animateTo":_flaxMemberParameters301}, getters: ["animation","animationDuration","length","index","previousIndex","indexIsChanging","offset","hasListeners"], setters: ["index","offset"], contextMembers: [], superMembers: ["get:animation","get:animationDuration","get:length","get:index","get:previousIndex","get:indexIsChanging","get:offset","get:hasListeners","set:index","set:offset","addListener","removeListener","dispose","animateTo"]} as const;
-export interface TabController {
-readonly [_flaxDartTypeValue]: TabController;
+defineObject("flax.core/sdk_material#type:TabController", ["hasListeners","animation","animationDuration","length","index","previousIndex","indexIsChanging","offset"], ["index","offset"], _flaxBindingMethods("flax.core/sdk_material#type:TabController", "object", {"animateTo":_flaxMemberParameters304}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+export function _TabControllerFactory(options: { initialIndex?: number | undefined; animationDuration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined; length: number; vsync: Readonly<{ "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [] }> }): TabController {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_material#type:TabController", "", [{"name":"initialIndex"},{"name":"animationDuration"},{"name":"length","required":true},{"name":"vsync","required":true}], [], options) as TabController;
+}
+const _TabControllerProxy = {type: "flax.core/sdk_material#type:TabController", parameters: _flaxMemberParameters305, constructors: {"": _flaxMemberParameters305}, methods: {"addListener":_flaxMemberParameters52,"removeListener":_flaxMemberParameters52,"dispose":_flaxMemberParameters2,"animateTo":_flaxMemberParameters304}, getters: ["animation","animationDuration","length","index","previousIndex","indexIsChanging","offset","hasListeners"], setters: ["index","offset"], contextMembers: [], superMembers: ["get:animation","get:animationDuration","get:length","get:index","get:previousIndex","get:indexIsChanging","get:offset","get:hasListeners","set:index","set:offset","addListener","removeListener","dispose","animateTo"]} as const;
+export interface _TabControllerNative extends TabController {
+readonly [_flaxDartTypeValue]: _TabControllerNative;
 
 addListener(listener: (() => void)): void;
 removeListener(listener: (() => void)): void;
@@ -41,14 +60,15 @@ get hasListeners(): boolean;
 set index(value: number);
 set offset(value: number);
 }
-export abstract class TabController extends _FlaxProxyBase {
+export abstract class _TabControllerNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TabController>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: TabController;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:TabController", readonly [], false];
 constructor(options: {initialIndex?: number | undefined; animationDuration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined; length: number; vsync: Readonly<{ "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [] }>}) { super(_TabControllerProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(TabController.prototype, _TabControllerProxy);
-export namespace TabController { export function implement(args: [options: {initialIndex?: number | undefined; animationDuration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined; length: number; vsync: Readonly<{ "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [] }>}], implementation: {}): TabController {
+_flaxDefineProxyBase(_TabControllerNative.prototype, _TabControllerProxy);
+export namespace _TabControllerFactory { export function implement(args: [options: {initialIndex?: number | undefined; animationDuration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined; length: number; vsync: Readonly<{ "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [] }>}], implementation: {}): TabController {
 return constructProxy(_TabControllerProxy, args, implementation) as TabController; } }
-_flaxBindInstanceType<TabController, typeof TabController>(TabController, "flax.core/sdk_material#type:TabController", ["flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable"]);
+const _TabControllerBinding = _flaxProxyFactory(_TabControllerFactory, _TabControllerNative) as unknown as typeof _TabControllerFactory & (new(options: {initialIndex?: number | undefined; animationDuration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined; length: number; vsync: Readonly<{ "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [] }>}) => _TabControllerNative);
+export const TabController: typeof _TabControllerBinding & _FlaxInstanceType<TabController> & _FlaxDartType<TabController, readonly ["class", "flax.core/sdk_material#type:TabController", readonly [], false]> = _flaxBindInstanceType<TabController, typeof _TabControllerBinding>(_TabControllerBinding, "flax.core/sdk_material#type:TabController", ["flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable"]) as typeof _TabControllerBinding & _FlaxInstanceType<TabController> & _FlaxDartType<TabController, readonly ["class", "flax.core/sdk_material#type:TabController", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "animation" | "animationDuration" | "length" | "index" | "previousIndex" | "indexIsChanging" | "offset" | "addListener" | "removeListener" | "dispose" | "animateTo" | "__flaxBound:package:flutter/src/material/tab_controller.dart::TabController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";

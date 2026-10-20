@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/convert/_bindings/sdk_dependencies_E
 import '@flax/dart/convert/_bindings/sdk_dependencies_Encoding';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Uri';
 import '@flax/dart/core/_bindings/flutter_Uri';
-import { _flaxMemberParameters190, _flaxMemberParameters191, _flaxMemberParameters192, _flaxMemberParameters3, _flaxMemberParameters193 } from "@flax/core/navigation/_bindings/flutter.__module";
+import { _flaxMemberParameters188, _flaxMemberParameters189, _flaxMemberParameters190, _flaxMemberParameters3, _flaxMemberParameters191 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface UriData extends Readonly<{ "__flaxBound:dart:core::UriData": readonly [] }> { readonly __UriData: unique symbol;
@@ -24,7 +24,7 @@ contentAsBytes(): globalThis.Uint8Array;
 contentAsString(options?: {encoding?: Readonly<{ "__flaxBound:dart:convert::Encoding": readonly [] }> & Readonly<{ "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>] }> | null | undefined}): string;
 toString(): string;
 }
-defineObject("flax.core/flutter#type:UriData", ["uri","mimeType","charset","isBase64","contentText","parameters"], [], _flaxBindingMethods("flax.core/flutter#type:UriData", "object", {"isMimeType":_flaxMemberParameters190,"isCharset":_flaxMemberParameters191,"isEncoding":_flaxMemberParameters192,"contentAsBytes":_flaxMemberParameters3,"contentAsString":_flaxMemberParameters193,"toString":_flaxMemberParameters3}, {}), []);
+defineObject("flax.core/flutter#type:UriData", ["uri","mimeType","charset","isBase64","contentText","parameters"], [], _flaxBindingMethods("flax.core/flutter#type:UriData", "object", {"isMimeType":_flaxMemberParameters188,"isCharset":_flaxMemberParameters189,"isEncoding":_flaxMemberParameters190,"contentAsBytes":_flaxMemberParameters3,"contentAsString":_flaxMemberParameters191,"toString":_flaxMemberParameters3}, {}), []);
 export namespace _UriDataFactory {
 export function fromString(content: string, options: { mimeType?: string | null | undefined; encoding?: Readonly<{ "__flaxBound:dart:convert::Encoding": readonly [] }> & Readonly<{ "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>] }> | null | undefined; parameters?: DartMapInput<string, string, string, string> | null | undefined; base64?: boolean | undefined } = {}): UriData {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');

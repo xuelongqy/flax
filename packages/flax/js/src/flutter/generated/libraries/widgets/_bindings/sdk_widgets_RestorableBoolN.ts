@@ -13,18 +13,37 @@ import type * as upstream4 from '@flax/flutter/widgets/_bindings/components_Stat
 import '@flax/flutter/widgets/_bindings/components_State';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
-import { _flaxMemberParameters33, _flaxMemberParameters336, _flaxMemberParameters2, _flaxMemberParameters337, _flaxMemberParameters30, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters33, _flaxMemberParameters321, _flaxMemberParameters2, _flaxMemberParameters322, _flaxMemberParameters30, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface RestorableBoolN extends Omit<upstream0.RestorableValue<boolean | null>, _flaxOwnMembers0>, Omit<upstream1.RestorableProperty<boolean | null>, _flaxOwnMembers0 | keyof upstream0.RestorableValue<boolean | null>>, Omit<upstream2.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.RestorableValue<boolean | null> | keyof upstream1.RestorableProperty<boolean | null>>, Omit<upstream3.Listenable, _flaxOwnMembers0 | keyof upstream0.RestorableValue<boolean | null> | keyof upstream1.RestorableProperty<boolean | null> | keyof upstream2.ChangeNotifier>, Readonly<{ "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableBoolN": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValueN": readonly [boolean | null] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue": readonly [boolean | null] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty": readonly [boolean | null] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> { readonly __RestorableBoolN: unique symbol;
 readonly [_flaxDartTypeValue]: RestorableBoolN;
 
+get value(): boolean | null;
+readonly enabled: boolean;
+readonly state: upstream4.State<upstream5.StatefulWidget>;
+readonly isRegistered: boolean;
+readonly hasListeners: boolean;
+initWithValue(value: boolean | null): void;
+didUpdateValue(oldValue: boolean | null): void;
+createDefaultValue(): boolean | null;
+fromPrimitives(serialized: unknown | null): boolean | null;
+toPrimitives(): unknown | null;
+dispose(): void;
+addListener(listener: (() => void)): void;
+removeListener(listener: (() => void)): void;
+set value(value: boolean | null);
 }
-defineObject("flax.core/sdk_widgets#type:RestorableBoolN", ["value","enabled","state","isRegistered","hasListeners"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:RestorableBoolN", "object", {"initWithValue":_flaxMemberParameters33,"didUpdateValue":_flaxMemberParameters336,"createDefaultValue":_flaxMemberParameters2,"fromPrimitives":_flaxMemberParameters337,"toPrimitives":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _RestorableBoolNProxy = {type: "flax.core/sdk_widgets#type:RestorableBoolN", parameters: _flaxMemberParameters30, constructors: {"": _flaxMemberParameters30}, methods: {"initWithValue":_flaxMemberParameters33,"didUpdateValue":_flaxMemberParameters336,"createDefaultValue":_flaxMemberParameters2,"fromPrimitives":_flaxMemberParameters337,"toPrimitives":_flaxMemberParameters2,"dispose":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12}, getters: ["value","enabled","state","isRegistered","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:enabled","get:state","get:isRegistered","get:hasListeners","set:value","initWithValue","didUpdateValue","createDefaultValue","fromPrimitives","toPrimitives","dispose","addListener","removeListener"]} as const;
-export interface RestorableBoolN {
-readonly [_flaxDartTypeValue]: RestorableBoolN;
+defineObject("flax.core/sdk_widgets#type:RestorableBoolN", ["value","enabled","state","isRegistered","hasListeners"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:RestorableBoolN", "object", {"initWithValue":_flaxMemberParameters33,"didUpdateValue":_flaxMemberParameters321,"createDefaultValue":_flaxMemberParameters2,"fromPrimitives":_flaxMemberParameters322,"toPrimitives":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+export function _RestorableBoolNFactory(defaultValue: boolean | null): RestorableBoolN {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:RestorableBoolN", "", [{"name":"defaultValue","required":true,"positional":true}], [defaultValue], {}) as RestorableBoolN;
+}
+const _RestorableBoolNProxy = {type: "flax.core/sdk_widgets#type:RestorableBoolN", parameters: _flaxMemberParameters30, constructors: {"": _flaxMemberParameters30}, methods: {"initWithValue":_flaxMemberParameters33,"didUpdateValue":_flaxMemberParameters321,"createDefaultValue":_flaxMemberParameters2,"fromPrimitives":_flaxMemberParameters322,"toPrimitives":_flaxMemberParameters2,"dispose":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12}, getters: ["value","enabled","state","isRegistered","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:enabled","get:state","get:isRegistered","get:hasListeners","set:value","initWithValue","didUpdateValue","createDefaultValue","fromPrimitives","toPrimitives","dispose","addListener","removeListener"]} as const;
+export interface _RestorableBoolNNative extends RestorableBoolN {
+readonly [_flaxDartTypeValue]: _RestorableBoolNNative;
 
 initWithValue(value: boolean | null): void;
 didUpdateValue(oldValue: boolean | null): void;
@@ -41,14 +60,15 @@ get isRegistered(): boolean;
 get hasListeners(): boolean;
 set value(value: boolean | null);
 }
-export abstract class RestorableBoolN extends _FlaxProxyBase {
+export abstract class _RestorableBoolNNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RestorableBoolN>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: RestorableBoolN;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:RestorableBoolN", readonly [], false];
 constructor(defaultValue: boolean | null) { super(_RestorableBoolNProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(RestorableBoolN.prototype, _RestorableBoolNProxy);
-export namespace RestorableBoolN { export function implement(args: [defaultValue: boolean | null], implementation: {}): RestorableBoolN {
+_flaxDefineProxyBase(_RestorableBoolNNative.prototype, _RestorableBoolNProxy);
+export namespace _RestorableBoolNFactory { export function implement(args: [defaultValue: boolean | null], implementation: {}): RestorableBoolN {
 return constructProxy(_RestorableBoolNProxy, args, implementation) as RestorableBoolN; } }
-_flaxBindInstanceType<RestorableBoolN, typeof RestorableBoolN>(RestorableBoolN, "flax.core/sdk_widgets#type:RestorableBoolN", ["package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValueN","flax.core/sdk_widgets#type:RestorableValue","flax.core/sdk_widgets#type:RestorableProperty","flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable"]);
+const _RestorableBoolNBinding = _flaxProxyFactory(_RestorableBoolNFactory, _RestorableBoolNNative) as unknown as typeof _RestorableBoolNFactory & (new(defaultValue: boolean | null) => _RestorableBoolNNative);
+export const RestorableBoolN: typeof _RestorableBoolNBinding & _FlaxInstanceType<RestorableBoolN> & _FlaxDartType<RestorableBoolN, readonly ["class", "flax.core/sdk_widgets#type:RestorableBoolN", readonly [], false]> = _flaxBindInstanceType<RestorableBoolN, typeof _RestorableBoolNBinding>(_RestorableBoolNBinding, "flax.core/sdk_widgets#type:RestorableBoolN", ["package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValueN","flax.core/sdk_widgets#type:RestorableValue","flax.core/sdk_widgets#type:RestorableProperty","flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable"]) as typeof _RestorableBoolNBinding & _FlaxInstanceType<RestorableBoolN> & _FlaxDartType<RestorableBoolN, readonly ["class", "flax.core/sdk_widgets#type:RestorableBoolN", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "initWithValue" | "didUpdateValue" | "createDefaultValue" | "fromPrimitives" | "toPrimitives" | "dispose" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableBoolN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValueN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";

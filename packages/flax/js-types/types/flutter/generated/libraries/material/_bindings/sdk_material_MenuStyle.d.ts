@@ -27,7 +27,7 @@ import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MenuStyle extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/menu_style.dart::MenuStyle": readonly [];
 }>, Readonly<{
@@ -35,9 +35,124 @@ export interface MenuStyle extends Omit<upstream0.Diagnosticable, _flaxOwnMember
 }> {
     readonly __MenuStyle: unique symbol;
     readonly [_flaxDartTypeValue]: MenuStyle;
+    readonly backgroundColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly shadowColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly surfaceTintColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly elevation: upstream1.WidgetStateProperty<number | null> | null;
+    readonly padding: upstream1.WidgetStateProperty<upstream3.EdgeInsetsGeometry | null> | null;
+    readonly minimumSize: upstream1.WidgetStateProperty<upstream4.Size | null> | null;
+    readonly fixedSize: upstream1.WidgetStateProperty<upstream4.Size | null> | null;
+    readonly maximumSize: upstream1.WidgetStateProperty<upstream4.Size | null> | null;
+    readonly side: upstream1.WidgetStateProperty<upstream5.BorderSide | null> | null;
+    readonly shape: upstream1.WidgetStateProperty<upstream6.OutlinedBorder | null> | null;
+    readonly mouseCursor: upstream1.WidgetStateProperty<upstream7.MouseCursor | null> | null;
+    readonly visualDensity: upstream8.VisualDensity | null;
+    readonly alignment: upstream9.AlignmentGeometry | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream10.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream12.DiagnosticsTreeStyle | null | undefined;
+    }): upstream11.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        alignment?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+        }> | null | undefined;
+        backgroundColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        elevation?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+        }> | null | undefined;
+        fixedSize?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.Size | null];
+        }> | null | undefined;
+        maximumSize?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.Size | null];
+        }> | null | undefined;
+        minimumSize?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.Size | null];
+        }> | null | undefined;
+        mouseCursor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.MouseCursor | null];
+        }> | null | undefined;
+        padding?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.EdgeInsetsGeometry | null];
+        }> | null | undefined;
+        shadowColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        shape?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.OutlinedBorder | null];
+        }> | null | undefined;
+        side?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.BorderSide | null];
+        }> | null | undefined;
+        surfaceTintColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        visualDensity?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): MenuStyle;
+    merge(style: (Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_style.dart::MenuStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null): MenuStyle;
 }
-export interface MenuStyle {
-    readonly [_flaxDartTypeValue]: MenuStyle;
+export declare function _MenuStyleFactory(options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    elevation?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.EdgeInsetsGeometry | null];
+    }> | null | undefined;
+    minimumSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.Size | null];
+    }> | null | undefined;
+    fixedSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.Size | null];
+    }> | null | undefined;
+    maximumSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.Size | null];
+    }> | null | undefined;
+    side?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.BorderSide | null];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.OutlinedBorder | null];
+    }> | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.MouseCursor | null];
+    }> | null | undefined;
+    visualDensity?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    alignment?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null | undefined;
+}): MenuStyle;
+export interface _MenuStyleNative extends MenuStyle {
+    readonly [_flaxDartTypeValue]: _MenuStyleNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream10.DiagnosticLevel | undefined;
@@ -111,7 +226,7 @@ export interface MenuStyle {
     get visualDensity(): upstream8.VisualDensity | null;
     get alignment(): upstream9.AlignmentGeometry | null;
 }
-export declare abstract class MenuStyle extends _FlaxProxyBase {
+export declare abstract class _MenuStyleNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MenuStyle>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MenuStyle;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:MenuStyle", readonly [], false];
@@ -159,7 +274,7 @@ export declare abstract class MenuStyle extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace MenuStyle {
+export declare namespace _MenuStyleFactory {
     function implement(args: [options?: {
         backgroundColor?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
@@ -204,7 +319,50 @@ export declare namespace MenuStyle {
         }> | null | undefined;
     }], implementation: {}): MenuStyle;
 }
-export declare namespace MenuStyle {
+declare const _MenuStyleBinding: typeof _MenuStyleFactory & (new (options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    elevation?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.EdgeInsetsGeometry | null];
+    }> | null | undefined;
+    minimumSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.Size | null];
+    }> | null | undefined;
+    fixedSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.Size | null];
+    }> | null | undefined;
+    maximumSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.Size | null];
+    }> | null | undefined;
+    side?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.BorderSide | null];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.OutlinedBorder | null];
+    }> | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.MouseCursor | null];
+    }> | null | undefined;
+    visualDensity?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    alignment?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null | undefined;
+}) => _MenuStyleNative);
+export declare namespace _MenuStyleFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/menu_style.dart::MenuStyle": readonly [];
     }> & Readonly<{
@@ -215,5 +373,6 @@ export declare namespace MenuStyle {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): MenuStyle | null;
 }
+export declare const MenuStyle: typeof _MenuStyleBinding & _FlaxInstanceType<MenuStyle> & _FlaxDartType<MenuStyle, readonly ["class", "flax.core/sdk_material#type:MenuStyle", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "backgroundColor" | "shadowColor" | "surfaceTintColor" | "elevation" | "padding" | "minimumSize" | "fixedSize" | "maximumSize" | "side" | "shape" | "mouseCursor" | "visualDensity" | "alignment" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "merge" | "__flaxBound:package:flutter/src/material/menu_style.dart::MenuStyle" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

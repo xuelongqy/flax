@@ -17,7 +17,7 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CardThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/card_theme.dart::CardThemeData": readonly [];
 }>, Readonly<{
@@ -25,9 +25,65 @@ export interface CardThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMe
 }> {
     readonly __CardThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: CardThemeData;
+    readonly clipBehavior: upstream1.Clip | null;
+    readonly color: upstream2.Color | null;
+    readonly shadowColor: upstream2.Color | null;
+    readonly surfaceTintColor: upstream2.Color | null;
+    readonly elevation: number | null;
+    readonly margin: upstream3.EdgeInsetsGeometry | null;
+    readonly shape: upstream4.ShapeBorder | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream5.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        clipBehavior?: upstream1.Clip | null | undefined;
+        color?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        elevation?: number | null | undefined;
+        margin?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        shadowColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        shape?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        surfaceTintColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+    }): CardThemeData;
 }
-export interface CardThemeData {
-    readonly [_flaxDartTypeValue]: CardThemeData;
+export declare function _CardThemeDataFactory(options?: {
+    clipBehavior?: upstream1.Clip | null | undefined;
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    margin?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+}): CardThemeData;
+export interface _CardThemeDataNative extends CardThemeData {
+    readonly [_flaxDartTypeValue]: _CardThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream5.DiagnosticLevel | undefined;
@@ -66,7 +122,7 @@ export interface CardThemeData {
     get margin(): upstream3.EdgeInsetsGeometry | null;
     get shape(): upstream4.ShapeBorder | null;
 }
-export declare abstract class CardThemeData extends _FlaxProxyBase {
+export declare abstract class _CardThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CardThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: CardThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:CardThemeData", readonly [], false];
@@ -90,7 +146,7 @@ export declare abstract class CardThemeData extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace CardThemeData {
+export declare namespace _CardThemeDataFactory {
     function implement(args: [options?: {
         clipBehavior?: upstream1.Clip | null | undefined;
         color?: Readonly<{
@@ -111,7 +167,26 @@ export declare namespace CardThemeData {
         }> | null | undefined;
     }], implementation: {}): CardThemeData;
 }
-export declare namespace CardThemeData {
+declare const _CardThemeDataBinding: typeof _CardThemeDataFactory & (new (options?: {
+    clipBehavior?: upstream1.Clip | null | undefined;
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    margin?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+}) => _CardThemeDataNative);
+export declare namespace _CardThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/card_theme.dart::CardThemeData": readonly [];
     }> & Readonly<{
@@ -122,5 +197,6 @@ export declare namespace CardThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): CardThemeData;
 }
+export declare const CardThemeData: typeof _CardThemeDataBinding & _FlaxInstanceType<CardThemeData> & _FlaxDartType<CardThemeData, readonly ["class", "flax.core/sdk_material#type:CardThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "clipBehavior" | "color" | "shadowColor" | "surfaceTintColor" | "elevation" | "margin" | "shape" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/card_theme.dart::CardThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -22,7 +22,7 @@ import type * as upstream10 from '@flax/flutter/semantics/_bindings/sdk_semantic
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsHandle';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_PipelineManifold';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PipelineOwner extends Omit<upstream0.DiagnosticableTreeMixin, _flaxOwnMembers0>, Omit<upstream1.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.DiagnosticableTreeMixin>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.DiagnosticableTreeMixin | keyof upstream1.DiagnosticableTree>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/object.dart::PipelineOwner": readonly [];
 }>, Readonly<{
@@ -34,9 +34,95 @@ export interface PipelineOwner extends Omit<upstream0.DiagnosticableTreeMixin, _
 }> {
     readonly __PipelineOwner: unique symbol;
     readonly [_flaxDartTypeValue]: PipelineOwner;
+    readonly onNeedVisualUpdate: (() => void) | null;
+    readonly onSemanticsOwnerCreated: (() => void) | null;
+    readonly onSemanticsUpdate: ((update: Readonly<{
+        "__flaxBound:dart:ui::SemanticsUpdate": readonly [];
+    }>) => void) | null;
+    readonly onSemanticsOwnerDisposed: (() => void) | null;
+    get rootNode(): upstream4.RenderObject | null;
+    readonly nodesNeedingLayout: DartIterable<upstream4.RenderObject>;
+    readonly debugDoingLayout: boolean;
+    readonly nodesNeedingPaint: DartIterable<upstream4.RenderObject>;
+    readonly debugDoingPaint: boolean;
+    readonly semanticsOwner: upstream5.SemanticsOwner | null;
+    readonly debugOutstandingSemanticsHandles: number;
+    toString(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream8.DiagnosticsTreeStyle | null | undefined;
+    }): upstream7.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream7.DiagnosticsNode>;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    requestVisualUpdate(): void;
+    flushLayout(): void;
+    flushCompositingBits(): void;
+    flushPaint(): void;
+    ensureSemantics(options?: {
+        listener?: (() => void) | null | undefined;
+    }): upstream10.SemanticsHandle;
+    flushSemantics(): void;
+    attach(manifold: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PipelineManifold": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>): void;
+    detach(): void;
+    adoptChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PipelineOwner": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    dropChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PipelineOwner": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    visitChildren(visitor: ((child: PipelineOwner) => void)): void;
+    dispose(): void;
+    set rootNode(value: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
 }
-export interface PipelineOwner {
-    readonly [_flaxDartTypeValue]: PipelineOwner;
+export declare function _PipelineOwnerFactory(options?: {
+    onNeedVisualUpdate?: (() => void) | null | undefined;
+    onSemanticsOwnerCreated?: (() => void) | null | undefined;
+    onSemanticsUpdate?: ((update: upstream3.SemanticsUpdate) => void) | null | undefined;
+    onSemanticsOwnerDisposed?: (() => void) | null | undefined;
+}): PipelineOwner;
+export interface _PipelineOwnerNative extends PipelineOwner {
+    readonly [_flaxDartTypeValue]: _PipelineOwnerNative;
     get nodesNeedingLayout(): DartIterable<upstream4.RenderObject>;
     get nodesNeedingPaint(): DartIterable<upstream4.RenderObject>;
     toString(options?: {
@@ -118,7 +204,7 @@ export interface PipelineOwner {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null);
 }
-export declare abstract class PipelineOwner extends _FlaxProxyBase {
+export declare abstract class _PipelineOwnerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PipelineOwner>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PipelineOwner;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:PipelineOwner", readonly [], false];
@@ -129,7 +215,7 @@ export declare abstract class PipelineOwner extends _FlaxProxyBase {
         onSemanticsOwnerDisposed?: (() => void) | null | undefined;
     });
 }
-export declare namespace PipelineOwner {
+export declare namespace _PipelineOwnerFactory {
     function implement(args: [options?: {
         onNeedVisualUpdate?: (() => void) | null | undefined;
         onSemanticsOwnerCreated?: (() => void) | null | undefined;
@@ -137,5 +223,12 @@ export declare namespace PipelineOwner {
         onSemanticsOwnerDisposed?: (() => void) | null | undefined;
     }], implementation: {}): PipelineOwner;
 }
+declare const _PipelineOwnerBinding: typeof _PipelineOwnerFactory & (new (options?: {
+    onNeedVisualUpdate?: (() => void) | null | undefined;
+    onSemanticsOwnerCreated?: (() => void) | null | undefined;
+    onSemanticsUpdate?: ((update: upstream3.SemanticsUpdate) => void) | null | undefined;
+    onSemanticsOwnerDisposed?: (() => void) | null | undefined;
+}) => _PipelineOwnerNative);
+export declare const PipelineOwner: typeof _PipelineOwnerBinding & _FlaxInstanceType<PipelineOwner> & _FlaxDartType<PipelineOwner, readonly ["class", "flax.core/sdk_rendering#type:PipelineOwner", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "onNeedVisualUpdate" | "onSemanticsOwnerCreated" | "onSemanticsUpdate" | "onSemanticsOwnerDisposed" | "rootNode" | "nodesNeedingLayout" | "debugDoingLayout" | "nodesNeedingPaint" | "debugDoingPaint" | "semanticsOwner" | "debugOutstandingSemanticsHandles" | "toString" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "requestVisualUpdate" | "flushLayout" | "flushCompositingBits" | "flushPaint" | "ensureSemantics" | "flushSemantics" | "attach" | "detach" | "adoptChild" | "dropChild" | "visitChildren" | "dispose" | "__flaxBound:package:flutter/src/rendering/object.dart::PipelineOwner" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

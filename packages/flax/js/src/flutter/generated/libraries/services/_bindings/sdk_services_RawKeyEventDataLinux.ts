@@ -24,17 +24,44 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { _flaxMemberParameters10, _flaxMemberParameters73, _flaxMemberParameters69, _flaxMemberParameters0, _flaxMemberParameters44, _flaxMemberParameters43, _flaxMemberParameters45 } from "@flax/flutter/services/_bindings/sdk_services.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface RawKeyEventDataLinux extends Omit<upstream0.RawKeyEventData, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.RawKeyEventData>, Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard_linux.dart::RawKeyEventDataLinux": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __RawKeyEventDataLinux: unique symbol;
 readonly [_flaxDartTypeValue]: RawKeyEventDataLinux;
 
+readonly isControlPressed: boolean;
+readonly isShiftPressed: boolean;
+readonly isAltPressed: boolean;
+readonly isMetaPressed: boolean;
+readonly modifiersPressed: DartMap<upstream4.ModifierKey, upstream3.KeyboardSide>;
+readonly physicalKey: upstream5.PhysicalKeyboardKey;
+readonly logicalKey: upstream6.LogicalKeyboardKey;
+readonly keyLabel: string;
+readonly keyHelper: upstream2.KeyHelper;
+readonly unicodeScalarValues: number;
+readonly scanCode: number;
+readonly keyCode: number;
+readonly modifiers: number;
+readonly isDown: boolean;
+readonly specifiedLogicalKey: number | null;
+isModifierPressed(key: upstream4.ModifierKey, options?: {side?: upstream3.KeyboardSide | undefined}): boolean;
+getModifierSide(key: upstream4.ModifierKey): upstream3.KeyboardSide;
+shouldDispatchEvent(): boolean;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream8.DiagnosticsTreeStyle | null | undefined}): upstream7.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream10.DiagnosticLevel | undefined}): string;
 }
 defineObject("flax.core/sdk_services#type:RawKeyEventDataLinux", ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","modifiersPressed","physicalKey","logicalKey","keyLabel","keyHelper","unicodeScalarValues","scanCode","keyCode","modifiers","isDown","specifiedLogicalKey"], [], _flaxBindingMethods("flax.core/sdk_services#type:RawKeyEventDataLinux", "object", {"getModifierSide":_flaxMemberParameters10}, {}), [], undefined, "flax.core/sdk_services#type:RawKeyEventData");
+export function _RawKeyEventDataLinuxFactory(options: { keyHelper: Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard_linux.dart::KeyHelper": readonly [] }>; unicodeScalarValues?: number | undefined; scanCode?: number | undefined; keyCode?: number | undefined; modifiers?: number | undefined; isDown: boolean; specifiedLogicalKey?: number | null | undefined }): RawKeyEventDataLinux {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_services#type:RawKeyEventDataLinux", "", [{"name":"keyHelper","required":true},{"name":"unicodeScalarValues"},{"name":"scanCode"},{"name":"keyCode"},{"name":"modifiers"},{"name":"isDown","required":true},{"name":"specifiedLogicalKey"}], [], options) as RawKeyEventDataLinux;
+}
 const _RawKeyEventDataLinuxProxy = {type: "flax.core/sdk_services#type:RawKeyEventDataLinux", parameters: _flaxMemberParameters73, constructors: {"": _flaxMemberParameters73}, methods: {"isModifierPressed":_flaxMemberParameters69,"getModifierSide":_flaxMemberParameters10,"shouldDispatchEvent":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"toDiagnosticsNode":_flaxMemberParameters44,"debugFillProperties":_flaxMemberParameters43,"toString":_flaxMemberParameters45}, getters: ["keyHelper","unicodeScalarValues","scanCode","keyCode","modifiers","isDown","specifiedLogicalKey","keyLabel","physicalKey","logicalKey","isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","modifiersPressed"], setters: [], contextMembers: [], superMembers: ["get:keyHelper","get:unicodeScalarValues","get:scanCode","get:keyCode","get:modifiers","get:isDown","get:specifiedLogicalKey","get:keyLabel","get:physicalKey","get:logicalKey","get:isControlPressed","get:isShiftPressed","get:isAltPressed","get:isMetaPressed","get:modifiersPressed","isModifierPressed","getModifierSide","shouldDispatchEvent","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface RawKeyEventDataLinux {
-readonly [_flaxDartTypeValue]: RawKeyEventDataLinux;
+export interface _RawKeyEventDataLinuxNative extends RawKeyEventDataLinux {
+readonly [_flaxDartTypeValue]: _RawKeyEventDataLinuxNative;
 
 isModifierPressed(key: upstream4.ModifierKey, options?: {side?: upstream3.KeyboardSide | undefined}): boolean;
 getModifierSide(key: upstream4.ModifierKey): upstream3.KeyboardSide;
@@ -59,14 +86,15 @@ get isAltPressed(): boolean;
 get isMetaPressed(): boolean;
 get modifiersPressed(): DartMap<upstream4.ModifierKey, upstream3.KeyboardSide>;
 }
-export abstract class RawKeyEventDataLinux extends _FlaxProxyBase {
+export abstract class _RawKeyEventDataLinuxNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RawKeyEventDataLinux>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: RawKeyEventDataLinux;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:RawKeyEventDataLinux", readonly [], false];
 constructor(options: {keyHelper: Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard_linux.dart::KeyHelper": readonly [] }>; unicodeScalarValues?: number | undefined; scanCode?: number | undefined; keyCode?: number | undefined; modifiers?: number | undefined; isDown: boolean; specifiedLogicalKey?: number | null | undefined}) { super(_RawKeyEventDataLinuxProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(RawKeyEventDataLinux.prototype, _RawKeyEventDataLinuxProxy);
-export namespace RawKeyEventDataLinux { export function implement(args: [options: {keyHelper: Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard_linux.dart::KeyHelper": readonly [] }>; unicodeScalarValues?: number | undefined; scanCode?: number | undefined; keyCode?: number | undefined; modifiers?: number | undefined; isDown: boolean; specifiedLogicalKey?: number | null | undefined}], implementation: {}): RawKeyEventDataLinux {
+_flaxDefineProxyBase(_RawKeyEventDataLinuxNative.prototype, _RawKeyEventDataLinuxProxy);
+export namespace _RawKeyEventDataLinuxFactory { export function implement(args: [options: {keyHelper: Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard_linux.dart::KeyHelper": readonly [] }>; unicodeScalarValues?: number | undefined; scanCode?: number | undefined; keyCode?: number | undefined; modifiers?: number | undefined; isDown: boolean; specifiedLogicalKey?: number | null | undefined}], implementation: {}): RawKeyEventDataLinux {
 return constructProxy(_RawKeyEventDataLinuxProxy, args, implementation) as RawKeyEventDataLinux; } }
-_flaxBindInstanceType<RawKeyEventDataLinux, typeof RawKeyEventDataLinux>(RawKeyEventDataLinux, "flax.core/sdk_services#type:RawKeyEventDataLinux", ["flax.core/sdk_services#type:RawKeyEventData","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _RawKeyEventDataLinuxBinding = _flaxProxyFactory(_RawKeyEventDataLinuxFactory, _RawKeyEventDataLinuxNative) as unknown as typeof _RawKeyEventDataLinuxFactory & (new(options: {keyHelper: Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard_linux.dart::KeyHelper": readonly [] }>; unicodeScalarValues?: number | undefined; scanCode?: number | undefined; keyCode?: number | undefined; modifiers?: number | undefined; isDown: boolean; specifiedLogicalKey?: number | null | undefined}) => _RawKeyEventDataLinuxNative);
+export const RawKeyEventDataLinux: typeof _RawKeyEventDataLinuxBinding & _FlaxInstanceType<RawKeyEventDataLinux> & _FlaxDartType<RawKeyEventDataLinux, readonly ["class", "flax.core/sdk_services#type:RawKeyEventDataLinux", readonly [], false]> = _flaxBindInstanceType<RawKeyEventDataLinux, typeof _RawKeyEventDataLinuxBinding>(_RawKeyEventDataLinuxBinding, "flax.core/sdk_services#type:RawKeyEventDataLinux", ["flax.core/sdk_services#type:RawKeyEventData","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _RawKeyEventDataLinuxBinding & _FlaxInstanceType<RawKeyEventDataLinux> & _FlaxDartType<RawKeyEventDataLinux, readonly ["class", "flax.core/sdk_services#type:RawKeyEventDataLinux", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "isControlPressed" | "isShiftPressed" | "isAltPressed" | "isMetaPressed" | "modifiersPressed" | "physicalKey" | "logicalKey" | "keyLabel" | "keyHelper" | "unicodeScalarValues" | "scanCode" | "keyCode" | "modifiers" | "isDown" | "specifiedLogicalKey" | "isModifierPressed" | "getModifierSide" | "shouldDispatchEvent" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/services/raw_keyboard_linux.dart::RawKeyEventDataLinux" | "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

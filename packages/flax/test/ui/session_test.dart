@@ -26,6 +26,66 @@ void main() {
     },
   );
 
+  testWidgets('invalid binding dependencies never create a runtime', (
+    tester,
+  ) async {
+    const dependency = FlaxBindingModule(
+      'original',
+      [],
+      moduleId: 'test/dependency',
+      uiProtocol: 24,
+      requiredCapabilities: [],
+    );
+    const root = FlaxBindingModule(
+      'root',
+      [],
+      moduleId: 'test/root',
+      uiProtocol: 24,
+      requiredCapabilities: [],
+      dependencies: [dependency],
+    );
+    const conflicting = FlaxBindingModule(
+      'replacement',
+      [],
+      moduleId: 'test/dependency',
+      uiProtocol: 24,
+      requiredCapabilities: [],
+    );
+    final runtime = _InitializationRuntime();
+    var creations = 0;
+    final errors = <Object>[];
+    final session = FlaxSession(
+      createRuntime: () {
+        creations++;
+        return runtime;
+      },
+      source: 'throw Error("Source must not run")',
+      bindings: FlaxBindingRegistry([]),
+      plugins: [
+        _ClosePlugin(() {}, () {}, bindingModules: [root, conflicting]),
+      ],
+      onError: (error, _) => errors.add(error),
+    );
+    await tester.pumpWidget(
+      MaterialApp(home: FlaxView.session(session: session)),
+    );
+    expect(
+      errors.single,
+      isA<ArgumentError>().having(
+        (error) => error.message,
+        'dependency conflict',
+        'Duplicate binding module id test/dependency',
+      ),
+    );
+    expect(creations, 0);
+    await flaxTestUnmount(tester);
+    final closing = session.close();
+    expect(session.close(), same(closing));
+    await closing;
+    expect(creations, 0);
+    expect(runtime.disposals, 0);
+  });
+
   testWidgets('failed initialization closes once and rejects later mounts', (
     tester,
   ) async {
@@ -103,9 +163,15 @@ void main() {
 }
 
 class _ClosePlugin extends FlaxPlugin {
-  const _ClosePlugin(this.onClose, this.onDispose);
+  const _ClosePlugin(
+    this.onClose,
+    this.onDispose, {
+    this.bindingModules = const [],
+  });
   final void Function() onClose;
   final void Function() onDispose;
+  @override
+  final List<FlaxBindingModule> bindingModules;
   @override
   String get id => 'test.reentrant-close';
   @override
@@ -123,4 +189,15 @@ class _CloseInstance implements FlaxPluginInstance {
   void close() => onClose();
   @override
   void dispose() => onDispose();
+}
+
+class _InitializationRuntime extends FlaxJsRuntime {
+  int disposals = 0;
+  @override
+  bool get isDisposed => disposals != 0;
+  @override
+  void dispose() => disposals++;
+  @override
+  dynamic noSuchMethod(Invocation invocation) =>
+      throw StateError('Unexpected runtime access: ${invocation.memberName}');
 }

@@ -9,7 +9,7 @@ import type * as upstream3 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_PageRoute';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoPageTransitionsBuilder extends Omit<upstream0.PageTransitionsBuilder, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/cupertino/route.dart::CupertinoPageTransitionsBuilder": readonly [];
 }>, Readonly<{
@@ -20,9 +20,54 @@ export interface CupertinoPageTransitionsBuilder extends Omit<upstream0.PageTran
     readonly [_flaxDartMethodCases]?: {
         buildTransitions: _FlaxSignature0;
     };
+    readonly delegatedTransition: ((context: upstream1.BuildContext, animation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>, secondaryAnimation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null;
+    readonly transitionDuration: upstream3.Duration;
+    readonly reverseTransitionDuration: upstream3.Duration;
+    buildTransitions<T extends unknown | null = unknown | null>(route: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute": readonly [_FlaxDartOutput<T>];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/routes.dart::ModalRoute": readonly [_FlaxDartOutput<T>];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/routes.dart::TransitionRoute": readonly [_FlaxDartOutput<T>];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/routes.dart::OverlayRoute": readonly [_FlaxDartOutput<T>];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/navigator.dart::Route": readonly [_FlaxDartOutput<T>];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/routes.dart::PredictiveBackRoute": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/routes.dart::LocalHistoryRoute": readonly [_FlaxDartOutput<T>];
+    }>, context: upstream1.BuildContext, animation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>, secondaryAnimation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>, child: Widget): Widget;
 }
-export interface CupertinoPageTransitionsBuilder {
-    readonly [_flaxDartTypeValue]: CupertinoPageTransitionsBuilder;
+export declare function _CupertinoPageTransitionsBuilderFactory(): CupertinoPageTransitionsBuilder;
+export interface _CupertinoPageTransitionsBuilderNative extends CupertinoPageTransitionsBuilder {
+    readonly [_flaxDartTypeValue]: _CupertinoPageTransitionsBuilderNative;
     readonly [_flaxDartMethodCases]?: {
         buildTransitions: _FlaxSignature1;
     };
@@ -71,15 +116,17 @@ export interface CupertinoPageTransitionsBuilder {
     }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null;
     get reverseTransitionDuration(): upstream3.Duration;
 }
-export declare abstract class CupertinoPageTransitionsBuilder extends _FlaxProxyBase {
+export declare abstract class _CupertinoPageTransitionsBuilderNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CupertinoPageTransitionsBuilder>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: CupertinoPageTransitionsBuilder;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_cupertino#type:CupertinoPageTransitionsBuilder", readonly [], false];
     constructor();
 }
-export declare namespace CupertinoPageTransitionsBuilder {
+export declare namespace _CupertinoPageTransitionsBuilderFactory {
     function implement(args: [], implementation: {}): CupertinoPageTransitionsBuilder;
 }
+declare const _CupertinoPageTransitionsBuilderBinding: typeof _CupertinoPageTransitionsBuilderFactory & (new () => _CupertinoPageTransitionsBuilderNative);
+export declare const CupertinoPageTransitionsBuilder: typeof _CupertinoPageTransitionsBuilderBinding & _FlaxInstanceType<CupertinoPageTransitionsBuilder> & _FlaxDartType<CupertinoPageTransitionsBuilder, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoPageTransitionsBuilder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "delegatedTransition" | "transitionDuration" | "reverseTransitionDuration" | "buildTransitions" | "__flaxBound:package:flutter/src/cupertino/route.dart::CupertinoPageTransitionsBuilder" | "__flaxBound:package:flutter/src/widgets/page_transitions_builder.dart::PageTransitionsBuilder";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (route: Readonly<{

@@ -15,7 +15,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_TextTreeConfiguration';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsSerializationDelegate';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface AttributedStringProperty extends Omit<upstream0.DiagnosticsProperty<upstream1.AttributedString>, _flaxOwnMembers0>, Omit<upstream2.DiagnosticsNode, _flaxOwnMembers0 | keyof upstream0.DiagnosticsProperty<upstream1.AttributedString>>, Readonly<{
     "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedStringProperty": readonly [];
 }>, Readonly<{
@@ -25,9 +25,75 @@ export interface AttributedStringProperty extends Omit<upstream0.DiagnosticsProp
 }> {
     readonly __AttributedStringProperty: unique symbol;
     readonly [_flaxDartTypeValue]: AttributedStringProperty;
+    readonly expandableValue: boolean;
+    readonly allowWrap: boolean;
+    readonly allowNameWrap: boolean;
+    readonly ifNull: string | null;
+    readonly ifEmpty: string | null;
+    readonly tooltip: string | null;
+    readonly missingIfNull: boolean;
+    readonly propertyType: upstream4.Type;
+    readonly value: upstream1.AttributedString | null;
+    readonly exception: unknown | null;
+    readonly defaultValue: unknown | null;
+    readonly isInteresting: boolean;
+    readonly level: upstream3.DiagnosticLevel;
+    readonly name: string | null;
+    readonly showSeparator: boolean;
+    readonly showName: boolean;
+    readonly linePrefix: string | null;
+    readonly emptyBodyDescription: string | null;
+    readonly style: upstream5.DiagnosticsTreeStyle | null;
+    readonly allowTruncate: boolean;
+    readonly textTreeConfiguration: upstream6.TextTreeConfiguration | null;
+    readonly showWhenEmpty: boolean;
+    toJsonMap(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
+    }>): DartMap<string, unknown | null>;
+    valueToString(options?: {
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
+    toDescription(options?: {
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
+    getProperties(): DartList<upstream2.DiagnosticsNode>;
+    getChildren(): DartList<upstream2.DiagnosticsNode>;
+    isFiltered(minLevel: upstream3.DiagnosticLevel): boolean;
+    toTimelineArguments(): DartMap<string, string> | null;
+    toJsonMapIterative(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
+    }>): DartMap<string, unknown | null>;
+    toStringDeep(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toString(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
 }
-export interface AttributedStringProperty {
-    readonly [_flaxDartTypeValue]: AttributedStringProperty;
+export declare function _AttributedStringPropertyFactory(name: string, value: Readonly<{
+    "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+}> | null, options?: {
+    showName?: boolean | undefined;
+    showWhenEmpty?: boolean | undefined;
+    defaultValue?: unknown | null | undefined;
+    level?: upstream3.DiagnosticLevel | undefined;
+    description?: string | null | undefined;
+}): AttributedStringProperty;
+export interface _AttributedStringPropertyNative extends AttributedStringProperty {
+    readonly [_flaxDartTypeValue]: _AttributedStringPropertyNative;
     toJsonMap(delegate: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
     }>): DartMap<string, unknown | null>;
@@ -86,7 +152,7 @@ export interface AttributedStringProperty {
     get allowTruncate(): boolean;
     get textTreeConfiguration(): upstream6.TextTreeConfiguration | null;
 }
-export declare abstract class AttributedStringProperty extends _FlaxProxyBase {
+export declare abstract class _AttributedStringPropertyNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AttributedStringProperty>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AttributedStringProperty;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_semantics#type:AttributedStringProperty", readonly [], false];
@@ -100,7 +166,7 @@ export declare abstract class AttributedStringProperty extends _FlaxProxyBase {
         description?: string | null | undefined;
     });
 }
-export declare namespace AttributedStringProperty {
+export declare namespace _AttributedStringPropertyFactory {
     function implement(args: [name: string, value: Readonly<{
         "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
     }> | null, options?: {
@@ -111,5 +177,15 @@ export declare namespace AttributedStringProperty {
         description?: string | null | undefined;
     }], implementation: {}): AttributedStringProperty;
 }
+declare const _AttributedStringPropertyBinding: typeof _AttributedStringPropertyFactory & (new (name: string, value: Readonly<{
+    "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+}> | null, options?: {
+    showName?: boolean | undefined;
+    showWhenEmpty?: boolean | undefined;
+    defaultValue?: unknown | null | undefined;
+    level?: upstream3.DiagnosticLevel | undefined;
+    description?: string | null | undefined;
+}) => _AttributedStringPropertyNative);
+export declare const AttributedStringProperty: typeof _AttributedStringPropertyBinding & _FlaxInstanceType<AttributedStringProperty> & _FlaxDartType<AttributedStringProperty, readonly ["class", "flax.core/sdk_semantics#type:AttributedStringProperty", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "expandableValue" | "allowWrap" | "allowNameWrap" | "ifNull" | "ifEmpty" | "tooltip" | "missingIfNull" | "propertyType" | "value" | "exception" | "defaultValue" | "isInteresting" | "level" | "name" | "showSeparator" | "showName" | "linePrefix" | "emptyBodyDescription" | "style" | "allowTruncate" | "textTreeConfiguration" | "showWhenEmpty" | "toJsonMap" | "valueToString" | "toDescription" | "getProperties" | "getChildren" | "isFiltered" | "toTimelineArguments" | "toJsonMapIterative" | "toStringDeep" | "toString" | "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedStringProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode";
 export {};

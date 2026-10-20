@@ -30,6 +30,7 @@ import 'src/generated/sdk_widgets_bindings.g.dart';
 import 'src/generated/host_bootstrap.g.dart';
 
 part 'src/ui/definitions.dart';
+part 'src/ui/common_types.dart';
 part 'src/ui/references.dart';
 part 'src/ui/resources.dart';
 part 'src/ui/members.dart';

@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
-import { _flaxMemberParameters71, _flaxMemberParameters130, _flaxMemberParameters128, _flaxMemberParameters56, _flaxMemberParameters0 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
+import { _flaxMemberParameters74, _flaxMemberParameters132, _flaxMemberParameters130, _flaxMemberParameters59, _flaxMemberParameters0 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Rect extends Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> { readonly __Rect: unique symbol;
@@ -43,7 +43,7 @@ overlaps(other: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>): boolean
 contains(offset: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): boolean;
 toString(): string;
 }
-defineObject("flax.core/sdk_dart_ui#type:Rect", ["left","top","right","bottom","width","height","size","hasNaN","isInfinite","isFinite","isEmpty","shortestSide","longestSide","topLeft","topCenter","topRight","centerLeft","center","centerRight","bottomLeft","bottomCenter","bottomRight"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:Rect", "object", {"shift":_flaxMemberParameters71,"translate":_flaxMemberParameters130,"inflate":_flaxMemberParameters128,"deflate":_flaxMemberParameters128,"intersect":_flaxMemberParameters56,"expandToInclude":_flaxMemberParameters56,"overlaps":_flaxMemberParameters56,"contains":_flaxMemberParameters71,"toString":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_dart_ui#type:Rect", ["left","top","right","bottom","width","height","size","hasNaN","isInfinite","isFinite","isEmpty","shortestSide","longestSide","topLeft","topCenter","topRight","centerLeft","center","centerRight","bottomLeft","bottomCenter","bottomRight"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:Rect", "object", {"shift":_flaxMemberParameters74,"translate":_flaxMemberParameters132,"inflate":_flaxMemberParameters130,"deflate":_flaxMemberParameters130,"intersect":_flaxMemberParameters59,"expandToInclude":_flaxMemberParameters59,"overlaps":_flaxMemberParameters59,"contains":_flaxMemberParameters74,"toString":_flaxMemberParameters0}, {}), []);
 export namespace _RectFactory {
 export function fromLTRB(left: number, top: number, right: number, bottom: number): Rect {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');

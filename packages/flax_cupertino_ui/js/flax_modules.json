@@ -23,7 +23,9 @@
             "flax.cupertino/cupertino#type:CupertinoButton",
             "flax.cupertino/cupertino#type:CupertinoNavigationBar",
             "flax.cupertino/cupertino#type:CupertinoPageScaffold",
+            "flax.cupertino/cupertino#type:CupertinoTextThemeData",
             "flax.cupertino/cupertino#type:CupertinoThemeData",
+            "flax.cupertino/cupertino#type:NoDefaultCupertinoThemeData",
             "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget"
           ],
           "functions": []

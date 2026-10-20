@@ -494,8 +494,6 @@ import "@flax/flutter/widgets/_bindings/sdk_widgets_ButtonActivateIntent";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_CallbackAction";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_CapturedThemes";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_CharacterActivator";
-import "@flax/flutter/widgets/_bindings/sdk_widgets_CharacterRange";
-import "@flax/flutter/widgets/_bindings/sdk_widgets_Characters";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_ChildBackButtonDispatcher";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_ChildVicinity";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_ClampingScrollSimulation";
@@ -931,8 +929,6 @@ export { CallbackShortcuts } from "@flax/flutter/widgets/_bindings/sdk_widgets_C
 export { CapturedThemes } from "@flax/flutter/widgets/_bindings/sdk_widgets_CapturedThemes";
 export { ChangeReportingBehavior } from "@flax/flutter/widgets/_bindings/sdk_widgets_ChangeReportingBehavior";
 export { CharacterActivator } from "@flax/flutter/widgets/_bindings/sdk_widgets_CharacterActivator";
-export { CharacterRange } from "@flax/flutter/widgets/_bindings/sdk_widgets_CharacterRange";
-export { Characters } from "@flax/flutter/widgets/_bindings/sdk_widgets_Characters";
 export { CheckedModeBanner } from "@flax/flutter/widgets/_bindings/sdk_widgets_CheckedModeBanner";
 export { ChildBackButtonDispatcher } from "@flax/flutter/widgets/_bindings/sdk_widgets_ChildBackButtonDispatcher";
 export type { ChildIndexGetter, ChildIndexGetterInput } from "@flax/flutter/widgets/_bindings/sdk_widgets_ChildIndexGetter";
@@ -1559,7 +1555,6 @@ export { StatusTransitionWidget } from "@flax/flutter/widgets/_bindings/sdk_widg
 export { StreamBuilderBase } from "@flax/flutter/widgets/_bindings/sdk_widgets_StreamBuilderBase";
 export { StretchEffect } from "@flax/flutter/widgets/_bindings/sdk_widgets_StretchEffect";
 export { StretchingOverscrollIndicator } from "@flax/flutter/widgets/_bindings/sdk_widgets_StretchingOverscrollIndicator";
-export { StringCharacters } from "@flax/flutter/widgets/_bindings/sdk_widgets_StringCharacters";
 export { SystemContextMenu } from "@flax/flutter/widgets/_bindings/sdk_widgets_SystemContextMenu";
 export { SystemTextScaler } from "@flax/flutter/widgets/_bindings/sdk_widgets_SystemTextScaler";
 export { Table } from "@flax/flutter/widgets/_bindings/sdk_widgets_Table";

@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
 import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
-import { _flaxMemberParameters115, _flaxMemberParameters2 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
+import { _flaxMemberParameters116, _flaxMemberParameters2 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -13,8 +13,8 @@ export interface ShaderWarmUp extends Readonly<{ "__flaxBound:package:flutter/sr
 readonly [_flaxDartTypeValue]: ShaderWarmUp;
 
 }
-defineObject("flax.core/sdk_painting#type:ShaderWarmUp", ["size"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ShaderWarmUp", "object", {"warmUpOnCanvas":_flaxMemberParameters115,"execute":_flaxMemberParameters2}, {}), []);
-const _ShaderWarmUpProxy = {type: "flax.core/sdk_painting#type:ShaderWarmUp", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"warmUpOnCanvas":_flaxMemberParameters115,"execute":_flaxMemberParameters2}, getters: ["size"], setters: [], contextMembers: [], superMembers: ["get:size","execute"]} as const;
+defineObject("flax.core/sdk_painting#type:ShaderWarmUp", ["size"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ShaderWarmUp", "object", {"warmUpOnCanvas":_flaxMemberParameters116,"execute":_flaxMemberParameters2}, {}), []);
+const _ShaderWarmUpProxy = {type: "flax.core/sdk_painting#type:ShaderWarmUp", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"warmUpOnCanvas":_flaxMemberParameters116,"execute":_flaxMemberParameters2}, getters: ["size"], setters: [], contextMembers: [], superMembers: ["get:size","execute"]} as const;
 export interface ShaderWarmUp {
 readonly [_flaxDartTypeValue]: ShaderWarmUp;
 

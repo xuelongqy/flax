@@ -19,7 +19,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface KeyDownEvent extends Omit<upstream0.KeyEvent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.KeyEvent>, Readonly<{
     "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyDownEvent": readonly [];
 }>, Readonly<{
@@ -29,9 +29,50 @@ export interface KeyDownEvent extends Omit<upstream0.KeyEvent, _flaxOwnMembers0>
 }> {
     readonly __KeyDownEvent: unique symbol;
     readonly [_flaxDartTypeValue]: KeyDownEvent;
+    readonly physicalKey: upstream2.PhysicalKeyboardKey;
+    readonly logicalKey: upstream3.LogicalKeyboardKey;
+    readonly character: string | null;
+    readonly timeStamp: upstream4.Duration;
+    readonly deviceType: upstream5.KeyEventDeviceType;
+    readonly synthesized: boolean;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream8.DiagnosticsTreeStyle | null | undefined;
+    }): upstream7.DiagnosticsNode;
+    toString(options?: {
+        minLevel?: upstream9.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface KeyDownEvent {
-    readonly [_flaxDartTypeValue]: KeyDownEvent;
+export declare function _KeyDownEventFactory(options: {
+    physicalKey: Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::PhysicalKeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    logicalKey: Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    character?: string | null | undefined;
+    timeStamp: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream4.Duration];
+    }>;
+    synthesized?: boolean | undefined;
+    deviceType?: upstream5.KeyEventDeviceType | undefined;
+}): KeyDownEvent;
+export interface _KeyDownEventNative extends KeyDownEvent {
+    readonly [_flaxDartTypeValue]: _KeyDownEventNative;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -50,7 +91,7 @@ export interface KeyDownEvent {
     get deviceType(): upstream5.KeyEventDeviceType;
     get synthesized(): boolean;
 }
-export declare abstract class KeyDownEvent extends _FlaxProxyBase {
+export declare abstract class _KeyDownEventNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<KeyDownEvent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: KeyDownEvent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:KeyDownEvent", readonly [], false];
@@ -79,7 +120,7 @@ export declare abstract class KeyDownEvent extends _FlaxProxyBase {
         deviceType?: upstream5.KeyEventDeviceType | undefined;
     });
 }
-export declare namespace KeyDownEvent {
+export declare namespace _KeyDownEventFactory {
     function implement(args: [options: {
         physicalKey: Readonly<{
             "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::PhysicalKeyboardKey": readonly [];
@@ -105,5 +146,30 @@ export declare namespace KeyDownEvent {
         deviceType?: upstream5.KeyEventDeviceType | undefined;
     }], implementation: {}): KeyDownEvent;
 }
+declare const _KeyDownEventBinding: typeof _KeyDownEventFactory & (new (options: {
+    physicalKey: Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::PhysicalKeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    logicalKey: Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    character?: string | null | undefined;
+    timeStamp: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream4.Duration];
+    }>;
+    synthesized?: boolean | undefined;
+    deviceType?: upstream5.KeyEventDeviceType | undefined;
+}) => _KeyDownEventNative);
+export declare const KeyDownEvent: typeof _KeyDownEventBinding & _FlaxInstanceType<KeyDownEvent> & _FlaxDartType<KeyDownEvent, readonly ["class", "flax.core/sdk_services#type:KeyDownEvent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "physicalKey" | "logicalKey" | "character" | "timeStamp" | "deviceType" | "synthesized" | "debugFillProperties" | "toStringShort" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyDownEvent" | "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyEvent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

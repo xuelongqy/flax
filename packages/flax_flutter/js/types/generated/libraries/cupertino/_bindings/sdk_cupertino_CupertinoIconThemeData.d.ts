@@ -17,7 +17,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoIconThemeData extends Omit<upstream0.IconThemeData, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.IconThemeData>, Readonly<{
     "__flaxBound:package:flutter/src/cupertino/icon_theme_data.dart::CupertinoIconThemeData": readonly [];
 }>, Readonly<{
@@ -27,9 +27,66 @@ export interface CupertinoIconThemeData extends Omit<upstream0.IconThemeData, _f
 }> {
     readonly __CupertinoIconThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: CupertinoIconThemeData;
+    readonly isConcrete: boolean;
+    readonly size: number | null;
+    readonly fill: number | null;
+    readonly weight: number | null;
+    readonly grade: number | null;
+    readonly opticalSize: number | null;
+    readonly color: upstream2.Color | null;
+    readonly opacity: number | null;
+    readonly shadows: DartList<upstream3.Shadow> | null;
+    readonly applyTextScaling: boolean | null;
+    copyWith(options?: {
+        applyTextScaling?: boolean | null | undefined;
+        color?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        fill?: number | null | undefined;
+        grade?: number | null | undefined;
+        opacity?: number | null | undefined;
+        opticalSize?: number | null | undefined;
+        shadows?: DartListInput<upstream3.Shadow, Readonly<{
+            "__flaxBound:dart:ui::Shadow": readonly [];
+        }>> | null | undefined;
+        size?: number | null | undefined;
+        weight?: number | null | undefined;
+    }): CupertinoIconThemeData;
+    merge(other: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null): upstream0.IconThemeData;
+    resolve(context: upstream4.BuildContext): upstream0.IconThemeData;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    toString(options?: {
+        minLevel?: upstream8.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface CupertinoIconThemeData {
-    readonly [_flaxDartTypeValue]: CupertinoIconThemeData;
+export declare function _CupertinoIconThemeDataFactory(options?: {
+    size?: number | null | undefined;
+    fill?: number | null | undefined;
+    weight?: number | null | undefined;
+    grade?: number | null | undefined;
+    opticalSize?: number | null | undefined;
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    opacity?: number | null | undefined;
+    shadows?: DartListInput<upstream3.Shadow, Readonly<{
+        "__flaxBound:dart:ui::Shadow": readonly [];
+    }>> | null | undefined;
+    applyTextScaling?: boolean | null | undefined;
+}): CupertinoIconThemeData;
+export interface _CupertinoIconThemeDataNative extends CupertinoIconThemeData {
+    readonly [_flaxDartTypeValue]: _CupertinoIconThemeDataNative;
     copyWith(options?: {
         size?: number | null | undefined;
         fill?: number | null | undefined;
@@ -73,7 +130,7 @@ export interface CupertinoIconThemeData {
     get shadows(): DartList<upstream3.Shadow> | null;
     get applyTextScaling(): boolean | null;
 }
-export declare abstract class CupertinoIconThemeData extends _FlaxProxyBase {
+export declare abstract class _CupertinoIconThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CupertinoIconThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: CupertinoIconThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_cupertino#type:CupertinoIconThemeData", readonly [], false];
@@ -93,7 +150,7 @@ export declare abstract class CupertinoIconThemeData extends _FlaxProxyBase {
         applyTextScaling?: boolean | null | undefined;
     });
 }
-export declare namespace CupertinoIconThemeData {
+export declare namespace _CupertinoIconThemeDataFactory {
     function implement(args: [options?: {
         size?: number | null | undefined;
         fill?: number | null | undefined;
@@ -110,5 +167,21 @@ export declare namespace CupertinoIconThemeData {
         applyTextScaling?: boolean | null | undefined;
     }], implementation: {}): CupertinoIconThemeData;
 }
+declare const _CupertinoIconThemeDataBinding: typeof _CupertinoIconThemeDataFactory & (new (options?: {
+    size?: number | null | undefined;
+    fill?: number | null | undefined;
+    weight?: number | null | undefined;
+    grade?: number | null | undefined;
+    opticalSize?: number | null | undefined;
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    opacity?: number | null | undefined;
+    shadows?: DartListInput<upstream3.Shadow, Readonly<{
+        "__flaxBound:dart:ui::Shadow": readonly [];
+    }>> | null | undefined;
+    applyTextScaling?: boolean | null | undefined;
+}) => _CupertinoIconThemeDataNative);
+export declare const CupertinoIconThemeData: typeof _CupertinoIconThemeDataBinding & _FlaxInstanceType<CupertinoIconThemeData> & _FlaxDartType<CupertinoIconThemeData, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoIconThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "isConcrete" | "size" | "fill" | "weight" | "grade" | "opticalSize" | "color" | "opacity" | "shadows" | "applyTextScaling" | "copyWith" | "merge" | "resolve" | "debugFillProperties" | "toStringShort" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/cupertino/icon_theme_data.dart::CupertinoIconThemeData" | "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

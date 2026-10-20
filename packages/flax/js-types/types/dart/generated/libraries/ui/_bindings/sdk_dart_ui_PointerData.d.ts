@@ -8,15 +8,101 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
 import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_PointerSignalKind';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_PointerSignalKind';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PointerData extends Readonly<{
     "__flaxBound:dart:ui::PointerData": readonly [];
 }> {
     readonly __PointerData: unique symbol;
     readonly [_flaxDartTypeValue]: PointerData;
+    readonly viewId: number;
+    readonly embedderId: number;
+    readonly timeStamp: upstream0.Duration;
+    readonly change: upstream1.PointerChange;
+    readonly kind: upstream2.PointerDeviceKind;
+    readonly signalKind: upstream3.PointerSignalKind | null;
+    readonly device: number;
+    readonly pointerIdentifier: number;
+    readonly physicalX: number;
+    readonly physicalY: number;
+    readonly physicalDeltaX: number;
+    readonly physicalDeltaY: number;
+    readonly buttons: number;
+    readonly obscured: boolean;
+    readonly synthesized: boolean;
+    readonly pressure: number;
+    readonly pressureMin: number;
+    readonly pressureMax: number;
+    readonly distance: number;
+    readonly distanceMax: number;
+    readonly size: number;
+    readonly radiusMajor: number;
+    readonly radiusMinor: number;
+    readonly radiusMin: number;
+    readonly radiusMax: number;
+    readonly orientation: number;
+    readonly tilt: number;
+    readonly platformData: number;
+    readonly scrollDeltaX: number;
+    readonly scrollDeltaY: number;
+    readonly panX: number;
+    readonly panY: number;
+    readonly panDeltaX: number;
+    readonly panDeltaY: number;
+    readonly scale: number;
+    readonly rotation: number;
+    respond(options: {
+        allowPlatformDefault: boolean;
+    }): void;
+    toString(): string;
+    toStringFull(): string;
 }
-export interface PointerData {
-    readonly [_flaxDartTypeValue]: PointerData;
+export declare function _PointerDataFactory(options?: {
+    viewId?: number | undefined;
+    embedderId?: number | undefined;
+    timeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream0.Duration];
+    }>) | undefined;
+    change?: upstream1.PointerChange | undefined;
+    kind?: upstream2.PointerDeviceKind | undefined;
+    signalKind?: upstream3.PointerSignalKind | null | undefined;
+    device?: number | undefined;
+    pointerIdentifier?: number | undefined;
+    physicalX?: number | undefined;
+    physicalY?: number | undefined;
+    physicalDeltaX?: number | undefined;
+    physicalDeltaY?: number | undefined;
+    buttons?: number | undefined;
+    obscured?: boolean | undefined;
+    synthesized?: boolean | undefined;
+    pressure?: number | undefined;
+    pressureMin?: number | undefined;
+    pressureMax?: number | undefined;
+    distance?: number | undefined;
+    distanceMax?: number | undefined;
+    size?: number | undefined;
+    radiusMajor?: number | undefined;
+    radiusMinor?: number | undefined;
+    radiusMin?: number | undefined;
+    radiusMax?: number | undefined;
+    orientation?: number | undefined;
+    tilt?: number | undefined;
+    platformData?: number | undefined;
+    scrollDeltaX?: number | undefined;
+    scrollDeltaY?: number | undefined;
+    panX?: number | undefined;
+    panY?: number | undefined;
+    panDeltaX?: number | undefined;
+    panDeltaY?: number | undefined;
+    scale?: number | undefined;
+    rotation?: number | undefined;
+    onRespond?: ((options?: {
+        allowPlatformDefault?: boolean | undefined;
+    }) => void) | null | undefined;
+}): PointerData;
+export interface _PointerDataNative extends PointerData {
+    readonly [_flaxDartTypeValue]: _PointerDataNative;
     respond(options: {
         allowPlatformDefault: boolean;
     }): void;
@@ -59,7 +145,7 @@ export interface PointerData {
     get scale(): number;
     get rotation(): number;
 }
-export declare abstract class PointerData extends _FlaxProxyBase {
+export declare abstract class _PointerDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PointerData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PointerData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_dart_ui#type:PointerData", readonly [], false];
@@ -109,7 +195,7 @@ export declare abstract class PointerData extends _FlaxProxyBase {
         }) => void) | null | undefined;
     });
 }
-export declare namespace PointerData {
+export declare namespace _PointerDataFactory {
     function implement(args: [options?: {
         viewId?: number | undefined;
         embedderId?: number | undefined;
@@ -156,3 +242,50 @@ export declare namespace PointerData {
         }) => void) | null | undefined;
     }], implementation: {}): PointerData;
 }
+declare const _PointerDataBinding: typeof _PointerDataFactory & (new (options?: {
+    viewId?: number | undefined;
+    embedderId?: number | undefined;
+    timeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream0.Duration];
+    }>) | undefined;
+    change?: upstream1.PointerChange | undefined;
+    kind?: upstream2.PointerDeviceKind | undefined;
+    signalKind?: upstream3.PointerSignalKind | null | undefined;
+    device?: number | undefined;
+    pointerIdentifier?: number | undefined;
+    physicalX?: number | undefined;
+    physicalY?: number | undefined;
+    physicalDeltaX?: number | undefined;
+    physicalDeltaY?: number | undefined;
+    buttons?: number | undefined;
+    obscured?: boolean | undefined;
+    synthesized?: boolean | undefined;
+    pressure?: number | undefined;
+    pressureMin?: number | undefined;
+    pressureMax?: number | undefined;
+    distance?: number | undefined;
+    distanceMax?: number | undefined;
+    size?: number | undefined;
+    radiusMajor?: number | undefined;
+    radiusMinor?: number | undefined;
+    radiusMin?: number | undefined;
+    radiusMax?: number | undefined;
+    orientation?: number | undefined;
+    tilt?: number | undefined;
+    platformData?: number | undefined;
+    scrollDeltaX?: number | undefined;
+    scrollDeltaY?: number | undefined;
+    panX?: number | undefined;
+    panY?: number | undefined;
+    panDeltaX?: number | undefined;
+    panDeltaY?: number | undefined;
+    scale?: number | undefined;
+    rotation?: number | undefined;
+    onRespond?: ((options?: {
+        allowPlatformDefault?: boolean | undefined;
+    }) => void) | null | undefined;
+}) => _PointerDataNative);
+export declare const PointerData: typeof _PointerDataBinding & _FlaxInstanceType<PointerData> & _FlaxDartType<PointerData, readonly ["class", "flax.core/sdk_dart_ui#type:PointerData", readonly [], false]>;
+export {};

@@ -1,0 +1,11 @@
+format: 2
+capabilities: [codegen]
+bindingDependencies:
+  generate:
+    - intl
+    - intl
+    - 42
+    - null
+    - ''
+    - Intl
+  generated: [intl]

@@ -48,7 +48,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream25 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface LongPressGestureRecognizer extends Omit<upstream0.PrimaryPointerGestureRecognizer, _flaxOwnMembers0>, Omit<upstream1.OneSequenceGestureRecognizer, _flaxOwnMembers0 | keyof upstream0.PrimaryPointerGestureRecognizer>, Omit<upstream2.GestureRecognizer, _flaxOwnMembers0 | keyof upstream0.PrimaryPointerGestureRecognizer | keyof upstream1.OneSequenceGestureRecognizer>, Omit<upstream3.GestureArenaMember, _flaxOwnMembers0 | keyof upstream0.PrimaryPointerGestureRecognizer | keyof upstream1.OneSequenceGestureRecognizer | keyof upstream2.GestureRecognizer>, Omit<upstream4.DiagnosticableTreeMixin, _flaxOwnMembers0 | keyof upstream0.PrimaryPointerGestureRecognizer | keyof upstream1.OneSequenceGestureRecognizer | keyof upstream2.GestureRecognizer | keyof upstream3.GestureArenaMember>, Omit<upstream5.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.PrimaryPointerGestureRecognizer | keyof upstream1.OneSequenceGestureRecognizer | keyof upstream2.GestureRecognizer | keyof upstream3.GestureArenaMember | keyof upstream4.DiagnosticableTreeMixin>, Omit<upstream6.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PrimaryPointerGestureRecognizer | keyof upstream1.OneSequenceGestureRecognizer | keyof upstream2.GestureRecognizer | keyof upstream3.GestureArenaMember | keyof upstream4.DiagnosticableTreeMixin | keyof upstream5.DiagnosticableTree>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressGestureRecognizer": readonly [];
 }>, Readonly<{
@@ -71,9 +71,305 @@ export interface LongPressGestureRecognizer extends Omit<upstream0.PrimaryPointe
     readonly [_flaxDartMethodCases]?: {
         invokeCallback: _FlaxSignature0;
     };
+    readonly deadline: upstream7.Duration | null;
+    readonly preAcceptSlopTolerance: number | null;
+    readonly postAcceptSlopTolerance: number | null;
+    readonly state: upstream9.GestureRecognizerState;
+    readonly primaryPointer: number | null;
+    readonly initialPosition: upstream10.OffsetPair | null;
+    get team(): upstream11.GestureArenaTeam | null;
+    readonly debugOwner: unknown | null;
+    get gestureSettings(): upstream12.DeviceGestureSettings | null;
+    get supportedDevices(): DartSet<upstream8.PointerDeviceKind> | null;
+    readonly allowedButtonsFilter: ((buttons: number) => boolean);
+    readonly debugDescription: string;
+    get onLongPressDown(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressDownDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onLongPressCancel(): (() => void) | null;
+    get onLongPress(): (() => void) | null;
+    get onLongPressStart(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressStartDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onLongPressMoveUpdate(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressMoveUpdateDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onLongPressUp(): (() => void) | null;
+    get onLongPressEnd(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressEndDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onSecondaryLongPressDown(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressDownDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onSecondaryLongPressCancel(): (() => void) | null;
+    get onSecondaryLongPress(): (() => void) | null;
+    get onSecondaryLongPressStart(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressStartDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onSecondaryLongPressMoveUpdate(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressMoveUpdateDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onSecondaryLongPressUp(): (() => void) | null;
+    get onSecondaryLongPressEnd(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressEndDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onTertiaryLongPressDown(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressDownDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onTertiaryLongPressCancel(): (() => void) | null;
+    get onTertiaryLongPress(): (() => void) | null;
+    get onTertiaryLongPressStart(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressStartDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onTertiaryLongPressMoveUpdate(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressMoveUpdateDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get onTertiaryLongPressUp(): (() => void) | null;
+    get onTertiaryLongPressEnd(): ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressEndDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    addAllowedPointer(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>): void;
+    handleNonAllowedPointer(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>): void;
+    handleEvent(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    handlePrimaryPointer(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    didExceedDeadline(): void;
+    didExceedDeadlineWithEvent(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>): void;
+    acceptGesture(pointer: number): void;
+    rejectGesture(pointer: number): void;
+    didStopTrackingLastPointer(pointer: number): void;
+    dispose(): void;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    resolve(disposition: upstream20.GestureDisposition): void;
+    resolvePointer(pointer: number, disposition: upstream20.GestureDisposition): void;
+    startTrackingPointer(pointer: number, transform?: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null): void;
+    stopTrackingPointer(pointer: number): void;
+    stopTrackingIfPointerNoLongerDown(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    addPointerPanZoom(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerPanZoomStartEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerPanZoomStartEvent": readonly [];
+    }>): void;
+    addAllowedPointerPanZoom(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerPanZoomStartEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerPanZoomStartEvent": readonly [];
+    }>): void;
+    addPointer(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>): void;
+    isPointerAllowed(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>): boolean;
+    handleNonAllowedPointerPanZoom(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerPanZoomStartEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerPanZoomStartEvent": readonly [];
+    }>): void;
+    isPointerPanZoomAllowed(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerPanZoomStartEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerPanZoomStartEvent": readonly [];
+    }>): boolean;
+    getKindForPointer(pointer: number): upstream8.PointerDeviceKind;
+    getButtonsForPointer(pointer: number): number;
+    invokeCallback<T extends unknown | null = unknown | null>(name: string, callback: (() => (T | _FlaxDartOutput<T>)), options?: {
+        debugReport?: (() => string) | null | undefined;
+    }): _FlaxDartOutput<T> | null;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream23.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream23.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream25.DiagnosticsTreeStyle | null | undefined;
+    }): upstream24.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream24.DiagnosticsNode>;
+    toString(options?: {
+        minLevel?: upstream23.DiagnosticLevel | undefined;
+    }): string;
+    set team(value: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/team.dart::GestureArenaTeam": readonly [];
+    }> | null);
+    set gestureSettings(value: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_settings.dart::DeviceGestureSettings": readonly [];
+    }> | null);
+    set supportedDevices(value: DartSetInput<upstream8.PointerDeviceKind, upstream8.PointerDeviceKind> | null);
+    set onLongPressDown(value: ((details: upstream13.LongPressDownDetails) => void) | null);
+    set onLongPressCancel(value: (() => void) | null);
+    set onLongPress(value: (() => void) | null);
+    set onLongPressStart(value: ((details: upstream14.LongPressStartDetails) => void) | null);
+    set onLongPressMoveUpdate(value: ((details: upstream15.LongPressMoveUpdateDetails) => void) | null);
+    set onLongPressUp(value: (() => void) | null);
+    set onLongPressEnd(value: ((details: upstream16.LongPressEndDetails) => void) | null);
+    set onSecondaryLongPressDown(value: ((details: upstream13.LongPressDownDetails) => void) | null);
+    set onSecondaryLongPressCancel(value: (() => void) | null);
+    set onSecondaryLongPress(value: (() => void) | null);
+    set onSecondaryLongPressStart(value: ((details: upstream14.LongPressStartDetails) => void) | null);
+    set onSecondaryLongPressMoveUpdate(value: ((details: upstream15.LongPressMoveUpdateDetails) => void) | null);
+    set onSecondaryLongPressUp(value: (() => void) | null);
+    set onSecondaryLongPressEnd(value: ((details: upstream16.LongPressEndDetails) => void) | null);
+    set onTertiaryLongPressDown(value: ((details: upstream13.LongPressDownDetails) => void) | null);
+    set onTertiaryLongPressCancel(value: (() => void) | null);
+    set onTertiaryLongPress(value: (() => void) | null);
+    set onTertiaryLongPressStart(value: ((details: upstream14.LongPressStartDetails) => void) | null);
+    set onTertiaryLongPressMoveUpdate(value: ((details: upstream15.LongPressMoveUpdateDetails) => void) | null);
+    set onTertiaryLongPressUp(value: (() => void) | null);
+    set onTertiaryLongPressEnd(value: ((details: upstream16.LongPressEndDetails) => void) | null);
 }
-export interface LongPressGestureRecognizer {
-    readonly [_flaxDartTypeValue]: LongPressGestureRecognizer;
+export declare function _LongPressGestureRecognizerFactory(options?: {
+    duration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream7.Duration];
+    }>) | null | undefined;
+    postAcceptSlopTolerance?: number | null | undefined;
+    supportedDevices?: DartSetInput<upstream8.PointerDeviceKind, upstream8.PointerDeviceKind> | null | undefined;
+    debugOwner?: unknown | null | undefined;
+    allowedButtonsFilter?: ((buttons: number) => boolean) | null | undefined;
+}): LongPressGestureRecognizer;
+export interface _LongPressGestureRecognizerNative extends LongPressGestureRecognizer {
+    readonly [_flaxDartTypeValue]: _LongPressGestureRecognizerNative;
     readonly [_flaxDartMethodCases]?: {
         invokeCallback: _FlaxSignature1;
     };
@@ -363,7 +659,7 @@ export interface LongPressGestureRecognizer {
     }> | null);
     set supportedDevices(value: DartSetInput<upstream8.PointerDeviceKind, upstream8.PointerDeviceKind> | null);
 }
-export declare abstract class LongPressGestureRecognizer extends _FlaxProxyBase {
+export declare abstract class _LongPressGestureRecognizerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<LongPressGestureRecognizer>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: LongPressGestureRecognizer;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:LongPressGestureRecognizer", readonly [], false];
@@ -379,7 +675,7 @@ export declare abstract class LongPressGestureRecognizer extends _FlaxProxyBase 
         allowedButtonsFilter?: ((buttons: number) => boolean) | null | undefined;
     });
 }
-export declare namespace LongPressGestureRecognizer {
+export declare namespace _LongPressGestureRecognizerFactory {
     function implement(args: [options?: {
         duration?: (Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];
@@ -392,6 +688,18 @@ export declare namespace LongPressGestureRecognizer {
         allowedButtonsFilter?: ((buttons: number) => boolean) | null | undefined;
     }], implementation: {}): LongPressGestureRecognizer;
 }
+declare const _LongPressGestureRecognizerBinding: typeof _LongPressGestureRecognizerFactory & (new (options?: {
+    duration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream7.Duration];
+    }>) | null | undefined;
+    postAcceptSlopTolerance?: number | null | undefined;
+    supportedDevices?: DartSetInput<upstream8.PointerDeviceKind, upstream8.PointerDeviceKind> | null | undefined;
+    debugOwner?: unknown | null | undefined;
+    allowedButtonsFilter?: ((buttons: number) => boolean) | null | undefined;
+}) => _LongPressGestureRecognizerNative);
+export declare const LongPressGestureRecognizer: typeof _LongPressGestureRecognizerBinding & _FlaxInstanceType<LongPressGestureRecognizer> & _FlaxDartType<LongPressGestureRecognizer, readonly ["class", "flax.core/sdk_gestures#type:LongPressGestureRecognizer", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "deadline" | "preAcceptSlopTolerance" | "postAcceptSlopTolerance" | "state" | "primaryPointer" | "initialPosition" | "team" | "debugOwner" | "gestureSettings" | "supportedDevices" | "allowedButtonsFilter" | "debugDescription" | "onLongPressDown" | "onLongPressCancel" | "onLongPress" | "onLongPressStart" | "onLongPressMoveUpdate" | "onLongPressUp" | "onLongPressEnd" | "onSecondaryLongPressDown" | "onSecondaryLongPressCancel" | "onSecondaryLongPress" | "onSecondaryLongPressStart" | "onSecondaryLongPressMoveUpdate" | "onSecondaryLongPressUp" | "onSecondaryLongPressEnd" | "onTertiaryLongPressDown" | "onTertiaryLongPressCancel" | "onTertiaryLongPress" | "onTertiaryLongPressStart" | "onTertiaryLongPressMoveUpdate" | "onTertiaryLongPressUp" | "onTertiaryLongPressEnd" | "addAllowedPointer" | "handleNonAllowedPointer" | "handleEvent" | "handlePrimaryPointer" | "didExceedDeadline" | "didExceedDeadlineWithEvent" | "acceptGesture" | "rejectGesture" | "didStopTrackingLastPointer" | "dispose" | "debugFillProperties" | "resolve" | "resolvePointer" | "startTrackingPointer" | "stopTrackingPointer" | "stopTrackingIfPointerNoLongerDown" | "addPointerPanZoom" | "addAllowedPointerPanZoom" | "addPointer" | "isPointerAllowed" | "handleNonAllowedPointerPanZoom" | "isPointerPanZoomAllowed" | "getKindForPointer" | "getButtonsForPointer" | "invokeCallback" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "toString" | "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressGestureRecognizer" | "__flaxBound:package:flutter/src/gestures/recognizer.dart::PrimaryPointerGestureRecognizer" | "__flaxBound:package:flutter/src/gestures/recognizer.dart::OneSequenceGestureRecognizer" | "__flaxBound:package:flutter/src/gestures/recognizer.dart::GestureRecognizer" | "__flaxBound:package:flutter/src/gestures/arena.dart::GestureArenaMember" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (name: string, callback: (() => (_Selected0 | DartInput<_Selected0>)), options?: {

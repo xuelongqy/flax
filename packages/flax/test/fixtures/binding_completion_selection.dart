@@ -1,5 +1,18 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
+const _mixedConstruction = FlaxCodegenClassSelection(
+  {
+    '': ['value'],
+    'raw': ['value'],
+  },
+  kind: 'object',
+  proxy: 'extends',
+  getters: ['value'],
+  instanceMethods: {
+    'decorate': ['value'],
+  },
+);
+
 const bindingCompletionSelection = {
   'CompletionFuture': FlaxCodegenClassSelection(
     {
@@ -35,6 +48,8 @@ const bindingCompletionSelection = {
       'box': ['callback'],
     },
   ),
+  'MixedConstruction': _mixedConstruction,
+  'AbstractConstruction': _mixedConstruction,
   'CompletionBox': FlaxCodegenClassSelection(
     {
       '': ['value'],
@@ -81,6 +96,12 @@ const bindingCompletionSelection = {
     setters: ['value'],
     instanceMethods: {'read': []},
   ),
+  'AbstractReadyProxy': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    proxy: 'extends',
+    instanceMethods: {'read': []},
+  ),
   'SetterProxy': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',
@@ -93,6 +114,7 @@ const bindingCompletionSelection = {
   ),
 };
 const bindingCompletionFunctions = {
+  'holdCompletionDecorated': FlaxCodegenFunctionSelection(['value']),
   'completionCell': FlaxCodegenFunctionSelection([]),
   'rememberCompletionCallback': FlaxCodegenFunctionSelection(['callback']),
   'completionCallbackAlive': FlaxCodegenFunctionSelection([]),

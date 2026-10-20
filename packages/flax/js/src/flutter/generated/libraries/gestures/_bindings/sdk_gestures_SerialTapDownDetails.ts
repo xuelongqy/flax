@@ -17,18 +17,32 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import { _flaxMemberParameters90, _flaxMemberParameters7, _flaxMemberParameters16, _flaxMemberParameters15, _flaxMemberParameters9 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters91, _flaxMemberParameters7, _flaxMemberParameters16, _flaxMemberParameters15, _flaxMemberParameters9 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface SerialTapDownDetails extends Omit<upstream0.PositionedGestureDetails, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PositionedGestureDetails>, Readonly<{ "__flaxBound:package:flutter/src/gestures/multitap.dart::SerialTapDownDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __SerialTapDownDetails: unique symbol;
 readonly [_flaxDartTypeValue]: SerialTapDownDetails;
 
+readonly globalPosition: upstream2.Offset;
+readonly localPosition: upstream2.Offset;
+readonly kind: upstream3.PointerDeviceKind;
+readonly buttons: number;
+readonly count: number;
+toStringShort(): string;
+toString(options?: {minLevel?: upstream4.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream6.DiagnosticsTreeStyle | null | undefined}): upstream5.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 }
 defineObject("flax.core/sdk_gestures#type:SerialTapDownDetails", ["globalPosition","localPosition","kind","buttons","count"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:SerialTapDownDetails", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _SerialTapDownDetailsProxy = {type: "flax.core/sdk_gestures#type:SerialTapDownDetails", parameters: _flaxMemberParameters90, constructors: {"": _flaxMemberParameters90}, methods: {"toStringShort":_flaxMemberParameters7,"toString":_flaxMemberParameters16,"toDiagnosticsNode":_flaxMemberParameters15,"debugFillProperties":_flaxMemberParameters9}, getters: ["globalPosition","localPosition","kind","buttons","count"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","get:kind","get:buttons","get:count","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
-export interface SerialTapDownDetails {
-readonly [_flaxDartTypeValue]: SerialTapDownDetails;
+export function _SerialTapDownDetailsFactory(options: { globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; kind: upstream3.PointerDeviceKind; buttons?: number | undefined; count?: number | undefined }): SerialTapDownDetails {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_gestures#type:SerialTapDownDetails", "", [{"name":"globalPosition"},{"name":"localPosition"},{"name":"kind","required":true},{"name":"buttons"},{"name":"count"}], [], options) as SerialTapDownDetails;
+}
+const _SerialTapDownDetailsProxy = {type: "flax.core/sdk_gestures#type:SerialTapDownDetails", parameters: _flaxMemberParameters91, constructors: {"": _flaxMemberParameters91}, methods: {"toStringShort":_flaxMemberParameters7,"toString":_flaxMemberParameters16,"toDiagnosticsNode":_flaxMemberParameters15,"debugFillProperties":_flaxMemberParameters9}, getters: ["globalPosition","localPosition","kind","buttons","count"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","get:kind","get:buttons","get:count","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
+export interface _SerialTapDownDetailsNative extends SerialTapDownDetails {
+readonly [_flaxDartTypeValue]: _SerialTapDownDetailsNative;
 
 toStringShort(): string;
 toString(options?: {minLevel?: upstream4.DiagnosticLevel | undefined}): string;
@@ -40,14 +54,15 @@ get kind(): upstream3.PointerDeviceKind;
 get buttons(): number;
 get count(): number;
 }
-export abstract class SerialTapDownDetails extends _FlaxProxyBase {
+export abstract class _SerialTapDownDetailsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SerialTapDownDetails>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: SerialTapDownDetails;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:SerialTapDownDetails", readonly [], false];
 constructor(options: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; kind: upstream3.PointerDeviceKind; buttons?: number | undefined; count?: number | undefined}) { super(_SerialTapDownDetailsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(SerialTapDownDetails.prototype, _SerialTapDownDetailsProxy);
-export namespace SerialTapDownDetails { export function implement(args: [options: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; kind: upstream3.PointerDeviceKind; buttons?: number | undefined; count?: number | undefined}], implementation: {}): SerialTapDownDetails {
+_flaxDefineProxyBase(_SerialTapDownDetailsNative.prototype, _SerialTapDownDetailsProxy);
+export namespace _SerialTapDownDetailsFactory { export function implement(args: [options: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; kind: upstream3.PointerDeviceKind; buttons?: number | undefined; count?: number | undefined}], implementation: {}): SerialTapDownDetails {
 return constructProxy(_SerialTapDownDetailsProxy, args, implementation) as SerialTapDownDetails; } }
-_flaxBindInstanceType<SerialTapDownDetails, typeof SerialTapDownDetails>(SerialTapDownDetails, "flax.core/sdk_gestures#type:SerialTapDownDetails", ["dart:core::Object","flax.core/sdk_gestures#type:PositionedGestureDetails","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _SerialTapDownDetailsBinding = _flaxProxyFactory(_SerialTapDownDetailsFactory, _SerialTapDownDetailsNative) as unknown as typeof _SerialTapDownDetailsFactory & (new(options: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; kind: upstream3.PointerDeviceKind; buttons?: number | undefined; count?: number | undefined}) => _SerialTapDownDetailsNative);
+export const SerialTapDownDetails: typeof _SerialTapDownDetailsBinding & _FlaxInstanceType<SerialTapDownDetails> & _FlaxDartType<SerialTapDownDetails, readonly ["class", "flax.core/sdk_gestures#type:SerialTapDownDetails", readonly [], false]> = _flaxBindInstanceType<SerialTapDownDetails, typeof _SerialTapDownDetailsBinding>(_SerialTapDownDetailsBinding, "flax.core/sdk_gestures#type:SerialTapDownDetails", ["dart:core::Object","flax.core/sdk_gestures#type:PositionedGestureDetails","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SerialTapDownDetailsBinding & _FlaxInstanceType<SerialTapDownDetails> & _FlaxDartType<SerialTapDownDetails, readonly ["class", "flax.core/sdk_gestures#type:SerialTapDownDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "globalPosition" | "localPosition" | "kind" | "buttons" | "count" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/multitap.dart::SerialTapDownDetails" | "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

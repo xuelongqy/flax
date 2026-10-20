@@ -4,7 +4,7 @@ import 'package:yaml/yaml.dart';
 
 import 'diagnostic.dart';
 
-/// Narrow Codegen view of `flax_package.yaml`: format, capabilities, and namespace.
+/// Codegen view of `flax_package.yaml` ownership and binding dependencies.
 final class FlaxCodegenPackageMetadataProjection {
   FlaxCodegenPackageMetadataProjection._(
     this.format,
@@ -12,13 +12,24 @@ final class FlaxCodegenPackageMetadataProjection {
     this.bindingNamespace,
     this.dartEntrypoint,
     this.javascriptPackage,
-  ) : capabilities = List.unmodifiable(capabilities);
+    this.javascriptRuntimePackage,
+    List<String> generateDependencies,
+  ) : capabilities = List.unmodifiable(capabilities),
+      generateDependencies = List.unmodifiable(generateDependencies);
 
   final int format;
   final List<String> capabilities;
   final String? bindingNamespace;
   final String? dartEntrypoint;
+
+  /// Public types package, falling back to `javascript.package` when omitted.
   final String? javascriptPackage;
+
+  /// Source delivery package declared by `javascript.package`.
+  final String? javascriptRuntimePackage;
+
+  /// External Dart packages approved for owner-local binding generation.
+  final List<String> generateDependencies;
 
   factory FlaxCodegenPackageMetadataProjection.parseStrict(
     String contents, {
@@ -53,7 +64,9 @@ final class FlaxCodegenPackageMetadataProjection {
       bindingNamespace == other.bindingNamespace &&
       dartEntrypoint == other.dartEntrypoint &&
       javascriptPackage == other.javascriptPackage &&
-      _sameStrings(capabilities, other.capabilities);
+      javascriptRuntimePackage == other.javascriptRuntimePackage &&
+      _sameStrings(capabilities, other.capabilities) &&
+      _sameStrings(generateDependencies, other.generateDependencies);
 
   @override
   int get hashCode => Object.hash(
@@ -61,7 +74,9 @@ final class FlaxCodegenPackageMetadataProjection {
     bindingNamespace,
     dartEntrypoint,
     javascriptPackage,
+    javascriptRuntimePackage,
     Object.hashAll(capabilities),
+    Object.hashAll(generateDependencies),
   );
 }
 
@@ -75,6 +90,7 @@ bool _sameStrings(List<String> left, List<String> right) {
 
 const _label = r'[a-z][a-z0-9]{0,62}';
 final _namespacePattern = RegExp('^$_label(?:\\.$_label)+\$');
+final _dartPackageNamePattern = RegExp(r'^[a-z][a-z0-9_]*$');
 
 bool _isBindingNamespace(String value) =>
     value.length >= 3 &&
@@ -110,9 +126,15 @@ FlaxCodegenPackageMetadataProjection _parsePackageMetadata(
   final capabilities = root.requiredStringList('capabilities');
   final namespace = root.optionalNamespace();
   final dartEntrypoint = root.optionalNestedString('dart', 'entrypoint');
-  final javascriptPackage =
-      root.optionalNestedString('javascript', 'types') ??
-      root.optionalNestedString('javascript', 'package');
+  final javascriptTypes = root.optionalNestedString('javascript', 'types');
+  // Preserve the projection's types-first validation of legacy metadata.
+  final javascriptRuntimePackage = root.optionalNestedString(
+    'javascript',
+    'package',
+    reportErrors: javascriptTypes == null,
+  );
+  final javascriptPackage = javascriptTypes ?? javascriptRuntimePackage;
+  final generateDependencies = root.optionalGenerateDependencies();
   if (capabilities != null &&
       (namespace.omitted || namespace.value != null) &&
       capabilities.contains('bindings') != (namespace.value != null)) {
@@ -130,6 +152,8 @@ FlaxCodegenPackageMetadataProjection _parsePackageMetadata(
     namespace.value,
     dartEntrypoint,
     javascriptPackage,
+    javascriptRuntimePackage,
+    generateDependencies,
   );
 }
 
@@ -198,10 +222,11 @@ final class _MetadataDiagnostics {
 }
 
 final class _MetadataMap {
-  _MetadataMap(this.diagnostics, this.map);
+  _MetadataMap(this.diagnostics, this.map, {this.pointer = ''});
 
   final _MetadataDiagnostics diagnostics;
   final YamlMap map;
+  final String pointer;
 
   YamlNode? node(String key) => map.nodes[key];
 
@@ -228,12 +253,12 @@ final class _MetadataMap {
     return value.value as int;
   }
 
-  List<String>? requiredStringList(String key) {
+  List<String>? requiredStringList(String key, {bool packageNames = false}) {
     final value = node(key);
     if (value == null) {
       diagnostics.add(
         code: FlaxCodegenDiagnosticCode.missingField,
-        pointer: '/$key',
+        pointer: '$pointer/$key',
         message: 'Missing field.',
         node: map,
       );
@@ -242,7 +267,7 @@ final class _MetadataMap {
     if (value is! YamlList) {
       diagnostics.add(
         code: FlaxCodegenDiagnosticCode.typeMismatch,
-        pointer: '/$key',
+        pointer: '$pointer/$key',
         message: 'Expected a list of strings.',
         node: value,
       );
@@ -252,11 +277,11 @@ final class _MetadataMap {
     final seen = <String>{};
     for (var index = 0; index < value.nodes.length; index++) {
       final item = value.nodes[index];
-      final pointer = '/$key/$index';
+      final itemPointer = '$pointer/$key/$index';
       if (item.value is! String) {
         diagnostics.add(
           code: FlaxCodegenDiagnosticCode.typeMismatch,
-          pointer: pointer,
+          pointer: itemPointer,
           message: 'Expected a string.',
           node: item,
         );
@@ -266,8 +291,17 @@ final class _MetadataMap {
       if (text.isEmpty) {
         diagnostics.add(
           code: FlaxCodegenDiagnosticCode.invalidValue,
-          pointer: pointer,
+          pointer: itemPointer,
           message: 'Expected a nonempty string.',
+          node: item,
+        );
+        continue;
+      }
+      if (packageNames && !_dartPackageNamePattern.hasMatch(text)) {
+        diagnostics.add(
+          code: FlaxCodegenDiagnosticCode.invalidValue,
+          pointer: itemPointer,
+          message: 'Invalid Dart package name.',
           node: item,
         );
         continue;
@@ -275,7 +309,7 @@ final class _MetadataMap {
       if (!seen.add(text)) {
         diagnostics.add(
           code: FlaxCodegenDiagnosticCode.duplicateValue,
-          pointer: pointer,
+          pointer: itemPointer,
           message: 'Duplicate value.',
           node: item,
         );
@@ -285,6 +319,48 @@ final class _MetadataMap {
     }
     values.sort();
     return values;
+  }
+
+  List<String> optionalGenerateDependencies() {
+    final value = node('bindingDependencies');
+    if (value == null) return const [];
+    if (value is! YamlMap) {
+      diagnostics.add(
+        code: FlaxCodegenDiagnosticCode.typeMismatch,
+        pointer: '/bindingDependencies',
+        message: 'Expected a mapping.',
+        node: value,
+      );
+      return const [];
+    }
+    for (final entry in value.nodes.entries) {
+      final keyNode = entry.key as YamlNode;
+      final key = keyNode.value;
+      if (key is! String) {
+        diagnostics.add(
+          code: FlaxCodegenDiagnosticCode.typeMismatch,
+          pointer: '/bindingDependencies',
+          message: 'Mapping keys must be strings.',
+          node: keyNode,
+        );
+      } else if (key != 'generate') {
+        diagnostics.add(
+          code: FlaxCodegenDiagnosticCode.unknownField,
+          pointer:
+              '/bindingDependencies/'
+              '${FlaxCodegenDiagnostic.jsonPointerToken(key)}',
+          message: 'Unknown field.',
+          node: keyNode,
+        );
+      }
+    }
+    if (!value.nodes.containsKey('generate')) return const [];
+    return _MetadataMap(
+          diagnostics,
+          value,
+          pointer: '/bindingDependencies',
+        ).requiredStringList('generate', packageNames: true) ??
+        const [];
   }
 
   _NamespaceField optionalNamespace() {
@@ -314,27 +390,35 @@ final class _MetadataMap {
     return _NamespaceField(omitted: false, value: text, node: value);
   }
 
-  String? optionalNestedString(String parent, String key) {
+  String? optionalNestedString(
+    String parent,
+    String key, {
+    bool reportErrors = true,
+  }) {
     final parentNode = node(parent);
     if (parentNode == null) return null;
     if (parentNode is! YamlMap) {
-      diagnostics.add(
-        code: FlaxCodegenDiagnosticCode.typeMismatch,
-        pointer: '/$parent',
-        message: 'Expected a mapping.',
-        node: parentNode,
-      );
+      if (reportErrors) {
+        diagnostics.add(
+          code: FlaxCodegenDiagnosticCode.typeMismatch,
+          pointer: '/$parent',
+          message: 'Expected a mapping.',
+          node: parentNode,
+        );
+      }
       return null;
     }
     final value = parentNode.nodes[key];
     if (value == null) return null;
     if (value.value is! String || (value.value as String).isEmpty) {
-      diagnostics.add(
-        code: FlaxCodegenDiagnosticCode.typeMismatch,
-        pointer: '/$parent/$key',
-        message: 'Expected a nonempty string.',
-        node: value,
-      );
+      if (reportErrors) {
+        diagnostics.add(
+          code: FlaxCodegenDiagnosticCode.typeMismatch,
+          pointer: '/$parent/$key',
+          message: 'Expected a nonempty string.',
+          node: value,
+        );
+      }
       return null;
     }
     return value.value as String;

@@ -19,7 +19,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface KeyUpEvent extends Omit<upstream0.KeyEvent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.KeyEvent>, Readonly<{
     "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyUpEvent": readonly [];
 }>, Readonly<{
@@ -29,9 +29,49 @@ export interface KeyUpEvent extends Omit<upstream0.KeyEvent, _flaxOwnMembers0>, 
 }> {
     readonly __KeyUpEvent: unique symbol;
     readonly [_flaxDartTypeValue]: KeyUpEvent;
+    readonly physicalKey: upstream2.PhysicalKeyboardKey;
+    readonly logicalKey: upstream3.LogicalKeyboardKey;
+    readonly character: string | null;
+    readonly timeStamp: upstream4.Duration;
+    readonly deviceType: upstream5.KeyEventDeviceType;
+    readonly synthesized: boolean;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream8.DiagnosticsTreeStyle | null | undefined;
+    }): upstream7.DiagnosticsNode;
+    toString(options?: {
+        minLevel?: upstream9.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface KeyUpEvent {
-    readonly [_flaxDartTypeValue]: KeyUpEvent;
+export declare function _KeyUpEventFactory(options: {
+    physicalKey: Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::PhysicalKeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    logicalKey: Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    timeStamp: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream4.Duration];
+    }>;
+    synthesized?: boolean | undefined;
+    deviceType?: upstream5.KeyEventDeviceType | undefined;
+}): KeyUpEvent;
+export interface _KeyUpEventNative extends KeyUpEvent {
+    readonly [_flaxDartTypeValue]: _KeyUpEventNative;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -50,7 +90,7 @@ export interface KeyUpEvent {
     get deviceType(): upstream5.KeyEventDeviceType;
     get synthesized(): boolean;
 }
-export declare abstract class KeyUpEvent extends _FlaxProxyBase {
+export declare abstract class _KeyUpEventNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<KeyUpEvent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: KeyUpEvent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:KeyUpEvent", readonly [], false];
@@ -78,7 +118,7 @@ export declare abstract class KeyUpEvent extends _FlaxProxyBase {
         deviceType?: upstream5.KeyEventDeviceType | undefined;
     });
 }
-export declare namespace KeyUpEvent {
+export declare namespace _KeyUpEventFactory {
     function implement(args: [options: {
         physicalKey: Readonly<{
             "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::PhysicalKeyboardKey": readonly [];
@@ -103,5 +143,29 @@ export declare namespace KeyUpEvent {
         deviceType?: upstream5.KeyEventDeviceType | undefined;
     }], implementation: {}): KeyUpEvent;
 }
+declare const _KeyUpEventBinding: typeof _KeyUpEventFactory & (new (options: {
+    physicalKey: Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::PhysicalKeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    logicalKey: Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    timeStamp: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream4.Duration];
+    }>;
+    synthesized?: boolean | undefined;
+    deviceType?: upstream5.KeyEventDeviceType | undefined;
+}) => _KeyUpEventNative);
+export declare const KeyUpEvent: typeof _KeyUpEventBinding & _FlaxInstanceType<KeyUpEvent> & _FlaxDartType<KeyUpEvent, readonly ["class", "flax.core/sdk_services#type:KeyUpEvent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "physicalKey" | "logicalKey" | "character" | "timeStamp" | "deviceType" | "synthesized" | "debugFillProperties" | "toStringShort" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyUpEvent" | "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyEvent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

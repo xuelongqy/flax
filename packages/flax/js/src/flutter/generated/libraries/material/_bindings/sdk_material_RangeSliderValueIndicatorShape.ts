@@ -19,7 +19,7 @@ import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import type * as upstream8 from '@flax/flutter/material/_bindings/sdk_material_Thumb';
 import '@flax/flutter/material/_bindings/sdk_material_Thumb';
-import { _flaxMemberParameters217, _flaxMemberParameters124, _flaxMemberParameters123, _flaxMemberParameters2, _flaxMemberParameters238 } from "@flax/flutter/material/_bindings/sdk_material.__module";
+import { _flaxMemberParameters220, _flaxMemberParameters126, _flaxMemberParameters125, _flaxMemberParameters2, _flaxMemberParameters241 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -27,8 +27,8 @@ export interface RangeSliderValueIndicatorShape extends Readonly<{ "__flaxBound:
 readonly [_flaxDartTypeValue]: RangeSliderValueIndicatorShape;
 
 }
-defineObject("flax.core/sdk_material#type:RangeSliderValueIndicatorShape", [], [], _flaxBindingMethods("flax.core/sdk_material#type:RangeSliderValueIndicatorShape", "object", {"getPreferredSize":_flaxMemberParameters217,"getHorizontalShift":_flaxMemberParameters124,"paint":_flaxMemberParameters123}, {}), []);
-const _RangeSliderValueIndicatorShapeProxy = {type: "flax.core/sdk_material#type:RangeSliderValueIndicatorShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredSize":_flaxMemberParameters217,"getHorizontalShift":_flaxMemberParameters124,"paint":_flaxMemberParameters238}, getters: [], setters: [], contextMembers: [], superMembers: ["getHorizontalShift"]} as const;
+defineObject("flax.core/sdk_material#type:RangeSliderValueIndicatorShape", [], [], _flaxBindingMethods("flax.core/sdk_material#type:RangeSliderValueIndicatorShape", "object", {"getPreferredSize":_flaxMemberParameters220,"getHorizontalShift":_flaxMemberParameters126,"paint":_flaxMemberParameters125}, {}), []);
+const _RangeSliderValueIndicatorShapeProxy = {type: "flax.core/sdk_material#type:RangeSliderValueIndicatorShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredSize":_flaxMemberParameters220,"getHorizontalShift":_flaxMemberParameters126,"paint":_flaxMemberParameters241}, getters: [], setters: [], contextMembers: [], superMembers: ["getHorizontalShift"]} as const;
 export interface RangeSliderValueIndicatorShape {
 readonly [_flaxDartTypeValue]: RangeSliderValueIndicatorShape;
 

@@ -14,7 +14,7 @@ import '@flax/flutter/widgets/_bindings/components_State';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RestorableDoubleN extends Omit<upstream0.RestorableNumN<number | null>, _flaxOwnMembers0>, Omit<upstream1.RestorableValue<number | null>, _flaxOwnMembers0 | keyof upstream0.RestorableNumN<number | null>>, Omit<upstream2.RestorableProperty<number | null>, _flaxOwnMembers0 | keyof upstream0.RestorableNumN<number | null> | keyof upstream1.RestorableValue<number | null>>, Omit<upstream3.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.RestorableNumN<number | null> | keyof upstream1.RestorableValue<number | null> | keyof upstream2.RestorableProperty<number | null>>, Omit<upstream4.Listenable, _flaxOwnMembers0 | keyof upstream0.RestorableNumN<number | null> | keyof upstream1.RestorableValue<number | null> | keyof upstream2.RestorableProperty<number | null> | keyof upstream3.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableDoubleN": readonly [];
 }>, Readonly<{
@@ -32,9 +32,24 @@ export interface RestorableDoubleN extends Omit<upstream0.RestorableNumN<number 
 }> {
     readonly __RestorableDoubleN: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableDoubleN;
+    get value(): number | null;
+    readonly enabled: boolean;
+    readonly state: upstream5.State<upstream6.StatefulWidget>;
+    readonly isRegistered: boolean;
+    readonly hasListeners: boolean;
+    createDefaultValue(): number | null;
+    didUpdateValue(oldValue: number | null): void;
+    fromPrimitives(serialized: unknown | null): number | null;
+    toPrimitives(): unknown | null;
+    initWithValue(value: number | null): void;
+    dispose(): void;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    set value(value: number | null);
 }
-export interface RestorableDoubleN {
-    readonly [_flaxDartTypeValue]: RestorableDoubleN;
+export declare function _RestorableDoubleNFactory(defaultValue: number | null): RestorableDoubleN;
+export interface _RestorableDoubleNNative extends RestorableDoubleN {
+    readonly [_flaxDartTypeValue]: _RestorableDoubleNNative;
     createDefaultValue(): number | null;
     didUpdateValue(oldValue: number | null): void;
     fromPrimitives(serialized: unknown | null): number | null;
@@ -50,14 +65,16 @@ export interface RestorableDoubleN {
     get hasListeners(): boolean;
     set value(value: number | null);
 }
-export declare abstract class RestorableDoubleN extends _FlaxProxyBase {
+export declare abstract class _RestorableDoubleNNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RestorableDoubleN>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RestorableDoubleN;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:RestorableDoubleN", readonly [], false];
     constructor(defaultValue: number | null);
 }
-export declare namespace RestorableDoubleN {
+export declare namespace _RestorableDoubleNFactory {
     function implement(args: [defaultValue: number | null], implementation: {}): RestorableDoubleN;
 }
+declare const _RestorableDoubleNBinding: typeof _RestorableDoubleNFactory & (new (defaultValue: number | null) => _RestorableDoubleNNative);
+export declare const RestorableDoubleN: typeof _RestorableDoubleNBinding & _FlaxInstanceType<RestorableDoubleN> & _FlaxDartType<RestorableDoubleN, readonly ["class", "flax.core/sdk_widgets#type:RestorableDoubleN", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "createDefaultValue" | "didUpdateValue" | "fromPrimitives" | "toPrimitives" | "initWithValue" | "dispose" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableDoubleN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableNumN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValueN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

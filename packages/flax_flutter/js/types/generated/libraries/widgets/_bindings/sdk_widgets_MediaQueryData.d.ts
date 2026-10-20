@@ -15,19 +15,268 @@ import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_DisplayFeat
 import '@flax/dart/ui/_bindings/sdk_dart_ui_DisplayFeature';
 import type * as upstream7 from '@flax/flutter/painting/_bindings/flutter_BorderRadius';
 import '@flax/flutter/painting/_bindings/flutter_BorderRadius';
-import type * as upstream8 from '@flax/flutter/widgets/_bindings/sdk_widgets_Orientation';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_FlutterView';
+import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_Orientation';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Orientation';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MediaQueryData extends Readonly<{
     "__flaxBound:package:flutter/src/widgets/media_query.dart::MediaQueryData": readonly [];
 }> {
     readonly __MediaQueryData: unique symbol;
     readonly [_flaxDartTypeValue]: MediaQueryData;
+    readonly size: upstream0.Size;
+    readonly devicePixelRatio: number;
+    readonly textScaleFactor: number;
+    readonly textScaler: upstream1.TextScaler;
+    readonly platformBrightness: upstream2.Brightness;
+    readonly viewInsets: upstream3.EdgeInsets;
+    readonly padding: upstream3.EdgeInsets;
+    readonly viewPadding: upstream3.EdgeInsets;
+    readonly systemGestureInsets: upstream3.EdgeInsets;
+    readonly alwaysUse24HourFormat: boolean;
+    readonly accessibleNavigation: boolean;
+    readonly invertColors: boolean;
+    readonly highContrast: boolean;
+    readonly onOffSwitchLabels: boolean;
+    readonly disableAnimations: boolean;
+    readonly boldText: boolean;
+    readonly supportsAnnounce: boolean;
+    readonly navigationMode: upstream4.NavigationMode;
+    readonly gestureSettings: upstream5.DeviceGestureSettings;
+    readonly displayFeatures: DartList<upstream6.DisplayFeature>;
+    readonly supportsShowingSystemContextMenu: boolean;
+    readonly lineHeightScaleFactorOverride: number | null;
+    readonly letterSpacingOverride: number | null;
+    readonly wordSpacingOverride: number | null;
+    readonly paragraphSpacingOverride: number | null;
+    readonly displayCornerRadii: upstream7.BorderRadius | null;
+    readonly orientation: upstream9.Orientation;
+    copyWith(options?: {
+        accessibleNavigation?: boolean | null | undefined;
+        alwaysUse24HourFormat?: boolean | null | undefined;
+        boldText?: boolean | null | undefined;
+        devicePixelRatio?: number | null | undefined;
+        disableAnimations?: boolean | null | undefined;
+        displayFeatures?: DartListInput<upstream6.DisplayFeature, Readonly<{
+            "__flaxBound:dart:ui::DisplayFeature": readonly [];
+        }>> | null | undefined;
+        gestureSettings?: Readonly<{
+            "__flaxBound:package:flutter/src/gestures/gesture_settings.dart::DeviceGestureSettings": readonly [];
+        }> | null | undefined;
+        highContrast?: boolean | null | undefined;
+        invertColors?: boolean | null | undefined;
+        navigationMode?: upstream4.NavigationMode | null | undefined;
+        onOffSwitchLabels?: boolean | null | undefined;
+        padding?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null | undefined;
+        platformBrightness?: upstream2.Brightness | null | undefined;
+        size?: (Readonly<{
+            "__flaxBound:dart:ui::Size": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        supportsAnnounce?: boolean | null | undefined;
+        supportsShowingSystemContextMenu?: boolean | null | undefined;
+        systemGestureInsets?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null | undefined;
+        textScaleFactor?: number | null | undefined;
+        textScaler?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+        }> | null | undefined;
+        viewInsets?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null | undefined;
+        viewPadding?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null | undefined;
+    }): MediaQueryData;
+    applyTextStyleOverrides(options: {
+        letterSpacingOverride: number | null;
+        lineHeightScaleFactorOverride: number | null;
+        paragraphSpacingOverride: number | null;
+        wordSpacingOverride: number | null;
+    }): MediaQueryData;
+    applyDisplayCornerRadii(displayCornerRadii: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+    }>) | null): MediaQueryData;
+    removePadding(options?: {
+        removeBottom?: boolean | undefined;
+        removeLeft?: boolean | undefined;
+        removeRight?: boolean | undefined;
+        removeTop?: boolean | undefined;
+    }): MediaQueryData;
+    removeViewInsets(options?: {
+        removeBottom?: boolean | undefined;
+        removeLeft?: boolean | undefined;
+        removeRight?: boolean | undefined;
+        removeTop?: boolean | undefined;
+    }): MediaQueryData;
+    removeViewPadding(options?: {
+        removeBottom?: boolean | undefined;
+        removeLeft?: boolean | undefined;
+        removeRight?: boolean | undefined;
+        removeTop?: boolean | undefined;
+    }): MediaQueryData;
+    removeDisplayFeatures(subScreen: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>): MediaQueryData;
+    toString(): string;
 }
-export interface MediaQueryData {
-    readonly [_flaxDartTypeValue]: MediaQueryData;
+export declare function _MediaQueryDataFactory(options?: {
+    size?: (Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    devicePixelRatio?: number | undefined;
+    textScaleFactor?: number | undefined;
+    textScaler?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+    }> | undefined;
+    platformBrightness?: upstream2.Brightness | undefined;
+    padding?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+    viewInsets?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+    systemGestureInsets?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+    viewPadding?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+    alwaysUse24HourFormat?: boolean | undefined;
+    accessibleNavigation?: boolean | undefined;
+    invertColors?: boolean | undefined;
+    highContrast?: boolean | undefined;
+    onOffSwitchLabels?: boolean | undefined;
+    disableAnimations?: boolean | undefined;
+    boldText?: boolean | undefined;
+    supportsAnnounce?: boolean | undefined;
+    navigationMode?: upstream4.NavigationMode | undefined;
+    gestureSettings?: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_settings.dart::DeviceGestureSettings": readonly [];
+    }> | undefined;
+    displayFeatures?: DartListInput<upstream6.DisplayFeature, Readonly<{
+        "__flaxBound:dart:ui::DisplayFeature": readonly [];
+    }>> | undefined;
+    supportsShowingSystemContextMenu?: boolean | undefined;
+    lineHeightScaleFactorOverride?: number | null | undefined;
+    letterSpacingOverride?: number | null | undefined;
+    wordSpacingOverride?: number | null | undefined;
+    paragraphSpacingOverride?: number | null | undefined;
+    displayCornerRadii?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+    }>) | null | undefined;
+}): MediaQueryData;
+export declare namespace _MediaQueryDataFactory {
+    function fromWindow(window: Readonly<{
+        "__flaxBound:dart:ui::FlutterView": readonly [];
+    }>): MediaQueryData;
+}
+export declare namespace _MediaQueryDataFactory {
+    function fromView(view: Readonly<{
+        "__flaxBound:dart:ui::FlutterView": readonly [];
+    }>, options?: {
+        platformData?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/media_query.dart::MediaQueryData": readonly [];
+        }> | null | undefined;
+    }): MediaQueryData;
+}
+export interface _MediaQueryDataNative extends MediaQueryData {
+    readonly [_flaxDartTypeValue]: _MediaQueryDataNative;
+    readonly [_flaxDartConstructors]?: {
+        "": (options?: {
+            size?: (Readonly<{
+                "__flaxBound:dart:ui::Size": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:ui::OffsetBase": readonly [];
+            }>) | undefined;
+            devicePixelRatio?: number | undefined;
+            textScaleFactor?: number | undefined;
+            textScaler?: Readonly<{
+                "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+            }> | undefined;
+            platformBrightness?: upstream2.Brightness | undefined;
+            padding?: (Readonly<{
+                "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+            }>) | undefined;
+            viewInsets?: (Readonly<{
+                "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+            }>) | undefined;
+            systemGestureInsets?: (Readonly<{
+                "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+            }>) | undefined;
+            viewPadding?: (Readonly<{
+                "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+            }>) | undefined;
+            alwaysUse24HourFormat?: boolean | undefined;
+            accessibleNavigation?: boolean | undefined;
+            invertColors?: boolean | undefined;
+            highContrast?: boolean | undefined;
+            onOffSwitchLabels?: boolean | undefined;
+            disableAnimations?: boolean | undefined;
+            boldText?: boolean | undefined;
+            supportsAnnounce?: boolean | undefined;
+            navigationMode?: upstream4.NavigationMode | undefined;
+            gestureSettings?: Readonly<{
+                "__flaxBound:package:flutter/src/gestures/gesture_settings.dart::DeviceGestureSettings": readonly [];
+            }> | undefined;
+            displayFeatures?: DartListInput<upstream6.DisplayFeature, Readonly<{
+                "__flaxBound:dart:ui::DisplayFeature": readonly [];
+            }>> | undefined;
+            supportsShowingSystemContextMenu?: boolean | undefined;
+            lineHeightScaleFactorOverride?: number | null | undefined;
+            letterSpacingOverride?: number | null | undefined;
+            wordSpacingOverride?: number | null | undefined;
+            paragraphSpacingOverride?: number | null | undefined;
+            displayCornerRadii?: (Readonly<{
+                "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+            }>) | null | undefined;
+        }) => void;
+        "fromView": (view: Readonly<{
+            "__flaxBound:dart:ui::FlutterView": readonly [];
+        }>, options?: {
+            platformData?: Readonly<{
+                "__flaxBound:package:flutter/src/widgets/media_query.dart::MediaQueryData": readonly [];
+            }> | null | undefined;
+        }) => void;
+    };
     copyWith(options?: {
         size?: (Readonly<{
             "__flaxBound:dart:ui::Size": readonly [];
@@ -136,9 +385,9 @@ export interface MediaQueryData {
     get wordSpacingOverride(): number | null;
     get paragraphSpacingOverride(): number | null;
     get displayCornerRadii(): upstream7.BorderRadius | null;
-    get orientation(): upstream8.Orientation;
+    get orientation(): upstream9.Orientation;
 }
-export declare abstract class MediaQueryData extends _FlaxProxyBase {
+export declare abstract class _MediaQueryDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MediaQueryData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MediaQueryData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:MediaQueryData", readonly [], false];
@@ -200,8 +449,9 @@ export declare abstract class MediaQueryData extends _FlaxProxyBase {
             "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
         }>) | null | undefined;
     });
+    constructor(call: _FlaxProxySuper<_MediaQueryDataNative>);
 }
-export declare namespace MediaQueryData {
+export declare namespace _MediaQueryDataFactory {
     function implement(args: [options?: {
         size?: (Readonly<{
             "__flaxBound:dart:ui::Size": readonly [];
@@ -261,3 +511,63 @@ export declare namespace MediaQueryData {
         }>) | null | undefined;
     }], implementation: {}): MediaQueryData;
 }
+declare const _MediaQueryDataBinding: typeof _MediaQueryDataFactory & (new (options?: {
+    size?: (Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    devicePixelRatio?: number | undefined;
+    textScaleFactor?: number | undefined;
+    textScaler?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+    }> | undefined;
+    platformBrightness?: upstream2.Brightness | undefined;
+    padding?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+    viewInsets?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+    systemGestureInsets?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+    viewPadding?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+    alwaysUse24HourFormat?: boolean | undefined;
+    accessibleNavigation?: boolean | undefined;
+    invertColors?: boolean | undefined;
+    highContrast?: boolean | undefined;
+    onOffSwitchLabels?: boolean | undefined;
+    disableAnimations?: boolean | undefined;
+    boldText?: boolean | undefined;
+    supportsAnnounce?: boolean | undefined;
+    navigationMode?: upstream4.NavigationMode | undefined;
+    gestureSettings?: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_settings.dart::DeviceGestureSettings": readonly [];
+    }> | undefined;
+    displayFeatures?: DartListInput<upstream6.DisplayFeature, Readonly<{
+        "__flaxBound:dart:ui::DisplayFeature": readonly [];
+    }>> | undefined;
+    supportsShowingSystemContextMenu?: boolean | undefined;
+    lineHeightScaleFactorOverride?: number | null | undefined;
+    letterSpacingOverride?: number | null | undefined;
+    wordSpacingOverride?: number | null | undefined;
+    paragraphSpacingOverride?: number | null | undefined;
+    displayCornerRadii?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+    }>) | null | undefined;
+}) => _MediaQueryDataNative) & (new (call: _FlaxProxySuper<_MediaQueryDataNative>) => _MediaQueryDataNative);
+export declare const MediaQueryData: typeof _MediaQueryDataBinding & _FlaxInstanceType<MediaQueryData> & _FlaxDartType<MediaQueryData, readonly ["class", "flax.core/sdk_widgets#type:MediaQueryData", readonly [], false]>;
+export {};

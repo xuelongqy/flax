@@ -9,6 +9,9 @@ javascript:
 capabilities:
   - bindings
 bindingNamespace: flax.cupertino
+bindingDependencies:
+  generate:
+    - intl
 registration:
   bindings:
     - cupertinoBindings

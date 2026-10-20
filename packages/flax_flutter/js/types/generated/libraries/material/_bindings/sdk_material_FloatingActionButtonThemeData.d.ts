@@ -23,7 +23,7 @@ import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FloatingActionButtonThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/floating_action_button_theme.dart::FloatingActionButtonThemeData": readonly [];
 }>, Readonly<{
@@ -31,9 +31,159 @@ export interface FloatingActionButtonThemeData extends Omit<upstream0.Diagnostic
 }> {
     readonly __FloatingActionButtonThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: FloatingActionButtonThemeData;
+    readonly foregroundColor: upstream1.Color | null;
+    readonly backgroundColor: upstream1.Color | null;
+    readonly focusColor: upstream1.Color | null;
+    readonly hoverColor: upstream1.Color | null;
+    readonly splashColor: upstream1.Color | null;
+    readonly elevation: number | null;
+    readonly focusElevation: number | null;
+    readonly hoverElevation: number | null;
+    readonly disabledElevation: number | null;
+    readonly highlightElevation: number | null;
+    readonly shape: upstream2.ShapeBorder | null;
+    readonly enableFeedback: boolean | null;
+    readonly iconSize: number | null;
+    readonly sizeConstraints: upstream3.BoxConstraints | null;
+    readonly smallSizeConstraints: upstream3.BoxConstraints | null;
+    readonly largeSizeConstraints: upstream3.BoxConstraints | null;
+    readonly extendedSizeConstraints: upstream3.BoxConstraints | null;
+    readonly extendedIconLabelSpacing: number | null;
+    readonly extendedPadding: upstream4.EdgeInsetsGeometry | null;
+    readonly extendedTextStyle: upstream5.TextStyle | null;
+    readonly mouseCursor: upstream6.WidgetStateProperty<upstream7.MouseCursor | null> | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream8.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream10.DiagnosticsTreeStyle | null | undefined;
+    }): upstream9.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        backgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        disabledElevation?: number | null | undefined;
+        elevation?: number | null | undefined;
+        enableFeedback?: boolean | null | undefined;
+        extendedIconLabelSpacing?: number | null | undefined;
+        extendedPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        extendedSizeConstraints?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+        }>) | null | undefined;
+        extendedTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        focusColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        focusElevation?: number | null | undefined;
+        foregroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        highlightElevation?: number | null | undefined;
+        hoverColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        hoverElevation?: number | null | undefined;
+        iconSize?: number | null | undefined;
+        largeSizeConstraints?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+        }>) | null | undefined;
+        mouseCursor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.MouseCursor | null];
+        }> | null | undefined;
+        shape?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        sizeConstraints?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+        }>) | null | undefined;
+        smallSizeConstraints?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+        }>) | null | undefined;
+        splashColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+    }): FloatingActionButtonThemeData;
 }
-export interface FloatingActionButtonThemeData {
-    readonly [_flaxDartTypeValue]: FloatingActionButtonThemeData;
+export declare function _FloatingActionButtonThemeDataFactory(options?: {
+    foregroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    focusColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    hoverColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    splashColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    focusElevation?: number | null | undefined;
+    hoverElevation?: number | null | undefined;
+    disabledElevation?: number | null | undefined;
+    highlightElevation?: number | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    enableFeedback?: boolean | null | undefined;
+    iconSize?: number | null | undefined;
+    sizeConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    smallSizeConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    largeSizeConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    extendedSizeConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    extendedIconLabelSpacing?: number | null | undefined;
+    extendedPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    extendedTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.MouseCursor | null];
+    }> | null | undefined;
+}): FloatingActionButtonThemeData;
+export interface _FloatingActionButtonThemeDataNative extends FloatingActionButtonThemeData {
+    readonly [_flaxDartTypeValue]: _FloatingActionButtonThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream8.DiagnosticLevel | undefined;
@@ -126,7 +276,7 @@ export interface FloatingActionButtonThemeData {
     get extendedTextStyle(): upstream5.TextStyle | null;
     get mouseCursor(): upstream6.WidgetStateProperty<upstream7.MouseCursor | null> | null;
 }
-export declare abstract class FloatingActionButtonThemeData extends _FlaxProxyBase {
+export declare abstract class _FloatingActionButtonThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<FloatingActionButtonThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: FloatingActionButtonThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:FloatingActionButtonThemeData", readonly [], false];
@@ -190,7 +340,7 @@ export declare abstract class FloatingActionButtonThemeData extends _FlaxProxyBa
         }> | null | undefined;
     });
 }
-export declare namespace FloatingActionButtonThemeData {
+export declare namespace _FloatingActionButtonThemeDataFactory {
     function implement(args: [options?: {
         foregroundColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -251,7 +401,66 @@ export declare namespace FloatingActionButtonThemeData {
         }> | null | undefined;
     }], implementation: {}): FloatingActionButtonThemeData;
 }
-export declare namespace FloatingActionButtonThemeData {
+declare const _FloatingActionButtonThemeDataBinding: typeof _FloatingActionButtonThemeDataFactory & (new (options?: {
+    foregroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    focusColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    hoverColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    splashColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    focusElevation?: number | null | undefined;
+    hoverElevation?: number | null | undefined;
+    disabledElevation?: number | null | undefined;
+    highlightElevation?: number | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    enableFeedback?: boolean | null | undefined;
+    iconSize?: number | null | undefined;
+    sizeConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    smallSizeConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    largeSizeConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    extendedSizeConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    extendedIconLabelSpacing?: number | null | undefined;
+    extendedPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    extendedTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.MouseCursor | null];
+    }> | null | undefined;
+}) => _FloatingActionButtonThemeDataNative);
+export declare namespace _FloatingActionButtonThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/floating_action_button_theme.dart::FloatingActionButtonThemeData": readonly [];
     }> & Readonly<{
@@ -262,5 +471,6 @@ export declare namespace FloatingActionButtonThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): FloatingActionButtonThemeData | null;
 }
+export declare const FloatingActionButtonThemeData: typeof _FloatingActionButtonThemeDataBinding & _FlaxInstanceType<FloatingActionButtonThemeData> & _FlaxDartType<FloatingActionButtonThemeData, readonly ["class", "flax.core/sdk_material#type:FloatingActionButtonThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "foregroundColor" | "backgroundColor" | "focusColor" | "hoverColor" | "splashColor" | "elevation" | "focusElevation" | "hoverElevation" | "disabledElevation" | "highlightElevation" | "shape" | "enableFeedback" | "iconSize" | "sizeConstraints" | "smallSizeConstraints" | "largeSizeConstraints" | "extendedSizeConstraints" | "extendedIconLabelSpacing" | "extendedPadding" | "extendedTextStyle" | "mouseCursor" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/floating_action_button_theme.dart::FloatingActionButtonThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

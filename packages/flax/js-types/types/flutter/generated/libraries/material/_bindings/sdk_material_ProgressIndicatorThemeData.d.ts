@@ -21,7 +21,7 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ProgressIndicatorThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/progress_indicator_theme.dart::ProgressIndicatorThemeData": readonly [];
 }>, Readonly<{
@@ -29,9 +29,136 @@ export interface ProgressIndicatorThemeData extends Omit<upstream0.Diagnosticabl
 }> {
     readonly __ProgressIndicatorThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: ProgressIndicatorThemeData;
+    readonly color: upstream1.Color | null;
+    readonly linearTrackColor: upstream1.Color | null;
+    readonly linearMinHeight: number | null;
+    readonly circularTrackColor: upstream1.Color | null;
+    readonly refreshBackgroundColor: upstream1.Color | null;
+    readonly borderRadius: upstream2.BorderRadiusGeometry | null;
+    readonly stopIndicatorColor: upstream1.Color | null;
+    readonly stopIndicatorRadius: number | null;
+    readonly strokeWidth: number | null;
+    readonly strokeAlign: number | null;
+    readonly strokeCap: upstream3.StrokeCap | null;
+    readonly constraints: upstream4.BoxConstraints | null;
+    readonly trackGap: number | null;
+    readonly circularTrackPadding: upstream5.EdgeInsetsGeometry | null;
+    readonly year2023: boolean | null;
+    readonly controller: upstream6.AnimationController | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream7.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream9.DiagnosticsTreeStyle | null | undefined;
+    }): upstream8.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        borderRadius?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+        }> | null | undefined;
+        circularTrackColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        circularTrackPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        color?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        constraints?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+        }>) | null | undefined;
+        controller?: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation_controller.dart::AnimationController": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin": readonly [];
+        }>) | null | undefined;
+        linearMinHeight?: number | null | undefined;
+        linearTrackColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        refreshBackgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        stopIndicatorColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        stopIndicatorRadius?: number | null | undefined;
+        strokeAlign?: number | null | undefined;
+        strokeCap?: upstream3.StrokeCap | null | undefined;
+        strokeWidth?: number | null | undefined;
+        trackGap?: number | null | undefined;
+        year2023?: boolean | null | undefined;
+    }): ProgressIndicatorThemeData;
 }
-export interface ProgressIndicatorThemeData {
-    readonly [_flaxDartTypeValue]: ProgressIndicatorThemeData;
+export declare function _ProgressIndicatorThemeDataFactory(options?: {
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    linearTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    linearMinHeight?: number | null | undefined;
+    circularTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    refreshBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    borderRadius?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+    }> | null | undefined;
+    stopIndicatorColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    stopIndicatorRadius?: number | null | undefined;
+    strokeWidth?: number | null | undefined;
+    strokeAlign?: number | null | undefined;
+    strokeCap?: upstream3.StrokeCap | null | undefined;
+    constraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    trackGap?: number | null | undefined;
+    circularTrackPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    year2023?: boolean | null | undefined;
+    controller?: (Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation_controller.dart::AnimationController": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin": readonly [];
+    }>) | null | undefined;
+}): ProgressIndicatorThemeData;
+export interface _ProgressIndicatorThemeDataNative extends ProgressIndicatorThemeData {
+    readonly [_flaxDartTypeValue]: _ProgressIndicatorThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream7.DiagnosticLevel | undefined;
@@ -110,7 +237,7 @@ export interface ProgressIndicatorThemeData {
     get year2023(): boolean | null;
     get controller(): upstream6.AnimationController | null;
 }
-export declare abstract class ProgressIndicatorThemeData extends _FlaxProxyBase {
+export declare abstract class _ProgressIndicatorThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ProgressIndicatorThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ProgressIndicatorThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:ProgressIndicatorThemeData", readonly [], false];
@@ -165,7 +292,7 @@ export declare abstract class ProgressIndicatorThemeData extends _FlaxProxyBase 
         }>) | null | undefined;
     });
 }
-export declare namespace ProgressIndicatorThemeData {
+export declare namespace _ProgressIndicatorThemeDataFactory {
     function implement(args: [options?: {
         color?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -217,7 +344,57 @@ export declare namespace ProgressIndicatorThemeData {
         }>) | null | undefined;
     }], implementation: {}): ProgressIndicatorThemeData;
 }
-export declare namespace ProgressIndicatorThemeData {
+declare const _ProgressIndicatorThemeDataBinding: typeof _ProgressIndicatorThemeDataFactory & (new (options?: {
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    linearTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    linearMinHeight?: number | null | undefined;
+    circularTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    refreshBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    borderRadius?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+    }> | null | undefined;
+    stopIndicatorColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    stopIndicatorRadius?: number | null | undefined;
+    strokeWidth?: number | null | undefined;
+    strokeAlign?: number | null | undefined;
+    strokeCap?: upstream3.StrokeCap | null | undefined;
+    constraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    trackGap?: number | null | undefined;
+    circularTrackPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    year2023?: boolean | null | undefined;
+    controller?: (Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation_controller.dart::AnimationController": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin": readonly [];
+    }>) | null | undefined;
+}) => _ProgressIndicatorThemeDataNative);
+export declare namespace _ProgressIndicatorThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/progress_indicator_theme.dart::ProgressIndicatorThemeData": readonly [];
     }> & Readonly<{
@@ -228,5 +405,6 @@ export declare namespace ProgressIndicatorThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): ProgressIndicatorThemeData | null;
 }
+export declare const ProgressIndicatorThemeData: typeof _ProgressIndicatorThemeDataBinding & _FlaxInstanceType<ProgressIndicatorThemeData> & _FlaxDartType<ProgressIndicatorThemeData, readonly ["class", "flax.core/sdk_material#type:ProgressIndicatorThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "color" | "linearTrackColor" | "linearMinHeight" | "circularTrackColor" | "refreshBackgroundColor" | "borderRadius" | "stopIndicatorColor" | "stopIndicatorRadius" | "strokeWidth" | "strokeAlign" | "strokeCap" | "constraints" | "trackGap" | "circularTrackPadding" | "year2023" | "controller" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/progress_indicator_theme.dart::ProgressIndicatorThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -12,7 +12,7 @@ import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface InkDecoration extends Omit<upstream0.InkFeature, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/ink_decoration.dart::InkDecoration": readonly [];
 }>, Readonly<{
@@ -20,9 +20,59 @@ export interface InkDecoration extends Omit<upstream0.InkFeature, _flaxOwnMember
 }> {
     readonly __InkDecoration: unique symbol;
     readonly [_flaxDartTypeValue]: InkDecoration;
+    readonly controller: upstream3.MaterialInkController;
+    readonly referenceBox: upstream4.RenderBox;
+    readonly onRemoved: (() => void) | null;
+    get decoration(): upstream1.Decoration | null;
+    get isVisible(): boolean;
+    get configuration(): upstream2.ImageConfiguration;
+    dispose(): void;
+    paintFeature(canvas: Readonly<{
+        "__flaxBound:dart:ui::Canvas": readonly [];
+    }>, transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }>): void;
+    toString(): string;
+    set decoration(value: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
+    set isVisible(value: boolean);
+    set configuration(value: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>);
 }
-export interface InkDecoration {
-    readonly [_flaxDartTypeValue]: InkDecoration;
+export declare function _InkDecorationFactory(options: {
+    decoration: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null;
+    isVisible?: boolean | undefined;
+    configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>;
+    controller: Readonly<{
+        "__flaxBound:package:flutter/src/material/material.dart::MaterialInkController": readonly [];
+    }>;
+    referenceBox: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    onRemoved?: (() => void) | null | undefined;
+}): InkDecoration;
+export interface _InkDecorationNative extends InkDecoration {
+    readonly [_flaxDartTypeValue]: _InkDecorationNative;
     dispose(): void;
     paintFeature(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
@@ -46,7 +96,7 @@ export interface InkDecoration {
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>);
 }
-export declare abstract class InkDecoration extends _FlaxProxyBase {
+export declare abstract class _InkDecorationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<InkDecoration>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: InkDecoration;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:InkDecoration", readonly [], false];
@@ -79,7 +129,7 @@ export declare abstract class InkDecoration extends _FlaxProxyBase {
         onRemoved?: (() => void) | null | undefined;
     });
 }
-export declare namespace InkDecoration {
+export declare namespace _InkDecorationFactory {
     function implement(args: [options: {
         decoration: (Readonly<{
             "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
@@ -109,5 +159,34 @@ export declare namespace InkDecoration {
         onRemoved?: (() => void) | null | undefined;
     }], implementation: {}): InkDecoration;
 }
+declare const _InkDecorationBinding: typeof _InkDecorationFactory & (new (options: {
+    decoration: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null;
+    isVisible?: boolean | undefined;
+    configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>;
+    controller: Readonly<{
+        "__flaxBound:package:flutter/src/material/material.dart::MaterialInkController": readonly [];
+    }>;
+    referenceBox: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    onRemoved?: (() => void) | null | undefined;
+}) => _InkDecorationNative);
+export declare const InkDecoration: typeof _InkDecorationBinding & _FlaxInstanceType<InkDecoration> & _FlaxDartType<InkDecoration, readonly ["class", "flax.core/sdk_material#type:InkDecoration", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "controller" | "referenceBox" | "onRemoved" | "decoration" | "isVisible" | "configuration" | "dispose" | "paintFeature" | "toString" | "__flaxBound:package:flutter/src/material/ink_decoration.dart::InkDecoration" | "__flaxBound:package:flutter/src/material/material.dart::InkFeature";
 export {};

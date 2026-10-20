@@ -18,15 +18,55 @@ import type * as upstream8 from '@flax/flutter/gestures/_bindings/sdk_gestures_V
 import '@flax/flutter/gestures/_bindings/sdk_gestures_VelocityTracker';
 import '@flax/flutter/gestures/_bindings/flutter_PointerEvent';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ScrollBehavior extends Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_configuration.dart::ScrollBehavior": readonly [];
 }> {
     readonly __ScrollBehavior: unique symbol;
     readonly [_flaxDartTypeValue]: ScrollBehavior;
+    readonly dragDevices: DartSet<upstream0.PointerDeviceKind>;
+    readonly pointerAxisModifiers: DartSet<upstream1.LogicalKeyboardKey>;
+    copyWith(options?: {
+        dragDevices?: DartSetInput<upstream0.PointerDeviceKind, upstream0.PointerDeviceKind> | null | undefined;
+        keyboardDismissBehavior?: upstream2.ScrollViewKeyboardDismissBehavior | null | undefined;
+        multitouchDragStrategy?: upstream3.MultitouchDragStrategy | null | undefined;
+        overscroll?: boolean | null | undefined;
+        physics?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+        }> | null | undefined;
+        platform?: upstream5.TargetPlatform | null | undefined;
+        pointerAxisModifiers?: DartSetInput<upstream1.LogicalKeyboardKey, Readonly<{
+            "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>> | null | undefined;
+        scrollbars?: boolean | null | undefined;
+    }): ScrollBehavior;
+    getPlatform(context: upstream6.BuildContext): upstream5.TargetPlatform;
+    getMultitouchDragStrategy(context: upstream6.BuildContext): upstream3.MultitouchDragStrategy;
+    buildScrollbar(context: upstream6.BuildContext, child: Widget, details: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scrollable_helpers.dart::ScrollableDetails": readonly [];
+    }>): Widget;
+    buildOverscrollIndicator(context: upstream6.BuildContext, child: Widget, details: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scrollable_helpers.dart::ScrollableDetails": readonly [];
+    }>): Widget;
+    velocityTrackerBuilder(context: upstream6.BuildContext): ((event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => upstream8.VelocityTracker);
+    getScrollPhysics(context: upstream6.BuildContext): upstream4.ScrollPhysics;
+    shouldNotify(oldDelegate: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_configuration.dart::ScrollBehavior": readonly [];
+    }>): boolean;
+    getKeyboardDismissBehavior(context: upstream6.BuildContext): upstream2.ScrollViewKeyboardDismissBehavior;
+    toString(): string;
 }
-export interface ScrollBehavior {
-    readonly [_flaxDartTypeValue]: ScrollBehavior;
+export declare function _ScrollBehaviorFactory(): ScrollBehavior;
+export interface _ScrollBehaviorNative extends ScrollBehavior {
+    readonly [_flaxDartTypeValue]: _ScrollBehaviorNative;
     copyWith(options?: {
         scrollbars?: boolean | null | undefined;
         overscroll?: boolean | null | undefined;
@@ -67,12 +107,15 @@ export interface ScrollBehavior {
     get dragDevices(): DartSet<upstream0.PointerDeviceKind>;
     get pointerAxisModifiers(): DartSet<upstream1.LogicalKeyboardKey>;
 }
-export declare abstract class ScrollBehavior extends _FlaxProxyBase {
+export declare abstract class _ScrollBehaviorNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ScrollBehavior>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ScrollBehavior;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ScrollBehavior", readonly [], false];
     constructor();
 }
-export declare namespace ScrollBehavior {
+export declare namespace _ScrollBehaviorFactory {
     function implement(args: [], implementation: {}): ScrollBehavior;
 }
+declare const _ScrollBehaviorBinding: typeof _ScrollBehaviorFactory & (new () => _ScrollBehaviorNative);
+export declare const ScrollBehavior: typeof _ScrollBehaviorBinding & _FlaxInstanceType<ScrollBehavior> & _FlaxDartType<ScrollBehavior, readonly ["class", "flax.core/sdk_widgets#type:ScrollBehavior", readonly [], false]>;
+export {};

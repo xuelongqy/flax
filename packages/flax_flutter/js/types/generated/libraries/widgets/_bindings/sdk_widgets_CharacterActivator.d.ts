@@ -19,7 +19,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_ShortcutSerialization';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ShortcutSerialization';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CharacterActivator extends Omit<upstream0.ShortcutActivator, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.ShortcutActivator>, Omit<upstream2.MenuSerializableShortcut, _flaxOwnMembers0 | keyof upstream0.ShortcutActivator | keyof upstream1.Diagnosticable>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/shortcuts.dart::CharacterActivator": readonly [];
 }>, Readonly<{
@@ -31,9 +31,41 @@ export interface CharacterActivator extends Omit<upstream0.ShortcutActivator, _f
 }> {
     readonly __CharacterActivator: unique symbol;
     readonly [_flaxDartTypeValue]: CharacterActivator;
+    readonly triggers: DartIterable<upstream3.LogicalKeyboardKey> | null;
+    readonly alt: boolean;
+    readonly control: boolean;
+    readonly meta: boolean;
+    readonly includeRepeats: boolean;
+    readonly character: string;
+    accepts(event: Readonly<{
+        "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, state: Readonly<{
+        "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::HardwareKeyboard": readonly [];
+    }>): boolean;
+    debugDescribeKeys(): string;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream8.DiagnosticsTreeStyle | null | undefined;
+    }): upstream7.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    serializeForMenu(): upstream10.ShortcutSerialization;
 }
-export interface CharacterActivator {
-    readonly [_flaxDartTypeValue]: CharacterActivator;
+export declare function _CharacterActivatorFactory(character: string, options?: {
+    alt?: boolean | undefined;
+    control?: boolean | undefined;
+    meta?: boolean | undefined;
+    includeRepeats?: boolean | undefined;
+}): CharacterActivator;
+export interface _CharacterActivatorNative extends CharacterActivator {
+    readonly [_flaxDartTypeValue]: _CharacterActivatorNative;
     accepts(event: Readonly<{
         "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyEvent": readonly [];
     }> & Readonly<{
@@ -61,7 +93,7 @@ export interface CharacterActivator {
     get character(): string;
     get triggers(): DartIterable<upstream3.LogicalKeyboardKey> | null;
 }
-export declare abstract class CharacterActivator extends _FlaxProxyBase {
+export declare abstract class _CharacterActivatorNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CharacterActivator>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: CharacterActivator;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:CharacterActivator", readonly [], false];
@@ -72,7 +104,7 @@ export declare abstract class CharacterActivator extends _FlaxProxyBase {
         includeRepeats?: boolean | undefined;
     });
 }
-export declare namespace CharacterActivator {
+export declare namespace _CharacterActivatorFactory {
     function implement(args: [character: string, options?: {
         alt?: boolean | undefined;
         control?: boolean | undefined;
@@ -80,5 +112,12 @@ export declare namespace CharacterActivator {
         includeRepeats?: boolean | undefined;
     }], implementation: {}): CharacterActivator;
 }
+declare const _CharacterActivatorBinding: typeof _CharacterActivatorFactory & (new (character: string, options?: {
+    alt?: boolean | undefined;
+    control?: boolean | undefined;
+    meta?: boolean | undefined;
+    includeRepeats?: boolean | undefined;
+}) => _CharacterActivatorNative);
+export declare const CharacterActivator: typeof _CharacterActivatorBinding & _FlaxInstanceType<CharacterActivator> & _FlaxDartType<CharacterActivator, readonly ["class", "flax.core/sdk_widgets#type:CharacterActivator", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "triggers" | "alt" | "control" | "meta" | "includeRepeats" | "character" | "accepts" | "debugDescribeKeys" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "serializeForMenu" | "__flaxBound:package:flutter/src/widgets/shortcuts.dart::CharacterActivator" | "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/platform_menu_bar.dart::MenuSerializableShortcut";
 export {};

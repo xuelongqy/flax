@@ -19,16 +19,10 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_Intent';
 import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import { _flaxMemberParameters13, _flaxMemberParameters2, _flaxMemberParameters9, _flaxMemberParameters8, _flaxMemberParameters5 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ActionDispatcher extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::ActionDispatcher": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __ActionDispatcher: unique symbol;
-readonly [_flaxDartTypeValue]: ActionDispatcher;
-
-}
-defineObject("flax.core/sdk_widgets#type:ActionDispatcher", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ActionDispatcher", "object", {"invokeAction":_flaxMemberParameters13,"invokeActionIfEnabled":_flaxMemberParameters13}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _ActionDispatcherProxy = {type: "flax.core/sdk_widgets#type:ActionDispatcher", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters9,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"invokeAction":_flaxMemberParameters13,"invokeActionIfEnabled":_flaxMemberParameters13}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties","invokeAction","invokeActionIfEnabled"]} as const;
-export interface ActionDispatcher {
 readonly [_flaxDartTypeValue]: ActionDispatcher;
 
 toStringShort(): string;
@@ -38,14 +32,32 @@ debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foun
 invokeAction(action: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream6.Intent] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, context?: upstream7.BuildContext | null): unknown | null;
 invokeActionIfEnabled(action: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream6.Intent] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, context?: upstream7.BuildContext | null): _FlaxDartRecord<{ readonly $1: boolean; readonly $2: unknown | null }>;
 }
-export abstract class ActionDispatcher extends _FlaxProxyBase {
+defineObject("flax.core/sdk_widgets#type:ActionDispatcher", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ActionDispatcher", "object", {"invokeAction":_flaxMemberParameters13,"invokeActionIfEnabled":_flaxMemberParameters13}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+export function _ActionDispatcherFactory(): ActionDispatcher {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:ActionDispatcher", "", [], [], {}) as ActionDispatcher;
+}
+const _ActionDispatcherProxy = {type: "flax.core/sdk_widgets#type:ActionDispatcher", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters9,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"invokeAction":_flaxMemberParameters13,"invokeActionIfEnabled":_flaxMemberParameters13}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties","invokeAction","invokeActionIfEnabled"]} as const;
+export interface _ActionDispatcherNative extends ActionDispatcher {
+readonly [_flaxDartTypeValue]: _ActionDispatcherNative;
+
+toStringShort(): string;
+toString(options?: {minLevel?: upstream1.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream3.DiagnosticsTreeStyle | null | undefined}): upstream2.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+invokeAction(action: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream6.Intent] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, context?: upstream7.BuildContext | null): unknown | null;
+invokeActionIfEnabled(action: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream6.Intent] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, context?: upstream7.BuildContext | null): _FlaxDartRecord<{ readonly $1: boolean; readonly $2: unknown | null }>;
+}
+export abstract class _ActionDispatcherNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ActionDispatcher>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ActionDispatcher;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ActionDispatcher", readonly [], false];
 constructor() { super(_ActionDispatcherProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ActionDispatcher.prototype, _ActionDispatcherProxy);
-export namespace ActionDispatcher { export function implement(args: [], implementation: {}): ActionDispatcher {
+_flaxDefineProxyBase(_ActionDispatcherNative.prototype, _ActionDispatcherProxy);
+export namespace _ActionDispatcherFactory { export function implement(args: [], implementation: {}): ActionDispatcher {
 return constructProxy(_ActionDispatcherProxy, args, implementation) as ActionDispatcher; } }
-_flaxBindInstanceType<ActionDispatcher, typeof ActionDispatcher>(ActionDispatcher, "flax.core/sdk_widgets#type:ActionDispatcher", ["dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _ActionDispatcherBinding = _flaxProxyFactory(_ActionDispatcherFactory, _ActionDispatcherNative) as unknown as typeof _ActionDispatcherFactory & (new() => _ActionDispatcherNative);
+export const ActionDispatcher: typeof _ActionDispatcherBinding & _FlaxInstanceType<ActionDispatcher> & _FlaxDartType<ActionDispatcher, readonly ["class", "flax.core/sdk_widgets#type:ActionDispatcher", readonly [], false]> = _flaxBindInstanceType<ActionDispatcher, typeof _ActionDispatcherBinding>(_ActionDispatcherBinding, "flax.core/sdk_widgets#type:ActionDispatcher", ["dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ActionDispatcherBinding & _FlaxInstanceType<ActionDispatcher> & _FlaxDartType<ActionDispatcher, readonly ["class", "flax.core/sdk_widgets#type:ActionDispatcher", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "invokeAction" | "invokeActionIfEnabled" | "__flaxBound:package:flutter/src/widgets/actions.dart::ActionDispatcher" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

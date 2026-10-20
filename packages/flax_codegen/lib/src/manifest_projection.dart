@@ -53,16 +53,35 @@ final class FlaxCodegenManifestProjection {
           entry.key: entry.value.snapshot(),
       });
 
-  /// Authoritative owner wire for [sourceIdentity], if any.
+  /// Generated registration library for an exact module, if delivered.
+  String? dartLibraryForModule(String moduleId) =>
+      _modulesByModuleId[moduleId]?.dartLibrary;
+
+  /// Eligible source-provider wire, excluding package-local dependency views.
   FlaxCodegenWireId? authoritativeWireId(
     FlaxCodegenSourceIdentity sourceIdentity,
   ) => _ownerForSource(sourceIdentity)?.wireId;
+
+  /// Exact view owner, including package-local dependencies needed for delivery.
+  FlaxCodegenImportedOwner? ownerForWire(FlaxCodegenWireId wireId) {
+    final owner = _ownersByWire[wireId.value];
+    if (owner == null) return null;
+    return FlaxCodegenImportedOwner(
+      sourceIdentity: owner.sourceIdentity,
+      wireId: owner.wireId,
+      location: owner.location,
+      localDependency: owner.localDependency,
+    );
+  }
 
   _AuthoritativeOwner? _ownerForSource(
     FlaxCodegenSourceIdentity sourceIdentity,
   ) {
     final candidates = _ownersByWire.values
-        .where((owner) => owner.sourceIdentity == sourceIdentity)
+        .where(
+          (owner) =>
+              !owner.localDependency && owner.sourceIdentity == sourceIdentity,
+        )
         .toList();
     final core = candidates
         .where((owner) => owner.dartPackage == 'flax')
@@ -80,11 +99,7 @@ final class FlaxCodegenManifestProjection {
   ) {
     final owner = _ownerForSource(sourceIdentity);
     if (owner == null) return null;
-    return FlaxCodegenImportedOwner(
-      sourceIdentity: owner.sourceIdentity,
-      wireId: owner.wireId,
-      location: owner.location,
-    );
+    return ownerForWire(owner.wireId);
   }
 
   /// Builds a projection from an already-valid root and direct dependency
@@ -111,12 +126,14 @@ final class _FrozenModule {
     required this.moduleId,
     required List<String> requiredCapabilities,
     required this.semanticJson,
+    required this.dartLibrary,
   }) : requiredCapabilities = List<String>.unmodifiable(requiredCapabilities);
 
   final String name;
   final String moduleId;
   final List<String> requiredCapabilities;
   final String semanticJson;
+  final String? dartLibrary;
 
   FlaxCodegenModuleModel snapshot() {
     final diagnostics = FlaxCodegenManifestDiagnostics('');
@@ -155,12 +172,14 @@ final class _AuthoritativeOwner {
     required this.sourceIdentity,
     required this.wireId,
     required this.location,
+    required this.localDependency,
   });
 
   final String dartPackage;
   final FlaxCodegenSourceIdentity sourceIdentity;
   final FlaxCodegenWireId wireId;
   final FlaxCodegenSourceLocation location;
+  final bool localDependency;
 }
 
 final class _OwnerOccurrence {
@@ -278,6 +297,7 @@ FlaxCodegenManifestProjection? _build({
       sourceIdentity: occurrence.identity.sourceIdentity,
       wireId: occurrence.identity.wireId,
       location: occurrence.location,
+      localDependency: occurrence.identity.localDependency,
     );
   }
 
@@ -303,6 +323,7 @@ FlaxCodegenManifestProjection? _build({
         moduleId: module.moduleId.value,
         requiredCapabilities: module.requiredCapabilities,
         semanticJson: jsonEncode(semantic),
+        dartLibrary: module.dartLibrary,
       );
     }
   }
@@ -531,7 +552,7 @@ void _diagnoseDependentOwnership({
       for (final module in dependency.modules) {
         for (final identity in module.model.identities) {
           if (!identity.owner) continue;
-          if (dependency.package == 'flax') {
+          if (dependency.package == 'flax' && identity.providerEligible) {
             importedSources.add(identity.sourceIdentity);
           }
           importedWires.add(identity.wireId.value);
@@ -756,6 +777,7 @@ FlaxCodegenImportedPackage _importedPackage({
           sourceIdentity: entry.value.sourceIdentity,
           wireId: entry.value.wireId,
           location: entry.value.location,
+          localDependency: entry.value.localDependency,
         ),
   ]..sort(_compareImportedOwners);
   return FlaxCodegenImportedPackage(

@@ -11,7 +11,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ButtonActivateIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/actions.dart::ButtonActivateIntent": readonly [];
 }>, Readonly<{
@@ -20,9 +20,6 @@ export interface ButtonActivateIntent extends Omit<upstream0.Intent, _flaxOwnMem
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }> {
     readonly __ButtonActivateIntent: unique symbol;
-    readonly [_flaxDartTypeValue]: ButtonActivateIntent;
-}
-export interface ButtonActivateIntent {
     readonly [_flaxDartTypeValue]: ButtonActivateIntent;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
@@ -36,14 +33,31 @@ export interface ButtonActivateIntent {
         minLevel?: upstream5.DiagnosticLevel | undefined;
     }): string;
 }
-export declare abstract class ButtonActivateIntent extends _FlaxProxyBase {
+export declare function _ButtonActivateIntentFactory(): ButtonActivateIntent;
+export interface _ButtonActivateIntentNative extends ButtonActivateIntent {
+    readonly [_flaxDartTypeValue]: _ButtonActivateIntentNative;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream3.DiagnosticsTreeStyle | null | undefined;
+    }): upstream2.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream5.DiagnosticLevel | undefined;
+    }): string;
+}
+export declare abstract class _ButtonActivateIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ButtonActivateIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ButtonActivateIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ButtonActivateIntent", readonly [], false];
     constructor();
 }
-export declare namespace ButtonActivateIntent {
+export declare namespace _ButtonActivateIntentFactory {
     function implement(args: [], implementation: {}): ButtonActivateIntent;
 }
+declare const _ButtonActivateIntentBinding: typeof _ButtonActivateIntentFactory & (new () => _ButtonActivateIntentNative);
+export declare const ButtonActivateIntent: typeof _ButtonActivateIntentBinding & _FlaxInstanceType<ButtonActivateIntent> & _FlaxDartType<ButtonActivateIntent, readonly ["class", "flax.core/sdk_widgets#type:ButtonActivateIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/actions.dart::ButtonActivateIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

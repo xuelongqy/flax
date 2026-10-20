@@ -17,18 +17,31 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import { _flaxMemberParameters156, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters137, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ExtendSelectionToDocumentBoundaryIntent extends Omit<upstream0.DirectionalCaretMovementIntent, _flaxOwnMembers0>, Omit<upstream1.DirectionalTextEditingIntent, _flaxOwnMembers0 | keyof upstream0.DirectionalCaretMovementIntent>, Omit<upstream2.Intent, _flaxOwnMembers0 | keyof upstream0.DirectionalCaretMovementIntent | keyof upstream1.DirectionalTextEditingIntent>, Omit<upstream3.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.DirectionalCaretMovementIntent | keyof upstream1.DirectionalTextEditingIntent | keyof upstream2.Intent>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::ExtendSelectionToDocumentBoundaryIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalCaretMovementIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalTextEditingIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __ExtendSelectionToDocumentBoundaryIntent: unique symbol;
 readonly [_flaxDartTypeValue]: ExtendSelectionToDocumentBoundaryIntent;
 
+readonly collapseSelection: boolean;
+readonly collapseAtReversal: boolean;
+readonly continuesAtWrap: boolean;
+readonly forward: boolean;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream5.DiagnosticsTreeStyle | null | undefined}): upstream4.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream7.DiagnosticLevel | undefined}): string;
 }
 defineObject("flax.core/sdk_widgets#type:ExtendSelectionToDocumentBoundaryIntent", ["collapseSelection","collapseAtReversal","continuesAtWrap","forward"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ExtendSelectionToDocumentBoundaryIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:DirectionalCaretMovementIntent");
-const _ExtendSelectionToDocumentBoundaryIntentProxy = {type: "flax.core/sdk_widgets#type:ExtendSelectionToDocumentBoundaryIntent", parameters: _flaxMemberParameters156, constructors: {"": _flaxMemberParameters156}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["collapseSelection","collapseAtReversal","continuesAtWrap","forward"], setters: [], contextMembers: [], superMembers: ["get:collapseSelection","get:collapseAtReversal","get:continuesAtWrap","get:forward","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface ExtendSelectionToDocumentBoundaryIntent {
-readonly [_flaxDartTypeValue]: ExtendSelectionToDocumentBoundaryIntent;
+export function _ExtendSelectionToDocumentBoundaryIntentFactory(options: { forward: boolean; collapseSelection: boolean }): ExtendSelectionToDocumentBoundaryIntent {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:ExtendSelectionToDocumentBoundaryIntent", "", [{"name":"forward","required":true},{"name":"collapseSelection","required":true}], [], options) as ExtendSelectionToDocumentBoundaryIntent;
+}
+const _ExtendSelectionToDocumentBoundaryIntentProxy = {type: "flax.core/sdk_widgets#type:ExtendSelectionToDocumentBoundaryIntent", parameters: _flaxMemberParameters137, constructors: {"": _flaxMemberParameters137}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["collapseSelection","collapseAtReversal","continuesAtWrap","forward"], setters: [], contextMembers: [], superMembers: ["get:collapseSelection","get:collapseAtReversal","get:continuesAtWrap","get:forward","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+export interface _ExtendSelectionToDocumentBoundaryIntentNative extends ExtendSelectionToDocumentBoundaryIntent {
+readonly [_flaxDartTypeValue]: _ExtendSelectionToDocumentBoundaryIntentNative;
 
 toStringShort(): string;
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream5.DiagnosticsTreeStyle | null | undefined}): upstream4.DiagnosticsNode;
@@ -39,14 +52,15 @@ get collapseAtReversal(): boolean;
 get continuesAtWrap(): boolean;
 get forward(): boolean;
 }
-export abstract class ExtendSelectionToDocumentBoundaryIntent extends _FlaxProxyBase {
+export abstract class _ExtendSelectionToDocumentBoundaryIntentNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ExtendSelectionToDocumentBoundaryIntent>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ExtendSelectionToDocumentBoundaryIntent;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ExtendSelectionToDocumentBoundaryIntent", readonly [], false];
 constructor(options: {forward: boolean; collapseSelection: boolean}) { super(_ExtendSelectionToDocumentBoundaryIntentProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ExtendSelectionToDocumentBoundaryIntent.prototype, _ExtendSelectionToDocumentBoundaryIntentProxy);
-export namespace ExtendSelectionToDocumentBoundaryIntent { export function implement(args: [options: {forward: boolean; collapseSelection: boolean}], implementation: {}): ExtendSelectionToDocumentBoundaryIntent {
+_flaxDefineProxyBase(_ExtendSelectionToDocumentBoundaryIntentNative.prototype, _ExtendSelectionToDocumentBoundaryIntentProxy);
+export namespace _ExtendSelectionToDocumentBoundaryIntentFactory { export function implement(args: [options: {forward: boolean; collapseSelection: boolean}], implementation: {}): ExtendSelectionToDocumentBoundaryIntent {
 return constructProxy(_ExtendSelectionToDocumentBoundaryIntentProxy, args, implementation) as ExtendSelectionToDocumentBoundaryIntent; } }
-_flaxBindInstanceType<ExtendSelectionToDocumentBoundaryIntent, typeof ExtendSelectionToDocumentBoundaryIntent>(ExtendSelectionToDocumentBoundaryIntent, "flax.core/sdk_widgets#type:ExtendSelectionToDocumentBoundaryIntent", ["flax.core/sdk_widgets#type:DirectionalCaretMovementIntent","flax.core/sdk_widgets#type:DirectionalTextEditingIntent","flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _ExtendSelectionToDocumentBoundaryIntentBinding = _flaxProxyFactory(_ExtendSelectionToDocumentBoundaryIntentFactory, _ExtendSelectionToDocumentBoundaryIntentNative) as unknown as typeof _ExtendSelectionToDocumentBoundaryIntentFactory & (new(options: {forward: boolean; collapseSelection: boolean}) => _ExtendSelectionToDocumentBoundaryIntentNative);
+export const ExtendSelectionToDocumentBoundaryIntent: typeof _ExtendSelectionToDocumentBoundaryIntentBinding & _FlaxInstanceType<ExtendSelectionToDocumentBoundaryIntent> & _FlaxDartType<ExtendSelectionToDocumentBoundaryIntent, readonly ["class", "flax.core/sdk_widgets#type:ExtendSelectionToDocumentBoundaryIntent", readonly [], false]> = _flaxBindInstanceType<ExtendSelectionToDocumentBoundaryIntent, typeof _ExtendSelectionToDocumentBoundaryIntentBinding>(_ExtendSelectionToDocumentBoundaryIntentBinding, "flax.core/sdk_widgets#type:ExtendSelectionToDocumentBoundaryIntent", ["flax.core/sdk_widgets#type:DirectionalCaretMovementIntent","flax.core/sdk_widgets#type:DirectionalTextEditingIntent","flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ExtendSelectionToDocumentBoundaryIntentBinding & _FlaxInstanceType<ExtendSelectionToDocumentBoundaryIntent> & _FlaxDartType<ExtendSelectionToDocumentBoundaryIntent, readonly ["class", "flax.core/sdk_widgets#type:ExtendSelectionToDocumentBoundaryIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "collapseSelection" | "collapseAtReversal" | "continuesAtWrap" | "forward" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::ExtendSelectionToDocumentBoundaryIntent" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalCaretMovementIntent" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalTextEditingIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

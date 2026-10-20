@@ -6,29 +6,37 @@ import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { _flaxMemberParameters2, _flaxMemberParameters33 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ObjectKey extends Omit<upstream0.LocalKey, _flaxOwnMembers0>, Omit<upstream1.Key, _flaxOwnMembers0 | keyof upstream0.LocalKey>, Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::ObjectKey": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::LocalKey": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> { readonly __ObjectKey: unique symbol;
 readonly [_flaxDartTypeValue]: ObjectKey;
 
+readonly value: unknown | null;
+toString(): string;
 }
 defineObject("flax.core/sdk_widgets#type:ObjectKey", ["value"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ObjectKey", "object", {"toString":_flaxMemberParameters2}, {}), []);
+export function _ObjectKeyFactory(value: unknown | null): ObjectKey {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:ObjectKey", "", [{"name":"value","required":true,"positional":true}], [value], {}) as ObjectKey;
+}
 const _ObjectKeyProxy = {type: "flax.core/sdk_widgets#type:ObjectKey", parameters: _flaxMemberParameters33, constructors: {"": _flaxMemberParameters33}, methods: {"toString":_flaxMemberParameters2}, getters: ["value"], setters: [], contextMembers: [], superMembers: ["get:value","toString"]} as const;
-export interface ObjectKey {
-readonly [_flaxDartTypeValue]: ObjectKey;
+export interface _ObjectKeyNative extends ObjectKey {
+readonly [_flaxDartTypeValue]: _ObjectKeyNative;
 
 toString(): string;
 get value(): unknown | null;
 }
-export abstract class ObjectKey extends _FlaxProxyBase {
+export abstract class _ObjectKeyNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ObjectKey>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ObjectKey;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ObjectKey", readonly [], false];
 constructor(value: unknown | null) { super(_ObjectKeyProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ObjectKey.prototype, _ObjectKeyProxy);
-export namespace ObjectKey { export function implement(args: [value: unknown | null], implementation: {}): ObjectKey {
+_flaxDefineProxyBase(_ObjectKeyNative.prototype, _ObjectKeyProxy);
+export namespace _ObjectKeyFactory { export function implement(args: [value: unknown | null], implementation: {}): ObjectKey {
 return constructProxy(_ObjectKeyProxy, args, implementation) as ObjectKey; } }
-_flaxBindInstanceType<ObjectKey, typeof ObjectKey>(ObjectKey, "flax.core/sdk_widgets#type:ObjectKey", ["flax.core/flutter#type:LocalKey","flax.core/flutter#type:Key","dart:core::Object"]);
+const _ObjectKeyBinding = _flaxProxyFactory(_ObjectKeyFactory, _ObjectKeyNative) as unknown as typeof _ObjectKeyFactory & (new(value: unknown | null) => _ObjectKeyNative);
+export const ObjectKey: typeof _ObjectKeyBinding & _FlaxInstanceType<ObjectKey> & _FlaxDartType<ObjectKey, readonly ["class", "flax.core/sdk_widgets#type:ObjectKey", readonly [], false]> = _flaxBindInstanceType<ObjectKey, typeof _ObjectKeyBinding>(_ObjectKeyBinding, "flax.core/sdk_widgets#type:ObjectKey", ["flax.core/flutter#type:LocalKey","flax.core/flutter#type:Key","dart:core::Object"]) as typeof _ObjectKeyBinding & _FlaxInstanceType<ObjectKey> & _FlaxDartType<ObjectKey, readonly ["class", "flax.core/sdk_widgets#type:ObjectKey", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "toString" | "__flaxBound:package:flutter/src/widgets/framework.dart::ObjectKey" | "__flaxBound:package:flutter/src/foundation/key.dart::LocalKey" | "__flaxBound:package:flutter/src/foundation/key.dart::Key";

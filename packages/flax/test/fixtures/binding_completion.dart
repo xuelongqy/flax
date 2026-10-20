@@ -84,6 +84,11 @@ abstract class SetterProxy {
   void write(int next) => value = next;
 }
 
+abstract class AbstractReadyProxy<T> {
+  AbstractReadyProxy();
+  int read() => 7;
+}
+
 Function nativeFunction() =>
     (int value, {bool loud = false}) => loud ? 'LOUD:$value' : 'soft:$value';
 Function echoFunction(Function value) => value;
@@ -106,6 +111,33 @@ class CompletionDecorated with CompletionLabel {
   CompletionBox<T> box<T>(CompletionBox<T> Function(String) callback) =>
       callback('boxed');
 }
+
+class MixedConstruction<T> extends CompletionDecorated {
+  MixedConstruction.raw(this.value);
+  factory MixedConstruction(T value) => MixedConstruction.raw(value);
+  final T value;
+}
+
+abstract class AbstractConstruction<T> extends CompletionDecorated {
+  AbstractConstruction.raw(this.value);
+  factory AbstractConstruction(T value) = _ConcreteConstruction<T>;
+  final T value;
+}
+
+class _ConcreteConstruction<T> extends AbstractConstruction<T> {
+  _ConcreteConstruction(super.value) : super.raw();
+}
+
+CompletionDecorated? _heldCompletionDecorated;
+WeakReference<CompletionDecorated>? _weakCompletionDecorated;
+void holdCompletionDecorated(CompletionDecorated? value) {
+  _heldCompletionDecorated = value;
+  if (value != null) _weakCompletionDecorated = WeakReference(value);
+}
+
+bool get completionDecoratedAlive => _weakCompletionDecorated?.target != null;
+String callHeldCompletionDecorated(String value) =>
+    _heldCompletionDecorated!.decorate(value);
 
 class CompletionBox<T> {
   CompletionBox(this.value);
@@ -136,6 +168,10 @@ class CompletionWidget extends StatelessWidget {
   String label(String value) => value;
   @override
   Widget build(BuildContext context) => Text(label(value));
+}
+
+abstract class AbstractCompletionWidget extends CompletionWidget {
+  const AbstractCompletionWidget(super.value, {super.key});
 }
 
 Future<int> completionTicker(int Function(void) callback) =>

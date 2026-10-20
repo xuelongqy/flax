@@ -14,17 +14,32 @@ import '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerParentDataMixin
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ToolbarItemsParentData extends Omit<upstream0.ContainerBoxParentData<upstream1.RenderBox>, _flaxOwnMembers0>, Omit<upstream2.BoxParentData, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox>>, Omit<upstream3.ParentData, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox> | keyof upstream2.BoxParentData>, Omit<upstream4.ContainerParentDataMixin<upstream1.RenderBox>, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox> | keyof upstream2.BoxParentData | keyof upstream3.ParentData>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_selection.dart::ToolbarItemsParentData": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::ContainerBoxParentData": readonly [upstream1.RenderBox] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxParentData": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::ParentData": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::ContainerParentDataMixin": readonly [upstream1.RenderBox] }> { readonly __ToolbarItemsParentData: unique symbol;
 readonly [_flaxDartTypeValue]: ToolbarItemsParentData;
 
+get offset(): upstream5.Offset;
+get previousSibling(): upstream1.RenderBox | null;
+get nextSibling(): upstream1.RenderBox | null;
+get shouldPaint(): boolean;
+detach(): void;
+toString(): string;
+set offset(value: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>);
+set previousSibling(value: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null);
+set nextSibling(value: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null);
+set shouldPaint(value: boolean);
 }
 defineObject("flax.core/sdk_widgets#type:ToolbarItemsParentData", ["offset","previousSibling","nextSibling","shouldPaint"], ["offset","previousSibling","nextSibling","shouldPaint"], _flaxBindingMethods("flax.core/sdk_widgets#type:ToolbarItemsParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:BoxParentData");
+export function _ToolbarItemsParentDataFactory(): ToolbarItemsParentData {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:ToolbarItemsParentData", "", [], [], {}) as ToolbarItemsParentData;
+}
 const _ToolbarItemsParentDataProxy = {type: "flax.core/sdk_widgets#type:ToolbarItemsParentData", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"detach":_flaxMemberParameters2,"toString":_flaxMemberParameters2}, getters: ["shouldPaint","offset","previousSibling","nextSibling"], setters: ["shouldPaint","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:shouldPaint","get:offset","get:previousSibling","get:nextSibling","set:shouldPaint","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
-export interface ToolbarItemsParentData {
-readonly [_flaxDartTypeValue]: ToolbarItemsParentData;
+export interface _ToolbarItemsParentDataNative extends ToolbarItemsParentData {
+readonly [_flaxDartTypeValue]: _ToolbarItemsParentDataNative;
 
 detach(): void;
 toString(): string;
@@ -37,14 +52,15 @@ set offset(value: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Rea
 set previousSibling(value: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null);
 set nextSibling(value: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null);
 }
-export abstract class ToolbarItemsParentData extends _FlaxProxyBase {
+export abstract class _ToolbarItemsParentDataNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ToolbarItemsParentData>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ToolbarItemsParentData;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ToolbarItemsParentData", readonly [], false];
 constructor() { super(_ToolbarItemsParentDataProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ToolbarItemsParentData.prototype, _ToolbarItemsParentDataProxy);
-export namespace ToolbarItemsParentData { export function implement(args: [], implementation: {}): ToolbarItemsParentData {
+_flaxDefineProxyBase(_ToolbarItemsParentDataNative.prototype, _ToolbarItemsParentDataProxy);
+export namespace _ToolbarItemsParentDataFactory { export function implement(args: [], implementation: {}): ToolbarItemsParentData {
 return constructProxy(_ToolbarItemsParentDataProxy, args, implementation) as ToolbarItemsParentData; } }
-_flaxBindInstanceType<ToolbarItemsParentData, typeof ToolbarItemsParentData>(ToolbarItemsParentData, "flax.core/sdk_widgets#type:ToolbarItemsParentData", ["flax.core/sdk_rendering#type:ContainerBoxParentData","flax.core/sdk_rendering#type:BoxParentData","flax.core/sdk_rendering#type:ParentData","dart:core::Object","flax.core/sdk_rendering#type:ContainerParentDataMixin"]);
+const _ToolbarItemsParentDataBinding = _flaxProxyFactory(_ToolbarItemsParentDataFactory, _ToolbarItemsParentDataNative) as unknown as typeof _ToolbarItemsParentDataFactory & (new() => _ToolbarItemsParentDataNative);
+export const ToolbarItemsParentData: typeof _ToolbarItemsParentDataBinding & _FlaxInstanceType<ToolbarItemsParentData> & _FlaxDartType<ToolbarItemsParentData, readonly ["class", "flax.core/sdk_widgets#type:ToolbarItemsParentData", readonly [], false]> = _flaxBindInstanceType<ToolbarItemsParentData, typeof _ToolbarItemsParentDataBinding>(_ToolbarItemsParentDataBinding, "flax.core/sdk_widgets#type:ToolbarItemsParentData", ["flax.core/sdk_rendering#type:ContainerBoxParentData","flax.core/sdk_rendering#type:BoxParentData","flax.core/sdk_rendering#type:ParentData","dart:core::Object","flax.core/sdk_rendering#type:ContainerParentDataMixin"]) as typeof _ToolbarItemsParentDataBinding & _FlaxInstanceType<ToolbarItemsParentData> & _FlaxDartType<ToolbarItemsParentData, readonly ["class", "flax.core/sdk_widgets#type:ToolbarItemsParentData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "offset" | "previousSibling" | "nextSibling" | "shouldPaint" | "detach" | "toString" | "__flaxBound:package:flutter/src/widgets/text_selection.dart::ToolbarItemsParentData" | "__flaxBound:package:flutter/src/rendering/box.dart::ContainerBoxParentData" | "__flaxBound:package:flutter/src/rendering/box.dart::BoxParentData" | "__flaxBound:package:flutter/src/rendering/object.dart::ParentData" | "__flaxBound:package:flutter/src/rendering/object.dart::ContainerParentDataMixin";

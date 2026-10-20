@@ -17,18 +17,30 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import { _flaxMemberParameters47, _flaxMemberParameters7, _flaxMemberParameters16, _flaxMemberParameters15, _flaxMemberParameters9 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters48, _flaxMemberParameters7, _flaxMemberParameters16, _flaxMemberParameters15, _flaxMemberParameters9 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface LongPressDownDetails extends Omit<upstream0.PositionedGestureDetails, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PositionedGestureDetails>, Readonly<{ "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressDownDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __LongPressDownDetails: unique symbol;
 readonly [_flaxDartTypeValue]: LongPressDownDetails;
 
+readonly globalPosition: upstream2.Offset;
+readonly localPosition: upstream2.Offset;
+readonly kind: upstream3.PointerDeviceKind | null;
+toStringShort(): string;
+toString(options?: {minLevel?: upstream4.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream6.DiagnosticsTreeStyle | null | undefined}): upstream5.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 }
 defineObject("flax.core/sdk_gestures#type:LongPressDownDetails", ["globalPosition","localPosition","kind"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:LongPressDownDetails", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _LongPressDownDetailsProxy = {type: "flax.core/sdk_gestures#type:LongPressDownDetails", parameters: _flaxMemberParameters47, constructors: {"": _flaxMemberParameters47}, methods: {"toStringShort":_flaxMemberParameters7,"toString":_flaxMemberParameters16,"toDiagnosticsNode":_flaxMemberParameters15,"debugFillProperties":_flaxMemberParameters9}, getters: ["globalPosition","localPosition","kind"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","get:kind","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
-export interface LongPressDownDetails {
-readonly [_flaxDartTypeValue]: LongPressDownDetails;
+export function _LongPressDownDetailsFactory(options: { globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; kind?: upstream3.PointerDeviceKind | null | undefined } = {}): LongPressDownDetails {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_gestures#type:LongPressDownDetails", "", [{"name":"globalPosition"},{"name":"localPosition"},{"name":"kind"}], [], options) as LongPressDownDetails;
+}
+const _LongPressDownDetailsProxy = {type: "flax.core/sdk_gestures#type:LongPressDownDetails", parameters: _flaxMemberParameters48, constructors: {"": _flaxMemberParameters48}, methods: {"toStringShort":_flaxMemberParameters7,"toString":_flaxMemberParameters16,"toDiagnosticsNode":_flaxMemberParameters15,"debugFillProperties":_flaxMemberParameters9}, getters: ["globalPosition","localPosition","kind"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","get:kind","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
+export interface _LongPressDownDetailsNative extends LongPressDownDetails {
+readonly [_flaxDartTypeValue]: _LongPressDownDetailsNative;
 
 toStringShort(): string;
 toString(options?: {minLevel?: upstream4.DiagnosticLevel | undefined}): string;
@@ -38,14 +50,15 @@ get globalPosition(): upstream2.Offset;
 get localPosition(): upstream2.Offset;
 get kind(): upstream3.PointerDeviceKind | null;
 }
-export abstract class LongPressDownDetails extends _FlaxProxyBase {
+export abstract class _LongPressDownDetailsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<LongPressDownDetails>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: LongPressDownDetails;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:LongPressDownDetails", readonly [], false];
 constructor(options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; kind?: upstream3.PointerDeviceKind | null | undefined}) { super(_LongPressDownDetailsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(LongPressDownDetails.prototype, _LongPressDownDetailsProxy);
-export namespace LongPressDownDetails { export function implement(args: [options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; kind?: upstream3.PointerDeviceKind | null | undefined}], implementation: {}): LongPressDownDetails {
+_flaxDefineProxyBase(_LongPressDownDetailsNative.prototype, _LongPressDownDetailsProxy);
+export namespace _LongPressDownDetailsFactory { export function implement(args: [options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; kind?: upstream3.PointerDeviceKind | null | undefined}], implementation: {}): LongPressDownDetails {
 return constructProxy(_LongPressDownDetailsProxy, args, implementation) as LongPressDownDetails; } }
-_flaxBindInstanceType<LongPressDownDetails, typeof LongPressDownDetails>(LongPressDownDetails, "flax.core/sdk_gestures#type:LongPressDownDetails", ["dart:core::Object","flax.core/sdk_gestures#type:PositionedGestureDetails","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _LongPressDownDetailsBinding = _flaxProxyFactory(_LongPressDownDetailsFactory, _LongPressDownDetailsNative) as unknown as typeof _LongPressDownDetailsFactory & (new(options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; kind?: upstream3.PointerDeviceKind | null | undefined}) => _LongPressDownDetailsNative);
+export const LongPressDownDetails: typeof _LongPressDownDetailsBinding & _FlaxInstanceType<LongPressDownDetails> & _FlaxDartType<LongPressDownDetails, readonly ["class", "flax.core/sdk_gestures#type:LongPressDownDetails", readonly [], false]> = _flaxBindInstanceType<LongPressDownDetails, typeof _LongPressDownDetailsBinding>(_LongPressDownDetailsBinding, "flax.core/sdk_gestures#type:LongPressDownDetails", ["dart:core::Object","flax.core/sdk_gestures#type:PositionedGestureDetails","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _LongPressDownDetailsBinding & _FlaxInstanceType<LongPressDownDetails> & _FlaxDartType<LongPressDownDetails, readonly ["class", "flax.core/sdk_gestures#type:LongPressDownDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "globalPosition" | "localPosition" | "kind" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressDownDetails" | "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

@@ -21,17 +21,11 @@ import type * as upstream8 from '@flax/flutter/widgets/_bindings/sdk_widgets_Cli
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ClipboardStatus';
 import type * as upstream9 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
-import { _flaxMemberParameters2, _flaxMemberParameters152, _flaxMemberParameters153, _flaxMemberParameters154, _flaxMemberParameters155, _flaxMemberParameters98 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters2, _flaxMemberParameters133, _flaxMemberParameters134, _flaxMemberParameters135, _flaxMemberParameters136, _flaxMemberParameters77 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface EmptyTextSelectionControls extends Omit<upstream0.TextSelectionControls, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_selection.dart::EmptyTextSelectionControls": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionControls": readonly [] }> { readonly __EmptyTextSelectionControls: unique symbol;
-readonly [_flaxDartTypeValue]: EmptyTextSelectionControls;
-
-}
-defineObject("flax.core/sdk_widgets#type:EmptyTextSelectionControls", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:EmptyTextSelectionControls", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:TextSelectionControls");
-const _EmptyTextSelectionControlsProxy = {type: "flax.core/sdk_widgets#type:EmptyTextSelectionControls", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"buildHandle":_flaxMemberParameters152,"getHandleAnchor":_flaxMemberParameters153,"buildToolbar":_flaxMemberParameters154,"getHandleSize":_flaxMemberParameters155,"canCut":_flaxMemberParameters98,"canCopy":_flaxMemberParameters98,"canPaste":_flaxMemberParameters98,"canSelectAll":_flaxMemberParameters98,"handleCut":_flaxMemberParameters98,"handleCopy":_flaxMemberParameters98,"handlePaste":_flaxMemberParameters98,"handleSelectAll":_flaxMemberParameters98}, getters: [], setters: [], contextMembers: [], superMembers: ["buildHandle","getHandleAnchor","buildToolbar","getHandleSize","canCut","canCopy","canPaste","canSelectAll","handleCut","handleCopy","handlePaste","handleSelectAll"]} as const;
-export interface EmptyTextSelectionControls {
 readonly [_flaxDartTypeValue]: EmptyTextSelectionControls;
 
 buildHandle(context: upstream1.BuildContext, type: upstream2.TextSelectionHandleType, textLineHeight: number, onTap?: (() => void) | null): Widget;
@@ -47,14 +41,38 @@ handleCopy(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_i
 handlePaste(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>): Promise<void>;
 handleSelectAll(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>): void;
 }
-export abstract class EmptyTextSelectionControls extends _FlaxProxyBase {
+defineObject("flax.core/sdk_widgets#type:EmptyTextSelectionControls", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:EmptyTextSelectionControls", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:TextSelectionControls");
+export function _EmptyTextSelectionControlsFactory(): EmptyTextSelectionControls {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:EmptyTextSelectionControls", "", [], [], {}) as EmptyTextSelectionControls;
+}
+const _EmptyTextSelectionControlsProxy = {type: "flax.core/sdk_widgets#type:EmptyTextSelectionControls", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"buildHandle":_flaxMemberParameters133,"getHandleAnchor":_flaxMemberParameters134,"buildToolbar":_flaxMemberParameters135,"getHandleSize":_flaxMemberParameters136,"canCut":_flaxMemberParameters77,"canCopy":_flaxMemberParameters77,"canPaste":_flaxMemberParameters77,"canSelectAll":_flaxMemberParameters77,"handleCut":_flaxMemberParameters77,"handleCopy":_flaxMemberParameters77,"handlePaste":_flaxMemberParameters77,"handleSelectAll":_flaxMemberParameters77}, getters: [], setters: [], contextMembers: [], superMembers: ["buildHandle","getHandleAnchor","buildToolbar","getHandleSize","canCut","canCopy","canPaste","canSelectAll","handleCut","handleCopy","handlePaste","handleSelectAll"]} as const;
+export interface _EmptyTextSelectionControlsNative extends EmptyTextSelectionControls {
+readonly [_flaxDartTypeValue]: _EmptyTextSelectionControlsNative;
+
+buildHandle(context: upstream1.BuildContext, type: upstream2.TextSelectionHandleType, textLineHeight: number, onTap?: (() => void) | null): Widget;
+getHandleAnchor(type: upstream2.TextSelectionHandleType, textLineHeight: number): upstream3.Offset;
+buildToolbar(context: upstream1.BuildContext, globalEditableRegion: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, textLineHeight: number, selectionMidpoint: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>, endpoints: DartListInput<upstream5.TextSelectionPoint, Readonly<{ "__flaxBound:package:flutter/src/rendering/editable.dart::TextSelectionPoint": readonly [] }>>, delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>, clipboardStatus: Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream8.ClipboardStatus] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> | null, lastSecondaryTapDownPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null): Widget;
+getHandleSize(textLineHeight: number): upstream9.Size;
+canCut(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>): boolean;
+canCopy(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>): boolean;
+canPaste(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>): boolean;
+canSelectAll(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>): boolean;
+handleCut(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>): void;
+handleCopy(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>): void;
+handlePaste(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>): Promise<void>;
+handleSelectAll(delegate: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }>): void;
+}
+export abstract class _EmptyTextSelectionControlsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<EmptyTextSelectionControls>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: EmptyTextSelectionControls;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:EmptyTextSelectionControls", readonly [], false];
 constructor() { super(_EmptyTextSelectionControlsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(EmptyTextSelectionControls.prototype, _EmptyTextSelectionControlsProxy);
-export namespace EmptyTextSelectionControls { export function implement(args: [], implementation: {}): EmptyTextSelectionControls {
+_flaxDefineProxyBase(_EmptyTextSelectionControlsNative.prototype, _EmptyTextSelectionControlsProxy);
+export namespace _EmptyTextSelectionControlsFactory { export function implement(args: [], implementation: {}): EmptyTextSelectionControls {
 return constructProxy(_EmptyTextSelectionControlsProxy, args, implementation) as EmptyTextSelectionControls; } }
-_flaxBindInstanceType<EmptyTextSelectionControls, typeof EmptyTextSelectionControls>(EmptyTextSelectionControls, "flax.core/sdk_widgets#type:EmptyTextSelectionControls", ["flax.core/sdk_widgets#type:TextSelectionControls","dart:core::Object"]);
+const _EmptyTextSelectionControlsBinding = _flaxProxyFactory(_EmptyTextSelectionControlsFactory, _EmptyTextSelectionControlsNative) as unknown as typeof _EmptyTextSelectionControlsFactory & (new() => _EmptyTextSelectionControlsNative);
+export const EmptyTextSelectionControls: typeof _EmptyTextSelectionControlsBinding & _FlaxInstanceType<EmptyTextSelectionControls> & _FlaxDartType<EmptyTextSelectionControls, readonly ["class", "flax.core/sdk_widgets#type:EmptyTextSelectionControls", readonly [], false]> = _flaxBindInstanceType<EmptyTextSelectionControls, typeof _EmptyTextSelectionControlsBinding>(_EmptyTextSelectionControlsBinding, "flax.core/sdk_widgets#type:EmptyTextSelectionControls", ["flax.core/sdk_widgets#type:TextSelectionControls","dart:core::Object"]) as typeof _EmptyTextSelectionControlsBinding & _FlaxInstanceType<EmptyTextSelectionControls> & _FlaxDartType<EmptyTextSelectionControls, readonly ["class", "flax.core/sdk_widgets#type:EmptyTextSelectionControls", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "buildHandle" | "getHandleAnchor" | "buildToolbar" | "getHandleSize" | "canCut" | "canCopy" | "canPaste" | "canSelectAll" | "handleCut" | "handleCopy" | "handlePaste" | "handleSelectAll" | "__flaxBound:package:flutter/src/widgets/text_selection.dart::EmptyTextSelectionControls" | "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionControls";

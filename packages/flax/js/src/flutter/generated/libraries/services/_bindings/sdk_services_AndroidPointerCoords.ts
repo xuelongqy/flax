@@ -2,17 +2,32 @@
 // Regenerate with dart run melos run bindings:generate.
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import { _flaxMemberParameters0, _flaxMemberParameters2 } from "@flax/flutter/services/_bindings/sdk_services.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface AndroidPointerCoords extends Readonly<{ "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidPointerCoords": readonly [] }> { readonly __AndroidPointerCoords: unique symbol;
 readonly [_flaxDartTypeValue]: AndroidPointerCoords;
 
+readonly orientation: number;
+readonly pressure: number;
+readonly size: number;
+readonly toolMajor: number;
+readonly toolMinor: number;
+readonly touchMajor: number;
+readonly touchMinor: number;
+readonly x: number;
+readonly y: number;
+toString(): string;
 }
 defineObject("flax.core/sdk_services#type:AndroidPointerCoords", ["orientation","pressure","size","toolMajor","toolMinor","touchMajor","touchMinor","x","y"], [], _flaxBindingMethods("flax.core/sdk_services#type:AndroidPointerCoords", "object", {"toString":_flaxMemberParameters0}, {}), []);
+export function _AndroidPointerCoordsFactory(options: { orientation: number; pressure: number; size: number; toolMajor: number; toolMinor: number; touchMajor: number; touchMinor: number; x: number; y: number }): AndroidPointerCoords {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_services#type:AndroidPointerCoords", "", [{"name":"orientation","required":true},{"name":"pressure","required":true},{"name":"size","required":true},{"name":"toolMajor","required":true},{"name":"toolMinor","required":true},{"name":"touchMajor","required":true},{"name":"touchMinor","required":true},{"name":"x","required":true},{"name":"y","required":true}], [], options) as AndroidPointerCoords;
+}
 const _AndroidPointerCoordsProxy = {type: "flax.core/sdk_services#type:AndroidPointerCoords", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toString":_flaxMemberParameters0}, getters: ["orientation","pressure","size","toolMajor","toolMinor","touchMajor","touchMinor","x","y"], setters: [], contextMembers: [], superMembers: ["get:orientation","get:pressure","get:size","get:toolMajor","get:toolMinor","get:touchMajor","get:touchMinor","get:x","get:y","toString"]} as const;
-export interface AndroidPointerCoords {
-readonly [_flaxDartTypeValue]: AndroidPointerCoords;
+export interface _AndroidPointerCoordsNative extends AndroidPointerCoords {
+readonly [_flaxDartTypeValue]: _AndroidPointerCoordsNative;
 
 toString(): string;
 get orientation(): number;
@@ -25,13 +40,14 @@ get touchMinor(): number;
 get x(): number;
 get y(): number;
 }
-export abstract class AndroidPointerCoords extends _FlaxProxyBase {
+export abstract class _AndroidPointerCoordsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AndroidPointerCoords>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: AndroidPointerCoords;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:AndroidPointerCoords", readonly [], false];
 constructor(options: {orientation: number; pressure: number; size: number; toolMajor: number; toolMinor: number; touchMajor: number; touchMinor: number; x: number; y: number}) { super(_AndroidPointerCoordsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(AndroidPointerCoords.prototype, _AndroidPointerCoordsProxy);
-export namespace AndroidPointerCoords { export function implement(args: [options: {orientation: number; pressure: number; size: number; toolMajor: number; toolMinor: number; touchMajor: number; touchMinor: number; x: number; y: number}], implementation: {}): AndroidPointerCoords {
+_flaxDefineProxyBase(_AndroidPointerCoordsNative.prototype, _AndroidPointerCoordsProxy);
+export namespace _AndroidPointerCoordsFactory { export function implement(args: [options: {orientation: number; pressure: number; size: number; toolMajor: number; toolMinor: number; touchMajor: number; touchMinor: number; x: number; y: number}], implementation: {}): AndroidPointerCoords {
 return constructProxy(_AndroidPointerCoordsProxy, args, implementation) as AndroidPointerCoords; } }
-_flaxBindInstanceType<AndroidPointerCoords, typeof AndroidPointerCoords>(AndroidPointerCoords, "flax.core/sdk_services#type:AndroidPointerCoords", ["dart:core::Object"]);
+const _AndroidPointerCoordsBinding = _flaxProxyFactory(_AndroidPointerCoordsFactory, _AndroidPointerCoordsNative) as unknown as typeof _AndroidPointerCoordsFactory & (new(options: {orientation: number; pressure: number; size: number; toolMajor: number; toolMinor: number; touchMajor: number; touchMinor: number; x: number; y: number}) => _AndroidPointerCoordsNative);
+export const AndroidPointerCoords: typeof _AndroidPointerCoordsBinding & _FlaxInstanceType<AndroidPointerCoords> & _FlaxDartType<AndroidPointerCoords, readonly ["class", "flax.core/sdk_services#type:AndroidPointerCoords", readonly [], false]> = _flaxBindInstanceType<AndroidPointerCoords, typeof _AndroidPointerCoordsBinding>(_AndroidPointerCoordsBinding, "flax.core/sdk_services#type:AndroidPointerCoords", ["dart:core::Object"]) as typeof _AndroidPointerCoordsBinding & _FlaxInstanceType<AndroidPointerCoords> & _FlaxDartType<AndroidPointerCoords, readonly ["class", "flax.core/sdk_services#type:AndroidPointerCoords", readonly [], false]>;

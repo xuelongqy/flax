@@ -6,7 +6,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream2 from '@flax/flutter/services/_bindings/sdk_services_RestorationBucket';
 import '@flax/flutter/services/_bindings/sdk_services_RestorationBucket';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RestorationManager extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/services/restoration.dart::RestorationManager": readonly [];
 }>, Readonly<{
@@ -16,9 +16,23 @@ export interface RestorationManager extends Omit<upstream0.ChangeNotifier, _flax
 }> {
     readonly __RestorationManager: unique symbol;
     readonly [_flaxDartTypeValue]: RestorationManager;
+    readonly hasListeners: boolean;
+    readonly rootBucket: Promise<upstream2.RestorationBucket | null>;
+    readonly isReplacing: boolean;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    initChannels(): void;
+    handleRestorationUpdateFromEngine(options: {
+        data: globalThis.Uint8Array | null;
+        enabled: boolean;
+    }): void;
+    sendToEngine(encodedData: globalThis.Uint8Array): Promise<void>;
+    flushData(): void;
 }
-export interface RestorationManager {
-    readonly [_flaxDartTypeValue]: RestorationManager;
+export declare function _RestorationManagerFactory(): RestorationManager;
+export interface _RestorationManagerNative extends RestorationManager {
+    readonly [_flaxDartTypeValue]: _RestorationManagerNative;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
     dispose(): void;
@@ -33,14 +47,16 @@ export interface RestorationManager {
     get isReplacing(): boolean;
     get hasListeners(): boolean;
 }
-export declare abstract class RestorationManager extends _FlaxProxyBase {
+export declare abstract class _RestorationManagerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RestorationManager>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RestorationManager;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:RestorationManager", readonly [], false];
     constructor();
 }
-export declare namespace RestorationManager {
+export declare namespace _RestorationManagerFactory {
     function implement(args: [], implementation: {}): RestorationManager;
 }
+declare const _RestorationManagerBinding: typeof _RestorationManagerFactory & (new () => _RestorationManagerNative);
+export declare const RestorationManager: typeof _RestorationManagerBinding & _FlaxInstanceType<RestorationManager> & _FlaxDartType<RestorationManager, readonly ["class", "flax.core/sdk_services#type:RestorationManager", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "rootBucket" | "isReplacing" | "addListener" | "removeListener" | "dispose" | "initChannels" | "handleRestorationUpdateFromEngine" | "sendToEngine" | "flushData" | "__flaxBound:package:flutter/src/services/restoration.dart::RestorationManager" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

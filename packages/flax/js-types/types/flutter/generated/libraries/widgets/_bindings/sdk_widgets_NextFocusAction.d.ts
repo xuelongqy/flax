@@ -19,7 +19,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface NextFocusAction extends Omit<upstream0.Action<upstream1.NextFocusIntent>, _flaxOwnMembers0>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Action<upstream1.NextFocusIntent>>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NextFocusAction": readonly [];
 }>, Readonly<{
@@ -29,9 +29,54 @@ export interface NextFocusAction extends Omit<upstream0.Action<upstream1.NextFoc
 }> {
     readonly __NextFocusAction: unique symbol;
     readonly [_flaxDartTypeValue]: NextFocusAction;
+    readonly callingAction: upstream0.Action<upstream1.NextFocusIntent> | null;
+    readonly intentType: upstream3.Type;
+    readonly isActionEnabled: boolean;
+    isEnabled(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NextFocusIntent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): boolean;
+    consumesKey(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NextFocusIntent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): boolean;
+    toKeyEventResult(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NextFocusIntent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, invokeResult: boolean): upstream4.KeyEventResult;
+    invoke(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NextFocusIntent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): boolean;
+    addActionListener(listener: ((action: upstream0.Action<upstream5.Intent>) => void)): void;
+    removeActionListener(listener: ((action: upstream0.Action<upstream5.Intent>) => void)): void;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream9.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface NextFocusAction {
-    readonly [_flaxDartTypeValue]: NextFocusAction;
+export declare function _NextFocusActionFactory(): NextFocusAction;
+export interface _NextFocusActionNative extends NextFocusAction {
+    readonly [_flaxDartTypeValue]: _NextFocusActionNative;
     isEnabled(intent: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NextFocusIntent": readonly [];
     }> & Readonly<{
@@ -77,14 +122,16 @@ export interface NextFocusAction {
     get intentType(): upstream3.Type;
     get isActionEnabled(): boolean;
 }
-export declare abstract class NextFocusAction extends _FlaxProxyBase {
+export declare abstract class _NextFocusActionNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<NextFocusAction>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: NextFocusAction;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:NextFocusAction", readonly [], false];
     constructor();
 }
-export declare namespace NextFocusAction {
+export declare namespace _NextFocusActionFactory {
     function implement(args: [], implementation: {}): NextFocusAction;
 }
+declare const _NextFocusActionBinding: typeof _NextFocusActionFactory & (new () => _NextFocusActionNative);
+export declare const NextFocusAction: typeof _NextFocusActionBinding & _FlaxInstanceType<NextFocusAction> & _FlaxDartType<NextFocusAction, readonly ["class", "flax.core/sdk_widgets#type:NextFocusAction", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "callingAction" | "intentType" | "isActionEnabled" | "isEnabled" | "consumesKey" | "toKeyEventResult" | "invoke" | "addActionListener" | "removeActionListener" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NextFocusAction" | "__flaxBound:package:flutter/src/widgets/actions.dart::Action" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -14,7 +14,7 @@ import '@flax/flutter/widgets/_bindings/components_State';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RestorableDouble extends Omit<upstream0.RestorableNum<number>, _flaxOwnMembers0>, Omit<upstream1.RestorableValue<number>, _flaxOwnMembers0 | keyof upstream0.RestorableNum<number>>, Omit<upstream2.RestorableProperty<number>, _flaxOwnMembers0 | keyof upstream0.RestorableNum<number> | keyof upstream1.RestorableValue<number>>, Omit<upstream3.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.RestorableNum<number> | keyof upstream1.RestorableValue<number> | keyof upstream2.RestorableProperty<number>>, Omit<upstream4.Listenable, _flaxOwnMembers0 | keyof upstream0.RestorableNum<number> | keyof upstream1.RestorableValue<number> | keyof upstream2.RestorableProperty<number> | keyof upstream3.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableDouble": readonly [];
 }>, Readonly<{
@@ -34,9 +34,24 @@ export interface RestorableDouble extends Omit<upstream0.RestorableNum<number>, 
 }> {
     readonly __RestorableDouble: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableDouble;
+    get value(): number;
+    readonly enabled: boolean;
+    readonly state: upstream5.State<upstream6.StatefulWidget>;
+    readonly isRegistered: boolean;
+    readonly hasListeners: boolean;
+    fromPrimitives(serialized: unknown | null): number;
+    toPrimitives(): {};
+    createDefaultValue(): number;
+    didUpdateValue(oldValue: number | null): void;
+    initWithValue(value: number): void;
+    dispose(): void;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    set value(value: number);
 }
-export interface RestorableDouble {
-    readonly [_flaxDartTypeValue]: RestorableDouble;
+export declare function _RestorableDoubleFactory(defaultValue: number): RestorableDouble;
+export interface _RestorableDoubleNative extends RestorableDouble {
+    readonly [_flaxDartTypeValue]: _RestorableDoubleNative;
     fromPrimitives(serialized: unknown | null): number;
     toPrimitives(): {};
     createDefaultValue(): number;
@@ -52,14 +67,16 @@ export interface RestorableDouble {
     get hasListeners(): boolean;
     set value(value: number);
 }
-export declare abstract class RestorableDouble extends _FlaxProxyBase {
+export declare abstract class _RestorableDoubleNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RestorableDouble>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RestorableDouble;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:RestorableDouble", readonly [], false];
     constructor(defaultValue: number);
 }
-export declare namespace RestorableDouble {
+export declare namespace _RestorableDoubleFactory {
     function implement(args: [defaultValue: number], implementation: {}): RestorableDouble;
 }
+declare const _RestorableDoubleBinding: typeof _RestorableDoubleFactory & (new (defaultValue: number) => _RestorableDoubleNative);
+export declare const RestorableDouble: typeof _RestorableDoubleBinding & _FlaxInstanceType<RestorableDouble> & _FlaxDartType<RestorableDouble, readonly ["class", "flax.core/sdk_widgets#type:RestorableDouble", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "fromPrimitives" | "toPrimitives" | "createDefaultValue" | "didUpdateValue" | "initWithValue" | "dispose" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableDouble" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableNum" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValue" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValueN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

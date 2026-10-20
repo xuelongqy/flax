@@ -14,16 +14,10 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface NextFocusIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NextFocusIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __NextFocusIntent: unique symbol;
-readonly [_flaxDartTypeValue]: NextFocusIntent;
-
-}
-defineObject("flax.core/sdk_widgets#type:NextFocusIntent", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:NextFocusIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
-const _NextFocusIntentProxy = {type: "flax.core/sdk_widgets#type:NextFocusIntent", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface NextFocusIntent {
 readonly [_flaxDartTypeValue]: NextFocusIntent;
 
 toStringShort(): string;
@@ -31,14 +25,30 @@ toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream3
 debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 toString(options?: {minLevel?: upstream5.DiagnosticLevel | undefined}): string;
 }
-export abstract class NextFocusIntent extends _FlaxProxyBase {
+defineObject("flax.core/sdk_widgets#type:NextFocusIntent", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:NextFocusIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
+export function _NextFocusIntentFactory(): NextFocusIntent {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:NextFocusIntent", "", [], [], {}) as NextFocusIntent;
+}
+const _NextFocusIntentProxy = {type: "flax.core/sdk_widgets#type:NextFocusIntent", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+export interface _NextFocusIntentNative extends NextFocusIntent {
+readonly [_flaxDartTypeValue]: _NextFocusIntentNative;
+
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream3.DiagnosticsTreeStyle | null | undefined}): upstream2.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream5.DiagnosticLevel | undefined}): string;
+}
+export abstract class _NextFocusIntentNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<NextFocusIntent>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: NextFocusIntent;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:NextFocusIntent", readonly [], false];
 constructor() { super(_NextFocusIntentProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(NextFocusIntent.prototype, _NextFocusIntentProxy);
-export namespace NextFocusIntent { export function implement(args: [], implementation: {}): NextFocusIntent {
+_flaxDefineProxyBase(_NextFocusIntentNative.prototype, _NextFocusIntentProxy);
+export namespace _NextFocusIntentFactory { export function implement(args: [], implementation: {}): NextFocusIntent {
 return constructProxy(_NextFocusIntentProxy, args, implementation) as NextFocusIntent; } }
-_flaxBindInstanceType<NextFocusIntent, typeof NextFocusIntent>(NextFocusIntent, "flax.core/sdk_widgets#type:NextFocusIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _NextFocusIntentBinding = _flaxProxyFactory(_NextFocusIntentFactory, _NextFocusIntentNative) as unknown as typeof _NextFocusIntentFactory & (new() => _NextFocusIntentNative);
+export const NextFocusIntent: typeof _NextFocusIntentBinding & _FlaxInstanceType<NextFocusIntent> & _FlaxDartType<NextFocusIntent, readonly ["class", "flax.core/sdk_widgets#type:NextFocusIntent", readonly [], false]> = _flaxBindInstanceType<NextFocusIntent, typeof _NextFocusIntentBinding>(_NextFocusIntentBinding, "flax.core/sdk_widgets#type:NextFocusIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _NextFocusIntentBinding & _FlaxInstanceType<NextFocusIntent> & _FlaxDartType<NextFocusIntent, readonly ["class", "flax.core/sdk_widgets#type:NextFocusIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NextFocusIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

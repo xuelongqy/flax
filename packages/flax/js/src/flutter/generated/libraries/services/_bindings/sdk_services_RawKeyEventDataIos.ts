@@ -22,17 +22,41 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { _flaxMemberParameters72, _flaxMemberParameters69, _flaxMemberParameters10, _flaxMemberParameters0, _flaxMemberParameters44, _flaxMemberParameters43, _flaxMemberParameters45 } from "@flax/flutter/services/_bindings/sdk_services.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface RawKeyEventDataIos extends Omit<upstream0.RawKeyEventData, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.RawKeyEventData>, Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard_ios.dart::RawKeyEventDataIos": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __RawKeyEventDataIos: unique symbol;
 readonly [_flaxDartTypeValue]: RawKeyEventDataIos;
 
+readonly isControlPressed: boolean;
+readonly isShiftPressed: boolean;
+readonly isAltPressed: boolean;
+readonly isMetaPressed: boolean;
+readonly modifiersPressed: DartMap<upstream3.ModifierKey, upstream2.KeyboardSide>;
+readonly physicalKey: upstream4.PhysicalKeyboardKey;
+readonly logicalKey: upstream5.LogicalKeyboardKey;
+readonly keyLabel: string;
+readonly characters: string;
+readonly charactersIgnoringModifiers: string;
+readonly keyCode: number;
+readonly modifiers: number;
+isModifierPressed(key: upstream3.ModifierKey, options?: {side?: upstream2.KeyboardSide | undefined}): boolean;
+getModifierSide(key: upstream3.ModifierKey): upstream2.KeyboardSide | null;
+shouldDispatchEvent(): boolean;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream7.DiagnosticsTreeStyle | null | undefined}): upstream6.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream9.DiagnosticLevel | undefined}): string;
 }
 defineObject("flax.core/sdk_services#type:RawKeyEventDataIos", ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","modifiersPressed","physicalKey","logicalKey","keyLabel","characters","charactersIgnoringModifiers","keyCode","modifiers"], [], _flaxBindingMethods("flax.core/sdk_services#type:RawKeyEventDataIos", "object", {}, {}), [], undefined, "flax.core/sdk_services#type:RawKeyEventData");
+export function _RawKeyEventDataIosFactory(options: { characters?: string | undefined; charactersIgnoringModifiers?: string | undefined; keyCode?: number | undefined; modifiers?: number | undefined } = {}): RawKeyEventDataIos {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_services#type:RawKeyEventDataIos", "", [{"name":"characters"},{"name":"charactersIgnoringModifiers"},{"name":"keyCode"},{"name":"modifiers"}], [], options) as RawKeyEventDataIos;
+}
 const _RawKeyEventDataIosProxy = {type: "flax.core/sdk_services#type:RawKeyEventDataIos", parameters: _flaxMemberParameters72, constructors: {"": _flaxMemberParameters72}, methods: {"isModifierPressed":_flaxMemberParameters69,"getModifierSide":_flaxMemberParameters10,"shouldDispatchEvent":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"toDiagnosticsNode":_flaxMemberParameters44,"debugFillProperties":_flaxMemberParameters43,"toString":_flaxMemberParameters45}, getters: ["characters","charactersIgnoringModifiers","keyCode","modifiers","keyLabel","physicalKey","logicalKey","isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","modifiersPressed"], setters: [], contextMembers: [], superMembers: ["get:characters","get:charactersIgnoringModifiers","get:keyCode","get:modifiers","get:keyLabel","get:physicalKey","get:logicalKey","get:isControlPressed","get:isShiftPressed","get:isAltPressed","get:isMetaPressed","get:modifiersPressed","isModifierPressed","getModifierSide","shouldDispatchEvent","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface RawKeyEventDataIos {
-readonly [_flaxDartTypeValue]: RawKeyEventDataIos;
+export interface _RawKeyEventDataIosNative extends RawKeyEventDataIos {
+readonly [_flaxDartTypeValue]: _RawKeyEventDataIosNative;
 
 isModifierPressed(key: upstream3.ModifierKey, options?: {side?: upstream2.KeyboardSide | undefined}): boolean;
 getModifierSide(key: upstream3.ModifierKey): upstream2.KeyboardSide | null;
@@ -54,32 +78,33 @@ get isAltPressed(): boolean;
 get isMetaPressed(): boolean;
 get modifiersPressed(): DartMap<upstream3.ModifierKey, upstream2.KeyboardSide>;
 }
-export abstract class RawKeyEventDataIos extends _FlaxProxyBase {
+export abstract class _RawKeyEventDataIosNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RawKeyEventDataIos>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: RawKeyEventDataIos;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:RawKeyEventDataIos", readonly [], false];
 constructor(options?: {characters?: string | undefined; charactersIgnoringModifiers?: string | undefined; keyCode?: number | undefined; modifiers?: number | undefined}) { super(_RawKeyEventDataIosProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(RawKeyEventDataIos.prototype, _RawKeyEventDataIosProxy);
-export namespace RawKeyEventDataIos { export function implement(args: [options?: {characters?: string | undefined; charactersIgnoringModifiers?: string | undefined; keyCode?: number | undefined; modifiers?: number | undefined}], implementation: {}): RawKeyEventDataIos {
+_flaxDefineProxyBase(_RawKeyEventDataIosNative.prototype, _RawKeyEventDataIosProxy);
+export namespace _RawKeyEventDataIosFactory { export function implement(args: [options?: {characters?: string | undefined; charactersIgnoringModifiers?: string | undefined; keyCode?: number | undefined; modifiers?: number | undefined}], implementation: {}): RawKeyEventDataIos {
 return constructProxy(_RawKeyEventDataIosProxy, args, implementation) as RawKeyEventDataIos; } }
-export namespace RawKeyEventDataIos { export declare const modifierCapsLock: number; }
-export namespace RawKeyEventDataIos { export declare const modifierShift: number; }
-export namespace RawKeyEventDataIos { export declare const modifierLeftShift: number; }
-export namespace RawKeyEventDataIos { export declare const modifierRightShift: number; }
-export namespace RawKeyEventDataIos { export declare const modifierControl: number; }
-export namespace RawKeyEventDataIos { export declare const modifierLeftControl: number; }
-export namespace RawKeyEventDataIos { export declare const modifierRightControl: number; }
-export namespace RawKeyEventDataIos { export declare const modifierOption: number; }
-export namespace RawKeyEventDataIos { export declare const modifierLeftOption: number; }
-export namespace RawKeyEventDataIos { export declare const modifierRightOption: number; }
-export namespace RawKeyEventDataIos { export declare const modifierCommand: number; }
-export namespace RawKeyEventDataIos { export declare const modifierLeftCommand: number; }
-export namespace RawKeyEventDataIos { export declare const modifierRightCommand: number; }
-export namespace RawKeyEventDataIos { export declare const modifierNumericPad: number; }
-export namespace RawKeyEventDataIos { export declare const modifierHelp: number; }
-export namespace RawKeyEventDataIos { export declare const modifierFunction: number; }
-export namespace RawKeyEventDataIos { export declare const deviceIndependentMask: number; }
-_flaxDefineStaticGetters(RawKeyEventDataIos, "flax.core/sdk_services#read:RawKeyEventDataIos.", ["modifierCapsLock","modifierShift","modifierLeftShift","modifierRightShift","modifierControl","modifierLeftControl","modifierRightControl","modifierOption","modifierLeftOption","modifierRightOption","modifierCommand","modifierLeftCommand","modifierRightCommand","modifierNumericPad","modifierHelp","modifierFunction","deviceIndependentMask"]);
-_flaxBindInstanceType<RawKeyEventDataIos, typeof RawKeyEventDataIos>(RawKeyEventDataIos, "flax.core/sdk_services#type:RawKeyEventDataIos", ["flax.core/sdk_services#type:RawKeyEventData","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _RawKeyEventDataIosBinding = _flaxProxyFactory(_RawKeyEventDataIosFactory, _RawKeyEventDataIosNative) as unknown as typeof _RawKeyEventDataIosFactory & (new(options?: {characters?: string | undefined; charactersIgnoringModifiers?: string | undefined; keyCode?: number | undefined; modifiers?: number | undefined}) => _RawKeyEventDataIosNative);
+export namespace _RawKeyEventDataIosFactory { export declare const modifierCapsLock: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierShift: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierLeftShift: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierRightShift: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierControl: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierLeftControl: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierRightControl: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierOption: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierLeftOption: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierRightOption: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierCommand: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierLeftCommand: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierRightCommand: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierNumericPad: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierHelp: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const modifierFunction: number; }
+export namespace _RawKeyEventDataIosFactory { export declare const deviceIndependentMask: number; }
+_flaxDefineStaticGetters(_RawKeyEventDataIosFactory, "flax.core/sdk_services#read:RawKeyEventDataIos.", ["modifierCapsLock","modifierShift","modifierLeftShift","modifierRightShift","modifierControl","modifierLeftControl","modifierRightControl","modifierOption","modifierLeftOption","modifierRightOption","modifierCommand","modifierLeftCommand","modifierRightCommand","modifierNumericPad","modifierHelp","modifierFunction","deviceIndependentMask"]);
+export const RawKeyEventDataIos: typeof _RawKeyEventDataIosBinding & _FlaxInstanceType<RawKeyEventDataIos> & _FlaxDartType<RawKeyEventDataIos, readonly ["class", "flax.core/sdk_services#type:RawKeyEventDataIos", readonly [], false]> = _flaxBindInstanceType<RawKeyEventDataIos, typeof _RawKeyEventDataIosBinding>(_RawKeyEventDataIosBinding, "flax.core/sdk_services#type:RawKeyEventDataIos", ["flax.core/sdk_services#type:RawKeyEventData","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _RawKeyEventDataIosBinding & _FlaxInstanceType<RawKeyEventDataIos> & _FlaxDartType<RawKeyEventDataIos, readonly ["class", "flax.core/sdk_services#type:RawKeyEventDataIos", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "isControlPressed" | "isShiftPressed" | "isAltPressed" | "isMetaPressed" | "modifiersPressed" | "physicalKey" | "logicalKey" | "keyLabel" | "characters" | "charactersIgnoringModifiers" | "keyCode" | "modifiers" | "isModifierPressed" | "getModifierSide" | "shouldDispatchEvent" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/services/raw_keyboard_ios.dart::RawKeyEventDataIos" | "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

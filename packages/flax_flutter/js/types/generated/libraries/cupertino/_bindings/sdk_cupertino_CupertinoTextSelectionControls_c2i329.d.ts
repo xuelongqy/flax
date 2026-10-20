@@ -17,16 +17,13 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_ClipboardStatus';
 import type * as upstream9 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoTextSelectionControls extends Omit<upstream0.TextSelectionControls, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/cupertino/text_selection.dart::CupertinoTextSelectionControls": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionControls": readonly [];
 }> {
     readonly __CupertinoTextSelectionControls: unique symbol;
-    readonly [_flaxDartTypeValue]: CupertinoTextSelectionControls;
-}
-export interface CupertinoTextSelectionControls {
     readonly [_flaxDartTypeValue]: CupertinoTextSelectionControls;
     buildHandle(context: upstream1.BuildContext, type: upstream2.TextSelectionHandleType, textLineHeight: number, onTap?: (() => void) | null): Widget;
     getHandleAnchor(type: upstream2.TextSelectionHandleType, textLineHeight: number): upstream3.Offset;
@@ -75,14 +72,66 @@ export interface CupertinoTextSelectionControls {
         "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
     }>): void;
 }
-export declare abstract class CupertinoTextSelectionControls extends _FlaxProxyBase {
+export declare function _CupertinoTextSelectionControlsFactory(): CupertinoTextSelectionControls;
+export interface _CupertinoTextSelectionControlsNative extends CupertinoTextSelectionControls {
+    readonly [_flaxDartTypeValue]: _CupertinoTextSelectionControlsNative;
+    buildHandle(context: upstream1.BuildContext, type: upstream2.TextSelectionHandleType, textLineHeight: number, onTap?: (() => void) | null): Widget;
+    getHandleAnchor(type: upstream2.TextSelectionHandleType, textLineHeight: number): upstream3.Offset;
+    buildToolbar(context: upstream1.BuildContext, globalEditableRegion: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, textLineHeight: number, selectionMidpoint: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, endpoints: DartListInput<upstream5.TextSelectionPoint, Readonly<{
+        "__flaxBound:package:flutter/src/rendering/editable.dart::TextSelectionPoint": readonly [];
+    }>>, delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>, clipboardStatus: (Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>) | null, lastSecondaryTapDownPosition: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null): Widget;
+    getHandleSize(textLineHeight: number): upstream9.Size;
+    canCut(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): boolean;
+    canCopy(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): boolean;
+    canPaste(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): boolean;
+    canSelectAll(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): boolean;
+    handleCut(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): void;
+    handleCopy(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): void;
+    handlePaste(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): Promise<void>;
+    handleSelectAll(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): void;
+}
+export declare abstract class _CupertinoTextSelectionControlsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CupertinoTextSelectionControls>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: CupertinoTextSelectionControls;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_cupertino#type:CupertinoTextSelectionControls", readonly [], false];
     constructor();
 }
-export declare namespace CupertinoTextSelectionControls {
+export declare namespace _CupertinoTextSelectionControlsFactory {
     function implement(args: [], implementation: {}): CupertinoTextSelectionControls;
 }
+declare const _CupertinoTextSelectionControlsBinding: typeof _CupertinoTextSelectionControlsFactory & (new () => _CupertinoTextSelectionControlsNative);
+export declare const CupertinoTextSelectionControls: typeof _CupertinoTextSelectionControlsBinding & _FlaxInstanceType<CupertinoTextSelectionControls> & _FlaxDartType<CupertinoTextSelectionControls, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoTextSelectionControls", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "buildHandle" | "getHandleAnchor" | "buildToolbar" | "getHandleSize" | "canCut" | "canCopy" | "canPaste" | "canSelectAll" | "handleCut" | "handleCopy" | "handlePaste" | "handleSelectAll" | "__flaxBound:package:flutter/src/cupertino/text_selection.dart::CupertinoTextSelectionControls" | "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionControls";
 export {};

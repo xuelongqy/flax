@@ -17,6 +17,7 @@ const _packageKeys = {
 const _moduleEntryKeys = {
   'name',
   'moduleId',
+  'dartLibrary',
   'uiProtocol',
   'requiredCapabilities',
   'model',
@@ -63,7 +64,7 @@ final class FlaxCodegenManifest {
   }) : imports = List.unmodifiable(imports),
        modules = List.unmodifiable(modules);
 
-  static const formatVersion = 27;
+  static const formatVersion = 28;
   static const uiProtocol = 24;
 
   final String package;
@@ -104,10 +105,12 @@ final class FlaxCodegenManifest {
   }
 
   /// Builds a canonical envelope from a resolved local package.
+  /// [localDependencySources] marks owned views, never their imported references.
   static FlaxCodegenManifest fromResolved({
     required FlaxCodegenResolvedPackage package,
     required Map<String, FlaxCodegenModuleModel> modules,
     required Iterable<String> importPackageNames,
+    Set<FlaxCodegenSourceIdentity> localDependencySources = const {},
     String source = 'manifest.json',
   }) {
     final diagnostics = FlaxCodegenManifestDiagnostics(source);
@@ -115,6 +118,7 @@ final class FlaxCodegenManifest {
       package: package,
       modules: modules,
       importPackageNames: importPackageNames,
+      localDependencySources: localDependencySources,
       diagnostics: diagnostics,
     );
     diagnostics.throwIfAny();
@@ -130,6 +134,7 @@ final class FlaxCodegenManifestModule {
     required this.uiProtocol,
     required List<String> requiredCapabilities,
     required this.model,
+    this.dartLibrary,
   }) : requiredCapabilities = List.unmodifiable(requiredCapabilities);
 
   final String name;
@@ -138,9 +143,14 @@ final class FlaxCodegenManifestModule {
   final List<String> requiredCapabilities;
   final FlaxCodegenManifestModel model;
 
+  /// Generated registration library, independent of semantic model output paths.
+  /// Private `src` paths are valid; metadata-only modules may omit this URI.
+  final String? dartLibrary;
+
   Map<String, Object?> toJson() => {
     'name': name,
     'moduleId': moduleId.value,
+    if (dartLibrary != null) 'dartLibrary': dartLibrary,
     'uiProtocol': uiProtocol,
     'requiredCapabilities': List<String>.of(requiredCapabilities),
     'model': model.toJson(),
@@ -283,6 +293,16 @@ FlaxCodegenManifest? _decodePackage(
     imports: imports,
   );
   _diagnoseSortedModules(diagnostics, modules);
+  for (var index = 0; index < modules.length; index++) {
+    final library = modules[index].dartLibrary;
+    if (library != null && !_isCanonicalDartLibrary(library, packageName)) {
+      diagnostics.add(
+        pointer: '/modules/$index/dartLibrary',
+        message:
+            'Expected a canonical package:$packageName/ library URI ending in .dart.',
+      );
+    }
+  }
   if (namespace != null) {
     _diagnosePackageOwnership(diagnostics, namespace, modules);
   }
@@ -310,6 +330,7 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
   if (object == null) return null;
   final nameValue = object.requiredString('name');
   final moduleIdValue = object.requiredString('moduleId');
+  final dartLibrary = object.optionalString('dartLibrary');
   final uiProtocol = _requiredInt(object, 'uiProtocol');
   final requiredCapabilities = object.requiredStringList(
     'requiredCapabilities',
@@ -437,6 +458,7 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
     uiProtocol: uiProtocol,
     requiredCapabilities: requiredCapabilities,
     model: model,
+    dartLibrary: dartLibrary,
   );
 }
 
@@ -556,6 +578,11 @@ void _diagnoseModuleIdentities(
   for (final group in bySource.values) {
     if (group.length < 2) continue;
     final wires = {for (final identity in group) identity.wireId.value};
+    // Distinct explicit views may share a source; ownership stays package-local.
+    if (wires.length == group.length &&
+        group.where((identity) => identity.owner).length <= 1) {
+      continue;
+    }
     final message = wires.length > 1
         ? 'Conflicting sourceIdentity.'
         : 'Duplicate sourceIdentity.';
@@ -638,6 +665,7 @@ FlaxCodegenManifest? _buildFromResolved({
   required FlaxCodegenResolvedPackage package,
   required Map<String, FlaxCodegenModuleModel> modules,
   required Iterable<String> importPackageNames,
+  required Set<FlaxCodegenSourceIdentity> localDependencySources,
   required FlaxCodegenManifestDiagnostics diagnostics,
 }) {
   final start = diagnostics.items.length;
@@ -661,12 +689,19 @@ FlaxCodegenManifest? _buildFromResolved({
       diagnostics.add(pointer: '/modules', message: 'Tuple mismatch.');
       continue;
     }
+    final dartLibrary = _dartLibraryFromOutput(
+      package.dartPackage,
+      model.dartOutput,
+      diagnostics,
+      flaxCodegenManifestPointer('/modules', name),
+    );
     final snapshot = _snapshotModule(model, name, diagnostics);
     if (snapshot == null) continue;
     final identities = _identitiesFromResolved(
       resolved,
       diagnostics,
       flaxCodegenManifestPointer('/modules', name),
+      localDependencySources,
     );
     if (identities == null) continue;
     final modelPointer = flaxCodegenManifestPointer(
@@ -686,6 +721,7 @@ FlaxCodegenManifest? _buildFromResolved({
       FlaxCodegenManifestModule(
         name: name,
         moduleId: resolved.moduleId,
+        dartLibrary: dartLibrary,
         uiProtocol: FlaxCodegenManifest.uiProtocol,
         requiredCapabilities: flaxCodegenProtocol21RequiredCapabilities(),
         model: FlaxCodegenManifestModel(
@@ -741,6 +777,7 @@ List<FlaxCodegenManifestIdentity>? _identitiesFromResolved(
   FlaxCodegenResolvedModule module,
   FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
+  Set<FlaxCodegenSourceIdentity> localDependencySources,
 ) {
   final start = diagnostics.items.length;
   final ownerWireBySource = <FlaxCodegenSourceIdentity, FlaxCodegenWireId>{};
@@ -766,30 +803,16 @@ List<FlaxCodegenManifestIdentity>? _identitiesFromResolved(
     }
   }
 
-  final refWireBySource = <FlaxCodegenSourceIdentity, FlaxCodegenWireId>{};
   final refSourceByWire = <String, FlaxCodegenSourceIdentity>{};
 
   for (final reference in module.references) {
+    if (reference.ownerWireId.publicBindingName !=
+        reference.sourceIdentity.name) {
+      diagnostics.add(pointer: pointer, message: 'Wire name mismatch.');
+      continue;
+    }
     final ownedWire = ownerWireBySource[reference.sourceIdentity];
-    if (ownedWire != null) {
-      if (ownedWire != reference.ownerWireId) {
-        diagnostics.add(
-          pointer: pointer,
-          message: 'Conflicting sourceIdentity.',
-        );
-      }
-      continue;
-    }
-    final priorWire = refWireBySource[reference.sourceIdentity];
-    if (priorWire != null) {
-      if (priorWire != reference.ownerWireId) {
-        diagnostics.add(
-          pointer: pointer,
-          message: 'Conflicting sourceIdentity.',
-        );
-      }
-      continue;
-    }
+    if (ownedWire == reference.ownerWireId) continue;
     final ownerSource = ownerSourceByWire[reference.ownerWireId.value];
     if (ownerSource != null) {
       diagnostics.add(pointer: pointer, message: 'Conflicting wireId.');
@@ -798,7 +821,6 @@ List<FlaxCodegenManifestIdentity>? _identitiesFromResolved(
     if (refSource != null && refSource != reference.sourceIdentity) {
       diagnostics.add(pointer: pointer, message: 'Conflicting wireId.');
     }
-    refWireBySource[reference.sourceIdentity] = reference.ownerWireId;
     refSourceByWire.putIfAbsent(
       reference.ownerWireId.value,
       () => reference.sourceIdentity,
@@ -813,11 +835,12 @@ List<FlaxCodegenManifestIdentity>? _identitiesFromResolved(
         sourceIdentity: entry.key,
         wireId: entry.value,
         owner: true,
+        localDependency: localDependencySources.contains(entry.key),
       ),
-    for (final entry in refWireBySource.entries)
+    for (final entry in refSourceByWire.entries)
       FlaxCodegenManifestIdentity(
-        sourceIdentity: entry.key,
-        wireId: entry.value,
+        sourceIdentity: entry.value,
+        wireId: FlaxCodegenWireId.parse(entry.key),
         owner: false,
       ),
   ]..sort(_compareIdentities);
@@ -1364,6 +1387,59 @@ final _dartPackageNamePattern = RegExp(r'^[a-z][a-z0-9_]*$');
 
 bool _isCanonicalDartPackageName(String value) =>
     _dartPackageNamePattern.hasMatch(value);
+
+bool _isCanonicalDartLibrary(String value, String package) {
+  final uri = Uri.tryParse(value);
+  if (uri == null ||
+      uri.scheme != 'package' ||
+      uri.hasAuthority ||
+      uri.hasQuery ||
+      uri.hasFragment) {
+    return false;
+  }
+  final List<String> segments;
+  try {
+    segments = uri.pathSegments;
+  } on FormatException {
+    return false;
+  }
+  if (segments.length < 2 || segments.first != package) return false;
+  if (segments.any(
+    (segment) =>
+        segment.isEmpty ||
+        segment == '.' ||
+        segment == '..' ||
+        segment.contains('/') ||
+        segment.contains(r'\'),
+  )) {
+    return false;
+  }
+  return segments.last.endsWith('.dart') &&
+      Uri(scheme: 'package', pathSegments: segments).toString() == value;
+}
+
+String? _dartLibraryFromOutput(
+  String package,
+  String output,
+  FlaxCodegenManifestDiagnostics diagnostics,
+  String pointer,
+) {
+  if (!output.startsWith('lib/')) return null;
+  final segments = output.substring(4).split('/');
+  final library = Uri(
+    scheme: 'package',
+    pathSegments: [package, ...segments],
+  ).toString();
+  if (!segments.any((segment) => segment == '.' || segment == '..') &&
+      _isCanonicalDartLibrary(library, package)) {
+    return library;
+  }
+  diagnostics.add(
+    pointer: flaxCodegenManifestPointer(pointer, 'dartLibrary'),
+    message: 'Expected a canonical Dart output path under lib/.',
+  );
+  return null;
+}
 
 int? _requiredInt(FlaxCodegenManifestObject object, String key) =>
     object.requiredValue<int>(key, (value, pointer) {

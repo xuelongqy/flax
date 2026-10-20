@@ -324,7 +324,7 @@ The existing `createArrayBuffer` / `readBytes` operations retain their explicit 
 semantics for Blob/Fetch and other snapshot APIs, with one payload copy in each
 direction. Native snapshots are released by Dart's external-data finalizer independently
 of session disposal. The internal binding engine table is version 5; native ABI 2, UI
-protocol 24 and Manifest 27 remain independent. Modules using Uint8List require the
+protocol 24 and Manifest 28 remain independent. Modules using Uint8List require the
 additive `shared-uint8` capability. Other supported binary types require
 `shared-buffers` and use this same storage lease:
 

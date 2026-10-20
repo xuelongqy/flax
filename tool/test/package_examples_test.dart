@@ -45,7 +45,10 @@ void main() {
     commands.add((executable, arguments, directory));
   }
 
-  FlaxWorkspacePackage package(String name) {
+  FlaxWorkspacePackage package(
+    String name, {
+    List<String> dependencies = const [],
+  }) {
     final directory = Directory(p.join(temporary.path, 'packages', name));
     _write(directory, 'pubspec.yaml', '''
 name: $name
@@ -53,6 +56,13 @@ version: 0.0.0
 environment:
   sdk: ^3.13.2
 ''');
+    if (dependencies.isNotEmpty) {
+      File(p.join(directory.path, 'pubspec.yaml')).writeAsStringSync(
+        'dependencies:\n'
+        '${dependencies.map((name) => '  $name: 0.0.0').join('\n')}\n',
+        mode: FileMode.append,
+      );
+    }
     _write(directory, 'flax_package.yaml', '''
 format: 2
 dart:
@@ -63,6 +73,65 @@ capabilities: [codegen]
         .createSync(recursive: true);
     return FlaxWorkspacePackage(name, directory);
   }
+
+  test(
+    'binding owners follow Pub dependencies rather than discovery order',
+    () {
+      final core = package('flax');
+      final provider = package('z_provider', dependencies: ['flax']);
+      final consumer = package(
+        'a_consumer',
+        dependencies: ['z_provider', 'flax', 'external_package'],
+      );
+      package('m_support', dependencies: ['z_provider']);
+      final indirect = package(
+        'b_indirect',
+        dependencies: ['m_support', 'flax'],
+      );
+      for (final owner in [consumer, indirect, provider, core]) {
+        _write(owner.directory, 'bindings/flax_bindings.yaml', '');
+      }
+      File(p.join(core.directory.path, 'pubspec.yaml')).writeAsStringSync(
+        'dev_dependencies:\n  a_consumer: 0.0.0\n',
+        mode: FileMode.append,
+      );
+      final discovered = discoverPackages(temporary.path);
+      const discoveryOrder = [
+        'a_consumer',
+        'b_indirect',
+        'flax',
+        'm_support',
+        'z_provider',
+      ];
+      expect(discovered.map((package) => package.name), discoveryOrder);
+      for (final input in [discovered, discovered.reversed]) {
+        expect(
+          bindingPackagesInDependencyOrder(input)
+              .map((package) => package.name),
+          ['flax', 'z_provider', 'a_consumer', 'b_indirect'],
+        );
+      }
+      expect(discovered.map((package) => package.name), discoveryOrder);
+    },
+  );
+
+  test('binding package cycles fail with the dependency path', () {
+    final first = package('a_owner', dependencies: ['z_owner']);
+    final second = package('z_owner', dependencies: ['a_owner']);
+    for (final owner in [first, second]) {
+      _write(owner.directory, 'bindings/flax_bindings.yaml', '');
+    }
+    expect(
+      () => bindingPackagesInDependencyOrder([second, first]),
+      throwsA(
+        isA<StateError>().having(
+          (error) => error.message,
+          'message',
+          'Cyclic binding package dependencies: a_owner -> z_owner -> a_owner',
+        ),
+      ),
+    );
+  });
 
   group('Flutter example discovery', () {
     test('binding discovery ignores unrelated YAML and reserved overrides', () {

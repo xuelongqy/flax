@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/painting/_bindings/sdk_painting_ImageProvider';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageProvider';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_DisposableBuildContext';
@@ -31,9 +32,70 @@ export interface ScrollAwareImageProvider<T extends {} = {}> extends Omit<upstre
 }> {
     readonly __ScrollAwareImageProvider: unique symbol;
     readonly [_flaxDartTypeValue]: ScrollAwareImageProvider<T>;
+    readonly context: upstream1.DisposableBuildContext<upstream2.State<upstream3.StatefulWidget>>;
+    readonly imageProvider: upstream0.ImageProvider<T>;
+    resolve(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream4.ImageStream;
+    createStream(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream4.ImageStream;
+    obtainCacheStatus(options: {
+        configuration: Readonly<{
+            "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+        }>;
+        handleError?: ((exception: {}, stackTrace: upstream7.StackTrace | null) => void) | null | undefined;
+    }): Promise<upstream6.ImageCacheStatus | null>;
+    resolveStreamForKey(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>, stream: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStream": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, key: (T | DartInput<T>), handleError: ((exception: {}, stackTrace: upstream7.StackTrace | null) => void)): void;
+    evict(options?: {
+        cache?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/image_cache.dart::ImageCache": readonly [];
+        }> | null | undefined;
+        configuration?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+        }> | undefined;
+    }): Promise<boolean>;
+    obtainKey(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): Promise<T>;
+    loadBuffer(key: (T | DartInput<T>), decode: ((buffer: upstream11.ImmutableBuffer, options?: {
+        allowUpscaling?: boolean | undefined;
+        cacheHeight?: number | null | undefined;
+        cacheWidth?: number | null | undefined;
+    }) => Promise<Readonly<{
+        "__flaxBound:dart:ui::Codec": readonly [];
+    }>>)): upstream9.ImageStreamCompleter;
+    loadImage(key: (T | DartInput<T>), decode: ((buffer: upstream11.ImmutableBuffer, options?: {
+        getTargetSize?: ((intrinsicWidth: number, intrinsicHeight: number) => upstream12.TargetImageSize) | null | undefined;
+    }) => Promise<Readonly<{
+        "__flaxBound:dart:ui::Codec": readonly [];
+    }>>)): upstream9.ImageStreamCompleter;
+    toString(): string;
 }
-export interface ScrollAwareImageProvider<T extends {} = {}> {
-    readonly [_flaxDartTypeValue]: ScrollAwareImageProvider<T>;
+export declare function _ScrollAwareImageProviderFactory<T extends {} = {}>(options: {
+    context: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/disposable_build_context.dart::DisposableBuildContext": readonly [upstream2.State<upstream3.StatefulWidget>];
+    }>;
+    imageProvider: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [_FlaxDartOutput<T>];
+    }>;
+}): ScrollAwareImageProvider<T>;
+export declare function _ScrollAwareImageProviderFactory(options: {
+    context: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/disposable_build_context.dart::DisposableBuildContext": readonly [upstream2.State<upstream3.StatefulWidget>];
+    }>;
+    imageProvider: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
+    }>;
+}): ScrollAwareImageProvider<{}>;
+export interface _ScrollAwareImageProviderNative<T extends {} = {}> extends ScrollAwareImageProvider<T> {
+    readonly [_flaxDartTypeValue]: _ScrollAwareImageProviderNative<T>;
     resolve(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>): upstream4.ImageStream;
@@ -80,7 +142,7 @@ export interface ScrollAwareImageProvider<T extends {} = {}> {
     get context(): upstream1.DisposableBuildContext<upstream2.State<upstream3.StatefulWidget>>;
     get imageProvider(): upstream0.ImageProvider<T>;
 }
-export declare abstract class ScrollAwareImageProvider<T extends {} = {}> extends _FlaxProxyBase {
+export declare abstract class _ScrollAwareImageProviderNative<T extends {} = {}> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ScrollAwareImageProvider<{}>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ScrollAwareImageProvider<{}>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ScrollAwareImageProvider", readonly [readonly ["any", null, readonly [], false]], false];
@@ -95,7 +157,7 @@ export declare abstract class ScrollAwareImageProvider<T extends {} = {}> extend
         }>;
     });
 }
-export declare namespace ScrollAwareImageProvider {
+export declare namespace _ScrollAwareImageProviderFactory {
     function implement<T extends {} = {}>(args: [options: {
         context: Readonly<{
             "__flaxBound:package:flutter/src/widgets/disposable_build_context.dart::DisposableBuildContext": readonly [upstream2.State<upstream3.StatefulWidget>];
@@ -105,17 +167,34 @@ export declare namespace ScrollAwareImageProvider {
         }>;
     }], implementation: {}): ScrollAwareImageProvider<T>;
 }
+declare const _ScrollAwareImageProviderBinding: typeof _ScrollAwareImageProviderFactory & (new <T extends {} = {}>(options: {
+    context: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/disposable_build_context.dart::DisposableBuildContext": readonly [upstream2.State<upstream3.StatefulWidget>];
+    }>;
+    imageProvider: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
+    }>;
+}) => _ScrollAwareImageProviderNative<T>);
+export declare const ScrollAwareImageProvider: typeof _ScrollAwareImageProviderBinding & _FlaxInstanceType<ScrollAwareImageProvider<{}>> & _FlaxDartType<ScrollAwareImageProvider<{}>, readonly ["class", "flax.core/sdk_widgets#type:ScrollAwareImageProvider", readonly [readonly ["any", null, readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "context" | "imageProvider" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/widgets/scroll_aware_image_provider.dart::ScrollAwareImageProvider" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
-interface _FlaxSignature1 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (abstract new (options: {
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (new (options: {
         context: Readonly<{
             "__flaxBound:package:flutter/src/widgets/disposable_build_context.dart::DisposableBuildContext": readonly [upstream2.State<upstream3.StatefulWidget>];
         }>;
         imageProvider: Readonly<{
             "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
         }>;
-    }) => ScrollAwareImageProvider<_Selected0>) & {
-        readonly prototype: ScrollAwareImageProvider<_Selected0>;
+    }) => _ScrollAwareImageProviderNative<_Selected0>) & {
+        (options: {
+            context: Readonly<{
+                "__flaxBound:package:flutter/src/widgets/disposable_build_context.dart::DisposableBuildContext": readonly [upstream2.State<upstream3.StatefulWidget>];
+            }>;
+            imageProvider: Readonly<{
+                "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [_Selected0];
+            }>;
+        }): _ScrollAwareImageProviderNative<_Selected0>;
+        readonly prototype: _ScrollAwareImageProviderNative<_Selected0>;
         implement(args: readonly [options: {
             context: Readonly<{
                 "__flaxBound:package:flutter/src/widgets/disposable_build_context.dart::DisposableBuildContext": readonly [upstream2.State<upstream3.StatefulWidget>];
@@ -123,7 +202,35 @@ interface _FlaxSignature1 extends _FlaxDartSignature {
             imageProvider: Readonly<{
                 "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
             }>;
-        }], implementation: Partial<ScrollAwareImageProvider<_Selected0>>): ScrollAwareImageProvider<_Selected0>;
-    } & _FlaxInstanceType<ScrollAwareImageProvider<_Selected0>> & _FlaxDartType<ScrollAwareImageProvider<_Selected0>> : never : never;
+        }], implementation: Partial<_ScrollAwareImageProviderNative<_Selected0>>): _ScrollAwareImageProviderNative<_Selected0>;
+    } & _FlaxInstanceType<_ScrollAwareImageProviderNative<_Selected0>> & _FlaxDartType<_ScrollAwareImageProviderNative<_Selected0>> : never : never;
+}
+interface _FlaxSignature1 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (new (options: {
+        context: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/disposable_build_context.dart::DisposableBuildContext": readonly [upstream2.State<upstream3.StatefulWidget>];
+        }>;
+        imageProvider: Readonly<{
+            "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
+        }>;
+    }) => _ScrollAwareImageProviderNative<_Selected0>) & {
+        (options: {
+            context: Readonly<{
+                "__flaxBound:package:flutter/src/widgets/disposable_build_context.dart::DisposableBuildContext": readonly [upstream2.State<upstream3.StatefulWidget>];
+            }>;
+            imageProvider: Readonly<{
+                "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [_Selected0];
+            }>;
+        }): _ScrollAwareImageProviderNative<_Selected0>;
+        readonly prototype: _ScrollAwareImageProviderNative<_Selected0>;
+        implement(args: readonly [options: {
+            context: Readonly<{
+                "__flaxBound:package:flutter/src/widgets/disposable_build_context.dart::DisposableBuildContext": readonly [upstream2.State<upstream3.StatefulWidget>];
+            }>;
+            imageProvider: Readonly<{
+                "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
+            }>;
+        }], implementation: Partial<_ScrollAwareImageProviderNative<_Selected0>>): _ScrollAwareImageProviderNative<_Selected0>;
+    } & _FlaxInstanceType<_ScrollAwareImageProviderNative<_Selected0>> & _FlaxDartType<_ScrollAwareImageProviderNative<_Selected0>> : never : never;
 }
 export {};

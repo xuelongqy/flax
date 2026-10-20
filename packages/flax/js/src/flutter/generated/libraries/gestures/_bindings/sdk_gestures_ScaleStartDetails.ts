@@ -17,18 +17,32 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import { _flaxMemberParameters87, _flaxMemberParameters7, _flaxMemberParameters16, _flaxMemberParameters15, _flaxMemberParameters9 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters88, _flaxMemberParameters7, _flaxMemberParameters16, _flaxMemberParameters15, _flaxMemberParameters9 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ScaleStartDetails extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/gestures/scale.dart::ScaleStartDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __ScaleStartDetails: unique symbol;
 readonly [_flaxDartTypeValue]: ScaleStartDetails;
 
+readonly focalPoint: upstream1.Offset;
+readonly localFocalPoint: upstream1.Offset;
+readonly pointerCount: number;
+readonly sourceTimeStamp: upstream2.Duration | null;
+readonly kind: upstream3.PointerDeviceKind | null;
+toStringShort(): string;
+toString(options?: {minLevel?: upstream4.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream6.DiagnosticsTreeStyle | null | undefined}): upstream5.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 }
 defineObject("flax.core/sdk_gestures#type:ScaleStartDetails", ["focalPoint","localFocalPoint","pointerCount","sourceTimeStamp","kind"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:ScaleStartDetails", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _ScaleStartDetailsProxy = {type: "flax.core/sdk_gestures#type:ScaleStartDetails", parameters: _flaxMemberParameters87, constructors: {"": _flaxMemberParameters87}, methods: {"toStringShort":_flaxMemberParameters7,"toString":_flaxMemberParameters16,"toDiagnosticsNode":_flaxMemberParameters15,"debugFillProperties":_flaxMemberParameters9}, getters: ["focalPoint","localFocalPoint","pointerCount","sourceTimeStamp","kind"], setters: [], contextMembers: [], superMembers: ["get:focalPoint","get:localFocalPoint","get:pointerCount","get:sourceTimeStamp","get:kind","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
-export interface ScaleStartDetails {
-readonly [_flaxDartTypeValue]: ScaleStartDetails;
+export function _ScaleStartDetailsFactory(options: { focalPoint?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localFocalPoint?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; pointerCount?: number | undefined; sourceTimeStamp?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined; kind?: upstream3.PointerDeviceKind | null | undefined } = {}): ScaleStartDetails {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_gestures#type:ScaleStartDetails", "", [{"name":"focalPoint"},{"name":"localFocalPoint"},{"name":"pointerCount"},{"name":"sourceTimeStamp"},{"name":"kind"}], [], options) as ScaleStartDetails;
+}
+const _ScaleStartDetailsProxy = {type: "flax.core/sdk_gestures#type:ScaleStartDetails", parameters: _flaxMemberParameters88, constructors: {"": _flaxMemberParameters88}, methods: {"toStringShort":_flaxMemberParameters7,"toString":_flaxMemberParameters16,"toDiagnosticsNode":_flaxMemberParameters15,"debugFillProperties":_flaxMemberParameters9}, getters: ["focalPoint","localFocalPoint","pointerCount","sourceTimeStamp","kind"], setters: [], contextMembers: [], superMembers: ["get:focalPoint","get:localFocalPoint","get:pointerCount","get:sourceTimeStamp","get:kind","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
+export interface _ScaleStartDetailsNative extends ScaleStartDetails {
+readonly [_flaxDartTypeValue]: _ScaleStartDetailsNative;
 
 toStringShort(): string;
 toString(options?: {minLevel?: upstream4.DiagnosticLevel | undefined}): string;
@@ -40,14 +54,15 @@ get pointerCount(): number;
 get sourceTimeStamp(): upstream2.Duration | null;
 get kind(): upstream3.PointerDeviceKind | null;
 }
-export abstract class ScaleStartDetails extends _FlaxProxyBase {
+export abstract class _ScaleStartDetailsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ScaleStartDetails>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ScaleStartDetails;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:ScaleStartDetails", readonly [], false];
 constructor(options?: {focalPoint?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localFocalPoint?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; pointerCount?: number | undefined; sourceTimeStamp?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined; kind?: upstream3.PointerDeviceKind | null | undefined}) { super(_ScaleStartDetailsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ScaleStartDetails.prototype, _ScaleStartDetailsProxy);
-export namespace ScaleStartDetails { export function implement(args: [options?: {focalPoint?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localFocalPoint?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; pointerCount?: number | undefined; sourceTimeStamp?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined; kind?: upstream3.PointerDeviceKind | null | undefined}], implementation: {}): ScaleStartDetails {
+_flaxDefineProxyBase(_ScaleStartDetailsNative.prototype, _ScaleStartDetailsProxy);
+export namespace _ScaleStartDetailsFactory { export function implement(args: [options?: {focalPoint?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localFocalPoint?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; pointerCount?: number | undefined; sourceTimeStamp?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined; kind?: upstream3.PointerDeviceKind | null | undefined}], implementation: {}): ScaleStartDetails {
 return constructProxy(_ScaleStartDetailsProxy, args, implementation) as ScaleStartDetails; } }
-_flaxBindInstanceType<ScaleStartDetails, typeof ScaleStartDetails>(ScaleStartDetails, "flax.core/sdk_gestures#type:ScaleStartDetails", ["dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _ScaleStartDetailsBinding = _flaxProxyFactory(_ScaleStartDetailsFactory, _ScaleStartDetailsNative) as unknown as typeof _ScaleStartDetailsFactory & (new(options?: {focalPoint?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localFocalPoint?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; pointerCount?: number | undefined; sourceTimeStamp?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined; kind?: upstream3.PointerDeviceKind | null | undefined}) => _ScaleStartDetailsNative);
+export const ScaleStartDetails: typeof _ScaleStartDetailsBinding & _FlaxInstanceType<ScaleStartDetails> & _FlaxDartType<ScaleStartDetails, readonly ["class", "flax.core/sdk_gestures#type:ScaleStartDetails", readonly [], false]> = _flaxBindInstanceType<ScaleStartDetails, typeof _ScaleStartDetailsBinding>(_ScaleStartDetailsBinding, "flax.core/sdk_gestures#type:ScaleStartDetails", ["dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ScaleStartDetailsBinding & _FlaxInstanceType<ScaleStartDetails> & _FlaxDartType<ScaleStartDetails, readonly ["class", "flax.core/sdk_gestures#type:ScaleStartDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "focalPoint" | "localFocalPoint" | "pointerCount" | "sourceTimeStamp" | "kind" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/scale.dart::ScaleStartDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

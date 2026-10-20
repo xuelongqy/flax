@@ -378,24 +378,24 @@ hooks.callback.value = () => hooks.count.value += 2;
     await flaxTestWaitForRuntimeDisposal(t, h.runtime);
   });
 
-  testWidgets('duplicate registrations and incompatible modules are rejected', (
-    _,
-  ) async {
-    expect(
-      () => FlaxBindingRegistry([flutterBindings, flutterBindings]),
-      throwsArgumentError,
-    );
-    expect(
-      () => FlaxBindingRegistry([
-        const FlaxBindingModule(
-          'previous',
-          [],
-          moduleId: 'test/previous',
-          uiProtocol: 14,
-          requiredCapabilities: <String>[],
-        ),
-      ]),
-      throwsArgumentError,
-    );
-  });
+  testWidgets(
+    'shared registrations deduplicate and incompatible modules are rejected',
+    (_) async {
+      expect(FlaxBindingRegistry([flutterBindings, flutterBindings]).modules, [
+        flutterBindings,
+      ]);
+      expect(
+        () => FlaxBindingRegistry([
+          const FlaxBindingModule(
+            'previous',
+            [],
+            moduleId: 'test/previous',
+            uiProtocol: 14,
+            requiredCapabilities: <String>[],
+          ),
+        ]),
+        throwsArgumentError,
+      );
+    },
+  );
 }

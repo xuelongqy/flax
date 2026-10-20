@@ -23,7 +23,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DismissMenuAction extends Omit<upstream0.DismissAction, _flaxOwnMembers0>, Omit<upstream1.Action<upstream2.DismissIntent>, _flaxOwnMembers0 | keyof upstream0.DismissAction>, Omit<upstream3.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.DismissAction | keyof upstream1.Action<upstream2.DismissIntent>>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/raw_menu_anchor.dart::DismissMenuAction": readonly [];
 }>, Readonly<{
@@ -35,9 +35,59 @@ export interface DismissMenuAction extends Omit<upstream0.DismissAction, _flaxOw
 }> {
     readonly __DismissMenuAction: unique symbol;
     readonly [_flaxDartTypeValue]: DismissMenuAction;
+    readonly callingAction: upstream1.Action<upstream2.DismissIntent> | null;
+    readonly intentType: upstream5.Type;
+    readonly isActionEnabled: boolean;
+    readonly controller: upstream4.MenuController;
+    isEnabled(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::DismissIntent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): boolean;
+    consumesKey(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::DismissIntent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): boolean;
+    toKeyEventResult(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::DismissIntent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, invokeResult: unknown | null): upstream6.KeyEventResult;
+    invoke(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::DismissIntent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    addActionListener(listener: ((action: upstream1.Action<upstream7.Intent>) => void)): void;
+    removeActionListener(listener: ((action: upstream1.Action<upstream7.Intent>) => void)): void;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream9.DiagnosticsTreeStyle | null | undefined;
+    }): upstream8.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream11.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface DismissMenuAction {
-    readonly [_flaxDartTypeValue]: DismissMenuAction;
+export declare function _DismissMenuActionFactory(options: {
+    controller: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/raw_menu_anchor.dart::MenuController": readonly [];
+    }>;
+}): DismissMenuAction;
+export interface _DismissMenuActionNative extends DismissMenuAction {
+    readonly [_flaxDartTypeValue]: _DismissMenuActionNative;
     isEnabled(intent: Readonly<{
         "__flaxBound:package:flutter/src/widgets/actions.dart::DismissIntent": readonly [];
     }> & Readonly<{
@@ -84,7 +134,7 @@ export interface DismissMenuAction {
     get intentType(): upstream5.Type;
     get isActionEnabled(): boolean;
 }
-export declare abstract class DismissMenuAction extends _FlaxProxyBase {
+export declare abstract class _DismissMenuActionNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DismissMenuAction>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: DismissMenuAction;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:DismissMenuAction", readonly [], false];
@@ -94,12 +144,18 @@ export declare abstract class DismissMenuAction extends _FlaxProxyBase {
         }>;
     });
 }
-export declare namespace DismissMenuAction {
+export declare namespace _DismissMenuActionFactory {
     function implement(args: [options: {
         controller: Readonly<{
             "__flaxBound:package:flutter/src/widgets/raw_menu_anchor.dart::MenuController": readonly [];
         }>;
     }], implementation: {}): DismissMenuAction;
 }
+declare const _DismissMenuActionBinding: typeof _DismissMenuActionFactory & (new (options: {
+    controller: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/raw_menu_anchor.dart::MenuController": readonly [];
+    }>;
+}) => _DismissMenuActionNative);
+export declare const DismissMenuAction: typeof _DismissMenuActionBinding & _FlaxInstanceType<DismissMenuAction> & _FlaxDartType<DismissMenuAction, readonly ["class", "flax.core/sdk_widgets#type:DismissMenuAction", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "callingAction" | "intentType" | "isActionEnabled" | "controller" | "isEnabled" | "consumesKey" | "toKeyEventResult" | "invoke" | "addActionListener" | "removeActionListener" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/raw_menu_anchor.dart::DismissMenuAction" | "__flaxBound:package:flutter/src/widgets/actions.dart::DismissAction" | "__flaxBound:package:flutter/src/widgets/actions.dart::Action" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

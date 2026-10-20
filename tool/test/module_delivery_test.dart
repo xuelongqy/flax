@@ -12,16 +12,22 @@ const _targets = [
     directory: 'flax',
     package: '@flax/core-runtime',
     specifier: '@flax/flutter/widgets',
+    source: 'dist/flutter/widgets.js',
+    subpathRoot: 'dist/flutter/generated/libraries/widgets',
   ),
   (
     directory: 'flax_material_ui',
-    package: '@flax/material-ui',
+    package: '@flax/material-ui-runtime',
     specifier: '@flax/material-ui',
+    source: 'dist/generated/libraries/material/index.js',
+    subpathRoot: 'dist/generated/libraries/material',
   ),
   (
     directory: 'flax_cupertino_ui',
-    package: '@flax/cupertino-ui',
+    package: '@flax/cupertino-ui-runtime',
     specifier: '@flax/cupertino-ui',
+    source: 'dist/generated/libraries/cupertino/index.js',
+    subpathRoot: 'dist/generated/libraries/cupertino',
   ),
 ];
 
@@ -31,7 +37,7 @@ void main() {
 
   setUp(() {
     // Keep the copied script beneath the repository so Node finds Prettier.
-    final parent = Directory(p.join(root, '.local'))
+    final parent = Directory(p.join(root, '.local/tmp'))
       ..createSync(recursive: true);
     temporary = parent.createTempSync('module-delivery-test-');
     addTearDown(() => temporary.deleteSync(recursive: true));
@@ -53,7 +59,7 @@ void main() {
     }
     _writeJson(
       p.join(temporary.path, 'packages/flax_canvas/bindings/manifest.json'),
-      {'formatVersion': 27, 'modules': <Map<String, Object?>>[]},
+      {'formatVersion': 28, 'modules': <Map<String, Object?>>[]},
     );
     for (final target in _targets) {
       final directory = p.join(temporary.path, 'packages', target.directory);
@@ -65,7 +71,7 @@ void main() {
       _writeJson(
         p.join(directory, 'bindings/manifest.json'),
         FlaxCodegenManifestStorage.compact({
-          'formatVersion': 27,
+          'formatVersion': 28,
           'modules': [
             {
               'name': target.directory,
@@ -105,7 +111,7 @@ void main() {
   ], workingDirectory: temporary.path);
 
   test(
-    'Manifest 27 delivery includes owned setters and excludes references',
+    'Manifest 28 delivery includes owned setters and excludes references',
     () async {
       final result = await run();
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
@@ -124,6 +130,8 @@ void main() {
         final module = (output['modules'] as List)
             .cast<Map<String, dynamic>>()
             .singleWhere((module) => module['specifier'] == target.specifier);
+        expect(module['source'], target.source);
+        expect(module['subpathRoot'], target.subpathRoot);
         final moduleId = 'flax.test/${target.directory}';
         expect(module['bindings'], [
           {
@@ -135,6 +143,188 @@ void main() {
           },
         ], reason: target.package);
       }
+    },
+  );
+
+  test('UI local dependency subpaths share source and helper roots', () async {
+    for (final target in _targets.skip(1)) {
+      final path = p.join(
+        temporary.path,
+        'packages',
+        target.directory,
+        'bindings/manifest.json',
+      );
+      final manifest = jsonDecode(File(path).readAsStringSync()) as Map;
+      for (final dependency in ['intl', 'helper_pkg2']) {
+        final moduleId = 'flax.test/${target.directory}_deps_$dependency';
+        (manifest['modules'] as List).add({
+          'name': 'deps_$dependency',
+          'moduleId': moduleId,
+          'uiProtocol': 24,
+          'model': {
+            'publicLibraries': [
+              {'jsPackage': '${target.specifier}/dependencies/$dependency'},
+            ],
+            'classes': [
+              {'id': '$moduleId#type:Value'},
+            ],
+          },
+        });
+      }
+      _writeJson(path, manifest);
+    }
+
+    final result = await run();
+    expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+    for (final target in _targets.skip(1)) {
+      final output = jsonDecode(
+        File(
+          p.join(
+            temporary.path,
+            'packages',
+            target.directory,
+            'js/flax_modules.json',
+          ),
+        ).readAsStringSync(),
+      ) as Map;
+      for (final dependency in ['intl', 'helper_pkg2']) {
+        final module = (output['modules'] as List)
+            .cast<Map<String, dynamic>>()
+            .singleWhere(
+              (module) =>
+                  module['specifier'] ==
+                  '${target.specifier}/dependencies/$dependency',
+            );
+        final sourceRoot = 'dist/generated/dependencies/$dependency';
+        final moduleId = 'flax.test/${target.directory}_deps_$dependency';
+        expect(module['source'], '$sourceRoot/index.js');
+        expect(module['subpathRoot'], sourceRoot);
+        expect(module['helperSubpaths'], [
+          '_bindings/deps_$dependency.__module',
+        ]);
+        expect(module['bindings'][0]['types'], ['$moduleId#type:Value']);
+      }
+    }
+  });
+
+  test('UI delivery rejects invalid dependency subpaths', () async {
+    for (final target in _targets.skip(1)) {
+      final path = p.join(
+        temporary.path,
+        'packages',
+        target.directory,
+        'bindings/manifest.json',
+      );
+      final original = File(path).readAsStringSync();
+      for (final dependency in [
+        '',
+        '../intl',
+        'intl/extra',
+        'Intl',
+        'intl\n',
+      ]) {
+        final manifest = jsonDecode(original) as Map;
+        final model = manifest['modules'][0]['model'] as Map;
+        final specifier = '${target.specifier}/dependencies/$dependency';
+        model['publicLibraries'] = [
+          {'jsPackage': specifier},
+        ];
+        _writeJson(path, manifest);
+        final result = await run();
+        expect(result.exitCode, isNot(0), reason: specifier);
+        expect(
+          result.stderr,
+          contains('No ${target.specifier} delivery source'),
+        );
+      }
+      File(path).writeAsStringSync(original);
+    }
+  });
+
+  test(
+    'UI dependency roots and deep helpers compile through package exports',
+    () async {
+      final probes = <String>[];
+      for (final target in _targets.skip(1)) {
+        for (final (directory, packageName, prefix) in [
+          ('js-types', target.specifier, 'types'),
+          ('js', target.package, 'dist'),
+        ]) {
+          final manifest = jsonDecode(
+            File(
+              p.join(
+                root,
+                'packages',
+                target.directory,
+                directory,
+                'package.json',
+              ),
+            ).readAsStringSync(),
+          ) as Map;
+          expect((manifest['exports'] as Map)['./dependencies/*'], {
+            'types': [
+              './$prefix/generated/dependencies/*.d.ts',
+              './$prefix/generated/dependencies/*/index.d.ts',
+            ],
+          });
+          final packageRoot = p.join(
+            temporary.path,
+            'node_modules',
+            packageName,
+          );
+          _writeJson(p.join(packageRoot, 'package.json'), manifest);
+          final types = File(
+            p.join(
+              packageRoot,
+              prefix,
+              'generated/dependencies/intl/index.d.ts',
+            ),
+          );
+          types.parent.createSync(recursive: true);
+          types.writeAsStringSync(
+            'export declare class DateFormat { readonly locale: string; }',
+          );
+          final helper = File(
+            p.join(
+              types.parent.path,
+              '_bindings/dependency_intl.__module.d.ts',
+            ),
+          );
+          helper.parent.createSync(recursive: true);
+          helper.writeAsStringSync(
+            'export declare const dependency_intlBindingModule: '
+            '{ readonly moduleId: string };',
+          );
+          final probe = 'dependency-${target.directory}-$directory.ts';
+          File(p.join(temporary.path, probe)).writeAsStringSync('''
+import {DateFormat} from '$packageName/dependencies/intl';
+import {dependency_intlBindingModule} from '$packageName/dependencies/intl/_bindings/dependency_intl.__module';
+const format: DateFormat = new DateFormat();
+const moduleId: string = dependency_intlBindingModule.moduleId;
+void format;
+void moduleId;
+''');
+          probes.add(probe);
+        }
+      }
+      _writeJson(p.join(temporary.path, 'package.json'), {'type': 'module'});
+      _writeJson(p.join(temporary.path, 'tsconfig.json'), {
+        'compilerOptions': {
+          'target': 'ES2022',
+          'module': 'NodeNext',
+          'moduleResolution': 'NodeNext',
+          'strict': true,
+          'noEmit': true,
+          'types': <String>[],
+        },
+        'files': probes,
+      });
+      final result = await Process.run('node', [
+        p.join(root, 'node_modules/typescript/bin/tsc'),
+        '--project',
+        'tsconfig.json',
+      ], workingDirectory: temporary.path);
+      expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
     },
   );
 
@@ -223,16 +413,20 @@ void main() {
       final path = 'packages/$owner/bindings/manifest.json';
       final file = File(p.join(temporary.path, path));
       final original = file.readAsStringSync();
-      _writeJson(file.path, {'formatVersion': 26, 'modules': <Object?>[]});
-      final result = await run();
-      expect(result.exitCode, isNot(0));
-      expect(result.stderr, contains('Expected Binding Manifest'));
-      expect(result.stderr, contains(path));
-      expect(
-        File(p.join(temporary.path, 'packages/flax/js/flax_modules.json'))
-            .existsSync(),
-        isFalse,
-      );
+      for (final version in [27, 29, '28', null]) {
+        _writeJson(file.path, {
+          'formatVersion': version,
+          'modules': <Object?>[],
+        });
+        final result = await run();
+        expect(result.exitCode, isNot(0));
+        expect(result.stderr, contains('Expected Binding Manifest 28: $path'));
+        expect(
+          File(p.join(temporary.path, 'packages/flax/js/flax_modules.json'))
+              .existsSync(),
+          isFalse,
+        );
+      }
       file.writeAsStringSync(original);
     }
   });

@@ -11,7 +11,7 @@ import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface IconButtonThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/icon_button_theme.dart::IconButtonThemeData": readonly [];
 }>, Readonly<{
@@ -19,9 +19,28 @@ export interface IconButtonThemeData extends Omit<upstream0.Diagnosticable, _fla
 }> {
     readonly __IconButtonThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: IconButtonThemeData;
+    readonly style: upstream1.ButtonStyle | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream2.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream4.DiagnosticsTreeStyle | null | undefined;
+    }): upstream3.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
 }
-export interface IconButtonThemeData {
-    readonly [_flaxDartTypeValue]: IconButtonThemeData;
+export declare function _IconButtonThemeDataFactory(options?: {
+    style?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/button_style.dart::ButtonStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+}): IconButtonThemeData;
+export interface _IconButtonThemeDataNative extends IconButtonThemeData {
+    readonly [_flaxDartTypeValue]: _IconButtonThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream2.DiagnosticLevel | undefined;
@@ -35,7 +54,7 @@ export interface IconButtonThemeData {
     }>): void;
     get style(): upstream1.ButtonStyle | null;
 }
-export declare abstract class IconButtonThemeData extends _FlaxProxyBase {
+export declare abstract class _IconButtonThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<IconButtonThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: IconButtonThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:IconButtonThemeData", readonly [], false];
@@ -47,7 +66,7 @@ export declare abstract class IconButtonThemeData extends _FlaxProxyBase {
         }>) | null | undefined;
     });
 }
-export declare namespace IconButtonThemeData {
+export declare namespace _IconButtonThemeDataFactory {
     function implement(args: [options?: {
         style?: (Readonly<{
             "__flaxBound:package:flutter/src/material/button_style.dart::ButtonStyle": readonly [];
@@ -56,7 +75,14 @@ export declare namespace IconButtonThemeData {
         }>) | null | undefined;
     }], implementation: {}): IconButtonThemeData;
 }
-export declare namespace IconButtonThemeData {
+declare const _IconButtonThemeDataBinding: typeof _IconButtonThemeDataFactory & (new (options?: {
+    style?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/button_style.dart::ButtonStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+}) => _IconButtonThemeDataNative);
+export declare namespace _IconButtonThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/icon_button_theme.dart::IconButtonThemeData": readonly [];
     }> & Readonly<{
@@ -67,5 +93,6 @@ export declare namespace IconButtonThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): IconButtonThemeData | null;
 }
+export declare const IconButtonThemeData: typeof _IconButtonThemeDataBinding & _FlaxInstanceType<IconButtonThemeData> & _FlaxDartType<IconButtonThemeData, readonly ["class", "flax.core/sdk_material#type:IconButtonThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "style" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/material/icon_button_theme.dart::IconButtonThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

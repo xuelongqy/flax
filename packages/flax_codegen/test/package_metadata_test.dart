@@ -99,6 +99,180 @@ capabilities:
     );
   });
 
+  test('optional binding dependencies default to an empty list', () {
+    for (final policy in [
+      '',
+      'bindingDependencies: {}',
+      'bindingDependencies:\n  generate: []',
+    ]) {
+      final projection = FlaxCodegenPackageMetadataProjection.parseStrict('''
+format: 2
+capabilities: [codegen]
+$policy
+''');
+      expect(projection.generateDependencies, isEmpty);
+      expect(projection.javascriptPackage, isNull);
+      expect(projection.javascriptRuntimePackage, isNull);
+      expect(
+        () => projection.generateDependencies.add('intl'),
+        throwsUnsupportedError,
+      );
+    }
+  });
+
+  test('generated dependencies are sorted and immutable', () {
+    final projection = FlaxCodegenPackageMetadataProjection.parseStrict('''
+format: 2
+capabilities: [codegen]
+bindingDependencies:
+  generate: [zebra2, intl, cupertino_ui]
+''');
+    expect(projection.generateDependencies, ['cupertino_ui', 'intl', 'zebra2']);
+    expect(
+      () => projection.generateDependencies.add('other'),
+      throwsUnsupportedError,
+    );
+    expect(
+      () => projection.generateDependencies[0] = 'other',
+      throwsUnsupportedError,
+    );
+  });
+
+  test('JavaScript source and public types package names stay separate', () {
+    for (final (fields, types, runtime) in [
+      (
+        "package: '@flax/example-runtime'\n  types: '@flax/example'",
+        '@flax/example',
+        '@flax/example-runtime',
+      ),
+      ("package: '@flax/example'", '@flax/example', '@flax/example'),
+      ("types: '@flax/example'", '@flax/example', null),
+    ]) {
+      final projection = FlaxCodegenPackageMetadataProjection.parseStrict('''
+format: 2
+capabilities: [codegen]
+javascript:
+  $fields
+''');
+      expect(projection.javascriptPackage, types);
+      expect(projection.javascriptRuntimePackage, runtime);
+    }
+  });
+
+  test('JavaScript metadata keeps types-first validation compatibility', () {
+    final projection = FlaxCodegenPackageMetadataProjection.parseStrict('''
+format: 2
+capabilities: [codegen]
+javascript:
+  types: '@flax/example'
+  package: 42
+''');
+    expect(projection.javascriptPackage, '@flax/example');
+    expect(projection.javascriptRuntimePackage, isNull);
+    expect(
+      _records(
+        _errors('''
+format: 2
+capabilities: [codegen]
+javascript:
+  package: 42
+'''),
+      ),
+      [
+        {
+          'code': 'FCG_TYPE_MISMATCH',
+          'pointer': '/javascript/package',
+          'line': 4,
+          'column': 12,
+          'message': 'Expected a nonempty string.',
+        },
+      ],
+    );
+  });
+
+  test('dependency policy participates in projection equality', () {
+    FlaxCodegenPackageMetadataProjection parse(String fields) =>
+        FlaxCodegenPackageMetadataProjection.parseStrict('''
+format: 2
+capabilities: [codegen]
+javascript:
+  package: '@flax/runtime'
+  types: '@flax/example'
+$fields
+''');
+    final dependencies = parse(
+      'bindingDependencies:\n  generate: [intl, cupertino_ui]',
+    );
+    final reordered = parse(
+      'bindingDependencies:\n  generate: [cupertino_ui, intl]',
+    );
+    expect(dependencies, reordered);
+    expect(dependencies.hashCode, reordered.hashCode);
+    expect(dependencies, isNot(parse('')));
+    expect(parse(''), parse('bindingDependencies: {}'));
+    expect(
+      parse(''),
+      isNot(
+        FlaxCodegenPackageMetadataProjection.parseStrict('''
+format: 2
+capabilities: [codegen]
+javascript:
+  package: '@flax/another-runtime'
+  types: '@flax/example'
+'''),
+      ),
+    );
+  });
+
+  test('dependency policy rejects invalid mapping and list shapes', () {
+    for (final value in ['null', '[]', 'intl', '42']) {
+      final diagnostics = _errors('''
+format: 2
+capabilities: [codegen]
+bindingDependencies: $value
+''');
+      expect(diagnostics.single.code.value, 'FCG_TYPE_MISMATCH');
+      expect(diagnostics.single.pointer, '/bindingDependencies');
+    }
+    for (final value in ['null', '{}', 'intl', '42']) {
+      final diagnostics = _errors('''
+format: 2
+capabilities: [codegen]
+bindingDependencies:
+  generate: $value
+''');
+      expect(diagnostics.single.code.value, 'FCG_TYPE_MISMATCH');
+      expect(diagnostics.single.pointer, '/bindingDependencies/generate');
+    }
+  });
+
+  test('generated dependencies require canonical Dart package names', () {
+    for (final name in [
+      'Intl',
+      '_intl',
+      '1intl',
+      'foo-bar',
+      'foo.bar',
+      'foo/bar',
+      'package:intl',
+      '@flax/intl',
+      ' intl',
+      'intl ',
+      'intl\n',
+      'café',
+    ]) {
+      final diagnostics = _errors('''
+format: 2
+capabilities: [codegen]
+bindingDependencies:
+  generate: [${jsonEncode(name)}]
+''');
+      expect(diagnostics.single.code.value, 'FCG_INVALID_VALUE', reason: name);
+      expect(diagnostics.single.pointer, '/bindingDependencies/generate/0');
+      expect(diagnostics.single.message, 'Invalid Dart package name.');
+    }
+  });
+
   test('namespace grammar boundaries', () {
     final label63 = 'a' * 63;
     final valid253 = '$label63.$label63.$label63.${'a' * 61}';
@@ -218,6 +392,17 @@ void expectProjection(
   expect(actual.format, expected['format']);
   expect(actual.capabilities, expected['capabilities']);
   expect(actual.bindingNamespace, expected['bindingNamespace']);
+  expect(
+    actual.generateDependencies,
+    expected['generateDependencies'] ?? const <String>[],
+  );
+  if (expected.containsKey('javascriptPackage')) {
+    expect(actual.javascriptPackage, expected['javascriptPackage']);
+    expect(
+      actual.javascriptRuntimePackage,
+      expected['javascriptRuntimePackage'],
+    );
+  }
 }
 
 List<Map<String, Object>> _records(List<FlaxCodegenDiagnostic> diagnostics) => [

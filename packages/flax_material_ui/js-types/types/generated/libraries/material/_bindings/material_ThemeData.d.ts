@@ -2,25 +2,27 @@ import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput } from '
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
-import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_TargetPlatform';
+import type * as upstream1 from '@flax/cupertino-ui/_bindings/cupertino_NoDefaultCupertinoThemeData';
+import '@flax/cupertino-ui/_bindings/cupertino_NoDefaultCupertinoThemeData';
+import type * as upstream2 from '@flax/flutter/foundation/_bindings/flutter_TargetPlatform';
 import '@flax/flutter/foundation/_bindings/flutter_TargetPlatform';
-import type * as upstream2 from '@flax/material-ui/_bindings/material_VisualDensity';
+import type * as upstream3 from '@flax/material-ui/_bindings/material_VisualDensity';
 import '@flax/material-ui/_bindings/material_VisualDensity';
-import type * as upstream3 from '@flax/material-ui/_bindings/material_ColorScheme';
+import type * as upstream4 from '@flax/material-ui/_bindings/material_ColorScheme';
 import '@flax/material-ui/_bindings/material_ColorScheme';
-import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_Brightness';
+import type * as upstream5 from '@flax/dart/ui/_bindings/sdk_dart_ui_Brightness';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Brightness';
-import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream6 from '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Color';
-import type * as upstream6 from '@flax/flutter/widgets/_bindings/sdk_widgets_IconThemeData';
+import type * as upstream7 from '@flax/flutter/widgets/_bindings/sdk_widgets_IconThemeData';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_IconThemeData';
-import type * as upstream7 from '@flax/material-ui/_bindings/material_TextTheme';
+import type * as upstream8 from '@flax/material-ui/_bindings/material_TextTheme';
 import '@flax/material-ui/_bindings/material_TextTheme';
-import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
@@ -34,42 +36,43 @@ export interface ThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMember
     readonly [_flaxDartMethodCases]?: {
         extension: _FlaxSignature0;
     };
-    readonly brightness: upstream4.Brightness;
+    readonly brightness: upstream5.Brightness;
     readonly applyElevationOverlayColor: boolean;
-    readonly platform: upstream1.TargetPlatform;
+    readonly cupertinoOverrideTheme: upstream1.NoDefaultCupertinoThemeData | null;
+    readonly platform: upstream2.TargetPlatform;
     readonly useMaterial3: boolean;
-    readonly visualDensity: upstream2.VisualDensity;
-    readonly canvasColor: upstream5.Color;
-    readonly cardColor: upstream5.Color;
-    readonly colorScheme: upstream3.ColorScheme;
-    readonly disabledColor: upstream5.Color;
-    readonly dividerColor: upstream5.Color;
-    readonly focusColor: upstream5.Color;
-    readonly highlightColor: upstream5.Color;
-    readonly hintColor: upstream5.Color;
-    readonly hoverColor: upstream5.Color;
-    readonly primaryColor: upstream5.Color;
-    readonly primaryColorDark: upstream5.Color;
-    readonly primaryColorLight: upstream5.Color;
-    readonly scaffoldBackgroundColor: upstream5.Color;
-    readonly secondaryHeaderColor: upstream5.Color;
-    readonly shadowColor: upstream5.Color;
-    readonly splashColor: upstream5.Color;
-    readonly unselectedWidgetColor: upstream5.Color;
-    readonly iconTheme: upstream6.IconThemeData;
-    readonly primaryIconTheme: upstream6.IconThemeData;
-    readonly primaryTextTheme: upstream7.TextTheme;
-    readonly textTheme: upstream7.TextTheme;
-    readonly dialogBackgroundColor: upstream5.Color;
-    readonly indicatorColor: upstream5.Color;
+    readonly visualDensity: upstream3.VisualDensity;
+    readonly canvasColor: upstream6.Color;
+    readonly cardColor: upstream6.Color;
+    readonly colorScheme: upstream4.ColorScheme;
+    readonly disabledColor: upstream6.Color;
+    readonly dividerColor: upstream6.Color;
+    readonly focusColor: upstream6.Color;
+    readonly highlightColor: upstream6.Color;
+    readonly hintColor: upstream6.Color;
+    readonly hoverColor: upstream6.Color;
+    readonly primaryColor: upstream6.Color;
+    readonly primaryColorDark: upstream6.Color;
+    readonly primaryColorLight: upstream6.Color;
+    readonly scaffoldBackgroundColor: upstream6.Color;
+    readonly secondaryHeaderColor: upstream6.Color;
+    readonly shadowColor: upstream6.Color;
+    readonly splashColor: upstream6.Color;
+    readonly unselectedWidgetColor: upstream6.Color;
+    readonly iconTheme: upstream7.IconThemeData;
+    readonly primaryIconTheme: upstream7.IconThemeData;
+    readonly primaryTextTheme: upstream8.TextTheme;
+    readonly textTheme: upstream8.TextTheme;
+    readonly dialogBackgroundColor: upstream6.Color;
+    readonly indicatorColor: upstream6.Color;
     toStringShort(): string;
     toString(options?: {
-        minLevel?: upstream8.DiagnosticLevel | undefined;
+        minLevel?: upstream9.DiagnosticLevel | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream10.DiagnosticsTreeStyle | null | undefined;
-    }): upstream9.DiagnosticsNode;
+        style?: upstream11.DiagnosticsTreeStyle | null | undefined;
+    }): upstream10.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -77,7 +80,7 @@ export interface ThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMember
     copyWith(options?: {
         appBarTheme?: unknown | null | undefined;
         applyElevationOverlayColor?: boolean | null | undefined;
-        brightness?: upstream4.Brightness | null | undefined;
+        brightness?: upstream5.Brightness | null | undefined;
         canvasColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
@@ -89,6 +92,9 @@ export interface ThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMember
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        cupertinoOverrideTheme?: Readonly<{
+            "__flaxBound:package:cupertino_ui/src/theme.dart::NoDefaultCupertinoThemeData": readonly [];
+        }> | null | undefined;
         dialogBackgroundColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
@@ -119,7 +125,7 @@ export interface ThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMember
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
         inputDecorationTheme?: unknown | null | undefined;
-        platform?: upstream1.TargetPlatform | null | undefined;
+        platform?: upstream2.TargetPlatform | null | undefined;
         primaryColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
@@ -169,8 +175,11 @@ export interface ThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMember
 }
 export declare function _ThemeDataFactory(options?: {
     applyElevationOverlayColor?: boolean | null | undefined;
+    cupertinoOverrideTheme?: Readonly<{
+        "__flaxBound:package:cupertino_ui/src/theme.dart::NoDefaultCupertinoThemeData": readonly [];
+    }> | null | undefined;
     inputDecorationTheme?: unknown | null | undefined;
-    platform?: upstream1.TargetPlatform | null | undefined;
+    platform?: upstream2.TargetPlatform | null | undefined;
     useMaterial3?: boolean | null | undefined;
     useSystemColors?: boolean | null | undefined;
     visualDensity?: (Readonly<{
@@ -183,7 +192,7 @@ export declare function _ThemeDataFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
-    brightness?: upstream4.Brightness | null | undefined;
+    brightness?: upstream5.Brightness | null | undefined;
     colorSchemeSeed?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
@@ -310,7 +319,7 @@ export declare namespace _ThemeDataFactory {
 export declare namespace _ThemeDataFactory {
     function estimateBrightnessForColor(color: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
-    }>): upstream4.Brightness;
+    }>): upstream5.Brightness;
 }
 export declare namespace _ThemeDataFactory {
     function lerp(a: Readonly<{
@@ -324,7 +333,7 @@ export declare namespace _ThemeDataFactory {
     }>, t: number): ThemeData;
 }
 export declare const ThemeData: typeof _ThemeDataFactory & _FlaxInstanceType<ThemeData> & _FlaxDartType<ThemeData, readonly ["class", "flax.material/material#type:ThemeData", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "brightness" | "applyElevationOverlayColor" | "platform" | "useMaterial3" | "visualDensity" | "canvasColor" | "cardColor" | "colorScheme" | "disabledColor" | "dividerColor" | "focusColor" | "highlightColor" | "hintColor" | "hoverColor" | "primaryColor" | "primaryColorDark" | "primaryColorLight" | "scaffoldBackgroundColor" | "secondaryHeaderColor" | "shadowColor" | "splashColor" | "unselectedWidgetColor" | "iconTheme" | "primaryIconTheme" | "primaryTextTheme" | "textTheme" | "dialogBackgroundColor" | "indicatorColor" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "extension" | "copyWith" | "__flaxBound:package:material_ui/src/theme_data.dart::ThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "brightness" | "applyElevationOverlayColor" | "cupertinoOverrideTheme" | "platform" | "useMaterial3" | "visualDensity" | "canvasColor" | "cardColor" | "colorScheme" | "disabledColor" | "dividerColor" | "focusColor" | "highlightColor" | "hintColor" | "hoverColor" | "primaryColor" | "primaryColorDark" | "primaryColorLight" | "scaffoldBackgroundColor" | "secondaryHeaderColor" | "shadowColor" | "splashColor" | "unselectedWidgetColor" | "iconTheme" | "primaryIconTheme" | "primaryTextTheme" | "textTheme" | "dialogBackgroundColor" | "indicatorColor" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "extension" | "copyWith" | "__flaxBound:package:material_ui/src/theme_data.dart::ThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? () => _Selected0 | null : never : never;
 }

@@ -10,7 +10,7 @@ import '@flax/flutter/animation/_bindings/flutter_Curve';
 import type * as upstream4 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ViewportOffset extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
 }>, Readonly<{
@@ -20,9 +20,54 @@ export interface ViewportOffset extends Omit<upstream0.ChangeNotifier, _flaxOwnM
 }> {
     readonly __ViewportOffset: unique symbol;
     readonly [_flaxDartTypeValue]: ViewportOffset;
+    readonly hasListeners: boolean;
+    readonly pixels: number;
+    readonly hasPixels: boolean;
+    readonly userScrollDirection: upstream2.ScrollDirection;
+    readonly allowImplicitScrolling: boolean;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    applyViewportDimension(viewportDimension: number): boolean;
+    applyContentDimensions(minScrollExtent: number, maxScrollExtent: number): boolean;
+    correctBy(correction: number): void;
+    jumpTo(pixels: number): void;
+    animateTo(to: number, options: {
+        curve: Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+        }>;
+        duration: Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream4.Duration];
+        }>;
+    }): Promise<void>;
+    moveTo(to: number, options?: {
+        clamp?: boolean | null | undefined;
+        curve?: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+        }>) | null | undefined;
+        duration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream4.Duration];
+        }>) | null | undefined;
+    }): Promise<void>;
+    toString(): string;
+    debugFillDescription(description: DartListInput<string, string>): void;
 }
-export interface ViewportOffset {
-    readonly [_flaxDartTypeValue]: ViewportOffset;
+export declare namespace _ViewportOffsetFactory {
+    function fixed(value: number): ViewportOffset;
+}
+export declare namespace _ViewportOffsetFactory {
+    function zero(): ViewportOffset;
+}
+export interface _ViewportOffsetNative extends ViewportOffset {
+    readonly [_flaxDartTypeValue]: _ViewportOffsetNative;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
     dispose(): void;
@@ -43,7 +88,7 @@ export interface ViewportOffset {
     debugFillDescription(description: DartListInput<string, string>): void;
     get hasListeners(): boolean;
 }
-export declare abstract class ViewportOffset extends _FlaxProxyBase {
+export declare abstract class _ViewportOffsetNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ViewportOffset>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ViewportOffset;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:ViewportOffset", readonly [], false];
@@ -69,7 +114,7 @@ export declare abstract class ViewportOffset extends _FlaxProxyBase {
     abstract get userScrollDirection(): upstream2.ScrollDirection;
     abstract get allowImplicitScrolling(): boolean;
 }
-export declare namespace ViewportOffset {
+export declare namespace _ViewportOffsetFactory {
     function implement(args: [], implementation: {
         applyViewportDimension: ((viewportDimension: number) => boolean);
         applyContentDimensions: ((minScrollExtent: number, maxScrollExtent: number) => boolean);
@@ -85,5 +130,7 @@ export declare namespace ViewportOffset {
         get allowImplicitScrolling(): boolean;
     }): ViewportOffset;
 }
+declare const _ViewportOffsetBinding: typeof _ViewportOffsetFactory & (abstract new () => _ViewportOffsetNative);
+export declare const ViewportOffset: typeof _ViewportOffsetBinding & _FlaxInstanceType<ViewportOffset> & _FlaxDartType<ViewportOffset, readonly ["class", "flax.core/sdk_rendering#type:ViewportOffset", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "pixels" | "hasPixels" | "userScrollDirection" | "allowImplicitScrolling" | "addListener" | "removeListener" | "dispose" | "applyViewportDimension" | "applyContentDimensions" | "correctBy" | "jumpTo" | "animateTo" | "moveTo" | "toString" | "debugFillDescription" | "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

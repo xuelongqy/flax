@@ -8,7 +8,7 @@ import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/flutter/gestures/_bindings/flutter_PointerEvent';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MouseTracker extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/mouse_tracker.dart::MouseTracker": readonly [];
 }>, Readonly<{
@@ -18,9 +18,25 @@ export interface MouseTracker extends Omit<upstream0.ChangeNotifier, _flaxOwnMem
 }> {
     readonly __MouseTracker: unique symbol;
     readonly [_flaxDartTypeValue]: MouseTracker;
+    readonly hasListeners: boolean;
+    readonly mouseIsConnected: boolean;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    updateWithEvent(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, hitTestResult: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestResult": readonly [];
+    }> | null): void;
+    updateAllDevices(): void;
 }
-export interface MouseTracker {
-    readonly [_flaxDartTypeValue]: MouseTracker;
+export declare function _MouseTrackerFactory(hitTestInView: ((offset: upstream3.Offset, viewId: number) => Readonly<{
+    "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestResult": readonly [];
+}>)): MouseTracker;
+export interface _MouseTrackerNative extends MouseTracker {
+    readonly [_flaxDartTypeValue]: _MouseTrackerNative;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
     dispose(): void;
@@ -35,7 +51,7 @@ export interface MouseTracker {
     get mouseIsConnected(): boolean;
     get hasListeners(): boolean;
 }
-export declare abstract class MouseTracker extends _FlaxProxyBase {
+export declare abstract class _MouseTrackerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MouseTracker>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MouseTracker;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:MouseTracker", readonly [], false];
@@ -43,10 +59,14 @@ export declare abstract class MouseTracker extends _FlaxProxyBase {
         "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestResult": readonly [];
     }>));
 }
-export declare namespace MouseTracker {
+export declare namespace _MouseTrackerFactory {
     function implement(args: [hitTestInView: ((offset: upstream3.Offset, viewId: number) => Readonly<{
         "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestResult": readonly [];
     }>)], implementation: {}): MouseTracker;
 }
+declare const _MouseTrackerBinding: typeof _MouseTrackerFactory & (new (hitTestInView: ((offset: upstream3.Offset, viewId: number) => Readonly<{
+    "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestResult": readonly [];
+}>)) => _MouseTrackerNative);
+export declare const MouseTracker: typeof _MouseTrackerBinding & _FlaxInstanceType<MouseTracker> & _FlaxDartType<MouseTracker, readonly ["class", "flax.core/sdk_rendering#type:MouseTracker", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "mouseIsConnected" | "addListener" | "removeListener" | "dispose" | "updateWithEvent" | "updateAllDevices" | "__flaxBound:package:flutter/src/rendering/mouse_tracker.dart::MouseTracker" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

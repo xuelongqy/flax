@@ -19,7 +19,7 @@ import '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface BannerPainter extends Omit<upstream0.CustomPainter, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.CustomPainter>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/banner.dart::BannerPainter": readonly [];
 }>, Readonly<{
@@ -29,9 +29,68 @@ export interface BannerPainter extends Omit<upstream0.CustomPainter, _flaxOwnMem
 }> {
     readonly __BannerPainter: unique symbol;
     readonly [_flaxDartTypeValue]: BannerPainter;
+    readonly semanticsBuilder: ((size: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) => DartList<upstream7.CustomPainterSemantics>) | null;
+    readonly message: string;
+    readonly textDirection: upstream2.TextDirection;
+    readonly location: upstream3.BannerLocation;
+    readonly layoutDirection: upstream2.TextDirection;
+    readonly color: upstream4.Color;
+    readonly textStyle: upstream5.TextStyle;
+    readonly shadow: upstream6.BoxShadow;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    paint(canvas: Readonly<{
+        "__flaxBound:dart:ui::Canvas": readonly [];
+    }>, size: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): void;
+    shouldRebuildSemantics(oldDelegate: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>): boolean;
+    shouldRepaint(oldDelegate: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/banner.dart::BannerPainter": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>): boolean;
+    hitTest(position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): boolean;
+    toString(): string;
+    dispose(): void;
 }
-export interface BannerPainter {
-    readonly [_flaxDartTypeValue]: BannerPainter;
+export declare function _BannerPainterFactory(options: {
+    message: string;
+    textDirection: upstream2.TextDirection;
+    location: upstream3.BannerLocation;
+    layoutDirection: upstream2.TextDirection;
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | undefined;
+    textStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | undefined;
+    shadow?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/box_shadow.dart::BoxShadow": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::Shadow": readonly [];
+    }>) | undefined;
+}): BannerPainter;
+export interface _BannerPainterNative extends BannerPainter {
+    readonly [_flaxDartTypeValue]: _BannerPainterNative;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
     paint(canvas: Readonly<{
@@ -73,7 +132,7 @@ export interface BannerPainter {
         "__flaxBound:dart:ui::OffsetBase": readonly [];
     }>) => DartList<upstream7.CustomPainterSemantics>) | null;
 }
-export declare abstract class BannerPainter extends _FlaxProxyBase {
+export declare abstract class _BannerPainterNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<BannerPainter>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: BannerPainter;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:BannerPainter", readonly [], false];
@@ -97,7 +156,7 @@ export declare abstract class BannerPainter extends _FlaxProxyBase {
         }>) | undefined;
     });
 }
-export declare namespace BannerPainter {
+export declare namespace _BannerPainterFactory {
     function implement(args: [options: {
         message: string;
         textDirection: upstream2.TextDirection;
@@ -118,5 +177,25 @@ export declare namespace BannerPainter {
         }>) | undefined;
     }], implementation: {}): BannerPainter;
 }
+declare const _BannerPainterBinding: typeof _BannerPainterFactory & (new (options: {
+    message: string;
+    textDirection: upstream2.TextDirection;
+    location: upstream3.BannerLocation;
+    layoutDirection: upstream2.TextDirection;
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | undefined;
+    textStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | undefined;
+    shadow?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/box_shadow.dart::BoxShadow": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::Shadow": readonly [];
+    }>) | undefined;
+}) => _BannerPainterNative);
+export declare const BannerPainter: typeof _BannerPainterBinding & _FlaxInstanceType<BannerPainter> & _FlaxDartType<BannerPainter, readonly ["class", "flax.core/sdk_widgets#type:BannerPainter", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "semanticsBuilder" | "message" | "textDirection" | "location" | "layoutDirection" | "color" | "textStyle" | "shadow" | "addListener" | "removeListener" | "paint" | "shouldRebuildSemantics" | "shouldRepaint" | "hitTest" | "toString" | "dispose" | "__flaxBound:package:flutter/src/widgets/banner.dart::BannerPainter" | "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

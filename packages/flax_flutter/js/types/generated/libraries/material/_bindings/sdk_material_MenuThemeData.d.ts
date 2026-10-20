@@ -13,7 +13,7 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MenuThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
 }>, Readonly<{
@@ -21,9 +21,32 @@ export interface MenuThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMe
 }> {
     readonly __MenuThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: MenuThemeData;
+    readonly style: upstream1.MenuStyle | null;
+    readonly submenuIcon: upstream2.WidgetStateProperty<Widget | null> | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream5.DiagnosticsTreeStyle | null | undefined;
+    }): upstream4.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
 }
-export interface MenuThemeData {
-    readonly [_flaxDartTypeValue]: MenuThemeData;
+export declare function _MenuThemeDataFactory(options?: {
+    style?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_style.dart::MenuStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    submenuIcon?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [Widget | null];
+    }> | null | undefined;
+}): MenuThemeData;
+export interface _MenuThemeDataNative extends MenuThemeData {
+    readonly [_flaxDartTypeValue]: _MenuThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream3.DiagnosticLevel | undefined;
@@ -38,7 +61,7 @@ export interface MenuThemeData {
     get style(): upstream1.MenuStyle | null;
     get submenuIcon(): upstream2.WidgetStateProperty<Widget | null> | null;
 }
-export declare abstract class MenuThemeData extends _FlaxProxyBase {
+export declare abstract class _MenuThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MenuThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MenuThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:MenuThemeData", readonly [], false];
@@ -53,7 +76,7 @@ export declare abstract class MenuThemeData extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace MenuThemeData {
+export declare namespace _MenuThemeDataFactory {
     function implement(args: [options?: {
         style?: (Readonly<{
             "__flaxBound:package:flutter/src/material/menu_style.dart::MenuStyle": readonly [];
@@ -65,7 +88,17 @@ export declare namespace MenuThemeData {
         }> | null | undefined;
     }], implementation: {}): MenuThemeData;
 }
-export declare namespace MenuThemeData {
+declare const _MenuThemeDataBinding: typeof _MenuThemeDataFactory & (new (options?: {
+    style?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_style.dart::MenuStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    submenuIcon?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [Widget | null];
+    }> | null | undefined;
+}) => _MenuThemeDataNative);
+export declare namespace _MenuThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
     }> & Readonly<{
@@ -76,5 +109,6 @@ export declare namespace MenuThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): MenuThemeData | null;
 }
+export declare const MenuThemeData: typeof _MenuThemeDataBinding & _FlaxInstanceType<MenuThemeData> & _FlaxDartType<MenuThemeData, readonly ["class", "flax.core/sdk_material#type:MenuThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "style" | "submenuIcon" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

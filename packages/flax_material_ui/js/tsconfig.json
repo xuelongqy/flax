@@ -5,6 +5,10 @@
     "outDir": "dist",
     "paths": {
       "@flax/material-ui": ["./src/index.ts"],
+      "@flax/material-ui/dependencies/*": [
+        "./src/generated/dependencies/*",
+        "./src/generated/dependencies/*/index.ts"
+      ],
       "@flax/material-ui/*": ["./src/generated/libraries/material/*"]
     }
   }

@@ -151,6 +151,13 @@ abstract interface class FlaxCallback {
 }
 
 class FlaxCallbackParameter extends FlaxParameter {
+  const factory FlaxCallbackParameter.plain(
+    String name,
+    FlaxTypeRef type, {
+    bool required,
+    bool positional,
+  }) = _FlaxPlainCallbackParameter;
+
   const FlaxCallbackParameter(
     super.name,
     super.type, {
@@ -162,6 +169,31 @@ class FlaxCallbackParameter extends FlaxParameter {
   final FlaxTypeRef encode;
   final bool positional;
   final bool scoped;
+}
+
+class _FlaxPlainCallbackParameter implements FlaxCallbackParameter {
+  const _FlaxPlainCallbackParameter(
+    this.name,
+    this.type, {
+    this.required = true,
+    this.positional = true,
+  });
+  @override
+  final String name;
+  @override
+  final FlaxTypeRef type;
+  @override
+  final bool required;
+  @override
+  final bool positional;
+  @override
+  FlaxTypeRef get encode => type;
+  @override
+  bool get scoped => false;
+  @override
+  Object? get defaultValue => null;
+  @override
+  bool get omitWhenAbsent => false;
 }
 
 class FlaxCallbackBinding {
@@ -229,12 +261,30 @@ class _FlaxProxySignature implements FlaxCallbackBinding {
 }
 
 class FlaxGetter {
+  const factory FlaxGetter.plain(
+    String name,
+    FlaxTypeRef type,
+    Object? Function(Object) read,
+  ) = _FlaxPlainGetter;
+
   const FlaxGetter(this.name, this.type, this.read, {FlaxTypeRef? encode})
     : encode = encode ?? type;
   final String name;
   final FlaxTypeRef type;
   final FlaxTypeRef encode;
   final Object? Function(Object) read;
+}
+
+class _FlaxPlainGetter implements FlaxGetter {
+  const _FlaxPlainGetter(this.name, this.type, this.read);
+  @override
+  final String name;
+  @override
+  final FlaxTypeRef type;
+  @override
+  final Object? Function(Object) read;
+  @override
+  FlaxTypeRef get encode => type;
 }
 
 class FlaxSetter {
@@ -477,6 +527,17 @@ class FlaxRouteCallBinding {
 }
 
 class FlaxInstanceMethod {
+  const factory FlaxInstanceMethod.plain(
+    List<FlaxParameter> parameters,
+    FlaxTypeRef result,
+    Object? Function(Object, Map<String, Object?>) invoke,
+  ) = _FlaxPlainInstanceMethod;
+
+  const factory FlaxInstanceMethod.shared(
+    FlaxCallbackBinding signature,
+    Object? Function(Object, Map<String, Object?>) invoke,
+  ) = _FlaxSharedInstanceMethod;
+
   const factory FlaxInstanceMethod.signature(
     FlaxCallbackBinding signature,
     Object? Function(Object, Map<String, Object?>) invoke, {
@@ -502,6 +563,40 @@ class FlaxInstanceMethod {
   final FlaxTypeRef result;
   final Object? Function(Object, Map<String, Object?>) invoke;
   final bool startsRoute;
+}
+
+// Common methods have no navigation or generic dispatch policy to store.
+abstract class _FlaxOrdinaryMethod implements FlaxInstanceMethod {
+  const _FlaxOrdinaryMethod();
+  @override
+  bool get startsRoute => false;
+  @override
+  Function? get genericFactory => null;
+  @override
+  List<Type> get ownerTypes => const [];
+  @override
+  bool get requiresTypeArguments => false;
+}
+
+class _FlaxPlainInstanceMethod extends _FlaxOrdinaryMethod {
+  const _FlaxPlainInstanceMethod(this.parameters, this.result, this.invoke);
+  @override
+  final List<FlaxParameter> parameters;
+  @override
+  final FlaxTypeRef result;
+  @override
+  final Object? Function(Object, Map<String, Object?>) invoke;
+}
+
+class _FlaxSharedInstanceMethod extends _FlaxOrdinaryMethod {
+  const _FlaxSharedInstanceMethod(this.signature, this.invoke);
+  final FlaxCallbackBinding signature;
+  @override
+  List<FlaxParameter> get parameters => signature.parameters;
+  @override
+  FlaxTypeRef get result => signature.result;
+  @override
+  final Object? Function(Object, Map<String, Object?>) invoke;
 }
 
 /// Reuses an existing closed proxy signature without copying its parameter view.
@@ -544,6 +639,9 @@ class FlaxStateBinding extends FlaxTypeBinding {
 }
 
 class FlaxParameter {
+  const factory FlaxParameter.required(String name, FlaxTypeRef type) =
+      _FlaxRequiredParameter;
+
   const FlaxParameter(
     this.name,
     this.type, {
@@ -556,6 +654,20 @@ class FlaxParameter {
   final bool required;
   final Object? defaultValue;
   final bool omitWhenAbsent;
+}
+
+class _FlaxRequiredParameter implements FlaxParameter {
+  const _FlaxRequiredParameter(this.name, this.type);
+  @override
+  final String name;
+  @override
+  final FlaxTypeRef type;
+  @override
+  bool get required => true;
+  @override
+  Object? get defaultValue => null;
+  @override
+  bool get omitWhenAbsent => false;
 }
 
 sealed class FlaxTypeBinding {
@@ -646,6 +758,7 @@ class FlaxBindingModule {
     this.constants = const [],
     this.stateVariants = const [],
     this.dependencyModules = const [],
+    this.dependencies = const [],
     this.dartTypes = const [],
     this.dartShapes = const [],
   }) : // Named public arguments cannot use private initializing formals.
@@ -688,14 +801,18 @@ class FlaxBindingModule {
   final List<FlaxConstantGroup> constants;
   final List<FlaxStateVariantBinding> stateVariants;
   final List<String> dependencyModules;
+
+  /// Dart modules registered with this module, without installing host plugins.
+  final List<FlaxBindingModule> dependencies;
   final List<FlaxDartClassTemplate> dartTypes;
   final List<FlaxDartShapeTemplate> dartShapes;
 }
 
-/// Register generated modules explicitly. A registry never chooses an engine.
+/// Registers selected modules and their transitive Dart binding dependencies.
+/// Shared module objects are admitted once. A registry never chooses an engine.
 class FlaxBindingRegistry {
   FlaxBindingRegistry(List<FlaxBindingModule> modules)
-    : modules = List.unmodifiable(modules) {
+    : modules = _withDependencies(modules) {
     final moduleIds = <String>{};
     final types = <String, FlaxTypeBinding>{};
     final functions = <String, FlaxFunctionBinding>{};
@@ -754,6 +871,35 @@ class FlaxBindingRegistry {
     _stateVariants.addAll(stateVariants);
     _componentStateTypes.addAll(componentStateTypes);
   }
+
+  static List<FlaxBindingModule> _withDependencies(
+    List<FlaxBindingModule> modules,
+  ) {
+    final seen = <String, FlaxBindingModule>{
+      componentsBindings.moduleId: componentsBindings,
+    };
+    final expanded = <FlaxBindingModule>[];
+    void visit(FlaxBindingModule module) {
+      final existing = seen[module.moduleId];
+      if (existing != null) {
+        if (!identical(existing, module)) {
+          throw ArgumentError('Duplicate binding module id ${module.moduleId}');
+        }
+        return;
+      }
+      seen[module.moduleId] = module;
+      expanded.add(module);
+      for (final dependency in module.dependencies) {
+        visit(dependency);
+      }
+    }
+
+    for (final module in modules) {
+      visit(module);
+    }
+    return List.unmodifiable(expanded);
+  }
+
   final List<FlaxBindingModule> modules;
   final _bindingOwners = <String, FlaxBindingModule>{};
   final _types = <String, FlaxTypeBinding>{};

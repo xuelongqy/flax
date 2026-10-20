@@ -8,15 +8,73 @@ import '@flax/flutter/cupertino/_bindings/sdk_cupertino_CupertinoTextThemeData';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface NoDefaultCupertinoThemeData extends Readonly<{
     "__flaxBound:package:flutter/src/cupertino/theme.dart::NoDefaultCupertinoThemeData": readonly [];
 }> {
     readonly __NoDefaultCupertinoThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: NoDefaultCupertinoThemeData;
+    readonly brightness: upstream0.Brightness | null;
+    readonly primaryColor: upstream1.Color | null;
+    readonly primaryContrastingColor: upstream1.Color | null;
+    readonly textTheme: upstream2.CupertinoTextThemeData | null;
+    readonly barBackgroundColor: upstream1.Color | null;
+    readonly scaffoldBackgroundColor: upstream1.Color | null;
+    readonly selectionHandleColor: upstream1.Color | null;
+    readonly applyThemeToAll: boolean | null;
+    noDefault(): NoDefaultCupertinoThemeData;
+    resolveFrom(context: upstream3.BuildContext): NoDefaultCupertinoThemeData;
+    copyWith(options?: {
+        applyThemeToAll?: boolean | null | undefined;
+        barBackgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        brightness?: upstream0.Brightness | null | undefined;
+        primaryColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        primaryContrastingColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        scaffoldBackgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        selectionHandleColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        textTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/cupertino/text_theme.dart::CupertinoTextThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): NoDefaultCupertinoThemeData;
 }
-export interface NoDefaultCupertinoThemeData {
-    readonly [_flaxDartTypeValue]: NoDefaultCupertinoThemeData;
+export declare function _NoDefaultCupertinoThemeDataFactory(options?: {
+    brightness?: upstream0.Brightness | null | undefined;
+    primaryColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    primaryContrastingColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    textTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/cupertino/text_theme.dart::CupertinoTextThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    barBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    scaffoldBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectionHandleColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    applyThemeToAll?: boolean | null | undefined;
+}): NoDefaultCupertinoThemeData;
+export interface _NoDefaultCupertinoThemeDataNative extends NoDefaultCupertinoThemeData {
+    readonly [_flaxDartTypeValue]: _NoDefaultCupertinoThemeDataNative;
     noDefault(): NoDefaultCupertinoThemeData;
     resolveFrom(context: upstream3.BuildContext): NoDefaultCupertinoThemeData;
     copyWith(options?: {
@@ -52,7 +110,7 @@ export interface NoDefaultCupertinoThemeData {
     get selectionHandleColor(): upstream1.Color | null;
     get applyThemeToAll(): boolean | null;
 }
-export declare abstract class NoDefaultCupertinoThemeData extends _FlaxProxyBase {
+export declare abstract class _NoDefaultCupertinoThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<NoDefaultCupertinoThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: NoDefaultCupertinoThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_cupertino#type:NoDefaultCupertinoThemeData", readonly [], false];
@@ -81,7 +139,7 @@ export declare abstract class NoDefaultCupertinoThemeData extends _FlaxProxyBase
         applyThemeToAll?: boolean | null | undefined;
     });
 }
-export declare namespace NoDefaultCupertinoThemeData {
+export declare namespace _NoDefaultCupertinoThemeDataFactory {
     function implement(args: [options?: {
         brightness?: upstream0.Brightness | null | undefined;
         primaryColor?: Readonly<{
@@ -107,3 +165,29 @@ export declare namespace NoDefaultCupertinoThemeData {
         applyThemeToAll?: boolean | null | undefined;
     }], implementation: {}): NoDefaultCupertinoThemeData;
 }
+declare const _NoDefaultCupertinoThemeDataBinding: typeof _NoDefaultCupertinoThemeDataFactory & (new (options?: {
+    brightness?: upstream0.Brightness | null | undefined;
+    primaryColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    primaryContrastingColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    textTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/cupertino/text_theme.dart::CupertinoTextThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    barBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    scaffoldBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectionHandleColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    applyThemeToAll?: boolean | null | undefined;
+}) => _NoDefaultCupertinoThemeDataNative);
+export declare const NoDefaultCupertinoThemeData: typeof _NoDefaultCupertinoThemeDataBinding & _FlaxInstanceType<NoDefaultCupertinoThemeData> & _FlaxDartType<NoDefaultCupertinoThemeData, readonly ["class", "flax.core/sdk_cupertino#type:NoDefaultCupertinoThemeData", readonly [], false]>;
+export {};

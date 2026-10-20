@@ -19,7 +19,7 @@ import type * as upstream8 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/painting/_bindings/flutter_TextStyle';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SearchController extends Omit<upstream0.TextEditingController, _flaxOwnMembers0>, Omit<upstream1.ValueNotifier<upstream2.TextEditingValue>, _flaxOwnMembers0 | keyof upstream0.TextEditingController>, Omit<upstream3.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.TextEditingController | keyof upstream1.ValueNotifier<upstream2.TextEditingValue>>, Omit<upstream4.Listenable, _flaxOwnMembers0 | keyof upstream0.TextEditingController | keyof upstream1.ValueNotifier<upstream2.TextEditingValue> | keyof upstream3.ChangeNotifier>, Omit<upstream5.ValueListenable<upstream2.TextEditingValue>, _flaxOwnMembers0 | keyof upstream0.TextEditingController | keyof upstream1.ValueNotifier<upstream2.TextEditingValue> | keyof upstream3.ChangeNotifier | keyof upstream4.Listenable>, Readonly<{
     "__flaxBound:package:flutter/src/material/search_anchor.dart::SearchController": readonly [];
 }>, Readonly<{
@@ -35,9 +35,42 @@ export interface SearchController extends Omit<upstream0.TextEditingController, 
 }> {
     readonly __SearchController: unique symbol;
     readonly [_flaxDartTypeValue]: SearchController;
+    get text(): string;
+    get selection(): upstream6.TextSelection;
+    get value(): upstream2.TextEditingValue;
+    readonly hasListeners: boolean;
+    readonly isAttached: boolean;
+    readonly isOpen: boolean;
+    buildTextSpan(options: {
+        context: upstream8.BuildContext;
+        style?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        withComposing: boolean;
+    }): upstream7.TextSpan;
+    clear(): void;
+    clearComposing(): void;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    toString(): string;
+    openView(): void;
+    closeView(selectedText: string | null): void;
+    set text(value: string);
+    set value(value: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
+    }>);
+    set selection(value: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>);
 }
-export interface SearchController {
-    readonly [_flaxDartTypeValue]: SearchController;
+export declare function _SearchControllerFactory(): SearchController;
+export interface _SearchControllerNative extends SearchController {
+    readonly [_flaxDartTypeValue]: _SearchControllerNative;
     buildTextSpan(options: {
         context: upstream8.BuildContext;
         style?: (Readonly<{
@@ -71,14 +104,16 @@ export interface SearchController {
         "__flaxBound:dart:ui::TextRange": readonly [];
     }>);
 }
-export declare abstract class SearchController extends _FlaxProxyBase {
+export declare abstract class _SearchControllerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SearchController>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SearchController;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:SearchController", readonly [], false];
     constructor();
 }
-export declare namespace SearchController {
+export declare namespace _SearchControllerFactory {
     function implement(args: [], implementation: {}): SearchController;
 }
+declare const _SearchControllerBinding: typeof _SearchControllerFactory & (new () => _SearchControllerNative);
+export declare const SearchController: typeof _SearchControllerBinding & _FlaxInstanceType<SearchController> & _FlaxDartType<SearchController, readonly ["class", "flax.core/sdk_material#type:SearchController", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "text" | "selection" | "value" | "hasListeners" | "isAttached" | "isOpen" | "buildTextSpan" | "clear" | "clearComposing" | "addListener" | "removeListener" | "dispose" | "toString" | "openView" | "closeView" | "__flaxBound:package:flutter/src/material/search_anchor.dart::SearchController" | "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
 export {};

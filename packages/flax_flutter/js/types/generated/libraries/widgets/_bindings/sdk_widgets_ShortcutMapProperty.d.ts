@@ -17,7 +17,7 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_TextTreeConfiguration';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsSerializationDelegate';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ShortcutMapProperty extends Omit<upstream0.DiagnosticsProperty<DartMap<upstream2.ShortcutActivator, upstream1.Intent>>, _flaxOwnMembers0>, Omit<upstream3.DiagnosticsNode, _flaxOwnMembers0 | keyof upstream0.DiagnosticsProperty<DartMap<upstream2.ShortcutActivator, upstream1.Intent>>>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutMapProperty": readonly [];
 }>, Readonly<{
@@ -27,9 +27,77 @@ export interface ShortcutMapProperty extends Omit<upstream0.DiagnosticsProperty<
 }> {
     readonly __ShortcutMapProperty: unique symbol;
     readonly [_flaxDartTypeValue]: ShortcutMapProperty;
+    readonly expandableValue: boolean;
+    readonly allowWrap: boolean;
+    readonly allowNameWrap: boolean;
+    readonly ifNull: string | null;
+    readonly ifEmpty: string | null;
+    readonly tooltip: string | null;
+    readonly missingIfNull: boolean;
+    readonly propertyType: upstream5.Type;
+    readonly value: DartMap<upstream2.ShortcutActivator, upstream1.Intent>;
+    readonly exception: unknown | null;
+    readonly defaultValue: unknown | null;
+    readonly isInteresting: boolean;
+    readonly level: upstream4.DiagnosticLevel;
+    readonly name: string | null;
+    readonly showSeparator: boolean;
+    readonly showName: boolean;
+    readonly linePrefix: string | null;
+    readonly emptyBodyDescription: string | null;
+    readonly style: upstream6.DiagnosticsTreeStyle | null;
+    readonly allowTruncate: boolean;
+    readonly textTreeConfiguration: upstream7.TextTreeConfiguration | null;
+    toJsonMap(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
+    }>): DartMap<string, unknown | null>;
+    valueToString(options?: {
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
+    toDescription(options?: {
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
+    getProperties(): DartList<upstream3.DiagnosticsNode>;
+    getChildren(): DartList<upstream3.DiagnosticsNode>;
+    isFiltered(minLevel: upstream4.DiagnosticLevel): boolean;
+    toTimelineArguments(): DartMap<string, string> | null;
+    toJsonMapIterative(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
+    }>): DartMap<string, unknown | null>;
+    toStringDeep(options?: {
+        minLevel?: upstream4.DiagnosticLevel | undefined;
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toString(options?: {
+        minLevel?: upstream4.DiagnosticLevel | undefined;
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
 }
-export interface ShortcutMapProperty {
-    readonly [_flaxDartTypeValue]: ShortcutMapProperty;
+export declare function _ShortcutMapPropertyFactory(name: string, value: DartMapInput<upstream2.ShortcutActivator, upstream1.Intent, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>>, options?: {
+    showName?: boolean | undefined;
+    defaultValue?: {} | undefined;
+    level?: upstream4.DiagnosticLevel | undefined;
+    description?: string | null | undefined;
+}): ShortcutMapProperty;
+export interface _ShortcutMapPropertyNative extends ShortcutMapProperty {
+    readonly [_flaxDartTypeValue]: _ShortcutMapPropertyNative;
     toJsonMap(delegate: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
     }>): DartMap<string, unknown | null>;
@@ -87,7 +155,7 @@ export interface ShortcutMapProperty {
     get allowTruncate(): boolean;
     get textTreeConfiguration(): upstream7.TextTreeConfiguration | null;
 }
-export declare abstract class ShortcutMapProperty extends _FlaxProxyBase {
+export declare abstract class _ShortcutMapPropertyNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ShortcutMapProperty>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ShortcutMapProperty;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ShortcutMapProperty", readonly [], false];
@@ -104,7 +172,7 @@ export declare abstract class ShortcutMapProperty extends _FlaxProxyBase {
         description?: string | null | undefined;
     });
 }
-export declare namespace ShortcutMapProperty {
+export declare namespace _ShortcutMapPropertyFactory {
     function implement(args: [name: string, value: DartMapInput<upstream2.ShortcutActivator, upstream1.Intent, Readonly<{
         "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [];
     }>, Readonly<{
@@ -118,5 +186,18 @@ export declare namespace ShortcutMapProperty {
         description?: string | null | undefined;
     }], implementation: {}): ShortcutMapProperty;
 }
+declare const _ShortcutMapPropertyBinding: typeof _ShortcutMapPropertyFactory & (new (name: string, value: DartMapInput<upstream2.ShortcutActivator, upstream1.Intent, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>>, options?: {
+    showName?: boolean | undefined;
+    defaultValue?: {} | undefined;
+    level?: upstream4.DiagnosticLevel | undefined;
+    description?: string | null | undefined;
+}) => _ShortcutMapPropertyNative);
+export declare const ShortcutMapProperty: typeof _ShortcutMapPropertyBinding & _FlaxInstanceType<ShortcutMapProperty> & _FlaxDartType<ShortcutMapProperty, readonly ["class", "flax.core/sdk_widgets#type:ShortcutMapProperty", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "expandableValue" | "allowWrap" | "allowNameWrap" | "ifNull" | "ifEmpty" | "tooltip" | "missingIfNull" | "propertyType" | "value" | "exception" | "defaultValue" | "isInteresting" | "level" | "name" | "showSeparator" | "showName" | "linePrefix" | "emptyBodyDescription" | "style" | "allowTruncate" | "textTreeConfiguration" | "toJsonMap" | "valueToString" | "toDescription" | "getProperties" | "getChildren" | "isFiltered" | "toTimelineArguments" | "toJsonMapIterative" | "toStringDeep" | "toString" | "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutMapProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode";
 export {};

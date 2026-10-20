@@ -17,7 +17,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface UpdateSelectionIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::UpdateSelectionIntent": readonly [];
 }>, Readonly<{
@@ -27,9 +27,30 @@ export interface UpdateSelectionIntent extends Omit<upstream0.Intent, _flaxOwnMe
 }> {
     readonly __UpdateSelectionIntent: unique symbol;
     readonly [_flaxDartTypeValue]: UpdateSelectionIntent;
+    readonly currentTextEditingValue: upstream2.TextEditingValue;
+    readonly newSelection: upstream3.TextSelection;
+    readonly cause: upstream4.SelectionChangedCause;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream6.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream8.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface UpdateSelectionIntent {
-    readonly [_flaxDartTypeValue]: UpdateSelectionIntent;
+export declare function _UpdateSelectionIntentFactory(currentTextEditingValue: Readonly<{
+    "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
+}>, newSelection: Readonly<{
+    "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+}> & Readonly<{
+    "__flaxBound:dart:ui::TextRange": readonly [];
+}>, cause: upstream4.SelectionChangedCause): UpdateSelectionIntent;
+export interface _UpdateSelectionIntentNative extends UpdateSelectionIntent {
+    readonly [_flaxDartTypeValue]: _UpdateSelectionIntentNative;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
@@ -45,7 +66,7 @@ export interface UpdateSelectionIntent {
     get newSelection(): upstream3.TextSelection;
     get cause(): upstream4.SelectionChangedCause;
 }
-export declare abstract class UpdateSelectionIntent extends _FlaxProxyBase {
+export declare abstract class _UpdateSelectionIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<UpdateSelectionIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: UpdateSelectionIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:UpdateSelectionIntent", readonly [], false];
@@ -57,7 +78,7 @@ export declare abstract class UpdateSelectionIntent extends _FlaxProxyBase {
         "__flaxBound:dart:ui::TextRange": readonly [];
     }>, cause: upstream4.SelectionChangedCause);
 }
-export declare namespace UpdateSelectionIntent {
+export declare namespace _UpdateSelectionIntentFactory {
     function implement(args: [currentTextEditingValue: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
     }>, newSelection: Readonly<{
@@ -66,5 +87,13 @@ export declare namespace UpdateSelectionIntent {
         "__flaxBound:dart:ui::TextRange": readonly [];
     }>, cause: upstream4.SelectionChangedCause], implementation: {}): UpdateSelectionIntent;
 }
+declare const _UpdateSelectionIntentBinding: typeof _UpdateSelectionIntentFactory & (new (currentTextEditingValue: Readonly<{
+    "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
+}>, newSelection: Readonly<{
+    "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+}> & Readonly<{
+    "__flaxBound:dart:ui::TextRange": readonly [];
+}>, cause: upstream4.SelectionChangedCause) => _UpdateSelectionIntentNative);
+export declare const UpdateSelectionIntent: typeof _UpdateSelectionIntentBinding & _FlaxInstanceType<UpdateSelectionIntent> & _FlaxDartType<UpdateSelectionIntent, readonly ["class", "flax.core/sdk_widgets#type:UpdateSelectionIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "currentTextEditingValue" | "newSelection" | "cause" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::UpdateSelectionIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

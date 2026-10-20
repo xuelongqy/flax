@@ -26,6 +26,20 @@ ThemeData theme(
 );
 
 void main() {
+  testWidgets('Material injects Cupertino provider views without its plugin', (
+    t,
+  ) async {
+    final h = OwnedHarness(fixture: 'theme');
+    try {
+      await t.pumpWidget(app(h.page('theme'), theme(Brightness.light)));
+      await t.pumpAndSettle();
+      expect(h.boolean('themes.providerRoundTrip()'), isTrue);
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+  });
+
   testWidgets(
     'host dependencies, derived themes and independent themes preserve editing identity',
     (t) async {

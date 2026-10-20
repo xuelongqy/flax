@@ -11,7 +11,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream5 from '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FixedExtentScrollPhysics extends Omit<upstream0.ScrollPhysics, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/list_wheel_scroll_view.dart::FixedExtentScrollPhysics": readonly [];
 }>, Readonly<{
@@ -19,9 +19,59 @@ export interface FixedExtentScrollPhysics extends Omit<upstream0.ScrollPhysics, 
 }> {
     readonly __FixedExtentScrollPhysics: unique symbol;
     readonly [_flaxDartTypeValue]: FixedExtentScrollPhysics;
+    readonly parent: upstream0.ScrollPhysics | null;
+    readonly spring: upstream1.SpringDescription;
+    readonly tolerance: upstream2.Tolerance;
+    readonly minFlingDistance: number;
+    readonly minFlingVelocity: number;
+    readonly maxFlingVelocity: number;
+    readonly dragStartDistanceMotionThreshold: number | null;
+    readonly allowImplicitScrolling: boolean;
+    readonly allowUserScrolling: boolean;
+    buildParent(ancestor: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }> | null): upstream0.ScrollPhysics | null;
+    applyTo(ancestor: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }> | null): FixedExtentScrollPhysics;
+    applyPhysicsToUserOffset(position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>, offset: number): number;
+    shouldAcceptUserOffset(position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>): boolean;
+    recommendDeferredLoading(velocity: number, metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>, context: upstream4.BuildContext): boolean;
+    applyBoundaryConditions(position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>, value: number): number;
+    adjustPositionForNewDimensions(options: {
+        isScrolling: boolean;
+        newPosition: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+        }>;
+        oldPosition: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+        }>;
+        velocity: number;
+    }): number;
+    createBallisticSimulation(position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>, velocity: number): upstream5.Simulation | null;
+    toleranceFor(metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>): upstream2.Tolerance;
+    carriedMomentum(existingVelocity: number): number;
+    toString(): string;
 }
-export interface FixedExtentScrollPhysics {
-    readonly [_flaxDartTypeValue]: FixedExtentScrollPhysics;
+export declare function _FixedExtentScrollPhysicsFactory(options?: {
+    parent?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }> | null | undefined;
+}): FixedExtentScrollPhysics;
+export interface _FixedExtentScrollPhysicsNative extends FixedExtentScrollPhysics {
+    readonly [_flaxDartTypeValue]: _FixedExtentScrollPhysicsNative;
     buildParent(ancestor: Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
     }> | null): upstream0.ScrollPhysics | null;
@@ -68,7 +118,7 @@ export interface FixedExtentScrollPhysics {
     get allowImplicitScrolling(): boolean;
     get allowUserScrolling(): boolean;
 }
-export declare abstract class FixedExtentScrollPhysics extends _FlaxProxyBase {
+export declare abstract class _FixedExtentScrollPhysicsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<FixedExtentScrollPhysics>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: FixedExtentScrollPhysics;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:FixedExtentScrollPhysics", readonly [], false];
@@ -78,12 +128,18 @@ export declare abstract class FixedExtentScrollPhysics extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace FixedExtentScrollPhysics {
+export declare namespace _FixedExtentScrollPhysicsFactory {
     function implement(args: [options?: {
         parent?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
         }> | null | undefined;
     }], implementation: {}): FixedExtentScrollPhysics;
 }
+declare const _FixedExtentScrollPhysicsBinding: typeof _FixedExtentScrollPhysicsFactory & (new (options?: {
+    parent?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }> | null | undefined;
+}) => _FixedExtentScrollPhysicsNative);
+export declare const FixedExtentScrollPhysics: typeof _FixedExtentScrollPhysicsBinding & _FlaxInstanceType<FixedExtentScrollPhysics> & _FlaxDartType<FixedExtentScrollPhysics, readonly ["class", "flax.core/sdk_widgets#type:FixedExtentScrollPhysics", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "parent" | "spring" | "tolerance" | "minFlingDistance" | "minFlingVelocity" | "maxFlingVelocity" | "dragStartDistanceMotionThreshold" | "allowImplicitScrolling" | "allowUserScrolling" | "buildParent" | "applyTo" | "applyPhysicsToUserOffset" | "shouldAcceptUserOffset" | "recommendDeferredLoading" | "applyBoundaryConditions" | "adjustPositionForNewDimensions" | "createBallisticSimulation" | "toleranceFor" | "carriedMomentum" | "toString" | "__flaxBound:package:flutter/src/widgets/list_wheel_scroll_view.dart::FixedExtentScrollPhysics" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics";
 export {};

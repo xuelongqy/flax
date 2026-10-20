@@ -17,7 +17,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_ViewFocusEvent';
 import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitResponse';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitResponse';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface LocalizationsResolver extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Omit<upstream2.WidgetsBindingObserver, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier | keyof upstream1.Listenable>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsResolver": readonly [];
 }>, Readonly<{
@@ -29,9 +29,88 @@ export interface LocalizationsResolver extends Omit<upstream0.ChangeNotifier, _f
 }> {
     readonly __LocalizationsResolver: unique symbol;
     readonly [_flaxDartTypeValue]: LocalizationsResolver;
+    readonly hasListeners: boolean;
+    readonly locale: upstream3.Locale;
+    readonly localizationsDelegates: DartIterable<upstream4.LocalizationsDelegate<unknown | null>>;
+    readonly localeListResolutionCallback: ((locales: DartListInput<upstream3.Locale, Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }>> | null, supportedLocales: DartIterableInput<upstream3.Locale, Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }>>) => upstream3.Locale | null) | null;
+    readonly localeResolutionCallback: ((locale: Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null, supportedLocales: DartIterableInput<upstream3.Locale, Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }>>) => upstream3.Locale | null) | null;
+    readonly supportedLocales: DartIterable<upstream3.Locale>;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    didPopRoute(): Promise<boolean>;
+    handleStartBackGesture(backEvent: Readonly<{
+        "__flaxBound:package:flutter/src/services/predictive_back_event.dart::PredictiveBackEvent": readonly [];
+    }>): boolean;
+    handleUpdateBackGestureProgress(backEvent: Readonly<{
+        "__flaxBound:package:flutter/src/services/predictive_back_event.dart::PredictiveBackEvent": readonly [];
+    }>): void;
+    handleCommitBackGesture(): void;
+    handleCancelBackGesture(): void;
+    handleStatusBarTap(): void;
+    didPushRoute(route: string): Promise<boolean>;
+    didPushRouteInformation(routeInformation: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformation": readonly [];
+    }>): Promise<boolean>;
+    didChangeMetrics(): void;
+    didChangeTextScaleFactor(): void;
+    didChangePlatformBrightness(): void;
+    didChangeLocales(locales: DartListInput<upstream3.Locale, Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }>> | null): void;
+    didChangeAppLifecycleState(state: upstream7.AppLifecycleState): void;
+    didChangeViewFocus(event: Readonly<{
+        "__flaxBound:dart:ui::ViewFocusEvent": readonly [];
+    }>): void;
+    didRequestAppExit(): Promise<upstream9.AppExitResponse>;
+    didHaveMemoryPressure(): void;
+    didChangeAccessibilityFeatures(): void;
+    update(options: {
+        locale: Readonly<{
+            "__flaxBound:dart:ui::Locale": readonly [];
+        }> | null;
+        localeListResolutionCallback: ((locales: DartList<upstream3.Locale> | null, supportedLocales: DartIterable<upstream3.Locale>) => Readonly<{
+            "__flaxBound:dart:ui::Locale": readonly [];
+        }> | null) | null;
+        localeResolutionCallback: ((locale: upstream3.Locale | null, supportedLocales: DartIterable<upstream3.Locale>) => Readonly<{
+            "__flaxBound:dart:ui::Locale": readonly [];
+        }> | null) | null;
+        localizationsDelegates: DartIterableInput<upstream4.LocalizationsDelegate<unknown | null>, Readonly<{
+            "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsDelegate": readonly [unknown | null];
+        }>> | null;
+        supportedLocales: DartIterableInput<upstream3.Locale, Readonly<{
+            "__flaxBound:dart:ui::Locale": readonly [];
+        }>>;
+    }): void;
+    toString(): string;
 }
-export interface LocalizationsResolver {
-    readonly [_flaxDartTypeValue]: LocalizationsResolver;
+export declare function _LocalizationsResolverFactory(options: {
+    supportedLocales: DartIterableInput<upstream3.Locale, Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }>>;
+    locale?: Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null | undefined;
+    localeListResolutionCallback?: ((locales: DartList<upstream3.Locale> | null, supportedLocales: DartIterable<upstream3.Locale>) => Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null) | null | undefined;
+    localeResolutionCallback?: ((locale: upstream3.Locale | null, supportedLocales: DartIterable<upstream3.Locale>) => Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null) | null | undefined;
+    localizationsDelegates?: DartIterableInput<upstream4.LocalizationsDelegate<unknown | null>, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsDelegate": readonly [unknown | null];
+    }>> | null | undefined;
+}): LocalizationsResolver;
+export interface _LocalizationsResolverNative extends LocalizationsResolver {
+    readonly [_flaxDartTypeValue]: _LocalizationsResolverNative;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
     dispose(): void;
@@ -95,7 +174,7 @@ export interface LocalizationsResolver {
     get supportedLocales(): DartIterable<upstream3.Locale>;
     get hasListeners(): boolean;
 }
-export declare abstract class LocalizationsResolver extends _FlaxProxyBase {
+export declare abstract class _LocalizationsResolverNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<LocalizationsResolver>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: LocalizationsResolver;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:LocalizationsResolver", readonly [], false];
@@ -117,7 +196,7 @@ export declare abstract class LocalizationsResolver extends _FlaxProxyBase {
         }>> | null | undefined;
     });
 }
-export declare namespace LocalizationsResolver {
+export declare namespace _LocalizationsResolverFactory {
     function implement(args: [options: {
         supportedLocales: DartIterableInput<upstream3.Locale, Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
@@ -136,5 +215,23 @@ export declare namespace LocalizationsResolver {
         }>> | null | undefined;
     }], implementation: {}): LocalizationsResolver;
 }
+declare const _LocalizationsResolverBinding: typeof _LocalizationsResolverFactory & (new (options: {
+    supportedLocales: DartIterableInput<upstream3.Locale, Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }>>;
+    locale?: Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null | undefined;
+    localeListResolutionCallback?: ((locales: DartList<upstream3.Locale> | null, supportedLocales: DartIterable<upstream3.Locale>) => Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null) | null | undefined;
+    localeResolutionCallback?: ((locale: upstream3.Locale | null, supportedLocales: DartIterable<upstream3.Locale>) => Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null) | null | undefined;
+    localizationsDelegates?: DartIterableInput<upstream4.LocalizationsDelegate<unknown | null>, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsDelegate": readonly [unknown | null];
+    }>> | null | undefined;
+}) => _LocalizationsResolverNative);
+export declare const LocalizationsResolver: typeof _LocalizationsResolverBinding & _FlaxInstanceType<LocalizationsResolver> & _FlaxDartType<LocalizationsResolver, readonly ["class", "flax.core/sdk_widgets#type:LocalizationsResolver", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "locale" | "localizationsDelegates" | "localeListResolutionCallback" | "localeResolutionCallback" | "supportedLocales" | "addListener" | "removeListener" | "dispose" | "didPopRoute" | "handleStartBackGesture" | "handleUpdateBackGestureProgress" | "handleCommitBackGesture" | "handleCancelBackGesture" | "handleStatusBarTap" | "didPushRoute" | "didPushRouteInformation" | "didChangeMetrics" | "didChangeTextScaleFactor" | "didChangePlatformBrightness" | "didChangeLocales" | "didChangeAppLifecycleState" | "didChangeViewFocus" | "didRequestAppExit" | "didHaveMemoryPressure" | "didChangeAccessibilityFeatures" | "update" | "toString" | "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsResolver" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver";
 export {};

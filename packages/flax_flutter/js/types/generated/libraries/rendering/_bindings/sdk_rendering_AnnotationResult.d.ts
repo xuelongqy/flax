@@ -8,16 +8,23 @@ export interface AnnotationResult<T extends unknown | null = unknown | null> ext
 }> {
     readonly __AnnotationResult: unique symbol;
     readonly [_flaxDartTypeValue]: AnnotationResult<T>;
+    readonly entries: DartIterable<upstream0.AnnotationEntry<T>>;
+    readonly annotations: DartIterable<T>;
+    add(entry: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotationEntry": readonly [T];
+    }>): void;
 }
-export interface AnnotationResult<T extends unknown | null = unknown | null> {
-    readonly [_flaxDartTypeValue]: AnnotationResult<T>;
+export declare function _AnnotationResultFactory<T extends unknown | null = unknown | null>(): AnnotationResult<T>;
+export declare function _AnnotationResultFactory(): AnnotationResult<unknown | null>;
+export interface _AnnotationResultNative<T extends unknown | null = unknown | null> extends AnnotationResult<T> {
+    readonly [_flaxDartTypeValue]: _AnnotationResultNative<T>;
     add(entry: Readonly<{
         "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotationEntry": readonly [T];
     }>): void;
     get entries(): DartIterable<upstream0.AnnotationEntry<T>>;
     get annotations(): DartIterable<T>;
 }
-export declare abstract class AnnotationResult<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
+export declare abstract class _AnnotationResultNative<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AnnotationResult<unknown | null>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AnnotationResult<unknown | null>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:AnnotationResult", readonly [readonly ["any", null, readonly [], true]], false];
@@ -25,13 +32,23 @@ export declare abstract class AnnotationResult<T extends unknown | null = unknow
     static [_flaxDartTypeCases]: _FlaxSignature1;
     constructor();
 }
-export declare namespace AnnotationResult {
+export declare namespace _AnnotationResultFactory {
     function implement<T extends unknown | null = unknown | null>(args: [], implementation: {}): AnnotationResult<T>;
 }
+declare const _AnnotationResultBinding: typeof _AnnotationResultFactory & (new <T extends unknown | null = unknown | null>() => _AnnotationResultNative<T>);
+export declare const AnnotationResult: typeof _AnnotationResultBinding & _FlaxInstanceType<AnnotationResult<unknown | null>> & _FlaxDartType<AnnotationResult<unknown | null>, readonly ["class", "flax.core/sdk_rendering#type:AnnotationResult", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new () => _AnnotationResultNative<_Selected0>) & {
+        (): _AnnotationResultNative<_Selected0>;
+        readonly prototype: _AnnotationResultNative<_Selected0>;
+        implement(args: readonly [], implementation: Partial<_AnnotationResultNative<_Selected0>>): _AnnotationResultNative<_Selected0>;
+    } & _FlaxInstanceType<_AnnotationResultNative<_Selected0>> & _FlaxDartType<_AnnotationResultNative<_Selected0>> : never : never;
+}
 interface _FlaxSignature1 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new () => AnnotationResult<_Selected0>) & {
-        readonly prototype: AnnotationResult<_Selected0>;
-        implement(args: readonly [], implementation: Partial<AnnotationResult<_Selected0>>): AnnotationResult<_Selected0>;
-    } & _FlaxInstanceType<AnnotationResult<_Selected0>> & _FlaxDartType<AnnotationResult<_Selected0>> : never : never;
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new () => _AnnotationResultNative<_Selected0>) & {
+        (): _AnnotationResultNative<_Selected0>;
+        readonly prototype: _AnnotationResultNative<_Selected0>;
+        implement(args: readonly [], implementation: Partial<_AnnotationResultNative<_Selected0>>): _AnnotationResultNative<_Selected0>;
+    } & _FlaxInstanceType<_AnnotationResultNative<_Selected0>> & _FlaxDartType<_AnnotationResultNative<_Selected0>> : never : never;
 }
 export {};

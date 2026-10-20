@@ -17,18 +17,30 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import { _flaxMemberParameters201, _flaxMemberParameters202, _flaxMemberParameters2, _flaxMemberParameters9, _flaxMemberParameters8, _flaxMemberParameters5 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters182, _flaxMemberParameters183, _flaxMemberParameters2, _flaxMemberParameters9, _flaxMemberParameters8, _flaxMemberParameters5 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface IOSSystemContextMenuItemCustom extends Omit<upstream0.IOSSystemContextMenuItem, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.IOSSystemContextMenuItem>, Readonly<{ "__flaxBound:package:flutter/src/widgets/system_context_menu.dart::IOSSystemContextMenuItemCustom": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/system_context_menu.dart::IOSSystemContextMenuItem": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __IOSSystemContextMenuItemCustom: unique symbol;
 readonly [_flaxDartTypeValue]: IOSSystemContextMenuItemCustom;
 
+readonly title: string;
+readonly onPressed: (() => void);
+getData(localizations: Readonly<{ "__flaxBound:package:flutter/src/widgets/localizations.dart::WidgetsLocalizations": readonly [] }>): upstream2.IOSSystemContextMenuItemData;
+toStringShort(): string;
+toString(options?: {minLevel?: upstream4.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream6.DiagnosticsTreeStyle | null | undefined}): upstream5.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 }
-defineObject("flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", ["title","onPressed"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", "object", {"getData":_flaxMemberParameters201}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _IOSSystemContextMenuItemCustomProxy = {type: "flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", parameters: _flaxMemberParameters202, constructors: {"": _flaxMemberParameters202}, methods: {"getData":_flaxMemberParameters201,"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters9,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5}, getters: ["title","onPressed"], setters: [], contextMembers: [], superMembers: ["get:title","get:onPressed","getData","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
-export interface IOSSystemContextMenuItemCustom {
-readonly [_flaxDartTypeValue]: IOSSystemContextMenuItemCustom;
+defineObject("flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", ["title","onPressed"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", "object", {"getData":_flaxMemberParameters182}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+export function _IOSSystemContextMenuItemCustomFactory(options: { title: string; onPressed: (() => void) }): IOSSystemContextMenuItemCustom {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", "", [{"name":"title","required":true},{"name":"onPressed","required":true}], [], options) as IOSSystemContextMenuItemCustom;
+}
+const _IOSSystemContextMenuItemCustomProxy = {type: "flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", parameters: _flaxMemberParameters183, constructors: {"": _flaxMemberParameters183}, methods: {"getData":_flaxMemberParameters182,"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters9,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5}, getters: ["title","onPressed"], setters: [], contextMembers: [], superMembers: ["get:title","get:onPressed","getData","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
+export interface _IOSSystemContextMenuItemCustomNative extends IOSSystemContextMenuItemCustom {
+readonly [_flaxDartTypeValue]: _IOSSystemContextMenuItemCustomNative;
 
 getData(localizations: Readonly<{ "__flaxBound:package:flutter/src/widgets/localizations.dart::WidgetsLocalizations": readonly [] }>): upstream2.IOSSystemContextMenuItemData;
 toStringShort(): string;
@@ -38,14 +50,15 @@ debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foun
 get title(): string;
 get onPressed(): (() => void);
 }
-export abstract class IOSSystemContextMenuItemCustom extends _FlaxProxyBase {
+export abstract class _IOSSystemContextMenuItemCustomNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<IOSSystemContextMenuItemCustom>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: IOSSystemContextMenuItemCustom;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", readonly [], false];
 constructor(options: {title: string; onPressed: (() => void)}) { super(_IOSSystemContextMenuItemCustomProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(IOSSystemContextMenuItemCustom.prototype, _IOSSystemContextMenuItemCustomProxy);
-export namespace IOSSystemContextMenuItemCustom { export function implement(args: [options: {title: string; onPressed: (() => void)}], implementation: {}): IOSSystemContextMenuItemCustom {
+_flaxDefineProxyBase(_IOSSystemContextMenuItemCustomNative.prototype, _IOSSystemContextMenuItemCustomProxy);
+export namespace _IOSSystemContextMenuItemCustomFactory { export function implement(args: [options: {title: string; onPressed: (() => void)}], implementation: {}): IOSSystemContextMenuItemCustom {
 return constructProxy(_IOSSystemContextMenuItemCustomProxy, args, implementation) as IOSSystemContextMenuItemCustom; } }
-_flaxBindInstanceType<IOSSystemContextMenuItemCustom, typeof IOSSystemContextMenuItemCustom>(IOSSystemContextMenuItemCustom, "flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", ["flax.core/sdk_widgets#type:IOSSystemContextMenuItem","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _IOSSystemContextMenuItemCustomBinding = _flaxProxyFactory(_IOSSystemContextMenuItemCustomFactory, _IOSSystemContextMenuItemCustomNative) as unknown as typeof _IOSSystemContextMenuItemCustomFactory & (new(options: {title: string; onPressed: (() => void)}) => _IOSSystemContextMenuItemCustomNative);
+export const IOSSystemContextMenuItemCustom: typeof _IOSSystemContextMenuItemCustomBinding & _FlaxInstanceType<IOSSystemContextMenuItemCustom> & _FlaxDartType<IOSSystemContextMenuItemCustom, readonly ["class", "flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", readonly [], false]> = _flaxBindInstanceType<IOSSystemContextMenuItemCustom, typeof _IOSSystemContextMenuItemCustomBinding>(_IOSSystemContextMenuItemCustomBinding, "flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", ["flax.core/sdk_widgets#type:IOSSystemContextMenuItem","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _IOSSystemContextMenuItemCustomBinding & _FlaxInstanceType<IOSSystemContextMenuItemCustom> & _FlaxDartType<IOSSystemContextMenuItemCustom, readonly ["class", "flax.core/sdk_widgets#type:IOSSystemContextMenuItemCustom", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "title" | "onPressed" | "getData" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/widgets/system_context_menu.dart::IOSSystemContextMenuItemCustom" | "__flaxBound:package:flutter/src/widgets/system_context_menu.dart::IOSSystemContextMenuItem" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

@@ -4,15 +4,52 @@ import '@flax/flutter/services/_bindings/sdk_services_AndroidPointerProperties';
 import type * as upstream1 from '@flax/flutter/services/_bindings/sdk_services_AndroidPointerCoords';
 import '@flax/flutter/services/_bindings/sdk_services_AndroidPointerCoords';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface AndroidMotionEvent extends Readonly<{
     "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidMotionEvent": readonly [];
 }> {
     readonly __AndroidMotionEvent: unique symbol;
     readonly [_flaxDartTypeValue]: AndroidMotionEvent;
+    readonly downTime: number;
+    readonly eventTime: number;
+    readonly action: number;
+    readonly pointerCount: number;
+    readonly pointerProperties: DartList<upstream0.AndroidPointerProperties>;
+    readonly pointerCoords: DartList<upstream1.AndroidPointerCoords>;
+    readonly metaState: number;
+    readonly buttonState: number;
+    readonly xPrecision: number;
+    readonly yPrecision: number;
+    readonly deviceId: number;
+    readonly edgeFlags: number;
+    readonly source: number;
+    readonly flags: number;
+    readonly motionEventId: number;
+    toString(): string;
 }
-export interface AndroidMotionEvent {
-    readonly [_flaxDartTypeValue]: AndroidMotionEvent;
+export declare function _AndroidMotionEventFactory(options: {
+    downTime: number;
+    eventTime: number;
+    action: number;
+    pointerCount: number;
+    pointerProperties: DartListInput<upstream0.AndroidPointerProperties, Readonly<{
+        "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidPointerProperties": readonly [];
+    }>>;
+    pointerCoords: DartListInput<upstream1.AndroidPointerCoords, Readonly<{
+        "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidPointerCoords": readonly [];
+    }>>;
+    metaState: number;
+    buttonState: number;
+    xPrecision: number;
+    yPrecision: number;
+    deviceId: number;
+    edgeFlags: number;
+    source: number;
+    flags: number;
+    motionEventId: number;
+}): AndroidMotionEvent;
+export interface _AndroidMotionEventNative extends AndroidMotionEvent {
+    readonly [_flaxDartTypeValue]: _AndroidMotionEventNative;
     toString(): string;
     get downTime(): number;
     get eventTime(): number;
@@ -30,7 +67,7 @@ export interface AndroidMotionEvent {
     get flags(): number;
     get motionEventId(): number;
 }
-export declare abstract class AndroidMotionEvent extends _FlaxProxyBase {
+export declare abstract class _AndroidMotionEventNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AndroidMotionEvent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AndroidMotionEvent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:AndroidMotionEvent", readonly [], false];
@@ -56,7 +93,7 @@ export declare abstract class AndroidMotionEvent extends _FlaxProxyBase {
         motionEventId: number;
     });
 }
-export declare namespace AndroidMotionEvent {
+export declare namespace _AndroidMotionEventFactory {
     function implement(args: [options: {
         downTime: number;
         eventTime: number;
@@ -79,3 +116,26 @@ export declare namespace AndroidMotionEvent {
         motionEventId: number;
     }], implementation: {}): AndroidMotionEvent;
 }
+declare const _AndroidMotionEventBinding: typeof _AndroidMotionEventFactory & (new (options: {
+    downTime: number;
+    eventTime: number;
+    action: number;
+    pointerCount: number;
+    pointerProperties: DartListInput<upstream0.AndroidPointerProperties, Readonly<{
+        "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidPointerProperties": readonly [];
+    }>>;
+    pointerCoords: DartListInput<upstream1.AndroidPointerCoords, Readonly<{
+        "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidPointerCoords": readonly [];
+    }>>;
+    metaState: number;
+    buttonState: number;
+    xPrecision: number;
+    yPrecision: number;
+    deviceId: number;
+    edgeFlags: number;
+    source: number;
+    flags: number;
+    motionEventId: number;
+}) => _AndroidMotionEventNative);
+export declare const AndroidMotionEvent: typeof _AndroidMotionEventBinding & _FlaxInstanceType<AndroidMotionEvent> & _FlaxDartType<AndroidMotionEvent, readonly ["class", "flax.core/sdk_services#type:AndroidMotionEvent", readonly [], false]>;
+export {};

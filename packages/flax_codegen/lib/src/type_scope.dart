@@ -26,6 +26,97 @@ final class _FlaxCodegenTypeScope {
   var usesFutureOr = false;
   var usesStream = false;
   final nativeTypes = <String, String>{};
+  Map<String, String> dependencyViews = const {};
+  Map<String, String> _declarationViews = const {};
+  final _dependencyContracts =
+      <({InterfaceElement owner, _FlaxCodegenDependencyClassViews views})>[];
+
+  void selectDeclaration(InterfaceElement? declaration) {
+    _dependencyContracts.clear();
+    final all = <String, Set<String>>{};
+    if (declaration != null && parser._dependencyLocalViews.isNotEmpty) {
+      for (final parent in [
+        declaration.thisType,
+        ...declaration.allSupertypes,
+      ]) {
+        final views = parser._dependencyClassViews[identity(parent.element)];
+        if (views == null) continue;
+        _dependencyContracts.add((owner: parent.element, views: views));
+        for (final entry in views.all.entries) {
+          all.putIfAbsent(entry.key, () => {}).addAll(entry.value);
+        }
+      }
+    }
+    // Distinct members may use independent views of the same Dart source.
+    _declarationViews = {
+      for (final entry in all.entries)
+        if (entry.value.length == 1) entry.key: entry.value.single,
+    };
+    dependencyViews = _declarationViews;
+  }
+
+  T withMember<T>(ExecutableElement member, T Function() convert) {
+    final previous = dependencyViews;
+    try {
+      selectMember(member);
+      return convert();
+    } finally {
+      dependencyViews = previous;
+    }
+  }
+
+  void selectMember(ExecutableElement? member) {
+    dependencyViews = _declarationViews;
+    if (member == null || _dependencyContracts.isEmpty) return;
+    final operation = switch (member) {
+      ConstructorElement() => 'new',
+      GetterElement() => member.isStatic ? 'static-get' : 'get',
+      SetterElement() => member.isStatic ? 'static-set' : 'set',
+      MethodElement() => member.isStatic ? 'static-call' : 'call',
+      _ => null,
+    };
+    if (operation == null) return;
+    final name = member is ConstructorElement && member.name == 'new'
+        ? ''
+        : member is SetterElement
+        ? member.name!.replaceFirst(RegExp(r'=$'), '')
+        : member is MethodElement &&
+              member.name == '-' &&
+              member.formalParameters.isEmpty
+        ? 'unary-'
+        : member.name!;
+    final key = '$operation:$name';
+    final candidates = _dependencyContracts.where((contract) {
+      if (member.isStatic || member is ConstructorElement) {
+        if (contract.owner != member.enclosingElement) return false;
+      }
+      return contract.views.members.containsKey(key);
+    }).toList();
+    final views = <String, Set<String>>{};
+    for (final candidate in candidates) {
+      if (candidates.any(
+        (other) =>
+            other.owner != candidate.owner &&
+            other.owner.allSupertypes.any(
+              (parent) => parent.element == candidate.owner,
+            ),
+      )) {
+        continue;
+      }
+      for (final entry in candidate.views.members[key]!.entries) {
+        views.putIfAbsent(entry.key, () => {}).addAll(entry.value);
+      }
+    }
+    dependencyViews = {
+      ..._declarationViews,
+      for (final entry in views.entries)
+        entry.key: entry.value.length == 1
+            ? entry.value.single
+            : throw StateError(
+                'Ambiguous inherited dependency views for $key: ${entry.key}',
+              ),
+    };
+  }
 
   ({FlaxCodegenTypeRef? type, String? skip}) tryTypeRef(
     DartType type, {
@@ -540,17 +631,23 @@ final class _FlaxCodegenTypeScope {
       );
       return FlaxCodegenTypeRef('widget', nullable: nullable);
     }
+    final view = dependencyViews[identity(element)];
+    if (parser._dependencyPolicyError(element) case final reason?
+        when view == null) {
+      throw StateError(reason);
+    }
     if (config.hasAutomaticSelection &&
+        view == null &&
         !parser._isPoolType(element) &&
         !(config.types.contains(name) && exports[name] == element)) {
       throw StateError('Type is outside the selected binding scope: $name');
     }
-    final id = identity(element);
+    final id = view ?? identity(element);
     final automaticCarrier = automaticTypeCarriers[id];
     if (exports[name] != element) {
       if (automaticCarrier != null) {
         publicLibraries.putIfAbsent(name, () => automaticCarrier);
-      } else if (!parser._isPoolType(element)) {
+      } else if (view == null && !parser._isPoolType(element)) {
         throw StateError(
           '${config.library} must publicly export the referenced type $name',
         );

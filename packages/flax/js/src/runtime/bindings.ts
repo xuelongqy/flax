@@ -1030,6 +1030,7 @@ const references = new ReferenceCache();
 const objectHandles = references.handles;
 const instanceParents = new Map<string, readonly string[]>();
 const instanceTypes = new WeakMap<object, string>();
+const proxyFactories = new WeakMap<object, object>();
 const genericInstanceTypes = new Set<string>();
 type DartTypeTarget = {
   readonly constructors: Readonly<Record<string, readonly Parameter[]>>;
@@ -1180,6 +1181,7 @@ export function dartType(
   value: object,
   ...args: readonly (FlaxDartTypeInput | string)[]
 ): unknown {
+  value = proxyFactories.get(value) ?? value;
   if (typeof args[0] === 'string') {
     const member = args[0];
     const extension = extensionViews.get(value);
@@ -2307,26 +2309,37 @@ export abstract class FlaxProxyBase {
   }
 }
 
-/** Keeps descriptor calls and native subclass construction on one public export. */
-export function widgetProxyFactory<
+/** Keeps Dart factory calls and JS subclass construction on one public export. */
+export function proxyFactory<
   F extends object,
   C extends abstract new (...args: never[]) => object,
->(
-  factory: F,
-  native: C,
-): F & (new (...args: ConstructorParameters<C>) => InstanceType<C>) {
+>(factory: F, native: C): F & C {
   const callable = function (this: object, ...args: unknown[]): unknown {
     if (new.target) return Reflect.construct(native, args, new.target);
     if (typeof factory !== 'function')
-      throw new TypeError('This Widget has only named constructors');
+      throw new TypeError('This Dart class has only named constructors');
     return nativeApply(factory, undefined, args);
   };
   callable.prototype = native.prototype;
+  proxyFactories.set(native, callable);
+  const definition = proxyDefinitions.get(native);
+  if (definition) {
+    // TS inference can name the internal proxy class as a Dart type argument.
+    instanceTypes.set(native, definition.type);
+    registerDartTypeDescription(native, ['class', definition.type, [], false]);
+  }
+  // Do not mask Dart statics installed lazily on the underlying factory.
+  Reflect.deleteProperty(callable, 'name');
+  Reflect.deleteProperty(callable, 'length');
   Object.setPrototypeOf(callable, factory);
-  registerComponentBase(callable, false);
-  return callable as unknown as F &
-    (new (...args: ConstructorParameters<C>) => InstanceType<C>);
+  return callable as unknown as F & C;
 }
+
+export const widgetProxyFactory: typeof proxyFactory = (factory, native) => {
+  const callable = proxyFactory(factory, native);
+  registerComponentBase(callable, false);
+  return callable;
+};
 
 const memberLayouts = new WeakMap<
   readonly MemberParameter[],

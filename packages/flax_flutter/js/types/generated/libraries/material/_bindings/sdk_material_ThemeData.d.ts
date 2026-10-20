@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput, type DartMap, type DartMapInput } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput, type DartListInput, type DartMap, type DartMapInput } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
@@ -130,15 +130,16 @@ import type * as upstream63 from '@flax/flutter/material/_bindings/sdk_material_
 import '@flax/flutter/material/_bindings/sdk_material_ButtonBarThemeData';
 import type * as upstream64 from '@flax/dart/ui/_bindings/sdk_dart_ui_Brightness';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Brightness';
-import type * as upstream65 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/material/_bindings/sdk_material_MaterialColor';
+import type * as upstream66 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream66 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream67 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream67 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream68 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/theme_data.dart::ThemeData": readonly [];
 }>, Readonly<{
@@ -150,21 +151,1592 @@ export interface ThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMember
         getAdaptation: _FlaxSignature0;
         extension: _FlaxSignature1;
     };
+    readonly brightness: upstream64.Brightness;
+    readonly applyElevationOverlayColor: boolean;
+    readonly cupertinoOverrideTheme: upstream3.NoDefaultCupertinoThemeData | null;
+    readonly extensions: DartMap<{}, upstream4.ThemeExtension<any>>;
+    readonly adaptationMap: DartMap<upstream2.Type, upstream1.Adaptation<{}>>;
+    readonly inputDecorationTheme: upstream5.InputDecorationThemeData;
+    readonly materialTapTargetSize: upstream6.MaterialTapTargetSize;
+    readonly pageTransitionsTheme: upstream7.PageTransitionsTheme;
+    readonly platform: upstream8.TargetPlatform;
+    readonly scrollbarTheme: upstream9.ScrollbarThemeData;
+    readonly splashFactory: upstream10.InteractiveInkFeatureFactory;
+    readonly useMaterial3: boolean;
+    readonly visualDensity: upstream11.VisualDensity;
+    readonly canvasColor: upstream13.Color;
+    readonly cardColor: upstream13.Color;
+    readonly colorScheme: upstream12.ColorScheme;
+    readonly disabledColor: upstream13.Color;
+    readonly dividerColor: upstream13.Color;
+    readonly focusColor: upstream13.Color;
+    readonly highlightColor: upstream13.Color;
+    readonly hintColor: upstream13.Color;
+    readonly hoverColor: upstream13.Color;
+    readonly primaryColor: upstream13.Color;
+    readonly primaryColorDark: upstream13.Color;
+    readonly primaryColorLight: upstream13.Color;
+    readonly scaffoldBackgroundColor: upstream13.Color;
+    readonly secondaryHeaderColor: upstream13.Color;
+    readonly shadowColor: upstream13.Color;
+    readonly splashColor: upstream13.Color;
+    readonly unselectedWidgetColor: upstream13.Color;
+    readonly iconTheme: upstream14.IconThemeData;
+    readonly primaryIconTheme: upstream14.IconThemeData;
+    readonly primaryTextTheme: upstream15.TextTheme;
+    readonly textTheme: upstream15.TextTheme;
+    readonly typography: upstream16.Typography;
+    readonly actionIconTheme: upstream17.ActionIconThemeData | null;
+    readonly appBarTheme: upstream18.AppBarThemeData;
+    readonly badgeTheme: upstream19.BadgeThemeData;
+    readonly bannerTheme: upstream20.MaterialBannerThemeData;
+    readonly bottomAppBarTheme: upstream21.BottomAppBarThemeData;
+    readonly bottomNavigationBarTheme: upstream22.BottomNavigationBarThemeData;
+    readonly bottomSheetTheme: upstream23.BottomSheetThemeData;
+    readonly buttonTheme: upstream24.ButtonThemeData;
+    readonly cardTheme: upstream25.CardThemeData;
+    readonly carouselViewTheme: upstream26.CarouselViewThemeData;
+    readonly checkboxTheme: upstream27.CheckboxThemeData;
+    readonly chipTheme: upstream28.ChipThemeData;
+    readonly dataTableTheme: upstream29.DataTableThemeData;
+    readonly datePickerTheme: upstream30.DatePickerThemeData;
+    readonly dialogTheme: upstream31.DialogThemeData;
+    readonly dividerTheme: upstream32.DividerThemeData;
+    readonly drawerTheme: upstream33.DrawerThemeData;
+    readonly dropdownMenuTheme: upstream34.DropdownMenuThemeData;
+    readonly elevatedButtonTheme: upstream35.ElevatedButtonThemeData;
+    readonly expansionTileTheme: upstream36.ExpansionTileThemeData;
+    readonly filledButtonTheme: upstream37.FilledButtonThemeData;
+    readonly floatingActionButtonTheme: upstream38.FloatingActionButtonThemeData;
+    readonly iconButtonTheme: upstream39.IconButtonThemeData;
+    readonly listTileTheme: upstream40.ListTileThemeData;
+    readonly menuBarTheme: upstream41.MenuBarThemeData;
+    readonly menuButtonTheme: upstream42.MenuButtonThemeData;
+    readonly menuTheme: upstream43.MenuThemeData;
+    readonly navigationBarTheme: upstream44.NavigationBarThemeData;
+    readonly navigationDrawerTheme: upstream45.NavigationDrawerThemeData;
+    readonly navigationRailTheme: upstream46.NavigationRailThemeData;
+    readonly outlinedButtonTheme: upstream47.OutlinedButtonThemeData;
+    readonly popupMenuTheme: upstream48.PopupMenuThemeData;
+    readonly progressIndicatorTheme: upstream49.ProgressIndicatorThemeData;
+    readonly radioTheme: upstream50.RadioThemeData;
+    readonly searchBarTheme: upstream51.SearchBarThemeData;
+    readonly searchViewTheme: upstream52.SearchViewThemeData;
+    readonly segmentedButtonTheme: upstream53.SegmentedButtonThemeData;
+    readonly sliderTheme: upstream54.SliderThemeData;
+    readonly snackBarTheme: upstream55.SnackBarThemeData;
+    readonly switchTheme: upstream56.SwitchThemeData;
+    readonly tabBarTheme: upstream57.TabBarThemeData;
+    readonly textButtonTheme: upstream58.TextButtonThemeData;
+    readonly textSelectionTheme: upstream59.TextSelectionThemeData;
+    readonly timePickerTheme: upstream60.TimePickerThemeData;
+    readonly toggleButtonsTheme: upstream61.ToggleButtonsThemeData;
+    readonly tooltipTheme: upstream62.TooltipThemeData;
+    readonly buttonBarTheme: upstream63.ButtonBarThemeData;
+    readonly dialogBackgroundColor: upstream13.Color;
+    readonly indicatorColor: upstream13.Color;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream66.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream68.DiagnosticsTreeStyle | null | undefined;
+    }): upstream67.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    getAdaptation<T extends unknown | null = unknown | null>(): upstream1.Adaptation<_FlaxDartOutput<T>> | null;
+    extension<T extends unknown | null = unknown | null>(): _FlaxDartOutput<T> | null;
+    copyWith(options?: {
+        actionIconTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/action_icons_theme.dart::ActionIconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        adaptations?: DartIterableInput<upstream1.Adaptation<{}>, Readonly<{
+            "__flaxBound:package:flutter/src/material/theme_data.dart::Adaptation": readonly [{}];
+        }>> | null | undefined;
+        appBarTheme?: unknown | null | undefined;
+        applyElevationOverlayColor?: boolean | null | undefined;
+        badgeTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/badge_theme.dart::BadgeThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        bannerTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/banner_theme.dart::MaterialBannerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        bottomAppBarTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/bottom_app_bar_theme.dart::BottomAppBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        bottomNavigationBarTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        bottomSheetTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/bottom_sheet_theme.dart::BottomSheetThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        brightness?: upstream64.Brightness | null | undefined;
+        buttonBarTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/button_bar_theme.dart::ButtonBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        buttonTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/button_theme.dart::ButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        canvasColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        cardColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        cardTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/card_theme.dart::CardThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        carouselViewTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/carousel_theme.dart::CarouselViewThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        checkboxTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/checkbox_theme.dart::CheckboxThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        chipTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/chip_theme.dart::ChipThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        colorScheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/color_scheme.dart::ColorScheme": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        cupertinoOverrideTheme?: Readonly<{
+            "__flaxBound:package:flutter/src/cupertino/theme.dart::NoDefaultCupertinoThemeData": readonly [];
+        }> | null | undefined;
+        dataTableTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/data_table_theme.dart::DataTableThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        datePickerTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/date_picker_theme.dart::DatePickerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        dialogBackgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        dialogTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/dialog_theme.dart::DialogThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        disabledColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        dividerColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        dividerTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/divider_theme.dart::DividerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        drawerTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/drawer_theme.dart::DrawerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        dropdownMenuTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/dropdown_menu_theme.dart::DropdownMenuThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        elevatedButtonTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/elevated_button_theme.dart::ElevatedButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        expansionTileTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/expansion_tile_theme.dart::ExpansionTileThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        extensions?: DartIterableInput<upstream4.ThemeExtension<any>, Readonly<{
+            "__flaxBound:package:flutter/src/material/theme_data.dart::ThemeExtension": readonly [unknown | null];
+        }>> | null | undefined;
+        filledButtonTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/filled_button_theme.dart::FilledButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        floatingActionButtonTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/floating_action_button_theme.dart::FloatingActionButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        focusColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        highlightColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        hintColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        hoverColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        iconButtonTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/icon_button_theme.dart::IconButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        iconTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        indicatorColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        inputDecorationTheme?: unknown | null | undefined;
+        listTileTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/list_tile_theme.dart::ListTileThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        materialTapTargetSize?: upstream6.MaterialTapTargetSize | null | undefined;
+        menuBarTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/menu_bar_theme.dart::MenuBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        menuButtonTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/menu_button_theme.dart::MenuButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        menuTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navigationBarTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/navigation_bar_theme.dart::NavigationBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navigationDrawerTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/navigation_drawer_theme.dart::NavigationDrawerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navigationRailTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/navigation_rail_theme.dart::NavigationRailThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        outlinedButtonTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/outlined_button_theme.dart::OutlinedButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        pageTransitionsTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/page_transitions_theme.dart::PageTransitionsTheme": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        platform?: upstream8.TargetPlatform | null | undefined;
+        popupMenuTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/popup_menu_theme.dart::PopupMenuThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        primaryColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        primaryColorDark?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        primaryColorLight?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        primaryIconTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        primaryTextTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        progressIndicatorTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/progress_indicator_theme.dart::ProgressIndicatorThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        radioTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/radio_theme.dart::RadioThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        scaffoldBackgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        scrollbarTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/scrollbar_theme.dart::ScrollbarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        searchBarTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/search_bar_theme.dart::SearchBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        searchViewTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/search_view_theme.dart::SearchViewThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        secondaryHeaderColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        segmentedButtonTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/segmented_button_theme.dart::SegmentedButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        shadowColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        sliderTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        snackBarTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/snack_bar_theme.dart::SnackBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        splashColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        splashFactory?: Readonly<{
+            "__flaxBound:package:flutter/src/material/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
+        }> | null | undefined;
+        switchTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/switch_theme.dart::SwitchThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        tabBarTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/tab_bar_theme.dart::TabBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        textButtonTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/text_button_theme.dart::TextButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        textSelectionTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/text_selection_theme.dart::TextSelectionThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        textTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        timePickerTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/time_picker_theme.dart::TimePickerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        toggleButtonsTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/toggle_buttons_theme.dart::ToggleButtonsThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        tooltipTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/tooltip_theme.dart::TooltipThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        typography?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/typography.dart::Typography": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        unselectedWidgetColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        useMaterial3?: boolean | null | undefined;
+        visualDensity?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): ThemeData;
 }
-export interface ThemeData {
-    readonly [_flaxDartTypeValue]: ThemeData;
+export declare function _ThemeDataFactory(options?: {
+    adaptations?: DartIterableInput<upstream1.Adaptation<{}>, Readonly<{
+        "__flaxBound:package:flutter/src/material/theme_data.dart::Adaptation": readonly [{}];
+    }>> | null | undefined;
+    applyElevationOverlayColor?: boolean | null | undefined;
+    cupertinoOverrideTheme?: Readonly<{
+        "__flaxBound:package:flutter/src/cupertino/theme.dart::NoDefaultCupertinoThemeData": readonly [];
+    }> | null | undefined;
+    extensions?: DartIterableInput<upstream4.ThemeExtension<any>, Readonly<{
+        "__flaxBound:package:flutter/src/material/theme_data.dart::ThemeExtension": readonly [unknown | null];
+    }>> | null | undefined;
+    inputDecorationTheme?: unknown | null | undefined;
+    materialTapTargetSize?: upstream6.MaterialTapTargetSize | null | undefined;
+    pageTransitionsTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/page_transitions_theme.dart::PageTransitionsTheme": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    platform?: upstream8.TargetPlatform | null | undefined;
+    scrollbarTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/scrollbar_theme.dart::ScrollbarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    splashFactory?: Readonly<{
+        "__flaxBound:package:flutter/src/material/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
+    }> | null | undefined;
+    useMaterial3?: boolean | null | undefined;
+    useSystemColors?: boolean | null | undefined;
+    visualDensity?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    colorScheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/color_scheme.dart::ColorScheme": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    brightness?: upstream64.Brightness | null | undefined;
+    colorSchemeSeed?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    canvasColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    cardColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    dividerColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    focusColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    highlightColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    hintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    hoverColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    primaryColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    primaryColorDark?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    primaryColorLight?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    primarySwatch?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/colors.dart::MaterialColor": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/colors.dart::ColorSwatch": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>) | null | undefined;
+    scaffoldBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    secondaryHeaderColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    splashColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    unselectedWidgetColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    fontFamily?: string | null | undefined;
+    fontFamilyFallback?: DartListInput<string, string> | null | undefined;
+    package?: string | null | undefined;
+    iconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    primaryIconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    primaryTextTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    typography?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/typography.dart::Typography": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    actionIconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/action_icons_theme.dart::ActionIconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    appBarTheme?: unknown | null | undefined;
+    badgeTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/badge_theme.dart::BadgeThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    bannerTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/banner_theme.dart::MaterialBannerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    bottomAppBarTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/bottom_app_bar_theme.dart::BottomAppBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    bottomNavigationBarTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    bottomSheetTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/bottom_sheet_theme.dart::BottomSheetThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    buttonTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/button_theme.dart::ButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    cardTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/card_theme.dart::CardThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    carouselViewTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/carousel_theme.dart::CarouselViewThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    checkboxTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/checkbox_theme.dart::CheckboxThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    chipTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/chip_theme.dart::ChipThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    dataTableTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/data_table_theme.dart::DataTableThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    datePickerTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/date_picker_theme.dart::DatePickerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    dialogTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/dialog_theme.dart::DialogThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    dividerTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/divider_theme.dart::DividerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    drawerTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/drawer_theme.dart::DrawerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    dropdownMenuTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/dropdown_menu_theme.dart::DropdownMenuThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    elevatedButtonTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/elevated_button_theme.dart::ElevatedButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    expansionTileTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/expansion_tile_theme.dart::ExpansionTileThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    filledButtonTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/filled_button_theme.dart::FilledButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    floatingActionButtonTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/floating_action_button_theme.dart::FloatingActionButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    iconButtonTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/icon_button_theme.dart::IconButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    listTileTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/list_tile_theme.dart::ListTileThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    menuBarTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_bar_theme.dart::MenuBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    menuButtonTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_button_theme.dart::MenuButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    menuTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    navigationBarTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/navigation_bar_theme.dart::NavigationBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    navigationDrawerTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/navigation_drawer_theme.dart::NavigationDrawerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    navigationRailTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/navigation_rail_theme.dart::NavigationRailThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    outlinedButtonTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/outlined_button_theme.dart::OutlinedButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    popupMenuTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/popup_menu_theme.dart::PopupMenuThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    progressIndicatorTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/progress_indicator_theme.dart::ProgressIndicatorThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    radioTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/radio_theme.dart::RadioThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    searchBarTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/search_bar_theme.dart::SearchBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    searchViewTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/search_view_theme.dart::SearchViewThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    segmentedButtonTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/segmented_button_theme.dart::SegmentedButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    sliderTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    snackBarTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/snack_bar_theme.dart::SnackBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    switchTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/switch_theme.dart::SwitchThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    tabBarTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/tab_bar_theme.dart::TabBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textButtonTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/text_button_theme.dart::TextButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textSelectionTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/text_selection_theme.dart::TextSelectionThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    timePickerTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/time_picker_theme.dart::TimePickerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    toggleButtonsTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/toggle_buttons_theme.dart::ToggleButtonsThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    tooltipTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/tooltip_theme.dart::TooltipThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    buttonBarTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/button_bar_theme.dart::ButtonBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    dialogBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    indicatorColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+}): ThemeData;
+export declare namespace _ThemeDataFactory {
+    function raw(options: {
+        adaptationMap: DartMapInput<upstream2.Type, upstream1.Adaptation<{}>, Readonly<{
+            "__flaxBound:dart:core::Type": readonly [];
+        }>, Readonly<{
+            "__flaxBound:package:flutter/src/material/theme_data.dart::Adaptation": readonly [{}];
+        }>>;
+        applyElevationOverlayColor: boolean;
+        cupertinoOverrideTheme: Readonly<{
+            "__flaxBound:package:flutter/src/cupertino/theme.dart::NoDefaultCupertinoThemeData": readonly [];
+        }> | null;
+        extensions: DartMapInput<{}, upstream4.ThemeExtension<any>, {}, Readonly<{
+            "__flaxBound:package:flutter/src/material/theme_data.dart::ThemeExtension": readonly [unknown | null];
+        }>>;
+        inputDecorationTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/input_decorator.dart::InputDecorationThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        materialTapTargetSize: upstream6.MaterialTapTargetSize;
+        pageTransitionsTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/page_transitions_theme.dart::PageTransitionsTheme": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        platform: upstream8.TargetPlatform;
+        scrollbarTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/scrollbar_theme.dart::ScrollbarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        splashFactory: Readonly<{
+            "__flaxBound:package:flutter/src/material/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
+        }>;
+        useMaterial3: boolean;
+        visualDensity: Readonly<{
+            "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        colorScheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/color_scheme.dart::ColorScheme": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        canvasColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        cardColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        disabledColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        dividerColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        focusColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        highlightColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        hintColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        hoverColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        primaryColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        primaryColorDark: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        primaryColorLight: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        scaffoldBackgroundColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        secondaryHeaderColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        shadowColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        splashColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        unselectedWidgetColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        iconTheme: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        primaryIconTheme: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        primaryTextTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        textTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        typography: Readonly<{
+            "__flaxBound:package:flutter/src/material/typography.dart::Typography": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        actionIconTheme: (Readonly<{
+            "__flaxBound:package:flutter/src/material/action_icons_theme.dart::ActionIconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null;
+        appBarTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/app_bar_theme.dart::AppBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        badgeTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/badge_theme.dart::BadgeThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        bannerTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/banner_theme.dart::MaterialBannerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        bottomAppBarTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/bottom_app_bar_theme.dart::BottomAppBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        bottomNavigationBarTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        bottomSheetTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/bottom_sheet_theme.dart::BottomSheetThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        buttonTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/button_theme.dart::ButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        cardTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/card_theme.dart::CardThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        carouselViewTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/carousel_theme.dart::CarouselViewThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        checkboxTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/checkbox_theme.dart::CheckboxThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        chipTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/chip_theme.dart::ChipThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        dataTableTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/data_table_theme.dart::DataTableThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        datePickerTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/date_picker_theme.dart::DatePickerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        dialogTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/dialog_theme.dart::DialogThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        dividerTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/divider_theme.dart::DividerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        drawerTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/drawer_theme.dart::DrawerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        dropdownMenuTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/dropdown_menu_theme.dart::DropdownMenuThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        elevatedButtonTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/elevated_button_theme.dart::ElevatedButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        expansionTileTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/expansion_tile_theme.dart::ExpansionTileThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        filledButtonTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/filled_button_theme.dart::FilledButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        floatingActionButtonTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/floating_action_button_theme.dart::FloatingActionButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        iconButtonTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/icon_button_theme.dart::IconButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        listTileTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/list_tile_theme.dart::ListTileThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        menuBarTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/menu_bar_theme.dart::MenuBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        menuButtonTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/menu_button_theme.dart::MenuButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        menuTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        navigationBarTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/navigation_bar_theme.dart::NavigationBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        navigationDrawerTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/navigation_drawer_theme.dart::NavigationDrawerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        navigationRailTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/navigation_rail_theme.dart::NavigationRailThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        outlinedButtonTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/outlined_button_theme.dart::OutlinedButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        popupMenuTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/popup_menu_theme.dart::PopupMenuThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        progressIndicatorTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/progress_indicator_theme.dart::ProgressIndicatorThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        radioTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/radio_theme.dart::RadioThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        searchBarTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/search_bar_theme.dart::SearchBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        searchViewTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/search_view_theme.dart::SearchViewThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        segmentedButtonTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/segmented_button_theme.dart::SegmentedButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        sliderTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        snackBarTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/snack_bar_theme.dart::SnackBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        switchTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/switch_theme.dart::SwitchThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        tabBarTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/tab_bar_theme.dart::TabBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        textButtonTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/text_button_theme.dart::TextButtonThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        textSelectionTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/text_selection_theme.dart::TextSelectionThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        timePickerTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/time_picker_theme.dart::TimePickerThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        toggleButtonsTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/toggle_buttons_theme.dart::ToggleButtonsThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        tooltipTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/tooltip_theme.dart::TooltipThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        buttonBarTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/button_bar_theme.dart::ButtonBarThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        dialogBackgroundColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        indicatorColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+    }): ThemeData;
+}
+export declare namespace _ThemeDataFactory {
+    function from(options: {
+        colorScheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/color_scheme.dart::ColorScheme": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        textTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        useMaterial3?: boolean | null | undefined;
+    }): ThemeData;
+}
+export declare namespace _ThemeDataFactory {
+    function light(options?: {
+        useMaterial3?: boolean | null | undefined;
+    }): ThemeData;
+}
+export declare namespace _ThemeDataFactory {
+    function dark(options?: {
+        useMaterial3?: boolean | null | undefined;
+    }): ThemeData;
+}
+export declare namespace _ThemeDataFactory {
+    function fallback(options?: {
+        useMaterial3?: boolean | null | undefined;
+    }): ThemeData;
+}
+export interface _ThemeDataNative extends ThemeData {
+    readonly [_flaxDartTypeValue]: _ThemeDataNative;
+    readonly [_flaxDartConstructors]?: {
+        "raw": (options: {
+            adaptationMap: DartMapInput<upstream2.Type, upstream1.Adaptation<{}>, Readonly<{
+                "__flaxBound:dart:core::Type": readonly [];
+            }>, Readonly<{
+                "__flaxBound:package:flutter/src/material/theme_data.dart::Adaptation": readonly [{}];
+            }>>;
+            applyElevationOverlayColor: boolean;
+            cupertinoOverrideTheme: Readonly<{
+                "__flaxBound:package:flutter/src/cupertino/theme.dart::NoDefaultCupertinoThemeData": readonly [];
+            }> | null;
+            extensions: DartMapInput<{}, upstream4.ThemeExtension<any>, {}, Readonly<{
+                "__flaxBound:package:flutter/src/material/theme_data.dart::ThemeExtension": readonly [unknown | null];
+            }>>;
+            inputDecorationTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/input_decorator.dart::InputDecorationThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            materialTapTargetSize: upstream6.MaterialTapTargetSize;
+            pageTransitionsTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/page_transitions_theme.dart::PageTransitionsTheme": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            platform: upstream8.TargetPlatform;
+            scrollbarTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/scrollbar_theme.dart::ScrollbarThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            splashFactory: Readonly<{
+                "__flaxBound:package:flutter/src/material/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
+            }>;
+            useMaterial3: boolean;
+            visualDensity: Readonly<{
+                "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            colorScheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/color_scheme.dart::ColorScheme": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            canvasColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            cardColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            disabledColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            dividerColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            focusColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            highlightColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            hintColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            hoverColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            primaryColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            primaryColorDark: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            primaryColorLight: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            scaffoldBackgroundColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            secondaryHeaderColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            shadowColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            splashColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            unselectedWidgetColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            iconTheme: Readonly<{
+                "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            primaryIconTheme: Readonly<{
+                "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            primaryTextTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            textTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            typography: Readonly<{
+                "__flaxBound:package:flutter/src/material/typography.dart::Typography": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            actionIconTheme: (Readonly<{
+                "__flaxBound:package:flutter/src/material/action_icons_theme.dart::ActionIconThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>) | null;
+            appBarTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/app_bar_theme.dart::AppBarThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            badgeTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/badge_theme.dart::BadgeThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            bannerTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/banner_theme.dart::MaterialBannerThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            bottomAppBarTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/bottom_app_bar_theme.dart::BottomAppBarThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            bottomNavigationBarTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            bottomSheetTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/bottom_sheet_theme.dart::BottomSheetThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            buttonTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/button_theme.dart::ButtonThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            cardTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/card_theme.dart::CardThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            carouselViewTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/carousel_theme.dart::CarouselViewThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            checkboxTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/checkbox_theme.dart::CheckboxThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            chipTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/chip_theme.dart::ChipThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            dataTableTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/data_table_theme.dart::DataTableThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            datePickerTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/date_picker_theme.dart::DatePickerThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            dialogTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/dialog_theme.dart::DialogThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            dividerTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/divider_theme.dart::DividerThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            drawerTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/drawer_theme.dart::DrawerThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            dropdownMenuTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/dropdown_menu_theme.dart::DropdownMenuThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            elevatedButtonTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/elevated_button_theme.dart::ElevatedButtonThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            expansionTileTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/expansion_tile_theme.dart::ExpansionTileThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            filledButtonTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/filled_button_theme.dart::FilledButtonThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            floatingActionButtonTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/floating_action_button_theme.dart::FloatingActionButtonThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            iconButtonTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/icon_button_theme.dart::IconButtonThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            listTileTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/list_tile_theme.dart::ListTileThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            menuBarTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/menu_bar_theme.dart::MenuBarThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            menuButtonTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/menu_button_theme.dart::MenuButtonThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            menuTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            navigationBarTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/navigation_bar_theme.dart::NavigationBarThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            navigationDrawerTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/navigation_drawer_theme.dart::NavigationDrawerThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            navigationRailTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/navigation_rail_theme.dart::NavigationRailThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            outlinedButtonTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/outlined_button_theme.dart::OutlinedButtonThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            popupMenuTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/popup_menu_theme.dart::PopupMenuThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            progressIndicatorTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/progress_indicator_theme.dart::ProgressIndicatorThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            radioTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/radio_theme.dart::RadioThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            searchBarTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/search_bar_theme.dart::SearchBarThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            searchViewTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/search_view_theme.dart::SearchViewThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            segmentedButtonTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/segmented_button_theme.dart::SegmentedButtonThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            sliderTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            snackBarTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/snack_bar_theme.dart::SnackBarThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            switchTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/switch_theme.dart::SwitchThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            tabBarTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/tab_bar_theme.dart::TabBarThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            textButtonTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/text_button_theme.dart::TextButtonThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            textSelectionTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/text_selection_theme.dart::TextSelectionThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            timePickerTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/time_picker_theme.dart::TimePickerThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            toggleButtonsTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/toggle_buttons_theme.dart::ToggleButtonsThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            tooltipTheme: Readonly<{
+                "__flaxBound:package:flutter/src/material/tooltip_theme.dart::TooltipThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>;
+            buttonBarTheme?: (Readonly<{
+                "__flaxBound:package:flutter/src/material/button_bar_theme.dart::ButtonBarThemeData": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>) | null | undefined;
+            dialogBackgroundColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            indicatorColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+        }) => void;
+    };
     readonly [_flaxDartMethodCases]?: {
         getAdaptation: _FlaxSignature2;
         extension: _FlaxSignature3;
     };
     toStringShort(): string;
     toString(options?: {
-        minLevel?: upstream65.DiagnosticLevel | undefined;
+        minLevel?: upstream66.DiagnosticLevel | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream67.DiagnosticsTreeStyle | null | undefined;
-    }): upstream66.DiagnosticsNode;
+        style?: upstream68.DiagnosticsTreeStyle | null | undefined;
+    }): upstream67.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -607,7 +2179,7 @@ export interface ThemeData {
     get dialogBackgroundColor(): upstream13.Color;
     get indicatorColor(): upstream13.Color;
 }
-export declare abstract class ThemeData extends _FlaxProxyBase {
+export declare abstract class _ThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:ThemeData", readonly [], false];
@@ -972,8 +2544,9 @@ export declare abstract class ThemeData extends _FlaxProxyBase {
             "__flaxBound:dart:ui::Color": readonly [];
         }>;
     });
+    constructor(call: _FlaxProxySuper<_ThemeDataNative>);
 }
-export declare namespace ThemeData {
+export declare namespace _ThemeDataFactory {
     function implement(args: [options: {
         adaptationMap: DartMapInput<upstream2.Type, upstream1.Adaptation<{}>, Readonly<{
             "__flaxBound:dart:core::Type": readonly [];
@@ -1336,7 +2909,368 @@ export declare namespace ThemeData {
         }>;
     }], implementation: {}): ThemeData;
 }
-export declare namespace ThemeData {
+declare const _ThemeDataBinding: typeof _ThemeDataFactory & (new (options: {
+    adaptationMap: DartMapInput<upstream2.Type, upstream1.Adaptation<{}>, Readonly<{
+        "__flaxBound:dart:core::Type": readonly [];
+    }>, Readonly<{
+        "__flaxBound:package:flutter/src/material/theme_data.dart::Adaptation": readonly [{}];
+    }>>;
+    applyElevationOverlayColor: boolean;
+    cupertinoOverrideTheme: Readonly<{
+        "__flaxBound:package:flutter/src/cupertino/theme.dart::NoDefaultCupertinoThemeData": readonly [];
+    }> | null;
+    extensions: DartMapInput<{}, upstream4.ThemeExtension<any>, {}, Readonly<{
+        "__flaxBound:package:flutter/src/material/theme_data.dart::ThemeExtension": readonly [unknown | null];
+    }>>;
+    inputDecorationTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/input_decorator.dart::InputDecorationThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    materialTapTargetSize: upstream6.MaterialTapTargetSize;
+    pageTransitionsTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/page_transitions_theme.dart::PageTransitionsTheme": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    platform: upstream8.TargetPlatform;
+    scrollbarTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/scrollbar_theme.dart::ScrollbarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    splashFactory: Readonly<{
+        "__flaxBound:package:flutter/src/material/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
+    }>;
+    useMaterial3: boolean;
+    visualDensity: Readonly<{
+        "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    colorScheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/color_scheme.dart::ColorScheme": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    canvasColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    cardColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    disabledColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    dividerColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    focusColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    highlightColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    hintColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    hoverColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    primaryColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    primaryColorDark: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    primaryColorLight: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    scaffoldBackgroundColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    secondaryHeaderColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    shadowColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    splashColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    unselectedWidgetColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    iconTheme: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    primaryIconTheme: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    primaryTextTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    textTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/text_theme.dart::TextTheme": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    typography: Readonly<{
+        "__flaxBound:package:flutter/src/material/typography.dart::Typography": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    actionIconTheme: (Readonly<{
+        "__flaxBound:package:flutter/src/material/action_icons_theme.dart::ActionIconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null;
+    appBarTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/app_bar_theme.dart::AppBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    badgeTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/badge_theme.dart::BadgeThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    bannerTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/banner_theme.dart::MaterialBannerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    bottomAppBarTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/bottom_app_bar_theme.dart::BottomAppBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    bottomNavigationBarTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    bottomSheetTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/bottom_sheet_theme.dart::BottomSheetThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    buttonTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/button_theme.dart::ButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    cardTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/card_theme.dart::CardThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    carouselViewTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/carousel_theme.dart::CarouselViewThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    checkboxTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/checkbox_theme.dart::CheckboxThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    chipTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/chip_theme.dart::ChipThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    dataTableTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/data_table_theme.dart::DataTableThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    datePickerTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/date_picker_theme.dart::DatePickerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    dialogTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/dialog_theme.dart::DialogThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    dividerTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/divider_theme.dart::DividerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    drawerTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/drawer_theme.dart::DrawerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    dropdownMenuTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/dropdown_menu_theme.dart::DropdownMenuThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    elevatedButtonTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/elevated_button_theme.dart::ElevatedButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    expansionTileTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/expansion_tile_theme.dart::ExpansionTileThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    filledButtonTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/filled_button_theme.dart::FilledButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    floatingActionButtonTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/floating_action_button_theme.dart::FloatingActionButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    iconButtonTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/icon_button_theme.dart::IconButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    listTileTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/list_tile_theme.dart::ListTileThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    menuBarTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_bar_theme.dart::MenuBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    menuButtonTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_button_theme.dart::MenuButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    menuTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_theme.dart::MenuThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    navigationBarTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/navigation_bar_theme.dart::NavigationBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    navigationDrawerTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/navigation_drawer_theme.dart::NavigationDrawerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    navigationRailTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/navigation_rail_theme.dart::NavigationRailThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    outlinedButtonTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/outlined_button_theme.dart::OutlinedButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    popupMenuTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/popup_menu_theme.dart::PopupMenuThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    progressIndicatorTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/progress_indicator_theme.dart::ProgressIndicatorThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    radioTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/radio_theme.dart::RadioThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    searchBarTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/search_bar_theme.dart::SearchBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    searchViewTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/search_view_theme.dart::SearchViewThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    segmentedButtonTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/segmented_button_theme.dart::SegmentedButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    sliderTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    snackBarTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/snack_bar_theme.dart::SnackBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    switchTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/switch_theme.dart::SwitchThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    tabBarTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/tab_bar_theme.dart::TabBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    textButtonTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/text_button_theme.dart::TextButtonThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    textSelectionTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/text_selection_theme.dart::TextSelectionThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    timePickerTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/time_picker_theme.dart::TimePickerThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    toggleButtonsTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/toggle_buttons_theme.dart::ToggleButtonsThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    tooltipTheme: Readonly<{
+        "__flaxBound:package:flutter/src/material/tooltip_theme.dart::TooltipThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    buttonBarTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/button_bar_theme.dart::ButtonBarThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    dialogBackgroundColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    indicatorColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+}) => _ThemeDataNative) & (new (call: _FlaxProxySuper<_ThemeDataNative>) => _ThemeDataNative);
+export declare namespace _ThemeDataFactory {
     function localize(baseTheme: Readonly<{
         "__flaxBound:package:flutter/src/material/theme_data.dart::ThemeData": readonly [];
     }> & Readonly<{
@@ -1347,12 +3281,12 @@ export declare namespace ThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>): ThemeData;
 }
-export declare namespace ThemeData {
+export declare namespace _ThemeDataFactory {
     function estimateBrightnessForColor(color: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }>): upstream64.Brightness;
 }
-export declare namespace ThemeData {
+export declare namespace _ThemeDataFactory {
     function lerp(a: Readonly<{
         "__flaxBound:package:flutter/src/material/theme_data.dart::ThemeData": readonly [];
     }> & Readonly<{
@@ -1363,6 +3297,7 @@ export declare namespace ThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>, t: number): ThemeData;
 }
+export declare const ThemeData: typeof _ThemeDataBinding & _FlaxInstanceType<ThemeData> & _FlaxDartType<ThemeData, readonly ["class", "flax.core/sdk_material#type:ThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "brightness" | "applyElevationOverlayColor" | "cupertinoOverrideTheme" | "extensions" | "adaptationMap" | "inputDecorationTheme" | "materialTapTargetSize" | "pageTransitionsTheme" | "platform" | "scrollbarTheme" | "splashFactory" | "useMaterial3" | "visualDensity" | "canvasColor" | "cardColor" | "colorScheme" | "disabledColor" | "dividerColor" | "focusColor" | "highlightColor" | "hintColor" | "hoverColor" | "primaryColor" | "primaryColorDark" | "primaryColorLight" | "scaffoldBackgroundColor" | "secondaryHeaderColor" | "shadowColor" | "splashColor" | "unselectedWidgetColor" | "iconTheme" | "primaryIconTheme" | "primaryTextTheme" | "textTheme" | "typography" | "actionIconTheme" | "appBarTheme" | "badgeTheme" | "bannerTheme" | "bottomAppBarTheme" | "bottomNavigationBarTheme" | "bottomSheetTheme" | "buttonTheme" | "cardTheme" | "carouselViewTheme" | "checkboxTheme" | "chipTheme" | "dataTableTheme" | "datePickerTheme" | "dialogTheme" | "dividerTheme" | "drawerTheme" | "dropdownMenuTheme" | "elevatedButtonTheme" | "expansionTileTheme" | "filledButtonTheme" | "floatingActionButtonTheme" | "iconButtonTheme" | "listTileTheme" | "menuBarTheme" | "menuButtonTheme" | "menuTheme" | "navigationBarTheme" | "navigationDrawerTheme" | "navigationRailTheme" | "outlinedButtonTheme" | "popupMenuTheme" | "progressIndicatorTheme" | "radioTheme" | "searchBarTheme" | "searchViewTheme" | "segmentedButtonTheme" | "sliderTheme" | "snackBarTheme" | "switchTheme" | "tabBarTheme" | "textButtonTheme" | "textSelectionTheme" | "timePickerTheme" | "toggleButtonsTheme" | "tooltipTheme" | "buttonBarTheme" | "dialogBackgroundColor" | "indicatorColor" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "getAdaptation" | "extension" | "copyWith" | "__flaxBound:package:flutter/src/material/theme_data.dart::ThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? () => upstream1.Adaptation<_Selected0> | null : never : never;

@@ -437,6 +437,12 @@ importers:
       '@flax/core-runtime':
         specifier: workspace:*
         version: link:../../flax/js
+      '@flax/cupertino-ui':
+        specifier: workspace:*
+        version: link:../../flax_cupertino_ui/js-types
+      '@flax/cupertino-ui-runtime':
+        specifier: workspace:*
+        version: link:../../flax_cupertino_ui/js
       '@flax/dart':
         specifier: workspace:*
         version: link:../../flax_dart/js
@@ -456,6 +462,9 @@ importers:
       '@flax/core':
         specifier: workspace:*
         version: link:../../flax/js-types
+      '@flax/cupertino-ui':
+        specifier: workspace:*
+        version: link:../../flax_cupertino_ui/js-types
       '@flax/dart':
         specifier: workspace:*
         version: link:../../flax_dart/js

@@ -16,7 +16,7 @@ import '@flax/flutter/widgets/_bindings/components_State';
 import type * as upstream7 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RestorableCupertinoTabController extends Omit<upstream0.RestorableChangeNotifier<upstream1.CupertinoTabController>, _flaxOwnMembers0>, Omit<upstream2.RestorableListenable<upstream1.CupertinoTabController>, _flaxOwnMembers0 | keyof upstream0.RestorableChangeNotifier<upstream1.CupertinoTabController>>, Omit<upstream3.RestorableProperty<upstream1.CupertinoTabController>, _flaxOwnMembers0 | keyof upstream0.RestorableChangeNotifier<upstream1.CupertinoTabController> | keyof upstream2.RestorableListenable<upstream1.CupertinoTabController>>, Omit<upstream4.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.RestorableChangeNotifier<upstream1.CupertinoTabController> | keyof upstream2.RestorableListenable<upstream1.CupertinoTabController> | keyof upstream3.RestorableProperty<upstream1.CupertinoTabController>>, Omit<upstream5.Listenable, _flaxOwnMembers0 | keyof upstream0.RestorableChangeNotifier<upstream1.CupertinoTabController> | keyof upstream2.RestorableListenable<upstream1.CupertinoTabController> | keyof upstream3.RestorableProperty<upstream1.CupertinoTabController> | keyof upstream4.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/cupertino/tab_scaffold.dart::RestorableCupertinoTabController": readonly [];
 }>, Readonly<{
@@ -32,9 +32,30 @@ export interface RestorableCupertinoTabController extends Omit<upstream0.Restora
 }> {
     readonly __RestorableCupertinoTabController: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableCupertinoTabController;
+    readonly value: upstream1.CupertinoTabController;
+    readonly enabled: boolean;
+    readonly state: upstream6.State<upstream7.StatefulWidget>;
+    readonly isRegistered: boolean;
+    readonly hasListeners: boolean;
+    initWithValue(value: Readonly<{
+        "__flaxBound:package:flutter/src/cupertino/tab_scaffold.dart::CupertinoTabController": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>): void;
+    dispose(): void;
+    createDefaultValue(): upstream1.CupertinoTabController;
+    fromPrimitives(data: unknown | null): upstream1.CupertinoTabController;
+    toPrimitives(): unknown | null;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
 }
-export interface RestorableCupertinoTabController {
-    readonly [_flaxDartTypeValue]: RestorableCupertinoTabController;
+export declare function _RestorableCupertinoTabControllerFactory(options?: {
+    initialIndex?: number | undefined;
+}): RestorableCupertinoTabController;
+export interface _RestorableCupertinoTabControllerNative extends RestorableCupertinoTabController {
+    readonly [_flaxDartTypeValue]: _RestorableCupertinoTabControllerNative;
     initWithValue(value: Readonly<{
         "__flaxBound:package:flutter/src/cupertino/tab_scaffold.dart::CupertinoTabController": readonly [];
     }> & Readonly<{
@@ -54,7 +75,7 @@ export interface RestorableCupertinoTabController {
     get isRegistered(): boolean;
     get hasListeners(): boolean;
 }
-export declare abstract class RestorableCupertinoTabController extends _FlaxProxyBase {
+export declare abstract class _RestorableCupertinoTabControllerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RestorableCupertinoTabController>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RestorableCupertinoTabController;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_cupertino#type:RestorableCupertinoTabController", readonly [], false];
@@ -62,10 +83,14 @@ export declare abstract class RestorableCupertinoTabController extends _FlaxProx
         initialIndex?: number | undefined;
     });
 }
-export declare namespace RestorableCupertinoTabController {
+export declare namespace _RestorableCupertinoTabControllerFactory {
     function implement(args: [options?: {
         initialIndex?: number | undefined;
     }], implementation: {}): RestorableCupertinoTabController;
 }
+declare const _RestorableCupertinoTabControllerBinding: typeof _RestorableCupertinoTabControllerFactory & (new (options?: {
+    initialIndex?: number | undefined;
+}) => _RestorableCupertinoTabControllerNative);
+export declare const RestorableCupertinoTabController: typeof _RestorableCupertinoTabControllerBinding & _FlaxInstanceType<RestorableCupertinoTabController> & _FlaxDartType<RestorableCupertinoTabController, readonly ["class", "flax.core/sdk_cupertino#type:RestorableCupertinoTabController", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "initWithValue" | "dispose" | "createDefaultValue" | "fromPrimitives" | "toPrimitives" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/cupertino/tab_scaffold.dart::RestorableCupertinoTabController" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableChangeNotifier" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableListenable" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

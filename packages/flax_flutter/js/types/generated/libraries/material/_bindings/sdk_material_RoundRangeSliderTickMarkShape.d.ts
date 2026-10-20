@@ -11,7 +11,7 @@ import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
 import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RoundRangeSliderTickMarkShape extends Omit<upstream0.RangeSliderTickMarkShape, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RoundRangeSliderTickMarkShape": readonly [];
 }>, Readonly<{
@@ -19,9 +19,68 @@ export interface RoundRangeSliderTickMarkShape extends Omit<upstream0.RangeSlide
 }> {
     readonly __RoundRangeSliderTickMarkShape: unique symbol;
     readonly [_flaxDartTypeValue]: RoundRangeSliderTickMarkShape;
+    readonly tickMarkRadius: number | null;
+    getPreferredSize(options: {
+        isEnabled?: boolean | undefined;
+        sliderTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+    }): upstream1.Size;
+    paint(context: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext": readonly [];
+    }>, center: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options: {
+        enableAnimation: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>;
+        endThumbCenter: Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>;
+        isEnabled?: boolean | undefined;
+        parentBox: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        sliderTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        startThumbCenter: Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>;
+        textDirection: upstream7.TextDirection;
+    }): void;
 }
-export interface RoundRangeSliderTickMarkShape {
-    readonly [_flaxDartTypeValue]: RoundRangeSliderTickMarkShape;
+export declare function _RoundRangeSliderTickMarkShapeFactory(options?: {
+    tickMarkRadius?: number | null | undefined;
+}): RoundRangeSliderTickMarkShape;
+export interface _RoundRangeSliderTickMarkShapeNative extends RoundRangeSliderTickMarkShape {
+    readonly [_flaxDartTypeValue]: _RoundRangeSliderTickMarkShapeNative;
     getPreferredSize(options: {
         sliderTheme: Readonly<{
             "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
@@ -79,7 +138,7 @@ export interface RoundRangeSliderTickMarkShape {
     }): void;
     get tickMarkRadius(): number | null;
 }
-export declare abstract class RoundRangeSliderTickMarkShape extends _FlaxProxyBase {
+export declare abstract class _RoundRangeSliderTickMarkShapeNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RoundRangeSliderTickMarkShape>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RoundRangeSliderTickMarkShape;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:RoundRangeSliderTickMarkShape", readonly [], false];
@@ -87,10 +146,14 @@ export declare abstract class RoundRangeSliderTickMarkShape extends _FlaxProxyBa
         tickMarkRadius?: number | null | undefined;
     });
 }
-export declare namespace RoundRangeSliderTickMarkShape {
+export declare namespace _RoundRangeSliderTickMarkShapeFactory {
     function implement(args: [options?: {
         tickMarkRadius?: number | null | undefined;
     }], implementation: {}): RoundRangeSliderTickMarkShape;
 }
+declare const _RoundRangeSliderTickMarkShapeBinding: typeof _RoundRangeSliderTickMarkShapeFactory & (new (options?: {
+    tickMarkRadius?: number | null | undefined;
+}) => _RoundRangeSliderTickMarkShapeNative);
+export declare const RoundRangeSliderTickMarkShape: typeof _RoundRangeSliderTickMarkShapeBinding & _FlaxInstanceType<RoundRangeSliderTickMarkShape> & _FlaxDartType<RoundRangeSliderTickMarkShape, readonly ["class", "flax.core/sdk_material#type:RoundRangeSliderTickMarkShape", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "tickMarkRadius" | "getPreferredSize" | "paint" | "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RoundRangeSliderTickMarkShape" | "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderTickMarkShape";
 export {};

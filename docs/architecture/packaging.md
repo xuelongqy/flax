@@ -98,6 +98,8 @@ the authoritative TypeScript surface. Core physically delivers the supported Flu
 bindings under `@flax/flutter/*` and Dart SDK bindings under `@flax/dart/*`. The
 independent `material_ui` and `cupertino_ui` plugins use `@flax/material-ui` and
 `@flax/cupertino-ui`; they do not replace Flutter's own Material and Cupertino modules.
+The formal Core still includes both native Flutter libraries. The standalone UI binding
+selections remain curated; a full-library split has not been delivered.
 `@flax/core/navigation` remains a Core-owned public implementation entry.
 
 Host capabilities have separate public declarations and runtime delivery. `@flax/core`,
@@ -141,12 +143,12 @@ ordinary module type imports at shared boundaries.
 ## Binding manifests
 
 Every implemented binding package commits `bindings/manifest.json`. The writer and
-reader accept Manifest **27** only. The manifest carries the current cross-package
-semantic model: declaration ownership, stable identities, JS exports, recursive types,
-generic scopes, selected members, public-library routing, State variants, conversion
-semantics, and each module's UI protocol and required capabilities. It does not copy
-selection YAML into dependent packages. Unknown formats fail before generation; there is
-no compatibility reader or normalization path. See
+reader accept Manifest **28** only; format 27 is rejected. The manifest carries the
+current cross-package semantic model: declaration ownership, stable identities, JS
+exports, recursive types, generic scopes, selected members, public-library routing,
+State variants, conversion semantics, and each module's UI protocol and required
+capabilities. It does not copy selection YAML into dependent packages. Unknown formats
+fail before generation; there is no compatibility reader or normalization path. See
 [ADR 0037](../decisions/0037-package-scoped-binding-providers.md) and
 [External Binding Verification](external-binding-verification.md).
 
@@ -158,6 +160,12 @@ strict semantic validation with fresh lexical scopes. JavaScript delivery expand
 references for ownership and operation projection without expanding types. Both readers
 bound member expansion and reject invalid, cyclic, duplicate or unused table entries.
 Generated JS APIs, UI protocol 24 and native ABI 2 are independent of this file format.
+
+Manifest 28 adds the sparse `localDependency: true` ownership marker for generated
+owner-local dependency views. The writer omits it for ordinary rows; absence means
+false, and true is valid only on an owning identity. The original Dart source identity
+remains recorded, but these owner-local views are not eligible as automatic providers
+for another package. Regenerate providers and consumers together.
 
 A configuration imports a Dart package by name:
 
@@ -171,12 +179,120 @@ manifest-format mismatches, and UI protocol mismatches fail before output is emi
 Generation follows the dependency graph and never reads another package's tests or
 private Dart sources.
 
-The Flax Core manifest is an implicit dependency of binding packages that depend on Dart
-`flax`; Core bindings are always injected. Independent namespaces may bind the same Dart
-source and short module name. Within one namespace duplicate full identities remain
-errors. A unique adequate dependency provider is reused; missing, insufficient or
-ambiguous non-Core providers produce a complete local binding. Explicit local selections
-remain local. Core-owned types cannot be republished.
+### Binding dependency policy
+
+The same four rules apply to configured scopes and automatic library selection:
+
+| Rule                | Selection and ownership                                                                                                                                                                         |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `default-source`    | Generate selected declarations from the configured source Dart packages, using the existing same-package/sibling ownership index. A binding package can target a different source Dart package. |
+| `provider`          | Reuse Core or a compatible provider declared by matching direct Dart and public JS types dependencies. Keep its identity and existing implementation.                                           |
+| `owner-local-optin` | With no declared provider, allow signature-required external types only for Dart packages listed in `bindingDependencies.generate`; their generated views belong to the consumer owner.         |
+| `skip`              | Without a binding or opt-in, skip the affected constructor, method, function or accessor and report the unresolved dependency. Existing exclusions and conversion limits still apply.           |
+
+The Flax Core manifest is implicit for binding packages depending on Dart `flax`, and
+Core bindings are always injected. They cannot be duplicated, including through the
+opt-in list. Non-Core namespaces may bind the same selected Dart source independently;
+full identities must remain unique within one namespace. A declared provider with
+insufficient capabilities or ambiguous ownership is reported, not silently replaced.
+
+The opt-in is package metadata, not an instruction to generate an entire dependency:
+
+```yaml
+# flax_package.yaml
+bindingDependencies:
+  generate: [intl]
+```
+
+```yaml
+# pubspec.yaml
+dependencies:
+  flax: 0.0.0
+  intl: <version>
+```
+
+Names must identify direct external Dart dependencies, not the binding owner or `flax`.
+With no list, no external owner-local generation is allowed. Only the types needed by
+accepted signatures and their supported dependency closure are generated; member
+selection and blacklists are unchanged. Optional parameters do not bypass this rule: if
+an unbound external type appears in a signature, that whole signature is skipped rather
+than removing the parameter or changing its defaults. Nested collections, callbacks and
+async values follow the same rule.
+
+Provider reuse needs all delivery counterparts, not just a `.d.ts` package. For Material
+reusing standalone Cupertino, declare:
+
+| Consumer file                            | Required dependency                                                             |
+| ---------------------------------------- | ------------------------------------------------------------------------------- |
+| `packages/flax_material_ui/pubspec.yaml` | `flax_cupertino_ui: 0.0.0`                                                      |
+| Material `js-types/package.json`         | `@flax/cupertino-ui: workspace:*`                                               |
+| Material `js/package.json`               | Both `@flax/cupertino-ui` and `@flax/cupertino-ui-runtime`, using `workspace:*` |
+
+The public JS types name comes from provider metadata `javascript.types`, falling back
+to `javascript.package` when no separate types package is declared. The physical runtime
+name comes from `javascript.package`; it is required in the consumer source package's
+dependencies. Dart implementation wiring uses each provider module's Manifest
+`dartLibrary`, derived from its generated `lib/` path as a `package:` URI. For example,
+`lib/src/generated/cupertino_bindings.g.dart` in `flax_cupertino_ui` maps to
+`package:flax_cupertino_ui/src/generated/cupertino_bindings.g.dart`. This generated
+bridge import may use `lib/src`; it does not require the provider's public Dart entry
+point to re-export its generated binding module. Selection still reads the provider
+Manifest rather than analyzing its private Dart API or reading its selection YAML.
+
+The generator validates provider types dependencies in the source and declaration
+packages separately. A dependency declared in only one package cannot satisfy the other
+package's published imports, even if a workspace installation can resolve it.
+
+For Material and Cupertino owner-local `intl` views, the public subpath is respectively
+`@flax/material-ui/dependencies/intl` or `@flax/cupertino-ui/dependencies/intl`:
+
+| Delivery artifact            | Path inside its package                        |
+| ---------------------------- | ---------------------------------------------- |
+| Generated JS source          | `js/src/generated/dependencies/intl/index.ts`  |
+| Runtime implementation       | `dist/generated/dependencies/intl/index.js`    |
+| Public declarations          | `types/generated/dependencies/intl/index.d.ts` |
+| Runtime package declarations | `dist/generated/dependencies/intl/index.d.ts`  |
+
+Both types and runtime packages expose a specific types-only `./dependencies/*` export
+before the general `./*` export. The public types target is an array:
+
+```json
+{
+  "./dependencies/*": {
+    "types": [
+      "./types/generated/dependencies/*.d.ts",
+      "./types/generated/dependencies/*/index.d.ts"
+    ]
+  }
+}
+```
+
+The runtime package uses the corresponding two `./dist/generated/dependencies/` targets.
+The direct `.d.ts` candidate resolves nested generated helpers such as
+`dependencies/intl/_bindings/dependency_intl.__module`; the `index.d.ts` fallback
+resolves the dependency root. Owner source builds mirror this with
+`./src/generated/dependencies/*` and `./src/generated/dependencies/*/index.ts`. These
+are resolution candidates for the same public specifiers, not new API aliases. Business
+source continues to import the public facade; generated type-helper resolution does not
+expose private runtime chunks through the application bundler.
+
+The delivery inventory maps the public subpath to the owning runtime package's
+implementation and uses `dist/generated/dependencies/intl` as its `subpathRoot`; it does
+not inline another package's runtime. Independent owner-local views never become shared
+provider identities. To request another registered view of the same underlying Dart
+object, use the existing shared `asDart(value, Target)`: it selects the exact target
+view after actual Dart and generic type checks, without copying the object or adding a
+new GC ownership scheme.
+
+An inherited provider member retains its exact owner-local view in the descendant's
+signature. Resolution is per operation: two different methods, or a getter and setter,
+can use independent views of the same Dart type. The nearest ancestor contract wins;
+conflicting views for one operation are rejected. These inherited contracts never make
+the local views available to unrelated declarations.
+
+Generated dependency wiring supplies binding modules and follows prepared JS delivery
+dependencies. It never automatically constructs or activates a host-capability plugin;
+Fetch, storage and other host capabilities still require their explicit host setup.
 
 Object inputs are checked against actual Dart types and concrete generic arguments.
 Typed results expose the interface selected by the signature. Erased results retain the
@@ -193,7 +309,7 @@ Implementation delivery uses a versioned `flax_modules.json`, separate from the 
 Manifest. It records public specifiers, the physical npm package and source entry,
 delivery dependencies, and the Dart binding requirements needed if that module is
 actually injected into a session. `tool/module_delivery.mjs` derives official delivery
-metadata from Manifest 27 rather than duplicating binding ownership by hand.
+metadata from Manifest 28 rather than duplicating binding ownership by hand.
 
 An application prepares the modules it can provide, for example:
 

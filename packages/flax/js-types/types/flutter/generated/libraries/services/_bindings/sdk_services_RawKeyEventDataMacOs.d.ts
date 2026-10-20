@@ -19,7 +19,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RawKeyEventDataMacOs extends Omit<upstream0.RawKeyEventData, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.RawKeyEventData>, Readonly<{
     "__flaxBound:package:flutter/src/services/raw_keyboard_macos.dart::RawKeyEventDataMacOs": readonly [];
 }>, Readonly<{
@@ -29,9 +29,45 @@ export interface RawKeyEventDataMacOs extends Omit<upstream0.RawKeyEventData, _f
 }> {
     readonly __RawKeyEventDataMacOs: unique symbol;
     readonly [_flaxDartTypeValue]: RawKeyEventDataMacOs;
+    readonly isControlPressed: boolean;
+    readonly isShiftPressed: boolean;
+    readonly isAltPressed: boolean;
+    readonly isMetaPressed: boolean;
+    readonly modifiersPressed: DartMap<upstream3.ModifierKey, upstream2.KeyboardSide>;
+    readonly physicalKey: upstream4.PhysicalKeyboardKey;
+    readonly logicalKey: upstream5.LogicalKeyboardKey;
+    readonly keyLabel: string;
+    readonly characters: string;
+    readonly charactersIgnoringModifiers: string;
+    readonly keyCode: number;
+    readonly modifiers: number;
+    readonly specifiedLogicalKey: number | null;
+    isModifierPressed(key: upstream3.ModifierKey, options?: {
+        side?: upstream2.KeyboardSide | undefined;
+    }): boolean;
+    getModifierSide(key: upstream3.ModifierKey): upstream2.KeyboardSide | null;
+    shouldDispatchEvent(): boolean;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream9.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface RawKeyEventDataMacOs {
-    readonly [_flaxDartTypeValue]: RawKeyEventDataMacOs;
+export declare function _RawKeyEventDataMacOsFactory(options?: {
+    characters?: string | undefined;
+    charactersIgnoringModifiers?: string | undefined;
+    keyCode?: number | undefined;
+    modifiers?: number | undefined;
+    specifiedLogicalKey?: number | null | undefined;
+}): RawKeyEventDataMacOs;
+export interface _RawKeyEventDataMacOsNative extends RawKeyEventDataMacOs {
+    readonly [_flaxDartTypeValue]: _RawKeyEventDataMacOsNative;
     isModifierPressed(key: upstream3.ModifierKey, options?: {
         side?: upstream2.KeyboardSide | undefined;
     }): boolean;
@@ -62,7 +98,7 @@ export interface RawKeyEventDataMacOs {
     get isMetaPressed(): boolean;
     get modifiersPressed(): DartMap<upstream3.ModifierKey, upstream2.KeyboardSide>;
 }
-export declare abstract class RawKeyEventDataMacOs extends _FlaxProxyBase {
+export declare abstract class _RawKeyEventDataMacOsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RawKeyEventDataMacOs>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RawKeyEventDataMacOs;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:RawKeyEventDataMacOs", readonly [], false];
@@ -74,7 +110,7 @@ export declare abstract class RawKeyEventDataMacOs extends _FlaxProxyBase {
         specifiedLogicalKey?: number | null | undefined;
     });
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     function implement(args: [options?: {
         characters?: string | undefined;
         charactersIgnoringModifiers?: string | undefined;
@@ -83,56 +119,64 @@ export declare namespace RawKeyEventDataMacOs {
         specifiedLogicalKey?: number | null | undefined;
     }], implementation: {}): RawKeyEventDataMacOs;
 }
-export declare namespace RawKeyEventDataMacOs {
+declare const _RawKeyEventDataMacOsBinding: typeof _RawKeyEventDataMacOsFactory & (new (options?: {
+    characters?: string | undefined;
+    charactersIgnoringModifiers?: string | undefined;
+    keyCode?: number | undefined;
+    modifiers?: number | undefined;
+    specifiedLogicalKey?: number | null | undefined;
+}) => _RawKeyEventDataMacOsNative);
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierCapsLock: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierShift: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierLeftShift: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierRightShift: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierControl: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierLeftControl: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierRightControl: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierOption: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierLeftOption: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierRightOption: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierCommand: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierLeftCommand: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierRightCommand: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierNumericPad: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierHelp: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const modifierFunction: number;
 }
-export declare namespace RawKeyEventDataMacOs {
+export declare namespace _RawKeyEventDataMacOsFactory {
     const deviceIndependentMask: number;
 }
+export declare const RawKeyEventDataMacOs: typeof _RawKeyEventDataMacOsBinding & _FlaxInstanceType<RawKeyEventDataMacOs> & _FlaxDartType<RawKeyEventDataMacOs, readonly ["class", "flax.core/sdk_services#type:RawKeyEventDataMacOs", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "isControlPressed" | "isShiftPressed" | "isAltPressed" | "isMetaPressed" | "modifiersPressed" | "physicalKey" | "logicalKey" | "keyLabel" | "characters" | "charactersIgnoringModifiers" | "keyCode" | "modifiers" | "specifiedLogicalKey" | "isModifierPressed" | "getModifierSide" | "shouldDispatchEvent" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/services/raw_keyboard_macos.dart::RawKeyEventDataMacOs" | "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

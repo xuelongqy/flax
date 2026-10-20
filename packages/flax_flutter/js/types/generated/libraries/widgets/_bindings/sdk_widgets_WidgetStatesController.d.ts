@@ -10,7 +10,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface WidgetStatesController extends Omit<upstream0.ValueNotifier<DartSet<upstream1.WidgetState>>, _flaxOwnMembers0>, Omit<upstream2.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<DartSet<upstream1.WidgetState>>>, Omit<upstream3.Listenable, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<DartSet<upstream1.WidgetState>> | keyof upstream2.ChangeNotifier>, Omit<upstream4.ValueListenable<DartSet<upstream1.WidgetState>>, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<DartSet<upstream1.WidgetState>> | keyof upstream2.ChangeNotifier | keyof upstream3.Listenable>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
 }>, Readonly<{
@@ -24,9 +24,18 @@ export interface WidgetStatesController extends Omit<upstream0.ValueNotifier<Dar
 }> {
     readonly __WidgetStatesController: unique symbol;
     readonly [_flaxDartTypeValue]: WidgetStatesController;
+    get value(): DartSet<upstream1.WidgetState>;
+    readonly hasListeners: boolean;
+    toString(): string;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    update(state: upstream1.WidgetState, add: boolean): void;
+    set value(value: DartSetInput<upstream1.WidgetState, upstream1.WidgetState>);
 }
-export interface WidgetStatesController {
-    readonly [_flaxDartTypeValue]: WidgetStatesController;
+export declare function _WidgetStatesControllerFactory(value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null): WidgetStatesController;
+export interface _WidgetStatesControllerNative extends WidgetStatesController {
+    readonly [_flaxDartTypeValue]: _WidgetStatesControllerNative;
     toString(): string;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
@@ -36,14 +45,16 @@ export interface WidgetStatesController {
     get hasListeners(): boolean;
     set value(value: DartSetInput<upstream1.WidgetState, upstream1.WidgetState>);
 }
-export declare abstract class WidgetStatesController extends _FlaxProxyBase {
+export declare abstract class _WidgetStatesControllerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<WidgetStatesController>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: WidgetStatesController;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:WidgetStatesController", readonly [], false];
     constructor(value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null);
 }
-export declare namespace WidgetStatesController {
+export declare namespace _WidgetStatesControllerFactory {
     function implement(args: [value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null], implementation: {}): WidgetStatesController;
 }
+declare const _WidgetStatesControllerBinding: typeof _WidgetStatesControllerFactory & (new (value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null) => _WidgetStatesControllerNative);
+export declare const WidgetStatesController: typeof _WidgetStatesControllerBinding & _FlaxInstanceType<WidgetStatesController> & _FlaxDartType<WidgetStatesController, readonly ["class", "flax.core/sdk_widgets#type:WidgetStatesController", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "toString" | "addListener" | "removeListener" | "dispose" | "update" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
 export {};

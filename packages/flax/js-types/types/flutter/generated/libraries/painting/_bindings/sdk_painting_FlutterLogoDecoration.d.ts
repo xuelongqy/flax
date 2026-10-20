@@ -28,7 +28,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream15 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FlutterLogoDecoration extends Omit<upstream0.Decoration, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Decoration>, Readonly<{
     "__flaxBound:package:flutter/src/painting/flutter_logo.dart::FlutterLogoDecoration": readonly [];
 }>, Readonly<{
@@ -38,9 +38,62 @@ export interface FlutterLogoDecoration extends Omit<upstream0.Decoration, _flaxO
 }> {
     readonly __FlutterLogoDecoration: unique symbol;
     readonly [_flaxDartTypeValue]: FlutterLogoDecoration;
+    readonly padding: upstream5.EdgeInsetsGeometry;
+    readonly isComplex: boolean;
+    readonly textColor: upstream2.Color;
+    readonly style: upstream3.FlutterLogoStyle;
+    readonly margin: upstream4.EdgeInsets;
+    toStringShort(): string;
+    debugAssertIsValid(): boolean;
+    lerpFrom(a: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null, t: number): FlutterLogoDecoration | null;
+    lerpTo(b: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null, t: number): FlutterLogoDecoration | null;
+    hitTest(size: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream8.TextDirection | null | undefined;
+    }): boolean;
+    createBoxPainter(onChanged?: (() => void) | null): upstream9.BoxPainter;
+    getClipPath(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, textDirection: upstream8.TextDirection): upstream10.Path;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream13.DiagnosticsTreeStyle | null | undefined;
+    }): upstream12.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream15.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface FlutterLogoDecoration {
-    readonly [_flaxDartTypeValue]: FlutterLogoDecoration;
+export declare function _FlutterLogoDecorationFactory(options?: {
+    textColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | undefined;
+    style?: upstream3.FlutterLogoStyle | undefined;
+    margin?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+}): FlutterLogoDecoration;
+export interface _FlutterLogoDecorationNative extends FlutterLogoDecoration {
+    readonly [_flaxDartTypeValue]: _FlutterLogoDecorationNative;
     toStringShort(): string;
     debugAssertIsValid(): boolean;
     lerpFrom(a: (Readonly<{
@@ -84,7 +137,7 @@ export interface FlutterLogoDecoration {
     get isComplex(): boolean;
     get padding(): upstream5.EdgeInsetsGeometry;
 }
-export declare abstract class FlutterLogoDecoration extends _FlaxProxyBase {
+export declare abstract class _FlutterLogoDecorationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<FlutterLogoDecoration>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: FlutterLogoDecoration;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_painting#type:FlutterLogoDecoration", readonly [], false];
@@ -100,7 +153,7 @@ export declare abstract class FlutterLogoDecoration extends _FlaxProxyBase {
         }>) | undefined;
     });
 }
-export declare namespace FlutterLogoDecoration {
+export declare namespace _FlutterLogoDecorationFactory {
     function implement(args: [options?: {
         textColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -113,7 +166,18 @@ export declare namespace FlutterLogoDecoration {
         }>) | undefined;
     }], implementation: {}): FlutterLogoDecoration;
 }
-export declare namespace FlutterLogoDecoration {
+declare const _FlutterLogoDecorationBinding: typeof _FlutterLogoDecorationFactory & (new (options?: {
+    textColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | undefined;
+    style?: upstream3.FlutterLogoStyle | undefined;
+    margin?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+}) => _FlutterLogoDecorationNative);
+export declare namespace _FlutterLogoDecorationFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/painting/flutter_logo.dart::FlutterLogoDecoration": readonly [];
     }> & Readonly<{
@@ -128,5 +192,6 @@ export declare namespace FlutterLogoDecoration {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): FlutterLogoDecoration | null;
 }
+export declare const FlutterLogoDecoration: typeof _FlutterLogoDecorationBinding & _FlaxInstanceType<FlutterLogoDecoration> & _FlaxDartType<FlutterLogoDecoration, readonly ["class", "flax.core/sdk_painting#type:FlutterLogoDecoration", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "padding" | "isComplex" | "textColor" | "style" | "margin" | "toStringShort" | "debugAssertIsValid" | "lerpFrom" | "lerpTo" | "hitTest" | "createBoxPainter" | "getClipPath" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/painting/flutter_logo.dart::FlutterLogoDecoration" | "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

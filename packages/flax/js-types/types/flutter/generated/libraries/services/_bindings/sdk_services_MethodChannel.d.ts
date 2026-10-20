@@ -7,7 +7,7 @@ import '@flax/flutter/services/_bindings/sdk_services_BinaryMessenger';
 import type * as upstream2 from '@flax/flutter/services/_bindings/sdk_services_MethodCall';
 import '@flax/flutter/services/_bindings/sdk_services_MethodCall';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MethodChannel extends Readonly<{
     "__flaxBound:package:flutter/src/services/platform_channel.dart::MethodChannel": readonly [];
 }> {
@@ -18,9 +18,21 @@ export interface MethodChannel extends Readonly<{
         invokeListMethod: _FlaxSignature1;
         invokeMapMethod: _FlaxSignature2;
     };
+    readonly name: string;
+    readonly codec: upstream0.MethodCodec;
+    readonly binaryMessenger: upstream1.BinaryMessenger;
+    invokeMethod<T extends unknown | null = unknown | null>(method: string, _flaxArg_617267756d656e7473?: unknown | null): Promise<_FlaxDartOutput<T> | null>;
+    invokeListMethod<T extends unknown | null = unknown | null>(method: string, _flaxArg_617267756d656e7473?: unknown | null): Promise<DartList<_FlaxDartOutput<T>> | null>;
+    invokeMapMethod<K extends unknown | null = unknown | null, V extends unknown | null = unknown | null>(method: string, _flaxArg_617267756d656e7473?: unknown | null): Promise<DartMap<_FlaxDartOutput<K>, _FlaxDartOutput<V>> | null>;
+    setMethodCallHandler(handler: ((call: upstream2.MethodCall) => Promise<unknown | null>) | null): void;
 }
-export interface MethodChannel {
-    readonly [_flaxDartTypeValue]: MethodChannel;
+export declare function _MethodChannelFactory(name: string, codec?: Readonly<{
+    "__flaxBound:package:flutter/src/services/message_codec.dart::MethodCodec": readonly [];
+}>, binaryMessenger?: Readonly<{
+    "__flaxBound:package:flutter/src/services/binary_messenger.dart::BinaryMessenger": readonly [];
+}> | null): MethodChannel;
+export interface _MethodChannelNative extends MethodChannel {
+    readonly [_flaxDartTypeValue]: _MethodChannelNative;
     readonly [_flaxDartMethodCases]?: {
         invokeMethod: _FlaxSignature3;
         invokeListMethod: _FlaxSignature4;
@@ -34,7 +46,7 @@ export interface MethodChannel {
     get codec(): upstream0.MethodCodec;
     get binaryMessenger(): upstream1.BinaryMessenger;
 }
-export declare abstract class MethodChannel extends _FlaxProxyBase {
+export declare abstract class _MethodChannelNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MethodChannel>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MethodChannel;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:MethodChannel", readonly [], false];
@@ -44,13 +56,19 @@ export declare abstract class MethodChannel extends _FlaxProxyBase {
         "__flaxBound:package:flutter/src/services/binary_messenger.dart::BinaryMessenger": readonly [];
     }> | null);
 }
-export declare namespace MethodChannel {
+export declare namespace _MethodChannelFactory {
     function implement(args: [name: string, codec?: Readonly<{
         "__flaxBound:package:flutter/src/services/message_codec.dart::MethodCodec": readonly [];
     }>, binaryMessenger?: Readonly<{
         "__flaxBound:package:flutter/src/services/binary_messenger.dart::BinaryMessenger": readonly [];
     }> | null], implementation: {}): MethodChannel;
 }
+declare const _MethodChannelBinding: typeof _MethodChannelFactory & (new (name: string, codec?: Readonly<{
+    "__flaxBound:package:flutter/src/services/message_codec.dart::MethodCodec": readonly [];
+}>, binaryMessenger?: Readonly<{
+    "__flaxBound:package:flutter/src/services/binary_messenger.dart::BinaryMessenger": readonly [];
+}> | null) => _MethodChannelNative);
+export declare const MethodChannel: typeof _MethodChannelBinding & _FlaxInstanceType<MethodChannel> & _FlaxDartType<MethodChannel, readonly ["class", "flax.core/sdk_services#type:MethodChannel", readonly [], false]>;
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (method: string, _flaxArg_617267756d656e7473?: unknown | null) => Promise<_Selected0 | null> : never : never;
 }

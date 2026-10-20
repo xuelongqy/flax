@@ -79,8 +79,12 @@ void main(List<String> args) {
               as String;
       const manifest =
           '{"private":true,"dependencies":{"@preact/signals-core":"1.14.4"}}';
-      File('${workspace.path}/package.json').writeAsStringSync(manifest);
-      File('${consumer.path}/package.json').writeAsStringSync(manifest);
+      for (final directory in [workspace, consumer]) {
+        File('${directory.path}/package.json').writeAsStringSync(manifest);
+        // Keep repository-local fixtures outside the enclosing pnpm workspace.
+        File('${directory.path}/pnpm-workspace.yaml')
+            .writeAsStringSync('packages: []\n');
+      }
       File('${consumer.path}/.npmrc')
           .writeAsStringSync('store-dir=${work.path}/empty-store\n');
       await run('pnpm', [

@@ -17,7 +17,7 @@ import type * as upstream7 from '@flax/flutter/rendering/_bindings/flutter_BoxCo
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import '@flax/dart/ui/_bindings/flutter_Size';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface StackParentData extends Omit<upstream0.ContainerBoxParentData<upstream1.RenderBox>, _flaxOwnMembers0>, Omit<upstream2.BoxParentData, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox>>, Omit<upstream3.ParentData, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox> | keyof upstream2.BoxParentData>, Omit<upstream4.ContainerParentDataMixin<upstream1.RenderBox>, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox> | keyof upstream2.BoxParentData | keyof upstream3.ParentData>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/stack.dart::StackParentData": readonly [];
 }>, Readonly<{
@@ -31,9 +31,68 @@ export interface StackParentData extends Omit<upstream0.ContainerBoxParentData<u
 }> {
     readonly __StackParentData: unique symbol;
     readonly [_flaxDartTypeValue]: StackParentData;
+    get offset(): upstream5.Offset;
+    get previousSibling(): upstream1.RenderBox | null;
+    get nextSibling(): upstream1.RenderBox | null;
+    get top(): number | null;
+    get right(): number | null;
+    get bottom(): number | null;
+    get left(): number | null;
+    get width(): number | null;
+    get height(): number | null;
+    get rect(): upstream6.RelativeRect;
+    readonly isPositioned: boolean;
+    detach(): void;
+    toString(): string;
+    positionedChildConstraints(stackSize: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): upstream7.BoxConstraints;
+    set offset(value: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>);
+    set previousSibling(value: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
+    set nextSibling(value: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
+    set top(value: number | null);
+    set right(value: number | null);
+    set bottom(value: number | null);
+    set left(value: number | null);
+    set width(value: number | null);
+    set height(value: number | null);
+    set rect(value: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/stack.dart::RelativeRect": readonly [];
+    }>);
 }
-export interface StackParentData {
-    readonly [_flaxDartTypeValue]: StackParentData;
+export declare function _StackParentDataFactory(): StackParentData;
+export interface _StackParentDataNative extends StackParentData {
+    readonly [_flaxDartTypeValue]: _StackParentDataNative;
     detach(): void;
     toString(): string;
     positionedChildConstraints(stackSize: Readonly<{
@@ -93,14 +152,16 @@ export interface StackParentData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null);
 }
-export declare abstract class StackParentData extends _FlaxProxyBase {
+export declare abstract class _StackParentDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<StackParentData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: StackParentData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:StackParentData", readonly [], false];
     constructor();
 }
-export declare namespace StackParentData {
+export declare namespace _StackParentDataFactory {
     function implement(args: [], implementation: {}): StackParentData;
 }
+declare const _StackParentDataBinding: typeof _StackParentDataFactory & (new () => _StackParentDataNative);
+export declare const StackParentData: typeof _StackParentDataBinding & _FlaxInstanceType<StackParentData> & _FlaxDartType<StackParentData, readonly ["class", "flax.core/sdk_rendering#type:StackParentData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "offset" | "previousSibling" | "nextSibling" | "top" | "right" | "bottom" | "left" | "width" | "height" | "rect" | "isPositioned" | "detach" | "toString" | "positionedChildConstraints" | "__flaxBound:package:flutter/src/rendering/stack.dart::StackParentData" | "__flaxBound:package:flutter/src/rendering/box.dart::ContainerBoxParentData" | "__flaxBound:package:flutter/src/rendering/box.dart::BoxParentData" | "__flaxBound:package:flutter/src/rendering/object.dart::ParentData" | "__flaxBound:package:flutter/src/rendering/object.dart::ContainerParentDataMixin";
 export {};

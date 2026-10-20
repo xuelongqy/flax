@@ -288,6 +288,23 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         skips: requested.skips,
       );
     }
+    if (parser._bindingSourcePackages != null) {
+      return FlaxCodegenProposedBinding(
+        name: name,
+        id: id,
+        provider: owner.jsPackage,
+        skips: [
+          ...requested.skips,
+          if (requested.selection != null)
+            ..._providerSurfaceSkips(
+              typeName: name,
+              provider: owner.jsPackage,
+              requested: providerSelection(requested.selection!),
+              available: available,
+            ),
+        ],
+      );
+    }
     parser._dependencyOwners.remove(id);
     parser._dependencyTypeOwners.remove(id);
     parser._selections.remove(id);
@@ -326,7 +343,8 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
               ),
             );
       if (missing.isNotEmpty &&
-          !(owner.moduleId ?? '').startsWith('flax.core/')) {
+          !(owner.moduleId ?? '').startsWith('flax.core/') &&
+          parser._bindingSourcePackages == null) {
         parser._dependencyTypeOwners.remove(id);
         parser._selections.remove(id);
         parser._adaptations.remove(id);
@@ -410,6 +428,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   final scope = await parser._openTypeScope(
     library,
     automaticTypeCarriers: automaticTypeCarriers,
+    declaration: element,
   );
   final inferredDeferredFactories = <String>{
     for (final method in element.methods)
@@ -550,6 +569,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           _publicStaticGetterType(element.thisType, getter.returnType),
           '$name.$getterName',
           skips,
+          member: getter,
         );
         if (converted != null) staticGetters.add(getterName);
         continue;
@@ -559,6 +579,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         getter.returnType,
         '$name.$getterName',
         skips,
+        member: getter,
         allowed: _getterKinds,
       );
       if (converted != null) getters.add(getterName);
@@ -580,6 +601,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         setter.formalParameters.single.type,
         '$name.$setterName=',
         skips,
+        member: setter,
         allowed: _setterKinds,
         input: true,
       );
@@ -639,6 +661,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           getter.returnType,
           '$name.$getterName',
           skips,
+          member: getter,
           allowed: _getterKinds,
         );
         if (converted != null) getters.add(getterName);
@@ -658,6 +681,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           setter.formalParameters.single.type,
           '$name.$setterName=',
           skips,
+          member: setter,
           allowed: _setterKinds,
           input: true,
         );
@@ -811,7 +835,12 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           );
     selectedConstructors = constructorName == null
         ? const {}
-        : {constructorName: constructors[constructorName]!};
+        : {
+            constructorName: constructors[constructorName]!,
+            for (final entry in constructors.entries)
+              if (requested == null || requested.contains(entry.key))
+                entry.key: entry.value,
+          };
     selectedInstanceMethods = {
       for (final entry in instanceMethods.entries)
         if (!_proxyMethodCanOverride(element, entry.key) ||
@@ -1670,8 +1699,16 @@ List<String>? _bindConstructor({
   required bool widget,
   required String? kind,
   required List<FlaxCodegenSkip> skips,
-}) {
+}) => scope.withMember(constructor, () {
   final location = '${element.name}.$ctorName';
+  if (!parser._supportsDependencySignature(
+    constructor.type,
+    location,
+    skips,
+    scope: scope,
+  )) {
+    return null;
+  }
   final chosen = <String>[];
   for (final parameter in constructor.formalParameters) {
     final paramName = parameter.name;
@@ -1705,7 +1742,7 @@ List<String>? _bindConstructor({
     chosen.add(paramName!);
   }
   return chosen;
-}
+});
 
 ({bool omitWhenAbsent})? _bindParameter({
   required FlaxCodegenBindingParser parser,
@@ -1828,56 +1865,61 @@ FlaxCodegenTypeRef? _tryMemberType(
   List<FlaxCodegenSkip> skips, {
   Set<String>? allowed,
   bool input = false,
+  ExecutableElement? member,
   bool allowRecursiveErasure = false,
 }) {
-  final converted = scope.tryTypeRef(
-    type,
-    allowRecursiveErasure: allowRecursiveErasure,
-  );
-  if (converted.skip != null || converted.type == null) {
-    skips.add(
-      FlaxCodegenSkip(
-        target: location,
-        reason: converted.skip ?? 'Unsupported binding type',
-        code: 'unsupported_binding_type',
-      ),
-    );
-    return null;
-  }
-  final result = converted.type!;
-  try {
-    // Match the explicit parser's public TypeScript declaration as well as
-    // its runtime conversion, including inherited generic member types.
-    scope.typeRef(
+  FlaxCodegenTypeRef? convert() {
+    final converted = scope.tryTypeRef(
       type,
-      forTypescript: true,
       allowRecursiveErasure: allowRecursiveErasure,
     );
-    result.validate(location);
-    if (result.kind == 'callback') {
-      result.validateCallbacks(location, input: input);
+    if (converted.skip != null || converted.type == null) {
+      skips.add(
+        FlaxCodegenSkip(
+          target: location,
+          reason: converted.skip ?? 'Unsupported binding type',
+          code: 'unsupported_binding_type',
+        ),
+      );
+      return null;
     }
-  } on StateError catch (error) {
-    skips.add(
-      FlaxCodegenSkip(
-        target: location,
-        reason: error.message,
-        code: 'unsupported_member_shape',
-      ),
-    );
-    return null;
+    final result = converted.type!;
+    try {
+      // Match the explicit parser's public TypeScript declaration as well as
+      // its runtime conversion, including inherited generic member types.
+      scope.typeRef(
+        type,
+        forTypescript: true,
+        allowRecursiveErasure: allowRecursiveErasure,
+      );
+      result.validate(location);
+      if (result.kind == 'callback') {
+        result.validateCallbacks(location, input: input);
+      }
+    } on StateError catch (error) {
+      skips.add(
+        FlaxCodegenSkip(
+          target: location,
+          reason: error.message,
+          code: 'unsupported_member_shape',
+        ),
+      );
+      return null;
+    }
+    if (allowed != null && !allowed.contains(result.kind)) {
+      skips.add(
+        FlaxCodegenSkip(
+          target: location,
+          reason: 'Unsupported member type: $type',
+          code: 'unsupported_member_type',
+        ),
+      );
+      return null;
+    }
+    return result;
   }
-  if (allowed != null && !allowed.contains(result.kind)) {
-    skips.add(
-      FlaxCodegenSkip(
-        target: location,
-        reason: 'Unsupported member type: $type',
-        code: 'unsupported_member_type',
-      ),
-    );
-    return null;
-  }
-  return result;
+
+  return member == null ? convert() : scope.withMember(member, convert);
 }
 
 List<String>? _bindMethod({
@@ -1888,7 +1930,15 @@ List<String>? _bindMethod({
   required String location,
   required List<FlaxCodegenSkip> skips,
   bool deferredFactory = false,
-}) {
+}) => scope.withMember(method, () {
+  if (!parser._supportsDependencySignature(
+    method.type,
+    location,
+    skips,
+    scope: scope,
+  )) {
+    return null;
+  }
   if (method.typeParameters.isNotEmpty && !deferredFactory) {
     final sharedArguments = _sharedTypeArguments(
       parser,
@@ -1977,7 +2027,7 @@ List<String>? _bindMethod({
     chosen.add(paramName!);
   }
   return chosen;
-}
+});
 
 Future<
   ({
@@ -2166,6 +2216,7 @@ bool _hasInheritedBindableConcreteBehavior({
           getter.returnType,
           '${element.name}.$name',
           skips,
+          member: getter,
           allowed: _getterKinds,
         ) !=
         null) {
@@ -2189,6 +2240,7 @@ bool _hasInheritedBindableConcreteBehavior({
           setter.formalParameters.single.type,
           '${element.name}.$member=',
           skips,
+          member: setter,
           allowed: _setterKinds,
           input: true,
         ) !=
@@ -2250,9 +2302,8 @@ String? _preferredExtendsConstructor(
   ].where(constructors.containsKey).toList();
   if (requested != null) {
     final names = requested.toList();
-    return names.length == 1 && generative.contains(names.single)
-        ? names.single
-        : null;
+    if (names.contains('') && generative.contains('')) return '';
+    return names.where(generative.contains).firstOrNull;
   }
   if (generative.contains('')) return '';
   return generative.length == 1 ? generative.single : null;

@@ -8,7 +8,7 @@ import '@flax/flutter/animation/_bindings/sdk_animation_Animatable';
 import type * as upstream3 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MaterialPointArcTween extends Omit<upstream0.Tween<upstream1.Offset>, _flaxOwnMembers0>, Omit<upstream2.Animatable<upstream1.Offset>, _flaxOwnMembers0 | keyof upstream0.Tween<upstream1.Offset>>, Readonly<{
     "__flaxBound:package:flutter/src/material/arc.dart::MaterialPointArcTween": readonly [];
 }>, Readonly<{
@@ -18,9 +18,57 @@ export interface MaterialPointArcTween extends Omit<upstream0.Tween<upstream1.Of
 }> {
     readonly __MaterialPointArcTween: unique symbol;
     readonly [_flaxDartTypeValue]: MaterialPointArcTween;
+    get begin(): upstream1.Offset | null;
+    get end(): upstream1.Offset | null;
+    readonly center: upstream1.Offset | null;
+    readonly radius: number | null;
+    readonly beginAngle: number | null;
+    readonly endAngle: number | null;
+    lerp(t: number): upstream1.Offset;
+    transform(t: number): upstream1.Offset;
+    toString(): string;
+    evaluate(animation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>): upstream1.Offset;
+    animate(parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>): upstream3.Animation<upstream1.Offset>;
+    chain(parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number];
+    }>): upstream2.Animatable<upstream1.Offset>;
+    set begin(value: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null);
+    set end(value: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null);
 }
-export interface MaterialPointArcTween {
-    readonly [_flaxDartTypeValue]: MaterialPointArcTween;
+export declare function _MaterialPointArcTweenFactory(options?: {
+    begin?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    end?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+}): MaterialPointArcTween;
+export interface _MaterialPointArcTweenNative extends MaterialPointArcTween {
+    readonly [_flaxDartTypeValue]: _MaterialPointArcTweenNative;
     lerp(t: number): upstream1.Offset;
     transform(t: number): upstream1.Offset;
     toString(): string;
@@ -58,7 +106,7 @@ export interface MaterialPointArcTween {
         "__flaxBound:dart:ui::OffsetBase": readonly [];
     }>) | null);
 }
-export declare abstract class MaterialPointArcTween extends _FlaxProxyBase {
+export declare abstract class _MaterialPointArcTweenNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MaterialPointArcTween>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MaterialPointArcTween;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:MaterialPointArcTween", readonly [], false];
@@ -75,7 +123,7 @@ export declare abstract class MaterialPointArcTween extends _FlaxProxyBase {
         }>) | null | undefined;
     });
 }
-export declare namespace MaterialPointArcTween {
+export declare namespace _MaterialPointArcTweenFactory {
     function implement(args: [options?: {
         begin?: (Readonly<{
             "__flaxBound:dart:ui::Offset": readonly [];
@@ -89,5 +137,18 @@ export declare namespace MaterialPointArcTween {
         }>) | null | undefined;
     }], implementation: {}): MaterialPointArcTween;
 }
+declare const _MaterialPointArcTweenBinding: typeof _MaterialPointArcTweenFactory & (new (options?: {
+    begin?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    end?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+}) => _MaterialPointArcTweenNative);
+export declare const MaterialPointArcTween: typeof _MaterialPointArcTweenBinding & _FlaxInstanceType<MaterialPointArcTween> & _FlaxDartType<MaterialPointArcTween, readonly ["class", "flax.core/sdk_material#type:MaterialPointArcTween", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "begin" | "end" | "center" | "radius" | "beginAngle" | "endAngle" | "lerp" | "transform" | "toString" | "evaluate" | "animate" | "chain" | "__flaxBound:package:flutter/src/material/arc.dart::MaterialPointArcTween" | "__flaxBound:package:flutter/src/animation/tween.dart::Tween" | "__flaxBound:package:flutter/src/animation/tween.dart::Animatable";
 export {};

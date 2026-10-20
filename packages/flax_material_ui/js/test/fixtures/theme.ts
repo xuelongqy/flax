@@ -1,6 +1,7 @@
 import {
   dartType as selectDartType,
   dartTypes as nativeTypes,
+  asDart,
 } from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import {
@@ -14,6 +15,7 @@ import {
 } from '@flax/flutter/widgets';
 import { Color } from '@flax/flutter/services';
 import { ValueKey } from '@flax/flutter/foundation';
+import { CupertinoThemeData, NoDefaultCupertinoThemeData } from '@flax/cupertino-ui';
 import {
   Brightness,
   ColorScheme,
@@ -27,6 +29,17 @@ import {
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const hooks = {
+  providerRoundTrip() {
+    const cupertino = CupertinoThemeData({ brightness: Brightness.dark });
+    const base = asDart(cupertino, NoDefaultCupertinoThemeData);
+    const material = ThemeData({ cupertinoOverrideTheme: cupertino });
+    const returned = material.cupertinoOverrideTheme;
+    return (
+      asDart(base, CupertinoThemeData) === cupertino &&
+      returned instanceof NoDefaultCupertinoThemeData &&
+      returned.brightness === Brightness.dark
+    );
+  },
   Color,
   ColorScheme,
   Brightness,

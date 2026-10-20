@@ -13,6 +13,76 @@ void main() {
     extra: [binding_completionBindings],
   );
 
+  testWidgets('ordinary and inherited constructors preserve both GC roots', (
+    tester,
+  ) async {
+    final h = harness();
+    try {
+      await tester.pumpWidget(h.app('binding-completion'));
+      expect(
+        h.boolean('''(() => {
+          try { completion.dartSuper(completion.Mixed, '', 'seed'); }
+          catch (error) { return error instanceof TypeError; }
+          return false;
+        })()'''),
+        isTrue,
+      );
+      expect(
+        h.number('''(() => {
+          class Ready extends completion.AbstractReadyProxy {}
+          return new Ready().read();
+        })()'''),
+        7,
+      );
+      for (final (creation, expected) in [
+        ('completion.NativeDecorated()', '[value]'),
+        ('new completion.NativeDecorated()', '[value]'),
+        ('new completion.CompletionDecorated()', '[value]!'),
+        ('completion.Mixed("seed")', '[value]'),
+        ('completion.Mixed.raw("seed")', '[value]'),
+        ('new completion.Mixed("seed")', '[value]'),
+        ('new completion.CompletionMixed()', '[value]!'),
+        ('completion.Abstract("seed")', '[value]'),
+        ('new completion.CompletionAbstract()', '[value]!'),
+      ]) {
+        h.execute('''
+          var constructed = $creation;
+          var weakConstructed = new WeakRef(constructed);
+          completion.holdCompletionDecorated(constructed);
+          completion.holdCompletionDecorated(null);
+        ''');
+        await _collect(tester, h);
+        expect(values.completionDecoratedAlive, isTrue, reason: creation);
+        expect(h.string('constructed.decorate("value")'), expected);
+        expect(
+          h.boolean('constructed instanceof completion.NativeDecorated'),
+          isTrue,
+        );
+        h.execute('''
+          completion.holdCompletionDecorated(constructed);
+          constructed = null;
+        ''');
+        await _collect(tester, h);
+        expect(h.boolean('weakConstructed.deref() !== undefined'), isTrue);
+        expect(values.callHeldCompletionDecorated('value'), expected);
+        values.holdCompletionDecorated(null);
+        for (var i = 0; i < 8; i++) {
+          await _collect(tester, h);
+          if (!values.completionDecoratedAlive &&
+              h.boolean('weakConstructed.deref() === undefined')) {
+            break;
+          }
+        }
+        expect(values.completionDecoratedAlive, isFalse, reason: creation);
+        expect(h.boolean('weakConstructed.deref() === undefined'), isTrue);
+      }
+      expect(h.errors, isEmpty);
+    } finally {
+      values.holdCompletionDecorated(null);
+      if (!h.runtime.isDisposed) await h.finish(tester);
+    }
+  });
+
   testWidgets('async native subclasses preserve Promise, iteration and super', (
     tester,
   ) async {

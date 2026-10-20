@@ -25,8 +25,8 @@ import '@flax/flutter/scheduler/_bindings/sdk_scheduler_TickerFuture';
 import '@flax/flutter/animation/_bindings/flutter_Curve';
 import '@flax/flutter/physics/_bindings/sdk_physics_SpringDescription';
 import '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
-import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface AnimationController extends Omit<upstream0.Animation<number>, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.Animation<number>>, Omit<upstream2.ValueListenable<number>, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable>, Omit<upstream3.AnimationEagerListenerMixin, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable | keyof upstream2.ValueListenable<number>>, Omit<upstream4.AnimationLocalListenersMixin, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable | keyof upstream2.ValueListenable<number> | keyof upstream3.AnimationEagerListenerMixin>, Omit<upstream5.AnimationLocalStatusListenersMixin, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable | keyof upstream2.ValueListenable<number> | keyof upstream3.AnimationEagerListenerMixin | keyof upstream4.AnimationLocalListenersMixin>, Readonly<{
     "__flaxBound:package:flutter/src/animation/animation_controller.dart::AnimationController": readonly [];
 }>, Readonly<{
@@ -47,9 +47,195 @@ export interface AnimationController extends Omit<upstream0.Animation<number>, _
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature0;
     };
+    readonly status: upstream9.AnimationStatus;
+    get value(): number;
+    readonly isDismissed: boolean;
+    readonly isCompleted: boolean;
+    readonly isAnimating: boolean;
+    readonly isForwardOrCompleted: boolean;
+    readonly lowerBound: number;
+    readonly upperBound: number;
+    readonly debugLabel: string | null;
+    readonly animationBehavior: upstream7.AnimationBehavior;
+    readonly view: upstream0.Animation<number>;
+    get duration(): upstream6.Duration | null;
+    get reverseDuration(): upstream6.Duration | null;
+    readonly velocity: number;
+    readonly lastElapsedDuration: upstream6.Duration | null;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    addStatusListener(listener: ((status: upstream9.AnimationStatus) => void)): void;
+    removeStatusListener(listener: ((status: upstream9.AnimationStatus) => void)): void;
+    drive<U extends unknown | null = unknown | null>(child: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_FlaxDartOutput<U>];
+    }>): upstream0.Animation<_FlaxDartOutput<U>>;
+    toString(): string;
+    toStringDetails(): string;
+    didRegisterListener(): void;
+    didUnregisterListener(): void;
+    dispose(): void;
+    clearListeners(): void;
+    notifyListeners(): void;
+    clearStatusListeners(): void;
+    notifyStatusListeners(status: upstream9.AnimationStatus): void;
+    resync(vsync: Readonly<{
+        "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
+    }>): void;
+    reset(): void;
+    forward(options?: {
+        from?: number | null | undefined;
+    }): upstream11.TickerFuture;
+    reverse(options?: {
+        from?: number | null | undefined;
+    }): upstream11.TickerFuture;
+    toggle(options?: {
+        from?: number | null | undefined;
+    }): upstream11.TickerFuture;
+    animateTo(target: number, options?: {
+        curve?: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+        }>) | undefined;
+        duration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+        }>) | null | undefined;
+    }): upstream11.TickerFuture;
+    animateBack(target: number, options?: {
+        curve?: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+        }>) | undefined;
+        duration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+        }>) | null | undefined;
+    }): upstream11.TickerFuture;
+    repeat(options?: {
+        count?: number | null | undefined;
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+        period?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+        }>) | null | undefined;
+        reverse?: boolean | undefined;
+    }): upstream11.TickerFuture;
+    fling(options?: {
+        animationBehavior?: upstream7.AnimationBehavior | null | undefined;
+        springDescription?: Readonly<{
+            "__flaxBound:package:flutter/src/physics/spring_simulation.dart::SpringDescription": readonly [];
+        }> | null | undefined;
+        velocity?: number | undefined;
+    }): upstream11.TickerFuture;
+    animateWith(simulation: Readonly<{
+        "__flaxBound:package:flutter/src/physics/simulation.dart::Simulation": readonly [];
+    }>): upstream11.TickerFuture;
+    animateBackWith(simulation: Readonly<{
+        "__flaxBound:package:flutter/src/physics/simulation.dart::Simulation": readonly [];
+    }>): upstream11.TickerFuture;
+    stop(options?: {
+        canceled?: boolean | undefined;
+    }): void;
+    set duration(value: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null);
+    set reverseDuration(value: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null);
+    set value(value: number);
 }
-export interface AnimationController {
-    readonly [_flaxDartTypeValue]: AnimationController;
+export declare function _AnimationControllerFactory(options: {
+    value?: number | null | undefined;
+    duration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null | undefined;
+    reverseDuration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null | undefined;
+    debugLabel?: string | null | undefined;
+    lowerBound?: number | undefined;
+    upperBound?: number | undefined;
+    animationBehavior?: upstream7.AnimationBehavior | undefined;
+    vsync: Readonly<{
+        "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
+    }>;
+}): AnimationController;
+export declare namespace _AnimationControllerFactory {
+    function unbounded(options: {
+        value?: number | undefined;
+        duration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+        }>) | null | undefined;
+        reverseDuration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+        }>) | null | undefined;
+        debugLabel?: string | null | undefined;
+        vsync: Readonly<{
+            "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
+        }>;
+        animationBehavior?: upstream7.AnimationBehavior | undefined;
+    }): AnimationController;
+}
+export interface _AnimationControllerNative extends AnimationController {
+    readonly [_flaxDartTypeValue]: _AnimationControllerNative;
+    readonly [_flaxDartConstructors]?: {
+        "": (options: {
+            value?: number | null | undefined;
+            duration?: (Readonly<{
+                "__flaxBound:dart:core::Duration": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+            }>) | null | undefined;
+            reverseDuration?: (Readonly<{
+                "__flaxBound:dart:core::Duration": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+            }>) | null | undefined;
+            debugLabel?: string | null | undefined;
+            lowerBound?: number | undefined;
+            upperBound?: number | undefined;
+            animationBehavior?: upstream7.AnimationBehavior | undefined;
+            vsync: Readonly<{
+                "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
+            }>;
+        }) => void;
+        "unbounded": (options: {
+            value?: number | undefined;
+            duration?: (Readonly<{
+                "__flaxBound:dart:core::Duration": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+            }>) | null | undefined;
+            reverseDuration?: (Readonly<{
+                "__flaxBound:dart:core::Duration": readonly [];
+            }> & Readonly<{
+                "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+            }>) | null | undefined;
+            debugLabel?: string | null | undefined;
+            vsync: Readonly<{
+                "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
+            }>;
+            animationBehavior?: upstream7.AnimationBehavior | undefined;
+        }) => void;
+    };
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature1;
     };
@@ -160,7 +346,7 @@ export interface AnimationController {
     }>) | null);
     set value(value: number);
 }
-export declare abstract class AnimationController extends _FlaxProxyBase {
+export declare abstract class _AnimationControllerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AnimationController>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AnimationController;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_animation#type:AnimationController", readonly [], false];
@@ -184,8 +370,9 @@ export declare abstract class AnimationController extends _FlaxProxyBase {
             "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
         }>;
     });
+    constructor(call: _FlaxProxySuper<_AnimationControllerNative>);
 }
-export declare namespace AnimationController {
+export declare namespace _AnimationControllerFactory {
     function implement(args: [options: {
         value?: number | null | undefined;
         duration?: (Readonly<{
@@ -207,6 +394,27 @@ export declare namespace AnimationController {
         }>;
     }], implementation: {}): AnimationController;
 }
+declare const _AnimationControllerBinding: typeof _AnimationControllerFactory & (new (options: {
+    value?: number | null | undefined;
+    duration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null | undefined;
+    reverseDuration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null | undefined;
+    debugLabel?: string | null | undefined;
+    lowerBound?: number | undefined;
+    upperBound?: number | undefined;
+    animationBehavior?: upstream7.AnimationBehavior | undefined;
+    vsync: Readonly<{
+        "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
+    }>;
+}) => _AnimationControllerNative) & (new (call: _FlaxProxySuper<_AnimationControllerNative>) => _AnimationControllerNative);
+export declare const AnimationController: typeof _AnimationControllerBinding & _FlaxInstanceType<AnimationController> & _FlaxDartType<AnimationController, readonly ["class", "flax.core/sdk_animation#type:AnimationController", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "lowerBound" | "upperBound" | "debugLabel" | "animationBehavior" | "view" | "duration" | "reverseDuration" | "velocity" | "lastElapsedDuration" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "dispose" | "clearListeners" | "notifyListeners" | "clearStatusListeners" | "notifyStatusListeners" | "resync" | "reset" | "forward" | "reverse" | "toggle" | "animateTo" | "animateBack" | "repeat" | "fling" | "animateWith" | "animateBackWith" | "stop" | "__flaxBound:package:flutter/src/animation/animation_controller.dart::AnimationController" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{

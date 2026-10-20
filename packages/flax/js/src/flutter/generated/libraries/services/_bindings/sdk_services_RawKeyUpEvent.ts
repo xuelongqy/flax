@@ -20,17 +20,36 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { _flaxMemberParameters77, _flaxMemberParameters10, _flaxMemberParameters43, _flaxMemberParameters0, _flaxMemberParameters44, _flaxMemberParameters45 } from "@flax/flutter/services/_bindings/sdk_services.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface RawKeyUpEvent extends Omit<upstream0.RawKeyEvent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.RawKeyEvent>, Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyUpEvent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEvent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __RawKeyUpEvent: unique symbol;
 readonly [_flaxDartTypeValue]: RawKeyUpEvent;
 
+readonly isControlPressed: boolean;
+readonly isShiftPressed: boolean;
+readonly isAltPressed: boolean;
+readonly isMetaPressed: boolean;
+readonly physicalKey: upstream3.PhysicalKeyboardKey;
+readonly logicalKey: upstream4.LogicalKeyboardKey;
+readonly character: string | null;
+readonly repeat: boolean;
+readonly data: upstream2.RawKeyEventData;
+isKeyPressed(key: Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream7.DiagnosticsTreeStyle | null | undefined}): upstream6.DiagnosticsNode;
+toString(options?: {minLevel?: upstream8.DiagnosticLevel | undefined}): string;
 }
 defineObject("flax.core/sdk_services#type:RawKeyUpEvent", ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","physicalKey","logicalKey","character","repeat","data"], [], _flaxBindingMethods("flax.core/sdk_services#type:RawKeyUpEvent", "object", {}, {}), [], undefined, "flax.core/sdk_services#type:RawKeyEvent");
+export function _RawKeyUpEventFactory(options: { data: Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; character?: string | null | undefined }): RawKeyUpEvent {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_services#type:RawKeyUpEvent", "", [{"name":"data","required":true},{"name":"character"}], [], options) as RawKeyUpEvent;
+}
 const _RawKeyUpEventProxy = {type: "flax.core/sdk_services#type:RawKeyUpEvent", parameters: _flaxMemberParameters77, constructors: {"": _flaxMemberParameters77}, methods: {"isKeyPressed":_flaxMemberParameters10,"debugFillProperties":_flaxMemberParameters43,"toStringShort":_flaxMemberParameters0,"toDiagnosticsNode":_flaxMemberParameters44,"toString":_flaxMemberParameters45}, getters: ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","physicalKey","logicalKey","character","repeat","data"], setters: [], contextMembers: [], superMembers: ["get:isControlPressed","get:isShiftPressed","get:isAltPressed","get:isMetaPressed","get:physicalKey","get:logicalKey","get:character","get:repeat","get:data","isKeyPressed","debugFillProperties","toStringShort","toDiagnosticsNode","toString"]} as const;
-export interface RawKeyUpEvent {
-readonly [_flaxDartTypeValue]: RawKeyUpEvent;
+export interface _RawKeyUpEventNative extends RawKeyUpEvent {
+readonly [_flaxDartTypeValue]: _RawKeyUpEventNative;
 
 isKeyPressed(key: Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
 debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
@@ -47,14 +66,15 @@ get character(): string | null;
 get repeat(): boolean;
 get data(): upstream2.RawKeyEventData;
 }
-export abstract class RawKeyUpEvent extends _FlaxProxyBase {
+export abstract class _RawKeyUpEventNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RawKeyUpEvent>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: RawKeyUpEvent;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:RawKeyUpEvent", readonly [], false];
 constructor(options: {data: Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; character?: string | null | undefined}) { super(_RawKeyUpEventProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(RawKeyUpEvent.prototype, _RawKeyUpEventProxy);
-export namespace RawKeyUpEvent { export function implement(args: [options: {data: Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; character?: string | null | undefined}], implementation: {}): RawKeyUpEvent {
+_flaxDefineProxyBase(_RawKeyUpEventNative.prototype, _RawKeyUpEventProxy);
+export namespace _RawKeyUpEventFactory { export function implement(args: [options: {data: Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; character?: string | null | undefined}], implementation: {}): RawKeyUpEvent {
 return constructProxy(_RawKeyUpEventProxy, args, implementation) as RawKeyUpEvent; } }
-_flaxBindInstanceType<RawKeyUpEvent, typeof RawKeyUpEvent>(RawKeyUpEvent, "flax.core/sdk_services#type:RawKeyUpEvent", ["flax.core/sdk_services#type:RawKeyEvent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _RawKeyUpEventBinding = _flaxProxyFactory(_RawKeyUpEventFactory, _RawKeyUpEventNative) as unknown as typeof _RawKeyUpEventFactory & (new(options: {data: Readonly<{ "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; character?: string | null | undefined}) => _RawKeyUpEventNative);
+export const RawKeyUpEvent: typeof _RawKeyUpEventBinding & _FlaxInstanceType<RawKeyUpEvent> & _FlaxDartType<RawKeyUpEvent, readonly ["class", "flax.core/sdk_services#type:RawKeyUpEvent", readonly [], false]> = _flaxBindInstanceType<RawKeyUpEvent, typeof _RawKeyUpEventBinding>(_RawKeyUpEventBinding, "flax.core/sdk_services#type:RawKeyUpEvent", ["flax.core/sdk_services#type:RawKeyEvent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _RawKeyUpEventBinding & _FlaxInstanceType<RawKeyUpEvent> & _FlaxDartType<RawKeyUpEvent, readonly ["class", "flax.core/sdk_services#type:RawKeyUpEvent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "isControlPressed" | "isShiftPressed" | "isAltPressed" | "isMetaPressed" | "physicalKey" | "logicalKey" | "character" | "repeat" | "data" | "isKeyPressed" | "debugFillProperties" | "toStringShort" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyUpEvent" | "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEvent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

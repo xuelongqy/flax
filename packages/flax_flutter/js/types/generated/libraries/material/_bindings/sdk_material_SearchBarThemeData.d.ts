@@ -25,7 +25,7 @@ import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SearchBarThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/search_bar_theme.dart::SearchBarThemeData": readonly [];
 }>, Readonly<{
@@ -33,9 +33,108 @@ export interface SearchBarThemeData extends Omit<upstream0.Diagnosticable, _flax
 }> {
     readonly __SearchBarThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: SearchBarThemeData;
+    readonly elevation: upstream1.WidgetStateProperty<number | null> | null;
+    readonly backgroundColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly shadowColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly surfaceTintColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly overlayColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly side: upstream1.WidgetStateProperty<upstream3.BorderSide | null> | null;
+    readonly shape: upstream1.WidgetStateProperty<upstream4.OutlinedBorder | null> | null;
+    readonly padding: upstream1.WidgetStateProperty<upstream5.EdgeInsetsGeometry | null> | null;
+    readonly textStyle: upstream1.WidgetStateProperty<upstream6.TextStyle | null> | null;
+    readonly hintStyle: upstream1.WidgetStateProperty<upstream6.TextStyle | null> | null;
+    readonly constraints: upstream7.BoxConstraints | null;
+    readonly textCapitalization: upstream8.TextCapitalization | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream9.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream11.DiagnosticsTreeStyle | null | undefined;
+    }): upstream10.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        backgroundColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        constraints?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+        }>) | null | undefined;
+        elevation?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+        }> | null | undefined;
+        hintStyle?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.TextStyle | null];
+        }> | null | undefined;
+        overlayColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        padding?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.EdgeInsetsGeometry | null];
+        }> | null | undefined;
+        shadowColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        shape?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.OutlinedBorder | null];
+        }> | null | undefined;
+        side?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.BorderSide | null];
+        }> | null | undefined;
+        surfaceTintColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        textCapitalization?: upstream8.TextCapitalization | null | undefined;
+        textStyle?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.TextStyle | null];
+        }> | null | undefined;
+    }): SearchBarThemeData;
 }
-export interface SearchBarThemeData {
-    readonly [_flaxDartTypeValue]: SearchBarThemeData;
+export declare function _SearchBarThemeDataFactory(options?: {
+    elevation?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    side?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.BorderSide | null];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.OutlinedBorder | null];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.EdgeInsetsGeometry | null];
+    }> | null | undefined;
+    textStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.TextStyle | null];
+    }> | null | undefined;
+    hintStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.TextStyle | null];
+    }> | null | undefined;
+    constraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    textCapitalization?: upstream8.TextCapitalization | null | undefined;
+}): SearchBarThemeData;
+export interface _SearchBarThemeDataNative extends SearchBarThemeData {
+    readonly [_flaxDartTypeValue]: _SearchBarThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream9.DiagnosticLevel | undefined;
@@ -98,7 +197,7 @@ export interface SearchBarThemeData {
     get constraints(): upstream7.BoxConstraints | null;
     get textCapitalization(): upstream8.TextCapitalization | null;
 }
-export declare abstract class SearchBarThemeData extends _FlaxProxyBase {
+export declare abstract class _SearchBarThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SearchBarThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SearchBarThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:SearchBarThemeData", readonly [], false];
@@ -141,7 +240,7 @@ export declare abstract class SearchBarThemeData extends _FlaxProxyBase {
         textCapitalization?: upstream8.TextCapitalization | null | undefined;
     });
 }
-export declare namespace SearchBarThemeData {
+export declare namespace _SearchBarThemeDataFactory {
     function implement(args: [options?: {
         elevation?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
@@ -181,7 +280,45 @@ export declare namespace SearchBarThemeData {
         textCapitalization?: upstream8.TextCapitalization | null | undefined;
     }], implementation: {}): SearchBarThemeData;
 }
-export declare namespace SearchBarThemeData {
+declare const _SearchBarThemeDataBinding: typeof _SearchBarThemeDataFactory & (new (options?: {
+    elevation?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    side?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.BorderSide | null];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.OutlinedBorder | null];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.EdgeInsetsGeometry | null];
+    }> | null | undefined;
+    textStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.TextStyle | null];
+    }> | null | undefined;
+    hintStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.TextStyle | null];
+    }> | null | undefined;
+    constraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    textCapitalization?: upstream8.TextCapitalization | null | undefined;
+}) => _SearchBarThemeDataNative);
+export declare namespace _SearchBarThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/search_bar_theme.dart::SearchBarThemeData": readonly [];
     }> & Readonly<{
@@ -192,5 +329,6 @@ export declare namespace SearchBarThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): SearchBarThemeData | null;
 }
+export declare const SearchBarThemeData: typeof _SearchBarThemeDataBinding & _FlaxInstanceType<SearchBarThemeData> & _FlaxDartType<SearchBarThemeData, readonly ["class", "flax.core/sdk_material#type:SearchBarThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "elevation" | "backgroundColor" | "shadowColor" | "surfaceTintColor" | "overlayColor" | "side" | "shape" | "padding" | "textStyle" | "hintStyle" | "constraints" | "textCapitalization" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/search_bar_theme.dart::SearchBarThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

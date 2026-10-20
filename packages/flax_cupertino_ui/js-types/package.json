@@ -8,6 +8,12 @@
     ".": {
       "types": "./types/index.d.ts"
     },
+    "./dependencies/*": {
+      "types": [
+        "./types/generated/dependencies/*.d.ts",
+        "./types/generated/dependencies/*/index.d.ts"
+      ]
+    },
     "./*": {
       "types": "./types/generated/libraries/cupertino/*.d.ts"
     }

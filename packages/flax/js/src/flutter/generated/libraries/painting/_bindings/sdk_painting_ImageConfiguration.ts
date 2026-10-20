@@ -12,17 +12,30 @@ import '@flax/dart/ui/_bindings/flutter_Size';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_TargetPlatform';
 import '@flax/flutter/foundation/_bindings/flutter_TargetPlatform';
 import { _flaxMemberParameters72, _flaxMemberParameters2, _flaxMemberParameters73 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ImageConfiguration extends Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [] }> { readonly __ImageConfiguration: unique symbol;
 readonly [_flaxDartTypeValue]: ImageConfiguration;
 
+readonly bundle: upstream0.AssetBundle | null;
+readonly devicePixelRatio: number | null;
+readonly locale: upstream1.Locale | null;
+readonly textDirection: upstream2.TextDirection | null;
+readonly size: upstream3.Size | null;
+readonly platform: upstream4.TargetPlatform | null;
+copyWith(options?: {bundle?: Readonly<{ "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [] }> | null | undefined; devicePixelRatio?: number | null | undefined; locale?: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }> | null | undefined; platform?: upstream4.TargetPlatform | null | undefined; size?: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; textDirection?: upstream2.TextDirection | null | undefined}): ImageConfiguration;
+toString(): string;
 }
 defineObject("flax.core/sdk_painting#type:ImageConfiguration", ["bundle","devicePixelRatio","locale","textDirection","size","platform"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ImageConfiguration", "object", {"copyWith":_flaxMemberParameters72,"toString":_flaxMemberParameters2}, {}), []);
+export function _ImageConfigurationFactory(options: { bundle?: Readonly<{ "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [] }> | null | undefined; devicePixelRatio?: number | null | undefined; locale?: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }> | null | undefined; textDirection?: upstream2.TextDirection | null | undefined; size?: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; platform?: upstream4.TargetPlatform | null | undefined } = {}): ImageConfiguration {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_painting#type:ImageConfiguration", "", [{"name":"bundle"},{"name":"devicePixelRatio"},{"name":"locale"},{"name":"textDirection"},{"name":"size"},{"name":"platform"}], [], options) as ImageConfiguration;
+}
 const _ImageConfigurationProxy = {type: "flax.core/sdk_painting#type:ImageConfiguration", parameters: _flaxMemberParameters73, constructors: {"": _flaxMemberParameters73}, methods: {"copyWith":_flaxMemberParameters72,"toString":_flaxMemberParameters2}, getters: ["bundle","devicePixelRatio","locale","textDirection","size","platform"], setters: [], contextMembers: [], superMembers: ["get:bundle","get:devicePixelRatio","get:locale","get:textDirection","get:size","get:platform","copyWith","toString"]} as const;
-export interface ImageConfiguration {
-readonly [_flaxDartTypeValue]: ImageConfiguration;
+export interface _ImageConfigurationNative extends ImageConfiguration {
+readonly [_flaxDartTypeValue]: _ImageConfigurationNative;
 
 copyWith(options?: {bundle?: Readonly<{ "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [] }> | null | undefined; devicePixelRatio?: number | null | undefined; locale?: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }> | null | undefined; textDirection?: upstream2.TextDirection | null | undefined; size?: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; platform?: upstream4.TargetPlatform | null | undefined}): ImageConfiguration;
 toString(): string;
@@ -33,15 +46,16 @@ get textDirection(): upstream2.TextDirection | null;
 get size(): upstream3.Size | null;
 get platform(): upstream4.TargetPlatform | null;
 }
-export abstract class ImageConfiguration extends _FlaxProxyBase {
+export abstract class _ImageConfigurationNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ImageConfiguration>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ImageConfiguration;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_painting#type:ImageConfiguration", readonly [], false];
 constructor(options?: {bundle?: Readonly<{ "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [] }> | null | undefined; devicePixelRatio?: number | null | undefined; locale?: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }> | null | undefined; textDirection?: upstream2.TextDirection | null | undefined; size?: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; platform?: upstream4.TargetPlatform | null | undefined}) { super(_ImageConfigurationProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ImageConfiguration.prototype, _ImageConfigurationProxy);
-export namespace ImageConfiguration { export function implement(args: [options?: {bundle?: Readonly<{ "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [] }> | null | undefined; devicePixelRatio?: number | null | undefined; locale?: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }> | null | undefined; textDirection?: upstream2.TextDirection | null | undefined; size?: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; platform?: upstream4.TargetPlatform | null | undefined}], implementation: {}): ImageConfiguration {
+_flaxDefineProxyBase(_ImageConfigurationNative.prototype, _ImageConfigurationProxy);
+export namespace _ImageConfigurationFactory { export function implement(args: [options?: {bundle?: Readonly<{ "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [] }> | null | undefined; devicePixelRatio?: number | null | undefined; locale?: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }> | null | undefined; textDirection?: upstream2.TextDirection | null | undefined; size?: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; platform?: upstream4.TargetPlatform | null | undefined}], implementation: {}): ImageConfiguration {
 return constructProxy(_ImageConfigurationProxy, args, implementation) as ImageConfiguration; } }
-export namespace ImageConfiguration { export declare const empty: ImageConfiguration; }
-_flaxDefineStaticGetters(ImageConfiguration, "flax.core/sdk_painting#read:ImageConfiguration.", ["empty"]);
-_flaxBindInstanceType<ImageConfiguration, typeof ImageConfiguration>(ImageConfiguration, "flax.core/sdk_painting#type:ImageConfiguration", ["dart:core::Object"]);
+const _ImageConfigurationBinding = _flaxProxyFactory(_ImageConfigurationFactory, _ImageConfigurationNative) as unknown as typeof _ImageConfigurationFactory & (new(options?: {bundle?: Readonly<{ "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [] }> | null | undefined; devicePixelRatio?: number | null | undefined; locale?: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }> | null | undefined; textDirection?: upstream2.TextDirection | null | undefined; size?: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; platform?: upstream4.TargetPlatform | null | undefined}) => _ImageConfigurationNative);
+export namespace _ImageConfigurationFactory { export declare const empty: ImageConfiguration; }
+_flaxDefineStaticGetters(_ImageConfigurationFactory, "flax.core/sdk_painting#read:ImageConfiguration.", ["empty"]);
+export const ImageConfiguration: typeof _ImageConfigurationBinding & _FlaxInstanceType<ImageConfiguration> & _FlaxDartType<ImageConfiguration, readonly ["class", "flax.core/sdk_painting#type:ImageConfiguration", readonly [], false]> = _flaxBindInstanceType<ImageConfiguration, typeof _ImageConfigurationBinding>(_ImageConfigurationBinding, "flax.core/sdk_painting#type:ImageConfiguration", ["dart:core::Object"]) as typeof _ImageConfigurationBinding & _FlaxInstanceType<ImageConfiguration> & _FlaxDartType<ImageConfiguration, readonly ["class", "flax.core/sdk_painting#type:ImageConfiguration", readonly [], false]>;

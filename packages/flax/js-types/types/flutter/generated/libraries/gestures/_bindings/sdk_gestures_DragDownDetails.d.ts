@@ -13,7 +13,7 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DragDownDetails extends Omit<upstream0.PositionedGestureDetails, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PositionedGestureDetails>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragDownDetails": readonly [];
 }>, Readonly<{
@@ -23,9 +23,34 @@ export interface DragDownDetails extends Omit<upstream0.PositionedGestureDetails
 }> {
     readonly __DragDownDetails: unique symbol;
     readonly [_flaxDartTypeValue]: DragDownDetails;
+    readonly globalPosition: upstream2.Offset;
+    readonly localPosition: upstream2.Offset;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream5.DiagnosticsTreeStyle | null | undefined;
+    }): upstream4.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
 }
-export interface DragDownDetails {
-    readonly [_flaxDartTypeValue]: DragDownDetails;
+export declare function _DragDownDetailsFactory(options?: {
+    globalPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    localPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+}): DragDownDetails;
+export interface _DragDownDetailsNative extends DragDownDetails {
+    readonly [_flaxDartTypeValue]: _DragDownDetailsNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream3.DiagnosticLevel | undefined;
@@ -40,7 +65,7 @@ export interface DragDownDetails {
     get globalPosition(): upstream2.Offset;
     get localPosition(): upstream2.Offset;
 }
-export declare abstract class DragDownDetails extends _FlaxProxyBase {
+export declare abstract class _DragDownDetailsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DragDownDetails>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: DragDownDetails;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:DragDownDetails", readonly [], false];
@@ -57,7 +82,7 @@ export declare abstract class DragDownDetails extends _FlaxProxyBase {
         }>) | null | undefined;
     });
 }
-export declare namespace DragDownDetails {
+export declare namespace _DragDownDetailsFactory {
     function implement(args: [options?: {
         globalPosition?: (Readonly<{
             "__flaxBound:dart:ui::Offset": readonly [];
@@ -71,5 +96,18 @@ export declare namespace DragDownDetails {
         }>) | null | undefined;
     }], implementation: {}): DragDownDetails;
 }
+declare const _DragDownDetailsBinding: typeof _DragDownDetailsFactory & (new (options?: {
+    globalPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    localPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+}) => _DragDownDetailsNative);
+export declare const DragDownDetails: typeof _DragDownDetailsBinding & _FlaxInstanceType<DragDownDetails> & _FlaxDartType<DragDownDetails, readonly ["class", "flax.core/sdk_gestures#type:DragDownDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "globalPosition" | "localPosition" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragDownDetails" | "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

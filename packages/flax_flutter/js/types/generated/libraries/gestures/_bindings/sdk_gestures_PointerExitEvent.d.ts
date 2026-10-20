@@ -19,7 +19,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PointerExitEvent extends Omit<upstream0.PointerEvent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PointerEvent>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/events.dart::PointerExitEvent": readonly [];
 }>, Readonly<{
@@ -33,9 +33,135 @@ export interface PointerExitEvent extends Omit<upstream0.PointerEvent, _flaxOwnM
 }> {
     readonly __PointerExitEvent: unique symbol;
     readonly [_flaxDartTypeValue]: PointerExitEvent;
+    readonly viewId: number;
+    readonly embedderId: number;
+    readonly timeStamp: upstream2.Duration;
+    readonly pointer: number;
+    readonly kind: upstream3.PointerDeviceKind;
+    readonly device: number;
+    readonly position: upstream4.Offset;
+    readonly localPosition: upstream4.Offset;
+    readonly delta: upstream4.Offset;
+    readonly localDelta: upstream4.Offset;
+    readonly buttons: number;
+    readonly down: boolean;
+    readonly obscured: boolean;
+    readonly pressure: number;
+    readonly pressureMin: number;
+    readonly pressureMax: number;
+    readonly distance: number;
+    readonly distanceMin: number;
+    readonly distanceMax: number;
+    readonly size: number;
+    readonly radiusMajor: number;
+    readonly radiusMinor: number;
+    readonly radiusMin: number;
+    readonly radiusMax: number;
+    readonly orientation: number;
+    readonly tilt: number;
+    readonly platformData: number;
+    readonly synthesized: boolean;
+    readonly transform: upstream5.Matrix4 | null;
+    readonly original: upstream0.PointerEvent | null;
+    transformed(transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null): PointerExitEvent;
+    copyWith(options?: {
+        buttons?: number | null | undefined;
+        delta?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        device?: number | null | undefined;
+        distance?: number | null | undefined;
+        distanceMax?: number | null | undefined;
+        embedderId?: number | null | undefined;
+        kind?: upstream3.PointerDeviceKind | null | undefined;
+        obscured?: boolean | null | undefined;
+        orientation?: number | null | undefined;
+        pointer?: number | null | undefined;
+        position?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        pressure?: number | null | undefined;
+        pressureMax?: number | null | undefined;
+        pressureMin?: number | null | undefined;
+        radiusMajor?: number | null | undefined;
+        radiusMax?: number | null | undefined;
+        radiusMin?: number | null | undefined;
+        radiusMinor?: number | null | undefined;
+        size?: number | null | undefined;
+        synthesized?: boolean | null | undefined;
+        tilt?: number | null | undefined;
+        timeStamp?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration];
+        }>) | null | undefined;
+        viewId?: number | null | undefined;
+    }): PointerExitEvent;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream9.DiagnosticLevel | undefined;
+    }): string;
+    toStringFull(): string;
 }
-export interface PointerExitEvent {
-    readonly [_flaxDartTypeValue]: PointerExitEvent;
+export declare function _PointerExitEventFactory(options?: {
+    viewId?: number | undefined;
+    timeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration];
+    }>) | undefined;
+    kind?: upstream3.PointerDeviceKind | undefined;
+    pointer?: number | undefined;
+    device?: number | undefined;
+    position?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    delta?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    buttons?: number | undefined;
+    obscured?: boolean | undefined;
+    pressureMin?: number | undefined;
+    pressureMax?: number | undefined;
+    distance?: number | undefined;
+    distanceMax?: number | undefined;
+    size?: number | undefined;
+    radiusMajor?: number | undefined;
+    radiusMinor?: number | undefined;
+    radiusMin?: number | undefined;
+    radiusMax?: number | undefined;
+    orientation?: number | undefined;
+    tilt?: number | undefined;
+    down?: boolean | undefined;
+    synthesized?: boolean | undefined;
+    embedderId?: number | undefined;
+}): PointerExitEvent;
+export declare namespace _PointerExitEventFactory {
+    function fromMouseEvent(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): PointerExitEvent;
+}
+export interface _PointerExitEventNative extends PointerExitEvent {
+    readonly [_flaxDartTypeValue]: _PointerExitEventNative;
     transformed(transform: Readonly<{
         "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
     }> | null): PointerExitEvent;
@@ -119,7 +245,7 @@ export interface PointerExitEvent {
     get transform(): upstream5.Matrix4 | null;
     get original(): upstream0.PointerEvent | null;
 }
-export declare abstract class PointerExitEvent extends _FlaxProxyBase {
+export declare abstract class _PointerExitEventNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PointerExitEvent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PointerExitEvent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:PointerExitEvent", readonly [], false];
@@ -161,7 +287,7 @@ export declare abstract class PointerExitEvent extends _FlaxProxyBase {
         embedderId?: number | undefined;
     });
 }
-export declare namespace PointerExitEvent {
+export declare namespace _PointerExitEventFactory {
     function implement(args: [options?: {
         viewId?: number | undefined;
         timeStamp?: (Readonly<{
@@ -200,5 +326,43 @@ export declare namespace PointerExitEvent {
         embedderId?: number | undefined;
     }], implementation: {}): PointerExitEvent;
 }
+declare const _PointerExitEventBinding: typeof _PointerExitEventFactory & (new (options?: {
+    viewId?: number | undefined;
+    timeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration];
+    }>) | undefined;
+    kind?: upstream3.PointerDeviceKind | undefined;
+    pointer?: number | undefined;
+    device?: number | undefined;
+    position?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    delta?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    buttons?: number | undefined;
+    obscured?: boolean | undefined;
+    pressureMin?: number | undefined;
+    pressureMax?: number | undefined;
+    distance?: number | undefined;
+    distanceMax?: number | undefined;
+    size?: number | undefined;
+    radiusMajor?: number | undefined;
+    radiusMinor?: number | undefined;
+    radiusMin?: number | undefined;
+    radiusMax?: number | undefined;
+    orientation?: number | undefined;
+    tilt?: number | undefined;
+    down?: boolean | undefined;
+    synthesized?: boolean | undefined;
+    embedderId?: number | undefined;
+}) => _PointerExitEventNative);
+export declare const PointerExitEvent: typeof _PointerExitEventBinding & _FlaxInstanceType<PointerExitEvent> & _FlaxDartType<PointerExitEvent, readonly ["class", "flax.core/sdk_gestures#type:PointerExitEvent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "embedderId" | "timeStamp" | "pointer" | "kind" | "device" | "position" | "localPosition" | "delta" | "localDelta" | "buttons" | "down" | "obscured" | "pressure" | "pressureMin" | "pressureMax" | "distance" | "distanceMin" | "distanceMax" | "size" | "radiusMajor" | "radiusMinor" | "radiusMin" | "radiusMax" | "orientation" | "tilt" | "platformData" | "synthesized" | "transform" | "original" | "transformed" | "copyWith" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "toStringFull" | "__flaxBound:package:flutter/src/gestures/events.dart::PointerExitEvent" | "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription" | "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerExitEvent";
 export {};

@@ -8,7 +8,7 @@ import '@flax/flutter/animation/_bindings/sdk_animation_Animatable';
 import type * as upstream3 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ColorTween extends Omit<upstream0.Tween<upstream1.Color | null>, _flaxOwnMembers0>, Omit<upstream2.Animatable<upstream1.Color | null>, _flaxOwnMembers0 | keyof upstream0.Tween<upstream1.Color | null>>, Readonly<{
     "__flaxBound:package:flutter/src/animation/tween.dart::ColorTween": readonly [];
 }>, Readonly<{
@@ -18,9 +18,45 @@ export interface ColorTween extends Omit<upstream0.Tween<upstream1.Color | null>
 }> {
     readonly __ColorTween: unique symbol;
     readonly [_flaxDartTypeValue]: ColorTween;
+    get begin(): upstream1.Color | null;
+    get end(): upstream1.Color | null;
+    lerp(t: number): upstream1.Color | null;
+    transform(t: number): upstream1.Color | null;
+    toString(): string;
+    evaluate(animation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>): upstream1.Color | null;
+    animate(parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>): upstream3.Animation<upstream1.Color | null>;
+    chain(parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number];
+    }>): upstream2.Animatable<upstream1.Color | null>;
+    set begin(value: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null);
+    set end(value: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null);
 }
-export interface ColorTween {
-    readonly [_flaxDartTypeValue]: ColorTween;
+export declare function _ColorTweenFactory(options?: {
+    begin?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    end?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+}): ColorTween;
+export interface _ColorTweenNative extends ColorTween {
+    readonly [_flaxDartTypeValue]: _ColorTweenNative;
     lerp(t: number): upstream1.Color | null;
     transform(t: number): upstream1.Color | null;
     toString(): string;
@@ -50,7 +86,7 @@ export interface ColorTween {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null);
 }
-export declare abstract class ColorTween extends _FlaxProxyBase {
+export declare abstract class _ColorTweenNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ColorTween>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ColorTween;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_animation#type:ColorTween", readonly [], false];
@@ -63,7 +99,7 @@ export declare abstract class ColorTween extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace ColorTween {
+export declare namespace _ColorTweenFactory {
     function implement(args: [options?: {
         begin?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -73,5 +109,14 @@ export declare namespace ColorTween {
         }> | null | undefined;
     }], implementation: {}): ColorTween;
 }
+declare const _ColorTweenBinding: typeof _ColorTweenFactory & (new (options?: {
+    begin?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    end?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+}) => _ColorTweenNative);
+export declare const ColorTween: typeof _ColorTweenBinding & _FlaxInstanceType<ColorTween> & _FlaxDartType<ColorTween, readonly ["class", "flax.core/sdk_animation#type:ColorTween", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "begin" | "end" | "lerp" | "transform" | "toString" | "evaluate" | "animate" | "chain" | "__flaxBound:package:flutter/src/animation/tween.dart::ColorTween" | "__flaxBound:package:flutter/src/animation/tween.dart::Tween" | "__flaxBound:package:flutter/src/animation/tween.dart::Animatable";
 export {};

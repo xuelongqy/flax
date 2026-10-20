@@ -139,3 +139,15 @@ class SharedWidgetLeaf extends SharedWidgetChild {
 class SharedRestrictedWidget extends SharedWidgetBase {
   const SharedRestrictedWidget({super.key});
 }
+
+class CommonDescriptions {
+  String text = 'shared';
+  int count = 1;
+  VoidCallback? onDone;
+  ValueChanged<String>? onChanged;
+  void Function(String renamed)? onRenamed;
+  void Function({required String value})? onNamed;
+  String Function() get reader =>
+      () => text;
+  void run() => onDone?.call();
+}

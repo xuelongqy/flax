@@ -1429,7 +1429,7 @@ void main() {
     }
   });
 
-  group('Manifest 27 typeLibraries URI semantics', () {
+  group('Manifest 28 typeLibraries URI semantics', () {
     test('accepts public package URIs, cross-package names, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
@@ -1676,7 +1676,7 @@ void main() {
     );
   });
 
-  group('Manifest 27 envelope positives', () {
+  group('Manifest 28 envelope positives', () {
     test('fromResolved round-trips rich and zero-entry modules', () {
       final fixture = _envelopeFixture();
       final manifest = FlaxCodegenManifest.fromResolved(
@@ -1837,7 +1837,7 @@ void main() {
     });
   });
 
-  group('Manifest 27 envelope negatives', () {
+  group('Manifest 28 envelope negatives', () {
     test('duplicate keys compare decoded strings within each object', () {
       for (final json in [
         r'{"package":"a","\u0070ackage":"b"}',
@@ -1859,12 +1859,12 @@ void main() {
     test('invalid JSON and duplicate keys fail closed', () {
       _expectEnvelopeFailure('{', [_record('', 'Invalid JSON.')]);
       _expectEnvelopeFailure(
-        '{\n  "formatVersion": 27,\n  "package": "a",\n  "package": "b"\n}\n',
+        '{\n  "formatVersion": 28,\n  "package": "a",\n  "package": "b"\n}\n',
         [_record('', 'Duplicate mapping key.')],
       );
       final withModuleDup =
           '{\n'
-          '  "formatVersion": 27,\n'
+          '  "formatVersion": 28,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1884,7 +1884,7 @@ void main() {
       ]);
       final withModelDup =
           '{\n'
-          '  "formatVersion": 27,\n'
+          '  "formatVersion": 28,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -2115,7 +2115,7 @@ void main() {
     });
   });
 
-  group('Manifest 27 ownership model and fromResolved negatives', () {
+  group('Manifest 28 ownership model and fromResolved negatives', () {
     test('declaration owner rows are required at id pointers', () {
       const gauge = 'com.acme.widgets/widgets#type:Gauge';
       const axis = 'com.acme.widgets/widgets#type:Axis';
@@ -2311,27 +2311,20 @@ void main() {
         ],
       );
 
-      _expectEnvelopeMutation(
-        baseline,
-        (json) {
-          final identities = _identitiesAt(json, 1);
-          final gaugeRow = _identityMap(identities, gauge);
-          final source = Map<String, dynamic>.from(
-            gaugeRow['sourceIdentity'] as Map,
-          );
-          identities.insert(_identityIndex(identities, gauge), {
-            'sourceIdentity': source,
-            'wireId': 'com.acme.widgets/host#type:Gauge',
-            'owner': false,
-          });
-        },
-        [
-          _record(
-            '/modules/1/model~1identities',
-            'Conflicting sourceIdentity.',
-          ),
-        ],
+      final explicitView = _cloneEnvelopeJson(baseline);
+      final viewIdentities = _identitiesAt(explicitView, 1);
+      final gaugeSource = _identityMap(viewIdentities, gauge)['sourceIdentity'];
+      viewIdentities.insert(_identityIndex(viewIdentities, gauge), {
+        'sourceIdentity': gaugeSource,
+        'wireId': 'com.acme.widgets/host#type:Gauge',
+        'owner': false,
+      });
+      final viewDiagnostics = FlaxCodegenManifestDiagnostics('manifest.json');
+      expect(
+        FlaxCodegenManifest.parse(jsonEncode(explicitView), viewDiagnostics),
+        isNotNull,
       );
+      expect(viewDiagnostics.items, isEmpty);
       _expectEnvelopeMutation(baseline, (json) {
         final identities = _identitiesAt(json, 1);
         final gaugeIndex = _identityIndex(identities, gauge);
@@ -2499,7 +2492,9 @@ void main() {
         ),
         modules: fixture.models,
         importPackageNames: fixture.imports,
-        records: [_record('/modules/widgets', 'Conflicting sourceIdentity.')],
+        records: [
+          _record('/modules/widgets/model/classes/0/id', 'Missing owner.'),
+        ],
       );
       // Conflicting owners: same wire, different sources.
       final axisOwner = widgets.owners.firstWhere(
@@ -2558,7 +2553,7 @@ void main() {
         ),
         modules: fixture.models,
         importPackageNames: fixture.imports,
-        records: [_record('/modules/widgets', 'Conflicting sourceIdentity.')],
+        records: [_record('/modules/widgets', 'Wire name mismatch.')],
       );
 
       _expectFromResolvedFailure(
@@ -2592,7 +2587,7 @@ void main() {
     });
   });
 
-  group('Manifest 27 generic lexical slot positives', () {
+  group('Manifest 28 generic lexical slot positives', () {
     test(
       'fresh decoded tokens preserve declaration/reference identity sharing',
       () {
@@ -2902,7 +2897,7 @@ void main() {
     });
   });
 
-  group('Manifest 27 generic lexical slot negatives', () {
+  group('Manifest 28 generic lexical slot negatives', () {
     test('missing declaration slot fails closed', () {
       final json = _cloneJsonMap(
         _slotCallbackJson(_slotSharingCallback(Object())),
@@ -3113,7 +3108,7 @@ void main() {
     });
   });
 
-  group('Manifest 27 Quality P1 maximal projection', () {
+  group('Manifest 28 Quality P1 maximal projection', () {
     test('independently constructed maximal module survives fromResolved encode parse projection and input mutation', () {
       final inIntType = FlaxCodegenTypeRef('int');
       final inStringType = FlaxCodegenTypeRef('String', nullable: true);
@@ -4716,7 +4711,7 @@ void main() {
     });
   });
 
-  group('Manifest 27 direct dependency projection positives', () {
+  group('Manifest 28 direct dependency projection positives', () {
     test('A→B→C flattens packages owners modules and importedPackages', () {
       final chain = _projectionChain();
       final a = chain.aProjection;
@@ -5046,7 +5041,7 @@ bindingNamespace: com.example.local
     );
   });
 
-  group('Manifest 27 direct dependency projection negatives', () {
+  group('Manifest 28 direct dependency projection negatives', () {
     test('missing direct import fails closed', () {
       final b = _packageB(_packageC());
       final a = _packageA(b);
@@ -7508,11 +7503,11 @@ void _expectEnvelopeShape(
   expect(manifest.package, 'acme_widgets');
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
-  expect(FlaxCodegenManifest.formatVersion, 27);
+  expect(FlaxCodegenManifest.formatVersion, 28);
   expect(FlaxCodegenManifest.uiProtocol, 24);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
-  expect(encoded['formatVersion'], 27);
+  expect(encoded['formatVersion'], 28);
   expect(encoded['modules'], isA<List<Object?>>());
   final modules = encoded['modules']! as List<Object?>;
   expect(modules, hasLength(2));
@@ -8930,6 +8925,7 @@ FlaxCodegenManifest _manifestWithIdentities(
       FlaxCodegenManifestModule(
         name: module.name,
         moduleId: module.moduleId,
+        dartLibrary: module.dartLibrary,
         uiProtocol: module.uiProtocol,
         requiredCapabilities: List<String>.of(module.requiredCapabilities),
         model: FlaxCodegenManifestModel(
@@ -8954,6 +8950,7 @@ FlaxCodegenManifest _manifestWithModule(
       FlaxCodegenManifestModule(
         name: module.name,
         moduleId: module.moduleId,
+        dartLibrary: module.dartLibrary,
         uiProtocol: module.uiProtocol,
         requiredCapabilities: List<String>.of(module.requiredCapabilities),
         model: FlaxCodegenManifestModel(

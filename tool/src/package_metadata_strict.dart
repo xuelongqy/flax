@@ -63,6 +63,7 @@ final class FlaxPackageMetadataException implements Exception {
 
 const _label = r'[a-z][a-z0-9]{0,62}';
 final _namespacePattern = RegExp('^$_label(?:\\.$_label)+\$');
+final _dartPackageNamePattern = RegExp(r'^[a-z][a-z0-9_]*$');
 
 bool _isBindingNamespace(String value) =>
     value.length >= 3 &&
@@ -97,6 +98,7 @@ void validateFlaxPackageMetadataProjection(
   }
   final capabilities = root.requiredStringList('capabilities');
   final namespace = root.optionalNamespace();
+  root.optionalGenerateDependencies();
   if (capabilities != null &&
       (namespace.omitted || namespace.value != null) &&
       capabilities.contains('bindings') != (namespace.value != null)) {
@@ -173,10 +175,11 @@ final class _ProjectedDiagnostics {
 }
 
 final class _ProjectedMap {
-  _ProjectedMap(this.diagnostics, this.map);
+  _ProjectedMap(this.diagnostics, this.map, {this.pointer = ''});
 
   final _ProjectedDiagnostics diagnostics;
   final YamlMap map;
+  final String pointer;
 
   YamlNode? node(String key) => map.nodes[key];
 
@@ -203,12 +206,12 @@ final class _ProjectedMap {
     return value.value as int;
   }
 
-  List<String>? requiredStringList(String key) {
+  List<String>? requiredStringList(String key, {bool packageNames = false}) {
     final value = node(key);
     if (value == null) {
       diagnostics.add(
         code: 'FCG_MISSING_FIELD',
-        pointer: '/$key',
+        pointer: '$pointer/$key',
         message: 'Missing field.',
         node: map,
       );
@@ -217,7 +220,7 @@ final class _ProjectedMap {
     if (value is! YamlList) {
       diagnostics.add(
         code: 'FCG_TYPE_MISMATCH',
-        pointer: '/$key',
+        pointer: '$pointer/$key',
         message: 'Expected a list of strings.',
         node: value,
       );
@@ -227,11 +230,11 @@ final class _ProjectedMap {
     final seen = <String>{};
     for (var index = 0; index < value.nodes.length; index++) {
       final item = value.nodes[index];
-      final pointer = '/$key/$index';
+      final itemPointer = '$pointer/$key/$index';
       if (item.value is! String) {
         diagnostics.add(
           code: 'FCG_TYPE_MISMATCH',
-          pointer: pointer,
+          pointer: itemPointer,
           message: 'Expected a string.',
           node: item,
         );
@@ -241,8 +244,17 @@ final class _ProjectedMap {
       if (text.isEmpty) {
         diagnostics.add(
           code: 'FCG_INVALID_VALUE',
-          pointer: pointer,
+          pointer: itemPointer,
           message: 'Expected a nonempty string.',
+          node: item,
+        );
+        continue;
+      }
+      if (packageNames && !_dartPackageNamePattern.hasMatch(text)) {
+        diagnostics.add(
+          code: 'FCG_INVALID_VALUE',
+          pointer: itemPointer,
+          message: 'Invalid Dart package name.',
           node: item,
         );
         continue;
@@ -250,7 +262,7 @@ final class _ProjectedMap {
       if (!seen.add(text)) {
         diagnostics.add(
           code: 'FCG_DUPLICATE_VALUE',
-          pointer: pointer,
+          pointer: itemPointer,
           message: 'Duplicate value.',
           node: item,
         );
@@ -259,6 +271,48 @@ final class _ProjectedMap {
       values.add(text);
     }
     return values;
+  }
+
+  void optionalGenerateDependencies() {
+    final value = node('bindingDependencies');
+    if (value == null) return;
+    if (value is! YamlMap) {
+      diagnostics.add(
+        code: 'FCG_TYPE_MISMATCH',
+        pointer: '/bindingDependencies',
+        message: 'Expected a mapping.',
+        node: value,
+      );
+      return;
+    }
+    for (final entry in value.nodes.entries) {
+      final keyNode = entry.key as YamlNode;
+      final key = keyNode.value;
+      if (key is! String) {
+        diagnostics.add(
+          code: 'FCG_TYPE_MISMATCH',
+          pointer: '/bindingDependencies',
+          message: 'Mapping keys must be strings.',
+          node: keyNode,
+        );
+      } else if (key != 'generate') {
+        diagnostics.add(
+          code: 'FCG_UNKNOWN_FIELD',
+          pointer:
+              '/bindingDependencies/'
+              '${FlaxPackageMetadataDiagnostic.jsonPointerToken(key)}',
+          message: 'Unknown field.',
+          node: keyNode,
+        );
+      }
+    }
+    if (value.nodes.containsKey('generate')) {
+      _ProjectedMap(
+        diagnostics,
+        value,
+        pointer: '/bindingDependencies',
+      ).requiredStringList('generate', packageNames: true);
+    }
   }
 
   _NamespaceField optionalNamespace() {

@@ -13,7 +13,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PasteTextIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::PasteTextIntent": readonly [];
 }>, Readonly<{
@@ -23,9 +23,22 @@ export interface PasteTextIntent extends Omit<upstream0.Intent, _flaxOwnMembers0
 }> {
     readonly __PasteTextIntent: unique symbol;
     readonly [_flaxDartTypeValue]: PasteTextIntent;
+    readonly cause: upstream2.SelectionChangedCause;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream4.DiagnosticsTreeStyle | null | undefined;
+    }): upstream3.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface PasteTextIntent {
-    readonly [_flaxDartTypeValue]: PasteTextIntent;
+export declare function _PasteTextIntentFactory(cause: upstream2.SelectionChangedCause): PasteTextIntent;
+export interface _PasteTextIntentNative extends PasteTextIntent {
+    readonly [_flaxDartTypeValue]: _PasteTextIntentNative;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
@@ -39,14 +52,16 @@ export interface PasteTextIntent {
     }): string;
     get cause(): upstream2.SelectionChangedCause;
 }
-export declare abstract class PasteTextIntent extends _FlaxProxyBase {
+export declare abstract class _PasteTextIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PasteTextIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PasteTextIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:PasteTextIntent", readonly [], false];
     constructor(cause: upstream2.SelectionChangedCause);
 }
-export declare namespace PasteTextIntent {
+export declare namespace _PasteTextIntentFactory {
     function implement(args: [cause: upstream2.SelectionChangedCause], implementation: {}): PasteTextIntent;
 }
+declare const _PasteTextIntentBinding: typeof _PasteTextIntentFactory & (new (cause: upstream2.SelectionChangedCause) => _PasteTextIntentNative);
+export declare const PasteTextIntent: typeof _PasteTextIntentBinding & _FlaxInstanceType<PasteTextIntent> & _FlaxDartType<PasteTextIntent, readonly ["class", "flax.core/sdk_widgets#type:PasteTextIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "cause" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::PasteTextIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

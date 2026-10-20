@@ -28,516 +28,516 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       },
       supertypes: ["flax.core/flutter#type:Enum", "dart:core::Object"],
     ),
-    _flaxBinding22,
-    _flaxBinding46,
-    _flaxBinding92,
-    _flaxBinding13,
-    _flaxBinding146,
-    _flaxBinding147,
+    _flaxBinding17,
+    _flaxBinding39,
+    _flaxBinding84,
+    _flaxBinding11,
+    _flaxBinding136,
+    _flaxBinding137,
+    _flaxBinding138,
     _flaxBinding148,
-    _flaxBinding158,
-    _flaxBinding72,
-    _flaxBinding160,
-    _flaxBinding162,
-    _flaxBinding215,
-    _flaxBinding262,
-    _flaxBinding365,
-    _flaxBinding370,
-    _flaxBinding403,
-    _flaxBinding417,
-    _flaxBinding420,
-    _flaxBinding423,
-    _flaxBinding437,
-    _flaxBinding531,
-    _flaxBinding622,
-    _flaxBinding638,
-    _flaxBinding703,
-    _flaxBinding742,
-    _flaxBinding749,
-    _flaxBinding753,
-    _flaxBinding849,
-    _flaxBinding868,
-    _flaxBinding871,
-    _flaxBinding844,
-    _flaxBinding872,
-    _flaxBinding882,
-    _flaxBinding888,
-    _flaxBinding1057,
-    _flaxBinding1530,
-    _flaxBinding2798,
-    _flaxBinding2806,
+    _flaxBinding64,
+    _flaxBinding150,
+    _flaxBinding152,
+    _flaxBinding204,
+    _flaxBinding250,
+    _flaxBinding350,
+    _flaxBinding355,
+    _flaxBinding388,
+    _flaxBinding402,
+    _flaxBinding405,
+    _flaxBinding408,
+    _flaxBinding422,
+    _flaxBinding514,
+    _flaxBinding604,
+    _flaxBinding620,
+    _flaxBinding685,
+    _flaxBinding724,
+    _flaxBinding731,
+    _flaxBinding735,
+    _flaxBinding831,
+    _flaxBinding850,
+    _flaxBinding853,
+    _flaxBinding826,
+    _flaxBinding854,
+    _flaxBinding864,
+    _flaxBinding870,
+    _flaxBinding1039,
+    _flaxBinding1512,
+    _flaxBinding2780,
+    _flaxBinding2788,
   ],
   functions: [
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:Directory.current",
       [],
-      _flaxBinding53,
+      _flaxBinding46,
       _Directory_static_get_current,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:Directory.systemTemp",
       [],
-      _flaxBinding53,
+      _flaxBinding46,
       _Directory_static_get_systemTemp,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Directory.current%3D",
-      [FlaxParameter("value", _flaxBinding110, required: true)],
-      _flaxBinding70,
+      [FlaxParameter.required("value", flaxNullableAnyType)],
+      flaxVoidType,
       _Directory_static_set_current,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Encoding.getByName",
-      [FlaxParameter("name", _flaxBinding29, required: true)],
-      _flaxBinding2807,
+      [FlaxParameter.required("name", flaxNullableStringType)],
+      _flaxBinding2789,
       _Encoding_getByName,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileStat.statSync",
-      [FlaxParameter("path", _flaxBinding0, required: true)],
-      _flaxBinding64,
+      [FlaxParameter.required("path", flaxStringType)],
+      _flaxBinding57,
       _FileStat_statSync,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileStat.stat",
-      [FlaxParameter("path", _flaxBinding0, required: true)],
-      _flaxBinding65,
+      [FlaxParameter.required("path", flaxStringType)],
+      _flaxBinding58,
       _FileStat_stat,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.identical",
       [
-        FlaxParameter("path1", _flaxBinding0, required: true),
-        FlaxParameter("path2", _flaxBinding0, required: true),
+        FlaxParameter.required("path1", flaxStringType),
+        FlaxParameter.required("path2", flaxStringType),
       ],
-      _flaxBinding55,
+      _flaxBinding48,
       _FileSystemEntity_identical,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.identicalSync",
       [
-        FlaxParameter("path1", _flaxBinding0, required: true),
-        FlaxParameter("path2", _flaxBinding0, required: true),
+        FlaxParameter.required("path1", flaxStringType),
+        FlaxParameter.required("path2", flaxStringType),
       ],
-      _flaxBinding20,
+      flaxBoolType,
       _FileSystemEntity_identicalSync,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.type",
       [
-        FlaxParameter("path", _flaxBinding0, required: true),
+        FlaxParameter.required("path", flaxStringType),
         FlaxParameter(
           "followLinks",
-          _flaxBinding20,
+          flaxBoolType,
           required: false,
           defaultValue: true,
         ),
       ],
-      _flaxBinding2808,
+      _flaxBinding2790,
       _FileSystemEntity_type,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.typeSync",
       [
-        FlaxParameter("path", _flaxBinding0, required: true),
+        FlaxParameter.required("path", flaxStringType),
         FlaxParameter(
           "followLinks",
-          _flaxBinding20,
+          flaxBoolType,
           required: false,
           defaultValue: true,
         ),
       ],
-      _flaxBinding152,
+      _flaxBinding142,
       _FileSystemEntity_typeSync,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.isLink",
-      [FlaxParameter("path", _flaxBinding0, required: true)],
-      _flaxBinding55,
+      [FlaxParameter.required("path", flaxStringType)],
+      _flaxBinding48,
       _FileSystemEntity_isLink,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.isFile",
-      [FlaxParameter("path", _flaxBinding0, required: true)],
-      _flaxBinding55,
+      [FlaxParameter.required("path", flaxStringType)],
+      _flaxBinding48,
       _FileSystemEntity_isFile,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.isDirectory",
-      [FlaxParameter("path", _flaxBinding0, required: true)],
-      _flaxBinding55,
+      [FlaxParameter.required("path", flaxStringType)],
+      _flaxBinding48,
       _FileSystemEntity_isDirectory,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.isLinkSync",
-      [FlaxParameter("path", _flaxBinding0, required: true)],
-      _flaxBinding20,
+      [FlaxParameter.required("path", flaxStringType)],
+      flaxBoolType,
       _FileSystemEntity_isLinkSync,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.isFileSync",
-      [FlaxParameter("path", _flaxBinding0, required: true)],
-      _flaxBinding20,
+      [FlaxParameter.required("path", flaxStringType)],
+      flaxBoolType,
       _FileSystemEntity_isFileSync,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.isDirectorySync",
-      [FlaxParameter("path", _flaxBinding0, required: true)],
-      _flaxBinding20,
+      [FlaxParameter.required("path", flaxStringType)],
+      flaxBoolType,
       _FileSystemEntity_isDirectorySync,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:FileSystemEntity.parentOf",
-      [FlaxParameter("path", _flaxBinding0, required: true)],
-      _flaxBinding0,
+      [FlaxParameter.required("path", flaxStringType)],
+      flaxStringType,
       _FileSystemEntity_parentOf,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:FileSystemEntity.isWatchSupported",
       [],
-      _flaxBinding20,
+      flaxBoolType,
       _FileSystemEntity_static_get_isWatchSupported,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Flow.begin",
-      [FlaxParameter("id", _flaxBinding27, required: false)],
-      _flaxBinding2809,
+      [FlaxParameter("id", flaxNullableIntType, required: false)],
+      _flaxBinding2791,
       _Flow_begin,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Flow.step",
-      [FlaxParameter("id", _flaxBinding2, required: true)],
-      _flaxBinding2809,
+      [FlaxParameter.required("id", flaxIntType)],
+      _flaxBinding2791,
       _Flow_step,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Flow.end",
-      [FlaxParameter("id", _flaxBinding2, required: true)],
-      _flaxBinding2809,
+      [FlaxParameter.required("id", flaxIntType)],
+      _flaxBinding2791,
       _Flow_end,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:HttpClient.findProxyFromEnvironment",
       [
-        FlaxParameter("url", _flaxBinding48, required: true),
-        FlaxParameter("environment", _flaxBinding2810, required: false),
+        FlaxParameter.required("url", _flaxBinding41),
+        FlaxParameter("environment", _flaxBinding2792, required: false),
       ],
-      _flaxBinding0,
+      flaxStringType,
       _HttpClient_findProxyFromEnvironment,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:HttpClient.enableTimelineLogging",
       [],
-      _flaxBinding20,
+      flaxBoolType,
       _HttpClient_static_get_enableTimelineLogging,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:HttpClient.enableTimelineLogging%3D",
-      [FlaxParameter("value", _flaxBinding20, required: true)],
-      _flaxBinding70,
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
       _HttpClient_static_set_enableTimelineLogging,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:InternetAddress.lookup",
       [
-        FlaxParameter("host", _flaxBinding0, required: true),
+        FlaxParameter.required("host", flaxStringType),
         FlaxParameter(
           "type",
-          _flaxBinding404,
+          _flaxBinding389,
           required: false,
           omitWhenAbsent: true,
         ),
       ],
-      _flaxBinding2813,
+      _flaxBinding2795,
       _InternetAddress_lookup,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:InternetAddress.tryParse",
-      [FlaxParameter("address", _flaxBinding0, required: true)],
-      _flaxBinding2814,
+      [FlaxParameter.required("address", flaxStringType)],
+      _flaxBinding2796,
       _InternetAddress_tryParse,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:InternetAddress.loopbackIPv4",
       [],
-      _flaxBinding366,
+      _flaxBinding351,
       _InternetAddress_static_get_loopbackIPv4,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:InternetAddress.loopbackIPv6",
       [],
-      _flaxBinding366,
+      _flaxBinding351,
       _InternetAddress_static_get_loopbackIPv6,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:InternetAddress.anyIPv4",
       [],
-      _flaxBinding366,
+      _flaxBinding351,
       _InternetAddress_static_get_anyIPv4,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:InternetAddress.anyIPv6",
       [],
-      _flaxBinding366,
+      _flaxBinding351,
       _InternetAddress_static_get_anyIPv6,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Matrix2.solve",
       [
-        FlaxParameter("A", _flaxBinding456, required: true),
-        FlaxParameter("x", _flaxBinding441, required: true),
-        FlaxParameter("b", _flaxBinding441, required: true),
+        FlaxParameter.required("A", _flaxBinding440),
+        FlaxParameter.required("x", _flaxBinding426),
+        FlaxParameter.required("b", _flaxBinding426),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Matrix2_solve,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Matrix3.solve2",
       [
-        FlaxParameter("A", _flaxBinding551, required: true),
-        FlaxParameter("x", _flaxBinding441, required: true),
-        FlaxParameter("b", _flaxBinding441, required: true),
+        FlaxParameter.required("A", _flaxBinding534),
+        FlaxParameter.required("x", _flaxBinding426),
+        FlaxParameter.required("b", _flaxBinding426),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Matrix3_solve2,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Matrix3.solve",
       [
-        FlaxParameter("A", _flaxBinding551, required: true),
-        FlaxParameter("x", _flaxBinding534, required: true),
-        FlaxParameter("b", _flaxBinding534, required: true),
+        FlaxParameter.required("A", _flaxBinding534),
+        FlaxParameter.required("x", _flaxBinding517),
+        FlaxParameter.required("b", _flaxBinding517),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Matrix3_solve,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:RawSocketOption.levelSocket",
       [],
-      _flaxBinding2,
+      flaxIntType,
       _RawSocketOption_static_get_levelSocket,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:RawSocketOption.levelIPv4",
       [],
-      _flaxBinding2,
+      flaxIntType,
       _RawSocketOption_static_get_levelIPv4,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:RawSocketOption.IPv4MulticastInterface",
       [],
-      _flaxBinding2,
+      flaxIntType,
       _RawSocketOption_static_get_IPv4MulticastInterface,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:RawSocketOption.levelIPv6",
       [],
-      _flaxBinding2,
+      flaxIntType,
       _RawSocketOption_static_get_levelIPv6,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:RawSocketOption.IPv6MulticastInterface",
       [],
-      _flaxBinding2,
+      flaxIntType,
       _RawSocketOption_static_get_IPv6MulticastInterface,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:RawSocketOption.levelTcp",
       [],
-      _flaxBinding2,
+      flaxIntType,
       _RawSocketOption_static_get_levelTcp,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:RawSocketOption.levelUdp",
       [],
-      _flaxBinding2,
+      flaxIntType,
       _RawSocketOption_static_get_levelUdp,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:SecureSocket.connect",
       [
-        FlaxParameter("host", _flaxBinding110, required: true),
-        FlaxParameter("port", _flaxBinding2, required: true),
-        FlaxParameter("context", _flaxBinding213, required: false),
-        FlaxParameter("keyLog", _flaxBinding2816, required: false),
-        FlaxParameter("onBadCertificate", _flaxBinding2818, required: false),
-        FlaxParameter("supportedProtocols", _flaxBinding401, required: false),
-        FlaxParameter("timeout", _flaxBinding165, required: false),
+        FlaxParameter.required("host", flaxNullableAnyType),
+        FlaxParameter.required("port", flaxIntType),
+        FlaxParameter("context", _flaxBinding202, required: false),
+        FlaxParameter("keyLog", _flaxBinding2798, required: false),
+        FlaxParameter("onBadCertificate", _flaxBinding2800, required: false),
+        FlaxParameter("supportedProtocols", _flaxBinding386, required: false),
+        FlaxParameter("timeout", _flaxBinding154, required: false),
       ],
-      _flaxBinding2820,
+      _flaxBinding2802,
       _SecureSocket_connect,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:SecureSocket.secure",
       [
-        FlaxParameter("socket", _flaxBinding289, required: true),
-        FlaxParameter("context", _flaxBinding213, required: false),
+        FlaxParameter.required("socket", _flaxBinding277),
+        FlaxParameter("context", _flaxBinding202, required: false),
         FlaxParameter(
           "host",
-          _flaxBinding110,
+          flaxNullableAnyType,
           required: false,
           omitWhenAbsent: true,
         ),
-        FlaxParameter("keyLog", _flaxBinding2816, required: false),
-        FlaxParameter("onBadCertificate", _flaxBinding2818, required: false),
-        FlaxParameter("supportedProtocols", _flaxBinding401, required: false),
+        FlaxParameter("keyLog", _flaxBinding2798, required: false),
+        FlaxParameter("onBadCertificate", _flaxBinding2800, required: false),
+        FlaxParameter("supportedProtocols", _flaxBinding386, required: false),
       ],
-      _flaxBinding2820,
+      _flaxBinding2802,
       _SecureSocket_secure,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:SecureSocket.secureServer",
       [
-        FlaxParameter("socket", _flaxBinding289, required: true),
-        FlaxParameter("context", _flaxBinding213, required: true),
-        FlaxParameter("bufferedData", _flaxBinding2821, required: false),
+        FlaxParameter.required("socket", _flaxBinding277),
+        FlaxParameter.required("context", _flaxBinding202),
+        FlaxParameter("bufferedData", _flaxBinding2803, required: false),
         FlaxParameter(
           "requestClientCertificate",
-          _flaxBinding20,
+          flaxBoolType,
           required: false,
           defaultValue: false,
         ),
         FlaxParameter(
           "requireClientCertificate",
-          _flaxBinding20,
+          flaxBoolType,
           required: false,
           defaultValue: false,
         ),
-        FlaxParameter("supportedProtocols", _flaxBinding401, required: false),
+        FlaxParameter("supportedProtocols", _flaxBinding386, required: false),
       ],
-      _flaxBinding2820,
+      _flaxBinding2802,
       _SecureSocket_secureServer,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:SecurityContext.defaultContext",
       [],
-      _flaxBinding2822,
+      _flaxBinding2804,
       _SecurityContext_static_get_defaultContext,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#read:SecurityContext.alpnSupported",
       [],
-      _flaxBinding20,
+      flaxBoolType,
       _SecurityContext_static_get_alpnSupported,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Socket.connect",
       [
-        FlaxParameter("host", _flaxBinding110, required: true),
-        FlaxParameter("port", _flaxBinding2, required: true),
+        FlaxParameter.required("host", flaxNullableAnyType),
+        FlaxParameter.required("port", flaxIntType),
         FlaxParameter(
           "sourceAddress",
-          _flaxBinding110,
+          flaxNullableAnyType,
           required: false,
           omitWhenAbsent: true,
         ),
         FlaxParameter(
           "sourcePort",
-          _flaxBinding2,
+          flaxIntType,
           required: false,
           defaultValue: 0,
         ),
-        FlaxParameter("timeout", _flaxBinding165, required: false),
+        FlaxParameter("timeout", _flaxBinding154, required: false),
       ],
-      _flaxBinding290,
+      _flaxBinding278,
       _Socket_connect,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Vector2.min",
       [
-        FlaxParameter("a", _flaxBinding441, required: true),
-        FlaxParameter("b", _flaxBinding441, required: true),
-        FlaxParameter("result", _flaxBinding441, required: true),
+        FlaxParameter.required("a", _flaxBinding426),
+        FlaxParameter.required("b", _flaxBinding426),
+        FlaxParameter.required("result", _flaxBinding426),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Vector2_min,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Vector2.max",
       [
-        FlaxParameter("a", _flaxBinding441, required: true),
-        FlaxParameter("b", _flaxBinding441, required: true),
-        FlaxParameter("result", _flaxBinding441, required: true),
+        FlaxParameter.required("a", _flaxBinding426),
+        FlaxParameter.required("b", _flaxBinding426),
+        FlaxParameter.required("result", _flaxBinding426),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Vector2_max,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Vector2.mix",
       [
-        FlaxParameter("min", _flaxBinding441, required: true),
-        FlaxParameter("max", _flaxBinding441, required: true),
-        FlaxParameter("a", _flaxBinding448, required: true),
-        FlaxParameter("result", _flaxBinding441, required: true),
+        FlaxParameter.required("min", _flaxBinding426),
+        FlaxParameter.required("max", _flaxBinding426),
+        FlaxParameter.required("a", flaxDoubleType),
+        FlaxParameter.required("result", _flaxBinding426),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Vector2_mix,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Vector3.min",
       [
-        FlaxParameter("a", _flaxBinding534, required: true),
-        FlaxParameter("b", _flaxBinding534, required: true),
-        FlaxParameter("result", _flaxBinding534, required: true),
+        FlaxParameter.required("a", _flaxBinding517),
+        FlaxParameter.required("b", _flaxBinding517),
+        FlaxParameter.required("result", _flaxBinding517),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Vector3_min,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Vector3.max",
       [
-        FlaxParameter("a", _flaxBinding534, required: true),
-        FlaxParameter("b", _flaxBinding534, required: true),
-        FlaxParameter("result", _flaxBinding534, required: true),
+        FlaxParameter.required("a", _flaxBinding517),
+        FlaxParameter.required("b", _flaxBinding517),
+        FlaxParameter.required("result", _flaxBinding517),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Vector3_max,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Vector3.mix",
       [
-        FlaxParameter("min", _flaxBinding534, required: true),
-        FlaxParameter("max", _flaxBinding534, required: true),
-        FlaxParameter("a", _flaxBinding448, required: true),
-        FlaxParameter("result", _flaxBinding534, required: true),
+        FlaxParameter.required("min", _flaxBinding517),
+        FlaxParameter.required("max", _flaxBinding517),
+        FlaxParameter.required("a", flaxDoubleType),
+        FlaxParameter.required("result", _flaxBinding517),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Vector3_mix,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Vector4.min",
       [
-        FlaxParameter("a", _flaxBinding906, required: true),
-        FlaxParameter("b", _flaxBinding906, required: true),
-        FlaxParameter("result", _flaxBinding906, required: true),
+        FlaxParameter.required("a", _flaxBinding888),
+        FlaxParameter.required("b", _flaxBinding888),
+        FlaxParameter.required("result", _flaxBinding888),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Vector4_min,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Vector4.max",
       [
-        FlaxParameter("a", _flaxBinding906, required: true),
-        FlaxParameter("b", _flaxBinding906, required: true),
-        FlaxParameter("result", _flaxBinding906, required: true),
+        FlaxParameter.required("a", _flaxBinding888),
+        FlaxParameter.required("b", _flaxBinding888),
+        FlaxParameter.required("result", _flaxBinding888),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Vector4_max,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_dependencies#function:Vector4.mix",
       [
-        FlaxParameter("min", _flaxBinding906, required: true),
-        FlaxParameter("max", _flaxBinding906, required: true),
-        FlaxParameter("a", _flaxBinding448, required: true),
-        FlaxParameter("result", _flaxBinding906, required: true),
+        FlaxParameter.required("min", _flaxBinding888),
+        FlaxParameter.required("max", _flaxBinding888),
+        FlaxParameter.required("a", flaxDoubleType),
+        FlaxParameter.required("result", _flaxBinding888),
       ],
-      _flaxBinding70,
+      flaxVoidType,
       _Vector4_mix,
     ),
   ],
   constants: [
-    FlaxConstantGroup(_flaxBinding734, {
+    FlaxConstantGroup(_flaxBinding716, {
       "flax.core/sdk_dependencies#read:FileLock.shared": api3.FileLock.shared,
       "flax.core/sdk_dependencies#read:FileLock.exclusive":
           api3.FileLock.exclusive,
@@ -546,7 +546,7 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       "flax.core/sdk_dependencies#read:FileLock.blockingExclusive":
           api3.FileLock.blockingExclusive,
     }),
-    FlaxConstantGroup(_flaxBinding119, {
+    FlaxConstantGroup(_flaxBinding109, {
       "flax.core/sdk_dependencies#read:FileMode.read": api3.FileMode.read,
       "flax.core/sdk_dependencies#read:FileMode.write": api3.FileMode.write,
       "flax.core/sdk_dependencies#read:FileMode.append": api3.FileMode.append,
@@ -555,7 +555,7 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       "flax.core/sdk_dependencies#read:FileMode.writeOnlyAppend":
           api3.FileMode.writeOnlyAppend,
     }),
-    FlaxConstantGroup(_flaxBinding152, {
+    FlaxConstantGroup(_flaxBinding142, {
       "flax.core/sdk_dependencies#read:FileSystemEntityType.file":
           api3.FileSystemEntityType.file,
       "flax.core/sdk_dependencies#read:FileSystemEntityType.directory":
@@ -571,13 +571,13 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       "flax.core/sdk_dependencies#read:FileSystemEntityType.NOT_FOUND":
           api3.FileSystemEntityType.NOT_FOUND,
     }),
-    FlaxConstantGroup(_flaxBinding2, {
+    FlaxConstantGroup(flaxIntType, {
       "flax.core/sdk_dependencies#read:HttpClient.defaultHttpPort":
           api3.HttpClient.defaultHttpPort,
       "flax.core/sdk_dependencies#read:HttpClient.defaultHttpsPort":
           api3.HttpClient.defaultHttpsPort,
     }),
-    FlaxConstantGroup(_flaxBinding0, {
+    FlaxConstantGroup(flaxStringType, {
       "flax.core/sdk_dependencies#read:HttpHeaders.acceptHeader":
           api3.HttpHeaders.acceptHeader,
       "flax.core/sdk_dependencies#read:HttpHeaders.acceptCharsetHeader":
@@ -695,7 +695,7 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       "flax.core/sdk_dependencies#read:HttpHeaders.setCookieHeader":
           api3.HttpHeaders.setCookieHeader,
     }),
-    FlaxConstantGroup(_flaxBinding135, {
+    FlaxConstantGroup(_flaxBinding125, {
       "flax.core/sdk_dependencies#read:HttpHeaders.generalHeaders":
           api3.HttpHeaders.generalHeaders,
       "flax.core/sdk_dependencies#read:HttpHeaders.entityHeaders":
@@ -705,7 +705,7 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       "flax.core/sdk_dependencies#read:HttpHeaders.requestHeaders":
           api3.HttpHeaders.requestHeaders,
     }),
-    FlaxConstantGroup(_flaxBinding404, {
+    FlaxConstantGroup(_flaxBinding389, {
       "flax.core/sdk_dependencies#read:InternetAddressType.IPv4":
           api3.InternetAddressType.IPv4,
       "flax.core/sdk_dependencies#read:InternetAddressType.IPv6":
@@ -715,7 +715,7 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       "flax.core/sdk_dependencies#read:InternetAddressType.any":
           api3.InternetAddressType.any,
     }),
-    FlaxConstantGroup(_flaxBinding772, {
+    FlaxConstantGroup(_flaxBinding754, {
       "flax.core/sdk_dependencies#read:SocketOption.tcpNoDelay":
           api3.SocketOption.tcpNoDelay,
     }),
@@ -8036,23 +8036,16 @@ Function _flaxGeneric_HttpClientResponse_map<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
-          FlaxParameter(
+          FlaxParameter.required(
             "convert",
             types.define<_Method0 Function(List<int> event)>(
               FlaxTypeRef(
                 "callback",
                 nullable: false,
                 callback: FlaxCallbackBinding(
-                  [
-                    FlaxCallbackParameter(
-                      "event",
-                      _flaxBinding4,
-                      required: true,
-                      positional: true,
-                    ),
-                  ],
+                  [FlaxCallbackParameter.plain("event", _flaxBinding2)],
                   types.ref<_Method0>(withinCallback: true),
                   FlaxCallbackAdapters.wrap1<List<int>, _Method0>,
                   id:
@@ -8063,7 +8056,6 @@ Function _flaxGeneric_HttpClientResponse_map<_Method0 extends Object?>() =>
                 ),
               ),
             ),
-            required: true,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8098,23 +8090,16 @@ Function _flaxGeneric_HttpClientResponse_asyncMap<
     );
   }
 
-  return FlaxInstanceMethod(
+  return FlaxInstanceMethod.plain(
     <FlaxParameter>[
-      FlaxParameter(
+      FlaxParameter.required(
         "convert",
         types.define<api5.FutureOr<_Method0> Function(List<int> event)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding4,
-                  required: true,
-                  positional: true,
-                ),
-              ],
+              [FlaxCallbackParameter.plain("event", _flaxBinding2)],
               types.ref<api5.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
@@ -8128,7 +8113,6 @@ Function _flaxGeneric_HttpClientResponse_asyncMap<
             ),
           ),
         ),
-        required: true,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8144,23 +8128,16 @@ Function _flaxGeneric_HttpClientResponse_asyncExpand<
     );
   }
 
-  return FlaxInstanceMethod(
+  return FlaxInstanceMethod.plain(
     <FlaxParameter>[
-      FlaxParameter(
+      FlaxParameter.required(
         "convert",
         types.define<api5.Stream<_Method0>? Function(List<int> event)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding4,
-                  required: true,
-                  positional: true,
-                ),
-              ],
+              [FlaxCallbackParameter.plain("event", _flaxBinding2)],
               types.ref<api5.Stream<_Method0>?>(withinCallback: true),
               FlaxCallbackAdapters.wrap1<List<int>, api5.Stream<_Method0>?>,
               id:
@@ -8174,7 +8151,6 @@ Function _flaxGeneric_HttpClientResponse_asyncExpand<
             ),
           ),
         ),
-        required: true,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8190,23 +8166,16 @@ Function _flaxGeneric_HttpClientResponse_expand<
     );
   }
 
-  return FlaxInstanceMethod(
+  return FlaxInstanceMethod.plain(
     <FlaxParameter>[
-      FlaxParameter(
+      FlaxParameter.required(
         "convert",
         types.define<Iterable<_Method0> Function(List<int> element)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "element",
-                  _flaxBinding4,
-                  required: true,
-                  positional: true,
-                ),
-              ],
+              [FlaxCallbackParameter.plain("element", _flaxBinding2)],
               types.ref<Iterable<_Method0>>(withinCallback: true),
               FlaxCallbackAdapters.wrap1<List<int>, Iterable<_Method0>>,
               id: types.key<Iterable<_Method0> Function(List<int> element)>() + ":callback:<>(p:r:element:list:[int:])->iterable:[parameter:]",
@@ -8217,7 +8186,6 @@ Function _flaxGeneric_HttpClientResponse_expand<
             ),
           ),
         ),
-        required: true,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8234,12 +8202,11 @@ _flaxGeneric_HttpClientResponse_transform<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
-          FlaxParameter(
+          FlaxParameter.required(
             "streamTransformer",
             types.ref<api5.StreamTransformer<List<int>, _Method0>>(),
-            required: true,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8257,10 +8224,10 @@ Function _flaxGeneric_HttpClientResponse_fold<
     );
   }
 
-  return FlaxInstanceMethod(
+  return FlaxInstanceMethod.plain(
     <FlaxParameter>[
-      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
-      FlaxParameter(
+      FlaxParameter.required("initialValue", types.ref<_Method0>()),
+      FlaxParameter.required(
         "combine",
         types.define<_Method0 Function(_Method0 previous, List<int> element)>(
           FlaxTypeRef(
@@ -8268,18 +8235,11 @@ Function _flaxGeneric_HttpClientResponse_fold<
             nullable: false,
             callback: FlaxCallbackBinding(
               [
-                FlaxCallbackParameter(
+                FlaxCallbackParameter.plain(
                   "previous",
                   types.ref<_Method0>(withinCallback: true),
-                  required: true,
-                  positional: true,
                 ),
-                FlaxCallbackParameter(
-                  "element",
-                  _flaxBinding4,
-                  required: true,
-                  positional: true,
-                ),
+                FlaxCallbackParameter.plain("element", _flaxBinding2),
               ],
               types.ref<_Method0>(withinCallback: true),
               FlaxCallbackAdapters.wrap2<_Method0, List<int>, _Method0>,
@@ -8296,7 +8256,6 @@ Function _flaxGeneric_HttpClientResponse_fold<
             ),
           ),
         ),
-        required: true,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -8309,8 +8268,8 @@ Function _flaxGeneric_HttpClientResponse_cast<_Method0 extends Object?>() =>
         return (receiver as api3.HttpClientResponse).cast<_Method0>();
       }
 
-      return FlaxInstanceMethod(
-        _flaxBinding42,
+      return FlaxInstanceMethod.plain(
+        _flaxBinding35,
         types.ref<api5.Stream<_Method0>>(),
         invoke,
       );
@@ -8323,7 +8282,7 @@ Function _flaxGeneric_HttpClientResponse_drain<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
           FlaxParameter("futureValue", types.ref<_Method0?>(), required: false),
         ],
@@ -8339,23 +8298,16 @@ Function _flaxGeneric_SecureSocket_map<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
-          FlaxParameter(
+          FlaxParameter.required(
             "convert",
             types.define<_Method0 Function(api2.Uint8List event)>(
               FlaxTypeRef(
                 "callback",
                 nullable: false,
                 callback: FlaxCallbackBinding(
-                  [
-                    FlaxCallbackParameter(
-                      "event",
-                      _flaxBinding14,
-                      required: true,
-                      positional: true,
-                    ),
-                  ],
+                  [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
                   types.ref<_Method0>(withinCallback: true),
                   FlaxCallbackAdapters.wrap1<api2.Uint8List, _Method0>,
                   id:
@@ -8368,7 +8320,6 @@ Function _flaxGeneric_SecureSocket_map<_Method0 extends Object?>() =>
                 ),
               ),
             ),
-            required: true,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8404,23 +8355,16 @@ Function _flaxGeneric_SecureSocket_asyncMap<
     );
   }
 
-  return FlaxInstanceMethod(
+  return FlaxInstanceMethod.plain(
     <FlaxParameter>[
-      FlaxParameter(
+      FlaxParameter.required(
         "convert",
         types.define<api5.FutureOr<_Method0> Function(api2.Uint8List event)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
+              [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
               types.ref<api5.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
@@ -8434,7 +8378,6 @@ Function _flaxGeneric_SecureSocket_asyncMap<
             ),
           ),
         ),
-        required: true,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8450,23 +8393,16 @@ Function _flaxGeneric_SecureSocket_asyncExpand<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
-          FlaxParameter(
+          FlaxParameter.required(
             "convert",
             types.define<api5.Stream<_Method0>? Function(api2.Uint8List event)>(
               FlaxTypeRef(
                 "callback",
                 nullable: false,
                 callback: FlaxCallbackBinding(
-                  [
-                    FlaxCallbackParameter(
-                      "event",
-                      _flaxBinding14,
-                      required: true,
-                      positional: true,
-                    ),
-                  ],
+                  [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
                   types.ref<api5.Stream<_Method0>?>(withinCallback: true),
                   FlaxCallbackAdapters
                       .wrap1<api2.Uint8List, api5.Stream<_Method0>?>,
@@ -8485,7 +8421,6 @@ Function _flaxGeneric_SecureSocket_asyncExpand<_Method0 extends Object?>() =>
                 ),
               ),
             ),
-            required: true,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8501,23 +8436,16 @@ Function _flaxGeneric_SecureSocket_expand<
     );
   }
 
-  return FlaxInstanceMethod(
+  return FlaxInstanceMethod.plain(
     <FlaxParameter>[
-      FlaxParameter(
+      FlaxParameter.required(
         "convert",
         types.define<Iterable<_Method0> Function(api2.Uint8List element)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "element",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
+              [FlaxCallbackParameter.plain("element", flaxUint8ListType)],
               types.ref<Iterable<_Method0>>(withinCallback: true),
               FlaxCallbackAdapters.wrap1<api2.Uint8List, Iterable<_Method0>>,
               id:
@@ -8533,7 +8461,6 @@ Function _flaxGeneric_SecureSocket_expand<
             ),
           ),
         ),
-        required: true,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8549,12 +8476,11 @@ Function _flaxGeneric_SecureSocket_transform<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
-          FlaxParameter(
+          FlaxParameter.required(
             "streamTransformer",
             types.ref<api5.StreamTransformer<api2.Uint8List, _Method0>>(),
-            required: true,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8571,10 +8497,10 @@ Function _flaxGeneric_SecureSocket_fold<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
-          FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
-          FlaxParameter(
+          FlaxParameter.required("initialValue", types.ref<_Method0>()),
+          FlaxParameter.required(
             "combine",
             types.define<
               _Method0 Function(_Method0 previous, api2.Uint8List element)
@@ -8584,18 +8510,11 @@ Function _flaxGeneric_SecureSocket_fold<_Method0 extends Object?>() =>
                 nullable: false,
                 callback: FlaxCallbackBinding(
                   [
-                    FlaxCallbackParameter(
+                    FlaxCallbackParameter.plain(
                       "previous",
                       types.ref<_Method0>(withinCallback: true),
-                      required: true,
-                      positional: true,
                     ),
-                    FlaxCallbackParameter(
-                      "element",
-                      _flaxBinding14,
-                      required: true,
-                      positional: true,
-                    ),
+                    FlaxCallbackParameter.plain("element", flaxUint8ListType),
                   ],
                   types.ref<_Method0>(withinCallback: true),
                   FlaxCallbackAdapters
@@ -8616,7 +8535,6 @@ Function _flaxGeneric_SecureSocket_fold<_Method0 extends Object?>() =>
                 ),
               ),
             ),
-            required: true,
           ),
         ],
         types.ref<Future<_Method0>>(),
@@ -8629,8 +8547,8 @@ Function _flaxGeneric_SecureSocket_cast<_Method0 extends Object?>() =>
         return (receiver as api3.SecureSocket).cast<_Method0>();
       }
 
-      return FlaxInstanceMethod(
-        _flaxBinding42,
+      return FlaxInstanceMethod.plain(
+        _flaxBinding35,
         types.ref<api5.Stream<_Method0>>(),
         invoke,
       );
@@ -8643,7 +8561,7 @@ Function _flaxGeneric_SecureSocket_drain<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
           FlaxParameter("futureValue", types.ref<_Method0?>(), required: false),
         ],
@@ -8659,23 +8577,16 @@ Function _flaxGeneric_Socket_map<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
-          FlaxParameter(
+          FlaxParameter.required(
             "convert",
             types.define<_Method0 Function(api2.Uint8List event)>(
               FlaxTypeRef(
                 "callback",
                 nullable: false,
                 callback: FlaxCallbackBinding(
-                  [
-                    FlaxCallbackParameter(
-                      "event",
-                      _flaxBinding14,
-                      required: true,
-                      positional: true,
-                    ),
-                  ],
+                  [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
                   types.ref<_Method0>(withinCallback: true),
                   FlaxCallbackAdapters.wrap1<api2.Uint8List, _Method0>,
                   id:
@@ -8688,7 +8599,6 @@ Function _flaxGeneric_Socket_map<_Method0 extends Object?>() =>
                 ),
               ),
             ),
-            required: true,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8724,23 +8634,16 @@ Function _flaxGeneric_Socket_asyncMap<
     );
   }
 
-  return FlaxInstanceMethod(
+  return FlaxInstanceMethod.plain(
     <FlaxParameter>[
-      FlaxParameter(
+      FlaxParameter.required(
         "convert",
         types.define<api5.FutureOr<_Method0> Function(api2.Uint8List event)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
+              [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
               types.ref<api5.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
@@ -8754,7 +8657,6 @@ Function _flaxGeneric_Socket_asyncMap<
             ),
           ),
         ),
-        required: true,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8770,23 +8672,16 @@ Function _flaxGeneric_Socket_asyncExpand<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
-          FlaxParameter(
+          FlaxParameter.required(
             "convert",
             types.define<api5.Stream<_Method0>? Function(api2.Uint8List event)>(
               FlaxTypeRef(
                 "callback",
                 nullable: false,
                 callback: FlaxCallbackBinding(
-                  [
-                    FlaxCallbackParameter(
-                      "event",
-                      _flaxBinding14,
-                      required: true,
-                      positional: true,
-                    ),
-                  ],
+                  [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
                   types.ref<api5.Stream<_Method0>?>(withinCallback: true),
                   FlaxCallbackAdapters
                       .wrap1<api2.Uint8List, api5.Stream<_Method0>?>,
@@ -8805,7 +8700,6 @@ Function _flaxGeneric_Socket_asyncExpand<_Method0 extends Object?>() =>
                 ),
               ),
             ),
-            required: true,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8821,23 +8715,16 @@ Function _flaxGeneric_Socket_expand<
     );
   }
 
-  return FlaxInstanceMethod(
+  return FlaxInstanceMethod.plain(
     <FlaxParameter>[
-      FlaxParameter(
+      FlaxParameter.required(
         "convert",
         types.define<Iterable<_Method0> Function(api2.Uint8List element)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "element",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
+              [FlaxCallbackParameter.plain("element", flaxUint8ListType)],
               types.ref<Iterable<_Method0>>(withinCallback: true),
               FlaxCallbackAdapters.wrap1<api2.Uint8List, Iterable<_Method0>>,
               id:
@@ -8853,7 +8740,6 @@ Function _flaxGeneric_Socket_expand<
             ),
           ),
         ),
-        required: true,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8869,12 +8755,11 @@ Function _flaxGeneric_Socket_transform<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
-          FlaxParameter(
+          FlaxParameter.required(
             "streamTransformer",
             types.ref<api5.StreamTransformer<api2.Uint8List, _Method0>>(),
-            required: true,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8891,10 +8776,10 @@ Function _flaxGeneric_Socket_fold<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
-          FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
-          FlaxParameter(
+          FlaxParameter.required("initialValue", types.ref<_Method0>()),
+          FlaxParameter.required(
             "combine",
             types.define<
               _Method0 Function(_Method0 previous, api2.Uint8List element)
@@ -8904,18 +8789,11 @@ Function _flaxGeneric_Socket_fold<_Method0 extends Object?>() =>
                 nullable: false,
                 callback: FlaxCallbackBinding(
                   [
-                    FlaxCallbackParameter(
+                    FlaxCallbackParameter.plain(
                       "previous",
                       types.ref<_Method0>(withinCallback: true),
-                      required: true,
-                      positional: true,
                     ),
-                    FlaxCallbackParameter(
-                      "element",
-                      _flaxBinding14,
-                      required: true,
-                      positional: true,
-                    ),
+                    FlaxCallbackParameter.plain("element", flaxUint8ListType),
                   ],
                   types.ref<_Method0>(withinCallback: true),
                   FlaxCallbackAdapters
@@ -8936,7 +8814,6 @@ Function _flaxGeneric_Socket_fold<_Method0 extends Object?>() =>
                 ),
               ),
             ),
-            required: true,
           ),
         ],
         types.ref<Future<_Method0>>(),
@@ -8949,8 +8826,8 @@ Function _flaxGeneric_Socket_cast<_Method0 extends Object?>() =>
         return (receiver as api3.Socket).cast<_Method0>();
       }
 
-      return FlaxInstanceMethod(
-        _flaxBinding42,
+      return FlaxInstanceMethod.plain(
+        _flaxBinding35,
         types.ref<api5.Stream<_Method0>>(),
         invoke,
       );
@@ -8963,7 +8840,7 @@ Function _flaxGeneric_Socket_drain<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
+      return FlaxInstanceMethod.plain(
         <FlaxParameter>[
           FlaxParameter("futureValue", types.ref<_Method0?>(), required: false),
         ],
@@ -9011,23 +8888,17 @@ Function _flaxShape0<_Shape0, _Shape1, _Shape2, _Shape3>() =>
               nullable: false,
               callback: FlaxCallbackBinding(
                 [
-                  FlaxCallbackParameter(
+                  FlaxCallbackParameter.plain(
                     "url",
                     types.ref<_Shape0>(withinCallback: true),
-                    required: true,
-                    positional: true,
                   ),
-                  FlaxCallbackParameter(
+                  FlaxCallbackParameter.plain(
                     "scheme",
                     types.ref<_Shape1>(withinCallback: true),
-                    required: true,
-                    positional: true,
                   ),
-                  FlaxCallbackParameter(
+                  FlaxCallbackParameter.plain(
                     "realm",
                     types.ref<_Shape2>(withinCallback: true),
-                    required: true,
-                    positional: true,
                   ),
                 ],
                 types.ref<_Shape3>(withinCallback: true),
@@ -9057,11 +8928,9 @@ Function _flaxShape1<_Shape0, _Shape1>() =>
           nullable: false,
           callback: FlaxCallbackBinding(
             [
-              FlaxCallbackParameter(
+              FlaxCallbackParameter.plain(
                 "url",
                 types.ref<_Shape0>(withinCallback: true),
-                required: true,
-                positional: true,
               ),
             ],
             types.ref<_Shape1>(withinCallback: true),
@@ -9128,29 +8997,21 @@ Function _flaxShape2<_Shape0, _Shape1, _Shape2, _Shape3, _Shape4>() =>
           nullable: false,
           callback: FlaxCallbackBinding(
             [
-              FlaxCallbackParameter(
+              FlaxCallbackParameter.plain(
                 "host",
                 types.ref<_Shape0>(withinCallback: true),
-                required: true,
-                positional: true,
               ),
-              FlaxCallbackParameter(
+              FlaxCallbackParameter.plain(
                 "port",
                 types.ref<_Shape1>(withinCallback: true),
-                required: true,
-                positional: true,
               ),
-              FlaxCallbackParameter(
+              FlaxCallbackParameter.plain(
                 "scheme",
                 types.ref<_Shape2>(withinCallback: true),
-                required: true,
-                positional: true,
               ),
-              FlaxCallbackParameter(
+              FlaxCallbackParameter.plain(
                 "realm",
                 types.ref<_Shape3>(withinCallback: true),
-                required: true,
-                positional: true,
               ),
             ],
             types.ref<_Shape4>(withinCallback: true),
@@ -9201,17 +9062,13 @@ Function _flaxShape4<
       nullable: false,
       callback: FlaxCallbackBinding(
         [
-          FlaxCallbackParameter(
+          FlaxCallbackParameter.plain(
             "previous",
             types.ref<_Shape0>(withinCallback: true),
-            required: true,
-            positional: true,
           ),
-          FlaxCallbackParameter(
+          FlaxCallbackParameter.plain(
             "element",
             types.ref<_Shape1>(withinCallback: true),
-            required: true,
-            positional: true,
           ),
         ],
         types.ref<_Shape2>(withinCallback: true),
@@ -9775,12 +9632,10 @@ T _genericCallbackResult<T>(Object? value) {
   return value as T;
 }
 
-const _flaxBinding0 = FlaxTypeRef("String");
-const _flaxBinding1 = FlaxGetter("name", _flaxBinding0, _Encoding_name);
-const _flaxBinding2 = FlaxTypeRef("int");
-const _flaxBinding3 = FlaxTypeRef(
+const _flaxBinding0 = FlaxGetter.plain("name", flaxStringType, _Encoding_name);
+const _flaxBinding1 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding2,
+  item: flaxIntType,
   collection: FlaxCollectionBinding(
     "iterable:[int:]",
     _collection1Create,
@@ -9788,63 +9643,63 @@ const _flaxBinding3 = FlaxTypeRef(
     restore: _collection1Restore,
   ),
 );
-const _flaxBinding4 = FlaxTypeRef(
+const _flaxBinding2 = FlaxTypeRef(
   "list",
-  item: _flaxBinding2,
+  item: flaxIntType,
   collection: FlaxCollectionBinding(
     "list:[int:]",
     _collection0Create,
     _collection0Matches,
   ),
-  iterable: _flaxBinding3,
+  iterable: _flaxBinding1,
 );
-const _flaxBinding5 = FlaxTypeRef(
+const _flaxBinding3 = FlaxTypeRef(
   "stream",
   id: "flax.core/flutter#type:Stream",
   dartType: FlaxDartTypes.typeOf<api5.Stream<List<int>>>,
-  item: _flaxBinding4,
+  item: _flaxBinding2,
   stream: FlaxStreamBinding(
     "stream:flax.core/flutter#type:Stream[list:[int:]]",
     _stream0Matches,
     _stream0Adapt,
   ),
 );
-const _flaxBinding6 = FlaxTypeRef(
+const _flaxBinding4 = FlaxTypeRef(
   "future",
-  item: _flaxBinding0,
+  item: flaxStringType,
   future: FlaxFutureBinding("String:", _future0Adapt),
 );
-const _flaxBinding7 = <FlaxParameter>[
-  FlaxParameter("byteStream", _flaxBinding5, required: true),
+const _flaxBinding5 = <FlaxParameter>[
+  FlaxParameter.required("byteStream", _flaxBinding3),
 ];
-const _flaxBinding8 = FlaxInstanceMethod(
-  _flaxBinding7,
-  _flaxBinding6,
+const _flaxBinding6 = FlaxInstanceMethod.plain(
+  _flaxBinding5,
+  _flaxBinding4,
   _Encoding_decodeStream,
 );
-const _flaxBinding9 = <FlaxParameter>[
-  FlaxParameter("input", _flaxBinding0, required: true),
+const _flaxBinding7 = <FlaxParameter>[
+  FlaxParameter.required("input", flaxStringType),
 ];
-const _flaxBinding10 = FlaxInstanceMethod(
-  _flaxBinding9,
-  _flaxBinding4,
+const _flaxBinding8 = FlaxInstanceMethod.plain(
+  _flaxBinding7,
+  _flaxBinding2,
   _Encoding_encode,
 );
-const _flaxBinding11 = <FlaxParameter>[
-  FlaxParameter("encoded", _flaxBinding4, required: true),
+const _flaxBinding9 = <FlaxParameter>[
+  FlaxParameter.required("encoded", _flaxBinding2),
 ];
-const _flaxBinding12 = FlaxInstanceMethod(
-  _flaxBinding11,
-  _flaxBinding0,
+const _flaxBinding10 = FlaxInstanceMethod.plain(
+  _flaxBinding9,
+  flaxStringType,
   _Encoding_decode,
 );
-const _flaxBinding13 = FlaxObjectBinding(
+const _flaxBinding11 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Encoding",
-  [_flaxBinding1],
+  [_flaxBinding0],
   {
-    "decodeStream": _flaxBinding8,
-    "encode": _flaxBinding10,
-    "decode": _flaxBinding12,
+    "decodeStream": _flaxBinding6,
+    "encode": _flaxBinding8,
+    "decode": _flaxBinding10,
   },
   constructors: {},
   create: _createEncoding,
@@ -9852,39 +9707,36 @@ const _flaxBinding13 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:convert::Codec", "dart:core::Object"],
 );
-const _flaxBinding14 = FlaxTypeRef("Uint8List");
-const _flaxBinding15 = <FlaxParameter>[
-  FlaxParameter("source", _flaxBinding0, required: true),
+const _flaxBinding12 = <FlaxParameter>[
+  FlaxParameter.required("source", flaxStringType),
 ];
-const _flaxBinding16 = FlaxInstanceMethod(
-  _flaxBinding15,
-  _flaxBinding14,
+const _flaxBinding13 = FlaxInstanceMethod.plain(
+  _flaxBinding12,
+  flaxUint8ListType,
   _AsciiCodec_encode,
 );
-const _flaxBinding17 = FlaxTypeRef("bool", nullable: true);
-const _flaxBinding18 = <FlaxParameter>[
-  FlaxParameter("bytes", _flaxBinding4, required: true),
-  FlaxParameter("allowInvalid", _flaxBinding17, required: false),
+const _flaxBinding14 = <FlaxParameter>[
+  FlaxParameter.required("bytes", _flaxBinding2),
+  FlaxParameter("allowInvalid", flaxNullableBoolType, required: false),
 ];
-const _flaxBinding19 = FlaxInstanceMethod(
-  _flaxBinding18,
-  _flaxBinding0,
+const _flaxBinding15 = FlaxInstanceMethod.plain(
+  _flaxBinding14,
+  flaxStringType,
   _AsciiCodec_decode,
 );
-const _flaxBinding20 = FlaxTypeRef("bool");
-const _flaxBinding21 = <FlaxParameter>[
+const _flaxBinding16 = <FlaxParameter>[
   FlaxParameter(
     "allowInvalid",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding22 = FlaxObjectBinding(
+const _flaxBinding17 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:AsciiCodec",
   [],
-  {"encode": _flaxBinding16, "decode": _flaxBinding19},
-  constructors: {"": _flaxBinding21},
+  {"encode": _flaxBinding13, "decode": _flaxBinding15},
+  constructors: {"": _flaxBinding16},
   create: _createAsciiCodec,
   matches: _isAsciiCodec,
   setters: [],
@@ -9893,217 +9745,250 @@ const _flaxBinding22 = FlaxObjectBinding(
     "dart:convert::Codec",
     "dart:core::Object",
   ],
-  parent: _flaxBinding13,
+  parent: _flaxBinding11,
 );
-const _flaxBinding23 = FlaxGetter("name", _flaxBinding0, _Cookie_name);
-const _flaxBinding24 = FlaxGetter("value", _flaxBinding0, _Cookie_value);
-const _flaxBinding25 = FlaxTypeRef(
+const _flaxBinding18 = FlaxGetter.plain("name", flaxStringType, _Cookie_name);
+const _flaxBinding19 = FlaxGetter.plain("value", flaxStringType, _Cookie_value);
+const _flaxBinding20 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:DateTime",
   nullable: true,
 );
-const _flaxBinding26 = FlaxGetter("expires", _flaxBinding25, _Cookie_expires);
-const _flaxBinding27 = FlaxTypeRef("int", nullable: true);
-const _flaxBinding28 = FlaxGetter("maxAge", _flaxBinding27, _Cookie_maxAge);
-const _flaxBinding29 = FlaxTypeRef("String", nullable: true);
-const _flaxBinding30 = FlaxGetter("domain", _flaxBinding29, _Cookie_domain);
-const _flaxBinding31 = FlaxGetter("path", _flaxBinding29, _Cookie_path);
-const _flaxBinding32 = FlaxGetter("secure", _flaxBinding20, _Cookie_secure);
-const _flaxBinding33 = FlaxGetter("httpOnly", _flaxBinding20, _Cookie_httpOnly);
-const _flaxBinding34 = FlaxSetter("name", _flaxBinding0, _Cookie_set_name);
-const _flaxBinding35 = FlaxSetter("value", _flaxBinding0, _Cookie_set_value);
-const _flaxBinding36 = FlaxSetter(
+const _flaxBinding21 = FlaxGetter.plain(
   "expires",
-  _flaxBinding25,
+  _flaxBinding20,
+  _Cookie_expires,
+);
+const _flaxBinding22 = FlaxGetter.plain(
+  "maxAge",
+  flaxNullableIntType,
+  _Cookie_maxAge,
+);
+const _flaxBinding23 = FlaxGetter.plain(
+  "domain",
+  flaxNullableStringType,
+  _Cookie_domain,
+);
+const _flaxBinding24 = FlaxGetter.plain(
+  "path",
+  flaxNullableStringType,
+  _Cookie_path,
+);
+const _flaxBinding25 = FlaxGetter.plain("secure", flaxBoolType, _Cookie_secure);
+const _flaxBinding26 = FlaxGetter.plain(
+  "httpOnly",
+  flaxBoolType,
+  _Cookie_httpOnly,
+);
+const _flaxBinding27 = FlaxSetter("name", flaxStringType, _Cookie_set_name);
+const _flaxBinding28 = FlaxSetter("value", flaxStringType, _Cookie_set_value);
+const _flaxBinding29 = FlaxSetter(
+  "expires",
+  _flaxBinding20,
   _Cookie_set_expires,
 );
-const _flaxBinding37 = FlaxSetter("maxAge", _flaxBinding27, _Cookie_set_maxAge);
-const _flaxBinding38 = FlaxSetter("domain", _flaxBinding29, _Cookie_set_domain);
-const _flaxBinding39 = FlaxSetter("path", _flaxBinding29, _Cookie_set_path);
-const _flaxBinding40 = FlaxSetter("secure", _flaxBinding20, _Cookie_set_secure);
-const _flaxBinding41 = FlaxSetter(
+const _flaxBinding30 = FlaxSetter(
+  "maxAge",
+  flaxNullableIntType,
+  _Cookie_set_maxAge,
+);
+const _flaxBinding31 = FlaxSetter(
+  "domain",
+  flaxNullableStringType,
+  _Cookie_set_domain,
+);
+const _flaxBinding32 = FlaxSetter(
+  "path",
+  flaxNullableStringType,
+  _Cookie_set_path,
+);
+const _flaxBinding33 = FlaxSetter("secure", flaxBoolType, _Cookie_set_secure);
+const _flaxBinding34 = FlaxSetter(
   "httpOnly",
-  _flaxBinding20,
+  flaxBoolType,
   _Cookie_set_httpOnly,
 );
-const _flaxBinding42 = <FlaxParameter>[];
-const _flaxBinding43 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding35 = <FlaxParameter>[];
+const _flaxBinding36 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _Cookie_toString,
 );
-const _flaxBinding44 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding0, required: true),
-  FlaxParameter("value", _flaxBinding0, required: true),
+const _flaxBinding37 = <FlaxParameter>[
+  FlaxParameter.required("name", flaxStringType),
+  FlaxParameter.required("value", flaxStringType),
 ];
-const _flaxBinding45 = <FlaxParameter>[
-  FlaxParameter("value", _flaxBinding0, required: true),
+const _flaxBinding38 = <FlaxParameter>[
+  FlaxParameter.required("value", flaxStringType),
 ];
-const _flaxBinding46 = FlaxObjectBinding(
+const _flaxBinding39 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Cookie",
   [
+    _flaxBinding18,
+    _flaxBinding19,
+    _flaxBinding21,
+    _flaxBinding22,
     _flaxBinding23,
     _flaxBinding24,
+    _flaxBinding25,
     _flaxBinding26,
+  ],
+  {"toString": _flaxBinding36},
+  constructors: {"": _flaxBinding37, "fromSetCookieValue": _flaxBinding38},
+  create: _createCookie,
+  matches: _isCookie,
+  setters: [
+    _flaxBinding27,
     _flaxBinding28,
+    _flaxBinding29,
     _flaxBinding30,
     _flaxBinding31,
     _flaxBinding32,
     _flaxBinding33,
-  ],
-  {"toString": _flaxBinding43},
-  constructors: {"": _flaxBinding44, "fromSetCookieValue": _flaxBinding45},
-  create: _createCookie,
-  matches: _isCookie,
-  setters: [
     _flaxBinding34,
-    _flaxBinding35,
-    _flaxBinding36,
-    _flaxBinding37,
-    _flaxBinding38,
-    _flaxBinding39,
-    _flaxBinding40,
-    _flaxBinding41,
   ],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding47 = FlaxGetter(
+const _flaxBinding40 = FlaxGetter.plain(
   "path",
-  _flaxBinding0,
+  flaxStringType,
   _FileSystemEntity_path,
 );
-const _flaxBinding48 = FlaxTypeRef("object", id: "flax.core/flutter#type:Uri");
-const _flaxBinding49 = FlaxGetter("uri", _flaxBinding48, _FileSystemEntity_uri);
-const _flaxBinding50 = FlaxGetter(
+const _flaxBinding41 = FlaxTypeRef("object", id: "flax.core/flutter#type:Uri");
+const _flaxBinding42 = FlaxGetter.plain(
+  "uri",
+  _flaxBinding41,
+  _FileSystemEntity_uri,
+);
+const _flaxBinding43 = FlaxGetter.plain(
   "isAbsolute",
-  _flaxBinding20,
+  flaxBoolType,
   _FileSystemEntity_isAbsolute,
 );
-const _flaxBinding51 = FlaxTypeRef(
+const _flaxBinding44 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:FileSystemEntity",
 );
-const _flaxBinding52 = FlaxGetter(
+const _flaxBinding45 = FlaxGetter.plain(
   "absolute",
-  _flaxBinding51,
+  _flaxBinding44,
   _FileSystemEntity_absolute,
 );
-const _flaxBinding53 = FlaxTypeRef(
+const _flaxBinding46 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Directory",
 );
-const _flaxBinding54 = FlaxGetter(
+const _flaxBinding47 = FlaxGetter.plain(
   "parent",
-  _flaxBinding53,
+  _flaxBinding46,
   _FileSystemEntity_parent,
 );
-const _flaxBinding55 = FlaxTypeRef(
+const _flaxBinding48 = FlaxTypeRef(
   "future",
-  item: _flaxBinding20,
+  item: flaxBoolType,
   future: FlaxFutureBinding("bool:", _future1Adapt),
 );
-const _flaxBinding56 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding55,
+const _flaxBinding49 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding48,
   _FileSystemEntity_exists,
 );
-const _flaxBinding57 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding20,
+const _flaxBinding50 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxBoolType,
   _FileSystemEntity_existsSync,
 );
-const _flaxBinding58 = FlaxTypeRef(
+const _flaxBinding51 = FlaxTypeRef(
   "future",
-  item: _flaxBinding51,
+  item: _flaxBinding44,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:FileSystemEntity",
     _future2Adapt,
   ),
 );
-const _flaxBinding59 = <FlaxParameter>[
-  FlaxParameter("newPath", _flaxBinding0, required: true),
+const _flaxBinding52 = <FlaxParameter>[
+  FlaxParameter.required("newPath", flaxStringType),
 ];
-const _flaxBinding60 = FlaxInstanceMethod(
-  _flaxBinding59,
-  _flaxBinding58,
+const _flaxBinding53 = FlaxInstanceMethod.plain(
+  _flaxBinding52,
+  _flaxBinding51,
   _FileSystemEntity_rename,
 );
-const _flaxBinding61 = FlaxInstanceMethod(
-  _flaxBinding59,
-  _flaxBinding51,
+const _flaxBinding54 = FlaxInstanceMethod.plain(
+  _flaxBinding52,
+  _flaxBinding44,
   _FileSystemEntity_renameSync,
 );
-const _flaxBinding62 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding6,
+const _flaxBinding55 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding4,
   _FileSystemEntity_resolveSymbolicLinks,
 );
-const _flaxBinding63 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding56 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _FileSystemEntity_resolveSymbolicLinksSync,
 );
-const _flaxBinding64 = FlaxTypeRef(
+const _flaxBinding57 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:FileStat",
 );
-const _flaxBinding65 = FlaxTypeRef(
+const _flaxBinding58 = FlaxTypeRef(
   "future",
-  item: _flaxBinding64,
+  item: _flaxBinding57,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:FileStat",
     _future3Adapt,
   ),
 );
-const _flaxBinding66 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding65,
+const _flaxBinding59 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding58,
   _FileSystemEntity_stat,
 );
-const _flaxBinding67 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding64,
+const _flaxBinding60 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding57,
   _FileSystemEntity_statSync,
 );
-const _flaxBinding68 = <FlaxParameter>[
+const _flaxBinding61 = <FlaxParameter>[
   FlaxParameter(
     "recursive",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding69 = FlaxInstanceMethod(
-  _flaxBinding68,
-  _flaxBinding58,
+const _flaxBinding62 = FlaxInstanceMethod.plain(
+  _flaxBinding61,
+  _flaxBinding51,
   _FileSystemEntity_delete,
 );
-const _flaxBinding70 = FlaxTypeRef("void");
-const _flaxBinding71 = FlaxInstanceMethod(
-  _flaxBinding68,
-  _flaxBinding70,
+const _flaxBinding63 = FlaxInstanceMethod.plain(
+  _flaxBinding61,
+  flaxVoidType,
   _FileSystemEntity_deleteSync,
 );
-const _flaxBinding72 = FlaxObjectBinding(
+const _flaxBinding64 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:FileSystemEntity",
   [
+    _flaxBinding40,
+    _flaxBinding42,
+    _flaxBinding43,
+    _flaxBinding45,
     _flaxBinding47,
-    _flaxBinding49,
-    _flaxBinding50,
-    _flaxBinding52,
-    _flaxBinding54,
   ],
   {
-    "exists": _flaxBinding56,
-    "existsSync": _flaxBinding57,
-    "rename": _flaxBinding60,
-    "renameSync": _flaxBinding61,
-    "resolveSymbolicLinks": _flaxBinding62,
-    "resolveSymbolicLinksSync": _flaxBinding63,
-    "stat": _flaxBinding66,
-    "statSync": _flaxBinding67,
-    "delete": _flaxBinding69,
-    "deleteSync": _flaxBinding71,
+    "exists": _flaxBinding49,
+    "existsSync": _flaxBinding50,
+    "rename": _flaxBinding53,
+    "renameSync": _flaxBinding54,
+    "resolveSymbolicLinks": _flaxBinding55,
+    "resolveSymbolicLinksSync": _flaxBinding56,
+    "stat": _flaxBinding59,
+    "statSync": _flaxBinding60,
+    "delete": _flaxBinding62,
+    "deleteSync": _flaxBinding63,
   },
   constructors: {},
   create: _createFileSystemEntity,
@@ -10111,85 +9996,85 @@ const _flaxBinding72 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding73 = FlaxGetter(
+const _flaxBinding65 = FlaxGetter.plain(
   "absolute",
-  _flaxBinding53,
+  _flaxBinding46,
   _Directory_absolute,
 );
-const _flaxBinding74 = FlaxTypeRef(
+const _flaxBinding66 = FlaxTypeRef(
   "future",
-  item: _flaxBinding53,
+  item: _flaxBinding46,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:Directory",
     _future4Adapt,
   ),
 );
-const _flaxBinding75 = FlaxInstanceMethod(
-  _flaxBinding59,
-  _flaxBinding74,
+const _flaxBinding67 = FlaxInstanceMethod.plain(
+  _flaxBinding52,
+  _flaxBinding66,
   _Directory_rename,
 );
-const _flaxBinding76 = FlaxInstanceMethod(
-  _flaxBinding59,
-  _flaxBinding53,
+const _flaxBinding68 = FlaxInstanceMethod.plain(
+  _flaxBinding52,
+  _flaxBinding46,
   _Directory_renameSync,
 );
-const _flaxBinding77 = FlaxInstanceMethod(
-  _flaxBinding68,
-  _flaxBinding74,
+const _flaxBinding69 = FlaxInstanceMethod.plain(
+  _flaxBinding61,
+  _flaxBinding66,
   _Directory_create,
 );
-const _flaxBinding78 = FlaxInstanceMethod(
-  _flaxBinding68,
-  _flaxBinding70,
+const _flaxBinding70 = FlaxInstanceMethod.plain(
+  _flaxBinding61,
+  flaxVoidType,
   _Directory_createSync,
 );
-const _flaxBinding79 = <FlaxParameter>[
-  FlaxParameter("prefix", _flaxBinding29, required: false),
+const _flaxBinding71 = <FlaxParameter>[
+  FlaxParameter("prefix", flaxNullableStringType, required: false),
 ];
-const _flaxBinding80 = FlaxInstanceMethod(
-  _flaxBinding79,
-  _flaxBinding74,
+const _flaxBinding72 = FlaxInstanceMethod.plain(
+  _flaxBinding71,
+  _flaxBinding66,
   _Directory_createTemp,
 );
-const _flaxBinding81 = FlaxInstanceMethod(
-  _flaxBinding79,
-  _flaxBinding53,
+const _flaxBinding73 = FlaxInstanceMethod.plain(
+  _flaxBinding71,
+  _flaxBinding46,
   _Directory_createTempSync,
 );
-const _flaxBinding82 = <FlaxParameter>[
+const _flaxBinding74 = <FlaxParameter>[
   FlaxParameter(
     "followLinks",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: true,
   ),
   FlaxParameter(
     "recursive",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding83 = FlaxTypeRef(
+const _flaxBinding75 = FlaxTypeRef(
   "stream",
   id: "flax.core/flutter#type:Stream",
   dartType: FlaxDartTypes.typeOf<api5.Stream<api3.FileSystemEntity>>,
-  item: _flaxBinding51,
+  item: _flaxBinding44,
   stream: FlaxStreamBinding(
     "stream:flax.core/flutter#type:Stream[object:flax.core/sdk_dependencies#type:FileSystemEntity]",
     _stream1Matches,
     _stream1Adapt,
   ),
 );
-const _flaxBinding84 = FlaxInstanceMethod(
-  _flaxBinding82,
-  _flaxBinding83,
+const _flaxBinding76 = FlaxInstanceMethod.plain(
+  _flaxBinding74,
+  _flaxBinding75,
   _Directory_list,
 );
-const _flaxBinding85 = FlaxTypeRef(
+const _flaxBinding77 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding51,
+  item: _flaxBinding44,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dependencies#type:FileSystemEntity]",
     _collection3Create,
@@ -10197,53 +10082,53 @@ const _flaxBinding85 = FlaxTypeRef(
     restore: _collection3Restore,
   ),
 );
-const _flaxBinding86 = FlaxTypeRef(
+const _flaxBinding78 = FlaxTypeRef(
   "list",
-  item: _flaxBinding51,
+  item: _flaxBinding44,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dependencies#type:FileSystemEntity]",
     _collection2Create,
     _collection2Matches,
   ),
-  iterable: _flaxBinding85,
+  iterable: _flaxBinding77,
 );
-const _flaxBinding87 = FlaxInstanceMethod(
-  _flaxBinding82,
-  _flaxBinding86,
+const _flaxBinding79 = FlaxInstanceMethod.plain(
+  _flaxBinding74,
+  _flaxBinding78,
   _Directory_listSync,
 );
-const _flaxBinding88 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding80 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _Directory_toString,
 );
-const _flaxBinding89 = <FlaxParameter>[
-  FlaxParameter("path", _flaxBinding0, required: true),
+const _flaxBinding81 = <FlaxParameter>[
+  FlaxParameter.required("path", flaxStringType),
 ];
-const _flaxBinding90 = <FlaxParameter>[
-  FlaxParameter("path", _flaxBinding14, required: true),
+const _flaxBinding82 = <FlaxParameter>[
+  FlaxParameter.required("path", flaxUint8ListType),
 ];
-const _flaxBinding91 = <FlaxParameter>[
-  FlaxParameter("uri", _flaxBinding48, required: true),
+const _flaxBinding83 = <FlaxParameter>[
+  FlaxParameter.required("uri", _flaxBinding41),
 ];
-const _flaxBinding92 = FlaxObjectBinding(
+const _flaxBinding84 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Directory",
-  [_flaxBinding73],
+  [_flaxBinding65],
   {
-    "rename": _flaxBinding75,
-    "renameSync": _flaxBinding76,
-    "create": _flaxBinding77,
-    "createSync": _flaxBinding78,
-    "createTemp": _flaxBinding80,
-    "createTempSync": _flaxBinding81,
-    "list": _flaxBinding84,
-    "listSync": _flaxBinding87,
-    "toString": _flaxBinding88,
+    "rename": _flaxBinding67,
+    "renameSync": _flaxBinding68,
+    "create": _flaxBinding69,
+    "createSync": _flaxBinding70,
+    "createTemp": _flaxBinding72,
+    "createTempSync": _flaxBinding73,
+    "list": _flaxBinding76,
+    "listSync": _flaxBinding79,
+    "toString": _flaxBinding80,
   },
   constructors: {
-    "": _flaxBinding89,
-    "fromRawPath": _flaxBinding90,
-    "fromUri": _flaxBinding91,
+    "": _flaxBinding81,
+    "fromRawPath": _flaxBinding82,
+    "fromUri": _flaxBinding83,
   },
   create: _createDirectory,
   matches: _isDirectory,
@@ -10252,219 +10137,218 @@ const _flaxBinding92 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_dependencies#type:FileSystemEntity",
   ],
-  parent: _flaxBinding72,
+  parent: _flaxBinding64,
 );
-const _flaxBinding93 = FlaxTypeRef(
+const _flaxBinding85 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:File",
 );
-const _flaxBinding94 = FlaxGetter("absolute", _flaxBinding93, _File_absolute);
-const _flaxBinding95 = FlaxTypeRef(
+const _flaxBinding86 = FlaxGetter.plain(
+  "absolute",
+  _flaxBinding85,
+  _File_absolute,
+);
+const _flaxBinding87 = FlaxTypeRef(
   "future",
-  item: _flaxBinding93,
+  item: _flaxBinding85,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:File",
     _future5Adapt,
   ),
 );
-const _flaxBinding96 = FlaxInstanceMethod(
-  _flaxBinding59,
-  _flaxBinding95,
+const _flaxBinding88 = FlaxInstanceMethod.plain(
+  _flaxBinding52,
+  _flaxBinding87,
   _File_rename,
 );
-const _flaxBinding97 = FlaxInstanceMethod(
-  _flaxBinding59,
-  _flaxBinding93,
+const _flaxBinding89 = FlaxInstanceMethod.plain(
+  _flaxBinding52,
+  _flaxBinding85,
   _File_renameSync,
 );
-const _flaxBinding98 = <FlaxParameter>[
+const _flaxBinding90 = <FlaxParameter>[
   FlaxParameter(
     "exclusive",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "recursive",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding99 = FlaxInstanceMethod(
-  _flaxBinding98,
-  _flaxBinding95,
+const _flaxBinding91 = FlaxInstanceMethod.plain(
+  _flaxBinding90,
+  _flaxBinding87,
   _File_create,
 );
-const _flaxBinding100 = FlaxInstanceMethod(
-  _flaxBinding98,
-  _flaxBinding70,
+const _flaxBinding92 = FlaxInstanceMethod.plain(
+  _flaxBinding90,
+  flaxVoidType,
   _File_createSync,
 );
-const _flaxBinding101 = FlaxInstanceMethod(
-  _flaxBinding59,
-  _flaxBinding95,
+const _flaxBinding93 = FlaxInstanceMethod.plain(
+  _flaxBinding52,
+  _flaxBinding87,
   _File_copy,
 );
-const _flaxBinding102 = FlaxInstanceMethod(
-  _flaxBinding59,
-  _flaxBinding93,
+const _flaxBinding94 = FlaxInstanceMethod.plain(
+  _flaxBinding52,
+  _flaxBinding85,
   _File_copySync,
 );
-const _flaxBinding103 = FlaxTypeRef(
+const _flaxBinding95 = FlaxTypeRef(
   "future",
-  item: _flaxBinding2,
+  item: flaxIntType,
   future: FlaxFutureBinding("int:", _future6Adapt),
 );
-const _flaxBinding104 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding103,
+const _flaxBinding96 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding95,
   _File_length,
 );
-const _flaxBinding105 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding2,
+const _flaxBinding97 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxIntType,
   _File_lengthSync,
 );
-const _flaxBinding106 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:DateTime",
-);
-const _flaxBinding107 = FlaxTypeRef(
+const _flaxBinding98 = FlaxTypeRef(
   "future",
-  item: _flaxBinding106,
+  item: flaxDateTimeType,
   future: FlaxFutureBinding(
     "object:flax.core/flutter#type:DateTime",
     _future7Adapt,
   ),
 );
-const _flaxBinding108 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding107,
+const _flaxBinding99 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding98,
   _File_lastAccessed,
 );
-const _flaxBinding109 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding106,
+const _flaxBinding100 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDateTimeType,
   _File_lastAccessedSync,
 );
-const _flaxBinding110 = FlaxTypeRef("any", nullable: true);
-const _flaxBinding111 = FlaxTypeRef(
+const _flaxBinding101 = FlaxTypeRef(
   "future",
-  item: _flaxBinding110,
+  item: flaxNullableAnyType,
   future: FlaxFutureBinding("any?:", _future8Adapt),
 );
-const _flaxBinding112 = <FlaxParameter>[
-  FlaxParameter("time", _flaxBinding106, required: true),
+const _flaxBinding102 = <FlaxParameter>[
+  FlaxParameter.required("time", flaxDateTimeType),
 ];
-const _flaxBinding113 = FlaxInstanceMethod(
-  _flaxBinding112,
-  _flaxBinding111,
+const _flaxBinding103 = FlaxInstanceMethod.plain(
+  _flaxBinding102,
+  _flaxBinding101,
   _File_setLastAccessed,
 );
-const _flaxBinding114 = FlaxInstanceMethod(
-  _flaxBinding112,
-  _flaxBinding70,
+const _flaxBinding104 = FlaxInstanceMethod.plain(
+  _flaxBinding102,
+  flaxVoidType,
   _File_setLastAccessedSync,
 );
-const _flaxBinding115 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding107,
+const _flaxBinding105 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding98,
   _File_lastModified,
 );
-const _flaxBinding116 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding106,
+const _flaxBinding106 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDateTimeType,
   _File_lastModifiedSync,
 );
-const _flaxBinding117 = FlaxInstanceMethod(
-  _flaxBinding112,
-  _flaxBinding111,
+const _flaxBinding107 = FlaxInstanceMethod.plain(
+  _flaxBinding102,
+  _flaxBinding101,
   _File_setLastModified,
 );
-const _flaxBinding118 = FlaxInstanceMethod(
-  _flaxBinding112,
-  _flaxBinding70,
+const _flaxBinding108 = FlaxInstanceMethod.plain(
+  _flaxBinding102,
+  flaxVoidType,
   _File_setLastModifiedSync,
 );
-const _flaxBinding119 = FlaxTypeRef(
+const _flaxBinding109 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:FileMode",
 );
-const _flaxBinding120 = <FlaxParameter>[
-  FlaxParameter("mode", _flaxBinding119, required: false, omitWhenAbsent: true),
+const _flaxBinding110 = <FlaxParameter>[
+  FlaxParameter("mode", _flaxBinding109, required: false, omitWhenAbsent: true),
 ];
-const _flaxBinding121 = FlaxTypeRef(
+const _flaxBinding111 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:RandomAccessFile",
 );
-const _flaxBinding122 = FlaxTypeRef(
+const _flaxBinding112 = FlaxTypeRef(
   "future",
-  item: _flaxBinding121,
+  item: _flaxBinding111,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:RandomAccessFile",
     _future9Adapt,
   ),
 );
-const _flaxBinding123 = FlaxInstanceMethod(
-  _flaxBinding120,
-  _flaxBinding122,
+const _flaxBinding113 = FlaxInstanceMethod.plain(
+  _flaxBinding110,
+  _flaxBinding112,
   _File_open,
 );
-const _flaxBinding124 = FlaxInstanceMethod(
-  _flaxBinding120,
-  _flaxBinding121,
+const _flaxBinding114 = FlaxInstanceMethod.plain(
+  _flaxBinding110,
+  _flaxBinding111,
   _File_openSync,
 );
-const _flaxBinding125 = <FlaxParameter>[
-  FlaxParameter("start", _flaxBinding27, required: false),
-  FlaxParameter("end", _flaxBinding27, required: false),
+const _flaxBinding115 = <FlaxParameter>[
+  FlaxParameter("start", flaxNullableIntType, required: false),
+  FlaxParameter("end", flaxNullableIntType, required: false),
 ];
-const _flaxBinding126 = FlaxInstanceMethod(
-  _flaxBinding125,
-  _flaxBinding5,
+const _flaxBinding116 = FlaxInstanceMethod.plain(
+  _flaxBinding115,
+  _flaxBinding3,
   _File_openRead,
 );
-const _flaxBinding127 = FlaxTypeRef(
+const _flaxBinding117 = FlaxTypeRef(
   "future",
-  item: _flaxBinding14,
+  item: flaxUint8ListType,
   future: FlaxFutureBinding("Uint8List:", _future10Adapt),
 );
-const _flaxBinding128 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding127,
+const _flaxBinding118 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding117,
   _File_readAsBytes,
 );
-const _flaxBinding129 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding14,
+const _flaxBinding119 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxUint8ListType,
   _File_readAsBytesSync,
 );
-const _flaxBinding130 = FlaxTypeRef(
+const _flaxBinding120 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Encoding",
 );
-const _flaxBinding131 = <FlaxParameter>[
+const _flaxBinding121 = <FlaxParameter>[
   FlaxParameter(
     "encoding",
-    _flaxBinding130,
+    _flaxBinding120,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding132 = FlaxInstanceMethod(
-  _flaxBinding131,
-  _flaxBinding6,
+const _flaxBinding122 = FlaxInstanceMethod.plain(
+  _flaxBinding121,
+  _flaxBinding4,
   _File_readAsString,
 );
-const _flaxBinding133 = FlaxInstanceMethod(
-  _flaxBinding131,
-  _flaxBinding0,
+const _flaxBinding123 = FlaxInstanceMethod.plain(
+  _flaxBinding121,
+  flaxStringType,
   _File_readAsStringSync,
 );
-const _flaxBinding134 = FlaxTypeRef(
+const _flaxBinding124 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding0,
+  item: flaxStringType,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
     _collection5Create,
@@ -10472,108 +10356,108 @@ const _flaxBinding134 = FlaxTypeRef(
     restore: _collection5Restore,
   ),
 );
-const _flaxBinding135 = FlaxTypeRef(
+const _flaxBinding125 = FlaxTypeRef(
   "list",
-  item: _flaxBinding0,
+  item: flaxStringType,
   collection: FlaxCollectionBinding(
     "list:[String:]",
     _collection4Create,
     _collection4Matches,
   ),
-  iterable: _flaxBinding134,
+  iterable: _flaxBinding124,
 );
-const _flaxBinding136 = FlaxTypeRef(
+const _flaxBinding126 = FlaxTypeRef(
   "future",
-  item: _flaxBinding135,
+  item: _flaxBinding125,
   future: FlaxFutureBinding("list:[String:]", _future11Adapt),
 );
-const _flaxBinding137 = FlaxInstanceMethod(
-  _flaxBinding131,
-  _flaxBinding136,
+const _flaxBinding127 = FlaxInstanceMethod.plain(
+  _flaxBinding121,
+  _flaxBinding126,
   _File_readAsLines,
 );
-const _flaxBinding138 = FlaxInstanceMethod(
-  _flaxBinding131,
-  _flaxBinding135,
+const _flaxBinding128 = FlaxInstanceMethod.plain(
+  _flaxBinding121,
+  _flaxBinding125,
   _File_readAsLinesSync,
 );
-const _flaxBinding139 = <FlaxParameter>[
-  FlaxParameter("bytes", _flaxBinding4, required: true),
-  FlaxParameter("flush", _flaxBinding20, required: false, defaultValue: false),
-  FlaxParameter("mode", _flaxBinding119, required: false, omitWhenAbsent: true),
+const _flaxBinding129 = <FlaxParameter>[
+  FlaxParameter.required("bytes", _flaxBinding2),
+  FlaxParameter("flush", flaxBoolType, required: false, defaultValue: false),
+  FlaxParameter("mode", _flaxBinding109, required: false, omitWhenAbsent: true),
 ];
-const _flaxBinding140 = FlaxInstanceMethod(
-  _flaxBinding139,
-  _flaxBinding95,
+const _flaxBinding130 = FlaxInstanceMethod.plain(
+  _flaxBinding129,
+  _flaxBinding87,
   _File_writeAsBytes,
 );
-const _flaxBinding141 = FlaxInstanceMethod(
-  _flaxBinding139,
-  _flaxBinding70,
+const _flaxBinding131 = FlaxInstanceMethod.plain(
+  _flaxBinding129,
+  flaxVoidType,
   _File_writeAsBytesSync,
 );
-const _flaxBinding142 = <FlaxParameter>[
-  FlaxParameter("contents", _flaxBinding0, required: true),
+const _flaxBinding132 = <FlaxParameter>[
+  FlaxParameter.required("contents", flaxStringType),
   FlaxParameter(
     "encoding",
-    _flaxBinding130,
+    _flaxBinding120,
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("flush", _flaxBinding20, required: false, defaultValue: false),
-  FlaxParameter("mode", _flaxBinding119, required: false, omitWhenAbsent: true),
+  FlaxParameter("flush", flaxBoolType, required: false, defaultValue: false),
+  FlaxParameter("mode", _flaxBinding109, required: false, omitWhenAbsent: true),
 ];
-const _flaxBinding143 = FlaxInstanceMethod(
-  _flaxBinding142,
-  _flaxBinding95,
+const _flaxBinding133 = FlaxInstanceMethod.plain(
+  _flaxBinding132,
+  _flaxBinding87,
   _File_writeAsString,
 );
-const _flaxBinding144 = FlaxInstanceMethod(
-  _flaxBinding142,
-  _flaxBinding70,
+const _flaxBinding134 = FlaxInstanceMethod.plain(
+  _flaxBinding132,
+  flaxVoidType,
   _File_writeAsStringSync,
 );
-const _flaxBinding145 = <FlaxParameter>[
-  FlaxParameter("rawPath", _flaxBinding14, required: true),
+const _flaxBinding135 = <FlaxParameter>[
+  FlaxParameter.required("rawPath", flaxUint8ListType),
 ];
-const _flaxBinding146 = FlaxObjectBinding(
+const _flaxBinding136 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:File",
-  [_flaxBinding94],
+  [_flaxBinding86],
   {
-    "rename": _flaxBinding96,
-    "renameSync": _flaxBinding97,
-    "create": _flaxBinding99,
-    "createSync": _flaxBinding100,
-    "copy": _flaxBinding101,
-    "copySync": _flaxBinding102,
-    "length": _flaxBinding104,
-    "lengthSync": _flaxBinding105,
-    "lastAccessed": _flaxBinding108,
-    "lastAccessedSync": _flaxBinding109,
-    "setLastAccessed": _flaxBinding113,
-    "setLastAccessedSync": _flaxBinding114,
-    "lastModified": _flaxBinding115,
-    "lastModifiedSync": _flaxBinding116,
-    "setLastModified": _flaxBinding117,
-    "setLastModifiedSync": _flaxBinding118,
-    "open": _flaxBinding123,
-    "openSync": _flaxBinding124,
-    "openRead": _flaxBinding126,
-    "readAsBytes": _flaxBinding128,
-    "readAsBytesSync": _flaxBinding129,
-    "readAsString": _flaxBinding132,
-    "readAsStringSync": _flaxBinding133,
-    "readAsLines": _flaxBinding137,
-    "readAsLinesSync": _flaxBinding138,
-    "writeAsBytes": _flaxBinding140,
-    "writeAsBytesSync": _flaxBinding141,
-    "writeAsString": _flaxBinding143,
-    "writeAsStringSync": _flaxBinding144,
+    "rename": _flaxBinding88,
+    "renameSync": _flaxBinding89,
+    "create": _flaxBinding91,
+    "createSync": _flaxBinding92,
+    "copy": _flaxBinding93,
+    "copySync": _flaxBinding94,
+    "length": _flaxBinding96,
+    "lengthSync": _flaxBinding97,
+    "lastAccessed": _flaxBinding99,
+    "lastAccessedSync": _flaxBinding100,
+    "setLastAccessed": _flaxBinding103,
+    "setLastAccessedSync": _flaxBinding104,
+    "lastModified": _flaxBinding105,
+    "lastModifiedSync": _flaxBinding106,
+    "setLastModified": _flaxBinding107,
+    "setLastModifiedSync": _flaxBinding108,
+    "open": _flaxBinding113,
+    "openSync": _flaxBinding114,
+    "openRead": _flaxBinding116,
+    "readAsBytes": _flaxBinding118,
+    "readAsBytesSync": _flaxBinding119,
+    "readAsString": _flaxBinding122,
+    "readAsStringSync": _flaxBinding123,
+    "readAsLines": _flaxBinding127,
+    "readAsLinesSync": _flaxBinding128,
+    "writeAsBytes": _flaxBinding130,
+    "writeAsBytesSync": _flaxBinding131,
+    "writeAsString": _flaxBinding133,
+    "writeAsStringSync": _flaxBinding134,
   },
   constructors: {
-    "": _flaxBinding89,
-    "fromUri": _flaxBinding91,
-    "fromRawPath": _flaxBinding145,
+    "": _flaxBinding81,
+    "fromUri": _flaxBinding83,
+    "fromRawPath": _flaxBinding135,
   },
   create: _createFile,
   matches: _isFile,
@@ -10582,9 +10466,9 @@ const _flaxBinding146 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_dependencies#type:FileSystemEntity",
   ],
-  parent: _flaxBinding72,
+  parent: _flaxBinding64,
 );
-const _flaxBinding147 = FlaxObjectBinding(
+const _flaxBinding137 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:FileLock",
   [],
   {},
@@ -10594,7 +10478,7 @@ const _flaxBinding147 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding148 = FlaxObjectBinding(
+const _flaxBinding138 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:FileMode",
   [],
   {},
@@ -10604,74 +10488,78 @@ const _flaxBinding148 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding149 = FlaxGetter(
+const _flaxBinding139 = FlaxGetter.plain(
   "changed",
-  _flaxBinding106,
+  flaxDateTimeType,
   _FileStat_changed,
 );
-const _flaxBinding150 = FlaxGetter(
+const _flaxBinding140 = FlaxGetter.plain(
   "modified",
-  _flaxBinding106,
+  flaxDateTimeType,
   _FileStat_modified,
 );
-const _flaxBinding151 = FlaxGetter(
+const _flaxBinding141 = FlaxGetter.plain(
   "accessed",
-  _flaxBinding106,
+  flaxDateTimeType,
   _FileStat_accessed,
 );
-const _flaxBinding152 = FlaxTypeRef(
+const _flaxBinding142 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:FileSystemEntityType",
 );
-const _flaxBinding153 = FlaxGetter("type", _flaxBinding152, _FileStat_type);
-const _flaxBinding154 = FlaxGetter("mode", _flaxBinding2, _FileStat_mode);
-const _flaxBinding155 = FlaxGetter("size", _flaxBinding2, _FileStat_size);
-const _flaxBinding156 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding143 = FlaxGetter.plain(
+  "type",
+  _flaxBinding142,
+  _FileStat_type,
+);
+const _flaxBinding144 = FlaxGetter.plain("mode", flaxIntType, _FileStat_mode);
+const _flaxBinding145 = FlaxGetter.plain("size", flaxIntType, _FileStat_size);
+const _flaxBinding146 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _FileStat_toString,
 );
-const _flaxBinding157 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding147 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _FileStat_modeString,
 );
-const _flaxBinding158 = FlaxObjectBinding(
+const _flaxBinding148 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:FileStat",
   [
-    _flaxBinding149,
-    _flaxBinding150,
-    _flaxBinding151,
-    _flaxBinding153,
-    _flaxBinding154,
-    _flaxBinding155,
+    _flaxBinding139,
+    _flaxBinding140,
+    _flaxBinding141,
+    _flaxBinding143,
+    _flaxBinding144,
+    _flaxBinding145,
   ],
-  {"toString": _flaxBinding156, "modeString": _flaxBinding157},
+  {"toString": _flaxBinding146, "modeString": _flaxBinding147},
   constructors: {},
   create: _createFileStat,
   matches: _isFileStat,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding159 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding149 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _FileSystemEntityType_toString,
 );
-const _flaxBinding160 = FlaxObjectBinding(
+const _flaxBinding150 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:FileSystemEntityType",
   [],
-  {"toString": _flaxBinding159},
+  {"toString": _flaxBinding149},
   constructors: {},
   create: _createFileSystemEntityType,
   matches: _isFileSystemEntityType,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding161 = FlaxGetter("id", _flaxBinding2, _Flow_id);
-const _flaxBinding162 = FlaxObjectBinding(
+const _flaxBinding151 = FlaxGetter.plain("id", flaxIntType, _Flow_id);
+const _flaxBinding152 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Flow",
-  [_flaxBinding161],
+  [_flaxBinding151],
   {},
   constructors: {},
   create: _createFlow,
@@ -10679,463 +10567,395 @@ const _flaxBinding162 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding163 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Duration",
-);
-const _flaxBinding164 = FlaxGetter(
+const _flaxBinding153 = FlaxGetter.plain(
   "idleTimeout",
-  _flaxBinding163,
+  flaxDurationType,
   _HttpClient_idleTimeout,
 );
-const _flaxBinding165 = FlaxTypeRef(
+const _flaxBinding154 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Duration",
   nullable: true,
 );
-const _flaxBinding166 = FlaxGetter(
+const _flaxBinding155 = FlaxGetter.plain(
   "connectionTimeout",
-  _flaxBinding165,
+  _flaxBinding154,
   _HttpClient_connectionTimeout,
 );
-const _flaxBinding167 = FlaxGetter(
+const _flaxBinding156 = FlaxGetter.plain(
   "maxConnectionsPerHost",
-  _flaxBinding27,
+  flaxNullableIntType,
   _HttpClient_maxConnectionsPerHost,
 );
-const _flaxBinding168 = FlaxGetter(
+const _flaxBinding157 = FlaxGetter.plain(
   "autoUncompress",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClient_autoUncompress,
 );
-const _flaxBinding169 = FlaxGetter(
+const _flaxBinding158 = FlaxGetter.plain(
   "userAgent",
-  _flaxBinding29,
+  flaxNullableStringType,
   _HttpClient_userAgent,
 );
-const _flaxBinding170 = FlaxSetter(
+const _flaxBinding159 = FlaxSetter(
   "idleTimeout",
-  _flaxBinding163,
+  flaxDurationType,
   _HttpClient_set_idleTimeout,
 );
-const _flaxBinding171 = FlaxSetter(
+const _flaxBinding160 = FlaxSetter(
   "connectionTimeout",
-  _flaxBinding165,
+  _flaxBinding154,
   _HttpClient_set_connectionTimeout,
 );
-const _flaxBinding172 = FlaxSetter(
+const _flaxBinding161 = FlaxSetter(
   "maxConnectionsPerHost",
-  _flaxBinding27,
+  flaxNullableIntType,
   _HttpClient_set_maxConnectionsPerHost,
 );
-const _flaxBinding173 = FlaxSetter(
+const _flaxBinding162 = FlaxSetter(
   "autoUncompress",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClient_set_autoUncompress,
 );
-const _flaxBinding174 = FlaxSetter(
+const _flaxBinding163 = FlaxSetter(
   "userAgent",
-  _flaxBinding29,
+  flaxNullableStringType,
   _HttpClient_set_userAgent,
 );
-const _flaxBinding175 = FlaxCallbackBinding(
+const _flaxBinding164 = FlaxCallbackBinding(
   [
-    FlaxCallbackParameter(
-      "url",
-      _flaxBinding48,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "scheme",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "realm",
-      _flaxBinding29,
-      required: true,
-      positional: true,
-    ),
+    FlaxCallbackParameter.plain("url", _flaxBinding41),
+    FlaxCallbackParameter.plain("scheme", flaxStringType),
+    FlaxCallbackParameter.plain("realm", flaxNullableStringType),
   ],
-  _flaxBinding55,
+  _flaxBinding48,
   _callback0,
   id: "callback:<>(p:r:url:object:flax.core/flutter#type:Uri,p:r:scheme:String:,p:r:realm:String?:)->future:[bool:]",
   invoke: _callback0Invoke,
   matches: _callback0Matches,
 );
-const _flaxBinding176 = FlaxTypeRef(
+const _flaxBinding165 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding175,
+  callback: _flaxBinding164,
 );
-const _flaxBinding177 = FlaxSetter(
+const _flaxBinding166 = FlaxSetter(
   "authenticate",
-  _flaxBinding176,
+  _flaxBinding165,
   _HttpClient_set_authenticate,
 );
-const _flaxBinding178 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "url",
-      _flaxBinding48,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding0,
+const _flaxBinding167 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("url", _flaxBinding41)],
+  flaxStringType,
   FlaxCallbackAdapters.wrap1<api4.Uri, String>,
   id: "callback:<>(p:r:url:object:flax.core/flutter#type:Uri)->String:",
   invoke: FlaxCallbackAdapters.invoke1<api4.Uri, String>,
   matches: FlaxCallbackAdapters.matches1<api4.Uri, String>,
 );
-const _flaxBinding179 = FlaxTypeRef(
+const _flaxBinding168 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding178,
+  callback: _flaxBinding167,
 );
-const _flaxBinding180 = FlaxSetter(
+const _flaxBinding169 = FlaxSetter(
   "findProxy",
-  _flaxBinding179,
+  _flaxBinding168,
   _HttpClient_set_findProxy,
 );
-const _flaxBinding181 = FlaxCallbackBinding(
+const _flaxBinding170 = FlaxCallbackBinding(
   [
-    FlaxCallbackParameter(
-      "host",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "port",
-      _flaxBinding2,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "scheme",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "realm",
-      _flaxBinding29,
-      required: true,
-      positional: true,
-    ),
+    FlaxCallbackParameter.plain("host", flaxStringType),
+    FlaxCallbackParameter.plain("port", flaxIntType),
+    FlaxCallbackParameter.plain("scheme", flaxStringType),
+    FlaxCallbackParameter.plain("realm", flaxNullableStringType),
   ],
-  _flaxBinding55,
+  _flaxBinding48,
   _callback1,
   id: "callback:<>(p:r:host:String:,p:r:port:int:,p:r:scheme:String:,p:r:realm:String?:)->future:[bool:]",
   invoke: _callback1Invoke,
   matches: _callback1Matches,
 );
-const _flaxBinding182 = FlaxTypeRef(
+const _flaxBinding171 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding181,
+  callback: _flaxBinding170,
 );
-const _flaxBinding183 = FlaxSetter(
+const _flaxBinding172 = FlaxSetter(
   "authenticateProxy",
-  _flaxBinding182,
+  _flaxBinding171,
   _HttpClient_set_authenticateProxy,
 );
-const _flaxBinding184 = FlaxTypeRef(
+const _flaxBinding173 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:X509Certificate",
 );
-const _flaxBinding185 = FlaxCallbackBinding(
+const _flaxBinding174 = FlaxCallbackBinding(
   [
-    FlaxCallbackParameter(
-      "cert",
-      _flaxBinding184,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "host",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "port",
-      _flaxBinding2,
-      required: true,
-      positional: true,
-    ),
+    FlaxCallbackParameter.plain("cert", _flaxBinding173),
+    FlaxCallbackParameter.plain("host", flaxStringType),
+    FlaxCallbackParameter.plain("port", flaxIntType),
   ],
-  _flaxBinding20,
+  flaxBoolType,
   _callback2,
   id: "callback:<>(p:r:cert:object:flax.core/sdk_dependencies#type:X509Certificate,p:r:host:String:,p:r:port:int:)->bool:",
   invoke: _callback2Invoke,
   matches: _callback2Matches,
 );
-const _flaxBinding186 = FlaxTypeRef(
+const _flaxBinding175 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding185,
+  callback: _flaxBinding174,
 );
-const _flaxBinding187 = FlaxSetter(
+const _flaxBinding176 = FlaxSetter(
   "badCertificateCallback",
-  _flaxBinding186,
+  _flaxBinding175,
   _HttpClient_set_badCertificateCallback,
 );
-const _flaxBinding188 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "line",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding110,
+const _flaxBinding177 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("line", flaxStringType)],
+  flaxNullableAnyType,
   FlaxCallbackAdapters.wrap1<String, Object?>,
   id: "callback:<>(p:r:line:String:)->any?:",
   invoke: FlaxCallbackAdapters.invoke1<String, Object?>,
   matches: FlaxCallbackAdapters.matches1<String, Object?>,
 );
-const _flaxBinding189 = FlaxTypeRef(
+const _flaxBinding178 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding188,
+  callback: _flaxBinding177,
 );
-const _flaxBinding190 = FlaxSetter(
+const _flaxBinding179 = FlaxSetter(
   "keyLog",
-  _flaxBinding189,
+  _flaxBinding178,
   _HttpClient_set_keyLog,
 );
-const _flaxBinding191 = FlaxTypeRef(
+const _flaxBinding180 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:HttpClientRequest",
 );
-const _flaxBinding192 = FlaxTypeRef(
+const _flaxBinding181 = FlaxTypeRef(
   "future",
-  item: _flaxBinding191,
+  item: _flaxBinding180,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:HttpClientRequest",
     _future12Adapt,
   ),
 );
-const _flaxBinding193 = <FlaxParameter>[
-  FlaxParameter("method", _flaxBinding0, required: true),
-  FlaxParameter("host", _flaxBinding0, required: true),
-  FlaxParameter("port", _flaxBinding2, required: true),
-  FlaxParameter("path", _flaxBinding0, required: true),
+const _flaxBinding182 = <FlaxParameter>[
+  FlaxParameter.required("method", flaxStringType),
+  FlaxParameter.required("host", flaxStringType),
+  FlaxParameter.required("port", flaxIntType),
+  FlaxParameter.required("path", flaxStringType),
 ];
-const _flaxBinding194 = FlaxInstanceMethod(
-  _flaxBinding193,
-  _flaxBinding192,
+const _flaxBinding183 = FlaxInstanceMethod.plain(
+  _flaxBinding182,
+  _flaxBinding181,
   _HttpClient_open,
 );
-const _flaxBinding195 = <FlaxParameter>[
-  FlaxParameter("method", _flaxBinding0, required: true),
-  FlaxParameter("url", _flaxBinding48, required: true),
+const _flaxBinding184 = <FlaxParameter>[
+  FlaxParameter.required("method", flaxStringType),
+  FlaxParameter.required("url", _flaxBinding41),
 ];
-const _flaxBinding196 = FlaxInstanceMethod(
-  _flaxBinding195,
-  _flaxBinding192,
+const _flaxBinding185 = FlaxInstanceMethod.plain(
+  _flaxBinding184,
+  _flaxBinding181,
   _HttpClient_openUrl,
 );
-const _flaxBinding197 = <FlaxParameter>[
-  FlaxParameter("host", _flaxBinding0, required: true),
-  FlaxParameter("port", _flaxBinding2, required: true),
-  FlaxParameter("path", _flaxBinding0, required: true),
+const _flaxBinding186 = <FlaxParameter>[
+  FlaxParameter.required("host", flaxStringType),
+  FlaxParameter.required("port", flaxIntType),
+  FlaxParameter.required("path", flaxStringType),
 ];
-const _flaxBinding198 = FlaxInstanceMethod(
-  _flaxBinding197,
-  _flaxBinding192,
+const _flaxBinding187 = FlaxInstanceMethod.plain(
+  _flaxBinding186,
+  _flaxBinding181,
   _HttpClient_get,
 );
-const _flaxBinding199 = <FlaxParameter>[
-  FlaxParameter("url", _flaxBinding48, required: true),
+const _flaxBinding188 = <FlaxParameter>[
+  FlaxParameter.required("url", _flaxBinding41),
 ];
-const _flaxBinding200 = FlaxInstanceMethod(
-  _flaxBinding199,
-  _flaxBinding192,
+const _flaxBinding189 = FlaxInstanceMethod.plain(
+  _flaxBinding188,
+  _flaxBinding181,
   _HttpClient_getUrl,
 );
-const _flaxBinding201 = FlaxInstanceMethod(
-  _flaxBinding197,
-  _flaxBinding192,
+const _flaxBinding190 = FlaxInstanceMethod.plain(
+  _flaxBinding186,
+  _flaxBinding181,
   _HttpClient_post,
 );
-const _flaxBinding202 = FlaxInstanceMethod(
-  _flaxBinding199,
-  _flaxBinding192,
+const _flaxBinding191 = FlaxInstanceMethod.plain(
+  _flaxBinding188,
+  _flaxBinding181,
   _HttpClient_postUrl,
 );
-const _flaxBinding203 = FlaxInstanceMethod(
-  _flaxBinding197,
-  _flaxBinding192,
+const _flaxBinding192 = FlaxInstanceMethod.plain(
+  _flaxBinding186,
+  _flaxBinding181,
   _HttpClient_put,
 );
-const _flaxBinding204 = FlaxInstanceMethod(
-  _flaxBinding199,
-  _flaxBinding192,
+const _flaxBinding193 = FlaxInstanceMethod.plain(
+  _flaxBinding188,
+  _flaxBinding181,
   _HttpClient_putUrl,
 );
-const _flaxBinding205 = FlaxInstanceMethod(
-  _flaxBinding197,
-  _flaxBinding192,
+const _flaxBinding194 = FlaxInstanceMethod.plain(
+  _flaxBinding186,
+  _flaxBinding181,
   _HttpClient_delete,
 );
-const _flaxBinding206 = FlaxInstanceMethod(
-  _flaxBinding199,
-  _flaxBinding192,
+const _flaxBinding195 = FlaxInstanceMethod.plain(
+  _flaxBinding188,
+  _flaxBinding181,
   _HttpClient_deleteUrl,
 );
-const _flaxBinding207 = FlaxInstanceMethod(
-  _flaxBinding197,
-  _flaxBinding192,
+const _flaxBinding196 = FlaxInstanceMethod.plain(
+  _flaxBinding186,
+  _flaxBinding181,
   _HttpClient_patch,
 );
-const _flaxBinding208 = FlaxInstanceMethod(
-  _flaxBinding199,
-  _flaxBinding192,
+const _flaxBinding197 = FlaxInstanceMethod.plain(
+  _flaxBinding188,
+  _flaxBinding181,
   _HttpClient_patchUrl,
 );
-const _flaxBinding209 = FlaxInstanceMethod(
-  _flaxBinding197,
-  _flaxBinding192,
+const _flaxBinding198 = FlaxInstanceMethod.plain(
+  _flaxBinding186,
+  _flaxBinding181,
   _HttpClient_head,
 );
-const _flaxBinding210 = FlaxInstanceMethod(
-  _flaxBinding199,
-  _flaxBinding192,
+const _flaxBinding199 = FlaxInstanceMethod.plain(
+  _flaxBinding188,
+  _flaxBinding181,
   _HttpClient_headUrl,
 );
-const _flaxBinding211 = <FlaxParameter>[
-  FlaxParameter("force", _flaxBinding20, required: false, defaultValue: false),
+const _flaxBinding200 = <FlaxParameter>[
+  FlaxParameter("force", flaxBoolType, required: false, defaultValue: false),
 ];
-const _flaxBinding212 = FlaxInstanceMethod(
-  _flaxBinding211,
-  _flaxBinding70,
+const _flaxBinding201 = FlaxInstanceMethod.plain(
+  _flaxBinding200,
+  flaxVoidType,
   _HttpClient_close,
 );
-const _flaxBinding213 = FlaxTypeRef(
+const _flaxBinding202 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:SecurityContext",
   nullable: true,
 );
-const _flaxBinding214 = <FlaxParameter>[
-  FlaxParameter("context", _flaxBinding213, required: false),
+const _flaxBinding203 = <FlaxParameter>[
+  FlaxParameter("context", _flaxBinding202, required: false),
 ];
-const _flaxBinding215 = FlaxObjectBinding(
+const _flaxBinding204 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:HttpClient",
   [
-    _flaxBinding164,
-    _flaxBinding166,
-    _flaxBinding167,
-    _flaxBinding168,
-    _flaxBinding169,
+    _flaxBinding153,
+    _flaxBinding155,
+    _flaxBinding156,
+    _flaxBinding157,
+    _flaxBinding158,
   ],
   {
-    "open": _flaxBinding194,
-    "openUrl": _flaxBinding196,
-    "get": _flaxBinding198,
-    "getUrl": _flaxBinding200,
-    "post": _flaxBinding201,
-    "postUrl": _flaxBinding202,
-    "put": _flaxBinding203,
-    "putUrl": _flaxBinding204,
-    "delete": _flaxBinding205,
-    "deleteUrl": _flaxBinding206,
-    "patch": _flaxBinding207,
-    "patchUrl": _flaxBinding208,
-    "head": _flaxBinding209,
-    "headUrl": _flaxBinding210,
-    "close": _flaxBinding212,
+    "open": _flaxBinding183,
+    "openUrl": _flaxBinding185,
+    "get": _flaxBinding187,
+    "getUrl": _flaxBinding189,
+    "post": _flaxBinding190,
+    "postUrl": _flaxBinding191,
+    "put": _flaxBinding192,
+    "putUrl": _flaxBinding193,
+    "delete": _flaxBinding194,
+    "deleteUrl": _flaxBinding195,
+    "patch": _flaxBinding196,
+    "patchUrl": _flaxBinding197,
+    "head": _flaxBinding198,
+    "headUrl": _flaxBinding199,
+    "close": _flaxBinding201,
   },
-  constructors: {"": _flaxBinding214},
+  constructors: {"": _flaxBinding203},
   create: _createHttpClient,
   matches: _isHttpClient,
   setters: [
-    _flaxBinding170,
-    _flaxBinding171,
+    _flaxBinding159,
+    _flaxBinding160,
+    _flaxBinding161,
+    _flaxBinding162,
+    _flaxBinding163,
+    _flaxBinding166,
+    _flaxBinding169,
     _flaxBinding172,
-    _flaxBinding173,
-    _flaxBinding174,
-    _flaxBinding177,
-    _flaxBinding180,
-    _flaxBinding183,
-    _flaxBinding187,
-    _flaxBinding190,
+    _flaxBinding176,
+    _flaxBinding179,
   ],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding216 = FlaxTypeRef(
+const _flaxBinding205 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:HttpClientResponse",
 );
-const _flaxBinding217 = FlaxTypeRef(
+const _flaxBinding206 = FlaxTypeRef(
   "future",
-  item: _flaxBinding216,
+  item: _flaxBinding205,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:HttpClientResponse",
     _future13Adapt,
   ),
 );
-const _flaxBinding218 = FlaxGetter(
+const _flaxBinding207 = FlaxGetter.plain(
   "done",
-  _flaxBinding217,
+  _flaxBinding206,
   _HttpClientRequest_done,
 );
-const _flaxBinding219 = FlaxGetter(
+const _flaxBinding208 = FlaxGetter.plain(
   "persistentConnection",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClientRequest_persistentConnection,
 );
-const _flaxBinding220 = FlaxGetter(
+const _flaxBinding209 = FlaxGetter.plain(
   "followRedirects",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClientRequest_followRedirects,
 );
-const _flaxBinding221 = FlaxGetter(
+const _flaxBinding210 = FlaxGetter.plain(
   "maxRedirects",
-  _flaxBinding2,
+  flaxIntType,
   _HttpClientRequest_maxRedirects,
 );
-const _flaxBinding222 = FlaxGetter(
+const _flaxBinding211 = FlaxGetter.plain(
   "method",
-  _flaxBinding0,
+  flaxStringType,
   _HttpClientRequest_method,
 );
-const _flaxBinding223 = FlaxGetter(
+const _flaxBinding212 = FlaxGetter.plain(
   "uri",
-  _flaxBinding48,
+  _flaxBinding41,
   _HttpClientRequest_uri,
 );
-const _flaxBinding224 = FlaxGetter(
+const _flaxBinding213 = FlaxGetter.plain(
   "contentLength",
-  _flaxBinding2,
+  flaxIntType,
   _HttpClientRequest_contentLength,
 );
-const _flaxBinding225 = FlaxGetter(
+const _flaxBinding214 = FlaxGetter.plain(
   "bufferOutput",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClientRequest_bufferOutput,
 );
-const _flaxBinding226 = FlaxTypeRef(
+const _flaxBinding215 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:HttpHeaders",
 );
-const _flaxBinding227 = FlaxGetter(
+const _flaxBinding216 = FlaxGetter.plain(
   "headers",
-  _flaxBinding226,
+  _flaxBinding215,
   _HttpClientRequest_headers,
 );
-const _flaxBinding228 = FlaxTypeRef(
+const _flaxBinding217 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Cookie",
 );
-const _flaxBinding229 = FlaxTypeRef(
+const _flaxBinding218 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding228,
+  item: _flaxBinding217,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dependencies#type:Cookie]",
     _collection7Create,
@@ -11143,122 +10963,121 @@ const _flaxBinding229 = FlaxTypeRef(
     restore: _collection7Restore,
   ),
 );
-const _flaxBinding230 = FlaxTypeRef(
+const _flaxBinding219 = FlaxTypeRef(
   "list",
-  item: _flaxBinding228,
+  item: _flaxBinding217,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dependencies#type:Cookie]",
     _collection6Create,
     _collection6Matches,
   ),
-  iterable: _flaxBinding229,
+  iterable: _flaxBinding218,
 );
-const _flaxBinding231 = FlaxGetter(
+const _flaxBinding220 = FlaxGetter.plain(
   "cookies",
-  _flaxBinding230,
+  _flaxBinding219,
   _HttpClientRequest_cookies,
 );
-const _flaxBinding232 = FlaxTypeRef(
+const _flaxBinding221 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:HttpConnectionInfo",
   nullable: true,
 );
-const _flaxBinding233 = FlaxGetter(
+const _flaxBinding222 = FlaxGetter.plain(
   "connectionInfo",
-  _flaxBinding232,
+  _flaxBinding221,
   _HttpClientRequest_connectionInfo,
 );
-const _flaxBinding234 = FlaxGetter(
+const _flaxBinding223 = FlaxGetter.plain(
   "encoding",
-  _flaxBinding130,
+  _flaxBinding120,
   _HttpClientRequest_encoding,
 );
-const _flaxBinding235 = FlaxSetter(
+const _flaxBinding224 = FlaxSetter(
   "persistentConnection",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClientRequest_set_persistentConnection,
 );
-const _flaxBinding236 = FlaxSetter(
+const _flaxBinding225 = FlaxSetter(
   "followRedirects",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClientRequest_set_followRedirects,
 );
-const _flaxBinding237 = FlaxSetter(
+const _flaxBinding226 = FlaxSetter(
   "maxRedirects",
-  _flaxBinding2,
+  flaxIntType,
   _HttpClientRequest_set_maxRedirects,
 );
-const _flaxBinding238 = FlaxSetter(
+const _flaxBinding227 = FlaxSetter(
   "contentLength",
-  _flaxBinding2,
+  flaxIntType,
   _HttpClientRequest_set_contentLength,
 );
-const _flaxBinding239 = FlaxSetter(
+const _flaxBinding228 = FlaxSetter(
   "bufferOutput",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClientRequest_set_bufferOutput,
 );
-const _flaxBinding240 = FlaxSetter(
+const _flaxBinding229 = FlaxSetter(
   "encoding",
-  _flaxBinding130,
+  _flaxBinding120,
   _HttpClientRequest_set_encoding,
 );
-const _flaxBinding241 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding217,
+const _flaxBinding230 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding206,
   _HttpClientRequest_close,
 );
-const _flaxBinding242 = <FlaxParameter>[
-  FlaxParameter("data", _flaxBinding4, required: true),
+const _flaxBinding231 = <FlaxParameter>[
+  FlaxParameter.required("data", _flaxBinding2),
 ];
-const _flaxBinding243 = FlaxInstanceMethod(
-  _flaxBinding242,
-  _flaxBinding70,
+const _flaxBinding232 = FlaxInstanceMethod.plain(
+  _flaxBinding231,
+  flaxVoidType,
   _HttpClientRequest_add,
 );
-const _flaxBinding244 = FlaxTypeRef("any");
-const _flaxBinding245 = FlaxTypeRef(
+const _flaxBinding233 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:StackTrace",
   nullable: true,
 );
-const _flaxBinding246 = <FlaxParameter>[
-  FlaxParameter("error", _flaxBinding244, required: true),
-  FlaxParameter("stackTrace", _flaxBinding245, required: false),
+const _flaxBinding234 = <FlaxParameter>[
+  FlaxParameter.required("error", flaxAnyType),
+  FlaxParameter("stackTrace", _flaxBinding233, required: false),
 ];
-const _flaxBinding247 = FlaxInstanceMethod(
-  _flaxBinding246,
-  _flaxBinding70,
+const _flaxBinding235 = FlaxInstanceMethod.plain(
+  _flaxBinding234,
+  flaxVoidType,
   _HttpClientRequest_addError,
 );
-const _flaxBinding248 = <FlaxParameter>[
-  FlaxParameter("stream", _flaxBinding5, required: true),
+const _flaxBinding236 = <FlaxParameter>[
+  FlaxParameter.required("stream", _flaxBinding3),
 ];
-const _flaxBinding249 = FlaxInstanceMethod(
-  _flaxBinding248,
-  _flaxBinding111,
+const _flaxBinding237 = FlaxInstanceMethod.plain(
+  _flaxBinding236,
+  _flaxBinding101,
   _HttpClientRequest_addStream,
 );
-const _flaxBinding250 = <FlaxParameter>[
-  FlaxParameter("exception", _flaxBinding110, required: false),
-  FlaxParameter("stackTrace", _flaxBinding245, required: false),
+const _flaxBinding238 = <FlaxParameter>[
+  FlaxParameter("exception", flaxNullableAnyType, required: false),
+  FlaxParameter("stackTrace", _flaxBinding233, required: false),
 ];
-const _flaxBinding251 = FlaxInstanceMethod(
-  _flaxBinding250,
-  _flaxBinding70,
+const _flaxBinding239 = FlaxInstanceMethod.plain(
+  _flaxBinding238,
+  flaxVoidType,
   _HttpClientRequest_abort,
 );
-const _flaxBinding252 = <FlaxParameter>[
-  FlaxParameter("object", _flaxBinding110, required: true),
+const _flaxBinding240 = <FlaxParameter>[
+  FlaxParameter.required("object", flaxNullableAnyType),
 ];
-const _flaxBinding253 = FlaxInstanceMethod(
-  _flaxBinding252,
-  _flaxBinding70,
+const _flaxBinding241 = FlaxInstanceMethod.plain(
+  _flaxBinding240,
+  flaxVoidType,
   _HttpClientRequest_write,
 );
-const _flaxBinding254 = FlaxTypeRef(
+const _flaxBinding242 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding110,
+  item: flaxNullableAnyType,
   collection: FlaxCollectionBinding(
     "iterable:[any?:]",
     _collection8Create,
@@ -11266,79 +11085,79 @@ const _flaxBinding254 = FlaxTypeRef(
     restore: _collection8Restore,
   ),
 );
-const _flaxBinding255 = <FlaxParameter>[
-  FlaxParameter("objects", _flaxBinding254, required: true),
-  FlaxParameter("separator", _flaxBinding0, required: false, defaultValue: ''),
+const _flaxBinding243 = <FlaxParameter>[
+  FlaxParameter.required("objects", _flaxBinding242),
+  FlaxParameter("separator", flaxStringType, required: false, defaultValue: ''),
 ];
-const _flaxBinding256 = FlaxInstanceMethod(
-  _flaxBinding255,
-  _flaxBinding70,
+const _flaxBinding244 = FlaxInstanceMethod.plain(
+  _flaxBinding243,
+  flaxVoidType,
   _HttpClientRequest_writeAll,
 );
-const _flaxBinding257 = <FlaxParameter>[
+const _flaxBinding245 = <FlaxParameter>[
   FlaxParameter(
     "object",
-    _flaxBinding110,
+    flaxNullableAnyType,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding258 = FlaxInstanceMethod(
-  _flaxBinding257,
-  _flaxBinding70,
+const _flaxBinding246 = FlaxInstanceMethod.plain(
+  _flaxBinding245,
+  flaxVoidType,
   _HttpClientRequest_writeln,
 );
-const _flaxBinding259 = <FlaxParameter>[
-  FlaxParameter("charCode", _flaxBinding2, required: true),
+const _flaxBinding247 = <FlaxParameter>[
+  FlaxParameter.required("charCode", flaxIntType),
 ];
-const _flaxBinding260 = FlaxInstanceMethod(
-  _flaxBinding259,
-  _flaxBinding70,
+const _flaxBinding248 = FlaxInstanceMethod.plain(
+  _flaxBinding247,
+  flaxVoidType,
   _HttpClientRequest_writeCharCode,
 );
-const _flaxBinding261 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding111,
+const _flaxBinding249 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding101,
   _HttpClientRequest_flush,
 );
-const _flaxBinding262 = FlaxObjectBinding(
+const _flaxBinding250 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:HttpClientRequest",
   [
-    _flaxBinding218,
-    _flaxBinding219,
+    _flaxBinding207,
+    _flaxBinding208,
+    _flaxBinding209,
+    _flaxBinding210,
+    _flaxBinding211,
+    _flaxBinding212,
+    _flaxBinding213,
+    _flaxBinding214,
+    _flaxBinding216,
     _flaxBinding220,
-    _flaxBinding221,
     _flaxBinding222,
     _flaxBinding223,
-    _flaxBinding224,
-    _flaxBinding225,
-    _flaxBinding227,
-    _flaxBinding231,
-    _flaxBinding233,
-    _flaxBinding234,
   ],
   {
-    "close": _flaxBinding241,
-    "add": _flaxBinding243,
-    "addError": _flaxBinding247,
-    "addStream": _flaxBinding249,
-    "abort": _flaxBinding251,
-    "write": _flaxBinding253,
-    "writeAll": _flaxBinding256,
-    "writeln": _flaxBinding258,
-    "writeCharCode": _flaxBinding260,
-    "flush": _flaxBinding261,
+    "close": _flaxBinding230,
+    "add": _flaxBinding232,
+    "addError": _flaxBinding235,
+    "addStream": _flaxBinding237,
+    "abort": _flaxBinding239,
+    "write": _flaxBinding241,
+    "writeAll": _flaxBinding244,
+    "writeln": _flaxBinding246,
+    "writeCharCode": _flaxBinding248,
+    "flush": _flaxBinding249,
   },
   constructors: {},
   create: _createHttpClientRequest,
   matches: _isHttpClientRequest,
   setters: [
-    _flaxBinding235,
-    _flaxBinding236,
-    _flaxBinding237,
-    _flaxBinding238,
-    _flaxBinding239,
-    _flaxBinding240,
+    _flaxBinding224,
+    _flaxBinding225,
+    _flaxBinding226,
+    _flaxBinding227,
+    _flaxBinding228,
+    _flaxBinding229,
   ],
   supertypes: [
     "dart:core::Object",
@@ -11350,47 +11169,47 @@ const _flaxBinding262 = FlaxObjectBinding(
     "dart:core::StringSink",
   ],
 );
-const _flaxBinding263 = FlaxGetter(
+const _flaxBinding251 = FlaxGetter.plain(
   "statusCode",
-  _flaxBinding2,
+  flaxIntType,
   _HttpClientResponse_statusCode,
 );
-const _flaxBinding264 = FlaxGetter(
+const _flaxBinding252 = FlaxGetter.plain(
   "reasonPhrase",
-  _flaxBinding0,
+  flaxStringType,
   _HttpClientResponse_reasonPhrase,
 );
-const _flaxBinding265 = FlaxGetter(
+const _flaxBinding253 = FlaxGetter.plain(
   "contentLength",
-  _flaxBinding2,
+  flaxIntType,
   _HttpClientResponse_contentLength,
 );
-const _flaxBinding266 = FlaxTypeRef(
+const _flaxBinding254 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dependencies#type:HttpClientResponseCompressionState",
 );
-const _flaxBinding267 = FlaxGetter(
+const _flaxBinding255 = FlaxGetter.plain(
   "compressionState",
-  _flaxBinding266,
+  _flaxBinding254,
   _HttpClientResponse_compressionState,
 );
-const _flaxBinding268 = FlaxGetter(
+const _flaxBinding256 = FlaxGetter.plain(
   "persistentConnection",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClientResponse_persistentConnection,
 );
-const _flaxBinding269 = FlaxGetter(
+const _flaxBinding257 = FlaxGetter.plain(
   "isRedirect",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClientResponse_isRedirect,
 );
-const _flaxBinding270 = FlaxTypeRef(
+const _flaxBinding258 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:RedirectInfo",
 );
-const _flaxBinding271 = FlaxTypeRef(
+const _flaxBinding259 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding270,
+  item: _flaxBinding258,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dependencies#type:RedirectInfo]",
     _collection10Create,
@@ -11398,384 +11217,318 @@ const _flaxBinding271 = FlaxTypeRef(
     restore: _collection10Restore,
   ),
 );
-const _flaxBinding272 = FlaxTypeRef(
+const _flaxBinding260 = FlaxTypeRef(
   "list",
-  item: _flaxBinding270,
+  item: _flaxBinding258,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dependencies#type:RedirectInfo]",
     _collection9Create,
     _collection9Matches,
   ),
-  iterable: _flaxBinding271,
+  iterable: _flaxBinding259,
 );
-const _flaxBinding273 = FlaxGetter(
+const _flaxBinding261 = FlaxGetter.plain(
   "redirects",
-  _flaxBinding272,
+  _flaxBinding260,
   _HttpClientResponse_redirects,
 );
-const _flaxBinding274 = FlaxGetter(
+const _flaxBinding262 = FlaxGetter.plain(
   "headers",
-  _flaxBinding226,
+  _flaxBinding215,
   _HttpClientResponse_headers,
 );
-const _flaxBinding275 = FlaxGetter(
+const _flaxBinding263 = FlaxGetter.plain(
   "cookies",
-  _flaxBinding230,
+  _flaxBinding219,
   _HttpClientResponse_cookies,
 );
-const _flaxBinding276 = FlaxTypeRef(
+const _flaxBinding264 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:X509Certificate",
   nullable: true,
 );
-const _flaxBinding277 = FlaxGetter(
+const _flaxBinding265 = FlaxGetter.plain(
   "certificate",
-  _flaxBinding276,
+  _flaxBinding264,
   _HttpClientResponse_certificate,
 );
-const _flaxBinding278 = FlaxGetter(
+const _flaxBinding266 = FlaxGetter.plain(
   "connectionInfo",
-  _flaxBinding232,
+  _flaxBinding221,
   _HttpClientResponse_connectionInfo,
 );
-const _flaxBinding279 = FlaxGetter(
+const _flaxBinding267 = FlaxGetter.plain(
   "isBroadcast",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpClientResponse_isBroadcast,
 );
-const _flaxBinding280 = FlaxGetter(
+const _flaxBinding268 = FlaxGetter.plain(
   "length",
-  _flaxBinding103,
+  _flaxBinding95,
   _HttpClientResponse_length,
 );
-const _flaxBinding281 = FlaxGetter(
+const _flaxBinding269 = FlaxGetter.plain(
   "isEmpty",
-  _flaxBinding55,
+  _flaxBinding48,
   _HttpClientResponse_isEmpty,
 );
-const _flaxBinding282 = FlaxTypeRef(
+const _flaxBinding270 = FlaxTypeRef(
   "future",
-  item: _flaxBinding4,
+  item: _flaxBinding2,
   future: FlaxFutureBinding("list:[int:]", _future14Adapt),
 );
-const _flaxBinding283 = FlaxGetter(
+const _flaxBinding271 = FlaxGetter.plain(
   "first",
-  _flaxBinding282,
+  _flaxBinding270,
   _HttpClientResponse_first,
 );
-const _flaxBinding284 = FlaxGetter(
+const _flaxBinding272 = FlaxGetter.plain(
   "last",
-  _flaxBinding282,
+  _flaxBinding270,
   _HttpClientResponse_last,
 );
-const _flaxBinding285 = FlaxGetter(
+const _flaxBinding273 = FlaxGetter.plain(
   "single",
-  _flaxBinding282,
+  _flaxBinding270,
   _HttpClientResponse_single,
 );
-const _flaxBinding286 = FlaxTypeRef(
+const _flaxBinding274 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Uri",
   nullable: true,
 );
-const _flaxBinding287 = <FlaxParameter>[
-  FlaxParameter("method", _flaxBinding29, required: false),
-  FlaxParameter("url", _flaxBinding286, required: false),
-  FlaxParameter("followLoops", _flaxBinding17, required: false),
+const _flaxBinding275 = <FlaxParameter>[
+  FlaxParameter("method", flaxNullableStringType, required: false),
+  FlaxParameter("url", _flaxBinding274, required: false),
+  FlaxParameter("followLoops", flaxNullableBoolType, required: false),
 ];
-const _flaxBinding288 = FlaxInstanceMethod(
-  _flaxBinding287,
-  _flaxBinding217,
+const _flaxBinding276 = FlaxInstanceMethod.plain(
+  _flaxBinding275,
+  _flaxBinding206,
   _HttpClientResponse_redirect,
 );
-const _flaxBinding289 = FlaxTypeRef(
+const _flaxBinding277 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Socket",
 );
-const _flaxBinding290 = FlaxTypeRef(
+const _flaxBinding278 = FlaxTypeRef(
   "future",
-  item: _flaxBinding289,
+  item: _flaxBinding277,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:Socket",
     _future15Adapt,
   ),
 );
-const _flaxBinding291 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding290,
+const _flaxBinding279 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding278,
   _HttpClientResponse_detachSocket,
 );
-const _flaxBinding292 = FlaxTypeRef(
+const _flaxBinding280 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:StreamSubscription",
   dartType: FlaxDartTypes.typeOf<api5.StreamSubscription<List<int>>>,
 );
-const _flaxBinding293 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "subscription",
-      _flaxBinding292,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding70,
+const _flaxBinding281 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("subscription", _flaxBinding280)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api5.StreamSubscription<List<int>>>,
   id: "callback:<>(p:r:subscription:object:flax.core/flutter#type:StreamSubscription<list:[int:]>)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api5.StreamSubscription<List<int>>>,
   matches:
       FlaxCallbackAdapters.matchesVoid1<api5.StreamSubscription<List<int>>>,
 );
-const _flaxBinding294 = FlaxTypeRef(
+const _flaxBinding282 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding293,
+  callback: _flaxBinding281,
 );
-const _flaxBinding295 = <FlaxParameter>[
-  FlaxParameter("onCancel", _flaxBinding294, required: false),
-  FlaxParameter("onListen", _flaxBinding294, required: false),
+const _flaxBinding283 = <FlaxParameter>[
+  FlaxParameter("onCancel", _flaxBinding282, required: false),
+  FlaxParameter("onListen", _flaxBinding282, required: false),
 ];
-const _flaxBinding296 = FlaxInstanceMethod(
-  _flaxBinding295,
-  _flaxBinding5,
+const _flaxBinding284 = FlaxInstanceMethod.plain(
+  _flaxBinding283,
+  _flaxBinding3,
   _HttpClientResponse_asBroadcastStream,
 );
-const _flaxBinding297 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "event",
-      _flaxBinding4,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding70,
+const _flaxBinding285 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("event", _flaxBinding2)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<List<int>>,
   id: "callback:<>(p:r:event:list:[int:])->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<List<int>>,
   matches: FlaxCallbackAdapters.matchesVoid1<List<int>>,
 );
-const _flaxBinding298 = FlaxTypeRef(
+const _flaxBinding286 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding297,
+  callback: _flaxBinding285,
 );
-const _flaxBinding299 = FlaxCallbackBinding(
-  [],
-  _flaxBinding70,
-  FlaxCallbackAdapters.wrapVoid0,
-  id: "callback:<>()->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid0,
-  matches: FlaxCallbackAdapters.matchesVoid0,
-);
-const _flaxBinding300 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding299,
-);
-const _flaxBinding301 = FlaxTypeRef("function", nullable: true);
-const _flaxBinding302 = <FlaxParameter>[
-  FlaxParameter("onData", _flaxBinding298, required: true),
-  FlaxParameter("cancelOnError", _flaxBinding17, required: false),
-  FlaxParameter("onDone", _flaxBinding300, required: false),
-  FlaxParameter("onError", _flaxBinding301, required: false),
+const _flaxBinding287 = FlaxTypeRef("function", nullable: true);
+const _flaxBinding288 = <FlaxParameter>[
+  FlaxParameter.required("onData", _flaxBinding286),
+  FlaxParameter("cancelOnError", flaxNullableBoolType, required: false),
+  FlaxParameter("onDone", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onError", _flaxBinding287, required: false),
 ];
-const _flaxBinding303 = FlaxInstanceMethod(
-  _flaxBinding302,
-  _flaxBinding292,
+const _flaxBinding289 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  _flaxBinding280,
   _HttpClientResponse_listen,
 );
-const _flaxBinding304 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "event",
-      _flaxBinding4,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding20,
+const _flaxBinding290 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("event", _flaxBinding2)],
+  flaxBoolType,
   FlaxCallbackAdapters.wrap1<List<int>, bool>,
   id: "callback:<>(p:r:event:list:[int:])->bool:",
   invoke: FlaxCallbackAdapters.invoke1<List<int>, bool>,
   matches: FlaxCallbackAdapters.matches1<List<int>, bool>,
 );
-const _flaxBinding305 = FlaxTypeRef("callback", callback: _flaxBinding304);
-const _flaxBinding306 = <FlaxParameter>[
-  FlaxParameter("test", _flaxBinding305, required: true),
+const _flaxBinding291 = FlaxTypeRef("callback", callback: _flaxBinding290);
+const _flaxBinding292 = <FlaxParameter>[
+  FlaxParameter.required("test", _flaxBinding291),
 ];
-const _flaxBinding307 = FlaxInstanceMethod(
-  _flaxBinding306,
-  _flaxBinding5,
+const _flaxBinding293 = FlaxInstanceMethod.plain(
+  _flaxBinding292,
+  _flaxBinding3,
   _HttpClientResponse_where,
 );
-const _flaxBinding308 = FlaxTypeRef(
+const _flaxBinding294 = FlaxTypeRef(
   "futureOr",
-  item: _flaxBinding110,
+  item: flaxNullableAnyType,
   future: FlaxFutureBinding("any?:", _future8Adapt),
 );
-const _flaxBinding309 = FlaxTypeRef(
+const _flaxBinding295 = FlaxTypeRef(
   "stream",
   id: "flax.core/flutter#type:Stream",
   dartType: FlaxDartTypes.typeOf<api5.Stream<Object?>?>,
   nullable: true,
-  item: _flaxBinding110,
+  item: flaxNullableAnyType,
   stream: FlaxStreamBinding(
     "stream:flax.core/flutter#type:Stream[any?:]",
     _stream2Matches,
     _stream2Adapt,
   ),
 );
-const _flaxBinding310 = FlaxTypeRef("function");
-const _flaxBinding311 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "error",
-      _flaxBinding110,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding20,
+const _flaxBinding296 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("error", flaxNullableAnyType)],
+  flaxBoolType,
   FlaxCallbackAdapters.wrap1<Object?, bool>,
   id: "callback:<>(p:r:error:any?:)->bool:",
   invoke: FlaxCallbackAdapters.invoke1<Object?, bool>,
   matches: FlaxCallbackAdapters.matches1<Object?, bool>,
 );
-const _flaxBinding312 = FlaxTypeRef(
+const _flaxBinding297 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding311,
+  callback: _flaxBinding296,
 );
-const _flaxBinding313 = <FlaxParameter>[
-  FlaxParameter("onError", _flaxBinding310, required: true),
-  FlaxParameter("test", _flaxBinding312, required: false),
+const _flaxBinding298 = <FlaxParameter>[
+  FlaxParameter.required("onError", flaxFunctionType),
+  FlaxParameter("test", _flaxBinding297, required: false),
 ];
-const _flaxBinding314 = FlaxInstanceMethod(
-  _flaxBinding313,
-  _flaxBinding5,
+const _flaxBinding299 = FlaxInstanceMethod.plain(
+  _flaxBinding298,
+  _flaxBinding3,
   _HttpClientResponse_handleError,
 );
-const _flaxBinding315 = FlaxTypeRef(
+const _flaxBinding300 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:StreamConsumer",
   dartType: FlaxDartTypes.typeOf<api5.StreamConsumer<List<int>>>,
 );
-const _flaxBinding316 = <FlaxParameter>[
-  FlaxParameter("streamConsumer", _flaxBinding315, required: true),
+const _flaxBinding301 = <FlaxParameter>[
+  FlaxParameter.required("streamConsumer", _flaxBinding300),
 ];
-const _flaxBinding317 = FlaxInstanceMethod(
-  _flaxBinding316,
-  _flaxBinding111,
+const _flaxBinding302 = FlaxInstanceMethod.plain(
+  _flaxBinding301,
+  _flaxBinding101,
   _HttpClientResponse_pipe,
 );
-const _flaxBinding318 = FlaxCallbackBinding(
+const _flaxBinding303 = FlaxCallbackBinding(
   [
-    FlaxCallbackParameter(
-      "previous",
-      _flaxBinding4,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "element",
-      _flaxBinding4,
-      required: true,
-      positional: true,
-    ),
+    FlaxCallbackParameter.plain("previous", _flaxBinding2),
+    FlaxCallbackParameter.plain("element", _flaxBinding2),
   ],
-  _flaxBinding4,
+  _flaxBinding2,
   FlaxCallbackAdapters.wrap2<List<int>, List<int>, List<int>>,
   id: "callback:<>(p:r:previous:list:[int:],p:r:element:list:[int:])->list:[int:]",
   invoke: FlaxCallbackAdapters.invoke2<List<int>, List<int>, List<int>>,
   matches: FlaxCallbackAdapters.matches2<List<int>, List<int>, List<int>>,
 );
-const _flaxBinding319 = FlaxTypeRef("callback", callback: _flaxBinding318);
-const _flaxBinding320 = <FlaxParameter>[
-  FlaxParameter("combine", _flaxBinding319, required: true),
+const _flaxBinding304 = FlaxTypeRef("callback", callback: _flaxBinding303);
+const _flaxBinding305 = <FlaxParameter>[
+  FlaxParameter.required("combine", _flaxBinding304),
 ];
-const _flaxBinding321 = FlaxInstanceMethod(
-  _flaxBinding320,
-  _flaxBinding282,
+const _flaxBinding306 = FlaxInstanceMethod.plain(
+  _flaxBinding305,
+  _flaxBinding270,
   _HttpClientResponse_reduce,
 );
-const _flaxBinding322 = <FlaxParameter>[
-  FlaxParameter("separator", _flaxBinding0, required: false, defaultValue: ''),
+const _flaxBinding307 = <FlaxParameter>[
+  FlaxParameter("separator", flaxStringType, required: false, defaultValue: ''),
 ];
-const _flaxBinding323 = FlaxInstanceMethod(
-  _flaxBinding322,
-  _flaxBinding6,
+const _flaxBinding308 = FlaxInstanceMethod.plain(
+  _flaxBinding307,
+  _flaxBinding4,
   _HttpClientResponse_join,
 );
-const _flaxBinding324 = <FlaxParameter>[
-  FlaxParameter("needle", _flaxBinding110, required: true),
+const _flaxBinding309 = <FlaxParameter>[
+  FlaxParameter.required("needle", flaxNullableAnyType),
 ];
-const _flaxBinding325 = FlaxInstanceMethod(
-  _flaxBinding324,
-  _flaxBinding55,
+const _flaxBinding310 = FlaxInstanceMethod.plain(
+  _flaxBinding309,
+  _flaxBinding48,
   _HttpClientResponse_contains,
 );
-const _flaxBinding326 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "element",
-      _flaxBinding4,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding70,
+const _flaxBinding311 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("element", _flaxBinding2)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<List<int>>,
   id: "callback:<>(p:r:element:list:[int:])->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<List<int>>,
   matches: FlaxCallbackAdapters.matchesVoid1<List<int>>,
 );
-const _flaxBinding327 = FlaxTypeRef("callback", callback: _flaxBinding326);
-const _flaxBinding328 = FlaxTypeRef(
+const _flaxBinding312 = FlaxTypeRef("callback", callback: _flaxBinding311);
+const _flaxBinding313 = FlaxTypeRef(
   "future",
-  item: _flaxBinding70,
+  item: flaxVoidType,
   future: FlaxFutureBinding("void:", _future16Adapt),
 );
-const _flaxBinding329 = <FlaxParameter>[
-  FlaxParameter("action", _flaxBinding327, required: true),
+const _flaxBinding314 = <FlaxParameter>[
+  FlaxParameter.required("action", _flaxBinding312),
 ];
-const _flaxBinding330 = FlaxInstanceMethod(
-  _flaxBinding329,
-  _flaxBinding328,
+const _flaxBinding315 = FlaxInstanceMethod.plain(
+  _flaxBinding314,
+  _flaxBinding313,
   _HttpClientResponse_forEach,
 );
-const _flaxBinding331 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "element",
-      _flaxBinding4,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding20,
+const _flaxBinding316 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("element", _flaxBinding2)],
+  flaxBoolType,
   FlaxCallbackAdapters.wrap1<List<int>, bool>,
   id: "callback:<>(p:r:element:list:[int:])->bool:",
   invoke: FlaxCallbackAdapters.invoke1<List<int>, bool>,
   matches: FlaxCallbackAdapters.matches1<List<int>, bool>,
 );
-const _flaxBinding332 = FlaxTypeRef("callback", callback: _flaxBinding331);
-const _flaxBinding333 = <FlaxParameter>[
-  FlaxParameter("test", _flaxBinding332, required: true),
+const _flaxBinding317 = FlaxTypeRef("callback", callback: _flaxBinding316);
+const _flaxBinding318 = <FlaxParameter>[
+  FlaxParameter.required("test", _flaxBinding317),
 ];
-const _flaxBinding334 = FlaxInstanceMethod(
-  _flaxBinding333,
-  _flaxBinding55,
+const _flaxBinding319 = FlaxInstanceMethod.plain(
+  _flaxBinding318,
+  _flaxBinding48,
   _HttpClientResponse_every,
 );
-const _flaxBinding335 = FlaxInstanceMethod(
-  _flaxBinding333,
-  _flaxBinding55,
+const _flaxBinding320 = FlaxInstanceMethod.plain(
+  _flaxBinding318,
+  _flaxBinding48,
   _HttpClientResponse_any,
 );
-const _flaxBinding336 = FlaxTypeRef(
+const _flaxBinding321 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding4,
+  item: _flaxBinding2,
   collection: FlaxCollectionBinding(
     "iterable:[list:[int:]]",
     _collection12Create,
@@ -11783,233 +11536,208 @@ const _flaxBinding336 = FlaxTypeRef(
     restore: _collection12Restore,
   ),
 );
-const _flaxBinding337 = FlaxTypeRef(
+const _flaxBinding322 = FlaxTypeRef(
   "list",
-  item: _flaxBinding4,
+  item: _flaxBinding2,
   collection: FlaxCollectionBinding(
     "list:[list:[int:]]",
     _collection11Create,
     _collection11Matches,
   ),
-  iterable: _flaxBinding336,
+  iterable: _flaxBinding321,
 );
-const _flaxBinding338 = FlaxTypeRef(
+const _flaxBinding323 = FlaxTypeRef(
   "future",
-  item: _flaxBinding337,
+  item: _flaxBinding322,
   future: FlaxFutureBinding("list:[list:[int:]]", _future17Adapt),
 );
-const _flaxBinding339 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding338,
+const _flaxBinding324 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding323,
   _HttpClientResponse_toList,
 );
-const _flaxBinding340 = FlaxTypeRef(
+const _flaxBinding325 = FlaxTypeRef(
   "set",
-  item: _flaxBinding4,
+  item: _flaxBinding2,
   collection: FlaxCollectionBinding(
     "set:[list:[int:]]",
     _collection13Create,
     _collection13Matches,
   ),
-  iterable: _flaxBinding336,
+  iterable: _flaxBinding321,
 );
-const _flaxBinding341 = FlaxTypeRef(
+const _flaxBinding326 = FlaxTypeRef(
   "future",
-  item: _flaxBinding340,
+  item: _flaxBinding325,
   future: FlaxFutureBinding("set:[list:[int:]]", _future18Adapt),
 );
-const _flaxBinding342 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding341,
+const _flaxBinding327 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding326,
   _HttpClientResponse_toSet,
 );
-const _flaxBinding343 = <FlaxParameter>[
-  FlaxParameter("count", _flaxBinding2, required: true),
+const _flaxBinding328 = <FlaxParameter>[
+  FlaxParameter.required("count", flaxIntType),
 ];
-const _flaxBinding344 = FlaxInstanceMethod(
-  _flaxBinding343,
-  _flaxBinding5,
+const _flaxBinding329 = FlaxInstanceMethod.plain(
+  _flaxBinding328,
+  _flaxBinding3,
   _HttpClientResponse_take,
 );
-const _flaxBinding345 = FlaxInstanceMethod(
-  _flaxBinding333,
-  _flaxBinding5,
+const _flaxBinding330 = FlaxInstanceMethod.plain(
+  _flaxBinding318,
+  _flaxBinding3,
   _HttpClientResponse_takeWhile,
 );
-const _flaxBinding346 = FlaxInstanceMethod(
-  _flaxBinding343,
-  _flaxBinding5,
+const _flaxBinding331 = FlaxInstanceMethod.plain(
+  _flaxBinding328,
+  _flaxBinding3,
   _HttpClientResponse_skip,
 );
-const _flaxBinding347 = FlaxInstanceMethod(
-  _flaxBinding333,
-  _flaxBinding5,
+const _flaxBinding332 = FlaxInstanceMethod.plain(
+  _flaxBinding318,
+  _flaxBinding3,
   _HttpClientResponse_skipWhile,
 );
-const _flaxBinding348 = FlaxCallbackBinding(
+const _flaxBinding333 = FlaxCallbackBinding(
   [
-    FlaxCallbackParameter(
-      "previous",
-      _flaxBinding4,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "next",
-      _flaxBinding4,
-      required: true,
-      positional: true,
-    ),
+    FlaxCallbackParameter.plain("previous", _flaxBinding2),
+    FlaxCallbackParameter.plain("next", _flaxBinding2),
   ],
-  _flaxBinding20,
+  flaxBoolType,
   FlaxCallbackAdapters.wrap2<List<int>, List<int>, bool>,
   id: "callback:<>(p:r:previous:list:[int:],p:r:next:list:[int:])->bool:",
   invoke: FlaxCallbackAdapters.invoke2<List<int>, List<int>, bool>,
   matches: FlaxCallbackAdapters.matches2<List<int>, List<int>, bool>,
 );
-const _flaxBinding349 = FlaxTypeRef(
+const _flaxBinding334 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding348,
+  callback: _flaxBinding333,
 );
-const _flaxBinding350 = <FlaxParameter>[
-  FlaxParameter("equals", _flaxBinding349, required: false),
+const _flaxBinding335 = <FlaxParameter>[
+  FlaxParameter("equals", _flaxBinding334, required: false),
 ];
-const _flaxBinding351 = FlaxInstanceMethod(
-  _flaxBinding350,
-  _flaxBinding5,
+const _flaxBinding336 = FlaxInstanceMethod.plain(
+  _flaxBinding335,
+  _flaxBinding3,
   _HttpClientResponse_distinct,
 );
-const _flaxBinding352 = FlaxCallbackBinding(
+const _flaxBinding337 = FlaxCallbackBinding(
   [],
-  _flaxBinding4,
+  _flaxBinding2,
   FlaxCallbackAdapters.wrap0<List<int>>,
   id: "callback:<>()->list:[int:]",
   invoke: FlaxCallbackAdapters.invoke0<List<int>>,
   matches: FlaxCallbackAdapters.matches0<List<int>>,
 );
-const _flaxBinding353 = FlaxTypeRef(
+const _flaxBinding338 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding352,
+  callback: _flaxBinding337,
 );
-const _flaxBinding354 = <FlaxParameter>[
-  FlaxParameter("test", _flaxBinding332, required: true),
-  FlaxParameter("orElse", _flaxBinding353, required: false),
+const _flaxBinding339 = <FlaxParameter>[
+  FlaxParameter.required("test", _flaxBinding317),
+  FlaxParameter("orElse", _flaxBinding338, required: false),
 ];
-const _flaxBinding355 = FlaxInstanceMethod(
-  _flaxBinding354,
-  _flaxBinding282,
+const _flaxBinding340 = FlaxInstanceMethod.plain(
+  _flaxBinding339,
+  _flaxBinding270,
   _HttpClientResponse_firstWhere,
 );
-const _flaxBinding356 = FlaxInstanceMethod(
-  _flaxBinding354,
-  _flaxBinding282,
+const _flaxBinding341 = FlaxInstanceMethod.plain(
+  _flaxBinding339,
+  _flaxBinding270,
   _HttpClientResponse_lastWhere,
 );
-const _flaxBinding357 = FlaxInstanceMethod(
-  _flaxBinding354,
-  _flaxBinding282,
+const _flaxBinding342 = FlaxInstanceMethod.plain(
+  _flaxBinding339,
+  _flaxBinding270,
   _HttpClientResponse_singleWhere,
 );
-const _flaxBinding358 = <FlaxParameter>[
-  FlaxParameter("index", _flaxBinding2, required: true),
+const _flaxBinding343 = <FlaxParameter>[
+  FlaxParameter.required("index", flaxIntType),
 ];
-const _flaxBinding359 = FlaxInstanceMethod(
-  _flaxBinding358,
-  _flaxBinding282,
+const _flaxBinding344 = FlaxInstanceMethod.plain(
+  _flaxBinding343,
+  _flaxBinding270,
   _HttpClientResponse_elementAt,
 );
-const _flaxBinding360 = FlaxTypeRef(
+const _flaxBinding345 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:EventSink",
   dartType: FlaxDartTypes.typeOf<api5.EventSink<List<int>>>,
 );
-const _flaxBinding361 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "sink",
-      _flaxBinding360,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding70,
+const _flaxBinding346 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("sink", _flaxBinding345)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api5.EventSink<List<int>>>,
   id: "callback:<>(p:r:sink:object:flax.core/flutter#type:EventSink<list:[int:]>)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api5.EventSink<List<int>>>,
   matches: FlaxCallbackAdapters.matchesVoid1<api5.EventSink<List<int>>>,
 );
-const _flaxBinding362 = FlaxTypeRef(
+const _flaxBinding347 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding361,
+  callback: _flaxBinding346,
 );
-const _flaxBinding363 = <FlaxParameter>[
-  FlaxParameter("timeLimit", _flaxBinding163, required: true),
-  FlaxParameter("onTimeout", _flaxBinding362, required: false),
+const _flaxBinding348 = <FlaxParameter>[
+  FlaxParameter.required("timeLimit", flaxDurationType),
+  FlaxParameter("onTimeout", _flaxBinding347, required: false),
 ];
-const _flaxBinding364 = FlaxInstanceMethod(
-  _flaxBinding363,
-  _flaxBinding5,
+const _flaxBinding349 = FlaxInstanceMethod.plain(
+  _flaxBinding348,
+  _flaxBinding3,
   _HttpClientResponse_timeout,
 );
-const _flaxBinding365 = FlaxObjectBinding(
+const _flaxBinding350 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:HttpClientResponse",
   [
+    _flaxBinding251,
+    _flaxBinding252,
+    _flaxBinding253,
+    _flaxBinding255,
+    _flaxBinding256,
+    _flaxBinding257,
+    _flaxBinding261,
+    _flaxBinding262,
     _flaxBinding263,
-    _flaxBinding264,
     _flaxBinding265,
+    _flaxBinding266,
     _flaxBinding267,
     _flaxBinding268,
     _flaxBinding269,
+    _flaxBinding271,
+    _flaxBinding272,
     _flaxBinding273,
-    _flaxBinding274,
-    _flaxBinding275,
-    _flaxBinding277,
-    _flaxBinding278,
-    _flaxBinding279,
-    _flaxBinding280,
-    _flaxBinding281,
-    _flaxBinding283,
-    _flaxBinding284,
-    _flaxBinding285,
   ],
   {
-    "redirect": _flaxBinding288,
-    "detachSocket": _flaxBinding291,
-    "asBroadcastStream": _flaxBinding296,
-    "listen": _flaxBinding303,
-    "where": _flaxBinding307,
+    "redirect": _flaxBinding276,
+    "detachSocket": _flaxBinding279,
+    "asBroadcastStream": _flaxBinding284,
+    "listen": _flaxBinding289,
+    "where": _flaxBinding293,
     "map": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding4,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding110,
+              [FlaxCallbackParameter.plain("event", _flaxBinding2)],
+              flaxNullableAnyType,
               _callback3,
               id: "callback:<>(p:r:event:list:[int:])->any?:",
               invoke: _callback3Invoke,
               matches: _callback3Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -12022,33 +11750,25 @@ const _flaxBinding365 = FlaxObjectBinding(
     ),
     "asyncMap": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding4,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding308,
+              [FlaxCallbackParameter.plain("event", _flaxBinding2)],
+              _flaxBinding294,
               _callback4,
               id: "callback:<>(p:r:event:list:[int:])->futureOr:[any?:]",
               invoke: _callback4Invoke,
               matches: _callback4Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -12061,33 +11781,25 @@ const _flaxBinding365 = FlaxObjectBinding(
     ),
     "asyncExpand": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding4,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding309,
+              [FlaxCallbackParameter.plain("event", _flaxBinding2)],
+              _flaxBinding295,
               _callback5,
               id: "callback:<>(p:r:event:list:[int:])->stream?:flax.core/flutter#type:Stream[any?:]",
               invoke: _callback5Invoke,
               matches: _callback5Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -12098,36 +11810,28 @@ const _flaxBinding365 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_HttpClientResponse_asyncExpand,
       ownerTypes: [],
     ),
-    "handleError": _flaxBinding314,
+    "handleError": _flaxBinding299,
     "expand": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "element",
-                  _flaxBinding4,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding254,
+              [FlaxCallbackParameter.plain("element", _flaxBinding2)],
+              _flaxBinding242,
               _callback6,
               id: "callback:<>(p:r:element:list:[int:])->iterable:[any?:]",
               invoke: _callback6Invoke,
               matches: _callback6Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -12138,19 +11842,18 @@ const _flaxBinding365 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_HttpClientResponse_expand,
       ownerTypes: [],
     ),
-    "pipe": _flaxBinding317,
+    "pipe": _flaxBinding302,
     "transform": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "streamTransformer",
           FlaxTypeRef("object", id: "flax.core/flutter#type:StreamTransformer"),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -12161,63 +11864,51 @@ const _flaxBinding365 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_HttpClientResponse_transform,
       ownerTypes: [],
     ),
-    "reduce": _flaxBinding321,
+    "reduce": _flaxBinding306,
     "fold": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "initialValue",
           FlaxTypeRef("any", nullable: true),
-          required: true,
         ),
-        FlaxParameter(
+        FlaxParameter.required(
           "combine",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
               [
-                FlaxCallbackParameter(
-                  "previous",
-                  _flaxBinding110,
-                  required: true,
-                  positional: true,
-                ),
-                FlaxCallbackParameter(
-                  "element",
-                  _flaxBinding4,
-                  required: true,
-                  positional: true,
-                ),
+                FlaxCallbackParameter.plain("previous", flaxNullableAnyType),
+                FlaxCallbackParameter.plain("element", _flaxBinding2),
               ],
-              _flaxBinding110,
+              flaxNullableAnyType,
               _callback7,
               id: "callback:<>(p:r:previous:any?:,p:r:element:list:[int:])->any?:",
               invoke: _callback7Invoke,
               matches: _callback7Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _HttpClientResponse_fold,
       genericFactory: _flaxGeneric_HttpClientResponse_fold,
       ownerTypes: [],
     ),
-    "join": _flaxBinding323,
-    "contains": _flaxBinding325,
-    "forEach": _flaxBinding330,
-    "every": _flaxBinding334,
-    "any": _flaxBinding335,
+    "join": _flaxBinding308,
+    "contains": _flaxBinding310,
+    "forEach": _flaxBinding315,
+    "every": _flaxBinding319,
+    "any": _flaxBinding320,
     "cast": FlaxInstanceMethod(
-      _flaxBinding42,
+      _flaxBinding35,
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -12228,8 +11919,8 @@ const _flaxBinding365 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_HttpClientResponse_cast,
       ownerTypes: [],
     ),
-    "toList": _flaxBinding339,
-    "toSet": _flaxBinding342,
+    "toList": _flaxBinding324,
+    "toSet": _flaxBinding327,
     "drain": FlaxInstanceMethod(
       <FlaxParameter>[
         FlaxParameter(
@@ -12240,23 +11931,23 @@ const _flaxBinding365 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _HttpClientResponse_drain,
       genericFactory: _flaxGeneric_HttpClientResponse_drain,
       ownerTypes: [],
     ),
-    "take": _flaxBinding344,
-    "takeWhile": _flaxBinding345,
-    "skip": _flaxBinding346,
-    "skipWhile": _flaxBinding347,
-    "distinct": _flaxBinding351,
-    "firstWhere": _flaxBinding355,
-    "lastWhere": _flaxBinding356,
-    "singleWhere": _flaxBinding357,
-    "elementAt": _flaxBinding359,
-    "timeout": _flaxBinding364,
+    "take": _flaxBinding329,
+    "takeWhile": _flaxBinding330,
+    "skip": _flaxBinding331,
+    "skipWhile": _flaxBinding332,
+    "distinct": _flaxBinding336,
+    "firstWhere": _flaxBinding340,
+    "lastWhere": _flaxBinding341,
+    "singleWhere": _flaxBinding342,
+    "elementAt": _flaxBinding344,
+    "timeout": _flaxBinding349,
   },
   constructors: {},
   create: _createHttpClientResponse,
@@ -12264,28 +11955,28 @@ const _flaxBinding365 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object", "flax.core/flutter#type:Stream"],
 );
-const _flaxBinding366 = FlaxTypeRef(
+const _flaxBinding351 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:InternetAddress",
 );
-const _flaxBinding367 = FlaxGetter(
+const _flaxBinding352 = FlaxGetter.plain(
   "remoteAddress",
-  _flaxBinding366,
+  _flaxBinding351,
   _HttpConnectionInfo_remoteAddress,
 );
-const _flaxBinding368 = FlaxGetter(
+const _flaxBinding353 = FlaxGetter.plain(
   "remotePort",
-  _flaxBinding2,
+  flaxIntType,
   _HttpConnectionInfo_remotePort,
 );
-const _flaxBinding369 = FlaxGetter(
+const _flaxBinding354 = FlaxGetter.plain(
   "localPort",
-  _flaxBinding2,
+  flaxIntType,
   _HttpConnectionInfo_localPort,
 );
-const _flaxBinding370 = FlaxObjectBinding(
+const _flaxBinding355 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:HttpConnectionInfo",
-  [_flaxBinding367, _flaxBinding368, _flaxBinding369],
+  [_flaxBinding352, _flaxBinding353, _flaxBinding354],
   {},
   constructors: {},
   create: _createHttpConnectionInfo,
@@ -12293,328 +11984,330 @@ const _flaxBinding370 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding371 = FlaxGetter("date", _flaxBinding25, _HttpHeaders_date);
-const _flaxBinding372 = FlaxGetter(
+const _flaxBinding356 = FlaxGetter.plain(
+  "date",
+  _flaxBinding20,
+  _HttpHeaders_date,
+);
+const _flaxBinding357 = FlaxGetter.plain(
   "expires",
-  _flaxBinding25,
+  _flaxBinding20,
   _HttpHeaders_expires,
 );
-const _flaxBinding373 = FlaxGetter(
+const _flaxBinding358 = FlaxGetter.plain(
   "ifModifiedSince",
-  _flaxBinding25,
+  _flaxBinding20,
   _HttpHeaders_ifModifiedSince,
 );
-const _flaxBinding374 = FlaxGetter("host", _flaxBinding29, _HttpHeaders_host);
-const _flaxBinding375 = FlaxGetter("port", _flaxBinding27, _HttpHeaders_port);
-const _flaxBinding376 = FlaxGetter(
+const _flaxBinding359 = FlaxGetter.plain(
+  "host",
+  flaxNullableStringType,
+  _HttpHeaders_host,
+);
+const _flaxBinding360 = FlaxGetter.plain(
+  "port",
+  flaxNullableIntType,
+  _HttpHeaders_port,
+);
+const _flaxBinding361 = FlaxGetter.plain(
   "contentLength",
-  _flaxBinding2,
+  flaxIntType,
   _HttpHeaders_contentLength,
 );
-const _flaxBinding377 = FlaxGetter(
+const _flaxBinding362 = FlaxGetter.plain(
   "persistentConnection",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpHeaders_persistentConnection,
 );
-const _flaxBinding378 = FlaxGetter(
+const _flaxBinding363 = FlaxGetter.plain(
   "chunkedTransferEncoding",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpHeaders_chunkedTransferEncoding,
 );
-const _flaxBinding379 = FlaxSetter(
+const _flaxBinding364 = FlaxSetter(
   "date",
-  _flaxBinding25,
+  _flaxBinding20,
   _HttpHeaders_set_date,
 );
-const _flaxBinding380 = FlaxSetter(
+const _flaxBinding365 = FlaxSetter(
   "expires",
-  _flaxBinding25,
+  _flaxBinding20,
   _HttpHeaders_set_expires,
 );
-const _flaxBinding381 = FlaxSetter(
+const _flaxBinding366 = FlaxSetter(
   "ifModifiedSince",
-  _flaxBinding25,
+  _flaxBinding20,
   _HttpHeaders_set_ifModifiedSince,
 );
-const _flaxBinding382 = FlaxSetter(
+const _flaxBinding367 = FlaxSetter(
   "host",
-  _flaxBinding29,
+  flaxNullableStringType,
   _HttpHeaders_set_host,
 );
-const _flaxBinding383 = FlaxSetter(
+const _flaxBinding368 = FlaxSetter(
   "port",
-  _flaxBinding27,
+  flaxNullableIntType,
   _HttpHeaders_set_port,
 );
-const _flaxBinding384 = FlaxSetter(
+const _flaxBinding369 = FlaxSetter(
   "contentLength",
-  _flaxBinding2,
+  flaxIntType,
   _HttpHeaders_set_contentLength,
 );
-const _flaxBinding385 = FlaxSetter(
+const _flaxBinding370 = FlaxSetter(
   "persistentConnection",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpHeaders_set_persistentConnection,
 );
-const _flaxBinding386 = FlaxSetter(
+const _flaxBinding371 = FlaxSetter(
   "chunkedTransferEncoding",
-  _flaxBinding20,
+  flaxBoolType,
   _HttpHeaders_set_chunkedTransferEncoding,
 );
-const _flaxBinding387 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding0, required: true),
+const _flaxBinding372 = <FlaxParameter>[
+  FlaxParameter.required("name", flaxStringType),
 ];
-const _flaxBinding388 = FlaxInstanceMethod(
-  _flaxBinding387,
-  _flaxBinding29,
+const _flaxBinding373 = FlaxInstanceMethod.plain(
+  _flaxBinding372,
+  flaxNullableStringType,
   _HttpHeaders_value,
 );
-const _flaxBinding389 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding0, required: true),
-  FlaxParameter("value", _flaxBinding244, required: true),
+const _flaxBinding374 = <FlaxParameter>[
+  FlaxParameter.required("name", flaxStringType),
+  FlaxParameter.required("value", flaxAnyType),
   FlaxParameter(
     "preserveHeaderCase",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding390 = FlaxInstanceMethod(
-  _flaxBinding389,
-  _flaxBinding70,
+const _flaxBinding375 = FlaxInstanceMethod.plain(
+  _flaxBinding374,
+  flaxVoidType,
   _HttpHeaders_add,
 );
-const _flaxBinding391 = FlaxInstanceMethod(
-  _flaxBinding389,
-  _flaxBinding70,
+const _flaxBinding376 = FlaxInstanceMethod.plain(
+  _flaxBinding374,
+  flaxVoidType,
   _HttpHeaders_set,
 );
-const _flaxBinding392 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding0, required: true),
-  FlaxParameter("value", _flaxBinding244, required: true),
+const _flaxBinding377 = <FlaxParameter>[
+  FlaxParameter.required("name", flaxStringType),
+  FlaxParameter.required("value", flaxAnyType),
 ];
-const _flaxBinding393 = FlaxInstanceMethod(
-  _flaxBinding392,
-  _flaxBinding70,
+const _flaxBinding378 = FlaxInstanceMethod.plain(
+  _flaxBinding377,
+  flaxVoidType,
   _HttpHeaders_remove,
 );
-const _flaxBinding394 = FlaxInstanceMethod(
-  _flaxBinding387,
-  _flaxBinding70,
+const _flaxBinding379 = FlaxInstanceMethod.plain(
+  _flaxBinding372,
+  flaxVoidType,
   _HttpHeaders_removeAll,
 );
-const _flaxBinding395 = FlaxCallbackBinding(
+const _flaxBinding380 = FlaxCallbackBinding(
   [
-    FlaxCallbackParameter(
-      "name",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "values",
-      _flaxBinding135,
-      required: true,
-      positional: true,
-    ),
+    FlaxCallbackParameter.plain("name", flaxStringType),
+    FlaxCallbackParameter.plain("values", _flaxBinding125),
   ],
-  _flaxBinding70,
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid2<String, List<String>>,
   id: "callback:<>(p:r:name:String:,p:r:values:list:[String:])->void:",
   invoke: FlaxCallbackAdapters.invokeVoid2<String, List<String>>,
   matches: FlaxCallbackAdapters.matchesVoid2<String, List<String>>,
 );
-const _flaxBinding396 = FlaxTypeRef("callback", callback: _flaxBinding395);
-const _flaxBinding397 = <FlaxParameter>[
-  FlaxParameter("action", _flaxBinding396, required: true),
+const _flaxBinding381 = FlaxTypeRef("callback", callback: _flaxBinding380);
+const _flaxBinding382 = <FlaxParameter>[
+  FlaxParameter.required("action", _flaxBinding381),
 ];
-const _flaxBinding398 = FlaxInstanceMethod(
-  _flaxBinding397,
-  _flaxBinding70,
+const _flaxBinding383 = FlaxInstanceMethod.plain(
+  _flaxBinding382,
+  flaxVoidType,
   _HttpHeaders_forEach,
 );
-const _flaxBinding399 = FlaxInstanceMethod(
-  _flaxBinding387,
-  _flaxBinding70,
+const _flaxBinding384 = FlaxInstanceMethod.plain(
+  _flaxBinding372,
+  flaxVoidType,
   _HttpHeaders_noFolding,
 );
-const _flaxBinding400 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding385 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _HttpHeaders_clear,
 );
-const _flaxBinding401 = FlaxTypeRef(
+const _flaxBinding386 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding0,
+  item: flaxStringType,
   collection: FlaxCollectionBinding(
     "list:[String:]",
     _collection4Create,
     _collection4Matches,
   ),
-  iterable: _flaxBinding134,
+  iterable: _flaxBinding124,
 );
-const _flaxBinding402 = FlaxInstanceMethod(
-  _flaxBinding387,
-  _flaxBinding401,
+const _flaxBinding387 = FlaxInstanceMethod.plain(
+  _flaxBinding372,
+  _flaxBinding386,
   _HttpHeaders_operatorGetIndex,
 );
-const _flaxBinding403 = FlaxObjectBinding(
+const _flaxBinding388 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:HttpHeaders",
   [
-    _flaxBinding371,
-    _flaxBinding372,
-    _flaxBinding373,
-    _flaxBinding374,
-    _flaxBinding375,
-    _flaxBinding376,
-    _flaxBinding377,
-    _flaxBinding378,
+    _flaxBinding356,
+    _flaxBinding357,
+    _flaxBinding358,
+    _flaxBinding359,
+    _flaxBinding360,
+    _flaxBinding361,
+    _flaxBinding362,
+    _flaxBinding363,
   ],
   {
-    "value": _flaxBinding388,
-    "add": _flaxBinding390,
-    "set": _flaxBinding391,
-    "remove": _flaxBinding393,
-    "removeAll": _flaxBinding394,
-    "forEach": _flaxBinding398,
-    "noFolding": _flaxBinding399,
-    "clear": _flaxBinding400,
-    "operatorGetIndex": _flaxBinding402,
+    "value": _flaxBinding373,
+    "add": _flaxBinding375,
+    "set": _flaxBinding376,
+    "remove": _flaxBinding378,
+    "removeAll": _flaxBinding379,
+    "forEach": _flaxBinding383,
+    "noFolding": _flaxBinding384,
+    "clear": _flaxBinding385,
+    "operatorGetIndex": _flaxBinding387,
   },
   constructors: {},
   create: _createHttpHeaders,
   matches: _isHttpHeaders,
   setters: [
-    _flaxBinding379,
-    _flaxBinding380,
-    _flaxBinding381,
-    _flaxBinding382,
-    _flaxBinding383,
-    _flaxBinding384,
-    _flaxBinding385,
-    _flaxBinding386,
+    _flaxBinding364,
+    _flaxBinding365,
+    _flaxBinding366,
+    _flaxBinding367,
+    _flaxBinding368,
+    _flaxBinding369,
+    _flaxBinding370,
+    _flaxBinding371,
   ],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding404 = FlaxTypeRef(
+const _flaxBinding389 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:InternetAddressType",
 );
-const _flaxBinding405 = FlaxGetter(
+const _flaxBinding390 = FlaxGetter.plain(
   "type",
-  _flaxBinding404,
+  _flaxBinding389,
   _InternetAddress_type,
 );
-const _flaxBinding406 = FlaxGetter(
+const _flaxBinding391 = FlaxGetter.plain(
   "address",
-  _flaxBinding0,
+  flaxStringType,
   _InternetAddress_address,
 );
-const _flaxBinding407 = FlaxGetter(
+const _flaxBinding392 = FlaxGetter.plain(
   "host",
-  _flaxBinding0,
+  flaxStringType,
   _InternetAddress_host,
 );
-const _flaxBinding408 = FlaxGetter(
+const _flaxBinding393 = FlaxGetter.plain(
   "rawAddress",
-  _flaxBinding14,
+  flaxUint8ListType,
   _InternetAddress_rawAddress,
 );
-const _flaxBinding409 = FlaxGetter(
+const _flaxBinding394 = FlaxGetter.plain(
   "isLoopback",
-  _flaxBinding20,
+  flaxBoolType,
   _InternetAddress_isLoopback,
 );
-const _flaxBinding410 = FlaxGetter(
+const _flaxBinding395 = FlaxGetter.plain(
   "isLinkLocal",
-  _flaxBinding20,
+  flaxBoolType,
   _InternetAddress_isLinkLocal,
 );
-const _flaxBinding411 = FlaxGetter(
+const _flaxBinding396 = FlaxGetter.plain(
   "isMulticast",
-  _flaxBinding20,
+  flaxBoolType,
   _InternetAddress_isMulticast,
 );
-const _flaxBinding412 = FlaxTypeRef(
+const _flaxBinding397 = FlaxTypeRef(
   "future",
-  item: _flaxBinding366,
+  item: _flaxBinding351,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:InternetAddress",
     _future19Adapt,
   ),
 );
-const _flaxBinding413 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding412,
+const _flaxBinding398 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding397,
   _InternetAddress_reverse,
 );
-const _flaxBinding414 = FlaxTypeRef(
+const _flaxBinding399 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:InternetAddressType",
   nullable: true,
 );
-const _flaxBinding415 = <FlaxParameter>[
-  FlaxParameter("address", _flaxBinding0, required: true),
-  FlaxParameter("type", _flaxBinding414, required: false),
+const _flaxBinding400 = <FlaxParameter>[
+  FlaxParameter.required("address", flaxStringType),
+  FlaxParameter("type", _flaxBinding399, required: false),
 ];
-const _flaxBinding416 = <FlaxParameter>[
-  FlaxParameter("rawAddress", _flaxBinding14, required: true),
-  FlaxParameter("type", _flaxBinding414, required: false),
+const _flaxBinding401 = <FlaxParameter>[
+  FlaxParameter.required("rawAddress", flaxUint8ListType),
+  FlaxParameter("type", _flaxBinding399, required: false),
 ];
-const _flaxBinding417 = FlaxObjectBinding(
+const _flaxBinding402 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:InternetAddress",
   [
-    _flaxBinding405,
-    _flaxBinding406,
-    _flaxBinding407,
-    _flaxBinding408,
-    _flaxBinding409,
-    _flaxBinding410,
-    _flaxBinding411,
+    _flaxBinding390,
+    _flaxBinding391,
+    _flaxBinding392,
+    _flaxBinding393,
+    _flaxBinding394,
+    _flaxBinding395,
+    _flaxBinding396,
   ],
-  {"reverse": _flaxBinding413},
-  constructors: {"": _flaxBinding415, "fromRawAddress": _flaxBinding416},
+  {"reverse": _flaxBinding398},
+  constructors: {"": _flaxBinding400, "fromRawAddress": _flaxBinding401},
   create: _createInternetAddress,
   matches: _isInternetAddress,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding418 = FlaxGetter(
+const _flaxBinding403 = FlaxGetter.plain(
   "name",
-  _flaxBinding0,
+  flaxStringType,
   _InternetAddressType_name,
 );
-const _flaxBinding419 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding404 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _InternetAddressType_toString,
 );
-const _flaxBinding420 = FlaxObjectBinding(
+const _flaxBinding405 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:InternetAddressType",
-  [_flaxBinding418],
-  {"toString": _flaxBinding419},
+  [_flaxBinding403],
+  {"toString": _flaxBinding404},
   constructors: {},
   create: _createInternetAddressType,
   matches: _isInternetAddressType,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding421 = FlaxInstanceMethod(
-  _flaxBinding15,
-  _flaxBinding14,
+const _flaxBinding406 = FlaxInstanceMethod.plain(
+  _flaxBinding12,
+  flaxUint8ListType,
   _Latin1Codec_encode,
 );
-const _flaxBinding422 = FlaxInstanceMethod(
-  _flaxBinding18,
-  _flaxBinding0,
+const _flaxBinding407 = FlaxInstanceMethod.plain(
+  _flaxBinding14,
+  flaxStringType,
   _Latin1Codec_decode,
 );
-const _flaxBinding423 = FlaxObjectBinding(
+const _flaxBinding408 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Latin1Codec",
   [],
-  {"encode": _flaxBinding421, "decode": _flaxBinding422},
-  constructors: {"": _flaxBinding21},
+  {"encode": _flaxBinding406, "decode": _flaxBinding407},
+  constructors: {"": _flaxBinding16},
   create: _createLatin1Codec,
   matches: _isLatin1Codec,
   setters: [],
@@ -12623,90 +12316,94 @@ const _flaxBinding423 = FlaxObjectBinding(
     "dart:convert::Codec",
     "dart:core::Object",
   ],
-  parent: _flaxBinding13,
+  parent: _flaxBinding11,
 );
-const _flaxBinding424 = FlaxTypeRef(
+const _flaxBinding409 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Link",
 );
-const _flaxBinding425 = FlaxGetter("absolute", _flaxBinding424, _Link_absolute);
-const _flaxBinding426 = FlaxTypeRef(
+const _flaxBinding410 = FlaxGetter.plain(
+  "absolute",
+  _flaxBinding409,
+  _Link_absolute,
+);
+const _flaxBinding411 = FlaxTypeRef(
   "future",
-  item: _flaxBinding424,
+  item: _flaxBinding409,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:Link",
     _future20Adapt,
   ),
 );
-const _flaxBinding427 = FlaxInstanceMethod(
-  _flaxBinding59,
-  _flaxBinding426,
+const _flaxBinding412 = FlaxInstanceMethod.plain(
+  _flaxBinding52,
+  _flaxBinding411,
   _Link_rename,
 );
-const _flaxBinding428 = FlaxInstanceMethod(
-  _flaxBinding59,
-  _flaxBinding424,
+const _flaxBinding413 = FlaxInstanceMethod.plain(
+  _flaxBinding52,
+  _flaxBinding409,
   _Link_renameSync,
 );
-const _flaxBinding429 = <FlaxParameter>[
-  FlaxParameter("target", _flaxBinding0, required: true),
+const _flaxBinding414 = <FlaxParameter>[
+  FlaxParameter.required("target", flaxStringType),
   FlaxParameter(
     "recursive",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding430 = FlaxInstanceMethod(
-  _flaxBinding429,
-  _flaxBinding426,
+const _flaxBinding415 = FlaxInstanceMethod.plain(
+  _flaxBinding414,
+  _flaxBinding411,
   _Link_create,
 );
-const _flaxBinding431 = FlaxInstanceMethod(
-  _flaxBinding429,
-  _flaxBinding70,
+const _flaxBinding416 = FlaxInstanceMethod.plain(
+  _flaxBinding414,
+  flaxVoidType,
   _Link_createSync,
 );
-const _flaxBinding432 = <FlaxParameter>[
-  FlaxParameter("target", _flaxBinding0, required: true),
+const _flaxBinding417 = <FlaxParameter>[
+  FlaxParameter.required("target", flaxStringType),
 ];
-const _flaxBinding433 = FlaxInstanceMethod(
-  _flaxBinding432,
-  _flaxBinding70,
+const _flaxBinding418 = FlaxInstanceMethod.plain(
+  _flaxBinding417,
+  flaxVoidType,
   _Link_updateSync,
 );
-const _flaxBinding434 = FlaxInstanceMethod(
-  _flaxBinding432,
-  _flaxBinding426,
+const _flaxBinding419 = FlaxInstanceMethod.plain(
+  _flaxBinding417,
+  _flaxBinding411,
   _Link_update,
 );
-const _flaxBinding435 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding6,
+const _flaxBinding420 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding4,
   _Link_target,
 );
-const _flaxBinding436 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding421 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _Link_targetSync,
 );
-const _flaxBinding437 = FlaxObjectBinding(
+const _flaxBinding422 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Link",
-  [_flaxBinding425],
+  [_flaxBinding410],
   {
-    "rename": _flaxBinding427,
-    "renameSync": _flaxBinding428,
-    "create": _flaxBinding430,
-    "createSync": _flaxBinding431,
-    "updateSync": _flaxBinding433,
-    "update": _flaxBinding434,
-    "target": _flaxBinding435,
-    "targetSync": _flaxBinding436,
+    "rename": _flaxBinding412,
+    "renameSync": _flaxBinding413,
+    "create": _flaxBinding415,
+    "createSync": _flaxBinding416,
+    "updateSync": _flaxBinding418,
+    "update": _flaxBinding419,
+    "target": _flaxBinding420,
+    "targetSync": _flaxBinding421,
   },
   constructors: {
-    "": _flaxBinding89,
-    "fromRawPath": _flaxBinding145,
-    "fromUri": _flaxBinding91,
+    "": _flaxBinding81,
+    "fromRawPath": _flaxBinding135,
+    "fromUri": _flaxBinding83,
   },
   create: _createLink,
   matches: _isLink,
@@ -12715,326 +12412,332 @@ const _flaxBinding437 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_dependencies#type:FileSystemEntity",
   ],
-  parent: _flaxBinding72,
+  parent: _flaxBinding64,
 );
-const _flaxBinding438 = FlaxTypeRef("Float64List");
-const _flaxBinding439 = FlaxGetter(
+const _flaxBinding423 = FlaxTypeRef("Float64List");
+const _flaxBinding424 = FlaxGetter.plain(
   "storage",
-  _flaxBinding438,
+  _flaxBinding423,
   _Matrix2_storage,
 );
-const _flaxBinding440 = FlaxGetter(
+const _flaxBinding425 = FlaxGetter.plain(
   "dimension",
-  _flaxBinding2,
+  flaxIntType,
   _Matrix2_dimension,
 );
-const _flaxBinding441 = FlaxTypeRef(
+const _flaxBinding426 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Vector2",
 );
-const _flaxBinding442 = FlaxGetter("row0", _flaxBinding441, _Matrix2_row0);
-const _flaxBinding443 = FlaxGetter("row1", _flaxBinding441, _Matrix2_row1);
-const _flaxBinding444 = FlaxSetter("row0", _flaxBinding441, _Matrix2_set_row0);
-const _flaxBinding445 = FlaxSetter("row1", _flaxBinding441, _Matrix2_set_row1);
-const _flaxBinding446 = <FlaxParameter>[
-  FlaxParameter("row", _flaxBinding2, required: true),
-  FlaxParameter("col", _flaxBinding2, required: true),
+const _flaxBinding427 = FlaxGetter.plain(
+  "row0",
+  _flaxBinding426,
+  _Matrix2_row0,
+);
+const _flaxBinding428 = FlaxGetter.plain(
+  "row1",
+  _flaxBinding426,
+  _Matrix2_row1,
+);
+const _flaxBinding429 = FlaxSetter("row0", _flaxBinding426, _Matrix2_set_row0);
+const _flaxBinding430 = FlaxSetter("row1", _flaxBinding426, _Matrix2_set_row1);
+const _flaxBinding431 = <FlaxParameter>[
+  FlaxParameter.required("row", flaxIntType),
+  FlaxParameter.required("col", flaxIntType),
 ];
-const _flaxBinding447 = FlaxInstanceMethod(
-  _flaxBinding446,
-  _flaxBinding2,
+const _flaxBinding432 = FlaxInstanceMethod.plain(
+  _flaxBinding431,
+  flaxIntType,
   _Matrix2_index,
 );
-const _flaxBinding448 = FlaxTypeRef("double");
-const _flaxBinding449 = FlaxInstanceMethod(
-  _flaxBinding446,
-  _flaxBinding448,
+const _flaxBinding433 = FlaxInstanceMethod.plain(
+  _flaxBinding431,
+  flaxDoubleType,
   _Matrix2_entry,
 );
-const _flaxBinding450 = <FlaxParameter>[
-  FlaxParameter("row", _flaxBinding2, required: true),
-  FlaxParameter("col", _flaxBinding2, required: true),
-  FlaxParameter("v", _flaxBinding448, required: true),
+const _flaxBinding434 = <FlaxParameter>[
+  FlaxParameter.required("row", flaxIntType),
+  FlaxParameter.required("col", flaxIntType),
+  FlaxParameter.required("v", flaxDoubleType),
 ];
-const _flaxBinding451 = FlaxInstanceMethod(
-  _flaxBinding450,
-  _flaxBinding70,
+const _flaxBinding435 = FlaxInstanceMethod.plain(
+  _flaxBinding434,
+  flaxVoidType,
   _Matrix2_setEntry,
 );
-const _flaxBinding452 = <FlaxParameter>[
-  FlaxParameter("arg0", _flaxBinding448, required: true),
-  FlaxParameter("arg1", _flaxBinding448, required: true),
-  FlaxParameter("arg2", _flaxBinding448, required: true),
-  FlaxParameter("arg3", _flaxBinding448, required: true),
+const _flaxBinding436 = <FlaxParameter>[
+  FlaxParameter.required("arg0", flaxDoubleType),
+  FlaxParameter.required("arg1", flaxDoubleType),
+  FlaxParameter.required("arg2", flaxDoubleType),
+  FlaxParameter.required("arg3", flaxDoubleType),
 ];
-const _flaxBinding453 = FlaxInstanceMethod(
-  _flaxBinding452,
-  _flaxBinding70,
+const _flaxBinding437 = FlaxInstanceMethod.plain(
+  _flaxBinding436,
+  flaxVoidType,
   _Matrix2_setValues,
 );
-const _flaxBinding454 = <FlaxParameter>[
-  FlaxParameter("arg0", _flaxBinding441, required: true),
-  FlaxParameter("arg1", _flaxBinding441, required: true),
+const _flaxBinding438 = <FlaxParameter>[
+  FlaxParameter.required("arg0", _flaxBinding426),
+  FlaxParameter.required("arg1", _flaxBinding426),
 ];
-const _flaxBinding455 = FlaxInstanceMethod(
-  _flaxBinding454,
-  _flaxBinding70,
+const _flaxBinding439 = FlaxInstanceMethod.plain(
+  _flaxBinding438,
+  flaxVoidType,
   _Matrix2_setColumns,
 );
-const _flaxBinding456 = FlaxTypeRef(
+const _flaxBinding440 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Matrix2",
 );
-const _flaxBinding457 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding456, required: true),
+const _flaxBinding441 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding440),
 ];
-const _flaxBinding458 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding70,
+const _flaxBinding442 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  flaxVoidType,
   _Matrix2_setFrom,
 );
-const _flaxBinding459 = <FlaxParameter>[
-  FlaxParameter("u", _flaxBinding441, required: true),
-  FlaxParameter("v", _flaxBinding441, required: true),
+const _flaxBinding443 = <FlaxParameter>[
+  FlaxParameter.required("u", _flaxBinding426),
+  FlaxParameter.required("v", _flaxBinding426),
 ];
-const _flaxBinding460 = FlaxInstanceMethod(
-  _flaxBinding459,
-  _flaxBinding70,
+const _flaxBinding444 = FlaxInstanceMethod.plain(
+  _flaxBinding443,
+  flaxVoidType,
   _Matrix2_setOuter,
 );
-const _flaxBinding461 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding448, required: true),
+const _flaxBinding445 = <FlaxParameter>[
+  FlaxParameter.required("arg", flaxDoubleType),
 ];
-const _flaxBinding462 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding70,
+const _flaxBinding446 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  flaxVoidType,
   _Matrix2_splatDiagonal,
 );
-const _flaxBinding463 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding441, required: true),
+const _flaxBinding447 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding426),
 ];
-const _flaxBinding464 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding70,
+const _flaxBinding448 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  flaxVoidType,
   _Matrix2_setDiagonal,
 );
-const _flaxBinding465 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding449 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _Matrix2_toString,
 );
-const _flaxBinding466 = <FlaxParameter>[
-  FlaxParameter("row", _flaxBinding2, required: true),
-  FlaxParameter("arg", _flaxBinding441, required: true),
+const _flaxBinding450 = <FlaxParameter>[
+  FlaxParameter.required("row", flaxIntType),
+  FlaxParameter.required("arg", _flaxBinding426),
 ];
-const _flaxBinding467 = FlaxInstanceMethod(
-  _flaxBinding466,
-  _flaxBinding70,
+const _flaxBinding451 = FlaxInstanceMethod.plain(
+  _flaxBinding450,
+  flaxVoidType,
   _Matrix2_setRow,
 );
-const _flaxBinding468 = <FlaxParameter>[
-  FlaxParameter("row", _flaxBinding2, required: true),
+const _flaxBinding452 = <FlaxParameter>[
+  FlaxParameter.required("row", flaxIntType),
 ];
-const _flaxBinding469 = FlaxInstanceMethod(
-  _flaxBinding468,
-  _flaxBinding441,
+const _flaxBinding453 = FlaxInstanceMethod.plain(
+  _flaxBinding452,
+  _flaxBinding426,
   _Matrix2_getRow,
 );
-const _flaxBinding470 = <FlaxParameter>[
-  FlaxParameter("column", _flaxBinding2, required: true),
-  FlaxParameter("arg", _flaxBinding441, required: true),
+const _flaxBinding454 = <FlaxParameter>[
+  FlaxParameter.required("column", flaxIntType),
+  FlaxParameter.required("arg", _flaxBinding426),
 ];
-const _flaxBinding471 = FlaxInstanceMethod(
-  _flaxBinding470,
-  _flaxBinding70,
+const _flaxBinding455 = FlaxInstanceMethod.plain(
+  _flaxBinding454,
+  flaxVoidType,
   _Matrix2_setColumn,
 );
-const _flaxBinding472 = <FlaxParameter>[
-  FlaxParameter("column", _flaxBinding2, required: true),
+const _flaxBinding456 = <FlaxParameter>[
+  FlaxParameter.required("column", flaxIntType),
 ];
-const _flaxBinding473 = FlaxInstanceMethod(
-  _flaxBinding472,
-  _flaxBinding441,
+const _flaxBinding457 = FlaxInstanceMethod.plain(
+  _flaxBinding456,
+  _flaxBinding426,
   _Matrix2_getColumn,
 );
-const _flaxBinding474 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding456,
+const _flaxBinding458 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding440,
   _Matrix2_clone,
 );
-const _flaxBinding475 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding456,
+const _flaxBinding459 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  _flaxBinding440,
   _Matrix2_copyInto,
 );
-const _flaxBinding476 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding460 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Matrix2_setZero,
 );
-const _flaxBinding477 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding461 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Matrix2_setIdentity,
 );
-const _flaxBinding478 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding456,
+const _flaxBinding462 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding440,
   _Matrix2_transposed,
 );
-const _flaxBinding479 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding463 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Matrix2_transpose,
 );
-const _flaxBinding480 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding456,
+const _flaxBinding464 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding440,
   _Matrix2_absolute,
 );
-const _flaxBinding481 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding465 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Matrix2_determinant,
 );
-const _flaxBinding482 = <FlaxParameter>[
-  FlaxParameter("i", _flaxBinding2, required: true),
-  FlaxParameter("v", _flaxBinding441, required: true),
+const _flaxBinding466 = <FlaxParameter>[
+  FlaxParameter.required("i", flaxIntType),
+  FlaxParameter.required("v", _flaxBinding426),
 ];
-const _flaxBinding483 = FlaxInstanceMethod(
-  _flaxBinding482,
-  _flaxBinding448,
+const _flaxBinding467 = FlaxInstanceMethod.plain(
+  _flaxBinding466,
+  flaxDoubleType,
   _Matrix2_dotRow,
 );
-const _flaxBinding484 = <FlaxParameter>[
-  FlaxParameter("j", _flaxBinding2, required: true),
-  FlaxParameter("v", _flaxBinding441, required: true),
+const _flaxBinding468 = <FlaxParameter>[
+  FlaxParameter.required("j", flaxIntType),
+  FlaxParameter.required("v", _flaxBinding426),
 ];
-const _flaxBinding485 = FlaxInstanceMethod(
-  _flaxBinding484,
-  _flaxBinding448,
+const _flaxBinding469 = FlaxInstanceMethod.plain(
+  _flaxBinding468,
+  flaxDoubleType,
   _Matrix2_dotColumn,
 );
-const _flaxBinding486 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding470 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Matrix2_trace,
 );
-const _flaxBinding487 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding471 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Matrix2_infinityNorm,
 );
-const _flaxBinding488 = <FlaxParameter>[
-  FlaxParameter("correct", _flaxBinding456, required: true),
+const _flaxBinding472 = <FlaxParameter>[
+  FlaxParameter.required("correct", _flaxBinding440),
 ];
-const _flaxBinding489 = FlaxInstanceMethod(
-  _flaxBinding488,
-  _flaxBinding448,
+const _flaxBinding473 = FlaxInstanceMethod.plain(
+  _flaxBinding472,
+  flaxDoubleType,
   _Matrix2_relativeError,
 );
-const _flaxBinding490 = FlaxInstanceMethod(
-  _flaxBinding488,
-  _flaxBinding448,
+const _flaxBinding474 = FlaxInstanceMethod.plain(
+  _flaxBinding472,
+  flaxDoubleType,
   _Matrix2_absoluteError,
 );
-const _flaxBinding491 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding475 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Matrix2_invert,
 );
-const _flaxBinding492 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding448,
+const _flaxBinding476 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  flaxDoubleType,
   _Matrix2_copyInverse,
 );
-const _flaxBinding493 = <FlaxParameter>[
-  FlaxParameter("radians", _flaxBinding448, required: true),
+const _flaxBinding477 = <FlaxParameter>[
+  FlaxParameter.required("radians", flaxDoubleType),
 ];
-const _flaxBinding494 = FlaxInstanceMethod(
-  _flaxBinding493,
-  _flaxBinding70,
+const _flaxBinding478 = FlaxInstanceMethod.plain(
+  _flaxBinding477,
+  flaxVoidType,
   _Matrix2_setRotation,
 );
-const _flaxBinding495 = <FlaxParameter>[
-  FlaxParameter("scale", _flaxBinding448, required: true),
+const _flaxBinding479 = <FlaxParameter>[
+  FlaxParameter.required("scale", flaxDoubleType),
 ];
-const _flaxBinding496 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding70,
+const _flaxBinding480 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  flaxVoidType,
   _Matrix2_scaleAdjoint,
 );
-const _flaxBinding497 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding70,
+const _flaxBinding481 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  flaxVoidType,
   _Matrix2_scale,
 );
-const _flaxBinding498 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding456,
+const _flaxBinding482 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  _flaxBinding440,
   _Matrix2_scaled,
 );
-const _flaxBinding499 = <FlaxParameter>[
-  FlaxParameter("o", _flaxBinding456, required: true),
+const _flaxBinding483 = <FlaxParameter>[
+  FlaxParameter.required("o", _flaxBinding440),
 ];
-const _flaxBinding500 = FlaxInstanceMethod(
-  _flaxBinding499,
-  _flaxBinding70,
+const _flaxBinding484 = FlaxInstanceMethod.plain(
+  _flaxBinding483,
+  flaxVoidType,
   _Matrix2_add,
 );
-const _flaxBinding501 = FlaxInstanceMethod(
-  _flaxBinding499,
-  _flaxBinding70,
+const _flaxBinding485 = FlaxInstanceMethod.plain(
+  _flaxBinding483,
+  flaxVoidType,
   _Matrix2_sub,
 );
-const _flaxBinding502 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding486 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Matrix2_negate,
 );
-const _flaxBinding503 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding70,
+const _flaxBinding487 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  flaxVoidType,
   _Matrix2_multiply,
 );
-const _flaxBinding504 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding456,
+const _flaxBinding488 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  _flaxBinding440,
   _Matrix2_multiplied,
 );
-const _flaxBinding505 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding70,
+const _flaxBinding489 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  flaxVoidType,
   _Matrix2_transposeMultiply,
 );
-const _flaxBinding506 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding70,
+const _flaxBinding490 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  flaxVoidType,
   _Matrix2_multiplyTranspose,
 );
-const _flaxBinding507 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding441,
+const _flaxBinding491 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  _flaxBinding426,
   _Matrix2_transform,
 );
-const _flaxBinding508 = FlaxTypeRef(
+const _flaxBinding492 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Vector2",
   nullable: true,
 );
-const _flaxBinding509 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding441, required: true),
-  FlaxParameter("out", _flaxBinding508, required: false),
+const _flaxBinding493 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding426),
+  FlaxParameter("out", _flaxBinding492, required: false),
 ];
-const _flaxBinding510 = FlaxInstanceMethod(
-  _flaxBinding509,
-  _flaxBinding441,
+const _flaxBinding494 = FlaxInstanceMethod.plain(
+  _flaxBinding493,
+  _flaxBinding426,
   _Matrix2_transformed,
 );
-const _flaxBinding511 = FlaxTypeRef("num");
-const _flaxBinding512 = FlaxTypeRef(
+const _flaxBinding495 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding511,
+  item: flaxNumType,
   collection: FlaxCollectionBinding(
     "iterable:[num:]",
     _collection15Create,
@@ -13042,28 +12745,28 @@ const _flaxBinding512 = FlaxTypeRef(
     restore: _collection15Restore,
   ),
 );
-const _flaxBinding513 = FlaxTypeRef(
+const _flaxBinding496 = FlaxTypeRef(
   "list",
-  item: _flaxBinding511,
+  item: flaxNumType,
   collection: FlaxCollectionBinding(
     "list:[num:]",
     _collection14Create,
     _collection14Matches,
   ),
-  iterable: _flaxBinding512,
+  iterable: _flaxBinding495,
 );
-const _flaxBinding514 = <FlaxParameter>[
-  FlaxParameter("array", _flaxBinding513, required: true),
-  FlaxParameter("offset", _flaxBinding2, required: false, defaultValue: 0),
+const _flaxBinding497 = <FlaxParameter>[
+  FlaxParameter.required("array", _flaxBinding496),
+  FlaxParameter("offset", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding515 = FlaxInstanceMethod(
-  _flaxBinding514,
-  _flaxBinding70,
+const _flaxBinding498 = FlaxInstanceMethod.plain(
+  _flaxBinding497,
+  flaxVoidType,
   _Matrix2_copyIntoArray,
 );
-const _flaxBinding516 = FlaxTypeRef(
+const _flaxBinding499 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding448,
+  item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "iterable:[double:]",
     _collection17Create,
@@ -13071,1262 +12774,1294 @@ const _flaxBinding516 = FlaxTypeRef(
     restore: _collection17Restore,
   ),
 );
-const _flaxBinding517 = FlaxTypeRef(
+const _flaxBinding500 = FlaxTypeRef(
   "list",
-  item: _flaxBinding448,
+  item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "list:[double:]",
     _collection16Create,
     _collection16Matches,
   ),
-  iterable: _flaxBinding516,
+  iterable: _flaxBinding499,
 );
-const _flaxBinding518 = <FlaxParameter>[
-  FlaxParameter("array", _flaxBinding517, required: true),
-  FlaxParameter("offset", _flaxBinding2, required: false, defaultValue: 0),
+const _flaxBinding501 = <FlaxParameter>[
+  FlaxParameter.required("array", _flaxBinding500),
+  FlaxParameter("offset", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding519 = FlaxInstanceMethod(
-  _flaxBinding518,
-  _flaxBinding70,
+const _flaxBinding502 = FlaxInstanceMethod.plain(
+  _flaxBinding501,
+  flaxVoidType,
   _Matrix2_copyFromArray,
 );
-const _flaxBinding520 = <FlaxParameter>[
-  FlaxParameter("i", _flaxBinding2, required: true),
+const _flaxBinding503 = <FlaxParameter>[
+  FlaxParameter.required("i", flaxIntType),
 ];
-const _flaxBinding521 = FlaxInstanceMethod(
-  _flaxBinding520,
-  _flaxBinding448,
+const _flaxBinding504 = FlaxInstanceMethod.plain(
+  _flaxBinding503,
+  flaxDoubleType,
   _Matrix2_operatorGetIndex,
 );
-const _flaxBinding522 = <FlaxParameter>[
-  FlaxParameter("i", _flaxBinding2, required: true),
-  FlaxParameter("v", _flaxBinding448, required: true),
+const _flaxBinding505 = <FlaxParameter>[
+  FlaxParameter.required("i", flaxIntType),
+  FlaxParameter.required("v", flaxDoubleType),
 ];
-const _flaxBinding523 = FlaxInstanceMethod(
-  _flaxBinding522,
-  _flaxBinding70,
+const _flaxBinding506 = FlaxInstanceMethod.plain(
+  _flaxBinding505,
+  flaxVoidType,
   _Matrix2_operatorSetIndex,
 );
-const _flaxBinding524 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding456,
+const _flaxBinding507 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  _flaxBinding440,
   _Matrix2_operatorAdd,
 );
-const _flaxBinding525 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding456,
+const _flaxBinding508 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  _flaxBinding440,
   _Matrix2_operatorSubtract,
 );
-const _flaxBinding526 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding110, required: true),
+const _flaxBinding509 = <FlaxParameter>[
+  FlaxParameter.required("arg", flaxNullableAnyType),
 ];
-const _flaxBinding527 = FlaxInstanceMethod(
-  _flaxBinding526,
-  _flaxBinding110,
+const _flaxBinding510 = FlaxInstanceMethod.plain(
+  _flaxBinding509,
+  flaxNullableAnyType,
   _Matrix2_operatorMultiply,
 );
-const _flaxBinding528 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding456,
+const _flaxBinding511 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding440,
   _Matrix2_operatorNegate,
 );
-const _flaxBinding529 = <FlaxParameter>[
-  FlaxParameter("values", _flaxBinding517, required: true),
+const _flaxBinding512 = <FlaxParameter>[
+  FlaxParameter.required("values", _flaxBinding500),
 ];
-const _flaxBinding530 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding456, required: true),
+const _flaxBinding513 = <FlaxParameter>[
+  FlaxParameter.required("other", _flaxBinding440),
 ];
-const _flaxBinding531 = FlaxObjectBinding(
+const _flaxBinding514 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Matrix2",
-  [_flaxBinding439, _flaxBinding440, _flaxBinding442, _flaxBinding443],
+  [_flaxBinding424, _flaxBinding425, _flaxBinding427, _flaxBinding428],
   {
-    "index": _flaxBinding447,
-    "entry": _flaxBinding449,
-    "setEntry": _flaxBinding451,
-    "setValues": _flaxBinding453,
-    "setColumns": _flaxBinding455,
-    "setFrom": _flaxBinding458,
-    "setOuter": _flaxBinding460,
-    "splatDiagonal": _flaxBinding462,
-    "setDiagonal": _flaxBinding464,
-    "toString": _flaxBinding465,
-    "setRow": _flaxBinding467,
-    "getRow": _flaxBinding469,
-    "setColumn": _flaxBinding471,
-    "getColumn": _flaxBinding473,
-    "clone": _flaxBinding474,
-    "copyInto": _flaxBinding475,
-    "setZero": _flaxBinding476,
-    "setIdentity": _flaxBinding477,
-    "transposed": _flaxBinding478,
-    "transpose": _flaxBinding479,
-    "absolute": _flaxBinding480,
-    "determinant": _flaxBinding481,
-    "dotRow": _flaxBinding483,
-    "dotColumn": _flaxBinding485,
-    "trace": _flaxBinding486,
-    "infinityNorm": _flaxBinding487,
-    "relativeError": _flaxBinding489,
-    "absoluteError": _flaxBinding490,
-    "invert": _flaxBinding491,
-    "copyInverse": _flaxBinding492,
-    "setRotation": _flaxBinding494,
-    "scaleAdjoint": _flaxBinding496,
-    "scale": _flaxBinding497,
-    "scaled": _flaxBinding498,
-    "add": _flaxBinding500,
-    "sub": _flaxBinding501,
-    "negate": _flaxBinding502,
-    "multiply": _flaxBinding503,
-    "multiplied": _flaxBinding504,
-    "transposeMultiply": _flaxBinding505,
-    "multiplyTranspose": _flaxBinding506,
-    "transform": _flaxBinding507,
-    "transformed": _flaxBinding510,
-    "copyIntoArray": _flaxBinding515,
-    "copyFromArray": _flaxBinding519,
-    "operatorGetIndex": _flaxBinding521,
-    "operatorSetIndex": _flaxBinding523,
-    "operatorAdd": _flaxBinding524,
-    "operatorSubtract": _flaxBinding525,
-    "operatorMultiply": _flaxBinding527,
-    "operatorNegate": _flaxBinding528,
+    "index": _flaxBinding432,
+    "entry": _flaxBinding433,
+    "setEntry": _flaxBinding435,
+    "setValues": _flaxBinding437,
+    "setColumns": _flaxBinding439,
+    "setFrom": _flaxBinding442,
+    "setOuter": _flaxBinding444,
+    "splatDiagonal": _flaxBinding446,
+    "setDiagonal": _flaxBinding448,
+    "toString": _flaxBinding449,
+    "setRow": _flaxBinding451,
+    "getRow": _flaxBinding453,
+    "setColumn": _flaxBinding455,
+    "getColumn": _flaxBinding457,
+    "clone": _flaxBinding458,
+    "copyInto": _flaxBinding459,
+    "setZero": _flaxBinding460,
+    "setIdentity": _flaxBinding461,
+    "transposed": _flaxBinding462,
+    "transpose": _flaxBinding463,
+    "absolute": _flaxBinding464,
+    "determinant": _flaxBinding465,
+    "dotRow": _flaxBinding467,
+    "dotColumn": _flaxBinding469,
+    "trace": _flaxBinding470,
+    "infinityNorm": _flaxBinding471,
+    "relativeError": _flaxBinding473,
+    "absoluteError": _flaxBinding474,
+    "invert": _flaxBinding475,
+    "copyInverse": _flaxBinding476,
+    "setRotation": _flaxBinding478,
+    "scaleAdjoint": _flaxBinding480,
+    "scale": _flaxBinding481,
+    "scaled": _flaxBinding482,
+    "add": _flaxBinding484,
+    "sub": _flaxBinding485,
+    "negate": _flaxBinding486,
+    "multiply": _flaxBinding487,
+    "multiplied": _flaxBinding488,
+    "transposeMultiply": _flaxBinding489,
+    "multiplyTranspose": _flaxBinding490,
+    "transform": _flaxBinding491,
+    "transformed": _flaxBinding494,
+    "copyIntoArray": _flaxBinding498,
+    "copyFromArray": _flaxBinding502,
+    "operatorGetIndex": _flaxBinding504,
+    "operatorSetIndex": _flaxBinding506,
+    "operatorAdd": _flaxBinding507,
+    "operatorSubtract": _flaxBinding508,
+    "operatorMultiply": _flaxBinding510,
+    "operatorNegate": _flaxBinding511,
   },
   constructors: {
-    "": _flaxBinding452,
-    "fromList": _flaxBinding529,
-    "zero": _flaxBinding42,
-    "identity": _flaxBinding42,
-    "copy": _flaxBinding530,
-    "columns": _flaxBinding454,
-    "outer": _flaxBinding459,
-    "rotation": _flaxBinding493,
+    "": _flaxBinding436,
+    "fromList": _flaxBinding512,
+    "zero": _flaxBinding35,
+    "identity": _flaxBinding35,
+    "copy": _flaxBinding513,
+    "columns": _flaxBinding438,
+    "outer": _flaxBinding443,
+    "rotation": _flaxBinding477,
   },
   create: _createMatrix2,
   matches: _isMatrix2,
-  setters: [_flaxBinding444, _flaxBinding445],
+  setters: [_flaxBinding429, _flaxBinding430],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding532 = FlaxGetter(
+const _flaxBinding515 = FlaxGetter.plain(
   "storage",
-  _flaxBinding438,
+  _flaxBinding423,
   _Matrix3_storage,
 );
-const _flaxBinding533 = FlaxGetter(
+const _flaxBinding516 = FlaxGetter.plain(
   "dimension",
-  _flaxBinding2,
+  flaxIntType,
   _Matrix3_dimension,
 );
-const _flaxBinding534 = FlaxTypeRef(
+const _flaxBinding517 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Vector3",
 );
-const _flaxBinding535 = FlaxGetter("row0", _flaxBinding534, _Matrix3_row0);
-const _flaxBinding536 = FlaxGetter("row1", _flaxBinding534, _Matrix3_row1);
-const _flaxBinding537 = FlaxGetter("row2", _flaxBinding534, _Matrix3_row2);
-const _flaxBinding538 = FlaxGetter("right", _flaxBinding534, _Matrix3_right);
-const _flaxBinding539 = FlaxGetter("up", _flaxBinding534, _Matrix3_up);
-const _flaxBinding540 = FlaxGetter(
+const _flaxBinding518 = FlaxGetter.plain(
+  "row0",
+  _flaxBinding517,
+  _Matrix3_row0,
+);
+const _flaxBinding519 = FlaxGetter.plain(
+  "row1",
+  _flaxBinding517,
+  _Matrix3_row1,
+);
+const _flaxBinding520 = FlaxGetter.plain(
+  "row2",
+  _flaxBinding517,
+  _Matrix3_row2,
+);
+const _flaxBinding521 = FlaxGetter.plain(
+  "right",
+  _flaxBinding517,
+  _Matrix3_right,
+);
+const _flaxBinding522 = FlaxGetter.plain("up", _flaxBinding517, _Matrix3_up);
+const _flaxBinding523 = FlaxGetter.plain(
   "forward",
-  _flaxBinding534,
+  _flaxBinding517,
   _Matrix3_forward,
 );
-const _flaxBinding541 = FlaxSetter("row0", _flaxBinding534, _Matrix3_set_row0);
-const _flaxBinding542 = FlaxSetter("row1", _flaxBinding534, _Matrix3_set_row1);
-const _flaxBinding543 = FlaxSetter("row2", _flaxBinding534, _Matrix3_set_row2);
-const _flaxBinding544 = FlaxInstanceMethod(
-  _flaxBinding446,
-  _flaxBinding2,
+const _flaxBinding524 = FlaxSetter("row0", _flaxBinding517, _Matrix3_set_row0);
+const _flaxBinding525 = FlaxSetter("row1", _flaxBinding517, _Matrix3_set_row1);
+const _flaxBinding526 = FlaxSetter("row2", _flaxBinding517, _Matrix3_set_row2);
+const _flaxBinding527 = FlaxInstanceMethod.plain(
+  _flaxBinding431,
+  flaxIntType,
   _Matrix3_index,
 );
-const _flaxBinding545 = FlaxInstanceMethod(
-  _flaxBinding446,
-  _flaxBinding448,
+const _flaxBinding528 = FlaxInstanceMethod.plain(
+  _flaxBinding431,
+  flaxDoubleType,
   _Matrix3_entry,
 );
-const _flaxBinding546 = FlaxInstanceMethod(
-  _flaxBinding450,
-  _flaxBinding70,
+const _flaxBinding529 = FlaxInstanceMethod.plain(
+  _flaxBinding434,
+  flaxVoidType,
   _Matrix3_setEntry,
 );
-const _flaxBinding547 = <FlaxParameter>[
-  FlaxParameter("arg0", _flaxBinding448, required: true),
-  FlaxParameter("arg1", _flaxBinding448, required: true),
-  FlaxParameter("arg2", _flaxBinding448, required: true),
-  FlaxParameter("arg3", _flaxBinding448, required: true),
-  FlaxParameter("arg4", _flaxBinding448, required: true),
-  FlaxParameter("arg5", _flaxBinding448, required: true),
-  FlaxParameter("arg6", _flaxBinding448, required: true),
-  FlaxParameter("arg7", _flaxBinding448, required: true),
-  FlaxParameter("arg8", _flaxBinding448, required: true),
+const _flaxBinding530 = <FlaxParameter>[
+  FlaxParameter.required("arg0", flaxDoubleType),
+  FlaxParameter.required("arg1", flaxDoubleType),
+  FlaxParameter.required("arg2", flaxDoubleType),
+  FlaxParameter.required("arg3", flaxDoubleType),
+  FlaxParameter.required("arg4", flaxDoubleType),
+  FlaxParameter.required("arg5", flaxDoubleType),
+  FlaxParameter.required("arg6", flaxDoubleType),
+  FlaxParameter.required("arg7", flaxDoubleType),
+  FlaxParameter.required("arg8", flaxDoubleType),
 ];
-const _flaxBinding548 = FlaxInstanceMethod(
-  _flaxBinding547,
-  _flaxBinding70,
+const _flaxBinding531 = FlaxInstanceMethod.plain(
+  _flaxBinding530,
+  flaxVoidType,
   _Matrix3_setValues,
 );
-const _flaxBinding549 = <FlaxParameter>[
-  FlaxParameter("arg0", _flaxBinding534, required: true),
-  FlaxParameter("arg1", _flaxBinding534, required: true),
-  FlaxParameter("arg2", _flaxBinding534, required: true),
+const _flaxBinding532 = <FlaxParameter>[
+  FlaxParameter.required("arg0", _flaxBinding517),
+  FlaxParameter.required("arg1", _flaxBinding517),
+  FlaxParameter.required("arg2", _flaxBinding517),
 ];
-const _flaxBinding550 = FlaxInstanceMethod(
-  _flaxBinding549,
-  _flaxBinding70,
+const _flaxBinding533 = FlaxInstanceMethod.plain(
+  _flaxBinding532,
+  flaxVoidType,
   _Matrix3_setColumns,
 );
-const _flaxBinding551 = FlaxTypeRef(
+const _flaxBinding534 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Matrix3",
 );
-const _flaxBinding552 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding551, required: true),
+const _flaxBinding535 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding534),
 ];
-const _flaxBinding553 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding70,
+const _flaxBinding536 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  flaxVoidType,
   _Matrix3_setFrom,
 );
-const _flaxBinding554 = <FlaxParameter>[
-  FlaxParameter("u", _flaxBinding534, required: true),
-  FlaxParameter("v", _flaxBinding534, required: true),
+const _flaxBinding537 = <FlaxParameter>[
+  FlaxParameter.required("u", _flaxBinding517),
+  FlaxParameter.required("v", _flaxBinding517),
 ];
-const _flaxBinding555 = FlaxInstanceMethod(
-  _flaxBinding554,
-  _flaxBinding70,
+const _flaxBinding538 = FlaxInstanceMethod.plain(
+  _flaxBinding537,
+  flaxVoidType,
   _Matrix3_setOuter,
 );
-const _flaxBinding556 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding70,
+const _flaxBinding539 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  flaxVoidType,
   _Matrix3_splatDiagonal,
 );
-const _flaxBinding557 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding534, required: true),
+const _flaxBinding540 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding517),
 ];
-const _flaxBinding558 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding70,
+const _flaxBinding541 = FlaxInstanceMethod.plain(
+  _flaxBinding540,
+  flaxVoidType,
   _Matrix3_setDiagonal,
 );
-const _flaxBinding559 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding70,
+const _flaxBinding542 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  flaxVoidType,
   _Matrix3_setUpper2x2,
 );
-const _flaxBinding560 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding543 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _Matrix3_toString,
 );
-const _flaxBinding561 = <FlaxParameter>[
-  FlaxParameter("row", _flaxBinding2, required: true),
-  FlaxParameter("arg", _flaxBinding534, required: true),
+const _flaxBinding544 = <FlaxParameter>[
+  FlaxParameter.required("row", flaxIntType),
+  FlaxParameter.required("arg", _flaxBinding517),
 ];
-const _flaxBinding562 = FlaxInstanceMethod(
-  _flaxBinding561,
-  _flaxBinding70,
+const _flaxBinding545 = FlaxInstanceMethod.plain(
+  _flaxBinding544,
+  flaxVoidType,
   _Matrix3_setRow,
 );
-const _flaxBinding563 = FlaxInstanceMethod(
-  _flaxBinding468,
-  _flaxBinding534,
+const _flaxBinding546 = FlaxInstanceMethod.plain(
+  _flaxBinding452,
+  _flaxBinding517,
   _Matrix3_getRow,
 );
-const _flaxBinding564 = <FlaxParameter>[
-  FlaxParameter("column", _flaxBinding2, required: true),
-  FlaxParameter("arg", _flaxBinding534, required: true),
+const _flaxBinding547 = <FlaxParameter>[
+  FlaxParameter.required("column", flaxIntType),
+  FlaxParameter.required("arg", _flaxBinding517),
 ];
-const _flaxBinding565 = FlaxInstanceMethod(
-  _flaxBinding564,
-  _flaxBinding70,
+const _flaxBinding548 = FlaxInstanceMethod.plain(
+  _flaxBinding547,
+  flaxVoidType,
   _Matrix3_setColumn,
 );
-const _flaxBinding566 = FlaxInstanceMethod(
-  _flaxBinding472,
-  _flaxBinding534,
+const _flaxBinding549 = FlaxInstanceMethod.plain(
+  _flaxBinding456,
+  _flaxBinding517,
   _Matrix3_getColumn,
 );
-const _flaxBinding567 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding551,
+const _flaxBinding550 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding534,
   _Matrix3_clone,
 );
-const _flaxBinding568 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding551,
+const _flaxBinding551 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  _flaxBinding534,
   _Matrix3_copyInto,
 );
-const _flaxBinding569 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding552 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Matrix3_setZero,
 );
-const _flaxBinding570 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding553 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Matrix3_setIdentity,
 );
-const _flaxBinding571 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding551,
+const _flaxBinding554 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding534,
   _Matrix3_transposed,
 );
-const _flaxBinding572 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding555 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Matrix3_transpose,
 );
-const _flaxBinding573 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding551,
+const _flaxBinding556 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding534,
   _Matrix3_absolute,
 );
-const _flaxBinding574 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding557 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Matrix3_determinant,
 );
-const _flaxBinding575 = <FlaxParameter>[
-  FlaxParameter("i", _flaxBinding2, required: true),
-  FlaxParameter("v", _flaxBinding534, required: true),
+const _flaxBinding558 = <FlaxParameter>[
+  FlaxParameter.required("i", flaxIntType),
+  FlaxParameter.required("v", _flaxBinding517),
 ];
-const _flaxBinding576 = FlaxInstanceMethod(
-  _flaxBinding575,
-  _flaxBinding448,
+const _flaxBinding559 = FlaxInstanceMethod.plain(
+  _flaxBinding558,
+  flaxDoubleType,
   _Matrix3_dotRow,
 );
-const _flaxBinding577 = <FlaxParameter>[
-  FlaxParameter("j", _flaxBinding2, required: true),
-  FlaxParameter("v", _flaxBinding534, required: true),
+const _flaxBinding560 = <FlaxParameter>[
+  FlaxParameter.required("j", flaxIntType),
+  FlaxParameter.required("v", _flaxBinding517),
 ];
-const _flaxBinding578 = FlaxInstanceMethod(
-  _flaxBinding577,
-  _flaxBinding448,
+const _flaxBinding561 = FlaxInstanceMethod.plain(
+  _flaxBinding560,
+  flaxDoubleType,
   _Matrix3_dotColumn,
 );
-const _flaxBinding579 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding562 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Matrix3_trace,
 );
-const _flaxBinding580 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding563 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Matrix3_infinityNorm,
 );
-const _flaxBinding581 = <FlaxParameter>[
-  FlaxParameter("correct", _flaxBinding551, required: true),
+const _flaxBinding564 = <FlaxParameter>[
+  FlaxParameter.required("correct", _flaxBinding534),
 ];
-const _flaxBinding582 = FlaxInstanceMethod(
-  _flaxBinding581,
-  _flaxBinding448,
+const _flaxBinding565 = FlaxInstanceMethod.plain(
+  _flaxBinding564,
+  flaxDoubleType,
   _Matrix3_relativeError,
 );
-const _flaxBinding583 = FlaxInstanceMethod(
-  _flaxBinding581,
-  _flaxBinding448,
+const _flaxBinding566 = FlaxInstanceMethod.plain(
+  _flaxBinding564,
+  flaxDoubleType,
   _Matrix3_absoluteError,
 );
-const _flaxBinding584 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding567 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Matrix3_invert,
 );
-const _flaxBinding585 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding448,
+const _flaxBinding568 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  flaxDoubleType,
   _Matrix3_copyInverse,
 );
-const _flaxBinding586 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_rendering#type:Matrix4",
-);
-const _flaxBinding587 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding586, required: true),
+const _flaxBinding569 = <FlaxParameter>[
+  FlaxParameter.required("arg", flaxMatrix4Type),
 ];
-const _flaxBinding588 = FlaxInstanceMethod(
-  _flaxBinding587,
-  _flaxBinding70,
+const _flaxBinding570 = FlaxInstanceMethod.plain(
+  _flaxBinding569,
+  flaxVoidType,
   _Matrix3_copyNormalMatrix,
 );
-const _flaxBinding589 = FlaxInstanceMethod(
-  _flaxBinding493,
-  _flaxBinding70,
+const _flaxBinding571 = FlaxInstanceMethod.plain(
+  _flaxBinding477,
+  flaxVoidType,
   _Matrix3_setRotationX,
 );
-const _flaxBinding590 = FlaxInstanceMethod(
-  _flaxBinding493,
-  _flaxBinding70,
+const _flaxBinding572 = FlaxInstanceMethod.plain(
+  _flaxBinding477,
+  flaxVoidType,
   _Matrix3_setRotationY,
 );
-const _flaxBinding591 = FlaxInstanceMethod(
-  _flaxBinding493,
-  _flaxBinding70,
+const _flaxBinding573 = FlaxInstanceMethod.plain(
+  _flaxBinding477,
+  flaxVoidType,
   _Matrix3_setRotationZ,
 );
-const _flaxBinding592 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding70,
+const _flaxBinding574 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  flaxVoidType,
   _Matrix3_scaleAdjoint,
 );
-const _flaxBinding593 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding534,
+const _flaxBinding575 = FlaxInstanceMethod.plain(
+  _flaxBinding540,
+  _flaxBinding517,
   _Matrix3_absoluteRotate,
 );
-const _flaxBinding594 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding441,
+const _flaxBinding576 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  _flaxBinding426,
   _Matrix3_absoluteRotate2,
 );
-const _flaxBinding595 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding441,
+const _flaxBinding577 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  _flaxBinding426,
   _Matrix3_transform2,
 );
-const _flaxBinding596 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding70,
+const _flaxBinding578 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  flaxVoidType,
   _Matrix3_scale,
 );
-const _flaxBinding597 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding551,
+const _flaxBinding579 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  _flaxBinding534,
   _Matrix3_scaled,
 );
-const _flaxBinding598 = <FlaxParameter>[
-  FlaxParameter("o", _flaxBinding551, required: true),
+const _flaxBinding580 = <FlaxParameter>[
+  FlaxParameter.required("o", _flaxBinding534),
 ];
-const _flaxBinding599 = FlaxInstanceMethod(
-  _flaxBinding598,
-  _flaxBinding70,
+const _flaxBinding581 = FlaxInstanceMethod.plain(
+  _flaxBinding580,
+  flaxVoidType,
   _Matrix3_add,
 );
-const _flaxBinding600 = FlaxInstanceMethod(
-  _flaxBinding598,
-  _flaxBinding70,
+const _flaxBinding582 = FlaxInstanceMethod.plain(
+  _flaxBinding580,
+  flaxVoidType,
   _Matrix3_sub,
 );
-const _flaxBinding601 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding583 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Matrix3_negate,
 );
-const _flaxBinding602 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding70,
+const _flaxBinding584 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  flaxVoidType,
   _Matrix3_multiply,
 );
-const _flaxBinding603 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding551,
+const _flaxBinding585 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  _flaxBinding534,
   _Matrix3_multiplied,
 );
-const _flaxBinding604 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding70,
+const _flaxBinding586 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  flaxVoidType,
   _Matrix3_transposeMultiply,
 );
-const _flaxBinding605 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding70,
+const _flaxBinding587 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  flaxVoidType,
   _Matrix3_multiplyTranspose,
 );
-const _flaxBinding606 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding534,
+const _flaxBinding588 = FlaxInstanceMethod.plain(
+  _flaxBinding540,
+  _flaxBinding517,
   _Matrix3_transform,
 );
-const _flaxBinding607 = FlaxTypeRef(
+const _flaxBinding589 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Vector3",
   nullable: true,
 );
-const _flaxBinding608 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding534, required: true),
-  FlaxParameter("out", _flaxBinding607, required: false),
+const _flaxBinding590 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding517),
+  FlaxParameter("out", _flaxBinding589, required: false),
 ];
-const _flaxBinding609 = FlaxInstanceMethod(
-  _flaxBinding608,
-  _flaxBinding534,
+const _flaxBinding591 = FlaxInstanceMethod.plain(
+  _flaxBinding590,
+  _flaxBinding517,
   _Matrix3_transformed,
 );
-const _flaxBinding610 = FlaxInstanceMethod(
-  _flaxBinding514,
-  _flaxBinding70,
+const _flaxBinding592 = FlaxInstanceMethod.plain(
+  _flaxBinding497,
+  flaxVoidType,
   _Matrix3_copyIntoArray,
 );
-const _flaxBinding611 = FlaxInstanceMethod(
-  _flaxBinding518,
-  _flaxBinding70,
+const _flaxBinding593 = FlaxInstanceMethod.plain(
+  _flaxBinding501,
+  flaxVoidType,
   _Matrix3_copyFromArray,
 );
-const _flaxBinding612 = FlaxInstanceMethod(
-  _flaxBinding518,
-  _flaxBinding517,
+const _flaxBinding594 = FlaxInstanceMethod.plain(
+  _flaxBinding501,
+  _flaxBinding500,
   _Matrix3_applyToVector3Array,
 );
-const _flaxBinding613 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding20,
+const _flaxBinding595 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxBoolType,
   _Matrix3_isIdentity,
 );
-const _flaxBinding614 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding20,
+const _flaxBinding596 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxBoolType,
   _Matrix3_isZero,
 );
-const _flaxBinding615 = FlaxInstanceMethod(
-  _flaxBinding520,
-  _flaxBinding448,
+const _flaxBinding597 = FlaxInstanceMethod.plain(
+  _flaxBinding503,
+  flaxDoubleType,
   _Matrix3_operatorGetIndex,
 );
-const _flaxBinding616 = FlaxInstanceMethod(
-  _flaxBinding522,
-  _flaxBinding70,
+const _flaxBinding598 = FlaxInstanceMethod.plain(
+  _flaxBinding505,
+  flaxVoidType,
   _Matrix3_operatorSetIndex,
 );
-const _flaxBinding617 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding551,
+const _flaxBinding599 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  _flaxBinding534,
   _Matrix3_operatorAdd,
 );
-const _flaxBinding618 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding551,
+const _flaxBinding600 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  _flaxBinding534,
   _Matrix3_operatorSubtract,
 );
-const _flaxBinding619 = FlaxInstanceMethod(
-  _flaxBinding526,
-  _flaxBinding110,
+const _flaxBinding601 = FlaxInstanceMethod.plain(
+  _flaxBinding509,
+  flaxNullableAnyType,
   _Matrix3_operatorMultiply,
 );
-const _flaxBinding620 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding551,
+const _flaxBinding602 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding534,
   _Matrix3_operatorNegate,
 );
-const _flaxBinding621 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding551, required: true),
+const _flaxBinding603 = <FlaxParameter>[
+  FlaxParameter.required("other", _flaxBinding534),
 ];
-const _flaxBinding622 = FlaxObjectBinding(
+const _flaxBinding604 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Matrix3",
   [
-    _flaxBinding532,
-    _flaxBinding533,
-    _flaxBinding535,
-    _flaxBinding536,
-    _flaxBinding537,
-    _flaxBinding538,
-    _flaxBinding539,
-    _flaxBinding540,
+    _flaxBinding515,
+    _flaxBinding516,
+    _flaxBinding518,
+    _flaxBinding519,
+    _flaxBinding520,
+    _flaxBinding521,
+    _flaxBinding522,
+    _flaxBinding523,
   ],
   {
-    "index": _flaxBinding544,
-    "entry": _flaxBinding545,
-    "setEntry": _flaxBinding546,
-    "setValues": _flaxBinding548,
-    "setColumns": _flaxBinding550,
-    "setFrom": _flaxBinding553,
-    "setOuter": _flaxBinding555,
-    "splatDiagonal": _flaxBinding556,
-    "setDiagonal": _flaxBinding558,
-    "setUpper2x2": _flaxBinding559,
-    "toString": _flaxBinding560,
-    "setRow": _flaxBinding562,
-    "getRow": _flaxBinding563,
-    "setColumn": _flaxBinding565,
-    "getColumn": _flaxBinding566,
-    "clone": _flaxBinding567,
-    "copyInto": _flaxBinding568,
-    "setZero": _flaxBinding569,
-    "setIdentity": _flaxBinding570,
-    "transposed": _flaxBinding571,
-    "transpose": _flaxBinding572,
-    "absolute": _flaxBinding573,
-    "determinant": _flaxBinding574,
-    "dotRow": _flaxBinding576,
-    "dotColumn": _flaxBinding578,
-    "trace": _flaxBinding579,
-    "infinityNorm": _flaxBinding580,
-    "relativeError": _flaxBinding582,
-    "absoluteError": _flaxBinding583,
-    "invert": _flaxBinding584,
-    "copyInverse": _flaxBinding585,
-    "copyNormalMatrix": _flaxBinding588,
-    "setRotationX": _flaxBinding589,
-    "setRotationY": _flaxBinding590,
-    "setRotationZ": _flaxBinding591,
-    "scaleAdjoint": _flaxBinding592,
-    "absoluteRotate": _flaxBinding593,
-    "absoluteRotate2": _flaxBinding594,
-    "transform2": _flaxBinding595,
-    "scale": _flaxBinding596,
-    "scaled": _flaxBinding597,
-    "add": _flaxBinding599,
-    "sub": _flaxBinding600,
-    "negate": _flaxBinding601,
-    "multiply": _flaxBinding602,
-    "multiplied": _flaxBinding603,
-    "transposeMultiply": _flaxBinding604,
-    "multiplyTranspose": _flaxBinding605,
-    "transform": _flaxBinding606,
-    "transformed": _flaxBinding609,
-    "copyIntoArray": _flaxBinding610,
-    "copyFromArray": _flaxBinding611,
-    "applyToVector3Array": _flaxBinding612,
-    "isIdentity": _flaxBinding613,
-    "isZero": _flaxBinding614,
-    "operatorGetIndex": _flaxBinding615,
-    "operatorSetIndex": _flaxBinding616,
-    "operatorAdd": _flaxBinding617,
-    "operatorSubtract": _flaxBinding618,
-    "operatorMultiply": _flaxBinding619,
-    "operatorNegate": _flaxBinding620,
+    "index": _flaxBinding527,
+    "entry": _flaxBinding528,
+    "setEntry": _flaxBinding529,
+    "setValues": _flaxBinding531,
+    "setColumns": _flaxBinding533,
+    "setFrom": _flaxBinding536,
+    "setOuter": _flaxBinding538,
+    "splatDiagonal": _flaxBinding539,
+    "setDiagonal": _flaxBinding541,
+    "setUpper2x2": _flaxBinding542,
+    "toString": _flaxBinding543,
+    "setRow": _flaxBinding545,
+    "getRow": _flaxBinding546,
+    "setColumn": _flaxBinding548,
+    "getColumn": _flaxBinding549,
+    "clone": _flaxBinding550,
+    "copyInto": _flaxBinding551,
+    "setZero": _flaxBinding552,
+    "setIdentity": _flaxBinding553,
+    "transposed": _flaxBinding554,
+    "transpose": _flaxBinding555,
+    "absolute": _flaxBinding556,
+    "determinant": _flaxBinding557,
+    "dotRow": _flaxBinding559,
+    "dotColumn": _flaxBinding561,
+    "trace": _flaxBinding562,
+    "infinityNorm": _flaxBinding563,
+    "relativeError": _flaxBinding565,
+    "absoluteError": _flaxBinding566,
+    "invert": _flaxBinding567,
+    "copyInverse": _flaxBinding568,
+    "copyNormalMatrix": _flaxBinding570,
+    "setRotationX": _flaxBinding571,
+    "setRotationY": _flaxBinding572,
+    "setRotationZ": _flaxBinding573,
+    "scaleAdjoint": _flaxBinding574,
+    "absoluteRotate": _flaxBinding575,
+    "absoluteRotate2": _flaxBinding576,
+    "transform2": _flaxBinding577,
+    "scale": _flaxBinding578,
+    "scaled": _flaxBinding579,
+    "add": _flaxBinding581,
+    "sub": _flaxBinding582,
+    "negate": _flaxBinding583,
+    "multiply": _flaxBinding584,
+    "multiplied": _flaxBinding585,
+    "transposeMultiply": _flaxBinding586,
+    "multiplyTranspose": _flaxBinding587,
+    "transform": _flaxBinding588,
+    "transformed": _flaxBinding591,
+    "copyIntoArray": _flaxBinding592,
+    "copyFromArray": _flaxBinding593,
+    "applyToVector3Array": _flaxBinding594,
+    "isIdentity": _flaxBinding595,
+    "isZero": _flaxBinding596,
+    "operatorGetIndex": _flaxBinding597,
+    "operatorSetIndex": _flaxBinding598,
+    "operatorAdd": _flaxBinding599,
+    "operatorSubtract": _flaxBinding600,
+    "operatorMultiply": _flaxBinding601,
+    "operatorNegate": _flaxBinding602,
   },
   constructors: {
-    "": _flaxBinding547,
-    "fromList": _flaxBinding529,
-    "zero": _flaxBinding42,
-    "identity": _flaxBinding42,
-    "copy": _flaxBinding621,
-    "columns": _flaxBinding549,
-    "outer": _flaxBinding554,
-    "rotationX": _flaxBinding493,
-    "rotationY": _flaxBinding493,
-    "rotationZ": _flaxBinding493,
+    "": _flaxBinding530,
+    "fromList": _flaxBinding512,
+    "zero": _flaxBinding35,
+    "identity": _flaxBinding35,
+    "copy": _flaxBinding603,
+    "columns": _flaxBinding532,
+    "outer": _flaxBinding537,
+    "rotationX": _flaxBinding477,
+    "rotationY": _flaxBinding477,
+    "rotationZ": _flaxBinding477,
   },
   create: _createMatrix3,
   matches: _isMatrix3,
-  setters: [_flaxBinding541, _flaxBinding542, _flaxBinding543],
+  setters: [_flaxBinding524, _flaxBinding525, _flaxBinding526],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding623 = FlaxGetter("point0", _flaxBinding534, _Quad_point0);
-const _flaxBinding624 = FlaxGetter("point1", _flaxBinding534, _Quad_point1);
-const _flaxBinding625 = FlaxGetter("point2", _flaxBinding534, _Quad_point2);
-const _flaxBinding626 = FlaxGetter("point3", _flaxBinding534, _Quad_point3);
-const _flaxBinding627 = FlaxTypeRef(
+const _flaxBinding605 = FlaxGetter.plain(
+  "point0",
+  _flaxBinding517,
+  _Quad_point0,
+);
+const _flaxBinding606 = FlaxGetter.plain(
+  "point1",
+  _flaxBinding517,
+  _Quad_point1,
+);
+const _flaxBinding607 = FlaxGetter.plain(
+  "point2",
+  _flaxBinding517,
+  _Quad_point2,
+);
+const _flaxBinding608 = FlaxGetter.plain(
+  "point3",
+  _flaxBinding517,
+  _Quad_point3,
+);
+const _flaxBinding609 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Quad",
 );
-const _flaxBinding628 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding627, required: true),
+const _flaxBinding610 = <FlaxParameter>[
+  FlaxParameter.required("other", _flaxBinding609),
 ];
-const _flaxBinding629 = FlaxInstanceMethod(
-  _flaxBinding628,
-  _flaxBinding70,
+const _flaxBinding611 = FlaxInstanceMethod.plain(
+  _flaxBinding610,
+  flaxVoidType,
   _Quad_copyFrom,
 );
-const _flaxBinding630 = <FlaxParameter>[
-  FlaxParameter("normal", _flaxBinding534, required: true),
+const _flaxBinding612 = <FlaxParameter>[
+  FlaxParameter.required("normal", _flaxBinding517),
 ];
-const _flaxBinding631 = FlaxInstanceMethod(
-  _flaxBinding630,
-  _flaxBinding70,
+const _flaxBinding613 = FlaxInstanceMethod.plain(
+  _flaxBinding612,
+  flaxVoidType,
   _Quad_copyNormalInto,
 );
-const _flaxBinding632 = <FlaxParameter>[
-  FlaxParameter("t", _flaxBinding586, required: true),
+const _flaxBinding614 = <FlaxParameter>[
+  FlaxParameter.required("t", flaxMatrix4Type),
 ];
-const _flaxBinding633 = FlaxInstanceMethod(
-  _flaxBinding632,
-  _flaxBinding70,
+const _flaxBinding615 = FlaxInstanceMethod.plain(
+  _flaxBinding614,
+  flaxVoidType,
   _Quad_transform,
 );
-const _flaxBinding634 = <FlaxParameter>[
-  FlaxParameter("offset", _flaxBinding534, required: true),
+const _flaxBinding616 = <FlaxParameter>[
+  FlaxParameter.required("offset", _flaxBinding517),
 ];
-const _flaxBinding635 = FlaxInstanceMethod(
-  _flaxBinding634,
-  _flaxBinding70,
+const _flaxBinding617 = FlaxInstanceMethod.plain(
+  _flaxBinding616,
+  flaxVoidType,
   _Quad_translate,
 );
-const _flaxBinding636 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding618 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _Quad_toString,
 );
-const _flaxBinding637 = <FlaxParameter>[
-  FlaxParameter("point0", _flaxBinding534, required: true),
-  FlaxParameter("point1", _flaxBinding534, required: true),
-  FlaxParameter("point2", _flaxBinding534, required: true),
-  FlaxParameter("point3", _flaxBinding534, required: true),
+const _flaxBinding619 = <FlaxParameter>[
+  FlaxParameter.required("point0", _flaxBinding517),
+  FlaxParameter.required("point1", _flaxBinding517),
+  FlaxParameter.required("point2", _flaxBinding517),
+  FlaxParameter.required("point3", _flaxBinding517),
 ];
-const _flaxBinding638 = FlaxObjectBinding(
+const _flaxBinding620 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Quad",
-  [_flaxBinding623, _flaxBinding624, _flaxBinding625, _flaxBinding626],
+  [_flaxBinding605, _flaxBinding606, _flaxBinding607, _flaxBinding608],
   {
-    "copyFrom": _flaxBinding629,
-    "copyNormalInto": _flaxBinding631,
-    "transform": _flaxBinding633,
-    "translate": _flaxBinding635,
-    "toString": _flaxBinding636,
+    "copyFrom": _flaxBinding611,
+    "copyNormalInto": _flaxBinding613,
+    "transform": _flaxBinding615,
+    "translate": _flaxBinding617,
+    "toString": _flaxBinding618,
   },
   constructors: {
-    "": _flaxBinding42,
-    "copy": _flaxBinding628,
-    "points": _flaxBinding637,
+    "": _flaxBinding35,
+    "copy": _flaxBinding610,
+    "points": _flaxBinding619,
   },
   create: _createQuad,
   matches: _isQuad,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding639 = FlaxGetter(
+const _flaxBinding621 = FlaxGetter.plain(
   "storage",
-  _flaxBinding438,
+  _flaxBinding423,
   _Quaternion_storage,
 );
-const _flaxBinding640 = FlaxGetter("x", _flaxBinding448, _Quaternion_x);
-const _flaxBinding641 = FlaxGetter("y", _flaxBinding448, _Quaternion_y);
-const _flaxBinding642 = FlaxGetter("z", _flaxBinding448, _Quaternion_z);
-const _flaxBinding643 = FlaxGetter("w", _flaxBinding448, _Quaternion_w);
-const _flaxBinding644 = FlaxGetter(
+const _flaxBinding622 = FlaxGetter.plain("x", flaxDoubleType, _Quaternion_x);
+const _flaxBinding623 = FlaxGetter.plain("y", flaxDoubleType, _Quaternion_y);
+const _flaxBinding624 = FlaxGetter.plain("z", flaxDoubleType, _Quaternion_z);
+const _flaxBinding625 = FlaxGetter.plain("w", flaxDoubleType, _Quaternion_w);
+const _flaxBinding626 = FlaxGetter.plain(
   "radians",
-  _flaxBinding448,
+  flaxDoubleType,
   _Quaternion_radians,
 );
-const _flaxBinding645 = FlaxGetter("axis", _flaxBinding534, _Quaternion_axis);
-const _flaxBinding646 = FlaxGetter(
+const _flaxBinding627 = FlaxGetter.plain(
+  "axis",
+  _flaxBinding517,
+  _Quaternion_axis,
+);
+const _flaxBinding628 = FlaxGetter.plain(
   "length2",
-  _flaxBinding448,
+  flaxDoubleType,
   _Quaternion_length2,
 );
-const _flaxBinding647 = FlaxGetter(
+const _flaxBinding629 = FlaxGetter.plain(
   "length",
-  _flaxBinding448,
+  flaxDoubleType,
   _Quaternion_length,
 );
-const _flaxBinding648 = FlaxSetter("x", _flaxBinding448, _Quaternion_set_x);
-const _flaxBinding649 = FlaxSetter("y", _flaxBinding448, _Quaternion_set_y);
-const _flaxBinding650 = FlaxSetter("z", _flaxBinding448, _Quaternion_set_z);
-const _flaxBinding651 = FlaxSetter("w", _flaxBinding448, _Quaternion_set_w);
-const _flaxBinding652 = FlaxTypeRef(
+const _flaxBinding630 = FlaxSetter("x", flaxDoubleType, _Quaternion_set_x);
+const _flaxBinding631 = FlaxSetter("y", flaxDoubleType, _Quaternion_set_y);
+const _flaxBinding632 = FlaxSetter("z", flaxDoubleType, _Quaternion_set_z);
+const _flaxBinding633 = FlaxSetter("w", flaxDoubleType, _Quaternion_set_w);
+const _flaxBinding634 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Quaternion",
 );
-const _flaxBinding653 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding652,
+const _flaxBinding635 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding634,
   _Quaternion_clone,
 );
-const _flaxBinding654 = <FlaxParameter>[
-  FlaxParameter("source", _flaxBinding652, required: true),
+const _flaxBinding636 = <FlaxParameter>[
+  FlaxParameter.required("source", _flaxBinding634),
 ];
-const _flaxBinding655 = FlaxInstanceMethod(
-  _flaxBinding654,
-  _flaxBinding70,
+const _flaxBinding637 = FlaxInstanceMethod.plain(
+  _flaxBinding636,
+  flaxVoidType,
   _Quaternion_setFrom,
 );
-const _flaxBinding656 = <FlaxParameter>[
-  FlaxParameter("x", _flaxBinding448, required: true),
-  FlaxParameter("y", _flaxBinding448, required: true),
-  FlaxParameter("z", _flaxBinding448, required: true),
-  FlaxParameter("w", _flaxBinding448, required: true),
+const _flaxBinding638 = <FlaxParameter>[
+  FlaxParameter.required("x", flaxDoubleType),
+  FlaxParameter.required("y", flaxDoubleType),
+  FlaxParameter.required("z", flaxDoubleType),
+  FlaxParameter.required("w", flaxDoubleType),
 ];
-const _flaxBinding657 = FlaxInstanceMethod(
-  _flaxBinding656,
-  _flaxBinding70,
+const _flaxBinding639 = FlaxInstanceMethod.plain(
+  _flaxBinding638,
+  flaxVoidType,
   _Quaternion_setValues,
 );
-const _flaxBinding658 = <FlaxParameter>[
-  FlaxParameter("axis", _flaxBinding534, required: true),
-  FlaxParameter("radians", _flaxBinding448, required: true),
+const _flaxBinding640 = <FlaxParameter>[
+  FlaxParameter.required("axis", _flaxBinding517),
+  FlaxParameter.required("radians", flaxDoubleType),
 ];
-const _flaxBinding659 = FlaxInstanceMethod(
-  _flaxBinding658,
-  _flaxBinding70,
+const _flaxBinding641 = FlaxInstanceMethod.plain(
+  _flaxBinding640,
+  flaxVoidType,
   _Quaternion_setAxisAngle,
 );
-const _flaxBinding660 = <FlaxParameter>[
-  FlaxParameter("rotationMatrix", _flaxBinding551, required: true),
+const _flaxBinding642 = <FlaxParameter>[
+  FlaxParameter.required("rotationMatrix", _flaxBinding534),
 ];
-const _flaxBinding661 = FlaxInstanceMethod(
-  _flaxBinding660,
-  _flaxBinding70,
+const _flaxBinding643 = FlaxInstanceMethod.plain(
+  _flaxBinding642,
+  flaxVoidType,
   _Quaternion_setFromRotation,
 );
-const _flaxBinding662 = <FlaxParameter>[
-  FlaxParameter("a", _flaxBinding534, required: true),
-  FlaxParameter("b", _flaxBinding534, required: true),
+const _flaxBinding644 = <FlaxParameter>[
+  FlaxParameter.required("a", _flaxBinding517),
+  FlaxParameter.required("b", _flaxBinding517),
 ];
-const _flaxBinding663 = FlaxInstanceMethod(
-  _flaxBinding662,
-  _flaxBinding70,
+const _flaxBinding645 = FlaxInstanceMethod.plain(
+  _flaxBinding644,
+  flaxVoidType,
   _Quaternion_setFromTwoVectors,
 );
-const _flaxBinding664 = <FlaxParameter>[
-  FlaxParameter("q", _flaxBinding652, required: true),
-  FlaxParameter("omega", _flaxBinding534, required: true),
+const _flaxBinding646 = <FlaxParameter>[
+  FlaxParameter.required("q", _flaxBinding634),
+  FlaxParameter.required("omega", _flaxBinding517),
 ];
-const _flaxBinding665 = FlaxInstanceMethod(
-  _flaxBinding664,
-  _flaxBinding70,
+const _flaxBinding647 = FlaxInstanceMethod.plain(
+  _flaxBinding646,
+  flaxVoidType,
   _Quaternion_setDQ,
 );
-const _flaxBinding666 = <FlaxParameter>[
-  FlaxParameter("yaw", _flaxBinding448, required: true),
-  FlaxParameter("pitch", _flaxBinding448, required: true),
-  FlaxParameter("roll", _flaxBinding448, required: true),
+const _flaxBinding648 = <FlaxParameter>[
+  FlaxParameter.required("yaw", flaxDoubleType),
+  FlaxParameter.required("pitch", flaxDoubleType),
+  FlaxParameter.required("roll", flaxDoubleType),
 ];
-const _flaxBinding667 = FlaxInstanceMethod(
-  _flaxBinding666,
-  _flaxBinding70,
+const _flaxBinding649 = FlaxInstanceMethod.plain(
+  _flaxBinding648,
+  flaxVoidType,
   _Quaternion_setEuler,
 );
-const _flaxBinding668 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding650 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Quaternion_normalize,
 );
-const _flaxBinding669 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding651 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Quaternion_negate,
 );
-const _flaxBinding670 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding652 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Quaternion_conjugate,
 );
-const _flaxBinding671 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding653 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Quaternion_inverse,
 );
-const _flaxBinding672 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding652,
+const _flaxBinding654 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding634,
   _Quaternion_normalized,
 );
-const _flaxBinding673 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding652,
+const _flaxBinding655 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding634,
   _Quaternion_negated,
 );
-const _flaxBinding674 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding652,
+const _flaxBinding656 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding634,
   _Quaternion_conjugated,
 );
-const _flaxBinding675 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding652,
+const _flaxBinding657 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding634,
   _Quaternion_inverted,
 );
-const _flaxBinding676 = <FlaxParameter>[
-  FlaxParameter("v", _flaxBinding534, required: true),
+const _flaxBinding658 = <FlaxParameter>[
+  FlaxParameter.required("v", _flaxBinding517),
 ];
-const _flaxBinding677 = FlaxInstanceMethod(
-  _flaxBinding676,
-  _flaxBinding534,
+const _flaxBinding659 = FlaxInstanceMethod.plain(
+  _flaxBinding658,
+  _flaxBinding517,
   _Quaternion_rotated,
 );
-const _flaxBinding678 = FlaxInstanceMethod(
-  _flaxBinding676,
-  _flaxBinding534,
+const _flaxBinding660 = FlaxInstanceMethod.plain(
+  _flaxBinding658,
+  _flaxBinding517,
   _Quaternion_rotate,
 );
-const _flaxBinding679 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding652, required: true),
+const _flaxBinding661 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding634),
 ];
-const _flaxBinding680 = FlaxInstanceMethod(
-  _flaxBinding679,
-  _flaxBinding70,
+const _flaxBinding662 = FlaxInstanceMethod.plain(
+  _flaxBinding661,
+  flaxVoidType,
   _Quaternion_add,
 );
-const _flaxBinding681 = FlaxInstanceMethod(
-  _flaxBinding679,
-  _flaxBinding70,
+const _flaxBinding663 = FlaxInstanceMethod.plain(
+  _flaxBinding661,
+  flaxVoidType,
   _Quaternion_sub,
 );
-const _flaxBinding682 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding70,
+const _flaxBinding664 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  flaxVoidType,
   _Quaternion_scale,
 );
-const _flaxBinding683 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding652,
+const _flaxBinding665 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  _flaxBinding634,
   _Quaternion_scaled,
 );
-const _flaxBinding684 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding551,
+const _flaxBinding666 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding534,
   _Quaternion_asRotationMatrix,
 );
-const _flaxBinding685 = FlaxInstanceMethod(
-  _flaxBinding660,
-  _flaxBinding551,
+const _flaxBinding667 = FlaxInstanceMethod.plain(
+  _flaxBinding642,
+  _flaxBinding534,
   _Quaternion_copyRotationInto,
 );
-const _flaxBinding686 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding668 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _Quaternion_toString,
 );
-const _flaxBinding687 = <FlaxParameter>[
-  FlaxParameter("correct", _flaxBinding652, required: true),
+const _flaxBinding669 = <FlaxParameter>[
+  FlaxParameter.required("correct", _flaxBinding634),
 ];
-const _flaxBinding688 = FlaxInstanceMethod(
-  _flaxBinding687,
-  _flaxBinding448,
+const _flaxBinding670 = FlaxInstanceMethod.plain(
+  _flaxBinding669,
+  flaxDoubleType,
   _Quaternion_relativeError,
 );
-const _flaxBinding689 = FlaxInstanceMethod(
-  _flaxBinding687,
-  _flaxBinding448,
+const _flaxBinding671 = FlaxInstanceMethod.plain(
+  _flaxBinding669,
+  flaxDoubleType,
   _Quaternion_absoluteError,
 );
-const _flaxBinding690 = FlaxInstanceMethod(
-  _flaxBinding520,
-  _flaxBinding448,
+const _flaxBinding672 = FlaxInstanceMethod.plain(
+  _flaxBinding503,
+  flaxDoubleType,
   _Quaternion_operatorGetIndex,
 );
-const _flaxBinding691 = <FlaxParameter>[
-  FlaxParameter("i", _flaxBinding2, required: true),
-  FlaxParameter("arg", _flaxBinding448, required: true),
+const _flaxBinding673 = <FlaxParameter>[
+  FlaxParameter.required("i", flaxIntType),
+  FlaxParameter.required("arg", flaxDoubleType),
 ];
-const _flaxBinding692 = FlaxInstanceMethod(
-  _flaxBinding691,
-  _flaxBinding70,
+const _flaxBinding674 = FlaxInstanceMethod.plain(
+  _flaxBinding673,
+  flaxVoidType,
   _Quaternion_operatorSetIndex,
 );
-const _flaxBinding693 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding652, required: true),
+const _flaxBinding675 = <FlaxParameter>[
+  FlaxParameter.required("other", _flaxBinding634),
 ];
-const _flaxBinding694 = FlaxInstanceMethod(
-  _flaxBinding693,
-  _flaxBinding652,
+const _flaxBinding676 = FlaxInstanceMethod.plain(
+  _flaxBinding675,
+  _flaxBinding634,
   _Quaternion_operatorAdd,
 );
-const _flaxBinding695 = FlaxInstanceMethod(
-  _flaxBinding693,
-  _flaxBinding652,
+const _flaxBinding677 = FlaxInstanceMethod.plain(
+  _flaxBinding675,
+  _flaxBinding634,
   _Quaternion_operatorSubtract,
 );
-const _flaxBinding696 = FlaxInstanceMethod(
-  _flaxBinding693,
-  _flaxBinding652,
+const _flaxBinding678 = FlaxInstanceMethod.plain(
+  _flaxBinding675,
+  _flaxBinding634,
   _Quaternion_operatorMultiply,
 );
-const _flaxBinding697 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding652,
+const _flaxBinding679 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding634,
   _Quaternion_operatorNegate,
 );
-const _flaxBinding698 = <FlaxParameter>[
-  FlaxParameter("axis", _flaxBinding534, required: true),
-  FlaxParameter("angle", _flaxBinding448, required: true),
+const _flaxBinding680 = <FlaxParameter>[
+  FlaxParameter.required("axis", _flaxBinding517),
+  FlaxParameter.required("angle", flaxDoubleType),
 ];
-const _flaxBinding699 = <FlaxParameter>[
-  FlaxParameter("original", _flaxBinding652, required: true),
+const _flaxBinding681 = <FlaxParameter>[
+  FlaxParameter.required("original", _flaxBinding634),
 ];
-const _flaxBinding700 = <FlaxParameter>[
-  FlaxParameter("_qStorage", _flaxBinding438, required: true),
+const _flaxBinding682 = <FlaxParameter>[
+  FlaxParameter.required("_qStorage", _flaxBinding423),
 ];
-const _flaxBinding701 = FlaxTypeRef("ByteBuffer");
-const _flaxBinding702 = <FlaxParameter>[
-  FlaxParameter("buffer", _flaxBinding701, required: true),
-  FlaxParameter("offset", _flaxBinding2, required: true),
+const _flaxBinding683 = FlaxTypeRef("ByteBuffer");
+const _flaxBinding684 = <FlaxParameter>[
+  FlaxParameter.required("buffer", _flaxBinding683),
+  FlaxParameter.required("offset", flaxIntType),
 ];
-const _flaxBinding703 = FlaxObjectBinding(
+const _flaxBinding685 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Quaternion",
   [
-    _flaxBinding639,
-    _flaxBinding640,
-    _flaxBinding641,
-    _flaxBinding642,
-    _flaxBinding643,
-    _flaxBinding644,
-    _flaxBinding645,
-    _flaxBinding646,
-    _flaxBinding647,
+    _flaxBinding621,
+    _flaxBinding622,
+    _flaxBinding623,
+    _flaxBinding624,
+    _flaxBinding625,
+    _flaxBinding626,
+    _flaxBinding627,
+    _flaxBinding628,
+    _flaxBinding629,
   ],
   {
-    "clone": _flaxBinding653,
-    "setFrom": _flaxBinding655,
-    "setValues": _flaxBinding657,
-    "setAxisAngle": _flaxBinding659,
-    "setFromRotation": _flaxBinding661,
-    "setFromTwoVectors": _flaxBinding663,
-    "setDQ": _flaxBinding665,
-    "setEuler": _flaxBinding667,
-    "normalize": _flaxBinding668,
-    "negate": _flaxBinding669,
-    "conjugate": _flaxBinding670,
-    "inverse": _flaxBinding671,
-    "normalized": _flaxBinding672,
-    "negated": _flaxBinding673,
-    "conjugated": _flaxBinding674,
-    "inverted": _flaxBinding675,
-    "rotated": _flaxBinding677,
-    "rotate": _flaxBinding678,
-    "add": _flaxBinding680,
-    "sub": _flaxBinding681,
-    "scale": _flaxBinding682,
-    "scaled": _flaxBinding683,
-    "asRotationMatrix": _flaxBinding684,
-    "copyRotationInto": _flaxBinding685,
-    "toString": _flaxBinding686,
-    "relativeError": _flaxBinding688,
-    "absoluteError": _flaxBinding689,
-    "operatorGetIndex": _flaxBinding690,
-    "operatorSetIndex": _flaxBinding692,
-    "operatorAdd": _flaxBinding694,
-    "operatorSubtract": _flaxBinding695,
-    "operatorMultiply": _flaxBinding696,
-    "operatorNegate": _flaxBinding697,
+    "clone": _flaxBinding635,
+    "setFrom": _flaxBinding637,
+    "setValues": _flaxBinding639,
+    "setAxisAngle": _flaxBinding641,
+    "setFromRotation": _flaxBinding643,
+    "setFromTwoVectors": _flaxBinding645,
+    "setDQ": _flaxBinding647,
+    "setEuler": _flaxBinding649,
+    "normalize": _flaxBinding650,
+    "negate": _flaxBinding651,
+    "conjugate": _flaxBinding652,
+    "inverse": _flaxBinding653,
+    "normalized": _flaxBinding654,
+    "negated": _flaxBinding655,
+    "conjugated": _flaxBinding656,
+    "inverted": _flaxBinding657,
+    "rotated": _flaxBinding659,
+    "rotate": _flaxBinding660,
+    "add": _flaxBinding662,
+    "sub": _flaxBinding663,
+    "scale": _flaxBinding664,
+    "scaled": _flaxBinding665,
+    "asRotationMatrix": _flaxBinding666,
+    "copyRotationInto": _flaxBinding667,
+    "toString": _flaxBinding668,
+    "relativeError": _flaxBinding670,
+    "absoluteError": _flaxBinding671,
+    "operatorGetIndex": _flaxBinding672,
+    "operatorSetIndex": _flaxBinding674,
+    "operatorAdd": _flaxBinding676,
+    "operatorSubtract": _flaxBinding677,
+    "operatorMultiply": _flaxBinding678,
+    "operatorNegate": _flaxBinding679,
   },
   constructors: {
-    "": _flaxBinding656,
-    "fromRotation": _flaxBinding660,
-    "axisAngle": _flaxBinding698,
-    "fromTwoVectors": _flaxBinding662,
-    "copy": _flaxBinding699,
-    "identity": _flaxBinding42,
-    "dq": _flaxBinding664,
-    "euler": _flaxBinding666,
-    "fromFloat64List": _flaxBinding700,
-    "fromBuffer": _flaxBinding702,
+    "": _flaxBinding638,
+    "fromRotation": _flaxBinding642,
+    "axisAngle": _flaxBinding680,
+    "fromTwoVectors": _flaxBinding644,
+    "copy": _flaxBinding681,
+    "identity": _flaxBinding35,
+    "dq": _flaxBinding646,
+    "euler": _flaxBinding648,
+    "fromFloat64List": _flaxBinding682,
+    "fromBuffer": _flaxBinding684,
   },
   create: _createQuaternion,
   matches: _isQuaternion,
-  setters: [_flaxBinding648, _flaxBinding649, _flaxBinding650, _flaxBinding651],
+  setters: [_flaxBinding630, _flaxBinding631, _flaxBinding632, _flaxBinding633],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding704 = FlaxGetter(
+const _flaxBinding686 = FlaxGetter.plain(
   "path",
-  _flaxBinding0,
+  flaxStringType,
   _RandomAccessFile_path,
 );
-const _flaxBinding705 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding328,
+const _flaxBinding687 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding313,
   _RandomAccessFile_close,
 );
-const _flaxBinding706 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding688 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _RandomAccessFile_closeSync,
 );
-const _flaxBinding707 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding103,
+const _flaxBinding689 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding95,
   _RandomAccessFile_readByte,
 );
-const _flaxBinding708 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding2,
+const _flaxBinding690 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxIntType,
   _RandomAccessFile_readByteSync,
 );
-const _flaxBinding709 = FlaxInstanceMethod(
-  _flaxBinding343,
-  _flaxBinding127,
+const _flaxBinding691 = FlaxInstanceMethod.plain(
+  _flaxBinding328,
+  _flaxBinding117,
   _RandomAccessFile_read,
 );
-const _flaxBinding710 = FlaxInstanceMethod(
-  _flaxBinding343,
-  _flaxBinding14,
+const _flaxBinding692 = FlaxInstanceMethod.plain(
+  _flaxBinding328,
+  flaxUint8ListType,
   _RandomAccessFile_readSync,
 );
-const _flaxBinding711 = <FlaxParameter>[
-  FlaxParameter("buffer", _flaxBinding4, required: true),
-  FlaxParameter("start", _flaxBinding2, required: false, defaultValue: 0),
-  FlaxParameter("end", _flaxBinding27, required: false),
+const _flaxBinding693 = <FlaxParameter>[
+  FlaxParameter.required("buffer", _flaxBinding2),
+  FlaxParameter("start", flaxIntType, required: false, defaultValue: 0),
+  FlaxParameter("end", flaxNullableIntType, required: false),
 ];
-const _flaxBinding712 = FlaxInstanceMethod(
-  _flaxBinding711,
-  _flaxBinding103,
+const _flaxBinding694 = FlaxInstanceMethod.plain(
+  _flaxBinding693,
+  _flaxBinding95,
   _RandomAccessFile_readInto,
 );
-const _flaxBinding713 = FlaxInstanceMethod(
-  _flaxBinding711,
-  _flaxBinding2,
+const _flaxBinding695 = FlaxInstanceMethod.plain(
+  _flaxBinding693,
+  flaxIntType,
   _RandomAccessFile_readIntoSync,
 );
-const _flaxBinding714 = <FlaxParameter>[
-  FlaxParameter("value", _flaxBinding2, required: true),
+const _flaxBinding696 = <FlaxParameter>[
+  FlaxParameter.required("value", flaxIntType),
 ];
-const _flaxBinding715 = FlaxInstanceMethod(
-  _flaxBinding714,
-  _flaxBinding122,
+const _flaxBinding697 = FlaxInstanceMethod.plain(
+  _flaxBinding696,
+  _flaxBinding112,
   _RandomAccessFile_writeByte,
 );
-const _flaxBinding716 = FlaxInstanceMethod(
-  _flaxBinding714,
-  _flaxBinding2,
+const _flaxBinding698 = FlaxInstanceMethod.plain(
+  _flaxBinding696,
+  flaxIntType,
   _RandomAccessFile_writeByteSync,
 );
-const _flaxBinding717 = FlaxInstanceMethod(
-  _flaxBinding711,
-  _flaxBinding122,
+const _flaxBinding699 = FlaxInstanceMethod.plain(
+  _flaxBinding693,
+  _flaxBinding112,
   _RandomAccessFile_writeFrom,
 );
-const _flaxBinding718 = FlaxInstanceMethod(
-  _flaxBinding711,
-  _flaxBinding70,
+const _flaxBinding700 = FlaxInstanceMethod.plain(
+  _flaxBinding693,
+  flaxVoidType,
   _RandomAccessFile_writeFromSync,
 );
-const _flaxBinding719 = <FlaxParameter>[
-  FlaxParameter("string", _flaxBinding0, required: true),
+const _flaxBinding701 = <FlaxParameter>[
+  FlaxParameter.required("string", flaxStringType),
   FlaxParameter(
     "encoding",
-    _flaxBinding130,
+    _flaxBinding120,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding720 = FlaxInstanceMethod(
-  _flaxBinding719,
-  _flaxBinding122,
+const _flaxBinding702 = FlaxInstanceMethod.plain(
+  _flaxBinding701,
+  _flaxBinding112,
   _RandomAccessFile_writeString,
 );
-const _flaxBinding721 = FlaxInstanceMethod(
-  _flaxBinding719,
-  _flaxBinding70,
+const _flaxBinding703 = FlaxInstanceMethod.plain(
+  _flaxBinding701,
+  flaxVoidType,
   _RandomAccessFile_writeStringSync,
 );
-const _flaxBinding722 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding103,
+const _flaxBinding704 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding95,
   _RandomAccessFile_position,
 );
-const _flaxBinding723 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding2,
+const _flaxBinding705 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxIntType,
   _RandomAccessFile_positionSync,
 );
-const _flaxBinding724 = <FlaxParameter>[
-  FlaxParameter("position", _flaxBinding2, required: true),
+const _flaxBinding706 = <FlaxParameter>[
+  FlaxParameter.required("position", flaxIntType),
 ];
-const _flaxBinding725 = FlaxInstanceMethod(
-  _flaxBinding724,
-  _flaxBinding122,
+const _flaxBinding707 = FlaxInstanceMethod.plain(
+  _flaxBinding706,
+  _flaxBinding112,
   _RandomAccessFile_setPosition,
 );
-const _flaxBinding726 = FlaxInstanceMethod(
-  _flaxBinding724,
-  _flaxBinding70,
+const _flaxBinding708 = FlaxInstanceMethod.plain(
+  _flaxBinding706,
+  flaxVoidType,
   _RandomAccessFile_setPositionSync,
 );
-const _flaxBinding727 = <FlaxParameter>[
-  FlaxParameter("length", _flaxBinding2, required: true),
+const _flaxBinding709 = <FlaxParameter>[
+  FlaxParameter.required("length", flaxIntType),
 ];
-const _flaxBinding728 = FlaxInstanceMethod(
-  _flaxBinding727,
-  _flaxBinding122,
+const _flaxBinding710 = FlaxInstanceMethod.plain(
+  _flaxBinding709,
+  _flaxBinding112,
   _RandomAccessFile_truncate,
 );
-const _flaxBinding729 = FlaxInstanceMethod(
-  _flaxBinding727,
-  _flaxBinding70,
+const _flaxBinding711 = FlaxInstanceMethod.plain(
+  _flaxBinding709,
+  flaxVoidType,
   _RandomAccessFile_truncateSync,
 );
-const _flaxBinding730 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding103,
+const _flaxBinding712 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding95,
   _RandomAccessFile_length,
 );
-const _flaxBinding731 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding2,
+const _flaxBinding713 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxIntType,
   _RandomAccessFile_lengthSync,
 );
-const _flaxBinding732 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding122,
+const _flaxBinding714 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding112,
   _RandomAccessFile_flush,
 );
-const _flaxBinding733 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding715 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _RandomAccessFile_flushSync,
 );
-const _flaxBinding734 = FlaxTypeRef(
+const _flaxBinding716 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:FileLock",
 );
-const _flaxBinding735 = <FlaxParameter>[
-  FlaxParameter("mode", _flaxBinding734, required: false, omitWhenAbsent: true),
+const _flaxBinding717 = <FlaxParameter>[
+  FlaxParameter("mode", _flaxBinding716, required: false, omitWhenAbsent: true),
   FlaxParameter(
     "start",
-    _flaxBinding2,
+    flaxIntType,
     required: false,
     defaultValue: 0,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "end",
-    _flaxBinding2,
+    flaxIntType,
     required: false,
     defaultValue: -1,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding736 = FlaxInstanceMethod(
-  _flaxBinding735,
-  _flaxBinding122,
+const _flaxBinding718 = FlaxInstanceMethod.plain(
+  _flaxBinding717,
+  _flaxBinding112,
   _RandomAccessFile_lock,
 );
-const _flaxBinding737 = FlaxInstanceMethod(
-  _flaxBinding735,
-  _flaxBinding70,
+const _flaxBinding719 = FlaxInstanceMethod.plain(
+  _flaxBinding717,
+  flaxVoidType,
   _RandomAccessFile_lockSync,
 );
-const _flaxBinding738 = <FlaxParameter>[
-  FlaxParameter("start", _flaxBinding2, required: false, defaultValue: 0),
-  FlaxParameter("end", _flaxBinding2, required: false, defaultValue: -1),
+const _flaxBinding720 = <FlaxParameter>[
+  FlaxParameter("start", flaxIntType, required: false, defaultValue: 0),
+  FlaxParameter("end", flaxIntType, required: false, defaultValue: -1),
 ];
-const _flaxBinding739 = FlaxInstanceMethod(
-  _flaxBinding738,
-  _flaxBinding122,
+const _flaxBinding721 = FlaxInstanceMethod.plain(
+  _flaxBinding720,
+  _flaxBinding112,
   _RandomAccessFile_unlock,
 );
-const _flaxBinding740 = FlaxInstanceMethod(
-  _flaxBinding738,
-  _flaxBinding70,
+const _flaxBinding722 = FlaxInstanceMethod.plain(
+  _flaxBinding720,
+  flaxVoidType,
   _RandomAccessFile_unlockSync,
 );
-const _flaxBinding741 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding723 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _RandomAccessFile_toString,
 );
-const _flaxBinding742 = FlaxObjectBinding(
+const _flaxBinding724 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:RandomAccessFile",
-  [_flaxBinding704],
+  [_flaxBinding686],
   {
-    "close": _flaxBinding705,
-    "closeSync": _flaxBinding706,
-    "readByte": _flaxBinding707,
-    "readByteSync": _flaxBinding708,
-    "read": _flaxBinding709,
-    "readSync": _flaxBinding710,
-    "readInto": _flaxBinding712,
-    "readIntoSync": _flaxBinding713,
-    "writeByte": _flaxBinding715,
-    "writeByteSync": _flaxBinding716,
-    "writeFrom": _flaxBinding717,
-    "writeFromSync": _flaxBinding718,
-    "writeString": _flaxBinding720,
-    "writeStringSync": _flaxBinding721,
-    "position": _flaxBinding722,
-    "positionSync": _flaxBinding723,
-    "setPosition": _flaxBinding725,
-    "setPositionSync": _flaxBinding726,
-    "truncate": _flaxBinding728,
-    "truncateSync": _flaxBinding729,
-    "length": _flaxBinding730,
-    "lengthSync": _flaxBinding731,
-    "flush": _flaxBinding732,
-    "flushSync": _flaxBinding733,
-    "lock": _flaxBinding736,
-    "lockSync": _flaxBinding737,
-    "unlock": _flaxBinding739,
-    "unlockSync": _flaxBinding740,
-    "toString": _flaxBinding741,
+    "close": _flaxBinding687,
+    "closeSync": _flaxBinding688,
+    "readByte": _flaxBinding689,
+    "readByteSync": _flaxBinding690,
+    "read": _flaxBinding691,
+    "readSync": _flaxBinding692,
+    "readInto": _flaxBinding694,
+    "readIntoSync": _flaxBinding695,
+    "writeByte": _flaxBinding697,
+    "writeByteSync": _flaxBinding698,
+    "writeFrom": _flaxBinding699,
+    "writeFromSync": _flaxBinding700,
+    "writeString": _flaxBinding702,
+    "writeStringSync": _flaxBinding703,
+    "position": _flaxBinding704,
+    "positionSync": _flaxBinding705,
+    "setPosition": _flaxBinding707,
+    "setPositionSync": _flaxBinding708,
+    "truncate": _flaxBinding710,
+    "truncateSync": _flaxBinding711,
+    "length": _flaxBinding712,
+    "lengthSync": _flaxBinding713,
+    "flush": _flaxBinding714,
+    "flushSync": _flaxBinding715,
+    "lock": _flaxBinding718,
+    "lockSync": _flaxBinding719,
+    "unlock": _flaxBinding721,
+    "unlockSync": _flaxBinding722,
+    "toString": _flaxBinding723,
   },
   constructors: {},
   create: _createRandomAccessFile,
@@ -14334,68 +14069,68 @@ const _flaxBinding742 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding743 = FlaxGetter(
+const _flaxBinding725 = FlaxGetter.plain(
   "level",
-  _flaxBinding2,
+  flaxIntType,
   _RawSocketOption_level,
 );
-const _flaxBinding744 = FlaxGetter(
+const _flaxBinding726 = FlaxGetter.plain(
   "option",
-  _flaxBinding2,
+  flaxIntType,
   _RawSocketOption_option,
 );
-const _flaxBinding745 = FlaxGetter(
+const _flaxBinding727 = FlaxGetter.plain(
   "value",
-  _flaxBinding14,
+  flaxUint8ListType,
   _RawSocketOption_value,
 );
-const _flaxBinding746 = <FlaxParameter>[
-  FlaxParameter("level", _flaxBinding2, required: true),
-  FlaxParameter("option", _flaxBinding2, required: true),
-  FlaxParameter("value", _flaxBinding14, required: true),
+const _flaxBinding728 = <FlaxParameter>[
+  FlaxParameter.required("level", flaxIntType),
+  FlaxParameter.required("option", flaxIntType),
+  FlaxParameter.required("value", flaxUint8ListType),
 ];
-const _flaxBinding747 = <FlaxParameter>[
-  FlaxParameter("level", _flaxBinding2, required: true),
-  FlaxParameter("option", _flaxBinding2, required: true),
-  FlaxParameter("value", _flaxBinding2, required: true),
+const _flaxBinding729 = <FlaxParameter>[
+  FlaxParameter.required("level", flaxIntType),
+  FlaxParameter.required("option", flaxIntType),
+  FlaxParameter.required("value", flaxIntType),
 ];
-const _flaxBinding748 = <FlaxParameter>[
-  FlaxParameter("level", _flaxBinding2, required: true),
-  FlaxParameter("option", _flaxBinding2, required: true),
-  FlaxParameter("value", _flaxBinding20, required: true),
+const _flaxBinding730 = <FlaxParameter>[
+  FlaxParameter.required("level", flaxIntType),
+  FlaxParameter.required("option", flaxIntType),
+  FlaxParameter.required("value", flaxBoolType),
 ];
-const _flaxBinding749 = FlaxObjectBinding(
+const _flaxBinding731 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:RawSocketOption",
-  [_flaxBinding743, _flaxBinding744, _flaxBinding745],
+  [_flaxBinding725, _flaxBinding726, _flaxBinding727],
   {},
   constructors: {
-    "": _flaxBinding746,
-    "fromInt": _flaxBinding747,
-    "fromBool": _flaxBinding748,
+    "": _flaxBinding728,
+    "fromInt": _flaxBinding729,
+    "fromBool": _flaxBinding730,
   },
   create: _createRawSocketOption,
   matches: _isRawSocketOption,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding750 = FlaxGetter(
+const _flaxBinding732 = FlaxGetter.plain(
   "statusCode",
-  _flaxBinding2,
+  flaxIntType,
   _RedirectInfo_statusCode,
 );
-const _flaxBinding751 = FlaxGetter(
+const _flaxBinding733 = FlaxGetter.plain(
   "method",
-  _flaxBinding0,
+  flaxStringType,
   _RedirectInfo_method,
 );
-const _flaxBinding752 = FlaxGetter(
+const _flaxBinding734 = FlaxGetter.plain(
   "location",
-  _flaxBinding48,
+  _flaxBinding41,
   _RedirectInfo_location,
 );
-const _flaxBinding753 = FlaxObjectBinding(
+const _flaxBinding735 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:RedirectInfo",
-  [_flaxBinding750, _flaxBinding751, _flaxBinding752],
+  [_flaxBinding732, _flaxBinding733, _flaxBinding734],
   {},
   constructors: {},
   create: _createRedirectInfo,
@@ -14403,109 +14138,122 @@ const _flaxBinding753 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding754 = FlaxGetter("done", _flaxBinding111, _Socket_done);
-const _flaxBinding755 = FlaxGetter("port", _flaxBinding2, _Socket_port);
-const _flaxBinding756 = FlaxGetter(
+const _flaxBinding736 = FlaxGetter.plain("done", _flaxBinding101, _Socket_done);
+const _flaxBinding737 = FlaxGetter.plain("port", flaxIntType, _Socket_port);
+const _flaxBinding738 = FlaxGetter.plain(
   "remotePort",
-  _flaxBinding2,
+  flaxIntType,
   _Socket_remotePort,
 );
-const _flaxBinding757 = FlaxGetter("address", _flaxBinding366, _Socket_address);
-const _flaxBinding758 = FlaxGetter(
+const _flaxBinding739 = FlaxGetter.plain(
+  "address",
+  _flaxBinding351,
+  _Socket_address,
+);
+const _flaxBinding740 = FlaxGetter.plain(
   "remoteAddress",
-  _flaxBinding366,
+  _flaxBinding351,
   _Socket_remoteAddress,
 );
-const _flaxBinding759 = FlaxGetter(
+const _flaxBinding741 = FlaxGetter.plain(
   "isBroadcast",
-  _flaxBinding20,
+  flaxBoolType,
   _Socket_isBroadcast,
 );
-const _flaxBinding760 = FlaxGetter("length", _flaxBinding103, _Socket_length);
-const _flaxBinding761 = FlaxGetter("isEmpty", _flaxBinding55, _Socket_isEmpty);
-const _flaxBinding762 = FlaxGetter("first", _flaxBinding127, _Socket_first);
-const _flaxBinding763 = FlaxGetter("last", _flaxBinding127, _Socket_last);
-const _flaxBinding764 = FlaxGetter("single", _flaxBinding127, _Socket_single);
-const _flaxBinding765 = FlaxGetter(
+const _flaxBinding742 = FlaxGetter.plain(
+  "length",
+  _flaxBinding95,
+  _Socket_length,
+);
+const _flaxBinding743 = FlaxGetter.plain(
+  "isEmpty",
+  _flaxBinding48,
+  _Socket_isEmpty,
+);
+const _flaxBinding744 = FlaxGetter.plain(
+  "first",
+  _flaxBinding117,
+  _Socket_first,
+);
+const _flaxBinding745 = FlaxGetter.plain("last", _flaxBinding117, _Socket_last);
+const _flaxBinding746 = FlaxGetter.plain(
+  "single",
+  _flaxBinding117,
+  _Socket_single,
+);
+const _flaxBinding747 = FlaxGetter.plain(
   "encoding",
-  _flaxBinding130,
+  _flaxBinding120,
   _Socket_encoding,
 );
-const _flaxBinding766 = FlaxSetter(
+const _flaxBinding748 = FlaxSetter(
   "encoding",
-  _flaxBinding130,
+  _flaxBinding120,
   _Socket_set_encoding,
 );
-const _flaxBinding767 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding111,
+const _flaxBinding749 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding101,
   _Socket_close,
 );
-const _flaxBinding768 = FlaxInstanceMethod(
-  _flaxBinding242,
-  _flaxBinding70,
+const _flaxBinding750 = FlaxInstanceMethod.plain(
+  _flaxBinding231,
+  flaxVoidType,
   _Socket_add,
 );
-const _flaxBinding769 = FlaxInstanceMethod(
-  _flaxBinding246,
-  _flaxBinding70,
+const _flaxBinding751 = FlaxInstanceMethod.plain(
+  _flaxBinding234,
+  flaxVoidType,
   _Socket_addError,
 );
-const _flaxBinding770 = FlaxInstanceMethod(
-  _flaxBinding248,
-  _flaxBinding111,
+const _flaxBinding752 = FlaxInstanceMethod.plain(
+  _flaxBinding236,
+  _flaxBinding101,
   _Socket_addStream,
 );
-const _flaxBinding771 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding753 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Socket_destroy,
 );
-const _flaxBinding772 = FlaxTypeRef(
+const _flaxBinding754 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:SocketOption",
 );
-const _flaxBinding773 = <FlaxParameter>[
-  FlaxParameter("option", _flaxBinding772, required: true),
-  FlaxParameter("enabled", _flaxBinding20, required: true),
+const _flaxBinding755 = <FlaxParameter>[
+  FlaxParameter.required("option", _flaxBinding754),
+  FlaxParameter.required("enabled", flaxBoolType),
 ];
-const _flaxBinding774 = FlaxInstanceMethod(
-  _flaxBinding773,
-  _flaxBinding20,
+const _flaxBinding756 = FlaxInstanceMethod.plain(
+  _flaxBinding755,
+  flaxBoolType,
   _Socket_setOption,
 );
-const _flaxBinding775 = FlaxTypeRef(
+const _flaxBinding757 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:RawSocketOption",
 );
-const _flaxBinding776 = <FlaxParameter>[
-  FlaxParameter("option", _flaxBinding775, required: true),
+const _flaxBinding758 = <FlaxParameter>[
+  FlaxParameter.required("option", _flaxBinding757),
 ];
-const _flaxBinding777 = FlaxInstanceMethod(
-  _flaxBinding776,
-  _flaxBinding14,
+const _flaxBinding759 = FlaxInstanceMethod.plain(
+  _flaxBinding758,
+  flaxUint8ListType,
   _Socket_getRawOption,
 );
-const _flaxBinding778 = FlaxInstanceMethod(
-  _flaxBinding776,
-  _flaxBinding70,
+const _flaxBinding760 = FlaxInstanceMethod.plain(
+  _flaxBinding758,
+  flaxVoidType,
   _Socket_setRawOption,
 );
-const _flaxBinding779 = FlaxTypeRef(
+const _flaxBinding761 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:StreamSubscription",
   dartType: FlaxDartTypes.typeOf<api5.StreamSubscription<api2.Uint8List>>,
 );
-const _flaxBinding780 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "subscription",
-      _flaxBinding779,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding70,
+const _flaxBinding762 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("subscription", _flaxBinding761)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api5.StreamSubscription<api2.Uint8List>>,
   id: "callback:<>(p:r:subscription:object:flax.core/flutter#type:StreamSubscription<Uint8List:>)->void:",
   invoke:
@@ -14513,120 +14261,96 @@ const _flaxBinding780 = FlaxCallbackBinding(
   matches: FlaxCallbackAdapters
       .matchesVoid1<api5.StreamSubscription<api2.Uint8List>>,
 );
-const _flaxBinding781 = FlaxTypeRef(
+const _flaxBinding763 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding780,
+  callback: _flaxBinding762,
 );
-const _flaxBinding782 = <FlaxParameter>[
-  FlaxParameter("onCancel", _flaxBinding781, required: false),
-  FlaxParameter("onListen", _flaxBinding781, required: false),
+const _flaxBinding764 = <FlaxParameter>[
+  FlaxParameter("onCancel", _flaxBinding763, required: false),
+  FlaxParameter("onListen", _flaxBinding763, required: false),
 ];
-const _flaxBinding783 = FlaxTypeRef(
+const _flaxBinding765 = FlaxTypeRef(
   "stream",
   id: "flax.core/flutter#type:Stream",
   dartType: FlaxDartTypes.typeOf<api5.Stream<api2.Uint8List>>,
-  item: _flaxBinding14,
+  item: flaxUint8ListType,
   stream: FlaxStreamBinding(
     "stream:flax.core/flutter#type:Stream[Uint8List:]",
     _stream3Matches,
     _stream3Adapt,
   ),
 );
-const _flaxBinding784 = FlaxInstanceMethod(
-  _flaxBinding782,
-  _flaxBinding783,
+const _flaxBinding766 = FlaxInstanceMethod.plain(
+  _flaxBinding764,
+  _flaxBinding765,
   _Socket_asBroadcastStream,
 );
-const _flaxBinding785 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "event",
-      _flaxBinding14,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding70,
+const _flaxBinding767 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api2.Uint8List>,
   id: "callback:<>(p:r:event:Uint8List:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api2.Uint8List>,
   matches: FlaxCallbackAdapters.matchesVoid1<api2.Uint8List>,
 );
-const _flaxBinding786 = FlaxTypeRef(
+const _flaxBinding768 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding785,
+  callback: _flaxBinding767,
 );
-const _flaxBinding787 = <FlaxParameter>[
-  FlaxParameter("onData", _flaxBinding786, required: true),
-  FlaxParameter("cancelOnError", _flaxBinding17, required: false),
-  FlaxParameter("onDone", _flaxBinding300, required: false),
-  FlaxParameter("onError", _flaxBinding301, required: false),
+const _flaxBinding769 = <FlaxParameter>[
+  FlaxParameter.required("onData", _flaxBinding768),
+  FlaxParameter("cancelOnError", flaxNullableBoolType, required: false),
+  FlaxParameter("onDone", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onError", _flaxBinding287, required: false),
 ];
-const _flaxBinding788 = FlaxInstanceMethod(
-  _flaxBinding787,
-  _flaxBinding779,
+const _flaxBinding770 = FlaxInstanceMethod.plain(
+  _flaxBinding769,
+  _flaxBinding761,
   _Socket_listen,
 );
-const _flaxBinding789 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "event",
-      _flaxBinding14,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding20,
+const _flaxBinding771 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
+  flaxBoolType,
   FlaxCallbackAdapters.wrap1<api2.Uint8List, bool>,
   id: "callback:<>(p:r:event:Uint8List:)->bool:",
   invoke: FlaxCallbackAdapters.invoke1<api2.Uint8List, bool>,
   matches: FlaxCallbackAdapters.matches1<api2.Uint8List, bool>,
 );
-const _flaxBinding790 = FlaxTypeRef("callback", callback: _flaxBinding789);
-const _flaxBinding791 = <FlaxParameter>[
-  FlaxParameter("test", _flaxBinding790, required: true),
+const _flaxBinding772 = FlaxTypeRef("callback", callback: _flaxBinding771);
+const _flaxBinding773 = <FlaxParameter>[
+  FlaxParameter.required("test", _flaxBinding772),
 ];
-const _flaxBinding792 = FlaxInstanceMethod(
-  _flaxBinding791,
-  _flaxBinding783,
+const _flaxBinding774 = FlaxInstanceMethod.plain(
+  _flaxBinding773,
+  _flaxBinding765,
   _Socket_where,
 );
-const _flaxBinding793 = FlaxInstanceMethod(
-  _flaxBinding313,
-  _flaxBinding783,
+const _flaxBinding775 = FlaxInstanceMethod.plain(
+  _flaxBinding298,
+  _flaxBinding765,
   _Socket_handleError,
 );
-const _flaxBinding794 = FlaxTypeRef(
+const _flaxBinding776 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:StreamConsumer",
   dartType: FlaxDartTypes.typeOf<api5.StreamConsumer<api2.Uint8List>>,
 );
-const _flaxBinding795 = <FlaxParameter>[
-  FlaxParameter("streamConsumer", _flaxBinding794, required: true),
+const _flaxBinding777 = <FlaxParameter>[
+  FlaxParameter.required("streamConsumer", _flaxBinding776),
 ];
-const _flaxBinding796 = FlaxInstanceMethod(
-  _flaxBinding795,
-  _flaxBinding111,
+const _flaxBinding778 = FlaxInstanceMethod.plain(
+  _flaxBinding777,
+  _flaxBinding101,
   _Socket_pipe,
 );
-const _flaxBinding797 = FlaxCallbackBinding(
+const _flaxBinding779 = FlaxCallbackBinding(
   [
-    FlaxCallbackParameter(
-      "previous",
-      _flaxBinding14,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "element",
-      _flaxBinding14,
-      required: true,
-      positional: true,
-    ),
+    FlaxCallbackParameter.plain("previous", flaxUint8ListType),
+    FlaxCallbackParameter.plain("element", flaxUint8ListType),
   ],
-  _flaxBinding14,
+  flaxUint8ListType,
   FlaxCallbackAdapters.wrap2<api2.Uint8List, api2.Uint8List, api2.Uint8List>,
   id: "callback:<>(p:r:previous:Uint8List:,p:r:element:Uint8List:)->Uint8List:",
   invoke: FlaxCallbackAdapters
@@ -14634,81 +14358,67 @@ const _flaxBinding797 = FlaxCallbackBinding(
   matches: FlaxCallbackAdapters
       .matches2<api2.Uint8List, api2.Uint8List, api2.Uint8List>,
 );
-const _flaxBinding798 = FlaxTypeRef("callback", callback: _flaxBinding797);
-const _flaxBinding799 = <FlaxParameter>[
-  FlaxParameter("combine", _flaxBinding798, required: true),
+const _flaxBinding780 = FlaxTypeRef("callback", callback: _flaxBinding779);
+const _flaxBinding781 = <FlaxParameter>[
+  FlaxParameter.required("combine", _flaxBinding780),
 ];
-const _flaxBinding800 = FlaxInstanceMethod(
-  _flaxBinding799,
-  _flaxBinding127,
+const _flaxBinding782 = FlaxInstanceMethod.plain(
+  _flaxBinding781,
+  _flaxBinding117,
   _Socket_reduce,
 );
-const _flaxBinding801 = FlaxInstanceMethod(
-  _flaxBinding322,
-  _flaxBinding6,
+const _flaxBinding783 = FlaxInstanceMethod.plain(
+  _flaxBinding307,
+  _flaxBinding4,
   _Socket_join,
 );
-const _flaxBinding802 = FlaxInstanceMethod(
-  _flaxBinding324,
-  _flaxBinding55,
+const _flaxBinding784 = FlaxInstanceMethod.plain(
+  _flaxBinding309,
+  _flaxBinding48,
   _Socket_contains,
 );
-const _flaxBinding803 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "element",
-      _flaxBinding14,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding70,
+const _flaxBinding785 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("element", flaxUint8ListType)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api2.Uint8List>,
   id: "callback:<>(p:r:element:Uint8List:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api2.Uint8List>,
   matches: FlaxCallbackAdapters.matchesVoid1<api2.Uint8List>,
 );
-const _flaxBinding804 = FlaxTypeRef("callback", callback: _flaxBinding803);
-const _flaxBinding805 = <FlaxParameter>[
-  FlaxParameter("action", _flaxBinding804, required: true),
+const _flaxBinding786 = FlaxTypeRef("callback", callback: _flaxBinding785);
+const _flaxBinding787 = <FlaxParameter>[
+  FlaxParameter.required("action", _flaxBinding786),
 ];
-const _flaxBinding806 = FlaxInstanceMethod(
-  _flaxBinding805,
-  _flaxBinding328,
+const _flaxBinding788 = FlaxInstanceMethod.plain(
+  _flaxBinding787,
+  _flaxBinding313,
   _Socket_forEach,
 );
-const _flaxBinding807 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "element",
-      _flaxBinding14,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding20,
+const _flaxBinding789 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("element", flaxUint8ListType)],
+  flaxBoolType,
   FlaxCallbackAdapters.wrap1<api2.Uint8List, bool>,
   id: "callback:<>(p:r:element:Uint8List:)->bool:",
   invoke: FlaxCallbackAdapters.invoke1<api2.Uint8List, bool>,
   matches: FlaxCallbackAdapters.matches1<api2.Uint8List, bool>,
 );
-const _flaxBinding808 = FlaxTypeRef("callback", callback: _flaxBinding807);
-const _flaxBinding809 = <FlaxParameter>[
-  FlaxParameter("test", _flaxBinding808, required: true),
+const _flaxBinding790 = FlaxTypeRef("callback", callback: _flaxBinding789);
+const _flaxBinding791 = <FlaxParameter>[
+  FlaxParameter.required("test", _flaxBinding790),
 ];
-const _flaxBinding810 = FlaxInstanceMethod(
-  _flaxBinding809,
-  _flaxBinding55,
+const _flaxBinding792 = FlaxInstanceMethod.plain(
+  _flaxBinding791,
+  _flaxBinding48,
   _Socket_every,
 );
-const _flaxBinding811 = FlaxInstanceMethod(
-  _flaxBinding809,
-  _flaxBinding55,
+const _flaxBinding793 = FlaxInstanceMethod.plain(
+  _flaxBinding791,
+  _flaxBinding48,
   _Socket_any,
 );
-const _flaxBinding812 = FlaxTypeRef(
+const _flaxBinding794 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding14,
+  item: flaxUint8ListType,
   collection: FlaxCollectionBinding(
     "iterable:[Uint8List:]",
     _collection19Create,
@@ -14716,253 +14426,228 @@ const _flaxBinding812 = FlaxTypeRef(
     restore: _collection19Restore,
   ),
 );
-const _flaxBinding813 = FlaxTypeRef(
+const _flaxBinding795 = FlaxTypeRef(
   "list",
-  item: _flaxBinding14,
+  item: flaxUint8ListType,
   collection: FlaxCollectionBinding(
     "list:[Uint8List:]",
     _collection18Create,
     _collection18Matches,
   ),
-  iterable: _flaxBinding812,
+  iterable: _flaxBinding794,
 );
-const _flaxBinding814 = FlaxTypeRef(
+const _flaxBinding796 = FlaxTypeRef(
   "future",
-  item: _flaxBinding813,
+  item: _flaxBinding795,
   future: FlaxFutureBinding("list:[Uint8List:]", _future21Adapt),
 );
-const _flaxBinding815 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding814,
+const _flaxBinding797 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding796,
   _Socket_toList,
 );
-const _flaxBinding816 = FlaxTypeRef(
+const _flaxBinding798 = FlaxTypeRef(
   "set",
-  item: _flaxBinding14,
+  item: flaxUint8ListType,
   collection: FlaxCollectionBinding(
     "set:[Uint8List:]",
     _collection20Create,
     _collection20Matches,
   ),
-  iterable: _flaxBinding812,
+  iterable: _flaxBinding794,
 );
-const _flaxBinding817 = FlaxTypeRef(
+const _flaxBinding799 = FlaxTypeRef(
   "future",
-  item: _flaxBinding816,
+  item: _flaxBinding798,
   future: FlaxFutureBinding("set:[Uint8List:]", _future22Adapt),
 );
-const _flaxBinding818 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding817,
+const _flaxBinding800 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding799,
   _Socket_toSet,
 );
-const _flaxBinding819 = FlaxInstanceMethod(
-  _flaxBinding343,
-  _flaxBinding783,
+const _flaxBinding801 = FlaxInstanceMethod.plain(
+  _flaxBinding328,
+  _flaxBinding765,
   _Socket_take,
 );
-const _flaxBinding820 = FlaxInstanceMethod(
-  _flaxBinding809,
-  _flaxBinding783,
+const _flaxBinding802 = FlaxInstanceMethod.plain(
+  _flaxBinding791,
+  _flaxBinding765,
   _Socket_takeWhile,
 );
-const _flaxBinding821 = FlaxInstanceMethod(
-  _flaxBinding343,
-  _flaxBinding783,
+const _flaxBinding803 = FlaxInstanceMethod.plain(
+  _flaxBinding328,
+  _flaxBinding765,
   _Socket_skip,
 );
-const _flaxBinding822 = FlaxInstanceMethod(
-  _flaxBinding809,
-  _flaxBinding783,
+const _flaxBinding804 = FlaxInstanceMethod.plain(
+  _flaxBinding791,
+  _flaxBinding765,
   _Socket_skipWhile,
 );
-const _flaxBinding823 = FlaxCallbackBinding(
+const _flaxBinding805 = FlaxCallbackBinding(
   [
-    FlaxCallbackParameter(
-      "previous",
-      _flaxBinding14,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "next",
-      _flaxBinding14,
-      required: true,
-      positional: true,
-    ),
+    FlaxCallbackParameter.plain("previous", flaxUint8ListType),
+    FlaxCallbackParameter.plain("next", flaxUint8ListType),
   ],
-  _flaxBinding20,
+  flaxBoolType,
   FlaxCallbackAdapters.wrap2<api2.Uint8List, api2.Uint8List, bool>,
   id: "callback:<>(p:r:previous:Uint8List:,p:r:next:Uint8List:)->bool:",
   invoke: FlaxCallbackAdapters.invoke2<api2.Uint8List, api2.Uint8List, bool>,
   matches: FlaxCallbackAdapters.matches2<api2.Uint8List, api2.Uint8List, bool>,
 );
-const _flaxBinding824 = FlaxTypeRef(
+const _flaxBinding806 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding823,
+  callback: _flaxBinding805,
 );
-const _flaxBinding825 = <FlaxParameter>[
-  FlaxParameter("equals", _flaxBinding824, required: false),
+const _flaxBinding807 = <FlaxParameter>[
+  FlaxParameter("equals", _flaxBinding806, required: false),
 ];
-const _flaxBinding826 = FlaxInstanceMethod(
-  _flaxBinding825,
-  _flaxBinding783,
+const _flaxBinding808 = FlaxInstanceMethod.plain(
+  _flaxBinding807,
+  _flaxBinding765,
   _Socket_distinct,
 );
-const _flaxBinding827 = FlaxCallbackBinding(
+const _flaxBinding809 = FlaxCallbackBinding(
   [],
-  _flaxBinding14,
+  flaxUint8ListType,
   FlaxCallbackAdapters.wrap0<api2.Uint8List>,
   id: "callback:<>()->Uint8List:",
   invoke: FlaxCallbackAdapters.invoke0<api2.Uint8List>,
   matches: FlaxCallbackAdapters.matches0<api2.Uint8List>,
 );
-const _flaxBinding828 = FlaxTypeRef(
+const _flaxBinding810 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding827,
+  callback: _flaxBinding809,
 );
-const _flaxBinding829 = <FlaxParameter>[
-  FlaxParameter("test", _flaxBinding808, required: true),
-  FlaxParameter("orElse", _flaxBinding828, required: false),
+const _flaxBinding811 = <FlaxParameter>[
+  FlaxParameter.required("test", _flaxBinding790),
+  FlaxParameter("orElse", _flaxBinding810, required: false),
 ];
-const _flaxBinding830 = FlaxInstanceMethod(
-  _flaxBinding829,
-  _flaxBinding127,
+const _flaxBinding812 = FlaxInstanceMethod.plain(
+  _flaxBinding811,
+  _flaxBinding117,
   _Socket_firstWhere,
 );
-const _flaxBinding831 = FlaxInstanceMethod(
-  _flaxBinding829,
-  _flaxBinding127,
+const _flaxBinding813 = FlaxInstanceMethod.plain(
+  _flaxBinding811,
+  _flaxBinding117,
   _Socket_lastWhere,
 );
-const _flaxBinding832 = FlaxInstanceMethod(
-  _flaxBinding829,
-  _flaxBinding127,
+const _flaxBinding814 = FlaxInstanceMethod.plain(
+  _flaxBinding811,
+  _flaxBinding117,
   _Socket_singleWhere,
 );
-const _flaxBinding833 = FlaxInstanceMethod(
-  _flaxBinding358,
-  _flaxBinding127,
+const _flaxBinding815 = FlaxInstanceMethod.plain(
+  _flaxBinding343,
+  _flaxBinding117,
   _Socket_elementAt,
 );
-const _flaxBinding834 = FlaxTypeRef(
+const _flaxBinding816 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:EventSink",
   dartType: FlaxDartTypes.typeOf<api5.EventSink<api2.Uint8List>>,
 );
-const _flaxBinding835 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "sink",
-      _flaxBinding834,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding70,
+const _flaxBinding817 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("sink", _flaxBinding816)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api5.EventSink<api2.Uint8List>>,
   id: "callback:<>(p:r:sink:object:flax.core/flutter#type:EventSink<Uint8List:>)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api5.EventSink<api2.Uint8List>>,
   matches: FlaxCallbackAdapters.matchesVoid1<api5.EventSink<api2.Uint8List>>,
 );
-const _flaxBinding836 = FlaxTypeRef(
+const _flaxBinding818 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding835,
+  callback: _flaxBinding817,
 );
-const _flaxBinding837 = <FlaxParameter>[
-  FlaxParameter("timeLimit", _flaxBinding163, required: true),
-  FlaxParameter("onTimeout", _flaxBinding836, required: false),
+const _flaxBinding819 = <FlaxParameter>[
+  FlaxParameter.required("timeLimit", flaxDurationType),
+  FlaxParameter("onTimeout", _flaxBinding818, required: false),
 ];
-const _flaxBinding838 = FlaxInstanceMethod(
-  _flaxBinding837,
-  _flaxBinding783,
+const _flaxBinding820 = FlaxInstanceMethod.plain(
+  _flaxBinding819,
+  _flaxBinding765,
   _Socket_timeout,
 );
-const _flaxBinding839 = FlaxInstanceMethod(
-  _flaxBinding252,
-  _flaxBinding70,
+const _flaxBinding821 = FlaxInstanceMethod.plain(
+  _flaxBinding240,
+  flaxVoidType,
   _Socket_write,
 );
-const _flaxBinding840 = FlaxInstanceMethod(
-  _flaxBinding255,
-  _flaxBinding70,
+const _flaxBinding822 = FlaxInstanceMethod.plain(
+  _flaxBinding243,
+  flaxVoidType,
   _Socket_writeAll,
 );
-const _flaxBinding841 = FlaxInstanceMethod(
-  _flaxBinding257,
-  _flaxBinding70,
+const _flaxBinding823 = FlaxInstanceMethod.plain(
+  _flaxBinding245,
+  flaxVoidType,
   _Socket_writeln,
 );
-const _flaxBinding842 = FlaxInstanceMethod(
-  _flaxBinding259,
-  _flaxBinding70,
+const _flaxBinding824 = FlaxInstanceMethod.plain(
+  _flaxBinding247,
+  flaxVoidType,
   _Socket_writeCharCode,
 );
-const _flaxBinding843 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding111,
+const _flaxBinding825 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding101,
   _Socket_flush,
 );
-const _flaxBinding844 = FlaxObjectBinding(
+const _flaxBinding826 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Socket",
   [
-    _flaxBinding754,
-    _flaxBinding755,
-    _flaxBinding756,
-    _flaxBinding757,
-    _flaxBinding758,
-    _flaxBinding759,
-    _flaxBinding760,
-    _flaxBinding761,
-    _flaxBinding762,
-    _flaxBinding763,
-    _flaxBinding764,
-    _flaxBinding765,
+    _flaxBinding736,
+    _flaxBinding737,
+    _flaxBinding738,
+    _flaxBinding739,
+    _flaxBinding740,
+    _flaxBinding741,
+    _flaxBinding742,
+    _flaxBinding743,
+    _flaxBinding744,
+    _flaxBinding745,
+    _flaxBinding746,
+    _flaxBinding747,
   ],
   {
-    "close": _flaxBinding767,
-    "add": _flaxBinding768,
-    "addError": _flaxBinding769,
-    "addStream": _flaxBinding770,
-    "destroy": _flaxBinding771,
-    "setOption": _flaxBinding774,
-    "getRawOption": _flaxBinding777,
-    "setRawOption": _flaxBinding778,
-    "asBroadcastStream": _flaxBinding784,
-    "listen": _flaxBinding788,
-    "where": _flaxBinding792,
+    "close": _flaxBinding749,
+    "add": _flaxBinding750,
+    "addError": _flaxBinding751,
+    "addStream": _flaxBinding752,
+    "destroy": _flaxBinding753,
+    "setOption": _flaxBinding756,
+    "getRawOption": _flaxBinding759,
+    "setRawOption": _flaxBinding760,
+    "asBroadcastStream": _flaxBinding766,
+    "listen": _flaxBinding770,
+    "where": _flaxBinding774,
     "map": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding110,
+              [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
+              flaxNullableAnyType,
               _callback8,
               id: "callback:<>(p:r:event:Uint8List:)->any?:",
               invoke: _callback8Invoke,
               matches: _callback8Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -14975,33 +14660,25 @@ const _flaxBinding844 = FlaxObjectBinding(
     ),
     "asyncMap": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding308,
+              [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
+              _flaxBinding294,
               _callback9,
               id: "callback:<>(p:r:event:Uint8List:)->futureOr:[any?:]",
               invoke: _callback9Invoke,
               matches: _callback9Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15014,33 +14691,25 @@ const _flaxBinding844 = FlaxObjectBinding(
     ),
     "asyncExpand": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding309,
+              [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
+              _flaxBinding295,
               _callback10,
               id: "callback:<>(p:r:event:Uint8List:)->stream?:flax.core/flutter#type:Stream[any?:]",
               invoke: _callback10Invoke,
               matches: _callback10Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15051,36 +14720,28 @@ const _flaxBinding844 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_Socket_asyncExpand,
       ownerTypes: [],
     ),
-    "handleError": _flaxBinding793,
+    "handleError": _flaxBinding775,
     "expand": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "element",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding254,
+              [FlaxCallbackParameter.plain("element", flaxUint8ListType)],
+              _flaxBinding242,
               _callback11,
               id: "callback:<>(p:r:element:Uint8List:)->iterable:[any?:]",
               invoke: _callback11Invoke,
               matches: _callback11Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15091,19 +14752,18 @@ const _flaxBinding844 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_Socket_expand,
       ownerTypes: [],
     ),
-    "pipe": _flaxBinding796,
+    "pipe": _flaxBinding778,
     "transform": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "streamTransformer",
           FlaxTypeRef("object", id: "flax.core/flutter#type:StreamTransformer"),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15114,63 +14774,51 @@ const _flaxBinding844 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_Socket_transform,
       ownerTypes: [],
     ),
-    "reduce": _flaxBinding800,
+    "reduce": _flaxBinding782,
     "fold": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "initialValue",
           FlaxTypeRef("any", nullable: true),
-          required: true,
         ),
-        FlaxParameter(
+        FlaxParameter.required(
           "combine",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
               [
-                FlaxCallbackParameter(
-                  "previous",
-                  _flaxBinding110,
-                  required: true,
-                  positional: true,
-                ),
-                FlaxCallbackParameter(
-                  "element",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
+                FlaxCallbackParameter.plain("previous", flaxNullableAnyType),
+                FlaxCallbackParameter.plain("element", flaxUint8ListType),
               ],
-              _flaxBinding110,
+              flaxNullableAnyType,
               _callback12,
               id: "callback:<>(p:r:previous:any?:,p:r:element:Uint8List:)->any?:",
               invoke: _callback12Invoke,
               matches: _callback12Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _Socket_fold,
       genericFactory: _flaxGeneric_Socket_fold,
       ownerTypes: [],
     ),
-    "join": _flaxBinding801,
-    "contains": _flaxBinding802,
-    "forEach": _flaxBinding806,
-    "every": _flaxBinding810,
-    "any": _flaxBinding811,
+    "join": _flaxBinding783,
+    "contains": _flaxBinding784,
+    "forEach": _flaxBinding788,
+    "every": _flaxBinding792,
+    "any": _flaxBinding793,
     "cast": FlaxInstanceMethod(
-      _flaxBinding42,
+      _flaxBinding35,
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15181,8 +14829,8 @@ const _flaxBinding844 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_Socket_cast,
       ownerTypes: [],
     ),
-    "toList": _flaxBinding815,
-    "toSet": _flaxBinding818,
+    "toList": _flaxBinding797,
+    "toSet": _flaxBinding800,
     "drain": FlaxInstanceMethod(
       <FlaxParameter>[
         FlaxParameter(
@@ -15193,33 +14841,33 @@ const _flaxBinding844 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _Socket_drain,
       genericFactory: _flaxGeneric_Socket_drain,
       ownerTypes: [],
     ),
-    "take": _flaxBinding819,
-    "takeWhile": _flaxBinding820,
-    "skip": _flaxBinding821,
-    "skipWhile": _flaxBinding822,
-    "distinct": _flaxBinding826,
-    "firstWhere": _flaxBinding830,
-    "lastWhere": _flaxBinding831,
-    "singleWhere": _flaxBinding832,
-    "elementAt": _flaxBinding833,
-    "timeout": _flaxBinding838,
-    "write": _flaxBinding839,
-    "writeAll": _flaxBinding840,
-    "writeln": _flaxBinding841,
-    "writeCharCode": _flaxBinding842,
-    "flush": _flaxBinding843,
+    "take": _flaxBinding801,
+    "takeWhile": _flaxBinding802,
+    "skip": _flaxBinding803,
+    "skipWhile": _flaxBinding804,
+    "distinct": _flaxBinding808,
+    "firstWhere": _flaxBinding812,
+    "lastWhere": _flaxBinding813,
+    "singleWhere": _flaxBinding814,
+    "elementAt": _flaxBinding815,
+    "timeout": _flaxBinding820,
+    "write": _flaxBinding821,
+    "writeAll": _flaxBinding822,
+    "writeln": _flaxBinding823,
+    "writeCharCode": _flaxBinding824,
+    "flush": _flaxBinding825,
   },
   constructors: {},
   create: _createSocket,
   matches: _isSocket,
-  setters: [_flaxBinding766],
+  setters: [_flaxBinding748],
   supertypes: [
     "dart:core::Object",
     "flax.core/flutter#type:Stream",
@@ -15231,74 +14879,66 @@ const _flaxBinding844 = FlaxObjectBinding(
     "dart:core::StringSink",
   ],
 );
-const _flaxBinding845 = FlaxGetter(
+const _flaxBinding827 = FlaxGetter.plain(
   "peerCertificate",
-  _flaxBinding276,
+  _flaxBinding264,
   _SecureSocket_peerCertificate,
 );
-const _flaxBinding846 = FlaxGetter(
+const _flaxBinding828 = FlaxGetter.plain(
   "selectedProtocol",
-  _flaxBinding29,
+  flaxNullableStringType,
   _SecureSocket_selectedProtocol,
 );
-const _flaxBinding847 = <FlaxParameter>[
+const _flaxBinding829 = <FlaxParameter>[
   FlaxParameter(
     "requestClientCertificate",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "requireClientCertificate",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "useSessionCache",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: true,
   ),
 ];
-const _flaxBinding848 = FlaxInstanceMethod(
-  _flaxBinding847,
-  _flaxBinding70,
+const _flaxBinding830 = FlaxInstanceMethod.plain(
+  _flaxBinding829,
+  flaxVoidType,
   _SecureSocket_renegotiate,
 );
-const _flaxBinding849 = FlaxObjectBinding(
+const _flaxBinding831 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:SecureSocket",
-  [_flaxBinding845, _flaxBinding846],
+  [_flaxBinding827, _flaxBinding828],
   {
     "map": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding110,
+              [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
+              flaxNullableAnyType,
               _callback13,
               id: "callback:<>(p:r:event:Uint8List:)->any?:",
               invoke: _callback13Invoke,
               matches: _callback13Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15311,33 +14951,25 @@ const _flaxBinding849 = FlaxObjectBinding(
     ),
     "asyncMap": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding308,
+              [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
+              _flaxBinding294,
               _callback14,
               id: "callback:<>(p:r:event:Uint8List:)->futureOr:[any?:]",
               invoke: _callback14Invoke,
               matches: _callback14Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15350,33 +14982,25 @@ const _flaxBinding849 = FlaxObjectBinding(
     ),
     "asyncExpand": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "event",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding309,
+              [FlaxCallbackParameter.plain("event", flaxUint8ListType)],
+              _flaxBinding295,
               _callback15,
               id: "callback:<>(p:r:event:Uint8List:)->stream?:flax.core/flutter#type:Stream[any?:]",
               invoke: _callback15Invoke,
               matches: _callback15Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15389,33 +15013,25 @@ const _flaxBinding849 = FlaxObjectBinding(
     ),
     "expand": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "convert",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "element",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding254,
+              [FlaxCallbackParameter.plain("element", flaxUint8ListType)],
+              _flaxBinding242,
               _callback16,
               id: "callback:<>(p:r:element:Uint8List:)->iterable:[any?:]",
               invoke: _callback16Invoke,
               matches: _callback16Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15428,16 +15044,15 @@ const _flaxBinding849 = FlaxObjectBinding(
     ),
     "transform": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "streamTransformer",
           FlaxTypeRef("object", id: "flax.core/flutter#type:StreamTransformer"),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15450,43 +15065,31 @@ const _flaxBinding849 = FlaxObjectBinding(
     ),
     "fold": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter(
+        FlaxParameter.required(
           "initialValue",
           FlaxTypeRef("any", nullable: true),
-          required: true,
         ),
-        FlaxParameter(
+        FlaxParameter.required(
           "combine",
           FlaxTypeRef(
             "callback",
             callback: FlaxCallbackBinding(
               [
-                FlaxCallbackParameter(
-                  "previous",
-                  _flaxBinding110,
-                  required: true,
-                  positional: true,
-                ),
-                FlaxCallbackParameter(
-                  "element",
-                  _flaxBinding14,
-                  required: true,
-                  positional: true,
-                ),
+                FlaxCallbackParameter.plain("previous", flaxNullableAnyType),
+                FlaxCallbackParameter.plain("element", flaxUint8ListType),
               ],
-              _flaxBinding110,
+              flaxNullableAnyType,
               _callback17,
               id: "callback:<>(p:r:previous:any?:,p:r:element:Uint8List:)->any?:",
               invoke: _callback17Invoke,
               matches: _callback17Matches,
             ),
           ),
-          required: true,
         ),
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _SecureSocket_fold,
@@ -15494,11 +15097,11 @@ const _flaxBinding849 = FlaxObjectBinding(
       ownerTypes: [],
     ),
     "cast": FlaxInstanceMethod(
-      _flaxBinding42,
+      _flaxBinding35,
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
           _stream2Matches,
@@ -15519,14 +15122,14 @@ const _flaxBinding849 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding110,
+        item: flaxNullableAnyType,
         future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _SecureSocket_drain,
       genericFactory: _flaxGeneric_SecureSocket_drain,
       ownerTypes: [],
     ),
-    "renegotiate": _flaxBinding848,
+    "renegotiate": _flaxBinding830,
   },
   constructors: {},
   create: _createSecureSocket,
@@ -15543,134 +15146,134 @@ const _flaxBinding849 = FlaxObjectBinding(
     "flax.core/flutter#type:StreamConsumer",
     "dart:core::StringSink",
   ],
-  parent: _flaxBinding844,
+  parent: _flaxBinding826,
 );
-const _flaxBinding850 = FlaxGetter(
+const _flaxBinding832 = FlaxGetter.plain(
   "allowLegacyUnsafeRenegotiation",
-  _flaxBinding20,
+  flaxBoolType,
   _SecurityContext_allowLegacyUnsafeRenegotiation,
 );
-const _flaxBinding851 = FlaxSetter(
+const _flaxBinding833 = FlaxSetter(
   "allowLegacyUnsafeRenegotiation",
-  _flaxBinding20,
+  flaxBoolType,
   _SecurityContext_set_allowLegacyUnsafeRenegotiation,
 );
-const _flaxBinding852 = <FlaxParameter>[
-  FlaxParameter("file", _flaxBinding0, required: true),
-  FlaxParameter("password", _flaxBinding29, required: false),
+const _flaxBinding834 = <FlaxParameter>[
+  FlaxParameter.required("file", flaxStringType),
+  FlaxParameter("password", flaxNullableStringType, required: false),
 ];
-const _flaxBinding853 = FlaxInstanceMethod(
-  _flaxBinding852,
-  _flaxBinding70,
+const _flaxBinding835 = FlaxInstanceMethod.plain(
+  _flaxBinding834,
+  flaxVoidType,
   _SecurityContext_usePrivateKey,
 );
-const _flaxBinding854 = <FlaxParameter>[
-  FlaxParameter("keyBytes", _flaxBinding4, required: true),
-  FlaxParameter("password", _flaxBinding29, required: false),
+const _flaxBinding836 = <FlaxParameter>[
+  FlaxParameter.required("keyBytes", _flaxBinding2),
+  FlaxParameter("password", flaxNullableStringType, required: false),
 ];
-const _flaxBinding855 = FlaxInstanceMethod(
-  _flaxBinding854,
-  _flaxBinding70,
+const _flaxBinding837 = FlaxInstanceMethod.plain(
+  _flaxBinding836,
+  flaxVoidType,
   _SecurityContext_usePrivateKeyBytes,
 );
-const _flaxBinding856 = FlaxInstanceMethod(
-  _flaxBinding852,
-  _flaxBinding70,
+const _flaxBinding838 = FlaxInstanceMethod.plain(
+  _flaxBinding834,
+  flaxVoidType,
   _SecurityContext_setTrustedCertificates,
 );
-const _flaxBinding857 = <FlaxParameter>[
-  FlaxParameter("certBytes", _flaxBinding4, required: true),
-  FlaxParameter("password", _flaxBinding29, required: false),
+const _flaxBinding839 = <FlaxParameter>[
+  FlaxParameter.required("certBytes", _flaxBinding2),
+  FlaxParameter("password", flaxNullableStringType, required: false),
 ];
-const _flaxBinding858 = FlaxInstanceMethod(
-  _flaxBinding857,
-  _flaxBinding70,
+const _flaxBinding840 = FlaxInstanceMethod.plain(
+  _flaxBinding839,
+  flaxVoidType,
   _SecurityContext_setTrustedCertificatesBytes,
 );
-const _flaxBinding859 = FlaxInstanceMethod(
-  _flaxBinding852,
-  _flaxBinding70,
+const _flaxBinding841 = FlaxInstanceMethod.plain(
+  _flaxBinding834,
+  flaxVoidType,
   _SecurityContext_useCertificateChain,
 );
-const _flaxBinding860 = <FlaxParameter>[
-  FlaxParameter("chainBytes", _flaxBinding4, required: true),
-  FlaxParameter("password", _flaxBinding29, required: false),
+const _flaxBinding842 = <FlaxParameter>[
+  FlaxParameter.required("chainBytes", _flaxBinding2),
+  FlaxParameter("password", flaxNullableStringType, required: false),
 ];
-const _flaxBinding861 = FlaxInstanceMethod(
-  _flaxBinding860,
-  _flaxBinding70,
+const _flaxBinding843 = FlaxInstanceMethod.plain(
+  _flaxBinding842,
+  flaxVoidType,
   _SecurityContext_useCertificateChainBytes,
 );
-const _flaxBinding862 = FlaxInstanceMethod(
-  _flaxBinding852,
-  _flaxBinding70,
+const _flaxBinding844 = FlaxInstanceMethod.plain(
+  _flaxBinding834,
+  flaxVoidType,
   _SecurityContext_setClientAuthorities,
 );
-const _flaxBinding863 = <FlaxParameter>[
-  FlaxParameter("authCertBytes", _flaxBinding4, required: true),
-  FlaxParameter("password", _flaxBinding29, required: false),
+const _flaxBinding845 = <FlaxParameter>[
+  FlaxParameter.required("authCertBytes", _flaxBinding2),
+  FlaxParameter("password", flaxNullableStringType, required: false),
 ];
-const _flaxBinding864 = FlaxInstanceMethod(
-  _flaxBinding863,
-  _flaxBinding70,
+const _flaxBinding846 = FlaxInstanceMethod.plain(
+  _flaxBinding845,
+  flaxVoidType,
   _SecurityContext_setClientAuthoritiesBytes,
 );
-const _flaxBinding865 = <FlaxParameter>[
-  FlaxParameter("protocols", _flaxBinding135, required: true),
-  FlaxParameter("isServer", _flaxBinding20, required: true),
+const _flaxBinding847 = <FlaxParameter>[
+  FlaxParameter.required("protocols", _flaxBinding125),
+  FlaxParameter.required("isServer", flaxBoolType),
 ];
-const _flaxBinding866 = FlaxInstanceMethod(
-  _flaxBinding865,
-  _flaxBinding70,
+const _flaxBinding848 = FlaxInstanceMethod.plain(
+  _flaxBinding847,
+  flaxVoidType,
   _SecurityContext_setAlpnProtocols,
 );
-const _flaxBinding867 = <FlaxParameter>[
+const _flaxBinding849 = <FlaxParameter>[
   FlaxParameter(
     "withTrustedRoots",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding868 = FlaxObjectBinding(
+const _flaxBinding850 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:SecurityContext",
-  [_flaxBinding850],
+  [_flaxBinding832],
   {
-    "usePrivateKey": _flaxBinding853,
-    "usePrivateKeyBytes": _flaxBinding855,
-    "setTrustedCertificates": _flaxBinding856,
-    "setTrustedCertificatesBytes": _flaxBinding858,
-    "useCertificateChain": _flaxBinding859,
-    "useCertificateChainBytes": _flaxBinding861,
-    "setClientAuthorities": _flaxBinding862,
-    "setClientAuthoritiesBytes": _flaxBinding864,
-    "setAlpnProtocols": _flaxBinding866,
+    "usePrivateKey": _flaxBinding835,
+    "usePrivateKeyBytes": _flaxBinding837,
+    "setTrustedCertificates": _flaxBinding838,
+    "setTrustedCertificatesBytes": _flaxBinding840,
+    "useCertificateChain": _flaxBinding841,
+    "useCertificateChainBytes": _flaxBinding843,
+    "setClientAuthorities": _flaxBinding844,
+    "setClientAuthoritiesBytes": _flaxBinding846,
+    "setAlpnProtocols": _flaxBinding848,
   },
-  constructors: {"": _flaxBinding867},
+  constructors: {"": _flaxBinding849},
   create: _createSecurityContext,
   matches: _isSecurityContext,
-  setters: [_flaxBinding851],
+  setters: [_flaxBinding833],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding869 = <FlaxParameter>[
-  FlaxParameter("message", _flaxBinding110, required: true),
+const _flaxBinding851 = <FlaxParameter>[
+  FlaxParameter.required("message", flaxNullableAnyType),
 ];
-const _flaxBinding870 = FlaxInstanceMethod(
-  _flaxBinding869,
-  _flaxBinding70,
+const _flaxBinding852 = FlaxInstanceMethod.plain(
+  _flaxBinding851,
+  flaxVoidType,
   _SendPort_send,
 );
-const _flaxBinding871 = FlaxObjectBinding(
+const _flaxBinding853 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:SendPort",
   [],
-  {"send": _flaxBinding870},
+  {"send": _flaxBinding852},
   constructors: {},
   create: _createSendPort,
   matches: _isSendPort,
   setters: [],
   supertypes: ["dart:core::Object", "dart:isolate::Capability"],
 );
-const _flaxBinding872 = FlaxObjectBinding(
+const _flaxBinding854 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:SocketOption",
   [],
   {},
@@ -15680,98 +15283,98 @@ const _flaxBinding872 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding873 = FlaxGetter(
+const _flaxBinding855 = FlaxGetter.plain(
   "frequency",
-  _flaxBinding2,
+  flaxIntType,
   _Stopwatch_frequency,
 );
-const _flaxBinding874 = FlaxGetter(
+const _flaxBinding856 = FlaxGetter.plain(
   "elapsedTicks",
-  _flaxBinding2,
+  flaxIntType,
   _Stopwatch_elapsedTicks,
 );
-const _flaxBinding875 = FlaxGetter(
+const _flaxBinding857 = FlaxGetter.plain(
   "elapsed",
-  _flaxBinding163,
+  flaxDurationType,
   _Stopwatch_elapsed,
 );
-const _flaxBinding876 = FlaxGetter(
+const _flaxBinding858 = FlaxGetter.plain(
   "elapsedMicroseconds",
-  _flaxBinding2,
+  flaxIntType,
   _Stopwatch_elapsedMicroseconds,
 );
-const _flaxBinding877 = FlaxGetter(
+const _flaxBinding859 = FlaxGetter.plain(
   "elapsedMilliseconds",
-  _flaxBinding2,
+  flaxIntType,
   _Stopwatch_elapsedMilliseconds,
 );
-const _flaxBinding878 = FlaxGetter(
+const _flaxBinding860 = FlaxGetter.plain(
   "isRunning",
-  _flaxBinding20,
+  flaxBoolType,
   _Stopwatch_isRunning,
 );
-const _flaxBinding879 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding861 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Stopwatch_start,
 );
-const _flaxBinding880 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding862 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Stopwatch_stop,
 );
-const _flaxBinding881 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding863 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Stopwatch_reset,
 );
-const _flaxBinding882 = FlaxObjectBinding(
+const _flaxBinding864 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Stopwatch",
   [
-    _flaxBinding873,
-    _flaxBinding874,
-    _flaxBinding875,
-    _flaxBinding876,
-    _flaxBinding877,
-    _flaxBinding878,
+    _flaxBinding855,
+    _flaxBinding856,
+    _flaxBinding857,
+    _flaxBinding858,
+    _flaxBinding859,
+    _flaxBinding860,
   ],
-  {"start": _flaxBinding879, "stop": _flaxBinding880, "reset": _flaxBinding881},
-  constructors: {"": _flaxBinding42},
+  {"start": _flaxBinding861, "stop": _flaxBinding862, "reset": _flaxBinding863},
+  constructors: {"": _flaxBinding35},
   create: _createStopwatch,
   matches: _isStopwatch,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding883 = <FlaxParameter>[
-  FlaxParameter("string", _flaxBinding0, required: true),
+const _flaxBinding865 = <FlaxParameter>[
+  FlaxParameter.required("string", flaxStringType),
 ];
-const _flaxBinding884 = FlaxInstanceMethod(
-  _flaxBinding883,
-  _flaxBinding14,
+const _flaxBinding866 = FlaxInstanceMethod.plain(
+  _flaxBinding865,
+  flaxUint8ListType,
   _Utf8Codec_encode,
 );
-const _flaxBinding885 = <FlaxParameter>[
-  FlaxParameter("codeUnits", _flaxBinding4, required: true),
-  FlaxParameter("allowMalformed", _flaxBinding17, required: false),
+const _flaxBinding867 = <FlaxParameter>[
+  FlaxParameter.required("codeUnits", _flaxBinding2),
+  FlaxParameter("allowMalformed", flaxNullableBoolType, required: false),
 ];
-const _flaxBinding886 = FlaxInstanceMethod(
-  _flaxBinding885,
-  _flaxBinding0,
+const _flaxBinding868 = FlaxInstanceMethod.plain(
+  _flaxBinding867,
+  flaxStringType,
   _Utf8Codec_decode,
 );
-const _flaxBinding887 = <FlaxParameter>[
+const _flaxBinding869 = <FlaxParameter>[
   FlaxParameter(
     "allowMalformed",
-    _flaxBinding20,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding888 = FlaxObjectBinding(
+const _flaxBinding870 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Utf8Codec",
   [],
-  {"encode": _flaxBinding884, "decode": _flaxBinding886},
-  constructors: {"": _flaxBinding887},
+  {"encode": _flaxBinding866, "decode": _flaxBinding868},
+  constructors: {"": _flaxBinding869},
   create: _createUtf8Codec,
   matches: _isUtf8Codec,
   setters: [],
@@ -15780,416 +15383,629 @@ const _flaxBinding888 = FlaxObjectBinding(
     "dart:convert::Codec",
     "dart:core::Object",
   ],
-  parent: _flaxBinding13,
+  parent: _flaxBinding11,
 );
-const _flaxBinding889 = FlaxGetter(
+const _flaxBinding871 = FlaxGetter.plain(
   "storage",
-  _flaxBinding438,
+  _flaxBinding423,
   _Vector2_storage,
 );
-const _flaxBinding890 = FlaxGetter("length", _flaxBinding448, _Vector2_length);
-const _flaxBinding891 = FlaxGetter(
+const _flaxBinding872 = FlaxGetter.plain(
+  "length",
+  flaxDoubleType,
+  _Vector2_length,
+);
+const _flaxBinding873 = FlaxGetter.plain(
   "length2",
-  _flaxBinding448,
+  flaxDoubleType,
   _Vector2_length2,
 );
-const _flaxBinding892 = FlaxGetter(
+const _flaxBinding874 = FlaxGetter.plain(
   "isInfinite",
-  _flaxBinding20,
+  flaxBoolType,
   _Vector2_isInfinite,
 );
-const _flaxBinding893 = FlaxGetter("isNaN", _flaxBinding20, _Vector2_isNaN);
-const _flaxBinding894 = FlaxGetter("xx", _flaxBinding441, _Vector2_xx);
-const _flaxBinding895 = FlaxGetter("xy", _flaxBinding441, _Vector2_xy);
-const _flaxBinding896 = FlaxGetter("yx", _flaxBinding441, _Vector2_yx);
-const _flaxBinding897 = FlaxGetter("yy", _flaxBinding441, _Vector2_yy);
-const _flaxBinding898 = FlaxGetter("xxx", _flaxBinding534, _Vector2_xxx);
-const _flaxBinding899 = FlaxGetter("xxy", _flaxBinding534, _Vector2_xxy);
-const _flaxBinding900 = FlaxGetter("xyx", _flaxBinding534, _Vector2_xyx);
-const _flaxBinding901 = FlaxGetter("xyy", _flaxBinding534, _Vector2_xyy);
-const _flaxBinding902 = FlaxGetter("yxx", _flaxBinding534, _Vector2_yxx);
-const _flaxBinding903 = FlaxGetter("yxy", _flaxBinding534, _Vector2_yxy);
-const _flaxBinding904 = FlaxGetter("yyx", _flaxBinding534, _Vector2_yyx);
-const _flaxBinding905 = FlaxGetter("yyy", _flaxBinding534, _Vector2_yyy);
-const _flaxBinding906 = FlaxTypeRef(
+const _flaxBinding875 = FlaxGetter.plain("isNaN", flaxBoolType, _Vector2_isNaN);
+const _flaxBinding876 = FlaxGetter.plain("xx", _flaxBinding426, _Vector2_xx);
+const _flaxBinding877 = FlaxGetter.plain("xy", _flaxBinding426, _Vector2_xy);
+const _flaxBinding878 = FlaxGetter.plain("yx", _flaxBinding426, _Vector2_yx);
+const _flaxBinding879 = FlaxGetter.plain("yy", _flaxBinding426, _Vector2_yy);
+const _flaxBinding880 = FlaxGetter.plain("xxx", _flaxBinding517, _Vector2_xxx);
+const _flaxBinding881 = FlaxGetter.plain("xxy", _flaxBinding517, _Vector2_xxy);
+const _flaxBinding882 = FlaxGetter.plain("xyx", _flaxBinding517, _Vector2_xyx);
+const _flaxBinding883 = FlaxGetter.plain("xyy", _flaxBinding517, _Vector2_xyy);
+const _flaxBinding884 = FlaxGetter.plain("yxx", _flaxBinding517, _Vector2_yxx);
+const _flaxBinding885 = FlaxGetter.plain("yxy", _flaxBinding517, _Vector2_yxy);
+const _flaxBinding886 = FlaxGetter.plain("yyx", _flaxBinding517, _Vector2_yyx);
+const _flaxBinding887 = FlaxGetter.plain("yyy", _flaxBinding517, _Vector2_yyy);
+const _flaxBinding888 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Vector4",
 );
-const _flaxBinding907 = FlaxGetter("xxxx", _flaxBinding906, _Vector2_xxxx);
-const _flaxBinding908 = FlaxGetter("xxxy", _flaxBinding906, _Vector2_xxxy);
-const _flaxBinding909 = FlaxGetter("xxyx", _flaxBinding906, _Vector2_xxyx);
-const _flaxBinding910 = FlaxGetter("xxyy", _flaxBinding906, _Vector2_xxyy);
-const _flaxBinding911 = FlaxGetter("xyxx", _flaxBinding906, _Vector2_xyxx);
-const _flaxBinding912 = FlaxGetter("xyxy", _flaxBinding906, _Vector2_xyxy);
-const _flaxBinding913 = FlaxGetter("xyyx", _flaxBinding906, _Vector2_xyyx);
-const _flaxBinding914 = FlaxGetter("xyyy", _flaxBinding906, _Vector2_xyyy);
-const _flaxBinding915 = FlaxGetter("yxxx", _flaxBinding906, _Vector2_yxxx);
-const _flaxBinding916 = FlaxGetter("yxxy", _flaxBinding906, _Vector2_yxxy);
-const _flaxBinding917 = FlaxGetter("yxyx", _flaxBinding906, _Vector2_yxyx);
-const _flaxBinding918 = FlaxGetter("yxyy", _flaxBinding906, _Vector2_yxyy);
-const _flaxBinding919 = FlaxGetter("yyxx", _flaxBinding906, _Vector2_yyxx);
-const _flaxBinding920 = FlaxGetter("yyxy", _flaxBinding906, _Vector2_yyxy);
-const _flaxBinding921 = FlaxGetter("yyyx", _flaxBinding906, _Vector2_yyyx);
-const _flaxBinding922 = FlaxGetter("yyyy", _flaxBinding906, _Vector2_yyyy);
-const _flaxBinding923 = FlaxGetter("r", _flaxBinding448, _Vector2_r);
-const _flaxBinding924 = FlaxGetter("g", _flaxBinding448, _Vector2_g);
-const _flaxBinding925 = FlaxGetter("s", _flaxBinding448, _Vector2_s);
-const _flaxBinding926 = FlaxGetter("t", _flaxBinding448, _Vector2_t);
-const _flaxBinding927 = FlaxGetter("x", _flaxBinding448, _Vector2_x);
-const _flaxBinding928 = FlaxGetter("y", _flaxBinding448, _Vector2_y);
-const _flaxBinding929 = FlaxGetter("rr", _flaxBinding441, _Vector2_rr);
-const _flaxBinding930 = FlaxGetter("rg", _flaxBinding441, _Vector2_rg);
-const _flaxBinding931 = FlaxGetter("gr", _flaxBinding441, _Vector2_gr);
-const _flaxBinding932 = FlaxGetter("gg", _flaxBinding441, _Vector2_gg);
-const _flaxBinding933 = FlaxGetter("rrr", _flaxBinding534, _Vector2_rrr);
-const _flaxBinding934 = FlaxGetter("rrg", _flaxBinding534, _Vector2_rrg);
-const _flaxBinding935 = FlaxGetter("rgr", _flaxBinding534, _Vector2_rgr);
-const _flaxBinding936 = FlaxGetter("rgg", _flaxBinding534, _Vector2_rgg);
-const _flaxBinding937 = FlaxGetter("grr", _flaxBinding534, _Vector2_grr);
-const _flaxBinding938 = FlaxGetter("grg", _flaxBinding534, _Vector2_grg);
-const _flaxBinding939 = FlaxGetter("ggr", _flaxBinding534, _Vector2_ggr);
-const _flaxBinding940 = FlaxGetter("ggg", _flaxBinding534, _Vector2_ggg);
-const _flaxBinding941 = FlaxGetter("rrrr", _flaxBinding906, _Vector2_rrrr);
-const _flaxBinding942 = FlaxGetter("rrrg", _flaxBinding906, _Vector2_rrrg);
-const _flaxBinding943 = FlaxGetter("rrgr", _flaxBinding906, _Vector2_rrgr);
-const _flaxBinding944 = FlaxGetter("rrgg", _flaxBinding906, _Vector2_rrgg);
-const _flaxBinding945 = FlaxGetter("rgrr", _flaxBinding906, _Vector2_rgrr);
-const _flaxBinding946 = FlaxGetter("rgrg", _flaxBinding906, _Vector2_rgrg);
-const _flaxBinding947 = FlaxGetter("rggr", _flaxBinding906, _Vector2_rggr);
-const _flaxBinding948 = FlaxGetter("rggg", _flaxBinding906, _Vector2_rggg);
-const _flaxBinding949 = FlaxGetter("grrr", _flaxBinding906, _Vector2_grrr);
-const _flaxBinding950 = FlaxGetter("grrg", _flaxBinding906, _Vector2_grrg);
-const _flaxBinding951 = FlaxGetter("grgr", _flaxBinding906, _Vector2_grgr);
-const _flaxBinding952 = FlaxGetter("grgg", _flaxBinding906, _Vector2_grgg);
-const _flaxBinding953 = FlaxGetter("ggrr", _flaxBinding906, _Vector2_ggrr);
-const _flaxBinding954 = FlaxGetter("ggrg", _flaxBinding906, _Vector2_ggrg);
-const _flaxBinding955 = FlaxGetter("gggr", _flaxBinding906, _Vector2_gggr);
-const _flaxBinding956 = FlaxGetter("gggg", _flaxBinding906, _Vector2_gggg);
-const _flaxBinding957 = FlaxGetter("ss", _flaxBinding441, _Vector2_ss);
-const _flaxBinding958 = FlaxGetter("st", _flaxBinding441, _Vector2_st);
-const _flaxBinding959 = FlaxGetter("ts", _flaxBinding441, _Vector2_ts);
-const _flaxBinding960 = FlaxGetter("tt", _flaxBinding441, _Vector2_tt);
-const _flaxBinding961 = FlaxGetter("sss", _flaxBinding534, _Vector2_sss);
-const _flaxBinding962 = FlaxGetter("sst", _flaxBinding534, _Vector2_sst);
-const _flaxBinding963 = FlaxGetter("sts", _flaxBinding534, _Vector2_sts);
-const _flaxBinding964 = FlaxGetter("stt", _flaxBinding534, _Vector2_stt);
-const _flaxBinding965 = FlaxGetter("tss", _flaxBinding534, _Vector2_tss);
-const _flaxBinding966 = FlaxGetter("tst", _flaxBinding534, _Vector2_tst);
-const _flaxBinding967 = FlaxGetter("tts", _flaxBinding534, _Vector2_tts);
-const _flaxBinding968 = FlaxGetter("ttt", _flaxBinding534, _Vector2_ttt);
-const _flaxBinding969 = FlaxGetter("ssss", _flaxBinding906, _Vector2_ssss);
-const _flaxBinding970 = FlaxGetter("ssst", _flaxBinding906, _Vector2_ssst);
-const _flaxBinding971 = FlaxGetter("ssts", _flaxBinding906, _Vector2_ssts);
-const _flaxBinding972 = FlaxGetter("sstt", _flaxBinding906, _Vector2_sstt);
-const _flaxBinding973 = FlaxGetter("stss", _flaxBinding906, _Vector2_stss);
-const _flaxBinding974 = FlaxGetter("stst", _flaxBinding906, _Vector2_stst);
-const _flaxBinding975 = FlaxGetter("stts", _flaxBinding906, _Vector2_stts);
-const _flaxBinding976 = FlaxGetter("sttt", _flaxBinding906, _Vector2_sttt);
-const _flaxBinding977 = FlaxGetter("tsss", _flaxBinding906, _Vector2_tsss);
-const _flaxBinding978 = FlaxGetter("tsst", _flaxBinding906, _Vector2_tsst);
-const _flaxBinding979 = FlaxGetter("tsts", _flaxBinding906, _Vector2_tsts);
-const _flaxBinding980 = FlaxGetter("tstt", _flaxBinding906, _Vector2_tstt);
-const _flaxBinding981 = FlaxGetter("ttss", _flaxBinding906, _Vector2_ttss);
-const _flaxBinding982 = FlaxGetter("ttst", _flaxBinding906, _Vector2_ttst);
-const _flaxBinding983 = FlaxGetter("ttts", _flaxBinding906, _Vector2_ttts);
-const _flaxBinding984 = FlaxGetter("tttt", _flaxBinding906, _Vector2_tttt);
-const _flaxBinding985 = FlaxSetter(
+const _flaxBinding889 = FlaxGetter.plain(
+  "xxxx",
+  _flaxBinding888,
+  _Vector2_xxxx,
+);
+const _flaxBinding890 = FlaxGetter.plain(
+  "xxxy",
+  _flaxBinding888,
+  _Vector2_xxxy,
+);
+const _flaxBinding891 = FlaxGetter.plain(
+  "xxyx",
+  _flaxBinding888,
+  _Vector2_xxyx,
+);
+const _flaxBinding892 = FlaxGetter.plain(
+  "xxyy",
+  _flaxBinding888,
+  _Vector2_xxyy,
+);
+const _flaxBinding893 = FlaxGetter.plain(
+  "xyxx",
+  _flaxBinding888,
+  _Vector2_xyxx,
+);
+const _flaxBinding894 = FlaxGetter.plain(
+  "xyxy",
+  _flaxBinding888,
+  _Vector2_xyxy,
+);
+const _flaxBinding895 = FlaxGetter.plain(
+  "xyyx",
+  _flaxBinding888,
+  _Vector2_xyyx,
+);
+const _flaxBinding896 = FlaxGetter.plain(
+  "xyyy",
+  _flaxBinding888,
+  _Vector2_xyyy,
+);
+const _flaxBinding897 = FlaxGetter.plain(
+  "yxxx",
+  _flaxBinding888,
+  _Vector2_yxxx,
+);
+const _flaxBinding898 = FlaxGetter.plain(
+  "yxxy",
+  _flaxBinding888,
+  _Vector2_yxxy,
+);
+const _flaxBinding899 = FlaxGetter.plain(
+  "yxyx",
+  _flaxBinding888,
+  _Vector2_yxyx,
+);
+const _flaxBinding900 = FlaxGetter.plain(
+  "yxyy",
+  _flaxBinding888,
+  _Vector2_yxyy,
+);
+const _flaxBinding901 = FlaxGetter.plain(
+  "yyxx",
+  _flaxBinding888,
+  _Vector2_yyxx,
+);
+const _flaxBinding902 = FlaxGetter.plain(
+  "yyxy",
+  _flaxBinding888,
+  _Vector2_yyxy,
+);
+const _flaxBinding903 = FlaxGetter.plain(
+  "yyyx",
+  _flaxBinding888,
+  _Vector2_yyyx,
+);
+const _flaxBinding904 = FlaxGetter.plain(
+  "yyyy",
+  _flaxBinding888,
+  _Vector2_yyyy,
+);
+const _flaxBinding905 = FlaxGetter.plain("r", flaxDoubleType, _Vector2_r);
+const _flaxBinding906 = FlaxGetter.plain("g", flaxDoubleType, _Vector2_g);
+const _flaxBinding907 = FlaxGetter.plain("s", flaxDoubleType, _Vector2_s);
+const _flaxBinding908 = FlaxGetter.plain("t", flaxDoubleType, _Vector2_t);
+const _flaxBinding909 = FlaxGetter.plain("x", flaxDoubleType, _Vector2_x);
+const _flaxBinding910 = FlaxGetter.plain("y", flaxDoubleType, _Vector2_y);
+const _flaxBinding911 = FlaxGetter.plain("rr", _flaxBinding426, _Vector2_rr);
+const _flaxBinding912 = FlaxGetter.plain("rg", _flaxBinding426, _Vector2_rg);
+const _flaxBinding913 = FlaxGetter.plain("gr", _flaxBinding426, _Vector2_gr);
+const _flaxBinding914 = FlaxGetter.plain("gg", _flaxBinding426, _Vector2_gg);
+const _flaxBinding915 = FlaxGetter.plain("rrr", _flaxBinding517, _Vector2_rrr);
+const _flaxBinding916 = FlaxGetter.plain("rrg", _flaxBinding517, _Vector2_rrg);
+const _flaxBinding917 = FlaxGetter.plain("rgr", _flaxBinding517, _Vector2_rgr);
+const _flaxBinding918 = FlaxGetter.plain("rgg", _flaxBinding517, _Vector2_rgg);
+const _flaxBinding919 = FlaxGetter.plain("grr", _flaxBinding517, _Vector2_grr);
+const _flaxBinding920 = FlaxGetter.plain("grg", _flaxBinding517, _Vector2_grg);
+const _flaxBinding921 = FlaxGetter.plain("ggr", _flaxBinding517, _Vector2_ggr);
+const _flaxBinding922 = FlaxGetter.plain("ggg", _flaxBinding517, _Vector2_ggg);
+const _flaxBinding923 = FlaxGetter.plain(
+  "rrrr",
+  _flaxBinding888,
+  _Vector2_rrrr,
+);
+const _flaxBinding924 = FlaxGetter.plain(
+  "rrrg",
+  _flaxBinding888,
+  _Vector2_rrrg,
+);
+const _flaxBinding925 = FlaxGetter.plain(
+  "rrgr",
+  _flaxBinding888,
+  _Vector2_rrgr,
+);
+const _flaxBinding926 = FlaxGetter.plain(
+  "rrgg",
+  _flaxBinding888,
+  _Vector2_rrgg,
+);
+const _flaxBinding927 = FlaxGetter.plain(
+  "rgrr",
+  _flaxBinding888,
+  _Vector2_rgrr,
+);
+const _flaxBinding928 = FlaxGetter.plain(
+  "rgrg",
+  _flaxBinding888,
+  _Vector2_rgrg,
+);
+const _flaxBinding929 = FlaxGetter.plain(
+  "rggr",
+  _flaxBinding888,
+  _Vector2_rggr,
+);
+const _flaxBinding930 = FlaxGetter.plain(
+  "rggg",
+  _flaxBinding888,
+  _Vector2_rggg,
+);
+const _flaxBinding931 = FlaxGetter.plain(
+  "grrr",
+  _flaxBinding888,
+  _Vector2_grrr,
+);
+const _flaxBinding932 = FlaxGetter.plain(
+  "grrg",
+  _flaxBinding888,
+  _Vector2_grrg,
+);
+const _flaxBinding933 = FlaxGetter.plain(
+  "grgr",
+  _flaxBinding888,
+  _Vector2_grgr,
+);
+const _flaxBinding934 = FlaxGetter.plain(
+  "grgg",
+  _flaxBinding888,
+  _Vector2_grgg,
+);
+const _flaxBinding935 = FlaxGetter.plain(
+  "ggrr",
+  _flaxBinding888,
+  _Vector2_ggrr,
+);
+const _flaxBinding936 = FlaxGetter.plain(
+  "ggrg",
+  _flaxBinding888,
+  _Vector2_ggrg,
+);
+const _flaxBinding937 = FlaxGetter.plain(
+  "gggr",
+  _flaxBinding888,
+  _Vector2_gggr,
+);
+const _flaxBinding938 = FlaxGetter.plain(
+  "gggg",
+  _flaxBinding888,
+  _Vector2_gggg,
+);
+const _flaxBinding939 = FlaxGetter.plain("ss", _flaxBinding426, _Vector2_ss);
+const _flaxBinding940 = FlaxGetter.plain("st", _flaxBinding426, _Vector2_st);
+const _flaxBinding941 = FlaxGetter.plain("ts", _flaxBinding426, _Vector2_ts);
+const _flaxBinding942 = FlaxGetter.plain("tt", _flaxBinding426, _Vector2_tt);
+const _flaxBinding943 = FlaxGetter.plain("sss", _flaxBinding517, _Vector2_sss);
+const _flaxBinding944 = FlaxGetter.plain("sst", _flaxBinding517, _Vector2_sst);
+const _flaxBinding945 = FlaxGetter.plain("sts", _flaxBinding517, _Vector2_sts);
+const _flaxBinding946 = FlaxGetter.plain("stt", _flaxBinding517, _Vector2_stt);
+const _flaxBinding947 = FlaxGetter.plain("tss", _flaxBinding517, _Vector2_tss);
+const _flaxBinding948 = FlaxGetter.plain("tst", _flaxBinding517, _Vector2_tst);
+const _flaxBinding949 = FlaxGetter.plain("tts", _flaxBinding517, _Vector2_tts);
+const _flaxBinding950 = FlaxGetter.plain("ttt", _flaxBinding517, _Vector2_ttt);
+const _flaxBinding951 = FlaxGetter.plain(
+  "ssss",
+  _flaxBinding888,
+  _Vector2_ssss,
+);
+const _flaxBinding952 = FlaxGetter.plain(
+  "ssst",
+  _flaxBinding888,
+  _Vector2_ssst,
+);
+const _flaxBinding953 = FlaxGetter.plain(
+  "ssts",
+  _flaxBinding888,
+  _Vector2_ssts,
+);
+const _flaxBinding954 = FlaxGetter.plain(
+  "sstt",
+  _flaxBinding888,
+  _Vector2_sstt,
+);
+const _flaxBinding955 = FlaxGetter.plain(
+  "stss",
+  _flaxBinding888,
+  _Vector2_stss,
+);
+const _flaxBinding956 = FlaxGetter.plain(
+  "stst",
+  _flaxBinding888,
+  _Vector2_stst,
+);
+const _flaxBinding957 = FlaxGetter.plain(
+  "stts",
+  _flaxBinding888,
+  _Vector2_stts,
+);
+const _flaxBinding958 = FlaxGetter.plain(
+  "sttt",
+  _flaxBinding888,
+  _Vector2_sttt,
+);
+const _flaxBinding959 = FlaxGetter.plain(
+  "tsss",
+  _flaxBinding888,
+  _Vector2_tsss,
+);
+const _flaxBinding960 = FlaxGetter.plain(
+  "tsst",
+  _flaxBinding888,
+  _Vector2_tsst,
+);
+const _flaxBinding961 = FlaxGetter.plain(
+  "tsts",
+  _flaxBinding888,
+  _Vector2_tsts,
+);
+const _flaxBinding962 = FlaxGetter.plain(
+  "tstt",
+  _flaxBinding888,
+  _Vector2_tstt,
+);
+const _flaxBinding963 = FlaxGetter.plain(
+  "ttss",
+  _flaxBinding888,
+  _Vector2_ttss,
+);
+const _flaxBinding964 = FlaxGetter.plain(
+  "ttst",
+  _flaxBinding888,
+  _Vector2_ttst,
+);
+const _flaxBinding965 = FlaxGetter.plain(
+  "ttts",
+  _flaxBinding888,
+  _Vector2_ttts,
+);
+const _flaxBinding966 = FlaxGetter.plain(
+  "tttt",
+  _flaxBinding888,
+  _Vector2_tttt,
+);
+const _flaxBinding967 = FlaxSetter(
   "length",
-  _flaxBinding448,
+  flaxDoubleType,
   _Vector2_set_length,
 );
-const _flaxBinding986 = FlaxSetter("xy", _flaxBinding441, _Vector2_set_xy);
-const _flaxBinding987 = FlaxSetter("yx", _flaxBinding441, _Vector2_set_yx);
-const _flaxBinding988 = FlaxSetter("r", _flaxBinding448, _Vector2_set_r);
-const _flaxBinding989 = FlaxSetter("g", _flaxBinding448, _Vector2_set_g);
-const _flaxBinding990 = FlaxSetter("s", _flaxBinding448, _Vector2_set_s);
-const _flaxBinding991 = FlaxSetter("t", _flaxBinding448, _Vector2_set_t);
-const _flaxBinding992 = FlaxSetter("x", _flaxBinding448, _Vector2_set_x);
-const _flaxBinding993 = FlaxSetter("y", _flaxBinding448, _Vector2_set_y);
-const _flaxBinding994 = FlaxSetter("rg", _flaxBinding441, _Vector2_set_rg);
-const _flaxBinding995 = FlaxSetter("gr", _flaxBinding441, _Vector2_set_gr);
-const _flaxBinding996 = FlaxSetter("st", _flaxBinding441, _Vector2_set_st);
-const _flaxBinding997 = FlaxSetter("ts", _flaxBinding441, _Vector2_set_ts);
-const _flaxBinding998 = <FlaxParameter>[
-  FlaxParameter("x_", _flaxBinding448, required: true),
-  FlaxParameter("y_", _flaxBinding448, required: true),
+const _flaxBinding968 = FlaxSetter("xy", _flaxBinding426, _Vector2_set_xy);
+const _flaxBinding969 = FlaxSetter("yx", _flaxBinding426, _Vector2_set_yx);
+const _flaxBinding970 = FlaxSetter("r", flaxDoubleType, _Vector2_set_r);
+const _flaxBinding971 = FlaxSetter("g", flaxDoubleType, _Vector2_set_g);
+const _flaxBinding972 = FlaxSetter("s", flaxDoubleType, _Vector2_set_s);
+const _flaxBinding973 = FlaxSetter("t", flaxDoubleType, _Vector2_set_t);
+const _flaxBinding974 = FlaxSetter("x", flaxDoubleType, _Vector2_set_x);
+const _flaxBinding975 = FlaxSetter("y", flaxDoubleType, _Vector2_set_y);
+const _flaxBinding976 = FlaxSetter("rg", _flaxBinding426, _Vector2_set_rg);
+const _flaxBinding977 = FlaxSetter("gr", _flaxBinding426, _Vector2_set_gr);
+const _flaxBinding978 = FlaxSetter("st", _flaxBinding426, _Vector2_set_st);
+const _flaxBinding979 = FlaxSetter("ts", _flaxBinding426, _Vector2_set_ts);
+const _flaxBinding980 = <FlaxParameter>[
+  FlaxParameter.required("x_", flaxDoubleType),
+  FlaxParameter.required("y_", flaxDoubleType),
 ];
-const _flaxBinding999 = FlaxInstanceMethod(
-  _flaxBinding998,
-  _flaxBinding70,
+const _flaxBinding981 = FlaxInstanceMethod.plain(
+  _flaxBinding980,
+  flaxVoidType,
   _Vector2_setValues,
 );
-const _flaxBinding1000 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding982 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector2_setZero,
 );
-const _flaxBinding1001 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding441, required: true),
+const _flaxBinding983 = <FlaxParameter>[
+  FlaxParameter.required("other", _flaxBinding426),
 ];
-const _flaxBinding1002 = FlaxInstanceMethod(
-  _flaxBinding1001,
-  _flaxBinding70,
+const _flaxBinding984 = FlaxInstanceMethod.plain(
+  _flaxBinding983,
+  flaxVoidType,
   _Vector2_setFrom,
 );
-const _flaxBinding1003 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding70,
+const _flaxBinding985 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  flaxVoidType,
   _Vector2_splat,
 );
-const _flaxBinding1004 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding986 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _Vector2_toString,
 );
-const _flaxBinding1005 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding987 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Vector2_normalize,
 );
-const _flaxBinding1006 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding988 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Vector2_normalizeLength,
 );
-const _flaxBinding1007 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding441,
+const _flaxBinding989 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding426,
   _Vector2_normalized,
 );
-const _flaxBinding1008 = <FlaxParameter>[
-  FlaxParameter("out", _flaxBinding441, required: true),
+const _flaxBinding990 = <FlaxParameter>[
+  FlaxParameter.required("out", _flaxBinding426),
 ];
-const _flaxBinding1009 = FlaxInstanceMethod(
-  _flaxBinding1008,
-  _flaxBinding441,
+const _flaxBinding991 = FlaxInstanceMethod.plain(
+  _flaxBinding990,
+  _flaxBinding426,
   _Vector2_normalizeInto,
 );
-const _flaxBinding1010 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding448,
+const _flaxBinding992 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  flaxDoubleType,
   _Vector2_distanceTo,
 );
-const _flaxBinding1011 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding448,
+const _flaxBinding993 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  flaxDoubleType,
   _Vector2_distanceToSquared,
 );
-const _flaxBinding1012 = FlaxInstanceMethod(
-  _flaxBinding1001,
-  _flaxBinding448,
+const _flaxBinding994 = FlaxInstanceMethod.plain(
+  _flaxBinding983,
+  flaxDoubleType,
   _Vector2_angleTo,
 );
-const _flaxBinding1013 = FlaxInstanceMethod(
-  _flaxBinding1001,
-  _flaxBinding448,
+const _flaxBinding995 = FlaxInstanceMethod.plain(
+  _flaxBinding983,
+  flaxDoubleType,
   _Vector2_angleToSigned,
 );
-const _flaxBinding1014 = FlaxInstanceMethod(
-  _flaxBinding1001,
-  _flaxBinding448,
+const _flaxBinding996 = FlaxInstanceMethod.plain(
+  _flaxBinding983,
+  flaxDoubleType,
   _Vector2_dot,
 );
-const _flaxBinding1015 = FlaxInstanceMethod(
-  _flaxBinding457,
-  _flaxBinding70,
+const _flaxBinding997 = FlaxInstanceMethod.plain(
+  _flaxBinding441,
+  flaxVoidType,
   _Vector2_postmultiply,
 );
-const _flaxBinding1016 = FlaxInstanceMethod(
-  _flaxBinding1001,
-  _flaxBinding448,
+const _flaxBinding998 = FlaxInstanceMethod.plain(
+  _flaxBinding983,
+  flaxDoubleType,
   _Vector2_cross,
 );
-const _flaxBinding1017 = <FlaxParameter>[
-  FlaxParameter("scale", _flaxBinding448, required: true),
-  FlaxParameter("out", _flaxBinding441, required: true),
+const _flaxBinding999 = <FlaxParameter>[
+  FlaxParameter.required("scale", flaxDoubleType),
+  FlaxParameter.required("out", _flaxBinding426),
 ];
-const _flaxBinding1018 = FlaxInstanceMethod(
-  _flaxBinding1017,
-  _flaxBinding441,
+const _flaxBinding1000 = FlaxInstanceMethod.plain(
+  _flaxBinding999,
+  _flaxBinding426,
   _Vector2_scaleOrthogonalInto,
 );
-const _flaxBinding1019 = <FlaxParameter>[
-  FlaxParameter("normal", _flaxBinding441, required: true),
+const _flaxBinding1001 = <FlaxParameter>[
+  FlaxParameter.required("normal", _flaxBinding426),
 ];
-const _flaxBinding1020 = FlaxInstanceMethod(
-  _flaxBinding1019,
-  _flaxBinding70,
+const _flaxBinding1002 = FlaxInstanceMethod.plain(
+  _flaxBinding1001,
+  flaxVoidType,
   _Vector2_reflect,
 );
-const _flaxBinding1021 = FlaxInstanceMethod(
-  _flaxBinding1019,
-  _flaxBinding441,
+const _flaxBinding1003 = FlaxInstanceMethod.plain(
+  _flaxBinding1001,
+  _flaxBinding426,
   _Vector2_reflected,
 );
-const _flaxBinding1022 = <FlaxParameter>[
-  FlaxParameter("correct", _flaxBinding441, required: true),
+const _flaxBinding1004 = <FlaxParameter>[
+  FlaxParameter.required("correct", _flaxBinding426),
 ];
-const _flaxBinding1023 = FlaxInstanceMethod(
-  _flaxBinding1022,
-  _flaxBinding448,
+const _flaxBinding1005 = FlaxInstanceMethod.plain(
+  _flaxBinding1004,
+  flaxDoubleType,
   _Vector2_relativeError,
 );
-const _flaxBinding1024 = FlaxInstanceMethod(
-  _flaxBinding1022,
-  _flaxBinding448,
+const _flaxBinding1006 = FlaxInstanceMethod.plain(
+  _flaxBinding1004,
+  flaxDoubleType,
   _Vector2_absoluteError,
 );
-const _flaxBinding1025 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding70,
+const _flaxBinding1007 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  flaxVoidType,
   _Vector2_add,
 );
-const _flaxBinding1026 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding441, required: true),
-  FlaxParameter("factor", _flaxBinding448, required: true),
+const _flaxBinding1008 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding426),
+  FlaxParameter.required("factor", flaxDoubleType),
 ];
-const _flaxBinding1027 = FlaxInstanceMethod(
-  _flaxBinding1026,
-  _flaxBinding70,
+const _flaxBinding1009 = FlaxInstanceMethod.plain(
+  _flaxBinding1008,
+  flaxVoidType,
   _Vector2_addScaled,
 );
-const _flaxBinding1028 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding70,
+const _flaxBinding1010 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  flaxVoidType,
   _Vector2_sub,
 );
-const _flaxBinding1029 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding70,
+const _flaxBinding1011 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  flaxVoidType,
   _Vector2_multiply,
 );
-const _flaxBinding1030 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding70,
+const _flaxBinding1012 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  flaxVoidType,
   _Vector2_divide,
 );
-const _flaxBinding1031 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding70,
+const _flaxBinding1013 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  flaxVoidType,
   _Vector2_scale,
 );
-const _flaxBinding1032 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding441,
+const _flaxBinding1014 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  _flaxBinding426,
   _Vector2_scaled,
 );
-const _flaxBinding1033 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1015 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector2_negate,
 );
-const _flaxBinding1034 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1016 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector2_absolute,
 );
-const _flaxBinding1035 = <FlaxParameter>[
-  FlaxParameter("min", _flaxBinding441, required: true),
-  FlaxParameter("max", _flaxBinding441, required: true),
+const _flaxBinding1017 = <FlaxParameter>[
+  FlaxParameter.required("min", _flaxBinding426),
+  FlaxParameter.required("max", _flaxBinding426),
 ];
-const _flaxBinding1036 = FlaxInstanceMethod(
-  _flaxBinding1035,
-  _flaxBinding70,
+const _flaxBinding1018 = FlaxInstanceMethod.plain(
+  _flaxBinding1017,
+  flaxVoidType,
   _Vector2_clamp,
 );
-const _flaxBinding1037 = <FlaxParameter>[
-  FlaxParameter("min", _flaxBinding448, required: true),
-  FlaxParameter("max", _flaxBinding448, required: true),
+const _flaxBinding1019 = <FlaxParameter>[
+  FlaxParameter.required("min", flaxDoubleType),
+  FlaxParameter.required("max", flaxDoubleType),
 ];
-const _flaxBinding1038 = FlaxInstanceMethod(
-  _flaxBinding1037,
-  _flaxBinding70,
+const _flaxBinding1020 = FlaxInstanceMethod.plain(
+  _flaxBinding1019,
+  flaxVoidType,
   _Vector2_clampScalar,
 );
-const _flaxBinding1039 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1021 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector2_floor,
 );
-const _flaxBinding1040 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1022 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector2_ceil,
 );
-const _flaxBinding1041 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1023 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector2_round,
 );
-const _flaxBinding1042 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1024 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector2_roundToZero,
 );
-const _flaxBinding1043 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding441,
+const _flaxBinding1025 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding426,
   _Vector2_clone,
 );
-const _flaxBinding1044 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding441,
+const _flaxBinding1026 = FlaxInstanceMethod.plain(
+  _flaxBinding447,
+  _flaxBinding426,
   _Vector2_copyInto,
 );
-const _flaxBinding1045 = FlaxInstanceMethod(
-  _flaxBinding518,
-  _flaxBinding70,
+const _flaxBinding1027 = FlaxInstanceMethod.plain(
+  _flaxBinding501,
+  flaxVoidType,
   _Vector2_copyIntoArray,
 );
-const _flaxBinding1046 = FlaxInstanceMethod(
-  _flaxBinding518,
-  _flaxBinding70,
+const _flaxBinding1028 = FlaxInstanceMethod.plain(
+  _flaxBinding501,
+  flaxVoidType,
   _Vector2_copyFromArray,
 );
-const _flaxBinding1047 = FlaxInstanceMethod(
-  _flaxBinding520,
-  _flaxBinding448,
+const _flaxBinding1029 = FlaxInstanceMethod.plain(
+  _flaxBinding503,
+  flaxDoubleType,
   _Vector2_operatorGetIndex,
 );
-const _flaxBinding1048 = FlaxInstanceMethod(
-  _flaxBinding522,
-  _flaxBinding70,
+const _flaxBinding1030 = FlaxInstanceMethod.plain(
+  _flaxBinding505,
+  flaxVoidType,
   _Vector2_operatorSetIndex,
 );
-const _flaxBinding1049 = FlaxInstanceMethod(
-  _flaxBinding1001,
-  _flaxBinding441,
+const _flaxBinding1031 = FlaxInstanceMethod.plain(
+  _flaxBinding983,
+  _flaxBinding426,
   _Vector2_operatorAdd,
 );
-const _flaxBinding1050 = FlaxInstanceMethod(
-  _flaxBinding1001,
-  _flaxBinding441,
+const _flaxBinding1032 = FlaxInstanceMethod.plain(
+  _flaxBinding983,
+  _flaxBinding426,
   _Vector2_operatorSubtract,
 );
-const _flaxBinding1051 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding441,
+const _flaxBinding1033 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  _flaxBinding426,
   _Vector2_operatorMultiply,
 );
-const _flaxBinding1052 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding441,
+const _flaxBinding1034 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  _flaxBinding426,
   _Vector2_operatorDivide,
 );
-const _flaxBinding1053 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding441,
+const _flaxBinding1035 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding426,
   _Vector2_operatorNegate,
 );
-const _flaxBinding1054 = <FlaxParameter>[
-  FlaxParameter("x", _flaxBinding448, required: true),
-  FlaxParameter("y", _flaxBinding448, required: true),
+const _flaxBinding1036 = <FlaxParameter>[
+  FlaxParameter.required("x", flaxDoubleType),
+  FlaxParameter.required("y", flaxDoubleType),
 ];
-const _flaxBinding1055 = <FlaxParameter>[
-  FlaxParameter("value", _flaxBinding448, required: true),
+const _flaxBinding1037 = <FlaxParameter>[
+  FlaxParameter.required("value", flaxDoubleType),
 ];
-const _flaxBinding1056 = <FlaxParameter>[
-  FlaxParameter("_v2storage", _flaxBinding438, required: true),
+const _flaxBinding1038 = <FlaxParameter>[
+  FlaxParameter.required("_v2storage", _flaxBinding423),
 ];
-const _flaxBinding1057 = FlaxObjectBinding(
+const _flaxBinding1039 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Vector2",
   [
+    _flaxBinding871,
+    _flaxBinding872,
+    _flaxBinding873,
+    _flaxBinding874,
+    _flaxBinding875,
+    _flaxBinding876,
+    _flaxBinding877,
+    _flaxBinding878,
+    _flaxBinding879,
+    _flaxBinding880,
+    _flaxBinding881,
+    _flaxBinding882,
+    _flaxBinding883,
+    _flaxBinding884,
+    _flaxBinding885,
+    _flaxBinding886,
+    _flaxBinding887,
     _flaxBinding889,
     _flaxBinding890,
     _flaxBinding891,
@@ -16207,6 +16023,7 @@ const _flaxBinding1057 = FlaxObjectBinding(
     _flaxBinding903,
     _flaxBinding904,
     _flaxBinding905,
+    _flaxBinding906,
     _flaxBinding907,
     _flaxBinding908,
     _flaxBinding909,
@@ -16267,6 +16084,68 @@ const _flaxBinding1057 = FlaxObjectBinding(
     _flaxBinding964,
     _flaxBinding965,
     _flaxBinding966,
+  ],
+  {
+    "setValues": _flaxBinding981,
+    "setZero": _flaxBinding982,
+    "setFrom": _flaxBinding984,
+    "splat": _flaxBinding985,
+    "toString": _flaxBinding986,
+    "normalize": _flaxBinding987,
+    "normalizeLength": _flaxBinding988,
+    "normalized": _flaxBinding989,
+    "normalizeInto": _flaxBinding991,
+    "distanceTo": _flaxBinding992,
+    "distanceToSquared": _flaxBinding993,
+    "angleTo": _flaxBinding994,
+    "angleToSigned": _flaxBinding995,
+    "dot": _flaxBinding996,
+    "postmultiply": _flaxBinding997,
+    "cross": _flaxBinding998,
+    "scaleOrthogonalInto": _flaxBinding1000,
+    "reflect": _flaxBinding1002,
+    "reflected": _flaxBinding1003,
+    "relativeError": _flaxBinding1005,
+    "absoluteError": _flaxBinding1006,
+    "add": _flaxBinding1007,
+    "addScaled": _flaxBinding1009,
+    "sub": _flaxBinding1010,
+    "multiply": _flaxBinding1011,
+    "divide": _flaxBinding1012,
+    "scale": _flaxBinding1013,
+    "scaled": _flaxBinding1014,
+    "negate": _flaxBinding1015,
+    "absolute": _flaxBinding1016,
+    "clamp": _flaxBinding1018,
+    "clampScalar": _flaxBinding1020,
+    "floor": _flaxBinding1021,
+    "ceil": _flaxBinding1022,
+    "round": _flaxBinding1023,
+    "roundToZero": _flaxBinding1024,
+    "clone": _flaxBinding1025,
+    "copyInto": _flaxBinding1026,
+    "copyIntoArray": _flaxBinding1027,
+    "copyFromArray": _flaxBinding1028,
+    "operatorGetIndex": _flaxBinding1029,
+    "operatorSetIndex": _flaxBinding1030,
+    "operatorAdd": _flaxBinding1031,
+    "operatorSubtract": _flaxBinding1032,
+    "operatorMultiply": _flaxBinding1033,
+    "operatorDivide": _flaxBinding1034,
+    "operatorNegate": _flaxBinding1035,
+  },
+  constructors: {
+    "": _flaxBinding1036,
+    "array": _flaxBinding501,
+    "zero": _flaxBinding35,
+    "all": _flaxBinding1037,
+    "copy": _flaxBinding983,
+    "fromFloat64List": _flaxBinding1038,
+    "fromBuffer": _flaxBinding684,
+  },
+  create: _createVector2,
+  matches: _isVector2,
+  setters: [
     _flaxBinding967,
     _flaxBinding968,
     _flaxBinding969,
@@ -16280,815 +16159,1733 @@ const _flaxBinding1057 = FlaxObjectBinding(
     _flaxBinding977,
     _flaxBinding978,
     _flaxBinding979,
-    _flaxBinding980,
-    _flaxBinding981,
-    _flaxBinding982,
-    _flaxBinding983,
-    _flaxBinding984,
-  ],
-  {
-    "setValues": _flaxBinding999,
-    "setZero": _flaxBinding1000,
-    "setFrom": _flaxBinding1002,
-    "splat": _flaxBinding1003,
-    "toString": _flaxBinding1004,
-    "normalize": _flaxBinding1005,
-    "normalizeLength": _flaxBinding1006,
-    "normalized": _flaxBinding1007,
-    "normalizeInto": _flaxBinding1009,
-    "distanceTo": _flaxBinding1010,
-    "distanceToSquared": _flaxBinding1011,
-    "angleTo": _flaxBinding1012,
-    "angleToSigned": _flaxBinding1013,
-    "dot": _flaxBinding1014,
-    "postmultiply": _flaxBinding1015,
-    "cross": _flaxBinding1016,
-    "scaleOrthogonalInto": _flaxBinding1018,
-    "reflect": _flaxBinding1020,
-    "reflected": _flaxBinding1021,
-    "relativeError": _flaxBinding1023,
-    "absoluteError": _flaxBinding1024,
-    "add": _flaxBinding1025,
-    "addScaled": _flaxBinding1027,
-    "sub": _flaxBinding1028,
-    "multiply": _flaxBinding1029,
-    "divide": _flaxBinding1030,
-    "scale": _flaxBinding1031,
-    "scaled": _flaxBinding1032,
-    "negate": _flaxBinding1033,
-    "absolute": _flaxBinding1034,
-    "clamp": _flaxBinding1036,
-    "clampScalar": _flaxBinding1038,
-    "floor": _flaxBinding1039,
-    "ceil": _flaxBinding1040,
-    "round": _flaxBinding1041,
-    "roundToZero": _flaxBinding1042,
-    "clone": _flaxBinding1043,
-    "copyInto": _flaxBinding1044,
-    "copyIntoArray": _flaxBinding1045,
-    "copyFromArray": _flaxBinding1046,
-    "operatorGetIndex": _flaxBinding1047,
-    "operatorSetIndex": _flaxBinding1048,
-    "operatorAdd": _flaxBinding1049,
-    "operatorSubtract": _flaxBinding1050,
-    "operatorMultiply": _flaxBinding1051,
-    "operatorDivide": _flaxBinding1052,
-    "operatorNegate": _flaxBinding1053,
-  },
-  constructors: {
-    "": _flaxBinding1054,
-    "array": _flaxBinding518,
-    "zero": _flaxBinding42,
-    "all": _flaxBinding1055,
-    "copy": _flaxBinding1001,
-    "fromFloat64List": _flaxBinding1056,
-    "fromBuffer": _flaxBinding702,
-  },
-  create: _createVector2,
-  matches: _isVector2,
-  setters: [
-    _flaxBinding985,
-    _flaxBinding986,
-    _flaxBinding987,
-    _flaxBinding988,
-    _flaxBinding989,
-    _flaxBinding990,
-    _flaxBinding991,
-    _flaxBinding992,
-    _flaxBinding993,
-    _flaxBinding994,
-    _flaxBinding995,
-    _flaxBinding996,
-    _flaxBinding997,
   ],
   supertypes: [
     "dart:core::Object",
     "package:vector_math/vector_math_64.dart::Vector",
   ],
 );
-const _flaxBinding1058 = FlaxGetter(
+const _flaxBinding1040 = FlaxGetter.plain(
   "storage",
-  _flaxBinding438,
+  _flaxBinding423,
   _Vector3_storage,
 );
-const _flaxBinding1059 = FlaxGetter("length", _flaxBinding448, _Vector3_length);
-const _flaxBinding1060 = FlaxGetter(
+const _flaxBinding1041 = FlaxGetter.plain(
+  "length",
+  flaxDoubleType,
+  _Vector3_length,
+);
+const _flaxBinding1042 = FlaxGetter.plain(
   "length2",
-  _flaxBinding448,
+  flaxDoubleType,
   _Vector3_length2,
 );
-const _flaxBinding1061 = FlaxGetter(
+const _flaxBinding1043 = FlaxGetter.plain(
   "isInfinite",
-  _flaxBinding20,
+  flaxBoolType,
   _Vector3_isInfinite,
 );
-const _flaxBinding1062 = FlaxGetter("isNaN", _flaxBinding20, _Vector3_isNaN);
-const _flaxBinding1063 = FlaxGetter("xx", _flaxBinding441, _Vector3_xx);
-const _flaxBinding1064 = FlaxGetter("xy", _flaxBinding441, _Vector3_xy);
-const _flaxBinding1065 = FlaxGetter("xz", _flaxBinding441, _Vector3_xz);
-const _flaxBinding1066 = FlaxGetter("yx", _flaxBinding441, _Vector3_yx);
-const _flaxBinding1067 = FlaxGetter("yy", _flaxBinding441, _Vector3_yy);
-const _flaxBinding1068 = FlaxGetter("yz", _flaxBinding441, _Vector3_yz);
-const _flaxBinding1069 = FlaxGetter("zx", _flaxBinding441, _Vector3_zx);
-const _flaxBinding1070 = FlaxGetter("zy", _flaxBinding441, _Vector3_zy);
-const _flaxBinding1071 = FlaxGetter("zz", _flaxBinding441, _Vector3_zz);
-const _flaxBinding1072 = FlaxGetter("xxx", _flaxBinding534, _Vector3_xxx);
-const _flaxBinding1073 = FlaxGetter("xxy", _flaxBinding534, _Vector3_xxy);
-const _flaxBinding1074 = FlaxGetter("xxz", _flaxBinding534, _Vector3_xxz);
-const _flaxBinding1075 = FlaxGetter("xyx", _flaxBinding534, _Vector3_xyx);
-const _flaxBinding1076 = FlaxGetter("xyy", _flaxBinding534, _Vector3_xyy);
-const _flaxBinding1077 = FlaxGetter("xyz", _flaxBinding534, _Vector3_xyz);
-const _flaxBinding1078 = FlaxGetter("xzx", _flaxBinding534, _Vector3_xzx);
-const _flaxBinding1079 = FlaxGetter("xzy", _flaxBinding534, _Vector3_xzy);
-const _flaxBinding1080 = FlaxGetter("xzz", _flaxBinding534, _Vector3_xzz);
-const _flaxBinding1081 = FlaxGetter("yxx", _flaxBinding534, _Vector3_yxx);
-const _flaxBinding1082 = FlaxGetter("yxy", _flaxBinding534, _Vector3_yxy);
-const _flaxBinding1083 = FlaxGetter("yxz", _flaxBinding534, _Vector3_yxz);
-const _flaxBinding1084 = FlaxGetter("yyx", _flaxBinding534, _Vector3_yyx);
-const _flaxBinding1085 = FlaxGetter("yyy", _flaxBinding534, _Vector3_yyy);
-const _flaxBinding1086 = FlaxGetter("yyz", _flaxBinding534, _Vector3_yyz);
-const _flaxBinding1087 = FlaxGetter("yzx", _flaxBinding534, _Vector3_yzx);
-const _flaxBinding1088 = FlaxGetter("yzy", _flaxBinding534, _Vector3_yzy);
-const _flaxBinding1089 = FlaxGetter("yzz", _flaxBinding534, _Vector3_yzz);
-const _flaxBinding1090 = FlaxGetter("zxx", _flaxBinding534, _Vector3_zxx);
-const _flaxBinding1091 = FlaxGetter("zxy", _flaxBinding534, _Vector3_zxy);
-const _flaxBinding1092 = FlaxGetter("zxz", _flaxBinding534, _Vector3_zxz);
-const _flaxBinding1093 = FlaxGetter("zyx", _flaxBinding534, _Vector3_zyx);
-const _flaxBinding1094 = FlaxGetter("zyy", _flaxBinding534, _Vector3_zyy);
-const _flaxBinding1095 = FlaxGetter("zyz", _flaxBinding534, _Vector3_zyz);
-const _flaxBinding1096 = FlaxGetter("zzx", _flaxBinding534, _Vector3_zzx);
-const _flaxBinding1097 = FlaxGetter("zzy", _flaxBinding534, _Vector3_zzy);
-const _flaxBinding1098 = FlaxGetter("zzz", _flaxBinding534, _Vector3_zzz);
-const _flaxBinding1099 = FlaxGetter("xxxx", _flaxBinding906, _Vector3_xxxx);
-const _flaxBinding1100 = FlaxGetter("xxxy", _flaxBinding906, _Vector3_xxxy);
-const _flaxBinding1101 = FlaxGetter("xxxz", _flaxBinding906, _Vector3_xxxz);
-const _flaxBinding1102 = FlaxGetter("xxyx", _flaxBinding906, _Vector3_xxyx);
-const _flaxBinding1103 = FlaxGetter("xxyy", _flaxBinding906, _Vector3_xxyy);
-const _flaxBinding1104 = FlaxGetter("xxyz", _flaxBinding906, _Vector3_xxyz);
-const _flaxBinding1105 = FlaxGetter("xxzx", _flaxBinding906, _Vector3_xxzx);
-const _flaxBinding1106 = FlaxGetter("xxzy", _flaxBinding906, _Vector3_xxzy);
-const _flaxBinding1107 = FlaxGetter("xxzz", _flaxBinding906, _Vector3_xxzz);
-const _flaxBinding1108 = FlaxGetter("xyxx", _flaxBinding906, _Vector3_xyxx);
-const _flaxBinding1109 = FlaxGetter("xyxy", _flaxBinding906, _Vector3_xyxy);
-const _flaxBinding1110 = FlaxGetter("xyxz", _flaxBinding906, _Vector3_xyxz);
-const _flaxBinding1111 = FlaxGetter("xyyx", _flaxBinding906, _Vector3_xyyx);
-const _flaxBinding1112 = FlaxGetter("xyyy", _flaxBinding906, _Vector3_xyyy);
-const _flaxBinding1113 = FlaxGetter("xyyz", _flaxBinding906, _Vector3_xyyz);
-const _flaxBinding1114 = FlaxGetter("xyzx", _flaxBinding906, _Vector3_xyzx);
-const _flaxBinding1115 = FlaxGetter("xyzy", _flaxBinding906, _Vector3_xyzy);
-const _flaxBinding1116 = FlaxGetter("xyzz", _flaxBinding906, _Vector3_xyzz);
-const _flaxBinding1117 = FlaxGetter("xzxx", _flaxBinding906, _Vector3_xzxx);
-const _flaxBinding1118 = FlaxGetter("xzxy", _flaxBinding906, _Vector3_xzxy);
-const _flaxBinding1119 = FlaxGetter("xzxz", _flaxBinding906, _Vector3_xzxz);
-const _flaxBinding1120 = FlaxGetter("xzyx", _flaxBinding906, _Vector3_xzyx);
-const _flaxBinding1121 = FlaxGetter("xzyy", _flaxBinding906, _Vector3_xzyy);
-const _flaxBinding1122 = FlaxGetter("xzyz", _flaxBinding906, _Vector3_xzyz);
-const _flaxBinding1123 = FlaxGetter("xzzx", _flaxBinding906, _Vector3_xzzx);
-const _flaxBinding1124 = FlaxGetter("xzzy", _flaxBinding906, _Vector3_xzzy);
-const _flaxBinding1125 = FlaxGetter("xzzz", _flaxBinding906, _Vector3_xzzz);
-const _flaxBinding1126 = FlaxGetter("yxxx", _flaxBinding906, _Vector3_yxxx);
-const _flaxBinding1127 = FlaxGetter("yxxy", _flaxBinding906, _Vector3_yxxy);
-const _flaxBinding1128 = FlaxGetter("yxxz", _flaxBinding906, _Vector3_yxxz);
-const _flaxBinding1129 = FlaxGetter("yxyx", _flaxBinding906, _Vector3_yxyx);
-const _flaxBinding1130 = FlaxGetter("yxyy", _flaxBinding906, _Vector3_yxyy);
-const _flaxBinding1131 = FlaxGetter("yxyz", _flaxBinding906, _Vector3_yxyz);
-const _flaxBinding1132 = FlaxGetter("yxzx", _flaxBinding906, _Vector3_yxzx);
-const _flaxBinding1133 = FlaxGetter("yxzy", _flaxBinding906, _Vector3_yxzy);
-const _flaxBinding1134 = FlaxGetter("yxzz", _flaxBinding906, _Vector3_yxzz);
-const _flaxBinding1135 = FlaxGetter("yyxx", _flaxBinding906, _Vector3_yyxx);
-const _flaxBinding1136 = FlaxGetter("yyxy", _flaxBinding906, _Vector3_yyxy);
-const _flaxBinding1137 = FlaxGetter("yyxz", _flaxBinding906, _Vector3_yyxz);
-const _flaxBinding1138 = FlaxGetter("yyyx", _flaxBinding906, _Vector3_yyyx);
-const _flaxBinding1139 = FlaxGetter("yyyy", _flaxBinding906, _Vector3_yyyy);
-const _flaxBinding1140 = FlaxGetter("yyyz", _flaxBinding906, _Vector3_yyyz);
-const _flaxBinding1141 = FlaxGetter("yyzx", _flaxBinding906, _Vector3_yyzx);
-const _flaxBinding1142 = FlaxGetter("yyzy", _flaxBinding906, _Vector3_yyzy);
-const _flaxBinding1143 = FlaxGetter("yyzz", _flaxBinding906, _Vector3_yyzz);
-const _flaxBinding1144 = FlaxGetter("yzxx", _flaxBinding906, _Vector3_yzxx);
-const _flaxBinding1145 = FlaxGetter("yzxy", _flaxBinding906, _Vector3_yzxy);
-const _flaxBinding1146 = FlaxGetter("yzxz", _flaxBinding906, _Vector3_yzxz);
-const _flaxBinding1147 = FlaxGetter("yzyx", _flaxBinding906, _Vector3_yzyx);
-const _flaxBinding1148 = FlaxGetter("yzyy", _flaxBinding906, _Vector3_yzyy);
-const _flaxBinding1149 = FlaxGetter("yzyz", _flaxBinding906, _Vector3_yzyz);
-const _flaxBinding1150 = FlaxGetter("yzzx", _flaxBinding906, _Vector3_yzzx);
-const _flaxBinding1151 = FlaxGetter("yzzy", _flaxBinding906, _Vector3_yzzy);
-const _flaxBinding1152 = FlaxGetter("yzzz", _flaxBinding906, _Vector3_yzzz);
-const _flaxBinding1153 = FlaxGetter("zxxx", _flaxBinding906, _Vector3_zxxx);
-const _flaxBinding1154 = FlaxGetter("zxxy", _flaxBinding906, _Vector3_zxxy);
-const _flaxBinding1155 = FlaxGetter("zxxz", _flaxBinding906, _Vector3_zxxz);
-const _flaxBinding1156 = FlaxGetter("zxyx", _flaxBinding906, _Vector3_zxyx);
-const _flaxBinding1157 = FlaxGetter("zxyy", _flaxBinding906, _Vector3_zxyy);
-const _flaxBinding1158 = FlaxGetter("zxyz", _flaxBinding906, _Vector3_zxyz);
-const _flaxBinding1159 = FlaxGetter("zxzx", _flaxBinding906, _Vector3_zxzx);
-const _flaxBinding1160 = FlaxGetter("zxzy", _flaxBinding906, _Vector3_zxzy);
-const _flaxBinding1161 = FlaxGetter("zxzz", _flaxBinding906, _Vector3_zxzz);
-const _flaxBinding1162 = FlaxGetter("zyxx", _flaxBinding906, _Vector3_zyxx);
-const _flaxBinding1163 = FlaxGetter("zyxy", _flaxBinding906, _Vector3_zyxy);
-const _flaxBinding1164 = FlaxGetter("zyxz", _flaxBinding906, _Vector3_zyxz);
-const _flaxBinding1165 = FlaxGetter("zyyx", _flaxBinding906, _Vector3_zyyx);
-const _flaxBinding1166 = FlaxGetter("zyyy", _flaxBinding906, _Vector3_zyyy);
-const _flaxBinding1167 = FlaxGetter("zyyz", _flaxBinding906, _Vector3_zyyz);
-const _flaxBinding1168 = FlaxGetter("zyzx", _flaxBinding906, _Vector3_zyzx);
-const _flaxBinding1169 = FlaxGetter("zyzy", _flaxBinding906, _Vector3_zyzy);
-const _flaxBinding1170 = FlaxGetter("zyzz", _flaxBinding906, _Vector3_zyzz);
-const _flaxBinding1171 = FlaxGetter("zzxx", _flaxBinding906, _Vector3_zzxx);
-const _flaxBinding1172 = FlaxGetter("zzxy", _flaxBinding906, _Vector3_zzxy);
-const _flaxBinding1173 = FlaxGetter("zzxz", _flaxBinding906, _Vector3_zzxz);
-const _flaxBinding1174 = FlaxGetter("zzyx", _flaxBinding906, _Vector3_zzyx);
-const _flaxBinding1175 = FlaxGetter("zzyy", _flaxBinding906, _Vector3_zzyy);
-const _flaxBinding1176 = FlaxGetter("zzyz", _flaxBinding906, _Vector3_zzyz);
-const _flaxBinding1177 = FlaxGetter("zzzx", _flaxBinding906, _Vector3_zzzx);
-const _flaxBinding1178 = FlaxGetter("zzzy", _flaxBinding906, _Vector3_zzzy);
-const _flaxBinding1179 = FlaxGetter("zzzz", _flaxBinding906, _Vector3_zzzz);
-const _flaxBinding1180 = FlaxGetter("r", _flaxBinding448, _Vector3_r);
-const _flaxBinding1181 = FlaxGetter("g", _flaxBinding448, _Vector3_g);
-const _flaxBinding1182 = FlaxGetter("b", _flaxBinding448, _Vector3_b);
-const _flaxBinding1183 = FlaxGetter("s", _flaxBinding448, _Vector3_s);
-const _flaxBinding1184 = FlaxGetter("t", _flaxBinding448, _Vector3_t);
-const _flaxBinding1185 = FlaxGetter("p", _flaxBinding448, _Vector3_p);
-const _flaxBinding1186 = FlaxGetter("x", _flaxBinding448, _Vector3_x);
-const _flaxBinding1187 = FlaxGetter("y", _flaxBinding448, _Vector3_y);
-const _flaxBinding1188 = FlaxGetter("z", _flaxBinding448, _Vector3_z);
-const _flaxBinding1189 = FlaxGetter("rr", _flaxBinding441, _Vector3_rr);
-const _flaxBinding1190 = FlaxGetter("rg", _flaxBinding441, _Vector3_rg);
-const _flaxBinding1191 = FlaxGetter("rb", _flaxBinding441, _Vector3_rb);
-const _flaxBinding1192 = FlaxGetter("gr", _flaxBinding441, _Vector3_gr);
-const _flaxBinding1193 = FlaxGetter("gg", _flaxBinding441, _Vector3_gg);
-const _flaxBinding1194 = FlaxGetter("gb", _flaxBinding441, _Vector3_gb);
-const _flaxBinding1195 = FlaxGetter("br", _flaxBinding441, _Vector3_br);
-const _flaxBinding1196 = FlaxGetter("bg", _flaxBinding441, _Vector3_bg);
-const _flaxBinding1197 = FlaxGetter("bb", _flaxBinding441, _Vector3_bb);
-const _flaxBinding1198 = FlaxGetter("rrr", _flaxBinding534, _Vector3_rrr);
-const _flaxBinding1199 = FlaxGetter("rrg", _flaxBinding534, _Vector3_rrg);
-const _flaxBinding1200 = FlaxGetter("rrb", _flaxBinding534, _Vector3_rrb);
-const _flaxBinding1201 = FlaxGetter("rgr", _flaxBinding534, _Vector3_rgr);
-const _flaxBinding1202 = FlaxGetter("rgg", _flaxBinding534, _Vector3_rgg);
-const _flaxBinding1203 = FlaxGetter("rgb", _flaxBinding534, _Vector3_rgb);
-const _flaxBinding1204 = FlaxGetter("rbr", _flaxBinding534, _Vector3_rbr);
-const _flaxBinding1205 = FlaxGetter("rbg", _flaxBinding534, _Vector3_rbg);
-const _flaxBinding1206 = FlaxGetter("rbb", _flaxBinding534, _Vector3_rbb);
-const _flaxBinding1207 = FlaxGetter("grr", _flaxBinding534, _Vector3_grr);
-const _flaxBinding1208 = FlaxGetter("grg", _flaxBinding534, _Vector3_grg);
-const _flaxBinding1209 = FlaxGetter("grb", _flaxBinding534, _Vector3_grb);
-const _flaxBinding1210 = FlaxGetter("ggr", _flaxBinding534, _Vector3_ggr);
-const _flaxBinding1211 = FlaxGetter("ggg", _flaxBinding534, _Vector3_ggg);
-const _flaxBinding1212 = FlaxGetter("ggb", _flaxBinding534, _Vector3_ggb);
-const _flaxBinding1213 = FlaxGetter("gbr", _flaxBinding534, _Vector3_gbr);
-const _flaxBinding1214 = FlaxGetter("gbg", _flaxBinding534, _Vector3_gbg);
-const _flaxBinding1215 = FlaxGetter("gbb", _flaxBinding534, _Vector3_gbb);
-const _flaxBinding1216 = FlaxGetter("brr", _flaxBinding534, _Vector3_brr);
-const _flaxBinding1217 = FlaxGetter("brg", _flaxBinding534, _Vector3_brg);
-const _flaxBinding1218 = FlaxGetter("brb", _flaxBinding534, _Vector3_brb);
-const _flaxBinding1219 = FlaxGetter("bgr", _flaxBinding534, _Vector3_bgr);
-const _flaxBinding1220 = FlaxGetter("bgg", _flaxBinding534, _Vector3_bgg);
-const _flaxBinding1221 = FlaxGetter("bgb", _flaxBinding534, _Vector3_bgb);
-const _flaxBinding1222 = FlaxGetter("bbr", _flaxBinding534, _Vector3_bbr);
-const _flaxBinding1223 = FlaxGetter("bbg", _flaxBinding534, _Vector3_bbg);
-const _flaxBinding1224 = FlaxGetter("bbb", _flaxBinding534, _Vector3_bbb);
-const _flaxBinding1225 = FlaxGetter("rrrr", _flaxBinding906, _Vector3_rrrr);
-const _flaxBinding1226 = FlaxGetter("rrrg", _flaxBinding906, _Vector3_rrrg);
-const _flaxBinding1227 = FlaxGetter("rrrb", _flaxBinding906, _Vector3_rrrb);
-const _flaxBinding1228 = FlaxGetter("rrgr", _flaxBinding906, _Vector3_rrgr);
-const _flaxBinding1229 = FlaxGetter("rrgg", _flaxBinding906, _Vector3_rrgg);
-const _flaxBinding1230 = FlaxGetter("rrgb", _flaxBinding906, _Vector3_rrgb);
-const _flaxBinding1231 = FlaxGetter("rrbr", _flaxBinding906, _Vector3_rrbr);
-const _flaxBinding1232 = FlaxGetter("rrbg", _flaxBinding906, _Vector3_rrbg);
-const _flaxBinding1233 = FlaxGetter("rrbb", _flaxBinding906, _Vector3_rrbb);
-const _flaxBinding1234 = FlaxGetter("rgrr", _flaxBinding906, _Vector3_rgrr);
-const _flaxBinding1235 = FlaxGetter("rgrg", _flaxBinding906, _Vector3_rgrg);
-const _flaxBinding1236 = FlaxGetter("rgrb", _flaxBinding906, _Vector3_rgrb);
-const _flaxBinding1237 = FlaxGetter("rggr", _flaxBinding906, _Vector3_rggr);
-const _flaxBinding1238 = FlaxGetter("rggg", _flaxBinding906, _Vector3_rggg);
-const _flaxBinding1239 = FlaxGetter("rggb", _flaxBinding906, _Vector3_rggb);
-const _flaxBinding1240 = FlaxGetter("rgbr", _flaxBinding906, _Vector3_rgbr);
-const _flaxBinding1241 = FlaxGetter("rgbg", _flaxBinding906, _Vector3_rgbg);
-const _flaxBinding1242 = FlaxGetter("rgbb", _flaxBinding906, _Vector3_rgbb);
-const _flaxBinding1243 = FlaxGetter("rbrr", _flaxBinding906, _Vector3_rbrr);
-const _flaxBinding1244 = FlaxGetter("rbrg", _flaxBinding906, _Vector3_rbrg);
-const _flaxBinding1245 = FlaxGetter("rbrb", _flaxBinding906, _Vector3_rbrb);
-const _flaxBinding1246 = FlaxGetter("rbgr", _flaxBinding906, _Vector3_rbgr);
-const _flaxBinding1247 = FlaxGetter("rbgg", _flaxBinding906, _Vector3_rbgg);
-const _flaxBinding1248 = FlaxGetter("rbgb", _flaxBinding906, _Vector3_rbgb);
-const _flaxBinding1249 = FlaxGetter("rbbr", _flaxBinding906, _Vector3_rbbr);
-const _flaxBinding1250 = FlaxGetter("rbbg", _flaxBinding906, _Vector3_rbbg);
-const _flaxBinding1251 = FlaxGetter("rbbb", _flaxBinding906, _Vector3_rbbb);
-const _flaxBinding1252 = FlaxGetter("grrr", _flaxBinding906, _Vector3_grrr);
-const _flaxBinding1253 = FlaxGetter("grrg", _flaxBinding906, _Vector3_grrg);
-const _flaxBinding1254 = FlaxGetter("grrb", _flaxBinding906, _Vector3_grrb);
-const _flaxBinding1255 = FlaxGetter("grgr", _flaxBinding906, _Vector3_grgr);
-const _flaxBinding1256 = FlaxGetter("grgg", _flaxBinding906, _Vector3_grgg);
-const _flaxBinding1257 = FlaxGetter("grgb", _flaxBinding906, _Vector3_grgb);
-const _flaxBinding1258 = FlaxGetter("grbr", _flaxBinding906, _Vector3_grbr);
-const _flaxBinding1259 = FlaxGetter("grbg", _flaxBinding906, _Vector3_grbg);
-const _flaxBinding1260 = FlaxGetter("grbb", _flaxBinding906, _Vector3_grbb);
-const _flaxBinding1261 = FlaxGetter("ggrr", _flaxBinding906, _Vector3_ggrr);
-const _flaxBinding1262 = FlaxGetter("ggrg", _flaxBinding906, _Vector3_ggrg);
-const _flaxBinding1263 = FlaxGetter("ggrb", _flaxBinding906, _Vector3_ggrb);
-const _flaxBinding1264 = FlaxGetter("gggr", _flaxBinding906, _Vector3_gggr);
-const _flaxBinding1265 = FlaxGetter("gggg", _flaxBinding906, _Vector3_gggg);
-const _flaxBinding1266 = FlaxGetter("gggb", _flaxBinding906, _Vector3_gggb);
-const _flaxBinding1267 = FlaxGetter("ggbr", _flaxBinding906, _Vector3_ggbr);
-const _flaxBinding1268 = FlaxGetter("ggbg", _flaxBinding906, _Vector3_ggbg);
-const _flaxBinding1269 = FlaxGetter("ggbb", _flaxBinding906, _Vector3_ggbb);
-const _flaxBinding1270 = FlaxGetter("gbrr", _flaxBinding906, _Vector3_gbrr);
-const _flaxBinding1271 = FlaxGetter("gbrg", _flaxBinding906, _Vector3_gbrg);
-const _flaxBinding1272 = FlaxGetter("gbrb", _flaxBinding906, _Vector3_gbrb);
-const _flaxBinding1273 = FlaxGetter("gbgr", _flaxBinding906, _Vector3_gbgr);
-const _flaxBinding1274 = FlaxGetter("gbgg", _flaxBinding906, _Vector3_gbgg);
-const _flaxBinding1275 = FlaxGetter("gbgb", _flaxBinding906, _Vector3_gbgb);
-const _flaxBinding1276 = FlaxGetter("gbbr", _flaxBinding906, _Vector3_gbbr);
-const _flaxBinding1277 = FlaxGetter("gbbg", _flaxBinding906, _Vector3_gbbg);
-const _flaxBinding1278 = FlaxGetter("gbbb", _flaxBinding906, _Vector3_gbbb);
-const _flaxBinding1279 = FlaxGetter("brrr", _flaxBinding906, _Vector3_brrr);
-const _flaxBinding1280 = FlaxGetter("brrg", _flaxBinding906, _Vector3_brrg);
-const _flaxBinding1281 = FlaxGetter("brrb", _flaxBinding906, _Vector3_brrb);
-const _flaxBinding1282 = FlaxGetter("brgr", _flaxBinding906, _Vector3_brgr);
-const _flaxBinding1283 = FlaxGetter("brgg", _flaxBinding906, _Vector3_brgg);
-const _flaxBinding1284 = FlaxGetter("brgb", _flaxBinding906, _Vector3_brgb);
-const _flaxBinding1285 = FlaxGetter("brbr", _flaxBinding906, _Vector3_brbr);
-const _flaxBinding1286 = FlaxGetter("brbg", _flaxBinding906, _Vector3_brbg);
-const _flaxBinding1287 = FlaxGetter("brbb", _flaxBinding906, _Vector3_brbb);
-const _flaxBinding1288 = FlaxGetter("bgrr", _flaxBinding906, _Vector3_bgrr);
-const _flaxBinding1289 = FlaxGetter("bgrg", _flaxBinding906, _Vector3_bgrg);
-const _flaxBinding1290 = FlaxGetter("bgrb", _flaxBinding906, _Vector3_bgrb);
-const _flaxBinding1291 = FlaxGetter("bggr", _flaxBinding906, _Vector3_bggr);
-const _flaxBinding1292 = FlaxGetter("bggg", _flaxBinding906, _Vector3_bggg);
-const _flaxBinding1293 = FlaxGetter("bggb", _flaxBinding906, _Vector3_bggb);
-const _flaxBinding1294 = FlaxGetter("bgbr", _flaxBinding906, _Vector3_bgbr);
-const _flaxBinding1295 = FlaxGetter("bgbg", _flaxBinding906, _Vector3_bgbg);
-const _flaxBinding1296 = FlaxGetter("bgbb", _flaxBinding906, _Vector3_bgbb);
-const _flaxBinding1297 = FlaxGetter("bbrr", _flaxBinding906, _Vector3_bbrr);
-const _flaxBinding1298 = FlaxGetter("bbrg", _flaxBinding906, _Vector3_bbrg);
-const _flaxBinding1299 = FlaxGetter("bbrb", _flaxBinding906, _Vector3_bbrb);
-const _flaxBinding1300 = FlaxGetter("bbgr", _flaxBinding906, _Vector3_bbgr);
-const _flaxBinding1301 = FlaxGetter("bbgg", _flaxBinding906, _Vector3_bbgg);
-const _flaxBinding1302 = FlaxGetter("bbgb", _flaxBinding906, _Vector3_bbgb);
-const _flaxBinding1303 = FlaxGetter("bbbr", _flaxBinding906, _Vector3_bbbr);
-const _flaxBinding1304 = FlaxGetter("bbbg", _flaxBinding906, _Vector3_bbbg);
-const _flaxBinding1305 = FlaxGetter("bbbb", _flaxBinding906, _Vector3_bbbb);
-const _flaxBinding1306 = FlaxGetter("ss", _flaxBinding441, _Vector3_ss);
-const _flaxBinding1307 = FlaxGetter("st", _flaxBinding441, _Vector3_st);
-const _flaxBinding1308 = FlaxGetter("sp", _flaxBinding441, _Vector3_sp);
-const _flaxBinding1309 = FlaxGetter("ts", _flaxBinding441, _Vector3_ts);
-const _flaxBinding1310 = FlaxGetter("tt", _flaxBinding441, _Vector3_tt);
-const _flaxBinding1311 = FlaxGetter("tp", _flaxBinding441, _Vector3_tp);
-const _flaxBinding1312 = FlaxGetter("ps", _flaxBinding441, _Vector3_ps);
-const _flaxBinding1313 = FlaxGetter("pt", _flaxBinding441, _Vector3_pt);
-const _flaxBinding1314 = FlaxGetter("pp", _flaxBinding441, _Vector3_pp);
-const _flaxBinding1315 = FlaxGetter("sss", _flaxBinding534, _Vector3_sss);
-const _flaxBinding1316 = FlaxGetter("sst", _flaxBinding534, _Vector3_sst);
-const _flaxBinding1317 = FlaxGetter("ssp", _flaxBinding534, _Vector3_ssp);
-const _flaxBinding1318 = FlaxGetter("sts", _flaxBinding534, _Vector3_sts);
-const _flaxBinding1319 = FlaxGetter("stt", _flaxBinding534, _Vector3_stt);
-const _flaxBinding1320 = FlaxGetter("stp", _flaxBinding534, _Vector3_stp);
-const _flaxBinding1321 = FlaxGetter("sps", _flaxBinding534, _Vector3_sps);
-const _flaxBinding1322 = FlaxGetter("spt", _flaxBinding534, _Vector3_spt);
-const _flaxBinding1323 = FlaxGetter("spp", _flaxBinding534, _Vector3_spp);
-const _flaxBinding1324 = FlaxGetter("tss", _flaxBinding534, _Vector3_tss);
-const _flaxBinding1325 = FlaxGetter("tst", _flaxBinding534, _Vector3_tst);
-const _flaxBinding1326 = FlaxGetter("tsp", _flaxBinding534, _Vector3_tsp);
-const _flaxBinding1327 = FlaxGetter("tts", _flaxBinding534, _Vector3_tts);
-const _flaxBinding1328 = FlaxGetter("ttt", _flaxBinding534, _Vector3_ttt);
-const _flaxBinding1329 = FlaxGetter("ttp", _flaxBinding534, _Vector3_ttp);
-const _flaxBinding1330 = FlaxGetter("tps", _flaxBinding534, _Vector3_tps);
-const _flaxBinding1331 = FlaxGetter("tpt", _flaxBinding534, _Vector3_tpt);
-const _flaxBinding1332 = FlaxGetter("tpp", _flaxBinding534, _Vector3_tpp);
-const _flaxBinding1333 = FlaxGetter("pss", _flaxBinding534, _Vector3_pss);
-const _flaxBinding1334 = FlaxGetter("pst", _flaxBinding534, _Vector3_pst);
-const _flaxBinding1335 = FlaxGetter("psp", _flaxBinding534, _Vector3_psp);
-const _flaxBinding1336 = FlaxGetter("pts", _flaxBinding534, _Vector3_pts);
-const _flaxBinding1337 = FlaxGetter("ptt", _flaxBinding534, _Vector3_ptt);
-const _flaxBinding1338 = FlaxGetter("ptp", _flaxBinding534, _Vector3_ptp);
-const _flaxBinding1339 = FlaxGetter("pps", _flaxBinding534, _Vector3_pps);
-const _flaxBinding1340 = FlaxGetter("ppt", _flaxBinding534, _Vector3_ppt);
-const _flaxBinding1341 = FlaxGetter("ppp", _flaxBinding534, _Vector3_ppp);
-const _flaxBinding1342 = FlaxGetter("ssss", _flaxBinding906, _Vector3_ssss);
-const _flaxBinding1343 = FlaxGetter("ssst", _flaxBinding906, _Vector3_ssst);
-const _flaxBinding1344 = FlaxGetter("sssp", _flaxBinding906, _Vector3_sssp);
-const _flaxBinding1345 = FlaxGetter("ssts", _flaxBinding906, _Vector3_ssts);
-const _flaxBinding1346 = FlaxGetter("sstt", _flaxBinding906, _Vector3_sstt);
-const _flaxBinding1347 = FlaxGetter("sstp", _flaxBinding906, _Vector3_sstp);
-const _flaxBinding1348 = FlaxGetter("ssps", _flaxBinding906, _Vector3_ssps);
-const _flaxBinding1349 = FlaxGetter("sspt", _flaxBinding906, _Vector3_sspt);
-const _flaxBinding1350 = FlaxGetter("sspp", _flaxBinding906, _Vector3_sspp);
-const _flaxBinding1351 = FlaxGetter("stss", _flaxBinding906, _Vector3_stss);
-const _flaxBinding1352 = FlaxGetter("stst", _flaxBinding906, _Vector3_stst);
-const _flaxBinding1353 = FlaxGetter("stsp", _flaxBinding906, _Vector3_stsp);
-const _flaxBinding1354 = FlaxGetter("stts", _flaxBinding906, _Vector3_stts);
-const _flaxBinding1355 = FlaxGetter("sttt", _flaxBinding906, _Vector3_sttt);
-const _flaxBinding1356 = FlaxGetter("sttp", _flaxBinding906, _Vector3_sttp);
-const _flaxBinding1357 = FlaxGetter("stps", _flaxBinding906, _Vector3_stps);
-const _flaxBinding1358 = FlaxGetter("stpt", _flaxBinding906, _Vector3_stpt);
-const _flaxBinding1359 = FlaxGetter("stpp", _flaxBinding906, _Vector3_stpp);
-const _flaxBinding1360 = FlaxGetter("spss", _flaxBinding906, _Vector3_spss);
-const _flaxBinding1361 = FlaxGetter("spst", _flaxBinding906, _Vector3_spst);
-const _flaxBinding1362 = FlaxGetter("spsp", _flaxBinding906, _Vector3_spsp);
-const _flaxBinding1363 = FlaxGetter("spts", _flaxBinding906, _Vector3_spts);
-const _flaxBinding1364 = FlaxGetter("sptt", _flaxBinding906, _Vector3_sptt);
-const _flaxBinding1365 = FlaxGetter("sptp", _flaxBinding906, _Vector3_sptp);
-const _flaxBinding1366 = FlaxGetter("spps", _flaxBinding906, _Vector3_spps);
-const _flaxBinding1367 = FlaxGetter("sppt", _flaxBinding906, _Vector3_sppt);
-const _flaxBinding1368 = FlaxGetter("sppp", _flaxBinding906, _Vector3_sppp);
-const _flaxBinding1369 = FlaxGetter("tsss", _flaxBinding906, _Vector3_tsss);
-const _flaxBinding1370 = FlaxGetter("tsst", _flaxBinding906, _Vector3_tsst);
-const _flaxBinding1371 = FlaxGetter("tssp", _flaxBinding906, _Vector3_tssp);
-const _flaxBinding1372 = FlaxGetter("tsts", _flaxBinding906, _Vector3_tsts);
-const _flaxBinding1373 = FlaxGetter("tstt", _flaxBinding906, _Vector3_tstt);
-const _flaxBinding1374 = FlaxGetter("tstp", _flaxBinding906, _Vector3_tstp);
-const _flaxBinding1375 = FlaxGetter("tsps", _flaxBinding906, _Vector3_tsps);
-const _flaxBinding1376 = FlaxGetter("tspt", _flaxBinding906, _Vector3_tspt);
-const _flaxBinding1377 = FlaxGetter("tspp", _flaxBinding906, _Vector3_tspp);
-const _flaxBinding1378 = FlaxGetter("ttss", _flaxBinding906, _Vector3_ttss);
-const _flaxBinding1379 = FlaxGetter("ttst", _flaxBinding906, _Vector3_ttst);
-const _flaxBinding1380 = FlaxGetter("ttsp", _flaxBinding906, _Vector3_ttsp);
-const _flaxBinding1381 = FlaxGetter("ttts", _flaxBinding906, _Vector3_ttts);
-const _flaxBinding1382 = FlaxGetter("tttt", _flaxBinding906, _Vector3_tttt);
-const _flaxBinding1383 = FlaxGetter("tttp", _flaxBinding906, _Vector3_tttp);
-const _flaxBinding1384 = FlaxGetter("ttps", _flaxBinding906, _Vector3_ttps);
-const _flaxBinding1385 = FlaxGetter("ttpt", _flaxBinding906, _Vector3_ttpt);
-const _flaxBinding1386 = FlaxGetter("ttpp", _flaxBinding906, _Vector3_ttpp);
-const _flaxBinding1387 = FlaxGetter("tpss", _flaxBinding906, _Vector3_tpss);
-const _flaxBinding1388 = FlaxGetter("tpst", _flaxBinding906, _Vector3_tpst);
-const _flaxBinding1389 = FlaxGetter("tpsp", _flaxBinding906, _Vector3_tpsp);
-const _flaxBinding1390 = FlaxGetter("tpts", _flaxBinding906, _Vector3_tpts);
-const _flaxBinding1391 = FlaxGetter("tptt", _flaxBinding906, _Vector3_tptt);
-const _flaxBinding1392 = FlaxGetter("tptp", _flaxBinding906, _Vector3_tptp);
-const _flaxBinding1393 = FlaxGetter("tpps", _flaxBinding906, _Vector3_tpps);
-const _flaxBinding1394 = FlaxGetter("tppt", _flaxBinding906, _Vector3_tppt);
-const _flaxBinding1395 = FlaxGetter("tppp", _flaxBinding906, _Vector3_tppp);
-const _flaxBinding1396 = FlaxGetter("psss", _flaxBinding906, _Vector3_psss);
-const _flaxBinding1397 = FlaxGetter("psst", _flaxBinding906, _Vector3_psst);
-const _flaxBinding1398 = FlaxGetter("pssp", _flaxBinding906, _Vector3_pssp);
-const _flaxBinding1399 = FlaxGetter("psts", _flaxBinding906, _Vector3_psts);
-const _flaxBinding1400 = FlaxGetter("pstt", _flaxBinding906, _Vector3_pstt);
-const _flaxBinding1401 = FlaxGetter("pstp", _flaxBinding906, _Vector3_pstp);
-const _flaxBinding1402 = FlaxGetter("psps", _flaxBinding906, _Vector3_psps);
-const _flaxBinding1403 = FlaxGetter("pspt", _flaxBinding906, _Vector3_pspt);
-const _flaxBinding1404 = FlaxGetter("pspp", _flaxBinding906, _Vector3_pspp);
-const _flaxBinding1405 = FlaxGetter("ptss", _flaxBinding906, _Vector3_ptss);
-const _flaxBinding1406 = FlaxGetter("ptst", _flaxBinding906, _Vector3_ptst);
-const _flaxBinding1407 = FlaxGetter("ptsp", _flaxBinding906, _Vector3_ptsp);
-const _flaxBinding1408 = FlaxGetter("ptts", _flaxBinding906, _Vector3_ptts);
-const _flaxBinding1409 = FlaxGetter("pttt", _flaxBinding906, _Vector3_pttt);
-const _flaxBinding1410 = FlaxGetter("pttp", _flaxBinding906, _Vector3_pttp);
-const _flaxBinding1411 = FlaxGetter("ptps", _flaxBinding906, _Vector3_ptps);
-const _flaxBinding1412 = FlaxGetter("ptpt", _flaxBinding906, _Vector3_ptpt);
-const _flaxBinding1413 = FlaxGetter("ptpp", _flaxBinding906, _Vector3_ptpp);
-const _flaxBinding1414 = FlaxGetter("ppss", _flaxBinding906, _Vector3_ppss);
-const _flaxBinding1415 = FlaxGetter("ppst", _flaxBinding906, _Vector3_ppst);
-const _flaxBinding1416 = FlaxGetter("ppsp", _flaxBinding906, _Vector3_ppsp);
-const _flaxBinding1417 = FlaxGetter("ppts", _flaxBinding906, _Vector3_ppts);
-const _flaxBinding1418 = FlaxGetter("pptt", _flaxBinding906, _Vector3_pptt);
-const _flaxBinding1419 = FlaxGetter("pptp", _flaxBinding906, _Vector3_pptp);
-const _flaxBinding1420 = FlaxGetter("ppps", _flaxBinding906, _Vector3_ppps);
-const _flaxBinding1421 = FlaxGetter("pppt", _flaxBinding906, _Vector3_pppt);
-const _flaxBinding1422 = FlaxGetter("pppp", _flaxBinding906, _Vector3_pppp);
-const _flaxBinding1423 = FlaxSetter(
+const _flaxBinding1044 = FlaxGetter.plain(
+  "isNaN",
+  flaxBoolType,
+  _Vector3_isNaN,
+);
+const _flaxBinding1045 = FlaxGetter.plain("xx", _flaxBinding426, _Vector3_xx);
+const _flaxBinding1046 = FlaxGetter.plain("xy", _flaxBinding426, _Vector3_xy);
+const _flaxBinding1047 = FlaxGetter.plain("xz", _flaxBinding426, _Vector3_xz);
+const _flaxBinding1048 = FlaxGetter.plain("yx", _flaxBinding426, _Vector3_yx);
+const _flaxBinding1049 = FlaxGetter.plain("yy", _flaxBinding426, _Vector3_yy);
+const _flaxBinding1050 = FlaxGetter.plain("yz", _flaxBinding426, _Vector3_yz);
+const _flaxBinding1051 = FlaxGetter.plain("zx", _flaxBinding426, _Vector3_zx);
+const _flaxBinding1052 = FlaxGetter.plain("zy", _flaxBinding426, _Vector3_zy);
+const _flaxBinding1053 = FlaxGetter.plain("zz", _flaxBinding426, _Vector3_zz);
+const _flaxBinding1054 = FlaxGetter.plain("xxx", _flaxBinding517, _Vector3_xxx);
+const _flaxBinding1055 = FlaxGetter.plain("xxy", _flaxBinding517, _Vector3_xxy);
+const _flaxBinding1056 = FlaxGetter.plain("xxz", _flaxBinding517, _Vector3_xxz);
+const _flaxBinding1057 = FlaxGetter.plain("xyx", _flaxBinding517, _Vector3_xyx);
+const _flaxBinding1058 = FlaxGetter.plain("xyy", _flaxBinding517, _Vector3_xyy);
+const _flaxBinding1059 = FlaxGetter.plain("xyz", _flaxBinding517, _Vector3_xyz);
+const _flaxBinding1060 = FlaxGetter.plain("xzx", _flaxBinding517, _Vector3_xzx);
+const _flaxBinding1061 = FlaxGetter.plain("xzy", _flaxBinding517, _Vector3_xzy);
+const _flaxBinding1062 = FlaxGetter.plain("xzz", _flaxBinding517, _Vector3_xzz);
+const _flaxBinding1063 = FlaxGetter.plain("yxx", _flaxBinding517, _Vector3_yxx);
+const _flaxBinding1064 = FlaxGetter.plain("yxy", _flaxBinding517, _Vector3_yxy);
+const _flaxBinding1065 = FlaxGetter.plain("yxz", _flaxBinding517, _Vector3_yxz);
+const _flaxBinding1066 = FlaxGetter.plain("yyx", _flaxBinding517, _Vector3_yyx);
+const _flaxBinding1067 = FlaxGetter.plain("yyy", _flaxBinding517, _Vector3_yyy);
+const _flaxBinding1068 = FlaxGetter.plain("yyz", _flaxBinding517, _Vector3_yyz);
+const _flaxBinding1069 = FlaxGetter.plain("yzx", _flaxBinding517, _Vector3_yzx);
+const _flaxBinding1070 = FlaxGetter.plain("yzy", _flaxBinding517, _Vector3_yzy);
+const _flaxBinding1071 = FlaxGetter.plain("yzz", _flaxBinding517, _Vector3_yzz);
+const _flaxBinding1072 = FlaxGetter.plain("zxx", _flaxBinding517, _Vector3_zxx);
+const _flaxBinding1073 = FlaxGetter.plain("zxy", _flaxBinding517, _Vector3_zxy);
+const _flaxBinding1074 = FlaxGetter.plain("zxz", _flaxBinding517, _Vector3_zxz);
+const _flaxBinding1075 = FlaxGetter.plain("zyx", _flaxBinding517, _Vector3_zyx);
+const _flaxBinding1076 = FlaxGetter.plain("zyy", _flaxBinding517, _Vector3_zyy);
+const _flaxBinding1077 = FlaxGetter.plain("zyz", _flaxBinding517, _Vector3_zyz);
+const _flaxBinding1078 = FlaxGetter.plain("zzx", _flaxBinding517, _Vector3_zzx);
+const _flaxBinding1079 = FlaxGetter.plain("zzy", _flaxBinding517, _Vector3_zzy);
+const _flaxBinding1080 = FlaxGetter.plain("zzz", _flaxBinding517, _Vector3_zzz);
+const _flaxBinding1081 = FlaxGetter.plain(
+  "xxxx",
+  _flaxBinding888,
+  _Vector3_xxxx,
+);
+const _flaxBinding1082 = FlaxGetter.plain(
+  "xxxy",
+  _flaxBinding888,
+  _Vector3_xxxy,
+);
+const _flaxBinding1083 = FlaxGetter.plain(
+  "xxxz",
+  _flaxBinding888,
+  _Vector3_xxxz,
+);
+const _flaxBinding1084 = FlaxGetter.plain(
+  "xxyx",
+  _flaxBinding888,
+  _Vector3_xxyx,
+);
+const _flaxBinding1085 = FlaxGetter.plain(
+  "xxyy",
+  _flaxBinding888,
+  _Vector3_xxyy,
+);
+const _flaxBinding1086 = FlaxGetter.plain(
+  "xxyz",
+  _flaxBinding888,
+  _Vector3_xxyz,
+);
+const _flaxBinding1087 = FlaxGetter.plain(
+  "xxzx",
+  _flaxBinding888,
+  _Vector3_xxzx,
+);
+const _flaxBinding1088 = FlaxGetter.plain(
+  "xxzy",
+  _flaxBinding888,
+  _Vector3_xxzy,
+);
+const _flaxBinding1089 = FlaxGetter.plain(
+  "xxzz",
+  _flaxBinding888,
+  _Vector3_xxzz,
+);
+const _flaxBinding1090 = FlaxGetter.plain(
+  "xyxx",
+  _flaxBinding888,
+  _Vector3_xyxx,
+);
+const _flaxBinding1091 = FlaxGetter.plain(
+  "xyxy",
+  _flaxBinding888,
+  _Vector3_xyxy,
+);
+const _flaxBinding1092 = FlaxGetter.plain(
+  "xyxz",
+  _flaxBinding888,
+  _Vector3_xyxz,
+);
+const _flaxBinding1093 = FlaxGetter.plain(
+  "xyyx",
+  _flaxBinding888,
+  _Vector3_xyyx,
+);
+const _flaxBinding1094 = FlaxGetter.plain(
+  "xyyy",
+  _flaxBinding888,
+  _Vector3_xyyy,
+);
+const _flaxBinding1095 = FlaxGetter.plain(
+  "xyyz",
+  _flaxBinding888,
+  _Vector3_xyyz,
+);
+const _flaxBinding1096 = FlaxGetter.plain(
+  "xyzx",
+  _flaxBinding888,
+  _Vector3_xyzx,
+);
+const _flaxBinding1097 = FlaxGetter.plain(
+  "xyzy",
+  _flaxBinding888,
+  _Vector3_xyzy,
+);
+const _flaxBinding1098 = FlaxGetter.plain(
+  "xyzz",
+  _flaxBinding888,
+  _Vector3_xyzz,
+);
+const _flaxBinding1099 = FlaxGetter.plain(
+  "xzxx",
+  _flaxBinding888,
+  _Vector3_xzxx,
+);
+const _flaxBinding1100 = FlaxGetter.plain(
+  "xzxy",
+  _flaxBinding888,
+  _Vector3_xzxy,
+);
+const _flaxBinding1101 = FlaxGetter.plain(
+  "xzxz",
+  _flaxBinding888,
+  _Vector3_xzxz,
+);
+const _flaxBinding1102 = FlaxGetter.plain(
+  "xzyx",
+  _flaxBinding888,
+  _Vector3_xzyx,
+);
+const _flaxBinding1103 = FlaxGetter.plain(
+  "xzyy",
+  _flaxBinding888,
+  _Vector3_xzyy,
+);
+const _flaxBinding1104 = FlaxGetter.plain(
+  "xzyz",
+  _flaxBinding888,
+  _Vector3_xzyz,
+);
+const _flaxBinding1105 = FlaxGetter.plain(
+  "xzzx",
+  _flaxBinding888,
+  _Vector3_xzzx,
+);
+const _flaxBinding1106 = FlaxGetter.plain(
+  "xzzy",
+  _flaxBinding888,
+  _Vector3_xzzy,
+);
+const _flaxBinding1107 = FlaxGetter.plain(
+  "xzzz",
+  _flaxBinding888,
+  _Vector3_xzzz,
+);
+const _flaxBinding1108 = FlaxGetter.plain(
+  "yxxx",
+  _flaxBinding888,
+  _Vector3_yxxx,
+);
+const _flaxBinding1109 = FlaxGetter.plain(
+  "yxxy",
+  _flaxBinding888,
+  _Vector3_yxxy,
+);
+const _flaxBinding1110 = FlaxGetter.plain(
+  "yxxz",
+  _flaxBinding888,
+  _Vector3_yxxz,
+);
+const _flaxBinding1111 = FlaxGetter.plain(
+  "yxyx",
+  _flaxBinding888,
+  _Vector3_yxyx,
+);
+const _flaxBinding1112 = FlaxGetter.plain(
+  "yxyy",
+  _flaxBinding888,
+  _Vector3_yxyy,
+);
+const _flaxBinding1113 = FlaxGetter.plain(
+  "yxyz",
+  _flaxBinding888,
+  _Vector3_yxyz,
+);
+const _flaxBinding1114 = FlaxGetter.plain(
+  "yxzx",
+  _flaxBinding888,
+  _Vector3_yxzx,
+);
+const _flaxBinding1115 = FlaxGetter.plain(
+  "yxzy",
+  _flaxBinding888,
+  _Vector3_yxzy,
+);
+const _flaxBinding1116 = FlaxGetter.plain(
+  "yxzz",
+  _flaxBinding888,
+  _Vector3_yxzz,
+);
+const _flaxBinding1117 = FlaxGetter.plain(
+  "yyxx",
+  _flaxBinding888,
+  _Vector3_yyxx,
+);
+const _flaxBinding1118 = FlaxGetter.plain(
+  "yyxy",
+  _flaxBinding888,
+  _Vector3_yyxy,
+);
+const _flaxBinding1119 = FlaxGetter.plain(
+  "yyxz",
+  _flaxBinding888,
+  _Vector3_yyxz,
+);
+const _flaxBinding1120 = FlaxGetter.plain(
+  "yyyx",
+  _flaxBinding888,
+  _Vector3_yyyx,
+);
+const _flaxBinding1121 = FlaxGetter.plain(
+  "yyyy",
+  _flaxBinding888,
+  _Vector3_yyyy,
+);
+const _flaxBinding1122 = FlaxGetter.plain(
+  "yyyz",
+  _flaxBinding888,
+  _Vector3_yyyz,
+);
+const _flaxBinding1123 = FlaxGetter.plain(
+  "yyzx",
+  _flaxBinding888,
+  _Vector3_yyzx,
+);
+const _flaxBinding1124 = FlaxGetter.plain(
+  "yyzy",
+  _flaxBinding888,
+  _Vector3_yyzy,
+);
+const _flaxBinding1125 = FlaxGetter.plain(
+  "yyzz",
+  _flaxBinding888,
+  _Vector3_yyzz,
+);
+const _flaxBinding1126 = FlaxGetter.plain(
+  "yzxx",
+  _flaxBinding888,
+  _Vector3_yzxx,
+);
+const _flaxBinding1127 = FlaxGetter.plain(
+  "yzxy",
+  _flaxBinding888,
+  _Vector3_yzxy,
+);
+const _flaxBinding1128 = FlaxGetter.plain(
+  "yzxz",
+  _flaxBinding888,
+  _Vector3_yzxz,
+);
+const _flaxBinding1129 = FlaxGetter.plain(
+  "yzyx",
+  _flaxBinding888,
+  _Vector3_yzyx,
+);
+const _flaxBinding1130 = FlaxGetter.plain(
+  "yzyy",
+  _flaxBinding888,
+  _Vector3_yzyy,
+);
+const _flaxBinding1131 = FlaxGetter.plain(
+  "yzyz",
+  _flaxBinding888,
+  _Vector3_yzyz,
+);
+const _flaxBinding1132 = FlaxGetter.plain(
+  "yzzx",
+  _flaxBinding888,
+  _Vector3_yzzx,
+);
+const _flaxBinding1133 = FlaxGetter.plain(
+  "yzzy",
+  _flaxBinding888,
+  _Vector3_yzzy,
+);
+const _flaxBinding1134 = FlaxGetter.plain(
+  "yzzz",
+  _flaxBinding888,
+  _Vector3_yzzz,
+);
+const _flaxBinding1135 = FlaxGetter.plain(
+  "zxxx",
+  _flaxBinding888,
+  _Vector3_zxxx,
+);
+const _flaxBinding1136 = FlaxGetter.plain(
+  "zxxy",
+  _flaxBinding888,
+  _Vector3_zxxy,
+);
+const _flaxBinding1137 = FlaxGetter.plain(
+  "zxxz",
+  _flaxBinding888,
+  _Vector3_zxxz,
+);
+const _flaxBinding1138 = FlaxGetter.plain(
+  "zxyx",
+  _flaxBinding888,
+  _Vector3_zxyx,
+);
+const _flaxBinding1139 = FlaxGetter.plain(
+  "zxyy",
+  _flaxBinding888,
+  _Vector3_zxyy,
+);
+const _flaxBinding1140 = FlaxGetter.plain(
+  "zxyz",
+  _flaxBinding888,
+  _Vector3_zxyz,
+);
+const _flaxBinding1141 = FlaxGetter.plain(
+  "zxzx",
+  _flaxBinding888,
+  _Vector3_zxzx,
+);
+const _flaxBinding1142 = FlaxGetter.plain(
+  "zxzy",
+  _flaxBinding888,
+  _Vector3_zxzy,
+);
+const _flaxBinding1143 = FlaxGetter.plain(
+  "zxzz",
+  _flaxBinding888,
+  _Vector3_zxzz,
+);
+const _flaxBinding1144 = FlaxGetter.plain(
+  "zyxx",
+  _flaxBinding888,
+  _Vector3_zyxx,
+);
+const _flaxBinding1145 = FlaxGetter.plain(
+  "zyxy",
+  _flaxBinding888,
+  _Vector3_zyxy,
+);
+const _flaxBinding1146 = FlaxGetter.plain(
+  "zyxz",
+  _flaxBinding888,
+  _Vector3_zyxz,
+);
+const _flaxBinding1147 = FlaxGetter.plain(
+  "zyyx",
+  _flaxBinding888,
+  _Vector3_zyyx,
+);
+const _flaxBinding1148 = FlaxGetter.plain(
+  "zyyy",
+  _flaxBinding888,
+  _Vector3_zyyy,
+);
+const _flaxBinding1149 = FlaxGetter.plain(
+  "zyyz",
+  _flaxBinding888,
+  _Vector3_zyyz,
+);
+const _flaxBinding1150 = FlaxGetter.plain(
+  "zyzx",
+  _flaxBinding888,
+  _Vector3_zyzx,
+);
+const _flaxBinding1151 = FlaxGetter.plain(
+  "zyzy",
+  _flaxBinding888,
+  _Vector3_zyzy,
+);
+const _flaxBinding1152 = FlaxGetter.plain(
+  "zyzz",
+  _flaxBinding888,
+  _Vector3_zyzz,
+);
+const _flaxBinding1153 = FlaxGetter.plain(
+  "zzxx",
+  _flaxBinding888,
+  _Vector3_zzxx,
+);
+const _flaxBinding1154 = FlaxGetter.plain(
+  "zzxy",
+  _flaxBinding888,
+  _Vector3_zzxy,
+);
+const _flaxBinding1155 = FlaxGetter.plain(
+  "zzxz",
+  _flaxBinding888,
+  _Vector3_zzxz,
+);
+const _flaxBinding1156 = FlaxGetter.plain(
+  "zzyx",
+  _flaxBinding888,
+  _Vector3_zzyx,
+);
+const _flaxBinding1157 = FlaxGetter.plain(
+  "zzyy",
+  _flaxBinding888,
+  _Vector3_zzyy,
+);
+const _flaxBinding1158 = FlaxGetter.plain(
+  "zzyz",
+  _flaxBinding888,
+  _Vector3_zzyz,
+);
+const _flaxBinding1159 = FlaxGetter.plain(
+  "zzzx",
+  _flaxBinding888,
+  _Vector3_zzzx,
+);
+const _flaxBinding1160 = FlaxGetter.plain(
+  "zzzy",
+  _flaxBinding888,
+  _Vector3_zzzy,
+);
+const _flaxBinding1161 = FlaxGetter.plain(
+  "zzzz",
+  _flaxBinding888,
+  _Vector3_zzzz,
+);
+const _flaxBinding1162 = FlaxGetter.plain("r", flaxDoubleType, _Vector3_r);
+const _flaxBinding1163 = FlaxGetter.plain("g", flaxDoubleType, _Vector3_g);
+const _flaxBinding1164 = FlaxGetter.plain("b", flaxDoubleType, _Vector3_b);
+const _flaxBinding1165 = FlaxGetter.plain("s", flaxDoubleType, _Vector3_s);
+const _flaxBinding1166 = FlaxGetter.plain("t", flaxDoubleType, _Vector3_t);
+const _flaxBinding1167 = FlaxGetter.plain("p", flaxDoubleType, _Vector3_p);
+const _flaxBinding1168 = FlaxGetter.plain("x", flaxDoubleType, _Vector3_x);
+const _flaxBinding1169 = FlaxGetter.plain("y", flaxDoubleType, _Vector3_y);
+const _flaxBinding1170 = FlaxGetter.plain("z", flaxDoubleType, _Vector3_z);
+const _flaxBinding1171 = FlaxGetter.plain("rr", _flaxBinding426, _Vector3_rr);
+const _flaxBinding1172 = FlaxGetter.plain("rg", _flaxBinding426, _Vector3_rg);
+const _flaxBinding1173 = FlaxGetter.plain("rb", _flaxBinding426, _Vector3_rb);
+const _flaxBinding1174 = FlaxGetter.plain("gr", _flaxBinding426, _Vector3_gr);
+const _flaxBinding1175 = FlaxGetter.plain("gg", _flaxBinding426, _Vector3_gg);
+const _flaxBinding1176 = FlaxGetter.plain("gb", _flaxBinding426, _Vector3_gb);
+const _flaxBinding1177 = FlaxGetter.plain("br", _flaxBinding426, _Vector3_br);
+const _flaxBinding1178 = FlaxGetter.plain("bg", _flaxBinding426, _Vector3_bg);
+const _flaxBinding1179 = FlaxGetter.plain("bb", _flaxBinding426, _Vector3_bb);
+const _flaxBinding1180 = FlaxGetter.plain("rrr", _flaxBinding517, _Vector3_rrr);
+const _flaxBinding1181 = FlaxGetter.plain("rrg", _flaxBinding517, _Vector3_rrg);
+const _flaxBinding1182 = FlaxGetter.plain("rrb", _flaxBinding517, _Vector3_rrb);
+const _flaxBinding1183 = FlaxGetter.plain("rgr", _flaxBinding517, _Vector3_rgr);
+const _flaxBinding1184 = FlaxGetter.plain("rgg", _flaxBinding517, _Vector3_rgg);
+const _flaxBinding1185 = FlaxGetter.plain("rgb", _flaxBinding517, _Vector3_rgb);
+const _flaxBinding1186 = FlaxGetter.plain("rbr", _flaxBinding517, _Vector3_rbr);
+const _flaxBinding1187 = FlaxGetter.plain("rbg", _flaxBinding517, _Vector3_rbg);
+const _flaxBinding1188 = FlaxGetter.plain("rbb", _flaxBinding517, _Vector3_rbb);
+const _flaxBinding1189 = FlaxGetter.plain("grr", _flaxBinding517, _Vector3_grr);
+const _flaxBinding1190 = FlaxGetter.plain("grg", _flaxBinding517, _Vector3_grg);
+const _flaxBinding1191 = FlaxGetter.plain("grb", _flaxBinding517, _Vector3_grb);
+const _flaxBinding1192 = FlaxGetter.plain("ggr", _flaxBinding517, _Vector3_ggr);
+const _flaxBinding1193 = FlaxGetter.plain("ggg", _flaxBinding517, _Vector3_ggg);
+const _flaxBinding1194 = FlaxGetter.plain("ggb", _flaxBinding517, _Vector3_ggb);
+const _flaxBinding1195 = FlaxGetter.plain("gbr", _flaxBinding517, _Vector3_gbr);
+const _flaxBinding1196 = FlaxGetter.plain("gbg", _flaxBinding517, _Vector3_gbg);
+const _flaxBinding1197 = FlaxGetter.plain("gbb", _flaxBinding517, _Vector3_gbb);
+const _flaxBinding1198 = FlaxGetter.plain("brr", _flaxBinding517, _Vector3_brr);
+const _flaxBinding1199 = FlaxGetter.plain("brg", _flaxBinding517, _Vector3_brg);
+const _flaxBinding1200 = FlaxGetter.plain("brb", _flaxBinding517, _Vector3_brb);
+const _flaxBinding1201 = FlaxGetter.plain("bgr", _flaxBinding517, _Vector3_bgr);
+const _flaxBinding1202 = FlaxGetter.plain("bgg", _flaxBinding517, _Vector3_bgg);
+const _flaxBinding1203 = FlaxGetter.plain("bgb", _flaxBinding517, _Vector3_bgb);
+const _flaxBinding1204 = FlaxGetter.plain("bbr", _flaxBinding517, _Vector3_bbr);
+const _flaxBinding1205 = FlaxGetter.plain("bbg", _flaxBinding517, _Vector3_bbg);
+const _flaxBinding1206 = FlaxGetter.plain("bbb", _flaxBinding517, _Vector3_bbb);
+const _flaxBinding1207 = FlaxGetter.plain(
+  "rrrr",
+  _flaxBinding888,
+  _Vector3_rrrr,
+);
+const _flaxBinding1208 = FlaxGetter.plain(
+  "rrrg",
+  _flaxBinding888,
+  _Vector3_rrrg,
+);
+const _flaxBinding1209 = FlaxGetter.plain(
+  "rrrb",
+  _flaxBinding888,
+  _Vector3_rrrb,
+);
+const _flaxBinding1210 = FlaxGetter.plain(
+  "rrgr",
+  _flaxBinding888,
+  _Vector3_rrgr,
+);
+const _flaxBinding1211 = FlaxGetter.plain(
+  "rrgg",
+  _flaxBinding888,
+  _Vector3_rrgg,
+);
+const _flaxBinding1212 = FlaxGetter.plain(
+  "rrgb",
+  _flaxBinding888,
+  _Vector3_rrgb,
+);
+const _flaxBinding1213 = FlaxGetter.plain(
+  "rrbr",
+  _flaxBinding888,
+  _Vector3_rrbr,
+);
+const _flaxBinding1214 = FlaxGetter.plain(
+  "rrbg",
+  _flaxBinding888,
+  _Vector3_rrbg,
+);
+const _flaxBinding1215 = FlaxGetter.plain(
+  "rrbb",
+  _flaxBinding888,
+  _Vector3_rrbb,
+);
+const _flaxBinding1216 = FlaxGetter.plain(
+  "rgrr",
+  _flaxBinding888,
+  _Vector3_rgrr,
+);
+const _flaxBinding1217 = FlaxGetter.plain(
+  "rgrg",
+  _flaxBinding888,
+  _Vector3_rgrg,
+);
+const _flaxBinding1218 = FlaxGetter.plain(
+  "rgrb",
+  _flaxBinding888,
+  _Vector3_rgrb,
+);
+const _flaxBinding1219 = FlaxGetter.plain(
+  "rggr",
+  _flaxBinding888,
+  _Vector3_rggr,
+);
+const _flaxBinding1220 = FlaxGetter.plain(
+  "rggg",
+  _flaxBinding888,
+  _Vector3_rggg,
+);
+const _flaxBinding1221 = FlaxGetter.plain(
+  "rggb",
+  _flaxBinding888,
+  _Vector3_rggb,
+);
+const _flaxBinding1222 = FlaxGetter.plain(
+  "rgbr",
+  _flaxBinding888,
+  _Vector3_rgbr,
+);
+const _flaxBinding1223 = FlaxGetter.plain(
+  "rgbg",
+  _flaxBinding888,
+  _Vector3_rgbg,
+);
+const _flaxBinding1224 = FlaxGetter.plain(
+  "rgbb",
+  _flaxBinding888,
+  _Vector3_rgbb,
+);
+const _flaxBinding1225 = FlaxGetter.plain(
+  "rbrr",
+  _flaxBinding888,
+  _Vector3_rbrr,
+);
+const _flaxBinding1226 = FlaxGetter.plain(
+  "rbrg",
+  _flaxBinding888,
+  _Vector3_rbrg,
+);
+const _flaxBinding1227 = FlaxGetter.plain(
+  "rbrb",
+  _flaxBinding888,
+  _Vector3_rbrb,
+);
+const _flaxBinding1228 = FlaxGetter.plain(
+  "rbgr",
+  _flaxBinding888,
+  _Vector3_rbgr,
+);
+const _flaxBinding1229 = FlaxGetter.plain(
+  "rbgg",
+  _flaxBinding888,
+  _Vector3_rbgg,
+);
+const _flaxBinding1230 = FlaxGetter.plain(
+  "rbgb",
+  _flaxBinding888,
+  _Vector3_rbgb,
+);
+const _flaxBinding1231 = FlaxGetter.plain(
+  "rbbr",
+  _flaxBinding888,
+  _Vector3_rbbr,
+);
+const _flaxBinding1232 = FlaxGetter.plain(
+  "rbbg",
+  _flaxBinding888,
+  _Vector3_rbbg,
+);
+const _flaxBinding1233 = FlaxGetter.plain(
+  "rbbb",
+  _flaxBinding888,
+  _Vector3_rbbb,
+);
+const _flaxBinding1234 = FlaxGetter.plain(
+  "grrr",
+  _flaxBinding888,
+  _Vector3_grrr,
+);
+const _flaxBinding1235 = FlaxGetter.plain(
+  "grrg",
+  _flaxBinding888,
+  _Vector3_grrg,
+);
+const _flaxBinding1236 = FlaxGetter.plain(
+  "grrb",
+  _flaxBinding888,
+  _Vector3_grrb,
+);
+const _flaxBinding1237 = FlaxGetter.plain(
+  "grgr",
+  _flaxBinding888,
+  _Vector3_grgr,
+);
+const _flaxBinding1238 = FlaxGetter.plain(
+  "grgg",
+  _flaxBinding888,
+  _Vector3_grgg,
+);
+const _flaxBinding1239 = FlaxGetter.plain(
+  "grgb",
+  _flaxBinding888,
+  _Vector3_grgb,
+);
+const _flaxBinding1240 = FlaxGetter.plain(
+  "grbr",
+  _flaxBinding888,
+  _Vector3_grbr,
+);
+const _flaxBinding1241 = FlaxGetter.plain(
+  "grbg",
+  _flaxBinding888,
+  _Vector3_grbg,
+);
+const _flaxBinding1242 = FlaxGetter.plain(
+  "grbb",
+  _flaxBinding888,
+  _Vector3_grbb,
+);
+const _flaxBinding1243 = FlaxGetter.plain(
+  "ggrr",
+  _flaxBinding888,
+  _Vector3_ggrr,
+);
+const _flaxBinding1244 = FlaxGetter.plain(
+  "ggrg",
+  _flaxBinding888,
+  _Vector3_ggrg,
+);
+const _flaxBinding1245 = FlaxGetter.plain(
+  "ggrb",
+  _flaxBinding888,
+  _Vector3_ggrb,
+);
+const _flaxBinding1246 = FlaxGetter.plain(
+  "gggr",
+  _flaxBinding888,
+  _Vector3_gggr,
+);
+const _flaxBinding1247 = FlaxGetter.plain(
+  "gggg",
+  _flaxBinding888,
+  _Vector3_gggg,
+);
+const _flaxBinding1248 = FlaxGetter.plain(
+  "gggb",
+  _flaxBinding888,
+  _Vector3_gggb,
+);
+const _flaxBinding1249 = FlaxGetter.plain(
+  "ggbr",
+  _flaxBinding888,
+  _Vector3_ggbr,
+);
+const _flaxBinding1250 = FlaxGetter.plain(
+  "ggbg",
+  _flaxBinding888,
+  _Vector3_ggbg,
+);
+const _flaxBinding1251 = FlaxGetter.plain(
+  "ggbb",
+  _flaxBinding888,
+  _Vector3_ggbb,
+);
+const _flaxBinding1252 = FlaxGetter.plain(
+  "gbrr",
+  _flaxBinding888,
+  _Vector3_gbrr,
+);
+const _flaxBinding1253 = FlaxGetter.plain(
+  "gbrg",
+  _flaxBinding888,
+  _Vector3_gbrg,
+);
+const _flaxBinding1254 = FlaxGetter.plain(
+  "gbrb",
+  _flaxBinding888,
+  _Vector3_gbrb,
+);
+const _flaxBinding1255 = FlaxGetter.plain(
+  "gbgr",
+  _flaxBinding888,
+  _Vector3_gbgr,
+);
+const _flaxBinding1256 = FlaxGetter.plain(
+  "gbgg",
+  _flaxBinding888,
+  _Vector3_gbgg,
+);
+const _flaxBinding1257 = FlaxGetter.plain(
+  "gbgb",
+  _flaxBinding888,
+  _Vector3_gbgb,
+);
+const _flaxBinding1258 = FlaxGetter.plain(
+  "gbbr",
+  _flaxBinding888,
+  _Vector3_gbbr,
+);
+const _flaxBinding1259 = FlaxGetter.plain(
+  "gbbg",
+  _flaxBinding888,
+  _Vector3_gbbg,
+);
+const _flaxBinding1260 = FlaxGetter.plain(
+  "gbbb",
+  _flaxBinding888,
+  _Vector3_gbbb,
+);
+const _flaxBinding1261 = FlaxGetter.plain(
+  "brrr",
+  _flaxBinding888,
+  _Vector3_brrr,
+);
+const _flaxBinding1262 = FlaxGetter.plain(
+  "brrg",
+  _flaxBinding888,
+  _Vector3_brrg,
+);
+const _flaxBinding1263 = FlaxGetter.plain(
+  "brrb",
+  _flaxBinding888,
+  _Vector3_brrb,
+);
+const _flaxBinding1264 = FlaxGetter.plain(
+  "brgr",
+  _flaxBinding888,
+  _Vector3_brgr,
+);
+const _flaxBinding1265 = FlaxGetter.plain(
+  "brgg",
+  _flaxBinding888,
+  _Vector3_brgg,
+);
+const _flaxBinding1266 = FlaxGetter.plain(
+  "brgb",
+  _flaxBinding888,
+  _Vector3_brgb,
+);
+const _flaxBinding1267 = FlaxGetter.plain(
+  "brbr",
+  _flaxBinding888,
+  _Vector3_brbr,
+);
+const _flaxBinding1268 = FlaxGetter.plain(
+  "brbg",
+  _flaxBinding888,
+  _Vector3_brbg,
+);
+const _flaxBinding1269 = FlaxGetter.plain(
+  "brbb",
+  _flaxBinding888,
+  _Vector3_brbb,
+);
+const _flaxBinding1270 = FlaxGetter.plain(
+  "bgrr",
+  _flaxBinding888,
+  _Vector3_bgrr,
+);
+const _flaxBinding1271 = FlaxGetter.plain(
+  "bgrg",
+  _flaxBinding888,
+  _Vector3_bgrg,
+);
+const _flaxBinding1272 = FlaxGetter.plain(
+  "bgrb",
+  _flaxBinding888,
+  _Vector3_bgrb,
+);
+const _flaxBinding1273 = FlaxGetter.plain(
+  "bggr",
+  _flaxBinding888,
+  _Vector3_bggr,
+);
+const _flaxBinding1274 = FlaxGetter.plain(
+  "bggg",
+  _flaxBinding888,
+  _Vector3_bggg,
+);
+const _flaxBinding1275 = FlaxGetter.plain(
+  "bggb",
+  _flaxBinding888,
+  _Vector3_bggb,
+);
+const _flaxBinding1276 = FlaxGetter.plain(
+  "bgbr",
+  _flaxBinding888,
+  _Vector3_bgbr,
+);
+const _flaxBinding1277 = FlaxGetter.plain(
+  "bgbg",
+  _flaxBinding888,
+  _Vector3_bgbg,
+);
+const _flaxBinding1278 = FlaxGetter.plain(
+  "bgbb",
+  _flaxBinding888,
+  _Vector3_bgbb,
+);
+const _flaxBinding1279 = FlaxGetter.plain(
+  "bbrr",
+  _flaxBinding888,
+  _Vector3_bbrr,
+);
+const _flaxBinding1280 = FlaxGetter.plain(
+  "bbrg",
+  _flaxBinding888,
+  _Vector3_bbrg,
+);
+const _flaxBinding1281 = FlaxGetter.plain(
+  "bbrb",
+  _flaxBinding888,
+  _Vector3_bbrb,
+);
+const _flaxBinding1282 = FlaxGetter.plain(
+  "bbgr",
+  _flaxBinding888,
+  _Vector3_bbgr,
+);
+const _flaxBinding1283 = FlaxGetter.plain(
+  "bbgg",
+  _flaxBinding888,
+  _Vector3_bbgg,
+);
+const _flaxBinding1284 = FlaxGetter.plain(
+  "bbgb",
+  _flaxBinding888,
+  _Vector3_bbgb,
+);
+const _flaxBinding1285 = FlaxGetter.plain(
+  "bbbr",
+  _flaxBinding888,
+  _Vector3_bbbr,
+);
+const _flaxBinding1286 = FlaxGetter.plain(
+  "bbbg",
+  _flaxBinding888,
+  _Vector3_bbbg,
+);
+const _flaxBinding1287 = FlaxGetter.plain(
+  "bbbb",
+  _flaxBinding888,
+  _Vector3_bbbb,
+);
+const _flaxBinding1288 = FlaxGetter.plain("ss", _flaxBinding426, _Vector3_ss);
+const _flaxBinding1289 = FlaxGetter.plain("st", _flaxBinding426, _Vector3_st);
+const _flaxBinding1290 = FlaxGetter.plain("sp", _flaxBinding426, _Vector3_sp);
+const _flaxBinding1291 = FlaxGetter.plain("ts", _flaxBinding426, _Vector3_ts);
+const _flaxBinding1292 = FlaxGetter.plain("tt", _flaxBinding426, _Vector3_tt);
+const _flaxBinding1293 = FlaxGetter.plain("tp", _flaxBinding426, _Vector3_tp);
+const _flaxBinding1294 = FlaxGetter.plain("ps", _flaxBinding426, _Vector3_ps);
+const _flaxBinding1295 = FlaxGetter.plain("pt", _flaxBinding426, _Vector3_pt);
+const _flaxBinding1296 = FlaxGetter.plain("pp", _flaxBinding426, _Vector3_pp);
+const _flaxBinding1297 = FlaxGetter.plain("sss", _flaxBinding517, _Vector3_sss);
+const _flaxBinding1298 = FlaxGetter.plain("sst", _flaxBinding517, _Vector3_sst);
+const _flaxBinding1299 = FlaxGetter.plain("ssp", _flaxBinding517, _Vector3_ssp);
+const _flaxBinding1300 = FlaxGetter.plain("sts", _flaxBinding517, _Vector3_sts);
+const _flaxBinding1301 = FlaxGetter.plain("stt", _flaxBinding517, _Vector3_stt);
+const _flaxBinding1302 = FlaxGetter.plain("stp", _flaxBinding517, _Vector3_stp);
+const _flaxBinding1303 = FlaxGetter.plain("sps", _flaxBinding517, _Vector3_sps);
+const _flaxBinding1304 = FlaxGetter.plain("spt", _flaxBinding517, _Vector3_spt);
+const _flaxBinding1305 = FlaxGetter.plain("spp", _flaxBinding517, _Vector3_spp);
+const _flaxBinding1306 = FlaxGetter.plain("tss", _flaxBinding517, _Vector3_tss);
+const _flaxBinding1307 = FlaxGetter.plain("tst", _flaxBinding517, _Vector3_tst);
+const _flaxBinding1308 = FlaxGetter.plain("tsp", _flaxBinding517, _Vector3_tsp);
+const _flaxBinding1309 = FlaxGetter.plain("tts", _flaxBinding517, _Vector3_tts);
+const _flaxBinding1310 = FlaxGetter.plain("ttt", _flaxBinding517, _Vector3_ttt);
+const _flaxBinding1311 = FlaxGetter.plain("ttp", _flaxBinding517, _Vector3_ttp);
+const _flaxBinding1312 = FlaxGetter.plain("tps", _flaxBinding517, _Vector3_tps);
+const _flaxBinding1313 = FlaxGetter.plain("tpt", _flaxBinding517, _Vector3_tpt);
+const _flaxBinding1314 = FlaxGetter.plain("tpp", _flaxBinding517, _Vector3_tpp);
+const _flaxBinding1315 = FlaxGetter.plain("pss", _flaxBinding517, _Vector3_pss);
+const _flaxBinding1316 = FlaxGetter.plain("pst", _flaxBinding517, _Vector3_pst);
+const _flaxBinding1317 = FlaxGetter.plain("psp", _flaxBinding517, _Vector3_psp);
+const _flaxBinding1318 = FlaxGetter.plain("pts", _flaxBinding517, _Vector3_pts);
+const _flaxBinding1319 = FlaxGetter.plain("ptt", _flaxBinding517, _Vector3_ptt);
+const _flaxBinding1320 = FlaxGetter.plain("ptp", _flaxBinding517, _Vector3_ptp);
+const _flaxBinding1321 = FlaxGetter.plain("pps", _flaxBinding517, _Vector3_pps);
+const _flaxBinding1322 = FlaxGetter.plain("ppt", _flaxBinding517, _Vector3_ppt);
+const _flaxBinding1323 = FlaxGetter.plain("ppp", _flaxBinding517, _Vector3_ppp);
+const _flaxBinding1324 = FlaxGetter.plain(
+  "ssss",
+  _flaxBinding888,
+  _Vector3_ssss,
+);
+const _flaxBinding1325 = FlaxGetter.plain(
+  "ssst",
+  _flaxBinding888,
+  _Vector3_ssst,
+);
+const _flaxBinding1326 = FlaxGetter.plain(
+  "sssp",
+  _flaxBinding888,
+  _Vector3_sssp,
+);
+const _flaxBinding1327 = FlaxGetter.plain(
+  "ssts",
+  _flaxBinding888,
+  _Vector3_ssts,
+);
+const _flaxBinding1328 = FlaxGetter.plain(
+  "sstt",
+  _flaxBinding888,
+  _Vector3_sstt,
+);
+const _flaxBinding1329 = FlaxGetter.plain(
+  "sstp",
+  _flaxBinding888,
+  _Vector3_sstp,
+);
+const _flaxBinding1330 = FlaxGetter.plain(
+  "ssps",
+  _flaxBinding888,
+  _Vector3_ssps,
+);
+const _flaxBinding1331 = FlaxGetter.plain(
+  "sspt",
+  _flaxBinding888,
+  _Vector3_sspt,
+);
+const _flaxBinding1332 = FlaxGetter.plain(
+  "sspp",
+  _flaxBinding888,
+  _Vector3_sspp,
+);
+const _flaxBinding1333 = FlaxGetter.plain(
+  "stss",
+  _flaxBinding888,
+  _Vector3_stss,
+);
+const _flaxBinding1334 = FlaxGetter.plain(
+  "stst",
+  _flaxBinding888,
+  _Vector3_stst,
+);
+const _flaxBinding1335 = FlaxGetter.plain(
+  "stsp",
+  _flaxBinding888,
+  _Vector3_stsp,
+);
+const _flaxBinding1336 = FlaxGetter.plain(
+  "stts",
+  _flaxBinding888,
+  _Vector3_stts,
+);
+const _flaxBinding1337 = FlaxGetter.plain(
+  "sttt",
+  _flaxBinding888,
+  _Vector3_sttt,
+);
+const _flaxBinding1338 = FlaxGetter.plain(
+  "sttp",
+  _flaxBinding888,
+  _Vector3_sttp,
+);
+const _flaxBinding1339 = FlaxGetter.plain(
+  "stps",
+  _flaxBinding888,
+  _Vector3_stps,
+);
+const _flaxBinding1340 = FlaxGetter.plain(
+  "stpt",
+  _flaxBinding888,
+  _Vector3_stpt,
+);
+const _flaxBinding1341 = FlaxGetter.plain(
+  "stpp",
+  _flaxBinding888,
+  _Vector3_stpp,
+);
+const _flaxBinding1342 = FlaxGetter.plain(
+  "spss",
+  _flaxBinding888,
+  _Vector3_spss,
+);
+const _flaxBinding1343 = FlaxGetter.plain(
+  "spst",
+  _flaxBinding888,
+  _Vector3_spst,
+);
+const _flaxBinding1344 = FlaxGetter.plain(
+  "spsp",
+  _flaxBinding888,
+  _Vector3_spsp,
+);
+const _flaxBinding1345 = FlaxGetter.plain(
+  "spts",
+  _flaxBinding888,
+  _Vector3_spts,
+);
+const _flaxBinding1346 = FlaxGetter.plain(
+  "sptt",
+  _flaxBinding888,
+  _Vector3_sptt,
+);
+const _flaxBinding1347 = FlaxGetter.plain(
+  "sptp",
+  _flaxBinding888,
+  _Vector3_sptp,
+);
+const _flaxBinding1348 = FlaxGetter.plain(
+  "spps",
+  _flaxBinding888,
+  _Vector3_spps,
+);
+const _flaxBinding1349 = FlaxGetter.plain(
+  "sppt",
+  _flaxBinding888,
+  _Vector3_sppt,
+);
+const _flaxBinding1350 = FlaxGetter.plain(
+  "sppp",
+  _flaxBinding888,
+  _Vector3_sppp,
+);
+const _flaxBinding1351 = FlaxGetter.plain(
+  "tsss",
+  _flaxBinding888,
+  _Vector3_tsss,
+);
+const _flaxBinding1352 = FlaxGetter.plain(
+  "tsst",
+  _flaxBinding888,
+  _Vector3_tsst,
+);
+const _flaxBinding1353 = FlaxGetter.plain(
+  "tssp",
+  _flaxBinding888,
+  _Vector3_tssp,
+);
+const _flaxBinding1354 = FlaxGetter.plain(
+  "tsts",
+  _flaxBinding888,
+  _Vector3_tsts,
+);
+const _flaxBinding1355 = FlaxGetter.plain(
+  "tstt",
+  _flaxBinding888,
+  _Vector3_tstt,
+);
+const _flaxBinding1356 = FlaxGetter.plain(
+  "tstp",
+  _flaxBinding888,
+  _Vector3_tstp,
+);
+const _flaxBinding1357 = FlaxGetter.plain(
+  "tsps",
+  _flaxBinding888,
+  _Vector3_tsps,
+);
+const _flaxBinding1358 = FlaxGetter.plain(
+  "tspt",
+  _flaxBinding888,
+  _Vector3_tspt,
+);
+const _flaxBinding1359 = FlaxGetter.plain(
+  "tspp",
+  _flaxBinding888,
+  _Vector3_tspp,
+);
+const _flaxBinding1360 = FlaxGetter.plain(
+  "ttss",
+  _flaxBinding888,
+  _Vector3_ttss,
+);
+const _flaxBinding1361 = FlaxGetter.plain(
+  "ttst",
+  _flaxBinding888,
+  _Vector3_ttst,
+);
+const _flaxBinding1362 = FlaxGetter.plain(
+  "ttsp",
+  _flaxBinding888,
+  _Vector3_ttsp,
+);
+const _flaxBinding1363 = FlaxGetter.plain(
+  "ttts",
+  _flaxBinding888,
+  _Vector3_ttts,
+);
+const _flaxBinding1364 = FlaxGetter.plain(
+  "tttt",
+  _flaxBinding888,
+  _Vector3_tttt,
+);
+const _flaxBinding1365 = FlaxGetter.plain(
+  "tttp",
+  _flaxBinding888,
+  _Vector3_tttp,
+);
+const _flaxBinding1366 = FlaxGetter.plain(
+  "ttps",
+  _flaxBinding888,
+  _Vector3_ttps,
+);
+const _flaxBinding1367 = FlaxGetter.plain(
+  "ttpt",
+  _flaxBinding888,
+  _Vector3_ttpt,
+);
+const _flaxBinding1368 = FlaxGetter.plain(
+  "ttpp",
+  _flaxBinding888,
+  _Vector3_ttpp,
+);
+const _flaxBinding1369 = FlaxGetter.plain(
+  "tpss",
+  _flaxBinding888,
+  _Vector3_tpss,
+);
+const _flaxBinding1370 = FlaxGetter.plain(
+  "tpst",
+  _flaxBinding888,
+  _Vector3_tpst,
+);
+const _flaxBinding1371 = FlaxGetter.plain(
+  "tpsp",
+  _flaxBinding888,
+  _Vector3_tpsp,
+);
+const _flaxBinding1372 = FlaxGetter.plain(
+  "tpts",
+  _flaxBinding888,
+  _Vector3_tpts,
+);
+const _flaxBinding1373 = FlaxGetter.plain(
+  "tptt",
+  _flaxBinding888,
+  _Vector3_tptt,
+);
+const _flaxBinding1374 = FlaxGetter.plain(
+  "tptp",
+  _flaxBinding888,
+  _Vector3_tptp,
+);
+const _flaxBinding1375 = FlaxGetter.plain(
+  "tpps",
+  _flaxBinding888,
+  _Vector3_tpps,
+);
+const _flaxBinding1376 = FlaxGetter.plain(
+  "tppt",
+  _flaxBinding888,
+  _Vector3_tppt,
+);
+const _flaxBinding1377 = FlaxGetter.plain(
+  "tppp",
+  _flaxBinding888,
+  _Vector3_tppp,
+);
+const _flaxBinding1378 = FlaxGetter.plain(
+  "psss",
+  _flaxBinding888,
+  _Vector3_psss,
+);
+const _flaxBinding1379 = FlaxGetter.plain(
+  "psst",
+  _flaxBinding888,
+  _Vector3_psst,
+);
+const _flaxBinding1380 = FlaxGetter.plain(
+  "pssp",
+  _flaxBinding888,
+  _Vector3_pssp,
+);
+const _flaxBinding1381 = FlaxGetter.plain(
+  "psts",
+  _flaxBinding888,
+  _Vector3_psts,
+);
+const _flaxBinding1382 = FlaxGetter.plain(
+  "pstt",
+  _flaxBinding888,
+  _Vector3_pstt,
+);
+const _flaxBinding1383 = FlaxGetter.plain(
+  "pstp",
+  _flaxBinding888,
+  _Vector3_pstp,
+);
+const _flaxBinding1384 = FlaxGetter.plain(
+  "psps",
+  _flaxBinding888,
+  _Vector3_psps,
+);
+const _flaxBinding1385 = FlaxGetter.plain(
+  "pspt",
+  _flaxBinding888,
+  _Vector3_pspt,
+);
+const _flaxBinding1386 = FlaxGetter.plain(
+  "pspp",
+  _flaxBinding888,
+  _Vector3_pspp,
+);
+const _flaxBinding1387 = FlaxGetter.plain(
+  "ptss",
+  _flaxBinding888,
+  _Vector3_ptss,
+);
+const _flaxBinding1388 = FlaxGetter.plain(
+  "ptst",
+  _flaxBinding888,
+  _Vector3_ptst,
+);
+const _flaxBinding1389 = FlaxGetter.plain(
+  "ptsp",
+  _flaxBinding888,
+  _Vector3_ptsp,
+);
+const _flaxBinding1390 = FlaxGetter.plain(
+  "ptts",
+  _flaxBinding888,
+  _Vector3_ptts,
+);
+const _flaxBinding1391 = FlaxGetter.plain(
+  "pttt",
+  _flaxBinding888,
+  _Vector3_pttt,
+);
+const _flaxBinding1392 = FlaxGetter.plain(
+  "pttp",
+  _flaxBinding888,
+  _Vector3_pttp,
+);
+const _flaxBinding1393 = FlaxGetter.plain(
+  "ptps",
+  _flaxBinding888,
+  _Vector3_ptps,
+);
+const _flaxBinding1394 = FlaxGetter.plain(
+  "ptpt",
+  _flaxBinding888,
+  _Vector3_ptpt,
+);
+const _flaxBinding1395 = FlaxGetter.plain(
+  "ptpp",
+  _flaxBinding888,
+  _Vector3_ptpp,
+);
+const _flaxBinding1396 = FlaxGetter.plain(
+  "ppss",
+  _flaxBinding888,
+  _Vector3_ppss,
+);
+const _flaxBinding1397 = FlaxGetter.plain(
+  "ppst",
+  _flaxBinding888,
+  _Vector3_ppst,
+);
+const _flaxBinding1398 = FlaxGetter.plain(
+  "ppsp",
+  _flaxBinding888,
+  _Vector3_ppsp,
+);
+const _flaxBinding1399 = FlaxGetter.plain(
+  "ppts",
+  _flaxBinding888,
+  _Vector3_ppts,
+);
+const _flaxBinding1400 = FlaxGetter.plain(
+  "pptt",
+  _flaxBinding888,
+  _Vector3_pptt,
+);
+const _flaxBinding1401 = FlaxGetter.plain(
+  "pptp",
+  _flaxBinding888,
+  _Vector3_pptp,
+);
+const _flaxBinding1402 = FlaxGetter.plain(
+  "ppps",
+  _flaxBinding888,
+  _Vector3_ppps,
+);
+const _flaxBinding1403 = FlaxGetter.plain(
+  "pppt",
+  _flaxBinding888,
+  _Vector3_pppt,
+);
+const _flaxBinding1404 = FlaxGetter.plain(
+  "pppp",
+  _flaxBinding888,
+  _Vector3_pppp,
+);
+const _flaxBinding1405 = FlaxSetter(
   "length",
-  _flaxBinding448,
+  flaxDoubleType,
   _Vector3_set_length,
 );
-const _flaxBinding1424 = FlaxSetter("xy", _flaxBinding441, _Vector3_set_xy);
-const _flaxBinding1425 = FlaxSetter("xz", _flaxBinding441, _Vector3_set_xz);
-const _flaxBinding1426 = FlaxSetter("yx", _flaxBinding441, _Vector3_set_yx);
-const _flaxBinding1427 = FlaxSetter("yz", _flaxBinding441, _Vector3_set_yz);
-const _flaxBinding1428 = FlaxSetter("zx", _flaxBinding441, _Vector3_set_zx);
-const _flaxBinding1429 = FlaxSetter("zy", _flaxBinding441, _Vector3_set_zy);
-const _flaxBinding1430 = FlaxSetter("xyz", _flaxBinding534, _Vector3_set_xyz);
-const _flaxBinding1431 = FlaxSetter("xzy", _flaxBinding534, _Vector3_set_xzy);
-const _flaxBinding1432 = FlaxSetter("yxz", _flaxBinding534, _Vector3_set_yxz);
-const _flaxBinding1433 = FlaxSetter("yzx", _flaxBinding534, _Vector3_set_yzx);
-const _flaxBinding1434 = FlaxSetter("zxy", _flaxBinding534, _Vector3_set_zxy);
-const _flaxBinding1435 = FlaxSetter("zyx", _flaxBinding534, _Vector3_set_zyx);
-const _flaxBinding1436 = FlaxSetter("r", _flaxBinding448, _Vector3_set_r);
-const _flaxBinding1437 = FlaxSetter("g", _flaxBinding448, _Vector3_set_g);
-const _flaxBinding1438 = FlaxSetter("b", _flaxBinding448, _Vector3_set_b);
-const _flaxBinding1439 = FlaxSetter("s", _flaxBinding448, _Vector3_set_s);
-const _flaxBinding1440 = FlaxSetter("t", _flaxBinding448, _Vector3_set_t);
-const _flaxBinding1441 = FlaxSetter("p", _flaxBinding448, _Vector3_set_p);
-const _flaxBinding1442 = FlaxSetter("x", _flaxBinding448, _Vector3_set_x);
-const _flaxBinding1443 = FlaxSetter("y", _flaxBinding448, _Vector3_set_y);
-const _flaxBinding1444 = FlaxSetter("z", _flaxBinding448, _Vector3_set_z);
-const _flaxBinding1445 = FlaxSetter("rg", _flaxBinding441, _Vector3_set_rg);
-const _flaxBinding1446 = FlaxSetter("rb", _flaxBinding441, _Vector3_set_rb);
-const _flaxBinding1447 = FlaxSetter("gr", _flaxBinding441, _Vector3_set_gr);
-const _flaxBinding1448 = FlaxSetter("gb", _flaxBinding441, _Vector3_set_gb);
-const _flaxBinding1449 = FlaxSetter("br", _flaxBinding441, _Vector3_set_br);
-const _flaxBinding1450 = FlaxSetter("bg", _flaxBinding441, _Vector3_set_bg);
-const _flaxBinding1451 = FlaxSetter("rgb", _flaxBinding534, _Vector3_set_rgb);
-const _flaxBinding1452 = FlaxSetter("rbg", _flaxBinding534, _Vector3_set_rbg);
-const _flaxBinding1453 = FlaxSetter("grb", _flaxBinding534, _Vector3_set_grb);
-const _flaxBinding1454 = FlaxSetter("gbr", _flaxBinding534, _Vector3_set_gbr);
-const _flaxBinding1455 = FlaxSetter("brg", _flaxBinding534, _Vector3_set_brg);
-const _flaxBinding1456 = FlaxSetter("bgr", _flaxBinding534, _Vector3_set_bgr);
-const _flaxBinding1457 = FlaxSetter("st", _flaxBinding441, _Vector3_set_st);
-const _flaxBinding1458 = FlaxSetter("sp", _flaxBinding441, _Vector3_set_sp);
-const _flaxBinding1459 = FlaxSetter("ts", _flaxBinding441, _Vector3_set_ts);
-const _flaxBinding1460 = FlaxSetter("tp", _flaxBinding441, _Vector3_set_tp);
-const _flaxBinding1461 = FlaxSetter("ps", _flaxBinding441, _Vector3_set_ps);
-const _flaxBinding1462 = FlaxSetter("pt", _flaxBinding441, _Vector3_set_pt);
-const _flaxBinding1463 = FlaxSetter("stp", _flaxBinding534, _Vector3_set_stp);
-const _flaxBinding1464 = FlaxSetter("spt", _flaxBinding534, _Vector3_set_spt);
-const _flaxBinding1465 = FlaxSetter("tsp", _flaxBinding534, _Vector3_set_tsp);
-const _flaxBinding1466 = FlaxSetter("tps", _flaxBinding534, _Vector3_set_tps);
-const _flaxBinding1467 = FlaxSetter("pst", _flaxBinding534, _Vector3_set_pst);
-const _flaxBinding1468 = FlaxSetter("pts", _flaxBinding534, _Vector3_set_pts);
-const _flaxBinding1469 = <FlaxParameter>[
-  FlaxParameter("x", _flaxBinding448, required: true),
-  FlaxParameter("y", _flaxBinding448, required: true),
-  FlaxParameter("z", _flaxBinding448, required: true),
+const _flaxBinding1406 = FlaxSetter("xy", _flaxBinding426, _Vector3_set_xy);
+const _flaxBinding1407 = FlaxSetter("xz", _flaxBinding426, _Vector3_set_xz);
+const _flaxBinding1408 = FlaxSetter("yx", _flaxBinding426, _Vector3_set_yx);
+const _flaxBinding1409 = FlaxSetter("yz", _flaxBinding426, _Vector3_set_yz);
+const _flaxBinding1410 = FlaxSetter("zx", _flaxBinding426, _Vector3_set_zx);
+const _flaxBinding1411 = FlaxSetter("zy", _flaxBinding426, _Vector3_set_zy);
+const _flaxBinding1412 = FlaxSetter("xyz", _flaxBinding517, _Vector3_set_xyz);
+const _flaxBinding1413 = FlaxSetter("xzy", _flaxBinding517, _Vector3_set_xzy);
+const _flaxBinding1414 = FlaxSetter("yxz", _flaxBinding517, _Vector3_set_yxz);
+const _flaxBinding1415 = FlaxSetter("yzx", _flaxBinding517, _Vector3_set_yzx);
+const _flaxBinding1416 = FlaxSetter("zxy", _flaxBinding517, _Vector3_set_zxy);
+const _flaxBinding1417 = FlaxSetter("zyx", _flaxBinding517, _Vector3_set_zyx);
+const _flaxBinding1418 = FlaxSetter("r", flaxDoubleType, _Vector3_set_r);
+const _flaxBinding1419 = FlaxSetter("g", flaxDoubleType, _Vector3_set_g);
+const _flaxBinding1420 = FlaxSetter("b", flaxDoubleType, _Vector3_set_b);
+const _flaxBinding1421 = FlaxSetter("s", flaxDoubleType, _Vector3_set_s);
+const _flaxBinding1422 = FlaxSetter("t", flaxDoubleType, _Vector3_set_t);
+const _flaxBinding1423 = FlaxSetter("p", flaxDoubleType, _Vector3_set_p);
+const _flaxBinding1424 = FlaxSetter("x", flaxDoubleType, _Vector3_set_x);
+const _flaxBinding1425 = FlaxSetter("y", flaxDoubleType, _Vector3_set_y);
+const _flaxBinding1426 = FlaxSetter("z", flaxDoubleType, _Vector3_set_z);
+const _flaxBinding1427 = FlaxSetter("rg", _flaxBinding426, _Vector3_set_rg);
+const _flaxBinding1428 = FlaxSetter("rb", _flaxBinding426, _Vector3_set_rb);
+const _flaxBinding1429 = FlaxSetter("gr", _flaxBinding426, _Vector3_set_gr);
+const _flaxBinding1430 = FlaxSetter("gb", _flaxBinding426, _Vector3_set_gb);
+const _flaxBinding1431 = FlaxSetter("br", _flaxBinding426, _Vector3_set_br);
+const _flaxBinding1432 = FlaxSetter("bg", _flaxBinding426, _Vector3_set_bg);
+const _flaxBinding1433 = FlaxSetter("rgb", _flaxBinding517, _Vector3_set_rgb);
+const _flaxBinding1434 = FlaxSetter("rbg", _flaxBinding517, _Vector3_set_rbg);
+const _flaxBinding1435 = FlaxSetter("grb", _flaxBinding517, _Vector3_set_grb);
+const _flaxBinding1436 = FlaxSetter("gbr", _flaxBinding517, _Vector3_set_gbr);
+const _flaxBinding1437 = FlaxSetter("brg", _flaxBinding517, _Vector3_set_brg);
+const _flaxBinding1438 = FlaxSetter("bgr", _flaxBinding517, _Vector3_set_bgr);
+const _flaxBinding1439 = FlaxSetter("st", _flaxBinding426, _Vector3_set_st);
+const _flaxBinding1440 = FlaxSetter("sp", _flaxBinding426, _Vector3_set_sp);
+const _flaxBinding1441 = FlaxSetter("ts", _flaxBinding426, _Vector3_set_ts);
+const _flaxBinding1442 = FlaxSetter("tp", _flaxBinding426, _Vector3_set_tp);
+const _flaxBinding1443 = FlaxSetter("ps", _flaxBinding426, _Vector3_set_ps);
+const _flaxBinding1444 = FlaxSetter("pt", _flaxBinding426, _Vector3_set_pt);
+const _flaxBinding1445 = FlaxSetter("stp", _flaxBinding517, _Vector3_set_stp);
+const _flaxBinding1446 = FlaxSetter("spt", _flaxBinding517, _Vector3_set_spt);
+const _flaxBinding1447 = FlaxSetter("tsp", _flaxBinding517, _Vector3_set_tsp);
+const _flaxBinding1448 = FlaxSetter("tps", _flaxBinding517, _Vector3_set_tps);
+const _flaxBinding1449 = FlaxSetter("pst", _flaxBinding517, _Vector3_set_pst);
+const _flaxBinding1450 = FlaxSetter("pts", _flaxBinding517, _Vector3_set_pts);
+const _flaxBinding1451 = <FlaxParameter>[
+  FlaxParameter.required("x", flaxDoubleType),
+  FlaxParameter.required("y", flaxDoubleType),
+  FlaxParameter.required("z", flaxDoubleType),
 ];
-const _flaxBinding1470 = FlaxInstanceMethod(
-  _flaxBinding1469,
-  _flaxBinding70,
+const _flaxBinding1452 = FlaxInstanceMethod.plain(
+  _flaxBinding1451,
+  flaxVoidType,
   _Vector3_setValues,
 );
-const _flaxBinding1471 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1453 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector3_setZero,
 );
-const _flaxBinding1472 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding534, required: true),
+const _flaxBinding1454 = <FlaxParameter>[
+  FlaxParameter.required("other", _flaxBinding517),
 ];
-const _flaxBinding1473 = FlaxInstanceMethod(
-  _flaxBinding1472,
-  _flaxBinding70,
+const _flaxBinding1455 = FlaxInstanceMethod.plain(
+  _flaxBinding1454,
+  flaxVoidType,
   _Vector3_setFrom,
 );
-const _flaxBinding1474 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding70,
+const _flaxBinding1456 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  flaxVoidType,
   _Vector3_splat,
 );
-const _flaxBinding1475 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding1457 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _Vector3_toString,
 );
-const _flaxBinding1476 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding1458 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Vector3_normalize,
 );
-const _flaxBinding1477 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding1459 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Vector3_normalizeLength,
 );
-const _flaxBinding1478 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding534,
+const _flaxBinding1460 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding517,
   _Vector3_normalized,
 );
-const _flaxBinding1479 = <FlaxParameter>[
-  FlaxParameter("out", _flaxBinding534, required: true),
+const _flaxBinding1461 = <FlaxParameter>[
+  FlaxParameter.required("out", _flaxBinding517),
 ];
-const _flaxBinding1480 = FlaxInstanceMethod(
-  _flaxBinding1479,
-  _flaxBinding534,
+const _flaxBinding1462 = FlaxInstanceMethod.plain(
+  _flaxBinding1461,
+  _flaxBinding517,
   _Vector3_normalizeInto,
 );
-const _flaxBinding1481 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding448,
+const _flaxBinding1463 = FlaxInstanceMethod.plain(
+  _flaxBinding540,
+  flaxDoubleType,
   _Vector3_distanceTo,
 );
-const _flaxBinding1482 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding448,
+const _flaxBinding1464 = FlaxInstanceMethod.plain(
+  _flaxBinding540,
+  flaxDoubleType,
   _Vector3_distanceToSquared,
 );
-const _flaxBinding1483 = FlaxInstanceMethod(
-  _flaxBinding1472,
-  _flaxBinding448,
+const _flaxBinding1465 = FlaxInstanceMethod.plain(
+  _flaxBinding1454,
+  flaxDoubleType,
   _Vector3_angleTo,
 );
-const _flaxBinding1484 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding534, required: true),
-  FlaxParameter("normal", _flaxBinding534, required: true),
+const _flaxBinding1466 = <FlaxParameter>[
+  FlaxParameter.required("other", _flaxBinding517),
+  FlaxParameter.required("normal", _flaxBinding517),
 ];
-const _flaxBinding1485 = FlaxInstanceMethod(
-  _flaxBinding1484,
-  _flaxBinding448,
+const _flaxBinding1467 = FlaxInstanceMethod.plain(
+  _flaxBinding1466,
+  flaxDoubleType,
   _Vector3_angleToSigned,
 );
-const _flaxBinding1486 = FlaxInstanceMethod(
-  _flaxBinding1472,
-  _flaxBinding448,
+const _flaxBinding1468 = FlaxInstanceMethod.plain(
+  _flaxBinding1454,
+  flaxDoubleType,
   _Vector3_dot,
 );
-const _flaxBinding1487 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding70,
+const _flaxBinding1469 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  flaxVoidType,
   _Vector3_postmultiply,
 );
-const _flaxBinding1488 = FlaxInstanceMethod(
-  _flaxBinding1472,
-  _flaxBinding534,
+const _flaxBinding1470 = FlaxInstanceMethod.plain(
+  _flaxBinding1454,
+  _flaxBinding517,
   _Vector3_cross,
 );
-const _flaxBinding1489 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding534, required: true),
-  FlaxParameter("out", _flaxBinding534, required: true),
+const _flaxBinding1471 = <FlaxParameter>[
+  FlaxParameter.required("other", _flaxBinding517),
+  FlaxParameter.required("out", _flaxBinding517),
 ];
-const _flaxBinding1490 = FlaxInstanceMethod(
-  _flaxBinding1489,
-  _flaxBinding534,
+const _flaxBinding1472 = FlaxInstanceMethod.plain(
+  _flaxBinding1471,
+  _flaxBinding517,
   _Vector3_crossInto,
 );
-const _flaxBinding1491 = FlaxInstanceMethod(
-  _flaxBinding630,
-  _flaxBinding70,
+const _flaxBinding1473 = FlaxInstanceMethod.plain(
+  _flaxBinding612,
+  flaxVoidType,
   _Vector3_reflect,
 );
-const _flaxBinding1492 = FlaxInstanceMethod(
-  _flaxBinding630,
-  _flaxBinding534,
+const _flaxBinding1474 = FlaxInstanceMethod.plain(
+  _flaxBinding612,
+  _flaxBinding517,
   _Vector3_reflected,
 );
-const _flaxBinding1493 = FlaxInstanceMethod(
-  _flaxBinding587,
-  _flaxBinding70,
+const _flaxBinding1475 = FlaxInstanceMethod.plain(
+  _flaxBinding569,
+  flaxVoidType,
   _Vector3_applyProjection,
 );
-const _flaxBinding1494 = FlaxInstanceMethod(
-  _flaxBinding698,
-  _flaxBinding70,
+const _flaxBinding1476 = FlaxInstanceMethod.plain(
+  _flaxBinding680,
+  flaxVoidType,
   _Vector3_applyAxisAngle,
 );
-const _flaxBinding1495 = FlaxInstanceMethod(
-  _flaxBinding679,
-  _flaxBinding70,
+const _flaxBinding1477 = FlaxInstanceMethod.plain(
+  _flaxBinding661,
+  flaxVoidType,
   _Vector3_applyQuaternion,
 );
-const _flaxBinding1496 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding70,
+const _flaxBinding1478 = FlaxInstanceMethod.plain(
+  _flaxBinding535,
+  flaxVoidType,
   _Vector3_applyMatrix3,
 );
-const _flaxBinding1497 = FlaxInstanceMethod(
-  _flaxBinding587,
-  _flaxBinding70,
+const _flaxBinding1479 = FlaxInstanceMethod.plain(
+  _flaxBinding569,
+  flaxVoidType,
   _Vector3_applyMatrix4,
 );
-const _flaxBinding1498 = <FlaxParameter>[
-  FlaxParameter("correct", _flaxBinding534, required: true),
+const _flaxBinding1480 = <FlaxParameter>[
+  FlaxParameter.required("correct", _flaxBinding517),
 ];
-const _flaxBinding1499 = FlaxInstanceMethod(
-  _flaxBinding1498,
-  _flaxBinding448,
+const _flaxBinding1481 = FlaxInstanceMethod.plain(
+  _flaxBinding1480,
+  flaxDoubleType,
   _Vector3_relativeError,
 );
-const _flaxBinding1500 = FlaxInstanceMethod(
-  _flaxBinding1498,
-  _flaxBinding448,
+const _flaxBinding1482 = FlaxInstanceMethod.plain(
+  _flaxBinding1480,
+  flaxDoubleType,
   _Vector3_absoluteError,
 );
-const _flaxBinding1501 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding70,
+const _flaxBinding1483 = FlaxInstanceMethod.plain(
+  _flaxBinding540,
+  flaxVoidType,
   _Vector3_add,
 );
-const _flaxBinding1502 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding534, required: true),
-  FlaxParameter("factor", _flaxBinding448, required: true),
+const _flaxBinding1484 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding517),
+  FlaxParameter.required("factor", flaxDoubleType),
 ];
-const _flaxBinding1503 = FlaxInstanceMethod(
-  _flaxBinding1502,
-  _flaxBinding70,
+const _flaxBinding1485 = FlaxInstanceMethod.plain(
+  _flaxBinding1484,
+  flaxVoidType,
   _Vector3_addScaled,
 );
-const _flaxBinding1504 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding70,
+const _flaxBinding1486 = FlaxInstanceMethod.plain(
+  _flaxBinding540,
+  flaxVoidType,
   _Vector3_sub,
 );
-const _flaxBinding1505 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding70,
+const _flaxBinding1487 = FlaxInstanceMethod.plain(
+  _flaxBinding540,
+  flaxVoidType,
   _Vector3_multiply,
 );
-const _flaxBinding1506 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding70,
+const _flaxBinding1488 = FlaxInstanceMethod.plain(
+  _flaxBinding540,
+  flaxVoidType,
   _Vector3_divide,
 );
-const _flaxBinding1507 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding70,
+const _flaxBinding1489 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  flaxVoidType,
   _Vector3_scale,
 );
-const _flaxBinding1508 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding534,
+const _flaxBinding1490 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  _flaxBinding517,
   _Vector3_scaled,
 );
-const _flaxBinding1509 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1491 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector3_negate,
 );
-const _flaxBinding1510 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1492 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector3_absolute,
 );
-const _flaxBinding1511 = <FlaxParameter>[
-  FlaxParameter("min", _flaxBinding534, required: true),
-  FlaxParameter("max", _flaxBinding534, required: true),
+const _flaxBinding1493 = <FlaxParameter>[
+  FlaxParameter.required("min", _flaxBinding517),
+  FlaxParameter.required("max", _flaxBinding517),
 ];
-const _flaxBinding1512 = FlaxInstanceMethod(
-  _flaxBinding1511,
-  _flaxBinding70,
+const _flaxBinding1494 = FlaxInstanceMethod.plain(
+  _flaxBinding1493,
+  flaxVoidType,
   _Vector3_clamp,
 );
-const _flaxBinding1513 = FlaxInstanceMethod(
-  _flaxBinding1037,
-  _flaxBinding70,
+const _flaxBinding1495 = FlaxInstanceMethod.plain(
+  _flaxBinding1019,
+  flaxVoidType,
   _Vector3_clampScalar,
 );
-const _flaxBinding1514 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1496 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector3_floor,
 );
-const _flaxBinding1515 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1497 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector3_ceil,
 );
-const _flaxBinding1516 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1498 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector3_round,
 );
-const _flaxBinding1517 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding1499 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector3_roundToZero,
 );
-const _flaxBinding1518 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding534,
+const _flaxBinding1500 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding517,
   _Vector3_clone,
 );
-const _flaxBinding1519 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding534,
+const _flaxBinding1501 = FlaxInstanceMethod.plain(
+  _flaxBinding540,
+  _flaxBinding517,
   _Vector3_copyInto,
 );
-const _flaxBinding1520 = FlaxInstanceMethod(
-  _flaxBinding518,
-  _flaxBinding70,
+const _flaxBinding1502 = FlaxInstanceMethod.plain(
+  _flaxBinding501,
+  flaxVoidType,
   _Vector3_copyIntoArray,
 );
-const _flaxBinding1521 = FlaxInstanceMethod(
-  _flaxBinding518,
-  _flaxBinding70,
+const _flaxBinding1503 = FlaxInstanceMethod.plain(
+  _flaxBinding501,
+  flaxVoidType,
   _Vector3_copyFromArray,
 );
-const _flaxBinding1522 = FlaxInstanceMethod(
-  _flaxBinding520,
-  _flaxBinding448,
+const _flaxBinding1504 = FlaxInstanceMethod.plain(
+  _flaxBinding503,
+  flaxDoubleType,
   _Vector3_operatorGetIndex,
 );
-const _flaxBinding1523 = FlaxInstanceMethod(
-  _flaxBinding522,
-  _flaxBinding70,
+const _flaxBinding1505 = FlaxInstanceMethod.plain(
+  _flaxBinding505,
+  flaxVoidType,
   _Vector3_operatorSetIndex,
 );
-const _flaxBinding1524 = FlaxInstanceMethod(
-  _flaxBinding1472,
-  _flaxBinding534,
+const _flaxBinding1506 = FlaxInstanceMethod.plain(
+  _flaxBinding1454,
+  _flaxBinding517,
   _Vector3_operatorAdd,
 );
-const _flaxBinding1525 = FlaxInstanceMethod(
-  _flaxBinding1472,
-  _flaxBinding534,
+const _flaxBinding1507 = FlaxInstanceMethod.plain(
+  _flaxBinding1454,
+  _flaxBinding517,
   _Vector3_operatorSubtract,
 );
-const _flaxBinding1526 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding534,
+const _flaxBinding1508 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  _flaxBinding517,
   _Vector3_operatorMultiply,
 );
-const _flaxBinding1527 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding534,
+const _flaxBinding1509 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  _flaxBinding517,
   _Vector3_operatorDivide,
 );
-const _flaxBinding1528 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding534,
+const _flaxBinding1510 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding517,
   _Vector3_operatorNegate,
 );
-const _flaxBinding1529 = <FlaxParameter>[
-  FlaxParameter("_v3storage", _flaxBinding438, required: true),
+const _flaxBinding1511 = <FlaxParameter>[
+  FlaxParameter.required("_v3storage", _flaxBinding423),
 ];
-const _flaxBinding1530 = FlaxObjectBinding(
+const _flaxBinding1512 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Vector3",
   [
+    _flaxBinding1040,
+    _flaxBinding1041,
+    _flaxBinding1042,
+    _flaxBinding1043,
+    _flaxBinding1044,
+    _flaxBinding1045,
+    _flaxBinding1046,
+    _flaxBinding1047,
+    _flaxBinding1048,
+    _flaxBinding1049,
+    _flaxBinding1050,
+    _flaxBinding1051,
+    _flaxBinding1052,
+    _flaxBinding1053,
+    _flaxBinding1054,
+    _flaxBinding1055,
+    _flaxBinding1056,
+    _flaxBinding1057,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -17436,6 +18233,73 @@ const _flaxBinding1530 = FlaxObjectBinding(
     _flaxBinding1402,
     _flaxBinding1403,
     _flaxBinding1404,
+  ],
+  {
+    "setValues": _flaxBinding1452,
+    "setZero": _flaxBinding1453,
+    "setFrom": _flaxBinding1455,
+    "splat": _flaxBinding1456,
+    "toString": _flaxBinding1457,
+    "normalize": _flaxBinding1458,
+    "normalizeLength": _flaxBinding1459,
+    "normalized": _flaxBinding1460,
+    "normalizeInto": _flaxBinding1462,
+    "distanceTo": _flaxBinding1463,
+    "distanceToSquared": _flaxBinding1464,
+    "angleTo": _flaxBinding1465,
+    "angleToSigned": _flaxBinding1467,
+    "dot": _flaxBinding1468,
+    "postmultiply": _flaxBinding1469,
+    "cross": _flaxBinding1470,
+    "crossInto": _flaxBinding1472,
+    "reflect": _flaxBinding1473,
+    "reflected": _flaxBinding1474,
+    "applyProjection": _flaxBinding1475,
+    "applyAxisAngle": _flaxBinding1476,
+    "applyQuaternion": _flaxBinding1477,
+    "applyMatrix3": _flaxBinding1478,
+    "applyMatrix4": _flaxBinding1479,
+    "relativeError": _flaxBinding1481,
+    "absoluteError": _flaxBinding1482,
+    "add": _flaxBinding1483,
+    "addScaled": _flaxBinding1485,
+    "sub": _flaxBinding1486,
+    "multiply": _flaxBinding1487,
+    "divide": _flaxBinding1488,
+    "scale": _flaxBinding1489,
+    "scaled": _flaxBinding1490,
+    "negate": _flaxBinding1491,
+    "absolute": _flaxBinding1492,
+    "clamp": _flaxBinding1494,
+    "clampScalar": _flaxBinding1495,
+    "floor": _flaxBinding1496,
+    "ceil": _flaxBinding1497,
+    "round": _flaxBinding1498,
+    "roundToZero": _flaxBinding1499,
+    "clone": _flaxBinding1500,
+    "copyInto": _flaxBinding1501,
+    "copyIntoArray": _flaxBinding1502,
+    "copyFromArray": _flaxBinding1503,
+    "operatorGetIndex": _flaxBinding1504,
+    "operatorSetIndex": _flaxBinding1505,
+    "operatorAdd": _flaxBinding1506,
+    "operatorSubtract": _flaxBinding1507,
+    "operatorMultiply": _flaxBinding1508,
+    "operatorDivide": _flaxBinding1509,
+    "operatorNegate": _flaxBinding1510,
+  },
+  constructors: {
+    "": _flaxBinding1451,
+    "array": _flaxBinding501,
+    "zero": _flaxBinding35,
+    "all": _flaxBinding1037,
+    "copy": _flaxBinding1454,
+    "fromFloat64List": _flaxBinding1511,
+    "fromBuffer": _flaxBinding684,
+  },
+  create: _createVector3,
+  matches: _isVector3,
+  setters: [
     _flaxBinding1405,
     _flaxBinding1406,
     _flaxBinding1407,
@@ -17454,73 +18318,6 @@ const _flaxBinding1530 = FlaxObjectBinding(
     _flaxBinding1420,
     _flaxBinding1421,
     _flaxBinding1422,
-  ],
-  {
-    "setValues": _flaxBinding1470,
-    "setZero": _flaxBinding1471,
-    "setFrom": _flaxBinding1473,
-    "splat": _flaxBinding1474,
-    "toString": _flaxBinding1475,
-    "normalize": _flaxBinding1476,
-    "normalizeLength": _flaxBinding1477,
-    "normalized": _flaxBinding1478,
-    "normalizeInto": _flaxBinding1480,
-    "distanceTo": _flaxBinding1481,
-    "distanceToSquared": _flaxBinding1482,
-    "angleTo": _flaxBinding1483,
-    "angleToSigned": _flaxBinding1485,
-    "dot": _flaxBinding1486,
-    "postmultiply": _flaxBinding1487,
-    "cross": _flaxBinding1488,
-    "crossInto": _flaxBinding1490,
-    "reflect": _flaxBinding1491,
-    "reflected": _flaxBinding1492,
-    "applyProjection": _flaxBinding1493,
-    "applyAxisAngle": _flaxBinding1494,
-    "applyQuaternion": _flaxBinding1495,
-    "applyMatrix3": _flaxBinding1496,
-    "applyMatrix4": _flaxBinding1497,
-    "relativeError": _flaxBinding1499,
-    "absoluteError": _flaxBinding1500,
-    "add": _flaxBinding1501,
-    "addScaled": _flaxBinding1503,
-    "sub": _flaxBinding1504,
-    "multiply": _flaxBinding1505,
-    "divide": _flaxBinding1506,
-    "scale": _flaxBinding1507,
-    "scaled": _flaxBinding1508,
-    "negate": _flaxBinding1509,
-    "absolute": _flaxBinding1510,
-    "clamp": _flaxBinding1512,
-    "clampScalar": _flaxBinding1513,
-    "floor": _flaxBinding1514,
-    "ceil": _flaxBinding1515,
-    "round": _flaxBinding1516,
-    "roundToZero": _flaxBinding1517,
-    "clone": _flaxBinding1518,
-    "copyInto": _flaxBinding1519,
-    "copyIntoArray": _flaxBinding1520,
-    "copyFromArray": _flaxBinding1521,
-    "operatorGetIndex": _flaxBinding1522,
-    "operatorSetIndex": _flaxBinding1523,
-    "operatorAdd": _flaxBinding1524,
-    "operatorSubtract": _flaxBinding1525,
-    "operatorMultiply": _flaxBinding1526,
-    "operatorDivide": _flaxBinding1527,
-    "operatorNegate": _flaxBinding1528,
-  },
-  constructors: {
-    "": _flaxBinding1469,
-    "array": _flaxBinding518,
-    "zero": _flaxBinding42,
-    "all": _flaxBinding1055,
-    "copy": _flaxBinding1472,
-    "fromFloat64List": _flaxBinding1529,
-    "fromBuffer": _flaxBinding702,
-  },
-  create: _createVector3,
-  matches: _isVector3,
-  setters: [
     _flaxBinding1423,
     _flaxBinding1424,
     _flaxBinding1425,
@@ -17549,1500 +18346,4580 @@ const _flaxBinding1530 = FlaxObjectBinding(
     _flaxBinding1448,
     _flaxBinding1449,
     _flaxBinding1450,
-    _flaxBinding1451,
-    _flaxBinding1452,
-    _flaxBinding1453,
-    _flaxBinding1454,
-    _flaxBinding1455,
-    _flaxBinding1456,
-    _flaxBinding1457,
-    _flaxBinding1458,
-    _flaxBinding1459,
-    _flaxBinding1460,
-    _flaxBinding1461,
-    _flaxBinding1462,
-    _flaxBinding1463,
-    _flaxBinding1464,
-    _flaxBinding1465,
-    _flaxBinding1466,
-    _flaxBinding1467,
-    _flaxBinding1468,
   ],
   supertypes: [
     "dart:core::Object",
     "package:vector_math/vector_math_64.dart::Vector",
   ],
 );
-const _flaxBinding1531 = FlaxGetter(
+const _flaxBinding1513 = FlaxGetter.plain(
   "storage",
-  _flaxBinding438,
+  _flaxBinding423,
   _Vector4_storage,
 );
-const _flaxBinding1532 = FlaxGetter("length", _flaxBinding448, _Vector4_length);
-const _flaxBinding1533 = FlaxGetter(
+const _flaxBinding1514 = FlaxGetter.plain(
+  "length",
+  flaxDoubleType,
+  _Vector4_length,
+);
+const _flaxBinding1515 = FlaxGetter.plain(
   "length2",
-  _flaxBinding448,
+  flaxDoubleType,
   _Vector4_length2,
 );
-const _flaxBinding1534 = FlaxGetter(
+const _flaxBinding1516 = FlaxGetter.plain(
   "isInfinite",
-  _flaxBinding20,
+  flaxBoolType,
   _Vector4_isInfinite,
 );
-const _flaxBinding1535 = FlaxGetter("isNaN", _flaxBinding20, _Vector4_isNaN);
-const _flaxBinding1536 = FlaxGetter("xx", _flaxBinding441, _Vector4_xx);
-const _flaxBinding1537 = FlaxGetter("xy", _flaxBinding441, _Vector4_xy);
-const _flaxBinding1538 = FlaxGetter("xz", _flaxBinding441, _Vector4_xz);
-const _flaxBinding1539 = FlaxGetter("xw", _flaxBinding441, _Vector4_xw);
-const _flaxBinding1540 = FlaxGetter("yx", _flaxBinding441, _Vector4_yx);
-const _flaxBinding1541 = FlaxGetter("yy", _flaxBinding441, _Vector4_yy);
-const _flaxBinding1542 = FlaxGetter("yz", _flaxBinding441, _Vector4_yz);
-const _flaxBinding1543 = FlaxGetter("yw", _flaxBinding441, _Vector4_yw);
-const _flaxBinding1544 = FlaxGetter("zx", _flaxBinding441, _Vector4_zx);
-const _flaxBinding1545 = FlaxGetter("zy", _flaxBinding441, _Vector4_zy);
-const _flaxBinding1546 = FlaxGetter("zz", _flaxBinding441, _Vector4_zz);
-const _flaxBinding1547 = FlaxGetter("zw", _flaxBinding441, _Vector4_zw);
-const _flaxBinding1548 = FlaxGetter("wx", _flaxBinding441, _Vector4_wx);
-const _flaxBinding1549 = FlaxGetter("wy", _flaxBinding441, _Vector4_wy);
-const _flaxBinding1550 = FlaxGetter("wz", _flaxBinding441, _Vector4_wz);
-const _flaxBinding1551 = FlaxGetter("ww", _flaxBinding441, _Vector4_ww);
-const _flaxBinding1552 = FlaxGetter("xxx", _flaxBinding534, _Vector4_xxx);
-const _flaxBinding1553 = FlaxGetter("xxy", _flaxBinding534, _Vector4_xxy);
-const _flaxBinding1554 = FlaxGetter("xxz", _flaxBinding534, _Vector4_xxz);
-const _flaxBinding1555 = FlaxGetter("xxw", _flaxBinding534, _Vector4_xxw);
-const _flaxBinding1556 = FlaxGetter("xyx", _flaxBinding534, _Vector4_xyx);
-const _flaxBinding1557 = FlaxGetter("xyy", _flaxBinding534, _Vector4_xyy);
-const _flaxBinding1558 = FlaxGetter("xyz", _flaxBinding534, _Vector4_xyz);
-const _flaxBinding1559 = FlaxGetter("xyw", _flaxBinding534, _Vector4_xyw);
-const _flaxBinding1560 = FlaxGetter("xzx", _flaxBinding534, _Vector4_xzx);
-const _flaxBinding1561 = FlaxGetter("xzy", _flaxBinding534, _Vector4_xzy);
-const _flaxBinding1562 = FlaxGetter("xzz", _flaxBinding534, _Vector4_xzz);
-const _flaxBinding1563 = FlaxGetter("xzw", _flaxBinding534, _Vector4_xzw);
-const _flaxBinding1564 = FlaxGetter("xwx", _flaxBinding534, _Vector4_xwx);
-const _flaxBinding1565 = FlaxGetter("xwy", _flaxBinding534, _Vector4_xwy);
-const _flaxBinding1566 = FlaxGetter("xwz", _flaxBinding534, _Vector4_xwz);
-const _flaxBinding1567 = FlaxGetter("xww", _flaxBinding534, _Vector4_xww);
-const _flaxBinding1568 = FlaxGetter("yxx", _flaxBinding534, _Vector4_yxx);
-const _flaxBinding1569 = FlaxGetter("yxy", _flaxBinding534, _Vector4_yxy);
-const _flaxBinding1570 = FlaxGetter("yxz", _flaxBinding534, _Vector4_yxz);
-const _flaxBinding1571 = FlaxGetter("yxw", _flaxBinding534, _Vector4_yxw);
-const _flaxBinding1572 = FlaxGetter("yyx", _flaxBinding534, _Vector4_yyx);
-const _flaxBinding1573 = FlaxGetter("yyy", _flaxBinding534, _Vector4_yyy);
-const _flaxBinding1574 = FlaxGetter("yyz", _flaxBinding534, _Vector4_yyz);
-const _flaxBinding1575 = FlaxGetter("yyw", _flaxBinding534, _Vector4_yyw);
-const _flaxBinding1576 = FlaxGetter("yzx", _flaxBinding534, _Vector4_yzx);
-const _flaxBinding1577 = FlaxGetter("yzy", _flaxBinding534, _Vector4_yzy);
-const _flaxBinding1578 = FlaxGetter("yzz", _flaxBinding534, _Vector4_yzz);
-const _flaxBinding1579 = FlaxGetter("yzw", _flaxBinding534, _Vector4_yzw);
-const _flaxBinding1580 = FlaxGetter("ywx", _flaxBinding534, _Vector4_ywx);
-const _flaxBinding1581 = FlaxGetter("ywy", _flaxBinding534, _Vector4_ywy);
-const _flaxBinding1582 = FlaxGetter("ywz", _flaxBinding534, _Vector4_ywz);
-const _flaxBinding1583 = FlaxGetter("yww", _flaxBinding534, _Vector4_yww);
-const _flaxBinding1584 = FlaxGetter("zxx", _flaxBinding534, _Vector4_zxx);
-const _flaxBinding1585 = FlaxGetter("zxy", _flaxBinding534, _Vector4_zxy);
-const _flaxBinding1586 = FlaxGetter("zxz", _flaxBinding534, _Vector4_zxz);
-const _flaxBinding1587 = FlaxGetter("zxw", _flaxBinding534, _Vector4_zxw);
-const _flaxBinding1588 = FlaxGetter("zyx", _flaxBinding534, _Vector4_zyx);
-const _flaxBinding1589 = FlaxGetter("zyy", _flaxBinding534, _Vector4_zyy);
-const _flaxBinding1590 = FlaxGetter("zyz", _flaxBinding534, _Vector4_zyz);
-const _flaxBinding1591 = FlaxGetter("zyw", _flaxBinding534, _Vector4_zyw);
-const _flaxBinding1592 = FlaxGetter("zzx", _flaxBinding534, _Vector4_zzx);
-const _flaxBinding1593 = FlaxGetter("zzy", _flaxBinding534, _Vector4_zzy);
-const _flaxBinding1594 = FlaxGetter("zzz", _flaxBinding534, _Vector4_zzz);
-const _flaxBinding1595 = FlaxGetter("zzw", _flaxBinding534, _Vector4_zzw);
-const _flaxBinding1596 = FlaxGetter("zwx", _flaxBinding534, _Vector4_zwx);
-const _flaxBinding1597 = FlaxGetter("zwy", _flaxBinding534, _Vector4_zwy);
-const _flaxBinding1598 = FlaxGetter("zwz", _flaxBinding534, _Vector4_zwz);
-const _flaxBinding1599 = FlaxGetter("zww", _flaxBinding534, _Vector4_zww);
-const _flaxBinding1600 = FlaxGetter("wxx", _flaxBinding534, _Vector4_wxx);
-const _flaxBinding1601 = FlaxGetter("wxy", _flaxBinding534, _Vector4_wxy);
-const _flaxBinding1602 = FlaxGetter("wxz", _flaxBinding534, _Vector4_wxz);
-const _flaxBinding1603 = FlaxGetter("wxw", _flaxBinding534, _Vector4_wxw);
-const _flaxBinding1604 = FlaxGetter("wyx", _flaxBinding534, _Vector4_wyx);
-const _flaxBinding1605 = FlaxGetter("wyy", _flaxBinding534, _Vector4_wyy);
-const _flaxBinding1606 = FlaxGetter("wyz", _flaxBinding534, _Vector4_wyz);
-const _flaxBinding1607 = FlaxGetter("wyw", _flaxBinding534, _Vector4_wyw);
-const _flaxBinding1608 = FlaxGetter("wzx", _flaxBinding534, _Vector4_wzx);
-const _flaxBinding1609 = FlaxGetter("wzy", _flaxBinding534, _Vector4_wzy);
-const _flaxBinding1610 = FlaxGetter("wzz", _flaxBinding534, _Vector4_wzz);
-const _flaxBinding1611 = FlaxGetter("wzw", _flaxBinding534, _Vector4_wzw);
-const _flaxBinding1612 = FlaxGetter("wwx", _flaxBinding534, _Vector4_wwx);
-const _flaxBinding1613 = FlaxGetter("wwy", _flaxBinding534, _Vector4_wwy);
-const _flaxBinding1614 = FlaxGetter("wwz", _flaxBinding534, _Vector4_wwz);
-const _flaxBinding1615 = FlaxGetter("www", _flaxBinding534, _Vector4_www);
-const _flaxBinding1616 = FlaxGetter("xxxx", _flaxBinding906, _Vector4_xxxx);
-const _flaxBinding1617 = FlaxGetter("xxxy", _flaxBinding906, _Vector4_xxxy);
-const _flaxBinding1618 = FlaxGetter("xxxz", _flaxBinding906, _Vector4_xxxz);
-const _flaxBinding1619 = FlaxGetter("xxxw", _flaxBinding906, _Vector4_xxxw);
-const _flaxBinding1620 = FlaxGetter("xxyx", _flaxBinding906, _Vector4_xxyx);
-const _flaxBinding1621 = FlaxGetter("xxyy", _flaxBinding906, _Vector4_xxyy);
-const _flaxBinding1622 = FlaxGetter("xxyz", _flaxBinding906, _Vector4_xxyz);
-const _flaxBinding1623 = FlaxGetter("xxyw", _flaxBinding906, _Vector4_xxyw);
-const _flaxBinding1624 = FlaxGetter("xxzx", _flaxBinding906, _Vector4_xxzx);
-const _flaxBinding1625 = FlaxGetter("xxzy", _flaxBinding906, _Vector4_xxzy);
-const _flaxBinding1626 = FlaxGetter("xxzz", _flaxBinding906, _Vector4_xxzz);
-const _flaxBinding1627 = FlaxGetter("xxzw", _flaxBinding906, _Vector4_xxzw);
-const _flaxBinding1628 = FlaxGetter("xxwx", _flaxBinding906, _Vector4_xxwx);
-const _flaxBinding1629 = FlaxGetter("xxwy", _flaxBinding906, _Vector4_xxwy);
-const _flaxBinding1630 = FlaxGetter("xxwz", _flaxBinding906, _Vector4_xxwz);
-const _flaxBinding1631 = FlaxGetter("xxww", _flaxBinding906, _Vector4_xxww);
-const _flaxBinding1632 = FlaxGetter("xyxx", _flaxBinding906, _Vector4_xyxx);
-const _flaxBinding1633 = FlaxGetter("xyxy", _flaxBinding906, _Vector4_xyxy);
-const _flaxBinding1634 = FlaxGetter("xyxz", _flaxBinding906, _Vector4_xyxz);
-const _flaxBinding1635 = FlaxGetter("xyxw", _flaxBinding906, _Vector4_xyxw);
-const _flaxBinding1636 = FlaxGetter("xyyx", _flaxBinding906, _Vector4_xyyx);
-const _flaxBinding1637 = FlaxGetter("xyyy", _flaxBinding906, _Vector4_xyyy);
-const _flaxBinding1638 = FlaxGetter("xyyz", _flaxBinding906, _Vector4_xyyz);
-const _flaxBinding1639 = FlaxGetter("xyyw", _flaxBinding906, _Vector4_xyyw);
-const _flaxBinding1640 = FlaxGetter("xyzx", _flaxBinding906, _Vector4_xyzx);
-const _flaxBinding1641 = FlaxGetter("xyzy", _flaxBinding906, _Vector4_xyzy);
-const _flaxBinding1642 = FlaxGetter("xyzz", _flaxBinding906, _Vector4_xyzz);
-const _flaxBinding1643 = FlaxGetter("xyzw", _flaxBinding906, _Vector4_xyzw);
-const _flaxBinding1644 = FlaxGetter("xywx", _flaxBinding906, _Vector4_xywx);
-const _flaxBinding1645 = FlaxGetter("xywy", _flaxBinding906, _Vector4_xywy);
-const _flaxBinding1646 = FlaxGetter("xywz", _flaxBinding906, _Vector4_xywz);
-const _flaxBinding1647 = FlaxGetter("xyww", _flaxBinding906, _Vector4_xyww);
-const _flaxBinding1648 = FlaxGetter("xzxx", _flaxBinding906, _Vector4_xzxx);
-const _flaxBinding1649 = FlaxGetter("xzxy", _flaxBinding906, _Vector4_xzxy);
-const _flaxBinding1650 = FlaxGetter("xzxz", _flaxBinding906, _Vector4_xzxz);
-const _flaxBinding1651 = FlaxGetter("xzxw", _flaxBinding906, _Vector4_xzxw);
-const _flaxBinding1652 = FlaxGetter("xzyx", _flaxBinding906, _Vector4_xzyx);
-const _flaxBinding1653 = FlaxGetter("xzyy", _flaxBinding906, _Vector4_xzyy);
-const _flaxBinding1654 = FlaxGetter("xzyz", _flaxBinding906, _Vector4_xzyz);
-const _flaxBinding1655 = FlaxGetter("xzyw", _flaxBinding906, _Vector4_xzyw);
-const _flaxBinding1656 = FlaxGetter("xzzx", _flaxBinding906, _Vector4_xzzx);
-const _flaxBinding1657 = FlaxGetter("xzzy", _flaxBinding906, _Vector4_xzzy);
-const _flaxBinding1658 = FlaxGetter("xzzz", _flaxBinding906, _Vector4_xzzz);
-const _flaxBinding1659 = FlaxGetter("xzzw", _flaxBinding906, _Vector4_xzzw);
-const _flaxBinding1660 = FlaxGetter("xzwx", _flaxBinding906, _Vector4_xzwx);
-const _flaxBinding1661 = FlaxGetter("xzwy", _flaxBinding906, _Vector4_xzwy);
-const _flaxBinding1662 = FlaxGetter("xzwz", _flaxBinding906, _Vector4_xzwz);
-const _flaxBinding1663 = FlaxGetter("xzww", _flaxBinding906, _Vector4_xzww);
-const _flaxBinding1664 = FlaxGetter("xwxx", _flaxBinding906, _Vector4_xwxx);
-const _flaxBinding1665 = FlaxGetter("xwxy", _flaxBinding906, _Vector4_xwxy);
-const _flaxBinding1666 = FlaxGetter("xwxz", _flaxBinding906, _Vector4_xwxz);
-const _flaxBinding1667 = FlaxGetter("xwxw", _flaxBinding906, _Vector4_xwxw);
-const _flaxBinding1668 = FlaxGetter("xwyx", _flaxBinding906, _Vector4_xwyx);
-const _flaxBinding1669 = FlaxGetter("xwyy", _flaxBinding906, _Vector4_xwyy);
-const _flaxBinding1670 = FlaxGetter("xwyz", _flaxBinding906, _Vector4_xwyz);
-const _flaxBinding1671 = FlaxGetter("xwyw", _flaxBinding906, _Vector4_xwyw);
-const _flaxBinding1672 = FlaxGetter("xwzx", _flaxBinding906, _Vector4_xwzx);
-const _flaxBinding1673 = FlaxGetter("xwzy", _flaxBinding906, _Vector4_xwzy);
-const _flaxBinding1674 = FlaxGetter("xwzz", _flaxBinding906, _Vector4_xwzz);
-const _flaxBinding1675 = FlaxGetter("xwzw", _flaxBinding906, _Vector4_xwzw);
-const _flaxBinding1676 = FlaxGetter("xwwx", _flaxBinding906, _Vector4_xwwx);
-const _flaxBinding1677 = FlaxGetter("xwwy", _flaxBinding906, _Vector4_xwwy);
-const _flaxBinding1678 = FlaxGetter("xwwz", _flaxBinding906, _Vector4_xwwz);
-const _flaxBinding1679 = FlaxGetter("xwww", _flaxBinding906, _Vector4_xwww);
-const _flaxBinding1680 = FlaxGetter("yxxx", _flaxBinding906, _Vector4_yxxx);
-const _flaxBinding1681 = FlaxGetter("yxxy", _flaxBinding906, _Vector4_yxxy);
-const _flaxBinding1682 = FlaxGetter("yxxz", _flaxBinding906, _Vector4_yxxz);
-const _flaxBinding1683 = FlaxGetter("yxxw", _flaxBinding906, _Vector4_yxxw);
-const _flaxBinding1684 = FlaxGetter("yxyx", _flaxBinding906, _Vector4_yxyx);
-const _flaxBinding1685 = FlaxGetter("yxyy", _flaxBinding906, _Vector4_yxyy);
-const _flaxBinding1686 = FlaxGetter("yxyz", _flaxBinding906, _Vector4_yxyz);
-const _flaxBinding1687 = FlaxGetter("yxyw", _flaxBinding906, _Vector4_yxyw);
-const _flaxBinding1688 = FlaxGetter("yxzx", _flaxBinding906, _Vector4_yxzx);
-const _flaxBinding1689 = FlaxGetter("yxzy", _flaxBinding906, _Vector4_yxzy);
-const _flaxBinding1690 = FlaxGetter("yxzz", _flaxBinding906, _Vector4_yxzz);
-const _flaxBinding1691 = FlaxGetter("yxzw", _flaxBinding906, _Vector4_yxzw);
-const _flaxBinding1692 = FlaxGetter("yxwx", _flaxBinding906, _Vector4_yxwx);
-const _flaxBinding1693 = FlaxGetter("yxwy", _flaxBinding906, _Vector4_yxwy);
-const _flaxBinding1694 = FlaxGetter("yxwz", _flaxBinding906, _Vector4_yxwz);
-const _flaxBinding1695 = FlaxGetter("yxww", _flaxBinding906, _Vector4_yxww);
-const _flaxBinding1696 = FlaxGetter("yyxx", _flaxBinding906, _Vector4_yyxx);
-const _flaxBinding1697 = FlaxGetter("yyxy", _flaxBinding906, _Vector4_yyxy);
-const _flaxBinding1698 = FlaxGetter("yyxz", _flaxBinding906, _Vector4_yyxz);
-const _flaxBinding1699 = FlaxGetter("yyxw", _flaxBinding906, _Vector4_yyxw);
-const _flaxBinding1700 = FlaxGetter("yyyx", _flaxBinding906, _Vector4_yyyx);
-const _flaxBinding1701 = FlaxGetter("yyyy", _flaxBinding906, _Vector4_yyyy);
-const _flaxBinding1702 = FlaxGetter("yyyz", _flaxBinding906, _Vector4_yyyz);
-const _flaxBinding1703 = FlaxGetter("yyyw", _flaxBinding906, _Vector4_yyyw);
-const _flaxBinding1704 = FlaxGetter("yyzx", _flaxBinding906, _Vector4_yyzx);
-const _flaxBinding1705 = FlaxGetter("yyzy", _flaxBinding906, _Vector4_yyzy);
-const _flaxBinding1706 = FlaxGetter("yyzz", _flaxBinding906, _Vector4_yyzz);
-const _flaxBinding1707 = FlaxGetter("yyzw", _flaxBinding906, _Vector4_yyzw);
-const _flaxBinding1708 = FlaxGetter("yywx", _flaxBinding906, _Vector4_yywx);
-const _flaxBinding1709 = FlaxGetter("yywy", _flaxBinding906, _Vector4_yywy);
-const _flaxBinding1710 = FlaxGetter("yywz", _flaxBinding906, _Vector4_yywz);
-const _flaxBinding1711 = FlaxGetter("yyww", _flaxBinding906, _Vector4_yyww);
-const _flaxBinding1712 = FlaxGetter("yzxx", _flaxBinding906, _Vector4_yzxx);
-const _flaxBinding1713 = FlaxGetter("yzxy", _flaxBinding906, _Vector4_yzxy);
-const _flaxBinding1714 = FlaxGetter("yzxz", _flaxBinding906, _Vector4_yzxz);
-const _flaxBinding1715 = FlaxGetter("yzxw", _flaxBinding906, _Vector4_yzxw);
-const _flaxBinding1716 = FlaxGetter("yzyx", _flaxBinding906, _Vector4_yzyx);
-const _flaxBinding1717 = FlaxGetter("yzyy", _flaxBinding906, _Vector4_yzyy);
-const _flaxBinding1718 = FlaxGetter("yzyz", _flaxBinding906, _Vector4_yzyz);
-const _flaxBinding1719 = FlaxGetter("yzyw", _flaxBinding906, _Vector4_yzyw);
-const _flaxBinding1720 = FlaxGetter("yzzx", _flaxBinding906, _Vector4_yzzx);
-const _flaxBinding1721 = FlaxGetter("yzzy", _flaxBinding906, _Vector4_yzzy);
-const _flaxBinding1722 = FlaxGetter("yzzz", _flaxBinding906, _Vector4_yzzz);
-const _flaxBinding1723 = FlaxGetter("yzzw", _flaxBinding906, _Vector4_yzzw);
-const _flaxBinding1724 = FlaxGetter("yzwx", _flaxBinding906, _Vector4_yzwx);
-const _flaxBinding1725 = FlaxGetter("yzwy", _flaxBinding906, _Vector4_yzwy);
-const _flaxBinding1726 = FlaxGetter("yzwz", _flaxBinding906, _Vector4_yzwz);
-const _flaxBinding1727 = FlaxGetter("yzww", _flaxBinding906, _Vector4_yzww);
-const _flaxBinding1728 = FlaxGetter("ywxx", _flaxBinding906, _Vector4_ywxx);
-const _flaxBinding1729 = FlaxGetter("ywxy", _flaxBinding906, _Vector4_ywxy);
-const _flaxBinding1730 = FlaxGetter("ywxz", _flaxBinding906, _Vector4_ywxz);
-const _flaxBinding1731 = FlaxGetter("ywxw", _flaxBinding906, _Vector4_ywxw);
-const _flaxBinding1732 = FlaxGetter("ywyx", _flaxBinding906, _Vector4_ywyx);
-const _flaxBinding1733 = FlaxGetter("ywyy", _flaxBinding906, _Vector4_ywyy);
-const _flaxBinding1734 = FlaxGetter("ywyz", _flaxBinding906, _Vector4_ywyz);
-const _flaxBinding1735 = FlaxGetter("ywyw", _flaxBinding906, _Vector4_ywyw);
-const _flaxBinding1736 = FlaxGetter("ywzx", _flaxBinding906, _Vector4_ywzx);
-const _flaxBinding1737 = FlaxGetter("ywzy", _flaxBinding906, _Vector4_ywzy);
-const _flaxBinding1738 = FlaxGetter("ywzz", _flaxBinding906, _Vector4_ywzz);
-const _flaxBinding1739 = FlaxGetter("ywzw", _flaxBinding906, _Vector4_ywzw);
-const _flaxBinding1740 = FlaxGetter("ywwx", _flaxBinding906, _Vector4_ywwx);
-const _flaxBinding1741 = FlaxGetter("ywwy", _flaxBinding906, _Vector4_ywwy);
-const _flaxBinding1742 = FlaxGetter("ywwz", _flaxBinding906, _Vector4_ywwz);
-const _flaxBinding1743 = FlaxGetter("ywww", _flaxBinding906, _Vector4_ywww);
-const _flaxBinding1744 = FlaxGetter("zxxx", _flaxBinding906, _Vector4_zxxx);
-const _flaxBinding1745 = FlaxGetter("zxxy", _flaxBinding906, _Vector4_zxxy);
-const _flaxBinding1746 = FlaxGetter("zxxz", _flaxBinding906, _Vector4_zxxz);
-const _flaxBinding1747 = FlaxGetter("zxxw", _flaxBinding906, _Vector4_zxxw);
-const _flaxBinding1748 = FlaxGetter("zxyx", _flaxBinding906, _Vector4_zxyx);
-const _flaxBinding1749 = FlaxGetter("zxyy", _flaxBinding906, _Vector4_zxyy);
-const _flaxBinding1750 = FlaxGetter("zxyz", _flaxBinding906, _Vector4_zxyz);
-const _flaxBinding1751 = FlaxGetter("zxyw", _flaxBinding906, _Vector4_zxyw);
-const _flaxBinding1752 = FlaxGetter("zxzx", _flaxBinding906, _Vector4_zxzx);
-const _flaxBinding1753 = FlaxGetter("zxzy", _flaxBinding906, _Vector4_zxzy);
-const _flaxBinding1754 = FlaxGetter("zxzz", _flaxBinding906, _Vector4_zxzz);
-const _flaxBinding1755 = FlaxGetter("zxzw", _flaxBinding906, _Vector4_zxzw);
-const _flaxBinding1756 = FlaxGetter("zxwx", _flaxBinding906, _Vector4_zxwx);
-const _flaxBinding1757 = FlaxGetter("zxwy", _flaxBinding906, _Vector4_zxwy);
-const _flaxBinding1758 = FlaxGetter("zxwz", _flaxBinding906, _Vector4_zxwz);
-const _flaxBinding1759 = FlaxGetter("zxww", _flaxBinding906, _Vector4_zxww);
-const _flaxBinding1760 = FlaxGetter("zyxx", _flaxBinding906, _Vector4_zyxx);
-const _flaxBinding1761 = FlaxGetter("zyxy", _flaxBinding906, _Vector4_zyxy);
-const _flaxBinding1762 = FlaxGetter("zyxz", _flaxBinding906, _Vector4_zyxz);
-const _flaxBinding1763 = FlaxGetter("zyxw", _flaxBinding906, _Vector4_zyxw);
-const _flaxBinding1764 = FlaxGetter("zyyx", _flaxBinding906, _Vector4_zyyx);
-const _flaxBinding1765 = FlaxGetter("zyyy", _flaxBinding906, _Vector4_zyyy);
-const _flaxBinding1766 = FlaxGetter("zyyz", _flaxBinding906, _Vector4_zyyz);
-const _flaxBinding1767 = FlaxGetter("zyyw", _flaxBinding906, _Vector4_zyyw);
-const _flaxBinding1768 = FlaxGetter("zyzx", _flaxBinding906, _Vector4_zyzx);
-const _flaxBinding1769 = FlaxGetter("zyzy", _flaxBinding906, _Vector4_zyzy);
-const _flaxBinding1770 = FlaxGetter("zyzz", _flaxBinding906, _Vector4_zyzz);
-const _flaxBinding1771 = FlaxGetter("zyzw", _flaxBinding906, _Vector4_zyzw);
-const _flaxBinding1772 = FlaxGetter("zywx", _flaxBinding906, _Vector4_zywx);
-const _flaxBinding1773 = FlaxGetter("zywy", _flaxBinding906, _Vector4_zywy);
-const _flaxBinding1774 = FlaxGetter("zywz", _flaxBinding906, _Vector4_zywz);
-const _flaxBinding1775 = FlaxGetter("zyww", _flaxBinding906, _Vector4_zyww);
-const _flaxBinding1776 = FlaxGetter("zzxx", _flaxBinding906, _Vector4_zzxx);
-const _flaxBinding1777 = FlaxGetter("zzxy", _flaxBinding906, _Vector4_zzxy);
-const _flaxBinding1778 = FlaxGetter("zzxz", _flaxBinding906, _Vector4_zzxz);
-const _flaxBinding1779 = FlaxGetter("zzxw", _flaxBinding906, _Vector4_zzxw);
-const _flaxBinding1780 = FlaxGetter("zzyx", _flaxBinding906, _Vector4_zzyx);
-const _flaxBinding1781 = FlaxGetter("zzyy", _flaxBinding906, _Vector4_zzyy);
-const _flaxBinding1782 = FlaxGetter("zzyz", _flaxBinding906, _Vector4_zzyz);
-const _flaxBinding1783 = FlaxGetter("zzyw", _flaxBinding906, _Vector4_zzyw);
-const _flaxBinding1784 = FlaxGetter("zzzx", _flaxBinding906, _Vector4_zzzx);
-const _flaxBinding1785 = FlaxGetter("zzzy", _flaxBinding906, _Vector4_zzzy);
-const _flaxBinding1786 = FlaxGetter("zzzz", _flaxBinding906, _Vector4_zzzz);
-const _flaxBinding1787 = FlaxGetter("zzzw", _flaxBinding906, _Vector4_zzzw);
-const _flaxBinding1788 = FlaxGetter("zzwx", _flaxBinding906, _Vector4_zzwx);
-const _flaxBinding1789 = FlaxGetter("zzwy", _flaxBinding906, _Vector4_zzwy);
-const _flaxBinding1790 = FlaxGetter("zzwz", _flaxBinding906, _Vector4_zzwz);
-const _flaxBinding1791 = FlaxGetter("zzww", _flaxBinding906, _Vector4_zzww);
-const _flaxBinding1792 = FlaxGetter("zwxx", _flaxBinding906, _Vector4_zwxx);
-const _flaxBinding1793 = FlaxGetter("zwxy", _flaxBinding906, _Vector4_zwxy);
-const _flaxBinding1794 = FlaxGetter("zwxz", _flaxBinding906, _Vector4_zwxz);
-const _flaxBinding1795 = FlaxGetter("zwxw", _flaxBinding906, _Vector4_zwxw);
-const _flaxBinding1796 = FlaxGetter("zwyx", _flaxBinding906, _Vector4_zwyx);
-const _flaxBinding1797 = FlaxGetter("zwyy", _flaxBinding906, _Vector4_zwyy);
-const _flaxBinding1798 = FlaxGetter("zwyz", _flaxBinding906, _Vector4_zwyz);
-const _flaxBinding1799 = FlaxGetter("zwyw", _flaxBinding906, _Vector4_zwyw);
-const _flaxBinding1800 = FlaxGetter("zwzx", _flaxBinding906, _Vector4_zwzx);
-const _flaxBinding1801 = FlaxGetter("zwzy", _flaxBinding906, _Vector4_zwzy);
-const _flaxBinding1802 = FlaxGetter("zwzz", _flaxBinding906, _Vector4_zwzz);
-const _flaxBinding1803 = FlaxGetter("zwzw", _flaxBinding906, _Vector4_zwzw);
-const _flaxBinding1804 = FlaxGetter("zwwx", _flaxBinding906, _Vector4_zwwx);
-const _flaxBinding1805 = FlaxGetter("zwwy", _flaxBinding906, _Vector4_zwwy);
-const _flaxBinding1806 = FlaxGetter("zwwz", _flaxBinding906, _Vector4_zwwz);
-const _flaxBinding1807 = FlaxGetter("zwww", _flaxBinding906, _Vector4_zwww);
-const _flaxBinding1808 = FlaxGetter("wxxx", _flaxBinding906, _Vector4_wxxx);
-const _flaxBinding1809 = FlaxGetter("wxxy", _flaxBinding906, _Vector4_wxxy);
-const _flaxBinding1810 = FlaxGetter("wxxz", _flaxBinding906, _Vector4_wxxz);
-const _flaxBinding1811 = FlaxGetter("wxxw", _flaxBinding906, _Vector4_wxxw);
-const _flaxBinding1812 = FlaxGetter("wxyx", _flaxBinding906, _Vector4_wxyx);
-const _flaxBinding1813 = FlaxGetter("wxyy", _flaxBinding906, _Vector4_wxyy);
-const _flaxBinding1814 = FlaxGetter("wxyz", _flaxBinding906, _Vector4_wxyz);
-const _flaxBinding1815 = FlaxGetter("wxyw", _flaxBinding906, _Vector4_wxyw);
-const _flaxBinding1816 = FlaxGetter("wxzx", _flaxBinding906, _Vector4_wxzx);
-const _flaxBinding1817 = FlaxGetter("wxzy", _flaxBinding906, _Vector4_wxzy);
-const _flaxBinding1818 = FlaxGetter("wxzz", _flaxBinding906, _Vector4_wxzz);
-const _flaxBinding1819 = FlaxGetter("wxzw", _flaxBinding906, _Vector4_wxzw);
-const _flaxBinding1820 = FlaxGetter("wxwx", _flaxBinding906, _Vector4_wxwx);
-const _flaxBinding1821 = FlaxGetter("wxwy", _flaxBinding906, _Vector4_wxwy);
-const _flaxBinding1822 = FlaxGetter("wxwz", _flaxBinding906, _Vector4_wxwz);
-const _flaxBinding1823 = FlaxGetter("wxww", _flaxBinding906, _Vector4_wxww);
-const _flaxBinding1824 = FlaxGetter("wyxx", _flaxBinding906, _Vector4_wyxx);
-const _flaxBinding1825 = FlaxGetter("wyxy", _flaxBinding906, _Vector4_wyxy);
-const _flaxBinding1826 = FlaxGetter("wyxz", _flaxBinding906, _Vector4_wyxz);
-const _flaxBinding1827 = FlaxGetter("wyxw", _flaxBinding906, _Vector4_wyxw);
-const _flaxBinding1828 = FlaxGetter("wyyx", _flaxBinding906, _Vector4_wyyx);
-const _flaxBinding1829 = FlaxGetter("wyyy", _flaxBinding906, _Vector4_wyyy);
-const _flaxBinding1830 = FlaxGetter("wyyz", _flaxBinding906, _Vector4_wyyz);
-const _flaxBinding1831 = FlaxGetter("wyyw", _flaxBinding906, _Vector4_wyyw);
-const _flaxBinding1832 = FlaxGetter("wyzx", _flaxBinding906, _Vector4_wyzx);
-const _flaxBinding1833 = FlaxGetter("wyzy", _flaxBinding906, _Vector4_wyzy);
-const _flaxBinding1834 = FlaxGetter("wyzz", _flaxBinding906, _Vector4_wyzz);
-const _flaxBinding1835 = FlaxGetter("wyzw", _flaxBinding906, _Vector4_wyzw);
-const _flaxBinding1836 = FlaxGetter("wywx", _flaxBinding906, _Vector4_wywx);
-const _flaxBinding1837 = FlaxGetter("wywy", _flaxBinding906, _Vector4_wywy);
-const _flaxBinding1838 = FlaxGetter("wywz", _flaxBinding906, _Vector4_wywz);
-const _flaxBinding1839 = FlaxGetter("wyww", _flaxBinding906, _Vector4_wyww);
-const _flaxBinding1840 = FlaxGetter("wzxx", _flaxBinding906, _Vector4_wzxx);
-const _flaxBinding1841 = FlaxGetter("wzxy", _flaxBinding906, _Vector4_wzxy);
-const _flaxBinding1842 = FlaxGetter("wzxz", _flaxBinding906, _Vector4_wzxz);
-const _flaxBinding1843 = FlaxGetter("wzxw", _flaxBinding906, _Vector4_wzxw);
-const _flaxBinding1844 = FlaxGetter("wzyx", _flaxBinding906, _Vector4_wzyx);
-const _flaxBinding1845 = FlaxGetter("wzyy", _flaxBinding906, _Vector4_wzyy);
-const _flaxBinding1846 = FlaxGetter("wzyz", _flaxBinding906, _Vector4_wzyz);
-const _flaxBinding1847 = FlaxGetter("wzyw", _flaxBinding906, _Vector4_wzyw);
-const _flaxBinding1848 = FlaxGetter("wzzx", _flaxBinding906, _Vector4_wzzx);
-const _flaxBinding1849 = FlaxGetter("wzzy", _flaxBinding906, _Vector4_wzzy);
-const _flaxBinding1850 = FlaxGetter("wzzz", _flaxBinding906, _Vector4_wzzz);
-const _flaxBinding1851 = FlaxGetter("wzzw", _flaxBinding906, _Vector4_wzzw);
-const _flaxBinding1852 = FlaxGetter("wzwx", _flaxBinding906, _Vector4_wzwx);
-const _flaxBinding1853 = FlaxGetter("wzwy", _flaxBinding906, _Vector4_wzwy);
-const _flaxBinding1854 = FlaxGetter("wzwz", _flaxBinding906, _Vector4_wzwz);
-const _flaxBinding1855 = FlaxGetter("wzww", _flaxBinding906, _Vector4_wzww);
-const _flaxBinding1856 = FlaxGetter("wwxx", _flaxBinding906, _Vector4_wwxx);
-const _flaxBinding1857 = FlaxGetter("wwxy", _flaxBinding906, _Vector4_wwxy);
-const _flaxBinding1858 = FlaxGetter("wwxz", _flaxBinding906, _Vector4_wwxz);
-const _flaxBinding1859 = FlaxGetter("wwxw", _flaxBinding906, _Vector4_wwxw);
-const _flaxBinding1860 = FlaxGetter("wwyx", _flaxBinding906, _Vector4_wwyx);
-const _flaxBinding1861 = FlaxGetter("wwyy", _flaxBinding906, _Vector4_wwyy);
-const _flaxBinding1862 = FlaxGetter("wwyz", _flaxBinding906, _Vector4_wwyz);
-const _flaxBinding1863 = FlaxGetter("wwyw", _flaxBinding906, _Vector4_wwyw);
-const _flaxBinding1864 = FlaxGetter("wwzx", _flaxBinding906, _Vector4_wwzx);
-const _flaxBinding1865 = FlaxGetter("wwzy", _flaxBinding906, _Vector4_wwzy);
-const _flaxBinding1866 = FlaxGetter("wwzz", _flaxBinding906, _Vector4_wwzz);
-const _flaxBinding1867 = FlaxGetter("wwzw", _flaxBinding906, _Vector4_wwzw);
-const _flaxBinding1868 = FlaxGetter("wwwx", _flaxBinding906, _Vector4_wwwx);
-const _flaxBinding1869 = FlaxGetter("wwwy", _flaxBinding906, _Vector4_wwwy);
-const _flaxBinding1870 = FlaxGetter("wwwz", _flaxBinding906, _Vector4_wwwz);
-const _flaxBinding1871 = FlaxGetter("wwww", _flaxBinding906, _Vector4_wwww);
-const _flaxBinding1872 = FlaxGetter("r", _flaxBinding448, _Vector4_r);
-const _flaxBinding1873 = FlaxGetter("g", _flaxBinding448, _Vector4_g);
-const _flaxBinding1874 = FlaxGetter("b", _flaxBinding448, _Vector4_b);
-const _flaxBinding1875 = FlaxGetter("a", _flaxBinding448, _Vector4_a);
-const _flaxBinding1876 = FlaxGetter("s", _flaxBinding448, _Vector4_s);
-const _flaxBinding1877 = FlaxGetter("t", _flaxBinding448, _Vector4_t);
-const _flaxBinding1878 = FlaxGetter("p", _flaxBinding448, _Vector4_p);
-const _flaxBinding1879 = FlaxGetter("q", _flaxBinding448, _Vector4_q);
-const _flaxBinding1880 = FlaxGetter("x", _flaxBinding448, _Vector4_x);
-const _flaxBinding1881 = FlaxGetter("y", _flaxBinding448, _Vector4_y);
-const _flaxBinding1882 = FlaxGetter("z", _flaxBinding448, _Vector4_z);
-const _flaxBinding1883 = FlaxGetter("w", _flaxBinding448, _Vector4_w);
-const _flaxBinding1884 = FlaxGetter("rr", _flaxBinding441, _Vector4_rr);
-const _flaxBinding1885 = FlaxGetter("rg", _flaxBinding441, _Vector4_rg);
-const _flaxBinding1886 = FlaxGetter("rb", _flaxBinding441, _Vector4_rb);
-const _flaxBinding1887 = FlaxGetter("ra", _flaxBinding441, _Vector4_ra);
-const _flaxBinding1888 = FlaxGetter("gr", _flaxBinding441, _Vector4_gr);
-const _flaxBinding1889 = FlaxGetter("gg", _flaxBinding441, _Vector4_gg);
-const _flaxBinding1890 = FlaxGetter("gb", _flaxBinding441, _Vector4_gb);
-const _flaxBinding1891 = FlaxGetter("ga", _flaxBinding441, _Vector4_ga);
-const _flaxBinding1892 = FlaxGetter("br", _flaxBinding441, _Vector4_br);
-const _flaxBinding1893 = FlaxGetter("bg", _flaxBinding441, _Vector4_bg);
-const _flaxBinding1894 = FlaxGetter("bb", _flaxBinding441, _Vector4_bb);
-const _flaxBinding1895 = FlaxGetter("ba", _flaxBinding441, _Vector4_ba);
-const _flaxBinding1896 = FlaxGetter("ar", _flaxBinding441, _Vector4_ar);
-const _flaxBinding1897 = FlaxGetter("ag", _flaxBinding441, _Vector4_ag);
-const _flaxBinding1898 = FlaxGetter("ab", _flaxBinding441, _Vector4_ab);
-const _flaxBinding1899 = FlaxGetter("aa", _flaxBinding441, _Vector4_aa);
-const _flaxBinding1900 = FlaxGetter("rrr", _flaxBinding534, _Vector4_rrr);
-const _flaxBinding1901 = FlaxGetter("rrg", _flaxBinding534, _Vector4_rrg);
-const _flaxBinding1902 = FlaxGetter("rrb", _flaxBinding534, _Vector4_rrb);
-const _flaxBinding1903 = FlaxGetter("rra", _flaxBinding534, _Vector4_rra);
-const _flaxBinding1904 = FlaxGetter("rgr", _flaxBinding534, _Vector4_rgr);
-const _flaxBinding1905 = FlaxGetter("rgg", _flaxBinding534, _Vector4_rgg);
-const _flaxBinding1906 = FlaxGetter("rgb", _flaxBinding534, _Vector4_rgb);
-const _flaxBinding1907 = FlaxGetter("rga", _flaxBinding534, _Vector4_rga);
-const _flaxBinding1908 = FlaxGetter("rbr", _flaxBinding534, _Vector4_rbr);
-const _flaxBinding1909 = FlaxGetter("rbg", _flaxBinding534, _Vector4_rbg);
-const _flaxBinding1910 = FlaxGetter("rbb", _flaxBinding534, _Vector4_rbb);
-const _flaxBinding1911 = FlaxGetter("rba", _flaxBinding534, _Vector4_rba);
-const _flaxBinding1912 = FlaxGetter("rar", _flaxBinding534, _Vector4_rar);
-const _flaxBinding1913 = FlaxGetter("rag", _flaxBinding534, _Vector4_rag);
-const _flaxBinding1914 = FlaxGetter("rab", _flaxBinding534, _Vector4_rab);
-const _flaxBinding1915 = FlaxGetter("raa", _flaxBinding534, _Vector4_raa);
-const _flaxBinding1916 = FlaxGetter("grr", _flaxBinding534, _Vector4_grr);
-const _flaxBinding1917 = FlaxGetter("grg", _flaxBinding534, _Vector4_grg);
-const _flaxBinding1918 = FlaxGetter("grb", _flaxBinding534, _Vector4_grb);
-const _flaxBinding1919 = FlaxGetter("gra", _flaxBinding534, _Vector4_gra);
-const _flaxBinding1920 = FlaxGetter("ggr", _flaxBinding534, _Vector4_ggr);
-const _flaxBinding1921 = FlaxGetter("ggg", _flaxBinding534, _Vector4_ggg);
-const _flaxBinding1922 = FlaxGetter("ggb", _flaxBinding534, _Vector4_ggb);
-const _flaxBinding1923 = FlaxGetter("gga", _flaxBinding534, _Vector4_gga);
-const _flaxBinding1924 = FlaxGetter("gbr", _flaxBinding534, _Vector4_gbr);
-const _flaxBinding1925 = FlaxGetter("gbg", _flaxBinding534, _Vector4_gbg);
-const _flaxBinding1926 = FlaxGetter("gbb", _flaxBinding534, _Vector4_gbb);
-const _flaxBinding1927 = FlaxGetter("gba", _flaxBinding534, _Vector4_gba);
-const _flaxBinding1928 = FlaxGetter("gar", _flaxBinding534, _Vector4_gar);
-const _flaxBinding1929 = FlaxGetter("gag", _flaxBinding534, _Vector4_gag);
-const _flaxBinding1930 = FlaxGetter("gab", _flaxBinding534, _Vector4_gab);
-const _flaxBinding1931 = FlaxGetter("gaa", _flaxBinding534, _Vector4_gaa);
-const _flaxBinding1932 = FlaxGetter("brr", _flaxBinding534, _Vector4_brr);
-const _flaxBinding1933 = FlaxGetter("brg", _flaxBinding534, _Vector4_brg);
-const _flaxBinding1934 = FlaxGetter("brb", _flaxBinding534, _Vector4_brb);
-const _flaxBinding1935 = FlaxGetter("bra", _flaxBinding534, _Vector4_bra);
-const _flaxBinding1936 = FlaxGetter("bgr", _flaxBinding534, _Vector4_bgr);
-const _flaxBinding1937 = FlaxGetter("bgg", _flaxBinding534, _Vector4_bgg);
-const _flaxBinding1938 = FlaxGetter("bgb", _flaxBinding534, _Vector4_bgb);
-const _flaxBinding1939 = FlaxGetter("bga", _flaxBinding534, _Vector4_bga);
-const _flaxBinding1940 = FlaxGetter("bbr", _flaxBinding534, _Vector4_bbr);
-const _flaxBinding1941 = FlaxGetter("bbg", _flaxBinding534, _Vector4_bbg);
-const _flaxBinding1942 = FlaxGetter("bbb", _flaxBinding534, _Vector4_bbb);
-const _flaxBinding1943 = FlaxGetter("bba", _flaxBinding534, _Vector4_bba);
-const _flaxBinding1944 = FlaxGetter("bar", _flaxBinding534, _Vector4_bar);
-const _flaxBinding1945 = FlaxGetter("bag", _flaxBinding534, _Vector4_bag);
-const _flaxBinding1946 = FlaxGetter("bab", _flaxBinding534, _Vector4_bab);
-const _flaxBinding1947 = FlaxGetter("baa", _flaxBinding534, _Vector4_baa);
-const _flaxBinding1948 = FlaxGetter("arr", _flaxBinding534, _Vector4_arr);
-const _flaxBinding1949 = FlaxGetter("arg", _flaxBinding534, _Vector4_arg);
-const _flaxBinding1950 = FlaxGetter("arb", _flaxBinding534, _Vector4_arb);
-const _flaxBinding1951 = FlaxGetter("ara", _flaxBinding534, _Vector4_ara);
-const _flaxBinding1952 = FlaxGetter("agr", _flaxBinding534, _Vector4_agr);
-const _flaxBinding1953 = FlaxGetter("agg", _flaxBinding534, _Vector4_agg);
-const _flaxBinding1954 = FlaxGetter("agb", _flaxBinding534, _Vector4_agb);
-const _flaxBinding1955 = FlaxGetter("aga", _flaxBinding534, _Vector4_aga);
-const _flaxBinding1956 = FlaxGetter("abr", _flaxBinding534, _Vector4_abr);
-const _flaxBinding1957 = FlaxGetter("abg", _flaxBinding534, _Vector4_abg);
-const _flaxBinding1958 = FlaxGetter("abb", _flaxBinding534, _Vector4_abb);
-const _flaxBinding1959 = FlaxGetter("aba", _flaxBinding534, _Vector4_aba);
-const _flaxBinding1960 = FlaxGetter("aar", _flaxBinding534, _Vector4_aar);
-const _flaxBinding1961 = FlaxGetter("aag", _flaxBinding534, _Vector4_aag);
-const _flaxBinding1962 = FlaxGetter("aab", _flaxBinding534, _Vector4_aab);
-const _flaxBinding1963 = FlaxGetter("aaa", _flaxBinding534, _Vector4_aaa);
-const _flaxBinding1964 = FlaxGetter("rrrr", _flaxBinding906, _Vector4_rrrr);
-const _flaxBinding1965 = FlaxGetter("rrrg", _flaxBinding906, _Vector4_rrrg);
-const _flaxBinding1966 = FlaxGetter("rrrb", _flaxBinding906, _Vector4_rrrb);
-const _flaxBinding1967 = FlaxGetter("rrra", _flaxBinding906, _Vector4_rrra);
-const _flaxBinding1968 = FlaxGetter("rrgr", _flaxBinding906, _Vector4_rrgr);
-const _flaxBinding1969 = FlaxGetter("rrgg", _flaxBinding906, _Vector4_rrgg);
-const _flaxBinding1970 = FlaxGetter("rrgb", _flaxBinding906, _Vector4_rrgb);
-const _flaxBinding1971 = FlaxGetter("rrga", _flaxBinding906, _Vector4_rrga);
-const _flaxBinding1972 = FlaxGetter("rrbr", _flaxBinding906, _Vector4_rrbr);
-const _flaxBinding1973 = FlaxGetter("rrbg", _flaxBinding906, _Vector4_rrbg);
-const _flaxBinding1974 = FlaxGetter("rrbb", _flaxBinding906, _Vector4_rrbb);
-const _flaxBinding1975 = FlaxGetter("rrba", _flaxBinding906, _Vector4_rrba);
-const _flaxBinding1976 = FlaxGetter("rrar", _flaxBinding906, _Vector4_rrar);
-const _flaxBinding1977 = FlaxGetter("rrag", _flaxBinding906, _Vector4_rrag);
-const _flaxBinding1978 = FlaxGetter("rrab", _flaxBinding906, _Vector4_rrab);
-const _flaxBinding1979 = FlaxGetter("rraa", _flaxBinding906, _Vector4_rraa);
-const _flaxBinding1980 = FlaxGetter("rgrr", _flaxBinding906, _Vector4_rgrr);
-const _flaxBinding1981 = FlaxGetter("rgrg", _flaxBinding906, _Vector4_rgrg);
-const _flaxBinding1982 = FlaxGetter("rgrb", _flaxBinding906, _Vector4_rgrb);
-const _flaxBinding1983 = FlaxGetter("rgra", _flaxBinding906, _Vector4_rgra);
-const _flaxBinding1984 = FlaxGetter("rggr", _flaxBinding906, _Vector4_rggr);
-const _flaxBinding1985 = FlaxGetter("rggg", _flaxBinding906, _Vector4_rggg);
-const _flaxBinding1986 = FlaxGetter("rggb", _flaxBinding906, _Vector4_rggb);
-const _flaxBinding1987 = FlaxGetter("rgga", _flaxBinding906, _Vector4_rgga);
-const _flaxBinding1988 = FlaxGetter("rgbr", _flaxBinding906, _Vector4_rgbr);
-const _flaxBinding1989 = FlaxGetter("rgbg", _flaxBinding906, _Vector4_rgbg);
-const _flaxBinding1990 = FlaxGetter("rgbb", _flaxBinding906, _Vector4_rgbb);
-const _flaxBinding1991 = FlaxGetter("rgba", _flaxBinding906, _Vector4_rgba);
-const _flaxBinding1992 = FlaxGetter("rgar", _flaxBinding906, _Vector4_rgar);
-const _flaxBinding1993 = FlaxGetter("rgag", _flaxBinding906, _Vector4_rgag);
-const _flaxBinding1994 = FlaxGetter("rgab", _flaxBinding906, _Vector4_rgab);
-const _flaxBinding1995 = FlaxGetter("rgaa", _flaxBinding906, _Vector4_rgaa);
-const _flaxBinding1996 = FlaxGetter("rbrr", _flaxBinding906, _Vector4_rbrr);
-const _flaxBinding1997 = FlaxGetter("rbrg", _flaxBinding906, _Vector4_rbrg);
-const _flaxBinding1998 = FlaxGetter("rbrb", _flaxBinding906, _Vector4_rbrb);
-const _flaxBinding1999 = FlaxGetter("rbra", _flaxBinding906, _Vector4_rbra);
-const _flaxBinding2000 = FlaxGetter("rbgr", _flaxBinding906, _Vector4_rbgr);
-const _flaxBinding2001 = FlaxGetter("rbgg", _flaxBinding906, _Vector4_rbgg);
-const _flaxBinding2002 = FlaxGetter("rbgb", _flaxBinding906, _Vector4_rbgb);
-const _flaxBinding2003 = FlaxGetter("rbga", _flaxBinding906, _Vector4_rbga);
-const _flaxBinding2004 = FlaxGetter("rbbr", _flaxBinding906, _Vector4_rbbr);
-const _flaxBinding2005 = FlaxGetter("rbbg", _flaxBinding906, _Vector4_rbbg);
-const _flaxBinding2006 = FlaxGetter("rbbb", _flaxBinding906, _Vector4_rbbb);
-const _flaxBinding2007 = FlaxGetter("rbba", _flaxBinding906, _Vector4_rbba);
-const _flaxBinding2008 = FlaxGetter("rbar", _flaxBinding906, _Vector4_rbar);
-const _flaxBinding2009 = FlaxGetter("rbag", _flaxBinding906, _Vector4_rbag);
-const _flaxBinding2010 = FlaxGetter("rbab", _flaxBinding906, _Vector4_rbab);
-const _flaxBinding2011 = FlaxGetter("rbaa", _flaxBinding906, _Vector4_rbaa);
-const _flaxBinding2012 = FlaxGetter("rarr", _flaxBinding906, _Vector4_rarr);
-const _flaxBinding2013 = FlaxGetter("rarg", _flaxBinding906, _Vector4_rarg);
-const _flaxBinding2014 = FlaxGetter("rarb", _flaxBinding906, _Vector4_rarb);
-const _flaxBinding2015 = FlaxGetter("rara", _flaxBinding906, _Vector4_rara);
-const _flaxBinding2016 = FlaxGetter("ragr", _flaxBinding906, _Vector4_ragr);
-const _flaxBinding2017 = FlaxGetter("ragg", _flaxBinding906, _Vector4_ragg);
-const _flaxBinding2018 = FlaxGetter("ragb", _flaxBinding906, _Vector4_ragb);
-const _flaxBinding2019 = FlaxGetter("raga", _flaxBinding906, _Vector4_raga);
-const _flaxBinding2020 = FlaxGetter("rabr", _flaxBinding906, _Vector4_rabr);
-const _flaxBinding2021 = FlaxGetter("rabg", _flaxBinding906, _Vector4_rabg);
-const _flaxBinding2022 = FlaxGetter("rabb", _flaxBinding906, _Vector4_rabb);
-const _flaxBinding2023 = FlaxGetter("raba", _flaxBinding906, _Vector4_raba);
-const _flaxBinding2024 = FlaxGetter("raar", _flaxBinding906, _Vector4_raar);
-const _flaxBinding2025 = FlaxGetter("raag", _flaxBinding906, _Vector4_raag);
-const _flaxBinding2026 = FlaxGetter("raab", _flaxBinding906, _Vector4_raab);
-const _flaxBinding2027 = FlaxGetter("raaa", _flaxBinding906, _Vector4_raaa);
-const _flaxBinding2028 = FlaxGetter("grrr", _flaxBinding906, _Vector4_grrr);
-const _flaxBinding2029 = FlaxGetter("grrg", _flaxBinding906, _Vector4_grrg);
-const _flaxBinding2030 = FlaxGetter("grrb", _flaxBinding906, _Vector4_grrb);
-const _flaxBinding2031 = FlaxGetter("grra", _flaxBinding906, _Vector4_grra);
-const _flaxBinding2032 = FlaxGetter("grgr", _flaxBinding906, _Vector4_grgr);
-const _flaxBinding2033 = FlaxGetter("grgg", _flaxBinding906, _Vector4_grgg);
-const _flaxBinding2034 = FlaxGetter("grgb", _flaxBinding906, _Vector4_grgb);
-const _flaxBinding2035 = FlaxGetter("grga", _flaxBinding906, _Vector4_grga);
-const _flaxBinding2036 = FlaxGetter("grbr", _flaxBinding906, _Vector4_grbr);
-const _flaxBinding2037 = FlaxGetter("grbg", _flaxBinding906, _Vector4_grbg);
-const _flaxBinding2038 = FlaxGetter("grbb", _flaxBinding906, _Vector4_grbb);
-const _flaxBinding2039 = FlaxGetter("grba", _flaxBinding906, _Vector4_grba);
-const _flaxBinding2040 = FlaxGetter("grar", _flaxBinding906, _Vector4_grar);
-const _flaxBinding2041 = FlaxGetter("grag", _flaxBinding906, _Vector4_grag);
-const _flaxBinding2042 = FlaxGetter("grab", _flaxBinding906, _Vector4_grab);
-const _flaxBinding2043 = FlaxGetter("graa", _flaxBinding906, _Vector4_graa);
-const _flaxBinding2044 = FlaxGetter("ggrr", _flaxBinding906, _Vector4_ggrr);
-const _flaxBinding2045 = FlaxGetter("ggrg", _flaxBinding906, _Vector4_ggrg);
-const _flaxBinding2046 = FlaxGetter("ggrb", _flaxBinding906, _Vector4_ggrb);
-const _flaxBinding2047 = FlaxGetter("ggra", _flaxBinding906, _Vector4_ggra);
-const _flaxBinding2048 = FlaxGetter("gggr", _flaxBinding906, _Vector4_gggr);
-const _flaxBinding2049 = FlaxGetter("gggg", _flaxBinding906, _Vector4_gggg);
-const _flaxBinding2050 = FlaxGetter("gggb", _flaxBinding906, _Vector4_gggb);
-const _flaxBinding2051 = FlaxGetter("ggga", _flaxBinding906, _Vector4_ggga);
-const _flaxBinding2052 = FlaxGetter("ggbr", _flaxBinding906, _Vector4_ggbr);
-const _flaxBinding2053 = FlaxGetter("ggbg", _flaxBinding906, _Vector4_ggbg);
-const _flaxBinding2054 = FlaxGetter("ggbb", _flaxBinding906, _Vector4_ggbb);
-const _flaxBinding2055 = FlaxGetter("ggba", _flaxBinding906, _Vector4_ggba);
-const _flaxBinding2056 = FlaxGetter("ggar", _flaxBinding906, _Vector4_ggar);
-const _flaxBinding2057 = FlaxGetter("ggag", _flaxBinding906, _Vector4_ggag);
-const _flaxBinding2058 = FlaxGetter("ggab", _flaxBinding906, _Vector4_ggab);
-const _flaxBinding2059 = FlaxGetter("ggaa", _flaxBinding906, _Vector4_ggaa);
-const _flaxBinding2060 = FlaxGetter("gbrr", _flaxBinding906, _Vector4_gbrr);
-const _flaxBinding2061 = FlaxGetter("gbrg", _flaxBinding906, _Vector4_gbrg);
-const _flaxBinding2062 = FlaxGetter("gbrb", _flaxBinding906, _Vector4_gbrb);
-const _flaxBinding2063 = FlaxGetter("gbra", _flaxBinding906, _Vector4_gbra);
-const _flaxBinding2064 = FlaxGetter("gbgr", _flaxBinding906, _Vector4_gbgr);
-const _flaxBinding2065 = FlaxGetter("gbgg", _flaxBinding906, _Vector4_gbgg);
-const _flaxBinding2066 = FlaxGetter("gbgb", _flaxBinding906, _Vector4_gbgb);
-const _flaxBinding2067 = FlaxGetter("gbga", _flaxBinding906, _Vector4_gbga);
-const _flaxBinding2068 = FlaxGetter("gbbr", _flaxBinding906, _Vector4_gbbr);
-const _flaxBinding2069 = FlaxGetter("gbbg", _flaxBinding906, _Vector4_gbbg);
-const _flaxBinding2070 = FlaxGetter("gbbb", _flaxBinding906, _Vector4_gbbb);
-const _flaxBinding2071 = FlaxGetter("gbba", _flaxBinding906, _Vector4_gbba);
-const _flaxBinding2072 = FlaxGetter("gbar", _flaxBinding906, _Vector4_gbar);
-const _flaxBinding2073 = FlaxGetter("gbag", _flaxBinding906, _Vector4_gbag);
-const _flaxBinding2074 = FlaxGetter("gbab", _flaxBinding906, _Vector4_gbab);
-const _flaxBinding2075 = FlaxGetter("gbaa", _flaxBinding906, _Vector4_gbaa);
-const _flaxBinding2076 = FlaxGetter("garr", _flaxBinding906, _Vector4_garr);
-const _flaxBinding2077 = FlaxGetter("garg", _flaxBinding906, _Vector4_garg);
-const _flaxBinding2078 = FlaxGetter("garb", _flaxBinding906, _Vector4_garb);
-const _flaxBinding2079 = FlaxGetter("gara", _flaxBinding906, _Vector4_gara);
-const _flaxBinding2080 = FlaxGetter("gagr", _flaxBinding906, _Vector4_gagr);
-const _flaxBinding2081 = FlaxGetter("gagg", _flaxBinding906, _Vector4_gagg);
-const _flaxBinding2082 = FlaxGetter("gagb", _flaxBinding906, _Vector4_gagb);
-const _flaxBinding2083 = FlaxGetter("gaga", _flaxBinding906, _Vector4_gaga);
-const _flaxBinding2084 = FlaxGetter("gabr", _flaxBinding906, _Vector4_gabr);
-const _flaxBinding2085 = FlaxGetter("gabg", _flaxBinding906, _Vector4_gabg);
-const _flaxBinding2086 = FlaxGetter("gabb", _flaxBinding906, _Vector4_gabb);
-const _flaxBinding2087 = FlaxGetter("gaba", _flaxBinding906, _Vector4_gaba);
-const _flaxBinding2088 = FlaxGetter("gaar", _flaxBinding906, _Vector4_gaar);
-const _flaxBinding2089 = FlaxGetter("gaag", _flaxBinding906, _Vector4_gaag);
-const _flaxBinding2090 = FlaxGetter("gaab", _flaxBinding906, _Vector4_gaab);
-const _flaxBinding2091 = FlaxGetter("gaaa", _flaxBinding906, _Vector4_gaaa);
-const _flaxBinding2092 = FlaxGetter("brrr", _flaxBinding906, _Vector4_brrr);
-const _flaxBinding2093 = FlaxGetter("brrg", _flaxBinding906, _Vector4_brrg);
-const _flaxBinding2094 = FlaxGetter("brrb", _flaxBinding906, _Vector4_brrb);
-const _flaxBinding2095 = FlaxGetter("brra", _flaxBinding906, _Vector4_brra);
-const _flaxBinding2096 = FlaxGetter("brgr", _flaxBinding906, _Vector4_brgr);
-const _flaxBinding2097 = FlaxGetter("brgg", _flaxBinding906, _Vector4_brgg);
-const _flaxBinding2098 = FlaxGetter("brgb", _flaxBinding906, _Vector4_brgb);
-const _flaxBinding2099 = FlaxGetter("brga", _flaxBinding906, _Vector4_brga);
-const _flaxBinding2100 = FlaxGetter("brbr", _flaxBinding906, _Vector4_brbr);
-const _flaxBinding2101 = FlaxGetter("brbg", _flaxBinding906, _Vector4_brbg);
-const _flaxBinding2102 = FlaxGetter("brbb", _flaxBinding906, _Vector4_brbb);
-const _flaxBinding2103 = FlaxGetter("brba", _flaxBinding906, _Vector4_brba);
-const _flaxBinding2104 = FlaxGetter("brar", _flaxBinding906, _Vector4_brar);
-const _flaxBinding2105 = FlaxGetter("brag", _flaxBinding906, _Vector4_brag);
-const _flaxBinding2106 = FlaxGetter("brab", _flaxBinding906, _Vector4_brab);
-const _flaxBinding2107 = FlaxGetter("braa", _flaxBinding906, _Vector4_braa);
-const _flaxBinding2108 = FlaxGetter("bgrr", _flaxBinding906, _Vector4_bgrr);
-const _flaxBinding2109 = FlaxGetter("bgrg", _flaxBinding906, _Vector4_bgrg);
-const _flaxBinding2110 = FlaxGetter("bgrb", _flaxBinding906, _Vector4_bgrb);
-const _flaxBinding2111 = FlaxGetter("bgra", _flaxBinding906, _Vector4_bgra);
-const _flaxBinding2112 = FlaxGetter("bggr", _flaxBinding906, _Vector4_bggr);
-const _flaxBinding2113 = FlaxGetter("bggg", _flaxBinding906, _Vector4_bggg);
-const _flaxBinding2114 = FlaxGetter("bggb", _flaxBinding906, _Vector4_bggb);
-const _flaxBinding2115 = FlaxGetter("bgga", _flaxBinding906, _Vector4_bgga);
-const _flaxBinding2116 = FlaxGetter("bgbr", _flaxBinding906, _Vector4_bgbr);
-const _flaxBinding2117 = FlaxGetter("bgbg", _flaxBinding906, _Vector4_bgbg);
-const _flaxBinding2118 = FlaxGetter("bgbb", _flaxBinding906, _Vector4_bgbb);
-const _flaxBinding2119 = FlaxGetter("bgba", _flaxBinding906, _Vector4_bgba);
-const _flaxBinding2120 = FlaxGetter("bgar", _flaxBinding906, _Vector4_bgar);
-const _flaxBinding2121 = FlaxGetter("bgag", _flaxBinding906, _Vector4_bgag);
-const _flaxBinding2122 = FlaxGetter("bgab", _flaxBinding906, _Vector4_bgab);
-const _flaxBinding2123 = FlaxGetter("bgaa", _flaxBinding906, _Vector4_bgaa);
-const _flaxBinding2124 = FlaxGetter("bbrr", _flaxBinding906, _Vector4_bbrr);
-const _flaxBinding2125 = FlaxGetter("bbrg", _flaxBinding906, _Vector4_bbrg);
-const _flaxBinding2126 = FlaxGetter("bbrb", _flaxBinding906, _Vector4_bbrb);
-const _flaxBinding2127 = FlaxGetter("bbra", _flaxBinding906, _Vector4_bbra);
-const _flaxBinding2128 = FlaxGetter("bbgr", _flaxBinding906, _Vector4_bbgr);
-const _flaxBinding2129 = FlaxGetter("bbgg", _flaxBinding906, _Vector4_bbgg);
-const _flaxBinding2130 = FlaxGetter("bbgb", _flaxBinding906, _Vector4_bbgb);
-const _flaxBinding2131 = FlaxGetter("bbga", _flaxBinding906, _Vector4_bbga);
-const _flaxBinding2132 = FlaxGetter("bbbr", _flaxBinding906, _Vector4_bbbr);
-const _flaxBinding2133 = FlaxGetter("bbbg", _flaxBinding906, _Vector4_bbbg);
-const _flaxBinding2134 = FlaxGetter("bbbb", _flaxBinding906, _Vector4_bbbb);
-const _flaxBinding2135 = FlaxGetter("bbba", _flaxBinding906, _Vector4_bbba);
-const _flaxBinding2136 = FlaxGetter("bbar", _flaxBinding906, _Vector4_bbar);
-const _flaxBinding2137 = FlaxGetter("bbag", _flaxBinding906, _Vector4_bbag);
-const _flaxBinding2138 = FlaxGetter("bbab", _flaxBinding906, _Vector4_bbab);
-const _flaxBinding2139 = FlaxGetter("bbaa", _flaxBinding906, _Vector4_bbaa);
-const _flaxBinding2140 = FlaxGetter("barr", _flaxBinding906, _Vector4_barr);
-const _flaxBinding2141 = FlaxGetter("barg", _flaxBinding906, _Vector4_barg);
-const _flaxBinding2142 = FlaxGetter("barb", _flaxBinding906, _Vector4_barb);
-const _flaxBinding2143 = FlaxGetter("bara", _flaxBinding906, _Vector4_bara);
-const _flaxBinding2144 = FlaxGetter("bagr", _flaxBinding906, _Vector4_bagr);
-const _flaxBinding2145 = FlaxGetter("bagg", _flaxBinding906, _Vector4_bagg);
-const _flaxBinding2146 = FlaxGetter("bagb", _flaxBinding906, _Vector4_bagb);
-const _flaxBinding2147 = FlaxGetter("baga", _flaxBinding906, _Vector4_baga);
-const _flaxBinding2148 = FlaxGetter("babr", _flaxBinding906, _Vector4_babr);
-const _flaxBinding2149 = FlaxGetter("babg", _flaxBinding906, _Vector4_babg);
-const _flaxBinding2150 = FlaxGetter("babb", _flaxBinding906, _Vector4_babb);
-const _flaxBinding2151 = FlaxGetter("baba", _flaxBinding906, _Vector4_baba);
-const _flaxBinding2152 = FlaxGetter("baar", _flaxBinding906, _Vector4_baar);
-const _flaxBinding2153 = FlaxGetter("baag", _flaxBinding906, _Vector4_baag);
-const _flaxBinding2154 = FlaxGetter("baab", _flaxBinding906, _Vector4_baab);
-const _flaxBinding2155 = FlaxGetter("baaa", _flaxBinding906, _Vector4_baaa);
-const _flaxBinding2156 = FlaxGetter("arrr", _flaxBinding906, _Vector4_arrr);
-const _flaxBinding2157 = FlaxGetter("arrg", _flaxBinding906, _Vector4_arrg);
-const _flaxBinding2158 = FlaxGetter("arrb", _flaxBinding906, _Vector4_arrb);
-const _flaxBinding2159 = FlaxGetter("arra", _flaxBinding906, _Vector4_arra);
-const _flaxBinding2160 = FlaxGetter("argr", _flaxBinding906, _Vector4_argr);
-const _flaxBinding2161 = FlaxGetter("argg", _flaxBinding906, _Vector4_argg);
-const _flaxBinding2162 = FlaxGetter("argb", _flaxBinding906, _Vector4_argb);
-const _flaxBinding2163 = FlaxGetter("arga", _flaxBinding906, _Vector4_arga);
-const _flaxBinding2164 = FlaxGetter("arbr", _flaxBinding906, _Vector4_arbr);
-const _flaxBinding2165 = FlaxGetter("arbg", _flaxBinding906, _Vector4_arbg);
-const _flaxBinding2166 = FlaxGetter("arbb", _flaxBinding906, _Vector4_arbb);
-const _flaxBinding2167 = FlaxGetter("arba", _flaxBinding906, _Vector4_arba);
-const _flaxBinding2168 = FlaxGetter("arar", _flaxBinding906, _Vector4_arar);
-const _flaxBinding2169 = FlaxGetter("arag", _flaxBinding906, _Vector4_arag);
-const _flaxBinding2170 = FlaxGetter("arab", _flaxBinding906, _Vector4_arab);
-const _flaxBinding2171 = FlaxGetter("araa", _flaxBinding906, _Vector4_araa);
-const _flaxBinding2172 = FlaxGetter("agrr", _flaxBinding906, _Vector4_agrr);
-const _flaxBinding2173 = FlaxGetter("agrg", _flaxBinding906, _Vector4_agrg);
-const _flaxBinding2174 = FlaxGetter("agrb", _flaxBinding906, _Vector4_agrb);
-const _flaxBinding2175 = FlaxGetter("agra", _flaxBinding906, _Vector4_agra);
-const _flaxBinding2176 = FlaxGetter("aggr", _flaxBinding906, _Vector4_aggr);
-const _flaxBinding2177 = FlaxGetter("aggg", _flaxBinding906, _Vector4_aggg);
-const _flaxBinding2178 = FlaxGetter("aggb", _flaxBinding906, _Vector4_aggb);
-const _flaxBinding2179 = FlaxGetter("agga", _flaxBinding906, _Vector4_agga);
-const _flaxBinding2180 = FlaxGetter("agbr", _flaxBinding906, _Vector4_agbr);
-const _flaxBinding2181 = FlaxGetter("agbg", _flaxBinding906, _Vector4_agbg);
-const _flaxBinding2182 = FlaxGetter("agbb", _flaxBinding906, _Vector4_agbb);
-const _flaxBinding2183 = FlaxGetter("agba", _flaxBinding906, _Vector4_agba);
-const _flaxBinding2184 = FlaxGetter("agar", _flaxBinding906, _Vector4_agar);
-const _flaxBinding2185 = FlaxGetter("agag", _flaxBinding906, _Vector4_agag);
-const _flaxBinding2186 = FlaxGetter("agab", _flaxBinding906, _Vector4_agab);
-const _flaxBinding2187 = FlaxGetter("agaa", _flaxBinding906, _Vector4_agaa);
-const _flaxBinding2188 = FlaxGetter("abrr", _flaxBinding906, _Vector4_abrr);
-const _flaxBinding2189 = FlaxGetter("abrg", _flaxBinding906, _Vector4_abrg);
-const _flaxBinding2190 = FlaxGetter("abrb", _flaxBinding906, _Vector4_abrb);
-const _flaxBinding2191 = FlaxGetter("abra", _flaxBinding906, _Vector4_abra);
-const _flaxBinding2192 = FlaxGetter("abgr", _flaxBinding906, _Vector4_abgr);
-const _flaxBinding2193 = FlaxGetter("abgg", _flaxBinding906, _Vector4_abgg);
-const _flaxBinding2194 = FlaxGetter("abgb", _flaxBinding906, _Vector4_abgb);
-const _flaxBinding2195 = FlaxGetter("abga", _flaxBinding906, _Vector4_abga);
-const _flaxBinding2196 = FlaxGetter("abbr", _flaxBinding906, _Vector4_abbr);
-const _flaxBinding2197 = FlaxGetter("abbg", _flaxBinding906, _Vector4_abbg);
-const _flaxBinding2198 = FlaxGetter("abbb", _flaxBinding906, _Vector4_abbb);
-const _flaxBinding2199 = FlaxGetter("abba", _flaxBinding906, _Vector4_abba);
-const _flaxBinding2200 = FlaxGetter("abar", _flaxBinding906, _Vector4_abar);
-const _flaxBinding2201 = FlaxGetter("abag", _flaxBinding906, _Vector4_abag);
-const _flaxBinding2202 = FlaxGetter("abab", _flaxBinding906, _Vector4_abab);
-const _flaxBinding2203 = FlaxGetter("abaa", _flaxBinding906, _Vector4_abaa);
-const _flaxBinding2204 = FlaxGetter("aarr", _flaxBinding906, _Vector4_aarr);
-const _flaxBinding2205 = FlaxGetter("aarg", _flaxBinding906, _Vector4_aarg);
-const _flaxBinding2206 = FlaxGetter("aarb", _flaxBinding906, _Vector4_aarb);
-const _flaxBinding2207 = FlaxGetter("aara", _flaxBinding906, _Vector4_aara);
-const _flaxBinding2208 = FlaxGetter("aagr", _flaxBinding906, _Vector4_aagr);
-const _flaxBinding2209 = FlaxGetter("aagg", _flaxBinding906, _Vector4_aagg);
-const _flaxBinding2210 = FlaxGetter("aagb", _flaxBinding906, _Vector4_aagb);
-const _flaxBinding2211 = FlaxGetter("aaga", _flaxBinding906, _Vector4_aaga);
-const _flaxBinding2212 = FlaxGetter("aabr", _flaxBinding906, _Vector4_aabr);
-const _flaxBinding2213 = FlaxGetter("aabg", _flaxBinding906, _Vector4_aabg);
-const _flaxBinding2214 = FlaxGetter("aabb", _flaxBinding906, _Vector4_aabb);
-const _flaxBinding2215 = FlaxGetter("aaba", _flaxBinding906, _Vector4_aaba);
-const _flaxBinding2216 = FlaxGetter("aaar", _flaxBinding906, _Vector4_aaar);
-const _flaxBinding2217 = FlaxGetter("aaag", _flaxBinding906, _Vector4_aaag);
-const _flaxBinding2218 = FlaxGetter("aaab", _flaxBinding906, _Vector4_aaab);
-const _flaxBinding2219 = FlaxGetter("aaaa", _flaxBinding906, _Vector4_aaaa);
-const _flaxBinding2220 = FlaxGetter("ss", _flaxBinding441, _Vector4_ss);
-const _flaxBinding2221 = FlaxGetter("st", _flaxBinding441, _Vector4_st);
-const _flaxBinding2222 = FlaxGetter("sp", _flaxBinding441, _Vector4_sp);
-const _flaxBinding2223 = FlaxGetter("sq", _flaxBinding441, _Vector4_sq);
-const _flaxBinding2224 = FlaxGetter("ts", _flaxBinding441, _Vector4_ts);
-const _flaxBinding2225 = FlaxGetter("tt", _flaxBinding441, _Vector4_tt);
-const _flaxBinding2226 = FlaxGetter("tp", _flaxBinding441, _Vector4_tp);
-const _flaxBinding2227 = FlaxGetter("tq", _flaxBinding441, _Vector4_tq);
-const _flaxBinding2228 = FlaxGetter("ps", _flaxBinding441, _Vector4_ps);
-const _flaxBinding2229 = FlaxGetter("pt", _flaxBinding441, _Vector4_pt);
-const _flaxBinding2230 = FlaxGetter("pp", _flaxBinding441, _Vector4_pp);
-const _flaxBinding2231 = FlaxGetter("pq", _flaxBinding441, _Vector4_pq);
-const _flaxBinding2232 = FlaxGetter("qs", _flaxBinding441, _Vector4_qs);
-const _flaxBinding2233 = FlaxGetter("qt", _flaxBinding441, _Vector4_qt);
-const _flaxBinding2234 = FlaxGetter("qp", _flaxBinding441, _Vector4_qp);
-const _flaxBinding2235 = FlaxGetter("qq", _flaxBinding441, _Vector4_qq);
-const _flaxBinding2236 = FlaxGetter("sss", _flaxBinding534, _Vector4_sss);
-const _flaxBinding2237 = FlaxGetter("sst", _flaxBinding534, _Vector4_sst);
-const _flaxBinding2238 = FlaxGetter("ssp", _flaxBinding534, _Vector4_ssp);
-const _flaxBinding2239 = FlaxGetter("ssq", _flaxBinding534, _Vector4_ssq);
-const _flaxBinding2240 = FlaxGetter("sts", _flaxBinding534, _Vector4_sts);
-const _flaxBinding2241 = FlaxGetter("stt", _flaxBinding534, _Vector4_stt);
-const _flaxBinding2242 = FlaxGetter("stp", _flaxBinding534, _Vector4_stp);
-const _flaxBinding2243 = FlaxGetter("stq", _flaxBinding534, _Vector4_stq);
-const _flaxBinding2244 = FlaxGetter("sps", _flaxBinding534, _Vector4_sps);
-const _flaxBinding2245 = FlaxGetter("spt", _flaxBinding534, _Vector4_spt);
-const _flaxBinding2246 = FlaxGetter("spp", _flaxBinding534, _Vector4_spp);
-const _flaxBinding2247 = FlaxGetter("spq", _flaxBinding534, _Vector4_spq);
-const _flaxBinding2248 = FlaxGetter("sqs", _flaxBinding534, _Vector4_sqs);
-const _flaxBinding2249 = FlaxGetter("sqt", _flaxBinding534, _Vector4_sqt);
-const _flaxBinding2250 = FlaxGetter("sqp", _flaxBinding534, _Vector4_sqp);
-const _flaxBinding2251 = FlaxGetter("sqq", _flaxBinding534, _Vector4_sqq);
-const _flaxBinding2252 = FlaxGetter("tss", _flaxBinding534, _Vector4_tss);
-const _flaxBinding2253 = FlaxGetter("tst", _flaxBinding534, _Vector4_tst);
-const _flaxBinding2254 = FlaxGetter("tsp", _flaxBinding534, _Vector4_tsp);
-const _flaxBinding2255 = FlaxGetter("tsq", _flaxBinding534, _Vector4_tsq);
-const _flaxBinding2256 = FlaxGetter("tts", _flaxBinding534, _Vector4_tts);
-const _flaxBinding2257 = FlaxGetter("ttt", _flaxBinding534, _Vector4_ttt);
-const _flaxBinding2258 = FlaxGetter("ttp", _flaxBinding534, _Vector4_ttp);
-const _flaxBinding2259 = FlaxGetter("ttq", _flaxBinding534, _Vector4_ttq);
-const _flaxBinding2260 = FlaxGetter("tps", _flaxBinding534, _Vector4_tps);
-const _flaxBinding2261 = FlaxGetter("tpt", _flaxBinding534, _Vector4_tpt);
-const _flaxBinding2262 = FlaxGetter("tpp", _flaxBinding534, _Vector4_tpp);
-const _flaxBinding2263 = FlaxGetter("tpq", _flaxBinding534, _Vector4_tpq);
-const _flaxBinding2264 = FlaxGetter("tqs", _flaxBinding534, _Vector4_tqs);
-const _flaxBinding2265 = FlaxGetter("tqt", _flaxBinding534, _Vector4_tqt);
-const _flaxBinding2266 = FlaxGetter("tqp", _flaxBinding534, _Vector4_tqp);
-const _flaxBinding2267 = FlaxGetter("tqq", _flaxBinding534, _Vector4_tqq);
-const _flaxBinding2268 = FlaxGetter("pss", _flaxBinding534, _Vector4_pss);
-const _flaxBinding2269 = FlaxGetter("pst", _flaxBinding534, _Vector4_pst);
-const _flaxBinding2270 = FlaxGetter("psp", _flaxBinding534, _Vector4_psp);
-const _flaxBinding2271 = FlaxGetter("psq", _flaxBinding534, _Vector4_psq);
-const _flaxBinding2272 = FlaxGetter("pts", _flaxBinding534, _Vector4_pts);
-const _flaxBinding2273 = FlaxGetter("ptt", _flaxBinding534, _Vector4_ptt);
-const _flaxBinding2274 = FlaxGetter("ptp", _flaxBinding534, _Vector4_ptp);
-const _flaxBinding2275 = FlaxGetter("ptq", _flaxBinding534, _Vector4_ptq);
-const _flaxBinding2276 = FlaxGetter("pps", _flaxBinding534, _Vector4_pps);
-const _flaxBinding2277 = FlaxGetter("ppt", _flaxBinding534, _Vector4_ppt);
-const _flaxBinding2278 = FlaxGetter("ppp", _flaxBinding534, _Vector4_ppp);
-const _flaxBinding2279 = FlaxGetter("ppq", _flaxBinding534, _Vector4_ppq);
-const _flaxBinding2280 = FlaxGetter("pqs", _flaxBinding534, _Vector4_pqs);
-const _flaxBinding2281 = FlaxGetter("pqt", _flaxBinding534, _Vector4_pqt);
-const _flaxBinding2282 = FlaxGetter("pqp", _flaxBinding534, _Vector4_pqp);
-const _flaxBinding2283 = FlaxGetter("pqq", _flaxBinding534, _Vector4_pqq);
-const _flaxBinding2284 = FlaxGetter("qss", _flaxBinding534, _Vector4_qss);
-const _flaxBinding2285 = FlaxGetter("qst", _flaxBinding534, _Vector4_qst);
-const _flaxBinding2286 = FlaxGetter("qsp", _flaxBinding534, _Vector4_qsp);
-const _flaxBinding2287 = FlaxGetter("qsq", _flaxBinding534, _Vector4_qsq);
-const _flaxBinding2288 = FlaxGetter("qts", _flaxBinding534, _Vector4_qts);
-const _flaxBinding2289 = FlaxGetter("qtt", _flaxBinding534, _Vector4_qtt);
-const _flaxBinding2290 = FlaxGetter("qtp", _flaxBinding534, _Vector4_qtp);
-const _flaxBinding2291 = FlaxGetter("qtq", _flaxBinding534, _Vector4_qtq);
-const _flaxBinding2292 = FlaxGetter("qps", _flaxBinding534, _Vector4_qps);
-const _flaxBinding2293 = FlaxGetter("qpt", _flaxBinding534, _Vector4_qpt);
-const _flaxBinding2294 = FlaxGetter("qpp", _flaxBinding534, _Vector4_qpp);
-const _flaxBinding2295 = FlaxGetter("qpq", _flaxBinding534, _Vector4_qpq);
-const _flaxBinding2296 = FlaxGetter("qqs", _flaxBinding534, _Vector4_qqs);
-const _flaxBinding2297 = FlaxGetter("qqt", _flaxBinding534, _Vector4_qqt);
-const _flaxBinding2298 = FlaxGetter("qqp", _flaxBinding534, _Vector4_qqp);
-const _flaxBinding2299 = FlaxGetter("qqq", _flaxBinding534, _Vector4_qqq);
-const _flaxBinding2300 = FlaxGetter("ssss", _flaxBinding906, _Vector4_ssss);
-const _flaxBinding2301 = FlaxGetter("ssst", _flaxBinding906, _Vector4_ssst);
-const _flaxBinding2302 = FlaxGetter("sssp", _flaxBinding906, _Vector4_sssp);
-const _flaxBinding2303 = FlaxGetter("sssq", _flaxBinding906, _Vector4_sssq);
-const _flaxBinding2304 = FlaxGetter("ssts", _flaxBinding906, _Vector4_ssts);
-const _flaxBinding2305 = FlaxGetter("sstt", _flaxBinding906, _Vector4_sstt);
-const _flaxBinding2306 = FlaxGetter("sstp", _flaxBinding906, _Vector4_sstp);
-const _flaxBinding2307 = FlaxGetter("sstq", _flaxBinding906, _Vector4_sstq);
-const _flaxBinding2308 = FlaxGetter("ssps", _flaxBinding906, _Vector4_ssps);
-const _flaxBinding2309 = FlaxGetter("sspt", _flaxBinding906, _Vector4_sspt);
-const _flaxBinding2310 = FlaxGetter("sspp", _flaxBinding906, _Vector4_sspp);
-const _flaxBinding2311 = FlaxGetter("sspq", _flaxBinding906, _Vector4_sspq);
-const _flaxBinding2312 = FlaxGetter("ssqs", _flaxBinding906, _Vector4_ssqs);
-const _flaxBinding2313 = FlaxGetter("ssqt", _flaxBinding906, _Vector4_ssqt);
-const _flaxBinding2314 = FlaxGetter("ssqp", _flaxBinding906, _Vector4_ssqp);
-const _flaxBinding2315 = FlaxGetter("ssqq", _flaxBinding906, _Vector4_ssqq);
-const _flaxBinding2316 = FlaxGetter("stss", _flaxBinding906, _Vector4_stss);
-const _flaxBinding2317 = FlaxGetter("stst", _flaxBinding906, _Vector4_stst);
-const _flaxBinding2318 = FlaxGetter("stsp", _flaxBinding906, _Vector4_stsp);
-const _flaxBinding2319 = FlaxGetter("stsq", _flaxBinding906, _Vector4_stsq);
-const _flaxBinding2320 = FlaxGetter("stts", _flaxBinding906, _Vector4_stts);
-const _flaxBinding2321 = FlaxGetter("sttt", _flaxBinding906, _Vector4_sttt);
-const _flaxBinding2322 = FlaxGetter("sttp", _flaxBinding906, _Vector4_sttp);
-const _flaxBinding2323 = FlaxGetter("sttq", _flaxBinding906, _Vector4_sttq);
-const _flaxBinding2324 = FlaxGetter("stps", _flaxBinding906, _Vector4_stps);
-const _flaxBinding2325 = FlaxGetter("stpt", _flaxBinding906, _Vector4_stpt);
-const _flaxBinding2326 = FlaxGetter("stpp", _flaxBinding906, _Vector4_stpp);
-const _flaxBinding2327 = FlaxGetter("stpq", _flaxBinding906, _Vector4_stpq);
-const _flaxBinding2328 = FlaxGetter("stqs", _flaxBinding906, _Vector4_stqs);
-const _flaxBinding2329 = FlaxGetter("stqt", _flaxBinding906, _Vector4_stqt);
-const _flaxBinding2330 = FlaxGetter("stqp", _flaxBinding906, _Vector4_stqp);
-const _flaxBinding2331 = FlaxGetter("stqq", _flaxBinding906, _Vector4_stqq);
-const _flaxBinding2332 = FlaxGetter("spss", _flaxBinding906, _Vector4_spss);
-const _flaxBinding2333 = FlaxGetter("spst", _flaxBinding906, _Vector4_spst);
-const _flaxBinding2334 = FlaxGetter("spsp", _flaxBinding906, _Vector4_spsp);
-const _flaxBinding2335 = FlaxGetter("spsq", _flaxBinding906, _Vector4_spsq);
-const _flaxBinding2336 = FlaxGetter("spts", _flaxBinding906, _Vector4_spts);
-const _flaxBinding2337 = FlaxGetter("sptt", _flaxBinding906, _Vector4_sptt);
-const _flaxBinding2338 = FlaxGetter("sptp", _flaxBinding906, _Vector4_sptp);
-const _flaxBinding2339 = FlaxGetter("sptq", _flaxBinding906, _Vector4_sptq);
-const _flaxBinding2340 = FlaxGetter("spps", _flaxBinding906, _Vector4_spps);
-const _flaxBinding2341 = FlaxGetter("sppt", _flaxBinding906, _Vector4_sppt);
-const _flaxBinding2342 = FlaxGetter("sppp", _flaxBinding906, _Vector4_sppp);
-const _flaxBinding2343 = FlaxGetter("sppq", _flaxBinding906, _Vector4_sppq);
-const _flaxBinding2344 = FlaxGetter("spqs", _flaxBinding906, _Vector4_spqs);
-const _flaxBinding2345 = FlaxGetter("spqt", _flaxBinding906, _Vector4_spqt);
-const _flaxBinding2346 = FlaxGetter("spqp", _flaxBinding906, _Vector4_spqp);
-const _flaxBinding2347 = FlaxGetter("spqq", _flaxBinding906, _Vector4_spqq);
-const _flaxBinding2348 = FlaxGetter("sqss", _flaxBinding906, _Vector4_sqss);
-const _flaxBinding2349 = FlaxGetter("sqst", _flaxBinding906, _Vector4_sqst);
-const _flaxBinding2350 = FlaxGetter("sqsp", _flaxBinding906, _Vector4_sqsp);
-const _flaxBinding2351 = FlaxGetter("sqsq", _flaxBinding906, _Vector4_sqsq);
-const _flaxBinding2352 = FlaxGetter("sqts", _flaxBinding906, _Vector4_sqts);
-const _flaxBinding2353 = FlaxGetter("sqtt", _flaxBinding906, _Vector4_sqtt);
-const _flaxBinding2354 = FlaxGetter("sqtp", _flaxBinding906, _Vector4_sqtp);
-const _flaxBinding2355 = FlaxGetter("sqtq", _flaxBinding906, _Vector4_sqtq);
-const _flaxBinding2356 = FlaxGetter("sqps", _flaxBinding906, _Vector4_sqps);
-const _flaxBinding2357 = FlaxGetter("sqpt", _flaxBinding906, _Vector4_sqpt);
-const _flaxBinding2358 = FlaxGetter("sqpp", _flaxBinding906, _Vector4_sqpp);
-const _flaxBinding2359 = FlaxGetter("sqpq", _flaxBinding906, _Vector4_sqpq);
-const _flaxBinding2360 = FlaxGetter("sqqs", _flaxBinding906, _Vector4_sqqs);
-const _flaxBinding2361 = FlaxGetter("sqqt", _flaxBinding906, _Vector4_sqqt);
-const _flaxBinding2362 = FlaxGetter("sqqp", _flaxBinding906, _Vector4_sqqp);
-const _flaxBinding2363 = FlaxGetter("sqqq", _flaxBinding906, _Vector4_sqqq);
-const _flaxBinding2364 = FlaxGetter("tsss", _flaxBinding906, _Vector4_tsss);
-const _flaxBinding2365 = FlaxGetter("tsst", _flaxBinding906, _Vector4_tsst);
-const _flaxBinding2366 = FlaxGetter("tssp", _flaxBinding906, _Vector4_tssp);
-const _flaxBinding2367 = FlaxGetter("tssq", _flaxBinding906, _Vector4_tssq);
-const _flaxBinding2368 = FlaxGetter("tsts", _flaxBinding906, _Vector4_tsts);
-const _flaxBinding2369 = FlaxGetter("tstt", _flaxBinding906, _Vector4_tstt);
-const _flaxBinding2370 = FlaxGetter("tstp", _flaxBinding906, _Vector4_tstp);
-const _flaxBinding2371 = FlaxGetter("tstq", _flaxBinding906, _Vector4_tstq);
-const _flaxBinding2372 = FlaxGetter("tsps", _flaxBinding906, _Vector4_tsps);
-const _flaxBinding2373 = FlaxGetter("tspt", _flaxBinding906, _Vector4_tspt);
-const _flaxBinding2374 = FlaxGetter("tspp", _flaxBinding906, _Vector4_tspp);
-const _flaxBinding2375 = FlaxGetter("tspq", _flaxBinding906, _Vector4_tspq);
-const _flaxBinding2376 = FlaxGetter("tsqs", _flaxBinding906, _Vector4_tsqs);
-const _flaxBinding2377 = FlaxGetter("tsqt", _flaxBinding906, _Vector4_tsqt);
-const _flaxBinding2378 = FlaxGetter("tsqp", _flaxBinding906, _Vector4_tsqp);
-const _flaxBinding2379 = FlaxGetter("tsqq", _flaxBinding906, _Vector4_tsqq);
-const _flaxBinding2380 = FlaxGetter("ttss", _flaxBinding906, _Vector4_ttss);
-const _flaxBinding2381 = FlaxGetter("ttst", _flaxBinding906, _Vector4_ttst);
-const _flaxBinding2382 = FlaxGetter("ttsp", _flaxBinding906, _Vector4_ttsp);
-const _flaxBinding2383 = FlaxGetter("ttsq", _flaxBinding906, _Vector4_ttsq);
-const _flaxBinding2384 = FlaxGetter("ttts", _flaxBinding906, _Vector4_ttts);
-const _flaxBinding2385 = FlaxGetter("tttt", _flaxBinding906, _Vector4_tttt);
-const _flaxBinding2386 = FlaxGetter("tttp", _flaxBinding906, _Vector4_tttp);
-const _flaxBinding2387 = FlaxGetter("tttq", _flaxBinding906, _Vector4_tttq);
-const _flaxBinding2388 = FlaxGetter("ttps", _flaxBinding906, _Vector4_ttps);
-const _flaxBinding2389 = FlaxGetter("ttpt", _flaxBinding906, _Vector4_ttpt);
-const _flaxBinding2390 = FlaxGetter("ttpp", _flaxBinding906, _Vector4_ttpp);
-const _flaxBinding2391 = FlaxGetter("ttpq", _flaxBinding906, _Vector4_ttpq);
-const _flaxBinding2392 = FlaxGetter("ttqs", _flaxBinding906, _Vector4_ttqs);
-const _flaxBinding2393 = FlaxGetter("ttqt", _flaxBinding906, _Vector4_ttqt);
-const _flaxBinding2394 = FlaxGetter("ttqp", _flaxBinding906, _Vector4_ttqp);
-const _flaxBinding2395 = FlaxGetter("ttqq", _flaxBinding906, _Vector4_ttqq);
-const _flaxBinding2396 = FlaxGetter("tpss", _flaxBinding906, _Vector4_tpss);
-const _flaxBinding2397 = FlaxGetter("tpst", _flaxBinding906, _Vector4_tpst);
-const _flaxBinding2398 = FlaxGetter("tpsp", _flaxBinding906, _Vector4_tpsp);
-const _flaxBinding2399 = FlaxGetter("tpsq", _flaxBinding906, _Vector4_tpsq);
-const _flaxBinding2400 = FlaxGetter("tpts", _flaxBinding906, _Vector4_tpts);
-const _flaxBinding2401 = FlaxGetter("tptt", _flaxBinding906, _Vector4_tptt);
-const _flaxBinding2402 = FlaxGetter("tptp", _flaxBinding906, _Vector4_tptp);
-const _flaxBinding2403 = FlaxGetter("tptq", _flaxBinding906, _Vector4_tptq);
-const _flaxBinding2404 = FlaxGetter("tpps", _flaxBinding906, _Vector4_tpps);
-const _flaxBinding2405 = FlaxGetter("tppt", _flaxBinding906, _Vector4_tppt);
-const _flaxBinding2406 = FlaxGetter("tppp", _flaxBinding906, _Vector4_tppp);
-const _flaxBinding2407 = FlaxGetter("tppq", _flaxBinding906, _Vector4_tppq);
-const _flaxBinding2408 = FlaxGetter("tpqs", _flaxBinding906, _Vector4_tpqs);
-const _flaxBinding2409 = FlaxGetter("tpqt", _flaxBinding906, _Vector4_tpqt);
-const _flaxBinding2410 = FlaxGetter("tpqp", _flaxBinding906, _Vector4_tpqp);
-const _flaxBinding2411 = FlaxGetter("tpqq", _flaxBinding906, _Vector4_tpqq);
-const _flaxBinding2412 = FlaxGetter("tqss", _flaxBinding906, _Vector4_tqss);
-const _flaxBinding2413 = FlaxGetter("tqst", _flaxBinding906, _Vector4_tqst);
-const _flaxBinding2414 = FlaxGetter("tqsp", _flaxBinding906, _Vector4_tqsp);
-const _flaxBinding2415 = FlaxGetter("tqsq", _flaxBinding906, _Vector4_tqsq);
-const _flaxBinding2416 = FlaxGetter("tqts", _flaxBinding906, _Vector4_tqts);
-const _flaxBinding2417 = FlaxGetter("tqtt", _flaxBinding906, _Vector4_tqtt);
-const _flaxBinding2418 = FlaxGetter("tqtp", _flaxBinding906, _Vector4_tqtp);
-const _flaxBinding2419 = FlaxGetter("tqtq", _flaxBinding906, _Vector4_tqtq);
-const _flaxBinding2420 = FlaxGetter("tqps", _flaxBinding906, _Vector4_tqps);
-const _flaxBinding2421 = FlaxGetter("tqpt", _flaxBinding906, _Vector4_tqpt);
-const _flaxBinding2422 = FlaxGetter("tqpp", _flaxBinding906, _Vector4_tqpp);
-const _flaxBinding2423 = FlaxGetter("tqpq", _flaxBinding906, _Vector4_tqpq);
-const _flaxBinding2424 = FlaxGetter("tqqs", _flaxBinding906, _Vector4_tqqs);
-const _flaxBinding2425 = FlaxGetter("tqqt", _flaxBinding906, _Vector4_tqqt);
-const _flaxBinding2426 = FlaxGetter("tqqp", _flaxBinding906, _Vector4_tqqp);
-const _flaxBinding2427 = FlaxGetter("tqqq", _flaxBinding906, _Vector4_tqqq);
-const _flaxBinding2428 = FlaxGetter("psss", _flaxBinding906, _Vector4_psss);
-const _flaxBinding2429 = FlaxGetter("psst", _flaxBinding906, _Vector4_psst);
-const _flaxBinding2430 = FlaxGetter("pssp", _flaxBinding906, _Vector4_pssp);
-const _flaxBinding2431 = FlaxGetter("pssq", _flaxBinding906, _Vector4_pssq);
-const _flaxBinding2432 = FlaxGetter("psts", _flaxBinding906, _Vector4_psts);
-const _flaxBinding2433 = FlaxGetter("pstt", _flaxBinding906, _Vector4_pstt);
-const _flaxBinding2434 = FlaxGetter("pstp", _flaxBinding906, _Vector4_pstp);
-const _flaxBinding2435 = FlaxGetter("pstq", _flaxBinding906, _Vector4_pstq);
-const _flaxBinding2436 = FlaxGetter("psps", _flaxBinding906, _Vector4_psps);
-const _flaxBinding2437 = FlaxGetter("pspt", _flaxBinding906, _Vector4_pspt);
-const _flaxBinding2438 = FlaxGetter("pspp", _flaxBinding906, _Vector4_pspp);
-const _flaxBinding2439 = FlaxGetter("pspq", _flaxBinding906, _Vector4_pspq);
-const _flaxBinding2440 = FlaxGetter("psqs", _flaxBinding906, _Vector4_psqs);
-const _flaxBinding2441 = FlaxGetter("psqt", _flaxBinding906, _Vector4_psqt);
-const _flaxBinding2442 = FlaxGetter("psqp", _flaxBinding906, _Vector4_psqp);
-const _flaxBinding2443 = FlaxGetter("psqq", _flaxBinding906, _Vector4_psqq);
-const _flaxBinding2444 = FlaxGetter("ptss", _flaxBinding906, _Vector4_ptss);
-const _flaxBinding2445 = FlaxGetter("ptst", _flaxBinding906, _Vector4_ptst);
-const _flaxBinding2446 = FlaxGetter("ptsp", _flaxBinding906, _Vector4_ptsp);
-const _flaxBinding2447 = FlaxGetter("ptsq", _flaxBinding906, _Vector4_ptsq);
-const _flaxBinding2448 = FlaxGetter("ptts", _flaxBinding906, _Vector4_ptts);
-const _flaxBinding2449 = FlaxGetter("pttt", _flaxBinding906, _Vector4_pttt);
-const _flaxBinding2450 = FlaxGetter("pttp", _flaxBinding906, _Vector4_pttp);
-const _flaxBinding2451 = FlaxGetter("pttq", _flaxBinding906, _Vector4_pttq);
-const _flaxBinding2452 = FlaxGetter("ptps", _flaxBinding906, _Vector4_ptps);
-const _flaxBinding2453 = FlaxGetter("ptpt", _flaxBinding906, _Vector4_ptpt);
-const _flaxBinding2454 = FlaxGetter("ptpp", _flaxBinding906, _Vector4_ptpp);
-const _flaxBinding2455 = FlaxGetter("ptpq", _flaxBinding906, _Vector4_ptpq);
-const _flaxBinding2456 = FlaxGetter("ptqs", _flaxBinding906, _Vector4_ptqs);
-const _flaxBinding2457 = FlaxGetter("ptqt", _flaxBinding906, _Vector4_ptqt);
-const _flaxBinding2458 = FlaxGetter("ptqp", _flaxBinding906, _Vector4_ptqp);
-const _flaxBinding2459 = FlaxGetter("ptqq", _flaxBinding906, _Vector4_ptqq);
-const _flaxBinding2460 = FlaxGetter("ppss", _flaxBinding906, _Vector4_ppss);
-const _flaxBinding2461 = FlaxGetter("ppst", _flaxBinding906, _Vector4_ppst);
-const _flaxBinding2462 = FlaxGetter("ppsp", _flaxBinding906, _Vector4_ppsp);
-const _flaxBinding2463 = FlaxGetter("ppsq", _flaxBinding906, _Vector4_ppsq);
-const _flaxBinding2464 = FlaxGetter("ppts", _flaxBinding906, _Vector4_ppts);
-const _flaxBinding2465 = FlaxGetter("pptt", _flaxBinding906, _Vector4_pptt);
-const _flaxBinding2466 = FlaxGetter("pptp", _flaxBinding906, _Vector4_pptp);
-const _flaxBinding2467 = FlaxGetter("pptq", _flaxBinding906, _Vector4_pptq);
-const _flaxBinding2468 = FlaxGetter("ppps", _flaxBinding906, _Vector4_ppps);
-const _flaxBinding2469 = FlaxGetter("pppt", _flaxBinding906, _Vector4_pppt);
-const _flaxBinding2470 = FlaxGetter("pppp", _flaxBinding906, _Vector4_pppp);
-const _flaxBinding2471 = FlaxGetter("pppq", _flaxBinding906, _Vector4_pppq);
-const _flaxBinding2472 = FlaxGetter("ppqs", _flaxBinding906, _Vector4_ppqs);
-const _flaxBinding2473 = FlaxGetter("ppqt", _flaxBinding906, _Vector4_ppqt);
-const _flaxBinding2474 = FlaxGetter("ppqp", _flaxBinding906, _Vector4_ppqp);
-const _flaxBinding2475 = FlaxGetter("ppqq", _flaxBinding906, _Vector4_ppqq);
-const _flaxBinding2476 = FlaxGetter("pqss", _flaxBinding906, _Vector4_pqss);
-const _flaxBinding2477 = FlaxGetter("pqst", _flaxBinding906, _Vector4_pqst);
-const _flaxBinding2478 = FlaxGetter("pqsp", _flaxBinding906, _Vector4_pqsp);
-const _flaxBinding2479 = FlaxGetter("pqsq", _flaxBinding906, _Vector4_pqsq);
-const _flaxBinding2480 = FlaxGetter("pqts", _flaxBinding906, _Vector4_pqts);
-const _flaxBinding2481 = FlaxGetter("pqtt", _flaxBinding906, _Vector4_pqtt);
-const _flaxBinding2482 = FlaxGetter("pqtp", _flaxBinding906, _Vector4_pqtp);
-const _flaxBinding2483 = FlaxGetter("pqtq", _flaxBinding906, _Vector4_pqtq);
-const _flaxBinding2484 = FlaxGetter("pqps", _flaxBinding906, _Vector4_pqps);
-const _flaxBinding2485 = FlaxGetter("pqpt", _flaxBinding906, _Vector4_pqpt);
-const _flaxBinding2486 = FlaxGetter("pqpp", _flaxBinding906, _Vector4_pqpp);
-const _flaxBinding2487 = FlaxGetter("pqpq", _flaxBinding906, _Vector4_pqpq);
-const _flaxBinding2488 = FlaxGetter("pqqs", _flaxBinding906, _Vector4_pqqs);
-const _flaxBinding2489 = FlaxGetter("pqqt", _flaxBinding906, _Vector4_pqqt);
-const _flaxBinding2490 = FlaxGetter("pqqp", _flaxBinding906, _Vector4_pqqp);
-const _flaxBinding2491 = FlaxGetter("pqqq", _flaxBinding906, _Vector4_pqqq);
-const _flaxBinding2492 = FlaxGetter("qsss", _flaxBinding906, _Vector4_qsss);
-const _flaxBinding2493 = FlaxGetter("qsst", _flaxBinding906, _Vector4_qsst);
-const _flaxBinding2494 = FlaxGetter("qssp", _flaxBinding906, _Vector4_qssp);
-const _flaxBinding2495 = FlaxGetter("qssq", _flaxBinding906, _Vector4_qssq);
-const _flaxBinding2496 = FlaxGetter("qsts", _flaxBinding906, _Vector4_qsts);
-const _flaxBinding2497 = FlaxGetter("qstt", _flaxBinding906, _Vector4_qstt);
-const _flaxBinding2498 = FlaxGetter("qstp", _flaxBinding906, _Vector4_qstp);
-const _flaxBinding2499 = FlaxGetter("qstq", _flaxBinding906, _Vector4_qstq);
-const _flaxBinding2500 = FlaxGetter("qsps", _flaxBinding906, _Vector4_qsps);
-const _flaxBinding2501 = FlaxGetter("qspt", _flaxBinding906, _Vector4_qspt);
-const _flaxBinding2502 = FlaxGetter("qspp", _flaxBinding906, _Vector4_qspp);
-const _flaxBinding2503 = FlaxGetter("qspq", _flaxBinding906, _Vector4_qspq);
-const _flaxBinding2504 = FlaxGetter("qsqs", _flaxBinding906, _Vector4_qsqs);
-const _flaxBinding2505 = FlaxGetter("qsqt", _flaxBinding906, _Vector4_qsqt);
-const _flaxBinding2506 = FlaxGetter("qsqp", _flaxBinding906, _Vector4_qsqp);
-const _flaxBinding2507 = FlaxGetter("qsqq", _flaxBinding906, _Vector4_qsqq);
-const _flaxBinding2508 = FlaxGetter("qtss", _flaxBinding906, _Vector4_qtss);
-const _flaxBinding2509 = FlaxGetter("qtst", _flaxBinding906, _Vector4_qtst);
-const _flaxBinding2510 = FlaxGetter("qtsp", _flaxBinding906, _Vector4_qtsp);
-const _flaxBinding2511 = FlaxGetter("qtsq", _flaxBinding906, _Vector4_qtsq);
-const _flaxBinding2512 = FlaxGetter("qtts", _flaxBinding906, _Vector4_qtts);
-const _flaxBinding2513 = FlaxGetter("qttt", _flaxBinding906, _Vector4_qttt);
-const _flaxBinding2514 = FlaxGetter("qttp", _flaxBinding906, _Vector4_qttp);
-const _flaxBinding2515 = FlaxGetter("qttq", _flaxBinding906, _Vector4_qttq);
-const _flaxBinding2516 = FlaxGetter("qtps", _flaxBinding906, _Vector4_qtps);
-const _flaxBinding2517 = FlaxGetter("qtpt", _flaxBinding906, _Vector4_qtpt);
-const _flaxBinding2518 = FlaxGetter("qtpp", _flaxBinding906, _Vector4_qtpp);
-const _flaxBinding2519 = FlaxGetter("qtpq", _flaxBinding906, _Vector4_qtpq);
-const _flaxBinding2520 = FlaxGetter("qtqs", _flaxBinding906, _Vector4_qtqs);
-const _flaxBinding2521 = FlaxGetter("qtqt", _flaxBinding906, _Vector4_qtqt);
-const _flaxBinding2522 = FlaxGetter("qtqp", _flaxBinding906, _Vector4_qtqp);
-const _flaxBinding2523 = FlaxGetter("qtqq", _flaxBinding906, _Vector4_qtqq);
-const _flaxBinding2524 = FlaxGetter("qpss", _flaxBinding906, _Vector4_qpss);
-const _flaxBinding2525 = FlaxGetter("qpst", _flaxBinding906, _Vector4_qpst);
-const _flaxBinding2526 = FlaxGetter("qpsp", _flaxBinding906, _Vector4_qpsp);
-const _flaxBinding2527 = FlaxGetter("qpsq", _flaxBinding906, _Vector4_qpsq);
-const _flaxBinding2528 = FlaxGetter("qpts", _flaxBinding906, _Vector4_qpts);
-const _flaxBinding2529 = FlaxGetter("qptt", _flaxBinding906, _Vector4_qptt);
-const _flaxBinding2530 = FlaxGetter("qptp", _flaxBinding906, _Vector4_qptp);
-const _flaxBinding2531 = FlaxGetter("qptq", _flaxBinding906, _Vector4_qptq);
-const _flaxBinding2532 = FlaxGetter("qpps", _flaxBinding906, _Vector4_qpps);
-const _flaxBinding2533 = FlaxGetter("qppt", _flaxBinding906, _Vector4_qppt);
-const _flaxBinding2534 = FlaxGetter("qppp", _flaxBinding906, _Vector4_qppp);
-const _flaxBinding2535 = FlaxGetter("qppq", _flaxBinding906, _Vector4_qppq);
-const _flaxBinding2536 = FlaxGetter("qpqs", _flaxBinding906, _Vector4_qpqs);
-const _flaxBinding2537 = FlaxGetter("qpqt", _flaxBinding906, _Vector4_qpqt);
-const _flaxBinding2538 = FlaxGetter("qpqp", _flaxBinding906, _Vector4_qpqp);
-const _flaxBinding2539 = FlaxGetter("qpqq", _flaxBinding906, _Vector4_qpqq);
-const _flaxBinding2540 = FlaxGetter("qqss", _flaxBinding906, _Vector4_qqss);
-const _flaxBinding2541 = FlaxGetter("qqst", _flaxBinding906, _Vector4_qqst);
-const _flaxBinding2542 = FlaxGetter("qqsp", _flaxBinding906, _Vector4_qqsp);
-const _flaxBinding2543 = FlaxGetter("qqsq", _flaxBinding906, _Vector4_qqsq);
-const _flaxBinding2544 = FlaxGetter("qqts", _flaxBinding906, _Vector4_qqts);
-const _flaxBinding2545 = FlaxGetter("qqtt", _flaxBinding906, _Vector4_qqtt);
-const _flaxBinding2546 = FlaxGetter("qqtp", _flaxBinding906, _Vector4_qqtp);
-const _flaxBinding2547 = FlaxGetter("qqtq", _flaxBinding906, _Vector4_qqtq);
-const _flaxBinding2548 = FlaxGetter("qqps", _flaxBinding906, _Vector4_qqps);
-const _flaxBinding2549 = FlaxGetter("qqpt", _flaxBinding906, _Vector4_qqpt);
-const _flaxBinding2550 = FlaxGetter("qqpp", _flaxBinding906, _Vector4_qqpp);
-const _flaxBinding2551 = FlaxGetter("qqpq", _flaxBinding906, _Vector4_qqpq);
-const _flaxBinding2552 = FlaxGetter("qqqs", _flaxBinding906, _Vector4_qqqs);
-const _flaxBinding2553 = FlaxGetter("qqqt", _flaxBinding906, _Vector4_qqqt);
-const _flaxBinding2554 = FlaxGetter("qqqp", _flaxBinding906, _Vector4_qqqp);
-const _flaxBinding2555 = FlaxGetter("qqqq", _flaxBinding906, _Vector4_qqqq);
-const _flaxBinding2556 = FlaxSetter(
+const _flaxBinding1517 = FlaxGetter.plain(
+  "isNaN",
+  flaxBoolType,
+  _Vector4_isNaN,
+);
+const _flaxBinding1518 = FlaxGetter.plain("xx", _flaxBinding426, _Vector4_xx);
+const _flaxBinding1519 = FlaxGetter.plain("xy", _flaxBinding426, _Vector4_xy);
+const _flaxBinding1520 = FlaxGetter.plain("xz", _flaxBinding426, _Vector4_xz);
+const _flaxBinding1521 = FlaxGetter.plain("xw", _flaxBinding426, _Vector4_xw);
+const _flaxBinding1522 = FlaxGetter.plain("yx", _flaxBinding426, _Vector4_yx);
+const _flaxBinding1523 = FlaxGetter.plain("yy", _flaxBinding426, _Vector4_yy);
+const _flaxBinding1524 = FlaxGetter.plain("yz", _flaxBinding426, _Vector4_yz);
+const _flaxBinding1525 = FlaxGetter.plain("yw", _flaxBinding426, _Vector4_yw);
+const _flaxBinding1526 = FlaxGetter.plain("zx", _flaxBinding426, _Vector4_zx);
+const _flaxBinding1527 = FlaxGetter.plain("zy", _flaxBinding426, _Vector4_zy);
+const _flaxBinding1528 = FlaxGetter.plain("zz", _flaxBinding426, _Vector4_zz);
+const _flaxBinding1529 = FlaxGetter.plain("zw", _flaxBinding426, _Vector4_zw);
+const _flaxBinding1530 = FlaxGetter.plain("wx", _flaxBinding426, _Vector4_wx);
+const _flaxBinding1531 = FlaxGetter.plain("wy", _flaxBinding426, _Vector4_wy);
+const _flaxBinding1532 = FlaxGetter.plain("wz", _flaxBinding426, _Vector4_wz);
+const _flaxBinding1533 = FlaxGetter.plain("ww", _flaxBinding426, _Vector4_ww);
+const _flaxBinding1534 = FlaxGetter.plain("xxx", _flaxBinding517, _Vector4_xxx);
+const _flaxBinding1535 = FlaxGetter.plain("xxy", _flaxBinding517, _Vector4_xxy);
+const _flaxBinding1536 = FlaxGetter.plain("xxz", _flaxBinding517, _Vector4_xxz);
+const _flaxBinding1537 = FlaxGetter.plain("xxw", _flaxBinding517, _Vector4_xxw);
+const _flaxBinding1538 = FlaxGetter.plain("xyx", _flaxBinding517, _Vector4_xyx);
+const _flaxBinding1539 = FlaxGetter.plain("xyy", _flaxBinding517, _Vector4_xyy);
+const _flaxBinding1540 = FlaxGetter.plain("xyz", _flaxBinding517, _Vector4_xyz);
+const _flaxBinding1541 = FlaxGetter.plain("xyw", _flaxBinding517, _Vector4_xyw);
+const _flaxBinding1542 = FlaxGetter.plain("xzx", _flaxBinding517, _Vector4_xzx);
+const _flaxBinding1543 = FlaxGetter.plain("xzy", _flaxBinding517, _Vector4_xzy);
+const _flaxBinding1544 = FlaxGetter.plain("xzz", _flaxBinding517, _Vector4_xzz);
+const _flaxBinding1545 = FlaxGetter.plain("xzw", _flaxBinding517, _Vector4_xzw);
+const _flaxBinding1546 = FlaxGetter.plain("xwx", _flaxBinding517, _Vector4_xwx);
+const _flaxBinding1547 = FlaxGetter.plain("xwy", _flaxBinding517, _Vector4_xwy);
+const _flaxBinding1548 = FlaxGetter.plain("xwz", _flaxBinding517, _Vector4_xwz);
+const _flaxBinding1549 = FlaxGetter.plain("xww", _flaxBinding517, _Vector4_xww);
+const _flaxBinding1550 = FlaxGetter.plain("yxx", _flaxBinding517, _Vector4_yxx);
+const _flaxBinding1551 = FlaxGetter.plain("yxy", _flaxBinding517, _Vector4_yxy);
+const _flaxBinding1552 = FlaxGetter.plain("yxz", _flaxBinding517, _Vector4_yxz);
+const _flaxBinding1553 = FlaxGetter.plain("yxw", _flaxBinding517, _Vector4_yxw);
+const _flaxBinding1554 = FlaxGetter.plain("yyx", _flaxBinding517, _Vector4_yyx);
+const _flaxBinding1555 = FlaxGetter.plain("yyy", _flaxBinding517, _Vector4_yyy);
+const _flaxBinding1556 = FlaxGetter.plain("yyz", _flaxBinding517, _Vector4_yyz);
+const _flaxBinding1557 = FlaxGetter.plain("yyw", _flaxBinding517, _Vector4_yyw);
+const _flaxBinding1558 = FlaxGetter.plain("yzx", _flaxBinding517, _Vector4_yzx);
+const _flaxBinding1559 = FlaxGetter.plain("yzy", _flaxBinding517, _Vector4_yzy);
+const _flaxBinding1560 = FlaxGetter.plain("yzz", _flaxBinding517, _Vector4_yzz);
+const _flaxBinding1561 = FlaxGetter.plain("yzw", _flaxBinding517, _Vector4_yzw);
+const _flaxBinding1562 = FlaxGetter.plain("ywx", _flaxBinding517, _Vector4_ywx);
+const _flaxBinding1563 = FlaxGetter.plain("ywy", _flaxBinding517, _Vector4_ywy);
+const _flaxBinding1564 = FlaxGetter.plain("ywz", _flaxBinding517, _Vector4_ywz);
+const _flaxBinding1565 = FlaxGetter.plain("yww", _flaxBinding517, _Vector4_yww);
+const _flaxBinding1566 = FlaxGetter.plain("zxx", _flaxBinding517, _Vector4_zxx);
+const _flaxBinding1567 = FlaxGetter.plain("zxy", _flaxBinding517, _Vector4_zxy);
+const _flaxBinding1568 = FlaxGetter.plain("zxz", _flaxBinding517, _Vector4_zxz);
+const _flaxBinding1569 = FlaxGetter.plain("zxw", _flaxBinding517, _Vector4_zxw);
+const _flaxBinding1570 = FlaxGetter.plain("zyx", _flaxBinding517, _Vector4_zyx);
+const _flaxBinding1571 = FlaxGetter.plain("zyy", _flaxBinding517, _Vector4_zyy);
+const _flaxBinding1572 = FlaxGetter.plain("zyz", _flaxBinding517, _Vector4_zyz);
+const _flaxBinding1573 = FlaxGetter.plain("zyw", _flaxBinding517, _Vector4_zyw);
+const _flaxBinding1574 = FlaxGetter.plain("zzx", _flaxBinding517, _Vector4_zzx);
+const _flaxBinding1575 = FlaxGetter.plain("zzy", _flaxBinding517, _Vector4_zzy);
+const _flaxBinding1576 = FlaxGetter.plain("zzz", _flaxBinding517, _Vector4_zzz);
+const _flaxBinding1577 = FlaxGetter.plain("zzw", _flaxBinding517, _Vector4_zzw);
+const _flaxBinding1578 = FlaxGetter.plain("zwx", _flaxBinding517, _Vector4_zwx);
+const _flaxBinding1579 = FlaxGetter.plain("zwy", _flaxBinding517, _Vector4_zwy);
+const _flaxBinding1580 = FlaxGetter.plain("zwz", _flaxBinding517, _Vector4_zwz);
+const _flaxBinding1581 = FlaxGetter.plain("zww", _flaxBinding517, _Vector4_zww);
+const _flaxBinding1582 = FlaxGetter.plain("wxx", _flaxBinding517, _Vector4_wxx);
+const _flaxBinding1583 = FlaxGetter.plain("wxy", _flaxBinding517, _Vector4_wxy);
+const _flaxBinding1584 = FlaxGetter.plain("wxz", _flaxBinding517, _Vector4_wxz);
+const _flaxBinding1585 = FlaxGetter.plain("wxw", _flaxBinding517, _Vector4_wxw);
+const _flaxBinding1586 = FlaxGetter.plain("wyx", _flaxBinding517, _Vector4_wyx);
+const _flaxBinding1587 = FlaxGetter.plain("wyy", _flaxBinding517, _Vector4_wyy);
+const _flaxBinding1588 = FlaxGetter.plain("wyz", _flaxBinding517, _Vector4_wyz);
+const _flaxBinding1589 = FlaxGetter.plain("wyw", _flaxBinding517, _Vector4_wyw);
+const _flaxBinding1590 = FlaxGetter.plain("wzx", _flaxBinding517, _Vector4_wzx);
+const _flaxBinding1591 = FlaxGetter.plain("wzy", _flaxBinding517, _Vector4_wzy);
+const _flaxBinding1592 = FlaxGetter.plain("wzz", _flaxBinding517, _Vector4_wzz);
+const _flaxBinding1593 = FlaxGetter.plain("wzw", _flaxBinding517, _Vector4_wzw);
+const _flaxBinding1594 = FlaxGetter.plain("wwx", _flaxBinding517, _Vector4_wwx);
+const _flaxBinding1595 = FlaxGetter.plain("wwy", _flaxBinding517, _Vector4_wwy);
+const _flaxBinding1596 = FlaxGetter.plain("wwz", _flaxBinding517, _Vector4_wwz);
+const _flaxBinding1597 = FlaxGetter.plain("www", _flaxBinding517, _Vector4_www);
+const _flaxBinding1598 = FlaxGetter.plain(
+  "xxxx",
+  _flaxBinding888,
+  _Vector4_xxxx,
+);
+const _flaxBinding1599 = FlaxGetter.plain(
+  "xxxy",
+  _flaxBinding888,
+  _Vector4_xxxy,
+);
+const _flaxBinding1600 = FlaxGetter.plain(
+  "xxxz",
+  _flaxBinding888,
+  _Vector4_xxxz,
+);
+const _flaxBinding1601 = FlaxGetter.plain(
+  "xxxw",
+  _flaxBinding888,
+  _Vector4_xxxw,
+);
+const _flaxBinding1602 = FlaxGetter.plain(
+  "xxyx",
+  _flaxBinding888,
+  _Vector4_xxyx,
+);
+const _flaxBinding1603 = FlaxGetter.plain(
+  "xxyy",
+  _flaxBinding888,
+  _Vector4_xxyy,
+);
+const _flaxBinding1604 = FlaxGetter.plain(
+  "xxyz",
+  _flaxBinding888,
+  _Vector4_xxyz,
+);
+const _flaxBinding1605 = FlaxGetter.plain(
+  "xxyw",
+  _flaxBinding888,
+  _Vector4_xxyw,
+);
+const _flaxBinding1606 = FlaxGetter.plain(
+  "xxzx",
+  _flaxBinding888,
+  _Vector4_xxzx,
+);
+const _flaxBinding1607 = FlaxGetter.plain(
+  "xxzy",
+  _flaxBinding888,
+  _Vector4_xxzy,
+);
+const _flaxBinding1608 = FlaxGetter.plain(
+  "xxzz",
+  _flaxBinding888,
+  _Vector4_xxzz,
+);
+const _flaxBinding1609 = FlaxGetter.plain(
+  "xxzw",
+  _flaxBinding888,
+  _Vector4_xxzw,
+);
+const _flaxBinding1610 = FlaxGetter.plain(
+  "xxwx",
+  _flaxBinding888,
+  _Vector4_xxwx,
+);
+const _flaxBinding1611 = FlaxGetter.plain(
+  "xxwy",
+  _flaxBinding888,
+  _Vector4_xxwy,
+);
+const _flaxBinding1612 = FlaxGetter.plain(
+  "xxwz",
+  _flaxBinding888,
+  _Vector4_xxwz,
+);
+const _flaxBinding1613 = FlaxGetter.plain(
+  "xxww",
+  _flaxBinding888,
+  _Vector4_xxww,
+);
+const _flaxBinding1614 = FlaxGetter.plain(
+  "xyxx",
+  _flaxBinding888,
+  _Vector4_xyxx,
+);
+const _flaxBinding1615 = FlaxGetter.plain(
+  "xyxy",
+  _flaxBinding888,
+  _Vector4_xyxy,
+);
+const _flaxBinding1616 = FlaxGetter.plain(
+  "xyxz",
+  _flaxBinding888,
+  _Vector4_xyxz,
+);
+const _flaxBinding1617 = FlaxGetter.plain(
+  "xyxw",
+  _flaxBinding888,
+  _Vector4_xyxw,
+);
+const _flaxBinding1618 = FlaxGetter.plain(
+  "xyyx",
+  _flaxBinding888,
+  _Vector4_xyyx,
+);
+const _flaxBinding1619 = FlaxGetter.plain(
+  "xyyy",
+  _flaxBinding888,
+  _Vector4_xyyy,
+);
+const _flaxBinding1620 = FlaxGetter.plain(
+  "xyyz",
+  _flaxBinding888,
+  _Vector4_xyyz,
+);
+const _flaxBinding1621 = FlaxGetter.plain(
+  "xyyw",
+  _flaxBinding888,
+  _Vector4_xyyw,
+);
+const _flaxBinding1622 = FlaxGetter.plain(
+  "xyzx",
+  _flaxBinding888,
+  _Vector4_xyzx,
+);
+const _flaxBinding1623 = FlaxGetter.plain(
+  "xyzy",
+  _flaxBinding888,
+  _Vector4_xyzy,
+);
+const _flaxBinding1624 = FlaxGetter.plain(
+  "xyzz",
+  _flaxBinding888,
+  _Vector4_xyzz,
+);
+const _flaxBinding1625 = FlaxGetter.plain(
+  "xyzw",
+  _flaxBinding888,
+  _Vector4_xyzw,
+);
+const _flaxBinding1626 = FlaxGetter.plain(
+  "xywx",
+  _flaxBinding888,
+  _Vector4_xywx,
+);
+const _flaxBinding1627 = FlaxGetter.plain(
+  "xywy",
+  _flaxBinding888,
+  _Vector4_xywy,
+);
+const _flaxBinding1628 = FlaxGetter.plain(
+  "xywz",
+  _flaxBinding888,
+  _Vector4_xywz,
+);
+const _flaxBinding1629 = FlaxGetter.plain(
+  "xyww",
+  _flaxBinding888,
+  _Vector4_xyww,
+);
+const _flaxBinding1630 = FlaxGetter.plain(
+  "xzxx",
+  _flaxBinding888,
+  _Vector4_xzxx,
+);
+const _flaxBinding1631 = FlaxGetter.plain(
+  "xzxy",
+  _flaxBinding888,
+  _Vector4_xzxy,
+);
+const _flaxBinding1632 = FlaxGetter.plain(
+  "xzxz",
+  _flaxBinding888,
+  _Vector4_xzxz,
+);
+const _flaxBinding1633 = FlaxGetter.plain(
+  "xzxw",
+  _flaxBinding888,
+  _Vector4_xzxw,
+);
+const _flaxBinding1634 = FlaxGetter.plain(
+  "xzyx",
+  _flaxBinding888,
+  _Vector4_xzyx,
+);
+const _flaxBinding1635 = FlaxGetter.plain(
+  "xzyy",
+  _flaxBinding888,
+  _Vector4_xzyy,
+);
+const _flaxBinding1636 = FlaxGetter.plain(
+  "xzyz",
+  _flaxBinding888,
+  _Vector4_xzyz,
+);
+const _flaxBinding1637 = FlaxGetter.plain(
+  "xzyw",
+  _flaxBinding888,
+  _Vector4_xzyw,
+);
+const _flaxBinding1638 = FlaxGetter.plain(
+  "xzzx",
+  _flaxBinding888,
+  _Vector4_xzzx,
+);
+const _flaxBinding1639 = FlaxGetter.plain(
+  "xzzy",
+  _flaxBinding888,
+  _Vector4_xzzy,
+);
+const _flaxBinding1640 = FlaxGetter.plain(
+  "xzzz",
+  _flaxBinding888,
+  _Vector4_xzzz,
+);
+const _flaxBinding1641 = FlaxGetter.plain(
+  "xzzw",
+  _flaxBinding888,
+  _Vector4_xzzw,
+);
+const _flaxBinding1642 = FlaxGetter.plain(
+  "xzwx",
+  _flaxBinding888,
+  _Vector4_xzwx,
+);
+const _flaxBinding1643 = FlaxGetter.plain(
+  "xzwy",
+  _flaxBinding888,
+  _Vector4_xzwy,
+);
+const _flaxBinding1644 = FlaxGetter.plain(
+  "xzwz",
+  _flaxBinding888,
+  _Vector4_xzwz,
+);
+const _flaxBinding1645 = FlaxGetter.plain(
+  "xzww",
+  _flaxBinding888,
+  _Vector4_xzww,
+);
+const _flaxBinding1646 = FlaxGetter.plain(
+  "xwxx",
+  _flaxBinding888,
+  _Vector4_xwxx,
+);
+const _flaxBinding1647 = FlaxGetter.plain(
+  "xwxy",
+  _flaxBinding888,
+  _Vector4_xwxy,
+);
+const _flaxBinding1648 = FlaxGetter.plain(
+  "xwxz",
+  _flaxBinding888,
+  _Vector4_xwxz,
+);
+const _flaxBinding1649 = FlaxGetter.plain(
+  "xwxw",
+  _flaxBinding888,
+  _Vector4_xwxw,
+);
+const _flaxBinding1650 = FlaxGetter.plain(
+  "xwyx",
+  _flaxBinding888,
+  _Vector4_xwyx,
+);
+const _flaxBinding1651 = FlaxGetter.plain(
+  "xwyy",
+  _flaxBinding888,
+  _Vector4_xwyy,
+);
+const _flaxBinding1652 = FlaxGetter.plain(
+  "xwyz",
+  _flaxBinding888,
+  _Vector4_xwyz,
+);
+const _flaxBinding1653 = FlaxGetter.plain(
+  "xwyw",
+  _flaxBinding888,
+  _Vector4_xwyw,
+);
+const _flaxBinding1654 = FlaxGetter.plain(
+  "xwzx",
+  _flaxBinding888,
+  _Vector4_xwzx,
+);
+const _flaxBinding1655 = FlaxGetter.plain(
+  "xwzy",
+  _flaxBinding888,
+  _Vector4_xwzy,
+);
+const _flaxBinding1656 = FlaxGetter.plain(
+  "xwzz",
+  _flaxBinding888,
+  _Vector4_xwzz,
+);
+const _flaxBinding1657 = FlaxGetter.plain(
+  "xwzw",
+  _flaxBinding888,
+  _Vector4_xwzw,
+);
+const _flaxBinding1658 = FlaxGetter.plain(
+  "xwwx",
+  _flaxBinding888,
+  _Vector4_xwwx,
+);
+const _flaxBinding1659 = FlaxGetter.plain(
+  "xwwy",
+  _flaxBinding888,
+  _Vector4_xwwy,
+);
+const _flaxBinding1660 = FlaxGetter.plain(
+  "xwwz",
+  _flaxBinding888,
+  _Vector4_xwwz,
+);
+const _flaxBinding1661 = FlaxGetter.plain(
+  "xwww",
+  _flaxBinding888,
+  _Vector4_xwww,
+);
+const _flaxBinding1662 = FlaxGetter.plain(
+  "yxxx",
+  _flaxBinding888,
+  _Vector4_yxxx,
+);
+const _flaxBinding1663 = FlaxGetter.plain(
+  "yxxy",
+  _flaxBinding888,
+  _Vector4_yxxy,
+);
+const _flaxBinding1664 = FlaxGetter.plain(
+  "yxxz",
+  _flaxBinding888,
+  _Vector4_yxxz,
+);
+const _flaxBinding1665 = FlaxGetter.plain(
+  "yxxw",
+  _flaxBinding888,
+  _Vector4_yxxw,
+);
+const _flaxBinding1666 = FlaxGetter.plain(
+  "yxyx",
+  _flaxBinding888,
+  _Vector4_yxyx,
+);
+const _flaxBinding1667 = FlaxGetter.plain(
+  "yxyy",
+  _flaxBinding888,
+  _Vector4_yxyy,
+);
+const _flaxBinding1668 = FlaxGetter.plain(
+  "yxyz",
+  _flaxBinding888,
+  _Vector4_yxyz,
+);
+const _flaxBinding1669 = FlaxGetter.plain(
+  "yxyw",
+  _flaxBinding888,
+  _Vector4_yxyw,
+);
+const _flaxBinding1670 = FlaxGetter.plain(
+  "yxzx",
+  _flaxBinding888,
+  _Vector4_yxzx,
+);
+const _flaxBinding1671 = FlaxGetter.plain(
+  "yxzy",
+  _flaxBinding888,
+  _Vector4_yxzy,
+);
+const _flaxBinding1672 = FlaxGetter.plain(
+  "yxzz",
+  _flaxBinding888,
+  _Vector4_yxzz,
+);
+const _flaxBinding1673 = FlaxGetter.plain(
+  "yxzw",
+  _flaxBinding888,
+  _Vector4_yxzw,
+);
+const _flaxBinding1674 = FlaxGetter.plain(
+  "yxwx",
+  _flaxBinding888,
+  _Vector4_yxwx,
+);
+const _flaxBinding1675 = FlaxGetter.plain(
+  "yxwy",
+  _flaxBinding888,
+  _Vector4_yxwy,
+);
+const _flaxBinding1676 = FlaxGetter.plain(
+  "yxwz",
+  _flaxBinding888,
+  _Vector4_yxwz,
+);
+const _flaxBinding1677 = FlaxGetter.plain(
+  "yxww",
+  _flaxBinding888,
+  _Vector4_yxww,
+);
+const _flaxBinding1678 = FlaxGetter.plain(
+  "yyxx",
+  _flaxBinding888,
+  _Vector4_yyxx,
+);
+const _flaxBinding1679 = FlaxGetter.plain(
+  "yyxy",
+  _flaxBinding888,
+  _Vector4_yyxy,
+);
+const _flaxBinding1680 = FlaxGetter.plain(
+  "yyxz",
+  _flaxBinding888,
+  _Vector4_yyxz,
+);
+const _flaxBinding1681 = FlaxGetter.plain(
+  "yyxw",
+  _flaxBinding888,
+  _Vector4_yyxw,
+);
+const _flaxBinding1682 = FlaxGetter.plain(
+  "yyyx",
+  _flaxBinding888,
+  _Vector4_yyyx,
+);
+const _flaxBinding1683 = FlaxGetter.plain(
+  "yyyy",
+  _flaxBinding888,
+  _Vector4_yyyy,
+);
+const _flaxBinding1684 = FlaxGetter.plain(
+  "yyyz",
+  _flaxBinding888,
+  _Vector4_yyyz,
+);
+const _flaxBinding1685 = FlaxGetter.plain(
+  "yyyw",
+  _flaxBinding888,
+  _Vector4_yyyw,
+);
+const _flaxBinding1686 = FlaxGetter.plain(
+  "yyzx",
+  _flaxBinding888,
+  _Vector4_yyzx,
+);
+const _flaxBinding1687 = FlaxGetter.plain(
+  "yyzy",
+  _flaxBinding888,
+  _Vector4_yyzy,
+);
+const _flaxBinding1688 = FlaxGetter.plain(
+  "yyzz",
+  _flaxBinding888,
+  _Vector4_yyzz,
+);
+const _flaxBinding1689 = FlaxGetter.plain(
+  "yyzw",
+  _flaxBinding888,
+  _Vector4_yyzw,
+);
+const _flaxBinding1690 = FlaxGetter.plain(
+  "yywx",
+  _flaxBinding888,
+  _Vector4_yywx,
+);
+const _flaxBinding1691 = FlaxGetter.plain(
+  "yywy",
+  _flaxBinding888,
+  _Vector4_yywy,
+);
+const _flaxBinding1692 = FlaxGetter.plain(
+  "yywz",
+  _flaxBinding888,
+  _Vector4_yywz,
+);
+const _flaxBinding1693 = FlaxGetter.plain(
+  "yyww",
+  _flaxBinding888,
+  _Vector4_yyww,
+);
+const _flaxBinding1694 = FlaxGetter.plain(
+  "yzxx",
+  _flaxBinding888,
+  _Vector4_yzxx,
+);
+const _flaxBinding1695 = FlaxGetter.plain(
+  "yzxy",
+  _flaxBinding888,
+  _Vector4_yzxy,
+);
+const _flaxBinding1696 = FlaxGetter.plain(
+  "yzxz",
+  _flaxBinding888,
+  _Vector4_yzxz,
+);
+const _flaxBinding1697 = FlaxGetter.plain(
+  "yzxw",
+  _flaxBinding888,
+  _Vector4_yzxw,
+);
+const _flaxBinding1698 = FlaxGetter.plain(
+  "yzyx",
+  _flaxBinding888,
+  _Vector4_yzyx,
+);
+const _flaxBinding1699 = FlaxGetter.plain(
+  "yzyy",
+  _flaxBinding888,
+  _Vector4_yzyy,
+);
+const _flaxBinding1700 = FlaxGetter.plain(
+  "yzyz",
+  _flaxBinding888,
+  _Vector4_yzyz,
+);
+const _flaxBinding1701 = FlaxGetter.plain(
+  "yzyw",
+  _flaxBinding888,
+  _Vector4_yzyw,
+);
+const _flaxBinding1702 = FlaxGetter.plain(
+  "yzzx",
+  _flaxBinding888,
+  _Vector4_yzzx,
+);
+const _flaxBinding1703 = FlaxGetter.plain(
+  "yzzy",
+  _flaxBinding888,
+  _Vector4_yzzy,
+);
+const _flaxBinding1704 = FlaxGetter.plain(
+  "yzzz",
+  _flaxBinding888,
+  _Vector4_yzzz,
+);
+const _flaxBinding1705 = FlaxGetter.plain(
+  "yzzw",
+  _flaxBinding888,
+  _Vector4_yzzw,
+);
+const _flaxBinding1706 = FlaxGetter.plain(
+  "yzwx",
+  _flaxBinding888,
+  _Vector4_yzwx,
+);
+const _flaxBinding1707 = FlaxGetter.plain(
+  "yzwy",
+  _flaxBinding888,
+  _Vector4_yzwy,
+);
+const _flaxBinding1708 = FlaxGetter.plain(
+  "yzwz",
+  _flaxBinding888,
+  _Vector4_yzwz,
+);
+const _flaxBinding1709 = FlaxGetter.plain(
+  "yzww",
+  _flaxBinding888,
+  _Vector4_yzww,
+);
+const _flaxBinding1710 = FlaxGetter.plain(
+  "ywxx",
+  _flaxBinding888,
+  _Vector4_ywxx,
+);
+const _flaxBinding1711 = FlaxGetter.plain(
+  "ywxy",
+  _flaxBinding888,
+  _Vector4_ywxy,
+);
+const _flaxBinding1712 = FlaxGetter.plain(
+  "ywxz",
+  _flaxBinding888,
+  _Vector4_ywxz,
+);
+const _flaxBinding1713 = FlaxGetter.plain(
+  "ywxw",
+  _flaxBinding888,
+  _Vector4_ywxw,
+);
+const _flaxBinding1714 = FlaxGetter.plain(
+  "ywyx",
+  _flaxBinding888,
+  _Vector4_ywyx,
+);
+const _flaxBinding1715 = FlaxGetter.plain(
+  "ywyy",
+  _flaxBinding888,
+  _Vector4_ywyy,
+);
+const _flaxBinding1716 = FlaxGetter.plain(
+  "ywyz",
+  _flaxBinding888,
+  _Vector4_ywyz,
+);
+const _flaxBinding1717 = FlaxGetter.plain(
+  "ywyw",
+  _flaxBinding888,
+  _Vector4_ywyw,
+);
+const _flaxBinding1718 = FlaxGetter.plain(
+  "ywzx",
+  _flaxBinding888,
+  _Vector4_ywzx,
+);
+const _flaxBinding1719 = FlaxGetter.plain(
+  "ywzy",
+  _flaxBinding888,
+  _Vector4_ywzy,
+);
+const _flaxBinding1720 = FlaxGetter.plain(
+  "ywzz",
+  _flaxBinding888,
+  _Vector4_ywzz,
+);
+const _flaxBinding1721 = FlaxGetter.plain(
+  "ywzw",
+  _flaxBinding888,
+  _Vector4_ywzw,
+);
+const _flaxBinding1722 = FlaxGetter.plain(
+  "ywwx",
+  _flaxBinding888,
+  _Vector4_ywwx,
+);
+const _flaxBinding1723 = FlaxGetter.plain(
+  "ywwy",
+  _flaxBinding888,
+  _Vector4_ywwy,
+);
+const _flaxBinding1724 = FlaxGetter.plain(
+  "ywwz",
+  _flaxBinding888,
+  _Vector4_ywwz,
+);
+const _flaxBinding1725 = FlaxGetter.plain(
+  "ywww",
+  _flaxBinding888,
+  _Vector4_ywww,
+);
+const _flaxBinding1726 = FlaxGetter.plain(
+  "zxxx",
+  _flaxBinding888,
+  _Vector4_zxxx,
+);
+const _flaxBinding1727 = FlaxGetter.plain(
+  "zxxy",
+  _flaxBinding888,
+  _Vector4_zxxy,
+);
+const _flaxBinding1728 = FlaxGetter.plain(
+  "zxxz",
+  _flaxBinding888,
+  _Vector4_zxxz,
+);
+const _flaxBinding1729 = FlaxGetter.plain(
+  "zxxw",
+  _flaxBinding888,
+  _Vector4_zxxw,
+);
+const _flaxBinding1730 = FlaxGetter.plain(
+  "zxyx",
+  _flaxBinding888,
+  _Vector4_zxyx,
+);
+const _flaxBinding1731 = FlaxGetter.plain(
+  "zxyy",
+  _flaxBinding888,
+  _Vector4_zxyy,
+);
+const _flaxBinding1732 = FlaxGetter.plain(
+  "zxyz",
+  _flaxBinding888,
+  _Vector4_zxyz,
+);
+const _flaxBinding1733 = FlaxGetter.plain(
+  "zxyw",
+  _flaxBinding888,
+  _Vector4_zxyw,
+);
+const _flaxBinding1734 = FlaxGetter.plain(
+  "zxzx",
+  _flaxBinding888,
+  _Vector4_zxzx,
+);
+const _flaxBinding1735 = FlaxGetter.plain(
+  "zxzy",
+  _flaxBinding888,
+  _Vector4_zxzy,
+);
+const _flaxBinding1736 = FlaxGetter.plain(
+  "zxzz",
+  _flaxBinding888,
+  _Vector4_zxzz,
+);
+const _flaxBinding1737 = FlaxGetter.plain(
+  "zxzw",
+  _flaxBinding888,
+  _Vector4_zxzw,
+);
+const _flaxBinding1738 = FlaxGetter.plain(
+  "zxwx",
+  _flaxBinding888,
+  _Vector4_zxwx,
+);
+const _flaxBinding1739 = FlaxGetter.plain(
+  "zxwy",
+  _flaxBinding888,
+  _Vector4_zxwy,
+);
+const _flaxBinding1740 = FlaxGetter.plain(
+  "zxwz",
+  _flaxBinding888,
+  _Vector4_zxwz,
+);
+const _flaxBinding1741 = FlaxGetter.plain(
+  "zxww",
+  _flaxBinding888,
+  _Vector4_zxww,
+);
+const _flaxBinding1742 = FlaxGetter.plain(
+  "zyxx",
+  _flaxBinding888,
+  _Vector4_zyxx,
+);
+const _flaxBinding1743 = FlaxGetter.plain(
+  "zyxy",
+  _flaxBinding888,
+  _Vector4_zyxy,
+);
+const _flaxBinding1744 = FlaxGetter.plain(
+  "zyxz",
+  _flaxBinding888,
+  _Vector4_zyxz,
+);
+const _flaxBinding1745 = FlaxGetter.plain(
+  "zyxw",
+  _flaxBinding888,
+  _Vector4_zyxw,
+);
+const _flaxBinding1746 = FlaxGetter.plain(
+  "zyyx",
+  _flaxBinding888,
+  _Vector4_zyyx,
+);
+const _flaxBinding1747 = FlaxGetter.plain(
+  "zyyy",
+  _flaxBinding888,
+  _Vector4_zyyy,
+);
+const _flaxBinding1748 = FlaxGetter.plain(
+  "zyyz",
+  _flaxBinding888,
+  _Vector4_zyyz,
+);
+const _flaxBinding1749 = FlaxGetter.plain(
+  "zyyw",
+  _flaxBinding888,
+  _Vector4_zyyw,
+);
+const _flaxBinding1750 = FlaxGetter.plain(
+  "zyzx",
+  _flaxBinding888,
+  _Vector4_zyzx,
+);
+const _flaxBinding1751 = FlaxGetter.plain(
+  "zyzy",
+  _flaxBinding888,
+  _Vector4_zyzy,
+);
+const _flaxBinding1752 = FlaxGetter.plain(
+  "zyzz",
+  _flaxBinding888,
+  _Vector4_zyzz,
+);
+const _flaxBinding1753 = FlaxGetter.plain(
+  "zyzw",
+  _flaxBinding888,
+  _Vector4_zyzw,
+);
+const _flaxBinding1754 = FlaxGetter.plain(
+  "zywx",
+  _flaxBinding888,
+  _Vector4_zywx,
+);
+const _flaxBinding1755 = FlaxGetter.plain(
+  "zywy",
+  _flaxBinding888,
+  _Vector4_zywy,
+);
+const _flaxBinding1756 = FlaxGetter.plain(
+  "zywz",
+  _flaxBinding888,
+  _Vector4_zywz,
+);
+const _flaxBinding1757 = FlaxGetter.plain(
+  "zyww",
+  _flaxBinding888,
+  _Vector4_zyww,
+);
+const _flaxBinding1758 = FlaxGetter.plain(
+  "zzxx",
+  _flaxBinding888,
+  _Vector4_zzxx,
+);
+const _flaxBinding1759 = FlaxGetter.plain(
+  "zzxy",
+  _flaxBinding888,
+  _Vector4_zzxy,
+);
+const _flaxBinding1760 = FlaxGetter.plain(
+  "zzxz",
+  _flaxBinding888,
+  _Vector4_zzxz,
+);
+const _flaxBinding1761 = FlaxGetter.plain(
+  "zzxw",
+  _flaxBinding888,
+  _Vector4_zzxw,
+);
+const _flaxBinding1762 = FlaxGetter.plain(
+  "zzyx",
+  _flaxBinding888,
+  _Vector4_zzyx,
+);
+const _flaxBinding1763 = FlaxGetter.plain(
+  "zzyy",
+  _flaxBinding888,
+  _Vector4_zzyy,
+);
+const _flaxBinding1764 = FlaxGetter.plain(
+  "zzyz",
+  _flaxBinding888,
+  _Vector4_zzyz,
+);
+const _flaxBinding1765 = FlaxGetter.plain(
+  "zzyw",
+  _flaxBinding888,
+  _Vector4_zzyw,
+);
+const _flaxBinding1766 = FlaxGetter.plain(
+  "zzzx",
+  _flaxBinding888,
+  _Vector4_zzzx,
+);
+const _flaxBinding1767 = FlaxGetter.plain(
+  "zzzy",
+  _flaxBinding888,
+  _Vector4_zzzy,
+);
+const _flaxBinding1768 = FlaxGetter.plain(
+  "zzzz",
+  _flaxBinding888,
+  _Vector4_zzzz,
+);
+const _flaxBinding1769 = FlaxGetter.plain(
+  "zzzw",
+  _flaxBinding888,
+  _Vector4_zzzw,
+);
+const _flaxBinding1770 = FlaxGetter.plain(
+  "zzwx",
+  _flaxBinding888,
+  _Vector4_zzwx,
+);
+const _flaxBinding1771 = FlaxGetter.plain(
+  "zzwy",
+  _flaxBinding888,
+  _Vector4_zzwy,
+);
+const _flaxBinding1772 = FlaxGetter.plain(
+  "zzwz",
+  _flaxBinding888,
+  _Vector4_zzwz,
+);
+const _flaxBinding1773 = FlaxGetter.plain(
+  "zzww",
+  _flaxBinding888,
+  _Vector4_zzww,
+);
+const _flaxBinding1774 = FlaxGetter.plain(
+  "zwxx",
+  _flaxBinding888,
+  _Vector4_zwxx,
+);
+const _flaxBinding1775 = FlaxGetter.plain(
+  "zwxy",
+  _flaxBinding888,
+  _Vector4_zwxy,
+);
+const _flaxBinding1776 = FlaxGetter.plain(
+  "zwxz",
+  _flaxBinding888,
+  _Vector4_zwxz,
+);
+const _flaxBinding1777 = FlaxGetter.plain(
+  "zwxw",
+  _flaxBinding888,
+  _Vector4_zwxw,
+);
+const _flaxBinding1778 = FlaxGetter.plain(
+  "zwyx",
+  _flaxBinding888,
+  _Vector4_zwyx,
+);
+const _flaxBinding1779 = FlaxGetter.plain(
+  "zwyy",
+  _flaxBinding888,
+  _Vector4_zwyy,
+);
+const _flaxBinding1780 = FlaxGetter.plain(
+  "zwyz",
+  _flaxBinding888,
+  _Vector4_zwyz,
+);
+const _flaxBinding1781 = FlaxGetter.plain(
+  "zwyw",
+  _flaxBinding888,
+  _Vector4_zwyw,
+);
+const _flaxBinding1782 = FlaxGetter.plain(
+  "zwzx",
+  _flaxBinding888,
+  _Vector4_zwzx,
+);
+const _flaxBinding1783 = FlaxGetter.plain(
+  "zwzy",
+  _flaxBinding888,
+  _Vector4_zwzy,
+);
+const _flaxBinding1784 = FlaxGetter.plain(
+  "zwzz",
+  _flaxBinding888,
+  _Vector4_zwzz,
+);
+const _flaxBinding1785 = FlaxGetter.plain(
+  "zwzw",
+  _flaxBinding888,
+  _Vector4_zwzw,
+);
+const _flaxBinding1786 = FlaxGetter.plain(
+  "zwwx",
+  _flaxBinding888,
+  _Vector4_zwwx,
+);
+const _flaxBinding1787 = FlaxGetter.plain(
+  "zwwy",
+  _flaxBinding888,
+  _Vector4_zwwy,
+);
+const _flaxBinding1788 = FlaxGetter.plain(
+  "zwwz",
+  _flaxBinding888,
+  _Vector4_zwwz,
+);
+const _flaxBinding1789 = FlaxGetter.plain(
+  "zwww",
+  _flaxBinding888,
+  _Vector4_zwww,
+);
+const _flaxBinding1790 = FlaxGetter.plain(
+  "wxxx",
+  _flaxBinding888,
+  _Vector4_wxxx,
+);
+const _flaxBinding1791 = FlaxGetter.plain(
+  "wxxy",
+  _flaxBinding888,
+  _Vector4_wxxy,
+);
+const _flaxBinding1792 = FlaxGetter.plain(
+  "wxxz",
+  _flaxBinding888,
+  _Vector4_wxxz,
+);
+const _flaxBinding1793 = FlaxGetter.plain(
+  "wxxw",
+  _flaxBinding888,
+  _Vector4_wxxw,
+);
+const _flaxBinding1794 = FlaxGetter.plain(
+  "wxyx",
+  _flaxBinding888,
+  _Vector4_wxyx,
+);
+const _flaxBinding1795 = FlaxGetter.plain(
+  "wxyy",
+  _flaxBinding888,
+  _Vector4_wxyy,
+);
+const _flaxBinding1796 = FlaxGetter.plain(
+  "wxyz",
+  _flaxBinding888,
+  _Vector4_wxyz,
+);
+const _flaxBinding1797 = FlaxGetter.plain(
+  "wxyw",
+  _flaxBinding888,
+  _Vector4_wxyw,
+);
+const _flaxBinding1798 = FlaxGetter.plain(
+  "wxzx",
+  _flaxBinding888,
+  _Vector4_wxzx,
+);
+const _flaxBinding1799 = FlaxGetter.plain(
+  "wxzy",
+  _flaxBinding888,
+  _Vector4_wxzy,
+);
+const _flaxBinding1800 = FlaxGetter.plain(
+  "wxzz",
+  _flaxBinding888,
+  _Vector4_wxzz,
+);
+const _flaxBinding1801 = FlaxGetter.plain(
+  "wxzw",
+  _flaxBinding888,
+  _Vector4_wxzw,
+);
+const _flaxBinding1802 = FlaxGetter.plain(
+  "wxwx",
+  _flaxBinding888,
+  _Vector4_wxwx,
+);
+const _flaxBinding1803 = FlaxGetter.plain(
+  "wxwy",
+  _flaxBinding888,
+  _Vector4_wxwy,
+);
+const _flaxBinding1804 = FlaxGetter.plain(
+  "wxwz",
+  _flaxBinding888,
+  _Vector4_wxwz,
+);
+const _flaxBinding1805 = FlaxGetter.plain(
+  "wxww",
+  _flaxBinding888,
+  _Vector4_wxww,
+);
+const _flaxBinding1806 = FlaxGetter.plain(
+  "wyxx",
+  _flaxBinding888,
+  _Vector4_wyxx,
+);
+const _flaxBinding1807 = FlaxGetter.plain(
+  "wyxy",
+  _flaxBinding888,
+  _Vector4_wyxy,
+);
+const _flaxBinding1808 = FlaxGetter.plain(
+  "wyxz",
+  _flaxBinding888,
+  _Vector4_wyxz,
+);
+const _flaxBinding1809 = FlaxGetter.plain(
+  "wyxw",
+  _flaxBinding888,
+  _Vector4_wyxw,
+);
+const _flaxBinding1810 = FlaxGetter.plain(
+  "wyyx",
+  _flaxBinding888,
+  _Vector4_wyyx,
+);
+const _flaxBinding1811 = FlaxGetter.plain(
+  "wyyy",
+  _flaxBinding888,
+  _Vector4_wyyy,
+);
+const _flaxBinding1812 = FlaxGetter.plain(
+  "wyyz",
+  _flaxBinding888,
+  _Vector4_wyyz,
+);
+const _flaxBinding1813 = FlaxGetter.plain(
+  "wyyw",
+  _flaxBinding888,
+  _Vector4_wyyw,
+);
+const _flaxBinding1814 = FlaxGetter.plain(
+  "wyzx",
+  _flaxBinding888,
+  _Vector4_wyzx,
+);
+const _flaxBinding1815 = FlaxGetter.plain(
+  "wyzy",
+  _flaxBinding888,
+  _Vector4_wyzy,
+);
+const _flaxBinding1816 = FlaxGetter.plain(
+  "wyzz",
+  _flaxBinding888,
+  _Vector4_wyzz,
+);
+const _flaxBinding1817 = FlaxGetter.plain(
+  "wyzw",
+  _flaxBinding888,
+  _Vector4_wyzw,
+);
+const _flaxBinding1818 = FlaxGetter.plain(
+  "wywx",
+  _flaxBinding888,
+  _Vector4_wywx,
+);
+const _flaxBinding1819 = FlaxGetter.plain(
+  "wywy",
+  _flaxBinding888,
+  _Vector4_wywy,
+);
+const _flaxBinding1820 = FlaxGetter.plain(
+  "wywz",
+  _flaxBinding888,
+  _Vector4_wywz,
+);
+const _flaxBinding1821 = FlaxGetter.plain(
+  "wyww",
+  _flaxBinding888,
+  _Vector4_wyww,
+);
+const _flaxBinding1822 = FlaxGetter.plain(
+  "wzxx",
+  _flaxBinding888,
+  _Vector4_wzxx,
+);
+const _flaxBinding1823 = FlaxGetter.plain(
+  "wzxy",
+  _flaxBinding888,
+  _Vector4_wzxy,
+);
+const _flaxBinding1824 = FlaxGetter.plain(
+  "wzxz",
+  _flaxBinding888,
+  _Vector4_wzxz,
+);
+const _flaxBinding1825 = FlaxGetter.plain(
+  "wzxw",
+  _flaxBinding888,
+  _Vector4_wzxw,
+);
+const _flaxBinding1826 = FlaxGetter.plain(
+  "wzyx",
+  _flaxBinding888,
+  _Vector4_wzyx,
+);
+const _flaxBinding1827 = FlaxGetter.plain(
+  "wzyy",
+  _flaxBinding888,
+  _Vector4_wzyy,
+);
+const _flaxBinding1828 = FlaxGetter.plain(
+  "wzyz",
+  _flaxBinding888,
+  _Vector4_wzyz,
+);
+const _flaxBinding1829 = FlaxGetter.plain(
+  "wzyw",
+  _flaxBinding888,
+  _Vector4_wzyw,
+);
+const _flaxBinding1830 = FlaxGetter.plain(
+  "wzzx",
+  _flaxBinding888,
+  _Vector4_wzzx,
+);
+const _flaxBinding1831 = FlaxGetter.plain(
+  "wzzy",
+  _flaxBinding888,
+  _Vector4_wzzy,
+);
+const _flaxBinding1832 = FlaxGetter.plain(
+  "wzzz",
+  _flaxBinding888,
+  _Vector4_wzzz,
+);
+const _flaxBinding1833 = FlaxGetter.plain(
+  "wzzw",
+  _flaxBinding888,
+  _Vector4_wzzw,
+);
+const _flaxBinding1834 = FlaxGetter.plain(
+  "wzwx",
+  _flaxBinding888,
+  _Vector4_wzwx,
+);
+const _flaxBinding1835 = FlaxGetter.plain(
+  "wzwy",
+  _flaxBinding888,
+  _Vector4_wzwy,
+);
+const _flaxBinding1836 = FlaxGetter.plain(
+  "wzwz",
+  _flaxBinding888,
+  _Vector4_wzwz,
+);
+const _flaxBinding1837 = FlaxGetter.plain(
+  "wzww",
+  _flaxBinding888,
+  _Vector4_wzww,
+);
+const _flaxBinding1838 = FlaxGetter.plain(
+  "wwxx",
+  _flaxBinding888,
+  _Vector4_wwxx,
+);
+const _flaxBinding1839 = FlaxGetter.plain(
+  "wwxy",
+  _flaxBinding888,
+  _Vector4_wwxy,
+);
+const _flaxBinding1840 = FlaxGetter.plain(
+  "wwxz",
+  _flaxBinding888,
+  _Vector4_wwxz,
+);
+const _flaxBinding1841 = FlaxGetter.plain(
+  "wwxw",
+  _flaxBinding888,
+  _Vector4_wwxw,
+);
+const _flaxBinding1842 = FlaxGetter.plain(
+  "wwyx",
+  _flaxBinding888,
+  _Vector4_wwyx,
+);
+const _flaxBinding1843 = FlaxGetter.plain(
+  "wwyy",
+  _flaxBinding888,
+  _Vector4_wwyy,
+);
+const _flaxBinding1844 = FlaxGetter.plain(
+  "wwyz",
+  _flaxBinding888,
+  _Vector4_wwyz,
+);
+const _flaxBinding1845 = FlaxGetter.plain(
+  "wwyw",
+  _flaxBinding888,
+  _Vector4_wwyw,
+);
+const _flaxBinding1846 = FlaxGetter.plain(
+  "wwzx",
+  _flaxBinding888,
+  _Vector4_wwzx,
+);
+const _flaxBinding1847 = FlaxGetter.plain(
+  "wwzy",
+  _flaxBinding888,
+  _Vector4_wwzy,
+);
+const _flaxBinding1848 = FlaxGetter.plain(
+  "wwzz",
+  _flaxBinding888,
+  _Vector4_wwzz,
+);
+const _flaxBinding1849 = FlaxGetter.plain(
+  "wwzw",
+  _flaxBinding888,
+  _Vector4_wwzw,
+);
+const _flaxBinding1850 = FlaxGetter.plain(
+  "wwwx",
+  _flaxBinding888,
+  _Vector4_wwwx,
+);
+const _flaxBinding1851 = FlaxGetter.plain(
+  "wwwy",
+  _flaxBinding888,
+  _Vector4_wwwy,
+);
+const _flaxBinding1852 = FlaxGetter.plain(
+  "wwwz",
+  _flaxBinding888,
+  _Vector4_wwwz,
+);
+const _flaxBinding1853 = FlaxGetter.plain(
+  "wwww",
+  _flaxBinding888,
+  _Vector4_wwww,
+);
+const _flaxBinding1854 = FlaxGetter.plain("r", flaxDoubleType, _Vector4_r);
+const _flaxBinding1855 = FlaxGetter.plain("g", flaxDoubleType, _Vector4_g);
+const _flaxBinding1856 = FlaxGetter.plain("b", flaxDoubleType, _Vector4_b);
+const _flaxBinding1857 = FlaxGetter.plain("a", flaxDoubleType, _Vector4_a);
+const _flaxBinding1858 = FlaxGetter.plain("s", flaxDoubleType, _Vector4_s);
+const _flaxBinding1859 = FlaxGetter.plain("t", flaxDoubleType, _Vector4_t);
+const _flaxBinding1860 = FlaxGetter.plain("p", flaxDoubleType, _Vector4_p);
+const _flaxBinding1861 = FlaxGetter.plain("q", flaxDoubleType, _Vector4_q);
+const _flaxBinding1862 = FlaxGetter.plain("x", flaxDoubleType, _Vector4_x);
+const _flaxBinding1863 = FlaxGetter.plain("y", flaxDoubleType, _Vector4_y);
+const _flaxBinding1864 = FlaxGetter.plain("z", flaxDoubleType, _Vector4_z);
+const _flaxBinding1865 = FlaxGetter.plain("w", flaxDoubleType, _Vector4_w);
+const _flaxBinding1866 = FlaxGetter.plain("rr", _flaxBinding426, _Vector4_rr);
+const _flaxBinding1867 = FlaxGetter.plain("rg", _flaxBinding426, _Vector4_rg);
+const _flaxBinding1868 = FlaxGetter.plain("rb", _flaxBinding426, _Vector4_rb);
+const _flaxBinding1869 = FlaxGetter.plain("ra", _flaxBinding426, _Vector4_ra);
+const _flaxBinding1870 = FlaxGetter.plain("gr", _flaxBinding426, _Vector4_gr);
+const _flaxBinding1871 = FlaxGetter.plain("gg", _flaxBinding426, _Vector4_gg);
+const _flaxBinding1872 = FlaxGetter.plain("gb", _flaxBinding426, _Vector4_gb);
+const _flaxBinding1873 = FlaxGetter.plain("ga", _flaxBinding426, _Vector4_ga);
+const _flaxBinding1874 = FlaxGetter.plain("br", _flaxBinding426, _Vector4_br);
+const _flaxBinding1875 = FlaxGetter.plain("bg", _flaxBinding426, _Vector4_bg);
+const _flaxBinding1876 = FlaxGetter.plain("bb", _flaxBinding426, _Vector4_bb);
+const _flaxBinding1877 = FlaxGetter.plain("ba", _flaxBinding426, _Vector4_ba);
+const _flaxBinding1878 = FlaxGetter.plain("ar", _flaxBinding426, _Vector4_ar);
+const _flaxBinding1879 = FlaxGetter.plain("ag", _flaxBinding426, _Vector4_ag);
+const _flaxBinding1880 = FlaxGetter.plain("ab", _flaxBinding426, _Vector4_ab);
+const _flaxBinding1881 = FlaxGetter.plain("aa", _flaxBinding426, _Vector4_aa);
+const _flaxBinding1882 = FlaxGetter.plain("rrr", _flaxBinding517, _Vector4_rrr);
+const _flaxBinding1883 = FlaxGetter.plain("rrg", _flaxBinding517, _Vector4_rrg);
+const _flaxBinding1884 = FlaxGetter.plain("rrb", _flaxBinding517, _Vector4_rrb);
+const _flaxBinding1885 = FlaxGetter.plain("rra", _flaxBinding517, _Vector4_rra);
+const _flaxBinding1886 = FlaxGetter.plain("rgr", _flaxBinding517, _Vector4_rgr);
+const _flaxBinding1887 = FlaxGetter.plain("rgg", _flaxBinding517, _Vector4_rgg);
+const _flaxBinding1888 = FlaxGetter.plain("rgb", _flaxBinding517, _Vector4_rgb);
+const _flaxBinding1889 = FlaxGetter.plain("rga", _flaxBinding517, _Vector4_rga);
+const _flaxBinding1890 = FlaxGetter.plain("rbr", _flaxBinding517, _Vector4_rbr);
+const _flaxBinding1891 = FlaxGetter.plain("rbg", _flaxBinding517, _Vector4_rbg);
+const _flaxBinding1892 = FlaxGetter.plain("rbb", _flaxBinding517, _Vector4_rbb);
+const _flaxBinding1893 = FlaxGetter.plain("rba", _flaxBinding517, _Vector4_rba);
+const _flaxBinding1894 = FlaxGetter.plain("rar", _flaxBinding517, _Vector4_rar);
+const _flaxBinding1895 = FlaxGetter.plain("rag", _flaxBinding517, _Vector4_rag);
+const _flaxBinding1896 = FlaxGetter.plain("rab", _flaxBinding517, _Vector4_rab);
+const _flaxBinding1897 = FlaxGetter.plain("raa", _flaxBinding517, _Vector4_raa);
+const _flaxBinding1898 = FlaxGetter.plain("grr", _flaxBinding517, _Vector4_grr);
+const _flaxBinding1899 = FlaxGetter.plain("grg", _flaxBinding517, _Vector4_grg);
+const _flaxBinding1900 = FlaxGetter.plain("grb", _flaxBinding517, _Vector4_grb);
+const _flaxBinding1901 = FlaxGetter.plain("gra", _flaxBinding517, _Vector4_gra);
+const _flaxBinding1902 = FlaxGetter.plain("ggr", _flaxBinding517, _Vector4_ggr);
+const _flaxBinding1903 = FlaxGetter.plain("ggg", _flaxBinding517, _Vector4_ggg);
+const _flaxBinding1904 = FlaxGetter.plain("ggb", _flaxBinding517, _Vector4_ggb);
+const _flaxBinding1905 = FlaxGetter.plain("gga", _flaxBinding517, _Vector4_gga);
+const _flaxBinding1906 = FlaxGetter.plain("gbr", _flaxBinding517, _Vector4_gbr);
+const _flaxBinding1907 = FlaxGetter.plain("gbg", _flaxBinding517, _Vector4_gbg);
+const _flaxBinding1908 = FlaxGetter.plain("gbb", _flaxBinding517, _Vector4_gbb);
+const _flaxBinding1909 = FlaxGetter.plain("gba", _flaxBinding517, _Vector4_gba);
+const _flaxBinding1910 = FlaxGetter.plain("gar", _flaxBinding517, _Vector4_gar);
+const _flaxBinding1911 = FlaxGetter.plain("gag", _flaxBinding517, _Vector4_gag);
+const _flaxBinding1912 = FlaxGetter.plain("gab", _flaxBinding517, _Vector4_gab);
+const _flaxBinding1913 = FlaxGetter.plain("gaa", _flaxBinding517, _Vector4_gaa);
+const _flaxBinding1914 = FlaxGetter.plain("brr", _flaxBinding517, _Vector4_brr);
+const _flaxBinding1915 = FlaxGetter.plain("brg", _flaxBinding517, _Vector4_brg);
+const _flaxBinding1916 = FlaxGetter.plain("brb", _flaxBinding517, _Vector4_brb);
+const _flaxBinding1917 = FlaxGetter.plain("bra", _flaxBinding517, _Vector4_bra);
+const _flaxBinding1918 = FlaxGetter.plain("bgr", _flaxBinding517, _Vector4_bgr);
+const _flaxBinding1919 = FlaxGetter.plain("bgg", _flaxBinding517, _Vector4_bgg);
+const _flaxBinding1920 = FlaxGetter.plain("bgb", _flaxBinding517, _Vector4_bgb);
+const _flaxBinding1921 = FlaxGetter.plain("bga", _flaxBinding517, _Vector4_bga);
+const _flaxBinding1922 = FlaxGetter.plain("bbr", _flaxBinding517, _Vector4_bbr);
+const _flaxBinding1923 = FlaxGetter.plain("bbg", _flaxBinding517, _Vector4_bbg);
+const _flaxBinding1924 = FlaxGetter.plain("bbb", _flaxBinding517, _Vector4_bbb);
+const _flaxBinding1925 = FlaxGetter.plain("bba", _flaxBinding517, _Vector4_bba);
+const _flaxBinding1926 = FlaxGetter.plain("bar", _flaxBinding517, _Vector4_bar);
+const _flaxBinding1927 = FlaxGetter.plain("bag", _flaxBinding517, _Vector4_bag);
+const _flaxBinding1928 = FlaxGetter.plain("bab", _flaxBinding517, _Vector4_bab);
+const _flaxBinding1929 = FlaxGetter.plain("baa", _flaxBinding517, _Vector4_baa);
+const _flaxBinding1930 = FlaxGetter.plain("arr", _flaxBinding517, _Vector4_arr);
+const _flaxBinding1931 = FlaxGetter.plain("arg", _flaxBinding517, _Vector4_arg);
+const _flaxBinding1932 = FlaxGetter.plain("arb", _flaxBinding517, _Vector4_arb);
+const _flaxBinding1933 = FlaxGetter.plain("ara", _flaxBinding517, _Vector4_ara);
+const _flaxBinding1934 = FlaxGetter.plain("agr", _flaxBinding517, _Vector4_agr);
+const _flaxBinding1935 = FlaxGetter.plain("agg", _flaxBinding517, _Vector4_agg);
+const _flaxBinding1936 = FlaxGetter.plain("agb", _flaxBinding517, _Vector4_agb);
+const _flaxBinding1937 = FlaxGetter.plain("aga", _flaxBinding517, _Vector4_aga);
+const _flaxBinding1938 = FlaxGetter.plain("abr", _flaxBinding517, _Vector4_abr);
+const _flaxBinding1939 = FlaxGetter.plain("abg", _flaxBinding517, _Vector4_abg);
+const _flaxBinding1940 = FlaxGetter.plain("abb", _flaxBinding517, _Vector4_abb);
+const _flaxBinding1941 = FlaxGetter.plain("aba", _flaxBinding517, _Vector4_aba);
+const _flaxBinding1942 = FlaxGetter.plain("aar", _flaxBinding517, _Vector4_aar);
+const _flaxBinding1943 = FlaxGetter.plain("aag", _flaxBinding517, _Vector4_aag);
+const _flaxBinding1944 = FlaxGetter.plain("aab", _flaxBinding517, _Vector4_aab);
+const _flaxBinding1945 = FlaxGetter.plain("aaa", _flaxBinding517, _Vector4_aaa);
+const _flaxBinding1946 = FlaxGetter.plain(
+  "rrrr",
+  _flaxBinding888,
+  _Vector4_rrrr,
+);
+const _flaxBinding1947 = FlaxGetter.plain(
+  "rrrg",
+  _flaxBinding888,
+  _Vector4_rrrg,
+);
+const _flaxBinding1948 = FlaxGetter.plain(
+  "rrrb",
+  _flaxBinding888,
+  _Vector4_rrrb,
+);
+const _flaxBinding1949 = FlaxGetter.plain(
+  "rrra",
+  _flaxBinding888,
+  _Vector4_rrra,
+);
+const _flaxBinding1950 = FlaxGetter.plain(
+  "rrgr",
+  _flaxBinding888,
+  _Vector4_rrgr,
+);
+const _flaxBinding1951 = FlaxGetter.plain(
+  "rrgg",
+  _flaxBinding888,
+  _Vector4_rrgg,
+);
+const _flaxBinding1952 = FlaxGetter.plain(
+  "rrgb",
+  _flaxBinding888,
+  _Vector4_rrgb,
+);
+const _flaxBinding1953 = FlaxGetter.plain(
+  "rrga",
+  _flaxBinding888,
+  _Vector4_rrga,
+);
+const _flaxBinding1954 = FlaxGetter.plain(
+  "rrbr",
+  _flaxBinding888,
+  _Vector4_rrbr,
+);
+const _flaxBinding1955 = FlaxGetter.plain(
+  "rrbg",
+  _flaxBinding888,
+  _Vector4_rrbg,
+);
+const _flaxBinding1956 = FlaxGetter.plain(
+  "rrbb",
+  _flaxBinding888,
+  _Vector4_rrbb,
+);
+const _flaxBinding1957 = FlaxGetter.plain(
+  "rrba",
+  _flaxBinding888,
+  _Vector4_rrba,
+);
+const _flaxBinding1958 = FlaxGetter.plain(
+  "rrar",
+  _flaxBinding888,
+  _Vector4_rrar,
+);
+const _flaxBinding1959 = FlaxGetter.plain(
+  "rrag",
+  _flaxBinding888,
+  _Vector4_rrag,
+);
+const _flaxBinding1960 = FlaxGetter.plain(
+  "rrab",
+  _flaxBinding888,
+  _Vector4_rrab,
+);
+const _flaxBinding1961 = FlaxGetter.plain(
+  "rraa",
+  _flaxBinding888,
+  _Vector4_rraa,
+);
+const _flaxBinding1962 = FlaxGetter.plain(
+  "rgrr",
+  _flaxBinding888,
+  _Vector4_rgrr,
+);
+const _flaxBinding1963 = FlaxGetter.plain(
+  "rgrg",
+  _flaxBinding888,
+  _Vector4_rgrg,
+);
+const _flaxBinding1964 = FlaxGetter.plain(
+  "rgrb",
+  _flaxBinding888,
+  _Vector4_rgrb,
+);
+const _flaxBinding1965 = FlaxGetter.plain(
+  "rgra",
+  _flaxBinding888,
+  _Vector4_rgra,
+);
+const _flaxBinding1966 = FlaxGetter.plain(
+  "rggr",
+  _flaxBinding888,
+  _Vector4_rggr,
+);
+const _flaxBinding1967 = FlaxGetter.plain(
+  "rggg",
+  _flaxBinding888,
+  _Vector4_rggg,
+);
+const _flaxBinding1968 = FlaxGetter.plain(
+  "rggb",
+  _flaxBinding888,
+  _Vector4_rggb,
+);
+const _flaxBinding1969 = FlaxGetter.plain(
+  "rgga",
+  _flaxBinding888,
+  _Vector4_rgga,
+);
+const _flaxBinding1970 = FlaxGetter.plain(
+  "rgbr",
+  _flaxBinding888,
+  _Vector4_rgbr,
+);
+const _flaxBinding1971 = FlaxGetter.plain(
+  "rgbg",
+  _flaxBinding888,
+  _Vector4_rgbg,
+);
+const _flaxBinding1972 = FlaxGetter.plain(
+  "rgbb",
+  _flaxBinding888,
+  _Vector4_rgbb,
+);
+const _flaxBinding1973 = FlaxGetter.plain(
+  "rgba",
+  _flaxBinding888,
+  _Vector4_rgba,
+);
+const _flaxBinding1974 = FlaxGetter.plain(
+  "rgar",
+  _flaxBinding888,
+  _Vector4_rgar,
+);
+const _flaxBinding1975 = FlaxGetter.plain(
+  "rgag",
+  _flaxBinding888,
+  _Vector4_rgag,
+);
+const _flaxBinding1976 = FlaxGetter.plain(
+  "rgab",
+  _flaxBinding888,
+  _Vector4_rgab,
+);
+const _flaxBinding1977 = FlaxGetter.plain(
+  "rgaa",
+  _flaxBinding888,
+  _Vector4_rgaa,
+);
+const _flaxBinding1978 = FlaxGetter.plain(
+  "rbrr",
+  _flaxBinding888,
+  _Vector4_rbrr,
+);
+const _flaxBinding1979 = FlaxGetter.plain(
+  "rbrg",
+  _flaxBinding888,
+  _Vector4_rbrg,
+);
+const _flaxBinding1980 = FlaxGetter.plain(
+  "rbrb",
+  _flaxBinding888,
+  _Vector4_rbrb,
+);
+const _flaxBinding1981 = FlaxGetter.plain(
+  "rbra",
+  _flaxBinding888,
+  _Vector4_rbra,
+);
+const _flaxBinding1982 = FlaxGetter.plain(
+  "rbgr",
+  _flaxBinding888,
+  _Vector4_rbgr,
+);
+const _flaxBinding1983 = FlaxGetter.plain(
+  "rbgg",
+  _flaxBinding888,
+  _Vector4_rbgg,
+);
+const _flaxBinding1984 = FlaxGetter.plain(
+  "rbgb",
+  _flaxBinding888,
+  _Vector4_rbgb,
+);
+const _flaxBinding1985 = FlaxGetter.plain(
+  "rbga",
+  _flaxBinding888,
+  _Vector4_rbga,
+);
+const _flaxBinding1986 = FlaxGetter.plain(
+  "rbbr",
+  _flaxBinding888,
+  _Vector4_rbbr,
+);
+const _flaxBinding1987 = FlaxGetter.plain(
+  "rbbg",
+  _flaxBinding888,
+  _Vector4_rbbg,
+);
+const _flaxBinding1988 = FlaxGetter.plain(
+  "rbbb",
+  _flaxBinding888,
+  _Vector4_rbbb,
+);
+const _flaxBinding1989 = FlaxGetter.plain(
+  "rbba",
+  _flaxBinding888,
+  _Vector4_rbba,
+);
+const _flaxBinding1990 = FlaxGetter.plain(
+  "rbar",
+  _flaxBinding888,
+  _Vector4_rbar,
+);
+const _flaxBinding1991 = FlaxGetter.plain(
+  "rbag",
+  _flaxBinding888,
+  _Vector4_rbag,
+);
+const _flaxBinding1992 = FlaxGetter.plain(
+  "rbab",
+  _flaxBinding888,
+  _Vector4_rbab,
+);
+const _flaxBinding1993 = FlaxGetter.plain(
+  "rbaa",
+  _flaxBinding888,
+  _Vector4_rbaa,
+);
+const _flaxBinding1994 = FlaxGetter.plain(
+  "rarr",
+  _flaxBinding888,
+  _Vector4_rarr,
+);
+const _flaxBinding1995 = FlaxGetter.plain(
+  "rarg",
+  _flaxBinding888,
+  _Vector4_rarg,
+);
+const _flaxBinding1996 = FlaxGetter.plain(
+  "rarb",
+  _flaxBinding888,
+  _Vector4_rarb,
+);
+const _flaxBinding1997 = FlaxGetter.plain(
+  "rara",
+  _flaxBinding888,
+  _Vector4_rara,
+);
+const _flaxBinding1998 = FlaxGetter.plain(
+  "ragr",
+  _flaxBinding888,
+  _Vector4_ragr,
+);
+const _flaxBinding1999 = FlaxGetter.plain(
+  "ragg",
+  _flaxBinding888,
+  _Vector4_ragg,
+);
+const _flaxBinding2000 = FlaxGetter.plain(
+  "ragb",
+  _flaxBinding888,
+  _Vector4_ragb,
+);
+const _flaxBinding2001 = FlaxGetter.plain(
+  "raga",
+  _flaxBinding888,
+  _Vector4_raga,
+);
+const _flaxBinding2002 = FlaxGetter.plain(
+  "rabr",
+  _flaxBinding888,
+  _Vector4_rabr,
+);
+const _flaxBinding2003 = FlaxGetter.plain(
+  "rabg",
+  _flaxBinding888,
+  _Vector4_rabg,
+);
+const _flaxBinding2004 = FlaxGetter.plain(
+  "rabb",
+  _flaxBinding888,
+  _Vector4_rabb,
+);
+const _flaxBinding2005 = FlaxGetter.plain(
+  "raba",
+  _flaxBinding888,
+  _Vector4_raba,
+);
+const _flaxBinding2006 = FlaxGetter.plain(
+  "raar",
+  _flaxBinding888,
+  _Vector4_raar,
+);
+const _flaxBinding2007 = FlaxGetter.plain(
+  "raag",
+  _flaxBinding888,
+  _Vector4_raag,
+);
+const _flaxBinding2008 = FlaxGetter.plain(
+  "raab",
+  _flaxBinding888,
+  _Vector4_raab,
+);
+const _flaxBinding2009 = FlaxGetter.plain(
+  "raaa",
+  _flaxBinding888,
+  _Vector4_raaa,
+);
+const _flaxBinding2010 = FlaxGetter.plain(
+  "grrr",
+  _flaxBinding888,
+  _Vector4_grrr,
+);
+const _flaxBinding2011 = FlaxGetter.plain(
+  "grrg",
+  _flaxBinding888,
+  _Vector4_grrg,
+);
+const _flaxBinding2012 = FlaxGetter.plain(
+  "grrb",
+  _flaxBinding888,
+  _Vector4_grrb,
+);
+const _flaxBinding2013 = FlaxGetter.plain(
+  "grra",
+  _flaxBinding888,
+  _Vector4_grra,
+);
+const _flaxBinding2014 = FlaxGetter.plain(
+  "grgr",
+  _flaxBinding888,
+  _Vector4_grgr,
+);
+const _flaxBinding2015 = FlaxGetter.plain(
+  "grgg",
+  _flaxBinding888,
+  _Vector4_grgg,
+);
+const _flaxBinding2016 = FlaxGetter.plain(
+  "grgb",
+  _flaxBinding888,
+  _Vector4_grgb,
+);
+const _flaxBinding2017 = FlaxGetter.plain(
+  "grga",
+  _flaxBinding888,
+  _Vector4_grga,
+);
+const _flaxBinding2018 = FlaxGetter.plain(
+  "grbr",
+  _flaxBinding888,
+  _Vector4_grbr,
+);
+const _flaxBinding2019 = FlaxGetter.plain(
+  "grbg",
+  _flaxBinding888,
+  _Vector4_grbg,
+);
+const _flaxBinding2020 = FlaxGetter.plain(
+  "grbb",
+  _flaxBinding888,
+  _Vector4_grbb,
+);
+const _flaxBinding2021 = FlaxGetter.plain(
+  "grba",
+  _flaxBinding888,
+  _Vector4_grba,
+);
+const _flaxBinding2022 = FlaxGetter.plain(
+  "grar",
+  _flaxBinding888,
+  _Vector4_grar,
+);
+const _flaxBinding2023 = FlaxGetter.plain(
+  "grag",
+  _flaxBinding888,
+  _Vector4_grag,
+);
+const _flaxBinding2024 = FlaxGetter.plain(
+  "grab",
+  _flaxBinding888,
+  _Vector4_grab,
+);
+const _flaxBinding2025 = FlaxGetter.plain(
+  "graa",
+  _flaxBinding888,
+  _Vector4_graa,
+);
+const _flaxBinding2026 = FlaxGetter.plain(
+  "ggrr",
+  _flaxBinding888,
+  _Vector4_ggrr,
+);
+const _flaxBinding2027 = FlaxGetter.plain(
+  "ggrg",
+  _flaxBinding888,
+  _Vector4_ggrg,
+);
+const _flaxBinding2028 = FlaxGetter.plain(
+  "ggrb",
+  _flaxBinding888,
+  _Vector4_ggrb,
+);
+const _flaxBinding2029 = FlaxGetter.plain(
+  "ggra",
+  _flaxBinding888,
+  _Vector4_ggra,
+);
+const _flaxBinding2030 = FlaxGetter.plain(
+  "gggr",
+  _flaxBinding888,
+  _Vector4_gggr,
+);
+const _flaxBinding2031 = FlaxGetter.plain(
+  "gggg",
+  _flaxBinding888,
+  _Vector4_gggg,
+);
+const _flaxBinding2032 = FlaxGetter.plain(
+  "gggb",
+  _flaxBinding888,
+  _Vector4_gggb,
+);
+const _flaxBinding2033 = FlaxGetter.plain(
+  "ggga",
+  _flaxBinding888,
+  _Vector4_ggga,
+);
+const _flaxBinding2034 = FlaxGetter.plain(
+  "ggbr",
+  _flaxBinding888,
+  _Vector4_ggbr,
+);
+const _flaxBinding2035 = FlaxGetter.plain(
+  "ggbg",
+  _flaxBinding888,
+  _Vector4_ggbg,
+);
+const _flaxBinding2036 = FlaxGetter.plain(
+  "ggbb",
+  _flaxBinding888,
+  _Vector4_ggbb,
+);
+const _flaxBinding2037 = FlaxGetter.plain(
+  "ggba",
+  _flaxBinding888,
+  _Vector4_ggba,
+);
+const _flaxBinding2038 = FlaxGetter.plain(
+  "ggar",
+  _flaxBinding888,
+  _Vector4_ggar,
+);
+const _flaxBinding2039 = FlaxGetter.plain(
+  "ggag",
+  _flaxBinding888,
+  _Vector4_ggag,
+);
+const _flaxBinding2040 = FlaxGetter.plain(
+  "ggab",
+  _flaxBinding888,
+  _Vector4_ggab,
+);
+const _flaxBinding2041 = FlaxGetter.plain(
+  "ggaa",
+  _flaxBinding888,
+  _Vector4_ggaa,
+);
+const _flaxBinding2042 = FlaxGetter.plain(
+  "gbrr",
+  _flaxBinding888,
+  _Vector4_gbrr,
+);
+const _flaxBinding2043 = FlaxGetter.plain(
+  "gbrg",
+  _flaxBinding888,
+  _Vector4_gbrg,
+);
+const _flaxBinding2044 = FlaxGetter.plain(
+  "gbrb",
+  _flaxBinding888,
+  _Vector4_gbrb,
+);
+const _flaxBinding2045 = FlaxGetter.plain(
+  "gbra",
+  _flaxBinding888,
+  _Vector4_gbra,
+);
+const _flaxBinding2046 = FlaxGetter.plain(
+  "gbgr",
+  _flaxBinding888,
+  _Vector4_gbgr,
+);
+const _flaxBinding2047 = FlaxGetter.plain(
+  "gbgg",
+  _flaxBinding888,
+  _Vector4_gbgg,
+);
+const _flaxBinding2048 = FlaxGetter.plain(
+  "gbgb",
+  _flaxBinding888,
+  _Vector4_gbgb,
+);
+const _flaxBinding2049 = FlaxGetter.plain(
+  "gbga",
+  _flaxBinding888,
+  _Vector4_gbga,
+);
+const _flaxBinding2050 = FlaxGetter.plain(
+  "gbbr",
+  _flaxBinding888,
+  _Vector4_gbbr,
+);
+const _flaxBinding2051 = FlaxGetter.plain(
+  "gbbg",
+  _flaxBinding888,
+  _Vector4_gbbg,
+);
+const _flaxBinding2052 = FlaxGetter.plain(
+  "gbbb",
+  _flaxBinding888,
+  _Vector4_gbbb,
+);
+const _flaxBinding2053 = FlaxGetter.plain(
+  "gbba",
+  _flaxBinding888,
+  _Vector4_gbba,
+);
+const _flaxBinding2054 = FlaxGetter.plain(
+  "gbar",
+  _flaxBinding888,
+  _Vector4_gbar,
+);
+const _flaxBinding2055 = FlaxGetter.plain(
+  "gbag",
+  _flaxBinding888,
+  _Vector4_gbag,
+);
+const _flaxBinding2056 = FlaxGetter.plain(
+  "gbab",
+  _flaxBinding888,
+  _Vector4_gbab,
+);
+const _flaxBinding2057 = FlaxGetter.plain(
+  "gbaa",
+  _flaxBinding888,
+  _Vector4_gbaa,
+);
+const _flaxBinding2058 = FlaxGetter.plain(
+  "garr",
+  _flaxBinding888,
+  _Vector4_garr,
+);
+const _flaxBinding2059 = FlaxGetter.plain(
+  "garg",
+  _flaxBinding888,
+  _Vector4_garg,
+);
+const _flaxBinding2060 = FlaxGetter.plain(
+  "garb",
+  _flaxBinding888,
+  _Vector4_garb,
+);
+const _flaxBinding2061 = FlaxGetter.plain(
+  "gara",
+  _flaxBinding888,
+  _Vector4_gara,
+);
+const _flaxBinding2062 = FlaxGetter.plain(
+  "gagr",
+  _flaxBinding888,
+  _Vector4_gagr,
+);
+const _flaxBinding2063 = FlaxGetter.plain(
+  "gagg",
+  _flaxBinding888,
+  _Vector4_gagg,
+);
+const _flaxBinding2064 = FlaxGetter.plain(
+  "gagb",
+  _flaxBinding888,
+  _Vector4_gagb,
+);
+const _flaxBinding2065 = FlaxGetter.plain(
+  "gaga",
+  _flaxBinding888,
+  _Vector4_gaga,
+);
+const _flaxBinding2066 = FlaxGetter.plain(
+  "gabr",
+  _flaxBinding888,
+  _Vector4_gabr,
+);
+const _flaxBinding2067 = FlaxGetter.plain(
+  "gabg",
+  _flaxBinding888,
+  _Vector4_gabg,
+);
+const _flaxBinding2068 = FlaxGetter.plain(
+  "gabb",
+  _flaxBinding888,
+  _Vector4_gabb,
+);
+const _flaxBinding2069 = FlaxGetter.plain(
+  "gaba",
+  _flaxBinding888,
+  _Vector4_gaba,
+);
+const _flaxBinding2070 = FlaxGetter.plain(
+  "gaar",
+  _flaxBinding888,
+  _Vector4_gaar,
+);
+const _flaxBinding2071 = FlaxGetter.plain(
+  "gaag",
+  _flaxBinding888,
+  _Vector4_gaag,
+);
+const _flaxBinding2072 = FlaxGetter.plain(
+  "gaab",
+  _flaxBinding888,
+  _Vector4_gaab,
+);
+const _flaxBinding2073 = FlaxGetter.plain(
+  "gaaa",
+  _flaxBinding888,
+  _Vector4_gaaa,
+);
+const _flaxBinding2074 = FlaxGetter.plain(
+  "brrr",
+  _flaxBinding888,
+  _Vector4_brrr,
+);
+const _flaxBinding2075 = FlaxGetter.plain(
+  "brrg",
+  _flaxBinding888,
+  _Vector4_brrg,
+);
+const _flaxBinding2076 = FlaxGetter.plain(
+  "brrb",
+  _flaxBinding888,
+  _Vector4_brrb,
+);
+const _flaxBinding2077 = FlaxGetter.plain(
+  "brra",
+  _flaxBinding888,
+  _Vector4_brra,
+);
+const _flaxBinding2078 = FlaxGetter.plain(
+  "brgr",
+  _flaxBinding888,
+  _Vector4_brgr,
+);
+const _flaxBinding2079 = FlaxGetter.plain(
+  "brgg",
+  _flaxBinding888,
+  _Vector4_brgg,
+);
+const _flaxBinding2080 = FlaxGetter.plain(
+  "brgb",
+  _flaxBinding888,
+  _Vector4_brgb,
+);
+const _flaxBinding2081 = FlaxGetter.plain(
+  "brga",
+  _flaxBinding888,
+  _Vector4_brga,
+);
+const _flaxBinding2082 = FlaxGetter.plain(
+  "brbr",
+  _flaxBinding888,
+  _Vector4_brbr,
+);
+const _flaxBinding2083 = FlaxGetter.plain(
+  "brbg",
+  _flaxBinding888,
+  _Vector4_brbg,
+);
+const _flaxBinding2084 = FlaxGetter.plain(
+  "brbb",
+  _flaxBinding888,
+  _Vector4_brbb,
+);
+const _flaxBinding2085 = FlaxGetter.plain(
+  "brba",
+  _flaxBinding888,
+  _Vector4_brba,
+);
+const _flaxBinding2086 = FlaxGetter.plain(
+  "brar",
+  _flaxBinding888,
+  _Vector4_brar,
+);
+const _flaxBinding2087 = FlaxGetter.plain(
+  "brag",
+  _flaxBinding888,
+  _Vector4_brag,
+);
+const _flaxBinding2088 = FlaxGetter.plain(
+  "brab",
+  _flaxBinding888,
+  _Vector4_brab,
+);
+const _flaxBinding2089 = FlaxGetter.plain(
+  "braa",
+  _flaxBinding888,
+  _Vector4_braa,
+);
+const _flaxBinding2090 = FlaxGetter.plain(
+  "bgrr",
+  _flaxBinding888,
+  _Vector4_bgrr,
+);
+const _flaxBinding2091 = FlaxGetter.plain(
+  "bgrg",
+  _flaxBinding888,
+  _Vector4_bgrg,
+);
+const _flaxBinding2092 = FlaxGetter.plain(
+  "bgrb",
+  _flaxBinding888,
+  _Vector4_bgrb,
+);
+const _flaxBinding2093 = FlaxGetter.plain(
+  "bgra",
+  _flaxBinding888,
+  _Vector4_bgra,
+);
+const _flaxBinding2094 = FlaxGetter.plain(
+  "bggr",
+  _flaxBinding888,
+  _Vector4_bggr,
+);
+const _flaxBinding2095 = FlaxGetter.plain(
+  "bggg",
+  _flaxBinding888,
+  _Vector4_bggg,
+);
+const _flaxBinding2096 = FlaxGetter.plain(
+  "bggb",
+  _flaxBinding888,
+  _Vector4_bggb,
+);
+const _flaxBinding2097 = FlaxGetter.plain(
+  "bgga",
+  _flaxBinding888,
+  _Vector4_bgga,
+);
+const _flaxBinding2098 = FlaxGetter.plain(
+  "bgbr",
+  _flaxBinding888,
+  _Vector4_bgbr,
+);
+const _flaxBinding2099 = FlaxGetter.plain(
+  "bgbg",
+  _flaxBinding888,
+  _Vector4_bgbg,
+);
+const _flaxBinding2100 = FlaxGetter.plain(
+  "bgbb",
+  _flaxBinding888,
+  _Vector4_bgbb,
+);
+const _flaxBinding2101 = FlaxGetter.plain(
+  "bgba",
+  _flaxBinding888,
+  _Vector4_bgba,
+);
+const _flaxBinding2102 = FlaxGetter.plain(
+  "bgar",
+  _flaxBinding888,
+  _Vector4_bgar,
+);
+const _flaxBinding2103 = FlaxGetter.plain(
+  "bgag",
+  _flaxBinding888,
+  _Vector4_bgag,
+);
+const _flaxBinding2104 = FlaxGetter.plain(
+  "bgab",
+  _flaxBinding888,
+  _Vector4_bgab,
+);
+const _flaxBinding2105 = FlaxGetter.plain(
+  "bgaa",
+  _flaxBinding888,
+  _Vector4_bgaa,
+);
+const _flaxBinding2106 = FlaxGetter.plain(
+  "bbrr",
+  _flaxBinding888,
+  _Vector4_bbrr,
+);
+const _flaxBinding2107 = FlaxGetter.plain(
+  "bbrg",
+  _flaxBinding888,
+  _Vector4_bbrg,
+);
+const _flaxBinding2108 = FlaxGetter.plain(
+  "bbrb",
+  _flaxBinding888,
+  _Vector4_bbrb,
+);
+const _flaxBinding2109 = FlaxGetter.plain(
+  "bbra",
+  _flaxBinding888,
+  _Vector4_bbra,
+);
+const _flaxBinding2110 = FlaxGetter.plain(
+  "bbgr",
+  _flaxBinding888,
+  _Vector4_bbgr,
+);
+const _flaxBinding2111 = FlaxGetter.plain(
+  "bbgg",
+  _flaxBinding888,
+  _Vector4_bbgg,
+);
+const _flaxBinding2112 = FlaxGetter.plain(
+  "bbgb",
+  _flaxBinding888,
+  _Vector4_bbgb,
+);
+const _flaxBinding2113 = FlaxGetter.plain(
+  "bbga",
+  _flaxBinding888,
+  _Vector4_bbga,
+);
+const _flaxBinding2114 = FlaxGetter.plain(
+  "bbbr",
+  _flaxBinding888,
+  _Vector4_bbbr,
+);
+const _flaxBinding2115 = FlaxGetter.plain(
+  "bbbg",
+  _flaxBinding888,
+  _Vector4_bbbg,
+);
+const _flaxBinding2116 = FlaxGetter.plain(
+  "bbbb",
+  _flaxBinding888,
+  _Vector4_bbbb,
+);
+const _flaxBinding2117 = FlaxGetter.plain(
+  "bbba",
+  _flaxBinding888,
+  _Vector4_bbba,
+);
+const _flaxBinding2118 = FlaxGetter.plain(
+  "bbar",
+  _flaxBinding888,
+  _Vector4_bbar,
+);
+const _flaxBinding2119 = FlaxGetter.plain(
+  "bbag",
+  _flaxBinding888,
+  _Vector4_bbag,
+);
+const _flaxBinding2120 = FlaxGetter.plain(
+  "bbab",
+  _flaxBinding888,
+  _Vector4_bbab,
+);
+const _flaxBinding2121 = FlaxGetter.plain(
+  "bbaa",
+  _flaxBinding888,
+  _Vector4_bbaa,
+);
+const _flaxBinding2122 = FlaxGetter.plain(
+  "barr",
+  _flaxBinding888,
+  _Vector4_barr,
+);
+const _flaxBinding2123 = FlaxGetter.plain(
+  "barg",
+  _flaxBinding888,
+  _Vector4_barg,
+);
+const _flaxBinding2124 = FlaxGetter.plain(
+  "barb",
+  _flaxBinding888,
+  _Vector4_barb,
+);
+const _flaxBinding2125 = FlaxGetter.plain(
+  "bara",
+  _flaxBinding888,
+  _Vector4_bara,
+);
+const _flaxBinding2126 = FlaxGetter.plain(
+  "bagr",
+  _flaxBinding888,
+  _Vector4_bagr,
+);
+const _flaxBinding2127 = FlaxGetter.plain(
+  "bagg",
+  _flaxBinding888,
+  _Vector4_bagg,
+);
+const _flaxBinding2128 = FlaxGetter.plain(
+  "bagb",
+  _flaxBinding888,
+  _Vector4_bagb,
+);
+const _flaxBinding2129 = FlaxGetter.plain(
+  "baga",
+  _flaxBinding888,
+  _Vector4_baga,
+);
+const _flaxBinding2130 = FlaxGetter.plain(
+  "babr",
+  _flaxBinding888,
+  _Vector4_babr,
+);
+const _flaxBinding2131 = FlaxGetter.plain(
+  "babg",
+  _flaxBinding888,
+  _Vector4_babg,
+);
+const _flaxBinding2132 = FlaxGetter.plain(
+  "babb",
+  _flaxBinding888,
+  _Vector4_babb,
+);
+const _flaxBinding2133 = FlaxGetter.plain(
+  "baba",
+  _flaxBinding888,
+  _Vector4_baba,
+);
+const _flaxBinding2134 = FlaxGetter.plain(
+  "baar",
+  _flaxBinding888,
+  _Vector4_baar,
+);
+const _flaxBinding2135 = FlaxGetter.plain(
+  "baag",
+  _flaxBinding888,
+  _Vector4_baag,
+);
+const _flaxBinding2136 = FlaxGetter.plain(
+  "baab",
+  _flaxBinding888,
+  _Vector4_baab,
+);
+const _flaxBinding2137 = FlaxGetter.plain(
+  "baaa",
+  _flaxBinding888,
+  _Vector4_baaa,
+);
+const _flaxBinding2138 = FlaxGetter.plain(
+  "arrr",
+  _flaxBinding888,
+  _Vector4_arrr,
+);
+const _flaxBinding2139 = FlaxGetter.plain(
+  "arrg",
+  _flaxBinding888,
+  _Vector4_arrg,
+);
+const _flaxBinding2140 = FlaxGetter.plain(
+  "arrb",
+  _flaxBinding888,
+  _Vector4_arrb,
+);
+const _flaxBinding2141 = FlaxGetter.plain(
+  "arra",
+  _flaxBinding888,
+  _Vector4_arra,
+);
+const _flaxBinding2142 = FlaxGetter.plain(
+  "argr",
+  _flaxBinding888,
+  _Vector4_argr,
+);
+const _flaxBinding2143 = FlaxGetter.plain(
+  "argg",
+  _flaxBinding888,
+  _Vector4_argg,
+);
+const _flaxBinding2144 = FlaxGetter.plain(
+  "argb",
+  _flaxBinding888,
+  _Vector4_argb,
+);
+const _flaxBinding2145 = FlaxGetter.plain(
+  "arga",
+  _flaxBinding888,
+  _Vector4_arga,
+);
+const _flaxBinding2146 = FlaxGetter.plain(
+  "arbr",
+  _flaxBinding888,
+  _Vector4_arbr,
+);
+const _flaxBinding2147 = FlaxGetter.plain(
+  "arbg",
+  _flaxBinding888,
+  _Vector4_arbg,
+);
+const _flaxBinding2148 = FlaxGetter.plain(
+  "arbb",
+  _flaxBinding888,
+  _Vector4_arbb,
+);
+const _flaxBinding2149 = FlaxGetter.plain(
+  "arba",
+  _flaxBinding888,
+  _Vector4_arba,
+);
+const _flaxBinding2150 = FlaxGetter.plain(
+  "arar",
+  _flaxBinding888,
+  _Vector4_arar,
+);
+const _flaxBinding2151 = FlaxGetter.plain(
+  "arag",
+  _flaxBinding888,
+  _Vector4_arag,
+);
+const _flaxBinding2152 = FlaxGetter.plain(
+  "arab",
+  _flaxBinding888,
+  _Vector4_arab,
+);
+const _flaxBinding2153 = FlaxGetter.plain(
+  "araa",
+  _flaxBinding888,
+  _Vector4_araa,
+);
+const _flaxBinding2154 = FlaxGetter.plain(
+  "agrr",
+  _flaxBinding888,
+  _Vector4_agrr,
+);
+const _flaxBinding2155 = FlaxGetter.plain(
+  "agrg",
+  _flaxBinding888,
+  _Vector4_agrg,
+);
+const _flaxBinding2156 = FlaxGetter.plain(
+  "agrb",
+  _flaxBinding888,
+  _Vector4_agrb,
+);
+const _flaxBinding2157 = FlaxGetter.plain(
+  "agra",
+  _flaxBinding888,
+  _Vector4_agra,
+);
+const _flaxBinding2158 = FlaxGetter.plain(
+  "aggr",
+  _flaxBinding888,
+  _Vector4_aggr,
+);
+const _flaxBinding2159 = FlaxGetter.plain(
+  "aggg",
+  _flaxBinding888,
+  _Vector4_aggg,
+);
+const _flaxBinding2160 = FlaxGetter.plain(
+  "aggb",
+  _flaxBinding888,
+  _Vector4_aggb,
+);
+const _flaxBinding2161 = FlaxGetter.plain(
+  "agga",
+  _flaxBinding888,
+  _Vector4_agga,
+);
+const _flaxBinding2162 = FlaxGetter.plain(
+  "agbr",
+  _flaxBinding888,
+  _Vector4_agbr,
+);
+const _flaxBinding2163 = FlaxGetter.plain(
+  "agbg",
+  _flaxBinding888,
+  _Vector4_agbg,
+);
+const _flaxBinding2164 = FlaxGetter.plain(
+  "agbb",
+  _flaxBinding888,
+  _Vector4_agbb,
+);
+const _flaxBinding2165 = FlaxGetter.plain(
+  "agba",
+  _flaxBinding888,
+  _Vector4_agba,
+);
+const _flaxBinding2166 = FlaxGetter.plain(
+  "agar",
+  _flaxBinding888,
+  _Vector4_agar,
+);
+const _flaxBinding2167 = FlaxGetter.plain(
+  "agag",
+  _flaxBinding888,
+  _Vector4_agag,
+);
+const _flaxBinding2168 = FlaxGetter.plain(
+  "agab",
+  _flaxBinding888,
+  _Vector4_agab,
+);
+const _flaxBinding2169 = FlaxGetter.plain(
+  "agaa",
+  _flaxBinding888,
+  _Vector4_agaa,
+);
+const _flaxBinding2170 = FlaxGetter.plain(
+  "abrr",
+  _flaxBinding888,
+  _Vector4_abrr,
+);
+const _flaxBinding2171 = FlaxGetter.plain(
+  "abrg",
+  _flaxBinding888,
+  _Vector4_abrg,
+);
+const _flaxBinding2172 = FlaxGetter.plain(
+  "abrb",
+  _flaxBinding888,
+  _Vector4_abrb,
+);
+const _flaxBinding2173 = FlaxGetter.plain(
+  "abra",
+  _flaxBinding888,
+  _Vector4_abra,
+);
+const _flaxBinding2174 = FlaxGetter.plain(
+  "abgr",
+  _flaxBinding888,
+  _Vector4_abgr,
+);
+const _flaxBinding2175 = FlaxGetter.plain(
+  "abgg",
+  _flaxBinding888,
+  _Vector4_abgg,
+);
+const _flaxBinding2176 = FlaxGetter.plain(
+  "abgb",
+  _flaxBinding888,
+  _Vector4_abgb,
+);
+const _flaxBinding2177 = FlaxGetter.plain(
+  "abga",
+  _flaxBinding888,
+  _Vector4_abga,
+);
+const _flaxBinding2178 = FlaxGetter.plain(
+  "abbr",
+  _flaxBinding888,
+  _Vector4_abbr,
+);
+const _flaxBinding2179 = FlaxGetter.plain(
+  "abbg",
+  _flaxBinding888,
+  _Vector4_abbg,
+);
+const _flaxBinding2180 = FlaxGetter.plain(
+  "abbb",
+  _flaxBinding888,
+  _Vector4_abbb,
+);
+const _flaxBinding2181 = FlaxGetter.plain(
+  "abba",
+  _flaxBinding888,
+  _Vector4_abba,
+);
+const _flaxBinding2182 = FlaxGetter.plain(
+  "abar",
+  _flaxBinding888,
+  _Vector4_abar,
+);
+const _flaxBinding2183 = FlaxGetter.plain(
+  "abag",
+  _flaxBinding888,
+  _Vector4_abag,
+);
+const _flaxBinding2184 = FlaxGetter.plain(
+  "abab",
+  _flaxBinding888,
+  _Vector4_abab,
+);
+const _flaxBinding2185 = FlaxGetter.plain(
+  "abaa",
+  _flaxBinding888,
+  _Vector4_abaa,
+);
+const _flaxBinding2186 = FlaxGetter.plain(
+  "aarr",
+  _flaxBinding888,
+  _Vector4_aarr,
+);
+const _flaxBinding2187 = FlaxGetter.plain(
+  "aarg",
+  _flaxBinding888,
+  _Vector4_aarg,
+);
+const _flaxBinding2188 = FlaxGetter.plain(
+  "aarb",
+  _flaxBinding888,
+  _Vector4_aarb,
+);
+const _flaxBinding2189 = FlaxGetter.plain(
+  "aara",
+  _flaxBinding888,
+  _Vector4_aara,
+);
+const _flaxBinding2190 = FlaxGetter.plain(
+  "aagr",
+  _flaxBinding888,
+  _Vector4_aagr,
+);
+const _flaxBinding2191 = FlaxGetter.plain(
+  "aagg",
+  _flaxBinding888,
+  _Vector4_aagg,
+);
+const _flaxBinding2192 = FlaxGetter.plain(
+  "aagb",
+  _flaxBinding888,
+  _Vector4_aagb,
+);
+const _flaxBinding2193 = FlaxGetter.plain(
+  "aaga",
+  _flaxBinding888,
+  _Vector4_aaga,
+);
+const _flaxBinding2194 = FlaxGetter.plain(
+  "aabr",
+  _flaxBinding888,
+  _Vector4_aabr,
+);
+const _flaxBinding2195 = FlaxGetter.plain(
+  "aabg",
+  _flaxBinding888,
+  _Vector4_aabg,
+);
+const _flaxBinding2196 = FlaxGetter.plain(
+  "aabb",
+  _flaxBinding888,
+  _Vector4_aabb,
+);
+const _flaxBinding2197 = FlaxGetter.plain(
+  "aaba",
+  _flaxBinding888,
+  _Vector4_aaba,
+);
+const _flaxBinding2198 = FlaxGetter.plain(
+  "aaar",
+  _flaxBinding888,
+  _Vector4_aaar,
+);
+const _flaxBinding2199 = FlaxGetter.plain(
+  "aaag",
+  _flaxBinding888,
+  _Vector4_aaag,
+);
+const _flaxBinding2200 = FlaxGetter.plain(
+  "aaab",
+  _flaxBinding888,
+  _Vector4_aaab,
+);
+const _flaxBinding2201 = FlaxGetter.plain(
+  "aaaa",
+  _flaxBinding888,
+  _Vector4_aaaa,
+);
+const _flaxBinding2202 = FlaxGetter.plain("ss", _flaxBinding426, _Vector4_ss);
+const _flaxBinding2203 = FlaxGetter.plain("st", _flaxBinding426, _Vector4_st);
+const _flaxBinding2204 = FlaxGetter.plain("sp", _flaxBinding426, _Vector4_sp);
+const _flaxBinding2205 = FlaxGetter.plain("sq", _flaxBinding426, _Vector4_sq);
+const _flaxBinding2206 = FlaxGetter.plain("ts", _flaxBinding426, _Vector4_ts);
+const _flaxBinding2207 = FlaxGetter.plain("tt", _flaxBinding426, _Vector4_tt);
+const _flaxBinding2208 = FlaxGetter.plain("tp", _flaxBinding426, _Vector4_tp);
+const _flaxBinding2209 = FlaxGetter.plain("tq", _flaxBinding426, _Vector4_tq);
+const _flaxBinding2210 = FlaxGetter.plain("ps", _flaxBinding426, _Vector4_ps);
+const _flaxBinding2211 = FlaxGetter.plain("pt", _flaxBinding426, _Vector4_pt);
+const _flaxBinding2212 = FlaxGetter.plain("pp", _flaxBinding426, _Vector4_pp);
+const _flaxBinding2213 = FlaxGetter.plain("pq", _flaxBinding426, _Vector4_pq);
+const _flaxBinding2214 = FlaxGetter.plain("qs", _flaxBinding426, _Vector4_qs);
+const _flaxBinding2215 = FlaxGetter.plain("qt", _flaxBinding426, _Vector4_qt);
+const _flaxBinding2216 = FlaxGetter.plain("qp", _flaxBinding426, _Vector4_qp);
+const _flaxBinding2217 = FlaxGetter.plain("qq", _flaxBinding426, _Vector4_qq);
+const _flaxBinding2218 = FlaxGetter.plain("sss", _flaxBinding517, _Vector4_sss);
+const _flaxBinding2219 = FlaxGetter.plain("sst", _flaxBinding517, _Vector4_sst);
+const _flaxBinding2220 = FlaxGetter.plain("ssp", _flaxBinding517, _Vector4_ssp);
+const _flaxBinding2221 = FlaxGetter.plain("ssq", _flaxBinding517, _Vector4_ssq);
+const _flaxBinding2222 = FlaxGetter.plain("sts", _flaxBinding517, _Vector4_sts);
+const _flaxBinding2223 = FlaxGetter.plain("stt", _flaxBinding517, _Vector4_stt);
+const _flaxBinding2224 = FlaxGetter.plain("stp", _flaxBinding517, _Vector4_stp);
+const _flaxBinding2225 = FlaxGetter.plain("stq", _flaxBinding517, _Vector4_stq);
+const _flaxBinding2226 = FlaxGetter.plain("sps", _flaxBinding517, _Vector4_sps);
+const _flaxBinding2227 = FlaxGetter.plain("spt", _flaxBinding517, _Vector4_spt);
+const _flaxBinding2228 = FlaxGetter.plain("spp", _flaxBinding517, _Vector4_spp);
+const _flaxBinding2229 = FlaxGetter.plain("spq", _flaxBinding517, _Vector4_spq);
+const _flaxBinding2230 = FlaxGetter.plain("sqs", _flaxBinding517, _Vector4_sqs);
+const _flaxBinding2231 = FlaxGetter.plain("sqt", _flaxBinding517, _Vector4_sqt);
+const _flaxBinding2232 = FlaxGetter.plain("sqp", _flaxBinding517, _Vector4_sqp);
+const _flaxBinding2233 = FlaxGetter.plain("sqq", _flaxBinding517, _Vector4_sqq);
+const _flaxBinding2234 = FlaxGetter.plain("tss", _flaxBinding517, _Vector4_tss);
+const _flaxBinding2235 = FlaxGetter.plain("tst", _flaxBinding517, _Vector4_tst);
+const _flaxBinding2236 = FlaxGetter.plain("tsp", _flaxBinding517, _Vector4_tsp);
+const _flaxBinding2237 = FlaxGetter.plain("tsq", _flaxBinding517, _Vector4_tsq);
+const _flaxBinding2238 = FlaxGetter.plain("tts", _flaxBinding517, _Vector4_tts);
+const _flaxBinding2239 = FlaxGetter.plain("ttt", _flaxBinding517, _Vector4_ttt);
+const _flaxBinding2240 = FlaxGetter.plain("ttp", _flaxBinding517, _Vector4_ttp);
+const _flaxBinding2241 = FlaxGetter.plain("ttq", _flaxBinding517, _Vector4_ttq);
+const _flaxBinding2242 = FlaxGetter.plain("tps", _flaxBinding517, _Vector4_tps);
+const _flaxBinding2243 = FlaxGetter.plain("tpt", _flaxBinding517, _Vector4_tpt);
+const _flaxBinding2244 = FlaxGetter.plain("tpp", _flaxBinding517, _Vector4_tpp);
+const _flaxBinding2245 = FlaxGetter.plain("tpq", _flaxBinding517, _Vector4_tpq);
+const _flaxBinding2246 = FlaxGetter.plain("tqs", _flaxBinding517, _Vector4_tqs);
+const _flaxBinding2247 = FlaxGetter.plain("tqt", _flaxBinding517, _Vector4_tqt);
+const _flaxBinding2248 = FlaxGetter.plain("tqp", _flaxBinding517, _Vector4_tqp);
+const _flaxBinding2249 = FlaxGetter.plain("tqq", _flaxBinding517, _Vector4_tqq);
+const _flaxBinding2250 = FlaxGetter.plain("pss", _flaxBinding517, _Vector4_pss);
+const _flaxBinding2251 = FlaxGetter.plain("pst", _flaxBinding517, _Vector4_pst);
+const _flaxBinding2252 = FlaxGetter.plain("psp", _flaxBinding517, _Vector4_psp);
+const _flaxBinding2253 = FlaxGetter.plain("psq", _flaxBinding517, _Vector4_psq);
+const _flaxBinding2254 = FlaxGetter.plain("pts", _flaxBinding517, _Vector4_pts);
+const _flaxBinding2255 = FlaxGetter.plain("ptt", _flaxBinding517, _Vector4_ptt);
+const _flaxBinding2256 = FlaxGetter.plain("ptp", _flaxBinding517, _Vector4_ptp);
+const _flaxBinding2257 = FlaxGetter.plain("ptq", _flaxBinding517, _Vector4_ptq);
+const _flaxBinding2258 = FlaxGetter.plain("pps", _flaxBinding517, _Vector4_pps);
+const _flaxBinding2259 = FlaxGetter.plain("ppt", _flaxBinding517, _Vector4_ppt);
+const _flaxBinding2260 = FlaxGetter.plain("ppp", _flaxBinding517, _Vector4_ppp);
+const _flaxBinding2261 = FlaxGetter.plain("ppq", _flaxBinding517, _Vector4_ppq);
+const _flaxBinding2262 = FlaxGetter.plain("pqs", _flaxBinding517, _Vector4_pqs);
+const _flaxBinding2263 = FlaxGetter.plain("pqt", _flaxBinding517, _Vector4_pqt);
+const _flaxBinding2264 = FlaxGetter.plain("pqp", _flaxBinding517, _Vector4_pqp);
+const _flaxBinding2265 = FlaxGetter.plain("pqq", _flaxBinding517, _Vector4_pqq);
+const _flaxBinding2266 = FlaxGetter.plain("qss", _flaxBinding517, _Vector4_qss);
+const _flaxBinding2267 = FlaxGetter.plain("qst", _flaxBinding517, _Vector4_qst);
+const _flaxBinding2268 = FlaxGetter.plain("qsp", _flaxBinding517, _Vector4_qsp);
+const _flaxBinding2269 = FlaxGetter.plain("qsq", _flaxBinding517, _Vector4_qsq);
+const _flaxBinding2270 = FlaxGetter.plain("qts", _flaxBinding517, _Vector4_qts);
+const _flaxBinding2271 = FlaxGetter.plain("qtt", _flaxBinding517, _Vector4_qtt);
+const _flaxBinding2272 = FlaxGetter.plain("qtp", _flaxBinding517, _Vector4_qtp);
+const _flaxBinding2273 = FlaxGetter.plain("qtq", _flaxBinding517, _Vector4_qtq);
+const _flaxBinding2274 = FlaxGetter.plain("qps", _flaxBinding517, _Vector4_qps);
+const _flaxBinding2275 = FlaxGetter.plain("qpt", _flaxBinding517, _Vector4_qpt);
+const _flaxBinding2276 = FlaxGetter.plain("qpp", _flaxBinding517, _Vector4_qpp);
+const _flaxBinding2277 = FlaxGetter.plain("qpq", _flaxBinding517, _Vector4_qpq);
+const _flaxBinding2278 = FlaxGetter.plain("qqs", _flaxBinding517, _Vector4_qqs);
+const _flaxBinding2279 = FlaxGetter.plain("qqt", _flaxBinding517, _Vector4_qqt);
+const _flaxBinding2280 = FlaxGetter.plain("qqp", _flaxBinding517, _Vector4_qqp);
+const _flaxBinding2281 = FlaxGetter.plain("qqq", _flaxBinding517, _Vector4_qqq);
+const _flaxBinding2282 = FlaxGetter.plain(
+  "ssss",
+  _flaxBinding888,
+  _Vector4_ssss,
+);
+const _flaxBinding2283 = FlaxGetter.plain(
+  "ssst",
+  _flaxBinding888,
+  _Vector4_ssst,
+);
+const _flaxBinding2284 = FlaxGetter.plain(
+  "sssp",
+  _flaxBinding888,
+  _Vector4_sssp,
+);
+const _flaxBinding2285 = FlaxGetter.plain(
+  "sssq",
+  _flaxBinding888,
+  _Vector4_sssq,
+);
+const _flaxBinding2286 = FlaxGetter.plain(
+  "ssts",
+  _flaxBinding888,
+  _Vector4_ssts,
+);
+const _flaxBinding2287 = FlaxGetter.plain(
+  "sstt",
+  _flaxBinding888,
+  _Vector4_sstt,
+);
+const _flaxBinding2288 = FlaxGetter.plain(
+  "sstp",
+  _flaxBinding888,
+  _Vector4_sstp,
+);
+const _flaxBinding2289 = FlaxGetter.plain(
+  "sstq",
+  _flaxBinding888,
+  _Vector4_sstq,
+);
+const _flaxBinding2290 = FlaxGetter.plain(
+  "ssps",
+  _flaxBinding888,
+  _Vector4_ssps,
+);
+const _flaxBinding2291 = FlaxGetter.plain(
+  "sspt",
+  _flaxBinding888,
+  _Vector4_sspt,
+);
+const _flaxBinding2292 = FlaxGetter.plain(
+  "sspp",
+  _flaxBinding888,
+  _Vector4_sspp,
+);
+const _flaxBinding2293 = FlaxGetter.plain(
+  "sspq",
+  _flaxBinding888,
+  _Vector4_sspq,
+);
+const _flaxBinding2294 = FlaxGetter.plain(
+  "ssqs",
+  _flaxBinding888,
+  _Vector4_ssqs,
+);
+const _flaxBinding2295 = FlaxGetter.plain(
+  "ssqt",
+  _flaxBinding888,
+  _Vector4_ssqt,
+);
+const _flaxBinding2296 = FlaxGetter.plain(
+  "ssqp",
+  _flaxBinding888,
+  _Vector4_ssqp,
+);
+const _flaxBinding2297 = FlaxGetter.plain(
+  "ssqq",
+  _flaxBinding888,
+  _Vector4_ssqq,
+);
+const _flaxBinding2298 = FlaxGetter.plain(
+  "stss",
+  _flaxBinding888,
+  _Vector4_stss,
+);
+const _flaxBinding2299 = FlaxGetter.plain(
+  "stst",
+  _flaxBinding888,
+  _Vector4_stst,
+);
+const _flaxBinding2300 = FlaxGetter.plain(
+  "stsp",
+  _flaxBinding888,
+  _Vector4_stsp,
+);
+const _flaxBinding2301 = FlaxGetter.plain(
+  "stsq",
+  _flaxBinding888,
+  _Vector4_stsq,
+);
+const _flaxBinding2302 = FlaxGetter.plain(
+  "stts",
+  _flaxBinding888,
+  _Vector4_stts,
+);
+const _flaxBinding2303 = FlaxGetter.plain(
+  "sttt",
+  _flaxBinding888,
+  _Vector4_sttt,
+);
+const _flaxBinding2304 = FlaxGetter.plain(
+  "sttp",
+  _flaxBinding888,
+  _Vector4_sttp,
+);
+const _flaxBinding2305 = FlaxGetter.plain(
+  "sttq",
+  _flaxBinding888,
+  _Vector4_sttq,
+);
+const _flaxBinding2306 = FlaxGetter.plain(
+  "stps",
+  _flaxBinding888,
+  _Vector4_stps,
+);
+const _flaxBinding2307 = FlaxGetter.plain(
+  "stpt",
+  _flaxBinding888,
+  _Vector4_stpt,
+);
+const _flaxBinding2308 = FlaxGetter.plain(
+  "stpp",
+  _flaxBinding888,
+  _Vector4_stpp,
+);
+const _flaxBinding2309 = FlaxGetter.plain(
+  "stpq",
+  _flaxBinding888,
+  _Vector4_stpq,
+);
+const _flaxBinding2310 = FlaxGetter.plain(
+  "stqs",
+  _flaxBinding888,
+  _Vector4_stqs,
+);
+const _flaxBinding2311 = FlaxGetter.plain(
+  "stqt",
+  _flaxBinding888,
+  _Vector4_stqt,
+);
+const _flaxBinding2312 = FlaxGetter.plain(
+  "stqp",
+  _flaxBinding888,
+  _Vector4_stqp,
+);
+const _flaxBinding2313 = FlaxGetter.plain(
+  "stqq",
+  _flaxBinding888,
+  _Vector4_stqq,
+);
+const _flaxBinding2314 = FlaxGetter.plain(
+  "spss",
+  _flaxBinding888,
+  _Vector4_spss,
+);
+const _flaxBinding2315 = FlaxGetter.plain(
+  "spst",
+  _flaxBinding888,
+  _Vector4_spst,
+);
+const _flaxBinding2316 = FlaxGetter.plain(
+  "spsp",
+  _flaxBinding888,
+  _Vector4_spsp,
+);
+const _flaxBinding2317 = FlaxGetter.plain(
+  "spsq",
+  _flaxBinding888,
+  _Vector4_spsq,
+);
+const _flaxBinding2318 = FlaxGetter.plain(
+  "spts",
+  _flaxBinding888,
+  _Vector4_spts,
+);
+const _flaxBinding2319 = FlaxGetter.plain(
+  "sptt",
+  _flaxBinding888,
+  _Vector4_sptt,
+);
+const _flaxBinding2320 = FlaxGetter.plain(
+  "sptp",
+  _flaxBinding888,
+  _Vector4_sptp,
+);
+const _flaxBinding2321 = FlaxGetter.plain(
+  "sptq",
+  _flaxBinding888,
+  _Vector4_sptq,
+);
+const _flaxBinding2322 = FlaxGetter.plain(
+  "spps",
+  _flaxBinding888,
+  _Vector4_spps,
+);
+const _flaxBinding2323 = FlaxGetter.plain(
+  "sppt",
+  _flaxBinding888,
+  _Vector4_sppt,
+);
+const _flaxBinding2324 = FlaxGetter.plain(
+  "sppp",
+  _flaxBinding888,
+  _Vector4_sppp,
+);
+const _flaxBinding2325 = FlaxGetter.plain(
+  "sppq",
+  _flaxBinding888,
+  _Vector4_sppq,
+);
+const _flaxBinding2326 = FlaxGetter.plain(
+  "spqs",
+  _flaxBinding888,
+  _Vector4_spqs,
+);
+const _flaxBinding2327 = FlaxGetter.plain(
+  "spqt",
+  _flaxBinding888,
+  _Vector4_spqt,
+);
+const _flaxBinding2328 = FlaxGetter.plain(
+  "spqp",
+  _flaxBinding888,
+  _Vector4_spqp,
+);
+const _flaxBinding2329 = FlaxGetter.plain(
+  "spqq",
+  _flaxBinding888,
+  _Vector4_spqq,
+);
+const _flaxBinding2330 = FlaxGetter.plain(
+  "sqss",
+  _flaxBinding888,
+  _Vector4_sqss,
+);
+const _flaxBinding2331 = FlaxGetter.plain(
+  "sqst",
+  _flaxBinding888,
+  _Vector4_sqst,
+);
+const _flaxBinding2332 = FlaxGetter.plain(
+  "sqsp",
+  _flaxBinding888,
+  _Vector4_sqsp,
+);
+const _flaxBinding2333 = FlaxGetter.plain(
+  "sqsq",
+  _flaxBinding888,
+  _Vector4_sqsq,
+);
+const _flaxBinding2334 = FlaxGetter.plain(
+  "sqts",
+  _flaxBinding888,
+  _Vector4_sqts,
+);
+const _flaxBinding2335 = FlaxGetter.plain(
+  "sqtt",
+  _flaxBinding888,
+  _Vector4_sqtt,
+);
+const _flaxBinding2336 = FlaxGetter.plain(
+  "sqtp",
+  _flaxBinding888,
+  _Vector4_sqtp,
+);
+const _flaxBinding2337 = FlaxGetter.plain(
+  "sqtq",
+  _flaxBinding888,
+  _Vector4_sqtq,
+);
+const _flaxBinding2338 = FlaxGetter.plain(
+  "sqps",
+  _flaxBinding888,
+  _Vector4_sqps,
+);
+const _flaxBinding2339 = FlaxGetter.plain(
+  "sqpt",
+  _flaxBinding888,
+  _Vector4_sqpt,
+);
+const _flaxBinding2340 = FlaxGetter.plain(
+  "sqpp",
+  _flaxBinding888,
+  _Vector4_sqpp,
+);
+const _flaxBinding2341 = FlaxGetter.plain(
+  "sqpq",
+  _flaxBinding888,
+  _Vector4_sqpq,
+);
+const _flaxBinding2342 = FlaxGetter.plain(
+  "sqqs",
+  _flaxBinding888,
+  _Vector4_sqqs,
+);
+const _flaxBinding2343 = FlaxGetter.plain(
+  "sqqt",
+  _flaxBinding888,
+  _Vector4_sqqt,
+);
+const _flaxBinding2344 = FlaxGetter.plain(
+  "sqqp",
+  _flaxBinding888,
+  _Vector4_sqqp,
+);
+const _flaxBinding2345 = FlaxGetter.plain(
+  "sqqq",
+  _flaxBinding888,
+  _Vector4_sqqq,
+);
+const _flaxBinding2346 = FlaxGetter.plain(
+  "tsss",
+  _flaxBinding888,
+  _Vector4_tsss,
+);
+const _flaxBinding2347 = FlaxGetter.plain(
+  "tsst",
+  _flaxBinding888,
+  _Vector4_tsst,
+);
+const _flaxBinding2348 = FlaxGetter.plain(
+  "tssp",
+  _flaxBinding888,
+  _Vector4_tssp,
+);
+const _flaxBinding2349 = FlaxGetter.plain(
+  "tssq",
+  _flaxBinding888,
+  _Vector4_tssq,
+);
+const _flaxBinding2350 = FlaxGetter.plain(
+  "tsts",
+  _flaxBinding888,
+  _Vector4_tsts,
+);
+const _flaxBinding2351 = FlaxGetter.plain(
+  "tstt",
+  _flaxBinding888,
+  _Vector4_tstt,
+);
+const _flaxBinding2352 = FlaxGetter.plain(
+  "tstp",
+  _flaxBinding888,
+  _Vector4_tstp,
+);
+const _flaxBinding2353 = FlaxGetter.plain(
+  "tstq",
+  _flaxBinding888,
+  _Vector4_tstq,
+);
+const _flaxBinding2354 = FlaxGetter.plain(
+  "tsps",
+  _flaxBinding888,
+  _Vector4_tsps,
+);
+const _flaxBinding2355 = FlaxGetter.plain(
+  "tspt",
+  _flaxBinding888,
+  _Vector4_tspt,
+);
+const _flaxBinding2356 = FlaxGetter.plain(
+  "tspp",
+  _flaxBinding888,
+  _Vector4_tspp,
+);
+const _flaxBinding2357 = FlaxGetter.plain(
+  "tspq",
+  _flaxBinding888,
+  _Vector4_tspq,
+);
+const _flaxBinding2358 = FlaxGetter.plain(
+  "tsqs",
+  _flaxBinding888,
+  _Vector4_tsqs,
+);
+const _flaxBinding2359 = FlaxGetter.plain(
+  "tsqt",
+  _flaxBinding888,
+  _Vector4_tsqt,
+);
+const _flaxBinding2360 = FlaxGetter.plain(
+  "tsqp",
+  _flaxBinding888,
+  _Vector4_tsqp,
+);
+const _flaxBinding2361 = FlaxGetter.plain(
+  "tsqq",
+  _flaxBinding888,
+  _Vector4_tsqq,
+);
+const _flaxBinding2362 = FlaxGetter.plain(
+  "ttss",
+  _flaxBinding888,
+  _Vector4_ttss,
+);
+const _flaxBinding2363 = FlaxGetter.plain(
+  "ttst",
+  _flaxBinding888,
+  _Vector4_ttst,
+);
+const _flaxBinding2364 = FlaxGetter.plain(
+  "ttsp",
+  _flaxBinding888,
+  _Vector4_ttsp,
+);
+const _flaxBinding2365 = FlaxGetter.plain(
+  "ttsq",
+  _flaxBinding888,
+  _Vector4_ttsq,
+);
+const _flaxBinding2366 = FlaxGetter.plain(
+  "ttts",
+  _flaxBinding888,
+  _Vector4_ttts,
+);
+const _flaxBinding2367 = FlaxGetter.plain(
+  "tttt",
+  _flaxBinding888,
+  _Vector4_tttt,
+);
+const _flaxBinding2368 = FlaxGetter.plain(
+  "tttp",
+  _flaxBinding888,
+  _Vector4_tttp,
+);
+const _flaxBinding2369 = FlaxGetter.plain(
+  "tttq",
+  _flaxBinding888,
+  _Vector4_tttq,
+);
+const _flaxBinding2370 = FlaxGetter.plain(
+  "ttps",
+  _flaxBinding888,
+  _Vector4_ttps,
+);
+const _flaxBinding2371 = FlaxGetter.plain(
+  "ttpt",
+  _flaxBinding888,
+  _Vector4_ttpt,
+);
+const _flaxBinding2372 = FlaxGetter.plain(
+  "ttpp",
+  _flaxBinding888,
+  _Vector4_ttpp,
+);
+const _flaxBinding2373 = FlaxGetter.plain(
+  "ttpq",
+  _flaxBinding888,
+  _Vector4_ttpq,
+);
+const _flaxBinding2374 = FlaxGetter.plain(
+  "ttqs",
+  _flaxBinding888,
+  _Vector4_ttqs,
+);
+const _flaxBinding2375 = FlaxGetter.plain(
+  "ttqt",
+  _flaxBinding888,
+  _Vector4_ttqt,
+);
+const _flaxBinding2376 = FlaxGetter.plain(
+  "ttqp",
+  _flaxBinding888,
+  _Vector4_ttqp,
+);
+const _flaxBinding2377 = FlaxGetter.plain(
+  "ttqq",
+  _flaxBinding888,
+  _Vector4_ttqq,
+);
+const _flaxBinding2378 = FlaxGetter.plain(
+  "tpss",
+  _flaxBinding888,
+  _Vector4_tpss,
+);
+const _flaxBinding2379 = FlaxGetter.plain(
+  "tpst",
+  _flaxBinding888,
+  _Vector4_tpst,
+);
+const _flaxBinding2380 = FlaxGetter.plain(
+  "tpsp",
+  _flaxBinding888,
+  _Vector4_tpsp,
+);
+const _flaxBinding2381 = FlaxGetter.plain(
+  "tpsq",
+  _flaxBinding888,
+  _Vector4_tpsq,
+);
+const _flaxBinding2382 = FlaxGetter.plain(
+  "tpts",
+  _flaxBinding888,
+  _Vector4_tpts,
+);
+const _flaxBinding2383 = FlaxGetter.plain(
+  "tptt",
+  _flaxBinding888,
+  _Vector4_tptt,
+);
+const _flaxBinding2384 = FlaxGetter.plain(
+  "tptp",
+  _flaxBinding888,
+  _Vector4_tptp,
+);
+const _flaxBinding2385 = FlaxGetter.plain(
+  "tptq",
+  _flaxBinding888,
+  _Vector4_tptq,
+);
+const _flaxBinding2386 = FlaxGetter.plain(
+  "tpps",
+  _flaxBinding888,
+  _Vector4_tpps,
+);
+const _flaxBinding2387 = FlaxGetter.plain(
+  "tppt",
+  _flaxBinding888,
+  _Vector4_tppt,
+);
+const _flaxBinding2388 = FlaxGetter.plain(
+  "tppp",
+  _flaxBinding888,
+  _Vector4_tppp,
+);
+const _flaxBinding2389 = FlaxGetter.plain(
+  "tppq",
+  _flaxBinding888,
+  _Vector4_tppq,
+);
+const _flaxBinding2390 = FlaxGetter.plain(
+  "tpqs",
+  _flaxBinding888,
+  _Vector4_tpqs,
+);
+const _flaxBinding2391 = FlaxGetter.plain(
+  "tpqt",
+  _flaxBinding888,
+  _Vector4_tpqt,
+);
+const _flaxBinding2392 = FlaxGetter.plain(
+  "tpqp",
+  _flaxBinding888,
+  _Vector4_tpqp,
+);
+const _flaxBinding2393 = FlaxGetter.plain(
+  "tpqq",
+  _flaxBinding888,
+  _Vector4_tpqq,
+);
+const _flaxBinding2394 = FlaxGetter.plain(
+  "tqss",
+  _flaxBinding888,
+  _Vector4_tqss,
+);
+const _flaxBinding2395 = FlaxGetter.plain(
+  "tqst",
+  _flaxBinding888,
+  _Vector4_tqst,
+);
+const _flaxBinding2396 = FlaxGetter.plain(
+  "tqsp",
+  _flaxBinding888,
+  _Vector4_tqsp,
+);
+const _flaxBinding2397 = FlaxGetter.plain(
+  "tqsq",
+  _flaxBinding888,
+  _Vector4_tqsq,
+);
+const _flaxBinding2398 = FlaxGetter.plain(
+  "tqts",
+  _flaxBinding888,
+  _Vector4_tqts,
+);
+const _flaxBinding2399 = FlaxGetter.plain(
+  "tqtt",
+  _flaxBinding888,
+  _Vector4_tqtt,
+);
+const _flaxBinding2400 = FlaxGetter.plain(
+  "tqtp",
+  _flaxBinding888,
+  _Vector4_tqtp,
+);
+const _flaxBinding2401 = FlaxGetter.plain(
+  "tqtq",
+  _flaxBinding888,
+  _Vector4_tqtq,
+);
+const _flaxBinding2402 = FlaxGetter.plain(
+  "tqps",
+  _flaxBinding888,
+  _Vector4_tqps,
+);
+const _flaxBinding2403 = FlaxGetter.plain(
+  "tqpt",
+  _flaxBinding888,
+  _Vector4_tqpt,
+);
+const _flaxBinding2404 = FlaxGetter.plain(
+  "tqpp",
+  _flaxBinding888,
+  _Vector4_tqpp,
+);
+const _flaxBinding2405 = FlaxGetter.plain(
+  "tqpq",
+  _flaxBinding888,
+  _Vector4_tqpq,
+);
+const _flaxBinding2406 = FlaxGetter.plain(
+  "tqqs",
+  _flaxBinding888,
+  _Vector4_tqqs,
+);
+const _flaxBinding2407 = FlaxGetter.plain(
+  "tqqt",
+  _flaxBinding888,
+  _Vector4_tqqt,
+);
+const _flaxBinding2408 = FlaxGetter.plain(
+  "tqqp",
+  _flaxBinding888,
+  _Vector4_tqqp,
+);
+const _flaxBinding2409 = FlaxGetter.plain(
+  "tqqq",
+  _flaxBinding888,
+  _Vector4_tqqq,
+);
+const _flaxBinding2410 = FlaxGetter.plain(
+  "psss",
+  _flaxBinding888,
+  _Vector4_psss,
+);
+const _flaxBinding2411 = FlaxGetter.plain(
+  "psst",
+  _flaxBinding888,
+  _Vector4_psst,
+);
+const _flaxBinding2412 = FlaxGetter.plain(
+  "pssp",
+  _flaxBinding888,
+  _Vector4_pssp,
+);
+const _flaxBinding2413 = FlaxGetter.plain(
+  "pssq",
+  _flaxBinding888,
+  _Vector4_pssq,
+);
+const _flaxBinding2414 = FlaxGetter.plain(
+  "psts",
+  _flaxBinding888,
+  _Vector4_psts,
+);
+const _flaxBinding2415 = FlaxGetter.plain(
+  "pstt",
+  _flaxBinding888,
+  _Vector4_pstt,
+);
+const _flaxBinding2416 = FlaxGetter.plain(
+  "pstp",
+  _flaxBinding888,
+  _Vector4_pstp,
+);
+const _flaxBinding2417 = FlaxGetter.plain(
+  "pstq",
+  _flaxBinding888,
+  _Vector4_pstq,
+);
+const _flaxBinding2418 = FlaxGetter.plain(
+  "psps",
+  _flaxBinding888,
+  _Vector4_psps,
+);
+const _flaxBinding2419 = FlaxGetter.plain(
+  "pspt",
+  _flaxBinding888,
+  _Vector4_pspt,
+);
+const _flaxBinding2420 = FlaxGetter.plain(
+  "pspp",
+  _flaxBinding888,
+  _Vector4_pspp,
+);
+const _flaxBinding2421 = FlaxGetter.plain(
+  "pspq",
+  _flaxBinding888,
+  _Vector4_pspq,
+);
+const _flaxBinding2422 = FlaxGetter.plain(
+  "psqs",
+  _flaxBinding888,
+  _Vector4_psqs,
+);
+const _flaxBinding2423 = FlaxGetter.plain(
+  "psqt",
+  _flaxBinding888,
+  _Vector4_psqt,
+);
+const _flaxBinding2424 = FlaxGetter.plain(
+  "psqp",
+  _flaxBinding888,
+  _Vector4_psqp,
+);
+const _flaxBinding2425 = FlaxGetter.plain(
+  "psqq",
+  _flaxBinding888,
+  _Vector4_psqq,
+);
+const _flaxBinding2426 = FlaxGetter.plain(
+  "ptss",
+  _flaxBinding888,
+  _Vector4_ptss,
+);
+const _flaxBinding2427 = FlaxGetter.plain(
+  "ptst",
+  _flaxBinding888,
+  _Vector4_ptst,
+);
+const _flaxBinding2428 = FlaxGetter.plain(
+  "ptsp",
+  _flaxBinding888,
+  _Vector4_ptsp,
+);
+const _flaxBinding2429 = FlaxGetter.plain(
+  "ptsq",
+  _flaxBinding888,
+  _Vector4_ptsq,
+);
+const _flaxBinding2430 = FlaxGetter.plain(
+  "ptts",
+  _flaxBinding888,
+  _Vector4_ptts,
+);
+const _flaxBinding2431 = FlaxGetter.plain(
+  "pttt",
+  _flaxBinding888,
+  _Vector4_pttt,
+);
+const _flaxBinding2432 = FlaxGetter.plain(
+  "pttp",
+  _flaxBinding888,
+  _Vector4_pttp,
+);
+const _flaxBinding2433 = FlaxGetter.plain(
+  "pttq",
+  _flaxBinding888,
+  _Vector4_pttq,
+);
+const _flaxBinding2434 = FlaxGetter.plain(
+  "ptps",
+  _flaxBinding888,
+  _Vector4_ptps,
+);
+const _flaxBinding2435 = FlaxGetter.plain(
+  "ptpt",
+  _flaxBinding888,
+  _Vector4_ptpt,
+);
+const _flaxBinding2436 = FlaxGetter.plain(
+  "ptpp",
+  _flaxBinding888,
+  _Vector4_ptpp,
+);
+const _flaxBinding2437 = FlaxGetter.plain(
+  "ptpq",
+  _flaxBinding888,
+  _Vector4_ptpq,
+);
+const _flaxBinding2438 = FlaxGetter.plain(
+  "ptqs",
+  _flaxBinding888,
+  _Vector4_ptqs,
+);
+const _flaxBinding2439 = FlaxGetter.plain(
+  "ptqt",
+  _flaxBinding888,
+  _Vector4_ptqt,
+);
+const _flaxBinding2440 = FlaxGetter.plain(
+  "ptqp",
+  _flaxBinding888,
+  _Vector4_ptqp,
+);
+const _flaxBinding2441 = FlaxGetter.plain(
+  "ptqq",
+  _flaxBinding888,
+  _Vector4_ptqq,
+);
+const _flaxBinding2442 = FlaxGetter.plain(
+  "ppss",
+  _flaxBinding888,
+  _Vector4_ppss,
+);
+const _flaxBinding2443 = FlaxGetter.plain(
+  "ppst",
+  _flaxBinding888,
+  _Vector4_ppst,
+);
+const _flaxBinding2444 = FlaxGetter.plain(
+  "ppsp",
+  _flaxBinding888,
+  _Vector4_ppsp,
+);
+const _flaxBinding2445 = FlaxGetter.plain(
+  "ppsq",
+  _flaxBinding888,
+  _Vector4_ppsq,
+);
+const _flaxBinding2446 = FlaxGetter.plain(
+  "ppts",
+  _flaxBinding888,
+  _Vector4_ppts,
+);
+const _flaxBinding2447 = FlaxGetter.plain(
+  "pptt",
+  _flaxBinding888,
+  _Vector4_pptt,
+);
+const _flaxBinding2448 = FlaxGetter.plain(
+  "pptp",
+  _flaxBinding888,
+  _Vector4_pptp,
+);
+const _flaxBinding2449 = FlaxGetter.plain(
+  "pptq",
+  _flaxBinding888,
+  _Vector4_pptq,
+);
+const _flaxBinding2450 = FlaxGetter.plain(
+  "ppps",
+  _flaxBinding888,
+  _Vector4_ppps,
+);
+const _flaxBinding2451 = FlaxGetter.plain(
+  "pppt",
+  _flaxBinding888,
+  _Vector4_pppt,
+);
+const _flaxBinding2452 = FlaxGetter.plain(
+  "pppp",
+  _flaxBinding888,
+  _Vector4_pppp,
+);
+const _flaxBinding2453 = FlaxGetter.plain(
+  "pppq",
+  _flaxBinding888,
+  _Vector4_pppq,
+);
+const _flaxBinding2454 = FlaxGetter.plain(
+  "ppqs",
+  _flaxBinding888,
+  _Vector4_ppqs,
+);
+const _flaxBinding2455 = FlaxGetter.plain(
+  "ppqt",
+  _flaxBinding888,
+  _Vector4_ppqt,
+);
+const _flaxBinding2456 = FlaxGetter.plain(
+  "ppqp",
+  _flaxBinding888,
+  _Vector4_ppqp,
+);
+const _flaxBinding2457 = FlaxGetter.plain(
+  "ppqq",
+  _flaxBinding888,
+  _Vector4_ppqq,
+);
+const _flaxBinding2458 = FlaxGetter.plain(
+  "pqss",
+  _flaxBinding888,
+  _Vector4_pqss,
+);
+const _flaxBinding2459 = FlaxGetter.plain(
+  "pqst",
+  _flaxBinding888,
+  _Vector4_pqst,
+);
+const _flaxBinding2460 = FlaxGetter.plain(
+  "pqsp",
+  _flaxBinding888,
+  _Vector4_pqsp,
+);
+const _flaxBinding2461 = FlaxGetter.plain(
+  "pqsq",
+  _flaxBinding888,
+  _Vector4_pqsq,
+);
+const _flaxBinding2462 = FlaxGetter.plain(
+  "pqts",
+  _flaxBinding888,
+  _Vector4_pqts,
+);
+const _flaxBinding2463 = FlaxGetter.plain(
+  "pqtt",
+  _flaxBinding888,
+  _Vector4_pqtt,
+);
+const _flaxBinding2464 = FlaxGetter.plain(
+  "pqtp",
+  _flaxBinding888,
+  _Vector4_pqtp,
+);
+const _flaxBinding2465 = FlaxGetter.plain(
+  "pqtq",
+  _flaxBinding888,
+  _Vector4_pqtq,
+);
+const _flaxBinding2466 = FlaxGetter.plain(
+  "pqps",
+  _flaxBinding888,
+  _Vector4_pqps,
+);
+const _flaxBinding2467 = FlaxGetter.plain(
+  "pqpt",
+  _flaxBinding888,
+  _Vector4_pqpt,
+);
+const _flaxBinding2468 = FlaxGetter.plain(
+  "pqpp",
+  _flaxBinding888,
+  _Vector4_pqpp,
+);
+const _flaxBinding2469 = FlaxGetter.plain(
+  "pqpq",
+  _flaxBinding888,
+  _Vector4_pqpq,
+);
+const _flaxBinding2470 = FlaxGetter.plain(
+  "pqqs",
+  _flaxBinding888,
+  _Vector4_pqqs,
+);
+const _flaxBinding2471 = FlaxGetter.plain(
+  "pqqt",
+  _flaxBinding888,
+  _Vector4_pqqt,
+);
+const _flaxBinding2472 = FlaxGetter.plain(
+  "pqqp",
+  _flaxBinding888,
+  _Vector4_pqqp,
+);
+const _flaxBinding2473 = FlaxGetter.plain(
+  "pqqq",
+  _flaxBinding888,
+  _Vector4_pqqq,
+);
+const _flaxBinding2474 = FlaxGetter.plain(
+  "qsss",
+  _flaxBinding888,
+  _Vector4_qsss,
+);
+const _flaxBinding2475 = FlaxGetter.plain(
+  "qsst",
+  _flaxBinding888,
+  _Vector4_qsst,
+);
+const _flaxBinding2476 = FlaxGetter.plain(
+  "qssp",
+  _flaxBinding888,
+  _Vector4_qssp,
+);
+const _flaxBinding2477 = FlaxGetter.plain(
+  "qssq",
+  _flaxBinding888,
+  _Vector4_qssq,
+);
+const _flaxBinding2478 = FlaxGetter.plain(
+  "qsts",
+  _flaxBinding888,
+  _Vector4_qsts,
+);
+const _flaxBinding2479 = FlaxGetter.plain(
+  "qstt",
+  _flaxBinding888,
+  _Vector4_qstt,
+);
+const _flaxBinding2480 = FlaxGetter.plain(
+  "qstp",
+  _flaxBinding888,
+  _Vector4_qstp,
+);
+const _flaxBinding2481 = FlaxGetter.plain(
+  "qstq",
+  _flaxBinding888,
+  _Vector4_qstq,
+);
+const _flaxBinding2482 = FlaxGetter.plain(
+  "qsps",
+  _flaxBinding888,
+  _Vector4_qsps,
+);
+const _flaxBinding2483 = FlaxGetter.plain(
+  "qspt",
+  _flaxBinding888,
+  _Vector4_qspt,
+);
+const _flaxBinding2484 = FlaxGetter.plain(
+  "qspp",
+  _flaxBinding888,
+  _Vector4_qspp,
+);
+const _flaxBinding2485 = FlaxGetter.plain(
+  "qspq",
+  _flaxBinding888,
+  _Vector4_qspq,
+);
+const _flaxBinding2486 = FlaxGetter.plain(
+  "qsqs",
+  _flaxBinding888,
+  _Vector4_qsqs,
+);
+const _flaxBinding2487 = FlaxGetter.plain(
+  "qsqt",
+  _flaxBinding888,
+  _Vector4_qsqt,
+);
+const _flaxBinding2488 = FlaxGetter.plain(
+  "qsqp",
+  _flaxBinding888,
+  _Vector4_qsqp,
+);
+const _flaxBinding2489 = FlaxGetter.plain(
+  "qsqq",
+  _flaxBinding888,
+  _Vector4_qsqq,
+);
+const _flaxBinding2490 = FlaxGetter.plain(
+  "qtss",
+  _flaxBinding888,
+  _Vector4_qtss,
+);
+const _flaxBinding2491 = FlaxGetter.plain(
+  "qtst",
+  _flaxBinding888,
+  _Vector4_qtst,
+);
+const _flaxBinding2492 = FlaxGetter.plain(
+  "qtsp",
+  _flaxBinding888,
+  _Vector4_qtsp,
+);
+const _flaxBinding2493 = FlaxGetter.plain(
+  "qtsq",
+  _flaxBinding888,
+  _Vector4_qtsq,
+);
+const _flaxBinding2494 = FlaxGetter.plain(
+  "qtts",
+  _flaxBinding888,
+  _Vector4_qtts,
+);
+const _flaxBinding2495 = FlaxGetter.plain(
+  "qttt",
+  _flaxBinding888,
+  _Vector4_qttt,
+);
+const _flaxBinding2496 = FlaxGetter.plain(
+  "qttp",
+  _flaxBinding888,
+  _Vector4_qttp,
+);
+const _flaxBinding2497 = FlaxGetter.plain(
+  "qttq",
+  _flaxBinding888,
+  _Vector4_qttq,
+);
+const _flaxBinding2498 = FlaxGetter.plain(
+  "qtps",
+  _flaxBinding888,
+  _Vector4_qtps,
+);
+const _flaxBinding2499 = FlaxGetter.plain(
+  "qtpt",
+  _flaxBinding888,
+  _Vector4_qtpt,
+);
+const _flaxBinding2500 = FlaxGetter.plain(
+  "qtpp",
+  _flaxBinding888,
+  _Vector4_qtpp,
+);
+const _flaxBinding2501 = FlaxGetter.plain(
+  "qtpq",
+  _flaxBinding888,
+  _Vector4_qtpq,
+);
+const _flaxBinding2502 = FlaxGetter.plain(
+  "qtqs",
+  _flaxBinding888,
+  _Vector4_qtqs,
+);
+const _flaxBinding2503 = FlaxGetter.plain(
+  "qtqt",
+  _flaxBinding888,
+  _Vector4_qtqt,
+);
+const _flaxBinding2504 = FlaxGetter.plain(
+  "qtqp",
+  _flaxBinding888,
+  _Vector4_qtqp,
+);
+const _flaxBinding2505 = FlaxGetter.plain(
+  "qtqq",
+  _flaxBinding888,
+  _Vector4_qtqq,
+);
+const _flaxBinding2506 = FlaxGetter.plain(
+  "qpss",
+  _flaxBinding888,
+  _Vector4_qpss,
+);
+const _flaxBinding2507 = FlaxGetter.plain(
+  "qpst",
+  _flaxBinding888,
+  _Vector4_qpst,
+);
+const _flaxBinding2508 = FlaxGetter.plain(
+  "qpsp",
+  _flaxBinding888,
+  _Vector4_qpsp,
+);
+const _flaxBinding2509 = FlaxGetter.plain(
+  "qpsq",
+  _flaxBinding888,
+  _Vector4_qpsq,
+);
+const _flaxBinding2510 = FlaxGetter.plain(
+  "qpts",
+  _flaxBinding888,
+  _Vector4_qpts,
+);
+const _flaxBinding2511 = FlaxGetter.plain(
+  "qptt",
+  _flaxBinding888,
+  _Vector4_qptt,
+);
+const _flaxBinding2512 = FlaxGetter.plain(
+  "qptp",
+  _flaxBinding888,
+  _Vector4_qptp,
+);
+const _flaxBinding2513 = FlaxGetter.plain(
+  "qptq",
+  _flaxBinding888,
+  _Vector4_qptq,
+);
+const _flaxBinding2514 = FlaxGetter.plain(
+  "qpps",
+  _flaxBinding888,
+  _Vector4_qpps,
+);
+const _flaxBinding2515 = FlaxGetter.plain(
+  "qppt",
+  _flaxBinding888,
+  _Vector4_qppt,
+);
+const _flaxBinding2516 = FlaxGetter.plain(
+  "qppp",
+  _flaxBinding888,
+  _Vector4_qppp,
+);
+const _flaxBinding2517 = FlaxGetter.plain(
+  "qppq",
+  _flaxBinding888,
+  _Vector4_qppq,
+);
+const _flaxBinding2518 = FlaxGetter.plain(
+  "qpqs",
+  _flaxBinding888,
+  _Vector4_qpqs,
+);
+const _flaxBinding2519 = FlaxGetter.plain(
+  "qpqt",
+  _flaxBinding888,
+  _Vector4_qpqt,
+);
+const _flaxBinding2520 = FlaxGetter.plain(
+  "qpqp",
+  _flaxBinding888,
+  _Vector4_qpqp,
+);
+const _flaxBinding2521 = FlaxGetter.plain(
+  "qpqq",
+  _flaxBinding888,
+  _Vector4_qpqq,
+);
+const _flaxBinding2522 = FlaxGetter.plain(
+  "qqss",
+  _flaxBinding888,
+  _Vector4_qqss,
+);
+const _flaxBinding2523 = FlaxGetter.plain(
+  "qqst",
+  _flaxBinding888,
+  _Vector4_qqst,
+);
+const _flaxBinding2524 = FlaxGetter.plain(
+  "qqsp",
+  _flaxBinding888,
+  _Vector4_qqsp,
+);
+const _flaxBinding2525 = FlaxGetter.plain(
+  "qqsq",
+  _flaxBinding888,
+  _Vector4_qqsq,
+);
+const _flaxBinding2526 = FlaxGetter.plain(
+  "qqts",
+  _flaxBinding888,
+  _Vector4_qqts,
+);
+const _flaxBinding2527 = FlaxGetter.plain(
+  "qqtt",
+  _flaxBinding888,
+  _Vector4_qqtt,
+);
+const _flaxBinding2528 = FlaxGetter.plain(
+  "qqtp",
+  _flaxBinding888,
+  _Vector4_qqtp,
+);
+const _flaxBinding2529 = FlaxGetter.plain(
+  "qqtq",
+  _flaxBinding888,
+  _Vector4_qqtq,
+);
+const _flaxBinding2530 = FlaxGetter.plain(
+  "qqps",
+  _flaxBinding888,
+  _Vector4_qqps,
+);
+const _flaxBinding2531 = FlaxGetter.plain(
+  "qqpt",
+  _flaxBinding888,
+  _Vector4_qqpt,
+);
+const _flaxBinding2532 = FlaxGetter.plain(
+  "qqpp",
+  _flaxBinding888,
+  _Vector4_qqpp,
+);
+const _flaxBinding2533 = FlaxGetter.plain(
+  "qqpq",
+  _flaxBinding888,
+  _Vector4_qqpq,
+);
+const _flaxBinding2534 = FlaxGetter.plain(
+  "qqqs",
+  _flaxBinding888,
+  _Vector4_qqqs,
+);
+const _flaxBinding2535 = FlaxGetter.plain(
+  "qqqt",
+  _flaxBinding888,
+  _Vector4_qqqt,
+);
+const _flaxBinding2536 = FlaxGetter.plain(
+  "qqqp",
+  _flaxBinding888,
+  _Vector4_qqqp,
+);
+const _flaxBinding2537 = FlaxGetter.plain(
+  "qqqq",
+  _flaxBinding888,
+  _Vector4_qqqq,
+);
+const _flaxBinding2538 = FlaxSetter(
   "length",
-  _flaxBinding448,
+  flaxDoubleType,
   _Vector4_set_length,
 );
-const _flaxBinding2557 = FlaxSetter("xy", _flaxBinding441, _Vector4_set_xy);
-const _flaxBinding2558 = FlaxSetter("xz", _flaxBinding441, _Vector4_set_xz);
-const _flaxBinding2559 = FlaxSetter("xw", _flaxBinding441, _Vector4_set_xw);
-const _flaxBinding2560 = FlaxSetter("yx", _flaxBinding441, _Vector4_set_yx);
-const _flaxBinding2561 = FlaxSetter("yz", _flaxBinding441, _Vector4_set_yz);
-const _flaxBinding2562 = FlaxSetter("yw", _flaxBinding441, _Vector4_set_yw);
-const _flaxBinding2563 = FlaxSetter("zx", _flaxBinding441, _Vector4_set_zx);
-const _flaxBinding2564 = FlaxSetter("zy", _flaxBinding441, _Vector4_set_zy);
-const _flaxBinding2565 = FlaxSetter("zw", _flaxBinding441, _Vector4_set_zw);
-const _flaxBinding2566 = FlaxSetter("wx", _flaxBinding441, _Vector4_set_wx);
-const _flaxBinding2567 = FlaxSetter("wy", _flaxBinding441, _Vector4_set_wy);
-const _flaxBinding2568 = FlaxSetter("wz", _flaxBinding441, _Vector4_set_wz);
-const _flaxBinding2569 = FlaxSetter("xyz", _flaxBinding534, _Vector4_set_xyz);
-const _flaxBinding2570 = FlaxSetter("xyw", _flaxBinding534, _Vector4_set_xyw);
-const _flaxBinding2571 = FlaxSetter("xzy", _flaxBinding534, _Vector4_set_xzy);
-const _flaxBinding2572 = FlaxSetter("xzw", _flaxBinding534, _Vector4_set_xzw);
-const _flaxBinding2573 = FlaxSetter("xwy", _flaxBinding534, _Vector4_set_xwy);
-const _flaxBinding2574 = FlaxSetter("xwz", _flaxBinding534, _Vector4_set_xwz);
-const _flaxBinding2575 = FlaxSetter("yxz", _flaxBinding534, _Vector4_set_yxz);
-const _flaxBinding2576 = FlaxSetter("yxw", _flaxBinding534, _Vector4_set_yxw);
-const _flaxBinding2577 = FlaxSetter("yzx", _flaxBinding534, _Vector4_set_yzx);
-const _flaxBinding2578 = FlaxSetter("yzw", _flaxBinding534, _Vector4_set_yzw);
-const _flaxBinding2579 = FlaxSetter("ywx", _flaxBinding534, _Vector4_set_ywx);
-const _flaxBinding2580 = FlaxSetter("ywz", _flaxBinding534, _Vector4_set_ywz);
-const _flaxBinding2581 = FlaxSetter("zxy", _flaxBinding534, _Vector4_set_zxy);
-const _flaxBinding2582 = FlaxSetter("zxw", _flaxBinding534, _Vector4_set_zxw);
-const _flaxBinding2583 = FlaxSetter("zyx", _flaxBinding534, _Vector4_set_zyx);
-const _flaxBinding2584 = FlaxSetter("zyw", _flaxBinding534, _Vector4_set_zyw);
-const _flaxBinding2585 = FlaxSetter("zwx", _flaxBinding534, _Vector4_set_zwx);
-const _flaxBinding2586 = FlaxSetter("zwy", _flaxBinding534, _Vector4_set_zwy);
-const _flaxBinding2587 = FlaxSetter("wxy", _flaxBinding534, _Vector4_set_wxy);
-const _flaxBinding2588 = FlaxSetter("wxz", _flaxBinding534, _Vector4_set_wxz);
-const _flaxBinding2589 = FlaxSetter("wyx", _flaxBinding534, _Vector4_set_wyx);
-const _flaxBinding2590 = FlaxSetter("wyz", _flaxBinding534, _Vector4_set_wyz);
-const _flaxBinding2591 = FlaxSetter("wzx", _flaxBinding534, _Vector4_set_wzx);
-const _flaxBinding2592 = FlaxSetter("wzy", _flaxBinding534, _Vector4_set_wzy);
-const _flaxBinding2593 = FlaxSetter("xyzw", _flaxBinding906, _Vector4_set_xyzw);
-const _flaxBinding2594 = FlaxSetter("xywz", _flaxBinding906, _Vector4_set_xywz);
-const _flaxBinding2595 = FlaxSetter("xzyw", _flaxBinding906, _Vector4_set_xzyw);
-const _flaxBinding2596 = FlaxSetter("xzwy", _flaxBinding906, _Vector4_set_xzwy);
-const _flaxBinding2597 = FlaxSetter("xwyz", _flaxBinding906, _Vector4_set_xwyz);
-const _flaxBinding2598 = FlaxSetter("xwzy", _flaxBinding906, _Vector4_set_xwzy);
-const _flaxBinding2599 = FlaxSetter("yxzw", _flaxBinding906, _Vector4_set_yxzw);
-const _flaxBinding2600 = FlaxSetter("yxwz", _flaxBinding906, _Vector4_set_yxwz);
-const _flaxBinding2601 = FlaxSetter("yzxw", _flaxBinding906, _Vector4_set_yzxw);
-const _flaxBinding2602 = FlaxSetter("yzwx", _flaxBinding906, _Vector4_set_yzwx);
-const _flaxBinding2603 = FlaxSetter("ywxz", _flaxBinding906, _Vector4_set_ywxz);
-const _flaxBinding2604 = FlaxSetter("ywzx", _flaxBinding906, _Vector4_set_ywzx);
-const _flaxBinding2605 = FlaxSetter("zxyw", _flaxBinding906, _Vector4_set_zxyw);
-const _flaxBinding2606 = FlaxSetter("zxwy", _flaxBinding906, _Vector4_set_zxwy);
-const _flaxBinding2607 = FlaxSetter("zyxw", _flaxBinding906, _Vector4_set_zyxw);
-const _flaxBinding2608 = FlaxSetter("zywx", _flaxBinding906, _Vector4_set_zywx);
-const _flaxBinding2609 = FlaxSetter("zwxy", _flaxBinding906, _Vector4_set_zwxy);
-const _flaxBinding2610 = FlaxSetter("zwyx", _flaxBinding906, _Vector4_set_zwyx);
-const _flaxBinding2611 = FlaxSetter("wxyz", _flaxBinding906, _Vector4_set_wxyz);
-const _flaxBinding2612 = FlaxSetter("wxzy", _flaxBinding906, _Vector4_set_wxzy);
-const _flaxBinding2613 = FlaxSetter("wyxz", _flaxBinding906, _Vector4_set_wyxz);
-const _flaxBinding2614 = FlaxSetter("wyzx", _flaxBinding906, _Vector4_set_wyzx);
-const _flaxBinding2615 = FlaxSetter("wzxy", _flaxBinding906, _Vector4_set_wzxy);
-const _flaxBinding2616 = FlaxSetter("wzyx", _flaxBinding906, _Vector4_set_wzyx);
-const _flaxBinding2617 = FlaxSetter("r", _flaxBinding448, _Vector4_set_r);
-const _flaxBinding2618 = FlaxSetter("g", _flaxBinding448, _Vector4_set_g);
-const _flaxBinding2619 = FlaxSetter("b", _flaxBinding448, _Vector4_set_b);
-const _flaxBinding2620 = FlaxSetter("a", _flaxBinding448, _Vector4_set_a);
-const _flaxBinding2621 = FlaxSetter("s", _flaxBinding448, _Vector4_set_s);
-const _flaxBinding2622 = FlaxSetter("t", _flaxBinding448, _Vector4_set_t);
-const _flaxBinding2623 = FlaxSetter("p", _flaxBinding448, _Vector4_set_p);
-const _flaxBinding2624 = FlaxSetter("q", _flaxBinding448, _Vector4_set_q);
-const _flaxBinding2625 = FlaxSetter("x", _flaxBinding448, _Vector4_set_x);
-const _flaxBinding2626 = FlaxSetter("y", _flaxBinding448, _Vector4_set_y);
-const _flaxBinding2627 = FlaxSetter("z", _flaxBinding448, _Vector4_set_z);
-const _flaxBinding2628 = FlaxSetter("w", _flaxBinding448, _Vector4_set_w);
-const _flaxBinding2629 = FlaxSetter("rg", _flaxBinding441, _Vector4_set_rg);
-const _flaxBinding2630 = FlaxSetter("rb", _flaxBinding441, _Vector4_set_rb);
-const _flaxBinding2631 = FlaxSetter("ra", _flaxBinding441, _Vector4_set_ra);
-const _flaxBinding2632 = FlaxSetter("gr", _flaxBinding441, _Vector4_set_gr);
-const _flaxBinding2633 = FlaxSetter("gb", _flaxBinding441, _Vector4_set_gb);
-const _flaxBinding2634 = FlaxSetter("ga", _flaxBinding441, _Vector4_set_ga);
-const _flaxBinding2635 = FlaxSetter("br", _flaxBinding441, _Vector4_set_br);
-const _flaxBinding2636 = FlaxSetter("bg", _flaxBinding441, _Vector4_set_bg);
-const _flaxBinding2637 = FlaxSetter("ba", _flaxBinding441, _Vector4_set_ba);
-const _flaxBinding2638 = FlaxSetter("ar", _flaxBinding441, _Vector4_set_ar);
-const _flaxBinding2639 = FlaxSetter("ag", _flaxBinding441, _Vector4_set_ag);
-const _flaxBinding2640 = FlaxSetter("ab", _flaxBinding441, _Vector4_set_ab);
-const _flaxBinding2641 = FlaxSetter("rgb", _flaxBinding534, _Vector4_set_rgb);
-const _flaxBinding2642 = FlaxSetter("rga", _flaxBinding534, _Vector4_set_rga);
-const _flaxBinding2643 = FlaxSetter("rbg", _flaxBinding534, _Vector4_set_rbg);
-const _flaxBinding2644 = FlaxSetter("rba", _flaxBinding534, _Vector4_set_rba);
-const _flaxBinding2645 = FlaxSetter("rag", _flaxBinding534, _Vector4_set_rag);
-const _flaxBinding2646 = FlaxSetter("rab", _flaxBinding534, _Vector4_set_rab);
-const _flaxBinding2647 = FlaxSetter("grb", _flaxBinding534, _Vector4_set_grb);
-const _flaxBinding2648 = FlaxSetter("gra", _flaxBinding534, _Vector4_set_gra);
-const _flaxBinding2649 = FlaxSetter("gbr", _flaxBinding534, _Vector4_set_gbr);
-const _flaxBinding2650 = FlaxSetter("gba", _flaxBinding534, _Vector4_set_gba);
-const _flaxBinding2651 = FlaxSetter("gar", _flaxBinding534, _Vector4_set_gar);
-const _flaxBinding2652 = FlaxSetter("gab", _flaxBinding534, _Vector4_set_gab);
-const _flaxBinding2653 = FlaxSetter("brg", _flaxBinding534, _Vector4_set_brg);
-const _flaxBinding2654 = FlaxSetter("bra", _flaxBinding534, _Vector4_set_bra);
-const _flaxBinding2655 = FlaxSetter("bgr", _flaxBinding534, _Vector4_set_bgr);
-const _flaxBinding2656 = FlaxSetter("bga", _flaxBinding534, _Vector4_set_bga);
-const _flaxBinding2657 = FlaxSetter("bar", _flaxBinding534, _Vector4_set_bar);
-const _flaxBinding2658 = FlaxSetter("bag", _flaxBinding534, _Vector4_set_bag);
-const _flaxBinding2659 = FlaxSetter("arg", _flaxBinding534, _Vector4_set_arg);
-const _flaxBinding2660 = FlaxSetter("arb", _flaxBinding534, _Vector4_set_arb);
-const _flaxBinding2661 = FlaxSetter("agr", _flaxBinding534, _Vector4_set_agr);
-const _flaxBinding2662 = FlaxSetter("agb", _flaxBinding534, _Vector4_set_agb);
-const _flaxBinding2663 = FlaxSetter("abr", _flaxBinding534, _Vector4_set_abr);
-const _flaxBinding2664 = FlaxSetter("abg", _flaxBinding534, _Vector4_set_abg);
-const _flaxBinding2665 = FlaxSetter("rgba", _flaxBinding906, _Vector4_set_rgba);
-const _flaxBinding2666 = FlaxSetter("rgab", _flaxBinding906, _Vector4_set_rgab);
-const _flaxBinding2667 = FlaxSetter("rbga", _flaxBinding906, _Vector4_set_rbga);
-const _flaxBinding2668 = FlaxSetter("rbag", _flaxBinding906, _Vector4_set_rbag);
-const _flaxBinding2669 = FlaxSetter("ragb", _flaxBinding906, _Vector4_set_ragb);
-const _flaxBinding2670 = FlaxSetter("rabg", _flaxBinding906, _Vector4_set_rabg);
-const _flaxBinding2671 = FlaxSetter("grba", _flaxBinding906, _Vector4_set_grba);
-const _flaxBinding2672 = FlaxSetter("grab", _flaxBinding906, _Vector4_set_grab);
-const _flaxBinding2673 = FlaxSetter("gbra", _flaxBinding906, _Vector4_set_gbra);
-const _flaxBinding2674 = FlaxSetter("gbar", _flaxBinding906, _Vector4_set_gbar);
-const _flaxBinding2675 = FlaxSetter("garb", _flaxBinding906, _Vector4_set_garb);
-const _flaxBinding2676 = FlaxSetter("gabr", _flaxBinding906, _Vector4_set_gabr);
-const _flaxBinding2677 = FlaxSetter("brga", _flaxBinding906, _Vector4_set_brga);
-const _flaxBinding2678 = FlaxSetter("brag", _flaxBinding906, _Vector4_set_brag);
-const _flaxBinding2679 = FlaxSetter("bgra", _flaxBinding906, _Vector4_set_bgra);
-const _flaxBinding2680 = FlaxSetter("bgar", _flaxBinding906, _Vector4_set_bgar);
-const _flaxBinding2681 = FlaxSetter("barg", _flaxBinding906, _Vector4_set_barg);
-const _flaxBinding2682 = FlaxSetter("bagr", _flaxBinding906, _Vector4_set_bagr);
-const _flaxBinding2683 = FlaxSetter("argb", _flaxBinding906, _Vector4_set_argb);
-const _flaxBinding2684 = FlaxSetter("arbg", _flaxBinding906, _Vector4_set_arbg);
-const _flaxBinding2685 = FlaxSetter("agrb", _flaxBinding906, _Vector4_set_agrb);
-const _flaxBinding2686 = FlaxSetter("agbr", _flaxBinding906, _Vector4_set_agbr);
-const _flaxBinding2687 = FlaxSetter("abrg", _flaxBinding906, _Vector4_set_abrg);
-const _flaxBinding2688 = FlaxSetter("abgr", _flaxBinding906, _Vector4_set_abgr);
-const _flaxBinding2689 = FlaxSetter("st", _flaxBinding441, _Vector4_set_st);
-const _flaxBinding2690 = FlaxSetter("sp", _flaxBinding441, _Vector4_set_sp);
-const _flaxBinding2691 = FlaxSetter("sq", _flaxBinding441, _Vector4_set_sq);
-const _flaxBinding2692 = FlaxSetter("ts", _flaxBinding441, _Vector4_set_ts);
-const _flaxBinding2693 = FlaxSetter("tp", _flaxBinding441, _Vector4_set_tp);
-const _flaxBinding2694 = FlaxSetter("tq", _flaxBinding441, _Vector4_set_tq);
-const _flaxBinding2695 = FlaxSetter("ps", _flaxBinding441, _Vector4_set_ps);
-const _flaxBinding2696 = FlaxSetter("pt", _flaxBinding441, _Vector4_set_pt);
-const _flaxBinding2697 = FlaxSetter("pq", _flaxBinding441, _Vector4_set_pq);
-const _flaxBinding2698 = FlaxSetter("qs", _flaxBinding441, _Vector4_set_qs);
-const _flaxBinding2699 = FlaxSetter("qt", _flaxBinding441, _Vector4_set_qt);
-const _flaxBinding2700 = FlaxSetter("qp", _flaxBinding441, _Vector4_set_qp);
-const _flaxBinding2701 = FlaxSetter("stp", _flaxBinding534, _Vector4_set_stp);
-const _flaxBinding2702 = FlaxSetter("stq", _flaxBinding534, _Vector4_set_stq);
-const _flaxBinding2703 = FlaxSetter("spt", _flaxBinding534, _Vector4_set_spt);
-const _flaxBinding2704 = FlaxSetter("spq", _flaxBinding534, _Vector4_set_spq);
-const _flaxBinding2705 = FlaxSetter("sqt", _flaxBinding534, _Vector4_set_sqt);
-const _flaxBinding2706 = FlaxSetter("sqp", _flaxBinding534, _Vector4_set_sqp);
-const _flaxBinding2707 = FlaxSetter("tsp", _flaxBinding534, _Vector4_set_tsp);
-const _flaxBinding2708 = FlaxSetter("tsq", _flaxBinding534, _Vector4_set_tsq);
-const _flaxBinding2709 = FlaxSetter("tps", _flaxBinding534, _Vector4_set_tps);
-const _flaxBinding2710 = FlaxSetter("tpq", _flaxBinding534, _Vector4_set_tpq);
-const _flaxBinding2711 = FlaxSetter("tqs", _flaxBinding534, _Vector4_set_tqs);
-const _flaxBinding2712 = FlaxSetter("tqp", _flaxBinding534, _Vector4_set_tqp);
-const _flaxBinding2713 = FlaxSetter("pst", _flaxBinding534, _Vector4_set_pst);
-const _flaxBinding2714 = FlaxSetter("psq", _flaxBinding534, _Vector4_set_psq);
-const _flaxBinding2715 = FlaxSetter("pts", _flaxBinding534, _Vector4_set_pts);
-const _flaxBinding2716 = FlaxSetter("ptq", _flaxBinding534, _Vector4_set_ptq);
-const _flaxBinding2717 = FlaxSetter("pqs", _flaxBinding534, _Vector4_set_pqs);
-const _flaxBinding2718 = FlaxSetter("pqt", _flaxBinding534, _Vector4_set_pqt);
-const _flaxBinding2719 = FlaxSetter("qst", _flaxBinding534, _Vector4_set_qst);
-const _flaxBinding2720 = FlaxSetter("qsp", _flaxBinding534, _Vector4_set_qsp);
-const _flaxBinding2721 = FlaxSetter("qts", _flaxBinding534, _Vector4_set_qts);
-const _flaxBinding2722 = FlaxSetter("qtp", _flaxBinding534, _Vector4_set_qtp);
-const _flaxBinding2723 = FlaxSetter("qps", _flaxBinding534, _Vector4_set_qps);
-const _flaxBinding2724 = FlaxSetter("qpt", _flaxBinding534, _Vector4_set_qpt);
-const _flaxBinding2725 = FlaxSetter("stpq", _flaxBinding906, _Vector4_set_stpq);
-const _flaxBinding2726 = FlaxSetter("stqp", _flaxBinding906, _Vector4_set_stqp);
-const _flaxBinding2727 = FlaxSetter("sptq", _flaxBinding906, _Vector4_set_sptq);
-const _flaxBinding2728 = FlaxSetter("spqt", _flaxBinding906, _Vector4_set_spqt);
-const _flaxBinding2729 = FlaxSetter("sqtp", _flaxBinding906, _Vector4_set_sqtp);
-const _flaxBinding2730 = FlaxSetter("sqpt", _flaxBinding906, _Vector4_set_sqpt);
-const _flaxBinding2731 = FlaxSetter("tspq", _flaxBinding906, _Vector4_set_tspq);
-const _flaxBinding2732 = FlaxSetter("tsqp", _flaxBinding906, _Vector4_set_tsqp);
-const _flaxBinding2733 = FlaxSetter("tpsq", _flaxBinding906, _Vector4_set_tpsq);
-const _flaxBinding2734 = FlaxSetter("tpqs", _flaxBinding906, _Vector4_set_tpqs);
-const _flaxBinding2735 = FlaxSetter("tqsp", _flaxBinding906, _Vector4_set_tqsp);
-const _flaxBinding2736 = FlaxSetter("tqps", _flaxBinding906, _Vector4_set_tqps);
-const _flaxBinding2737 = FlaxSetter("pstq", _flaxBinding906, _Vector4_set_pstq);
-const _flaxBinding2738 = FlaxSetter("psqt", _flaxBinding906, _Vector4_set_psqt);
-const _flaxBinding2739 = FlaxSetter("ptsq", _flaxBinding906, _Vector4_set_ptsq);
-const _flaxBinding2740 = FlaxSetter("ptqs", _flaxBinding906, _Vector4_set_ptqs);
-const _flaxBinding2741 = FlaxSetter("pqst", _flaxBinding906, _Vector4_set_pqst);
-const _flaxBinding2742 = FlaxSetter("pqts", _flaxBinding906, _Vector4_set_pqts);
-const _flaxBinding2743 = FlaxSetter("qstp", _flaxBinding906, _Vector4_set_qstp);
-const _flaxBinding2744 = FlaxSetter("qspt", _flaxBinding906, _Vector4_set_qspt);
-const _flaxBinding2745 = FlaxSetter("qtsp", _flaxBinding906, _Vector4_set_qtsp);
-const _flaxBinding2746 = FlaxSetter("qtps", _flaxBinding906, _Vector4_set_qtps);
-const _flaxBinding2747 = FlaxSetter("qpst", _flaxBinding906, _Vector4_set_qpst);
-const _flaxBinding2748 = FlaxSetter("qpts", _flaxBinding906, _Vector4_set_qpts);
-const _flaxBinding2749 = FlaxInstanceMethod(
-  _flaxBinding656,
-  _flaxBinding70,
+const _flaxBinding2539 = FlaxSetter("xy", _flaxBinding426, _Vector4_set_xy);
+const _flaxBinding2540 = FlaxSetter("xz", _flaxBinding426, _Vector4_set_xz);
+const _flaxBinding2541 = FlaxSetter("xw", _flaxBinding426, _Vector4_set_xw);
+const _flaxBinding2542 = FlaxSetter("yx", _flaxBinding426, _Vector4_set_yx);
+const _flaxBinding2543 = FlaxSetter("yz", _flaxBinding426, _Vector4_set_yz);
+const _flaxBinding2544 = FlaxSetter("yw", _flaxBinding426, _Vector4_set_yw);
+const _flaxBinding2545 = FlaxSetter("zx", _flaxBinding426, _Vector4_set_zx);
+const _flaxBinding2546 = FlaxSetter("zy", _flaxBinding426, _Vector4_set_zy);
+const _flaxBinding2547 = FlaxSetter("zw", _flaxBinding426, _Vector4_set_zw);
+const _flaxBinding2548 = FlaxSetter("wx", _flaxBinding426, _Vector4_set_wx);
+const _flaxBinding2549 = FlaxSetter("wy", _flaxBinding426, _Vector4_set_wy);
+const _flaxBinding2550 = FlaxSetter("wz", _flaxBinding426, _Vector4_set_wz);
+const _flaxBinding2551 = FlaxSetter("xyz", _flaxBinding517, _Vector4_set_xyz);
+const _flaxBinding2552 = FlaxSetter("xyw", _flaxBinding517, _Vector4_set_xyw);
+const _flaxBinding2553 = FlaxSetter("xzy", _flaxBinding517, _Vector4_set_xzy);
+const _flaxBinding2554 = FlaxSetter("xzw", _flaxBinding517, _Vector4_set_xzw);
+const _flaxBinding2555 = FlaxSetter("xwy", _flaxBinding517, _Vector4_set_xwy);
+const _flaxBinding2556 = FlaxSetter("xwz", _flaxBinding517, _Vector4_set_xwz);
+const _flaxBinding2557 = FlaxSetter("yxz", _flaxBinding517, _Vector4_set_yxz);
+const _flaxBinding2558 = FlaxSetter("yxw", _flaxBinding517, _Vector4_set_yxw);
+const _flaxBinding2559 = FlaxSetter("yzx", _flaxBinding517, _Vector4_set_yzx);
+const _flaxBinding2560 = FlaxSetter("yzw", _flaxBinding517, _Vector4_set_yzw);
+const _flaxBinding2561 = FlaxSetter("ywx", _flaxBinding517, _Vector4_set_ywx);
+const _flaxBinding2562 = FlaxSetter("ywz", _flaxBinding517, _Vector4_set_ywz);
+const _flaxBinding2563 = FlaxSetter("zxy", _flaxBinding517, _Vector4_set_zxy);
+const _flaxBinding2564 = FlaxSetter("zxw", _flaxBinding517, _Vector4_set_zxw);
+const _flaxBinding2565 = FlaxSetter("zyx", _flaxBinding517, _Vector4_set_zyx);
+const _flaxBinding2566 = FlaxSetter("zyw", _flaxBinding517, _Vector4_set_zyw);
+const _flaxBinding2567 = FlaxSetter("zwx", _flaxBinding517, _Vector4_set_zwx);
+const _flaxBinding2568 = FlaxSetter("zwy", _flaxBinding517, _Vector4_set_zwy);
+const _flaxBinding2569 = FlaxSetter("wxy", _flaxBinding517, _Vector4_set_wxy);
+const _flaxBinding2570 = FlaxSetter("wxz", _flaxBinding517, _Vector4_set_wxz);
+const _flaxBinding2571 = FlaxSetter("wyx", _flaxBinding517, _Vector4_set_wyx);
+const _flaxBinding2572 = FlaxSetter("wyz", _flaxBinding517, _Vector4_set_wyz);
+const _flaxBinding2573 = FlaxSetter("wzx", _flaxBinding517, _Vector4_set_wzx);
+const _flaxBinding2574 = FlaxSetter("wzy", _flaxBinding517, _Vector4_set_wzy);
+const _flaxBinding2575 = FlaxSetter("xyzw", _flaxBinding888, _Vector4_set_xyzw);
+const _flaxBinding2576 = FlaxSetter("xywz", _flaxBinding888, _Vector4_set_xywz);
+const _flaxBinding2577 = FlaxSetter("xzyw", _flaxBinding888, _Vector4_set_xzyw);
+const _flaxBinding2578 = FlaxSetter("xzwy", _flaxBinding888, _Vector4_set_xzwy);
+const _flaxBinding2579 = FlaxSetter("xwyz", _flaxBinding888, _Vector4_set_xwyz);
+const _flaxBinding2580 = FlaxSetter("xwzy", _flaxBinding888, _Vector4_set_xwzy);
+const _flaxBinding2581 = FlaxSetter("yxzw", _flaxBinding888, _Vector4_set_yxzw);
+const _flaxBinding2582 = FlaxSetter("yxwz", _flaxBinding888, _Vector4_set_yxwz);
+const _flaxBinding2583 = FlaxSetter("yzxw", _flaxBinding888, _Vector4_set_yzxw);
+const _flaxBinding2584 = FlaxSetter("yzwx", _flaxBinding888, _Vector4_set_yzwx);
+const _flaxBinding2585 = FlaxSetter("ywxz", _flaxBinding888, _Vector4_set_ywxz);
+const _flaxBinding2586 = FlaxSetter("ywzx", _flaxBinding888, _Vector4_set_ywzx);
+const _flaxBinding2587 = FlaxSetter("zxyw", _flaxBinding888, _Vector4_set_zxyw);
+const _flaxBinding2588 = FlaxSetter("zxwy", _flaxBinding888, _Vector4_set_zxwy);
+const _flaxBinding2589 = FlaxSetter("zyxw", _flaxBinding888, _Vector4_set_zyxw);
+const _flaxBinding2590 = FlaxSetter("zywx", _flaxBinding888, _Vector4_set_zywx);
+const _flaxBinding2591 = FlaxSetter("zwxy", _flaxBinding888, _Vector4_set_zwxy);
+const _flaxBinding2592 = FlaxSetter("zwyx", _flaxBinding888, _Vector4_set_zwyx);
+const _flaxBinding2593 = FlaxSetter("wxyz", _flaxBinding888, _Vector4_set_wxyz);
+const _flaxBinding2594 = FlaxSetter("wxzy", _flaxBinding888, _Vector4_set_wxzy);
+const _flaxBinding2595 = FlaxSetter("wyxz", _flaxBinding888, _Vector4_set_wyxz);
+const _flaxBinding2596 = FlaxSetter("wyzx", _flaxBinding888, _Vector4_set_wyzx);
+const _flaxBinding2597 = FlaxSetter("wzxy", _flaxBinding888, _Vector4_set_wzxy);
+const _flaxBinding2598 = FlaxSetter("wzyx", _flaxBinding888, _Vector4_set_wzyx);
+const _flaxBinding2599 = FlaxSetter("r", flaxDoubleType, _Vector4_set_r);
+const _flaxBinding2600 = FlaxSetter("g", flaxDoubleType, _Vector4_set_g);
+const _flaxBinding2601 = FlaxSetter("b", flaxDoubleType, _Vector4_set_b);
+const _flaxBinding2602 = FlaxSetter("a", flaxDoubleType, _Vector4_set_a);
+const _flaxBinding2603 = FlaxSetter("s", flaxDoubleType, _Vector4_set_s);
+const _flaxBinding2604 = FlaxSetter("t", flaxDoubleType, _Vector4_set_t);
+const _flaxBinding2605 = FlaxSetter("p", flaxDoubleType, _Vector4_set_p);
+const _flaxBinding2606 = FlaxSetter("q", flaxDoubleType, _Vector4_set_q);
+const _flaxBinding2607 = FlaxSetter("x", flaxDoubleType, _Vector4_set_x);
+const _flaxBinding2608 = FlaxSetter("y", flaxDoubleType, _Vector4_set_y);
+const _flaxBinding2609 = FlaxSetter("z", flaxDoubleType, _Vector4_set_z);
+const _flaxBinding2610 = FlaxSetter("w", flaxDoubleType, _Vector4_set_w);
+const _flaxBinding2611 = FlaxSetter("rg", _flaxBinding426, _Vector4_set_rg);
+const _flaxBinding2612 = FlaxSetter("rb", _flaxBinding426, _Vector4_set_rb);
+const _flaxBinding2613 = FlaxSetter("ra", _flaxBinding426, _Vector4_set_ra);
+const _flaxBinding2614 = FlaxSetter("gr", _flaxBinding426, _Vector4_set_gr);
+const _flaxBinding2615 = FlaxSetter("gb", _flaxBinding426, _Vector4_set_gb);
+const _flaxBinding2616 = FlaxSetter("ga", _flaxBinding426, _Vector4_set_ga);
+const _flaxBinding2617 = FlaxSetter("br", _flaxBinding426, _Vector4_set_br);
+const _flaxBinding2618 = FlaxSetter("bg", _flaxBinding426, _Vector4_set_bg);
+const _flaxBinding2619 = FlaxSetter("ba", _flaxBinding426, _Vector4_set_ba);
+const _flaxBinding2620 = FlaxSetter("ar", _flaxBinding426, _Vector4_set_ar);
+const _flaxBinding2621 = FlaxSetter("ag", _flaxBinding426, _Vector4_set_ag);
+const _flaxBinding2622 = FlaxSetter("ab", _flaxBinding426, _Vector4_set_ab);
+const _flaxBinding2623 = FlaxSetter("rgb", _flaxBinding517, _Vector4_set_rgb);
+const _flaxBinding2624 = FlaxSetter("rga", _flaxBinding517, _Vector4_set_rga);
+const _flaxBinding2625 = FlaxSetter("rbg", _flaxBinding517, _Vector4_set_rbg);
+const _flaxBinding2626 = FlaxSetter("rba", _flaxBinding517, _Vector4_set_rba);
+const _flaxBinding2627 = FlaxSetter("rag", _flaxBinding517, _Vector4_set_rag);
+const _flaxBinding2628 = FlaxSetter("rab", _flaxBinding517, _Vector4_set_rab);
+const _flaxBinding2629 = FlaxSetter("grb", _flaxBinding517, _Vector4_set_grb);
+const _flaxBinding2630 = FlaxSetter("gra", _flaxBinding517, _Vector4_set_gra);
+const _flaxBinding2631 = FlaxSetter("gbr", _flaxBinding517, _Vector4_set_gbr);
+const _flaxBinding2632 = FlaxSetter("gba", _flaxBinding517, _Vector4_set_gba);
+const _flaxBinding2633 = FlaxSetter("gar", _flaxBinding517, _Vector4_set_gar);
+const _flaxBinding2634 = FlaxSetter("gab", _flaxBinding517, _Vector4_set_gab);
+const _flaxBinding2635 = FlaxSetter("brg", _flaxBinding517, _Vector4_set_brg);
+const _flaxBinding2636 = FlaxSetter("bra", _flaxBinding517, _Vector4_set_bra);
+const _flaxBinding2637 = FlaxSetter("bgr", _flaxBinding517, _Vector4_set_bgr);
+const _flaxBinding2638 = FlaxSetter("bga", _flaxBinding517, _Vector4_set_bga);
+const _flaxBinding2639 = FlaxSetter("bar", _flaxBinding517, _Vector4_set_bar);
+const _flaxBinding2640 = FlaxSetter("bag", _flaxBinding517, _Vector4_set_bag);
+const _flaxBinding2641 = FlaxSetter("arg", _flaxBinding517, _Vector4_set_arg);
+const _flaxBinding2642 = FlaxSetter("arb", _flaxBinding517, _Vector4_set_arb);
+const _flaxBinding2643 = FlaxSetter("agr", _flaxBinding517, _Vector4_set_agr);
+const _flaxBinding2644 = FlaxSetter("agb", _flaxBinding517, _Vector4_set_agb);
+const _flaxBinding2645 = FlaxSetter("abr", _flaxBinding517, _Vector4_set_abr);
+const _flaxBinding2646 = FlaxSetter("abg", _flaxBinding517, _Vector4_set_abg);
+const _flaxBinding2647 = FlaxSetter("rgba", _flaxBinding888, _Vector4_set_rgba);
+const _flaxBinding2648 = FlaxSetter("rgab", _flaxBinding888, _Vector4_set_rgab);
+const _flaxBinding2649 = FlaxSetter("rbga", _flaxBinding888, _Vector4_set_rbga);
+const _flaxBinding2650 = FlaxSetter("rbag", _flaxBinding888, _Vector4_set_rbag);
+const _flaxBinding2651 = FlaxSetter("ragb", _flaxBinding888, _Vector4_set_ragb);
+const _flaxBinding2652 = FlaxSetter("rabg", _flaxBinding888, _Vector4_set_rabg);
+const _flaxBinding2653 = FlaxSetter("grba", _flaxBinding888, _Vector4_set_grba);
+const _flaxBinding2654 = FlaxSetter("grab", _flaxBinding888, _Vector4_set_grab);
+const _flaxBinding2655 = FlaxSetter("gbra", _flaxBinding888, _Vector4_set_gbra);
+const _flaxBinding2656 = FlaxSetter("gbar", _flaxBinding888, _Vector4_set_gbar);
+const _flaxBinding2657 = FlaxSetter("garb", _flaxBinding888, _Vector4_set_garb);
+const _flaxBinding2658 = FlaxSetter("gabr", _flaxBinding888, _Vector4_set_gabr);
+const _flaxBinding2659 = FlaxSetter("brga", _flaxBinding888, _Vector4_set_brga);
+const _flaxBinding2660 = FlaxSetter("brag", _flaxBinding888, _Vector4_set_brag);
+const _flaxBinding2661 = FlaxSetter("bgra", _flaxBinding888, _Vector4_set_bgra);
+const _flaxBinding2662 = FlaxSetter("bgar", _flaxBinding888, _Vector4_set_bgar);
+const _flaxBinding2663 = FlaxSetter("barg", _flaxBinding888, _Vector4_set_barg);
+const _flaxBinding2664 = FlaxSetter("bagr", _flaxBinding888, _Vector4_set_bagr);
+const _flaxBinding2665 = FlaxSetter("argb", _flaxBinding888, _Vector4_set_argb);
+const _flaxBinding2666 = FlaxSetter("arbg", _flaxBinding888, _Vector4_set_arbg);
+const _flaxBinding2667 = FlaxSetter("agrb", _flaxBinding888, _Vector4_set_agrb);
+const _flaxBinding2668 = FlaxSetter("agbr", _flaxBinding888, _Vector4_set_agbr);
+const _flaxBinding2669 = FlaxSetter("abrg", _flaxBinding888, _Vector4_set_abrg);
+const _flaxBinding2670 = FlaxSetter("abgr", _flaxBinding888, _Vector4_set_abgr);
+const _flaxBinding2671 = FlaxSetter("st", _flaxBinding426, _Vector4_set_st);
+const _flaxBinding2672 = FlaxSetter("sp", _flaxBinding426, _Vector4_set_sp);
+const _flaxBinding2673 = FlaxSetter("sq", _flaxBinding426, _Vector4_set_sq);
+const _flaxBinding2674 = FlaxSetter("ts", _flaxBinding426, _Vector4_set_ts);
+const _flaxBinding2675 = FlaxSetter("tp", _flaxBinding426, _Vector4_set_tp);
+const _flaxBinding2676 = FlaxSetter("tq", _flaxBinding426, _Vector4_set_tq);
+const _flaxBinding2677 = FlaxSetter("ps", _flaxBinding426, _Vector4_set_ps);
+const _flaxBinding2678 = FlaxSetter("pt", _flaxBinding426, _Vector4_set_pt);
+const _flaxBinding2679 = FlaxSetter("pq", _flaxBinding426, _Vector4_set_pq);
+const _flaxBinding2680 = FlaxSetter("qs", _flaxBinding426, _Vector4_set_qs);
+const _flaxBinding2681 = FlaxSetter("qt", _flaxBinding426, _Vector4_set_qt);
+const _flaxBinding2682 = FlaxSetter("qp", _flaxBinding426, _Vector4_set_qp);
+const _flaxBinding2683 = FlaxSetter("stp", _flaxBinding517, _Vector4_set_stp);
+const _flaxBinding2684 = FlaxSetter("stq", _flaxBinding517, _Vector4_set_stq);
+const _flaxBinding2685 = FlaxSetter("spt", _flaxBinding517, _Vector4_set_spt);
+const _flaxBinding2686 = FlaxSetter("spq", _flaxBinding517, _Vector4_set_spq);
+const _flaxBinding2687 = FlaxSetter("sqt", _flaxBinding517, _Vector4_set_sqt);
+const _flaxBinding2688 = FlaxSetter("sqp", _flaxBinding517, _Vector4_set_sqp);
+const _flaxBinding2689 = FlaxSetter("tsp", _flaxBinding517, _Vector4_set_tsp);
+const _flaxBinding2690 = FlaxSetter("tsq", _flaxBinding517, _Vector4_set_tsq);
+const _flaxBinding2691 = FlaxSetter("tps", _flaxBinding517, _Vector4_set_tps);
+const _flaxBinding2692 = FlaxSetter("tpq", _flaxBinding517, _Vector4_set_tpq);
+const _flaxBinding2693 = FlaxSetter("tqs", _flaxBinding517, _Vector4_set_tqs);
+const _flaxBinding2694 = FlaxSetter("tqp", _flaxBinding517, _Vector4_set_tqp);
+const _flaxBinding2695 = FlaxSetter("pst", _flaxBinding517, _Vector4_set_pst);
+const _flaxBinding2696 = FlaxSetter("psq", _flaxBinding517, _Vector4_set_psq);
+const _flaxBinding2697 = FlaxSetter("pts", _flaxBinding517, _Vector4_set_pts);
+const _flaxBinding2698 = FlaxSetter("ptq", _flaxBinding517, _Vector4_set_ptq);
+const _flaxBinding2699 = FlaxSetter("pqs", _flaxBinding517, _Vector4_set_pqs);
+const _flaxBinding2700 = FlaxSetter("pqt", _flaxBinding517, _Vector4_set_pqt);
+const _flaxBinding2701 = FlaxSetter("qst", _flaxBinding517, _Vector4_set_qst);
+const _flaxBinding2702 = FlaxSetter("qsp", _flaxBinding517, _Vector4_set_qsp);
+const _flaxBinding2703 = FlaxSetter("qts", _flaxBinding517, _Vector4_set_qts);
+const _flaxBinding2704 = FlaxSetter("qtp", _flaxBinding517, _Vector4_set_qtp);
+const _flaxBinding2705 = FlaxSetter("qps", _flaxBinding517, _Vector4_set_qps);
+const _flaxBinding2706 = FlaxSetter("qpt", _flaxBinding517, _Vector4_set_qpt);
+const _flaxBinding2707 = FlaxSetter("stpq", _flaxBinding888, _Vector4_set_stpq);
+const _flaxBinding2708 = FlaxSetter("stqp", _flaxBinding888, _Vector4_set_stqp);
+const _flaxBinding2709 = FlaxSetter("sptq", _flaxBinding888, _Vector4_set_sptq);
+const _flaxBinding2710 = FlaxSetter("spqt", _flaxBinding888, _Vector4_set_spqt);
+const _flaxBinding2711 = FlaxSetter("sqtp", _flaxBinding888, _Vector4_set_sqtp);
+const _flaxBinding2712 = FlaxSetter("sqpt", _flaxBinding888, _Vector4_set_sqpt);
+const _flaxBinding2713 = FlaxSetter("tspq", _flaxBinding888, _Vector4_set_tspq);
+const _flaxBinding2714 = FlaxSetter("tsqp", _flaxBinding888, _Vector4_set_tsqp);
+const _flaxBinding2715 = FlaxSetter("tpsq", _flaxBinding888, _Vector4_set_tpsq);
+const _flaxBinding2716 = FlaxSetter("tpqs", _flaxBinding888, _Vector4_set_tpqs);
+const _flaxBinding2717 = FlaxSetter("tqsp", _flaxBinding888, _Vector4_set_tqsp);
+const _flaxBinding2718 = FlaxSetter("tqps", _flaxBinding888, _Vector4_set_tqps);
+const _flaxBinding2719 = FlaxSetter("pstq", _flaxBinding888, _Vector4_set_pstq);
+const _flaxBinding2720 = FlaxSetter("psqt", _flaxBinding888, _Vector4_set_psqt);
+const _flaxBinding2721 = FlaxSetter("ptsq", _flaxBinding888, _Vector4_set_ptsq);
+const _flaxBinding2722 = FlaxSetter("ptqs", _flaxBinding888, _Vector4_set_ptqs);
+const _flaxBinding2723 = FlaxSetter("pqst", _flaxBinding888, _Vector4_set_pqst);
+const _flaxBinding2724 = FlaxSetter("pqts", _flaxBinding888, _Vector4_set_pqts);
+const _flaxBinding2725 = FlaxSetter("qstp", _flaxBinding888, _Vector4_set_qstp);
+const _flaxBinding2726 = FlaxSetter("qspt", _flaxBinding888, _Vector4_set_qspt);
+const _flaxBinding2727 = FlaxSetter("qtsp", _flaxBinding888, _Vector4_set_qtsp);
+const _flaxBinding2728 = FlaxSetter("qtps", _flaxBinding888, _Vector4_set_qtps);
+const _flaxBinding2729 = FlaxSetter("qpst", _flaxBinding888, _Vector4_set_qpst);
+const _flaxBinding2730 = FlaxSetter("qpts", _flaxBinding888, _Vector4_set_qpts);
+const _flaxBinding2731 = FlaxInstanceMethod.plain(
+  _flaxBinding638,
+  flaxVoidType,
   _Vector4_setValues,
 );
-const _flaxBinding2750 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding2732 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector4_setZero,
 );
-const _flaxBinding2751 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding2733 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector4_setIdentity,
 );
-const _flaxBinding2752 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding906, required: true),
+const _flaxBinding2734 = <FlaxParameter>[
+  FlaxParameter.required("other", _flaxBinding888),
 ];
-const _flaxBinding2753 = FlaxInstanceMethod(
-  _flaxBinding2752,
-  _flaxBinding70,
+const _flaxBinding2735 = FlaxInstanceMethod.plain(
+  _flaxBinding2734,
+  flaxVoidType,
   _Vector4_setFrom,
 );
-const _flaxBinding2754 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding70,
+const _flaxBinding2736 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  flaxVoidType,
   _Vector4_splat,
 );
-const _flaxBinding2755 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding0,
+const _flaxBinding2737 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxStringType,
   _Vector4_toString,
 );
-const _flaxBinding2756 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding2738 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Vector4_normalize,
 );
-const _flaxBinding2757 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding448,
+const _flaxBinding2739 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxDoubleType,
   _Vector4_normalizeLength,
 );
-const _flaxBinding2758 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding906,
+const _flaxBinding2740 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding888,
   _Vector4_normalized,
 );
-const _flaxBinding2759 = <FlaxParameter>[
-  FlaxParameter("out", _flaxBinding906, required: true),
+const _flaxBinding2741 = <FlaxParameter>[
+  FlaxParameter.required("out", _flaxBinding888),
 ];
-const _flaxBinding2760 = FlaxInstanceMethod(
-  _flaxBinding2759,
-  _flaxBinding906,
+const _flaxBinding2742 = FlaxInstanceMethod.plain(
+  _flaxBinding2741,
+  _flaxBinding888,
   _Vector4_normalizeInto,
 );
-const _flaxBinding2761 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding906, required: true),
+const _flaxBinding2743 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding888),
 ];
-const _flaxBinding2762 = FlaxInstanceMethod(
-  _flaxBinding2761,
-  _flaxBinding448,
+const _flaxBinding2744 = FlaxInstanceMethod.plain(
+  _flaxBinding2743,
+  flaxDoubleType,
   _Vector4_distanceTo,
 );
-const _flaxBinding2763 = FlaxInstanceMethod(
-  _flaxBinding2761,
-  _flaxBinding448,
+const _flaxBinding2745 = FlaxInstanceMethod.plain(
+  _flaxBinding2743,
+  flaxDoubleType,
   _Vector4_distanceToSquared,
 );
-const _flaxBinding2764 = FlaxInstanceMethod(
-  _flaxBinding2752,
-  _flaxBinding448,
+const _flaxBinding2746 = FlaxInstanceMethod.plain(
+  _flaxBinding2734,
+  flaxDoubleType,
   _Vector4_dot,
 );
-const _flaxBinding2765 = FlaxInstanceMethod(
-  _flaxBinding587,
-  _flaxBinding70,
+const _flaxBinding2747 = FlaxInstanceMethod.plain(
+  _flaxBinding569,
+  flaxVoidType,
   _Vector4_applyMatrix4,
 );
-const _flaxBinding2766 = <FlaxParameter>[
-  FlaxParameter("correct", _flaxBinding906, required: true),
+const _flaxBinding2748 = <FlaxParameter>[
+  FlaxParameter.required("correct", _flaxBinding888),
 ];
-const _flaxBinding2767 = FlaxInstanceMethod(
-  _flaxBinding2766,
-  _flaxBinding448,
+const _flaxBinding2749 = FlaxInstanceMethod.plain(
+  _flaxBinding2748,
+  flaxDoubleType,
   _Vector4_relativeError,
 );
-const _flaxBinding2768 = FlaxInstanceMethod(
-  _flaxBinding2766,
-  _flaxBinding448,
+const _flaxBinding2750 = FlaxInstanceMethod.plain(
+  _flaxBinding2748,
+  flaxDoubleType,
   _Vector4_absoluteError,
 );
-const _flaxBinding2769 = FlaxInstanceMethod(
-  _flaxBinding2761,
-  _flaxBinding70,
+const _flaxBinding2751 = FlaxInstanceMethod.plain(
+  _flaxBinding2743,
+  flaxVoidType,
   _Vector4_add,
 );
-const _flaxBinding2770 = <FlaxParameter>[
-  FlaxParameter("arg", _flaxBinding906, required: true),
-  FlaxParameter("factor", _flaxBinding448, required: true),
+const _flaxBinding2752 = <FlaxParameter>[
+  FlaxParameter.required("arg", _flaxBinding888),
+  FlaxParameter.required("factor", flaxDoubleType),
 ];
-const _flaxBinding2771 = FlaxInstanceMethod(
-  _flaxBinding2770,
-  _flaxBinding70,
+const _flaxBinding2753 = FlaxInstanceMethod.plain(
+  _flaxBinding2752,
+  flaxVoidType,
   _Vector4_addScaled,
 );
-const _flaxBinding2772 = FlaxInstanceMethod(
-  _flaxBinding2761,
-  _flaxBinding70,
+const _flaxBinding2754 = FlaxInstanceMethod.plain(
+  _flaxBinding2743,
+  flaxVoidType,
   _Vector4_sub,
 );
-const _flaxBinding2773 = FlaxInstanceMethod(
-  _flaxBinding2761,
-  _flaxBinding70,
+const _flaxBinding2755 = FlaxInstanceMethod.plain(
+  _flaxBinding2743,
+  flaxVoidType,
   _Vector4_multiply,
 );
-const _flaxBinding2774 = FlaxInstanceMethod(
-  _flaxBinding2761,
-  _flaxBinding70,
+const _flaxBinding2756 = FlaxInstanceMethod.plain(
+  _flaxBinding2743,
+  flaxVoidType,
   _Vector4_div,
 );
-const _flaxBinding2775 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding70,
+const _flaxBinding2757 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  flaxVoidType,
   _Vector4_scale,
 );
-const _flaxBinding2776 = FlaxInstanceMethod(
-  _flaxBinding461,
-  _flaxBinding906,
+const _flaxBinding2758 = FlaxInstanceMethod.plain(
+  _flaxBinding445,
+  _flaxBinding888,
   _Vector4_scaled,
 );
-const _flaxBinding2777 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding2759 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector4_negate,
 );
-const _flaxBinding2778 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding2760 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector4_absolute,
 );
-const _flaxBinding2779 = <FlaxParameter>[
-  FlaxParameter("min", _flaxBinding906, required: true),
-  FlaxParameter("max", _flaxBinding906, required: true),
+const _flaxBinding2761 = <FlaxParameter>[
+  FlaxParameter.required("min", _flaxBinding888),
+  FlaxParameter.required("max", _flaxBinding888),
 ];
-const _flaxBinding2780 = FlaxInstanceMethod(
-  _flaxBinding2779,
-  _flaxBinding70,
+const _flaxBinding2762 = FlaxInstanceMethod.plain(
+  _flaxBinding2761,
+  flaxVoidType,
   _Vector4_clamp,
 );
-const _flaxBinding2781 = FlaxInstanceMethod(
-  _flaxBinding1037,
-  _flaxBinding70,
+const _flaxBinding2763 = FlaxInstanceMethod.plain(
+  _flaxBinding1019,
+  flaxVoidType,
   _Vector4_clampScalar,
 );
-const _flaxBinding2782 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding2764 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector4_floor,
 );
-const _flaxBinding2783 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding2765 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector4_ceil,
 );
-const _flaxBinding2784 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding2766 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector4_round,
 );
-const _flaxBinding2785 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding70,
+const _flaxBinding2767 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  flaxVoidType,
   _Vector4_roundToZero,
 );
-const _flaxBinding2786 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding906,
+const _flaxBinding2768 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding888,
   _Vector4_clone,
 );
-const _flaxBinding2787 = FlaxInstanceMethod(
-  _flaxBinding2761,
-  _flaxBinding906,
+const _flaxBinding2769 = FlaxInstanceMethod.plain(
+  _flaxBinding2743,
+  _flaxBinding888,
   _Vector4_copyInto,
 );
-const _flaxBinding2788 = FlaxInstanceMethod(
-  _flaxBinding518,
-  _flaxBinding70,
+const _flaxBinding2770 = FlaxInstanceMethod.plain(
+  _flaxBinding501,
+  flaxVoidType,
   _Vector4_copyIntoArray,
 );
-const _flaxBinding2789 = FlaxInstanceMethod(
-  _flaxBinding518,
-  _flaxBinding70,
+const _flaxBinding2771 = FlaxInstanceMethod.plain(
+  _flaxBinding501,
+  flaxVoidType,
   _Vector4_copyFromArray,
 );
-const _flaxBinding2790 = FlaxInstanceMethod(
-  _flaxBinding520,
-  _flaxBinding448,
+const _flaxBinding2772 = FlaxInstanceMethod.plain(
+  _flaxBinding503,
+  flaxDoubleType,
   _Vector4_operatorGetIndex,
 );
-const _flaxBinding2791 = FlaxInstanceMethod(
-  _flaxBinding522,
-  _flaxBinding70,
+const _flaxBinding2773 = FlaxInstanceMethod.plain(
+  _flaxBinding505,
+  flaxVoidType,
   _Vector4_operatorSetIndex,
 );
-const _flaxBinding2792 = FlaxInstanceMethod(
-  _flaxBinding2752,
-  _flaxBinding906,
+const _flaxBinding2774 = FlaxInstanceMethod.plain(
+  _flaxBinding2734,
+  _flaxBinding888,
   _Vector4_operatorAdd,
 );
-const _flaxBinding2793 = FlaxInstanceMethod(
-  _flaxBinding2752,
-  _flaxBinding906,
+const _flaxBinding2775 = FlaxInstanceMethod.plain(
+  _flaxBinding2734,
+  _flaxBinding888,
   _Vector4_operatorSubtract,
 );
-const _flaxBinding2794 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding906,
+const _flaxBinding2776 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  _flaxBinding888,
   _Vector4_operatorMultiply,
 );
-const _flaxBinding2795 = FlaxInstanceMethod(
-  _flaxBinding495,
-  _flaxBinding906,
+const _flaxBinding2777 = FlaxInstanceMethod.plain(
+  _flaxBinding479,
+  _flaxBinding888,
   _Vector4_operatorDivide,
 );
-const _flaxBinding2796 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding906,
+const _flaxBinding2778 = FlaxInstanceMethod.plain(
+  _flaxBinding35,
+  _flaxBinding888,
   _Vector4_operatorNegate,
 );
-const _flaxBinding2797 = <FlaxParameter>[
-  FlaxParameter("_v4storage", _flaxBinding438, required: true),
+const _flaxBinding2779 = <FlaxParameter>[
+  FlaxParameter.required("_v4storage", _flaxBinding423),
 ];
-const _flaxBinding2798 = FlaxObjectBinding(
+const _flaxBinding2780 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:Vector4",
   [
+    _flaxBinding1513,
+    _flaxBinding1514,
+    _flaxBinding1515,
+    _flaxBinding1516,
+    _flaxBinding1517,
+    _flaxBinding1518,
+    _flaxBinding1519,
+    _flaxBinding1520,
+    _flaxBinding1521,
+    _flaxBinding1522,
+    _flaxBinding1523,
+    _flaxBinding1524,
+    _flaxBinding1525,
+    _flaxBinding1526,
+    _flaxBinding1527,
+    _flaxBinding1528,
+    _flaxBinding1529,
+    _flaxBinding1530,
     _flaxBinding1531,
     _flaxBinding1532,
     _flaxBinding1533,
@@ -20050,6 +23927,64 @@ const _flaxBinding2798 = FlaxObjectBinding(
     _flaxBinding2535,
     _flaxBinding2536,
     _flaxBinding2537,
+  ],
+  {
+    "setValues": _flaxBinding2731,
+    "setZero": _flaxBinding2732,
+    "setIdentity": _flaxBinding2733,
+    "setFrom": _flaxBinding2735,
+    "splat": _flaxBinding2736,
+    "toString": _flaxBinding2737,
+    "normalize": _flaxBinding2738,
+    "normalizeLength": _flaxBinding2739,
+    "normalized": _flaxBinding2740,
+    "normalizeInto": _flaxBinding2742,
+    "distanceTo": _flaxBinding2744,
+    "distanceToSquared": _flaxBinding2745,
+    "dot": _flaxBinding2746,
+    "applyMatrix4": _flaxBinding2747,
+    "relativeError": _flaxBinding2749,
+    "absoluteError": _flaxBinding2750,
+    "add": _flaxBinding2751,
+    "addScaled": _flaxBinding2753,
+    "sub": _flaxBinding2754,
+    "multiply": _flaxBinding2755,
+    "div": _flaxBinding2756,
+    "scale": _flaxBinding2757,
+    "scaled": _flaxBinding2758,
+    "negate": _flaxBinding2759,
+    "absolute": _flaxBinding2760,
+    "clamp": _flaxBinding2762,
+    "clampScalar": _flaxBinding2763,
+    "floor": _flaxBinding2764,
+    "ceil": _flaxBinding2765,
+    "round": _flaxBinding2766,
+    "roundToZero": _flaxBinding2767,
+    "clone": _flaxBinding2768,
+    "copyInto": _flaxBinding2769,
+    "copyIntoArray": _flaxBinding2770,
+    "copyFromArray": _flaxBinding2771,
+    "operatorGetIndex": _flaxBinding2772,
+    "operatorSetIndex": _flaxBinding2773,
+    "operatorAdd": _flaxBinding2774,
+    "operatorSubtract": _flaxBinding2775,
+    "operatorMultiply": _flaxBinding2776,
+    "operatorDivide": _flaxBinding2777,
+    "operatorNegate": _flaxBinding2778,
+  },
+  constructors: {
+    "": _flaxBinding638,
+    "array": _flaxBinding501,
+    "zero": _flaxBinding35,
+    "identity": _flaxBinding35,
+    "all": _flaxBinding1037,
+    "copy": _flaxBinding2734,
+    "fromFloat64List": _flaxBinding2779,
+    "fromBuffer": _flaxBinding684,
+  },
+  create: _createVector4,
+  matches: _isVector4,
+  setters: [
     _flaxBinding2538,
     _flaxBinding2539,
     _flaxBinding2540,
@@ -20068,64 +24003,6 @@ const _flaxBinding2798 = FlaxObjectBinding(
     _flaxBinding2553,
     _flaxBinding2554,
     _flaxBinding2555,
-  ],
-  {
-    "setValues": _flaxBinding2749,
-    "setZero": _flaxBinding2750,
-    "setIdentity": _flaxBinding2751,
-    "setFrom": _flaxBinding2753,
-    "splat": _flaxBinding2754,
-    "toString": _flaxBinding2755,
-    "normalize": _flaxBinding2756,
-    "normalizeLength": _flaxBinding2757,
-    "normalized": _flaxBinding2758,
-    "normalizeInto": _flaxBinding2760,
-    "distanceTo": _flaxBinding2762,
-    "distanceToSquared": _flaxBinding2763,
-    "dot": _flaxBinding2764,
-    "applyMatrix4": _flaxBinding2765,
-    "relativeError": _flaxBinding2767,
-    "absoluteError": _flaxBinding2768,
-    "add": _flaxBinding2769,
-    "addScaled": _flaxBinding2771,
-    "sub": _flaxBinding2772,
-    "multiply": _flaxBinding2773,
-    "div": _flaxBinding2774,
-    "scale": _flaxBinding2775,
-    "scaled": _flaxBinding2776,
-    "negate": _flaxBinding2777,
-    "absolute": _flaxBinding2778,
-    "clamp": _flaxBinding2780,
-    "clampScalar": _flaxBinding2781,
-    "floor": _flaxBinding2782,
-    "ceil": _flaxBinding2783,
-    "round": _flaxBinding2784,
-    "roundToZero": _flaxBinding2785,
-    "clone": _flaxBinding2786,
-    "copyInto": _flaxBinding2787,
-    "copyIntoArray": _flaxBinding2788,
-    "copyFromArray": _flaxBinding2789,
-    "operatorGetIndex": _flaxBinding2790,
-    "operatorSetIndex": _flaxBinding2791,
-    "operatorAdd": _flaxBinding2792,
-    "operatorSubtract": _flaxBinding2793,
-    "operatorMultiply": _flaxBinding2794,
-    "operatorDivide": _flaxBinding2795,
-    "operatorNegate": _flaxBinding2796,
-  },
-  constructors: {
-    "": _flaxBinding656,
-    "array": _flaxBinding518,
-    "zero": _flaxBinding42,
-    "identity": _flaxBinding42,
-    "all": _flaxBinding1055,
-    "copy": _flaxBinding2752,
-    "fromFloat64List": _flaxBinding2797,
-    "fromBuffer": _flaxBinding702,
-  },
-  create: _createVector4,
-  matches: _isVector4,
-  setters: [
     _flaxBinding2556,
     _flaxBinding2557,
     _flaxBinding2558,
@@ -20301,71 +24178,57 @@ const _flaxBinding2798 = FlaxObjectBinding(
     _flaxBinding2728,
     _flaxBinding2729,
     _flaxBinding2730,
-    _flaxBinding2731,
-    _flaxBinding2732,
-    _flaxBinding2733,
-    _flaxBinding2734,
-    _flaxBinding2735,
-    _flaxBinding2736,
-    _flaxBinding2737,
-    _flaxBinding2738,
-    _flaxBinding2739,
-    _flaxBinding2740,
-    _flaxBinding2741,
-    _flaxBinding2742,
-    _flaxBinding2743,
-    _flaxBinding2744,
-    _flaxBinding2745,
-    _flaxBinding2746,
-    _flaxBinding2747,
-    _flaxBinding2748,
   ],
   supertypes: [
     "dart:core::Object",
     "package:vector_math/vector_math_64.dart::Vector",
   ],
 );
-const _flaxBinding2799 = FlaxGetter(
+const _flaxBinding2781 = FlaxGetter.plain(
   "der",
-  _flaxBinding14,
+  flaxUint8ListType,
   _X509Certificate_der,
 );
-const _flaxBinding2800 = FlaxGetter("pem", _flaxBinding0, _X509Certificate_pem);
-const _flaxBinding2801 = FlaxGetter(
+const _flaxBinding2782 = FlaxGetter.plain(
+  "pem",
+  flaxStringType,
+  _X509Certificate_pem,
+);
+const _flaxBinding2783 = FlaxGetter.plain(
   "sha1",
-  _flaxBinding14,
+  flaxUint8ListType,
   _X509Certificate_sha1,
 );
-const _flaxBinding2802 = FlaxGetter(
+const _flaxBinding2784 = FlaxGetter.plain(
   "subject",
-  _flaxBinding0,
+  flaxStringType,
   _X509Certificate_subject,
 );
-const _flaxBinding2803 = FlaxGetter(
+const _flaxBinding2785 = FlaxGetter.plain(
   "issuer",
-  _flaxBinding0,
+  flaxStringType,
   _X509Certificate_issuer,
 );
-const _flaxBinding2804 = FlaxGetter(
+const _flaxBinding2786 = FlaxGetter.plain(
   "startValidity",
-  _flaxBinding106,
+  flaxDateTimeType,
   _X509Certificate_startValidity,
 );
-const _flaxBinding2805 = FlaxGetter(
+const _flaxBinding2787 = FlaxGetter.plain(
   "endValidity",
-  _flaxBinding106,
+  flaxDateTimeType,
   _X509Certificate_endValidity,
 );
-const _flaxBinding2806 = FlaxObjectBinding(
+const _flaxBinding2788 = FlaxObjectBinding(
   "flax.core/sdk_dependencies#type:X509Certificate",
   [
-    _flaxBinding2799,
-    _flaxBinding2800,
-    _flaxBinding2801,
-    _flaxBinding2802,
-    _flaxBinding2803,
-    _flaxBinding2804,
-    _flaxBinding2805,
+    _flaxBinding2781,
+    _flaxBinding2782,
+    _flaxBinding2783,
+    _flaxBinding2784,
+    _flaxBinding2785,
+    _flaxBinding2786,
+    _flaxBinding2787,
   ],
   {},
   constructors: {},
@@ -20374,37 +24237,37 @@ const _flaxBinding2806 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding2807 = FlaxTypeRef(
+const _flaxBinding2789 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Encoding",
   nullable: true,
 );
-const _flaxBinding2808 = FlaxTypeRef(
+const _flaxBinding2790 = FlaxTypeRef(
   "future",
-  item: _flaxBinding152,
+  item: _flaxBinding142,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:FileSystemEntityType",
     _future23Adapt,
   ),
 );
-const _flaxBinding2809 = FlaxTypeRef(
+const _flaxBinding2791 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Flow",
 );
-const _flaxBinding2810 = FlaxTypeRef(
+const _flaxBinding2792 = FlaxTypeRef(
   "map",
   nullable: true,
-  item: _flaxBinding0,
-  key: _flaxBinding0,
+  item: flaxStringType,
+  key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[String:][String:]",
     _collection21Create,
     _collection21Matches,
   ),
 );
-const _flaxBinding2811 = FlaxTypeRef(
+const _flaxBinding2793 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding366,
+  item: _flaxBinding351,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dependencies#type:InternetAddress]",
     _collection23Create,
@@ -20412,93 +24275,79 @@ const _flaxBinding2811 = FlaxTypeRef(
     restore: _collection23Restore,
   ),
 );
-const _flaxBinding2812 = FlaxTypeRef(
+const _flaxBinding2794 = FlaxTypeRef(
   "list",
-  item: _flaxBinding366,
+  item: _flaxBinding351,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dependencies#type:InternetAddress]",
     _collection22Create,
     _collection22Matches,
   ),
-  iterable: _flaxBinding2811,
+  iterable: _flaxBinding2793,
 );
-const _flaxBinding2813 = FlaxTypeRef(
+const _flaxBinding2795 = FlaxTypeRef(
   "future",
-  item: _flaxBinding2812,
+  item: _flaxBinding2794,
   future: FlaxFutureBinding(
     "list:[object:flax.core/sdk_dependencies#type:InternetAddress]",
     _future24Adapt,
   ),
 );
-const _flaxBinding2814 = FlaxTypeRef(
+const _flaxBinding2796 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:InternetAddress",
   nullable: true,
 );
-const _flaxBinding2815 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "line",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding70,
+const _flaxBinding2797 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("line", flaxStringType)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<String>,
   id: "callback:<>(p:r:line:String:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<String>,
   matches: FlaxCallbackAdapters.matchesVoid1<String>,
 );
-const _flaxBinding2816 = FlaxTypeRef(
+const _flaxBinding2798 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding2815,
+  callback: _flaxBinding2797,
 );
-const _flaxBinding2817 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "certificate",
-      _flaxBinding184,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding20,
+const _flaxBinding2799 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("certificate", _flaxBinding173)],
+  flaxBoolType,
   FlaxCallbackAdapters.wrap1<api3.X509Certificate, bool>,
   id: "callback:<>(p:r:certificate:object:flax.core/sdk_dependencies#type:X509Certificate)->bool:",
   invoke: FlaxCallbackAdapters.invoke1<api3.X509Certificate, bool>,
   matches: FlaxCallbackAdapters.matches1<api3.X509Certificate, bool>,
 );
-const _flaxBinding2818 = FlaxTypeRef(
+const _flaxBinding2800 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding2817,
+  callback: _flaxBinding2799,
 );
-const _flaxBinding2819 = FlaxTypeRef(
+const _flaxBinding2801 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:SecureSocket",
 );
-const _flaxBinding2820 = FlaxTypeRef(
+const _flaxBinding2802 = FlaxTypeRef(
   "future",
-  item: _flaxBinding2819,
+  item: _flaxBinding2801,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dependencies#type:SecureSocket",
     _future25Adapt,
   ),
 );
-const _flaxBinding2821 = FlaxTypeRef(
+const _flaxBinding2803 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding2,
+  item: flaxIntType,
   collection: FlaxCollectionBinding(
     "list:[int:]",
     _collection0Create,
     _collection0Matches,
   ),
-  iterable: _flaxBinding3,
+  iterable: _flaxBinding1,
 );
-const _flaxBinding2822 = FlaxTypeRef(
+const _flaxBinding2804 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:SecurityContext",
 );

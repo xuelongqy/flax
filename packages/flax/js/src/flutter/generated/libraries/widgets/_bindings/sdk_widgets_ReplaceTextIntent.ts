@@ -19,18 +19,31 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import { _flaxMemberParameters334, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters319, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ReplaceTextIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::ReplaceTextIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __ReplaceTextIntent: unique symbol;
 readonly [_flaxDartTypeValue]: ReplaceTextIntent;
 
+readonly currentTextEditingValue: upstream2.TextEditingValue;
+readonly replacementText: string;
+readonly replacementRange: upstream3.TextRange;
+readonly cause: upstream4.SelectionChangedCause;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream6.DiagnosticsTreeStyle | null | undefined}): upstream5.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream8.DiagnosticLevel | undefined}): string;
 }
 defineObject("flax.core/sdk_widgets#type:ReplaceTextIntent", ["currentTextEditingValue","replacementText","replacementRange","cause"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ReplaceTextIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
-const _ReplaceTextIntentProxy = {type: "flax.core/sdk_widgets#type:ReplaceTextIntent", parameters: _flaxMemberParameters334, constructors: {"": _flaxMemberParameters334}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["currentTextEditingValue","replacementText","replacementRange","cause"], setters: [], contextMembers: [], superMembers: ["get:currentTextEditingValue","get:replacementText","get:replacementRange","get:cause","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface ReplaceTextIntent {
-readonly [_flaxDartTypeValue]: ReplaceTextIntent;
+export function _ReplaceTextIntentFactory(currentTextEditingValue: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>, replacementText: string, replacementRange: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>, cause: upstream4.SelectionChangedCause): ReplaceTextIntent {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 4) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:ReplaceTextIntent", "", [{"name":"currentTextEditingValue","required":true,"positional":true},{"name":"replacementText","required":true,"positional":true},{"name":"replacementRange","required":true,"positional":true},{"name":"cause","required":true,"positional":true}], [currentTextEditingValue, replacementText, replacementRange, cause], {}) as ReplaceTextIntent;
+}
+const _ReplaceTextIntentProxy = {type: "flax.core/sdk_widgets#type:ReplaceTextIntent", parameters: _flaxMemberParameters319, constructors: {"": _flaxMemberParameters319}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["currentTextEditingValue","replacementText","replacementRange","cause"], setters: [], contextMembers: [], superMembers: ["get:currentTextEditingValue","get:replacementText","get:replacementRange","get:cause","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+export interface _ReplaceTextIntentNative extends ReplaceTextIntent {
+readonly [_flaxDartTypeValue]: _ReplaceTextIntentNative;
 
 toStringShort(): string;
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream6.DiagnosticsTreeStyle | null | undefined}): upstream5.DiagnosticsNode;
@@ -41,14 +54,15 @@ get replacementText(): string;
 get replacementRange(): upstream3.TextRange;
 get cause(): upstream4.SelectionChangedCause;
 }
-export abstract class ReplaceTextIntent extends _FlaxProxyBase {
+export abstract class _ReplaceTextIntentNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ReplaceTextIntent>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ReplaceTextIntent;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ReplaceTextIntent", readonly [], false];
 constructor(currentTextEditingValue: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>, replacementText: string, replacementRange: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>, cause: upstream4.SelectionChangedCause) { super(_ReplaceTextIntentProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ReplaceTextIntent.prototype, _ReplaceTextIntentProxy);
-export namespace ReplaceTextIntent { export function implement(args: [currentTextEditingValue: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>, replacementText: string, replacementRange: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>, cause: upstream4.SelectionChangedCause], implementation: {}): ReplaceTextIntent {
+_flaxDefineProxyBase(_ReplaceTextIntentNative.prototype, _ReplaceTextIntentProxy);
+export namespace _ReplaceTextIntentFactory { export function implement(args: [currentTextEditingValue: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>, replacementText: string, replacementRange: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>, cause: upstream4.SelectionChangedCause], implementation: {}): ReplaceTextIntent {
 return constructProxy(_ReplaceTextIntentProxy, args, implementation) as ReplaceTextIntent; } }
-_flaxBindInstanceType<ReplaceTextIntent, typeof ReplaceTextIntent>(ReplaceTextIntent, "flax.core/sdk_widgets#type:ReplaceTextIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _ReplaceTextIntentBinding = _flaxProxyFactory(_ReplaceTextIntentFactory, _ReplaceTextIntentNative) as unknown as typeof _ReplaceTextIntentFactory & (new(currentTextEditingValue: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>, replacementText: string, replacementRange: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>, cause: upstream4.SelectionChangedCause) => _ReplaceTextIntentNative);
+export const ReplaceTextIntent: typeof _ReplaceTextIntentBinding & _FlaxInstanceType<ReplaceTextIntent> & _FlaxDartType<ReplaceTextIntent, readonly ["class", "flax.core/sdk_widgets#type:ReplaceTextIntent", readonly [], false]> = _flaxBindInstanceType<ReplaceTextIntent, typeof _ReplaceTextIntentBinding>(_ReplaceTextIntentBinding, "flax.core/sdk_widgets#type:ReplaceTextIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ReplaceTextIntentBinding & _FlaxInstanceType<ReplaceTextIntent> & _FlaxDartType<ReplaceTextIntent, readonly ["class", "flax.core/sdk_widgets#type:ReplaceTextIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "currentTextEditingValue" | "replacementText" | "replacementRange" | "cause" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::ReplaceTextIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

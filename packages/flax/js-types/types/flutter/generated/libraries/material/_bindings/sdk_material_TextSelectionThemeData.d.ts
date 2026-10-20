@@ -11,7 +11,7 @@ import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextSelectionThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/text_selection_theme.dart::TextSelectionThemeData": readonly [];
 }>, Readonly<{
@@ -19,9 +19,45 @@ export interface TextSelectionThemeData extends Omit<upstream0.Diagnosticable, _
 }> {
     readonly __TextSelectionThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: TextSelectionThemeData;
+    readonly cursorColor: upstream1.Color | null;
+    readonly selectionColor: upstream1.Color | null;
+    readonly selectionHandleColor: upstream1.Color | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream2.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream4.DiagnosticsTreeStyle | null | undefined;
+    }): upstream3.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        cursorColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        selectionColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        selectionHandleColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+    }): TextSelectionThemeData;
 }
-export interface TextSelectionThemeData {
-    readonly [_flaxDartTypeValue]: TextSelectionThemeData;
+export declare function _TextSelectionThemeDataFactory(options?: {
+    cursorColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectionColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectionHandleColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+}): TextSelectionThemeData;
+export interface _TextSelectionThemeDataNative extends TextSelectionThemeData {
+    readonly [_flaxDartTypeValue]: _TextSelectionThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream2.DiagnosticLevel | undefined;
@@ -48,7 +84,7 @@ export interface TextSelectionThemeData {
     get selectionColor(): upstream1.Color | null;
     get selectionHandleColor(): upstream1.Color | null;
 }
-export declare abstract class TextSelectionThemeData extends _FlaxProxyBase {
+export declare abstract class _TextSelectionThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TextSelectionThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TextSelectionThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:TextSelectionThemeData", readonly [], false];
@@ -64,7 +100,7 @@ export declare abstract class TextSelectionThemeData extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace TextSelectionThemeData {
+export declare namespace _TextSelectionThemeDataFactory {
     function implement(args: [options?: {
         cursorColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -77,7 +113,18 @@ export declare namespace TextSelectionThemeData {
         }> | null | undefined;
     }], implementation: {}): TextSelectionThemeData;
 }
-export declare namespace TextSelectionThemeData {
+declare const _TextSelectionThemeDataBinding: typeof _TextSelectionThemeDataFactory & (new (options?: {
+    cursorColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectionColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectionHandleColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+}) => _TextSelectionThemeDataNative);
+export declare namespace _TextSelectionThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/text_selection_theme.dart::TextSelectionThemeData": readonly [];
     }> & Readonly<{
@@ -88,5 +135,6 @@ export declare namespace TextSelectionThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): TextSelectionThemeData | null;
 }
+export declare const TextSelectionThemeData: typeof _TextSelectionThemeDataBinding & _FlaxInstanceType<TextSelectionThemeData> & _FlaxDartType<TextSelectionThemeData, readonly ["class", "flax.core/sdk_material#type:TextSelectionThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "cursorColor" | "selectionColor" | "selectionHandleColor" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/text_selection_theme.dart::TextSelectionThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

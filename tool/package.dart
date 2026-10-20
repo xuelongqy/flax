@@ -25,9 +25,9 @@ Future<void> main(List<String> arguments) => command(() async {
         'Usage: dart run tool/package.dart bindings [--check]',
       );
     }
-    final packagesWithBindings = discoverPackages(root)
-        .where((package) => bindingConfigs(package).isNotEmpty)
-        .toList();
+    final packagesWithBindings = bindingPackagesInDependencyOrder(
+      discoverPackages(root),
+    );
     if (packagesWithBindings.isEmpty) {
       throw StateError('No binding configs found');
     }

@@ -15,18 +15,28 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import { _flaxMemberParameters88, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters67, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface SelectAllTextIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::SelectAllTextIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __SelectAllTextIntent: unique symbol;
 readonly [_flaxDartTypeValue]: SelectAllTextIntent;
 
+readonly cause: upstream2.SelectionChangedCause;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream4.DiagnosticsTreeStyle | null | undefined}): upstream3.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream6.DiagnosticLevel | undefined}): string;
 }
 defineObject("flax.core/sdk_widgets#type:SelectAllTextIntent", ["cause"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SelectAllTextIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
-const _SelectAllTextIntentProxy = {type: "flax.core/sdk_widgets#type:SelectAllTextIntent", parameters: _flaxMemberParameters88, constructors: {"": _flaxMemberParameters88}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["cause"], setters: [], contextMembers: [], superMembers: ["get:cause","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface SelectAllTextIntent {
-readonly [_flaxDartTypeValue]: SelectAllTextIntent;
+export function _SelectAllTextIntentFactory(cause: upstream2.SelectionChangedCause): SelectAllTextIntent {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:SelectAllTextIntent", "", [{"name":"cause","required":true,"positional":true}], [cause], {}) as SelectAllTextIntent;
+}
+const _SelectAllTextIntentProxy = {type: "flax.core/sdk_widgets#type:SelectAllTextIntent", parameters: _flaxMemberParameters67, constructors: {"": _flaxMemberParameters67}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["cause"], setters: [], contextMembers: [], superMembers: ["get:cause","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+export interface _SelectAllTextIntentNative extends SelectAllTextIntent {
+readonly [_flaxDartTypeValue]: _SelectAllTextIntentNative;
 
 toStringShort(): string;
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream4.DiagnosticsTreeStyle | null | undefined}): upstream3.DiagnosticsNode;
@@ -34,14 +44,15 @@ debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foun
 toString(options?: {minLevel?: upstream6.DiagnosticLevel | undefined}): string;
 get cause(): upstream2.SelectionChangedCause;
 }
-export abstract class SelectAllTextIntent extends _FlaxProxyBase {
+export abstract class _SelectAllTextIntentNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SelectAllTextIntent>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: SelectAllTextIntent;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:SelectAllTextIntent", readonly [], false];
 constructor(cause: upstream2.SelectionChangedCause) { super(_SelectAllTextIntentProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(SelectAllTextIntent.prototype, _SelectAllTextIntentProxy);
-export namespace SelectAllTextIntent { export function implement(args: [cause: upstream2.SelectionChangedCause], implementation: {}): SelectAllTextIntent {
+_flaxDefineProxyBase(_SelectAllTextIntentNative.prototype, _SelectAllTextIntentProxy);
+export namespace _SelectAllTextIntentFactory { export function implement(args: [cause: upstream2.SelectionChangedCause], implementation: {}): SelectAllTextIntent {
 return constructProxy(_SelectAllTextIntentProxy, args, implementation) as SelectAllTextIntent; } }
-_flaxBindInstanceType<SelectAllTextIntent, typeof SelectAllTextIntent>(SelectAllTextIntent, "flax.core/sdk_widgets#type:SelectAllTextIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _SelectAllTextIntentBinding = _flaxProxyFactory(_SelectAllTextIntentFactory, _SelectAllTextIntentNative) as unknown as typeof _SelectAllTextIntentFactory & (new(cause: upstream2.SelectionChangedCause) => _SelectAllTextIntentNative);
+export const SelectAllTextIntent: typeof _SelectAllTextIntentBinding & _FlaxInstanceType<SelectAllTextIntent> & _FlaxDartType<SelectAllTextIntent, readonly ["class", "flax.core/sdk_widgets#type:SelectAllTextIntent", readonly [], false]> = _flaxBindInstanceType<SelectAllTextIntent, typeof _SelectAllTextIntentBinding>(_SelectAllTextIntentBinding, "flax.core/sdk_widgets#type:SelectAllTextIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SelectAllTextIntentBinding & _FlaxInstanceType<SelectAllTextIntent> & _FlaxDartType<SelectAllTextIntent, readonly ["class", "flax.core/sdk_widgets#type:SelectAllTextIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "cause" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::SelectAllTextIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

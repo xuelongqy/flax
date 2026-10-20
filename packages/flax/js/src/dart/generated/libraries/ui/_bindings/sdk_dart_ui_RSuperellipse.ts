@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import { _flaxMemberParameters95, _flaxMemberParameters0, _flaxMemberParameters71, _flaxMemberParameters128 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
+import { _flaxMemberParameters98, _flaxMemberParameters0, _flaxMemberParameters74, _flaxMemberParameters130 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface RSuperellipse extends Readonly<{ "__flaxBound:dart:ui::RSuperellipse": readonly [] }>, Readonly<{ "__flaxBound:dart:ui::_RRectLike": readonly [RSuperellipse] }> { readonly __RSuperellipse: unique symbol;
@@ -53,7 +53,7 @@ inflate(delta: number): RSuperellipse;
 deflate(delta: number): RSuperellipse;
 scaleRadii(): RSuperellipse;
 }
-defineObject("flax.core/sdk_dart_ui#type:RSuperellipse", ["left","top","right","bottom","tlRadiusX","tlRadiusY","tlRadius","trRadiusX","trRadiusY","trRadius","brRadiusX","brRadiusY","brRadius","blRadiusX","blRadiusY","blRadius","width","height","outerRect","safeInnerRect","middleRect","wideMiddleRect","tallMiddleRect","isEmpty","isFinite","isRect","isStadium","isEllipse","isCircle","shortestSide","longestSide","hasNaN","center"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:RSuperellipse", "object", {"contains":_flaxMemberParameters95,"toString":_flaxMemberParameters0,"shift":_flaxMemberParameters71,"inflate":_flaxMemberParameters128,"deflate":_flaxMemberParameters128,"scaleRadii":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_dart_ui#type:RSuperellipse", ["left","top","right","bottom","tlRadiusX","tlRadiusY","tlRadius","trRadiusX","trRadiusY","trRadius","brRadiusX","brRadiusY","brRadius","blRadiusX","blRadiusY","blRadius","width","height","outerRect","safeInnerRect","middleRect","wideMiddleRect","tallMiddleRect","isEmpty","isFinite","isRect","isStadium","isEllipse","isCircle","shortestSide","longestSide","hasNaN","center"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:RSuperellipse", "object", {"contains":_flaxMemberParameters98,"toString":_flaxMemberParameters0,"shift":_flaxMemberParameters74,"inflate":_flaxMemberParameters130,"deflate":_flaxMemberParameters130,"scaleRadii":_flaxMemberParameters0}, {}), []);
 export namespace _RSuperellipseFactory {
 export function fromLTRBXY(left: number, top: number, right: number, bottom: number, radiusX: number, radiusY: number): RSuperellipse {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');

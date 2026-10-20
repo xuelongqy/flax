@@ -16,7 +16,7 @@ import type * as upstream6 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_AnimationStatus';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animatable';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TrainHoppingAnimation extends Omit<upstream0.Animation<number>, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.Animation<number>>, Omit<upstream2.ValueListenable<number>, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable>, Omit<upstream3.AnimationEagerListenerMixin, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable | keyof upstream2.ValueListenable<number>>, Omit<upstream4.AnimationLocalListenersMixin, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable | keyof upstream2.ValueListenable<number> | keyof upstream3.AnimationEagerListenerMixin>, Omit<upstream5.AnimationLocalStatusListenersMixin, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable | keyof upstream2.ValueListenable<number> | keyof upstream3.AnimationEagerListenerMixin | keyof upstream4.AnimationLocalListenersMixin>, Readonly<{
     "__flaxBound:package:flutter/src/animation/animations.dart::TrainHoppingAnimation": readonly [];
 }>, Readonly<{
@@ -37,9 +37,49 @@ export interface TrainHoppingAnimation extends Omit<upstream0.Animation<number>,
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature0;
     };
+    readonly status: upstream6.AnimationStatus;
+    readonly value: number;
+    readonly isDismissed: boolean;
+    readonly isCompleted: boolean;
+    readonly isAnimating: boolean;
+    readonly isForwardOrCompleted: boolean;
+    readonly currentTrain: upstream0.Animation<number> | null;
+    get onSwitchedTrain(): (() => void) | null;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    addStatusListener(listener: ((status: upstream6.AnimationStatus) => void)): void;
+    removeStatusListener(listener: ((status: upstream6.AnimationStatus) => void)): void;
+    drive<U extends unknown | null = unknown | null>(child: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_FlaxDartOutput<U>];
+    }>): upstream0.Animation<_FlaxDartOutput<U>>;
+    toString(): string;
+    toStringDetails(): string;
+    didRegisterListener(): void;
+    didUnregisterListener(): void;
+    dispose(): void;
+    clearListeners(): void;
+    notifyListeners(): void;
+    clearStatusListeners(): void;
+    notifyStatusListeners(status: upstream6.AnimationStatus): void;
+    set onSwitchedTrain(value: (() => void) | null);
 }
-export interface TrainHoppingAnimation {
-    readonly [_flaxDartTypeValue]: TrainHoppingAnimation;
+export declare function _TrainHoppingAnimationFactory(_currentTrain: Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+}>, _nextTrain: (Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+}>) | null, options?: {
+    onSwitchedTrain?: (() => void) | null | undefined;
+}): TrainHoppingAnimation;
+export interface _TrainHoppingAnimationNative extends TrainHoppingAnimation {
+    readonly [_flaxDartTypeValue]: _TrainHoppingAnimationNative;
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature1;
     };
@@ -69,7 +109,7 @@ export interface TrainHoppingAnimation {
     get isForwardOrCompleted(): boolean;
     set onSwitchedTrain(value: (() => void) | null);
 }
-export declare abstract class TrainHoppingAnimation extends _FlaxProxyBase {
+export declare abstract class _TrainHoppingAnimationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TrainHoppingAnimation>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TrainHoppingAnimation;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_animation#type:TrainHoppingAnimation", readonly [], false];
@@ -89,7 +129,7 @@ export declare abstract class TrainHoppingAnimation extends _FlaxProxyBase {
         onSwitchedTrain?: (() => void) | null | undefined;
     });
 }
-export declare namespace TrainHoppingAnimation {
+export declare namespace _TrainHoppingAnimationFactory {
     function implement(args: [_currentTrain: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
@@ -106,6 +146,22 @@ export declare namespace TrainHoppingAnimation {
         onSwitchedTrain?: (() => void) | null | undefined;
     }], implementation: {}): TrainHoppingAnimation;
 }
+declare const _TrainHoppingAnimationBinding: typeof _TrainHoppingAnimationFactory & (new (_currentTrain: Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+}>, _nextTrain: (Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+}>) | null, options?: {
+    onSwitchedTrain?: (() => void) | null | undefined;
+}) => _TrainHoppingAnimationNative);
+export declare const TrainHoppingAnimation: typeof _TrainHoppingAnimationBinding & _FlaxInstanceType<TrainHoppingAnimation> & _FlaxDartType<TrainHoppingAnimation, readonly ["class", "flax.core/sdk_animation#type:TrainHoppingAnimation", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "currentTrain" | "onSwitchedTrain" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "dispose" | "clearListeners" | "notifyListeners" | "clearStatusListeners" | "notifyStatusListeners" | "__flaxBound:package:flutter/src/animation/animations.dart::TrainHoppingAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{

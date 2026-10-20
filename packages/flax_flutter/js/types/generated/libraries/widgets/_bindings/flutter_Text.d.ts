@@ -35,7 +35,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessWidget';
-import { FlaxProxyBase as _FlaxProxyBase, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export type Text = TextDescription | _TextNative;
 export type TextDescription = WidgetDescription & {
@@ -43,6 +43,86 @@ export type TextDescription = WidgetDescription & {
 };
 export interface _TextNative extends _FlaxDartWidget {
     readonly [_flaxDartTypeValue]: _TextNative;
+    readonly [_flaxDartConstructors]?: {
+        "": (data: string, options?: {
+            key?: Readonly<{
+                "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+            }> | null | undefined;
+            style?: (Readonly<{
+                "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>) | null | undefined;
+            strutStyle?: (Readonly<{
+                "__flaxBound:package:flutter/src/painting/strut_style.dart::StrutStyle": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>) | null | undefined;
+            textAlign?: upstream3.TextAlign | null | undefined;
+            textDirection?: upstream4.TextDirection | null | undefined;
+            locale?: Readonly<{
+                "__flaxBound:dart:ui::Locale": readonly [];
+            }> | null | undefined;
+            softWrap?: boolean | null | undefined;
+            overflow?: upstream6.TextOverflow | null | undefined;
+            textScaleFactor?: number | null | undefined;
+            textScaler?: Readonly<{
+                "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+            }> | null | undefined;
+            maxLines?: number | null | undefined;
+            semanticsLabel?: string | null | undefined;
+            semanticsIdentifier?: string | null | undefined;
+            textWidthBasis?: upstream8.TextWidthBasis | null | undefined;
+            textHeightBehavior?: Readonly<{
+                "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
+            }> | null | undefined;
+            selectionColor?: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }> | null | undefined;
+        }) => void;
+        "rich": (textSpan: Readonly<{
+            "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>, options?: {
+            key?: Readonly<{
+                "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+            }> | null | undefined;
+            style?: (Readonly<{
+                "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>) | null | undefined;
+            strutStyle?: (Readonly<{
+                "__flaxBound:package:flutter/src/painting/strut_style.dart::StrutStyle": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+            }>) | null | undefined;
+            textAlign?: upstream3.TextAlign | null | undefined;
+            textDirection?: upstream4.TextDirection | null | undefined;
+            locale?: Readonly<{
+                "__flaxBound:dart:ui::Locale": readonly [];
+            }> | null | undefined;
+            softWrap?: boolean | null | undefined;
+            overflow?: upstream6.TextOverflow | null | undefined;
+            textScaleFactor?: number | null | undefined;
+            textScaler?: Readonly<{
+                "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+            }> | null | undefined;
+            maxLines?: number | null | undefined;
+            semanticsLabel?: string | null | undefined;
+            semanticsIdentifier?: string | null | undefined;
+            textWidthBasis?: upstream8.TextWidthBasis | null | undefined;
+            textHeightBehavior?: Readonly<{
+                "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
+            }> | null | undefined;
+            selectionColor?: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }> | null | undefined;
+        }) => void;
+    };
     build(context: upstream12.BuildContext): Widget;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
@@ -123,6 +203,7 @@ export declare abstract class _TextNative extends _FlaxProxyBase {
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
     });
+    constructor(call: _FlaxProxySuper<_TextNative>);
 }
 export declare function _TextFactory(data: Bindable<string>, options?: {
     key?: Readonly<{
@@ -160,43 +241,85 @@ export declare function _TextFactory(data: Bindable<string>, options?: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null> | undefined;
 }): Text;
-declare const _TextBinding: typeof _TextFactory & {
-    new (data: string, options?: {
+export declare namespace _TextFactory {
+    function rich(textSpan: Bindable<Readonly<{
+        "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>, options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
-        style?: (Readonly<{
+        style?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-        }>) | null | undefined;
-        strutStyle?: (Readonly<{
+        }>) | null> | undefined;
+        strutStyle?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/painting/strut_style.dart::StrutStyle": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-        }>) | null | undefined;
-        textAlign?: upstream3.TextAlign | null | undefined;
-        textDirection?: upstream4.TextDirection | null | undefined;
-        locale?: Readonly<{
+        }>) | null> | undefined;
+        textAlign?: Bindable<upstream3.TextAlign | null> | undefined;
+        textDirection?: Bindable<upstream4.TextDirection | null> | undefined;
+        locale?: Bindable<Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
-        }> | null | undefined;
-        softWrap?: boolean | null | undefined;
-        overflow?: upstream6.TextOverflow | null | undefined;
-        textScaleFactor?: number | null | undefined;
-        textScaler?: Readonly<{
+        }> | null> | undefined;
+        softWrap?: Bindable<boolean | null> | undefined;
+        overflow?: Bindable<upstream6.TextOverflow | null> | undefined;
+        textScaleFactor?: Bindable<number | null> | undefined;
+        textScaler?: Bindable<Readonly<{
             "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
-        }> | null | undefined;
-        maxLines?: number | null | undefined;
-        semanticsLabel?: string | null | undefined;
-        semanticsIdentifier?: string | null | undefined;
-        textWidthBasis?: upstream8.TextWidthBasis | null | undefined;
-        textHeightBehavior?: Readonly<{
+        }> | null> | undefined;
+        maxLines?: Bindable<number | null> | undefined;
+        semanticsLabel?: Bindable<string | null> | undefined;
+        semanticsIdentifier?: Bindable<string | null> | undefined;
+        textWidthBasis?: Bindable<upstream8.TextWidthBasis | null> | undefined;
+        textHeightBehavior?: Bindable<Readonly<{
             "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
-        }> | null | undefined;
-        selectionColor?: Readonly<{
+        }> | null> | undefined;
+        selectionColor?: Bindable<Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
-        }> | null | undefined;
-    }): _TextNative;
-};
+        }> | null> | undefined;
+    }): Text;
+}
+declare const _TextBinding: typeof _TextFactory & (new (data: string, options?: {
+    key?: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+    }> | null | undefined;
+    style?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    strutStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/strut_style.dart::StrutStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textAlign?: upstream3.TextAlign | null | undefined;
+    textDirection?: upstream4.TextDirection | null | undefined;
+    locale?: Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null | undefined;
+    softWrap?: boolean | null | undefined;
+    overflow?: upstream6.TextOverflow | null | undefined;
+    textScaleFactor?: number | null | undefined;
+    textScaler?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+    }> | null | undefined;
+    maxLines?: number | null | undefined;
+    semanticsLabel?: string | null | undefined;
+    semanticsIdentifier?: string | null | undefined;
+    textWidthBasis?: upstream8.TextWidthBasis | null | undefined;
+    textHeightBehavior?: Readonly<{
+        "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
+    }> | null | undefined;
+    selectionColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+}) => _TextNative) & (new (call: _FlaxProxySuper<_TextNative>) => _TextNative);
 export declare const Text: typeof _TextBinding & _FlaxInstanceType<Text> & _FlaxDartType<Text, readonly ["class", "flax.core/flutter#type:Text", readonly [], false]>;
 export {};

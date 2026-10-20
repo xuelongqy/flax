@@ -17,8 +17,8 @@ import type * as upstream7 from '@flax/flutter/widgets/_bindings/components_Stat
 import '@flax/flutter/widgets/_bindings/components_State';
 import type * as upstream8 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
-import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RestorableTextEditingController extends Omit<upstream0.RestorableChangeNotifier<upstream1.TextEditingController>, _flaxOwnMembers0>, Omit<upstream2.RestorableListenable<upstream1.TextEditingController>, _flaxOwnMembers0 | keyof upstream0.RestorableChangeNotifier<upstream1.TextEditingController>>, Omit<upstream3.RestorableProperty<upstream1.TextEditingController>, _flaxOwnMembers0 | keyof upstream0.RestorableChangeNotifier<upstream1.TextEditingController> | keyof upstream2.RestorableListenable<upstream1.TextEditingController>>, Omit<upstream4.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.RestorableChangeNotifier<upstream1.TextEditingController> | keyof upstream2.RestorableListenable<upstream1.TextEditingController> | keyof upstream3.RestorableProperty<upstream1.TextEditingController>>, Omit<upstream5.Listenable, _flaxOwnMembers0 | keyof upstream0.RestorableChangeNotifier<upstream1.TextEditingController> | keyof upstream2.RestorableListenable<upstream1.TextEditingController> | keyof upstream3.RestorableProperty<upstream1.TextEditingController> | keyof upstream4.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableTextEditingController": readonly [];
 }>, Readonly<{
@@ -34,9 +34,44 @@ export interface RestorableTextEditingController extends Omit<upstream0.Restorab
 }> {
     readonly __RestorableTextEditingController: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableTextEditingController;
+    readonly value: upstream1.TextEditingController;
+    readonly enabled: boolean;
+    readonly state: upstream7.State<upstream8.StatefulWidget>;
+    readonly isRegistered: boolean;
+    readonly hasListeners: boolean;
+    initWithValue(value: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream6.TextEditingValue];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream6.TextEditingValue];
+    }>): void;
+    dispose(): void;
+    createDefaultValue(): upstream1.TextEditingController;
+    fromPrimitives(data: unknown | null): upstream1.TextEditingController;
+    toPrimitives(): {};
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
 }
-export interface RestorableTextEditingController {
-    readonly [_flaxDartTypeValue]: RestorableTextEditingController;
+export declare function _RestorableTextEditingControllerFactory(options?: {
+    text?: string | null | undefined;
+}): RestorableTextEditingController;
+export declare namespace _RestorableTextEditingControllerFactory {
+    function fromValue(value: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
+    }>): RestorableTextEditingController;
+}
+export interface _RestorableTextEditingControllerNative extends RestorableTextEditingController {
+    readonly [_flaxDartTypeValue]: _RestorableTextEditingControllerNative;
+    readonly [_flaxDartConstructors]?: {
+        "fromValue": (value: Readonly<{
+            "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
+        }>) => void;
+    };
     initWithValue(value: Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
@@ -60,18 +95,23 @@ export interface RestorableTextEditingController {
     get isRegistered(): boolean;
     get hasListeners(): boolean;
 }
-export declare abstract class RestorableTextEditingController extends _FlaxProxyBase {
+export declare abstract class _RestorableTextEditingControllerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RestorableTextEditingController>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RestorableTextEditingController;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:RestorableTextEditingController", readonly [], false];
     constructor(value: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
     }>);
+    constructor(call: _FlaxProxySuper<_RestorableTextEditingControllerNative>);
 }
-export declare namespace RestorableTextEditingController {
+export declare namespace _RestorableTextEditingControllerFactory {
     function implement(args: [value: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
     }>], implementation: {}): RestorableTextEditingController;
 }
+declare const _RestorableTextEditingControllerBinding: typeof _RestorableTextEditingControllerFactory & (new (value: Readonly<{
+    "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
+}>) => _RestorableTextEditingControllerNative) & (new (call: _FlaxProxySuper<_RestorableTextEditingControllerNative>) => _RestorableTextEditingControllerNative);
+export declare const RestorableTextEditingController: typeof _RestorableTextEditingControllerBinding & _FlaxInstanceType<RestorableTextEditingController> & _FlaxDartType<RestorableTextEditingController, readonly ["class", "flax.core/sdk_widgets#type:RestorableTextEditingController", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "initWithValue" | "dispose" | "createDefaultValue" | "fromPrimitives" | "toPrimitives" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableTextEditingController" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableChangeNotifier" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableListenable" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

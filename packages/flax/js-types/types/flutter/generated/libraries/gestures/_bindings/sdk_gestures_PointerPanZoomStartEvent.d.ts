@@ -19,7 +19,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PointerPanZoomStartEvent extends Omit<upstream0.PointerEvent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PointerEvent>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/events.dart::PointerPanZoomStartEvent": readonly [];
 }>, Readonly<{
@@ -33,9 +33,108 @@ export interface PointerPanZoomStartEvent extends Omit<upstream0.PointerEvent, _
 }> {
     readonly __PointerPanZoomStartEvent: unique symbol;
     readonly [_flaxDartTypeValue]: PointerPanZoomStartEvent;
+    readonly viewId: number;
+    readonly embedderId: number;
+    readonly timeStamp: upstream2.Duration;
+    readonly pointer: number;
+    readonly kind: upstream4.PointerDeviceKind;
+    readonly device: number;
+    readonly position: upstream3.Offset;
+    readonly localPosition: upstream3.Offset;
+    readonly delta: upstream3.Offset;
+    readonly localDelta: upstream3.Offset;
+    readonly buttons: number;
+    readonly down: boolean;
+    readonly obscured: boolean;
+    readonly pressure: number;
+    readonly pressureMin: number;
+    readonly pressureMax: number;
+    readonly distance: number;
+    readonly distanceMin: number;
+    readonly distanceMax: number;
+    readonly size: number;
+    readonly radiusMajor: number;
+    readonly radiusMinor: number;
+    readonly radiusMin: number;
+    readonly radiusMax: number;
+    readonly orientation: number;
+    readonly tilt: number;
+    readonly platformData: number;
+    readonly synthesized: boolean;
+    readonly transform: upstream5.Matrix4 | null;
+    readonly original: upstream0.PointerEvent | null;
+    transformed(transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null): PointerPanZoomStartEvent;
+    copyWith(options?: {
+        buttons?: number | null | undefined;
+        delta?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        device?: number | null | undefined;
+        distance?: number | null | undefined;
+        distanceMax?: number | null | undefined;
+        embedderId?: number | null | undefined;
+        kind?: upstream4.PointerDeviceKind | null | undefined;
+        obscured?: boolean | null | undefined;
+        orientation?: number | null | undefined;
+        pointer?: number | null | undefined;
+        position?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        pressure?: number | null | undefined;
+        pressureMax?: number | null | undefined;
+        pressureMin?: number | null | undefined;
+        radiusMajor?: number | null | undefined;
+        radiusMax?: number | null | undefined;
+        radiusMin?: number | null | undefined;
+        radiusMinor?: number | null | undefined;
+        size?: number | null | undefined;
+        synthesized?: boolean | null | undefined;
+        tilt?: number | null | undefined;
+        timeStamp?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration];
+        }>) | null | undefined;
+        viewId?: number | null | undefined;
+    }): PointerPanZoomStartEvent;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream9.DiagnosticLevel | undefined;
+    }): string;
+    toStringFull(): string;
 }
-export interface PointerPanZoomStartEvent {
-    readonly [_flaxDartTypeValue]: PointerPanZoomStartEvent;
+export declare function _PointerPanZoomStartEventFactory(options?: {
+    viewId?: number | undefined;
+    timeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration];
+    }>) | undefined;
+    device?: number | undefined;
+    pointer?: number | undefined;
+    position?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    embedderId?: number | undefined;
+    synthesized?: boolean | undefined;
+}): PointerPanZoomStartEvent;
+export interface _PointerPanZoomStartEventNative extends PointerPanZoomStartEvent {
+    readonly [_flaxDartTypeValue]: _PointerPanZoomStartEventNative;
     transformed(transform: Readonly<{
         "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
     }> | null): PointerPanZoomStartEvent;
@@ -119,7 +218,7 @@ export interface PointerPanZoomStartEvent {
     get transform(): upstream5.Matrix4 | null;
     get original(): upstream0.PointerEvent | null;
 }
-export declare abstract class PointerPanZoomStartEvent extends _FlaxProxyBase {
+export declare abstract class _PointerPanZoomStartEventNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PointerPanZoomStartEvent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PointerPanZoomStartEvent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:PointerPanZoomStartEvent", readonly [], false];
@@ -141,7 +240,7 @@ export declare abstract class PointerPanZoomStartEvent extends _FlaxProxyBase {
         synthesized?: boolean | undefined;
     });
 }
-export declare namespace PointerPanZoomStartEvent {
+export declare namespace _PointerPanZoomStartEventFactory {
     function implement(args: [options?: {
         viewId?: number | undefined;
         timeStamp?: (Readonly<{
@@ -160,5 +259,23 @@ export declare namespace PointerPanZoomStartEvent {
         synthesized?: boolean | undefined;
     }], implementation: {}): PointerPanZoomStartEvent;
 }
+declare const _PointerPanZoomStartEventBinding: typeof _PointerPanZoomStartEventFactory & (new (options?: {
+    viewId?: number | undefined;
+    timeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration];
+    }>) | undefined;
+    device?: number | undefined;
+    pointer?: number | undefined;
+    position?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    embedderId?: number | undefined;
+    synthesized?: boolean | undefined;
+}) => _PointerPanZoomStartEventNative);
+export declare const PointerPanZoomStartEvent: typeof _PointerPanZoomStartEventBinding & _FlaxInstanceType<PointerPanZoomStartEvent> & _FlaxDartType<PointerPanZoomStartEvent, readonly ["class", "flax.core/sdk_gestures#type:PointerPanZoomStartEvent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "embedderId" | "timeStamp" | "pointer" | "kind" | "device" | "position" | "localPosition" | "delta" | "localDelta" | "buttons" | "down" | "obscured" | "pressure" | "pressureMin" | "pressureMax" | "distance" | "distanceMin" | "distanceMax" | "size" | "radiusMajor" | "radiusMinor" | "radiusMin" | "radiusMax" | "orientation" | "tilt" | "platformData" | "synthesized" | "transform" | "original" | "transformed" | "copyWith" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "toStringFull" | "__flaxBound:package:flutter/src/gestures/events.dart::PointerPanZoomStartEvent" | "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription" | "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerPanZoomStartEvent";
 export {};

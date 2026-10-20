@@ -16,17 +16,28 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { _flaxMemberParameters22, _flaxMemberParameters7, _flaxMemberParameters16, _flaxMemberParameters15, _flaxMemberParameters9 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface LongPressStartDetails extends Omit<upstream0.PositionedGestureDetails, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PositionedGestureDetails>, Readonly<{ "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressStartDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __LongPressStartDetails: unique symbol;
 readonly [_flaxDartTypeValue]: LongPressStartDetails;
 
+readonly globalPosition: upstream2.Offset;
+readonly localPosition: upstream2.Offset;
+toStringShort(): string;
+toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream5.DiagnosticsTreeStyle | null | undefined}): upstream4.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 }
 defineObject("flax.core/sdk_gestures#type:LongPressStartDetails", ["globalPosition","localPosition"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:LongPressStartDetails", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+export function _LongPressStartDetailsFactory(options: { globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined } = {}): LongPressStartDetails {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_gestures#type:LongPressStartDetails", "", [{"name":"globalPosition"},{"name":"localPosition"}], [], options) as LongPressStartDetails;
+}
 const _LongPressStartDetailsProxy = {type: "flax.core/sdk_gestures#type:LongPressStartDetails", parameters: _flaxMemberParameters22, constructors: {"": _flaxMemberParameters22}, methods: {"toStringShort":_flaxMemberParameters7,"toString":_flaxMemberParameters16,"toDiagnosticsNode":_flaxMemberParameters15,"debugFillProperties":_flaxMemberParameters9}, getters: ["globalPosition","localPosition"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
-export interface LongPressStartDetails {
-readonly [_flaxDartTypeValue]: LongPressStartDetails;
+export interface _LongPressStartDetailsNative extends LongPressStartDetails {
+readonly [_flaxDartTypeValue]: _LongPressStartDetailsNative;
 
 toStringShort(): string;
 toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined}): string;
@@ -35,14 +46,15 @@ debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foun
 get globalPosition(): upstream2.Offset;
 get localPosition(): upstream2.Offset;
 }
-export abstract class LongPressStartDetails extends _FlaxProxyBase {
+export abstract class _LongPressStartDetailsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<LongPressStartDetails>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: LongPressStartDetails;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:LongPressStartDetails", readonly [], false];
 constructor(options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined}) { super(_LongPressStartDetailsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(LongPressStartDetails.prototype, _LongPressStartDetailsProxy);
-export namespace LongPressStartDetails { export function implement(args: [options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined}], implementation: {}): LongPressStartDetails {
+_flaxDefineProxyBase(_LongPressStartDetailsNative.prototype, _LongPressStartDetailsProxy);
+export namespace _LongPressStartDetailsFactory { export function implement(args: [options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined}], implementation: {}): LongPressStartDetails {
 return constructProxy(_LongPressStartDetailsProxy, args, implementation) as LongPressStartDetails; } }
-_flaxBindInstanceType<LongPressStartDetails, typeof LongPressStartDetails>(LongPressStartDetails, "flax.core/sdk_gestures#type:LongPressStartDetails", ["dart:core::Object","flax.core/sdk_gestures#type:PositionedGestureDetails","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _LongPressStartDetailsBinding = _flaxProxyFactory(_LongPressStartDetailsFactory, _LongPressStartDetailsNative) as unknown as typeof _LongPressStartDetailsFactory & (new(options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined}) => _LongPressStartDetailsNative);
+export const LongPressStartDetails: typeof _LongPressStartDetailsBinding & _FlaxInstanceType<LongPressStartDetails> & _FlaxDartType<LongPressStartDetails, readonly ["class", "flax.core/sdk_gestures#type:LongPressStartDetails", readonly [], false]> = _flaxBindInstanceType<LongPressStartDetails, typeof _LongPressStartDetailsBinding>(_LongPressStartDetailsBinding, "flax.core/sdk_gestures#type:LongPressStartDetails", ["dart:core::Object","flax.core/sdk_gestures#type:PositionedGestureDetails","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _LongPressStartDetailsBinding & _FlaxInstanceType<LongPressStartDetails> & _FlaxDartType<LongPressStartDetails, readonly ["class", "flax.core/sdk_gestures#type:LongPressStartDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "globalPosition" | "localPosition" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/long_press.dart::LongPressStartDetails" | "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

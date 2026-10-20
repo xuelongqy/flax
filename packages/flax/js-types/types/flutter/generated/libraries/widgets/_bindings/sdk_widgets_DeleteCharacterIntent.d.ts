@@ -13,7 +13,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DeleteCharacterIntent extends Omit<upstream0.DirectionalTextEditingIntent, _flaxOwnMembers0>, Omit<upstream1.Intent, _flaxOwnMembers0 | keyof upstream0.DirectionalTextEditingIntent>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.DirectionalTextEditingIntent | keyof upstream1.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DeleteCharacterIntent": readonly [];
 }>, Readonly<{
@@ -25,9 +25,24 @@ export interface DeleteCharacterIntent extends Omit<upstream0.DirectionalTextEdi
 }> {
     readonly __DeleteCharacterIntent: unique symbol;
     readonly [_flaxDartTypeValue]: DeleteCharacterIntent;
+    readonly forward: boolean;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream4.DiagnosticsTreeStyle | null | undefined;
+    }): upstream3.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface DeleteCharacterIntent {
-    readonly [_flaxDartTypeValue]: DeleteCharacterIntent;
+export declare function _DeleteCharacterIntentFactory(options: {
+    forward: boolean;
+}): DeleteCharacterIntent;
+export interface _DeleteCharacterIntentNative extends DeleteCharacterIntent {
+    readonly [_flaxDartTypeValue]: _DeleteCharacterIntentNative;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
@@ -41,7 +56,7 @@ export interface DeleteCharacterIntent {
     }): string;
     get forward(): boolean;
 }
-export declare abstract class DeleteCharacterIntent extends _FlaxProxyBase {
+export declare abstract class _DeleteCharacterIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DeleteCharacterIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: DeleteCharacterIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:DeleteCharacterIntent", readonly [], false];
@@ -49,10 +64,14 @@ export declare abstract class DeleteCharacterIntent extends _FlaxProxyBase {
         forward: boolean;
     });
 }
-export declare namespace DeleteCharacterIntent {
+export declare namespace _DeleteCharacterIntentFactory {
     function implement(args: [options: {
         forward: boolean;
     }], implementation: {}): DeleteCharacterIntent;
 }
+declare const _DeleteCharacterIntentBinding: typeof _DeleteCharacterIntentFactory & (new (options: {
+    forward: boolean;
+}) => _DeleteCharacterIntentNative);
+export declare const DeleteCharacterIntent: typeof _DeleteCharacterIntentBinding & _FlaxInstanceType<DeleteCharacterIntent> & _FlaxDartType<DeleteCharacterIntent, readonly ["class", "flax.core/sdk_widgets#type:DeleteCharacterIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "forward" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DeleteCharacterIntent" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalTextEditingIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

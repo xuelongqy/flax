@@ -13,7 +13,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RedoTextIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::RedoTextIntent": readonly [];
 }>, Readonly<{
@@ -23,9 +23,22 @@ export interface RedoTextIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>
 }> {
     readonly __RedoTextIntent: unique symbol;
     readonly [_flaxDartTypeValue]: RedoTextIntent;
+    readonly cause: upstream2.SelectionChangedCause;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream4.DiagnosticsTreeStyle | null | undefined;
+    }): upstream3.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface RedoTextIntent {
-    readonly [_flaxDartTypeValue]: RedoTextIntent;
+export declare function _RedoTextIntentFactory(cause: upstream2.SelectionChangedCause): RedoTextIntent;
+export interface _RedoTextIntentNative extends RedoTextIntent {
+    readonly [_flaxDartTypeValue]: _RedoTextIntentNative;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
@@ -39,14 +52,16 @@ export interface RedoTextIntent {
     }): string;
     get cause(): upstream2.SelectionChangedCause;
 }
-export declare abstract class RedoTextIntent extends _FlaxProxyBase {
+export declare abstract class _RedoTextIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RedoTextIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RedoTextIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:RedoTextIntent", readonly [], false];
     constructor(cause: upstream2.SelectionChangedCause);
 }
-export declare namespace RedoTextIntent {
+export declare namespace _RedoTextIntentFactory {
     function implement(args: [cause: upstream2.SelectionChangedCause], implementation: {}): RedoTextIntent;
 }
+declare const _RedoTextIntentBinding: typeof _RedoTextIntentFactory & (new (cause: upstream2.SelectionChangedCause) => _RedoTextIntentNative);
+export declare const RedoTextIntent: typeof _RedoTextIntentBinding & _FlaxInstanceType<RedoTextIntent> & _FlaxDartType<RedoTextIntent, readonly ["class", "flax.core/sdk_widgets#type:RedoTextIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "cause" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::RedoTextIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

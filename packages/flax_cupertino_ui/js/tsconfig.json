@@ -5,6 +5,10 @@
     "outDir": "dist",
     "paths": {
       "@flax/cupertino-ui": ["./src/index.ts"],
+      "@flax/cupertino-ui/dependencies/*": [
+        "./src/generated/dependencies/*",
+        "./src/generated/dependencies/*/index.ts"
+      ],
       "@flax/cupertino-ui/*": ["./src/generated/libraries/cupertino/*"]
     }
   }

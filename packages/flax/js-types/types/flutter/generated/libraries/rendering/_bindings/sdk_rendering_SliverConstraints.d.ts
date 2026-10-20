@@ -14,7 +14,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream6 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SliverConstraints extends Omit<upstream0.Constraints, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/sliver.dart::SliverConstraints": readonly [];
 }>, Readonly<{
@@ -22,9 +22,65 @@ export interface SliverConstraints extends Omit<upstream0.Constraints, _flaxOwnM
 }> {
     readonly __SliverConstraints: unique symbol;
     readonly [_flaxDartTypeValue]: SliverConstraints;
+    readonly isTight: boolean;
+    readonly isNormalized: boolean;
+    readonly axisDirection: upstream1.AxisDirection;
+    readonly growthDirection: upstream2.GrowthDirection;
+    readonly userScrollDirection: upstream3.ScrollDirection;
+    readonly scrollOffset: number;
+    readonly precedingScrollExtent: number;
+    readonly overlap: number;
+    readonly remainingPaintExtent: number;
+    readonly crossAxisExtent: number;
+    readonly crossAxisDirection: upstream1.AxisDirection;
+    readonly viewportMainAxisExtent: number;
+    readonly cacheOrigin: number;
+    readonly remainingCacheExtent: number;
+    readonly axis: upstream4.Axis;
+    readonly normalizedGrowthDirection: upstream2.GrowthDirection;
+    debugAssertIsValid(options?: {
+        informationCollector?: (() => DartIterableInput<upstream5.DiagnosticsNode, Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [];
+        }>>) | null | undefined;
+        isAppliedConstraint?: boolean | undefined;
+    }): boolean;
+    copyWith(options?: {
+        axisDirection?: upstream1.AxisDirection | null | undefined;
+        cacheOrigin?: number | null | undefined;
+        crossAxisDirection?: upstream1.AxisDirection | null | undefined;
+        crossAxisExtent?: number | null | undefined;
+        growthDirection?: upstream2.GrowthDirection | null | undefined;
+        overlap?: number | null | undefined;
+        precedingScrollExtent?: number | null | undefined;
+        remainingCacheExtent?: number | null | undefined;
+        remainingPaintExtent?: number | null | undefined;
+        scrollOffset?: number | null | undefined;
+        userScrollDirection?: upstream3.ScrollDirection | null | undefined;
+        viewportMainAxisExtent?: number | null | undefined;
+    }): SliverConstraints;
+    asBoxConstraints(options?: {
+        crossAxisExtent?: number | null | undefined;
+        maxExtent?: number | undefined;
+        minExtent?: number | undefined;
+    }): upstream6.BoxConstraints;
+    toString(): string;
 }
-export interface SliverConstraints {
-    readonly [_flaxDartTypeValue]: SliverConstraints;
+export declare function _SliverConstraintsFactory(options: {
+    axisDirection: upstream1.AxisDirection;
+    growthDirection: upstream2.GrowthDirection;
+    userScrollDirection: upstream3.ScrollDirection;
+    scrollOffset: number;
+    precedingScrollExtent: number;
+    overlap: number;
+    remainingPaintExtent: number;
+    crossAxisExtent: number;
+    crossAxisDirection: upstream1.AxisDirection;
+    viewportMainAxisExtent: number;
+    remainingCacheExtent: number;
+    cacheOrigin: number;
+}): SliverConstraints;
+export interface _SliverConstraintsNative extends SliverConstraints {
+    readonly [_flaxDartTypeValue]: _SliverConstraintsNative;
     debugAssertIsValid(options?: {
         isAppliedConstraint?: boolean | undefined;
         informationCollector?: (() => DartIterableInput<upstream5.DiagnosticsNode, Readonly<{
@@ -68,7 +124,7 @@ export interface SliverConstraints {
     get isTight(): boolean;
     get isNormalized(): boolean;
 }
-export declare abstract class SliverConstraints extends _FlaxProxyBase {
+export declare abstract class _SliverConstraintsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SliverConstraints>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SliverConstraints;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:SliverConstraints", readonly [], false];
@@ -87,7 +143,7 @@ export declare abstract class SliverConstraints extends _FlaxProxyBase {
         cacheOrigin: number;
     });
 }
-export declare namespace SliverConstraints {
+export declare namespace _SliverConstraintsFactory {
     function implement(args: [options: {
         axisDirection: upstream1.AxisDirection;
         growthDirection: upstream2.GrowthDirection;
@@ -103,5 +159,20 @@ export declare namespace SliverConstraints {
         cacheOrigin: number;
     }], implementation: {}): SliverConstraints;
 }
+declare const _SliverConstraintsBinding: typeof _SliverConstraintsFactory & (new (options: {
+    axisDirection: upstream1.AxisDirection;
+    growthDirection: upstream2.GrowthDirection;
+    userScrollDirection: upstream3.ScrollDirection;
+    scrollOffset: number;
+    precedingScrollExtent: number;
+    overlap: number;
+    remainingPaintExtent: number;
+    crossAxisExtent: number;
+    crossAxisDirection: upstream1.AxisDirection;
+    viewportMainAxisExtent: number;
+    remainingCacheExtent: number;
+    cacheOrigin: number;
+}) => _SliverConstraintsNative);
+export declare const SliverConstraints: typeof _SliverConstraintsBinding & _FlaxInstanceType<SliverConstraints> & _FlaxDartType<SliverConstraints, readonly ["class", "flax.core/sdk_rendering#type:SliverConstraints", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "isTight" | "isNormalized" | "axisDirection" | "growthDirection" | "userScrollDirection" | "scrollOffset" | "precedingScrollExtent" | "overlap" | "remainingPaintExtent" | "crossAxisExtent" | "crossAxisDirection" | "viewportMainAxisExtent" | "cacheOrigin" | "remainingCacheExtent" | "axis" | "normalizedGrowthDirection" | "debugAssertIsValid" | "copyWith" | "asBoxConstraints" | "toString" | "__flaxBound:package:flutter/src/rendering/sliver.dart::SliverConstraints" | "__flaxBound:package:flutter/src/rendering/object.dart::Constraints";
 export {};

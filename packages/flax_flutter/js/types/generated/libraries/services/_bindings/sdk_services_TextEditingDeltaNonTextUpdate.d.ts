@@ -17,7 +17,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextEditingDeltaNonTextUpdate extends Omit<upstream0.TextEditingDelta, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.TextEditingDelta>, Readonly<{
     "__flaxBound:package:flutter/src/services/text_editing_delta.dart::TextEditingDeltaNonTextUpdate": readonly [];
 }>, Readonly<{
@@ -27,9 +27,37 @@ export interface TextEditingDeltaNonTextUpdate extends Omit<upstream0.TextEditin
 }> {
     readonly __TextEditingDeltaNonTextUpdate: unique symbol;
     readonly [_flaxDartTypeValue]: TextEditingDeltaNonTextUpdate;
+    readonly oldText: string;
+    readonly selection: upstream2.TextSelection;
+    readonly composing: upstream3.TextRange;
+    apply(value: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
+    }>): upstream4.TextEditingValue;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream6.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream8.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface TextEditingDeltaNonTextUpdate {
-    readonly [_flaxDartTypeValue]: TextEditingDeltaNonTextUpdate;
+export declare function _TextEditingDeltaNonTextUpdateFactory(options: {
+    oldText: string;
+    selection: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>;
+    composing: Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>;
+}): TextEditingDeltaNonTextUpdate;
+export interface _TextEditingDeltaNonTextUpdateNative extends TextEditingDeltaNonTextUpdate {
+    readonly [_flaxDartTypeValue]: _TextEditingDeltaNonTextUpdateNative;
     apply(value: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
     }>): upstream4.TextEditingValue;
@@ -48,7 +76,7 @@ export interface TextEditingDeltaNonTextUpdate {
     get selection(): upstream2.TextSelection;
     get composing(): upstream3.TextRange;
 }
-export declare abstract class TextEditingDeltaNonTextUpdate extends _FlaxProxyBase {
+export declare abstract class _TextEditingDeltaNonTextUpdateNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TextEditingDeltaNonTextUpdate>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TextEditingDeltaNonTextUpdate;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:TextEditingDeltaNonTextUpdate", readonly [], false];
@@ -64,7 +92,7 @@ export declare abstract class TextEditingDeltaNonTextUpdate extends _FlaxProxyBa
         }>;
     });
 }
-export declare namespace TextEditingDeltaNonTextUpdate {
+export declare namespace _TextEditingDeltaNonTextUpdateFactory {
     function implement(args: [options: {
         oldText: string;
         selection: Readonly<{
@@ -77,5 +105,17 @@ export declare namespace TextEditingDeltaNonTextUpdate {
         }>;
     }], implementation: {}): TextEditingDeltaNonTextUpdate;
 }
+declare const _TextEditingDeltaNonTextUpdateBinding: typeof _TextEditingDeltaNonTextUpdateFactory & (new (options: {
+    oldText: string;
+    selection: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>;
+    composing: Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>;
+}) => _TextEditingDeltaNonTextUpdateNative);
+export declare const TextEditingDeltaNonTextUpdate: typeof _TextEditingDeltaNonTextUpdateBinding & _FlaxInstanceType<TextEditingDeltaNonTextUpdate> & _FlaxDartType<TextEditingDeltaNonTextUpdate, readonly ["class", "flax.core/sdk_services#type:TextEditingDeltaNonTextUpdate", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "oldText" | "selection" | "composing" | "apply" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/services/text_editing_delta.dart::TextEditingDeltaNonTextUpdate" | "__flaxBound:package:flutter/src/services/text_editing_delta.dart::TextEditingDelta" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

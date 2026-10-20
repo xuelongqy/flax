@@ -21,7 +21,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PointerScaleEvent extends Omit<upstream0.PointerSignalEvent, _flaxOwnMembers0>, Omit<upstream1.PointerEvent, _flaxOwnMembers0 | keyof upstream0.PointerSignalEvent>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PointerSignalEvent | keyof upstream1.PointerEvent>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/events.dart::PointerScaleEvent": readonly [];
 }>, Readonly<{
@@ -39,9 +39,113 @@ export interface PointerScaleEvent extends Omit<upstream0.PointerSignalEvent, _f
 }> {
     readonly __PointerScaleEvent: unique symbol;
     readonly [_flaxDartTypeValue]: PointerScaleEvent;
+    readonly viewId: number;
+    readonly embedderId: number;
+    readonly timeStamp: upstream3.Duration;
+    readonly pointer: number;
+    readonly kind: upstream4.PointerDeviceKind;
+    readonly device: number;
+    readonly position: upstream5.Offset;
+    readonly localPosition: upstream5.Offset;
+    readonly delta: upstream5.Offset;
+    readonly localDelta: upstream5.Offset;
+    readonly buttons: number;
+    readonly down: boolean;
+    readonly obscured: boolean;
+    readonly pressure: number;
+    readonly pressureMin: number;
+    readonly pressureMax: number;
+    readonly distance: number;
+    readonly distanceMin: number;
+    readonly distanceMax: number;
+    readonly size: number;
+    readonly radiusMajor: number;
+    readonly radiusMinor: number;
+    readonly radiusMin: number;
+    readonly radiusMax: number;
+    readonly orientation: number;
+    readonly tilt: number;
+    readonly platformData: number;
+    readonly synthesized: boolean;
+    readonly transform: upstream6.Matrix4 | null;
+    readonly original: upstream1.PointerEvent | null;
+    readonly scale: number;
+    transformed(transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null): PointerScaleEvent;
+    copyWith(options?: {
+        buttons?: number | null | undefined;
+        delta?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        device?: number | null | undefined;
+        distance?: number | null | undefined;
+        distanceMax?: number | null | undefined;
+        embedderId?: number | null | undefined;
+        kind?: upstream4.PointerDeviceKind | null | undefined;
+        obscured?: boolean | null | undefined;
+        orientation?: number | null | undefined;
+        pointer?: number | null | undefined;
+        position?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        pressure?: number | null | undefined;
+        pressureMax?: number | null | undefined;
+        pressureMin?: number | null | undefined;
+        radiusMajor?: number | null | undefined;
+        radiusMax?: number | null | undefined;
+        radiusMin?: number | null | undefined;
+        radiusMinor?: number | null | undefined;
+        scale?: number | null | undefined;
+        size?: number | null | undefined;
+        synthesized?: boolean | null | undefined;
+        tilt?: number | null | undefined;
+        timeStamp?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream3.Duration];
+        }>) | null | undefined;
+        viewId?: number | null | undefined;
+    }): PointerScaleEvent;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream8.DiagnosticsTreeStyle | null | undefined;
+    }): upstream7.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    respond(options: {
+        allowPlatformDefault: boolean;
+    }): void;
+    toString(options?: {
+        minLevel?: upstream10.DiagnosticLevel | undefined;
+    }): string;
+    toStringFull(): string;
 }
-export interface PointerScaleEvent {
-    readonly [_flaxDartTypeValue]: PointerScaleEvent;
+export declare function _PointerScaleEventFactory(options?: {
+    viewId?: number | undefined;
+    timeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream3.Duration];
+    }>) | undefined;
+    kind?: upstream4.PointerDeviceKind | undefined;
+    device?: number | undefined;
+    position?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    embedderId?: number | undefined;
+    scale?: number | undefined;
+}): PointerScaleEvent;
+export interface _PointerScaleEventNative extends PointerScaleEvent {
+    readonly [_flaxDartTypeValue]: _PointerScaleEventNative;
     transformed(transform: Readonly<{
         "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
     }> | null): PointerScaleEvent;
@@ -130,7 +234,7 @@ export interface PointerScaleEvent {
     get transform(): upstream6.Matrix4 | null;
     get original(): upstream1.PointerEvent | null;
 }
-export declare abstract class PointerScaleEvent extends _FlaxProxyBase {
+export declare abstract class _PointerScaleEventNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PointerScaleEvent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PointerScaleEvent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:PointerScaleEvent", readonly [], false];
@@ -152,7 +256,7 @@ export declare abstract class PointerScaleEvent extends _FlaxProxyBase {
         scale?: number | undefined;
     });
 }
-export declare namespace PointerScaleEvent {
+export declare namespace _PointerScaleEventFactory {
     function implement(args: [options?: {
         viewId?: number | undefined;
         timeStamp?: (Readonly<{
@@ -171,5 +275,23 @@ export declare namespace PointerScaleEvent {
         scale?: number | undefined;
     }], implementation: {}): PointerScaleEvent;
 }
+declare const _PointerScaleEventBinding: typeof _PointerScaleEventFactory & (new (options?: {
+    viewId?: number | undefined;
+    timeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream3.Duration];
+    }>) | undefined;
+    kind?: upstream4.PointerDeviceKind | undefined;
+    device?: number | undefined;
+    position?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    embedderId?: number | undefined;
+    scale?: number | undefined;
+}) => _PointerScaleEventNative);
+export declare const PointerScaleEvent: typeof _PointerScaleEventBinding & _FlaxInstanceType<PointerScaleEvent> & _FlaxDartType<PointerScaleEvent, readonly ["class", "flax.core/sdk_gestures#type:PointerScaleEvent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "embedderId" | "timeStamp" | "pointer" | "kind" | "device" | "position" | "localPosition" | "delta" | "localDelta" | "buttons" | "down" | "obscured" | "pressure" | "pressureMin" | "pressureMax" | "distance" | "distanceMin" | "distanceMax" | "size" | "radiusMajor" | "radiusMinor" | "radiusMin" | "radiusMax" | "orientation" | "tilt" | "platformData" | "synthesized" | "transform" | "original" | "scale" | "transformed" | "copyWith" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "respond" | "toString" | "toStringFull" | "__flaxBound:package:flutter/src/gestures/events.dart::PointerScaleEvent" | "__flaxBound:package:flutter/src/gestures/events.dart::PointerSignalEvent" | "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/gestures/events.dart::_RespondablePointerEvent" | "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription" | "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerScaleEvent";
 export {};

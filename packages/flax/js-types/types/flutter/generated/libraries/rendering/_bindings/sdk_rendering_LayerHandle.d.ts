@@ -13,14 +13,27 @@ export interface LayerHandle<T extends upstream0.Layer = upstream0.Layer> extend
 }> {
     readonly __LayerHandle: unique symbol;
     readonly [_flaxDartTypeValue]: LayerHandle<T>;
+    get layer(): T | null;
+    toString(): string;
+    set layer(value: (T | DartInput<T>) | null);
 }
-export interface LayerHandle<T extends upstream0.Layer = upstream0.Layer> {
-    readonly [_flaxDartTypeValue]: LayerHandle<T>;
+export declare function _LayerHandleFactory<T extends upstream0.Layer = upstream0.Layer>(_layer?: (T | DartInput<T>) | null): LayerHandle<T>;
+export declare function _LayerHandleFactory(_layer?: (Readonly<{
+    "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>) | null): LayerHandle<upstream0.Layer>;
+export interface _LayerHandleNative<T extends upstream0.Layer = upstream0.Layer> extends LayerHandle<T> {
+    readonly [_flaxDartTypeValue]: _LayerHandleNative<T>;
     toString(): string;
     get layer(): T | null;
     set layer(value: (T | DartInput<T>) | null);
 }
-export declare abstract class LayerHandle<T extends upstream0.Layer = upstream0.Layer> extends _FlaxProxyBase {
+export declare abstract class _LayerHandleNative<T extends upstream0.Layer = upstream0.Layer> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<LayerHandle<upstream0.Layer>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: LayerHandle<upstream0.Layer>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:LayerHandle", readonly [readonly ["class", "flax.core/sdk_rendering#type:Layer", readonly [], false]], false];
@@ -36,7 +49,7 @@ export declare abstract class LayerHandle<T extends upstream0.Layer = upstream0.
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null);
 }
-export declare namespace LayerHandle {
+export declare namespace _LayerHandleFactory {
     function implement<T extends upstream0.Layer = upstream0.Layer>(args: [_layer?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
     }> & Readonly<{
@@ -47,8 +60,18 @@ export declare namespace LayerHandle {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null], implementation: {}): LayerHandle<T>;
 }
-interface _FlaxSignature1 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream0.Layer] ? (abstract new (_layer?: (Readonly<{
+declare const _LayerHandleBinding: typeof _LayerHandleFactory & (new <T extends upstream0.Layer = upstream0.Layer>(_layer?: (Readonly<{
+    "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>) | null) => _LayerHandleNative<T>);
+export declare const LayerHandle: typeof _LayerHandleBinding & _FlaxInstanceType<LayerHandle<upstream0.Layer>> & _FlaxDartType<LayerHandle<upstream0.Layer>, readonly ["class", "flax.core/sdk_rendering#type:LayerHandle", readonly [readonly ["class", "flax.core/sdk_rendering#type:Layer", readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream0.Layer] ? (new (_layer?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
@@ -56,8 +79,9 @@ interface _FlaxSignature1 extends _FlaxDartSignature {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>) | null) => LayerHandle<_Selected0>) & {
-        readonly prototype: LayerHandle<_Selected0>;
+    }>) | null) => _LayerHandleNative<_Selected0>) & {
+        (_layer?: (_Selected0 | DartInput<_Selected0>) | null): _LayerHandleNative<_Selected0>;
+        readonly prototype: _LayerHandleNative<_Selected0>;
         implement(args: readonly [(Readonly<{
             "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
         }> & Readonly<{
@@ -66,7 +90,30 @@ interface _FlaxSignature1 extends _FlaxDartSignature {
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-        }>) | null], implementation: Partial<LayerHandle<_Selected0>>): LayerHandle<_Selected0>;
-    } & _FlaxInstanceType<LayerHandle<_Selected0>> & _FlaxDartType<LayerHandle<_Selected0>> : never : never;
+        }>) | null], implementation: Partial<_LayerHandleNative<_Selected0>>): _LayerHandleNative<_Selected0>;
+    } & _FlaxInstanceType<_LayerHandleNative<_Selected0>> & _FlaxDartType<_LayerHandleNative<_Selected0>> : never : never;
+}
+interface _FlaxSignature1 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream0.Layer] ? (new (_layer?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null) => _LayerHandleNative<_Selected0>) & {
+        (_layer?: (_Selected0 | DartInput<_Selected0>) | null): _LayerHandleNative<_Selected0>;
+        readonly prototype: _LayerHandleNative<_Selected0>;
+        implement(args: readonly [(Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null], implementation: Partial<_LayerHandleNative<_Selected0>>): _LayerHandleNative<_Selected0>;
+    } & _FlaxInstanceType<_LayerHandleNative<_Selected0>> & _FlaxDartType<_LayerHandleNative<_Selected0>> : never : never;
 }
 export {};

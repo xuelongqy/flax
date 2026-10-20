@@ -34,7 +34,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DelayedMultiDragGestureRecognizer extends Omit<upstream0.MultiDragGestureRecognizer, _flaxOwnMembers0>, Omit<upstream1.GestureRecognizer, _flaxOwnMembers0 | keyof upstream0.MultiDragGestureRecognizer>, Omit<upstream2.GestureArenaMember, _flaxOwnMembers0 | keyof upstream0.MultiDragGestureRecognizer | keyof upstream1.GestureRecognizer>, Omit<upstream3.DiagnosticableTreeMixin, _flaxOwnMembers0 | keyof upstream0.MultiDragGestureRecognizer | keyof upstream1.GestureRecognizer | keyof upstream2.GestureArenaMember>, Omit<upstream4.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.MultiDragGestureRecognizer | keyof upstream1.GestureRecognizer | keyof upstream2.GestureArenaMember | keyof upstream3.DiagnosticableTreeMixin>, Omit<upstream5.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.MultiDragGestureRecognizer | keyof upstream1.GestureRecognizer | keyof upstream2.GestureArenaMember | keyof upstream3.DiagnosticableTreeMixin | keyof upstream4.DiagnosticableTree>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/multidrag.dart::DelayedMultiDragGestureRecognizer": readonly [];
 }>, Readonly<{
@@ -55,9 +55,166 @@ export interface DelayedMultiDragGestureRecognizer extends Omit<upstream0.MultiD
     readonly [_flaxDartMethodCases]?: {
         invokeCallback: _FlaxSignature0;
     };
+    get onStart(): ((position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) => upstream8.Drag | null) | null;
+    readonly debugOwner: unknown | null;
+    get gestureSettings(): upstream10.DeviceGestureSettings | null;
+    get supportedDevices(): DartSet<upstream7.PointerDeviceKind> | null;
+    readonly allowedButtonsFilter: ((buttons: number) => boolean);
+    readonly debugDescription: string;
+    readonly delay: upstream6.Duration;
+    addAllowedPointer(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>): void;
+    createNewPointerState(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>): upstream12.MultiDragPointerState;
+    acceptGesture(pointer: number): void;
+    rejectGesture(pointer: number): void;
+    dispose(): void;
+    addPointerPanZoom(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerPanZoomStartEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerPanZoomStartEvent": readonly [];
+    }>): void;
+    addAllowedPointerPanZoom(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerPanZoomStartEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerPanZoomStartEvent": readonly [];
+    }>): void;
+    addPointer(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>): void;
+    handleNonAllowedPointer(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>): void;
+    isPointerAllowed(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>): boolean;
+    handleNonAllowedPointerPanZoom(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerPanZoomStartEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerPanZoomStartEvent": readonly [];
+    }>): void;
+    isPointerPanZoomAllowed(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerPanZoomStartEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerPanZoomStartEvent": readonly [];
+    }>): boolean;
+    getKindForPointer(pointer: number): upstream7.PointerDeviceKind;
+    getButtonsForPointer(pointer: number): number;
+    invokeCallback<T extends unknown | null = unknown | null>(name: string, callback: (() => (T | _FlaxDartOutput<T>)), options?: {
+        debugReport?: (() => string) | null | undefined;
+    }): _FlaxDartOutput<T> | null;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream15.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream15.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream17.DiagnosticsTreeStyle | null | undefined;
+    }): upstream16.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream16.DiagnosticsNode>;
+    toString(options?: {
+        minLevel?: upstream15.DiagnosticLevel | undefined;
+    }): string;
+    set onStart(value: ((position: upstream9.Offset) => Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag.dart::Drag": readonly [];
+    }> | null) | null);
+    set gestureSettings(value: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_settings.dart::DeviceGestureSettings": readonly [];
+    }> | null);
+    set supportedDevices(value: DartSetInput<upstream7.PointerDeviceKind, upstream7.PointerDeviceKind> | null);
 }
-export interface DelayedMultiDragGestureRecognizer {
-    readonly [_flaxDartTypeValue]: DelayedMultiDragGestureRecognizer;
+export declare function _DelayedMultiDragGestureRecognizerFactory(options?: {
+    delay?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | undefined;
+    debugOwner?: unknown | null | undefined;
+    supportedDevices?: DartSetInput<upstream7.PointerDeviceKind, upstream7.PointerDeviceKind> | null | undefined;
+    allowedButtonsFilter?: ((buttons: number) => boolean) | null | undefined;
+}): DelayedMultiDragGestureRecognizer;
+export interface _DelayedMultiDragGestureRecognizerNative extends DelayedMultiDragGestureRecognizer {
+    readonly [_flaxDartTypeValue]: _DelayedMultiDragGestureRecognizerNative;
     readonly [_flaxDartMethodCases]?: {
         invokeCallback: _FlaxSignature1;
     };
@@ -209,7 +366,7 @@ export interface DelayedMultiDragGestureRecognizer {
     }> | null);
     set supportedDevices(value: DartSetInput<upstream7.PointerDeviceKind, upstream7.PointerDeviceKind> | null);
 }
-export declare abstract class DelayedMultiDragGestureRecognizer extends _FlaxProxyBase {
+export declare abstract class _DelayedMultiDragGestureRecognizerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DelayedMultiDragGestureRecognizer>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: DelayedMultiDragGestureRecognizer;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:DelayedMultiDragGestureRecognizer", readonly [], false];
@@ -224,7 +381,7 @@ export declare abstract class DelayedMultiDragGestureRecognizer extends _FlaxPro
         allowedButtonsFilter?: ((buttons: number) => boolean) | null | undefined;
     });
 }
-export declare namespace DelayedMultiDragGestureRecognizer {
+export declare namespace _DelayedMultiDragGestureRecognizerFactory {
     function implement(args: [options?: {
         delay?: (Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];
@@ -236,6 +393,17 @@ export declare namespace DelayedMultiDragGestureRecognizer {
         allowedButtonsFilter?: ((buttons: number) => boolean) | null | undefined;
     }], implementation: {}): DelayedMultiDragGestureRecognizer;
 }
+declare const _DelayedMultiDragGestureRecognizerBinding: typeof _DelayedMultiDragGestureRecognizerFactory & (new (options?: {
+    delay?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | undefined;
+    debugOwner?: unknown | null | undefined;
+    supportedDevices?: DartSetInput<upstream7.PointerDeviceKind, upstream7.PointerDeviceKind> | null | undefined;
+    allowedButtonsFilter?: ((buttons: number) => boolean) | null | undefined;
+}) => _DelayedMultiDragGestureRecognizerNative);
+export declare const DelayedMultiDragGestureRecognizer: typeof _DelayedMultiDragGestureRecognizerBinding & _FlaxInstanceType<DelayedMultiDragGestureRecognizer> & _FlaxDartType<DelayedMultiDragGestureRecognizer, readonly ["class", "flax.core/sdk_gestures#type:DelayedMultiDragGestureRecognizer", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "onStart" | "debugOwner" | "gestureSettings" | "supportedDevices" | "allowedButtonsFilter" | "debugDescription" | "delay" | "addAllowedPointer" | "createNewPointerState" | "acceptGesture" | "rejectGesture" | "dispose" | "addPointerPanZoom" | "addAllowedPointerPanZoom" | "addPointer" | "handleNonAllowedPointer" | "isPointerAllowed" | "handleNonAllowedPointerPanZoom" | "isPointerPanZoomAllowed" | "getKindForPointer" | "getButtonsForPointer" | "invokeCallback" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "toString" | "__flaxBound:package:flutter/src/gestures/multidrag.dart::DelayedMultiDragGestureRecognizer" | "__flaxBound:package:flutter/src/gestures/multidrag.dart::MultiDragGestureRecognizer" | "__flaxBound:package:flutter/src/gestures/recognizer.dart::GestureRecognizer" | "__flaxBound:package:flutter/src/gestures/arena.dart::GestureArenaMember" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (name: string, callback: (() => (_Selected0 | DartInput<_Selected0>)), options?: {

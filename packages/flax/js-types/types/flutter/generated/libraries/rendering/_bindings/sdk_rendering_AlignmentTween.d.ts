@@ -8,7 +8,7 @@ import '@flax/flutter/animation/_bindings/sdk_animation_Animatable';
 import type * as upstream3 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface AlignmentTween extends Omit<upstream0.Tween<upstream1.Alignment>, _flaxOwnMembers0>, Omit<upstream2.Animatable<upstream1.Alignment>, _flaxOwnMembers0 | keyof upstream0.Tween<upstream1.Alignment>>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/tweens.dart::AlignmentTween": readonly [];
 }>, Readonly<{
@@ -18,9 +18,53 @@ export interface AlignmentTween extends Omit<upstream0.Tween<upstream1.Alignment
 }> {
     readonly __AlignmentTween: unique symbol;
     readonly [_flaxDartTypeValue]: AlignmentTween;
+    get begin(): upstream1.Alignment | null;
+    get end(): upstream1.Alignment | null;
+    lerp(t: number): upstream1.Alignment;
+    transform(t: number): upstream1.Alignment;
+    toString(): string;
+    evaluate(animation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>): upstream1.Alignment;
+    animate(parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>): upstream3.Animation<upstream1.Alignment>;
+    chain(parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number];
+    }>): upstream2.Animatable<upstream1.Alignment>;
+    set begin(value: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::Alignment": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }>) | null);
+    set end(value: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::Alignment": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }>) | null);
 }
-export interface AlignmentTween {
-    readonly [_flaxDartTypeValue]: AlignmentTween;
+export declare function _AlignmentTweenFactory(options?: {
+    begin?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::Alignment": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }>) | null | undefined;
+    end?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::Alignment": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }>) | null | undefined;
+}): AlignmentTween;
+export interface _AlignmentTweenNative extends AlignmentTween {
+    readonly [_flaxDartTypeValue]: _AlignmentTweenNative;
     lerp(t: number): upstream1.Alignment;
     transform(t: number): upstream1.Alignment;
     toString(): string;
@@ -54,7 +98,7 @@ export interface AlignmentTween {
         "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
     }>) | null);
 }
-export declare abstract class AlignmentTween extends _FlaxProxyBase {
+export declare abstract class _AlignmentTweenNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AlignmentTween>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AlignmentTween;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:AlignmentTween", readonly [], false];
@@ -71,7 +115,7 @@ export declare abstract class AlignmentTween extends _FlaxProxyBase {
         }>) | null | undefined;
     });
 }
-export declare namespace AlignmentTween {
+export declare namespace _AlignmentTweenFactory {
     function implement(args: [options?: {
         begin?: (Readonly<{
             "__flaxBound:package:flutter/src/painting/alignment.dart::Alignment": readonly [];
@@ -85,5 +129,18 @@ export declare namespace AlignmentTween {
         }>) | null | undefined;
     }], implementation: {}): AlignmentTween;
 }
+declare const _AlignmentTweenBinding: typeof _AlignmentTweenFactory & (new (options?: {
+    begin?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::Alignment": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }>) | null | undefined;
+    end?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::Alignment": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }>) | null | undefined;
+}) => _AlignmentTweenNative);
+export declare const AlignmentTween: typeof _AlignmentTweenBinding & _FlaxInstanceType<AlignmentTween> & _FlaxDartType<AlignmentTween, readonly ["class", "flax.core/sdk_rendering#type:AlignmentTween", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "begin" | "end" | "lerp" | "transform" | "toString" | "evaluate" | "animate" | "chain" | "__flaxBound:package:flutter/src/rendering/tweens.dart::AlignmentTween" | "__flaxBound:package:flutter/src/animation/tween.dart::Tween" | "__flaxBound:package:flutter/src/animation/tween.dart::Animatable";
 export {};

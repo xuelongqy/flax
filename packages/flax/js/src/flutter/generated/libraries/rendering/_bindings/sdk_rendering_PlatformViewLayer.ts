@@ -28,18 +28,55 @@ import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters6, _flaxMemberParameters11, _flaxMemberParameters153, _flaxMemberParameters1, _flaxMemberParameters10, _flaxMemberParameters7, _flaxMemberParameters5, _flaxMemberParameters12, _flaxMemberParameters13, _flaxMemberParameters14, _flaxMemberParameters15, _flaxMemberParameters16 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters6, _flaxMemberParameters11, _flaxMemberParameters151, _flaxMemberParameters1, _flaxMemberParameters10, _flaxMemberParameters7, _flaxMemberParameters5, _flaxMemberParameters12, _flaxMemberParameters13, _flaxMemberParameters14, _flaxMemberParameters15, _flaxMemberParameters16 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface PlatformViewLayer extends Omit<upstream0.Layer, _flaxOwnMembers0>, Omit<upstream1.DiagnosticableTreeMixin, _flaxOwnMembers0 | keyof upstream0.Layer>, Omit<upstream2.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.Layer | keyof upstream1.DiagnosticableTreeMixin>, Omit<upstream3.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Layer | keyof upstream1.DiagnosticableTreeMixin | keyof upstream2.DiagnosticableTree>, Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::PlatformViewLayer": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __PlatformViewLayer: unique symbol;
 readonly [_flaxDartTypeValue]: PlatformViewLayer;
 readonly [_flaxDartMethodCases]?: {findAnnotations: _FlaxSignature0;find: _FlaxSignature1;findAllAnnotations: _FlaxSignature2;};
+readonly subtreeHasCompositionCallbacks: boolean;
+readonly debugDisposed: boolean;
+readonly debugHandleCount: number;
+readonly parent: upstream5.ContainerLayer | null;
+readonly alwaysNeedsAddToScene: boolean;
+readonly owner: unknown | null;
+readonly attached: boolean;
+readonly depth: number;
+readonly nextSibling: upstream0.Layer | null;
+readonly previousSibling: upstream0.Layer | null;
+get debugCreator(): unknown | null;
+readonly rect: upstream4.Rect;
+readonly viewId: number;
+supportsRasterization(): boolean;
+describeClipBounds(): upstream4.Rect | null;
+addCompositionCallback(callback: ((layer: upstream0.Layer) => void)): (() => void);
+attach(owner: {}): void;
+detach(): void;
+redepthChildren(): void;
+remove(): void;
+findAnnotations<S extends {} = {}>(result: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotationResult": readonly [_FlaxDartOutput<S>] }>, localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>, options: {onlyFirst: boolean}): boolean;
+find<S extends {} = {}>(localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): _FlaxDartOutput<S> | null;
+findAllAnnotations<S extends {} = {}>(localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): upstream6.AnnotationResult<_FlaxDartOutput<S>>;
+addToScene(builder: Readonly<{ "__flaxBound:dart:ui::SceneBuilder": readonly [] }>): void;
+toStringShort(): string;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream10.DiagnosticLevel | undefined}): string;
+toStringDeep(options?: {minLevel?: upstream10.DiagnosticLevel | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream12.DiagnosticsTreeStyle | null | undefined}): upstream11.DiagnosticsNode;
+debugDescribeChildren(): DartList<upstream11.DiagnosticsNode>;
+toString(options?: {minLevel?: upstream10.DiagnosticLevel | undefined}): string;
+set debugCreator(value: unknown | null);
 }
 defineObject("flax.core/sdk_rendering#type:PlatformViewLayer", ["subtreeHasCompositionCallbacks","debugDisposed","debugHandleCount","parent","alwaysNeedsAddToScene","owner","attached","depth","nextSibling","previousSibling","debugCreator","rect","viewId"], ["debugCreator"], _flaxBindingMethods("flax.core/sdk_rendering#type:PlatformViewLayer", "object", {"findAnnotations":_flaxMemberParameters6,"find":_flaxMemberParameters11,"findAllAnnotations":_flaxMemberParameters11}, {"findAnnotations":{"id":"findAnnotations","parameters":[{"name":"result","required":true,"positional":true},{"name":"localPosition","required":true,"positional":true},{"name":"onlyFirst","required":true}]},"find":{"id":"find","parameters":[{"name":"localPosition","required":true,"positional":true}]},"findAllAnnotations":{"id":"findAllAnnotations","parameters":[{"name":"localPosition","required":true,"positional":true}]}}), [], undefined, "flax.core/sdk_rendering#type:Layer");
-const _PlatformViewLayerProxy = {type: "flax.core/sdk_rendering#type:PlatformViewLayer", parameters: _flaxMemberParameters153, constructors: {"": _flaxMemberParameters153}, methods: {"supportsRasterization":_flaxMemberParameters1,"describeClipBounds":_flaxMemberParameters1,"addCompositionCallback":_flaxMemberParameters10,"attach":_flaxMemberParameters7,"detach":_flaxMemberParameters1,"redepthChildren":_flaxMemberParameters1,"remove":_flaxMemberParameters1,"findAnnotations":_flaxMemberParameters6,"find":_flaxMemberParameters11,"findAllAnnotations":_flaxMemberParameters11,"addToScene":_flaxMemberParameters5,"toStringShort":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters12,"toStringShallow":_flaxMemberParameters13,"toStringDeep":_flaxMemberParameters14,"toDiagnosticsNode":_flaxMemberParameters15,"debugDescribeChildren":_flaxMemberParameters1,"toString":_flaxMemberParameters16}, getters: ["rect","viewId","subtreeHasCompositionCallbacks","debugDisposed","debugHandleCount","parent","alwaysNeedsAddToScene","owner","attached","depth","nextSibling","previousSibling","debugCreator"], setters: ["debugCreator"], contextMembers: ["findAnnotations","find","findAllAnnotations"], superMembers: ["get:rect","get:viewId","get:subtreeHasCompositionCallbacks","get:debugDisposed","get:debugHandleCount","get:parent","get:alwaysNeedsAddToScene","get:owner","get:attached","get:depth","get:nextSibling","get:previousSibling","get:debugCreator","set:debugCreator","supportsRasterization","describeClipBounds","addCompositionCallback","attach","detach","redepthChildren","remove","findAnnotations","find","findAllAnnotations","addToScene","toStringShort","debugFillProperties","toStringShallow","toStringDeep","toDiagnosticsNode","debugDescribeChildren","toString"]} as const;
-export interface PlatformViewLayer {
-readonly [_flaxDartTypeValue]: PlatformViewLayer;
+export function _PlatformViewLayerFactory(options: { rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>; viewId: number }): PlatformViewLayer {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_rendering#type:PlatformViewLayer", "", [{"name":"rect","required":true},{"name":"viewId","required":true}], [], options) as PlatformViewLayer;
+}
+const _PlatformViewLayerProxy = {type: "flax.core/sdk_rendering#type:PlatformViewLayer", parameters: _flaxMemberParameters151, constructors: {"": _flaxMemberParameters151}, methods: {"supportsRasterization":_flaxMemberParameters1,"describeClipBounds":_flaxMemberParameters1,"addCompositionCallback":_flaxMemberParameters10,"attach":_flaxMemberParameters7,"detach":_flaxMemberParameters1,"redepthChildren":_flaxMemberParameters1,"remove":_flaxMemberParameters1,"findAnnotations":_flaxMemberParameters6,"find":_flaxMemberParameters11,"findAllAnnotations":_flaxMemberParameters11,"addToScene":_flaxMemberParameters5,"toStringShort":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters12,"toStringShallow":_flaxMemberParameters13,"toStringDeep":_flaxMemberParameters14,"toDiagnosticsNode":_flaxMemberParameters15,"debugDescribeChildren":_flaxMemberParameters1,"toString":_flaxMemberParameters16}, getters: ["rect","viewId","subtreeHasCompositionCallbacks","debugDisposed","debugHandleCount","parent","alwaysNeedsAddToScene","owner","attached","depth","nextSibling","previousSibling","debugCreator"], setters: ["debugCreator"], contextMembers: ["findAnnotations","find","findAllAnnotations"], superMembers: ["get:rect","get:viewId","get:subtreeHasCompositionCallbacks","get:debugDisposed","get:debugHandleCount","get:parent","get:alwaysNeedsAddToScene","get:owner","get:attached","get:depth","get:nextSibling","get:previousSibling","get:debugCreator","set:debugCreator","supportsRasterization","describeClipBounds","addCompositionCallback","attach","detach","redepthChildren","remove","findAnnotations","find","findAllAnnotations","addToScene","toStringShort","debugFillProperties","toStringShallow","toStringDeep","toDiagnosticsNode","debugDescribeChildren","toString"]} as const;
+export interface _PlatformViewLayerNative extends PlatformViewLayer {
+readonly [_flaxDartTypeValue]: _PlatformViewLayerNative;
 readonly [_flaxDartMethodCases]?: {findAnnotations: _FlaxSignature3;find: _FlaxSignature4;findAllAnnotations: _FlaxSignature5;};
 supportsRasterization(): boolean;
 describeClipBounds(): upstream4.Rect | null;
@@ -74,16 +111,17 @@ get previousSibling(): upstream0.Layer | null;
 get debugCreator(): unknown | null;
 set debugCreator(value: unknown | null);
 }
-export abstract class PlatformViewLayer extends _FlaxProxyBase {
+export abstract class _PlatformViewLayerNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PlatformViewLayer>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: PlatformViewLayer;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:PlatformViewLayer", readonly [], false];
 constructor(options: {rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>; viewId: number}) { super(_PlatformViewLayerProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(PlatformViewLayer.prototype, _PlatformViewLayerProxy);
-export namespace PlatformViewLayer { export function implement(args: [options: {rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>; viewId: number}], implementation: {}): PlatformViewLayer {
+_flaxDefineProxyBase(_PlatformViewLayerNative.prototype, _PlatformViewLayerProxy);
+export namespace _PlatformViewLayerFactory { export function implement(args: [options: {rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>; viewId: number}], implementation: {}): PlatformViewLayer {
 return constructProxy(_PlatformViewLayerProxy, args, implementation) as PlatformViewLayer; } }
-_flaxBindInstanceType<PlatformViewLayer, typeof PlatformViewLayer>(PlatformViewLayer, "flax.core/sdk_rendering#type:PlatformViewLayer", ["flax.core/sdk_rendering#type:Layer","dart:core::Object","flax.core/sdk_foundation#type:DiagnosticableTreeMixin","flax.core/sdk_foundation#type:DiagnosticableTree","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _PlatformViewLayerBinding = _flaxProxyFactory(_PlatformViewLayerFactory, _PlatformViewLayerNative) as unknown as typeof _PlatformViewLayerFactory & (new(options: {rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>; viewId: number}) => _PlatformViewLayerNative);
+export const PlatformViewLayer: typeof _PlatformViewLayerBinding & _FlaxInstanceType<PlatformViewLayer> & _FlaxDartType<PlatformViewLayer, readonly ["class", "flax.core/sdk_rendering#type:PlatformViewLayer", readonly [], false]> = _flaxBindInstanceType<PlatformViewLayer, typeof _PlatformViewLayerBinding>(_PlatformViewLayerBinding, "flax.core/sdk_rendering#type:PlatformViewLayer", ["flax.core/sdk_rendering#type:Layer","dart:core::Object","flax.core/sdk_foundation#type:DiagnosticableTreeMixin","flax.core/sdk_foundation#type:DiagnosticableTree","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _PlatformViewLayerBinding & _FlaxInstanceType<PlatformViewLayer> & _FlaxDartType<PlatformViewLayer, readonly ["class", "flax.core/sdk_rendering#type:PlatformViewLayer", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "subtreeHasCompositionCallbacks" | "debugDisposed" | "debugHandleCount" | "parent" | "alwaysNeedsAddToScene" | "owner" | "attached" | "depth" | "nextSibling" | "previousSibling" | "debugCreator" | "rect" | "viewId" | "supportsRasterization" | "describeClipBounds" | "addCompositionCallback" | "attach" | "detach" | "redepthChildren" | "remove" | "findAnnotations" | "find" | "findAllAnnotations" | "addToScene" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "toString" | "__flaxBound:package:flutter/src/rendering/layer.dart::PlatformViewLayer" | "__flaxBound:package:flutter/src/rendering/layer.dart::Layer" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (result: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotationResult": readonly [_Selected0] }>,localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>,options: {onlyFirst: boolean}) => boolean : never : never; }
 interface _FlaxSignature1 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>) => _Selected0 | null : never : never; }

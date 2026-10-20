@@ -23,6 +23,7 @@ import 'manifest_codec.dart';
 part 'bindability_impl.dart';
 part 'auto_binding.dart';
 part 'package_scope.dart';
+part 'dependency_scope.dart';
 part 'type_scope.dart';
 part 'widget_interface.dart';
 
@@ -602,6 +603,12 @@ class FlaxCodegenBindingParser {
       <FlaxCodegenBindingConfig, (Map<String, Element>, Map<String, String>)>{};
   final _libraryByIdentity = <String, String>{};
   final _elementsByIdentity = <String, InterfaceElement>{};
+  Set<String>? _bindingSourcePackages;
+  final _localDependencyElements = <String, InterfaceElement>{};
+  final _localDependencyCarriers = <String, String>{};
+  final _localDependencyModuleNames = <String>{};
+  final _dependencyLocalViews = <String, String>{};
+  final _dependencyClassViews = <String, _FlaxCodegenDependencyClassViews>{};
   final _literalLibraries = <LibraryElement, SomeParsedLibraryResult>{};
 
   /// Resolve the declaration whose Dart default is used by this callable.
@@ -893,7 +900,9 @@ class FlaxCodegenBindingParser {
   void prepareModules(
     Iterable<FlaxCodegenModuleModel> modules, {
     Map<String, String> dependencyTypeOwnerModules = const {},
+    Map<String, String> dependencyLocalViews = const {},
   }) {
+    _dependencyLocalViews.addAll(dependencyLocalViews);
     final snapshots = modules.toList();
     final candidates = <String, List<FlaxCodegenModuleModel>>{};
     for (final module in snapshots) {
@@ -1022,6 +1031,7 @@ class FlaxCodegenBindingParser {
       }
       for (final type in module.classes) {
         if (!useClass(module, type.id)) continue;
+        _recordDependencyClassViews(type);
         _dependencyOwners[type.id] = module;
         _dependencyTypeOwners.putIfAbsent(type.id, () => module);
         final selection = _selectionFromModel(type);
@@ -1074,6 +1084,7 @@ class FlaxCodegenBindingParser {
   Future<_FlaxCodegenTypeScope> _openTypeScope(
     FlaxCodegenBindingConfig config, {
     Map<String, String> automaticTypeCarriers = const {},
+    InterfaceElement? declaration,
   }) async {
     final (exports, libraries) = await _resolutionExports(config);
     final result = await _contexts.contexts.first.currentSession
@@ -1088,7 +1099,7 @@ class FlaxCodegenBindingParser {
       publicLibraries: Map<String, String>.of(libraries),
       automaticTypeCarriers: automaticTypeCarriers,
       objectQuestionType: result.element.typeProvider.objectQuestionType,
-    );
+    )..selectDeclaration(declaration);
   }
 
   /// Propose a fail-open member subset for [element] in [library]'s export
@@ -1857,10 +1868,14 @@ class FlaxCodegenBindingParser {
             if (getter.isStatic || getter.isPrivate) continue;
             final name = getter.name!;
             if (interfaceGetters.contains(name)) continue;
-            final model = FlaxCodegenGetterModel(
-              name,
-              typeRef(getter.returnType)
-                  .declaredAs(typeRef(getter.returnType, forTypescript: true)),
+            final model = scope.withMember(
+              getter,
+              () => FlaxCodegenGetterModel(
+                name,
+                typeRef(
+                  getter.returnType,
+                ).declaredAs(typeRef(getter.returnType, forTypescript: true)),
+              ),
             );
             getterMembers[name] = (model, getter.isAbstract);
             if (!getter.isAbstract) superMembers.add('get:$name');
@@ -1870,10 +1885,13 @@ class FlaxCodegenBindingParser {
             final name = setter.name!.replaceFirst(RegExp(r'=$'), '');
             if (interfaceSetters.contains(name)) continue;
             final valueType = setter.formalParameters.single.type;
-            final model = FlaxCodegenGetterModel(
-              name,
-              typeRef(valueType)
-                  .declaredAs(typeRef(valueType, forTypescript: true)),
+            final model = scope.withMember(
+              setter,
+              () => FlaxCodegenGetterModel(
+                name,
+                typeRef(valueType)
+                    .declaredAs(typeRef(valueType, forTypescript: true)),
+              ),
             );
             setterMembers[name] = (model, setter.isAbstract);
             if (!setter.isAbstract) superMembers.add('set:$name');
@@ -1895,19 +1913,23 @@ class FlaxCodegenBindingParser {
               continue;
             }
             if (interfaceMethods.contains(name)) continue;
-            final model = FlaxCodegenMethodModel(
-              name,
-              parameters(
-                method.formalParameters,
-                method.formalParameters
-                    .map((parameter) => parameter.name!)
-                    .toList(),
-                '${entry.key}.$name',
+            final model = scope.withMember(
+              method,
+              () => FlaxCodegenMethodModel(
+                name,
+                parameters(
+                  method.formalParameters,
+                  method.formalParameters
+                      .map((parameter) => parameter.name!)
+                      .toList(),
+                  '${entry.key}.$name',
+                ),
+                typeRef(
+                  method.returnType,
+                ).declaredAs(typeRef(method.returnType, forTypescript: true)),
+                instance: true,
+                mustCallSuper: _requiresSuper(mixin, name),
               ),
-              typeRef(method.returnType)
-                  .declaredAs(typeRef(method.returnType, forTypescript: true)),
-              instance: true,
-              mustCallSuper: _requiresSuper(mixin, name),
             );
             methodMembers[name] = (model, method.isAbstract);
             if (!method.isAbstract) superMembers.add('call:$name');
@@ -1946,6 +1968,7 @@ class FlaxCodegenBindingParser {
           'Expected a publicly exported concrete class: ${entry.key}',
         );
       }
+      scope.selectDeclaration(element);
       if (_nativeJsValueType(element) case final native?) {
         throw StateError(
           '${entry.key} maps to native JS $native and cannot be selected '
@@ -2169,10 +2192,13 @@ class FlaxCodegenBindingParser {
             'Unknown public instance getter: ${entry.key}.$name',
           );
         }
-        var type = typeRef(getter.returnType).declaredAs(
-          typeRef(
-            element.thisType.lookUpGetter(name, element.library)!.returnType,
-            forTypescript: true,
+        var type = scope.withMember(
+          getter,
+          () => typeRef(getter.returnType).declaredAs(
+            typeRef(
+              element.thisType.lookUpGetter(name, element.library)!.returnType,
+              forTypescript: true,
+            ),
           ),
         );
         if (selection.data.getters.contains(name)) {
@@ -2226,14 +2252,17 @@ class FlaxCodegenBindingParser {
             'Invalid selected object setter: ${entry.key}.$name',
           );
         }
-        final type = typeRef(setter.formalParameters.single.type).declaredAs(
-          typeRef(
-            element.thisType
-                .lookUpSetter(name, element.library)!
-                .formalParameters
-                .single
-                .type,
-            forTypescript: true,
+        final type = scope.withMember(
+          setter,
+          () => typeRef(setter.formalParameters.single.type).declaredAs(
+            typeRef(
+              element.thisType
+                  .lookUpSetter(name, element.library)!
+                  .formalParameters
+                  .single
+                  .type,
+              forTypescript: true,
+            ),
           ),
         );
         if (!_setterKinds.contains(type.kind)) {
@@ -2336,206 +2365,211 @@ class FlaxCodegenBindingParser {
             'Expected a public ${instance ? 'instance' : 'static'} method: ${entry.key}.${chosen.key}',
           );
         }
-        final selectedParameters = chosen.value
-            .map((name) {
-              if (method.formalParameters.any(
-                (parameter) => parameter.name == name,
-              )) {
-                return name;
-              }
-              for (final parent in element.allSupertypes) {
-                final declaration = parent.lookUpMethod(
-                  chosen.key,
-                  element.library,
-                );
-                if (declaration == null) continue;
-                final index = declaration.formalParameters.indexWhere(
+        scope.withMember(method, () {
+          final selectedParameters = chosen.value
+              .map((name) {
+                if (method.formalParameters.any(
                   (parameter) => parameter.name == name,
-                );
-                if (index >= 0 && index < method.formalParameters.length) {
-                  return method.formalParameters[index].name!;
+                )) {
+                  return name;
                 }
-              }
-              return name;
-            })
-            .toSet()
-            .toList();
-        final originalMethod = operatorName != null
-            ? _classOperator(element.thisType, operatorName)!
-            : instance
-            ? (element.thisType.lookUpMethod(
+                for (final parent in element.allSupertypes) {
+                  final declaration = parent.lookUpMethod(
                     chosen.key,
                     element.library,
-                    concrete: selection.proxy == 'extends',
-                  ) ??
-                  element.thisType.lookUpMethod(chosen.key, element.library))!
-            : method;
-        final deferredFactory = effectiveDeferredFactories.contains(chosen.key);
-        final explicitTypeArgs =
-            selection.methodTypeArguments[chosen.key] ?? const <String>[];
-        final sharedArguments =
-            !deferredFactory &&
-                method.typeParameters.isNotEmpty &&
-                explicitTypeArgs.isEmpty
-            ? _sharedTypeArguments(
-                this,
-                scope,
-                method.typeParameters,
-                element.library,
-                '${entry.key}.${chosen.key}',
-              )
-            : null;
-        if (sharedArguments?.supported == false) {
-          throw StateError(sharedArguments!.reason!);
-        }
-        final typeArgs = explicitTypeArgs.isNotEmpty
-            ? explicitTypeArgs
-            : sharedArguments?.sources ?? const <String>[];
-        if (deferredFactory &&
-            (instance ||
-                method.typeParameters.isEmpty ||
-                typeArgs.isNotEmpty ||
-                method.baseElement.fragments.any(
-                  (fragment) => fragment.isAsynchronous || fragment.isGenerator,
-                ))) {
-          throw StateError(
-            'Deferred factories require a synchronous generic static method: ${entry.key}.${chosen.key}',
+                  );
+                  if (declaration == null) continue;
+                  final index = declaration.formalParameters.indexWhere(
+                    (parameter) => parameter.name == name,
+                  );
+                  if (index >= 0 && index < method.formalParameters.length) {
+                    return method.formalParameters[index].name!;
+                  }
+                }
+                return name;
+              })
+              .toSet()
+              .toList();
+          final originalMethod = operatorName != null
+              ? _classOperator(element.thisType, operatorName)!
+              : instance
+              ? (element.thisType.lookUpMethod(
+                      chosen.key,
+                      element.library,
+                      concrete: selection.proxy == 'extends',
+                    ) ??
+                    element.thisType.lookUpMethod(chosen.key, element.library))!
+              : method;
+          final deferredFactory = effectiveDeferredFactories.contains(
+            chosen.key,
           );
-        }
-        final runtimeMethodArguments =
-            sharedArguments?.arguments ??
-            [
-              for (final name in typeArgs)
-                _runtimeType(name, exports, element.library),
-            ];
-        if (!deferredFactory) {
-          _checkBounds(
-            method.typeParameters,
-            runtimeMethodArguments,
-            element.library,
-            false,
-          );
-        }
-        final signature =
-            deferredFactory || sharedArguments?.requiresTypeArguments == true
-            ? method.type
-            : typeArgs.isEmpty
-            ? method.type
-            : method.type.instantiate(runtimeMethodArguments);
-        var result = typeRef(
-          signature.returnType,
-          allowRecursiveErasure: deferredFactory,
-        ).declaredAs(typeRef(originalMethod.returnType, forTypescript: true));
-        if (selection.data.results.contains(chosen.key)) {
-          result = _dataType(result, '${entry.key}.${chosen.key} result');
-        }
-        if (selection.kind == 'object' &&
-            result.kind == 'void' &&
-            method.baseElement.fragments.any(
-              (f) => f.isAsynchronous || f.isGenerator,
-            )) {
-          throw StateError(
-            'Object void methods must execute synchronously: ${chosen.key}',
-          );
-        }
-
-        final results = {
-          'String',
-          'bool',
-          'int',
-          'double',
-          'num',
-          ...flaxCodegenBufferTypes.keys,
-          'BigInt',
-          'enum',
-          'void',
-          'never',
-          'data',
-          'any',
-          'iterable',
-          'list',
-          'map',
-          'record',
-          'set',
-          'state',
-          'object',
-          'future',
-          'futureOr',
-          'stream',
-          'callback',
-          'widget',
-          'context',
-        };
-        if (!results.contains(result.kind)) {
-          throw StateError(
-            'Unsupported method result: ${signature.returnType}',
-          );
-        }
-        final args = parameters(
-          signature.formalParameters,
-          selectedParameters,
-          '${entry.key}.${chosen.key}',
-          declared: originalMethod.formalParameters,
-          data: selection.data.methods[chosen.key] ?? const [],
-          allowRecursiveErasure: deferredFactory,
-          callbackSignatures: selection.callbackSignatures,
-          callbackOptionalParameters: selection.callbackOptionalParameters,
-          callbackErrorParameters: selection.callbackErrorParameters,
-          callbackScopedParameters: selection.callbackScopedParameters,
-        );
-        if (args.any((p) => !_setterKinds.contains(p.type.kind))) {
-          throw StateError('Unsupported method arguments: ${chosen.key}');
-        }
-        methods.add(
-          FlaxCodegenMethodModel(
-            exportedName,
-            args,
-            operatorName: operatorName,
-            result,
-            instance: instance,
-            typeArguments: typeArgs,
-            typeParameters: [
-              for (var i = 0; i < originalMethod.typeParameters.length; i++)
-                FlaxCodegenGenericParameter(
-                  originalMethod.typeParameters[i].name!,
-                  typeRef(
-                    originalMethod.typeParameters[i].bound ??
-                        element.library.typeProvider.objectQuestionType,
-                    forTypescript: true,
-                    typeOnlyPosition: true,
-                  ),
-                  defaultType: sharedArguments?.requiresTypeArguments == true
-                      ? null
-                      : typeRef(
-                          deferredFactory
-                              ? originalMethod.typeParameters[i].bound ??
-                                    element
-                                        .library
-                                        .typeProvider
-                                        .objectQuestionType
-                              : runtimeMethodArguments[i],
-                          erasing: deferredFactory
-                              ? {originalMethod.typeParameters[i]}
-                              : null,
-                          allowRecursiveErasure: deferredFactory,
-                        ),
-                  genericIdentity: originalMethod.typeParameters[i],
-                ),
-            ],
-            startsRoute: selection.startsRoute.contains(chosen.key),
-            deferredFactory: deferredFactory,
-          ),
-        );
-        final model = methods.last;
-        final dataParameters = _dataParameters([
-          result,
-          ...args.map((p) => p.type),
-        ]);
-        for (var i = 0; i < model.typeParameters.length; i++) {
-          if (dataParameters.contains(model.typeParameters[i].name)) {
-            model.typeParameters[i] = _dataGeneric(model.typeParameters[i]);
+          final explicitTypeArgs =
+              selection.methodTypeArguments[chosen.key] ?? const <String>[];
+          final sharedArguments =
+              !deferredFactory &&
+                  method.typeParameters.isNotEmpty &&
+                  explicitTypeArgs.isEmpty
+              ? _sharedTypeArguments(
+                  this,
+                  scope,
+                  method.typeParameters,
+                  element.library,
+                  '${entry.key}.${chosen.key}',
+                )
+              : null;
+          if (sharedArguments?.supported == false) {
+            throw StateError(sharedArguments!.reason!);
           }
-        }
+          final typeArgs = explicitTypeArgs.isNotEmpty
+              ? explicitTypeArgs
+              : sharedArguments?.sources ?? const <String>[];
+          if (deferredFactory &&
+              (instance ||
+                  method.typeParameters.isEmpty ||
+                  typeArgs.isNotEmpty ||
+                  method.baseElement.fragments.any(
+                    (fragment) =>
+                        fragment.isAsynchronous || fragment.isGenerator,
+                  ))) {
+            throw StateError(
+              'Deferred factories require a synchronous generic static method: ${entry.key}.${chosen.key}',
+            );
+          }
+          final runtimeMethodArguments =
+              sharedArguments?.arguments ??
+              [
+                for (final name in typeArgs)
+                  _runtimeType(name, exports, element.library),
+              ];
+          if (!deferredFactory) {
+            _checkBounds(
+              method.typeParameters,
+              runtimeMethodArguments,
+              element.library,
+              false,
+            );
+          }
+          final signature =
+              deferredFactory || sharedArguments?.requiresTypeArguments == true
+              ? method.type
+              : typeArgs.isEmpty
+              ? method.type
+              : method.type.instantiate(runtimeMethodArguments);
+          var result = typeRef(
+            signature.returnType,
+            allowRecursiveErasure: deferredFactory,
+          ).declaredAs(typeRef(originalMethod.returnType, forTypescript: true));
+          if (selection.data.results.contains(chosen.key)) {
+            result = _dataType(result, '${entry.key}.${chosen.key} result');
+          }
+          if (selection.kind == 'object' &&
+              result.kind == 'void' &&
+              method.baseElement.fragments.any(
+                (f) => f.isAsynchronous || f.isGenerator,
+              )) {
+            throw StateError(
+              'Object void methods must execute synchronously: ${chosen.key}',
+            );
+          }
+
+          final results = {
+            'String',
+            'bool',
+            'int',
+            'double',
+            'num',
+            ...flaxCodegenBufferTypes.keys,
+            'BigInt',
+            'enum',
+            'void',
+            'never',
+            'data',
+            'any',
+            'iterable',
+            'list',
+            'map',
+            'record',
+            'set',
+            'state',
+            'object',
+            'future',
+            'futureOr',
+            'stream',
+            'callback',
+            'widget',
+            'context',
+          };
+          if (!results.contains(result.kind)) {
+            throw StateError(
+              'Unsupported method result: ${signature.returnType}',
+            );
+          }
+          final args = parameters(
+            signature.formalParameters,
+            selectedParameters,
+            '${entry.key}.${chosen.key}',
+            declared: originalMethod.formalParameters,
+            data: selection.data.methods[chosen.key] ?? const [],
+            allowRecursiveErasure: deferredFactory,
+            callbackSignatures: selection.callbackSignatures,
+            callbackOptionalParameters: selection.callbackOptionalParameters,
+            callbackErrorParameters: selection.callbackErrorParameters,
+            callbackScopedParameters: selection.callbackScopedParameters,
+          );
+          if (args.any((p) => !_setterKinds.contains(p.type.kind))) {
+            throw StateError('Unsupported method arguments: ${chosen.key}');
+          }
+          methods.add(
+            FlaxCodegenMethodModel(
+              exportedName,
+              args,
+              operatorName: operatorName,
+              result,
+              instance: instance,
+              typeArguments: typeArgs,
+              typeParameters: [
+                for (var i = 0; i < originalMethod.typeParameters.length; i++)
+                  FlaxCodegenGenericParameter(
+                    originalMethod.typeParameters[i].name!,
+                    typeRef(
+                      originalMethod.typeParameters[i].bound ??
+                          element.library.typeProvider.objectQuestionType,
+                      forTypescript: true,
+                      typeOnlyPosition: true,
+                    ),
+                    defaultType: sharedArguments?.requiresTypeArguments == true
+                        ? null
+                        : typeRef(
+                            deferredFactory
+                                ? originalMethod.typeParameters[i].bound ??
+                                      element
+                                          .library
+                                          .typeProvider
+                                          .objectQuestionType
+                                : runtimeMethodArguments[i],
+                            erasing: deferredFactory
+                                ? {originalMethod.typeParameters[i]}
+                                : null,
+                            allowRecursiveErasure: deferredFactory,
+                          ),
+                    genericIdentity: originalMethod.typeParameters[i],
+                  ),
+              ],
+              startsRoute: selection.startsRoute.contains(chosen.key),
+              deferredFactory: deferredFactory,
+            ),
+          );
+          final model = methods.last;
+          final dataParameters = _dataParameters([
+            result,
+            ...args.map((p) => p.type),
+          ]);
+          for (var i = 0; i < model.typeParameters.length; i++) {
+            if (dataParameters.contains(model.typeParameters[i].name)) {
+              model.typeParameters[i] = _dataGeneric(model.typeParameters[i]);
+            }
+          }
+        });
       }
       if (selection.startsRoute.any(
             (name) => !selection.instanceMethods.containsKey(name),
@@ -2601,8 +2635,9 @@ class FlaxCodegenBindingParser {
             selectedMethods.containsKey(name)) {
           throw StateError('Invalid static getter: ${entry.key}.$name');
         }
-        final type = typeRef(
-          _publicStaticGetterType(actualType, getter.returnType),
+        final type = scope.withMember(
+          getter,
+          () => typeRef(_publicStaticGetterType(actualType, getter.returnType)),
         );
         staticGetters.add(
           FlaxCodegenGetterModel(name, type, isConst: getter.variable.isConst),
@@ -2647,8 +2682,10 @@ class FlaxCodegenBindingParser {
           );
         }
         final input = setter.formalParameters.single.type;
-        final type = typeRef(input)
-            .declaredAs(typeRef(input, forTypescript: true));
+        final type = scope.withMember(
+          setter,
+          () => typeRef(input).declaredAs(typeRef(input, forTypescript: true)),
+        );
         if (!_setterKinds.contains(type.kind)) {
           throw StateError(
             'Unsupported static setter type: ${entry.key}.$name',
@@ -2694,153 +2731,160 @@ class FlaxCodegenBindingParser {
             'Constructor requires compile-time constant arguments: ${entry.key}.${chosen.key}',
           );
         }
-        List<FlaxCodegenParameterModel> constructorParametersFor(
-          ConstructorElement candidate, {
-          bool closed = false,
-        }) => parameters(
-          candidate.formalParameters,
-          chosen.value,
-          '${entry.key}.${chosen.key}',
-          data: selection.data.constructors[chosen.key] ?? const [],
-          mountedWidgetCallbacks: isWidget,
-          declared: closed
-              ? null
-              : element.thisType.constructors
-                    .firstWhere((c) => c.name == constructor.name)
-                    .formalParameters,
-          callbackSignatures: selection.callbackSignatures,
-          callbackOptionalParameters: selection.callbackOptionalParameters,
-          callbackErrorParameters: selection.callbackErrorParameters,
-          callbackScopedParameters: selection.callbackScopedParameters,
-        );
-        var constructorParameters = constructorParametersFor(constructor);
-        final specializations = <FlaxCodegenConstructorSpecializationModel>[];
-        if (element.typeParameters.isNotEmpty &&
-            selection.typeArguments.isEmpty) {
-          final declaredConstructor = element.thisType.constructors.firstWhere(
-            (candidate) => candidate.name == constructor.name,
+        scope.withMember(constructor, () {
+          List<FlaxCodegenParameterModel> constructorParametersFor(
+            ConstructorElement candidate, {
+            bool closed = false,
+          }) => parameters(
+            candidate.formalParameters,
+            chosen.value,
+            '${entry.key}.${chosen.key}',
+            data: selection.data.constructors[chosen.key] ?? const [],
+            mountedWidgetCallbacks: isWidget,
+            declared: closed
+                ? null
+                : element.thisType.constructors
+                      .firstWhere((c) => c.name == constructor.name)
+                      .formalParameters,
+            callbackSignatures: selection.callbackSignatures,
+            callbackOptionalParameters: selection.callbackOptionalParameters,
+            callbackErrorParameters: selection.callbackErrorParameters,
+            callbackScopedParameters: selection.callbackScopedParameters,
           );
-          final plan = _constructorSpecializationPlan(
-            parser: this,
-            element: element,
-            constructor: declaredConstructor,
-            runtimeConstructor: constructor,
-            selectedParameters: chosen.value,
-            concreteUses: concreteUses[identity(element)] ?? const [],
-            runtimeTypes: runtimeTypeSelection,
-          );
-          if (!plan.supported) {
-            throw StateError(
-              '${plan.reason ?? 'Generic constructor specialization unavailable'}: '
-              '${entry.key}.${chosen.key}',
+          var constructorParameters = constructorParametersFor(constructor);
+          final specializations = <FlaxCodegenConstructorSpecializationModel>[];
+          if (element.typeParameters.isNotEmpty &&
+              selection.typeArguments.isEmpty) {
+            final declaredConstructor = element.thisType.constructors
+                .firstWhere((candidate) => candidate.name == constructor.name);
+            final plan = _constructorSpecializationPlan(
+              parser: this,
+              element: element,
+              constructor: declaredConstructor,
+              runtimeConstructor: constructor,
+              selectedParameters: chosen.value,
+              concreteUses: concreteUses[identity(element)] ?? const [],
+              runtimeTypes: runtimeTypeSelection,
             );
-          }
-          if (plan.scalarParameters.isNotEmpty) {
-            constructorParameters = [
-              for (final parameter in constructorParameters)
-                if (plan.scalarParameters.contains(parameter.name))
-                  parameter.withType(
-                    FlaxCodegenTypeRef(
-                      'scalar',
-                      nullable:
-                          declaredConstructor.formalParameters
-                              .firstWhere(
-                                (candidate) => candidate.name == parameter.name,
-                              )
-                              .type
-                              .nullabilitySuffix ==
-                          NullabilitySuffix.question,
-                    ).declaredAs(parameter.type.declaration!),
-                  )
-                else
-                  parameter,
-            ];
-          }
-          for (final target in plan.targets) {
-            // Fixed method arguments must satisfy every selected native owner.
-            for (final method in methods.where(
-              (method) =>
-                  method.instance &&
-                  selection.methodTypeArguments.containsKey(
-                    method.operatorName ?? method.name,
-                  ),
-            )) {
-              final concreteMethod = target.type.lookUpMethod(
-                method.name,
-                element.library,
-              )!;
-              try {
-                _checkBounds(
-                  concreteMethod.typeParameters,
-                  [
-                    for (final argument in method.typeArguments)
-                      _runtimeType(argument, exports, element.library),
-                  ],
-                  element.library,
-                  false,
-                );
-              } on StateError catch (error) {
-                throw StateError(
-                  'Invalid generic method arguments for constructor target '
-                  '${entry.key}<${target.typeArguments.join(', ')}>.${method.name}: '
-                  '${error.message}',
-                );
-              }
+            if (!plan.supported) {
+              throw StateError(
+                '${plan.reason ?? 'Generic constructor specialization unavailable'}: '
+                '${entry.key}.${chosen.key}',
+              );
             }
-            final concreteConstructor = target.type.constructors.firstWhere(
-              (candidate) => candidate.name == constructor.name,
-            );
-            final concreteParameters = constructorParametersFor(
-              concreteConstructor,
-            );
-            if (!runtimeTypeSelection && plan.targets.length == 1) {
-              constructorParameters = concreteParameters;
+            if (plan.scalarParameters.isNotEmpty) {
+              constructorParameters = [
+                for (final parameter in constructorParameters)
+                  if (plan.scalarParameters.contains(parameter.name))
+                    parameter.withType(
+                      FlaxCodegenTypeRef(
+                        'scalar',
+                        nullable:
+                            declaredConstructor.formalParameters
+                                .firstWhere(
+                                  (candidate) =>
+                                      candidate.name == parameter.name,
+                                )
+                                .type
+                                .nullabilitySuffix ==
+                            NullabilitySuffix.question,
+                      ).declaredAs(parameter.type.declaration!),
+                    )
+                  else
+                    parameter,
+              ];
             }
-            specializations.add(
-              FlaxCodegenConstructorSpecializationModel(
-                typeArguments: target.typeArguments,
-                typeArgumentTypes: [
-                  for (final argument in target.type.typeArguments)
-                    typeRef(argument),
-                ],
-                parameterTypes: [
-                  for (final parameter in concreteParameters)
-                    parameter.type.declaredAs(
-                      parameter.type.declaration == null
-                          ? null
-                          : typeRef(
-                              concreteConstructor.formalParameters
-                                  .firstWhere((p) => p.name == parameter.name)
-                                  .type,
-                              forTypescript: true,
-                            ),
+            for (final target in plan.targets) {
+              // Fixed method arguments must satisfy every selected native owner.
+              for (final method in methods.where(
+                (method) =>
+                    method.instance &&
+                    selection.methodTypeArguments.containsKey(
+                      method.operatorName ?? method.name,
                     ),
-                ],
-                runtimeDomains: target.runtimeDomains,
-              ),
+              )) {
+                final concreteMethod = target.type.lookUpMethod(
+                  method.name,
+                  element.library,
+                )!;
+                try {
+                  _checkBounds(
+                    concreteMethod.typeParameters,
+                    [
+                      for (final argument in method.typeArguments)
+                        _runtimeType(argument, exports, element.library),
+                    ],
+                    element.library,
+                    false,
+                  );
+                } on StateError catch (error) {
+                  throw StateError(
+                    'Invalid generic method arguments for constructor target '
+                    '${entry.key}<${target.typeArguments.join(', ')}>.${method.name}: '
+                    '${error.message}',
+                  );
+                }
+              }
+              final concreteConstructor = target.type.constructors.firstWhere(
+                (candidate) => candidate.name == constructor.name,
+              );
+              final concreteParameters = constructorParametersFor(
+                concreteConstructor,
+              );
+              if (!runtimeTypeSelection && plan.targets.length == 1) {
+                constructorParameters = concreteParameters;
+              }
+              specializations.add(
+                FlaxCodegenConstructorSpecializationModel(
+                  typeArguments: target.typeArguments,
+                  typeArgumentTypes: [
+                    for (final argument in target.type.typeArguments)
+                      typeRef(argument),
+                  ],
+                  parameterTypes: [
+                    for (final parameter in concreteParameters)
+                      parameter.type.declaredAs(
+                        parameter.type.declaration == null
+                            ? null
+                            : typeRef(
+                                concreteConstructor.formalParameters
+                                    .firstWhere((p) => p.name == parameter.name)
+                                    .type,
+                                forTypescript: true,
+                              ),
+                      ),
+                  ],
+                  runtimeDomains: target.runtimeDomains,
+                ),
+              );
+            }
+          }
+          final runtimeParameterTypes = <FlaxCodegenTypeRef>[];
+          if (element.typeParameters.isNotEmpty && runtimeTypeSelection) {
+            runtimeParameterTypes.addAll(
+              constructorParametersFor(
+                constructor,
+                closed: true,
+              ).map((p) => p.type),
             );
           }
-        }
-        final runtimeParameterTypes = <FlaxCodegenTypeRef>[];
-        if (element.typeParameters.isNotEmpty && runtimeTypeSelection) {
-          runtimeParameterTypes.addAll(
-            constructorParametersFor(
-              constructor,
-              closed: true,
-            ).map((p) => p.type),
+          constructors.add(
+            FlaxCodegenConstructorModel(
+              chosen.key,
+              constructorParameters,
+              specializations: specializations,
+              runtimeParameterTypes: runtimeParameterTypes,
+              proxyOnly:
+                  element is ClassElement &&
+                  element.isAbstract &&
+                  !constructor.isFactory,
+              isFactory: constructor.isFactory,
+            ),
           );
-        }
-        constructors.add(
-          FlaxCodegenConstructorModel(
-            chosen.key,
-            constructorParameters,
-            specializations: specializations,
-            runtimeParameterTypes: runtimeParameterTypes,
-          ),
-        );
-        if (constructors.last.parameters.any((p) => p.type.kind == 'void')) {
-          throw StateError('Void constructor inputs are unsupported');
-        }
+          if (constructors.last.parameters.any((p) => p.type.kind == 'void')) {
+            throw StateError('Void constructor inputs are unsupported');
+          }
+        });
       }
       if (!isWidget &&
           !{
@@ -2884,7 +2928,8 @@ class FlaxCodegenBindingParser {
             (selection.proxy == 'implements' && element.isBase)) {
           throw StateError('Dart modifiers forbid this proxy');
         }
-        if (selection.proxy == 'extends' && constructors.isEmpty) {
+        if (selection.proxy == 'extends' &&
+            !constructors.any((constructor) => !constructor.isFactory)) {
           throw StateError('An extends proxy needs a generative constructor');
         }
         if (!widgetInterfaceProxy &&
@@ -2898,16 +2943,6 @@ class FlaxCodegenBindingParser {
           throw StateError(
             'An implements proxy can expose only factory constructors',
           );
-        }
-        if (selection.proxy == 'extends' &&
-            constructors.any(
-              (selected) => actualType.constructors
-                  .firstWhere(
-                    (c) => (c.name == 'new' ? '' : c.name) == selected.name,
-                  )
-                  .isFactory,
-            )) {
-          throw StateError('A proxy needs a generative super constructor');
         }
         final hierarchy = [actualType, ...actualType.allSupertypes]
             .where(
@@ -2956,25 +2991,29 @@ class FlaxCodegenBindingParser {
             final accessor = setter
                 ? actualType.lookUpSetter(name, element.library)
                 : actualType.lookUpGetter(name, element.library);
+            final implementation = setter
+                ? actualType.lookUpSetter(name, element.library, concrete: true)
+                : actualType.lookUpGetter(
+                    name,
+                    element.library,
+                    concrete: true,
+                  );
             final selected = (setter ? setters : getters).any(
               (member) => member.name == name,
             );
             if (selection.proxy == 'extends' &&
-                accessor != null &&
-                !accessor.isAbstract &&
+                implementation != null &&
                 selected &&
-                accessor.metadata.hasNonVirtual) {
+                implementation.metadata.hasNonVirtual) {
               continue;
             }
             final concreteOverride =
                 selection.proxy == 'extends' &&
-                accessor != null &&
-                !accessor.isAbstract &&
+                implementation != null &&
                 selected &&
-                !accessor.metadata.hasNonVirtual;
-            if (accessor != null &&
+                !implementation.metadata.hasNonVirtual;
+            if (implementation != null &&
                 selection.proxy != 'implements' &&
-                !accessor.isAbstract &&
                 !concreteOverride) {
               continue;
             }
@@ -2990,8 +3029,12 @@ class FlaxCodegenBindingParser {
             final declaration = setter
                 ? declared.formalParameters.single.type
                 : declared.returnType;
-            final type = typeRef(actual)
-                .declaredAs(typeRef(declaration, forTypescript: true));
+            final type = scope.withMember(
+              accessor,
+              () =>
+                  typeRef(actual)
+                      .declaredAs(typeRef(declaration, forTypescript: true)),
+            );
             (setter ? proxySetters : proxyGetters).add(
               FlaxCodegenGetterModel(name, type),
             );
@@ -3074,87 +3117,90 @@ class FlaxCodegenBindingParser {
           if (declaredMethod == null || declaredMethod.isPrivate) {
             throw StateError('Proxy methods must be public: $name');
           }
-          // Normalize lexical identities without erasing the configured owner bound.
-          final previous = Map<TypeParameterElement, Object?>.identity();
-          for (final (index, declared)
-              in declaredMethod.typeParameters.indexed) {
-            for (final parameter in [
-              method.typeParameters[index],
-              method.type.typeParameters[index],
-              declaredMethod.type.typeParameters[index],
-            ]) {
-              previous.putIfAbsent(
-                parameter,
-                () => scope._callbackIdentities[parameter],
-              );
-              scope._callbackIdentities[parameter] = declared;
-            }
-          }
-          try {
-            final callback = typeRef(
-              method.type,
-              forTypescript:
-                  isWidget &&
-                  name == 'createState' &&
-                  element.allSupertypes.any(
-                    (parent) => identity(parent.element) == 'package:flutter/src/widgets/framework.dart::StatefulWidget',
-                  ),
-            );
-            var result = callback.result!.declaredAs(
-              typeRef(declaredMethod.returnType, forTypescript: true),
-            );
-            if (selection.data.results.contains(name)) {
-              result = _dataType(result, '${entry.key}.$name result');
-            }
-            final mustCallSuper = _requiresSuper(proxySuperBase, name);
-            proxyMethods.add(
-              FlaxCodegenMethodModel(
-                alias,
-                parameters(
-                  method.formalParameters,
-                  method.formalParameters.map((p) => p.name!).toList(),
-                  '${entry.key}.$name',
-                  declared: declaredMethod.formalParameters,
-                  data: selection.data.methods[name] ?? const [],
-                  callbackSignatures: selection.callbackSignatures,
-                  callbackOptionalParameters:
-                      selection.callbackOptionalParameters,
-                  callbackErrorParameters: selection.callbackErrorParameters,
-                  callbackScopedParameters: selection.callbackScopedParameters,
-                ),
-                result,
-                typeParameters: [
-                  for (final (index, parameter)
-                      in declaredMethod.typeParameters.indexed)
-                    FlaxCodegenGenericParameter(
-                      parameter.name!,
-                      typeRef(
-                        parameter.bound ??
-                            element.library.typeProvider.objectQuestionType,
-                        forTypescript: true,
-                        typeOnlyPosition: true,
-                      ),
-                      defaultType: callback.typeParameters[index].defaultType,
-                      genericIdentity: parameter,
-                    ),
-                ],
-                mustCallSuper: mustCallSuper,
-                instance: true,
-                operatorName: operatorName,
-              ),
-            );
-            if (concreteOverride && !proxySuperMembers.contains(alias)) {
-              proxySuperMembers.add(alias);
-            }
-          } finally {
-            for (final entry in previous.entries) {
-              if (entry.value case final identity?) {
-                scope._callbackIdentities[entry.key] = identity;
-              } else {
-                scope._callbackIdentities.remove(entry.key);
+          scope.withMember(method, () {
+            // Normalize lexical identities without erasing the configured owner bound.
+            final previous = Map<TypeParameterElement, Object?>.identity();
+            for (final (index, declared)
+                in declaredMethod.typeParameters.indexed) {
+              for (final parameter in [
+                method.typeParameters[index],
+                method.type.typeParameters[index],
+                declaredMethod.type.typeParameters[index],
+              ]) {
+                previous.putIfAbsent(
+                  parameter,
+                  () => scope._callbackIdentities[parameter],
+                );
+                scope._callbackIdentities[parameter] = declared;
               }
             }
-          }
+            try {
+              final callback = typeRef(
+                method.type,
+                forTypescript:
+                    isWidget &&
+                    name == 'createState' &&
+                    element.allSupertypes.any(
+                      (parent) => identity(parent.element) == 'package:flutter/src/widgets/framework.dart::StatefulWidget',
+                    ),
+              );
+              var result = callback.result!.declaredAs(
+                typeRef(declaredMethod.returnType, forTypescript: true),
+              );
+              if (selection.data.results.contains(name)) {
+                result = _dataType(result, '${entry.key}.$name result');
+              }
+              final mustCallSuper = _requiresSuper(proxySuperBase, name);
+              proxyMethods.add(
+                FlaxCodegenMethodModel(
+                  alias,
+                  parameters(
+                    method.formalParameters,
+                    method.formalParameters.map((p) => p.name!).toList(),
+                    '${entry.key}.$name',
+                    declared: declaredMethod.formalParameters,
+                    data: selection.data.methods[name] ?? const [],
+                    callbackSignatures: selection.callbackSignatures,
+                    callbackOptionalParameters:
+                        selection.callbackOptionalParameters,
+                    callbackErrorParameters: selection.callbackErrorParameters,
+                    callbackScopedParameters:
+                        selection.callbackScopedParameters,
+                  ),
+                  result,
+                  typeParameters: [
+                    for (final (index, parameter)
+                        in declaredMethod.typeParameters.indexed)
+                      FlaxCodegenGenericParameter(
+                        parameter.name!,
+                        typeRef(
+                          parameter.bound ??
+                              element.library.typeProvider.objectQuestionType,
+                          forTypescript: true,
+                          typeOnlyPosition: true,
+                        ),
+                        defaultType: callback.typeParameters[index].defaultType,
+                        genericIdentity: parameter,
+                      ),
+                  ],
+                  mustCallSuper: mustCallSuper,
+                  instance: true,
+                  operatorName: operatorName,
+                ),
+              );
+              if (concreteOverride && !proxySuperMembers.contains(alias)) {
+                proxySuperMembers.add(alias);
+              }
+            } finally {
+              for (final entry in previous.entries) {
+                if (entry.value case final identity?) {
+                  scope._callbackIdentities[entry.key] = identity;
+                } else {
+                  scope._callbackIdentities.remove(entry.key);
+                }
+              }
+            }
+          });
         }
         if (proxyMethods.any((m) => m.operatorName == '==') &&
             !proxyGetters.any((g) => g.name == 'hashCode')) {
@@ -3348,6 +3394,7 @@ class FlaxCodegenBindingParser {
         ),
       );
     }
+    scope.selectDeclaration(null);
     final extensions = <FlaxCodegenExtensionModel>[];
     final (extensionExports, _) = await _publicExports(config);
     for (final name in config.extensions.keys.toList()..sort()) {
@@ -4041,7 +4088,8 @@ class FlaxCodegenBindingParser {
           .firstOrNull;
       if (previous != null) {
         if (previous.tsOutput != entry.value.tsOutput ||
-            config.publicLibraries.containsKey(previous.library) &&
+            !_localDependencyModuleNames.contains(config.name) &&
+                config.publicLibraries.containsKey(previous.library) &&
                 config.publicLibraries.containsKey(entry.key)) {
           throw StateError('Conflicting public library: ${entry.key}');
         }

@@ -1,14 +1,67 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextTreeConfiguration extends Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
 }> {
     readonly __TextTreeConfiguration: unique symbol;
     readonly [_flaxDartTypeValue]: TextTreeConfiguration;
+    readonly prefixLineOne: string;
+    readonly suffixLineOne: string;
+    readonly prefixOtherLines: string;
+    readonly prefixLastChildLineOne: string;
+    readonly prefixOtherLinesRootNode: string;
+    readonly propertyPrefixIfChildren: string;
+    readonly propertyPrefixNoChildren: string;
+    readonly linkCharacter: string;
+    readonly childLinkSpace: string;
+    readonly lineBreak: string;
+    readonly lineBreakProperties: boolean;
+    readonly beforeName: string;
+    readonly afterName: string;
+    readonly afterDescriptionIfBody: string;
+    readonly afterDescription: string;
+    readonly beforeProperties: string;
+    readonly afterProperties: string;
+    readonly mandatoryAfterProperties: string;
+    readonly propertySeparator: string;
+    readonly bodyIndent: string;
+    readonly showChildren: boolean;
+    readonly addBlankLineIfNoChildren: boolean;
+    readonly isNameOnOwnLine: boolean;
+    readonly footer: string;
+    readonly mandatoryFooter: string;
+    readonly isBlankLineBetweenPropertiesAndChildren: boolean;
 }
-export interface TextTreeConfiguration {
-    readonly [_flaxDartTypeValue]: TextTreeConfiguration;
+export declare function _TextTreeConfigurationFactory(options: {
+    prefixLineOne: string;
+    prefixOtherLines: string;
+    prefixLastChildLineOne: string;
+    prefixOtherLinesRootNode: string;
+    linkCharacter: string;
+    propertyPrefixIfChildren: string;
+    propertyPrefixNoChildren: string;
+    lineBreak?: string | undefined;
+    lineBreakProperties?: boolean | undefined;
+    afterName?: string | undefined;
+    afterDescriptionIfBody?: string | undefined;
+    afterDescription?: string | undefined;
+    beforeProperties?: string | undefined;
+    afterProperties?: string | undefined;
+    mandatoryAfterProperties?: string | undefined;
+    propertySeparator?: string | undefined;
+    bodyIndent?: string | undefined;
+    footer?: string | undefined;
+    showChildren?: boolean | undefined;
+    addBlankLineIfNoChildren?: boolean | undefined;
+    isNameOnOwnLine?: boolean | undefined;
+    isBlankLineBetweenPropertiesAndChildren?: boolean | undefined;
+    beforeName?: string | undefined;
+    suffixLineOne?: string | undefined;
+    mandatoryFooter?: string | undefined;
+}): TextTreeConfiguration;
+export interface _TextTreeConfigurationNative extends TextTreeConfiguration {
+    readonly [_flaxDartTypeValue]: _TextTreeConfigurationNative;
     get prefixLineOne(): string;
     get suffixLineOne(): string;
     get prefixOtherLines(): string;
@@ -36,7 +89,7 @@ export interface TextTreeConfiguration {
     get mandatoryFooter(): string;
     get isBlankLineBetweenPropertiesAndChildren(): boolean;
 }
-export declare abstract class TextTreeConfiguration extends _FlaxProxyBase {
+export declare abstract class _TextTreeConfigurationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TextTreeConfiguration>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TextTreeConfiguration;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_foundation#type:TextTreeConfiguration", readonly [], false];
@@ -68,7 +121,7 @@ export declare abstract class TextTreeConfiguration extends _FlaxProxyBase {
         mandatoryFooter?: string | undefined;
     });
 }
-export declare namespace TextTreeConfiguration {
+export declare namespace _TextTreeConfigurationFactory {
     function implement(args: [options: {
         prefixLineOne: string;
         prefixOtherLines: string;
@@ -97,3 +150,32 @@ export declare namespace TextTreeConfiguration {
         mandatoryFooter?: string | undefined;
     }], implementation: {}): TextTreeConfiguration;
 }
+declare const _TextTreeConfigurationBinding: typeof _TextTreeConfigurationFactory & (new (options: {
+    prefixLineOne: string;
+    prefixOtherLines: string;
+    prefixLastChildLineOne: string;
+    prefixOtherLinesRootNode: string;
+    linkCharacter: string;
+    propertyPrefixIfChildren: string;
+    propertyPrefixNoChildren: string;
+    lineBreak?: string | undefined;
+    lineBreakProperties?: boolean | undefined;
+    afterName?: string | undefined;
+    afterDescriptionIfBody?: string | undefined;
+    afterDescription?: string | undefined;
+    beforeProperties?: string | undefined;
+    afterProperties?: string | undefined;
+    mandatoryAfterProperties?: string | undefined;
+    propertySeparator?: string | undefined;
+    bodyIndent?: string | undefined;
+    footer?: string | undefined;
+    showChildren?: boolean | undefined;
+    addBlankLineIfNoChildren?: boolean | undefined;
+    isNameOnOwnLine?: boolean | undefined;
+    isBlankLineBetweenPropertiesAndChildren?: boolean | undefined;
+    beforeName?: string | undefined;
+    suffixLineOne?: string | undefined;
+    mandatoryFooter?: string | undefined;
+}) => _TextTreeConfigurationNative);
+export declare const TextTreeConfiguration: typeof _TextTreeConfigurationBinding & _FlaxInstanceType<TextTreeConfiguration> & _FlaxDartType<TextTreeConfiguration, readonly ["class", "flax.core/sdk_foundation#type:TextTreeConfiguration", readonly [], false]>;
+export {};

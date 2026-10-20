@@ -15,7 +15,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RadialGradient extends Omit<upstream0.Gradient, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/painting/gradient.dart::RadialGradient": readonly [];
 }>, Readonly<{
@@ -23,9 +23,52 @@ export interface RadialGradient extends Omit<upstream0.Gradient, _flaxOwnMembers
 }> {
     readonly __RadialGradient: unique symbol;
     readonly [_flaxDartTypeValue]: RadialGradient;
+    readonly colors: DartList<upstream2.Color>;
+    readonly stops: DartList<number> | null;
+    readonly transform: upstream4.GradientTransform | null;
+    readonly center: upstream1.AlignmentGeometry;
+    readonly radius: number;
+    readonly tileMode: upstream3.TileMode;
+    readonly focal: upstream1.AlignmentGeometry | null;
+    readonly focalRadius: number;
+    createShader(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, options?: {
+        textDirection?: upstream7.TextDirection | null | undefined;
+    }): upstream5.Shader;
+    scale(factor: number): RadialGradient;
+    withOpacity(opacity: number): RadialGradient;
+    fromColor(color: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>): RadialGradient;
+    lerpFrom(a: Readonly<{
+        "__flaxBound:package:flutter/src/painting/gradient.dart::Gradient": readonly [];
+    }> | null, t: number): upstream0.Gradient | null;
+    lerpTo(b: Readonly<{
+        "__flaxBound:package:flutter/src/painting/gradient.dart::Gradient": readonly [];
+    }> | null, t: number): upstream0.Gradient | null;
+    toString(): string;
 }
-export interface RadialGradient {
-    readonly [_flaxDartTypeValue]: RadialGradient;
+export declare function _RadialGradientFactory(options: {
+    center?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | undefined;
+    radius?: number | undefined;
+    colors: DartListInput<upstream2.Color, Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>>;
+    stops?: DartListInput<number, number> | null | undefined;
+    tileMode?: upstream3.TileMode | undefined;
+    focal?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null | undefined;
+    focalRadius?: number | undefined;
+    transform?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/gradient.dart::GradientTransform": readonly [];
+    }> | null | undefined;
+}): RadialGradient;
+export interface _RadialGradientNative extends RadialGradient {
+    readonly [_flaxDartTypeValue]: _RadialGradientNative;
     createShader(rect: Readonly<{
         "__flaxBound:dart:ui::Rect": readonly [];
     }>, options?: {
@@ -52,7 +95,7 @@ export interface RadialGradient {
     get stops(): DartList<number> | null;
     get transform(): upstream4.GradientTransform | null;
 }
-export declare abstract class RadialGradient extends _FlaxProxyBase {
+export declare abstract class _RadialGradientNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RadialGradient>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RadialGradient;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_painting#type:RadialGradient", readonly [], false];
@@ -75,7 +118,7 @@ export declare abstract class RadialGradient extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace RadialGradient {
+export declare namespace _RadialGradientFactory {
     function implement(args: [options: {
         center?: Readonly<{
             "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
@@ -95,7 +138,25 @@ export declare namespace RadialGradient {
         }> | null | undefined;
     }], implementation: {}): RadialGradient;
 }
-export declare namespace RadialGradient {
+declare const _RadialGradientBinding: typeof _RadialGradientFactory & (new (options: {
+    center?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | undefined;
+    radius?: number | undefined;
+    colors: DartListInput<upstream2.Color, Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>>;
+    stops?: DartListInput<number, number> | null | undefined;
+    tileMode?: upstream3.TileMode | undefined;
+    focal?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null | undefined;
+    focalRadius?: number | undefined;
+    transform?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/gradient.dart::GradientTransform": readonly [];
+    }> | null | undefined;
+}) => _RadialGradientNative);
+export declare namespace _RadialGradientFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/painting/gradient.dart::RadialGradient": readonly [];
     }> & Readonly<{
@@ -106,5 +167,6 @@ export declare namespace RadialGradient {
         "__flaxBound:package:flutter/src/painting/gradient.dart::Gradient": readonly [];
     }>) | null, t: number): RadialGradient | null;
 }
+export declare const RadialGradient: typeof _RadialGradientBinding & _FlaxInstanceType<RadialGradient> & _FlaxDartType<RadialGradient, readonly ["class", "flax.core/sdk_painting#type:RadialGradient", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "colors" | "stops" | "transform" | "center" | "radius" | "tileMode" | "focal" | "focalRadius" | "createShader" | "scale" | "withOpacity" | "fromColor" | "lerpFrom" | "lerpTo" | "toString" | "__flaxBound:package:flutter/src/painting/gradient.dart::RadialGradient" | "__flaxBound:package:flutter/src/painting/gradient.dart::Gradient";
 export {};

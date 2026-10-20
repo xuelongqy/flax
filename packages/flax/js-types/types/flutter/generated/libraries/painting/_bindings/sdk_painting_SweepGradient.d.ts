@@ -15,7 +15,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SweepGradient extends Omit<upstream0.Gradient, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/painting/gradient.dart::SweepGradient": readonly [];
 }>, Readonly<{
@@ -23,9 +23,48 @@ export interface SweepGradient extends Omit<upstream0.Gradient, _flaxOwnMembers0
 }> {
     readonly __SweepGradient: unique symbol;
     readonly [_flaxDartTypeValue]: SweepGradient;
+    readonly colors: DartList<upstream2.Color>;
+    readonly stops: DartList<number> | null;
+    readonly transform: upstream4.GradientTransform | null;
+    readonly center: upstream1.AlignmentGeometry;
+    readonly startAngle: number;
+    readonly endAngle: number;
+    readonly tileMode: upstream3.TileMode;
+    createShader(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, options?: {
+        textDirection?: upstream7.TextDirection | null | undefined;
+    }): upstream5.Shader;
+    scale(factor: number): SweepGradient;
+    withOpacity(opacity: number): SweepGradient;
+    fromColor(color: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>): SweepGradient;
+    lerpFrom(a: Readonly<{
+        "__flaxBound:package:flutter/src/painting/gradient.dart::Gradient": readonly [];
+    }> | null, t: number): upstream0.Gradient | null;
+    lerpTo(b: Readonly<{
+        "__flaxBound:package:flutter/src/painting/gradient.dart::Gradient": readonly [];
+    }> | null, t: number): upstream0.Gradient | null;
+    toString(): string;
 }
-export interface SweepGradient {
-    readonly [_flaxDartTypeValue]: SweepGradient;
+export declare function _SweepGradientFactory(options: {
+    center?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | undefined;
+    startAngle?: number | undefined;
+    endAngle?: number | undefined;
+    colors: DartListInput<upstream2.Color, Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>>;
+    stops?: DartListInput<number, number> | null | undefined;
+    tileMode?: upstream3.TileMode | undefined;
+    transform?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/gradient.dart::GradientTransform": readonly [];
+    }> | null | undefined;
+}): SweepGradient;
+export interface _SweepGradientNative extends SweepGradient {
+    readonly [_flaxDartTypeValue]: _SweepGradientNative;
     createShader(rect: Readonly<{
         "__flaxBound:dart:ui::Rect": readonly [];
     }>, options?: {
@@ -51,7 +90,7 @@ export interface SweepGradient {
     get stops(): DartList<number> | null;
     get transform(): upstream4.GradientTransform | null;
 }
-export declare abstract class SweepGradient extends _FlaxProxyBase {
+export declare abstract class _SweepGradientNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SweepGradient>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SweepGradient;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_painting#type:SweepGradient", readonly [], false];
@@ -71,7 +110,7 @@ export declare abstract class SweepGradient extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace SweepGradient {
+export declare namespace _SweepGradientFactory {
     function implement(args: [options: {
         center?: Readonly<{
             "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
@@ -88,7 +127,22 @@ export declare namespace SweepGradient {
         }> | null | undefined;
     }], implementation: {}): SweepGradient;
 }
-export declare namespace SweepGradient {
+declare const _SweepGradientBinding: typeof _SweepGradientFactory & (new (options: {
+    center?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | undefined;
+    startAngle?: number | undefined;
+    endAngle?: number | undefined;
+    colors: DartListInput<upstream2.Color, Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>>;
+    stops?: DartListInput<number, number> | null | undefined;
+    tileMode?: upstream3.TileMode | undefined;
+    transform?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/gradient.dart::GradientTransform": readonly [];
+    }> | null | undefined;
+}) => _SweepGradientNative);
+export declare namespace _SweepGradientFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/painting/gradient.dart::SweepGradient": readonly [];
     }> & Readonly<{
@@ -99,5 +153,6 @@ export declare namespace SweepGradient {
         "__flaxBound:package:flutter/src/painting/gradient.dart::Gradient": readonly [];
     }>) | null, t: number): SweepGradient | null;
 }
+export declare const SweepGradient: typeof _SweepGradientBinding & _FlaxInstanceType<SweepGradient> & _FlaxDartType<SweepGradient, readonly ["class", "flax.core/sdk_painting#type:SweepGradient", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "colors" | "stops" | "transform" | "center" | "startAngle" | "endAngle" | "tileMode" | "createShader" | "scale" | "withOpacity" | "fromColor" | "lerpFrom" | "lerpTo" | "toString" | "__flaxBound:package:flutter/src/painting/gradient.dart::SweepGradient" | "__flaxBound:package:flutter/src/painting/gradient.dart::Gradient";
 export {};

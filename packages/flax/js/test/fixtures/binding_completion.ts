@@ -50,6 +50,26 @@ class CompletionDecorated extends api.CompletionDecorated {
     return super.decorate(value) + this.#suffix;
   }
 }
+const Mixed = api.MixedConstruction.$type(dartTypes.string);
+const Abstract = api.AbstractConstruction.$type(dartTypes.string);
+class CompletionMixed extends Mixed {
+  #suffix = '!';
+  constructor() {
+    super(dartSuper(Mixed, 'raw', 'seed'));
+  }
+  override decorate(value: string) {
+    return super.decorate(value) + this.#suffix;
+  }
+}
+class CompletionAbstract extends Abstract {
+  #suffix = '!';
+  constructor() {
+    super(dartSuper(Abstract, 'raw', 'seed'));
+  }
+  override decorate(value: string) {
+    return super.decorate(value) + this.#suffix;
+  }
+}
 class CompletionFuture extends api.CompletionFuture<number> {
   #calls = 0;
   override then(...args: any[]): any {
@@ -85,7 +105,12 @@ Object.assign(globalThis, {
     CompletionHiddenChild,
     CompletionGetter,
     CompletionSetter,
+    NativeDecorated: api.CompletionDecorated,
     CompletionDecorated,
+    Mixed,
+    Abstract,
+    CompletionMixed,
+    CompletionAbstract,
     CompletionFuture,
     CompletionStream,
     CompletionWidget,

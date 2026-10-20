@@ -8,7 +8,7 @@ import '@flax/flutter/animation/_bindings/sdk_animation_Animatable';
 import type * as upstream3 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RectTween extends Omit<upstream0.Tween<upstream1.Rect | null>, _flaxOwnMembers0>, Omit<upstream2.Animatable<upstream1.Rect | null>, _flaxOwnMembers0 | keyof upstream0.Tween<upstream1.Rect | null>>, Readonly<{
     "__flaxBound:package:flutter/src/animation/tween.dart::RectTween": readonly [];
 }>, Readonly<{
@@ -18,9 +18,45 @@ export interface RectTween extends Omit<upstream0.Tween<upstream1.Rect | null>, 
 }> {
     readonly __RectTween: unique symbol;
     readonly [_flaxDartTypeValue]: RectTween;
+    get begin(): upstream1.Rect | null;
+    get end(): upstream1.Rect | null;
+    lerp(t: number): upstream1.Rect | null;
+    transform(t: number): upstream1.Rect | null;
+    toString(): string;
+    evaluate(animation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>): upstream1.Rect | null;
+    animate(parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>): upstream3.Animation<upstream1.Rect | null>;
+    chain(parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number];
+    }>): upstream2.Animatable<upstream1.Rect | null>;
+    set begin(value: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }> | null);
+    set end(value: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }> | null);
 }
-export interface RectTween {
-    readonly [_flaxDartTypeValue]: RectTween;
+export declare function _RectTweenFactory(options?: {
+    begin?: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }> | null | undefined;
+    end?: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }> | null | undefined;
+}): RectTween;
+export interface _RectTweenNative extends RectTween {
+    readonly [_flaxDartTypeValue]: _RectTweenNative;
     lerp(t: number): upstream1.Rect | null;
     transform(t: number): upstream1.Rect | null;
     toString(): string;
@@ -50,7 +86,7 @@ export interface RectTween {
         "__flaxBound:dart:ui::Rect": readonly [];
     }> | null);
 }
-export declare abstract class RectTween extends _FlaxProxyBase {
+export declare abstract class _RectTweenNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RectTween>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RectTween;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_animation#type:RectTween", readonly [], false];
@@ -63,7 +99,7 @@ export declare abstract class RectTween extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace RectTween {
+export declare namespace _RectTweenFactory {
     function implement(args: [options?: {
         begin?: Readonly<{
             "__flaxBound:dart:ui::Rect": readonly [];
@@ -73,5 +109,14 @@ export declare namespace RectTween {
         }> | null | undefined;
     }], implementation: {}): RectTween;
 }
+declare const _RectTweenBinding: typeof _RectTweenFactory & (new (options?: {
+    begin?: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }> | null | undefined;
+    end?: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }> | null | undefined;
+}) => _RectTweenNative);
+export declare const RectTween: typeof _RectTweenBinding & _FlaxInstanceType<RectTween> & _FlaxDartType<RectTween, readonly ["class", "flax.core/sdk_animation#type:RectTween", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "begin" | "end" | "lerp" | "transform" | "toString" | "evaluate" | "animate" | "chain" | "__flaxBound:package:flutter/src/animation/tween.dart::RectTween" | "__flaxBound:package:flutter/src/animation/tween.dart::Tween" | "__flaxBound:package:flutter/src/animation/tween.dart::Animatable";
 export {};

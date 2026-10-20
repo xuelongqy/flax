@@ -36,10 +36,14 @@ final class FlaxCodegenNominalReference {
   const FlaxCodegenNominalReference({
     required this.sourceIdentity,
     required this.location,
+    this.targetWireId,
   });
 
   final FlaxCodegenSourceIdentity sourceIdentity;
   final FlaxCodegenSourceLocation location;
+
+  /// Preserve an explicit view instead of selecting a provider by Dart source.
+  final FlaxCodegenWireId? targetWireId;
 }
 
 /// One sibling module in a single Dart package.
@@ -234,11 +238,15 @@ final class FlaxCodegenImportedOwner {
     required this.sourceIdentity,
     required this.wireId,
     required this.location,
+    this.localDependency = false,
   });
 
   final FlaxCodegenSourceIdentity sourceIdentity;
   final FlaxCodegenWireId wireId;
   final FlaxCodegenSourceLocation location;
+  final bool localDependency;
+
+  bool get providerEligible => !localDependency;
 }
 
 /// Immutable imported-package owner projection for one Dart package.
@@ -487,6 +495,7 @@ FlaxCodegenResolvedPackage _resolve({
   final importedBySource =
       <FlaxCodegenSourceIdentity, List<FlaxCodegenImportedOwner>>{};
   for (final owner in importedOwners) {
+    if (!owner.providerEligible) continue;
     importedBySource.putIfAbsent(owner.sourceIdentity, () => []).add(owner);
   }
   // A declaration may have one owner in each package, independently.
@@ -573,6 +582,28 @@ FlaxCodegenResolvedPackage _resolve({
 
   for (final module in prepared) {
     for (final reference in module.input.references) {
+      final target = reference.targetWireId;
+      if (target != null) {
+        final targetSource =
+            byWire[target.value]?.first.claim.sourceIdentity ??
+            importedByWire[target.value]?.first.sourceIdentity;
+        if (targetSource == null) {
+          diagnostics.add(
+            _locationDiagnostic(
+              reference.location,
+              'Missing target owner: ${target.value}.',
+            ),
+          );
+        } else if (targetSource != reference.sourceIdentity) {
+          diagnostics.add(
+            _locationDiagnostic(
+              reference.location,
+              'Target owner source mismatch: ${target.value}.',
+            ),
+          );
+        }
+        continue;
+      }
       final local = ownersBySource[reference.sourceIdentity];
       final importedGroup = importedBySource[reference.sourceIdentity];
       if ((local == null || local.isEmpty) &&
@@ -606,9 +637,11 @@ FlaxCodegenResolvedPackage _resolve({
   }
 
   final wireBySource = <FlaxCodegenSourceIdentity, FlaxCodegenWireId>{
-    for (final owner in importedOwners) owner.sourceIdentity: owner.wireId,
     for (final owner in importedOwners)
-      if (owner.wireId.moduleId.namespace.value == 'flax.core')
+      if (owner.providerEligible) owner.sourceIdentity: owner.wireId,
+    for (final owner in importedOwners)
+      if (owner.providerEligible &&
+          owner.wireId.moduleId.namespace.value == 'flax.core')
         owner.sourceIdentity: owner.wireId,
     for (final claim in recorded) claim.claim.sourceIdentity: claim.wireId,
   };
@@ -751,7 +784,8 @@ FlaxCodegenResolvedModule _resolveModule(
     for (final reference in module.input.references)
       FlaxCodegenResolvedReference(
         sourceIdentity: reference.sourceIdentity,
-        ownerWireId: wireBySource[reference.sourceIdentity]!,
+        ownerWireId:
+            reference.targetWireId ?? wireBySource[reference.sourceIdentity]!,
       ),
   ]..sort(_compareReferences);
   return FlaxCodegenResolvedModule(

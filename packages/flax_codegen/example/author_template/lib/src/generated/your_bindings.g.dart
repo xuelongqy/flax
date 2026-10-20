@@ -10,7 +10,7 @@ import 'package:flax/bindings.dart';
 const _flaxOmitted = Object();
 const exampleBindings = FlaxBindingModule(
   'example',
-  [_flaxBinding7],
+  [_flaxBinding5],
   functions: [],
   constants: [],
   moduleId: "vendor.example/example",
@@ -54,28 +54,26 @@ Object _createGauge(String ctor, Map<String, Object?> values) {
 }
 
 const _flaxDartShapes = <FlaxDartShapeTemplate>[];
-const _flaxBinding0 = FlaxTypeRef("int");
-const _flaxBinding1 = FlaxGetter("value", _flaxBinding0, _Gauge_value);
-const _flaxBinding2 = FlaxSetter("value", _flaxBinding0, _Gauge_set_value);
-const _flaxBinding3 = <FlaxParameter>[
-  FlaxParameter("by", _flaxBinding0, required: false, defaultValue: 1),
+const _flaxBinding0 = FlaxGetter.plain("value", flaxIntType, _Gauge_value);
+const _flaxBinding1 = FlaxSetter("value", flaxIntType, _Gauge_set_value);
+const _flaxBinding2 = <FlaxParameter>[
+  FlaxParameter("by", flaxIntType, required: false, defaultValue: 1),
 ];
-const _flaxBinding4 = FlaxTypeRef("void");
-const _flaxBinding5 = FlaxInstanceMethod(
-  _flaxBinding3,
-  _flaxBinding4,
+const _flaxBinding3 = FlaxInstanceMethod.plain(
+  _flaxBinding2,
+  flaxVoidType,
   _Gauge_increment,
 );
-const _flaxBinding6 = <FlaxParameter>[
-  FlaxParameter("value", _flaxBinding0, required: false, defaultValue: 0),
+const _flaxBinding4 = <FlaxParameter>[
+  FlaxParameter("value", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding7 = FlaxObjectBinding(
+const _flaxBinding5 = FlaxObjectBinding(
   "vendor.example/example#type:Gauge",
-  [_flaxBinding1],
-  {"increment": _flaxBinding5},
-  constructors: {"": _flaxBinding6},
+  [_flaxBinding0],
+  {"increment": _flaxBinding3},
+  constructors: {"": _flaxBinding4},
   create: _createGauge,
   matches: _isGauge,
-  setters: [_flaxBinding2],
+  setters: [_flaxBinding1],
   supertypes: ["dart:core::Object"],
 );

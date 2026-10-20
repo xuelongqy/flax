@@ -34,7 +34,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ImageFilterLayer extends Omit<upstream0.OffsetLayer, _flaxOwnMembers0>, Omit<upstream1.ContainerLayer, _flaxOwnMembers0 | keyof upstream0.OffsetLayer>, Omit<upstream2.Layer, _flaxOwnMembers0 | keyof upstream0.OffsetLayer | keyof upstream1.ContainerLayer>, Omit<upstream3.DiagnosticableTreeMixin, _flaxOwnMembers0 | keyof upstream0.OffsetLayer | keyof upstream1.ContainerLayer | keyof upstream2.Layer>, Omit<upstream4.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.OffsetLayer | keyof upstream1.ContainerLayer | keyof upstream2.Layer | keyof upstream3.DiagnosticableTreeMixin>, Omit<upstream5.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.OffsetLayer | keyof upstream1.ContainerLayer | keyof upstream2.Layer | keyof upstream3.DiagnosticableTreeMixin | keyof upstream4.DiagnosticableTree>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/layer.dart::ImageFilterLayer": readonly [];
 }>, Readonly<{
@@ -57,9 +57,143 @@ export interface ImageFilterLayer extends Omit<upstream0.OffsetLayer, _flaxOwnMe
         find: _FlaxSignature1;
         findAllAnnotations: _FlaxSignature2;
     };
+    get offset(): upstream7.Offset;
+    readonly firstChild: upstream2.Layer | null;
+    readonly lastChild: upstream2.Layer | null;
+    readonly hasChildren: boolean;
+    readonly subtreeHasCompositionCallbacks: boolean;
+    readonly debugDisposed: boolean;
+    readonly debugHandleCount: number;
+    readonly parent: upstream1.ContainerLayer | null;
+    readonly alwaysNeedsAddToScene: boolean;
+    readonly owner: unknown | null;
+    readonly attached: boolean;
+    readonly depth: number;
+    readonly nextSibling: upstream2.Layer | null;
+    readonly previousSibling: upstream2.Layer | null;
+    get debugCreator(): unknown | null;
+    get imageFilter(): upstream6.ImageFilter | null;
+    findAnnotations<S extends {} = {}>(result: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotationResult": readonly [_FlaxDartOutput<S>];
+    }>, localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options: {
+        onlyFirst: boolean;
+    }): boolean;
+    applyTransform(child: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null, transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }>): void;
+    addToScene(builder: Readonly<{
+        "__flaxBound:dart:ui::SceneBuilder": readonly [];
+    }>): void;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toImage(bounds: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, options?: {
+        pixelRatio?: number | undefined;
+    }): Promise<upstream12.Image>;
+    toImageSync(bounds: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, options?: {
+        pixelRatio?: number | undefined;
+    }): upstream12.Image;
+    supportsRasterization(): boolean;
+    buildScene(builder: Readonly<{
+        "__flaxBound:dart:ui::SceneBuilder": readonly [];
+    }>): upstream14.Scene;
+    dispose(): void;
+    updateSubtreeNeedsAddToScene(): void;
+    attach(owner: {}): void;
+    detach(): void;
+    append(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    redepthChildren(): void;
+    redepthChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    removeAllChildren(): void;
+    addChildrenToScene(builder: Readonly<{
+        "__flaxBound:dart:ui::SceneBuilder": readonly [];
+    }>): void;
+    debugDescribeChildren(): DartList<upstream15.DiagnosticsNode>;
+    describeClipBounds(): upstream13.Rect | null;
+    addCompositionCallback(callback: ((layer: upstream2.Layer) => void)): (() => void);
+    remove(): void;
+    find<S extends {} = {}>(localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): _FlaxDartOutput<S> | null;
+    findAllAnnotations<S extends {} = {}>(localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): upstream8.AnnotationResult<_FlaxDartOutput<S>>;
+    toStringShort(): string;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream16.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream16.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream17.DiagnosticsTreeStyle | null | undefined;
+    }): upstream15.DiagnosticsNode;
+    toString(options?: {
+        minLevel?: upstream16.DiagnosticLevel | undefined;
+    }): string;
+    set offset(value: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>);
+    set debugCreator(value: unknown | null);
+    set imageFilter(value: Readonly<{
+        "__flaxBound:dart:ui::ImageFilter": readonly [];
+    }> | null);
 }
-export interface ImageFilterLayer {
-    readonly [_flaxDartTypeValue]: ImageFilterLayer;
+export declare function _ImageFilterLayerFactory(options?: {
+    imageFilter?: Readonly<{
+        "__flaxBound:dart:ui::ImageFilter": readonly [];
+    }> | null | undefined;
+    offset?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+}): ImageFilterLayer;
+export interface _ImageFilterLayerNative extends ImageFilterLayer {
+    readonly [_flaxDartTypeValue]: _ImageFilterLayerNative;
     readonly [_flaxDartMethodCases]?: {
         findAnnotations: _FlaxSignature3;
         find: _FlaxSignature4;
@@ -190,7 +324,7 @@ export interface ImageFilterLayer {
     }>);
     set debugCreator(value: unknown | null);
 }
-export declare abstract class ImageFilterLayer extends _FlaxProxyBase {
+export declare abstract class _ImageFilterLayerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ImageFilterLayer>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ImageFilterLayer;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:ImageFilterLayer", readonly [], false];
@@ -205,7 +339,7 @@ export declare abstract class ImageFilterLayer extends _FlaxProxyBase {
         }>) | undefined;
     });
 }
-export declare namespace ImageFilterLayer {
+export declare namespace _ImageFilterLayerFactory {
     function implement(args: [options?: {
         imageFilter?: Readonly<{
             "__flaxBound:dart:ui::ImageFilter": readonly [];
@@ -217,6 +351,17 @@ export declare namespace ImageFilterLayer {
         }>) | undefined;
     }], implementation: {}): ImageFilterLayer;
 }
+declare const _ImageFilterLayerBinding: typeof _ImageFilterLayerFactory & (new (options?: {
+    imageFilter?: Readonly<{
+        "__flaxBound:dart:ui::ImageFilter": readonly [];
+    }> | null | undefined;
+    offset?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+}) => _ImageFilterLayerNative);
+export declare const ImageFilterLayer: typeof _ImageFilterLayerBinding & _FlaxInstanceType<ImageFilterLayer> & _FlaxDartType<ImageFilterLayer, readonly ["class", "flax.core/sdk_rendering#type:ImageFilterLayer", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "offset" | "firstChild" | "lastChild" | "hasChildren" | "subtreeHasCompositionCallbacks" | "debugDisposed" | "debugHandleCount" | "parent" | "alwaysNeedsAddToScene" | "owner" | "attached" | "depth" | "nextSibling" | "previousSibling" | "debugCreator" | "imageFilter" | "findAnnotations" | "applyTransform" | "addToScene" | "debugFillProperties" | "toImage" | "toImageSync" | "supportsRasterization" | "buildScene" | "dispose" | "updateSubtreeNeedsAddToScene" | "attach" | "detach" | "append" | "redepthChildren" | "redepthChild" | "removeAllChildren" | "addChildrenToScene" | "debugDescribeChildren" | "describeClipBounds" | "addCompositionCallback" | "remove" | "find" | "findAllAnnotations" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/rendering/layer.dart::ImageFilterLayer" | "__flaxBound:package:flutter/src/rendering/layer.dart::OffsetLayer" | "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer" | "__flaxBound:package:flutter/src/rendering/layer.dart::Layer" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (result: Readonly<{

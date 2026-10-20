@@ -15,7 +15,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SelectionGeometry extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionGeometry": readonly [];
 }>, Readonly<{
@@ -23,9 +23,60 @@ export interface SelectionGeometry extends Omit<upstream0.Diagnosticable, _flaxO
 }> {
     readonly __SelectionGeometry: unique symbol;
     readonly [_flaxDartTypeValue]: SelectionGeometry;
+    readonly startSelectionPoint: upstream1.SelectionPoint | null;
+    readonly endSelectionPoint: upstream1.SelectionPoint | null;
+    readonly status: upstream3.SelectionStatus;
+    readonly selectionRects: DartList<upstream2.Rect>;
+    readonly hasContent: boolean;
+    readonly hasSelection: boolean;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream4.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream6.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        endSelectionPoint?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionPoint": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        hasContent?: boolean | null | undefined;
+        selectionRects?: DartListInput<upstream2.Rect, Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }>> | null | undefined;
+        startSelectionPoint?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionPoint": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        status?: upstream3.SelectionStatus | null | undefined;
+    }): SelectionGeometry;
 }
-export interface SelectionGeometry {
-    readonly [_flaxDartTypeValue]: SelectionGeometry;
+export declare function _SelectionGeometryFactory(options: {
+    startSelectionPoint?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionPoint": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    endSelectionPoint?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionPoint": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    selectionRects?: DartListInput<upstream2.Rect, Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>> | undefined;
+    status: upstream3.SelectionStatus;
+    hasContent: boolean;
+}): SelectionGeometry;
+export interface _SelectionGeometryNative extends SelectionGeometry {
+    readonly [_flaxDartTypeValue]: _SelectionGeometryNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream4.DiagnosticLevel | undefined;
@@ -61,7 +112,7 @@ export interface SelectionGeometry {
     get hasContent(): boolean;
     get hasSelection(): boolean;
 }
-export declare abstract class SelectionGeometry extends _FlaxProxyBase {
+export declare abstract class _SelectionGeometryNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SelectionGeometry>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SelectionGeometry;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:SelectionGeometry", readonly [], false];
@@ -83,7 +134,7 @@ export declare abstract class SelectionGeometry extends _FlaxProxyBase {
         hasContent: boolean;
     });
 }
-export declare namespace SelectionGeometry {
+export declare namespace _SelectionGeometryFactory {
     function implement(args: [options: {
         startSelectionPoint?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionPoint": readonly [];
@@ -102,5 +153,23 @@ export declare namespace SelectionGeometry {
         hasContent: boolean;
     }], implementation: {}): SelectionGeometry;
 }
+declare const _SelectionGeometryBinding: typeof _SelectionGeometryFactory & (new (options: {
+    startSelectionPoint?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionPoint": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    endSelectionPoint?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionPoint": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    selectionRects?: DartListInput<upstream2.Rect, Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>> | undefined;
+    status: upstream3.SelectionStatus;
+    hasContent: boolean;
+}) => _SelectionGeometryNative);
+export declare const SelectionGeometry: typeof _SelectionGeometryBinding & _FlaxInstanceType<SelectionGeometry> & _FlaxDartType<SelectionGeometry, readonly ["class", "flax.core/sdk_rendering#type:SelectionGeometry", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "startSelectionPoint" | "endSelectionPoint" | "status" | "selectionRects" | "hasContent" | "hasSelection" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionGeometry" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

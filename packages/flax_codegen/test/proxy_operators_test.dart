@@ -178,7 +178,7 @@ $selection
       );
       final ts = emitter.typescript(module);
       expect(ts, contains('extends _FlaxProxyBase'));
-      expect(ts, contains('_flaxDefineProxyBase(NumberBox.prototype'));
+      expect(ts, contains('_flaxDefineProxyBase(_NumberBoxNative.prototype'));
       expect(ts, isNot(contains('const _flaxResult = invokeProxySuper')));
       await compileFixture(
         root.path,

@@ -8,7 +8,7 @@ import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream3 from '@flax/flutter/rendering/_bindings/sdk_rendering_TableCellVerticalAlignment';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_TableCellVerticalAlignment';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TableCellParentData extends Omit<upstream0.BoxParentData, _flaxOwnMembers0>, Omit<upstream1.ParentData, _flaxOwnMembers0 | keyof upstream0.BoxParentData>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/table.dart::TableCellParentData": readonly [];
 }>, Readonly<{
@@ -18,9 +18,24 @@ export interface TableCellParentData extends Omit<upstream0.BoxParentData, _flax
 }> {
     readonly __TableCellParentData: unique symbol;
     readonly [_flaxDartTypeValue]: TableCellParentData;
+    get offset(): upstream2.Offset;
+    get verticalAlignment(): upstream3.TableCellVerticalAlignment | null;
+    get x(): number | null;
+    get y(): number | null;
+    toString(): string;
+    detach(): void;
+    set offset(value: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>);
+    set verticalAlignment(value: upstream3.TableCellVerticalAlignment | null);
+    set x(value: number | null);
+    set y(value: number | null);
 }
-export interface TableCellParentData {
-    readonly [_flaxDartTypeValue]: TableCellParentData;
+export declare function _TableCellParentDataFactory(): TableCellParentData;
+export interface _TableCellParentDataNative extends TableCellParentData {
+    readonly [_flaxDartTypeValue]: _TableCellParentDataNative;
     toString(): string;
     detach(): void;
     get verticalAlignment(): upstream3.TableCellVerticalAlignment | null;
@@ -36,14 +51,16 @@ export interface TableCellParentData {
         "__flaxBound:dart:ui::OffsetBase": readonly [];
     }>);
 }
-export declare abstract class TableCellParentData extends _FlaxProxyBase {
+export declare abstract class _TableCellParentDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TableCellParentData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TableCellParentData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:TableCellParentData", readonly [], false];
     constructor();
 }
-export declare namespace TableCellParentData {
+export declare namespace _TableCellParentDataFactory {
     function implement(args: [], implementation: {}): TableCellParentData;
 }
+declare const _TableCellParentDataBinding: typeof _TableCellParentDataFactory & (new () => _TableCellParentDataNative);
+export declare const TableCellParentData: typeof _TableCellParentDataBinding & _FlaxInstanceType<TableCellParentData> & _FlaxDartType<TableCellParentData, readonly ["class", "flax.core/sdk_rendering#type:TableCellParentData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "offset" | "verticalAlignment" | "x" | "y" | "toString" | "detach" | "__flaxBound:package:flutter/src/rendering/table.dart::TableCellParentData" | "__flaxBound:package:flutter/src/rendering/box.dart::BoxParentData" | "__flaxBound:package:flutter/src/rendering/object.dart::ParentData";
 export {};

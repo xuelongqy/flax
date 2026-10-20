@@ -14,7 +14,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream6 from '@flax/flutter/gestures/_bindings/sdk_gestures_DragEndDetails';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_DragEndDetails';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ScrollEndNotification extends Omit<upstream0.ScrollNotification, _flaxOwnMembers0>, Omit<upstream1.LayoutChangedNotification, _flaxOwnMembers0 | keyof upstream0.ScrollNotification>, Omit<upstream2.Notification, _flaxOwnMembers0 | keyof upstream0.ScrollNotification | keyof upstream1.LayoutChangedNotification>, Omit<upstream3.ViewportNotificationMixin, _flaxOwnMembers0 | keyof upstream0.ScrollNotification | keyof upstream1.LayoutChangedNotification | keyof upstream2.Notification>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::ScrollEndNotification": readonly [];
 }>, Readonly<{
@@ -28,9 +28,29 @@ export interface ScrollEndNotification extends Omit<upstream0.ScrollNotification
 }> {
     readonly __ScrollEndNotification: unique symbol;
     readonly [_flaxDartTypeValue]: ScrollEndNotification;
+    readonly metrics: upstream4.ScrollMetrics;
+    readonly context: upstream5.BuildContext | null;
+    readonly depth: number;
+    readonly dragDetails: upstream6.DragEndDetails | null;
+    debugFillDescription(description: DartListInput<string, string>): void;
+    dispatch(target: upstream5.BuildContext | null): void;
+    toString(): string;
 }
-export interface ScrollEndNotification {
-    readonly [_flaxDartTypeValue]: ScrollEndNotification;
+export declare function _ScrollEndNotificationFactory(options: {
+    metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>;
+    context: upstream5.BuildContext;
+    dragDetails?: (Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragEndDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+}): ScrollEndNotification;
+export interface _ScrollEndNotificationNative extends ScrollEndNotification {
+    readonly [_flaxDartTypeValue]: _ScrollEndNotificationNative;
     debugFillDescription(description: DartListInput<string, string>): void;
     dispatch(target: upstream5.BuildContext | null): void;
     toString(): string;
@@ -39,7 +59,7 @@ export interface ScrollEndNotification {
     get context(): upstream5.BuildContext | null;
     get depth(): number;
 }
-export declare abstract class ScrollEndNotification extends _FlaxProxyBase {
+export declare abstract class _ScrollEndNotificationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ScrollEndNotification>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ScrollEndNotification;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ScrollEndNotification", readonly [], false];
@@ -57,7 +77,7 @@ export declare abstract class ScrollEndNotification extends _FlaxProxyBase {
         }>) | null | undefined;
     });
 }
-export declare namespace ScrollEndNotification {
+export declare namespace _ScrollEndNotificationFactory {
     function implement(args: [options: {
         metrics: Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
@@ -72,5 +92,19 @@ export declare namespace ScrollEndNotification {
         }>) | null | undefined;
     }], implementation: {}): ScrollEndNotification;
 }
+declare const _ScrollEndNotificationBinding: typeof _ScrollEndNotificationFactory & (new (options: {
+    metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>;
+    context: upstream5.BuildContext;
+    dragDetails?: (Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragEndDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+}) => _ScrollEndNotificationNative);
+export declare const ScrollEndNotification: typeof _ScrollEndNotificationBinding & _FlaxInstanceType<ScrollEndNotification> & _FlaxDartType<ScrollEndNotification, readonly ["class", "flax.core/sdk_widgets#type:ScrollEndNotification", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "metrics" | "context" | "depth" | "dragDetails" | "debugFillDescription" | "dispatch" | "toString" | "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::ScrollEndNotification" | "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::ScrollNotification" | "__flaxBound:package:flutter/src/widgets/notification_listener.dart::LayoutChangedNotification" | "__flaxBound:package:flutter/src/widgets/notification_listener.dart::Notification" | "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::ViewportNotificationMixin";
 export {};

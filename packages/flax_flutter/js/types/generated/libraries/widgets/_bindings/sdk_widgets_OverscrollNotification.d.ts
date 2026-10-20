@@ -14,7 +14,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream6 from '@flax/flutter/gestures/_bindings/sdk_gestures_DragUpdateDetails';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_DragUpdateDetails';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface OverscrollNotification extends Omit<upstream0.ScrollNotification, _flaxOwnMembers0>, Omit<upstream1.LayoutChangedNotification, _flaxOwnMembers0 | keyof upstream0.ScrollNotification>, Omit<upstream2.Notification, _flaxOwnMembers0 | keyof upstream0.ScrollNotification | keyof upstream1.LayoutChangedNotification>, Omit<upstream3.ViewportNotificationMixin, _flaxOwnMembers0 | keyof upstream0.ScrollNotification | keyof upstream1.LayoutChangedNotification | keyof upstream2.Notification>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::OverscrollNotification": readonly [];
 }>, Readonly<{
@@ -28,9 +28,33 @@ export interface OverscrollNotification extends Omit<upstream0.ScrollNotificatio
 }> {
     readonly __OverscrollNotification: unique symbol;
     readonly [_flaxDartTypeValue]: OverscrollNotification;
+    readonly metrics: upstream4.ScrollMetrics;
+    readonly context: upstream5.BuildContext | null;
+    readonly depth: number;
+    readonly dragDetails: upstream6.DragUpdateDetails | null;
+    readonly overscroll: number;
+    readonly velocity: number;
+    debugFillDescription(description: DartListInput<string, string>): void;
+    dispatch(target: upstream5.BuildContext | null): void;
+    toString(): string;
 }
-export interface OverscrollNotification {
-    readonly [_flaxDartTypeValue]: OverscrollNotification;
+export declare function _OverscrollNotificationFactory(options: {
+    metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>;
+    context: upstream5.BuildContext;
+    dragDetails?: (Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragUpdateDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    overscroll: number;
+    velocity?: number | undefined;
+}): OverscrollNotification;
+export interface _OverscrollNotificationNative extends OverscrollNotification {
+    readonly [_flaxDartTypeValue]: _OverscrollNotificationNative;
     debugFillDescription(description: DartListInput<string, string>): void;
     dispatch(target: upstream5.BuildContext | null): void;
     toString(): string;
@@ -41,7 +65,7 @@ export interface OverscrollNotification {
     get context(): upstream5.BuildContext | null;
     get depth(): number;
 }
-export declare abstract class OverscrollNotification extends _FlaxProxyBase {
+export declare abstract class _OverscrollNotificationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<OverscrollNotification>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: OverscrollNotification;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:OverscrollNotification", readonly [], false];
@@ -61,7 +85,7 @@ export declare abstract class OverscrollNotification extends _FlaxProxyBase {
         velocity?: number | undefined;
     });
 }
-export declare namespace OverscrollNotification {
+export declare namespace _OverscrollNotificationFactory {
     function implement(args: [options: {
         metrics: Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
@@ -78,5 +102,21 @@ export declare namespace OverscrollNotification {
         velocity?: number | undefined;
     }], implementation: {}): OverscrollNotification;
 }
+declare const _OverscrollNotificationBinding: typeof _OverscrollNotificationFactory & (new (options: {
+    metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>;
+    context: upstream5.BuildContext;
+    dragDetails?: (Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragUpdateDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    overscroll: number;
+    velocity?: number | undefined;
+}) => _OverscrollNotificationNative);
+export declare const OverscrollNotification: typeof _OverscrollNotificationBinding & _FlaxInstanceType<OverscrollNotification> & _FlaxDartType<OverscrollNotification, readonly ["class", "flax.core/sdk_widgets#type:OverscrollNotification", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "metrics" | "context" | "depth" | "dragDetails" | "overscroll" | "velocity" | "debugFillDescription" | "dispatch" | "toString" | "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::OverscrollNotification" | "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::ScrollNotification" | "__flaxBound:package:flutter/src/widgets/notification_listener.dart::LayoutChangedNotification" | "__flaxBound:package:flutter/src/widgets/notification_listener.dart::Notification" | "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::ViewportNotificationMixin";
 export {};

@@ -10,6 +10,12 @@
       "import": "./dist/index.js"
     },
     "./flax_modules.json": "./flax_modules.json",
+    "./dependencies/*": {
+      "types": [
+        "./dist/generated/dependencies/*.d.ts",
+        "./dist/generated/dependencies/*/index.d.ts"
+      ]
+    },
     "./*": {
       "types": "./dist/generated/libraries/cupertino/*.d.ts"
     }

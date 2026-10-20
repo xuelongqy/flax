@@ -550,10 +550,16 @@ class FlaxCodegenConstructorModel {
     this.parameters, {
     this.specializations = const [],
     this.runtimeParameterTypes = const [],
+    this.proxyOnly = false,
+    this.isFactory = false,
   });
   final String name;
   final List<FlaxCodegenParameterModel> parameters;
   final List<FlaxCodegenConstructorSpecializationModel> specializations;
+
+  /// An abstract owner's generative constructor can only initialize a proxy.
+  final bool proxyOnly;
+  final bool isFactory;
 
   /// Analyzer-resolved inputs of the shared default owner, without open declarations.
   final List<FlaxCodegenTypeRef> runtimeParameterTypes;

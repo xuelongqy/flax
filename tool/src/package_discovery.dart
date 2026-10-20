@@ -106,6 +106,8 @@ const _packageCapabilities = {
   'test-support',
 };
 
+final _dartPackageNamePattern = RegExp(r'^[a-z][a-z0-9_]*$');
+
 final class FlaxJavascriptPackageMetadata {
   const FlaxJavascriptPackageMetadata({
     required this.name,
@@ -136,6 +138,7 @@ final class FlaxPackageMetadata {
     required this.capabilities,
     required this.registration,
     this.bindingNamespace,
+    this.generateDependencies = const [],
   });
 
   final int format;
@@ -144,6 +147,7 @@ final class FlaxPackageMetadata {
   final Set<String> capabilities;
   final FlaxPackageRegistration registration;
   final String? bindingNamespace;
+  final List<String> generateDependencies;
 }
 
 FlaxPackageMetadata readFlaxPackageMetadata(
@@ -169,6 +173,7 @@ FlaxPackageMetadata readFlaxPackageMetadata(
     'capabilities',
     'registration',
     'bindingNamespace',
+    'bindingDependencies',
   }, file.path);
   if (data['format'] != 2) {
     throw FormatException('Unsupported package metadata format', file.path);
@@ -290,6 +295,32 @@ FlaxPackageMetadata readFlaxPackageMetadata(
     bindingNamespace = data['bindingNamespace'] as String;
   }
 
+  var generateDependencies = const <String>[];
+  if (data.containsKey('bindingDependencies')) {
+    final fields = _stringMap(
+      data['bindingDependencies'],
+      'bindingDependencies',
+      file.path,
+    );
+    _expectKeys(fields, const {
+      'generate',
+    }, 'bindingDependencies in ${file.path}');
+    if (fields.containsKey('generate')) {
+      final values = _strings(
+        fields['generate'],
+        'bindingDependencies.generate',
+        file.path,
+      );
+      _requireUnique(values, 'bindingDependencies.generate', file.path);
+      for (final name in values) {
+        if (!_dartPackageNamePattern.hasMatch(name)) {
+          throw FormatException('Invalid Dart package name: $name', file.path);
+        }
+      }
+      generateDependencies = List.unmodifiable(values.toList()..sort());
+    }
+  }
+
   return FlaxPackageMetadata(
     format: 2,
     dartEntrypoint: entrypoint,
@@ -300,6 +331,7 @@ FlaxPackageMetadata readFlaxPackageMetadata(
       plugins: List.unmodifiable(plugins),
     ),
     bindingNamespace: bindingNamespace,
+    generateDependencies: generateDependencies,
   );
 }
 
@@ -511,6 +543,51 @@ List<String> bindingConfigs(FlaxWorkspacePackage package) {
           .toList()
         ..sort();
   return configs;
+}
+
+/// Orders binding owners through direct Pub dependencies, without scheduling
+/// workspace support packages that have no binding configuration.
+List<FlaxWorkspacePackage> bindingPackagesInDependencyOrder(
+  Iterable<FlaxWorkspacePackage> packages,
+) {
+  final byName = {for (final package in packages) package.name: package};
+  final owners = {
+    for (final package in byName.values)
+      if (bindingConfigs(package).isNotEmpty) package.name,
+  };
+  final ordered = <FlaxWorkspacePackage>[];
+  final visited = <String>{};
+  final visiting = <String>[];
+
+  void visit(String name) {
+    if (visited.contains(name)) return;
+    final cycleStart = visiting.indexOf(name);
+    if (cycleStart >= 0) {
+      throw StateError(
+        'Cyclic binding package dependencies: '
+        '${[...visiting.skip(cycleStart), name].join(' -> ')}',
+      );
+    }
+    visiting.add(name);
+    final package = byName[name]!;
+    final dependencies = package.pubspec['dependencies'];
+    if (dependencies is Map) {
+      final names =
+          dependencies.keys.cast<String>().where(byName.containsKey).toList()
+            ..sort();
+      for (final dependency in names) {
+        visit(dependency);
+      }
+    }
+    visiting.removeLast();
+    visited.add(name);
+    if (owners.contains(name)) ordered.add(package);
+  }
+
+  for (final name in owners.toList()..sort()) {
+    visit(name);
+  }
+  return ordered;
 }
 
 Set<String> packageDependencyClosure(

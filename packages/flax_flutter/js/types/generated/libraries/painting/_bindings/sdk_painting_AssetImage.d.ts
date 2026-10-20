@@ -23,7 +23,7 @@ import type * as upstream11 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageCache_cx';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface AssetImage extends Omit<upstream0.AssetBundleImageProvider, _flaxOwnMembers0>, Omit<upstream1.ImageProvider<upstream2.AssetBundleImageKey>, _flaxOwnMembers0 | keyof upstream0.AssetBundleImageProvider>, Readonly<{
     "__flaxBound:package:flutter/src/painting/image_resolution.dart::AssetImage": readonly [];
 }>, Readonly<{
@@ -33,9 +33,68 @@ export interface AssetImage extends Omit<upstream0.AssetBundleImageProvider, _fl
 }> {
     readonly __AssetImage: unique symbol;
     readonly [_flaxDartTypeValue]: AssetImage;
+    readonly assetName: string;
+    readonly keyName: string;
+    readonly bundle: upstream3.AssetBundle | null;
+    readonly package: string | null;
+    loadImage(key: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageKey": readonly [];
+    }>, decode: ((buffer: upstream6.ImmutableBuffer, options?: {
+        getTargetSize?: ((intrinsicWidth: number, intrinsicHeight: number) => upstream7.TargetImageSize) | null | undefined;
+    }) => Promise<Readonly<{
+        "__flaxBound:dart:ui::Codec": readonly [];
+    }>>)): upstream4.ImageStreamCompleter;
+    loadBuffer(key: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageKey": readonly [];
+    }>, decode: ((buffer: upstream6.ImmutableBuffer, options?: {
+        allowUpscaling?: boolean | undefined;
+        cacheHeight?: number | null | undefined;
+        cacheWidth?: number | null | undefined;
+    }) => Promise<Readonly<{
+        "__flaxBound:dart:ui::Codec": readonly [];
+    }>>)): upstream4.ImageStreamCompleter;
+    resolve(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream8.ImageStream;
+    createStream(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream8.ImageStream;
+    obtainCacheStatus(options: {
+        configuration: Readonly<{
+            "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+        }>;
+        handleError?: ((exception: {}, stackTrace: upstream11.StackTrace | null) => void) | null | undefined;
+    }): Promise<upstream10.ImageCacheStatus | null>;
+    resolveStreamForKey(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>, stream: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStream": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, key: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageKey": readonly [];
+    }>, handleError: ((exception: {}, stackTrace: upstream11.StackTrace | null) => void)): void;
+    evict(options?: {
+        cache?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/image_cache.dart::ImageCache": readonly [];
+        }> | null | undefined;
+        configuration?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+        }> | undefined;
+    }): Promise<boolean>;
+    obtainKey(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): Promise<upstream2.AssetBundleImageKey>;
+    toString(): string;
 }
-export interface AssetImage {
-    readonly [_flaxDartTypeValue]: AssetImage;
+export declare function _AssetImageFactory(assetName: string, options?: {
+    bundle?: Readonly<{
+        "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [];
+    }> | null | undefined;
+    package?: string | null | undefined;
+}): AssetImage;
+export interface _AssetImageNative extends AssetImage {
+    readonly [_flaxDartTypeValue]: _AssetImageNative;
     resolve(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>): upstream8.ImageStream;
@@ -90,7 +149,7 @@ export interface AssetImage {
     get bundle(): upstream3.AssetBundle | null;
     get package(): string | null;
 }
-export declare abstract class AssetImage extends _FlaxProxyBase {
+export declare abstract class _AssetImageNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AssetImage>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AssetImage;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_painting#type:AssetImage", readonly [], false];
@@ -101,7 +160,7 @@ export declare abstract class AssetImage extends _FlaxProxyBase {
         package?: string | null | undefined;
     });
 }
-export declare namespace AssetImage {
+export declare namespace _AssetImageFactory {
     function implement(args: [assetName: string, options?: {
         bundle?: Readonly<{
             "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [];
@@ -109,5 +168,12 @@ export declare namespace AssetImage {
         package?: string | null | undefined;
     }], implementation: {}): AssetImage;
 }
+declare const _AssetImageBinding: typeof _AssetImageFactory & (new (assetName: string, options?: {
+    bundle?: Readonly<{
+        "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [];
+    }> | null | undefined;
+    package?: string | null | undefined;
+}) => _AssetImageNative);
+export declare const AssetImage: typeof _AssetImageBinding & _FlaxInstanceType<AssetImage> & _FlaxDartType<AssetImage, readonly ["class", "flax.core/sdk_painting#type:AssetImage", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "assetName" | "keyName" | "bundle" | "package" | "loadImage" | "loadBuffer" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "toString" | "__flaxBound:package:flutter/src/painting/image_resolution.dart::AssetImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageProvider" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
 export {};

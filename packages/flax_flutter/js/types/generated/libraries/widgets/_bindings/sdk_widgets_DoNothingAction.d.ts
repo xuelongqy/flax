@@ -17,7 +17,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DoNothingAction extends Omit<upstream0.Action<upstream1.Intent>, _flaxOwnMembers0>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Action<upstream1.Intent>>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/actions.dart::DoNothingAction": readonly [];
 }>, Readonly<{
@@ -27,9 +27,48 @@ export interface DoNothingAction extends Omit<upstream0.Action<upstream1.Intent>
 }> {
     readonly __DoNothingAction: unique symbol;
     readonly [_flaxDartTypeValue]: DoNothingAction;
+    readonly callingAction: upstream0.Action<upstream1.Intent> | null;
+    readonly intentType: upstream3.Type;
+    readonly isActionEnabled: boolean;
+    isEnabled(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): boolean;
+    consumesKey(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): boolean;
+    toKeyEventResult(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, invokeResult: unknown | null): upstream4.KeyEventResult;
+    invoke(intent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    addActionListener(listener: ((action: upstream0.Action<upstream1.Intent>) => void)): void;
+    removeActionListener(listener: ((action: upstream0.Action<upstream1.Intent>) => void)): void;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream6.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream8.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface DoNothingAction {
-    readonly [_flaxDartTypeValue]: DoNothingAction;
+export declare function _DoNothingActionFactory(options?: {
+    consumesKey?: boolean | undefined;
+}): DoNothingAction;
+export interface _DoNothingActionNative extends DoNothingAction {
+    readonly [_flaxDartTypeValue]: _DoNothingActionNative;
     isEnabled(intent: Readonly<{
         "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
     }> & Readonly<{
@@ -67,7 +106,7 @@ export interface DoNothingAction {
     get intentType(): upstream3.Type;
     get isActionEnabled(): boolean;
 }
-export declare abstract class DoNothingAction extends _FlaxProxyBase {
+export declare abstract class _DoNothingActionNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DoNothingAction>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: DoNothingAction;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:DoNothingAction", readonly [], false];
@@ -75,10 +114,14 @@ export declare abstract class DoNothingAction extends _FlaxProxyBase {
         consumesKey?: boolean | undefined;
     });
 }
-export declare namespace DoNothingAction {
+export declare namespace _DoNothingActionFactory {
     function implement(args: [options?: {
         consumesKey?: boolean | undefined;
     }], implementation: {}): DoNothingAction;
 }
+declare const _DoNothingActionBinding: typeof _DoNothingActionFactory & (new (options?: {
+    consumesKey?: boolean | undefined;
+}) => _DoNothingActionNative);
+export declare const DoNothingAction: typeof _DoNothingActionBinding & _FlaxInstanceType<DoNothingAction> & _FlaxDartType<DoNothingAction, readonly ["class", "flax.core/sdk_widgets#type:DoNothingAction", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "callingAction" | "intentType" | "isActionEnabled" | "isEnabled" | "consumesKey" | "toKeyEventResult" | "invoke" | "addActionListener" | "removeActionListener" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/actions.dart::DoNothingAction" | "__flaxBound:package:flutter/src/widgets/actions.dart::Action" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

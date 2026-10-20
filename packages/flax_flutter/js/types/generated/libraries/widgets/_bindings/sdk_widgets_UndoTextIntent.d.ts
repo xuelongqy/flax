@@ -13,7 +13,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface UndoTextIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::UndoTextIntent": readonly [];
 }>, Readonly<{
@@ -23,9 +23,22 @@ export interface UndoTextIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>
 }> {
     readonly __UndoTextIntent: unique symbol;
     readonly [_flaxDartTypeValue]: UndoTextIntent;
+    readonly cause: upstream2.SelectionChangedCause;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream4.DiagnosticsTreeStyle | null | undefined;
+    }): upstream3.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface UndoTextIntent {
-    readonly [_flaxDartTypeValue]: UndoTextIntent;
+export declare function _UndoTextIntentFactory(cause: upstream2.SelectionChangedCause): UndoTextIntent;
+export interface _UndoTextIntentNative extends UndoTextIntent {
+    readonly [_flaxDartTypeValue]: _UndoTextIntentNative;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
@@ -39,14 +52,16 @@ export interface UndoTextIntent {
     }): string;
     get cause(): upstream2.SelectionChangedCause;
 }
-export declare abstract class UndoTextIntent extends _FlaxProxyBase {
+export declare abstract class _UndoTextIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<UndoTextIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: UndoTextIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:UndoTextIntent", readonly [], false];
     constructor(cause: upstream2.SelectionChangedCause);
 }
-export declare namespace UndoTextIntent {
+export declare namespace _UndoTextIntentFactory {
     function implement(args: [cause: upstream2.SelectionChangedCause], implementation: {}): UndoTextIntent;
 }
+declare const _UndoTextIntentBinding: typeof _UndoTextIntentFactory & (new (cause: upstream2.SelectionChangedCause) => _UndoTextIntentNative);
+export declare const UndoTextIntent: typeof _UndoTextIntentBinding & _FlaxInstanceType<UndoTextIntent> & _FlaxDartType<UndoTextIntent, readonly ["class", "flax.core/sdk_widgets#type:UndoTextIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "cause" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::UndoTextIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

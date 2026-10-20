@@ -21,7 +21,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PointerScrollInertiaCancelEvent extends Omit<upstream0.PointerSignalEvent, _flaxOwnMembers0>, Omit<upstream1.PointerEvent, _flaxOwnMembers0 | keyof upstream0.PointerSignalEvent>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PointerSignalEvent | keyof upstream1.PointerEvent>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/events.dart::PointerScrollInertiaCancelEvent": readonly [];
 }>, Readonly<{
@@ -39,9 +39,110 @@ export interface PointerScrollInertiaCancelEvent extends Omit<upstream0.PointerS
 }> {
     readonly __PointerScrollInertiaCancelEvent: unique symbol;
     readonly [_flaxDartTypeValue]: PointerScrollInertiaCancelEvent;
+    readonly viewId: number;
+    readonly embedderId: number;
+    readonly timeStamp: upstream3.Duration;
+    readonly pointer: number;
+    readonly kind: upstream4.PointerDeviceKind;
+    readonly device: number;
+    readonly position: upstream5.Offset;
+    readonly localPosition: upstream5.Offset;
+    readonly delta: upstream5.Offset;
+    readonly localDelta: upstream5.Offset;
+    readonly buttons: number;
+    readonly down: boolean;
+    readonly obscured: boolean;
+    readonly pressure: number;
+    readonly pressureMin: number;
+    readonly pressureMax: number;
+    readonly distance: number;
+    readonly distanceMin: number;
+    readonly distanceMax: number;
+    readonly size: number;
+    readonly radiusMajor: number;
+    readonly radiusMinor: number;
+    readonly radiusMin: number;
+    readonly radiusMax: number;
+    readonly orientation: number;
+    readonly tilt: number;
+    readonly platformData: number;
+    readonly synthesized: boolean;
+    readonly transform: upstream6.Matrix4 | null;
+    readonly original: upstream1.PointerEvent | null;
+    transformed(transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null): PointerScrollInertiaCancelEvent;
+    copyWith(options?: {
+        buttons?: number | null | undefined;
+        delta?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        device?: number | null | undefined;
+        distance?: number | null | undefined;
+        distanceMax?: number | null | undefined;
+        embedderId?: number | null | undefined;
+        kind?: upstream4.PointerDeviceKind | null | undefined;
+        obscured?: boolean | null | undefined;
+        orientation?: number | null | undefined;
+        pointer?: number | null | undefined;
+        position?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        pressure?: number | null | undefined;
+        pressureMax?: number | null | undefined;
+        pressureMin?: number | null | undefined;
+        radiusMajor?: number | null | undefined;
+        radiusMax?: number | null | undefined;
+        radiusMin?: number | null | undefined;
+        radiusMinor?: number | null | undefined;
+        size?: number | null | undefined;
+        synthesized?: boolean | null | undefined;
+        tilt?: number | null | undefined;
+        timeStamp?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream3.Duration];
+        }>) | null | undefined;
+        viewId?: number | null | undefined;
+    }): PointerScrollInertiaCancelEvent;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream8.DiagnosticsTreeStyle | null | undefined;
+    }): upstream7.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    respond(options: {
+        allowPlatformDefault: boolean;
+    }): void;
+    toString(options?: {
+        minLevel?: upstream10.DiagnosticLevel | undefined;
+    }): string;
+    toStringFull(): string;
 }
-export interface PointerScrollInertiaCancelEvent {
-    readonly [_flaxDartTypeValue]: PointerScrollInertiaCancelEvent;
+export declare function _PointerScrollInertiaCancelEventFactory(options?: {
+    viewId?: number | undefined;
+    timeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream3.Duration];
+    }>) | undefined;
+    kind?: upstream4.PointerDeviceKind | undefined;
+    device?: number | undefined;
+    position?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    embedderId?: number | undefined;
+}): PointerScrollInertiaCancelEvent;
+export interface _PointerScrollInertiaCancelEventNative extends PointerScrollInertiaCancelEvent {
+    readonly [_flaxDartTypeValue]: _PointerScrollInertiaCancelEventNative;
     transformed(transform: Readonly<{
         "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
     }> | null): PointerScrollInertiaCancelEvent;
@@ -128,7 +229,7 @@ export interface PointerScrollInertiaCancelEvent {
     get transform(): upstream6.Matrix4 | null;
     get original(): upstream1.PointerEvent | null;
 }
-export declare abstract class PointerScrollInertiaCancelEvent extends _FlaxProxyBase {
+export declare abstract class _PointerScrollInertiaCancelEventNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PointerScrollInertiaCancelEvent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PointerScrollInertiaCancelEvent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:PointerScrollInertiaCancelEvent", readonly [], false];
@@ -149,7 +250,7 @@ export declare abstract class PointerScrollInertiaCancelEvent extends _FlaxProxy
         embedderId?: number | undefined;
     });
 }
-export declare namespace PointerScrollInertiaCancelEvent {
+export declare namespace _PointerScrollInertiaCancelEventFactory {
     function implement(args: [options?: {
         viewId?: number | undefined;
         timeStamp?: (Readonly<{
@@ -167,5 +268,22 @@ export declare namespace PointerScrollInertiaCancelEvent {
         embedderId?: number | undefined;
     }], implementation: {}): PointerScrollInertiaCancelEvent;
 }
+declare const _PointerScrollInertiaCancelEventBinding: typeof _PointerScrollInertiaCancelEventFactory & (new (options?: {
+    viewId?: number | undefined;
+    timeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream3.Duration];
+    }>) | undefined;
+    kind?: upstream4.PointerDeviceKind | undefined;
+    device?: number | undefined;
+    position?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    embedderId?: number | undefined;
+}) => _PointerScrollInertiaCancelEventNative);
+export declare const PointerScrollInertiaCancelEvent: typeof _PointerScrollInertiaCancelEventBinding & _FlaxInstanceType<PointerScrollInertiaCancelEvent> & _FlaxDartType<PointerScrollInertiaCancelEvent, readonly ["class", "flax.core/sdk_gestures#type:PointerScrollInertiaCancelEvent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "embedderId" | "timeStamp" | "pointer" | "kind" | "device" | "position" | "localPosition" | "delta" | "localDelta" | "buttons" | "down" | "obscured" | "pressure" | "pressureMin" | "pressureMax" | "distance" | "distanceMin" | "distanceMax" | "size" | "radiusMajor" | "radiusMinor" | "radiusMin" | "radiusMax" | "orientation" | "tilt" | "platformData" | "synthesized" | "transform" | "original" | "transformed" | "copyWith" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "respond" | "toString" | "toStringFull" | "__flaxBound:package:flutter/src/gestures/events.dart::PointerScrollInertiaCancelEvent" | "__flaxBound:package:flutter/src/gestures/events.dart::PointerSignalEvent" | "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/gestures/events.dart::_RespondablePointerEvent" | "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription" | "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerScrollInertiaCancelEvent";
 export {};

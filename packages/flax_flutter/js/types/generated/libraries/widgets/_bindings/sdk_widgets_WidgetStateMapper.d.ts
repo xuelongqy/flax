@@ -1,4 +1,5 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartMapInput, type DartSetInput } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartMapInput, type DartSetInput, type DartInput } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
@@ -25,9 +26,6 @@ export interface WidgetStateMapper<T extends unknown | null = unknown | null> ex
 }> {
     readonly __WidgetStateMapper: unique symbol;
     readonly [_flaxDartTypeValue]: WidgetStateMapper<T>;
-}
-export interface WidgetStateMapper<T extends unknown | null = unknown | null> {
-    readonly [_flaxDartTypeValue]: WidgetStateMapper<T>;
     resolve(states: DartSetInput<upstream3.WidgetState, upstream3.WidgetState>): T;
     toStringShort(): string;
     toString(options?: {
@@ -43,7 +41,30 @@ export interface WidgetStateMapper<T extends unknown | null = unknown | null> {
         prefix?: string | undefined;
     }): void;
 }
-export declare abstract class WidgetStateMapper<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
+export declare function _WidgetStateMapperFactory<T extends unknown | null = unknown | null>(map: DartMapInput<upstream2.WidgetStatesConstraint, _FlaxDartOutput<T>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
+}>, (T | _FlaxDartOutput<T>)>): WidgetStateMapper<T>;
+export declare function _WidgetStateMapperFactory(map: DartMapInput<upstream2.WidgetStatesConstraint, unknown | null, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
+}>, unknown | null>): WidgetStateMapper<unknown | null>;
+export interface _WidgetStateMapperNative<T extends unknown | null = unknown | null> extends WidgetStateMapper<T> {
+    readonly [_flaxDartTypeValue]: _WidgetStateMapperNative<T>;
+    resolve(states: DartSetInput<upstream3.WidgetState, upstream3.WidgetState>): T;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream4.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream6.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>, options?: {
+        prefix?: string | undefined;
+    }): void;
+}
+export declare abstract class _WidgetStateMapperNative<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<WidgetStateMapper<unknown | null>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: WidgetStateMapper<unknown | null>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:WidgetStateMapper", readonly [readonly ["any", null, readonly [], true]], false];
@@ -53,20 +74,40 @@ export declare abstract class WidgetStateMapper<T extends unknown | null = unkno
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
     }>, unknown | null>);
 }
-export declare namespace WidgetStateMapper {
+export declare namespace _WidgetStateMapperFactory {
     function implement<T extends unknown | null = unknown | null>(args: [map: DartMapInput<upstream2.WidgetStatesConstraint, unknown | null, Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
     }>, unknown | null>], implementation: {}): WidgetStateMapper<T>;
 }
+declare const _WidgetStateMapperBinding: typeof _WidgetStateMapperFactory & (new <T extends unknown | null = unknown | null>(map: DartMapInput<upstream2.WidgetStatesConstraint, unknown | null, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
+}>, unknown | null>) => _WidgetStateMapperNative<T>);
+export declare const WidgetStateMapper: typeof _WidgetStateMapperBinding & _FlaxInstanceType<WidgetStateMapper<unknown | null>> & _FlaxDartType<WidgetStateMapper<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:WidgetStateMapper", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "resolve" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateMapper" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
-interface _FlaxSignature1 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new (map: DartMapInput<upstream2.WidgetStatesConstraint, unknown | null, Readonly<{
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new (map: DartMapInput<upstream2.WidgetStatesConstraint, unknown | null, Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
-    }>, unknown | null>) => WidgetStateMapper<_Selected0>) & {
-        readonly prototype: WidgetStateMapper<_Selected0>;
+    }>, unknown | null>) => _WidgetStateMapperNative<_Selected0>) & {
+        (map: DartMapInput<upstream2.WidgetStatesConstraint, _Selected0, Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
+        }>, (_Selected0 | DartInput<_Selected0>)>): _WidgetStateMapperNative<_Selected0>;
+        readonly prototype: _WidgetStateMapperNative<_Selected0>;
         implement(args: readonly [DartMapInput<upstream2.WidgetStatesConstraint, unknown | null, Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
-        }>, unknown | null>], implementation: Partial<WidgetStateMapper<_Selected0>>): WidgetStateMapper<_Selected0>;
-    } & _FlaxInstanceType<WidgetStateMapper<_Selected0>> & _FlaxDartType<WidgetStateMapper<_Selected0>> : never : never;
+        }>, unknown | null>], implementation: Partial<_WidgetStateMapperNative<_Selected0>>): _WidgetStateMapperNative<_Selected0>;
+    } & _FlaxInstanceType<_WidgetStateMapperNative<_Selected0>> & _FlaxDartType<_WidgetStateMapperNative<_Selected0>> : never : never;
+}
+interface _FlaxSignature1 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new (map: DartMapInput<upstream2.WidgetStatesConstraint, unknown | null, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
+    }>, unknown | null>) => _WidgetStateMapperNative<_Selected0>) & {
+        (map: DartMapInput<upstream2.WidgetStatesConstraint, _Selected0, Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
+        }>, (_Selected0 | DartInput<_Selected0>)>): _WidgetStateMapperNative<_Selected0>;
+        readonly prototype: _WidgetStateMapperNative<_Selected0>;
+        implement(args: readonly [DartMapInput<upstream2.WidgetStatesConstraint, unknown | null, Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [];
+        }>, unknown | null>], implementation: Partial<_WidgetStateMapperNative<_Selected0>>): _WidgetStateMapperNative<_Selected0>;
+    } & _FlaxInstanceType<_WidgetStateMapperNative<_Selected0>> & _FlaxDartType<_WidgetStateMapperNative<_Selected0>> : never : never;
 }
 export {};

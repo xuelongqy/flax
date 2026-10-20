@@ -17,18 +17,31 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import { _flaxMemberParameters157, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters138, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ExtendSelectionToLineBreakIntent extends Omit<upstream0.DirectionalCaretMovementIntent, _flaxOwnMembers0>, Omit<upstream1.DirectionalTextEditingIntent, _flaxOwnMembers0 | keyof upstream0.DirectionalCaretMovementIntent>, Omit<upstream2.Intent, _flaxOwnMembers0 | keyof upstream0.DirectionalCaretMovementIntent | keyof upstream1.DirectionalTextEditingIntent>, Omit<upstream3.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.DirectionalCaretMovementIntent | keyof upstream1.DirectionalTextEditingIntent | keyof upstream2.Intent>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::ExtendSelectionToLineBreakIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalCaretMovementIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalTextEditingIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __ExtendSelectionToLineBreakIntent: unique symbol;
 readonly [_flaxDartTypeValue]: ExtendSelectionToLineBreakIntent;
 
+readonly collapseSelection: boolean;
+readonly collapseAtReversal: boolean;
+readonly continuesAtWrap: boolean;
+readonly forward: boolean;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream5.DiagnosticsTreeStyle | null | undefined}): upstream4.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream7.DiagnosticLevel | undefined}): string;
 }
 defineObject("flax.core/sdk_widgets#type:ExtendSelectionToLineBreakIntent", ["collapseSelection","collapseAtReversal","continuesAtWrap","forward"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ExtendSelectionToLineBreakIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:DirectionalCaretMovementIntent");
-const _ExtendSelectionToLineBreakIntentProxy = {type: "flax.core/sdk_widgets#type:ExtendSelectionToLineBreakIntent", parameters: _flaxMemberParameters157, constructors: {"": _flaxMemberParameters157}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["collapseSelection","collapseAtReversal","continuesAtWrap","forward"], setters: [], contextMembers: [], superMembers: ["get:collapseSelection","get:collapseAtReversal","get:continuesAtWrap","get:forward","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface ExtendSelectionToLineBreakIntent {
-readonly [_flaxDartTypeValue]: ExtendSelectionToLineBreakIntent;
+export function _ExtendSelectionToLineBreakIntentFactory(options: { forward: boolean; collapseSelection: boolean; collapseAtReversal?: boolean | undefined; continuesAtWrap?: boolean | undefined }): ExtendSelectionToLineBreakIntent {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:ExtendSelectionToLineBreakIntent", "", [{"name":"forward","required":true},{"name":"collapseSelection","required":true},{"name":"collapseAtReversal"},{"name":"continuesAtWrap"}], [], options) as ExtendSelectionToLineBreakIntent;
+}
+const _ExtendSelectionToLineBreakIntentProxy = {type: "flax.core/sdk_widgets#type:ExtendSelectionToLineBreakIntent", parameters: _flaxMemberParameters138, constructors: {"": _flaxMemberParameters138}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["collapseSelection","collapseAtReversal","continuesAtWrap","forward"], setters: [], contextMembers: [], superMembers: ["get:collapseSelection","get:collapseAtReversal","get:continuesAtWrap","get:forward","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+export interface _ExtendSelectionToLineBreakIntentNative extends ExtendSelectionToLineBreakIntent {
+readonly [_flaxDartTypeValue]: _ExtendSelectionToLineBreakIntentNative;
 
 toStringShort(): string;
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream5.DiagnosticsTreeStyle | null | undefined}): upstream4.DiagnosticsNode;
@@ -39,14 +52,15 @@ get collapseAtReversal(): boolean;
 get continuesAtWrap(): boolean;
 get forward(): boolean;
 }
-export abstract class ExtendSelectionToLineBreakIntent extends _FlaxProxyBase {
+export abstract class _ExtendSelectionToLineBreakIntentNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ExtendSelectionToLineBreakIntent>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ExtendSelectionToLineBreakIntent;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ExtendSelectionToLineBreakIntent", readonly [], false];
 constructor(options: {forward: boolean; collapseSelection: boolean; collapseAtReversal?: boolean | undefined; continuesAtWrap?: boolean | undefined}) { super(_ExtendSelectionToLineBreakIntentProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ExtendSelectionToLineBreakIntent.prototype, _ExtendSelectionToLineBreakIntentProxy);
-export namespace ExtendSelectionToLineBreakIntent { export function implement(args: [options: {forward: boolean; collapseSelection: boolean; collapseAtReversal?: boolean | undefined; continuesAtWrap?: boolean | undefined}], implementation: {}): ExtendSelectionToLineBreakIntent {
+_flaxDefineProxyBase(_ExtendSelectionToLineBreakIntentNative.prototype, _ExtendSelectionToLineBreakIntentProxy);
+export namespace _ExtendSelectionToLineBreakIntentFactory { export function implement(args: [options: {forward: boolean; collapseSelection: boolean; collapseAtReversal?: boolean | undefined; continuesAtWrap?: boolean | undefined}], implementation: {}): ExtendSelectionToLineBreakIntent {
 return constructProxy(_ExtendSelectionToLineBreakIntentProxy, args, implementation) as ExtendSelectionToLineBreakIntent; } }
-_flaxBindInstanceType<ExtendSelectionToLineBreakIntent, typeof ExtendSelectionToLineBreakIntent>(ExtendSelectionToLineBreakIntent, "flax.core/sdk_widgets#type:ExtendSelectionToLineBreakIntent", ["flax.core/sdk_widgets#type:DirectionalCaretMovementIntent","flax.core/sdk_widgets#type:DirectionalTextEditingIntent","flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _ExtendSelectionToLineBreakIntentBinding = _flaxProxyFactory(_ExtendSelectionToLineBreakIntentFactory, _ExtendSelectionToLineBreakIntentNative) as unknown as typeof _ExtendSelectionToLineBreakIntentFactory & (new(options: {forward: boolean; collapseSelection: boolean; collapseAtReversal?: boolean | undefined; continuesAtWrap?: boolean | undefined}) => _ExtendSelectionToLineBreakIntentNative);
+export const ExtendSelectionToLineBreakIntent: typeof _ExtendSelectionToLineBreakIntentBinding & _FlaxInstanceType<ExtendSelectionToLineBreakIntent> & _FlaxDartType<ExtendSelectionToLineBreakIntent, readonly ["class", "flax.core/sdk_widgets#type:ExtendSelectionToLineBreakIntent", readonly [], false]> = _flaxBindInstanceType<ExtendSelectionToLineBreakIntent, typeof _ExtendSelectionToLineBreakIntentBinding>(_ExtendSelectionToLineBreakIntentBinding, "flax.core/sdk_widgets#type:ExtendSelectionToLineBreakIntent", ["flax.core/sdk_widgets#type:DirectionalCaretMovementIntent","flax.core/sdk_widgets#type:DirectionalTextEditingIntent","flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ExtendSelectionToLineBreakIntentBinding & _FlaxInstanceType<ExtendSelectionToLineBreakIntent> & _FlaxDartType<ExtendSelectionToLineBreakIntent, readonly ["class", "flax.core/sdk_widgets#type:ExtendSelectionToLineBreakIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "collapseSelection" | "collapseAtReversal" | "continuesAtWrap" | "forward" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::ExtendSelectionToLineBreakIntent" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalCaretMovementIntent" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalTextEditingIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

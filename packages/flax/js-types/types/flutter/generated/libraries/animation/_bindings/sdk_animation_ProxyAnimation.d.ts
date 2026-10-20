@@ -16,7 +16,7 @@ import type * as upstream6 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_AnimationStatus';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animatable';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ProxyAnimation extends Omit<upstream0.Animation<number>, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.Animation<number>>, Omit<upstream2.ValueListenable<number>, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable>, Omit<upstream3.AnimationLazyListenerMixin, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable | keyof upstream2.ValueListenable<number>>, Omit<upstream4.AnimationLocalListenersMixin, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable | keyof upstream2.ValueListenable<number> | keyof upstream3.AnimationLazyListenerMixin>, Omit<upstream5.AnimationLocalStatusListenersMixin, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable | keyof upstream2.ValueListenable<number> | keyof upstream3.AnimationLazyListenerMixin | keyof upstream4.AnimationLocalListenersMixin>, Readonly<{
     "__flaxBound:package:flutter/src/animation/animations.dart::ProxyAnimation": readonly [];
 }>, Readonly<{
@@ -37,9 +37,48 @@ export interface ProxyAnimation extends Omit<upstream0.Animation<number>, _flaxO
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature0;
     };
+    readonly status: upstream6.AnimationStatus;
+    readonly value: number;
+    readonly isDismissed: boolean;
+    readonly isCompleted: boolean;
+    readonly isAnimating: boolean;
+    readonly isForwardOrCompleted: boolean;
+    readonly isListening: boolean;
+    get parent(): upstream0.Animation<number> | null;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    addStatusListener(listener: ((status: upstream6.AnimationStatus) => void)): void;
+    removeStatusListener(listener: ((status: upstream6.AnimationStatus) => void)): void;
+    drive<U extends unknown | null = unknown | null>(child: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_FlaxDartOutput<U>];
+    }>): upstream0.Animation<_FlaxDartOutput<U>>;
+    toString(): string;
+    toStringDetails(): string;
+    didRegisterListener(): void;
+    didUnregisterListener(): void;
+    didStartListening(): void;
+    didStopListening(): void;
+    clearListeners(): void;
+    notifyListeners(): void;
+    clearStatusListeners(): void;
+    notifyStatusListeners(status: upstream6.AnimationStatus): void;
+    set parent(value: (Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>) | null);
 }
-export interface ProxyAnimation {
-    readonly [_flaxDartTypeValue]: ProxyAnimation;
+export declare function _ProxyAnimationFactory(animation?: (Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+}>) | null): ProxyAnimation;
+export interface _ProxyAnimationNative extends ProxyAnimation {
+    readonly [_flaxDartTypeValue]: _ProxyAnimationNative;
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature1;
     };
@@ -76,7 +115,7 @@ export interface ProxyAnimation {
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
     }>) | null);
 }
-export declare abstract class ProxyAnimation extends _FlaxProxyBase {
+export declare abstract class _ProxyAnimationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ProxyAnimation>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ProxyAnimation;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_animation#type:ProxyAnimation", readonly [], false];
@@ -88,7 +127,7 @@ export declare abstract class ProxyAnimation extends _FlaxProxyBase {
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
     }>) | null);
 }
-export declare namespace ProxyAnimation {
+export declare namespace _ProxyAnimationFactory {
     function implement(args: [animation?: (Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
@@ -97,6 +136,14 @@ export declare namespace ProxyAnimation {
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
     }>) | null], implementation: {}): ProxyAnimation;
 }
+declare const _ProxyAnimationBinding: typeof _ProxyAnimationFactory & (new (animation?: (Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+}>) | null) => _ProxyAnimationNative);
+export declare const ProxyAnimation: typeof _ProxyAnimationBinding & _FlaxInstanceType<ProxyAnimation> & _FlaxDartType<ProxyAnimation, readonly ["class", "flax.core/sdk_animation#type:ProxyAnimation", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "isListening" | "parent" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "didStartListening" | "didStopListening" | "clearListeners" | "notifyListeners" | "clearStatusListeners" | "notifyStatusListeners" | "__flaxBound:package:flutter/src/animation/animations.dart::ProxyAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLazyListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{

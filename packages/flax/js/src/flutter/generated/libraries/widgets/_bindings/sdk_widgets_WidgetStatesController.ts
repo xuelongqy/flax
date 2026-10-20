@@ -11,18 +11,31 @@ import type * as upstream3 from '@flax/flutter/foundation/_bindings/flutter_List
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
-import { _flaxMemberParameters2, _flaxMemberParameters490, _flaxMemberParameters436, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters2, _flaxMemberParameters476, _flaxMemberParameters422, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface WidgetStatesController extends Omit<upstream0.ValueNotifier<DartSet<upstream1.WidgetState>>, _flaxOwnMembers0>, Omit<upstream2.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<DartSet<upstream1.WidgetState>>>, Omit<upstream3.Listenable, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<DartSet<upstream1.WidgetState>> | keyof upstream2.ChangeNotifier>, Omit<upstream4.ValueListenable<DartSet<upstream1.WidgetState>>, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<DartSet<upstream1.WidgetState>> | keyof upstream2.ChangeNotifier | keyof upstream3.Listenable>, Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream1.WidgetState>] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream1.WidgetState>] }> { readonly __WidgetStatesController: unique symbol;
 readonly [_flaxDartTypeValue]: WidgetStatesController;
 
+get value(): DartSet<upstream1.WidgetState>;
+readonly hasListeners: boolean;
+toString(): string;
+addListener(listener: (() => void)): void;
+removeListener(listener: (() => void)): void;
+dispose(): void;
+update(state: upstream1.WidgetState, add: boolean): void;
+set value(value: DartSetInput<upstream1.WidgetState, upstream1.WidgetState>);
 }
-defineObject("flax.core/sdk_widgets#type:WidgetStatesController", ["value","hasListeners"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStatesController", "object", {"toString":_flaxMemberParameters2,"update":_flaxMemberParameters490}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _WidgetStatesControllerProxy = {type: "flax.core/sdk_widgets#type:WidgetStatesController", parameters: _flaxMemberParameters436, constructors: {"": _flaxMemberParameters436}, methods: {"toString":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"update":_flaxMemberParameters490}, getters: ["value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:hasListeners","set:value","toString","addListener","removeListener","dispose","update"]} as const;
-export interface WidgetStatesController {
-readonly [_flaxDartTypeValue]: WidgetStatesController;
+defineObject("flax.core/sdk_widgets#type:WidgetStatesController", ["value","hasListeners"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStatesController", "object", {"toString":_flaxMemberParameters2,"update":_flaxMemberParameters476}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+export function _WidgetStatesControllerFactory(value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null): WidgetStatesController {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:WidgetStatesController", "", [{"name":"value","positional":true}], [value], {}) as WidgetStatesController;
+}
+const _WidgetStatesControllerProxy = {type: "flax.core/sdk_widgets#type:WidgetStatesController", parameters: _flaxMemberParameters422, constructors: {"": _flaxMemberParameters422}, methods: {"toString":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"update":_flaxMemberParameters476}, getters: ["value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:hasListeners","set:value","toString","addListener","removeListener","dispose","update"]} as const;
+export interface _WidgetStatesControllerNative extends WidgetStatesController {
+readonly [_flaxDartTypeValue]: _WidgetStatesControllerNative;
 
 toString(): string;
 addListener(listener: (() => void)): void;
@@ -33,14 +46,15 @@ get value(): DartSet<upstream1.WidgetState>;
 get hasListeners(): boolean;
 set value(value: DartSetInput<upstream1.WidgetState, upstream1.WidgetState>);
 }
-export abstract class WidgetStatesController extends _FlaxProxyBase {
+export abstract class _WidgetStatesControllerNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<WidgetStatesController>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: WidgetStatesController;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:WidgetStatesController", readonly [], false];
 constructor(value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null) { super(_WidgetStatesControllerProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(WidgetStatesController.prototype, _WidgetStatesControllerProxy);
-export namespace WidgetStatesController { export function implement(args: [value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null], implementation: {}): WidgetStatesController {
+_flaxDefineProxyBase(_WidgetStatesControllerNative.prototype, _WidgetStatesControllerProxy);
+export namespace _WidgetStatesControllerFactory { export function implement(args: [value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null], implementation: {}): WidgetStatesController {
 return constructProxy(_WidgetStatesControllerProxy, args, implementation) as WidgetStatesController; } }
-_flaxBindInstanceType<WidgetStatesController, typeof WidgetStatesController>(WidgetStatesController, "flax.core/sdk_widgets#type:WidgetStatesController", ["flax.core/sdk_foundation#type:ValueNotifier","flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable","flax.core/flutter#type:ValueListenable"]);
+const _WidgetStatesControllerBinding = _flaxProxyFactory(_WidgetStatesControllerFactory, _WidgetStatesControllerNative) as unknown as typeof _WidgetStatesControllerFactory & (new(value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null) => _WidgetStatesControllerNative);
+export const WidgetStatesController: typeof _WidgetStatesControllerBinding & _FlaxInstanceType<WidgetStatesController> & _FlaxDartType<WidgetStatesController, readonly ["class", "flax.core/sdk_widgets#type:WidgetStatesController", readonly [], false]> = _flaxBindInstanceType<WidgetStatesController, typeof _WidgetStatesControllerBinding>(_WidgetStatesControllerBinding, "flax.core/sdk_widgets#type:WidgetStatesController", ["flax.core/sdk_foundation#type:ValueNotifier","flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable","flax.core/flutter#type:ValueListenable"]) as typeof _WidgetStatesControllerBinding & _FlaxInstanceType<WidgetStatesController> & _FlaxDartType<WidgetStatesController, readonly ["class", "flax.core/sdk_widgets#type:WidgetStatesController", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "toString" | "addListener" | "removeListener" | "dispose" | "update" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";

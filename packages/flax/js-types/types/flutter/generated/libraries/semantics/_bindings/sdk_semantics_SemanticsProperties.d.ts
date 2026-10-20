@@ -37,7 +37,7 @@ import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SemanticsProperties extends Omit<upstream0.DiagnosticableTree, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.DiagnosticableTree>, Readonly<{
     "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsProperties": readonly [];
 }>, Readonly<{
@@ -47,9 +47,221 @@ export interface SemanticsProperties extends Omit<upstream0.DiagnosticableTree, 
 }> {
     readonly __SemanticsProperties: unique symbol;
     readonly [_flaxDartTypeValue]: SemanticsProperties;
+    readonly enabled: boolean | null;
+    readonly checked: boolean | null;
+    readonly mixed: boolean | null;
+    readonly expanded: boolean | null;
+    readonly toggled: boolean | null;
+    readonly selected: boolean | null;
+    readonly button: boolean | null;
+    readonly link: boolean | null;
+    readonly header: boolean | null;
+    readonly textField: boolean | null;
+    readonly slider: boolean | null;
+    readonly keyboardKey: boolean | null;
+    readonly readOnly: boolean | null;
+    readonly focusable: boolean | null;
+    readonly focused: boolean | null;
+    readonly accessibilityFocusBlockType: upstream3.AccessibilityFocusBlockType | null;
+    readonly inMutuallyExclusiveGroup: boolean | null;
+    readonly hidden: boolean | null;
+    readonly obscured: boolean | null;
+    readonly multiline: boolean | null;
+    readonly scopesRoute: boolean | null;
+    readonly namesRoute: boolean | null;
+    readonly image: boolean | null;
+    readonly liveRegion: boolean | null;
+    readonly isRequired: boolean | null;
+    readonly maxValueLength: number | null;
+    readonly currentValueLength: number | null;
+    readonly identifier: string | null;
+    readonly traversalParentIdentifier: unknown | null;
+    readonly traversalChildIdentifier: unknown | null;
+    readonly label: string | null;
+    readonly attributedLabel: upstream4.AttributedString | null;
+    readonly value: string | null;
+    readonly attributedValue: upstream4.AttributedString | null;
+    readonly increasedValue: string | null;
+    readonly attributedIncreasedValue: upstream4.AttributedString | null;
+    readonly decreasedValue: string | null;
+    readonly attributedDecreasedValue: upstream4.AttributedString | null;
+    readonly hint: string | null;
+    readonly attributedHint: upstream4.AttributedString | null;
+    readonly tooltip: string | null;
+    readonly headingLevel: number | null;
+    readonly hintOverrides: upstream5.SemanticsHintOverrides | null;
+    readonly textDirection: upstream6.TextDirection | null;
+    readonly sortKey: upstream7.SemanticsSortKey | null;
+    readonly tagForChildren: upstream8.SemanticsTag | null;
+    readonly linkUrl: upstream2.Uri | null;
+    readonly onTap: (() => void) | null;
+    readonly onLongPress: (() => void) | null;
+    readonly onScrollLeft: (() => void) | null;
+    readonly onScrollRight: (() => void) | null;
+    readonly onScrollUp: (() => void) | null;
+    readonly onScrollDown: (() => void) | null;
+    readonly onIncrease: (() => void) | null;
+    readonly onDecrease: (() => void) | null;
+    readonly onCopy: (() => void) | null;
+    readonly onCut: (() => void) | null;
+    readonly onPaste: (() => void) | null;
+    readonly onMoveCursorForwardByCharacter: ((extendSelection: boolean) => void) | null;
+    readonly onMoveCursorBackwardByCharacter: ((extendSelection: boolean) => void) | null;
+    readonly onMoveCursorForwardByWord: ((extendSelection: boolean) => void) | null;
+    readonly onMoveCursorBackwardByWord: ((extendSelection: boolean) => void) | null;
+    readonly onSetSelection: ((selection: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>) => void) | null;
+    readonly onSetText: ((text: string) => void) | null;
+    readonly onDidGainAccessibilityFocus: (() => void) | null;
+    readonly onDidLoseAccessibilityFocus: (() => void) | null;
+    readonly onFocus: (() => void) | null;
+    readonly onDismiss: (() => void) | null;
+    readonly onExpand: (() => void) | null;
+    readonly onCollapse: (() => void) | null;
+    readonly customSemanticsActions: DartMap<upstream14.CustomSemanticsAction, (() => void)> | null;
+    readonly role: upstream9.SemanticsRole | null;
+    readonly controlsNodes: DartSet<string> | null;
+    readonly validationResult: upstream11.SemanticsValidationResult;
+    readonly hitTestBehavior: upstream12.SemanticsHitTestBehavior | null;
+    readonly inputType: upstream10.SemanticsInputType | null;
+    readonly maxValue: string | null;
+    readonly minValue: string | null;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream15.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream15.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream17.DiagnosticsTreeStyle | null | undefined;
+    }): upstream16.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream16.DiagnosticsNode>;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream15.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface SemanticsProperties {
-    readonly [_flaxDartTypeValue]: SemanticsProperties;
+export declare function _SemanticsPropertiesFactory(options?: {
+    enabled?: boolean | null | undefined;
+    checked?: boolean | null | undefined;
+    mixed?: boolean | null | undefined;
+    expanded?: boolean | null | undefined;
+    selected?: boolean | null | undefined;
+    toggled?: boolean | null | undefined;
+    button?: boolean | null | undefined;
+    link?: boolean | null | undefined;
+    linkUrl?: DartInput<Readonly<{
+        "__flaxBound:dart:core::Uri": readonly [];
+    }>> | null | undefined;
+    header?: boolean | null | undefined;
+    headingLevel?: number | null | undefined;
+    textField?: boolean | null | undefined;
+    slider?: boolean | null | undefined;
+    keyboardKey?: boolean | null | undefined;
+    readOnly?: boolean | null | undefined;
+    focusable?: boolean | null | undefined;
+    focused?: boolean | null | undefined;
+    accessibilityFocusBlockType?: upstream3.AccessibilityFocusBlockType | null | undefined;
+    inMutuallyExclusiveGroup?: boolean | null | undefined;
+    hidden?: boolean | null | undefined;
+    obscured?: boolean | null | undefined;
+    multiline?: boolean | null | undefined;
+    scopesRoute?: boolean | null | undefined;
+    namesRoute?: boolean | null | undefined;
+    image?: boolean | null | undefined;
+    liveRegion?: boolean | null | undefined;
+    isRequired?: boolean | null | undefined;
+    maxValueLength?: number | null | undefined;
+    currentValueLength?: number | null | undefined;
+    identifier?: string | null | undefined;
+    traversalParentIdentifier?: unknown | null | undefined;
+    traversalChildIdentifier?: unknown | null | undefined;
+    label?: string | null | undefined;
+    attributedLabel?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }> | null | undefined;
+    value?: string | null | undefined;
+    attributedValue?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }> | null | undefined;
+    increasedValue?: string | null | undefined;
+    attributedIncreasedValue?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }> | null | undefined;
+    decreasedValue?: string | null | undefined;
+    attributedDecreasedValue?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }> | null | undefined;
+    hint?: string | null | undefined;
+    tooltip?: string | null | undefined;
+    attributedHint?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }> | null | undefined;
+    hintOverrides?: (Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsHintOverrides": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textDirection?: upstream6.TextDirection | null | undefined;
+    sortKey?: (Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsSortKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream7.SemanticsSortKey];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    tagForChildren?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsTag": readonly [];
+    }> | null | undefined;
+    role?: upstream9.SemanticsRole | null | undefined;
+    controlsNodes?: DartSetInput<string, string> | null | undefined;
+    inputType?: upstream10.SemanticsInputType | null | undefined;
+    validationResult?: upstream11.SemanticsValidationResult | undefined;
+    hitTestBehavior?: upstream12.SemanticsHitTestBehavior | null | undefined;
+    onTap?: (() => void) | null | undefined;
+    onLongPress?: (() => void) | null | undefined;
+    onScrollLeft?: (() => void) | null | undefined;
+    onScrollRight?: (() => void) | null | undefined;
+    onScrollUp?: (() => void) | null | undefined;
+    onScrollDown?: (() => void) | null | undefined;
+    onIncrease?: (() => void) | null | undefined;
+    onDecrease?: (() => void) | null | undefined;
+    onCopy?: (() => void) | null | undefined;
+    onCut?: (() => void) | null | undefined;
+    onPaste?: (() => void) | null | undefined;
+    onMoveCursorForwardByCharacter?: ((extendSelection: boolean) => void) | null | undefined;
+    onMoveCursorBackwardByCharacter?: ((extendSelection: boolean) => void) | null | undefined;
+    onMoveCursorForwardByWord?: ((extendSelection: boolean) => void) | null | undefined;
+    onMoveCursorBackwardByWord?: ((extendSelection: boolean) => void) | null | undefined;
+    onSetSelection?: ((selection: upstream13.TextSelection) => void) | null | undefined;
+    onSetText?: ((text: string) => void) | null | undefined;
+    onDidGainAccessibilityFocus?: (() => void) | null | undefined;
+    onDidLoseAccessibilityFocus?: (() => void) | null | undefined;
+    onFocus?: (() => void) | null | undefined;
+    onDismiss?: (() => void) | null | undefined;
+    onExpand?: (() => void) | null | undefined;
+    onCollapse?: (() => void) | null | undefined;
+    customSemanticsActions?: DartMapInput<upstream14.CustomSemanticsAction, (() => void), Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::CustomSemanticsAction": readonly [];
+    }>, (() => void)> | null | undefined;
+    minValue?: string | null | undefined;
+    maxValue?: string | null | undefined;
+}): SemanticsProperties;
+export interface _SemanticsPropertiesNative extends SemanticsProperties {
+    readonly [_flaxDartTypeValue]: _SemanticsPropertiesNative;
     toStringShallow(options?: {
         joiner?: string | undefined;
         minLevel?: upstream15.DiagnosticLevel | undefined;
@@ -155,7 +367,7 @@ export interface SemanticsProperties {
     get maxValue(): string | null;
     get minValue(): string | null;
 }
-export declare abstract class SemanticsProperties extends _FlaxProxyBase {
+export declare abstract class _SemanticsPropertiesNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SemanticsProperties>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SemanticsProperties;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_semantics#type:SemanticsProperties", readonly [], false];
@@ -268,7 +480,7 @@ export declare abstract class SemanticsProperties extends _FlaxProxyBase {
         maxValue?: string | null | undefined;
     });
 }
-export declare namespace SemanticsProperties {
+export declare namespace _SemanticsPropertiesFactory {
     function implement(args: [options?: {
         enabled?: boolean | null | undefined;
         checked?: boolean | null | undefined;
@@ -378,5 +590,114 @@ export declare namespace SemanticsProperties {
         maxValue?: string | null | undefined;
     }], implementation: {}): SemanticsProperties;
 }
+declare const _SemanticsPropertiesBinding: typeof _SemanticsPropertiesFactory & (new (options?: {
+    enabled?: boolean | null | undefined;
+    checked?: boolean | null | undefined;
+    mixed?: boolean | null | undefined;
+    expanded?: boolean | null | undefined;
+    selected?: boolean | null | undefined;
+    toggled?: boolean | null | undefined;
+    button?: boolean | null | undefined;
+    link?: boolean | null | undefined;
+    linkUrl?: DartInput<Readonly<{
+        "__flaxBound:dart:core::Uri": readonly [];
+    }>> | null | undefined;
+    header?: boolean | null | undefined;
+    headingLevel?: number | null | undefined;
+    textField?: boolean | null | undefined;
+    slider?: boolean | null | undefined;
+    keyboardKey?: boolean | null | undefined;
+    readOnly?: boolean | null | undefined;
+    focusable?: boolean | null | undefined;
+    focused?: boolean | null | undefined;
+    accessibilityFocusBlockType?: upstream3.AccessibilityFocusBlockType | null | undefined;
+    inMutuallyExclusiveGroup?: boolean | null | undefined;
+    hidden?: boolean | null | undefined;
+    obscured?: boolean | null | undefined;
+    multiline?: boolean | null | undefined;
+    scopesRoute?: boolean | null | undefined;
+    namesRoute?: boolean | null | undefined;
+    image?: boolean | null | undefined;
+    liveRegion?: boolean | null | undefined;
+    isRequired?: boolean | null | undefined;
+    maxValueLength?: number | null | undefined;
+    currentValueLength?: number | null | undefined;
+    identifier?: string | null | undefined;
+    traversalParentIdentifier?: unknown | null | undefined;
+    traversalChildIdentifier?: unknown | null | undefined;
+    label?: string | null | undefined;
+    attributedLabel?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }> | null | undefined;
+    value?: string | null | undefined;
+    attributedValue?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }> | null | undefined;
+    increasedValue?: string | null | undefined;
+    attributedIncreasedValue?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }> | null | undefined;
+    decreasedValue?: string | null | undefined;
+    attributedDecreasedValue?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }> | null | undefined;
+    hint?: string | null | undefined;
+    tooltip?: string | null | undefined;
+    attributedHint?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }> | null | undefined;
+    hintOverrides?: (Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsHintOverrides": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textDirection?: upstream6.TextDirection | null | undefined;
+    sortKey?: (Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsSortKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream7.SemanticsSortKey];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    tagForChildren?: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsTag": readonly [];
+    }> | null | undefined;
+    role?: upstream9.SemanticsRole | null | undefined;
+    controlsNodes?: DartSetInput<string, string> | null | undefined;
+    inputType?: upstream10.SemanticsInputType | null | undefined;
+    validationResult?: upstream11.SemanticsValidationResult | undefined;
+    hitTestBehavior?: upstream12.SemanticsHitTestBehavior | null | undefined;
+    onTap?: (() => void) | null | undefined;
+    onLongPress?: (() => void) | null | undefined;
+    onScrollLeft?: (() => void) | null | undefined;
+    onScrollRight?: (() => void) | null | undefined;
+    onScrollUp?: (() => void) | null | undefined;
+    onScrollDown?: (() => void) | null | undefined;
+    onIncrease?: (() => void) | null | undefined;
+    onDecrease?: (() => void) | null | undefined;
+    onCopy?: (() => void) | null | undefined;
+    onCut?: (() => void) | null | undefined;
+    onPaste?: (() => void) | null | undefined;
+    onMoveCursorForwardByCharacter?: ((extendSelection: boolean) => void) | null | undefined;
+    onMoveCursorBackwardByCharacter?: ((extendSelection: boolean) => void) | null | undefined;
+    onMoveCursorForwardByWord?: ((extendSelection: boolean) => void) | null | undefined;
+    onMoveCursorBackwardByWord?: ((extendSelection: boolean) => void) | null | undefined;
+    onSetSelection?: ((selection: upstream13.TextSelection) => void) | null | undefined;
+    onSetText?: ((text: string) => void) | null | undefined;
+    onDidGainAccessibilityFocus?: (() => void) | null | undefined;
+    onDidLoseAccessibilityFocus?: (() => void) | null | undefined;
+    onFocus?: (() => void) | null | undefined;
+    onDismiss?: (() => void) | null | undefined;
+    onExpand?: (() => void) | null | undefined;
+    onCollapse?: (() => void) | null | undefined;
+    customSemanticsActions?: DartMapInput<upstream14.CustomSemanticsAction, (() => void), Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::CustomSemanticsAction": readonly [];
+    }>, (() => void)> | null | undefined;
+    minValue?: string | null | undefined;
+    maxValue?: string | null | undefined;
+}) => _SemanticsPropertiesNative);
+export declare const SemanticsProperties: typeof _SemanticsPropertiesBinding & _FlaxInstanceType<SemanticsProperties> & _FlaxDartType<SemanticsProperties, readonly ["class", "flax.core/sdk_semantics#type:SemanticsProperties", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "enabled" | "checked" | "mixed" | "expanded" | "toggled" | "selected" | "button" | "link" | "header" | "textField" | "slider" | "keyboardKey" | "readOnly" | "focusable" | "focused" | "accessibilityFocusBlockType" | "inMutuallyExclusiveGroup" | "hidden" | "obscured" | "multiline" | "scopesRoute" | "namesRoute" | "image" | "liveRegion" | "isRequired" | "maxValueLength" | "currentValueLength" | "identifier" | "traversalParentIdentifier" | "traversalChildIdentifier" | "label" | "attributedLabel" | "value" | "attributedValue" | "increasedValue" | "attributedIncreasedValue" | "decreasedValue" | "attributedDecreasedValue" | "hint" | "attributedHint" | "tooltip" | "headingLevel" | "hintOverrides" | "textDirection" | "sortKey" | "tagForChildren" | "linkUrl" | "onTap" | "onLongPress" | "onScrollLeft" | "onScrollRight" | "onScrollUp" | "onScrollDown" | "onIncrease" | "onDecrease" | "onCopy" | "onCut" | "onPaste" | "onMoveCursorForwardByCharacter" | "onMoveCursorBackwardByCharacter" | "onMoveCursorForwardByWord" | "onMoveCursorBackwardByWord" | "onSetSelection" | "onSetText" | "onDidGainAccessibilityFocus" | "onDidLoseAccessibilityFocus" | "onFocus" | "onDismiss" | "onExpand" | "onCollapse" | "customSemanticsActions" | "role" | "controlsNodes" | "validationResult" | "hitTestBehavior" | "inputType" | "maxValue" | "minValue" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsProperties" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -11,7 +11,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream5 from '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PageScrollPhysics extends Omit<upstream0.ScrollPhysics, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/page_view.dart::PageScrollPhysics": readonly [];
 }>, Readonly<{
@@ -19,9 +19,59 @@ export interface PageScrollPhysics extends Omit<upstream0.ScrollPhysics, _flaxOw
 }> {
     readonly __PageScrollPhysics: unique symbol;
     readonly [_flaxDartTypeValue]: PageScrollPhysics;
+    readonly parent: upstream0.ScrollPhysics | null;
+    readonly spring: upstream1.SpringDescription;
+    readonly tolerance: upstream2.Tolerance;
+    readonly minFlingDistance: number;
+    readonly minFlingVelocity: number;
+    readonly maxFlingVelocity: number;
+    readonly dragStartDistanceMotionThreshold: number | null;
+    readonly allowImplicitScrolling: boolean;
+    readonly allowUserScrolling: boolean;
+    buildParent(ancestor: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }> | null): upstream0.ScrollPhysics | null;
+    applyTo(ancestor: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }> | null): PageScrollPhysics;
+    applyPhysicsToUserOffset(position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>, offset: number): number;
+    shouldAcceptUserOffset(position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>): boolean;
+    recommendDeferredLoading(velocity: number, metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>, context: upstream4.BuildContext): boolean;
+    applyBoundaryConditions(position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>, value: number): number;
+    adjustPositionForNewDimensions(options: {
+        isScrolling: boolean;
+        newPosition: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+        }>;
+        oldPosition: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+        }>;
+        velocity: number;
+    }): number;
+    createBallisticSimulation(position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>, velocity: number): upstream5.Simulation | null;
+    toleranceFor(metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>): upstream2.Tolerance;
+    carriedMomentum(existingVelocity: number): number;
+    toString(): string;
 }
-export interface PageScrollPhysics {
-    readonly [_flaxDartTypeValue]: PageScrollPhysics;
+export declare function _PageScrollPhysicsFactory(options?: {
+    parent?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }> | null | undefined;
+}): PageScrollPhysics;
+export interface _PageScrollPhysicsNative extends PageScrollPhysics {
+    readonly [_flaxDartTypeValue]: _PageScrollPhysicsNative;
     buildParent(ancestor: Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
     }> | null): upstream0.ScrollPhysics | null;
@@ -68,7 +118,7 @@ export interface PageScrollPhysics {
     get dragStartDistanceMotionThreshold(): number | null;
     get allowUserScrolling(): boolean;
 }
-export declare abstract class PageScrollPhysics extends _FlaxProxyBase {
+export declare abstract class _PageScrollPhysicsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PageScrollPhysics>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PageScrollPhysics;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:PageScrollPhysics", readonly [], false];
@@ -78,12 +128,18 @@ export declare abstract class PageScrollPhysics extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace PageScrollPhysics {
+export declare namespace _PageScrollPhysicsFactory {
     function implement(args: [options?: {
         parent?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
         }> | null | undefined;
     }], implementation: {}): PageScrollPhysics;
 }
+declare const _PageScrollPhysicsBinding: typeof _PageScrollPhysicsFactory & (new (options?: {
+    parent?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }> | null | undefined;
+}) => _PageScrollPhysicsNative);
+export declare const PageScrollPhysics: typeof _PageScrollPhysicsBinding & _FlaxInstanceType<PageScrollPhysics> & _FlaxDartType<PageScrollPhysics, readonly ["class", "flax.core/sdk_widgets#type:PageScrollPhysics", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "parent" | "spring" | "tolerance" | "minFlingDistance" | "minFlingVelocity" | "maxFlingVelocity" | "dragStartDistanceMotionThreshold" | "allowImplicitScrolling" | "allowUserScrolling" | "buildParent" | "applyTo" | "applyPhysicsToUserOffset" | "shouldAcceptUserOffset" | "recommendDeferredLoading" | "applyBoundaryConditions" | "adjustPositionForNewDimensions" | "createBallisticSimulation" | "toleranceFor" | "carriedMomentum" | "toString" | "__flaxBound:package:flutter/src/widgets/page_view.dart::PageScrollPhysics" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics";
 export {};

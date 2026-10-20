@@ -20,17 +20,32 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { _flaxMemberParameters110, _flaxMemberParameters107, _flaxMemberParameters0, _flaxMemberParameters44, _flaxMemberParameters43, _flaxMemberParameters45 } from "@flax/flutter/services/_bindings/sdk_services.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface TextEditingDeltaInsertion extends Omit<upstream0.TextEditingDelta, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.TextEditingDelta>, Readonly<{ "__flaxBound:package:flutter/src/services/text_editing_delta.dart::TextEditingDeltaInsertion": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/services/text_editing_delta.dart::TextEditingDelta": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __TextEditingDeltaInsertion: unique symbol;
 readonly [_flaxDartTypeValue]: TextEditingDeltaInsertion;
 
+readonly oldText: string;
+readonly selection: upstream2.TextSelection;
+readonly composing: upstream3.TextRange;
+readonly textInserted: string;
+readonly insertionOffset: number;
+apply(value: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>): upstream4.TextEditingValue;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream6.DiagnosticsTreeStyle | null | undefined}): upstream5.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream8.DiagnosticLevel | undefined}): string;
 }
 defineObject("flax.core/sdk_services#type:TextEditingDeltaInsertion", ["oldText","selection","composing","textInserted","insertionOffset"], [], _flaxBindingMethods("flax.core/sdk_services#type:TextEditingDeltaInsertion", "object", {}, {}), [], undefined, "flax.core/sdk_services#type:TextEditingDelta");
+export function _TextEditingDeltaInsertionFactory(options: { oldText: string; textInserted: string; insertionOffset: number; selection: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>; composing: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }> }): TextEditingDeltaInsertion {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_services#type:TextEditingDeltaInsertion", "", [{"name":"oldText","required":true},{"name":"textInserted","required":true},{"name":"insertionOffset","required":true},{"name":"selection","required":true},{"name":"composing","required":true}], [], options) as TextEditingDeltaInsertion;
+}
 const _TextEditingDeltaInsertionProxy = {type: "flax.core/sdk_services#type:TextEditingDeltaInsertion", parameters: _flaxMemberParameters110, constructors: {"": _flaxMemberParameters110}, methods: {"apply":_flaxMemberParameters107,"toStringShort":_flaxMemberParameters0,"toDiagnosticsNode":_flaxMemberParameters44,"debugFillProperties":_flaxMemberParameters43,"toString":_flaxMemberParameters45}, getters: ["textInserted","insertionOffset","oldText","selection","composing"], setters: [], contextMembers: [], superMembers: ["get:textInserted","get:insertionOffset","get:oldText","get:selection","get:composing","apply","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface TextEditingDeltaInsertion {
-readonly [_flaxDartTypeValue]: TextEditingDeltaInsertion;
+export interface _TextEditingDeltaInsertionNative extends TextEditingDeltaInsertion {
+readonly [_flaxDartTypeValue]: _TextEditingDeltaInsertionNative;
 
 apply(value: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>): upstream4.TextEditingValue;
 toStringShort(): string;
@@ -43,14 +58,15 @@ get oldText(): string;
 get selection(): upstream2.TextSelection;
 get composing(): upstream3.TextRange;
 }
-export abstract class TextEditingDeltaInsertion extends _FlaxProxyBase {
+export abstract class _TextEditingDeltaInsertionNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TextEditingDeltaInsertion>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: TextEditingDeltaInsertion;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:TextEditingDeltaInsertion", readonly [], false];
 constructor(options: {oldText: string; textInserted: string; insertionOffset: number; selection: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>; composing: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>}) { super(_TextEditingDeltaInsertionProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(TextEditingDeltaInsertion.prototype, _TextEditingDeltaInsertionProxy);
-export namespace TextEditingDeltaInsertion { export function implement(args: [options: {oldText: string; textInserted: string; insertionOffset: number; selection: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>; composing: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>}], implementation: {}): TextEditingDeltaInsertion {
+_flaxDefineProxyBase(_TextEditingDeltaInsertionNative.prototype, _TextEditingDeltaInsertionProxy);
+export namespace _TextEditingDeltaInsertionFactory { export function implement(args: [options: {oldText: string; textInserted: string; insertionOffset: number; selection: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>; composing: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>}], implementation: {}): TextEditingDeltaInsertion {
 return constructProxy(_TextEditingDeltaInsertionProxy, args, implementation) as TextEditingDeltaInsertion; } }
-_flaxBindInstanceType<TextEditingDeltaInsertion, typeof TextEditingDeltaInsertion>(TextEditingDeltaInsertion, "flax.core/sdk_services#type:TextEditingDeltaInsertion", ["flax.core/sdk_services#type:TextEditingDelta","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _TextEditingDeltaInsertionBinding = _flaxProxyFactory(_TextEditingDeltaInsertionFactory, _TextEditingDeltaInsertionNative) as unknown as typeof _TextEditingDeltaInsertionFactory & (new(options: {oldText: string; textInserted: string; insertionOffset: number; selection: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>; composing: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }>}) => _TextEditingDeltaInsertionNative);
+export const TextEditingDeltaInsertion: typeof _TextEditingDeltaInsertionBinding & _FlaxInstanceType<TextEditingDeltaInsertion> & _FlaxDartType<TextEditingDeltaInsertion, readonly ["class", "flax.core/sdk_services#type:TextEditingDeltaInsertion", readonly [], false]> = _flaxBindInstanceType<TextEditingDeltaInsertion, typeof _TextEditingDeltaInsertionBinding>(_TextEditingDeltaInsertionBinding, "flax.core/sdk_services#type:TextEditingDeltaInsertion", ["flax.core/sdk_services#type:TextEditingDelta","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _TextEditingDeltaInsertionBinding & _FlaxInstanceType<TextEditingDeltaInsertion> & _FlaxDartType<TextEditingDeltaInsertion, readonly ["class", "flax.core/sdk_services#type:TextEditingDeltaInsertion", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "oldText" | "selection" | "composing" | "textInserted" | "insertionOffset" | "apply" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/services/text_editing_delta.dart::TextEditingDeltaInsertion" | "__flaxBound:package:flutter/src/services/text_editing_delta.dart::TextEditingDelta" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

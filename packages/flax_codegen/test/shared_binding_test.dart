@@ -182,9 +182,15 @@ void main() {
           final parentId = module.classes
               .singleWhere((c) => c.name == parent)
               .id;
+          final parentIndex = js.indexOf('defineObject("$parentId"');
+          final childIndex = js.indexOf(
+            '_flaxDefineProxyBase(_${child}Native.prototype',
+          );
+          expect(parentIndex, greaterThanOrEqualTo(0));
+          expect(childIndex, greaterThanOrEqualTo(0));
           expect(
-            js.indexOf('defineObject("$parentId"'),
-            lessThan(js.indexOf('_flaxDefineProxyBase($child.prototype')),
+            parentIndex,
+            lessThan(childIndex),
             reason:
                 'Proxy initialization can read its selected parent prototype',
           );
@@ -214,9 +220,9 @@ void main() {
           isNot(contains(RegExp('const _SharedLeaf_operatorAdd\\s*='))),
         );
         expect(
-          RegExp(r'const _flaxBinding\d+\s*=\s*FlaxTypeRef\(').hasMatch(source),
-          isTrue,
-          reason: 'Closed type references must use the module constant pool',
+          source,
+          contains('flaxNumType'),
+          reason: 'Common types must directly reuse Core descriptions',
         );
         expect(
           RegExp(r'"scale":\s*_flaxBinding\d+').hasMatch(source),
@@ -231,7 +237,7 @@ void main() {
         // Count actual descriptors, not references or a particular pool number.
         for (final descriptor in ['FlaxGetter', 'FlaxSetter']) {
           expect(
-            RegExp('$descriptor\\("value",').allMatches(source),
+            RegExp('$descriptor(?:\\.plain)?\\("value",').allMatches(source),
             hasLength(1),
           );
         }
@@ -303,9 +309,17 @@ void main() {
         '',
       )!;
       diagnostics.throwIfAny();
+      final emitter = FlaxCodegenBindingEmitter([module]);
+      final source = emitter.dart(module);
+      final superRows = RegExp(r'"@super:scale": (_flaxBinding\d+)')
+          .allMatches(source)
+          .map((match) => match.group(1)!)
+          .toList();
+      expect(superRows.length, greaterThan(1));
+      expect(superRows.toSet(), hasLength(1));
       await compileFixture(
         root.path,
-        FlaxCodegenBindingEmitter([module]),
+        emitter,
         module,
         consumerSource: '''
 import { SharedLeaf } from './plugin.js';
@@ -667,6 +681,151 @@ void main() {
 ''',
     );
   });
+
+  test(
+    'common native descriptions preserve exact provider identities',
+    () async {
+      FlaxCodegenModuleModel durationModule(String id) {
+        final duration = FlaxCodegenTypeRef('object', id: id, name: 'Duration');
+        return FlaxCodegenModuleModel(
+          name: 'shared',
+          library: 'dart:core',
+          jsPackage: '@example/shared',
+          dartOutput: 'unused.dart',
+          tsOutput: 'unused.ts',
+          types: const [],
+          typeLibraries: const {'Duration': 'dart:core'},
+          classes: [
+            FlaxCodegenClassModel(
+              name: 'Duration',
+              id: id,
+              kind: 'object',
+              constructors: const [],
+              supertypes: const [],
+              methods: [
+                FlaxCodegenMethodModel(
+                  'abs',
+                  const [],
+                  duration,
+                  instance: true,
+                ),
+              ],
+            ),
+          ],
+        );
+      }
+
+      final core = durationModule('flax.core/flutter#type:Duration');
+      final emitter = FlaxCodegenBindingEmitter([core]);
+      expect(emitter.dart(core), contains('flaxDurationType'));
+      final foreign = durationModule('example.duration/native#type:Duration');
+      final source = FlaxCodegenBindingEmitter([foreign]).dart(foreign);
+      expect(source, isNot(contains('flaxDurationType')));
+      expect(source, contains('example.duration/native#type:Duration'));
+      await compileFixture(
+        root.path,
+        emitter,
+        core,
+        dartTestSource: r'''
+void main() {
+  test('shared provider metadata still invokes the real Dart method', () {
+    final binding = sharedBindings.types.whereType<FlaxObjectBinding>().single;
+    final method = binding.instanceMethods['abs']!;
+    expect(method.result, same(flaxDurationType));
+    expect(method.invoke(const Duration(seconds: -3), {}), const Duration(seconds: 3));
+  });
+}
+''',
+      );
+    },
+  );
+
+  test(
+    'common descriptions use public constants without local aliases',
+    () async {
+      final module = await parser.parse(
+        config(const {
+          'CommonDescriptions': FlaxCodegenClassSelection(
+            {'': []},
+            kind: 'object',
+            proxy: 'extends',
+            getters: [
+              'text',
+              'count',
+              'onDone',
+              'onChanged',
+              'onRenamed',
+              'onNamed',
+              'reader',
+            ],
+            setters: [
+              'text',
+              'count',
+              'onDone',
+              'onChanged',
+              'onRenamed',
+              'onNamed',
+            ],
+            instanceMethods: {'run': []},
+          ),
+        }),
+      );
+      final emitter = FlaxCodegenBindingEmitter([module]);
+      final source = emitter.dart(module);
+      for (final name in [
+        'flaxStringType',
+        'flaxIntType',
+        'flaxVoidType',
+        'flaxVoidCall',
+        'flaxVoidNullableCallbackType',
+        'flaxStringChangedNullableType',
+        'flaxStringCallbackType',
+      ]) {
+        expect(source, contains(name));
+      }
+      expect(source, isNot(contains(RegExp(r'const _flaxBinding\d+ = flax'))));
+      expect(source, isNot(contains('FlaxTypeRef("String")')));
+      expect(source, contains('p:r:renamed:String:'));
+      expect(source, contains('n:r:value:String:'));
+      await compileFixture(
+        root.path,
+        emitter,
+        module,
+        dartTestSource: r'''
+FlaxObjectBinding common() => sharedBindings.types.whereType<FlaxObjectBinding>().single;
+FlaxGetter getter(String name) => common().getters.singleWhere((g) => g.name == name);
+void main() {
+  test('public descriptions preserve identity, nullability and callback metadata', () {
+    expect(getter('text').type, same(flaxStringType));
+    expect(getter('count').type, same(flaxIntType));
+    expect(getter('onDone').type, same(flaxVoidNullableCallbackType));
+    expect(getter('onChanged').type, same(flaxStringChangedNullableType));
+    expect(getter('reader').type, same(flaxStringCallbackType));
+    final value = api.CommonDescriptions();
+    expect(flaxStringCallback.invoke(getter('reader').read(value)!, [], {}), 'shared');
+    String? received;
+    common().setters.singleWhere((s) => s.name == 'onChanged').write(value,
+        (String text) => received = text);
+    value.onChanged!('changed');
+    expect(received, 'changed');
+    expect(flaxStringChanged.matches((int value) {}), isFalse);
+    expect(() => flaxStringChanged.invoke((String value) {}, [3], {}),
+        throwsA(isA<TypeError>()));
+    final renamed = getter('onRenamed').type.callback!;
+    expect(renamed, isNot(same(flaxStringChanged)));
+    expect(renamed.parameters.single.name, 'renamed');
+    expect(getter('onNamed').type.callback!.parameters.single.positional, isFalse);
+    expect(() => flaxVoidCall.invoke(() {}, [], {}), throwsStateError);
+    final callable = common().instanceMethods['run']!;
+    expect(callable.result, same(flaxVoidType));
+    expect(callable.startsRoute, isFalse);
+  });
+}
+''',
+      );
+      expect(emitter.dart(module), source);
+    },
+  );
 
   test(
     'ancestor helpers and callback pools never cross module boundaries',

@@ -8,6 +8,12 @@
     ".": {
       "types": "./types/index.d.ts"
     },
+    "./dependencies/*": {
+      "types": [
+        "./types/generated/dependencies/*.d.ts",
+        "./types/generated/dependencies/*/index.d.ts"
+      ]
+    },
     "./*": {
       "types": "./types/generated/libraries/material/*.d.ts"
     }
@@ -22,6 +28,7 @@
   },
   "dependencies": {
     "@flax/core": "workspace:*",
+    "@flax/cupertino-ui": "workspace:*",
     "@flax/flutter": "workspace:*",
     "@flax/dart": "workspace:*"
   }

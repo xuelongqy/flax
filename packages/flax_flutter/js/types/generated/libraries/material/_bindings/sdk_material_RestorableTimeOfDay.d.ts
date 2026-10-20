@@ -14,7 +14,7 @@ import '@flax/flutter/widgets/_bindings/components_State';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RestorableTimeOfDay extends Omit<upstream0.RestorableValue<upstream1.TimeOfDay>, _flaxOwnMembers0>, Omit<upstream2.RestorableProperty<upstream1.TimeOfDay>, _flaxOwnMembers0 | keyof upstream0.RestorableValue<upstream1.TimeOfDay>>, Omit<upstream3.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.RestorableValue<upstream1.TimeOfDay> | keyof upstream2.RestorableProperty<upstream1.TimeOfDay>>, Omit<upstream4.Listenable, _flaxOwnMembers0 | keyof upstream0.RestorableValue<upstream1.TimeOfDay> | keyof upstream2.RestorableProperty<upstream1.TimeOfDay> | keyof upstream3.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/material/time.dart::RestorableTimeOfDay": readonly [];
 }>, Readonly<{
@@ -28,9 +28,40 @@ export interface RestorableTimeOfDay extends Omit<upstream0.RestorableValue<upst
 }> {
     readonly __RestorableTimeOfDay: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableTimeOfDay;
+    get value(): upstream1.TimeOfDay;
+    readonly enabled: boolean;
+    readonly state: upstream5.State<upstream6.StatefulWidget>;
+    readonly isRegistered: boolean;
+    readonly hasListeners: boolean;
+    initWithValue(value: Readonly<{
+        "__flaxBound:package:flutter/src/material/time.dart::TimeOfDay": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream1.TimeOfDay];
+    }>): void;
+    didUpdateValue(oldValue: (Readonly<{
+        "__flaxBound:package:flutter/src/material/time.dart::TimeOfDay": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream1.TimeOfDay];
+    }>) | null): void;
+    createDefaultValue(): upstream1.TimeOfDay;
+    fromPrimitives(data: unknown | null): upstream1.TimeOfDay;
+    toPrimitives(): unknown | null;
+    dispose(): void;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    set value(value: Readonly<{
+        "__flaxBound:package:flutter/src/material/time.dart::TimeOfDay": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream1.TimeOfDay];
+    }>);
 }
-export interface RestorableTimeOfDay {
-    readonly [_flaxDartTypeValue]: RestorableTimeOfDay;
+export declare function _RestorableTimeOfDayFactory(defaultValue: Readonly<{
+    "__flaxBound:package:flutter/src/material/time.dart::TimeOfDay": readonly [];
+}> & Readonly<{
+    "__flaxBound:dart:core::Comparable": readonly [upstream1.TimeOfDay];
+}>): RestorableTimeOfDay;
+export interface _RestorableTimeOfDayNative extends RestorableTimeOfDay {
+    readonly [_flaxDartTypeValue]: _RestorableTimeOfDayNative;
     initWithValue(value: Readonly<{
         "__flaxBound:package:flutter/src/material/time.dart::TimeOfDay": readonly [];
     }> & Readonly<{
@@ -58,7 +89,7 @@ export interface RestorableTimeOfDay {
         "__flaxBound:dart:core::Comparable": readonly [upstream1.TimeOfDay];
     }>);
 }
-export declare abstract class RestorableTimeOfDay extends _FlaxProxyBase {
+export declare abstract class _RestorableTimeOfDayNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RestorableTimeOfDay>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RestorableTimeOfDay;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:RestorableTimeOfDay", readonly [], false];
@@ -68,12 +99,18 @@ export declare abstract class RestorableTimeOfDay extends _FlaxProxyBase {
         "__flaxBound:dart:core::Comparable": readonly [upstream1.TimeOfDay];
     }>);
 }
-export declare namespace RestorableTimeOfDay {
+export declare namespace _RestorableTimeOfDayFactory {
     function implement(args: [defaultValue: Readonly<{
         "__flaxBound:package:flutter/src/material/time.dart::TimeOfDay": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:core::Comparable": readonly [upstream1.TimeOfDay];
     }>], implementation: {}): RestorableTimeOfDay;
 }
+declare const _RestorableTimeOfDayBinding: typeof _RestorableTimeOfDayFactory & (new (defaultValue: Readonly<{
+    "__flaxBound:package:flutter/src/material/time.dart::TimeOfDay": readonly [];
+}> & Readonly<{
+    "__flaxBound:dart:core::Comparable": readonly [upstream1.TimeOfDay];
+}>) => _RestorableTimeOfDayNative);
+export declare const RestorableTimeOfDay: typeof _RestorableTimeOfDayBinding & _FlaxInstanceType<RestorableTimeOfDay> & _FlaxDartType<RestorableTimeOfDay, readonly ["class", "flax.core/sdk_material#type:RestorableTimeOfDay", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "initWithValue" | "didUpdateValue" | "createDefaultValue" | "fromPrimitives" | "toPrimitives" | "dispose" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/material/time.dart::RestorableTimeOfDay" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

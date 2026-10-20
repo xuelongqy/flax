@@ -25,7 +25,7 @@ import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DialogThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/dialog_theme.dart::DialogThemeData": readonly [];
 }>, Readonly<{
@@ -33,9 +33,130 @@ export interface DialogThemeData extends Omit<upstream0.Diagnosticable, _flaxOwn
 }> {
     readonly __DialogThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: DialogThemeData;
+    readonly backgroundColor: upstream1.Color | null;
+    readonly elevation: number | null;
+    readonly shadowColor: upstream1.Color | null;
+    readonly surfaceTintColor: upstream1.Color | null;
+    readonly shape: upstream2.ShapeBorder | null;
+    readonly alignment: upstream3.AlignmentGeometry | null;
+    readonly titleTextStyle: upstream4.TextStyle | null;
+    readonly contentTextStyle: upstream4.TextStyle | null;
+    readonly actionsPadding: upstream5.EdgeInsetsGeometry | null;
+    readonly iconColor: upstream1.Color | null;
+    readonly barrierColor: upstream1.Color | null;
+    readonly insetPadding: upstream6.EdgeInsets | null;
+    readonly clipBehavior: upstream7.Clip | null;
+    readonly constraints: upstream8.BoxConstraints | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream9.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream11.DiagnosticsTreeStyle | null | undefined;
+    }): upstream10.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        actionsPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        alignment?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+        }> | null | undefined;
+        backgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        barrierColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        clipBehavior?: upstream7.Clip | null | undefined;
+        constraints?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+        }>) | null | undefined;
+        contentTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        elevation?: number | null | undefined;
+        iconColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        insetPadding?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null | undefined;
+        shadowColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        shape?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        surfaceTintColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        titleTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): DialogThemeData;
 }
-export interface DialogThemeData {
-    readonly [_flaxDartTypeValue]: DialogThemeData;
+export declare function _DialogThemeDataFactory(options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    alignment?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null | undefined;
+    iconColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    titleTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    contentTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    actionsPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    barrierColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    insetPadding?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | null | undefined;
+    clipBehavior?: upstream7.Clip | null | undefined;
+    constraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+}): DialogThemeData;
+export interface _DialogThemeDataNative extends DialogThemeData {
+    readonly [_flaxDartTypeValue]: _DialogThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream9.DiagnosticLevel | undefined;
@@ -110,7 +231,7 @@ export interface DialogThemeData {
     get clipBehavior(): upstream7.Clip | null;
     get constraints(): upstream8.BoxConstraints | null;
 }
-export declare abstract class DialogThemeData extends _FlaxProxyBase {
+export declare abstract class _DialogThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DialogThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: DialogThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:DialogThemeData", readonly [], false];
@@ -163,7 +284,7 @@ export declare abstract class DialogThemeData extends _FlaxProxyBase {
         }>) | null | undefined;
     });
 }
-export declare namespace DialogThemeData {
+export declare namespace _DialogThemeDataFactory {
     function implement(args: [options?: {
         backgroundColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -213,7 +334,55 @@ export declare namespace DialogThemeData {
         }>) | null | undefined;
     }], implementation: {}): DialogThemeData;
 }
-export declare namespace DialogThemeData {
+declare const _DialogThemeDataBinding: typeof _DialogThemeDataFactory & (new (options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    alignment?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null | undefined;
+    iconColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    titleTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    contentTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    actionsPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    barrierColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    insetPadding?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | null | undefined;
+    clipBehavior?: upstream7.Clip | null | undefined;
+    constraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+}) => _DialogThemeDataNative);
+export declare namespace _DialogThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/dialog_theme.dart::DialogThemeData": readonly [];
     }> & Readonly<{
@@ -224,5 +393,6 @@ export declare namespace DialogThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): DialogThemeData;
 }
+export declare const DialogThemeData: typeof _DialogThemeDataBinding & _FlaxInstanceType<DialogThemeData> & _FlaxDartType<DialogThemeData, readonly ["class", "flax.core/sdk_material#type:DialogThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "backgroundColor" | "elevation" | "shadowColor" | "surfaceTintColor" | "shape" | "alignment" | "titleTextStyle" | "contentTextStyle" | "actionsPadding" | "iconColor" | "barrierColor" | "insetPadding" | "clipBehavior" | "constraints" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/dialog_theme.dart::DialogThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

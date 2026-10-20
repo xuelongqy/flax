@@ -18,7 +18,7 @@ import type * as upstream7 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_AnimationStatus';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animatable';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface AnimationMean extends Omit<upstream0.CompoundAnimation<number>, _flaxOwnMembers0>, Omit<upstream1.Animation<number>, _flaxOwnMembers0 | keyof upstream0.CompoundAnimation<number>>, Omit<upstream2.Listenable, _flaxOwnMembers0 | keyof upstream0.CompoundAnimation<number> | keyof upstream1.Animation<number>>, Omit<upstream3.ValueListenable<number>, _flaxOwnMembers0 | keyof upstream0.CompoundAnimation<number> | keyof upstream1.Animation<number> | keyof upstream2.Listenable>, Omit<upstream4.AnimationLazyListenerMixin, _flaxOwnMembers0 | keyof upstream0.CompoundAnimation<number> | keyof upstream1.Animation<number> | keyof upstream2.Listenable | keyof upstream3.ValueListenable<number>>, Omit<upstream5.AnimationLocalListenersMixin, _flaxOwnMembers0 | keyof upstream0.CompoundAnimation<number> | keyof upstream1.Animation<number> | keyof upstream2.Listenable | keyof upstream3.ValueListenable<number> | keyof upstream4.AnimationLazyListenerMixin>, Omit<upstream6.AnimationLocalStatusListenersMixin, _flaxOwnMembers0 | keyof upstream0.CompoundAnimation<number> | keyof upstream1.Animation<number> | keyof upstream2.Listenable | keyof upstream3.ValueListenable<number> | keyof upstream4.AnimationLazyListenerMixin | keyof upstream5.AnimationLocalListenersMixin>, Readonly<{
     "__flaxBound:package:flutter/src/animation/animations.dart::AnimationMean": readonly [];
 }>, Readonly<{
@@ -41,9 +41,51 @@ export interface AnimationMean extends Omit<upstream0.CompoundAnimation<number>,
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature0;
     };
+    readonly first: upstream1.Animation<number>;
+    readonly next: upstream1.Animation<number>;
+    readonly status: upstream7.AnimationStatus;
+    readonly value: number;
+    readonly isDismissed: boolean;
+    readonly isCompleted: boolean;
+    readonly isAnimating: boolean;
+    readonly isForwardOrCompleted: boolean;
+    readonly isListening: boolean;
+    didStartListening(): void;
+    didStopListening(): void;
+    toString(): string;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    addStatusListener(listener: ((status: upstream7.AnimationStatus) => void)): void;
+    removeStatusListener(listener: ((status: upstream7.AnimationStatus) => void)): void;
+    drive<U extends unknown | null = unknown | null>(child: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_FlaxDartOutput<U>];
+    }>): upstream1.Animation<_FlaxDartOutput<U>>;
+    toStringDetails(): string;
+    didRegisterListener(): void;
+    didUnregisterListener(): void;
+    clearListeners(): void;
+    notifyListeners(): void;
+    clearStatusListeners(): void;
+    notifyStatusListeners(status: upstream7.AnimationStatus): void;
 }
-export interface AnimationMean {
-    readonly [_flaxDartTypeValue]: AnimationMean;
+export declare function _AnimationMeanFactory(options: {
+    left: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>;
+    right: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>;
+}): AnimationMean;
+export interface _AnimationMeanNative extends AnimationMean {
+    readonly [_flaxDartTypeValue]: _AnimationMeanNative;
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature1;
     };
@@ -74,7 +116,7 @@ export interface AnimationMean {
     get isForwardOrCompleted(): boolean;
     get isListening(): boolean;
 }
-export declare abstract class AnimationMean extends _FlaxProxyBase {
+export declare abstract class _AnimationMeanNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AnimationMean>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AnimationMean;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_animation#type:AnimationMean", readonly [], false];
@@ -95,7 +137,7 @@ export declare abstract class AnimationMean extends _FlaxProxyBase {
         }>;
     });
 }
-export declare namespace AnimationMean {
+export declare namespace _AnimationMeanFactory {
     function implement(args: [options: {
         left: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
@@ -113,6 +155,23 @@ export declare namespace AnimationMean {
         }>;
     }], implementation: {}): AnimationMean;
 }
+declare const _AnimationMeanBinding: typeof _AnimationMeanFactory & (new (options: {
+    left: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>;
+    right: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>;
+}) => _AnimationMeanNative);
+export declare const AnimationMean: typeof _AnimationMeanBinding & _FlaxInstanceType<AnimationMean> & _FlaxDartType<AnimationMean, readonly ["class", "flax.core/sdk_animation#type:AnimationMean", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "first" | "next" | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "isListening" | "didStartListening" | "didStopListening" | "toString" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "clearListeners" | "notifyListeners" | "clearStatusListeners" | "notifyStatusListeners" | "__flaxBound:package:flutter/src/animation/animations.dart::AnimationMean" | "__flaxBound:package:flutter/src/animation/animations.dart::CompoundAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLazyListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{

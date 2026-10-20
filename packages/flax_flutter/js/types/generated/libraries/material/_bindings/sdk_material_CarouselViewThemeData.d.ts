@@ -19,7 +19,7 @@ import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CarouselViewThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/carousel_theme.dart::CarouselViewThemeData": readonly [];
 }>, Readonly<{
@@ -27,9 +27,66 @@ export interface CarouselViewThemeData extends Omit<upstream0.Diagnosticable, _f
 }> {
     readonly __CarouselViewThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: CarouselViewThemeData;
+    readonly padding: upstream4.EdgeInsets | null;
+    readonly backgroundColor: upstream1.Color | null;
+    readonly elevation: number | null;
+    readonly shape: upstream3.OutlinedBorder | null;
+    readonly itemClipBehavior: upstream5.Clip | null;
+    readonly overlayColor: upstream2.WidgetStateProperty<upstream1.Color | null> | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream8.DiagnosticsTreeStyle | null | undefined;
+    }): upstream7.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        backgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        elevation?: number | null | undefined;
+        itemClipBehavior?: upstream5.Clip | null | undefined;
+        overlayColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+        }> | null | undefined;
+        padding?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null | undefined;
+        shape?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }>) | null | undefined;
+    }): CarouselViewThemeData;
 }
-export interface CarouselViewThemeData {
-    readonly [_flaxDartTypeValue]: CarouselViewThemeData;
+export declare function _CarouselViewThemeDataFactory(options?: {
+    elevation?: number | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+    }> | null | undefined;
+    shape?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }>) | null | undefined;
+    padding?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | null | undefined;
+    itemClipBehavior?: upstream5.Clip | null | undefined;
+}): CarouselViewThemeData;
+export interface _CarouselViewThemeDataNative extends CarouselViewThemeData {
+    readonly [_flaxDartTypeValue]: _CarouselViewThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream6.DiagnosticLevel | undefined;
@@ -68,7 +125,7 @@ export interface CarouselViewThemeData {
     get itemClipBehavior(): upstream5.Clip | null;
     get overlayColor(): upstream2.WidgetStateProperty<upstream1.Color | null> | null;
 }
-export declare abstract class CarouselViewThemeData extends _FlaxProxyBase {
+export declare abstract class _CarouselViewThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CarouselViewThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: CarouselViewThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:CarouselViewThemeData", readonly [], false];
@@ -93,7 +150,7 @@ export declare abstract class CarouselViewThemeData extends _FlaxProxyBase {
         itemClipBehavior?: upstream5.Clip | null | undefined;
     });
 }
-export declare namespace CarouselViewThemeData {
+export declare namespace _CarouselViewThemeDataFactory {
     function implement(args: [options?: {
         elevation?: number | null | undefined;
         backgroundColor?: Readonly<{
@@ -115,7 +172,27 @@ export declare namespace CarouselViewThemeData {
         itemClipBehavior?: upstream5.Clip | null | undefined;
     }], implementation: {}): CarouselViewThemeData;
 }
-export declare namespace CarouselViewThemeData {
+declare const _CarouselViewThemeDataBinding: typeof _CarouselViewThemeDataFactory & (new (options?: {
+    elevation?: number | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+    }> | null | undefined;
+    shape?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }>) | null | undefined;
+    padding?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | null | undefined;
+    itemClipBehavior?: upstream5.Clip | null | undefined;
+}) => _CarouselViewThemeDataNative);
+export declare namespace _CarouselViewThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/carousel_theme.dart::CarouselViewThemeData": readonly [];
     }> & Readonly<{
@@ -126,5 +203,6 @@ export declare namespace CarouselViewThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): CarouselViewThemeData;
 }
+export declare const CarouselViewThemeData: typeof _CarouselViewThemeDataBinding & _FlaxInstanceType<CarouselViewThemeData> & _FlaxDartType<CarouselViewThemeData, readonly ["class", "flax.core/sdk_material#type:CarouselViewThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "padding" | "backgroundColor" | "elevation" | "shape" | "itemClipBehavior" | "overlayColor" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/carousel_theme.dart::CarouselViewThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

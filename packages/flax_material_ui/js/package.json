@@ -10,6 +10,12 @@
       "import": "./dist/index.js"
     },
     "./flax_modules.json": "./flax_modules.json",
+    "./dependencies/*": {
+      "types": [
+        "./dist/generated/dependencies/*.d.ts",
+        "./dist/generated/dependencies/*/index.d.ts"
+      ]
+    },
     "./*": {
       "types": "./dist/generated/libraries/material/*.d.ts"
     }
@@ -27,6 +33,8 @@
   },
   "dependencies": {
     "@flax/core": "workspace:*",
+    "@flax/cupertino-ui": "workspace:*",
+    "@flax/cupertino-ui-runtime": "workspace:*",
     "@flax/dart": "workspace:*",
     "@flax/flutter": "workspace:*",
     "@flax/core-runtime": "workspace:*"

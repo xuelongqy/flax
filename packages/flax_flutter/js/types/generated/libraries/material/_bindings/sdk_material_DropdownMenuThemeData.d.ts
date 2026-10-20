@@ -17,7 +17,7 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DropdownMenuThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/dropdown_menu_theme.dart::DropdownMenuThemeData": readonly [];
 }>, Readonly<{
@@ -25,9 +25,56 @@ export interface DropdownMenuThemeData extends Omit<upstream0.Diagnosticable, _f
 }> {
     readonly __DropdownMenuThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: DropdownMenuThemeData;
+    readonly textStyle: upstream1.TextStyle | null;
+    readonly inputDecorationTheme: upstream4.InputDecorationThemeData | null;
+    readonly menuStyle: upstream2.MenuStyle | null;
+    readonly disabledColor: upstream3.Color | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream5.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        disabledColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        inputDecorationTheme?: unknown | null | undefined;
+        menuStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/menu_style.dart::MenuStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        textStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): DropdownMenuThemeData;
 }
-export interface DropdownMenuThemeData {
-    readonly [_flaxDartTypeValue]: DropdownMenuThemeData;
+export declare function _DropdownMenuThemeDataFactory(options?: {
+    textStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    inputDecorationTheme?: unknown | null | undefined;
+    menuStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_style.dart::MenuStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    disabledColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+}): DropdownMenuThemeData;
+export interface _DropdownMenuThemeDataNative extends DropdownMenuThemeData {
+    readonly [_flaxDartTypeValue]: _DropdownMenuThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream5.DiagnosticLevel | undefined;
@@ -60,7 +107,7 @@ export interface DropdownMenuThemeData {
     get menuStyle(): upstream2.MenuStyle | null;
     get disabledColor(): upstream3.Color | null;
 }
-export declare abstract class DropdownMenuThemeData extends _FlaxProxyBase {
+export declare abstract class _DropdownMenuThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DropdownMenuThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: DropdownMenuThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:DropdownMenuThemeData", readonly [], false];
@@ -81,7 +128,7 @@ export declare abstract class DropdownMenuThemeData extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace DropdownMenuThemeData {
+export declare namespace _DropdownMenuThemeDataFactory {
     function implement(args: [options?: {
         textStyle?: (Readonly<{
             "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
@@ -99,7 +146,23 @@ export declare namespace DropdownMenuThemeData {
         }> | null | undefined;
     }], implementation: {}): DropdownMenuThemeData;
 }
-export declare namespace DropdownMenuThemeData {
+declare const _DropdownMenuThemeDataBinding: typeof _DropdownMenuThemeDataFactory & (new (options?: {
+    textStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    inputDecorationTheme?: unknown | null | undefined;
+    menuStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/menu_style.dart::MenuStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    disabledColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+}) => _DropdownMenuThemeDataNative);
+export declare namespace _DropdownMenuThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/dropdown_menu_theme.dart::DropdownMenuThemeData": readonly [];
     }> & Readonly<{
@@ -110,5 +173,6 @@ export declare namespace DropdownMenuThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): DropdownMenuThemeData;
 }
+export declare const DropdownMenuThemeData: typeof _DropdownMenuThemeDataBinding & _FlaxInstanceType<DropdownMenuThemeData> & _FlaxDartType<DropdownMenuThemeData, readonly ["class", "flax.core/sdk_material#type:DropdownMenuThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "textStyle" | "inputDecorationTheme" | "menuStyle" | "disabledColor" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/dropdown_menu_theme.dart::DropdownMenuThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

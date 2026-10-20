@@ -23,18 +23,41 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import { _flaxMemberParameters57, _flaxMemberParameters30, _flaxMemberParameters39, _flaxMemberParameters40, _flaxMemberParameters1, _flaxMemberParameters31, _flaxMemberParameters32 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters58, _flaxMemberParameters29, _flaxMemberParameters37, _flaxMemberParameters38, _flaxMemberParameters1, _flaxMemberParameters30, _flaxMemberParameters28 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface FlutterError extends Omit<upstream0.Error, _flaxOwnMembers0>, Omit<upstream1.DiagnosticableTreeMixin, _flaxOwnMembers0 | keyof upstream0.Error>, Omit<upstream2.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.Error | keyof upstream1.DiagnosticableTreeMixin>, Omit<upstream3.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Error | keyof upstream1.DiagnosticableTreeMixin | keyof upstream2.DiagnosticableTree>, Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterError": readonly [] }>, Readonly<{ "__flaxBound:dart:core::Error": readonly [] }>, Readonly<{ "__flaxBound:dart:core::AssertionError": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __FlutterError: unique symbol;
 readonly [_flaxDartTypeValue]: FlutterError;
 
+readonly stackTrace: upstream5.StackTrace | null;
+readonly diagnostics: DartList<upstream4.DiagnosticsNode>;
+readonly message: string;
+toString(options?: {minLevel?: upstream8.DiagnosticLevel | undefined}): string;
+toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream8.DiagnosticLevel | undefined}): string;
+toStringDeep(options?: {minLevel?: upstream8.DiagnosticLevel | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream9.DiagnosticsTreeStyle | null | undefined}): upstream4.DiagnosticsNode;
+debugDescribeChildren(): DartList<upstream4.DiagnosticsNode>;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 }
 defineObject("flax.core/sdk_foundation#type:FlutterError", ["stackTrace","diagnostics","message"], [], _flaxBindingMethods("flax.core/sdk_foundation#type:FlutterError", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:DiagnosticableTreeMixin");
-const _FlutterErrorProxy = {type: "flax.core/sdk_foundation#type:FlutterError", parameters: _flaxMemberParameters57, constructors: {"fromParts": _flaxMemberParameters57}, methods: {"toString":_flaxMemberParameters30,"toStringShallow":_flaxMemberParameters39,"toStringDeep":_flaxMemberParameters40,"toStringShort":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters31,"debugDescribeChildren":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters32}, getters: ["diagnostics","message","stackTrace"], setters: [], contextMembers: [], superMembers: ["get:diagnostics","get:message","get:stackTrace","toString","toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","debugFillProperties"]} as const;
-export interface FlutterError {
-readonly [_flaxDartTypeValue]: FlutterError;
+export function _FlutterErrorFactory(message: string): FlutterError {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_foundation#type:FlutterError", "", [{"name":"message","required":true,"positional":true}], [message], {}) as FlutterError;
+}
+export namespace _FlutterErrorFactory {
+export function fromParts(diagnostics: DartListInput<upstream4.DiagnosticsNode, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }>>): FlutterError {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_foundation#type:FlutterError", "fromParts", [{"name":"diagnostics","required":true,"positional":true}], [diagnostics], {}) as FlutterError;
+}
+}
+const _FlutterErrorProxy = {type: "flax.core/sdk_foundation#type:FlutterError", parameters: _flaxMemberParameters58, constructors: {"fromParts": _flaxMemberParameters58}, methods: {"toString":_flaxMemberParameters29,"toStringShallow":_flaxMemberParameters37,"toStringDeep":_flaxMemberParameters38,"toStringShort":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters30,"debugDescribeChildren":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters28}, getters: ["diagnostics","message","stackTrace"], setters: [], contextMembers: [], superMembers: ["get:diagnostics","get:message","get:stackTrace","toString","toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","debugFillProperties"]} as const;
+export interface _FlutterErrorNative extends FlutterError {
+readonly [_flaxDartTypeValue]: _FlutterErrorNative;
+readonly [_flaxDartConstructors]?: {"fromParts": (diagnostics: DartListInput<upstream4.DiagnosticsNode, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }>>) => void;};
 
 toString(options?: {minLevel?: upstream8.DiagnosticLevel | undefined}): string;
 toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream8.DiagnosticLevel | undefined}): string;
@@ -47,53 +70,54 @@ get diagnostics(): DartList<upstream4.DiagnosticsNode>;
 get message(): string;
 get stackTrace(): upstream5.StackTrace | null;
 }
-export abstract class FlutterError extends _FlaxProxyBase {
+export abstract class _FlutterErrorNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<FlutterError>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: FlutterError;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_foundation#type:FlutterError", readonly [], false];
-constructor(diagnostics: DartListInput<upstream4.DiagnosticsNode, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }>>) { super(_FlutterErrorProxy, Array.from(arguments)); }
+constructor(diagnostics: DartListInput<upstream4.DiagnosticsNode, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }>>); constructor(call: _FlaxProxySuper<_FlutterErrorNative>); constructor(...args: unknown[]) { super(_FlutterErrorProxy, args); }
 }
-_flaxDefineProxyBase(FlutterError.prototype, _FlutterErrorProxy);
-export namespace FlutterError { export function implement(args: [diagnostics: DartListInput<upstream4.DiagnosticsNode, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }>>], implementation: {}): FlutterError {
+_flaxDefineProxyBase(_FlutterErrorNative.prototype, _FlutterErrorProxy);
+export namespace _FlutterErrorFactory { export function implement(args: [diagnostics: DartListInput<upstream4.DiagnosticsNode, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }>>], implementation: {}): FlutterError {
 return constructProxy(_FlutterErrorProxy, args, implementation) as FlutterError; } }
-export namespace FlutterError { export function setOnError(value: ((details: upstream6.FlutterErrorDetails) => void) | null): void {
+const _FlutterErrorBinding = _flaxProxyFactory(_FlutterErrorFactory, _FlutterErrorNative) as unknown as typeof _FlutterErrorFactory & (new(diagnostics: DartListInput<upstream4.DiagnosticsNode, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }>>) => _FlutterErrorNative) & (new(call: _FlaxProxySuper<_FlutterErrorNative>) => _FlutterErrorNative);
+export namespace _FlutterErrorFactory { export function setOnError(value: ((details: upstream6.FlutterErrorDetails) => void) | null): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:FlutterError.onError%3D", [value]);
 } }
-export namespace FlutterError { export function setDemangleStackTrace(value: ((details: upstream5.StackTrace) => Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>)): void {
+export namespace _FlutterErrorFactory { export function setDemangleStackTrace(value: ((details: upstream5.StackTrace) => Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>)): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:FlutterError.demangleStackTrace%3D", [value]);
 } }
-export namespace FlutterError { export function setPresentError(value: ((details: upstream6.FlutterErrorDetails) => void)): void {
+export namespace _FlutterErrorFactory { export function setPresentError(value: ((details: upstream6.FlutterErrorDetails) => void)): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:FlutterError.presentError%3D", [value]);
 } }
-export namespace FlutterError { export declare const onError: ((details: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterErrorDetails": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>) => void) | null; }
-export namespace FlutterError { export declare const demangleStackTrace: ((details: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>) => upstream5.StackTrace); }
-export namespace FlutterError { export declare const presentError: ((details: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterErrorDetails": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>) => void); }
-export namespace FlutterError { export declare const wrapWidth: number; }
-_flaxDefineStaticGetters(FlutterError, "flax.core/sdk_foundation#read:FlutterError.", ["onError","demangleStackTrace","presentError","wrapWidth"]);
-export namespace FlutterError { export function resetErrorCount(): void {
+export namespace _FlutterErrorFactory { export declare const onError: ((details: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterErrorDetails": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>) => void) | null; }
+export namespace _FlutterErrorFactory { export declare const demangleStackTrace: ((details: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>) => upstream5.StackTrace); }
+export namespace _FlutterErrorFactory { export declare const presentError: ((details: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterErrorDetails": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>) => void); }
+export namespace _FlutterErrorFactory { export declare const wrapWidth: number; }
+_flaxDefineStaticGetters(_FlutterErrorFactory, "flax.core/sdk_foundation#read:FlutterError.", ["onError","demangleStackTrace","presentError","wrapWidth"]);
+export namespace _FlutterErrorFactory { export function resetErrorCount(): void {
 if (arguments.length > 0) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:FlutterError.resetErrorCount", []);
 } }
-export namespace FlutterError { export function dumpErrorToConsole(details: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterErrorDetails": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, options: { forceReport?: boolean | undefined } = {}): void {
+export namespace _FlutterErrorFactory { export function dumpErrorToConsole(details: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterErrorDetails": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, options: { forceReport?: boolean | undefined } = {}): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["forceReport"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:FlutterError.dumpErrorToConsole", [details, options.forceReport]);
 } }
-export namespace FlutterError { export function addDefaultStackFilter(filter: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::StackFilter": readonly [] }>): void {
+export namespace _FlutterErrorFactory { export function addDefaultStackFilter(filter: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::StackFilter": readonly [] }>): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:FlutterError.addDefaultStackFilter", [filter]);
 } }
-export namespace FlutterError { export function defaultStackFilter(frames: DartIterableInput<string, string>): DartIterable<string> {
+export namespace _FlutterErrorFactory { export function defaultStackFilter(frames: DartIterableInput<string, string>): DartIterable<string> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:FlutterError.defaultStackFilter", [frames]);
 return _flaxResult as DartIterable<string>;
 } }
-export namespace FlutterError { export function reportError(details: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterErrorDetails": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): void {
+export namespace _FlutterErrorFactory { export function reportError(details: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterErrorDetails": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:FlutterError.reportError", [details]);
 } }
-_flaxBindInstanceType<FlutterError, typeof FlutterError>(FlutterError, "flax.core/sdk_foundation#type:FlutterError", ["flax.core/flutter#type:Error","dart:core::Object","dart:core::AssertionError","flax.core/sdk_foundation#type:DiagnosticableTreeMixin","flax.core/sdk_foundation#type:DiagnosticableTree","flax.core/sdk_foundation#type:Diagnosticable"]);
+export const FlutterError: typeof _FlutterErrorBinding & _FlaxInstanceType<FlutterError> & _FlaxDartType<FlutterError, readonly ["class", "flax.core/sdk_foundation#type:FlutterError", readonly [], false]> = _flaxBindInstanceType<FlutterError, typeof _FlutterErrorBinding>(_FlutterErrorBinding, "flax.core/sdk_foundation#type:FlutterError", ["flax.core/flutter#type:Error","dart:core::Object","dart:core::AssertionError","flax.core/sdk_foundation#type:DiagnosticableTreeMixin","flax.core/sdk_foundation#type:DiagnosticableTree","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _FlutterErrorBinding & _FlaxInstanceType<FlutterError> & _FlaxDartType<FlutterError, readonly ["class", "flax.core/sdk_foundation#type:FlutterError", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "stackTrace" | "diagnostics" | "message" | "toString" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterError" | "__flaxBound:dart:core::Error" | "__flaxBound:dart:core::AssertionError" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

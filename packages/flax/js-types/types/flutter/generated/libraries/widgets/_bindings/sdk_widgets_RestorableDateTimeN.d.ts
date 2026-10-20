@@ -14,7 +14,7 @@ import '@flax/flutter/widgets/_bindings/components_State';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RestorableDateTimeN extends Omit<upstream0.RestorableValue<upstream1.DateTime | null>, _flaxOwnMembers0>, Omit<upstream2.RestorableProperty<upstream1.DateTime | null>, _flaxOwnMembers0 | keyof upstream0.RestorableValue<upstream1.DateTime | null>>, Omit<upstream3.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.RestorableValue<upstream1.DateTime | null> | keyof upstream2.RestorableProperty<upstream1.DateTime | null>>, Omit<upstream4.Listenable, _flaxOwnMembers0 | keyof upstream0.RestorableValue<upstream1.DateTime | null> | keyof upstream2.RestorableProperty<upstream1.DateTime | null> | keyof upstream3.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableDateTimeN": readonly [];
 }>, Readonly<{
@@ -28,9 +28,32 @@ export interface RestorableDateTimeN extends Omit<upstream0.RestorableValue<upst
 }> {
     readonly __RestorableDateTimeN: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableDateTimeN;
+    get value(): upstream1.DateTime | null;
+    readonly enabled: boolean;
+    readonly state: upstream5.State<upstream6.StatefulWidget>;
+    readonly isRegistered: boolean;
+    readonly hasListeners: boolean;
+    initWithValue(value: DartInput<Readonly<{
+        "__flaxBound:dart:core::DateTime": readonly [];
+    }>> | null): void;
+    didUpdateValue(oldValue: DartInput<Readonly<{
+        "__flaxBound:dart:core::DateTime": readonly [];
+    }>> | null): void;
+    createDefaultValue(): upstream1.DateTime | null;
+    fromPrimitives(data: unknown | null): upstream1.DateTime | null;
+    toPrimitives(): unknown | null;
+    dispose(): void;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    set value(value: DartInput<Readonly<{
+        "__flaxBound:dart:core::DateTime": readonly [];
+    }>> | null);
 }
-export interface RestorableDateTimeN {
-    readonly [_flaxDartTypeValue]: RestorableDateTimeN;
+export declare function _RestorableDateTimeNFactory(defaultValue: DartInput<Readonly<{
+    "__flaxBound:dart:core::DateTime": readonly [];
+}>> | null): RestorableDateTimeN;
+export interface _RestorableDateTimeNNative extends RestorableDateTimeN {
+    readonly [_flaxDartTypeValue]: _RestorableDateTimeNNative;
     initWithValue(value: DartInput<Readonly<{
         "__flaxBound:dart:core::DateTime": readonly [];
     }>> | null): void;
@@ -52,7 +75,7 @@ export interface RestorableDateTimeN {
         "__flaxBound:dart:core::DateTime": readonly [];
     }>> | null);
 }
-export declare abstract class RestorableDateTimeN extends _FlaxProxyBase {
+export declare abstract class _RestorableDateTimeNNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RestorableDateTimeN>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RestorableDateTimeN;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:RestorableDateTimeN", readonly [], false];
@@ -60,10 +83,14 @@ export declare abstract class RestorableDateTimeN extends _FlaxProxyBase {
         "__flaxBound:dart:core::DateTime": readonly [];
     }>> | null);
 }
-export declare namespace RestorableDateTimeN {
+export declare namespace _RestorableDateTimeNFactory {
     function implement(args: [defaultValue: DartInput<Readonly<{
         "__flaxBound:dart:core::DateTime": readonly [];
     }>> | null], implementation: {}): RestorableDateTimeN;
 }
+declare const _RestorableDateTimeNBinding: typeof _RestorableDateTimeNFactory & (new (defaultValue: DartInput<Readonly<{
+    "__flaxBound:dart:core::DateTime": readonly [];
+}>> | null) => _RestorableDateTimeNNative);
+export declare const RestorableDateTimeN: typeof _RestorableDateTimeNBinding & _FlaxInstanceType<RestorableDateTimeN> & _FlaxDartType<RestorableDateTimeN, readonly ["class", "flax.core/sdk_widgets#type:RestorableDateTimeN", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "initWithValue" | "didUpdateValue" | "createDefaultValue" | "fromPrimitives" | "toPrimitives" | "dispose" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableDateTimeN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

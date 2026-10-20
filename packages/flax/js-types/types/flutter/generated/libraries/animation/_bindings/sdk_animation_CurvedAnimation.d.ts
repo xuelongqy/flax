@@ -14,7 +14,7 @@ import type * as upstream5 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_AnimationStatus';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animatable';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CurvedAnimation extends Omit<upstream0.Animation<number>, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.Animation<number>>, Omit<upstream2.ValueListenable<number>, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable>, Omit<upstream3.AnimationWithParentMixin<number>, _flaxOwnMembers0 | keyof upstream0.Animation<number> | keyof upstream1.Listenable | keyof upstream2.ValueListenable<number>>, Readonly<{
     "__flaxBound:package:flutter/src/animation/animations.dart::CurvedAnimation": readonly [];
 }>, Readonly<{
@@ -31,9 +31,59 @@ export interface CurvedAnimation extends Omit<upstream0.Animation<number>, _flax
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature0;
     };
+    readonly status: upstream5.AnimationStatus;
+    readonly value: number;
+    readonly isDismissed: boolean;
+    readonly isCompleted: boolean;
+    readonly isAnimating: boolean;
+    readonly isForwardOrCompleted: boolean;
+    readonly parent: upstream0.Animation<number>;
+    get curve(): upstream4.Curve;
+    get reverseCurve(): upstream4.Curve | null;
+    get isDisposed(): boolean;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    addStatusListener(listener: ((status: upstream5.AnimationStatus) => void)): void;
+    removeStatusListener(listener: ((status: upstream5.AnimationStatus) => void)): void;
+    drive<U extends unknown | null = unknown | null>(child: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_FlaxDartOutput<U>];
+    }>): upstream0.Animation<_FlaxDartOutput<U>>;
+    toString(): string;
+    toStringDetails(): string;
+    dispose(): void;
+    set curve(value: Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+    }>);
+    set reverseCurve(value: (Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+    }>) | null);
+    set isDisposed(value: boolean);
 }
-export interface CurvedAnimation {
-    readonly [_flaxDartTypeValue]: CurvedAnimation;
+export declare function _CurvedAnimationFactory(options: {
+    parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>;
+    curve: Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+    }>;
+    reverseCurve?: (Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+    }>) | null | undefined;
+}): CurvedAnimation;
+export interface _CurvedAnimationNative extends CurvedAnimation {
+    readonly [_flaxDartTypeValue]: _CurvedAnimationNative;
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature1;
     };
@@ -69,7 +119,7 @@ export interface CurvedAnimation {
     }>) | null);
     set isDisposed(value: boolean);
 }
-export declare abstract class CurvedAnimation extends _FlaxProxyBase {
+export declare abstract class _CurvedAnimationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CurvedAnimation>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: CurvedAnimation;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_animation#type:CurvedAnimation", readonly [], false];
@@ -93,7 +143,7 @@ export declare abstract class CurvedAnimation extends _FlaxProxyBase {
         }>) | null | undefined;
     });
 }
-export declare namespace CurvedAnimation {
+export declare namespace _CurvedAnimationFactory {
     function implement(args: [options: {
         parent: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
@@ -114,6 +164,26 @@ export declare namespace CurvedAnimation {
         }>) | null | undefined;
     }], implementation: {}): CurvedAnimation;
 }
+declare const _CurvedAnimationBinding: typeof _CurvedAnimationFactory & (new (options: {
+    parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>;
+    curve: Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+    }>;
+    reverseCurve?: (Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+    }>) | null | undefined;
+}) => _CurvedAnimationNative);
+export declare const CurvedAnimation: typeof _CurvedAnimationBinding & _FlaxInstanceType<CurvedAnimation> & _FlaxDartType<CurvedAnimation, readonly ["class", "flax.core/sdk_animation#type:CurvedAnimation", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "parent" | "curve" | "reverseCurve" | "isDisposed" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "dispose" | "__flaxBound:package:flutter/src/animation/animations.dart::CurvedAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/animations.dart::AnimationWithParentMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{

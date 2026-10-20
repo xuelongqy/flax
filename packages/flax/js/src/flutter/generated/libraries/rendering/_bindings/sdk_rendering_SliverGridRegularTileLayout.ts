@@ -5,18 +5,33 @@ import type * as upstream0 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SliverGridLayout';
 import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_SliverGridGeometry';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SliverGridGeometry';
-import { _flaxMemberParameters346, _flaxMemberParameters227, _flaxMemberParameters87, _flaxMemberParameters345 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters343, _flaxMemberParameters224, _flaxMemberParameters85, _flaxMemberParameters342 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface SliverGridRegularTileLayout extends Omit<upstream0.SliverGridLayout, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/rendering/sliver_grid.dart::SliverGridRegularTileLayout": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/sliver_grid.dart::SliverGridLayout": readonly [] }> { readonly __SliverGridRegularTileLayout: unique symbol;
 readonly [_flaxDartTypeValue]: SliverGridRegularTileLayout;
 
+readonly crossAxisCount: number;
+readonly mainAxisStride: number;
+readonly crossAxisStride: number;
+readonly childMainAxisExtent: number;
+readonly childCrossAxisExtent: number;
+readonly reverseCrossAxis: boolean;
+getMinChildIndexForScrollOffset(scrollOffset: number): number;
+getMaxChildIndexForScrollOffset(scrollOffset: number): number;
+getGeometryForChildIndex(index: number): upstream1.SliverGridGeometry;
+computeMaxScrollOffset(childCount: number): number;
 }
 defineObject("flax.core/sdk_rendering#type:SliverGridRegularTileLayout", ["crossAxisCount","mainAxisStride","crossAxisStride","childMainAxisExtent","childCrossAxisExtent","reverseCrossAxis"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SliverGridRegularTileLayout", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:SliverGridLayout");
-const _SliverGridRegularTileLayoutProxy = {type: "flax.core/sdk_rendering#type:SliverGridRegularTileLayout", parameters: _flaxMemberParameters346, constructors: {"": _flaxMemberParameters346}, methods: {"getMinChildIndexForScrollOffset":_flaxMemberParameters227,"getMaxChildIndexForScrollOffset":_flaxMemberParameters227,"getGeometryForChildIndex":_flaxMemberParameters87,"computeMaxScrollOffset":_flaxMemberParameters345}, getters: ["crossAxisCount","mainAxisStride","crossAxisStride","childMainAxisExtent","childCrossAxisExtent","reverseCrossAxis"], setters: [], contextMembers: [], superMembers: ["get:crossAxisCount","get:mainAxisStride","get:crossAxisStride","get:childMainAxisExtent","get:childCrossAxisExtent","get:reverseCrossAxis","getMinChildIndexForScrollOffset","getMaxChildIndexForScrollOffset","getGeometryForChildIndex","computeMaxScrollOffset"]} as const;
-export interface SliverGridRegularTileLayout {
-readonly [_flaxDartTypeValue]: SliverGridRegularTileLayout;
+export function _SliverGridRegularTileLayoutFactory(options: { crossAxisCount: number; mainAxisStride: number; crossAxisStride: number; childMainAxisExtent: number; childCrossAxisExtent: number; reverseCrossAxis: boolean }): SliverGridRegularTileLayout {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_rendering#type:SliverGridRegularTileLayout", "", [{"name":"crossAxisCount","required":true},{"name":"mainAxisStride","required":true},{"name":"crossAxisStride","required":true},{"name":"childMainAxisExtent","required":true},{"name":"childCrossAxisExtent","required":true},{"name":"reverseCrossAxis","required":true}], [], options) as SliverGridRegularTileLayout;
+}
+const _SliverGridRegularTileLayoutProxy = {type: "flax.core/sdk_rendering#type:SliverGridRegularTileLayout", parameters: _flaxMemberParameters343, constructors: {"": _flaxMemberParameters343}, methods: {"getMinChildIndexForScrollOffset":_flaxMemberParameters224,"getMaxChildIndexForScrollOffset":_flaxMemberParameters224,"getGeometryForChildIndex":_flaxMemberParameters85,"computeMaxScrollOffset":_flaxMemberParameters342}, getters: ["crossAxisCount","mainAxisStride","crossAxisStride","childMainAxisExtent","childCrossAxisExtent","reverseCrossAxis"], setters: [], contextMembers: [], superMembers: ["get:crossAxisCount","get:mainAxisStride","get:crossAxisStride","get:childMainAxisExtent","get:childCrossAxisExtent","get:reverseCrossAxis","getMinChildIndexForScrollOffset","getMaxChildIndexForScrollOffset","getGeometryForChildIndex","computeMaxScrollOffset"]} as const;
+export interface _SliverGridRegularTileLayoutNative extends SliverGridRegularTileLayout {
+readonly [_flaxDartTypeValue]: _SliverGridRegularTileLayoutNative;
 
 getMinChildIndexForScrollOffset(scrollOffset: number): number;
 getMaxChildIndexForScrollOffset(scrollOffset: number): number;
@@ -29,14 +44,15 @@ get childMainAxisExtent(): number;
 get childCrossAxisExtent(): number;
 get reverseCrossAxis(): boolean;
 }
-export abstract class SliverGridRegularTileLayout extends _FlaxProxyBase {
+export abstract class _SliverGridRegularTileLayoutNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SliverGridRegularTileLayout>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: SliverGridRegularTileLayout;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:SliverGridRegularTileLayout", readonly [], false];
 constructor(options: {crossAxisCount: number; mainAxisStride: number; crossAxisStride: number; childMainAxisExtent: number; childCrossAxisExtent: number; reverseCrossAxis: boolean}) { super(_SliverGridRegularTileLayoutProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(SliverGridRegularTileLayout.prototype, _SliverGridRegularTileLayoutProxy);
-export namespace SliverGridRegularTileLayout { export function implement(args: [options: {crossAxisCount: number; mainAxisStride: number; crossAxisStride: number; childMainAxisExtent: number; childCrossAxisExtent: number; reverseCrossAxis: boolean}], implementation: {}): SliverGridRegularTileLayout {
+_flaxDefineProxyBase(_SliverGridRegularTileLayoutNative.prototype, _SliverGridRegularTileLayoutProxy);
+export namespace _SliverGridRegularTileLayoutFactory { export function implement(args: [options: {crossAxisCount: number; mainAxisStride: number; crossAxisStride: number; childMainAxisExtent: number; childCrossAxisExtent: number; reverseCrossAxis: boolean}], implementation: {}): SliverGridRegularTileLayout {
 return constructProxy(_SliverGridRegularTileLayoutProxy, args, implementation) as SliverGridRegularTileLayout; } }
-_flaxBindInstanceType<SliverGridRegularTileLayout, typeof SliverGridRegularTileLayout>(SliverGridRegularTileLayout, "flax.core/sdk_rendering#type:SliverGridRegularTileLayout", ["flax.core/sdk_rendering#type:SliverGridLayout","dart:core::Object"]);
+const _SliverGridRegularTileLayoutBinding = _flaxProxyFactory(_SliverGridRegularTileLayoutFactory, _SliverGridRegularTileLayoutNative) as unknown as typeof _SliverGridRegularTileLayoutFactory & (new(options: {crossAxisCount: number; mainAxisStride: number; crossAxisStride: number; childMainAxisExtent: number; childCrossAxisExtent: number; reverseCrossAxis: boolean}) => _SliverGridRegularTileLayoutNative);
+export const SliverGridRegularTileLayout: typeof _SliverGridRegularTileLayoutBinding & _FlaxInstanceType<SliverGridRegularTileLayout> & _FlaxDartType<SliverGridRegularTileLayout, readonly ["class", "flax.core/sdk_rendering#type:SliverGridRegularTileLayout", readonly [], false]> = _flaxBindInstanceType<SliverGridRegularTileLayout, typeof _SliverGridRegularTileLayoutBinding>(_SliverGridRegularTileLayoutBinding, "flax.core/sdk_rendering#type:SliverGridRegularTileLayout", ["flax.core/sdk_rendering#type:SliverGridLayout","dart:core::Object"]) as typeof _SliverGridRegularTileLayoutBinding & _FlaxInstanceType<SliverGridRegularTileLayout> & _FlaxDartType<SliverGridRegularTileLayout, readonly ["class", "flax.core/sdk_rendering#type:SliverGridRegularTileLayout", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "crossAxisCount" | "mainAxisStride" | "crossAxisStride" | "childMainAxisExtent" | "childCrossAxisExtent" | "reverseCrossAxis" | "getMinChildIndexForScrollOffset" | "getMaxChildIndexForScrollOffset" | "getGeometryForChildIndex" | "computeMaxScrollOffset" | "__flaxBound:package:flutter/src/rendering/sliver_grid.dart::SliverGridRegularTileLayout" | "__flaxBound:package:flutter/src/rendering/sliver_grid.dart::SliverGridLayout";

@@ -4,24 +4,30 @@ import '@flax/dart/core/_bindings/flutter_DateTime';
 import type * as upstream1 from '@flax/dart/core/_bindings/sdk_dependencies_Stopwatch';
 import '@flax/dart/core/_bindings/sdk_dependencies_Stopwatch';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SamplingClock extends Readonly<{
     "__flaxBound:package:flutter/src/gestures/binding.dart::SamplingClock": readonly [];
 }> {
     readonly __SamplingClock: unique symbol;
     readonly [_flaxDartTypeValue]: SamplingClock;
-}
-export interface SamplingClock {
-    readonly [_flaxDartTypeValue]: SamplingClock;
     now(): upstream0.DateTime;
     stopwatch(): upstream1.Stopwatch;
 }
-export declare abstract class SamplingClock extends _FlaxProxyBase {
+export declare function _SamplingClockFactory(): SamplingClock;
+export interface _SamplingClockNative extends SamplingClock {
+    readonly [_flaxDartTypeValue]: _SamplingClockNative;
+    now(): upstream0.DateTime;
+    stopwatch(): upstream1.Stopwatch;
+}
+export declare abstract class _SamplingClockNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SamplingClock>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SamplingClock;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:SamplingClock", readonly [], false];
     constructor();
 }
-export declare namespace SamplingClock {
+export declare namespace _SamplingClockFactory {
     function implement(args: [], implementation: {}): SamplingClock;
 }
+declare const _SamplingClockBinding: typeof _SamplingClockFactory & (new () => _SamplingClockNative);
+export declare const SamplingClock: typeof _SamplingClockBinding & _FlaxInstanceType<SamplingClock> & _FlaxDartType<SamplingClock, readonly ["class", "flax.core/sdk_gestures#type:SamplingClock", readonly [], false]>;
+export {};

@@ -28,9 +28,35 @@ export interface RestorableEnumN<T extends upstream0.Enum = upstream0.Enum> exte
 }> {
     readonly __RestorableEnumN: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableEnumN<T>;
+    get value(): T | null;
+    readonly enabled: boolean;
+    readonly state: upstream5.State<upstream6.StatefulWidget>;
+    readonly isRegistered: boolean;
+    readonly hasListeners: boolean;
+    get values(): DartSet<T>;
+    initWithValue(value: (T | DartInput<T>) | null): void;
+    didUpdateValue(oldValue: (T | DartInput<T>) | null): void;
+    createDefaultValue(): T | null;
+    fromPrimitives(data: unknown | null): T | null;
+    toPrimitives(): unknown | null;
+    dispose(): void;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    set value(value: (T | DartInput<T>) | null);
+    set values(value: DartSetInput<T, (T | DartInput<T>)>);
 }
-export interface RestorableEnumN<T extends upstream0.Enum = upstream0.Enum> {
-    readonly [_flaxDartTypeValue]: RestorableEnumN<T>;
+export declare function _RestorableEnumNFactory<T extends upstream0.Enum = upstream0.Enum>(defaultValue: (T | DartInput<T>) | null, options: {
+    values: DartIterableInput<T, (T | DartInput<T>)>;
+}): RestorableEnumN<T>;
+export declare function _RestorableEnumNFactory(defaultValue: Readonly<{
+    "__flaxBound:dart:core::Enum": readonly [];
+}> | null, options: {
+    values: DartIterableInput<upstream0.Enum, Readonly<{
+        "__flaxBound:dart:core::Enum": readonly [];
+    }>>;
+}): RestorableEnumN<upstream0.Enum>;
+export interface _RestorableEnumNNative<T extends upstream0.Enum = upstream0.Enum> extends RestorableEnumN<T> {
+    readonly [_flaxDartTypeValue]: _RestorableEnumNNative<T>;
     initWithValue(value: (T | DartInput<T>) | null): void;
     didUpdateValue(oldValue: (T | DartInput<T>) | null): void;
     createDefaultValue(): T | null;
@@ -48,7 +74,7 @@ export interface RestorableEnumN<T extends upstream0.Enum = upstream0.Enum> {
     set value(value: (T | DartInput<T>) | null);
     set values(value: DartSetInput<T, (T | DartInput<T>)>);
 }
-export declare abstract class RestorableEnumN<T extends upstream0.Enum = upstream0.Enum> extends _FlaxProxyBase {
+export declare abstract class _RestorableEnumNNative<T extends upstream0.Enum = upstream0.Enum> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RestorableEnumN<upstream0.Enum>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RestorableEnumN<upstream0.Enum>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:RestorableEnumN", readonly [readonly ["class", "flax.core/flutter#type:Enum", readonly [], false]], false];
@@ -62,7 +88,7 @@ export declare abstract class RestorableEnumN<T extends upstream0.Enum = upstrea
         }>>;
     });
 }
-export declare namespace RestorableEnumN {
+export declare namespace _RestorableEnumNFactory {
     function implement<T extends upstream0.Enum = upstream0.Enum>(args: [defaultValue: Readonly<{
         "__flaxBound:dart:core::Enum": readonly [];
     }> | null, options: {
@@ -71,23 +97,55 @@ export declare namespace RestorableEnumN {
         }>>;
     }], implementation: {}): RestorableEnumN<T>;
 }
+declare const _RestorableEnumNBinding: typeof _RestorableEnumNFactory & (new <T extends upstream0.Enum = upstream0.Enum>(defaultValue: Readonly<{
+    "__flaxBound:dart:core::Enum": readonly [];
+}> | null, options: {
+    values: DartIterableInput<upstream0.Enum, Readonly<{
+        "__flaxBound:dart:core::Enum": readonly [];
+    }>>;
+}) => _RestorableEnumNNative<T>);
+export declare const RestorableEnumN: typeof _RestorableEnumNBinding & _FlaxInstanceType<RestorableEnumN<upstream0.Enum>> & _FlaxDartType<RestorableEnumN<upstream0.Enum>, readonly ["class", "flax.core/sdk_widgets#type:RestorableEnumN", readonly [readonly ["class", "flax.core/flutter#type:Enum", readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "values" | "initWithValue" | "didUpdateValue" | "createDefaultValue" | "fromPrimitives" | "toPrimitives" | "dispose" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableEnumN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
-interface _FlaxSignature1 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream0.Enum] ? (abstract new (defaultValue: Readonly<{
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream0.Enum] ? (new (defaultValue: Readonly<{
         "__flaxBound:dart:core::Enum": readonly [];
     }> | null, options: {
         values: DartIterableInput<upstream0.Enum, Readonly<{
             "__flaxBound:dart:core::Enum": readonly [];
         }>>;
-    }) => RestorableEnumN<_Selected0>) & {
-        readonly prototype: RestorableEnumN<_Selected0>;
+    }) => _RestorableEnumNNative<_Selected0>) & {
+        (defaultValue: (_Selected0 | DartInput<_Selected0>) | null, options: {
+            values: DartIterableInput<_Selected0, (_Selected0 | DartInput<_Selected0>)>;
+        }): _RestorableEnumNNative<_Selected0>;
+        readonly prototype: _RestorableEnumNNative<_Selected0>;
         implement(args: readonly [Readonly<{
             "__flaxBound:dart:core::Enum": readonly [];
         }> | null, options: {
             values: DartIterableInput<upstream0.Enum, Readonly<{
                 "__flaxBound:dart:core::Enum": readonly [];
             }>>;
-        }], implementation: Partial<RestorableEnumN<_Selected0>>): RestorableEnumN<_Selected0>;
-    } & _FlaxInstanceType<RestorableEnumN<_Selected0>> & _FlaxDartType<RestorableEnumN<_Selected0>> : never : never;
+        }], implementation: Partial<_RestorableEnumNNative<_Selected0>>): _RestorableEnumNNative<_Selected0>;
+    } & _FlaxInstanceType<_RestorableEnumNNative<_Selected0>> & _FlaxDartType<_RestorableEnumNNative<_Selected0>> : never : never;
+}
+interface _FlaxSignature1 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream0.Enum] ? (new (defaultValue: Readonly<{
+        "__flaxBound:dart:core::Enum": readonly [];
+    }> | null, options: {
+        values: DartIterableInput<upstream0.Enum, Readonly<{
+            "__flaxBound:dart:core::Enum": readonly [];
+        }>>;
+    }) => _RestorableEnumNNative<_Selected0>) & {
+        (defaultValue: (_Selected0 | DartInput<_Selected0>) | null, options: {
+            values: DartIterableInput<_Selected0, (_Selected0 | DartInput<_Selected0>)>;
+        }): _RestorableEnumNNative<_Selected0>;
+        readonly prototype: _RestorableEnumNNative<_Selected0>;
+        implement(args: readonly [Readonly<{
+            "__flaxBound:dart:core::Enum": readonly [];
+        }> | null, options: {
+            values: DartIterableInput<upstream0.Enum, Readonly<{
+                "__flaxBound:dart:core::Enum": readonly [];
+            }>>;
+        }], implementation: Partial<_RestorableEnumNNative<_Selected0>>): _RestorableEnumNNative<_Selected0>;
+    } & _FlaxInstanceType<_RestorableEnumNNative<_Selected0>> & _FlaxDartType<_RestorableEnumNNative<_Selected0>> : never : never;
 }
 export {};

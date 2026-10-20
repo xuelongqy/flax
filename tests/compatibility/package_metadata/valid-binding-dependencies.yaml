@@ -1,0 +1,12 @@
+format: 2
+dart:
+  entrypoint: package:example/example.dart
+javascript:
+  package: '@flax/example-runtime'
+  types: '@flax/example'
+  version: same
+  mode: runtime
+capabilities: [bindings]
+bindingNamespace: flax.example
+bindingDependencies:
+  generate: [zebra2, intl, cupertino_ui]

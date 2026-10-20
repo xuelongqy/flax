@@ -5,31 +5,41 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDevi
 import '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import { _flaxMemberParameters97 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters98 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface TapMoveDetails extends Readonly<{ "__flaxBound:package:flutter/src/gestures/tap.dart::TapMoveDetails": readonly [] }> { readonly __TapMoveDetails: unique symbol;
 readonly [_flaxDartTypeValue]: TapMoveDetails;
 
+readonly globalPosition: upstream1.Offset;
+readonly localPosition: upstream1.Offset;
+readonly kind: upstream0.PointerDeviceKind;
+readonly delta: upstream1.Offset;
 }
 defineObject("flax.core/sdk_gestures#type:TapMoveDetails", ["globalPosition","localPosition","kind","delta"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:TapMoveDetails", "object", {}, {}), []);
-const _TapMoveDetailsProxy = {type: "flax.core/sdk_gestures#type:TapMoveDetails", parameters: _flaxMemberParameters97, constructors: {"": _flaxMemberParameters97}, methods: {}, getters: ["globalPosition","localPosition","kind","delta"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","get:kind","get:delta"]} as const;
-export interface TapMoveDetails {
-readonly [_flaxDartTypeValue]: TapMoveDetails;
+export function _TapMoveDetailsFactory(options: { kind: upstream0.PointerDeviceKind; globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; delta?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined }): TapMoveDetails {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_gestures#type:TapMoveDetails", "", [{"name":"kind","required":true},{"name":"globalPosition"},{"name":"delta"},{"name":"localPosition"}], [], options) as TapMoveDetails;
+}
+const _TapMoveDetailsProxy = {type: "flax.core/sdk_gestures#type:TapMoveDetails", parameters: _flaxMemberParameters98, constructors: {"": _flaxMemberParameters98}, methods: {}, getters: ["globalPosition","localPosition","kind","delta"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","get:kind","get:delta"]} as const;
+export interface _TapMoveDetailsNative extends TapMoveDetails {
+readonly [_flaxDartTypeValue]: _TapMoveDetailsNative;
 
 get globalPosition(): upstream1.Offset;
 get localPosition(): upstream1.Offset;
 get kind(): upstream0.PointerDeviceKind;
 get delta(): upstream1.Offset;
 }
-export abstract class TapMoveDetails extends _FlaxProxyBase {
+export abstract class _TapMoveDetailsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TapMoveDetails>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: TapMoveDetails;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:TapMoveDetails", readonly [], false];
 constructor(options: {kind: upstream0.PointerDeviceKind; globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; delta?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined}) { super(_TapMoveDetailsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(TapMoveDetails.prototype, _TapMoveDetailsProxy);
-export namespace TapMoveDetails { export function implement(args: [options: {kind: upstream0.PointerDeviceKind; globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; delta?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined}], implementation: {}): TapMoveDetails {
+_flaxDefineProxyBase(_TapMoveDetailsNative.prototype, _TapMoveDetailsProxy);
+export namespace _TapMoveDetailsFactory { export function implement(args: [options: {kind: upstream0.PointerDeviceKind; globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; delta?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined}], implementation: {}): TapMoveDetails {
 return constructProxy(_TapMoveDetailsProxy, args, implementation) as TapMoveDetails; } }
-_flaxBindInstanceType<TapMoveDetails, typeof TapMoveDetails>(TapMoveDetails, "flax.core/sdk_gestures#type:TapMoveDetails", ["dart:core::Object"]);
+const _TapMoveDetailsBinding = _flaxProxyFactory(_TapMoveDetailsFactory, _TapMoveDetailsNative) as unknown as typeof _TapMoveDetailsFactory & (new(options: {kind: upstream0.PointerDeviceKind; globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; delta?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined}) => _TapMoveDetailsNative);
+export const TapMoveDetails: typeof _TapMoveDetailsBinding & _FlaxInstanceType<TapMoveDetails> & _FlaxDartType<TapMoveDetails, readonly ["class", "flax.core/sdk_gestures#type:TapMoveDetails", readonly [], false]> = _flaxBindInstanceType<TapMoveDetails, typeof _TapMoveDetailsBinding>(_TapMoveDetailsBinding, "flax.core/sdk_gestures#type:TapMoveDetails", ["dart:core::Object"]) as typeof _TapMoveDetailsBinding & _FlaxInstanceType<TapMoveDetails> & _FlaxDartType<TapMoveDetails, readonly ["class", "flax.core/sdk_gestures#type:TapMoveDetails", readonly [], false]>;

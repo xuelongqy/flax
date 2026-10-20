@@ -22,17 +22,35 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { _flaxMemberParameters10, _flaxMemberParameters11, _flaxMemberParameters12, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface PreviousFocusAction extends Omit<upstream0.Action<upstream1.PreviousFocusIntent>, _flaxOwnMembers0>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Action<upstream1.PreviousFocusIntent>>, Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::PreviousFocusAction": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream1.PreviousFocusIntent] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __PreviousFocusAction: unique symbol;
 readonly [_flaxDartTypeValue]: PreviousFocusAction;
 
+readonly callingAction: upstream0.Action<upstream1.PreviousFocusIntent> | null;
+readonly intentType: upstream3.Type;
+readonly isActionEnabled: boolean;
+isEnabled(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::PreviousFocusIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
+consumesKey(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::PreviousFocusIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
+toKeyEventResult(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::PreviousFocusIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, invokeResult: boolean): upstream4.KeyEventResult;
+invoke(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::PreviousFocusIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
+addActionListener(listener: ((action: upstream0.Action<upstream5.Intent>) => void)): void;
+removeActionListener(listener: ((action: upstream0.Action<upstream5.Intent>) => void)): void;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream7.DiagnosticsTreeStyle | null | undefined}): upstream6.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream9.DiagnosticLevel | undefined}): string;
 }
 defineObject("flax.core/sdk_widgets#type:PreviousFocusAction", ["callingAction","intentType","isActionEnabled"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:PreviousFocusAction", "object", {"isEnabled":_flaxMemberParameters10,"consumesKey":_flaxMemberParameters10,"toKeyEventResult":_flaxMemberParameters11,"invoke":_flaxMemberParameters10,"addActionListener":_flaxMemberParameters12,"removeActionListener":_flaxMemberParameters12}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+export function _PreviousFocusActionFactory(): PreviousFocusAction {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:PreviousFocusAction", "", [], [], {}) as PreviousFocusAction;
+}
 const _PreviousFocusActionProxy = {type: "flax.core/sdk_widgets#type:PreviousFocusAction", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"isEnabled":_flaxMemberParameters10,"consumesKey":_flaxMemberParameters10,"toKeyEventResult":_flaxMemberParameters11,"invoke":_flaxMemberParameters10,"addActionListener":_flaxMemberParameters12,"removeActionListener":_flaxMemberParameters12,"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["callingAction","intentType","isActionEnabled"], setters: [], contextMembers: [], superMembers: ["get:callingAction","get:intentType","get:isActionEnabled","isEnabled","consumesKey","toKeyEventResult","invoke","addActionListener","removeActionListener","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface PreviousFocusAction {
-readonly [_flaxDartTypeValue]: PreviousFocusAction;
+export interface _PreviousFocusActionNative extends PreviousFocusAction {
+readonly [_flaxDartTypeValue]: _PreviousFocusActionNative;
 
 isEnabled(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::PreviousFocusIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
 consumesKey(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::PreviousFocusIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
@@ -48,14 +66,15 @@ get callingAction(): upstream0.Action<upstream1.PreviousFocusIntent> | null;
 get intentType(): upstream3.Type;
 get isActionEnabled(): boolean;
 }
-export abstract class PreviousFocusAction extends _FlaxProxyBase {
+export abstract class _PreviousFocusActionNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PreviousFocusAction>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: PreviousFocusAction;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:PreviousFocusAction", readonly [], false];
 constructor() { super(_PreviousFocusActionProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(PreviousFocusAction.prototype, _PreviousFocusActionProxy);
-export namespace PreviousFocusAction { export function implement(args: [], implementation: {}): PreviousFocusAction {
+_flaxDefineProxyBase(_PreviousFocusActionNative.prototype, _PreviousFocusActionProxy);
+export namespace _PreviousFocusActionFactory { export function implement(args: [], implementation: {}): PreviousFocusAction {
 return constructProxy(_PreviousFocusActionProxy, args, implementation) as PreviousFocusAction; } }
-_flaxBindInstanceType<PreviousFocusAction, typeof PreviousFocusAction>(PreviousFocusAction, "flax.core/sdk_widgets#type:PreviousFocusAction", ["flax.core/sdk_widgets#type:Action","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _PreviousFocusActionBinding = _flaxProxyFactory(_PreviousFocusActionFactory, _PreviousFocusActionNative) as unknown as typeof _PreviousFocusActionFactory & (new() => _PreviousFocusActionNative);
+export const PreviousFocusAction: typeof _PreviousFocusActionBinding & _FlaxInstanceType<PreviousFocusAction> & _FlaxDartType<PreviousFocusAction, readonly ["class", "flax.core/sdk_widgets#type:PreviousFocusAction", readonly [], false]> = _flaxBindInstanceType<PreviousFocusAction, typeof _PreviousFocusActionBinding>(_PreviousFocusActionBinding, "flax.core/sdk_widgets#type:PreviousFocusAction", ["flax.core/sdk_widgets#type:Action","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _PreviousFocusActionBinding & _FlaxInstanceType<PreviousFocusAction> & _FlaxDartType<PreviousFocusAction, readonly ["class", "flax.core/sdk_widgets#type:PreviousFocusAction", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "callingAction" | "intentType" | "isActionEnabled" | "isEnabled" | "consumesKey" | "toKeyEventResult" | "invoke" | "addActionListener" | "removeActionListener" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::PreviousFocusAction" | "__flaxBound:package:flutter/src/widgets/actions.dart::Action" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

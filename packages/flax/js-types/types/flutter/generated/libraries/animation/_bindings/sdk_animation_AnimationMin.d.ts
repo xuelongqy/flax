@@ -41,9 +41,61 @@ export interface AnimationMin<T extends number = number> extends Omit<upstream0.
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature1<T>;
     };
+    readonly first: upstream1.Animation<T>;
+    readonly next: upstream1.Animation<T>;
+    readonly status: upstream7.AnimationStatus;
+    readonly value: T;
+    readonly isDismissed: boolean;
+    readonly isCompleted: boolean;
+    readonly isAnimating: boolean;
+    readonly isForwardOrCompleted: boolean;
+    readonly isListening: boolean;
+    didStartListening(): void;
+    didStopListening(): void;
+    toString(): string;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    addStatusListener(listener: ((status: upstream7.AnimationStatus) => void)): void;
+    removeStatusListener(listener: ((status: upstream7.AnimationStatus) => void)): void;
+    drive<U extends unknown | null = unknown | null>(child: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_FlaxDartOutput<U>];
+    }>): upstream1.Animation<_FlaxDartOutput<U>>;
+    toStringDetails(): string;
+    didRegisterListener(): void;
+    didUnregisterListener(): void;
+    clearListeners(): void;
+    notifyListeners(): void;
+    clearStatusListeners(): void;
+    notifyStatusListeners(status: upstream7.AnimationStatus): void;
 }
-export interface AnimationMin<T extends number = number> {
-    readonly [_flaxDartTypeValue]: AnimationMin<T>;
+export declare function _AnimationMinFactory<T extends number = number>(first: Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [T];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [T];
+}>, next: Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [T];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [T];
+}>): AnimationMin<T>;
+export declare function _AnimationMinFactory(first: Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+}>, next: Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+}>): AnimationMin<number>;
+export interface _AnimationMinNative<T extends number = number> extends AnimationMin<T> {
+    readonly [_flaxDartTypeValue]: _AnimationMinNative<T>;
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature2<T>;
     };
@@ -74,7 +126,7 @@ export interface AnimationMin<T extends number = number> {
     get isForwardOrCompleted(): boolean;
     get isListening(): boolean;
 }
-export declare abstract class AnimationMin<T extends number = number> extends _FlaxProxyBase {
+export declare abstract class _AnimationMinNative<T extends number = number> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AnimationMin<number>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AnimationMin<number>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_animation#type:AnimationMin", readonly [readonly ["num", null, readonly [], false]], false];
@@ -94,7 +146,7 @@ export declare abstract class AnimationMin<T extends number = number> extends _F
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
     }>);
 }
-export declare namespace AnimationMin {
+export declare namespace _AnimationMinFactory {
     function implement<T extends number = number>(args: [first: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
@@ -109,19 +161,23 @@ export declare namespace AnimationMin {
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
     }>], implementation: {}): AnimationMin<T>;
 }
+declare const _AnimationMinBinding: typeof _AnimationMinFactory & (new <T extends number = number>(first: Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+}>, next: Readonly<{
+    "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+}>) => _AnimationMinNative<T>);
+export declare const AnimationMin: typeof _AnimationMinBinding & _FlaxInstanceType<AnimationMin<number>> & _FlaxDartType<AnimationMin<number>, readonly ["class", "flax.core/sdk_animation#type:AnimationMin", readonly [readonly ["num", null, readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "first" | "next" | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "isListening" | "didStartListening" | "didStopListening" | "toString" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "clearListeners" | "notifyListeners" | "clearStatusListeners" | "notifyStatusListeners" | "__flaxBound:package:flutter/src/animation/animations.dart::AnimationMin" | "__flaxBound:package:flutter/src/animation/animations.dart::CompoundAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLazyListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
-interface _FlaxSignature1<_OwnerType0 extends number> extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{
-        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_Selected0];
-    }>) => upstream1.Animation<_Selected0> : never : never;
-}
-interface _FlaxSignature2<_OwnerType0 extends number> extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{
-        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_Selected0];
-    }>) => upstream1.Animation<_Selected0> : never : never;
-}
-interface _FlaxSignature3 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [number] ? (abstract new (first: Readonly<{
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [number] ? (new (first: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
@@ -133,8 +189,21 @@ interface _FlaxSignature3 extends _FlaxDartSignature {
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
-    }>) => AnimationMin<_Selected0>) & {
-        readonly prototype: AnimationMin<_Selected0>;
+    }>) => _AnimationMinNative<_Selected0>) & {
+        (first: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [_Selected0];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [_Selected0];
+        }>, next: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [_Selected0];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [_Selected0];
+        }>): _AnimationMinNative<_Selected0>;
+        readonly prototype: _AnimationMinNative<_Selected0>;
         implement(args: readonly [Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
@@ -147,7 +216,60 @@ interface _FlaxSignature3 extends _FlaxDartSignature {
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
-        }>], implementation: Partial<AnimationMin<_Selected0>>): AnimationMin<_Selected0>;
-    } & _FlaxInstanceType<AnimationMin<_Selected0>> & _FlaxDartType<AnimationMin<_Selected0>> : never : never;
+        }>], implementation: Partial<_AnimationMinNative<_Selected0>>): _AnimationMinNative<_Selected0>;
+    } & _FlaxInstanceType<_AnimationMinNative<_Selected0>> & _FlaxDartType<_AnimationMinNative<_Selected0>> : never : never;
+}
+interface _FlaxSignature1<_OwnerType0 extends number> extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_Selected0];
+    }>) => upstream1.Animation<_Selected0> : never : never;
+}
+interface _FlaxSignature2<_OwnerType0 extends number> extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_Selected0];
+    }>) => upstream1.Animation<_Selected0> : never : never;
+}
+interface _FlaxSignature3 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [number] ? (new (first: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>, next: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>) => _AnimationMinNative<_Selected0>) & {
+        (first: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [_Selected0];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [_Selected0];
+        }>, next: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [_Selected0];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [_Selected0];
+        }>): _AnimationMinNative<_Selected0>;
+        readonly prototype: _AnimationMinNative<_Selected0>;
+        implement(args: readonly [Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>, Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>], implementation: Partial<_AnimationMinNative<_Selected0>>): _AnimationMinNative<_Selected0>;
+    } & _FlaxInstanceType<_AnimationMinNative<_Selected0>> & _FlaxDartType<_AnimationMinNative<_Selected0>> : never : never;
 }
 export {};

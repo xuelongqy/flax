@@ -15,18 +15,180 @@ import type * as upstream5 from '@flax/flutter/material/_bindings/sdk_material_T
 import '@flax/flutter/material/_bindings/sdk_material_TimeOfDay';
 import type * as upstream6 from '@flax/dart/core/_bindings/flutter_DateTime';
 import '@flax/dart/core/_bindings/flutter_DateTime';
-import { _flaxMemberParameters2, _flaxMemberParameters82, _flaxMemberParameters83, _flaxMemberParameters84, _flaxMemberParameters85, _flaxMemberParameters86, _flaxMemberParameters87, _flaxMemberParameters88, _flaxMemberParameters89, _flaxMemberParameters90, _flaxMemberParameters91, _flaxMemberParameters30, _flaxMemberParameters92, _flaxMemberParameters93, _flaxMemberParameters94 } from "@flax/flutter/material/_bindings/sdk_material.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters2, _flaxMemberParameters84, _flaxMemberParameters85, _flaxMemberParameters86, _flaxMemberParameters87, _flaxMemberParameters88, _flaxMemberParameters89, _flaxMemberParameters90, _flaxMemberParameters91, _flaxMemberParameters92, _flaxMemberParameters93, _flaxMemberParameters30, _flaxMemberParameters94, _flaxMemberParameters95, _flaxMemberParameters96 } from "@flax/flutter/material/_bindings/sdk_material.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface DefaultMaterialLocalizations extends Omit<upstream0.MaterialLocalizations, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/material/material_localizations.dart::DefaultMaterialLocalizations": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/material/material_localizations.dart::MaterialLocalizations": readonly [] }> { readonly __DefaultMaterialLocalizations: unique symbol;
 readonly [_flaxDartTypeValue]: DefaultMaterialLocalizations;
 
+readonly openAppDrawerTooltip: string;
+readonly backButtonTooltip: string;
+readonly clearButtonTooltip: string;
+readonly closeButtonTooltip: string;
+readonly deleteButtonTooltip: string;
+readonly moreButtonTooltip: string;
+readonly nextMonthTooltip: string;
+readonly previousMonthTooltip: string;
+readonly firstPageTooltip: string;
+readonly lastPageTooltip: string;
+readonly nextPageTooltip: string;
+readonly previousPageTooltip: string;
+readonly showMenuTooltip: string;
+readonly licensesPageTitle: string;
+readonly rowsPerPageTitle: string;
+readonly cancelButtonLabel: string;
+readonly closeButtonLabel: string;
+readonly continueButtonLabel: string;
+readonly copyButtonLabel: string;
+readonly cutButtonLabel: string;
+readonly scanTextButtonLabel: string;
+readonly okButtonLabel: string;
+readonly pasteButtonLabel: string;
+readonly selectAllButtonLabel: string;
+readonly lookUpButtonLabel: string;
+readonly searchWebButtonLabel: string;
+readonly shareButtonLabel: string;
+readonly viewLicensesButtonLabel: string;
+readonly anteMeridiemAbbreviation: string;
+readonly postMeridiemAbbreviation: string;
+readonly timePickerHourModeAnnouncement: string;
+readonly timePickerMinuteModeAnnouncement: string;
+readonly modalBarrierDismissLabel: string;
+readonly menuDismissLabel: string;
+readonly drawerLabel: string;
+readonly popupMenuLabel: string;
+readonly menuBarMenuLabel: string;
+readonly dialogLabel: string;
+readonly alertDialogLabel: string;
+readonly searchFieldLabel: string;
+readonly currentDateLabel: string;
+readonly selectedDateLabel: string;
+readonly scrimLabel: string;
+readonly bottomSheetLabel: string;
+readonly scriptCategory: upstream1.ScriptCategory;
+readonly narrowWeekdays: DartList<string>;
+readonly firstDayOfWeekIndex: number;
+readonly dateSeparator: string;
+readonly dateHelpText: string;
+readonly selectYearSemanticsLabel: string;
+readonly unspecifiedDate: string;
+readonly unspecifiedDateRange: string;
+readonly dateInputLabel: string;
+readonly dateRangeStartLabel: string;
+readonly dateRangeEndLabel: string;
+readonly invalidDateFormatLabel: string;
+readonly invalidDateRangeLabel: string;
+readonly dateOutOfRangeLabel: string;
+readonly saveButtonLabel: string;
+readonly datePickerHelpText: string;
+readonly dateRangePickerHelpText: string;
+readonly calendarModeButtonLabel: string;
+readonly inputDateModeButtonLabel: string;
+readonly timePickerDialHelpText: string;
+readonly timePickerInputHelpText: string;
+readonly timePickerHourLabel: string;
+readonly timePickerMinuteLabel: string;
+readonly invalidTimeLabel: string;
+readonly dialModeButtonLabel: string;
+readonly inputTimeModeButtonLabel: string;
+readonly signedInLabel: string;
+readonly hideAccountsLabel: string;
+readonly showAccountsLabel: string;
+readonly reorderItemToStart: string;
+readonly reorderItemToEnd: string;
+readonly reorderItemUp: string;
+readonly reorderItemDown: string;
+readonly reorderItemLeft: string;
+readonly reorderItemRight: string;
+readonly expandedIconTapHint: string;
+readonly collapsedIconTapHint: string;
+readonly expansionTileExpandedHint: string;
+readonly expansionTileCollapsedHint: string;
+readonly expansionTileExpandedTapHint: string;
+readonly expansionTileCollapsedTapHint: string;
+readonly expandedHint: string;
+readonly collapsedHint: string;
+readonly refreshIndicatorSemanticLabel: string;
+readonly keyboardKeyAlt: string;
+readonly keyboardKeyAltGraph: string;
+readonly keyboardKeyBackspace: string;
+readonly keyboardKeyCapsLock: string;
+readonly keyboardKeyChannelDown: string;
+readonly keyboardKeyChannelUp: string;
+readonly keyboardKeyControl: string;
+readonly keyboardKeyDelete: string;
+readonly keyboardKeyEject: string;
+readonly keyboardKeyEnd: string;
+readonly keyboardKeyEscape: string;
+readonly keyboardKeyFn: string;
+readonly keyboardKeyHome: string;
+readonly keyboardKeyInsert: string;
+readonly keyboardKeyMeta: string;
+readonly keyboardKeyMetaMacOs: string;
+readonly keyboardKeyMetaWindows: string;
+readonly keyboardKeyNumLock: string;
+readonly keyboardKeyNumpad1: string;
+readonly keyboardKeyNumpad2: string;
+readonly keyboardKeyNumpad3: string;
+readonly keyboardKeyNumpad4: string;
+readonly keyboardKeyNumpad5: string;
+readonly keyboardKeyNumpad6: string;
+readonly keyboardKeyNumpad7: string;
+readonly keyboardKeyNumpad8: string;
+readonly keyboardKeyNumpad9: string;
+readonly keyboardKeyNumpad0: string;
+readonly keyboardKeyNumpadAdd: string;
+readonly keyboardKeyNumpadComma: string;
+readonly keyboardKeyNumpadDecimal: string;
+readonly keyboardKeyNumpadDivide: string;
+readonly keyboardKeyNumpadEnter: string;
+readonly keyboardKeyNumpadEqual: string;
+readonly keyboardKeyNumpadMultiply: string;
+readonly keyboardKeyNumpadParenLeft: string;
+readonly keyboardKeyNumpadParenRight: string;
+readonly keyboardKeyNumpadSubtract: string;
+readonly keyboardKeyPageDown: string;
+readonly keyboardKeyPageUp: string;
+readonly keyboardKeyPower: string;
+readonly keyboardKeyPowerOff: string;
+readonly keyboardKeyPrintScreen: string;
+readonly keyboardKeyScrollLock: string;
+readonly keyboardKeySelect: string;
+readonly keyboardKeyShift: string;
+readonly keyboardKeySpace: string;
+aboutListTileTitle(applicationName: string): string;
+licensesPackageDetailText(licenseCount: number): string;
+pageRowsInfoTitle(firstRow: number, lastRow: number, rowCount: number, rowCountIsApproximate: boolean): string;
+tabLabel(options: {tabCount: number; tabIndex: number}): string;
+selectedRowCountTitle(selectedRowCount: number): string;
+scrimOnTapHint(modalRouteContentName: string): string;
+timeOfDayFormat(options?: {alwaysUse24HourFormat?: boolean | undefined}): upstream4.TimeOfDayFormat;
+formatDecimal(number: number): string;
+formatHour(timeOfDay: Readonly<{ "__flaxBound:package:flutter/src/material/time.dart::TimeOfDay": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream5.TimeOfDay] }>, options?: {alwaysUse24HourFormat?: boolean | undefined}): string;
+formatMinute(timeOfDay: Readonly<{ "__flaxBound:package:flutter/src/material/time.dart::TimeOfDay": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream5.TimeOfDay] }>): string;
+formatTimeOfDay(timeOfDay: Readonly<{ "__flaxBound:package:flutter/src/material/time.dart::TimeOfDay": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream5.TimeOfDay] }>, options?: {alwaysUse24HourFormat?: boolean | undefined}): string;
+formatYear(date: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>): string;
+formatCompactDate(date: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>): string;
+formatShortDate(date: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>): string;
+formatMediumDate(date: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>): string;
+formatFullDate(date: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>): string;
+formatMonthYear(date: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>): string;
+formatShortMonthDay(date: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>): string;
+parseCompactDate(inputString: string | null): upstream6.DateTime | null;
+dateRangeStartDateSemanticLabel(formattedDate: string): string;
+dateRangeEndDateSemanticLabel(formattedDate: string): string;
+remainingTextFieldCharacterCount(remaining: number): string;
 }
 defineObject("flax.core/sdk_material#type:DefaultMaterialLocalizations", ["openAppDrawerTooltip","backButtonTooltip","clearButtonTooltip","closeButtonTooltip","deleteButtonTooltip","moreButtonTooltip","nextMonthTooltip","previousMonthTooltip","firstPageTooltip","lastPageTooltip","nextPageTooltip","previousPageTooltip","showMenuTooltip","licensesPageTitle","rowsPerPageTitle","cancelButtonLabel","closeButtonLabel","continueButtonLabel","copyButtonLabel","cutButtonLabel","scanTextButtonLabel","okButtonLabel","pasteButtonLabel","selectAllButtonLabel","lookUpButtonLabel","searchWebButtonLabel","shareButtonLabel","viewLicensesButtonLabel","anteMeridiemAbbreviation","postMeridiemAbbreviation","timePickerHourModeAnnouncement","timePickerMinuteModeAnnouncement","modalBarrierDismissLabel","menuDismissLabel","drawerLabel","popupMenuLabel","menuBarMenuLabel","dialogLabel","alertDialogLabel","searchFieldLabel","currentDateLabel","selectedDateLabel","scrimLabel","bottomSheetLabel","scriptCategory","narrowWeekdays","firstDayOfWeekIndex","dateSeparator","dateHelpText","selectYearSemanticsLabel","unspecifiedDate","unspecifiedDateRange","dateInputLabel","dateRangeStartLabel","dateRangeEndLabel","invalidDateFormatLabel","invalidDateRangeLabel","dateOutOfRangeLabel","saveButtonLabel","datePickerHelpText","dateRangePickerHelpText","calendarModeButtonLabel","inputDateModeButtonLabel","timePickerDialHelpText","timePickerInputHelpText","timePickerHourLabel","timePickerMinuteLabel","invalidTimeLabel","dialModeButtonLabel","inputTimeModeButtonLabel","signedInLabel","hideAccountsLabel","showAccountsLabel","reorderItemToStart","reorderItemToEnd","reorderItemUp","reorderItemDown","reorderItemLeft","reorderItemRight","expandedIconTapHint","collapsedIconTapHint","expansionTileExpandedHint","expansionTileCollapsedHint","expansionTileExpandedTapHint","expansionTileCollapsedTapHint","expandedHint","collapsedHint","refreshIndicatorSemanticLabel","keyboardKeyAlt","keyboardKeyAltGraph","keyboardKeyBackspace","keyboardKeyCapsLock","keyboardKeyChannelDown","keyboardKeyChannelUp","keyboardKeyControl","keyboardKeyDelete","keyboardKeyEject","keyboardKeyEnd","keyboardKeyEscape","keyboardKeyFn","keyboardKeyHome","keyboardKeyInsert","keyboardKeyMeta","keyboardKeyMetaMacOs","keyboardKeyMetaWindows","keyboardKeyNumLock","keyboardKeyNumpad1","keyboardKeyNumpad2","keyboardKeyNumpad3","keyboardKeyNumpad4","keyboardKeyNumpad5","keyboardKeyNumpad6","keyboardKeyNumpad7","keyboardKeyNumpad8","keyboardKeyNumpad9","keyboardKeyNumpad0","keyboardKeyNumpadAdd","keyboardKeyNumpadComma","keyboardKeyNumpadDecimal","keyboardKeyNumpadDivide","keyboardKeyNumpadEnter","keyboardKeyNumpadEqual","keyboardKeyNumpadMultiply","keyboardKeyNumpadParenLeft","keyboardKeyNumpadParenRight","keyboardKeyNumpadSubtract","keyboardKeyPageDown","keyboardKeyPageUp","keyboardKeyPower","keyboardKeyPowerOff","keyboardKeyPrintScreen","keyboardKeyScrollLock","keyboardKeySelect","keyboardKeyShift","keyboardKeySpace"], [], _flaxBindingMethods("flax.core/sdk_material#type:DefaultMaterialLocalizations", "object", {}, {}), [], undefined, "flax.core/sdk_material#type:MaterialLocalizations");
-const _DefaultMaterialLocalizationsProxy = {type: "flax.core/sdk_material#type:DefaultMaterialLocalizations", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"aboutListTileTitle":_flaxMemberParameters82,"licensesPackageDetailText":_flaxMemberParameters83,"pageRowsInfoTitle":_flaxMemberParameters84,"tabLabel":_flaxMemberParameters85,"selectedRowCountTitle":_flaxMemberParameters86,"scrimOnTapHint":_flaxMemberParameters87,"timeOfDayFormat":_flaxMemberParameters88,"formatDecimal":_flaxMemberParameters89,"formatHour":_flaxMemberParameters90,"formatMinute":_flaxMemberParameters91,"formatTimeOfDay":_flaxMemberParameters90,"formatYear":_flaxMemberParameters30,"formatCompactDate":_flaxMemberParameters30,"formatShortDate":_flaxMemberParameters30,"formatMediumDate":_flaxMemberParameters30,"formatFullDate":_flaxMemberParameters30,"formatMonthYear":_flaxMemberParameters30,"formatShortMonthDay":_flaxMemberParameters30,"parseCompactDate":_flaxMemberParameters92,"dateRangeStartDateSemanticLabel":_flaxMemberParameters93,"dateRangeEndDateSemanticLabel":_flaxMemberParameters93,"remainingTextFieldCharacterCount":_flaxMemberParameters94}, getters: ["narrowWeekdays","firstDayOfWeekIndex","dateSeparator","dateHelpText","selectYearSemanticsLabel","unspecifiedDate","unspecifiedDateRange","dateInputLabel","dateRangeStartLabel","dateRangeEndLabel","invalidDateFormatLabel","invalidDateRangeLabel","dateOutOfRangeLabel","saveButtonLabel","datePickerHelpText","dateRangePickerHelpText","calendarModeButtonLabel","inputDateModeButtonLabel","timePickerDialHelpText","timePickerInputHelpText","timePickerHourLabel","timePickerMinuteLabel","invalidTimeLabel","dialModeButtonLabel","inputTimeModeButtonLabel","openAppDrawerTooltip","backButtonTooltip","clearButtonTooltip","closeButtonTooltip","deleteButtonTooltip","moreButtonTooltip","nextMonthTooltip","previousMonthTooltip","nextPageTooltip","previousPageTooltip","firstPageTooltip","lastPageTooltip","showMenuTooltip","drawerLabel","menuBarMenuLabel","popupMenuLabel","dialogLabel","alertDialogLabel","searchFieldLabel","currentDateLabel","selectedDateLabel","scrimLabel","bottomSheetLabel","licensesPageTitle","rowsPerPageTitle","cancelButtonLabel","closeButtonLabel","continueButtonLabel","copyButtonLabel","cutButtonLabel","scanTextButtonLabel","okButtonLabel","pasteButtonLabel","selectAllButtonLabel","lookUpButtonLabel","searchWebButtonLabel","shareButtonLabel","viewLicensesButtonLabel","anteMeridiemAbbreviation","postMeridiemAbbreviation","timePickerHourModeAnnouncement","timePickerMinuteModeAnnouncement","modalBarrierDismissLabel","menuDismissLabel","scriptCategory","signedInLabel","hideAccountsLabel","showAccountsLabel","reorderItemUp","reorderItemDown","reorderItemLeft","reorderItemRight","reorderItemToEnd","reorderItemToStart","expandedIconTapHint","collapsedIconTapHint","expansionTileExpandedHint","expansionTileCollapsedHint","expansionTileExpandedTapHint","expansionTileCollapsedTapHint","expandedHint","collapsedHint","refreshIndicatorSemanticLabel","keyboardKeyAlt","keyboardKeyAltGraph","keyboardKeyBackspace","keyboardKeyCapsLock","keyboardKeyChannelDown","keyboardKeyChannelUp","keyboardKeyControl","keyboardKeyDelete","keyboardKeyEject","keyboardKeyEnd","keyboardKeyEscape","keyboardKeyFn","keyboardKeyHome","keyboardKeyInsert","keyboardKeyMeta","keyboardKeyMetaMacOs","keyboardKeyMetaWindows","keyboardKeyNumLock","keyboardKeyNumpad1","keyboardKeyNumpad2","keyboardKeyNumpad3","keyboardKeyNumpad4","keyboardKeyNumpad5","keyboardKeyNumpad6","keyboardKeyNumpad7","keyboardKeyNumpad8","keyboardKeyNumpad9","keyboardKeyNumpad0","keyboardKeyNumpadAdd","keyboardKeyNumpadComma","keyboardKeyNumpadDecimal","keyboardKeyNumpadDivide","keyboardKeyNumpadEnter","keyboardKeyNumpadEqual","keyboardKeyNumpadMultiply","keyboardKeyNumpadParenLeft","keyboardKeyNumpadParenRight","keyboardKeyNumpadSubtract","keyboardKeyPageDown","keyboardKeyPageUp","keyboardKeyPower","keyboardKeyPowerOff","keyboardKeyPrintScreen","keyboardKeyScrollLock","keyboardKeySelect","keyboardKeyShift","keyboardKeySpace"], setters: [], contextMembers: [], superMembers: ["get:narrowWeekdays","get:firstDayOfWeekIndex","get:dateSeparator","get:dateHelpText","get:selectYearSemanticsLabel","get:unspecifiedDate","get:unspecifiedDateRange","get:dateInputLabel","get:dateRangeStartLabel","get:dateRangeEndLabel","get:invalidDateFormatLabel","get:invalidDateRangeLabel","get:dateOutOfRangeLabel","get:saveButtonLabel","get:datePickerHelpText","get:dateRangePickerHelpText","get:calendarModeButtonLabel","get:inputDateModeButtonLabel","get:timePickerDialHelpText","get:timePickerInputHelpText","get:timePickerHourLabel","get:timePickerMinuteLabel","get:invalidTimeLabel","get:dialModeButtonLabel","get:inputTimeModeButtonLabel","get:openAppDrawerTooltip","get:backButtonTooltip","get:clearButtonTooltip","get:closeButtonTooltip","get:deleteButtonTooltip","get:moreButtonTooltip","get:nextMonthTooltip","get:previousMonthTooltip","get:nextPageTooltip","get:previousPageTooltip","get:firstPageTooltip","get:lastPageTooltip","get:showMenuTooltip","get:drawerLabel","get:menuBarMenuLabel","get:popupMenuLabel","get:dialogLabel","get:alertDialogLabel","get:searchFieldLabel","get:currentDateLabel","get:selectedDateLabel","get:scrimLabel","get:bottomSheetLabel","get:licensesPageTitle","get:rowsPerPageTitle","get:cancelButtonLabel","get:closeButtonLabel","get:continueButtonLabel","get:copyButtonLabel","get:cutButtonLabel","get:scanTextButtonLabel","get:okButtonLabel","get:pasteButtonLabel","get:selectAllButtonLabel","get:lookUpButtonLabel","get:searchWebButtonLabel","get:shareButtonLabel","get:viewLicensesButtonLabel","get:anteMeridiemAbbreviation","get:postMeridiemAbbreviation","get:timePickerHourModeAnnouncement","get:timePickerMinuteModeAnnouncement","get:modalBarrierDismissLabel","get:menuDismissLabel","get:scriptCategory","get:signedInLabel","get:hideAccountsLabel","get:showAccountsLabel","get:reorderItemUp","get:reorderItemDown","get:reorderItemLeft","get:reorderItemRight","get:reorderItemToEnd","get:reorderItemToStart","get:expandedIconTapHint","get:collapsedIconTapHint","get:expansionTileExpandedHint","get:expansionTileCollapsedHint","get:expansionTileExpandedTapHint","get:expansionTileCollapsedTapHint","get:expandedHint","get:collapsedHint","get:refreshIndicatorSemanticLabel","get:keyboardKeyAlt","get:keyboardKeyAltGraph","get:keyboardKeyBackspace","get:keyboardKeyCapsLock","get:keyboardKeyChannelDown","get:keyboardKeyChannelUp","get:keyboardKeyControl","get:keyboardKeyDelete","get:keyboardKeyEject","get:keyboardKeyEnd","get:keyboardKeyEscape","get:keyboardKeyFn","get:keyboardKeyHome","get:keyboardKeyInsert","get:keyboardKeyMeta","get:keyboardKeyMetaMacOs","get:keyboardKeyMetaWindows","get:keyboardKeyNumLock","get:keyboardKeyNumpad1","get:keyboardKeyNumpad2","get:keyboardKeyNumpad3","get:keyboardKeyNumpad4","get:keyboardKeyNumpad5","get:keyboardKeyNumpad6","get:keyboardKeyNumpad7","get:keyboardKeyNumpad8","get:keyboardKeyNumpad9","get:keyboardKeyNumpad0","get:keyboardKeyNumpadAdd","get:keyboardKeyNumpadComma","get:keyboardKeyNumpadDecimal","get:keyboardKeyNumpadDivide","get:keyboardKeyNumpadEnter","get:keyboardKeyNumpadEqual","get:keyboardKeyNumpadMultiply","get:keyboardKeyNumpadParenLeft","get:keyboardKeyNumpadParenRight","get:keyboardKeyNumpadSubtract","get:keyboardKeyPageDown","get:keyboardKeyPageUp","get:keyboardKeyPower","get:keyboardKeyPowerOff","get:keyboardKeyPrintScreen","get:keyboardKeyScrollLock","get:keyboardKeySelect","get:keyboardKeyShift","get:keyboardKeySpace","aboutListTileTitle","licensesPackageDetailText","pageRowsInfoTitle","tabLabel","selectedRowCountTitle","scrimOnTapHint","timeOfDayFormat","formatDecimal","formatHour","formatMinute","formatTimeOfDay","formatYear","formatCompactDate","formatShortDate","formatMediumDate","formatFullDate","formatMonthYear","formatShortMonthDay","parseCompactDate","dateRangeStartDateSemanticLabel","dateRangeEndDateSemanticLabel","remainingTextFieldCharacterCount"]} as const;
-export interface DefaultMaterialLocalizations {
-readonly [_flaxDartTypeValue]: DefaultMaterialLocalizations;
+export function _DefaultMaterialLocalizationsFactory(): DefaultMaterialLocalizations {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_material#type:DefaultMaterialLocalizations", "", [], [], {}) as DefaultMaterialLocalizations;
+}
+const _DefaultMaterialLocalizationsProxy = {type: "flax.core/sdk_material#type:DefaultMaterialLocalizations", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"aboutListTileTitle":_flaxMemberParameters84,"licensesPackageDetailText":_flaxMemberParameters85,"pageRowsInfoTitle":_flaxMemberParameters86,"tabLabel":_flaxMemberParameters87,"selectedRowCountTitle":_flaxMemberParameters88,"scrimOnTapHint":_flaxMemberParameters89,"timeOfDayFormat":_flaxMemberParameters90,"formatDecimal":_flaxMemberParameters91,"formatHour":_flaxMemberParameters92,"formatMinute":_flaxMemberParameters93,"formatTimeOfDay":_flaxMemberParameters92,"formatYear":_flaxMemberParameters30,"formatCompactDate":_flaxMemberParameters30,"formatShortDate":_flaxMemberParameters30,"formatMediumDate":_flaxMemberParameters30,"formatFullDate":_flaxMemberParameters30,"formatMonthYear":_flaxMemberParameters30,"formatShortMonthDay":_flaxMemberParameters30,"parseCompactDate":_flaxMemberParameters94,"dateRangeStartDateSemanticLabel":_flaxMemberParameters95,"dateRangeEndDateSemanticLabel":_flaxMemberParameters95,"remainingTextFieldCharacterCount":_flaxMemberParameters96}, getters: ["narrowWeekdays","firstDayOfWeekIndex","dateSeparator","dateHelpText","selectYearSemanticsLabel","unspecifiedDate","unspecifiedDateRange","dateInputLabel","dateRangeStartLabel","dateRangeEndLabel","invalidDateFormatLabel","invalidDateRangeLabel","dateOutOfRangeLabel","saveButtonLabel","datePickerHelpText","dateRangePickerHelpText","calendarModeButtonLabel","inputDateModeButtonLabel","timePickerDialHelpText","timePickerInputHelpText","timePickerHourLabel","timePickerMinuteLabel","invalidTimeLabel","dialModeButtonLabel","inputTimeModeButtonLabel","openAppDrawerTooltip","backButtonTooltip","clearButtonTooltip","closeButtonTooltip","deleteButtonTooltip","moreButtonTooltip","nextMonthTooltip","previousMonthTooltip","nextPageTooltip","previousPageTooltip","firstPageTooltip","lastPageTooltip","showMenuTooltip","drawerLabel","menuBarMenuLabel","popupMenuLabel","dialogLabel","alertDialogLabel","searchFieldLabel","currentDateLabel","selectedDateLabel","scrimLabel","bottomSheetLabel","licensesPageTitle","rowsPerPageTitle","cancelButtonLabel","closeButtonLabel","continueButtonLabel","copyButtonLabel","cutButtonLabel","scanTextButtonLabel","okButtonLabel","pasteButtonLabel","selectAllButtonLabel","lookUpButtonLabel","searchWebButtonLabel","shareButtonLabel","viewLicensesButtonLabel","anteMeridiemAbbreviation","postMeridiemAbbreviation","timePickerHourModeAnnouncement","timePickerMinuteModeAnnouncement","modalBarrierDismissLabel","menuDismissLabel","scriptCategory","signedInLabel","hideAccountsLabel","showAccountsLabel","reorderItemUp","reorderItemDown","reorderItemLeft","reorderItemRight","reorderItemToEnd","reorderItemToStart","expandedIconTapHint","collapsedIconTapHint","expansionTileExpandedHint","expansionTileCollapsedHint","expansionTileExpandedTapHint","expansionTileCollapsedTapHint","expandedHint","collapsedHint","refreshIndicatorSemanticLabel","keyboardKeyAlt","keyboardKeyAltGraph","keyboardKeyBackspace","keyboardKeyCapsLock","keyboardKeyChannelDown","keyboardKeyChannelUp","keyboardKeyControl","keyboardKeyDelete","keyboardKeyEject","keyboardKeyEnd","keyboardKeyEscape","keyboardKeyFn","keyboardKeyHome","keyboardKeyInsert","keyboardKeyMeta","keyboardKeyMetaMacOs","keyboardKeyMetaWindows","keyboardKeyNumLock","keyboardKeyNumpad1","keyboardKeyNumpad2","keyboardKeyNumpad3","keyboardKeyNumpad4","keyboardKeyNumpad5","keyboardKeyNumpad6","keyboardKeyNumpad7","keyboardKeyNumpad8","keyboardKeyNumpad9","keyboardKeyNumpad0","keyboardKeyNumpadAdd","keyboardKeyNumpadComma","keyboardKeyNumpadDecimal","keyboardKeyNumpadDivide","keyboardKeyNumpadEnter","keyboardKeyNumpadEqual","keyboardKeyNumpadMultiply","keyboardKeyNumpadParenLeft","keyboardKeyNumpadParenRight","keyboardKeyNumpadSubtract","keyboardKeyPageDown","keyboardKeyPageUp","keyboardKeyPower","keyboardKeyPowerOff","keyboardKeyPrintScreen","keyboardKeyScrollLock","keyboardKeySelect","keyboardKeyShift","keyboardKeySpace"], setters: [], contextMembers: [], superMembers: ["get:narrowWeekdays","get:firstDayOfWeekIndex","get:dateSeparator","get:dateHelpText","get:selectYearSemanticsLabel","get:unspecifiedDate","get:unspecifiedDateRange","get:dateInputLabel","get:dateRangeStartLabel","get:dateRangeEndLabel","get:invalidDateFormatLabel","get:invalidDateRangeLabel","get:dateOutOfRangeLabel","get:saveButtonLabel","get:datePickerHelpText","get:dateRangePickerHelpText","get:calendarModeButtonLabel","get:inputDateModeButtonLabel","get:timePickerDialHelpText","get:timePickerInputHelpText","get:timePickerHourLabel","get:timePickerMinuteLabel","get:invalidTimeLabel","get:dialModeButtonLabel","get:inputTimeModeButtonLabel","get:openAppDrawerTooltip","get:backButtonTooltip","get:clearButtonTooltip","get:closeButtonTooltip","get:deleteButtonTooltip","get:moreButtonTooltip","get:nextMonthTooltip","get:previousMonthTooltip","get:nextPageTooltip","get:previousPageTooltip","get:firstPageTooltip","get:lastPageTooltip","get:showMenuTooltip","get:drawerLabel","get:menuBarMenuLabel","get:popupMenuLabel","get:dialogLabel","get:alertDialogLabel","get:searchFieldLabel","get:currentDateLabel","get:selectedDateLabel","get:scrimLabel","get:bottomSheetLabel","get:licensesPageTitle","get:rowsPerPageTitle","get:cancelButtonLabel","get:closeButtonLabel","get:continueButtonLabel","get:copyButtonLabel","get:cutButtonLabel","get:scanTextButtonLabel","get:okButtonLabel","get:pasteButtonLabel","get:selectAllButtonLabel","get:lookUpButtonLabel","get:searchWebButtonLabel","get:shareButtonLabel","get:viewLicensesButtonLabel","get:anteMeridiemAbbreviation","get:postMeridiemAbbreviation","get:timePickerHourModeAnnouncement","get:timePickerMinuteModeAnnouncement","get:modalBarrierDismissLabel","get:menuDismissLabel","get:scriptCategory","get:signedInLabel","get:hideAccountsLabel","get:showAccountsLabel","get:reorderItemUp","get:reorderItemDown","get:reorderItemLeft","get:reorderItemRight","get:reorderItemToEnd","get:reorderItemToStart","get:expandedIconTapHint","get:collapsedIconTapHint","get:expansionTileExpandedHint","get:expansionTileCollapsedHint","get:expansionTileExpandedTapHint","get:expansionTileCollapsedTapHint","get:expandedHint","get:collapsedHint","get:refreshIndicatorSemanticLabel","get:keyboardKeyAlt","get:keyboardKeyAltGraph","get:keyboardKeyBackspace","get:keyboardKeyCapsLock","get:keyboardKeyChannelDown","get:keyboardKeyChannelUp","get:keyboardKeyControl","get:keyboardKeyDelete","get:keyboardKeyEject","get:keyboardKeyEnd","get:keyboardKeyEscape","get:keyboardKeyFn","get:keyboardKeyHome","get:keyboardKeyInsert","get:keyboardKeyMeta","get:keyboardKeyMetaMacOs","get:keyboardKeyMetaWindows","get:keyboardKeyNumLock","get:keyboardKeyNumpad1","get:keyboardKeyNumpad2","get:keyboardKeyNumpad3","get:keyboardKeyNumpad4","get:keyboardKeyNumpad5","get:keyboardKeyNumpad6","get:keyboardKeyNumpad7","get:keyboardKeyNumpad8","get:keyboardKeyNumpad9","get:keyboardKeyNumpad0","get:keyboardKeyNumpadAdd","get:keyboardKeyNumpadComma","get:keyboardKeyNumpadDecimal","get:keyboardKeyNumpadDivide","get:keyboardKeyNumpadEnter","get:keyboardKeyNumpadEqual","get:keyboardKeyNumpadMultiply","get:keyboardKeyNumpadParenLeft","get:keyboardKeyNumpadParenRight","get:keyboardKeyNumpadSubtract","get:keyboardKeyPageDown","get:keyboardKeyPageUp","get:keyboardKeyPower","get:keyboardKeyPowerOff","get:keyboardKeyPrintScreen","get:keyboardKeyScrollLock","get:keyboardKeySelect","get:keyboardKeyShift","get:keyboardKeySpace","aboutListTileTitle","licensesPackageDetailText","pageRowsInfoTitle","tabLabel","selectedRowCountTitle","scrimOnTapHint","timeOfDayFormat","formatDecimal","formatHour","formatMinute","formatTimeOfDay","formatYear","formatCompactDate","formatShortDate","formatMediumDate","formatFullDate","formatMonthYear","formatShortMonthDay","parseCompactDate","dateRangeStartDateSemanticLabel","dateRangeEndDateSemanticLabel","remainingTextFieldCharacterCount"]} as const;
+export interface _DefaultMaterialLocalizationsNative extends DefaultMaterialLocalizations {
+readonly [_flaxDartTypeValue]: _DefaultMaterialLocalizationsNative;
 
 aboutListTileTitle(applicationName: string): string;
 licensesPackageDetailText(licenseCount: number): string;
@@ -186,21 +348,22 @@ get keyboardKeySelect(): string;
 get keyboardKeyShift(): string;
 get keyboardKeySpace(): string;
 }
-export abstract class DefaultMaterialLocalizations extends _FlaxProxyBase {
+export abstract class _DefaultMaterialLocalizationsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DefaultMaterialLocalizations>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: DefaultMaterialLocalizations;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:DefaultMaterialLocalizations", readonly [], false];
 constructor() { super(_DefaultMaterialLocalizationsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(DefaultMaterialLocalizations.prototype, _DefaultMaterialLocalizationsProxy);
-export namespace DefaultMaterialLocalizations { export function implement(args: [], implementation: {}): DefaultMaterialLocalizations {
+_flaxDefineProxyBase(_DefaultMaterialLocalizationsNative.prototype, _DefaultMaterialLocalizationsProxy);
+export namespace _DefaultMaterialLocalizationsFactory { export function implement(args: [], implementation: {}): DefaultMaterialLocalizations {
 return constructProxy(_DefaultMaterialLocalizationsProxy, args, implementation) as DefaultMaterialLocalizations; } }
-export namespace DefaultMaterialLocalizations { export declare const delegate: upstream2.LocalizationsDelegate<upstream0.MaterialLocalizations>; }
-_flaxDefineStaticGetters(DefaultMaterialLocalizations, "flax.core/sdk_material#read:DefaultMaterialLocalizations.", ["delegate"]);
-export namespace DefaultMaterialLocalizations { export function load(locale: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }>): Promise<upstream0.MaterialLocalizations> {
+const _DefaultMaterialLocalizationsBinding = _flaxProxyFactory(_DefaultMaterialLocalizationsFactory, _DefaultMaterialLocalizationsNative) as unknown as typeof _DefaultMaterialLocalizationsFactory & (new() => _DefaultMaterialLocalizationsNative);
+export namespace _DefaultMaterialLocalizationsFactory { export declare const delegate: upstream2.LocalizationsDelegate<upstream0.MaterialLocalizations>; }
+_flaxDefineStaticGetters(_DefaultMaterialLocalizationsFactory, "flax.core/sdk_material#read:DefaultMaterialLocalizations.", ["delegate"]);
+export namespace _DefaultMaterialLocalizationsFactory { export function load(locale: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }>): Promise<upstream0.MaterialLocalizations> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_material#function:DefaultMaterialLocalizations.load", [locale]);
 return _flaxResult as Promise<upstream0.MaterialLocalizations>;
 } }
-_flaxBindInstanceType<DefaultMaterialLocalizations, typeof DefaultMaterialLocalizations>(DefaultMaterialLocalizations, "flax.core/sdk_material#type:DefaultMaterialLocalizations", ["dart:core::Object","flax.core/sdk_material#type:MaterialLocalizations"]);
+export const DefaultMaterialLocalizations: typeof _DefaultMaterialLocalizationsBinding & _FlaxInstanceType<DefaultMaterialLocalizations> & _FlaxDartType<DefaultMaterialLocalizations, readonly ["class", "flax.core/sdk_material#type:DefaultMaterialLocalizations", readonly [], false]> = _flaxBindInstanceType<DefaultMaterialLocalizations, typeof _DefaultMaterialLocalizationsBinding>(_DefaultMaterialLocalizationsBinding, "flax.core/sdk_material#type:DefaultMaterialLocalizations", ["dart:core::Object","flax.core/sdk_material#type:MaterialLocalizations"]) as typeof _DefaultMaterialLocalizationsBinding & _FlaxInstanceType<DefaultMaterialLocalizations> & _FlaxDartType<DefaultMaterialLocalizations, readonly ["class", "flax.core/sdk_material#type:DefaultMaterialLocalizations", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "openAppDrawerTooltip" | "backButtonTooltip" | "clearButtonTooltip" | "closeButtonTooltip" | "deleteButtonTooltip" | "moreButtonTooltip" | "nextMonthTooltip" | "previousMonthTooltip" | "firstPageTooltip" | "lastPageTooltip" | "nextPageTooltip" | "previousPageTooltip" | "showMenuTooltip" | "licensesPageTitle" | "rowsPerPageTitle" | "cancelButtonLabel" | "closeButtonLabel" | "continueButtonLabel" | "copyButtonLabel" | "cutButtonLabel" | "scanTextButtonLabel" | "okButtonLabel" | "pasteButtonLabel" | "selectAllButtonLabel" | "lookUpButtonLabel" | "searchWebButtonLabel" | "shareButtonLabel" | "viewLicensesButtonLabel" | "anteMeridiemAbbreviation" | "postMeridiemAbbreviation" | "timePickerHourModeAnnouncement" | "timePickerMinuteModeAnnouncement" | "modalBarrierDismissLabel" | "menuDismissLabel" | "drawerLabel" | "popupMenuLabel" | "menuBarMenuLabel" | "dialogLabel" | "alertDialogLabel" | "searchFieldLabel" | "currentDateLabel" | "selectedDateLabel" | "scrimLabel" | "bottomSheetLabel" | "scriptCategory" | "narrowWeekdays" | "firstDayOfWeekIndex" | "dateSeparator" | "dateHelpText" | "selectYearSemanticsLabel" | "unspecifiedDate" | "unspecifiedDateRange" | "dateInputLabel" | "dateRangeStartLabel" | "dateRangeEndLabel" | "invalidDateFormatLabel" | "invalidDateRangeLabel" | "dateOutOfRangeLabel" | "saveButtonLabel" | "datePickerHelpText" | "dateRangePickerHelpText" | "calendarModeButtonLabel" | "inputDateModeButtonLabel" | "timePickerDialHelpText" | "timePickerInputHelpText" | "timePickerHourLabel" | "timePickerMinuteLabel" | "invalidTimeLabel" | "dialModeButtonLabel" | "inputTimeModeButtonLabel" | "signedInLabel" | "hideAccountsLabel" | "showAccountsLabel" | "reorderItemToStart" | "reorderItemToEnd" | "reorderItemUp" | "reorderItemDown" | "reorderItemLeft" | "reorderItemRight" | "expandedIconTapHint" | "collapsedIconTapHint" | "expansionTileExpandedHint" | "expansionTileCollapsedHint" | "expansionTileExpandedTapHint" | "expansionTileCollapsedTapHint" | "expandedHint" | "collapsedHint" | "refreshIndicatorSemanticLabel" | "keyboardKeyAlt" | "keyboardKeyAltGraph" | "keyboardKeyBackspace" | "keyboardKeyCapsLock" | "keyboardKeyChannelDown" | "keyboardKeyChannelUp" | "keyboardKeyControl" | "keyboardKeyDelete" | "keyboardKeyEject" | "keyboardKeyEnd" | "keyboardKeyEscape" | "keyboardKeyFn" | "keyboardKeyHome" | "keyboardKeyInsert" | "keyboardKeyMeta" | "keyboardKeyMetaMacOs" | "keyboardKeyMetaWindows" | "keyboardKeyNumLock" | "keyboardKeyNumpad1" | "keyboardKeyNumpad2" | "keyboardKeyNumpad3" | "keyboardKeyNumpad4" | "keyboardKeyNumpad5" | "keyboardKeyNumpad6" | "keyboardKeyNumpad7" | "keyboardKeyNumpad8" | "keyboardKeyNumpad9" | "keyboardKeyNumpad0" | "keyboardKeyNumpadAdd" | "keyboardKeyNumpadComma" | "keyboardKeyNumpadDecimal" | "keyboardKeyNumpadDivide" | "keyboardKeyNumpadEnter" | "keyboardKeyNumpadEqual" | "keyboardKeyNumpadMultiply" | "keyboardKeyNumpadParenLeft" | "keyboardKeyNumpadParenRight" | "keyboardKeyNumpadSubtract" | "keyboardKeyPageDown" | "keyboardKeyPageUp" | "keyboardKeyPower" | "keyboardKeyPowerOff" | "keyboardKeyPrintScreen" | "keyboardKeyScrollLock" | "keyboardKeySelect" | "keyboardKeyShift" | "keyboardKeySpace" | "aboutListTileTitle" | "licensesPackageDetailText" | "pageRowsInfoTitle" | "tabLabel" | "selectedRowCountTitle" | "scrimOnTapHint" | "timeOfDayFormat" | "formatDecimal" | "formatHour" | "formatMinute" | "formatTimeOfDay" | "formatYear" | "formatCompactDate" | "formatShortDate" | "formatMediumDate" | "formatFullDate" | "formatMonthYear" | "formatShortMonthDay" | "parseCompactDate" | "dateRangeStartDateSemanticLabel" | "dateRangeEndDateSemanticLabel" | "remainingTextFieldCharacterCount" | "__flaxBound:package:flutter/src/material/material_localizations.dart::DefaultMaterialLocalizations" | "__flaxBound:package:flutter/src/material/material_localizations.dart::MaterialLocalizations";

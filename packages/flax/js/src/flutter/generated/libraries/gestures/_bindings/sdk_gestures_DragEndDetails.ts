@@ -18,17 +18,30 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { _flaxMemberParameters23, _flaxMemberParameters7, _flaxMemberParameters16, _flaxMemberParameters15, _flaxMemberParameters9 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface DragEndDetails extends Omit<upstream0.PositionedGestureDetails, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PositionedGestureDetails>, Readonly<{ "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragEndDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __DragEndDetails: unique symbol;
 readonly [_flaxDartTypeValue]: DragEndDetails;
 
+readonly globalPosition: upstream2.Offset;
+readonly localPosition: upstream2.Offset;
+readonly velocity: upstream3.Velocity;
+readonly primaryVelocity: number | null;
+toStringShort(): string;
+toString(options?: {minLevel?: upstream4.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream6.DiagnosticsTreeStyle | null | undefined}): upstream5.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 }
 defineObject("flax.core/sdk_gestures#type:DragEndDetails", ["globalPosition","localPosition","velocity","primaryVelocity"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:DragEndDetails", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+export function _DragEndDetailsFactory(options: { globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; velocity?: Readonly<{ "__flaxBound:package:flutter/src/gestures/velocity_tracker.dart::Velocity": readonly [] }> | undefined; primaryVelocity?: number | null | undefined } = {}): DragEndDetails {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_gestures#type:DragEndDetails", "", [{"name":"globalPosition"},{"name":"localPosition"},{"name":"velocity"},{"name":"primaryVelocity"}], [], options) as DragEndDetails;
+}
 const _DragEndDetailsProxy = {type: "flax.core/sdk_gestures#type:DragEndDetails", parameters: _flaxMemberParameters23, constructors: {"": _flaxMemberParameters23}, methods: {"toStringShort":_flaxMemberParameters7,"toString":_flaxMemberParameters16,"toDiagnosticsNode":_flaxMemberParameters15,"debugFillProperties":_flaxMemberParameters9}, getters: ["globalPosition","localPosition","velocity","primaryVelocity"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","get:velocity","get:primaryVelocity","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
-export interface DragEndDetails {
-readonly [_flaxDartTypeValue]: DragEndDetails;
+export interface _DragEndDetailsNative extends DragEndDetails {
+readonly [_flaxDartTypeValue]: _DragEndDetailsNative;
 
 toStringShort(): string;
 toString(options?: {minLevel?: upstream4.DiagnosticLevel | undefined}): string;
@@ -39,14 +52,15 @@ get localPosition(): upstream2.Offset;
 get velocity(): upstream3.Velocity;
 get primaryVelocity(): number | null;
 }
-export abstract class DragEndDetails extends _FlaxProxyBase {
+export abstract class _DragEndDetailsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DragEndDetails>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: DragEndDetails;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:DragEndDetails", readonly [], false];
 constructor(options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; velocity?: Readonly<{ "__flaxBound:package:flutter/src/gestures/velocity_tracker.dart::Velocity": readonly [] }> | undefined; primaryVelocity?: number | null | undefined}) { super(_DragEndDetailsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(DragEndDetails.prototype, _DragEndDetailsProxy);
-export namespace DragEndDetails { export function implement(args: [options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; velocity?: Readonly<{ "__flaxBound:package:flutter/src/gestures/velocity_tracker.dart::Velocity": readonly [] }> | undefined; primaryVelocity?: number | null | undefined}], implementation: {}): DragEndDetails {
+_flaxDefineProxyBase(_DragEndDetailsNative.prototype, _DragEndDetailsProxy);
+export namespace _DragEndDetailsFactory { export function implement(args: [options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; velocity?: Readonly<{ "__flaxBound:package:flutter/src/gestures/velocity_tracker.dart::Velocity": readonly [] }> | undefined; primaryVelocity?: number | null | undefined}], implementation: {}): DragEndDetails {
 return constructProxy(_DragEndDetailsProxy, args, implementation) as DragEndDetails; } }
-_flaxBindInstanceType<DragEndDetails, typeof DragEndDetails>(DragEndDetails, "flax.core/sdk_gestures#type:DragEndDetails", ["dart:core::Object","flax.core/sdk_gestures#type:PositionedGestureDetails","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _DragEndDetailsBinding = _flaxProxyFactory(_DragEndDetailsFactory, _DragEndDetailsNative) as unknown as typeof _DragEndDetailsFactory & (new(options?: {globalPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; velocity?: Readonly<{ "__flaxBound:package:flutter/src/gestures/velocity_tracker.dart::Velocity": readonly [] }> | undefined; primaryVelocity?: number | null | undefined}) => _DragEndDetailsNative);
+export const DragEndDetails: typeof _DragEndDetailsBinding & _FlaxInstanceType<DragEndDetails> & _FlaxDartType<DragEndDetails, readonly ["class", "flax.core/sdk_gestures#type:DragEndDetails", readonly [], false]> = _flaxBindInstanceType<DragEndDetails, typeof _DragEndDetailsBinding>(_DragEndDetailsBinding, "flax.core/sdk_gestures#type:DragEndDetails", ["dart:core::Object","flax.core/sdk_gestures#type:PositionedGestureDetails","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _DragEndDetailsBinding & _FlaxInstanceType<DragEndDetails> & _FlaxDartType<DragEndDetails, readonly ["class", "flax.core/sdk_gestures#type:DragEndDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "globalPosition" | "localPosition" | "velocity" | "primaryVelocity" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragEndDetails" | "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

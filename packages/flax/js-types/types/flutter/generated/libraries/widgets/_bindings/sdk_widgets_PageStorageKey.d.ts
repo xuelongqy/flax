@@ -1,4 +1,5 @@
-import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_ValueKey';
 import '@flax/flutter/foundation/_bindings/flutter_ValueKey';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_LocalKey';
@@ -18,13 +19,17 @@ export interface PageStorageKey<T extends unknown | null = unknown | null> exten
 }> {
     readonly __PageStorageKey: unique symbol;
     readonly [_flaxDartTypeValue]: PageStorageKey<T>;
+    readonly value: T;
+    toString(): string;
 }
-export interface PageStorageKey<T extends unknown | null = unknown | null> {
-    readonly [_flaxDartTypeValue]: PageStorageKey<T>;
+export declare function _PageStorageKeyFactory<T extends unknown | null = unknown | null>(value: (T | _FlaxDartOutput<T>)): PageStorageKey<T>;
+export declare function _PageStorageKeyFactory(value: unknown | null): PageStorageKey<unknown | null>;
+export interface _PageStorageKeyNative<T extends unknown | null = unknown | null> extends PageStorageKey<T> {
+    readonly [_flaxDartTypeValue]: _PageStorageKeyNative<T>;
     toString(): string;
     get value(): T;
 }
-export declare abstract class PageStorageKey<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
+export declare abstract class _PageStorageKeyNative<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PageStorageKey<unknown | null>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PageStorageKey<unknown | null>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:PageStorageKey", readonly [readonly ["any", null, readonly [], true]], false];
@@ -32,14 +37,24 @@ export declare abstract class PageStorageKey<T extends unknown | null = unknown 
     static [_flaxDartTypeCases]: _FlaxSignature1;
     constructor(value: unknown | null);
 }
-export declare namespace PageStorageKey {
+export declare namespace _PageStorageKeyFactory {
     function implement<T extends unknown | null = unknown | null>(args: [value: unknown | null], implementation: {}): PageStorageKey<T>;
 }
+declare const _PageStorageKeyBinding: typeof _PageStorageKeyFactory & (new <T extends unknown | null = unknown | null>(value: unknown | null) => _PageStorageKeyNative<T>);
+export declare const PageStorageKey: typeof _PageStorageKeyBinding & _FlaxInstanceType<PageStorageKey<unknown | null>> & _FlaxDartType<PageStorageKey<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:PageStorageKey", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "toString" | "__flaxBound:package:flutter/src/widgets/page_storage.dart::PageStorageKey" | "__flaxBound:package:flutter/src/foundation/key.dart::ValueKey" | "__flaxBound:package:flutter/src/foundation/key.dart::LocalKey" | "__flaxBound:package:flutter/src/foundation/key.dart::Key";
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new (value: unknown | null) => _PageStorageKeyNative<_Selected0>) & {
+        (value: (_Selected0 | DartInput<_Selected0>)): _PageStorageKeyNative<_Selected0>;
+        readonly prototype: _PageStorageKeyNative<_Selected0>;
+        implement(args: readonly [unknown | null], implementation: Partial<_PageStorageKeyNative<_Selected0>>): _PageStorageKeyNative<_Selected0>;
+    } & _FlaxInstanceType<_PageStorageKeyNative<_Selected0>> & _FlaxDartType<_PageStorageKeyNative<_Selected0>> : never : never;
+}
 interface _FlaxSignature1 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new (value: unknown | null) => PageStorageKey<_Selected0>) & {
-        readonly prototype: PageStorageKey<_Selected0>;
-        implement(args: readonly [unknown | null], implementation: Partial<PageStorageKey<_Selected0>>): PageStorageKey<_Selected0>;
-    } & _FlaxInstanceType<PageStorageKey<_Selected0>> & _FlaxDartType<PageStorageKey<_Selected0>> : never : never;
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new (value: unknown | null) => _PageStorageKeyNative<_Selected0>) & {
+        (value: (_Selected0 | DartInput<_Selected0>)): _PageStorageKeyNative<_Selected0>;
+        readonly prototype: _PageStorageKeyNative<_Selected0>;
+        implement(args: readonly [unknown | null], implementation: Partial<_PageStorageKeyNative<_Selected0>>): _PageStorageKeyNative<_Selected0>;
+    } & _FlaxInstanceType<_PageStorageKeyNative<_Selected0>> & _FlaxDartType<_PageStorageKeyNative<_Selected0>> : never : never;
 }
 export {};

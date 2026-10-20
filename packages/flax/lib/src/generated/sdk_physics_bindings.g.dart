@@ -27,34 +27,34 @@ const sdk_physicsBindings = FlaxBindingModule(
     _flaxBinding40,
     _flaxBinding56,
     _flaxBinding63,
-    _flaxBinding31,
-    _flaxBinding76,
+    _flaxBinding27,
+    _flaxBinding78,
     _flaxBinding61,
-    _flaxBinding85,
+    _flaxBinding87,
   ],
   functions: [
     FlaxFunctionBinding(
       "flax.core/sdk_physics#function:nearEqual",
       [
-        FlaxParameter("a", _flaxBinding86, required: true),
-        FlaxParameter("b", _flaxBinding86, required: true),
-        FlaxParameter("epsilon", _flaxBinding0, required: true),
+        FlaxParameter.required("a", flaxNullableDoubleType),
+        FlaxParameter.required("b", flaxNullableDoubleType),
+        FlaxParameter.required("epsilon", flaxDoubleType),
       ],
-      _flaxBinding3,
+      flaxBoolType,
       _function_nearEqual,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_physics#function:nearZero",
       [
-        FlaxParameter("a", _flaxBinding0, required: true),
-        FlaxParameter("epsilon", _flaxBinding0, required: true),
+        FlaxParameter.required("a", flaxDoubleType),
+        FlaxParameter.required("epsilon", flaxDoubleType),
       ],
-      _flaxBinding3,
+      flaxBoolType,
       _function_nearZero,
     ),
   ],
   constants: [
-    FlaxConstantGroup(_flaxBinding8, {
+    FlaxConstantGroup(_flaxBinding3, {
       "flax.core/sdk_physics#read:Tolerance.defaultTolerance":
           api.Tolerance.defaultTolerance,
     }),
@@ -68,6 +68,7 @@ const sdk_physicsBindings = FlaxBindingModule(
     "instance-checks",
     "native-navigation-objects",
     "native-widget-proxies",
+    "proxy-super-constructors",
     "shared-static-readers",
   ],
   stateVariants: [],
@@ -205,6 +206,14 @@ Object _createBoundedFrictionSimulation(
   Map<String, Object?> values,
 ) {
   switch (ctor) {
+    case "":
+      return api.BoundedFrictionSimulation(
+        values["drag"] as double,
+        values["position"] as double,
+        values["velocity"] as double,
+        values["_minX"] as double,
+        values["_maxX"] as double,
+      );
     case '@implementation':
       return _BoundedFrictionSimulationProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -252,6 +261,14 @@ Object? _ClampedSimulation_super_get_dxMax(
 ) => (receiver as _ClampedSimulationProxy)._flaxSuperGet_dxMax;
 Object _createClampedSimulation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.ClampedSimulation(
+        values["simulation"] as api.Simulation,
+        xMin: values["xMin"] as double,
+        xMax: values["xMax"] as double,
+        dxMin: values["dxMin"] as double,
+        dxMax: values["dxMax"] as double,
+      );
     case '@implementation':
       return _ClampedSimulationProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -291,6 +308,29 @@ Object? _FrictionSimulation_super_get_finalX(
 ) => (receiver as _FrictionSimulationProxy)._flaxSuperGet_finalX;
 Object _createFrictionSimulation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      if (!values.containsKey("tolerance")) {
+        return api.FrictionSimulation(
+          values["drag"] as double,
+          values["position"] as double,
+          values["velocity"] as double,
+          constantDeceleration: values["constantDeceleration"] as double,
+        );
+      }
+      return api.FrictionSimulation(
+        values["drag"] as double,
+        values["position"] as double,
+        values["velocity"] as double,
+        tolerance: values["tolerance"] as api.Tolerance,
+        constantDeceleration: values["constantDeceleration"] as double,
+      );
+    case "through":
+      return api.FrictionSimulation.through(
+        values["startPosition"] as double,
+        values["endPosition"] as double,
+        values["startVelocity"] as double,
+        values["endVelocity"] as double,
+      );
     case '@implementation':
       if (!values.containsKey("tolerance")) {
         return _FrictionSimulationProxy(
@@ -317,6 +357,13 @@ Object _createFrictionSimulation(String ctor, Map<String, Object?> values) {
 bool _isGravitySimulation(Object value) => value is api.GravitySimulation;
 Object _createGravitySimulation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.GravitySimulation(
+        values["acceleration"] as double,
+        values["distance"] as double,
+        values["endDistance"] as double,
+        values["velocity"] as double,
+      );
     case '@implementation':
       return _GravitySimulationProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -338,6 +385,22 @@ Object? _ScrollSpringSimulation_super_get_type(
 ) => (receiver as _ScrollSpringSimulationProxy)._flaxSuperGet_type;
 Object _createScrollSpringSimulation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      if (!values.containsKey("tolerance")) {
+        return api.ScrollSpringSimulation(
+          values["spring"] as api.SpringDescription,
+          values["start"] as double,
+          values["end"] as double,
+          values["velocity"] as double,
+        );
+      }
+      return api.ScrollSpringSimulation(
+        values["spring"] as api.SpringDescription,
+        values["start"] as double,
+        values["end"] as double,
+        values["velocity"] as double,
+        tolerance: values["tolerance"] as api.Tolerance,
+      );
     case '@implementation':
       if (!values.containsKey("tolerance")) {
         return _ScrollSpringSimulationProxy(
@@ -439,12 +502,41 @@ Object? _SpringDescription_super_get_bounce(
 ) => (receiver as _SpringDescriptionProxy)._flaxSuperGet_bounce;
 Object _createSpringDescription(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.SpringDescription(
+        mass: values["mass"] as double,
+        stiffness: values["stiffness"] as double,
+        damping: values["damping"] as double,
+      );
+    case "withDampingRatio":
+      return api.SpringDescription.withDampingRatio(
+        mass: values["mass"] as double,
+        stiffness: values["stiffness"] as double,
+        ratio: values["ratio"] as double,
+      );
+    case "withDurationAndBounce":
+      if (!values.containsKey("duration")) {
+        return api.SpringDescription.withDurationAndBounce(
+          bounce: values["bounce"] as double,
+        );
+      }
+      return api.SpringDescription.withDurationAndBounce(
+        duration: values["duration"] as api1.Duration,
+        bounce: values["bounce"] as double,
+      );
     case '@implementation':
       return _SpringDescriptionProxy(
         values['@peer'] as FlaxProxyPeer,
         mass: values["mass"] as double,
         stiffness: values["stiffness"] as double,
         damping: values["damping"] as double,
+      );
+    case "@implementation:withDampingRatio":
+      return _SpringDescriptionProxy.withDampingRatio(
+        values['@peer'] as FlaxProxyPeer,
+        mass: values["mass"] as double,
+        stiffness: values["stiffness"] as double,
+        ratio: values["ratio"] as double,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -460,6 +552,24 @@ Object? _SpringSimulation_super_get_type(
 ) => (receiver as _SpringSimulationProxy)._flaxSuperGet_type;
 Object _createSpringSimulation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      if (!values.containsKey("tolerance")) {
+        return api.SpringSimulation(
+          values["spring"] as api.SpringDescription,
+          values["start"] as double,
+          values["end"] as double,
+          values["velocity"] as double,
+          snapToEnd: values["snapToEnd"] as bool,
+        );
+      }
+      return api.SpringSimulation(
+        values["spring"] as api.SpringDescription,
+        values["start"] as double,
+        values["end"] as double,
+        values["velocity"] as double,
+        snapToEnd: values["snapToEnd"] as bool,
+        tolerance: values["tolerance"] as api.Tolerance,
+      );
     case '@implementation':
       if (!values.containsKey("tolerance")) {
         return _SpringSimulationProxy(
@@ -507,6 +617,12 @@ Object? _Tolerance_super_get_velocity(
 ) => (receiver as _ToleranceProxy)._flaxSuperGet_velocity;
 Object _createTolerance(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.Tolerance(
+        distance: values["distance"] as double,
+        time: values["time"] as double,
+        velocity: values["velocity"] as double,
+      );
     case '@implementation':
       return _ToleranceProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -1119,6 +1235,12 @@ final class _SpringDescriptionProxy extends api.SpringDescription
     required double super.stiffness,
     required double super.damping,
   });
+  _SpringDescriptionProxy.withDampingRatio(
+    this._flaxPeer, {
+    required double super.mass,
+    required double super.stiffness,
+    double super.ratio,
+  }) : super.withDampingRatio();
   @override
   String toString() {
     return _FlaxProxyDispatch2_call_toString(this, 0);
@@ -1319,336 +1441,278 @@ final class _ToleranceProxy extends api.Tolerance
 }
 
 const _flaxDartShapes = <FlaxDartShapeTemplate>[];
-const _flaxBinding0 = FlaxTypeRef("double");
-const _flaxBinding1 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "time",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding0,
+const _flaxBinding0 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("time", flaxDoubleType)],
+  flaxDoubleType,
   id: "callback:<>(p:r:time:double:)->double:",
 );
-const _flaxBinding2 = FlaxCallbackBinding.signature(
-  [FlaxCallbackParameter("x", _flaxBinding0, required: true, positional: true)],
-  _flaxBinding0,
+const _flaxBinding1 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("x", flaxDoubleType)],
+  flaxDoubleType,
   id: "callback:<>(p:r:x:double:)->double:",
 );
-const _flaxBinding3 = FlaxTypeRef("bool");
-const _flaxBinding4 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "time",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding3,
+const _flaxBinding2 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("time", flaxDoubleType)],
+  flaxBoolType,
   id: "callback:<>(p:r:time:double:)->bool:",
 );
-const _flaxBinding5 = FlaxTypeRef("String");
-const _flaxBinding6 = FlaxCallbackBinding.signature(
+const _flaxBinding3 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_physics#type:Tolerance",
+);
+const _flaxBinding4 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding5,
-  id: "callback:<>()->String:",
+  _flaxBinding3,
+  id: "callback:<>()->object:flax.core/sdk_physics#type:Tolerance",
+);
+const _flaxBinding5 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding3)],
+  flaxVoidType,
+  id: "callback:<>(p:r:value:object:flax.core/sdk_physics#type:Tolerance)->void:",
+);
+const _flaxBinding6 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_physics#type:Simulation",
 );
 const _flaxBinding7 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding0,
-  id: "callback:<>()->double:",
+  _flaxBinding6,
+  id: "callback:<>()->object:flax.core/sdk_physics#type:Simulation",
 );
 const _flaxBinding8 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_physics#type:Tolerance",
+  "enum",
+  id: "flax.core/sdk_physics#type:SpringType",
 );
 const _flaxBinding9 = FlaxCallbackBinding.signature(
   [],
   _flaxBinding8,
-  id: "callback:<>()->object:flax.core/sdk_physics#type:Tolerance",
-);
-const _flaxBinding10 = FlaxTypeRef("void");
-const _flaxBinding11 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding8,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding10,
-  id: "callback:<>(p:r:value:object:flax.core/sdk_physics#type:Tolerance)->void:",
-);
-const _flaxBinding12 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_physics#type:Simulation",
-);
-const _flaxBinding13 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding12,
-  id: "callback:<>()->object:flax.core/sdk_physics#type:Simulation",
-);
-const _flaxBinding14 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_physics#type:SpringType",
-);
-const _flaxBinding15 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding14,
   id: "callback:<>()->enum:flax.core/sdk_physics#type:SpringType",
 );
-const _flaxBinding16 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Duration",
-);
-const _flaxBinding17 = FlaxCallbackBinding.signature(
+const _flaxBinding10 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding16,
+  flaxDurationType,
   id: "callback:<>()->object:flax.core/flutter#type:Duration",
 );
-const _flaxBinding18 = FlaxGetter(
+const _flaxBinding11 = FlaxGetter.plain(
   "tolerance",
-  _flaxBinding8,
+  _flaxBinding3,
   _Simulation_tolerance,
 );
-const _flaxBinding19 = FlaxSetter(
+const _flaxBinding12 = FlaxSetter(
   "tolerance",
-  _flaxBinding8,
+  _flaxBinding3,
   _Simulation_set_tolerance,
 );
-const _flaxBinding20 = FlaxInstanceMethod.signature(
-  _flaxBinding1,
-  _Simulation_x,
-);
-const _flaxBinding21 = FlaxInstanceMethod.signature(
-  _flaxBinding1,
-  _Simulation_dx,
-);
-const _flaxBinding22 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding13 = FlaxInstanceMethod.shared(_flaxBinding0, _Simulation_x);
+const _flaxBinding14 = FlaxInstanceMethod.shared(_flaxBinding0, _Simulation_dx);
+const _flaxBinding15 = FlaxInstanceMethod.shared(
+  _flaxBinding2,
   _Simulation_isDone,
 );
-const _flaxBinding23 = FlaxInstanceMethod.signature(
-  _flaxBinding6,
+const _flaxBinding16 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _Simulation_toString,
 );
-const _flaxBinding24 = <FlaxParameter>[
+const _flaxBinding17 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch2_super_call_toString,
+);
+const _flaxBinding18 = FlaxInstanceMethod.shared(
+  _flaxBinding4,
+  _FlaxProxyDispatch3_super_get_tolerance,
+);
+const _flaxBinding19 = FlaxInstanceMethod.plain(
+  [FlaxParameter.required("value", _flaxBinding3)],
+  flaxVoidType,
+  _FlaxProxyDispatch3_super_set_tolerance,
+);
+const _flaxBinding20 = <FlaxParameter>[
   FlaxParameter(
     "tolerance",
-    _flaxBinding8,
+    _flaxBinding3,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding25 = FlaxProxyMember("x", 0, _flaxBinding1);
-const _flaxBinding26 = FlaxProxyMember("dx", 0, _flaxBinding1);
-const _flaxBinding27 = FlaxProxyMember("isDone", 0, _flaxBinding4);
-const _flaxBinding28 = FlaxProxyMember(
+const _flaxBinding21 = FlaxProxyMember("x", 0, _flaxBinding0);
+const _flaxBinding22 = FlaxProxyMember("dx", 0, _flaxBinding0);
+const _flaxBinding23 = FlaxProxyMember("isDone", 0, _flaxBinding2);
+const _flaxBinding24 = FlaxProxyMember(
   "toString",
   0,
-  _flaxBinding6,
+  flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding29 = FlaxProxyMember(
+const _flaxBinding25 = FlaxProxyMember(
   "tolerance",
   1,
-  _flaxBinding9,
+  _flaxBinding4,
   hasSuper: true,
 );
-const _flaxBinding30 = FlaxProxyMember(
+const _flaxBinding26 = FlaxProxyMember(
   "tolerance",
   2,
-  _flaxBinding11,
+  _flaxBinding5,
   hasSuper: true,
 );
-const _flaxBinding31 = FlaxObjectBinding(
+const _flaxBinding27 = FlaxObjectBinding(
   "flax.core/sdk_physics#type:Simulation",
-  [_flaxBinding18],
+  [_flaxBinding11],
   {
-    "x": _flaxBinding20,
-    "dx": _flaxBinding21,
-    "isDone": _flaxBinding22,
-    "toString": _flaxBinding23,
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:tolerance": FlaxInstanceMethod.signature(
-      _flaxBinding9,
-      _FlaxProxyDispatch3_super_get_tolerance,
-    ),
-    "@super:set:tolerance": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding8, required: true)],
-      const FlaxTypeRef("void"),
-      _FlaxProxyDispatch3_super_set_tolerance,
-    ),
+    "x": _flaxBinding13,
+    "dx": _flaxBinding14,
+    "isDone": _flaxBinding15,
+    "toString": _flaxBinding16,
+    "@super:toString": _flaxBinding17,
+    "@super:get:tolerance": _flaxBinding18,
+    "@super:set:tolerance": _flaxBinding19,
   },
-  constructors: {"@implementation": _flaxBinding24},
+  constructors: {"@implementation": _flaxBinding20},
   create: _createSimulation,
   matches: _isSimulation,
-  setters: [_flaxBinding19],
+  setters: [_flaxBinding12],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
+    _flaxBinding21,
+    _flaxBinding22,
+    _flaxBinding23,
+    _flaxBinding24,
     _flaxBinding25,
     _flaxBinding26,
-    _flaxBinding27,
-    _flaxBinding28,
-    _flaxBinding29,
-    _flaxBinding30,
   ]),
 );
-const _flaxBinding32 = FlaxGetter(
+const _flaxBinding28 = FlaxGetter.plain(
   "finalX",
-  _flaxBinding0,
+  flaxDoubleType,
   _FrictionSimulation_finalX,
 );
-const _flaxBinding33 = FlaxInstanceMethod.signature(
-  _flaxBinding2,
+const _flaxBinding29 = FlaxInstanceMethod.shared(
+  _flaxBinding1,
   _FrictionSimulation_timeAtX,
 );
-const _flaxBinding34 = <FlaxParameter>[
-  FlaxParameter("drag", _flaxBinding0, required: true),
-  FlaxParameter("position", _flaxBinding0, required: true),
-  FlaxParameter("velocity", _flaxBinding0, required: true),
+const _flaxBinding30 = FlaxInstanceMethod.shared(
+  _flaxBinding0,
+  _FlaxProxyDispatch0_super_call_x,
+);
+const _flaxBinding31 = FlaxInstanceMethod.shared(
+  _flaxBinding0,
+  _FlaxProxyDispatch0_super_call_dx,
+);
+const _flaxBinding32 = FlaxInstanceMethod.shared(
+  _flaxBinding2,
+  _FlaxProxyDispatch0_super_call_isDone,
+);
+const _flaxBinding33 = <FlaxParameter>[
+  FlaxParameter.required("drag", flaxDoubleType),
+  FlaxParameter.required("position", flaxDoubleType),
+  FlaxParameter.required("velocity", flaxDoubleType),
   FlaxParameter(
     "tolerance",
-    _flaxBinding8,
+    _flaxBinding3,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "constantDeceleration",
-    _flaxBinding0,
+    flaxDoubleType,
     required: false,
     defaultValue: 0.0,
   ),
 ];
-const _flaxBinding35 = FlaxProxyMember("x", 0, _flaxBinding1, hasSuper: true);
-const _flaxBinding36 = FlaxProxyMember("dx", 0, _flaxBinding1, hasSuper: true);
+const _flaxBinding34 = <FlaxParameter>[
+  FlaxParameter.required("startPosition", flaxDoubleType),
+  FlaxParameter.required("endPosition", flaxDoubleType),
+  FlaxParameter.required("startVelocity", flaxDoubleType),
+  FlaxParameter.required("endVelocity", flaxDoubleType),
+];
+const _flaxBinding35 = FlaxProxyMember("x", 0, _flaxBinding0, hasSuper: true);
+const _flaxBinding36 = FlaxProxyMember("dx", 0, _flaxBinding0, hasSuper: true);
 const _flaxBinding37 = FlaxProxyMember(
   "isDone",
   0,
-  _flaxBinding4,
+  _flaxBinding2,
   hasSuper: true,
 );
 const _flaxBinding38 = FlaxProxyMember(
   "timeAtX",
   0,
-  _flaxBinding2,
+  _flaxBinding1,
   hasSuper: true,
 );
 const _flaxBinding39 = FlaxProxyMember(
   "finalX",
   1,
-  _flaxBinding7,
+  flaxDoubleCall,
   hasSuper: true,
 );
 const _flaxBinding40 = FlaxObjectBinding(
   "flax.core/sdk_physics#type:FrictionSimulation",
-  [_flaxBinding32],
+  [_flaxBinding28],
   {
-    "timeAtX": _flaxBinding33,
-    "@super:x": FlaxInstanceMethod.signature(
+    "timeAtX": _flaxBinding29,
+    "@super:x": _flaxBinding30,
+    "@super:dx": _flaxBinding31,
+    "@super:isDone": _flaxBinding32,
+    "@super:toString": _flaxBinding17,
+    "@super:timeAtX": FlaxInstanceMethod.shared(
       _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_x,
-    ),
-    "@super:dx": FlaxInstanceMethod.signature(
-      _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_dx,
-    ),
-    "@super:isDone": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_call_isDone,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:timeAtX": FlaxInstanceMethod.signature(
-      _flaxBinding2,
       _FrictionSimulation_super_timeAtX,
     ),
-    "@super:get:finalX": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:get:finalX": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _FrictionSimulation_super_get_finalX,
     ),
-    "@super:get:tolerance": FlaxInstanceMethod.signature(
-      _flaxBinding9,
-      _FlaxProxyDispatch3_super_get_tolerance,
-    ),
-    "@super:set:tolerance": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding8, required: true)],
-      const FlaxTypeRef("void"),
-      _FlaxProxyDispatch3_super_set_tolerance,
-    ),
+    "@super:get:tolerance": _flaxBinding18,
+    "@super:set:tolerance": _flaxBinding19,
   },
-  constructors: {"@implementation": _flaxBinding34},
+  constructors: {
+    "": _flaxBinding33,
+    "through": _flaxBinding34,
+    "@implementation": _flaxBinding33,
+  },
   create: _createFrictionSimulation,
   matches: _isFrictionSimulation,
   setters: [],
   supertypes: ["flax.core/sdk_physics#type:Simulation", "dart:core::Object"],
-  parent: _flaxBinding31,
+  parent: _flaxBinding27,
   proxy: FlaxProxyBinding([
     _flaxBinding35,
     _flaxBinding36,
     _flaxBinding37,
-    _flaxBinding28,
+    _flaxBinding24,
     _flaxBinding38,
     _flaxBinding39,
-    _flaxBinding29,
-    _flaxBinding30,
+    _flaxBinding25,
+    _flaxBinding26,
   ]),
 );
 const _flaxBinding41 = <FlaxParameter>[
-  FlaxParameter("drag", _flaxBinding0, required: true),
-  FlaxParameter("position", _flaxBinding0, required: true),
-  FlaxParameter("velocity", _flaxBinding0, required: true),
-  FlaxParameter("_minX", _flaxBinding0, required: true),
-  FlaxParameter("_maxX", _flaxBinding0, required: true),
+  FlaxParameter.required("drag", flaxDoubleType),
+  FlaxParameter.required("position", flaxDoubleType),
+  FlaxParameter.required("velocity", flaxDoubleType),
+  FlaxParameter.required("_minX", flaxDoubleType),
+  FlaxParameter.required("_maxX", flaxDoubleType),
 ];
 const _flaxBinding42 = FlaxObjectBinding(
   "flax.core/sdk_physics#type:BoundedFrictionSimulation",
   [],
   {
-    "@super:x": FlaxInstanceMethod.signature(
+    "@super:x": _flaxBinding30,
+    "@super:dx": _flaxBinding31,
+    "@super:timeAtX": FlaxInstanceMethod.shared(
       _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_x,
-    ),
-    "@super:dx": FlaxInstanceMethod.signature(
-      _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_dx,
-    ),
-    "@super:timeAtX": FlaxInstanceMethod.signature(
-      _flaxBinding2,
       _BoundedFrictionSimulation_super_timeAtX,
     ),
-    "@super:isDone": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_call_isDone,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:finalX": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:isDone": _flaxBinding32,
+    "@super:toString": _flaxBinding17,
+    "@super:get:finalX": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _BoundedFrictionSimulation_super_get_finalX,
     ),
-    "@super:get:tolerance": FlaxInstanceMethod.signature(
-      _flaxBinding9,
-      _FlaxProxyDispatch3_super_get_tolerance,
-    ),
-    "@super:set:tolerance": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding8, required: true)],
-      const FlaxTypeRef("void"),
-      _FlaxProxyDispatch3_super_set_tolerance,
-    ),
+    "@super:get:tolerance": _flaxBinding18,
+    "@super:set:tolerance": _flaxBinding19,
   },
-  constructors: {"@implementation": _flaxBinding41},
+  constructors: {"": _flaxBinding41, "@implementation": _flaxBinding41},
   create: _createBoundedFrictionSimulation,
   matches: _isBoundedFrictionSimulation,
   setters: [],
@@ -1663,60 +1727,60 @@ const _flaxBinding42 = FlaxObjectBinding(
     _flaxBinding36,
     _flaxBinding38,
     _flaxBinding37,
-    _flaxBinding28,
+    _flaxBinding24,
     _flaxBinding39,
-    _flaxBinding29,
-    _flaxBinding30,
+    _flaxBinding25,
+    _flaxBinding26,
   ]),
 );
-const _flaxBinding43 = FlaxGetter(
+const _flaxBinding43 = FlaxGetter.plain(
   "simulation",
-  _flaxBinding12,
+  _flaxBinding6,
   _ClampedSimulation_simulation,
 );
-const _flaxBinding44 = FlaxGetter(
+const _flaxBinding44 = FlaxGetter.plain(
   "xMin",
-  _flaxBinding0,
+  flaxDoubleType,
   _ClampedSimulation_xMin,
 );
-const _flaxBinding45 = FlaxGetter(
+const _flaxBinding45 = FlaxGetter.plain(
   "xMax",
-  _flaxBinding0,
+  flaxDoubleType,
   _ClampedSimulation_xMax,
 );
-const _flaxBinding46 = FlaxGetter(
+const _flaxBinding46 = FlaxGetter.plain(
   "dxMin",
-  _flaxBinding0,
+  flaxDoubleType,
   _ClampedSimulation_dxMin,
 );
-const _flaxBinding47 = FlaxGetter(
+const _flaxBinding47 = FlaxGetter.plain(
   "dxMax",
-  _flaxBinding0,
+  flaxDoubleType,
   _ClampedSimulation_dxMax,
 );
 const _flaxBinding48 = <FlaxParameter>[
-  FlaxParameter("simulation", _flaxBinding12, required: true),
+  FlaxParameter.required("simulation", _flaxBinding6),
   FlaxParameter(
     "xMin",
-    _flaxBinding0,
+    flaxDoubleType,
     required: false,
     defaultValue: double.negativeInfinity,
   ),
   FlaxParameter(
     "xMax",
-    _flaxBinding0,
+    flaxDoubleType,
     required: false,
     defaultValue: double.infinity,
   ),
   FlaxParameter(
     "dxMin",
-    _flaxBinding0,
+    flaxDoubleType,
     required: false,
     defaultValue: double.negativeInfinity,
   ),
   FlaxParameter(
     "dxMax",
-    _flaxBinding0,
+    flaxDoubleType,
     required: false,
     defaultValue: double.infinity,
   ),
@@ -1724,31 +1788,31 @@ const _flaxBinding48 = <FlaxParameter>[
 const _flaxBinding49 = FlaxProxyMember(
   "simulation",
   1,
-  _flaxBinding13,
+  _flaxBinding7,
   hasSuper: true,
 );
 const _flaxBinding50 = FlaxProxyMember(
   "xMin",
   1,
-  _flaxBinding7,
+  flaxDoubleCall,
   hasSuper: true,
 );
 const _flaxBinding51 = FlaxProxyMember(
   "xMax",
   1,
-  _flaxBinding7,
+  flaxDoubleCall,
   hasSuper: true,
 );
 const _flaxBinding52 = FlaxProxyMember(
   "dxMin",
   1,
-  _flaxBinding7,
+  flaxDoubleCall,
   hasSuper: true,
 );
 const _flaxBinding53 = FlaxProxyMember(
   "dxMax",
   1,
-  _flaxBinding7,
+  flaxDoubleCall,
   hasSuper: true,
 );
 const _flaxBinding54 = FlaxObjectBinding(
@@ -1761,126 +1825,88 @@ const _flaxBinding54 = FlaxObjectBinding(
     _flaxBinding47,
   ],
   {
-    "@super:x": FlaxInstanceMethod.signature(
-      _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_x,
-    ),
-    "@super:dx": FlaxInstanceMethod.signature(
-      _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_dx,
-    ),
-    "@super:isDone": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_call_isDone,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:simulation": FlaxInstanceMethod.signature(
-      _flaxBinding13,
+    "@super:x": _flaxBinding30,
+    "@super:dx": _flaxBinding31,
+    "@super:isDone": _flaxBinding32,
+    "@super:toString": _flaxBinding17,
+    "@super:get:simulation": FlaxInstanceMethod.shared(
+      _flaxBinding7,
       _ClampedSimulation_super_get_simulation,
     ),
-    "@super:get:xMin": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:get:xMin": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _ClampedSimulation_super_get_xMin,
     ),
-    "@super:get:xMax": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:get:xMax": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _ClampedSimulation_super_get_xMax,
     ),
-    "@super:get:dxMin": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:get:dxMin": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _ClampedSimulation_super_get_dxMin,
     ),
-    "@super:get:dxMax": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:get:dxMax": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _ClampedSimulation_super_get_dxMax,
     ),
-    "@super:get:tolerance": FlaxInstanceMethod.signature(
-      _flaxBinding9,
-      _FlaxProxyDispatch3_super_get_tolerance,
-    ),
-    "@super:set:tolerance": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding8, required: true)],
-      const FlaxTypeRef("void"),
-      _FlaxProxyDispatch3_super_set_tolerance,
-    ),
+    "@super:get:tolerance": _flaxBinding18,
+    "@super:set:tolerance": _flaxBinding19,
   },
-  constructors: {"@implementation": _flaxBinding48},
+  constructors: {"": _flaxBinding48, "@implementation": _flaxBinding48},
   create: _createClampedSimulation,
   matches: _isClampedSimulation,
   setters: [],
   supertypes: ["flax.core/sdk_physics#type:Simulation", "dart:core::Object"],
-  parent: _flaxBinding31,
+  parent: _flaxBinding27,
   proxy: FlaxProxyBinding([
     _flaxBinding35,
     _flaxBinding36,
     _flaxBinding37,
-    _flaxBinding28,
+    _flaxBinding24,
     _flaxBinding49,
     _flaxBinding50,
     _flaxBinding51,
     _flaxBinding52,
     _flaxBinding53,
-    _flaxBinding29,
-    _flaxBinding30,
+    _flaxBinding25,
+    _flaxBinding26,
   ]),
 );
 const _flaxBinding55 = <FlaxParameter>[
-  FlaxParameter("acceleration", _flaxBinding0, required: true),
-  FlaxParameter("distance", _flaxBinding0, required: true),
-  FlaxParameter("endDistance", _flaxBinding0, required: true),
-  FlaxParameter("velocity", _flaxBinding0, required: true),
+  FlaxParameter.required("acceleration", flaxDoubleType),
+  FlaxParameter.required("distance", flaxDoubleType),
+  FlaxParameter.required("endDistance", flaxDoubleType),
+  FlaxParameter.required("velocity", flaxDoubleType),
 ];
 const _flaxBinding56 = FlaxObjectBinding(
   "flax.core/sdk_physics#type:GravitySimulation",
   [],
   {
-    "@super:x": FlaxInstanceMethod.signature(
-      _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_x,
-    ),
-    "@super:dx": FlaxInstanceMethod.signature(
-      _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_dx,
-    ),
-    "@super:isDone": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_call_isDone,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:tolerance": FlaxInstanceMethod.signature(
-      _flaxBinding9,
-      _FlaxProxyDispatch3_super_get_tolerance,
-    ),
-    "@super:set:tolerance": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding8, required: true)],
-      const FlaxTypeRef("void"),
-      _FlaxProxyDispatch3_super_set_tolerance,
-    ),
+    "@super:x": _flaxBinding30,
+    "@super:dx": _flaxBinding31,
+    "@super:isDone": _flaxBinding32,
+    "@super:toString": _flaxBinding17,
+    "@super:get:tolerance": _flaxBinding18,
+    "@super:set:tolerance": _flaxBinding19,
   },
-  constructors: {"@implementation": _flaxBinding55},
+  constructors: {"": _flaxBinding55, "@implementation": _flaxBinding55},
   create: _createGravitySimulation,
   matches: _isGravitySimulation,
   setters: [],
   supertypes: ["flax.core/sdk_physics#type:Simulation", "dart:core::Object"],
-  parent: _flaxBinding31,
+  parent: _flaxBinding27,
   proxy: FlaxProxyBinding([
     _flaxBinding35,
     _flaxBinding36,
     _flaxBinding37,
-    _flaxBinding28,
-    _flaxBinding29,
-    _flaxBinding30,
+    _flaxBinding24,
+    _flaxBinding25,
+    _flaxBinding26,
   ]),
 );
-const _flaxBinding57 = FlaxGetter(
+const _flaxBinding57 = FlaxGetter.plain(
   "type",
-  _flaxBinding14,
+  _flaxBinding8,
   _SpringSimulation_type,
 );
 const _flaxBinding58 = FlaxTypeRef(
@@ -1888,19 +1914,19 @@ const _flaxBinding58 = FlaxTypeRef(
   id: "flax.core/sdk_physics#type:SpringDescription",
 );
 const _flaxBinding59 = <FlaxParameter>[
-  FlaxParameter("spring", _flaxBinding58, required: true),
-  FlaxParameter("start", _flaxBinding0, required: true),
-  FlaxParameter("end", _flaxBinding0, required: true),
-  FlaxParameter("velocity", _flaxBinding0, required: true),
+  FlaxParameter.required("spring", _flaxBinding58),
+  FlaxParameter.required("start", flaxDoubleType),
+  FlaxParameter.required("end", flaxDoubleType),
+  FlaxParameter.required("velocity", flaxDoubleType),
   FlaxParameter(
     "snapToEnd",
-    _flaxBinding3,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "tolerance",
-    _flaxBinding8,
+    _flaxBinding3,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -1908,67 +1934,48 @@ const _flaxBinding59 = <FlaxParameter>[
 const _flaxBinding60 = FlaxProxyMember(
   "type",
   1,
-  _flaxBinding15,
+  _flaxBinding9,
   hasSuper: true,
 );
 const _flaxBinding61 = FlaxObjectBinding(
   "flax.core/sdk_physics#type:SpringSimulation",
   [_flaxBinding57],
   {
-    "@super:x": FlaxInstanceMethod.signature(
-      _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_x,
-    ),
-    "@super:dx": FlaxInstanceMethod.signature(
-      _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_dx,
-    ),
-    "@super:isDone": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_call_isDone,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:type": FlaxInstanceMethod.signature(
-      _flaxBinding15,
+    "@super:x": _flaxBinding30,
+    "@super:dx": _flaxBinding31,
+    "@super:isDone": _flaxBinding32,
+    "@super:toString": _flaxBinding17,
+    "@super:get:type": FlaxInstanceMethod.shared(
+      _flaxBinding9,
       _SpringSimulation_super_get_type,
     ),
-    "@super:get:tolerance": FlaxInstanceMethod.signature(
-      _flaxBinding9,
-      _FlaxProxyDispatch3_super_get_tolerance,
-    ),
-    "@super:set:tolerance": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding8, required: true)],
-      const FlaxTypeRef("void"),
-      _FlaxProxyDispatch3_super_set_tolerance,
-    ),
+    "@super:get:tolerance": _flaxBinding18,
+    "@super:set:tolerance": _flaxBinding19,
   },
-  constructors: {"@implementation": _flaxBinding59},
+  constructors: {"": _flaxBinding59, "@implementation": _flaxBinding59},
   create: _createSpringSimulation,
   matches: _isSpringSimulation,
   setters: [],
   supertypes: ["flax.core/sdk_physics#type:Simulation", "dart:core::Object"],
-  parent: _flaxBinding31,
+  parent: _flaxBinding27,
   proxy: FlaxProxyBinding([
     _flaxBinding35,
     _flaxBinding36,
     _flaxBinding37,
-    _flaxBinding28,
+    _flaxBinding24,
     _flaxBinding60,
-    _flaxBinding29,
-    _flaxBinding30,
+    _flaxBinding25,
+    _flaxBinding26,
   ]),
 );
 const _flaxBinding62 = <FlaxParameter>[
-  FlaxParameter("spring", _flaxBinding58, required: true),
-  FlaxParameter("start", _flaxBinding0, required: true),
-  FlaxParameter("end", _flaxBinding0, required: true),
-  FlaxParameter("velocity", _flaxBinding0, required: true),
+  FlaxParameter.required("spring", _flaxBinding58),
+  FlaxParameter.required("start", flaxDoubleType),
+  FlaxParameter.required("end", flaxDoubleType),
+  FlaxParameter.required("velocity", flaxDoubleType),
   FlaxParameter(
     "tolerance",
-    _flaxBinding8,
+    _flaxBinding3,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -1977,37 +1984,18 @@ const _flaxBinding63 = FlaxObjectBinding(
   "flax.core/sdk_physics#type:ScrollSpringSimulation",
   [],
   {
-    "@super:x": FlaxInstanceMethod.signature(
-      _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_x,
-    ),
-    "@super:dx": FlaxInstanceMethod.signature(
-      _flaxBinding1,
-      _FlaxProxyDispatch0_super_call_dx,
-    ),
-    "@super:isDone": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_call_isDone,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:type": FlaxInstanceMethod.signature(
-      _flaxBinding15,
+    "@super:x": _flaxBinding30,
+    "@super:dx": _flaxBinding31,
+    "@super:isDone": _flaxBinding32,
+    "@super:toString": _flaxBinding17,
+    "@super:get:type": FlaxInstanceMethod.shared(
+      _flaxBinding9,
       _ScrollSpringSimulation_super_get_type,
     ),
-    "@super:get:tolerance": FlaxInstanceMethod.signature(
-      _flaxBinding9,
-      _FlaxProxyDispatch3_super_get_tolerance,
-    ),
-    "@super:set:tolerance": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding8, required: true)],
-      const FlaxTypeRef("void"),
-      _FlaxProxyDispatch3_super_set_tolerance,
-    ),
+    "@super:get:tolerance": _flaxBinding18,
+    "@super:set:tolerance": _flaxBinding19,
   },
-  constructors: {"@implementation": _flaxBinding62},
+  constructors: {"": _flaxBinding62, "@implementation": _flaxBinding62},
   create: _createScrollSpringSimulation,
   matches: _isScrollSpringSimulation,
   setters: [],
@@ -2021,77 +2009,91 @@ const _flaxBinding63 = FlaxObjectBinding(
     _flaxBinding35,
     _flaxBinding36,
     _flaxBinding37,
-    _flaxBinding28,
+    _flaxBinding24,
     _flaxBinding60,
-    _flaxBinding29,
-    _flaxBinding30,
+    _flaxBinding25,
+    _flaxBinding26,
   ]),
 );
-const _flaxBinding64 = FlaxGetter(
+const _flaxBinding64 = FlaxGetter.plain(
   "mass",
-  _flaxBinding0,
+  flaxDoubleType,
   _SpringDescription_mass,
 );
-const _flaxBinding65 = FlaxGetter(
+const _flaxBinding65 = FlaxGetter.plain(
   "stiffness",
-  _flaxBinding0,
+  flaxDoubleType,
   _SpringDescription_stiffness,
 );
-const _flaxBinding66 = FlaxGetter(
+const _flaxBinding66 = FlaxGetter.plain(
   "damping",
-  _flaxBinding0,
+  flaxDoubleType,
   _SpringDescription_damping,
 );
-const _flaxBinding67 = FlaxGetter(
+const _flaxBinding67 = FlaxGetter.plain(
   "duration",
-  _flaxBinding16,
+  flaxDurationType,
   _SpringDescription_duration,
 );
-const _flaxBinding68 = FlaxGetter(
+const _flaxBinding68 = FlaxGetter.plain(
   "bounce",
-  _flaxBinding0,
+  flaxDoubleType,
   _SpringDescription_bounce,
 );
-const _flaxBinding69 = FlaxInstanceMethod.signature(
-  _flaxBinding6,
+const _flaxBinding69 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _SpringDescription_toString,
 );
 const _flaxBinding70 = <FlaxParameter>[
-  FlaxParameter("mass", _flaxBinding0, required: true),
-  FlaxParameter("stiffness", _flaxBinding0, required: true),
-  FlaxParameter("damping", _flaxBinding0, required: true),
+  FlaxParameter.required("mass", flaxDoubleType),
+  FlaxParameter.required("stiffness", flaxDoubleType),
+  FlaxParameter.required("damping", flaxDoubleType),
 ];
-const _flaxBinding71 = FlaxProxyMember(
+const _flaxBinding71 = <FlaxParameter>[
+  FlaxParameter.required("mass", flaxDoubleType),
+  FlaxParameter.required("stiffness", flaxDoubleType),
+  FlaxParameter("ratio", flaxDoubleType, required: false, defaultValue: 1.0),
+];
+const _flaxBinding72 = <FlaxParameter>[
+  FlaxParameter(
+    "duration",
+    flaxDurationType,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter("bounce", flaxDoubleType, required: false, defaultValue: 0.0),
+];
+const _flaxBinding73 = FlaxProxyMember(
   "mass",
   1,
-  _flaxBinding7,
-  hasSuper: true,
-);
-const _flaxBinding72 = FlaxProxyMember(
-  "stiffness",
-  1,
-  _flaxBinding7,
-  hasSuper: true,
-);
-const _flaxBinding73 = FlaxProxyMember(
-  "damping",
-  1,
-  _flaxBinding7,
+  flaxDoubleCall,
   hasSuper: true,
 );
 const _flaxBinding74 = FlaxProxyMember(
-  "duration",
+  "stiffness",
   1,
-  _flaxBinding17,
+  flaxDoubleCall,
   hasSuper: true,
 );
 const _flaxBinding75 = FlaxProxyMember(
-  "bounce",
+  "damping",
   1,
-  _flaxBinding7,
+  flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding76 = FlaxObjectBinding(
+const _flaxBinding76 = FlaxProxyMember(
+  "duration",
+  1,
+  _flaxBinding10,
+  hasSuper: true,
+);
+const _flaxBinding77 = FlaxProxyMember(
+  "bounce",
+  1,
+  flaxDoubleCall,
+  hasSuper: true,
+);
+const _flaxBinding78 = FlaxObjectBinding(
   "flax.core/sdk_physics#type:SpringDescription",
   [
     _flaxBinding64,
@@ -2102,125 +2104,128 @@ const _flaxBinding76 = FlaxObjectBinding(
   ],
   {
     "toString": _flaxBinding69,
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:mass": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:toString": _flaxBinding17,
+    "@super:get:mass": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _SpringDescription_super_get_mass,
     ),
-    "@super:get:stiffness": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:get:stiffness": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _SpringDescription_super_get_stiffness,
     ),
-    "@super:get:damping": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:get:damping": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _SpringDescription_super_get_damping,
     ),
-    "@super:get:duration": FlaxInstanceMethod.signature(
-      _flaxBinding17,
+    "@super:get:duration": FlaxInstanceMethod.shared(
+      _flaxBinding10,
       _SpringDescription_super_get_duration,
     ),
-    "@super:get:bounce": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:get:bounce": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _SpringDescription_super_get_bounce,
     ),
   },
-  constructors: {"@implementation": _flaxBinding70},
+  constructors: {
+    "": _flaxBinding70,
+    "withDampingRatio": _flaxBinding71,
+    "withDurationAndBounce": _flaxBinding72,
+    "@implementation": _flaxBinding70,
+    "@implementation:withDampingRatio": _flaxBinding71,
+  },
   create: _createSpringDescription,
   matches: _isSpringDescription,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding28,
-    _flaxBinding71,
-    _flaxBinding72,
+    _flaxBinding24,
     _flaxBinding73,
     _flaxBinding74,
     _flaxBinding75,
+    _flaxBinding76,
+    _flaxBinding77,
   ]),
 );
-const _flaxBinding77 = FlaxGetter(
+const _flaxBinding79 = FlaxGetter.plain(
   "distance",
-  _flaxBinding0,
+  flaxDoubleType,
   _Tolerance_distance,
 );
-const _flaxBinding78 = FlaxGetter("time", _flaxBinding0, _Tolerance_time);
-const _flaxBinding79 = FlaxGetter(
+const _flaxBinding80 = FlaxGetter.plain(
+  "time",
+  flaxDoubleType,
+  _Tolerance_time,
+);
+const _flaxBinding81 = FlaxGetter.plain(
   "velocity",
-  _flaxBinding0,
+  flaxDoubleType,
   _Tolerance_velocity,
 );
-const _flaxBinding80 = FlaxInstanceMethod.signature(
-  _flaxBinding6,
+const _flaxBinding82 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _Tolerance_toString,
 );
-const _flaxBinding81 = <FlaxParameter>[
+const _flaxBinding83 = <FlaxParameter>[
   FlaxParameter(
     "distance",
-    _flaxBinding0,
+    flaxDoubleType,
     required: false,
     defaultValue: 0.001,
   ),
-  FlaxParameter("time", _flaxBinding0, required: false, defaultValue: 0.001),
+  FlaxParameter("time", flaxDoubleType, required: false, defaultValue: 0.001),
   FlaxParameter(
     "velocity",
-    _flaxBinding0,
+    flaxDoubleType,
     required: false,
     defaultValue: 0.001,
   ),
 ];
-const _flaxBinding82 = FlaxProxyMember(
+const _flaxBinding84 = FlaxProxyMember(
   "distance",
   1,
-  _flaxBinding7,
+  flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding83 = FlaxProxyMember(
+const _flaxBinding85 = FlaxProxyMember(
   "time",
   1,
-  _flaxBinding7,
+  flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding84 = FlaxProxyMember(
+const _flaxBinding86 = FlaxProxyMember(
   "velocity",
   1,
-  _flaxBinding7,
+  flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding85 = FlaxObjectBinding(
+const _flaxBinding87 = FlaxObjectBinding(
   "flax.core/sdk_physics#type:Tolerance",
-  [_flaxBinding77, _flaxBinding78, _flaxBinding79],
+  [_flaxBinding79, _flaxBinding80, _flaxBinding81],
   {
-    "toString": _flaxBinding80,
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:distance": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "toString": _flaxBinding82,
+    "@super:toString": _flaxBinding17,
+    "@super:get:distance": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _Tolerance_super_get_distance,
     ),
-    "@super:get:time": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:get:time": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _Tolerance_super_get_time,
     ),
-    "@super:get:velocity": FlaxInstanceMethod.signature(
-      _flaxBinding7,
+    "@super:get:velocity": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _Tolerance_super_get_velocity,
     ),
   },
-  constructors: {"@implementation": _flaxBinding81},
+  constructors: {"": _flaxBinding83, "@implementation": _flaxBinding83},
   create: _createTolerance,
   matches: _isTolerance,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding28,
-    _flaxBinding82,
-    _flaxBinding83,
+    _flaxBinding24,
     _flaxBinding84,
+    _flaxBinding85,
+    _flaxBinding86,
   ]),
 );
-const _flaxBinding86 = FlaxTypeRef("double", nullable: true);

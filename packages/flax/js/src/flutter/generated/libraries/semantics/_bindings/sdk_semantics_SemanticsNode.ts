@@ -9,12 +9,12 @@ import type * as upstream2 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
 import type * as upstream3 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
-import type * as upstream4 from '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
-import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
-import type * as upstream5 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-import type * as upstream6 from '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsOwner';
+import type * as upstream4 from '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsOwner';
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsOwner';
+import type * as upstream5 from '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
+import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream7 from '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsTag';
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsTag';
 import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsFlags';
@@ -57,18 +57,112 @@ import type * as upstream26 from '@flax/flutter/semantics/_bindings/sdk_semantic
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsData';
 import type * as upstream27 from '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsEvent';
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsEvent';
-import { _flaxMemberParameters30, _flaxMemberParameters31, _flaxMemberParameters32, _flaxMemberParameters33, _flaxMemberParameters21, _flaxMemberParameters23, _flaxMemberParameters34, _flaxMemberParameters2, _flaxMemberParameters35, _flaxMemberParameters36, _flaxMemberParameters37, _flaxMemberParameters17, _flaxMemberParameters27, _flaxMemberParameters15 } from "@flax/flutter/semantics/_bindings/sdk_semantics.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters31, _flaxMemberParameters32, _flaxMemberParameters33, _flaxMemberParameters34, _flaxMemberParameters22, _flaxMemberParameters24, _flaxMemberParameters35, _flaxMemberParameters2, _flaxMemberParameters36, _flaxMemberParameters37, _flaxMemberParameters38, _flaxMemberParameters39, _flaxMemberParameters18, _flaxMemberParameters28, _flaxMemberParameters16 } from "@flax/flutter/semantics/_bindings/sdk_semantics.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/semantics/_bindings/sdk_semantics.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface SemanticsNode extends Omit<upstream0.DiagnosticableTreeMixin, _flaxOwnMembers0>, Omit<upstream1.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.DiagnosticableTreeMixin>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.DiagnosticableTreeMixin | keyof upstream1.DiagnosticableTree>, Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __SemanticsNode: unique symbol;
 readonly [_flaxDartTypeValue]: SemanticsNode;
 
+readonly key: upstream3.Key | null;
+readonly id: number;
+get transform(): upstream5.Matrix4 | null;
+get rect(): upstream6.Rect;
+get parentSemanticsClipRect(): upstream6.Rect | null;
+get parentPaintClipRect(): upstream6.Rect | null;
+get indexInParent(): number | null;
+readonly isInvisible: boolean;
+get isMergedIntoParent(): boolean;
+get areUserActionsBlocked(): boolean;
+readonly isPartOfNodeMerging: boolean;
+readonly mergeAllDescendantsIntoThisNode: boolean;
+readonly hasChildren: boolean;
+readonly childrenCount: number;
+readonly childrenCountInTraversalOrder: number;
+readonly owner: upstream4.SemanticsOwner | null;
+readonly attached: boolean;
+readonly parent: SemanticsNode | null;
+get traversalParent(): SemanticsNode | null;
+readonly depth: number;
+get tags(): DartSet<upstream7.SemanticsTag> | null;
+readonly flagsCollection: upstream8.SemanticsFlags;
+readonly identifier: string;
+readonly traversalParentIdentifier: unknown | null;
+readonly traversalChildIdentifier: unknown | null;
+readonly label: string;
+readonly attributedLabel: upstream9.AttributedString;
+readonly value: string;
+readonly attributedValue: upstream9.AttributedString;
+readonly increasedValue: string;
+readonly attributedIncreasedValue: upstream9.AttributedString;
+readonly decreasedValue: string;
+readonly attributedDecreasedValue: upstream9.AttributedString;
+readonly hint: string;
+readonly attributedHint: upstream9.AttributedString;
+readonly tooltip: string;
+readonly hintOverrides: upstream10.SemanticsHintOverrides | null;
+readonly textDirection: upstream11.TextDirection | null;
+readonly sortKey: upstream12.SemanticsSortKey | null;
+readonly textSelection: upstream13.TextSelection | null;
+readonly isMultiline: boolean | null;
+readonly scrollChildCount: number | null;
+readonly scrollIndex: number | null;
+readonly scrollPosition: number | null;
+readonly scrollExtentMax: number | null;
+readonly scrollExtentMin: number | null;
+readonly platformViewId: number | null;
+readonly maxValueLength: number | null;
+readonly currentValueLength: number | null;
+readonly headingLevel: number;
+readonly linkUrl: upstream14.Uri | null;
+readonly role: upstream15.SemanticsRole;
+readonly controlsNodes: DartSet<string> | null;
+readonly minValue: string | null;
+readonly maxValue: string | null;
+readonly validationResult: upstream16.SemanticsValidationResult;
+readonly hitTestBehavior: upstream17.SemanticsHitTestBehavior;
+readonly inputType: upstream18.SemanticsInputType;
+toString(options?: {minLevel?: upstream19.DiagnosticLevel | undefined}): string;
+toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream19.DiagnosticLevel | undefined}): string;
+toStringDeep(options?: {childOrder?: upstream20.DebugSemanticsDumpOrder | undefined; minLevel?: upstream19.DiagnosticLevel | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toStringShort(): string;
+toDiagnosticsNode(options?: {childOrder?: upstream20.DebugSemanticsDumpOrder | undefined; name?: string | null | undefined; style?: upstream22.DiagnosticsTreeStyle | null | undefined}): upstream21.DiagnosticsNode;
+debugDescribeChildren(options?: {childOrder?: upstream20.DebugSemanticsDumpOrder | undefined}): DartList<upstream21.DiagnosticsNode>;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+visitChildren(visitor: ((node: SemanticsNode) => boolean)): void;
+isTagged(tag: Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsTag": readonly [] }>): boolean;
+hasFlag(flag: Readonly<{ "__flaxBound:dart:ui::SemanticsFlag": readonly [] }>): boolean;
+updateWith(options: {childrenInInversePaintOrder?: DartListInput<SemanticsNode, Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>> | null | undefined; config: Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsConfiguration": readonly [] }> | null}): void;
+getSemanticsData(): upstream26.SemanticsData;
+sendEvent(event: Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics_event.dart::SemanticsEvent": readonly [] }>): void;
+debugListChildrenInOrder(childOrder: upstream20.DebugSemanticsDumpOrder): DartList<SemanticsNode>;
+set transform(value: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }> | null);
+set rect(value: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>);
+set parentSemanticsClipRect(value: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> | null);
+set parentPaintClipRect(value: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> | null);
+set indexInParent(value: number | null);
+set isMergedIntoParent(value: boolean);
+set areUserActionsBlocked(value: boolean);
+set traversalParent(value: Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null);
+set tags(value: DartSetInput<upstream7.SemanticsTag, Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsTag": readonly [] }>> | null);
 }
-defineObject("flax.core/sdk_semantics#type:SemanticsNode", ["key","id","transform","rect","parentSemanticsClipRect","parentPaintClipRect","indexInParent","isInvisible","isMergedIntoParent","areUserActionsBlocked","isPartOfNodeMerging","mergeAllDescendantsIntoThisNode","hasChildren","childrenCount","childrenCountInTraversalOrder","owner","attached","parent","traversalParent","depth","tags","flagsCollection","identifier","traversalParentIdentifier","traversalChildIdentifier","label","attributedLabel","value","attributedValue","increasedValue","attributedIncreasedValue","decreasedValue","attributedDecreasedValue","hint","attributedHint","tooltip","hintOverrides","textDirection","sortKey","textSelection","isMultiline","scrollChildCount","scrollIndex","scrollPosition","scrollExtentMax","scrollExtentMin","platformViewId","maxValueLength","currentValueLength","headingLevel","linkUrl","role","controlsNodes","minValue","maxValue","validationResult","hitTestBehavior","inputType"], ["transform","rect","parentSemanticsClipRect","parentPaintClipRect","indexInParent","isMergedIntoParent","areUserActionsBlocked","traversalParent","tags"], _flaxBindingMethods("flax.core/sdk_semantics#type:SemanticsNode", "object", {"toStringDeep":_flaxMemberParameters30,"toDiagnosticsNode":_flaxMemberParameters31,"debugDescribeChildren":_flaxMemberParameters32,"visitChildren":_flaxMemberParameters33,"isTagged":_flaxMemberParameters21,"hasFlag":_flaxMemberParameters23,"updateWith":_flaxMemberParameters34,"getSemanticsData":_flaxMemberParameters2,"sendEvent":_flaxMemberParameters35,"debugListChildrenInOrder":_flaxMemberParameters36}, {}), [], undefined, "flax.core/sdk_foundation#type:DiagnosticableTreeMixin");
-const _SemanticsNodeProxy = {type: "flax.core/sdk_semantics#type:SemanticsNode", parameters: _flaxMemberParameters37, constructors: {"": _flaxMemberParameters37}, methods: {"toString":_flaxMemberParameters17,"toStringShallow":_flaxMemberParameters27,"toStringDeep":_flaxMemberParameters30,"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters31,"debugDescribeChildren":_flaxMemberParameters32,"debugFillProperties":_flaxMemberParameters15,"visitChildren":_flaxMemberParameters33,"isTagged":_flaxMemberParameters21,"hasFlag":_flaxMemberParameters23,"updateWith":_flaxMemberParameters34,"getSemanticsData":_flaxMemberParameters2,"sendEvent":_flaxMemberParameters35,"debugListChildrenInOrder":_flaxMemberParameters36}, getters: ["key","id","transform","rect","parentSemanticsClipRect","parentPaintClipRect","indexInParent","isInvisible","isMergedIntoParent","areUserActionsBlocked","isPartOfNodeMerging","mergeAllDescendantsIntoThisNode","hasChildren","childrenCount","childrenCountInTraversalOrder","owner","attached","parent","traversalParent","depth","tags","flagsCollection","identifier","traversalParentIdentifier","traversalChildIdentifier","label","attributedLabel","value","attributedValue","increasedValue","attributedIncreasedValue","decreasedValue","attributedDecreasedValue","hint","attributedHint","tooltip","hintOverrides","textDirection","sortKey","textSelection","isMultiline","scrollChildCount","scrollIndex","scrollPosition","scrollExtentMax","scrollExtentMin","platformViewId","maxValueLength","currentValueLength","headingLevel","linkUrl","role","controlsNodes","minValue","maxValue","validationResult","hitTestBehavior","inputType"], setters: ["transform","rect","parentSemanticsClipRect","parentPaintClipRect","indexInParent","isMergedIntoParent","areUserActionsBlocked","traversalParent","tags"], contextMembers: [], superMembers: ["get:key","get:id","get:transform","get:rect","get:parentSemanticsClipRect","get:parentPaintClipRect","get:indexInParent","get:isInvisible","get:isMergedIntoParent","get:areUserActionsBlocked","get:isPartOfNodeMerging","get:mergeAllDescendantsIntoThisNode","get:hasChildren","get:childrenCount","get:childrenCountInTraversalOrder","get:owner","get:attached","get:parent","get:traversalParent","get:depth","get:tags","get:flagsCollection","get:identifier","get:traversalParentIdentifier","get:traversalChildIdentifier","get:label","get:attributedLabel","get:value","get:attributedValue","get:increasedValue","get:attributedIncreasedValue","get:decreasedValue","get:attributedDecreasedValue","get:hint","get:attributedHint","get:tooltip","get:hintOverrides","get:textDirection","get:sortKey","get:textSelection","get:isMultiline","get:scrollChildCount","get:scrollIndex","get:scrollPosition","get:scrollExtentMax","get:scrollExtentMin","get:platformViewId","get:maxValueLength","get:currentValueLength","get:headingLevel","get:linkUrl","get:role","get:controlsNodes","get:minValue","get:maxValue","get:validationResult","get:hitTestBehavior","get:inputType","set:transform","set:rect","set:parentSemanticsClipRect","set:parentPaintClipRect","set:indexInParent","set:isMergedIntoParent","set:areUserActionsBlocked","set:traversalParent","set:tags","toString","toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","debugFillProperties","visitChildren","isTagged","hasFlag","updateWith","getSemanticsData","sendEvent","debugListChildrenInOrder"]} as const;
-export interface SemanticsNode {
-readonly [_flaxDartTypeValue]: SemanticsNode;
+defineObject("flax.core/sdk_semantics#type:SemanticsNode", ["key","id","transform","rect","parentSemanticsClipRect","parentPaintClipRect","indexInParent","isInvisible","isMergedIntoParent","areUserActionsBlocked","isPartOfNodeMerging","mergeAllDescendantsIntoThisNode","hasChildren","childrenCount","childrenCountInTraversalOrder","owner","attached","parent","traversalParent","depth","tags","flagsCollection","identifier","traversalParentIdentifier","traversalChildIdentifier","label","attributedLabel","value","attributedValue","increasedValue","attributedIncreasedValue","decreasedValue","attributedDecreasedValue","hint","attributedHint","tooltip","hintOverrides","textDirection","sortKey","textSelection","isMultiline","scrollChildCount","scrollIndex","scrollPosition","scrollExtentMax","scrollExtentMin","platformViewId","maxValueLength","currentValueLength","headingLevel","linkUrl","role","controlsNodes","minValue","maxValue","validationResult","hitTestBehavior","inputType"], ["transform","rect","parentSemanticsClipRect","parentPaintClipRect","indexInParent","isMergedIntoParent","areUserActionsBlocked","traversalParent","tags"], _flaxBindingMethods("flax.core/sdk_semantics#type:SemanticsNode", "object", {"toStringDeep":_flaxMemberParameters31,"toDiagnosticsNode":_flaxMemberParameters32,"debugDescribeChildren":_flaxMemberParameters33,"visitChildren":_flaxMemberParameters34,"isTagged":_flaxMemberParameters22,"hasFlag":_flaxMemberParameters24,"updateWith":_flaxMemberParameters35,"getSemanticsData":_flaxMemberParameters2,"sendEvent":_flaxMemberParameters36,"debugListChildrenInOrder":_flaxMemberParameters37}, {}), [], undefined, "flax.core/sdk_foundation#type:DiagnosticableTreeMixin");
+export function _SemanticsNodeFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; showOnScreen?: (() => void) | null | undefined } = {}): SemanticsNode {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_semantics#type:SemanticsNode", "", [{"name":"key"},{"name":"showOnScreen"}], [], options) as SemanticsNode;
+}
+export namespace _SemanticsNodeFactory {
+export function root(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; showOnScreen?: (() => void) | null | undefined; owner: Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsOwner": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> }): SemanticsNode {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_semantics#type:SemanticsNode", "root", [{"name":"key"},{"name":"showOnScreen"},{"name":"owner","required":true}], [], options) as SemanticsNode;
+}
+}
+const _SemanticsNodeProxy = {type: "flax.core/sdk_semantics#type:SemanticsNode", parameters: _flaxMemberParameters38, constructors: {"": _flaxMemberParameters38,"root": _flaxMemberParameters39}, methods: {"toString":_flaxMemberParameters18,"toStringShallow":_flaxMemberParameters28,"toStringDeep":_flaxMemberParameters31,"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters32,"debugDescribeChildren":_flaxMemberParameters33,"debugFillProperties":_flaxMemberParameters16,"visitChildren":_flaxMemberParameters34,"isTagged":_flaxMemberParameters22,"hasFlag":_flaxMemberParameters24,"updateWith":_flaxMemberParameters35,"getSemanticsData":_flaxMemberParameters2,"sendEvent":_flaxMemberParameters36,"debugListChildrenInOrder":_flaxMemberParameters37}, getters: ["key","id","transform","rect","parentSemanticsClipRect","parentPaintClipRect","indexInParent","isInvisible","isMergedIntoParent","areUserActionsBlocked","isPartOfNodeMerging","mergeAllDescendantsIntoThisNode","hasChildren","childrenCount","childrenCountInTraversalOrder","owner","attached","parent","traversalParent","depth","tags","flagsCollection","identifier","traversalParentIdentifier","traversalChildIdentifier","label","attributedLabel","value","attributedValue","increasedValue","attributedIncreasedValue","decreasedValue","attributedDecreasedValue","hint","attributedHint","tooltip","hintOverrides","textDirection","sortKey","textSelection","isMultiline","scrollChildCount","scrollIndex","scrollPosition","scrollExtentMax","scrollExtentMin","platformViewId","maxValueLength","currentValueLength","headingLevel","linkUrl","role","controlsNodes","minValue","maxValue","validationResult","hitTestBehavior","inputType"], setters: ["transform","rect","parentSemanticsClipRect","parentPaintClipRect","indexInParent","isMergedIntoParent","areUserActionsBlocked","traversalParent","tags"], contextMembers: [], superMembers: ["get:key","get:id","get:transform","get:rect","get:parentSemanticsClipRect","get:parentPaintClipRect","get:indexInParent","get:isInvisible","get:isMergedIntoParent","get:areUserActionsBlocked","get:isPartOfNodeMerging","get:mergeAllDescendantsIntoThisNode","get:hasChildren","get:childrenCount","get:childrenCountInTraversalOrder","get:owner","get:attached","get:parent","get:traversalParent","get:depth","get:tags","get:flagsCollection","get:identifier","get:traversalParentIdentifier","get:traversalChildIdentifier","get:label","get:attributedLabel","get:value","get:attributedValue","get:increasedValue","get:attributedIncreasedValue","get:decreasedValue","get:attributedDecreasedValue","get:hint","get:attributedHint","get:tooltip","get:hintOverrides","get:textDirection","get:sortKey","get:textSelection","get:isMultiline","get:scrollChildCount","get:scrollIndex","get:scrollPosition","get:scrollExtentMax","get:scrollExtentMin","get:platformViewId","get:maxValueLength","get:currentValueLength","get:headingLevel","get:linkUrl","get:role","get:controlsNodes","get:minValue","get:maxValue","get:validationResult","get:hitTestBehavior","get:inputType","set:transform","set:rect","set:parentSemanticsClipRect","set:parentPaintClipRect","set:indexInParent","set:isMergedIntoParent","set:areUserActionsBlocked","set:traversalParent","set:tags","toString","toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","debugFillProperties","visitChildren","isTagged","hasFlag","updateWith","getSemanticsData","sendEvent","debugListChildrenInOrder"]} as const;
+export interface _SemanticsNodeNative extends SemanticsNode {
+readonly [_flaxDartTypeValue]: _SemanticsNodeNative;
+readonly [_flaxDartConstructors]?: {"": (options?: {key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; showOnScreen?: (() => void) | null | undefined}) => void;"root": (options: {key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; showOnScreen?: (() => void) | null | undefined; owner: Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsOwner": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>}) => void;};
 
 toString(options?: {minLevel?: upstream19.DiagnosticLevel | undefined}): string;
 toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream19.DiagnosticLevel | undefined}): string;
@@ -86,10 +180,10 @@ sendEvent(event: Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics
 debugListChildrenInOrder(childOrder: upstream20.DebugSemanticsDumpOrder): DartList<SemanticsNode>;
 get key(): upstream3.Key | null;
 get id(): number;
-get transform(): upstream4.Matrix4 | null;
-get rect(): upstream5.Rect;
-get parentSemanticsClipRect(): upstream5.Rect | null;
-get parentPaintClipRect(): upstream5.Rect | null;
+get transform(): upstream5.Matrix4 | null;
+get rect(): upstream6.Rect;
+get parentSemanticsClipRect(): upstream6.Rect | null;
+get parentPaintClipRect(): upstream6.Rect | null;
 get indexInParent(): number | null;
 get isInvisible(): boolean;
 get isMergedIntoParent(): boolean;
@@ -99,7 +193,7 @@ get mergeAllDescendantsIntoThisNode(): boolean;
 get hasChildren(): boolean;
 get childrenCount(): number;
 get childrenCountInTraversalOrder(): number;
-get owner(): upstream6.SemanticsOwner | null;
+get owner(): upstream4.SemanticsOwner | null;
 get attached(): boolean;
 get parent(): SemanticsNode | null;
 get traversalParent(): SemanticsNode | null;
@@ -152,14 +246,15 @@ set areUserActionsBlocked(value: boolean);
 set traversalParent(value: Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null);
 set tags(value: DartSetInput<upstream7.SemanticsTag, Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsTag": readonly [] }>> | null);
 }
-export abstract class SemanticsNode extends _FlaxProxyBase {
+export abstract class _SemanticsNodeNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SemanticsNode>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: SemanticsNode;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_semantics#type:SemanticsNode", readonly [], false];
-constructor(options?: {key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; showOnScreen?: (() => void) | null | undefined}) { super(_SemanticsNodeProxy, Array.from(arguments)); }
+constructor(options?: {key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; showOnScreen?: (() => void) | null | undefined}); constructor(call: _FlaxProxySuper<_SemanticsNodeNative>); constructor(...args: unknown[]) { super(_SemanticsNodeProxy, args); }
 }
-_flaxDefineProxyBase(SemanticsNode.prototype, _SemanticsNodeProxy);
-export namespace SemanticsNode { export function implement(args: [options?: {key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; showOnScreen?: (() => void) | null | undefined}], implementation: {}): SemanticsNode {
+_flaxDefineProxyBase(_SemanticsNodeNative.prototype, _SemanticsNodeProxy);
+export namespace _SemanticsNodeFactory { export function implement(args: [options?: {key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; showOnScreen?: (() => void) | null | undefined}], implementation: {}): SemanticsNode {
 return constructProxy(_SemanticsNodeProxy, args, implementation) as SemanticsNode; } }
-_flaxBindInstanceType<SemanticsNode, typeof SemanticsNode>(SemanticsNode, "flax.core/sdk_semantics#type:SemanticsNode", ["dart:core::Object","flax.core/sdk_foundation#type:DiagnosticableTreeMixin","flax.core/sdk_foundation#type:DiagnosticableTree","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _SemanticsNodeBinding = _flaxProxyFactory(_SemanticsNodeFactory, _SemanticsNodeNative) as unknown as typeof _SemanticsNodeFactory & (new(options?: {key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; showOnScreen?: (() => void) | null | undefined}) => _SemanticsNodeNative) & (new(call: _FlaxProxySuper<_SemanticsNodeNative>) => _SemanticsNodeNative);
+export const SemanticsNode: typeof _SemanticsNodeBinding & _FlaxInstanceType<SemanticsNode> & _FlaxDartType<SemanticsNode, readonly ["class", "flax.core/sdk_semantics#type:SemanticsNode", readonly [], false]> = _flaxBindInstanceType<SemanticsNode, typeof _SemanticsNodeBinding>(_SemanticsNodeBinding, "flax.core/sdk_semantics#type:SemanticsNode", ["dart:core::Object","flax.core/sdk_foundation#type:DiagnosticableTreeMixin","flax.core/sdk_foundation#type:DiagnosticableTree","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SemanticsNodeBinding & _FlaxInstanceType<SemanticsNode> & _FlaxDartType<SemanticsNode, readonly ["class", "flax.core/sdk_semantics#type:SemanticsNode", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "key" | "id" | "transform" | "rect" | "parentSemanticsClipRect" | "parentPaintClipRect" | "indexInParent" | "isInvisible" | "isMergedIntoParent" | "areUserActionsBlocked" | "isPartOfNodeMerging" | "mergeAllDescendantsIntoThisNode" | "hasChildren" | "childrenCount" | "childrenCountInTraversalOrder" | "owner" | "attached" | "parent" | "traversalParent" | "depth" | "tags" | "flagsCollection" | "identifier" | "traversalParentIdentifier" | "traversalChildIdentifier" | "label" | "attributedLabel" | "value" | "attributedValue" | "increasedValue" | "attributedIncreasedValue" | "decreasedValue" | "attributedDecreasedValue" | "hint" | "attributedHint" | "tooltip" | "hintOverrides" | "textDirection" | "sortKey" | "textSelection" | "isMultiline" | "scrollChildCount" | "scrollIndex" | "scrollPosition" | "scrollExtentMax" | "scrollExtentMin" | "platformViewId" | "maxValueLength" | "currentValueLength" | "headingLevel" | "linkUrl" | "role" | "controlsNodes" | "minValue" | "maxValue" | "validationResult" | "hitTestBehavior" | "inputType" | "toString" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "visitChildren" | "isTagged" | "hasFlag" | "updateWith" | "getSemanticsData" | "sendEvent" | "debugListChildrenInOrder" | "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

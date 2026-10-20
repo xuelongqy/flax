@@ -15,7 +15,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MouseTrackerAnnotation extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/services/mouse_tracking.dart::MouseTrackerAnnotation": readonly [];
 }>, Readonly<{
@@ -23,9 +23,54 @@ export interface MouseTrackerAnnotation extends Omit<upstream0.Diagnosticable, _
 }> {
     readonly __MouseTrackerAnnotation: unique symbol;
     readonly [_flaxDartTypeValue]: MouseTrackerAnnotation;
+    readonly onEnter: ((event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEnterEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerEnterEvent": readonly [];
+    }>) => void) | null;
+    readonly onExit: ((event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerExitEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerExitEvent": readonly [];
+    }>) => void) | null;
+    readonly cursor: upstream3.MouseCursor;
+    readonly validForMouseTracker: boolean;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream4.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream6.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
 }
-export interface MouseTrackerAnnotation {
-    readonly [_flaxDartTypeValue]: MouseTrackerAnnotation;
+export declare function _MouseTrackerAnnotationFactory(options?: {
+    onEnter?: ((event: upstream1.PointerEnterEvent) => void) | null | undefined;
+    onExit?: ((event: upstream2.PointerExitEvent) => void) | null | undefined;
+    cursor?: (Readonly<{
+        "__flaxBound:package:flutter/src/services/mouse_cursor.dart::MouseCursor": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | undefined;
+    validForMouseTracker?: boolean | undefined;
+}): MouseTrackerAnnotation;
+export interface _MouseTrackerAnnotationNative extends MouseTrackerAnnotation {
+    readonly [_flaxDartTypeValue]: _MouseTrackerAnnotationNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream4.DiagnosticLevel | undefined;
@@ -62,7 +107,7 @@ export interface MouseTrackerAnnotation {
     get cursor(): upstream3.MouseCursor;
     get validForMouseTracker(): boolean;
 }
-export declare abstract class MouseTrackerAnnotation extends _FlaxProxyBase {
+export declare abstract class _MouseTrackerAnnotationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MouseTrackerAnnotation>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MouseTrackerAnnotation;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:MouseTrackerAnnotation", readonly [], false];
@@ -77,7 +122,7 @@ export declare abstract class MouseTrackerAnnotation extends _FlaxProxyBase {
         validForMouseTracker?: boolean | undefined;
     });
 }
-export declare namespace MouseTrackerAnnotation {
+export declare namespace _MouseTrackerAnnotationFactory {
     function implement(args: [options?: {
         onEnter?: ((event: upstream1.PointerEnterEvent) => void) | null | undefined;
         onExit?: ((event: upstream2.PointerExitEvent) => void) | null | undefined;
@@ -89,5 +134,16 @@ export declare namespace MouseTrackerAnnotation {
         validForMouseTracker?: boolean | undefined;
     }], implementation: {}): MouseTrackerAnnotation;
 }
+declare const _MouseTrackerAnnotationBinding: typeof _MouseTrackerAnnotationFactory & (new (options?: {
+    onEnter?: ((event: upstream1.PointerEnterEvent) => void) | null | undefined;
+    onExit?: ((event: upstream2.PointerExitEvent) => void) | null | undefined;
+    cursor?: (Readonly<{
+        "__flaxBound:package:flutter/src/services/mouse_cursor.dart::MouseCursor": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | undefined;
+    validForMouseTracker?: boolean | undefined;
+}) => _MouseTrackerAnnotationNative);
+export declare const MouseTrackerAnnotation: typeof _MouseTrackerAnnotationBinding & _FlaxInstanceType<MouseTrackerAnnotation> & _FlaxDartType<MouseTrackerAnnotation, readonly ["class", "flax.core/sdk_services#type:MouseTrackerAnnotation", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "onEnter" | "onExit" | "cursor" | "validForMouseTracker" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/services/mouse_tracking.dart::MouseTrackerAnnotation" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -11,18 +11,38 @@ import type * as upstream3 from '@flax/flutter/widgets/_bindings/sdk_widgets_Scr
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollMetrics';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import { _flaxMemberParameters2, _flaxMemberParameters200, _flaxMemberParameters33, _flaxMemberParameters35, _flaxMemberParameters36, _flaxMemberParameters37 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters2, _flaxMemberParameters181, _flaxMemberParameters33, _flaxMemberParameters35, _flaxMemberParameters36, _flaxMemberParameters37 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface HoldScrollActivity extends Omit<upstream0.ScrollActivity, _flaxOwnMembers0>, Omit<upstream1.ScrollHoldController, _flaxOwnMembers0 | keyof upstream0.ScrollActivity>, Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::HoldScrollActivity": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollActivity": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollHoldController": readonly [] }> { readonly __HoldScrollActivity: unique symbol;
 readonly [_flaxDartTypeValue]: HoldScrollActivity;
 
+readonly delegate: upstream2.ScrollActivityDelegate;
+readonly shouldIgnorePointer: boolean;
+readonly isScrolling: boolean;
+readonly velocity: number;
+readonly onHoldCanceled: (() => void) | null;
+updateDelegate(value: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollActivityDelegate": readonly [] }>): void;
+resetActivity(): void;
+dispatchScrollStartNotification(metrics: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>, context: upstream4.BuildContext | null): void;
+dispatchScrollUpdateNotification(metrics: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>, context: upstream4.BuildContext, scrollDelta: number): void;
+dispatchOverscrollNotification(metrics: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>, context: upstream4.BuildContext, overscroll: number): void;
+dispatchScrollEndNotification(metrics: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>, context: upstream4.BuildContext): void;
+applyNewDimensions(): void;
+dispose(): void;
+toString(): string;
+cancel(): void;
 }
 defineObject("flax.core/sdk_widgets#type:HoldScrollActivity", ["delegate","shouldIgnorePointer","isScrolling","velocity","onHoldCanceled"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:HoldScrollActivity", "object", {"cancel":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_widgets#type:ScrollActivity");
-const _HoldScrollActivityProxy = {type: "flax.core/sdk_widgets#type:HoldScrollActivity", parameters: _flaxMemberParameters200, constructors: {"": _flaxMemberParameters200}, methods: {"updateDelegate":_flaxMemberParameters33,"resetActivity":_flaxMemberParameters2,"dispatchScrollStartNotification":_flaxMemberParameters35,"dispatchScrollUpdateNotification":_flaxMemberParameters36,"dispatchOverscrollNotification":_flaxMemberParameters37,"dispatchScrollEndNotification":_flaxMemberParameters35,"applyNewDimensions":_flaxMemberParameters2,"dispose":_flaxMemberParameters2,"toString":_flaxMemberParameters2,"cancel":_flaxMemberParameters2}, getters: ["onHoldCanceled","shouldIgnorePointer","isScrolling","velocity","delegate"], setters: [], contextMembers: [], superMembers: ["get:onHoldCanceled","get:shouldIgnorePointer","get:isScrolling","get:velocity","get:delegate","updateDelegate","resetActivity","dispatchScrollStartNotification","dispatchScrollUpdateNotification","dispatchOverscrollNotification","dispatchScrollEndNotification","applyNewDimensions","dispose","toString","cancel"]} as const;
-export interface HoldScrollActivity {
-readonly [_flaxDartTypeValue]: HoldScrollActivity;
+export function _HoldScrollActivityFactory(options: { delegate: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollActivityDelegate": readonly [] }>; onHoldCanceled?: (() => void) | null | undefined }): HoldScrollActivity {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:HoldScrollActivity", "", [{"name":"delegate","required":true},{"name":"onHoldCanceled"}], [], options) as HoldScrollActivity;
+}
+const _HoldScrollActivityProxy = {type: "flax.core/sdk_widgets#type:HoldScrollActivity", parameters: _flaxMemberParameters181, constructors: {"": _flaxMemberParameters181}, methods: {"updateDelegate":_flaxMemberParameters33,"resetActivity":_flaxMemberParameters2,"dispatchScrollStartNotification":_flaxMemberParameters35,"dispatchScrollUpdateNotification":_flaxMemberParameters36,"dispatchOverscrollNotification":_flaxMemberParameters37,"dispatchScrollEndNotification":_flaxMemberParameters35,"applyNewDimensions":_flaxMemberParameters2,"dispose":_flaxMemberParameters2,"toString":_flaxMemberParameters2,"cancel":_flaxMemberParameters2}, getters: ["onHoldCanceled","shouldIgnorePointer","isScrolling","velocity","delegate"], setters: [], contextMembers: [], superMembers: ["get:onHoldCanceled","get:shouldIgnorePointer","get:isScrolling","get:velocity","get:delegate","updateDelegate","resetActivity","dispatchScrollStartNotification","dispatchScrollUpdateNotification","dispatchOverscrollNotification","dispatchScrollEndNotification","applyNewDimensions","dispose","toString","cancel"]} as const;
+export interface _HoldScrollActivityNative extends HoldScrollActivity {
+readonly [_flaxDartTypeValue]: _HoldScrollActivityNative;
 
 updateDelegate(value: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollActivityDelegate": readonly [] }>): void;
 resetActivity(): void;
@@ -40,14 +60,15 @@ get isScrolling(): boolean;
 get velocity(): number;
 get delegate(): upstream2.ScrollActivityDelegate;
 }
-export abstract class HoldScrollActivity extends _FlaxProxyBase {
+export abstract class _HoldScrollActivityNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<HoldScrollActivity>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: HoldScrollActivity;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:HoldScrollActivity", readonly [], false];
 constructor(options: {delegate: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollActivityDelegate": readonly [] }>; onHoldCanceled?: (() => void) | null | undefined}) { super(_HoldScrollActivityProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(HoldScrollActivity.prototype, _HoldScrollActivityProxy);
-export namespace HoldScrollActivity { export function implement(args: [options: {delegate: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollActivityDelegate": readonly [] }>; onHoldCanceled?: (() => void) | null | undefined}], implementation: {}): HoldScrollActivity {
+_flaxDefineProxyBase(_HoldScrollActivityNative.prototype, _HoldScrollActivityProxy);
+export namespace _HoldScrollActivityFactory { export function implement(args: [options: {delegate: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollActivityDelegate": readonly [] }>; onHoldCanceled?: (() => void) | null | undefined}], implementation: {}): HoldScrollActivity {
 return constructProxy(_HoldScrollActivityProxy, args, implementation) as HoldScrollActivity; } }
-_flaxBindInstanceType<HoldScrollActivity, typeof HoldScrollActivity>(HoldScrollActivity, "flax.core/sdk_widgets#type:HoldScrollActivity", ["flax.core/sdk_widgets#type:ScrollActivity","dart:core::Object","flax.core/sdk_widgets#type:ScrollHoldController"]);
+const _HoldScrollActivityBinding = _flaxProxyFactory(_HoldScrollActivityFactory, _HoldScrollActivityNative) as unknown as typeof _HoldScrollActivityFactory & (new(options: {delegate: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollActivityDelegate": readonly [] }>; onHoldCanceled?: (() => void) | null | undefined}) => _HoldScrollActivityNative);
+export const HoldScrollActivity: typeof _HoldScrollActivityBinding & _FlaxInstanceType<HoldScrollActivity> & _FlaxDartType<HoldScrollActivity, readonly ["class", "flax.core/sdk_widgets#type:HoldScrollActivity", readonly [], false]> = _flaxBindInstanceType<HoldScrollActivity, typeof _HoldScrollActivityBinding>(_HoldScrollActivityBinding, "flax.core/sdk_widgets#type:HoldScrollActivity", ["flax.core/sdk_widgets#type:ScrollActivity","dart:core::Object","flax.core/sdk_widgets#type:ScrollHoldController"]) as typeof _HoldScrollActivityBinding & _FlaxInstanceType<HoldScrollActivity> & _FlaxDartType<HoldScrollActivity, readonly ["class", "flax.core/sdk_widgets#type:HoldScrollActivity", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "delegate" | "shouldIgnorePointer" | "isScrolling" | "velocity" | "onHoldCanceled" | "updateDelegate" | "resetActivity" | "dispatchScrollStartNotification" | "dispatchScrollUpdateNotification" | "dispatchOverscrollNotification" | "dispatchScrollEndNotification" | "applyNewDimensions" | "dispose" | "toString" | "cancel" | "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::HoldScrollActivity" | "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollActivity" | "__flaxBound:package:flutter/src/widgets/scroll_activity.dart::ScrollHoldController";

@@ -6,29 +6,38 @@ import '@flax/flutter/gestures/_bindings/sdk_gestures_GestureArenaMember';
 import type * as upstream1 from '@flax/flutter/gestures/_bindings/sdk_gestures_GestureArenaEntry';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_GestureArenaEntry';
 import { _flaxMemberParameters33, _flaxMemberParameters7 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface GestureArenaTeam extends Readonly<{ "__flaxBound:package:flutter/src/gestures/team.dart::GestureArenaTeam": readonly [] }> { readonly __GestureArenaTeam: unique symbol;
 readonly [_flaxDartTypeValue]: GestureArenaTeam;
 
+get captain(): upstream0.GestureArenaMember | null;
+add(pointer: number, member: Readonly<{ "__flaxBound:package:flutter/src/gestures/arena.dart::GestureArenaMember": readonly [] }>): upstream1.GestureArenaEntry;
+set captain(value: Readonly<{ "__flaxBound:package:flutter/src/gestures/arena.dart::GestureArenaMember": readonly [] }> | null);
 }
 defineObject("flax.core/sdk_gestures#type:GestureArenaTeam", ["captain"], ["captain"], _flaxBindingMethods("flax.core/sdk_gestures#type:GestureArenaTeam", "object", {"add":_flaxMemberParameters33}, {}), []);
+export function _GestureArenaTeamFactory(): GestureArenaTeam {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_gestures#type:GestureArenaTeam", "", [], [], {}) as GestureArenaTeam;
+}
 const _GestureArenaTeamProxy = {type: "flax.core/sdk_gestures#type:GestureArenaTeam", parameters: _flaxMemberParameters7, constructors: {"": _flaxMemberParameters7}, methods: {"add":_flaxMemberParameters33}, getters: ["captain"], setters: ["captain"], contextMembers: [], superMembers: ["get:captain","set:captain","add"]} as const;
-export interface GestureArenaTeam {
-readonly [_flaxDartTypeValue]: GestureArenaTeam;
+export interface _GestureArenaTeamNative extends GestureArenaTeam {
+readonly [_flaxDartTypeValue]: _GestureArenaTeamNative;
 
 add(pointer: number, member: Readonly<{ "__flaxBound:package:flutter/src/gestures/arena.dart::GestureArenaMember": readonly [] }>): upstream1.GestureArenaEntry;
 get captain(): upstream0.GestureArenaMember | null;
 set captain(value: Readonly<{ "__flaxBound:package:flutter/src/gestures/arena.dart::GestureArenaMember": readonly [] }> | null);
 }
-export abstract class GestureArenaTeam extends _FlaxProxyBase {
+export abstract class _GestureArenaTeamNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<GestureArenaTeam>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: GestureArenaTeam;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:GestureArenaTeam", readonly [], false];
 constructor() { super(_GestureArenaTeamProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(GestureArenaTeam.prototype, _GestureArenaTeamProxy);
-export namespace GestureArenaTeam { export function implement(args: [], implementation: {}): GestureArenaTeam {
+_flaxDefineProxyBase(_GestureArenaTeamNative.prototype, _GestureArenaTeamProxy);
+export namespace _GestureArenaTeamFactory { export function implement(args: [], implementation: {}): GestureArenaTeam {
 return constructProxy(_GestureArenaTeamProxy, args, implementation) as GestureArenaTeam; } }
-_flaxBindInstanceType<GestureArenaTeam, typeof GestureArenaTeam>(GestureArenaTeam, "flax.core/sdk_gestures#type:GestureArenaTeam", ["dart:core::Object"]);
+const _GestureArenaTeamBinding = _flaxProxyFactory(_GestureArenaTeamFactory, _GestureArenaTeamNative) as unknown as typeof _GestureArenaTeamFactory & (new() => _GestureArenaTeamNative);
+export const GestureArenaTeam: typeof _GestureArenaTeamBinding & _FlaxInstanceType<GestureArenaTeam> & _FlaxDartType<GestureArenaTeam, readonly ["class", "flax.core/sdk_gestures#type:GestureArenaTeam", readonly [], false]> = _flaxBindInstanceType<GestureArenaTeam, typeof _GestureArenaTeamBinding>(_GestureArenaTeamBinding, "flax.core/sdk_gestures#type:GestureArenaTeam", ["dart:core::Object"]) as typeof _GestureArenaTeamBinding & _FlaxInstanceType<GestureArenaTeam> & _FlaxDartType<GestureArenaTeam, readonly ["class", "flax.core/sdk_gestures#type:GestureArenaTeam", readonly [], false]>;

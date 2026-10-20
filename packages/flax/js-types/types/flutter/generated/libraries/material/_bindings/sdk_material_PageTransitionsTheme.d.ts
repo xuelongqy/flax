@@ -18,7 +18,7 @@ import type * as upstream8 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PageTransitionsTheme extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/page_transitions_theme.dart::PageTransitionsTheme": readonly [];
 }>, Readonly<{
@@ -29,9 +29,68 @@ export interface PageTransitionsTheme extends Omit<upstream0.Diagnosticable, _fl
     readonly [_flaxDartMethodCases]?: {
         buildTransitions: _FlaxSignature0;
     };
+    readonly builders: DartMap<upstream2.TargetPlatform, upstream1.PageTransitionsBuilder>;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream5.DiagnosticsTreeStyle | null | undefined;
+    }): upstream4.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    buildTransitions<T extends unknown | null = unknown | null>(route: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute": readonly [_FlaxDartOutput<T>];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/routes.dart::ModalRoute": readonly [_FlaxDartOutput<T>];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/routes.dart::TransitionRoute": readonly [_FlaxDartOutput<T>];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/routes.dart::OverlayRoute": readonly [_FlaxDartOutput<T>];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/navigator.dart::Route": readonly [_FlaxDartOutput<T>];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/routes.dart::PredictiveBackRoute": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/routes.dart::LocalHistoryRoute": readonly [_FlaxDartOutput<T>];
+    }>, context: upstream8.BuildContext, animation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>, secondaryAnimation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>, child: Widget): Widget;
+    delegatedTransition(platform: upstream2.TargetPlatform): ((context: upstream8.BuildContext, animation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>, secondaryAnimation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null;
 }
-export interface PageTransitionsTheme {
-    readonly [_flaxDartTypeValue]: PageTransitionsTheme;
+export declare function _PageTransitionsThemeFactory(options?: {
+    builders?: DartMapInput<upstream2.TargetPlatform, upstream1.PageTransitionsBuilder, upstream2.TargetPlatform, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/page_transitions_builder.dart::PageTransitionsBuilder": readonly [];
+    }>> | undefined;
+}): PageTransitionsTheme;
+export interface _PageTransitionsThemeNative extends PageTransitionsTheme {
+    readonly [_flaxDartTypeValue]: _PageTransitionsThemeNative;
     readonly [_flaxDartMethodCases]?: {
         buildTransitions: _FlaxSignature1;
     };
@@ -90,7 +149,7 @@ export interface PageTransitionsTheme {
     }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null;
     get builders(): DartMap<upstream2.TargetPlatform, upstream1.PageTransitionsBuilder>;
 }
-export declare abstract class PageTransitionsTheme extends _FlaxProxyBase {
+export declare abstract class _PageTransitionsThemeNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PageTransitionsTheme>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PageTransitionsTheme;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:PageTransitionsTheme", readonly [], false];
@@ -100,13 +159,19 @@ export declare abstract class PageTransitionsTheme extends _FlaxProxyBase {
         }>> | undefined;
     });
 }
-export declare namespace PageTransitionsTheme {
+export declare namespace _PageTransitionsThemeFactory {
     function implement(args: [options?: {
         builders?: DartMapInput<upstream2.TargetPlatform, upstream1.PageTransitionsBuilder, upstream2.TargetPlatform, Readonly<{
             "__flaxBound:package:flutter/src/widgets/page_transitions_builder.dart::PageTransitionsBuilder": readonly [];
         }>> | undefined;
     }], implementation: {}): PageTransitionsTheme;
 }
+declare const _PageTransitionsThemeBinding: typeof _PageTransitionsThemeFactory & (new (options?: {
+    builders?: DartMapInput<upstream2.TargetPlatform, upstream1.PageTransitionsBuilder, upstream2.TargetPlatform, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/page_transitions_builder.dart::PageTransitionsBuilder": readonly [];
+    }>> | undefined;
+}) => _PageTransitionsThemeNative);
+export declare const PageTransitionsTheme: typeof _PageTransitionsThemeBinding & _FlaxInstanceType<PageTransitionsTheme> & _FlaxDartType<PageTransitionsTheme, readonly ["class", "flax.core/sdk_material#type:PageTransitionsTheme", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "builders" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "buildTransitions" | "delegatedTransition" | "__flaxBound:package:flutter/src/material/page_transitions_theme.dart::PageTransitionsTheme" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (route: Readonly<{

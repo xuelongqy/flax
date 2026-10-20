@@ -12,7 +12,7 @@ import '@flax/flutter/material/_bindings/sdk_material_SliderThemeData';
 import type * as upstream8 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RectangularSliderValueIndicatorShape extends Omit<upstream0.SliderComponentShape, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::RectangularSliderValueIndicatorShape": readonly [];
 }>, Readonly<{
@@ -20,9 +20,70 @@ export interface RectangularSliderValueIndicatorShape extends Omit<upstream0.Sli
 }> {
     readonly __RectangularSliderValueIndicatorShape: unique symbol;
     readonly [_flaxDartTypeValue]: RectangularSliderValueIndicatorShape;
+    getPreferredSize(isEnabled: boolean, isDiscrete: boolean, options?: {
+        labelPainter?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_painter.dart::TextPainter": readonly [];
+        }> | null | undefined;
+        textScaleFactor?: number | null | undefined;
+    }): upstream1.Size;
+    paint(context: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext": readonly [];
+    }>, center: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options: {
+        activationAnimation: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>;
+        enableAnimation: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>;
+        isDiscrete: boolean;
+        labelPainter: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_painter.dart::TextPainter": readonly [];
+        }>;
+        parentBox: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        sizeWithOverflow: Readonly<{
+            "__flaxBound:dart:ui::Size": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>;
+        sliderTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        textDirection: upstream8.TextDirection;
+        textScaleFactor: number;
+        value: number;
+    }): void;
 }
-export interface RectangularSliderValueIndicatorShape {
-    readonly [_flaxDartTypeValue]: RectangularSliderValueIndicatorShape;
+export declare function _RectangularSliderValueIndicatorShapeFactory(): RectangularSliderValueIndicatorShape;
+export interface _RectangularSliderValueIndicatorShapeNative extends RectangularSliderValueIndicatorShape {
+    readonly [_flaxDartTypeValue]: _RectangularSliderValueIndicatorShapeNative;
     getPreferredSize(isEnabled: boolean, isDiscrete: boolean, options?: {
         labelPainter?: Readonly<{
             "__flaxBound:package:flutter/src/painting/text_painter.dart::TextPainter": readonly [];
@@ -84,14 +145,16 @@ export interface RectangularSliderValueIndicatorShape {
         }>;
     }): void;
 }
-export declare abstract class RectangularSliderValueIndicatorShape extends _FlaxProxyBase {
+export declare abstract class _RectangularSliderValueIndicatorShapeNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RectangularSliderValueIndicatorShape>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RectangularSliderValueIndicatorShape;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:RectangularSliderValueIndicatorShape", readonly [], false];
     constructor();
 }
-export declare namespace RectangularSliderValueIndicatorShape {
+export declare namespace _RectangularSliderValueIndicatorShapeFactory {
     function implement(args: [], implementation: {}): RectangularSliderValueIndicatorShape;
 }
+declare const _RectangularSliderValueIndicatorShapeBinding: typeof _RectangularSliderValueIndicatorShapeFactory & (new () => _RectangularSliderValueIndicatorShapeNative);
+export declare const RectangularSliderValueIndicatorShape: typeof _RectangularSliderValueIndicatorShapeBinding & _FlaxInstanceType<RectangularSliderValueIndicatorShape> & _FlaxDartType<RectangularSliderValueIndicatorShape, readonly ["class", "flax.core/sdk_material#type:RectangularSliderValueIndicatorShape", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "getPreferredSize" | "paint" | "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::RectangularSliderValueIndicatorShape" | "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::SliderComponentShape";
 export {};

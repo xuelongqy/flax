@@ -13,7 +13,7 @@ import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import type * as upstream8 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RectangularRangeSliderTrackShape extends Omit<upstream0.RangeSliderTrackShape, _flaxOwnMembers0>, Omit<upstream1.BaseRangeSliderTrackShape, _flaxOwnMembers0 | keyof upstream0.RangeSliderTrackShape>, Readonly<{
     "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RectangularRangeSliderTrackShape": readonly [];
 }>, Readonly<{
@@ -23,9 +23,86 @@ export interface RectangularRangeSliderTrackShape extends Omit<upstream0.RangeSl
 }> {
     readonly __RectangularRangeSliderTrackShape: unique symbol;
     readonly [_flaxDartTypeValue]: RectangularRangeSliderTrackShape;
+    readonly isRounded: boolean;
+    getPreferredRect(options: {
+        isDiscrete?: boolean | undefined;
+        isEnabled?: boolean | undefined;
+        offset?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | undefined;
+        parentBox: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        sliderTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+    }): upstream2.Rect;
+    paint(context: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext": readonly [];
+    }>, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options: {
+        enableAnimation: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>) | null;
+        endThumbCenter: Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>;
+        isDiscrete?: boolean | undefined;
+        isEnabled?: boolean | undefined;
+        parentBox: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        sliderTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        startThumbCenter: Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>;
+        textDirection: upstream8.TextDirection;
+    }): void;
 }
-export interface RectangularRangeSliderTrackShape {
-    readonly [_flaxDartTypeValue]: RectangularRangeSliderTrackShape;
+export declare function _RectangularRangeSliderTrackShapeFactory(): RectangularRangeSliderTrackShape;
+export interface _RectangularRangeSliderTrackShapeNative extends RectangularRangeSliderTrackShape {
+    readonly [_flaxDartTypeValue]: _RectangularRangeSliderTrackShapeNative;
     getPreferredRect(options: {
         parentBox: Readonly<{
             "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
@@ -103,14 +180,16 @@ export interface RectangularRangeSliderTrackShape {
     }): void;
     get isRounded(): boolean;
 }
-export declare abstract class RectangularRangeSliderTrackShape extends _FlaxProxyBase {
+export declare abstract class _RectangularRangeSliderTrackShapeNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RectangularRangeSliderTrackShape>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RectangularRangeSliderTrackShape;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:RectangularRangeSliderTrackShape", readonly [], false];
     constructor();
 }
-export declare namespace RectangularRangeSliderTrackShape {
+export declare namespace _RectangularRangeSliderTrackShapeFactory {
     function implement(args: [], implementation: {}): RectangularRangeSliderTrackShape;
 }
+declare const _RectangularRangeSliderTrackShapeBinding: typeof _RectangularRangeSliderTrackShapeFactory & (new () => _RectangularRangeSliderTrackShapeNative);
+export declare const RectangularRangeSliderTrackShape: typeof _RectangularRangeSliderTrackShapeBinding & _FlaxInstanceType<RectangularRangeSliderTrackShape> & _FlaxDartType<RectangularRangeSliderTrackShape, readonly ["class", "flax.core/sdk_material#type:RectangularRangeSliderTrackShape", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "isRounded" | "getPreferredRect" | "paint" | "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RectangularRangeSliderTrackShape" | "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderTrackShape" | "__flaxBound:package:flutter/src/material/range_slider_parts.dart::BaseRangeSliderTrackShape";
 export {};

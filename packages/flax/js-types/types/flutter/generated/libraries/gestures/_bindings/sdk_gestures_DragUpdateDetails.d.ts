@@ -17,7 +17,7 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DragUpdateDetails extends Omit<upstream0.PositionedGestureDetails, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PositionedGestureDetails>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragUpdateDetails": readonly [];
 }>, Readonly<{
@@ -27,9 +27,50 @@ export interface DragUpdateDetails extends Omit<upstream0.PositionedGestureDetai
 }> {
     readonly __DragUpdateDetails: unique symbol;
     readonly [_flaxDartTypeValue]: DragUpdateDetails;
+    readonly globalPosition: upstream2.Offset;
+    readonly localPosition: upstream2.Offset;
+    readonly sourceTimeStamp: upstream3.Duration | null;
+    readonly delta: upstream2.Offset;
+    readonly primaryDelta: number | null;
+    readonly kind: upstream4.PointerDeviceKind | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream5.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
 }
-export interface DragUpdateDetails {
-    readonly [_flaxDartTypeValue]: DragUpdateDetails;
+export declare function _DragUpdateDetailsFactory(options: {
+    globalPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    localPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    sourceTimeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream3.Duration];
+    }>) | null | undefined;
+    delta?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    primaryDelta?: number | null | undefined;
+    kind?: upstream4.PointerDeviceKind | null | undefined;
+}): DragUpdateDetails;
+export interface _DragUpdateDetailsNative extends DragUpdateDetails {
+    readonly [_flaxDartTypeValue]: _DragUpdateDetailsNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream5.DiagnosticLevel | undefined;
@@ -48,7 +89,7 @@ export interface DragUpdateDetails {
     get primaryDelta(): number | null;
     get kind(): upstream4.PointerDeviceKind | null;
 }
-export declare abstract class DragUpdateDetails extends _FlaxProxyBase {
+export declare abstract class _DragUpdateDetailsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DragUpdateDetails>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: DragUpdateDetails;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:DragUpdateDetails", readonly [], false];
@@ -77,7 +118,7 @@ export declare abstract class DragUpdateDetails extends _FlaxProxyBase {
         kind?: upstream4.PointerDeviceKind | null | undefined;
     });
 }
-export declare namespace DragUpdateDetails {
+export declare namespace _DragUpdateDetailsFactory {
     function implement(args: [options: {
         globalPosition: Readonly<{
             "__flaxBound:dart:ui::Offset": readonly [];
@@ -103,5 +144,30 @@ export declare namespace DragUpdateDetails {
         kind?: upstream4.PointerDeviceKind | null | undefined;
     }], implementation: {}): DragUpdateDetails;
 }
+declare const _DragUpdateDetailsBinding: typeof _DragUpdateDetailsFactory & (new (options: {
+    globalPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    localPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    sourceTimeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream3.Duration];
+    }>) | null | undefined;
+    delta?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    primaryDelta?: number | null | undefined;
+    kind?: upstream4.PointerDeviceKind | null | undefined;
+}) => _DragUpdateDetailsNative);
+export declare const DragUpdateDetails: typeof _DragUpdateDetailsBinding & _FlaxInstanceType<DragUpdateDetails> & _FlaxDartType<DragUpdateDetails, readonly ["class", "flax.core/sdk_gestures#type:DragUpdateDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "globalPosition" | "localPosition" | "sourceTimeStamp" | "delta" | "primaryDelta" | "kind" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragUpdateDetails" | "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -13,7 +13,7 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_TextTreeConfiguration';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsSerializationDelegate';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DiagnosticsDebugCreator extends Omit<upstream0.DiagnosticsProperty<{}>, _flaxOwnMembers0>, Omit<upstream1.DiagnosticsNode, _flaxOwnMembers0 | keyof upstream0.DiagnosticsProperty<{}>>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/object.dart::DiagnosticsDebugCreator": readonly [];
 }>, Readonly<{
@@ -23,9 +23,66 @@ export interface DiagnosticsDebugCreator extends Omit<upstream0.DiagnosticsPrope
 }> {
     readonly __DiagnosticsDebugCreator: unique symbol;
     readonly [_flaxDartTypeValue]: DiagnosticsDebugCreator;
+    readonly expandableValue: boolean;
+    readonly allowWrap: boolean;
+    readonly allowNameWrap: boolean;
+    readonly ifNull: string | null;
+    readonly ifEmpty: string | null;
+    readonly tooltip: string | null;
+    readonly missingIfNull: boolean;
+    readonly propertyType: upstream2.Type;
+    readonly value: unknown | null;
+    readonly exception: unknown | null;
+    readonly defaultValue: unknown | null;
+    readonly isInteresting: boolean;
+    readonly level: upstream3.DiagnosticLevel;
+    readonly name: string | null;
+    readonly showSeparator: boolean;
+    readonly showName: boolean;
+    readonly linePrefix: string | null;
+    readonly emptyBodyDescription: string | null;
+    readonly style: upstream4.DiagnosticsTreeStyle | null;
+    readonly allowTruncate: boolean;
+    readonly textTreeConfiguration: upstream5.TextTreeConfiguration | null;
+    toJsonMap(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
+    }>): DartMap<string, unknown | null>;
+    valueToString(options?: {
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
+    toDescription(options?: {
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
+    getProperties(): DartList<upstream1.DiagnosticsNode>;
+    getChildren(): DartList<upstream1.DiagnosticsNode>;
+    isFiltered(minLevel: upstream3.DiagnosticLevel): boolean;
+    toTimelineArguments(): DartMap<string, string> | null;
+    toJsonMapIterative(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
+    }>): DartMap<string, unknown | null>;
+    toStringDeep(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toString(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
 }
-export interface DiagnosticsDebugCreator {
-    readonly [_flaxDartTypeValue]: DiagnosticsDebugCreator;
+export declare function _DiagnosticsDebugCreatorFactory(value: {}): DiagnosticsDebugCreator;
+export interface _DiagnosticsDebugCreatorNative extends DiagnosticsDebugCreator {
+    readonly [_flaxDartTypeValue]: _DiagnosticsDebugCreatorNative;
     toJsonMap(delegate: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
     }>): DartMap<string, unknown | null>;
@@ -83,14 +140,16 @@ export interface DiagnosticsDebugCreator {
     get allowTruncate(): boolean;
     get textTreeConfiguration(): upstream5.TextTreeConfiguration | null;
 }
-export declare abstract class DiagnosticsDebugCreator extends _FlaxProxyBase {
+export declare abstract class _DiagnosticsDebugCreatorNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DiagnosticsDebugCreator>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: DiagnosticsDebugCreator;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:DiagnosticsDebugCreator", readonly [], false];
     constructor(value: {});
 }
-export declare namespace DiagnosticsDebugCreator {
+export declare namespace _DiagnosticsDebugCreatorFactory {
     function implement(args: [value: {}], implementation: {}): DiagnosticsDebugCreator;
 }
+declare const _DiagnosticsDebugCreatorBinding: typeof _DiagnosticsDebugCreatorFactory & (new (value: {}) => _DiagnosticsDebugCreatorNative);
+export declare const DiagnosticsDebugCreator: typeof _DiagnosticsDebugCreatorBinding & _FlaxInstanceType<DiagnosticsDebugCreator> & _FlaxDartType<DiagnosticsDebugCreator, readonly ["class", "flax.core/sdk_rendering#type:DiagnosticsDebugCreator", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "expandableValue" | "allowWrap" | "allowNameWrap" | "ifNull" | "ifEmpty" | "tooltip" | "missingIfNull" | "propertyType" | "value" | "exception" | "defaultValue" | "isInteresting" | "level" | "name" | "showSeparator" | "showName" | "linePrefix" | "emptyBodyDescription" | "style" | "allowTruncate" | "textTreeConfiguration" | "toJsonMap" | "valueToString" | "toDescription" | "getProperties" | "getChildren" | "isFiltered" | "toTimelineArguments" | "toJsonMapIterative" | "toStringDeep" | "toString" | "__flaxBound:package:flutter/src/rendering/object.dart::DiagnosticsDebugCreator" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode";
 export {};

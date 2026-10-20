@@ -16,7 +16,7 @@ import type * as upstream5 from '@flax/flutter/painting/_bindings/flutter_TextSt
 import '@flax/flutter/painting/_bindings/flutter_TextStyle';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
-import { _flaxMemberParameters194 } from "@flax/core/navigation/_bindings/flutter.__module";
+import { _flaxMemberParameters192 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface WidgetStateProperty<T extends unknown | null = unknown | null> extends Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [T] }> { readonly __WidgetStateProperty: unique symbol;
@@ -24,7 +24,7 @@ readonly [_flaxDartTypeValue]: WidgetStateProperty<T>;
 
 resolve(states: DartSetInput<upstream6.WidgetState, upstream6.WidgetState>): T;
 }
-defineObject("flax.core/flutter#type:WidgetStateProperty", [], [], _flaxBindingMethods("flax.core/flutter#type:WidgetStateProperty", "object", {"resolve":_flaxMemberParameters194}, {}), []);
+defineObject("flax.core/flutter#type:WidgetStateProperty", [], [], _flaxBindingMethods("flax.core/flutter#type:WidgetStateProperty", "object", {"resolve":_flaxMemberParameters192}, {}), []);
 export namespace _WidgetStatePropertyFactory {
 export function fromMap<T extends unknown | null = unknown | null>(map: DartMapInput<upstream0.WidgetStatesConstraint, _FlaxDartOutput<T>, Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [] }>, (T | _FlaxDartOutput<T>)>): WidgetStateProperty<T>;
 export function fromMap(map: DartMapInput<upstream0.WidgetStatesConstraint, unknown | null, Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [] }>, unknown | null>): WidgetStateProperty<unknown | null>;

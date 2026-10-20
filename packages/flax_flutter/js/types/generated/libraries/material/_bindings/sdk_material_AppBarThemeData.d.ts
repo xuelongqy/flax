@@ -21,7 +21,7 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface AppBarThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/app_bar_theme.dart::AppBarThemeData": readonly [];
 }>, Readonly<{
@@ -29,9 +29,145 @@ export interface AppBarThemeData extends Omit<upstream0.Diagnosticable, _flaxOwn
 }> {
     readonly __AppBarThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: AppBarThemeData;
+    readonly backgroundColor: upstream1.Color | null;
+    readonly foregroundColor: upstream1.Color | null;
+    readonly elevation: number | null;
+    readonly scrolledUnderElevation: number | null;
+    readonly shadowColor: upstream1.Color | null;
+    readonly surfaceTintColor: upstream1.Color | null;
+    readonly shape: upstream2.ShapeBorder | null;
+    readonly iconTheme: upstream3.IconThemeData | null;
+    readonly actionsIconTheme: upstream3.IconThemeData | null;
+    readonly centerTitle: boolean | null;
+    readonly titleSpacing: number | null;
+    readonly leadingWidth: number | null;
+    readonly toolbarHeight: number | null;
+    readonly toolbarTextStyle: upstream4.TextStyle | null;
+    readonly titleTextStyle: upstream4.TextStyle | null;
+    readonly systemOverlayStyle: upstream5.SystemUiOverlayStyle | null;
+    readonly actionsPadding: upstream6.EdgeInsetsGeometry | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream7.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream9.DiagnosticsTreeStyle | null | undefined;
+    }): upstream8.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        actionsIconTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        actionsPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        backgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        centerTitle?: boolean | null | undefined;
+        color?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        elevation?: number | null | undefined;
+        foregroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        iconTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        leadingWidth?: number | null | undefined;
+        scrolledUnderElevation?: number | null | undefined;
+        shadowColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        shape?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        surfaceTintColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        systemOverlayStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/services/system_chrome.dart::SystemUiOverlayStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        titleSpacing?: number | null | undefined;
+        titleTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        toolbarHeight?: number | null | undefined;
+        toolbarTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): AppBarThemeData;
 }
-export interface AppBarThemeData {
-    readonly [_flaxDartTypeValue]: AppBarThemeData;
+export declare function _AppBarThemeDataFactory(options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    foregroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    scrolledUnderElevation?: number | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    iconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    actionsIconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    centerTitle?: boolean | null | undefined;
+    titleSpacing?: number | null | undefined;
+    leadingWidth?: number | null | undefined;
+    toolbarHeight?: number | null | undefined;
+    toolbarTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    titleTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    systemOverlayStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/services/system_chrome.dart::SystemUiOverlayStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    actionsPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+}): AppBarThemeData;
+export interface _AppBarThemeDataNative extends AppBarThemeData {
+    readonly [_flaxDartTypeValue]: _AppBarThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream7.DiagnosticLevel | undefined;
@@ -115,7 +251,7 @@ export interface AppBarThemeData {
     get systemOverlayStyle(): upstream5.SystemUiOverlayStyle | null;
     get actionsPadding(): upstream6.EdgeInsetsGeometry | null;
 }
-export declare abstract class AppBarThemeData extends _FlaxProxyBase {
+export declare abstract class _AppBarThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AppBarThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AppBarThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:AppBarThemeData", readonly [], false];
@@ -174,7 +310,7 @@ export declare abstract class AppBarThemeData extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace AppBarThemeData {
+export declare namespace _AppBarThemeDataFactory {
     function implement(args: [options?: {
         backgroundColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -230,7 +366,61 @@ export declare namespace AppBarThemeData {
         }> | null | undefined;
     }], implementation: {}): AppBarThemeData;
 }
-export declare namespace AppBarThemeData {
+declare const _AppBarThemeDataBinding: typeof _AppBarThemeDataFactory & (new (options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    foregroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    scrolledUnderElevation?: number | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    iconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    actionsIconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    centerTitle?: boolean | null | undefined;
+    titleSpacing?: number | null | undefined;
+    leadingWidth?: number | null | undefined;
+    toolbarHeight?: number | null | undefined;
+    toolbarTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    titleTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    systemOverlayStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/services/system_chrome.dart::SystemUiOverlayStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    actionsPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+}) => _AppBarThemeDataNative);
+export declare namespace _AppBarThemeDataFactory {
     function lerp(a: Readonly<{
         "__flaxBound:package:flutter/src/material/app_bar_theme.dart::AppBarThemeData": readonly [];
     }> & Readonly<{
@@ -241,5 +431,6 @@ export declare namespace AppBarThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>, t: number): AppBarThemeData;
 }
+export declare const AppBarThemeData: typeof _AppBarThemeDataBinding & _FlaxInstanceType<AppBarThemeData> & _FlaxDartType<AppBarThemeData, readonly ["class", "flax.core/sdk_material#type:AppBarThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "backgroundColor" | "foregroundColor" | "elevation" | "scrolledUnderElevation" | "shadowColor" | "surfaceTintColor" | "shape" | "iconTheme" | "actionsIconTheme" | "centerTitle" | "titleSpacing" | "leadingWidth" | "toolbarHeight" | "toolbarTextStyle" | "titleTextStyle" | "systemOverlayStyle" | "actionsPadding" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/app_bar_theme.dart::AppBarThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

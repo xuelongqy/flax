@@ -15,7 +15,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface EditableTextTapOutsideIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::EditableTextTapOutsideIntent": readonly [];
 }>, Readonly<{
@@ -25,9 +25,48 @@ export interface EditableTextTapOutsideIntent extends Omit<upstream0.Intent, _fl
 }> {
     readonly __EditableTextTapOutsideIntent: unique symbol;
     readonly [_flaxDartTypeValue]: EditableTextTapOutsideIntent;
+    readonly focusNode: upstream2.FocusNode;
+    readonly pointerDownEvent: upstream3.PointerDownEvent;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream5.DiagnosticsTreeStyle | null | undefined;
+    }): upstream4.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream7.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface EditableTextTapOutsideIntent {
-    readonly [_flaxDartTypeValue]: EditableTextTapOutsideIntent;
+export declare function _EditableTextTapOutsideIntentFactory(options: {
+    focusNode: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>;
+    pointerDownEvent: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>;
+}): EditableTextTapOutsideIntent;
+export interface _EditableTextTapOutsideIntentNative extends EditableTextTapOutsideIntent {
+    readonly [_flaxDartTypeValue]: _EditableTextTapOutsideIntentNative;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
@@ -42,7 +81,7 @@ export interface EditableTextTapOutsideIntent {
     get focusNode(): upstream2.FocusNode;
     get pointerDownEvent(): upstream3.PointerDownEvent;
 }
-export declare abstract class EditableTextTapOutsideIntent extends _FlaxProxyBase {
+export declare abstract class _EditableTextTapOutsideIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<EditableTextTapOutsideIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: EditableTextTapOutsideIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:EditableTextTapOutsideIntent", readonly [], false];
@@ -73,7 +112,7 @@ export declare abstract class EditableTextTapOutsideIntent extends _FlaxProxyBas
         }>;
     });
 }
-export declare namespace EditableTextTapOutsideIntent {
+export declare namespace _EditableTextTapOutsideIntentFactory {
     function implement(args: [options: {
         focusNode: Readonly<{
             "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -101,5 +140,32 @@ export declare namespace EditableTextTapOutsideIntent {
         }>;
     }], implementation: {}): EditableTextTapOutsideIntent;
 }
+declare const _EditableTextTapOutsideIntentBinding: typeof _EditableTextTapOutsideIntentFactory & (new (options: {
+    focusNode: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>;
+    pointerDownEvent: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>;
+}) => _EditableTextTapOutsideIntentNative);
+export declare const EditableTextTapOutsideIntent: typeof _EditableTextTapOutsideIntentBinding & _FlaxInstanceType<EditableTextTapOutsideIntent> & _FlaxDartType<EditableTextTapOutsideIntent, readonly ["class", "flax.core/sdk_widgets#type:EditableTextTapOutsideIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "focusNode" | "pointerDownEvent" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::EditableTextTapOutsideIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

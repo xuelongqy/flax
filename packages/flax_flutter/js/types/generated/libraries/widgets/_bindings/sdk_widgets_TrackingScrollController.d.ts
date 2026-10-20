@@ -13,7 +13,7 @@ import '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/flutter/widgets/_bindings/flutter_ScrollPhysics';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollContext';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TrackingScrollController extends Omit<upstream0.ScrollController, _flaxOwnMembers0>, Omit<upstream1.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.ScrollController>, Omit<upstream2.Listenable, _flaxOwnMembers0 | keyof upstream0.ScrollController | keyof upstream1.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::TrackingScrollController": readonly [];
 }>, Readonly<{
@@ -25,9 +25,102 @@ export interface TrackingScrollController extends Omit<upstream0.ScrollControlle
 }> {
     readonly __TrackingScrollController: unique symbol;
     readonly [_flaxDartTypeValue]: TrackingScrollController;
+    readonly initialScrollOffset: number;
+    readonly keepScrollOffset: boolean;
+    readonly onAttach: ((position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_position.dart::ScrollPosition": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>) => void) | null;
+    readonly onDetach: ((position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_position.dart::ScrollPosition": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>) => void) | null;
+    readonly debugLabel: string | null;
+    readonly positions: DartIterable<upstream3.ScrollPosition>;
+    readonly hasClients: boolean;
+    readonly position: upstream3.ScrollPosition;
+    readonly offset: number;
+    readonly hasListeners: boolean;
+    readonly mostRecentlyUpdatedPosition: upstream3.ScrollPosition | null;
+    animateTo(offset: number, options: {
+        curve: Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+        }>;
+        duration: Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream5.Duration];
+        }>;
+    }): Promise<void>;
+    jumpTo(value: number): void;
+    attach(position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_position.dart::ScrollPosition": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>): void;
+    detach(position: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_position.dart::ScrollPosition": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>): void;
+    dispose(): void;
+    createScrollPosition(physics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }>, context: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_context.dart::ScrollContext": readonly [];
+    }>, oldPosition: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_position.dart::ScrollPosition": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>) | null): upstream3.ScrollPosition;
+    toString(): string;
+    debugFillDescription(description: DartListInput<string, string>): void;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
 }
-export interface TrackingScrollController {
-    readonly [_flaxDartTypeValue]: TrackingScrollController;
+export declare function _TrackingScrollControllerFactory(options?: {
+    initialScrollOffset?: number | undefined;
+    keepScrollOffset?: boolean | undefined;
+    debugLabel?: string | null | undefined;
+    onAttach?: ((position: upstream3.ScrollPosition) => void) | null | undefined;
+    onDetach?: ((position: upstream3.ScrollPosition) => void) | null | undefined;
+}): TrackingScrollController;
+export interface _TrackingScrollControllerNative extends TrackingScrollController {
+    readonly [_flaxDartTypeValue]: _TrackingScrollControllerNative;
     animateTo(offset: number, options: {
         duration: Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];
@@ -115,7 +208,7 @@ export interface TrackingScrollController {
     get offset(): number;
     get hasListeners(): boolean;
 }
-export declare abstract class TrackingScrollController extends _FlaxProxyBase {
+export declare abstract class _TrackingScrollControllerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TrackingScrollController>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TrackingScrollController;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:TrackingScrollController", readonly [], false];
@@ -127,7 +220,7 @@ export declare abstract class TrackingScrollController extends _FlaxProxyBase {
         onDetach?: ((position: upstream3.ScrollPosition) => void) | null | undefined;
     });
 }
-export declare namespace TrackingScrollController {
+export declare namespace _TrackingScrollControllerFactory {
     function implement(args: [options?: {
         initialScrollOffset?: number | undefined;
         keepScrollOffset?: boolean | undefined;
@@ -136,5 +229,13 @@ export declare namespace TrackingScrollController {
         onDetach?: ((position: upstream3.ScrollPosition) => void) | null | undefined;
     }], implementation: {}): TrackingScrollController;
 }
+declare const _TrackingScrollControllerBinding: typeof _TrackingScrollControllerFactory & (new (options?: {
+    initialScrollOffset?: number | undefined;
+    keepScrollOffset?: boolean | undefined;
+    debugLabel?: string | null | undefined;
+    onAttach?: ((position: upstream3.ScrollPosition) => void) | null | undefined;
+    onDetach?: ((position: upstream3.ScrollPosition) => void) | null | undefined;
+}) => _TrackingScrollControllerNative);
+export declare const TrackingScrollController: typeof _TrackingScrollControllerBinding & _FlaxInstanceType<TrackingScrollController> & _FlaxDartType<TrackingScrollController, readonly ["class", "flax.core/sdk_widgets#type:TrackingScrollController", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "initialScrollOffset" | "keepScrollOffset" | "onAttach" | "onDetach" | "debugLabel" | "positions" | "hasClients" | "position" | "offset" | "hasListeners" | "mostRecentlyUpdatedPosition" | "animateTo" | "jumpTo" | "attach" | "detach" | "dispose" | "createScrollPosition" | "toString" | "debugFillDescription" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::TrackingScrollController" | "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

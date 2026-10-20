@@ -16,7 +16,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PlatformMenuItemGroup extends Omit<upstream0.PlatformMenuItem, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PlatformMenuItem>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/platform_menu_bar.dart::PlatformMenuItemGroup": readonly [];
 }>, Readonly<{
@@ -26,9 +26,41 @@ export interface PlatformMenuItemGroup extends Omit<upstream0.PlatformMenuItem, 
 }> {
     readonly __PlatformMenuItemGroup: unique symbol;
     readonly [_flaxDartTypeValue]: PlatformMenuItemGroup;
+    readonly label: string;
+    readonly tooltip: string | null;
+    readonly shortcut: upstream2.MenuSerializableShortcut | null;
+    readonly onSelected: (() => void) | null;
+    readonly onOpen: (() => void) | null;
+    readonly onClose: (() => void) | null;
+    readonly onSelectedIntent: upstream3.Intent | null;
+    readonly descendants: DartList<upstream0.PlatformMenuItem>;
+    readonly members: DartList<upstream0.PlatformMenuItem>;
+    toChannelRepresentation(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/platform_menu_bar.dart::PlatformMenuDelegate": readonly [];
+    }>, options: {
+        getId: ((item: upstream0.PlatformMenuItem) => number);
+    }): DartIterable<DartMap<string, unknown | null>>;
+    toStringShort(): string;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    toString(options?: {
+        minLevel?: upstream8.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface PlatformMenuItemGroup {
-    readonly [_flaxDartTypeValue]: PlatformMenuItemGroup;
+export declare function _PlatformMenuItemGroupFactory(options: {
+    members: DartListInput<upstream0.PlatformMenuItem, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/platform_menu_bar.dart::PlatformMenuItem": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>;
+}): PlatformMenuItemGroup;
+export interface _PlatformMenuItemGroupNative extends PlatformMenuItemGroup {
+    readonly [_flaxDartTypeValue]: _PlatformMenuItemGroupNative;
     toChannelRepresentation(delegate: Readonly<{
         "__flaxBound:package:flutter/src/widgets/platform_menu_bar.dart::PlatformMenuDelegate": readonly [];
     }>, options: {
@@ -55,7 +87,7 @@ export interface PlatformMenuItemGroup {
     get onSelectedIntent(): upstream3.Intent | null;
     get descendants(): DartList<upstream0.PlatformMenuItem>;
 }
-export declare abstract class PlatformMenuItemGroup extends _FlaxProxyBase {
+export declare abstract class _PlatformMenuItemGroupNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PlatformMenuItemGroup>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PlatformMenuItemGroup;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:PlatformMenuItemGroup", readonly [], false];
@@ -67,7 +99,7 @@ export declare abstract class PlatformMenuItemGroup extends _FlaxProxyBase {
         }>>;
     });
 }
-export declare namespace PlatformMenuItemGroup {
+export declare namespace _PlatformMenuItemGroupFactory {
     function implement(args: [options: {
         members: DartListInput<upstream0.PlatformMenuItem, Readonly<{
             "__flaxBound:package:flutter/src/widgets/platform_menu_bar.dart::PlatformMenuItem": readonly [];
@@ -76,7 +108,14 @@ export declare namespace PlatformMenuItemGroup {
         }>>;
     }], implementation: {}): PlatformMenuItemGroup;
 }
-export declare namespace PlatformMenuItemGroup {
+declare const _PlatformMenuItemGroupBinding: typeof _PlatformMenuItemGroupFactory & (new (options: {
+    members: DartListInput<upstream0.PlatformMenuItem, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/platform_menu_bar.dart::PlatformMenuItem": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>;
+}) => _PlatformMenuItemGroupNative);
+export declare namespace _PlatformMenuItemGroupFactory {
     function serialize(group: Readonly<{
         "__flaxBound:package:flutter/src/widgets/platform_menu_bar.dart::PlatformMenuItem": readonly [];
     }> & Readonly<{
@@ -87,5 +126,6 @@ export declare namespace PlatformMenuItemGroup {
         getId: ((item: upstream0.PlatformMenuItem) => number);
     }): DartIterable<DartMap<string, unknown | null>>;
 }
+export declare const PlatformMenuItemGroup: typeof _PlatformMenuItemGroupBinding & _FlaxInstanceType<PlatformMenuItemGroup> & _FlaxDartType<PlatformMenuItemGroup, readonly ["class", "flax.core/sdk_widgets#type:PlatformMenuItemGroup", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "label" | "tooltip" | "shortcut" | "onSelected" | "onOpen" | "onClose" | "onSelectedIntent" | "descendants" | "members" | "toChannelRepresentation" | "toStringShort" | "debugFillProperties" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/widgets/platform_menu_bar.dart::PlatformMenuItemGroup" | "__flaxBound:package:flutter/src/widgets/platform_menu_bar.dart::PlatformMenuItem" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

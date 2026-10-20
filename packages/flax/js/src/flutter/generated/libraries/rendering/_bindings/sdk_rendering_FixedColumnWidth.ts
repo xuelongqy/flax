@@ -5,18 +5,28 @@ import type * as upstream0 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_TableColumnWidth';
 import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
-import { _flaxMemberParameters59, _flaxMemberParameters66, _flaxMemberParameters67, _flaxMemberParameters1 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters60, _flaxMemberParameters67, _flaxMemberParameters68, _flaxMemberParameters1 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface FixedColumnWidth extends Omit<upstream0.TableColumnWidth, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/rendering/table.dart::FixedColumnWidth": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/table.dart::TableColumnWidth": readonly [] }> { readonly __FixedColumnWidth: unique symbol;
 readonly [_flaxDartTypeValue]: FixedColumnWidth;
 
+readonly value: number;
+minIntrinsicWidth(cells: DartIterableInput<upstream1.RenderBox, Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>>, containerWidth: number): number;
+maxIntrinsicWidth(cells: DartIterableInput<upstream1.RenderBox, Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>>, containerWidth: number): number;
+flex(cells: DartIterableInput<upstream1.RenderBox, Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>>): number | null;
+toString(): string;
 }
 defineObject("flax.core/sdk_rendering#type:FixedColumnWidth", ["value"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:FixedColumnWidth", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:TableColumnWidth");
-const _FixedColumnWidthProxy = {type: "flax.core/sdk_rendering#type:FixedColumnWidth", parameters: _flaxMemberParameters59, constructors: {"": _flaxMemberParameters59}, methods: {"minIntrinsicWidth":_flaxMemberParameters66,"maxIntrinsicWidth":_flaxMemberParameters66,"flex":_flaxMemberParameters67,"toString":_flaxMemberParameters1}, getters: ["value"], setters: [], contextMembers: [], superMembers: ["get:value","minIntrinsicWidth","maxIntrinsicWidth","flex","toString"]} as const;
-export interface FixedColumnWidth {
-readonly [_flaxDartTypeValue]: FixedColumnWidth;
+export function _FixedColumnWidthFactory(value: number): FixedColumnWidth {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_rendering#type:FixedColumnWidth", "", [{"name":"value","required":true,"positional":true}], [value], {}) as FixedColumnWidth;
+}
+const _FixedColumnWidthProxy = {type: "flax.core/sdk_rendering#type:FixedColumnWidth", parameters: _flaxMemberParameters60, constructors: {"": _flaxMemberParameters60}, methods: {"minIntrinsicWidth":_flaxMemberParameters67,"maxIntrinsicWidth":_flaxMemberParameters67,"flex":_flaxMemberParameters68,"toString":_flaxMemberParameters1}, getters: ["value"], setters: [], contextMembers: [], superMembers: ["get:value","minIntrinsicWidth","maxIntrinsicWidth","flex","toString"]} as const;
+export interface _FixedColumnWidthNative extends FixedColumnWidth {
+readonly [_flaxDartTypeValue]: _FixedColumnWidthNative;
 
 minIntrinsicWidth(cells: DartIterableInput<upstream1.RenderBox, Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>>, containerWidth: number): number;
 maxIntrinsicWidth(cells: DartIterableInput<upstream1.RenderBox, Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>>, containerWidth: number): number;
@@ -24,14 +34,15 @@ flex(cells: DartIterableInput<upstream1.RenderBox, Readonly<{ "__flaxBound:packa
 toString(): string;
 get value(): number;
 }
-export abstract class FixedColumnWidth extends _FlaxProxyBase {
+export abstract class _FixedColumnWidthNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<FixedColumnWidth>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: FixedColumnWidth;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:FixedColumnWidth", readonly [], false];
 constructor(value: number) { super(_FixedColumnWidthProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(FixedColumnWidth.prototype, _FixedColumnWidthProxy);
-export namespace FixedColumnWidth { export function implement(args: [value: number], implementation: {}): FixedColumnWidth {
+_flaxDefineProxyBase(_FixedColumnWidthNative.prototype, _FixedColumnWidthProxy);
+export namespace _FixedColumnWidthFactory { export function implement(args: [value: number], implementation: {}): FixedColumnWidth {
 return constructProxy(_FixedColumnWidthProxy, args, implementation) as FixedColumnWidth; } }
-_flaxBindInstanceType<FixedColumnWidth, typeof FixedColumnWidth>(FixedColumnWidth, "flax.core/sdk_rendering#type:FixedColumnWidth", ["flax.core/sdk_rendering#type:TableColumnWidth","dart:core::Object"]);
+const _FixedColumnWidthBinding = _flaxProxyFactory(_FixedColumnWidthFactory, _FixedColumnWidthNative) as unknown as typeof _FixedColumnWidthFactory & (new(value: number) => _FixedColumnWidthNative);
+export const FixedColumnWidth: typeof _FixedColumnWidthBinding & _FlaxInstanceType<FixedColumnWidth> & _FlaxDartType<FixedColumnWidth, readonly ["class", "flax.core/sdk_rendering#type:FixedColumnWidth", readonly [], false]> = _flaxBindInstanceType<FixedColumnWidth, typeof _FixedColumnWidthBinding>(_FixedColumnWidthBinding, "flax.core/sdk_rendering#type:FixedColumnWidth", ["flax.core/sdk_rendering#type:TableColumnWidth","dart:core::Object"]) as typeof _FixedColumnWidthBinding & _FlaxInstanceType<FixedColumnWidth> & _FlaxDartType<FixedColumnWidth, readonly ["class", "flax.core/sdk_rendering#type:FixedColumnWidth", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "minIntrinsicWidth" | "maxIntrinsicWidth" | "flex" | "toString" | "__flaxBound:package:flutter/src/rendering/table.dart::FixedColumnWidth" | "__flaxBound:package:flutter/src/rendering/table.dart::TableColumnWidth";

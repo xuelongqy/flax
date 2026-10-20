@@ -14,7 +14,7 @@ import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream6 from '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ListWheelParentData extends Omit<upstream0.ContainerBoxParentData<upstream1.RenderBox>, _flaxOwnMembers0>, Omit<upstream2.BoxParentData, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox>>, Omit<upstream3.ParentData, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox> | keyof upstream2.BoxParentData>, Omit<upstream4.ContainerParentDataMixin<upstream1.RenderBox>, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox> | keyof upstream2.BoxParentData | keyof upstream3.ParentData>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/list_wheel_viewport.dart::ListWheelParentData": readonly [];
 }>, Readonly<{
@@ -28,9 +28,52 @@ export interface ListWheelParentData extends Omit<upstream0.ContainerBoxParentDa
 }> {
     readonly __ListWheelParentData: unique symbol;
     readonly [_flaxDartTypeValue]: ListWheelParentData;
+    get offset(): upstream5.Offset;
+    get previousSibling(): upstream1.RenderBox | null;
+    get nextSibling(): upstream1.RenderBox | null;
+    get index(): number | null;
+    get transform(): upstream6.Matrix4 | null;
+    detach(): void;
+    toString(): string;
+    set offset(value: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>);
+    set previousSibling(value: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
+    set nextSibling(value: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
+    set index(value: number | null);
+    set transform(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null);
 }
-export interface ListWheelParentData {
-    readonly [_flaxDartTypeValue]: ListWheelParentData;
+export declare function _ListWheelParentDataFactory(): ListWheelParentData;
+export interface _ListWheelParentDataNative extends ListWheelParentData {
+    readonly [_flaxDartTypeValue]: _ListWheelParentDataNative;
     detach(): void;
     toString(): string;
     get index(): number | null;
@@ -74,14 +117,16 @@ export interface ListWheelParentData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null);
 }
-export declare abstract class ListWheelParentData extends _FlaxProxyBase {
+export declare abstract class _ListWheelParentDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ListWheelParentData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ListWheelParentData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:ListWheelParentData", readonly [], false];
     constructor();
 }
-export declare namespace ListWheelParentData {
+export declare namespace _ListWheelParentDataFactory {
     function implement(args: [], implementation: {}): ListWheelParentData;
 }
+declare const _ListWheelParentDataBinding: typeof _ListWheelParentDataFactory & (new () => _ListWheelParentDataNative);
+export declare const ListWheelParentData: typeof _ListWheelParentDataBinding & _FlaxInstanceType<ListWheelParentData> & _FlaxDartType<ListWheelParentData, readonly ["class", "flax.core/sdk_rendering#type:ListWheelParentData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "offset" | "previousSibling" | "nextSibling" | "index" | "transform" | "detach" | "toString" | "__flaxBound:package:flutter/src/rendering/list_wheel_viewport.dart::ListWheelParentData" | "__flaxBound:package:flutter/src/rendering/box.dart::ContainerBoxParentData" | "__flaxBound:package:flutter/src/rendering/box.dart::BoxParentData" | "__flaxBound:package:flutter/src/rendering/object.dart::ParentData" | "__flaxBound:package:flutter/src/rendering/object.dart::ContainerParentDataMixin";
 export {};

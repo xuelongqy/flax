@@ -46,103 +46,103 @@ const sdk_semanticsBindings = FlaxBindingModule(
       },
       supertypes: ["flax.core/flutter#type:Enum", "dart:core::Object"],
     ),
-    _flaxBinding241,
-    _flaxBinding250,
-    _flaxBinding322,
-    _flaxBinding328,
-    _flaxBinding335,
-    _flaxBinding344,
-    _flaxBinding345,
-    _flaxBinding346,
-    _flaxBinding371,
-    _flaxBinding443,
-    _flaxBinding844,
-    _flaxBinding902,
-    _flaxBinding230,
-    _flaxBinding904,
-    _flaxBinding926,
-    _flaxBinding936,
-    _flaxBinding1063,
-    _flaxBinding1090,
-    _flaxBinding1216,
-    _flaxBinding1217,
-    _flaxBinding365,
-    _flaxBinding1222,
-    _flaxBinding1223,
-    _flaxBinding1226,
+    _flaxBinding219,
+    _flaxBinding228,
+    _flaxBinding301,
+    _flaxBinding307,
+    _flaxBinding314,
+    _flaxBinding324,
+    _flaxBinding325,
+    _flaxBinding326,
+    _flaxBinding355,
+    _flaxBinding427,
+    _flaxBinding885,
+    _flaxBinding943,
+    _flaxBinding207,
+    _flaxBinding945,
+    _flaxBinding967,
+    _flaxBinding977,
+    _flaxBinding1106,
+    _flaxBinding1133,
+    _flaxBinding1259,
+    _flaxBinding1260,
+    _flaxBinding349,
+    _flaxBinding1265,
+    _flaxBinding1266,
+    _flaxBinding1269,
   ],
   functions: [
     FlaxFunctionBinding(
       "flax.core/sdk_semantics#read:debugSemanticsDisableAnimations",
       [],
-      _flaxBinding111,
+      flaxNullableBoolType,
       _read_debugSemanticsDisableAnimations,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_semantics#function:debugResetSemanticsIdCounter",
       [],
-      _flaxBinding48,
+      flaxVoidType,
       _function_debugResetSemanticsIdCounter,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_semantics#function:CustomSemanticsAction.getIdentifier",
-      [FlaxParameter("action", _flaxBinding101, required: true)],
-      _flaxBinding5,
+      [FlaxParameter.required("action", _flaxBinding81)],
+      flaxIntType,
       _CustomSemanticsAction_getIdentifier,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_semantics#function:CustomSemanticsAction.getAction",
-      [FlaxParameter("id", _flaxBinding5, required: true)],
-      _flaxBinding1227,
+      [FlaxParameter.required("id", flaxIntType)],
+      _flaxBinding1270,
       _CustomSemanticsAction_getAction,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_semantics#read:SemanticsBinding.instance",
       [],
-      _flaxBinding1228,
+      _flaxBinding1271,
       _SemanticsBinding_static_get_instance,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_semantics#function:SemanticsService.announce",
       [
-        FlaxParameter("message", _flaxBinding1, required: true),
-        FlaxParameter("textDirection", _flaxBinding7, required: true),
+        FlaxParameter.required("message", flaxStringType),
+        FlaxParameter.required("textDirection", _flaxBinding2),
         FlaxParameter(
           "assertiveness",
-          _flaxBinding9,
+          _flaxBinding4,
           required: false,
           defaultValue: api.Assertiveness.polite,
         ),
       ],
-      _flaxBinding386,
+      _flaxBinding370,
       _SemanticsService_announce,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_semantics#function:SemanticsService.sendAnnouncement",
       [
-        FlaxParameter("view", _flaxBinding1229, required: true),
-        FlaxParameter("message", _flaxBinding1, required: true),
-        FlaxParameter("textDirection", _flaxBinding7, required: true),
+        FlaxParameter.required("view", _flaxBinding1272),
+        FlaxParameter.required("message", flaxStringType),
+        FlaxParameter.required("textDirection", _flaxBinding2),
         FlaxParameter(
           "assertiveness",
-          _flaxBinding9,
+          _flaxBinding4,
           required: false,
           defaultValue: api.Assertiveness.polite,
         ),
       ],
-      _flaxBinding386,
+      _flaxBinding370,
       _SemanticsService_sendAnnouncement,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_semantics#function:SemanticsService.tooltip",
-      [FlaxParameter("message", _flaxBinding1, required: true)],
-      _flaxBinding386,
+      [FlaxParameter.required("message", flaxStringType)],
+      _flaxBinding370,
       _SemanticsService_tooltip,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_semantics#function:debugSemanticsDisableAnimations%3D",
-      [FlaxParameter("value", _flaxBinding111, required: true)],
-      _flaxBinding48,
+      [FlaxParameter.required("value", flaxNullableBoolType)],
+      flaxVoidType,
       _write_debugSemanticsDisableAnimations,
     ),
   ],
@@ -163,6 +163,7 @@ const sdk_semanticsBindings = FlaxBindingModule(
     "native-core-inputs",
     "native-navigation-objects",
     "native-widget-proxies",
+    "proxy-super-constructors",
     "shared-static-readers",
   ],
   stateVariants: [],
@@ -372,6 +373,13 @@ Object? _FlaxProxyDispatch0_super_get_type(
 ) => (receiver as _FlaxProxyDispatch0)._flaxSuperGet_type;
 Object _createAnnounceSemanticsEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.AnnounceSemanticsEvent(
+        values["message"] as String,
+        values["textDirection"] as api1.TextDirection,
+        values["viewId"] as int,
+        assertiveness: values["assertiveness"] as api.Assertiveness,
+      );
     case '@implementation':
       return _AnnounceSemanticsEventProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -424,6 +432,14 @@ Object? _AttributedString_super_get_attributes(
 ) => (receiver as _AttributedStringProxy)._flaxSuperGet_attributes;
 Object _createAttributedString(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      if (!values.containsKey("attributes")) {
+        return api.AttributedString(values["string"] as String);
+      }
+      return api.AttributedString(
+        values["string"] as String,
+        attributes: values["attributes"] as List<api1.StringAttribute>,
+      );
     case '@implementation':
       if (!values.containsKey("attributes")) {
         return _AttributedStringProxy(
@@ -771,6 +787,26 @@ Object _createAttributedStringProperty(
   Map<String, Object?> values,
 ) {
   switch (ctor) {
+    case "":
+      if (!values.containsKey("defaultValue")) {
+        return api.AttributedStringProperty(
+          values["name"] as String,
+          values["value"] as api.AttributedString?,
+          showName: values["showName"] as bool,
+          showWhenEmpty: values["showWhenEmpty"] as bool,
+          level: values["level"] as api2.DiagnosticLevel,
+          description: values["description"] as String?,
+        );
+      }
+      return api.AttributedStringProperty(
+        values["name"] as String,
+        values["value"] as api.AttributedString?,
+        showName: values["showName"] as bool,
+        showWhenEmpty: values["showWhenEmpty"] as bool,
+        defaultValue: values["defaultValue"],
+        level: values["level"] as api2.DiagnosticLevel,
+        description: values["description"] as String?,
+      );
     case '@implementation':
       if (!values.containsKey("defaultValue")) {
         return _AttributedStringPropertyProxy(
@@ -882,6 +918,8 @@ Object _createChildSemanticsConfigurationsResultBuilder(
   Map<String, Object?> values,
 ) {
   switch (ctor) {
+    case "":
+      return api.ChildSemanticsConfigurationsResultBuilder();
     case '@implementation':
       return _ChildSemanticsConfigurationsResultBuilderProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -930,10 +968,23 @@ Object? _CustomSemanticsAction_super_get_action(
 ) => (receiver as _CustomSemanticsActionProxy)._flaxSuperGet_action;
 Object _createCustomSemanticsAction(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.CustomSemanticsAction(label: values["label"] as String);
+    case "overridingAction":
+      return api.CustomSemanticsAction.overridingAction(
+        hint: values["hint"] as String,
+        action: values["action"] as api1.SemanticsAction,
+      );
     case '@implementation':
       return _CustomSemanticsActionProxy(
         values['@peer'] as FlaxProxyPeer,
         label: values["label"] as String,
+      );
+    case "@implementation:overridingAction":
+      return _CustomSemanticsActionProxy.overridingAction(
+        values['@peer'] as FlaxProxyPeer,
+        hint: values["hint"] as String,
+        action: values["action"] as api1.SemanticsAction,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -943,6 +994,8 @@ Object _createCustomSemanticsAction(String ctor, Map<String, Object?> values) {
 bool _isFocusSemanticEvent(Object value) => value is api.FocusSemanticEvent;
 Object _createFocusSemanticEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.FocusSemanticEvent();
     case '@implementation':
       return _FocusSemanticEventProxy(values['@peer'] as FlaxProxyPeer);
     default:
@@ -957,6 +1010,8 @@ Object _createLongPressSemanticsEvent(
   Map<String, Object?> values,
 ) {
   switch (ctor) {
+    case "":
+      return api.LongPressSemanticsEvent();
     case '@implementation':
       return _LongPressSemanticsEventProxy(values['@peer'] as FlaxProxyPeer);
     default:
@@ -1036,6 +1091,11 @@ Object? _OrdinalSortKey_super_get_order(
 ) => (receiver as _OrdinalSortKeyProxy)._flaxSuperGet_order;
 Object _createOrdinalSortKey(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.OrdinalSortKey(
+        values["order"] as double,
+        name: values["name"] as String?,
+      );
     case '@implementation':
       return _OrdinalSortKeyProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -3519,6 +3579,8 @@ Object? _SemanticsConfiguration_super_set_minValue(
 
 Object _createSemanticsConfiguration(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.SemanticsConfiguration();
     case '@implementation':
       return _SemanticsConfigurationProxy(values['@peer'] as FlaxProxyPeer);
     default:
@@ -3722,6 +3784,49 @@ Object? _SemanticsData_super_get_locale(
 ) => (receiver as _SemanticsDataProxy)._flaxSuperGet_locale;
 Object _createSemanticsData(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.SemanticsData(
+        flagsCollection: values["flagsCollection"] as api1.SemanticsFlags,
+        actions: values["actions"] as int,
+        identifier: values["identifier"] as String,
+        traversalParentIdentifier: values["traversalParentIdentifier"],
+        traversalChildIdentifier: values["traversalChildIdentifier"],
+        attributedLabel: values["attributedLabel"] as api.AttributedString,
+        attributedValue: values["attributedValue"] as api.AttributedString,
+        attributedIncreasedValue:
+            values["attributedIncreasedValue"] as api.AttributedString,
+        attributedDecreasedValue:
+            values["attributedDecreasedValue"] as api.AttributedString,
+        attributedHint: values["attributedHint"] as api.AttributedString,
+        tooltip: values["tooltip"] as String,
+        textDirection: values["textDirection"] as api1.TextDirection?,
+        rect: values["rect"] as api1.Rect,
+        textSelection: values["textSelection"] as api6.TextSelection?,
+        scrollIndex: values["scrollIndex"] as int?,
+        scrollChildCount: values["scrollChildCount"] as int?,
+        scrollPosition: values["scrollPosition"] as double?,
+        scrollExtentMax: values["scrollExtentMax"] as double?,
+        scrollExtentMin: values["scrollExtentMin"] as double?,
+        platformViewId: values["platformViewId"] as int?,
+        maxValueLength: values["maxValueLength"] as int?,
+        currentValueLength: values["currentValueLength"] as int?,
+        headingLevel: values["headingLevel"] as int,
+        linkUrl: values["linkUrl"] as api4.Uri?,
+        role: values["role"] as api1.SemanticsRole,
+        controlsNodes: values["controlsNodes"] as Set<String>?,
+        validationResult:
+            values["validationResult"] as api1.SemanticsValidationResult,
+        hitTestBehavior:
+            values["hitTestBehavior"] as api1.SemanticsHitTestBehavior,
+        inputType: values["inputType"] as api1.SemanticsInputType,
+        locale: values["locale"] as api1.Locale?,
+        minValue: values["minValue"] as String?,
+        maxValue: values["maxValue"] as String?,
+        tags: values["tags"] as Set<api.SemanticsTag>?,
+        transform: values["transform"] as api5.Matrix4?,
+        customSemanticsActionIds:
+            values["customSemanticsActionIds"] as List<int>?,
+      );
     case '@implementation':
       return _SemanticsDataProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -3928,6 +4033,11 @@ Object? _SemanticsHintOverrides_super_get_isNotEmpty(
 ) => (receiver as _SemanticsHintOverridesProxy)._flaxSuperGet_isNotEmpty;
 Object _createSemanticsHintOverrides(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.SemanticsHintOverrides(
+        onTapHint: values["onTapHint"] as String?,
+        onLongPressHint: values["onLongPressHint"] as String?,
+      );
     case '@implementation':
       return _SemanticsHintOverridesProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -4573,11 +4683,29 @@ Object? _SemanticsNode_super_set_tags(
 
 Object _createSemanticsNode(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.SemanticsNode(
+        key: values["key"] as api2.Key?,
+        showOnScreen: values["showOnScreen"] as void Function()?,
+      );
+    case "root":
+      return api.SemanticsNode.root(
+        key: values["key"] as api2.Key?,
+        showOnScreen: values["showOnScreen"] as void Function()?,
+        owner: values["owner"] as api.SemanticsOwner,
+      );
     case '@implementation':
       return _SemanticsNodeProxy(
         values['@peer'] as FlaxProxyPeer,
         key: values["key"] as api2.Key?,
         showOnScreen: values["showOnScreen"] as void Function()?,
+      );
+    case "@implementation:root":
+      return _SemanticsNodeProxy.root(
+        values['@peer'] as FlaxProxyPeer,
+        key: values["key"] as api2.Key?,
+        showOnScreen: values["showOnScreen"] as void Function()?,
+        owner: values["owner"] as api.SemanticsOwner,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -4742,6 +4870,12 @@ Object? _SemanticsOwner_super_get_hasListeners(
 ) => (receiver as _SemanticsOwnerProxy)._flaxSuperGet_hasListeners;
 Object _createSemanticsOwner(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.SemanticsOwner(
+        onSemanticsUpdate:
+            values["onSemanticsUpdate"]
+                as void Function(api1.SemanticsUpdate update),
+      );
     case '@implementation':
       return _SemanticsOwnerProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -5209,6 +5343,107 @@ Object? _SemanticsProperties_super_get_inputType(
 ) => (receiver as _SemanticsPropertiesProxy)._flaxSuperGet_inputType;
 Object _createSemanticsProperties(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.SemanticsProperties(
+        enabled: values["enabled"] as bool?,
+        checked: values["checked"] as bool?,
+        mixed: values["mixed"] as bool?,
+        expanded: values["expanded"] as bool?,
+        selected: values["selected"] as bool?,
+        toggled: values["toggled"] as bool?,
+        button: values["button"] as bool?,
+        link: values["link"] as bool?,
+        linkUrl: values["linkUrl"] as api4.Uri?,
+        header: values["header"] as bool?,
+        headingLevel: values["headingLevel"] as int?,
+        textField: values["textField"] as bool?,
+        slider: values["slider"] as bool?,
+        keyboardKey: values["keyboardKey"] as bool?,
+        readOnly: values["readOnly"] as bool?,
+        focusable: values["focusable"] as bool?,
+        focused: values["focused"] as bool?,
+        accessibilityFocusBlockType:
+            values["accessibilityFocusBlockType"]
+                as api.AccessibilityFocusBlockType?,
+        inMutuallyExclusiveGroup: values["inMutuallyExclusiveGroup"] as bool?,
+        hidden: values["hidden"] as bool?,
+        obscured: values["obscured"] as bool?,
+        multiline: values["multiline"] as bool?,
+        scopesRoute: values["scopesRoute"] as bool?,
+        namesRoute: values["namesRoute"] as bool?,
+        image: values["image"] as bool?,
+        liveRegion: values["liveRegion"] as bool?,
+        isRequired: values["isRequired"] as bool?,
+        maxValueLength: values["maxValueLength"] as int?,
+        currentValueLength: values["currentValueLength"] as int?,
+        identifier: values["identifier"] as String?,
+        traversalParentIdentifier: values["traversalParentIdentifier"],
+        traversalChildIdentifier: values["traversalChildIdentifier"],
+        label: values["label"] as String?,
+        attributedLabel: values["attributedLabel"] as api.AttributedString?,
+        value: values["value"] as String?,
+        attributedValue: values["attributedValue"] as api.AttributedString?,
+        increasedValue: values["increasedValue"] as String?,
+        attributedIncreasedValue:
+            values["attributedIncreasedValue"] as api.AttributedString?,
+        decreasedValue: values["decreasedValue"] as String?,
+        attributedDecreasedValue:
+            values["attributedDecreasedValue"] as api.AttributedString?,
+        hint: values["hint"] as String?,
+        tooltip: values["tooltip"] as String?,
+        attributedHint: values["attributedHint"] as api.AttributedString?,
+        hintOverrides: values["hintOverrides"] as api.SemanticsHintOverrides?,
+        textDirection: values["textDirection"] as api1.TextDirection?,
+        sortKey: values["sortKey"] as api.SemanticsSortKey?,
+        tagForChildren: values["tagForChildren"] as api.SemanticsTag?,
+        role: values["role"] as api1.SemanticsRole?,
+        controlsNodes: values["controlsNodes"] as Set<String>?,
+        inputType: values["inputType"] as api1.SemanticsInputType?,
+        validationResult:
+            values["validationResult"] as api1.SemanticsValidationResult,
+        hitTestBehavior:
+            values["hitTestBehavior"] as api1.SemanticsHitTestBehavior?,
+        onTap: values["onTap"] as void Function()?,
+        onLongPress: values["onLongPress"] as void Function()?,
+        onScrollLeft: values["onScrollLeft"] as void Function()?,
+        onScrollRight: values["onScrollRight"] as void Function()?,
+        onScrollUp: values["onScrollUp"] as void Function()?,
+        onScrollDown: values["onScrollDown"] as void Function()?,
+        onIncrease: values["onIncrease"] as void Function()?,
+        onDecrease: values["onDecrease"] as void Function()?,
+        onCopy: values["onCopy"] as void Function()?,
+        onCut: values["onCut"] as void Function()?,
+        onPaste: values["onPaste"] as void Function()?,
+        onMoveCursorForwardByCharacter:
+            values["onMoveCursorForwardByCharacter"]
+                as void Function(bool extendSelection)?,
+        onMoveCursorBackwardByCharacter:
+            values["onMoveCursorBackwardByCharacter"]
+                as void Function(bool extendSelection)?,
+        onMoveCursorForwardByWord:
+            values["onMoveCursorForwardByWord"]
+                as void Function(bool extendSelection)?,
+        onMoveCursorBackwardByWord:
+            values["onMoveCursorBackwardByWord"]
+                as void Function(bool extendSelection)?,
+        onSetSelection:
+            values["onSetSelection"]
+                as void Function(api6.TextSelection selection)?,
+        onSetText: values["onSetText"] as void Function(String text)?,
+        onDidGainAccessibilityFocus:
+            values["onDidGainAccessibilityFocus"] as void Function()?,
+        onDidLoseAccessibilityFocus:
+            values["onDidLoseAccessibilityFocus"] as void Function()?,
+        onFocus: values["onFocus"] as void Function()?,
+        onDismiss: values["onDismiss"] as void Function()?,
+        onExpand: values["onExpand"] as void Function()?,
+        onCollapse: values["onCollapse"] as void Function()?,
+        customSemanticsActions:
+            values["customSemanticsActions"]
+                as Map<api.CustomSemanticsAction, void Function()>?,
+        minValue: values["minValue"] as String?,
+        maxValue: values["maxValue"] as String?,
+      );
     case '@implementation':
       return _SemanticsPropertiesProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -5430,6 +5665,8 @@ Object? _SemanticsTag_super_get_name(
 ) => (receiver as _SemanticsTagProxy)._flaxSuperGet_name;
 Object _createSemanticsTag(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.SemanticsTag(values["name"] as String);
     case '@implementation':
       return _SemanticsTagProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -5443,6 +5680,8 @@ Object _createSemanticsTag(String ctor, Map<String, Object?> values) {
 bool _isTapSemanticEvent(Object value) => value is api.TapSemanticEvent;
 Object _createTapSemanticEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.TapSemanticEvent();
     case '@implementation':
       return _TapSemanticEventProxy(values['@peer'] as FlaxProxyPeer);
     default:
@@ -5460,6 +5699,8 @@ Object? _TooltipSemanticsEvent_super_get_message(
 ) => (receiver as _TooltipSemanticsEventProxy)._flaxSuperGet_message;
 Object _createTooltipSemanticsEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api.TooltipSemanticsEvent(values["message"] as String);
     case '@implementation':
       return _TooltipSemanticsEventProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -7528,6 +7769,11 @@ final class _CustomSemanticsActionProxy extends api.CustomSemanticsAction
     implements _FlaxProxyDispatch2 {
   final FlaxProxyPeer _flaxPeer;
   _CustomSemanticsActionProxy(this._flaxPeer, {required String super.label});
+  _CustomSemanticsActionProxy.overridingAction(
+    this._flaxPeer, {
+    required String super.hint,
+    required api1.SemanticsAction super.action,
+  }) : super.overridingAction();
   @override
   String toString() {
     return _FlaxProxyDispatch2_call_toString(this, 0);
@@ -10887,6 +11133,12 @@ final class _SemanticsNodeProxy extends api.SemanticsNode
     api2.Key? super.key,
     void Function()? super.showOnScreen,
   });
+  _SemanticsNodeProxy.root(
+    this._flaxPeer, {
+    api2.Key? super.key,
+    void Function()? super.showOnScreen,
+    required api.SemanticsOwner super.owner,
+  }) : super.root();
   @override
   String toString({Object? minLevel = _flaxOmitted}) {
     return _FlaxProxyDispatch9_call_toString(this, 0, minLevel: minLevel);
@@ -13641,11 +13893,9 @@ Function _flaxShape0<_Shape0, _Shape1>() =>
           nullable: false,
           callback: FlaxCallbackBinding(
             [
-              FlaxCallbackParameter(
+              FlaxCallbackParameter.plain(
                 "args",
                 types.ref<_Shape0>(withinCallback: true),
-                required: true,
-                positional: true,
               ),
             ],
             types.ref<_Shape1>(withinCallback: true),
@@ -13887,75 +14137,55 @@ Future<Object?> _future3Adapt(Future<Object?> value) =>
     value.then<String>((value) => value as String);
 Future<Object?> _future4Adapt(Future<Object?> value) =>
     value.then<Map<String, Object?>>((value) => value as Map<String, Object?>);
-const _flaxBinding0 = FlaxTypeRef("any", nullable: true);
-const _flaxBinding1 = FlaxTypeRef("String");
-const _flaxBinding2 = FlaxTypeRef(
+const _flaxBinding0 = FlaxTypeRef(
   "map",
-  item: _flaxBinding0,
-  key: _flaxBinding1,
+  item: flaxNullableAnyType,
+  key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[any?:][String:]",
     _collection0Create,
     _collection0Matches,
   ),
 );
-const _flaxBinding3 = FlaxCallbackBinding.signature(
+const _flaxBinding1 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding2,
+  _flaxBinding0,
   id: "callback:<>()->map:[any?:][String:]",
 );
-const _flaxBinding4 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1,
-  id: "callback:<>()->String:",
-);
-const _flaxBinding5 = FlaxTypeRef("int");
-const _flaxBinding6 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding5,
-  id: "callback:<>()->int:",
-);
-const _flaxBinding7 = FlaxTypeRef(
+const _flaxBinding2 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TextDirection",
 );
-const _flaxBinding8 = FlaxCallbackBinding.signature(
+const _flaxBinding3 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding7,
+  _flaxBinding2,
   id: "callback:<>()->enum:flax.core/flutter#type:TextDirection",
 );
-const _flaxBinding9 = FlaxTypeRef(
+const _flaxBinding4 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_semantics#type:Assertiveness",
 );
-const _flaxBinding10 = FlaxCallbackBinding.signature(
+const _flaxBinding5 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding9,
+  _flaxBinding4,
   id: "callback:<>()->enum:flax.core/sdk_semantics#type:Assertiveness",
 );
-const _flaxBinding11 = FlaxTypeRef(
+const _flaxBinding6 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:AttributedString",
 );
-const _flaxBinding12 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "other",
-      _flaxBinding11,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding11,
+const _flaxBinding7 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("other", _flaxBinding6)],
+  _flaxBinding6,
   id: "callback:<>(p:r:other:object:flax.core/sdk_semantics#type:AttributedString)->object:flax.core/sdk_semantics#type:AttributedString",
 );
-const _flaxBinding13 = FlaxTypeRef(
+const _flaxBinding8 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:StringAttribute",
 );
-const _flaxBinding14 = FlaxTypeRef(
+const _flaxBinding9 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding13,
+  item: _flaxBinding8,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:StringAttribute]",
     _collection2Create,
@@ -13963,44 +14193,37 @@ const _flaxBinding14 = FlaxTypeRef(
     restore: _collection2Restore,
   ),
 );
-const _flaxBinding15 = FlaxTypeRef(
+const _flaxBinding10 = FlaxTypeRef(
   "list",
-  item: _flaxBinding13,
+  item: _flaxBinding8,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:StringAttribute]",
     _collection1Create,
     _collection1Matches,
   ),
-  iterable: _flaxBinding14,
+  iterable: _flaxBinding9,
 );
-const _flaxBinding16 = FlaxCallbackBinding.signature(
+const _flaxBinding11 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding15,
+  _flaxBinding10,
   id: "callback:<>()->list:[object:flax.core/sdk_dart_ui#type:StringAttribute]",
 );
-const _flaxBinding17 = FlaxTypeRef(
+const _flaxBinding12 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
 );
-const _flaxBinding18 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "delegate",
-      _flaxBinding17,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding2,
+const _flaxBinding13 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("delegate", _flaxBinding12)],
+  _flaxBinding0,
   id: "callback:<>(p:r:delegate:object:flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate)->map:[any?:][String:]",
 );
-const _flaxBinding19 = FlaxTypeRef(
+const _flaxBinding14 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticsNode",
 );
-const _flaxBinding20 = FlaxTypeRef(
+const _flaxBinding15 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding19,
+  item: _flaxBinding14,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
     _collection4Create,
@@ -14008,118 +14231,93 @@ const _flaxBinding20 = FlaxTypeRef(
     restore: _collection4Restore,
   ),
 );
-const _flaxBinding21 = FlaxTypeRef(
+const _flaxBinding16 = FlaxTypeRef(
   "list",
-  item: _flaxBinding19,
+  item: _flaxBinding14,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
     _collection3Create,
     _collection3Matches,
   ),
-  iterable: _flaxBinding20,
+  iterable: _flaxBinding15,
 );
-const _flaxBinding22 = FlaxCallbackBinding.signature(
+const _flaxBinding17 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding21,
+  _flaxBinding16,
   id: "callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
 );
-const _flaxBinding23 = FlaxTypeRef(
+const _flaxBinding18 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticLevel",
 );
-const _flaxBinding24 = FlaxTypeRef("bool");
-const _flaxBinding25 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "minLevel",
-      _flaxBinding23,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding24,
+const _flaxBinding19 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("minLevel", _flaxBinding18)],
+  flaxBoolType,
   id: "callback:<>(p:r:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->bool:",
 );
-const _flaxBinding26 = FlaxTypeRef(
+const _flaxBinding20 = FlaxTypeRef(
   "map",
   nullable: true,
-  item: _flaxBinding1,
-  key: _flaxBinding1,
+  item: flaxStringType,
+  key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[String:][String:]",
     _collection5Create,
     _collection5Matches,
   ),
 );
-const _flaxBinding27 = FlaxCallbackBinding.signature(
+const _flaxBinding21 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding26,
+  _flaxBinding20,
   id: "callback:<>()->map?:[String:][String:]",
 );
-const _flaxBinding28 = FlaxCallbackBinding.signature(
+const _flaxBinding22 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding24,
-  id: "callback:<>()->bool:",
-);
-const _flaxBinding29 = FlaxTypeRef("String", nullable: true);
-const _flaxBinding30 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding29,
-  id: "callback:<>()->String?:",
-);
-const _flaxBinding31 = FlaxTypeRef("object", id: "flax.core/flutter#type:Type");
-const _flaxBinding32 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding31,
+  flaxTypeType,
   id: "callback:<>()->object:flax.core/flutter#type:Type",
 );
-const _flaxBinding33 = FlaxTypeRef(
+const _flaxBinding23 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:AttributedString",
   nullable: true,
 );
-const _flaxBinding34 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding33,
-  id: "callback:<>()->object?:flax.core/sdk_semantics#type:AttributedString",
-);
-const _flaxBinding35 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding0,
-  id: "callback:<>()->any?:",
-);
-const _flaxBinding36 = FlaxCallbackBinding.signature(
+const _flaxBinding24 = FlaxCallbackBinding.signature(
   [],
   _flaxBinding23,
+  id: "callback:<>()->object?:flax.core/sdk_semantics#type:AttributedString",
+);
+const _flaxBinding25 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding18,
   id: "callback:<>()->enum:flax.core/sdk_foundation#type:DiagnosticLevel",
 );
-const _flaxBinding37 = FlaxTypeRef(
+const _flaxBinding26 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
   nullable: true,
 );
-const _flaxBinding38 = FlaxCallbackBinding.signature(
+const _flaxBinding27 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding37,
+  _flaxBinding26,
   id: "callback:<>()->enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
 );
-const _flaxBinding39 = FlaxTypeRef(
+const _flaxBinding28 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
   nullable: true,
 );
-const _flaxBinding40 = FlaxCallbackBinding.signature(
+const _flaxBinding29 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding39,
+  _flaxBinding28,
   id: "callback:<>()->object?:flax.core/sdk_foundation#type:TextTreeConfiguration",
 );
-const _flaxBinding41 = FlaxTypeRef(
+const _flaxBinding30 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsConfiguration",
 );
-const _flaxBinding42 = FlaxTypeRef(
+const _flaxBinding31 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding41,
+  item: _flaxBinding30,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_semantics#type:SemanticsConfiguration]",
     _collection7Create,
@@ -14127,24 +14325,24 @@ const _flaxBinding42 = FlaxTypeRef(
     restore: _collection7Restore,
   ),
 );
-const _flaxBinding43 = FlaxTypeRef(
+const _flaxBinding32 = FlaxTypeRef(
   "list",
-  item: _flaxBinding41,
+  item: _flaxBinding30,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_semantics#type:SemanticsConfiguration]",
     _collection6Create,
     _collection6Matches,
   ),
-  iterable: _flaxBinding42,
+  iterable: _flaxBinding31,
 );
-const _flaxBinding44 = FlaxCallbackBinding.signature(
+const _flaxBinding33 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding43,
+  _flaxBinding32,
   id: "callback:<>()->list:[object:flax.core/sdk_semantics#type:SemanticsConfiguration]",
 );
-const _flaxBinding45 = FlaxTypeRef(
+const _flaxBinding34 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding43,
+  item: _flaxBinding32,
   collection: FlaxCollectionBinding(
     "iterable:[list:[object:flax.core/sdk_semantics#type:SemanticsConfiguration]]",
     _collection9Create,
@@ -14152,363 +14350,227 @@ const _flaxBinding45 = FlaxTypeRef(
     restore: _collection9Restore,
   ),
 );
-const _flaxBinding46 = FlaxTypeRef(
+const _flaxBinding35 = FlaxTypeRef(
   "list",
-  item: _flaxBinding43,
+  item: _flaxBinding32,
   collection: FlaxCollectionBinding(
     "list:[list:[object:flax.core/sdk_semantics#type:SemanticsConfiguration]]",
     _collection8Create,
     _collection8Matches,
   ),
-  iterable: _flaxBinding45,
+  iterable: _flaxBinding34,
 );
-const _flaxBinding47 = FlaxCallbackBinding.signature(
+const _flaxBinding36 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding46,
+  _flaxBinding35,
   id: "callback:<>()->list:[list:[object:flax.core/sdk_semantics#type:SemanticsConfiguration]]",
 );
-const _flaxBinding48 = FlaxTypeRef("void");
-const _flaxBinding49 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "config",
-      _flaxBinding41,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding37 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("config", _flaxBinding30)],
+  flaxVoidType,
   id: "callback:<>(p:r:config:object:flax.core/sdk_semantics#type:SemanticsConfiguration)->void:",
 );
-const _flaxBinding50 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "configs",
-      _flaxBinding43,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding38 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("configs", _flaxBinding32)],
+  flaxVoidType,
   id: "callback:<>(p:r:configs:list:[object:flax.core/sdk_semantics#type:SemanticsConfiguration])->void:",
 );
-const _flaxBinding51 = FlaxTypeRef(
+const _flaxBinding39 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResult",
 );
-const _flaxBinding52 = FlaxCallbackBinding.signature(
+const _flaxBinding40 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding51,
+  _flaxBinding39,
   id: "callback:<>()->object:flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResult",
 );
-const _flaxBinding53 = FlaxTypeRef(
+const _flaxBinding41 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:SemanticsAction",
   nullable: true,
 );
-const _flaxBinding54 = FlaxCallbackBinding.signature(
+const _flaxBinding42 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding53,
+  _flaxBinding41,
   id: "callback:<>()->object?:flax.core/sdk_dart_ui#type:SemanticsAction",
 );
-const _flaxBinding55 = FlaxTypeRef(
+const _flaxBinding43 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsSortKey",
 );
-const _flaxBinding56 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "other",
-      _flaxBinding55,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding5,
+const _flaxBinding44 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("other", _flaxBinding43)],
+  flaxIntType,
   id: "callback:<>(p:r:other:object:flax.core/sdk_semantics#type:SemanticsSortKey)->int:",
 );
-const _flaxBinding57 = FlaxTypeRef(
+const _flaxBinding45 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:OrdinalSortKey",
 );
-const _flaxBinding58 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "other",
-      _flaxBinding57,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding5,
+const _flaxBinding46 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("other", _flaxBinding45)],
+  flaxIntType,
   id: "callback:<>(p:r:other:object:flax.core/sdk_semantics#type:OrdinalSortKey)->int:",
 );
-const _flaxBinding59 = FlaxTypeRef(
+const _flaxBinding47 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
 );
-const _flaxBinding60 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "properties",
-      _flaxBinding59,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding48 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("properties", _flaxBinding47)],
+  flaxVoidType,
   id: "callback:<>(p:r:properties:object:flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder)->void:",
 );
-const _flaxBinding61 = FlaxTypeRef("double");
-const _flaxBinding62 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding61,
-  id: "callback:<>()->double:",
-);
-const _flaxBinding63 = FlaxTypeRef(
+const _flaxBinding49 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:SemanticsAction",
 );
-const _flaxBinding64 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "args",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding50 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("args", flaxNullableAnyType)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<Object?>,
   id: "callback:<>(p:r:args:any?:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<Object?>,
   matches: FlaxCallbackAdapters.matchesVoid1<Object?>,
 );
-const _flaxBinding65 = FlaxTypeRef(
+const _flaxBinding51 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding64,
+  callback: _flaxBinding50,
 );
-const _flaxBinding66 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "action",
-      _flaxBinding63,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding65,
+const _flaxBinding52 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("action", _flaxBinding49)],
+  _flaxBinding51,
   id: "callback:<>(p:r:action:object:flax.core/sdk_dart_ui#type:SemanticsAction)->callback?:<>(p:r:args:any?:)->void:",
 );
-const _flaxBinding67 = FlaxTypeRef(
+const _flaxBinding53 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsTag",
 );
-const _flaxBinding68 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "tag",
-      _flaxBinding67,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding24,
+const _flaxBinding54 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("tag", _flaxBinding53)],
+  flaxBoolType,
   id: "callback:<>(p:r:tag:object:flax.core/sdk_semantics#type:SemanticsTag)->bool:",
 );
-const _flaxBinding69 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "tag",
-      _flaxBinding67,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding55 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("tag", _flaxBinding53)],
+  flaxVoidType,
   id: "callback:<>(p:r:tag:object:flax.core/sdk_semantics#type:SemanticsTag)->void:",
 );
-const _flaxBinding70 = FlaxTypeRef(
+const _flaxBinding56 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsConfiguration",
   nullable: true,
 );
-const _flaxBinding71 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "other",
-      _flaxBinding70,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding24,
+const _flaxBinding57 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("other", _flaxBinding56)],
+  flaxBoolType,
   id: "callback:<>(p:r:other:object?:flax.core/sdk_semantics#type:SemanticsConfiguration)->bool:",
 );
-const _flaxBinding72 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "child",
-      _flaxBinding41,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding58 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("child", _flaxBinding30)],
+  flaxVoidType,
   id: "callback:<>(p:r:child:object:flax.core/sdk_semantics#type:SemanticsConfiguration)->void:",
 );
-const _flaxBinding73 = FlaxCallbackBinding.signature(
+const _flaxBinding59 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding41,
+  _flaxBinding30,
   id: "callback:<>()->object:flax.core/sdk_semantics#type:SemanticsConfiguration",
 );
-const _flaxBinding74 = FlaxTypeRef(
+const _flaxBinding60 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:Locale",
   nullable: true,
 );
-const _flaxBinding75 = FlaxCallbackBinding.signature(
+const _flaxBinding61 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding74,
+  _flaxBinding60,
   id: "callback:<>()->object?:flax.core/sdk_dart_ui#type:Locale",
 );
-const _flaxBinding76 = FlaxCallbackBinding(
+const _flaxBinding62 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding48,
-  FlaxCallbackAdapters.wrapVoid0,
-  id: "callback:<>()->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid0,
-  matches: FlaxCallbackAdapters.matchesVoid0,
-);
-const _flaxBinding77 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding76,
-);
-const _flaxBinding78 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   id: "callback:<>()->callback?:<>()->void:",
 );
-const _flaxBinding79 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Offset",
-);
-const _flaxBinding80 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "targetOffset",
-      _flaxBinding79,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding63 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("targetOffset", flaxOffsetType)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api1.Offset>,
   id: "callback:<>(p:r:targetOffset:object:flax.core/flutter#type:Offset)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api1.Offset>,
   matches: FlaxCallbackAdapters.matchesVoid1<api1.Offset>,
 );
-const _flaxBinding81 = FlaxTypeRef(
+const _flaxBinding64 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding80,
+  callback: _flaxBinding63,
 );
-const _flaxBinding82 = FlaxCallbackBinding.signature(
+const _flaxBinding65 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding81,
+  _flaxBinding64,
   id: "callback:<>()->callback?:<>(p:r:targetOffset:object:flax.core/flutter#type:Offset)->void:",
 );
-const _flaxBinding83 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "extendSelection",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding66 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("extendSelection", flaxBoolType)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<bool>,
   id: "callback:<>(p:r:extendSelection:bool:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<bool>,
   matches: FlaxCallbackAdapters.matchesVoid1<bool>,
 );
-const _flaxBinding84 = FlaxTypeRef(
+const _flaxBinding67 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding83,
+  callback: _flaxBinding66,
 );
-const _flaxBinding85 = FlaxCallbackBinding.signature(
+const _flaxBinding68 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding84,
+  _flaxBinding67,
   id: "callback:<>()->callback?:<>(p:r:extendSelection:bool:)->void:",
 );
-const _flaxBinding86 = FlaxTypeRef(
+const _flaxBinding69 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:TextSelection",
 );
-const _flaxBinding87 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "selection",
-      _flaxBinding86,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding70 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("selection", _flaxBinding69)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api6.TextSelection>,
   id: "callback:<>(p:r:selection:object:flax.core/flutter#type:TextSelection)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api6.TextSelection>,
   matches: FlaxCallbackAdapters.matchesVoid1<api6.TextSelection>,
 );
-const _flaxBinding88 = FlaxTypeRef(
+const _flaxBinding71 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding87,
+  callback: _flaxBinding70,
 );
-const _flaxBinding89 = FlaxCallbackBinding.signature(
+const _flaxBinding72 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding88,
+  _flaxBinding71,
   id: "callback:<>()->callback?:<>(p:r:selection:object:flax.core/flutter#type:TextSelection)->void:",
 );
-const _flaxBinding90 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "text",
-      _flaxBinding1,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding73 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("text", flaxStringType)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<String>,
   id: "callback:<>(p:r:text:String:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<String>,
   matches: FlaxCallbackAdapters.matchesVoid1<String>,
 );
-const _flaxBinding91 = FlaxTypeRef(
+const _flaxBinding74 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding90,
+  callback: _flaxBinding73,
 );
-const _flaxBinding92 = FlaxCallbackBinding.signature(
+const _flaxBinding75 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding91,
+  _flaxBinding74,
   id: "callback:<>()->callback?:<>(p:r:text:String:)->void:",
 );
-const _flaxBinding93 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "p0",
-      _flaxBinding43,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding51,
+const _flaxBinding76 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("p0", _flaxBinding32)],
+  _flaxBinding39,
   FlaxCallbackAdapters.wrap1<
     List<api.SemanticsConfiguration>,
     api.ChildSemanticsConfigurationsResult
@@ -14525,130 +14587,111 @@ const _flaxBinding93 = FlaxCallbackBinding(
         api.ChildSemanticsConfigurationsResult
       >,
 );
-const _flaxBinding94 = FlaxTypeRef(
+const _flaxBinding77 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding93,
+  callback: _flaxBinding76,
 );
-const _flaxBinding95 = FlaxCallbackBinding.signature(
+const _flaxBinding78 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding94,
+  _flaxBinding77,
   id: "callback:<>()->callback?:<>(p:r:p0:list:[object:flax.core/sdk_semantics#type:SemanticsConfiguration])->object:flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResult",
 );
-const _flaxBinding96 = FlaxTypeRef(
+const _flaxBinding79 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsSortKey",
   nullable: true,
 );
-const _flaxBinding97 = FlaxCallbackBinding.signature(
+const _flaxBinding80 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding96,
+  _flaxBinding79,
   id: "callback:<>()->object?:flax.core/sdk_semantics#type:SemanticsSortKey",
 );
-const _flaxBinding98 = FlaxTypeRef("int", nullable: true);
-const _flaxBinding99 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding98,
-  id: "callback:<>()->int?:",
-);
-const _flaxBinding100 = FlaxTypeRef("callback", callback: _flaxBinding76);
-const _flaxBinding101 = FlaxTypeRef(
+const _flaxBinding81 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:CustomSemanticsAction",
 );
-const _flaxBinding102 = FlaxTypeRef(
+const _flaxBinding82 = FlaxTypeRef(
   "map",
-  item: _flaxBinding100,
-  key: _flaxBinding101,
+  item: flaxVoidCallbackType,
+  key: _flaxBinding81,
   collection: FlaxCollectionBinding(
     "map:[callback:<>()->void:][object:flax.core/sdk_semantics#type:CustomSemanticsAction]",
     _collection10Create,
     _collection10Matches,
   ),
 );
-const _flaxBinding103 = FlaxCallbackBinding.signature(
+const _flaxBinding83 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding102,
+  _flaxBinding82,
   id: "callback:<>()->map:[callback:<>()->void:][object:flax.core/sdk_semantics#type:CustomSemanticsAction]",
 );
-const _flaxBinding104 = FlaxTypeRef(
+const _flaxBinding84 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:SemanticsRole",
 );
-const _flaxBinding105 = FlaxCallbackBinding.signature(
+const _flaxBinding85 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding104,
+  _flaxBinding84,
   id: "callback:<>()->enum:flax.core/sdk_dart_ui#type:SemanticsRole",
 );
-const _flaxBinding106 = FlaxCallbackBinding.signature(
+const _flaxBinding86 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding11,
+  _flaxBinding6,
   id: "callback:<>()->object:flax.core/sdk_semantics#type:AttributedString",
 );
-const _flaxBinding107 = FlaxTypeRef(
+const _flaxBinding87 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsHintOverrides",
   nullable: true,
 );
-const _flaxBinding108 = FlaxCallbackBinding.signature(
+const _flaxBinding88 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding107,
+  _flaxBinding87,
   id: "callback:<>()->object?:flax.core/sdk_semantics#type:SemanticsHintOverrides",
 );
-const _flaxBinding109 = FlaxTypeRef(
+const _flaxBinding89 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TextDirection",
   nullable: true,
 );
-const _flaxBinding110 = FlaxCallbackBinding.signature(
+const _flaxBinding90 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding109,
+  _flaxBinding89,
   id: "callback:<>()->enum?:flax.core/flutter#type:TextDirection",
 );
-const _flaxBinding111 = FlaxTypeRef("bool", nullable: true);
-const _flaxBinding112 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding111,
-  id: "callback:<>()->bool?:",
-);
-const _flaxBinding113 = FlaxTypeRef(
+const _flaxBinding91 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_semantics#type:AccessibilityFocusBlockType",
 );
-const _flaxBinding114 = FlaxCallbackBinding.signature(
+const _flaxBinding92 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding113,
+  _flaxBinding91,
   id: "callback:<>()->enum:flax.core/sdk_semantics#type:AccessibilityFocusBlockType",
 );
-const _flaxBinding115 = FlaxTypeRef(
+const _flaxBinding93 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Uri",
   nullable: true,
 );
-const _flaxBinding116 = FlaxCallbackBinding.signature(
+const _flaxBinding94 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding115,
+  _flaxBinding93,
   id: "callback:<>()->object?:flax.core/flutter#type:Uri",
 );
-const _flaxBinding117 = FlaxTypeRef(
+const _flaxBinding95 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:TextSelection",
   nullable: true,
 );
-const _flaxBinding118 = FlaxCallbackBinding.signature(
+const _flaxBinding96 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding117,
+  _flaxBinding95,
   id: "callback:<>()->object?:flax.core/flutter#type:TextSelection",
 );
-const _flaxBinding119 = FlaxTypeRef("double", nullable: true);
-const _flaxBinding120 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding119,
-  id: "callback:<>()->double?:",
-);
-const _flaxBinding121 = FlaxTypeRef(
+const _flaxBinding97 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding1,
+  item: flaxStringType,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
     _collection12Create,
@@ -14656,53 +14699,53 @@ const _flaxBinding121 = FlaxTypeRef(
     restore: _collection12Restore,
   ),
 );
-const _flaxBinding122 = FlaxTypeRef(
+const _flaxBinding98 = FlaxTypeRef(
   "set",
   nullable: true,
-  item: _flaxBinding1,
+  item: flaxStringType,
   collection: FlaxCollectionBinding(
     "set:[String:]",
     _collection11Create,
     _collection11Matches,
   ),
-  iterable: _flaxBinding121,
+  iterable: _flaxBinding97,
 );
-const _flaxBinding123 = FlaxCallbackBinding.signature(
+const _flaxBinding99 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding122,
+  _flaxBinding98,
   id: "callback:<>()->set?:[String:]",
 );
-const _flaxBinding124 = FlaxTypeRef(
+const _flaxBinding100 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:SemanticsValidationResult",
 );
-const _flaxBinding125 = FlaxCallbackBinding.signature(
+const _flaxBinding101 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding124,
+  _flaxBinding100,
   id: "callback:<>()->enum:flax.core/sdk_dart_ui#type:SemanticsValidationResult",
 );
-const _flaxBinding126 = FlaxTypeRef(
+const _flaxBinding102 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:SemanticsHitTestBehavior",
 );
-const _flaxBinding127 = FlaxCallbackBinding.signature(
+const _flaxBinding103 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding126,
+  _flaxBinding102,
   id: "callback:<>()->enum:flax.core/sdk_dart_ui#type:SemanticsHitTestBehavior",
 );
-const _flaxBinding128 = FlaxTypeRef(
+const _flaxBinding104 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:SemanticsInputType",
 );
-const _flaxBinding129 = FlaxCallbackBinding.signature(
+const _flaxBinding105 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding128,
+  _flaxBinding104,
   id: "callback:<>()->enum:flax.core/sdk_dart_ui#type:SemanticsInputType",
 );
-const _flaxBinding130 = FlaxTypeRef(
+const _flaxBinding106 = FlaxTypeRef(
   "iterable",
   nullable: true,
-  item: _flaxBinding67,
+  item: _flaxBinding53,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_semantics#type:SemanticsTag]",
     _collection13Create,
@@ -14710,396 +14753,182 @@ const _flaxBinding130 = FlaxTypeRef(
     restore: _collection13Restore,
   ),
 );
-const _flaxBinding131 = FlaxCallbackBinding.signature(
+const _flaxBinding107 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding130,
+  _flaxBinding106,
   id: "callback:<>()->iterable?:[object:flax.core/sdk_semantics#type:SemanticsTag]",
 );
-const _flaxBinding132 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding108 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", flaxBoolType)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:bool:)->void:",
 );
-const _flaxBinding133 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding74,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding109 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding60)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:object?:flax.core/sdk_dart_ui#type:Locale)->void:",
 );
-const _flaxBinding134 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding77,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding110 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", flaxVoidNullableCallbackType)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:callback?:<>()->void:)->void:",
 );
-const _flaxBinding135 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding81,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding111 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding64)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:callback?:<>(p:r:targetOffset:object:flax.core/flutter#type:Offset)->void:)->void:",
 );
-const _flaxBinding136 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding84,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding112 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding67)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:callback?:<>(p:r:extendSelection:bool:)->void:)->void:",
 );
-const _flaxBinding137 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding88,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding113 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding71)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:callback?:<>(p:r:selection:object:flax.core/flutter#type:TextSelection)->void:)->void:",
 );
-const _flaxBinding138 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding91,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding114 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding74)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:callback?:<>(p:r:text:String:)->void:)->void:",
 );
-const _flaxBinding139 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding94,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding115 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding77)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:callback?:<>(p:r:p0:list:[object:flax.core/sdk_semantics#type:SemanticsConfiguration])->object:flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResult)->void:",
 );
-const _flaxBinding140 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding96,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding116 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding79)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:object?:flax.core/sdk_semantics#type:SemanticsSortKey)->void:",
 );
-const _flaxBinding141 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding98,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding117 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", flaxNullableIntType)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:int?:)->void:",
 );
-const _flaxBinding142 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding102,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding118 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding82)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:map:[callback:<>()->void:][object:flax.core/sdk_semantics#type:CustomSemanticsAction])->void:",
 );
-const _flaxBinding143 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding1,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding119 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", flaxStringType)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:String:)->void:",
 );
-const _flaxBinding144 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding120 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", flaxNullableAnyType)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:any?:)->void:",
 );
-const _flaxBinding145 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding104,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding121 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding84)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:enum:flax.core/sdk_dart_ui#type:SemanticsRole)->void:",
 );
-const _flaxBinding146 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding11,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding122 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding6)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:object:flax.core/sdk_semantics#type:AttributedString)->void:",
 );
-const _flaxBinding147 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding107,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding123 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding87)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:object?:flax.core/sdk_semantics#type:SemanticsHintOverrides)->void:",
 );
-const _flaxBinding148 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding109,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding124 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding89)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:enum?:flax.core/flutter#type:TextDirection)->void:",
 );
-const _flaxBinding149 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding111,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding125 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", flaxNullableBoolType)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:bool?:)->void:",
 );
-const _flaxBinding150 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding113,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding126 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding91)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:enum:flax.core/sdk_semantics#type:AccessibilityFocusBlockType)->void:",
 );
-const _flaxBinding151 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding115,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding127 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding93)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:object?:flax.core/flutter#type:Uri)->void:",
 );
-const _flaxBinding152 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding5,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding128 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", flaxIntType)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:int:)->void:",
 );
-const _flaxBinding153 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding117,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding129 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding95)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:object?:flax.core/flutter#type:TextSelection)->void:",
 );
-const _flaxBinding154 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding119,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding130 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", flaxNullableDoubleType)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:double?:)->void:",
 );
-const _flaxBinding155 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding122,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding131 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding98)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:set?:[String:])->void:",
 );
-const _flaxBinding156 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding124,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding132 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding100)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:enum:flax.core/sdk_dart_ui#type:SemanticsValidationResult)->void:",
 );
-const _flaxBinding157 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding126,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding133 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding102)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:enum:flax.core/sdk_dart_ui#type:SemanticsHitTestBehavior)->void:",
 );
-const _flaxBinding158 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding128,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding134 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding104)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:enum:flax.core/sdk_dart_ui#type:SemanticsInputType)->void:",
 );
-const _flaxBinding159 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding29,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding135 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", flaxNullableStringType)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:String?:)->void:",
 );
-const _flaxBinding160 = FlaxTypeRef(
+const _flaxBinding136 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:SemanticsFlag",
 );
-const _flaxBinding161 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "flag",
-      _flaxBinding160,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding24,
+const _flaxBinding137 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("flag", _flaxBinding136)],
+  flaxBoolType,
   id: "callback:<>(p:r:flag:object:flax.core/sdk_dart_ui#type:SemanticsFlag)->bool:",
 );
-const _flaxBinding162 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "action",
-      _flaxBinding63,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding24,
+const _flaxBinding138 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("action", _flaxBinding49)],
+  flaxBoolType,
   id: "callback:<>(p:r:action:object:flax.core/sdk_dart_ui#type:SemanticsAction)->bool:",
 );
-const _flaxBinding163 = FlaxTypeRef(
+const _flaxBinding139 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:SemanticsFlags",
 );
-const _flaxBinding164 = FlaxCallbackBinding.signature(
+const _flaxBinding140 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding163,
+  _flaxBinding139,
   id: "callback:<>()->object:flax.core/sdk_dart_ui#type:SemanticsFlags",
 );
-const _flaxBinding165 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_dart_ui#type:Rect",
-);
-const _flaxBinding166 = FlaxCallbackBinding.signature(
+const _flaxBinding141 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding165,
+  flaxRectType,
   id: "callback:<>()->object:flax.core/sdk_dart_ui#type:Rect",
 );
-const _flaxBinding167 = FlaxTypeRef(
+const _flaxBinding142 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding67,
+  item: _flaxBinding53,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_semantics#type:SemanticsTag]",
     _collection13Create,
@@ -15107,35 +14936,35 @@ const _flaxBinding167 = FlaxTypeRef(
     restore: _collection13Restore,
   ),
 );
-const _flaxBinding168 = FlaxTypeRef(
+const _flaxBinding143 = FlaxTypeRef(
   "set",
   nullable: true,
-  item: _flaxBinding67,
+  item: _flaxBinding53,
   collection: FlaxCollectionBinding(
     "set:[object:flax.core/sdk_semantics#type:SemanticsTag]",
     _collection14Create,
     _collection14Matches,
   ),
-  iterable: _flaxBinding167,
+  iterable: _flaxBinding142,
 );
-const _flaxBinding169 = FlaxCallbackBinding.signature(
+const _flaxBinding144 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding168,
+  _flaxBinding143,
   id: "callback:<>()->set?:[object:flax.core/sdk_semantics#type:SemanticsTag]",
 );
-const _flaxBinding170 = FlaxTypeRef(
+const _flaxBinding145 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_rendering#type:Matrix4",
   nullable: true,
 );
-const _flaxBinding171 = FlaxCallbackBinding.signature(
+const _flaxBinding146 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding170,
+  _flaxBinding145,
   id: "callback:<>()->object?:flax.core/sdk_rendering#type:Matrix4",
 );
-const _flaxBinding172 = FlaxTypeRef(
+const _flaxBinding147 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding5,
+  item: flaxIntType,
   collection: FlaxCollectionBinding(
     "iterable:[int:]",
     _collection16Create,
@@ -15143,86 +14972,65 @@ const _flaxBinding172 = FlaxTypeRef(
     restore: _collection16Restore,
   ),
 );
-const _flaxBinding173 = FlaxTypeRef(
+const _flaxBinding148 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding5,
+  item: flaxIntType,
   collection: FlaxCollectionBinding(
     "list:[int:]",
     _collection15Create,
     _collection15Matches,
   ),
-  iterable: _flaxBinding172,
+  iterable: _flaxBinding147,
 );
-const _flaxBinding174 = FlaxCallbackBinding.signature(
+const _flaxBinding149 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding173,
+  _flaxBinding148,
   id: "callback:<>()->list?:[int:]",
 );
-const _flaxBinding175 = FlaxTypeRef(
+const _flaxBinding150 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsNode",
 );
-const _flaxBinding176 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "node",
-      _flaxBinding175,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding24,
+const _flaxBinding151 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("node", _flaxBinding150)],
+  flaxBoolType,
   FlaxCallbackAdapters.wrap1<api.SemanticsNode, bool>,
   id: "callback:<>(p:r:node:object:flax.core/sdk_semantics#type:SemanticsNode)->bool:",
   invoke: FlaxCallbackAdapters.invoke1<api.SemanticsNode, bool>,
   matches: FlaxCallbackAdapters.matches1<api.SemanticsNode, bool>,
 );
-const _flaxBinding177 = FlaxTypeRef("callback", callback: _flaxBinding176);
-const _flaxBinding178 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "visitor",
-      _flaxBinding177,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding152 = FlaxTypeRef("callback", callback: _flaxBinding151);
+const _flaxBinding153 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("visitor", _flaxBinding152)],
+  flaxVoidType,
   id: "callback:<>(p:r:visitor:callback:<>(p:r:node:object:flax.core/sdk_semantics#type:SemanticsNode)->bool:)->void:",
 );
-const _flaxBinding179 = FlaxTypeRef(
+const _flaxBinding154 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsData",
 );
-const _flaxBinding180 = FlaxCallbackBinding.signature(
+const _flaxBinding155 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding179,
+  _flaxBinding154,
   id: "callback:<>()->object:flax.core/sdk_semantics#type:SemanticsData",
 );
-const _flaxBinding181 = FlaxTypeRef(
+const _flaxBinding156 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsEvent",
 );
-const _flaxBinding182 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "event",
-      _flaxBinding181,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding157 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("event", _flaxBinding156)],
+  flaxVoidType,
   id: "callback:<>(p:r:event:object:flax.core/sdk_semantics#type:SemanticsEvent)->void:",
 );
-const _flaxBinding183 = FlaxTypeRef(
+const _flaxBinding158 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_semantics#type:DebugSemanticsDumpOrder",
 );
-const _flaxBinding184 = FlaxTypeRef(
+const _flaxBinding159 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding175,
+  item: _flaxBinding150,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_semantics#type:SemanticsNode]",
     _collection18Create,
@@ -15230,432 +15038,362 @@ const _flaxBinding184 = FlaxTypeRef(
     restore: _collection18Restore,
   ),
 );
-const _flaxBinding185 = FlaxTypeRef(
+const _flaxBinding160 = FlaxTypeRef(
   "list",
-  item: _flaxBinding175,
+  item: _flaxBinding150,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_semantics#type:SemanticsNode]",
     _collection17Create,
     _collection17Matches,
   ),
-  iterable: _flaxBinding184,
+  iterable: _flaxBinding159,
 );
-const _flaxBinding186 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "childOrder",
-      _flaxBinding183,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding185,
+const _flaxBinding161 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("childOrder", _flaxBinding158)],
+  _flaxBinding160,
   id: "callback:<>(p:r:childOrder:enum:flax.core/sdk_semantics#type:DebugSemanticsDumpOrder)->list:[object:flax.core/sdk_semantics#type:SemanticsNode]",
 );
-const _flaxBinding187 = FlaxTypeRef(
+const _flaxBinding162 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Key",
   nullable: true,
 );
-const _flaxBinding188 = FlaxCallbackBinding.signature(
+const _flaxBinding163 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding187,
+  _flaxBinding162,
   id: "callback:<>()->object?:flax.core/flutter#type:Key",
 );
-const _flaxBinding189 = FlaxTypeRef(
+const _flaxBinding164 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:Rect",
   nullable: true,
 );
-const _flaxBinding190 = FlaxCallbackBinding.signature(
+const _flaxBinding165 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding189,
+  _flaxBinding164,
   id: "callback:<>()->object?:flax.core/sdk_dart_ui#type:Rect",
 );
-const _flaxBinding191 = FlaxTypeRef(
+const _flaxBinding166 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsOwner",
   nullable: true,
 );
-const _flaxBinding192 = FlaxCallbackBinding.signature(
+const _flaxBinding167 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding191,
+  _flaxBinding166,
   id: "callback:<>()->object?:flax.core/sdk_semantics#type:SemanticsOwner",
 );
-const _flaxBinding193 = FlaxTypeRef(
+const _flaxBinding168 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsNode",
   nullable: true,
 );
-const _flaxBinding194 = FlaxCallbackBinding.signature(
+const _flaxBinding169 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding193,
+  _flaxBinding168,
   id: "callback:<>()->object?:flax.core/sdk_semantics#type:SemanticsNode",
 );
-const _flaxBinding195 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding170,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding170 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding145)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:object?:flax.core/sdk_rendering#type:Matrix4)->void:",
 );
-const _flaxBinding196 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding165,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding171 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", flaxRectType)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:object:flax.core/sdk_dart_ui#type:Rect)->void:",
 );
-const _flaxBinding197 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding189,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding172 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding164)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:object?:flax.core/sdk_dart_ui#type:Rect)->void:",
 );
-const _flaxBinding198 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding193,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding173 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding168)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:object?:flax.core/sdk_semantics#type:SemanticsNode)->void:",
 );
-const _flaxBinding199 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding168,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding174 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("value", _flaxBinding143)],
+  flaxVoidType,
   id: "callback:<>(p:r:value:set?:[object:flax.core/sdk_semantics#type:SemanticsTag])->void:",
 );
-const _flaxBinding200 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "listener",
-      _flaxBinding100,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding175 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("listener", flaxVoidCallbackType)],
+  flaxVoidType,
   id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
 );
-const _flaxBinding201 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding48,
-  id: "callback:<>()->void:",
-);
-const _flaxBinding202 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "id",
-      _flaxBinding5,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding193,
+const _flaxBinding176 = FlaxCallbackBinding.signature(
+  [FlaxCallbackParameter.plain("id", flaxIntType)],
+  _flaxBinding168,
   id: "callback:<>(p:r:id:int:)->object?:flax.core/sdk_semantics#type:SemanticsNode",
 );
-const _flaxBinding203 = FlaxTypeRef(
+const _flaxBinding177 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:SemanticsUpdate",
 );
-const _flaxBinding204 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "update",
-      _flaxBinding203,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding178 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("update", _flaxBinding177)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api1.SemanticsUpdate>,
   id: "callback:<>(p:r:update:object:flax.core/sdk_dart_ui#type:SemanticsUpdate)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api1.SemanticsUpdate>,
   matches: FlaxCallbackAdapters.matchesVoid1<api1.SemanticsUpdate>,
 );
-const _flaxBinding205 = FlaxTypeRef("callback", callback: _flaxBinding204);
-const _flaxBinding206 = FlaxCallbackBinding.signature(
+const _flaxBinding179 = FlaxTypeRef("callback", callback: _flaxBinding178);
+const _flaxBinding180 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding205,
+  _flaxBinding179,
   id: "callback:<>()->callback:<>(p:r:update:object:flax.core/sdk_dart_ui#type:SemanticsUpdate)->void:",
 );
-const _flaxBinding207 = FlaxTypeRef(
+const _flaxBinding181 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_semantics#type:AccessibilityFocusBlockType",
   nullable: true,
 );
-const _flaxBinding208 = FlaxCallbackBinding.signature(
+const _flaxBinding182 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding207,
+  _flaxBinding181,
   id: "callback:<>()->enum?:flax.core/sdk_semantics#type:AccessibilityFocusBlockType",
 );
-const _flaxBinding209 = FlaxTypeRef(
+const _flaxBinding183 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsTag",
   nullable: true,
 );
-const _flaxBinding210 = FlaxCallbackBinding.signature(
+const _flaxBinding184 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding209,
+  _flaxBinding183,
   id: "callback:<>()->object?:flax.core/sdk_semantics#type:SemanticsTag",
 );
-const _flaxBinding211 = FlaxTypeRef(
+const _flaxBinding185 = FlaxTypeRef(
   "map",
   nullable: true,
-  item: _flaxBinding100,
-  key: _flaxBinding101,
+  item: flaxVoidCallbackType,
+  key: _flaxBinding81,
   collection: FlaxCollectionBinding(
     "map:[callback:<>()->void:][object:flax.core/sdk_semantics#type:CustomSemanticsAction]",
     _collection10Create,
     _collection10Matches,
   ),
 );
-const _flaxBinding212 = FlaxCallbackBinding.signature(
+const _flaxBinding186 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding211,
+  _flaxBinding185,
   id: "callback:<>()->map?:[callback:<>()->void:][object:flax.core/sdk_semantics#type:CustomSemanticsAction]",
 );
-const _flaxBinding213 = FlaxTypeRef(
+const _flaxBinding187 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:SemanticsRole",
   nullable: true,
 );
-const _flaxBinding214 = FlaxCallbackBinding.signature(
+const _flaxBinding188 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding213,
+  _flaxBinding187,
   id: "callback:<>()->enum?:flax.core/sdk_dart_ui#type:SemanticsRole",
 );
-const _flaxBinding215 = FlaxTypeRef(
+const _flaxBinding189 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:SemanticsHitTestBehavior",
   nullable: true,
 );
-const _flaxBinding216 = FlaxCallbackBinding.signature(
+const _flaxBinding190 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding215,
+  _flaxBinding189,
   id: "callback:<>()->enum?:flax.core/sdk_dart_ui#type:SemanticsHitTestBehavior",
 );
-const _flaxBinding217 = FlaxTypeRef(
+const _flaxBinding191 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:SemanticsInputType",
   nullable: true,
 );
-const _flaxBinding218 = FlaxCallbackBinding.signature(
+const _flaxBinding192 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding217,
+  _flaxBinding191,
   id: "callback:<>()->enum?:flax.core/sdk_dart_ui#type:SemanticsInputType",
 );
-const _flaxBinding219 = FlaxGetter("type", _flaxBinding1, _SemanticsEvent_type);
-const _flaxBinding220 = <FlaxParameter>[
-  FlaxParameter("nodeId", _flaxBinding98, required: false),
+const _flaxBinding193 = FlaxGetter.plain(
+  "type",
+  flaxStringType,
+  _SemanticsEvent_type,
+);
+const _flaxBinding194 = <FlaxParameter>[
+  FlaxParameter("nodeId", flaxNullableIntType, required: false),
 ];
-const _flaxBinding221 = FlaxInstanceMethod(
-  _flaxBinding220,
-  _flaxBinding2,
+const _flaxBinding195 = FlaxInstanceMethod.plain(
+  _flaxBinding194,
+  _flaxBinding0,
   _SemanticsEvent_toMap,
 );
-const _flaxBinding222 = FlaxInstanceMethod.signature(
-  _flaxBinding3,
+const _flaxBinding196 = FlaxInstanceMethod.shared(
+  _flaxBinding1,
   _SemanticsEvent_getDataMap,
 );
-const _flaxBinding223 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding197 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _SemanticsEvent_toString,
 );
-const _flaxBinding224 = <FlaxParameter>[
-  FlaxParameter("type", _flaxBinding1, required: true),
+const _flaxBinding198 = FlaxInstanceMethod.plain(
+  _flaxBinding194,
+  _flaxBinding0,
+  _FlaxProxyDispatch0_super_call_toMap,
+);
+const _flaxBinding199 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch2_super_call_toString,
+);
+const _flaxBinding200 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch0_super_get_type,
+);
+const _flaxBinding201 = <FlaxParameter>[
+  FlaxParameter.required("type", flaxStringType),
 ];
-const _flaxBinding225 = FlaxCallbackBinding.signature(
+const _flaxBinding202 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "nodeId",
-      _flaxBinding98,
+      flaxNullableIntType,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding2,
+  _flaxBinding0,
   id: "callback:<>(n:o:nodeId:int?:)->map:[any?:][String:]",
 );
-const _flaxBinding226 = FlaxProxyMember(
+const _flaxBinding203 = FlaxProxyMember(
   "toMap",
   0,
-  _flaxBinding225,
+  _flaxBinding202,
   hasSuper: true,
 );
-const _flaxBinding227 = FlaxProxyMember("getDataMap", 0, _flaxBinding3);
-const _flaxBinding228 = FlaxProxyMember(
+const _flaxBinding204 = FlaxProxyMember("getDataMap", 0, _flaxBinding1);
+const _flaxBinding205 = FlaxProxyMember(
   "toString",
   0,
-  _flaxBinding4,
+  flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding229 = FlaxProxyMember(
+const _flaxBinding206 = FlaxProxyMember(
   "type",
   1,
-  _flaxBinding4,
+  flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding230 = FlaxObjectBinding(
+const _flaxBinding207 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsEvent",
-  [_flaxBinding219],
+  [_flaxBinding193],
   {
-    "toMap": _flaxBinding221,
-    "getDataMap": _flaxBinding222,
-    "toString": _flaxBinding223,
-    "@super:toMap": FlaxInstanceMethod(
-      _flaxBinding220,
-      _flaxBinding2,
-      _FlaxProxyDispatch0_super_call_toMap,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:type": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_get_type,
-    ),
+    "toMap": _flaxBinding195,
+    "getDataMap": _flaxBinding196,
+    "toString": _flaxBinding197,
+    "@super:toMap": _flaxBinding198,
+    "@super:toString": _flaxBinding199,
+    "@super:get:type": _flaxBinding200,
   },
-  constructors: {"@implementation": _flaxBinding224},
+  constructors: {"@implementation": _flaxBinding201},
   create: _createSemanticsEvent,
   matches: _isSemanticsEvent,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding226,
-    _flaxBinding227,
-    _flaxBinding228,
-    _flaxBinding229,
+    _flaxBinding203,
+    _flaxBinding204,
+    _flaxBinding205,
+    _flaxBinding206,
   ]),
 );
-const _flaxBinding231 = FlaxGetter(
+const _flaxBinding208 = FlaxGetter.plain(
   "viewId",
-  _flaxBinding5,
+  flaxIntType,
   _AnnounceSemanticsEvent_viewId,
 );
-const _flaxBinding232 = FlaxGetter(
+const _flaxBinding209 = FlaxGetter.plain(
   "message",
-  _flaxBinding1,
+  flaxStringType,
   _AnnounceSemanticsEvent_message,
 );
-const _flaxBinding233 = FlaxGetter(
+const _flaxBinding210 = FlaxGetter.plain(
   "textDirection",
-  _flaxBinding7,
+  _flaxBinding2,
   _AnnounceSemanticsEvent_textDirection,
 );
-const _flaxBinding234 = FlaxGetter(
+const _flaxBinding211 = FlaxGetter.plain(
   "assertiveness",
-  _flaxBinding9,
+  _flaxBinding4,
   _AnnounceSemanticsEvent_assertiveness,
 );
-const _flaxBinding235 = <FlaxParameter>[
-  FlaxParameter("message", _flaxBinding1, required: true),
-  FlaxParameter("textDirection", _flaxBinding7, required: true),
-  FlaxParameter("viewId", _flaxBinding5, required: true),
+const _flaxBinding212 = FlaxInstanceMethod.shared(
+  _flaxBinding1,
+  _FlaxProxyDispatch1_super_call_getDataMap,
+);
+const _flaxBinding213 = <FlaxParameter>[
+  FlaxParameter.required("message", flaxStringType),
+  FlaxParameter.required("textDirection", _flaxBinding2),
+  FlaxParameter.required("viewId", flaxIntType),
   FlaxParameter(
     "assertiveness",
-    _flaxBinding9,
+    _flaxBinding4,
     required: false,
     defaultValue: api.Assertiveness.polite,
   ),
 ];
-const _flaxBinding236 = FlaxProxyMember(
+const _flaxBinding214 = FlaxProxyMember(
   "getDataMap",
   0,
+  _flaxBinding1,
+  hasSuper: true,
+);
+const _flaxBinding215 = FlaxProxyMember(
+  "viewId",
+  1,
+  flaxIntCall,
+  hasSuper: true,
+);
+const _flaxBinding216 = FlaxProxyMember(
+  "message",
+  1,
+  flaxStringCall,
+  hasSuper: true,
+);
+const _flaxBinding217 = FlaxProxyMember(
+  "textDirection",
+  1,
   _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding237 = FlaxProxyMember(
-  "viewId",
-  1,
-  _flaxBinding6,
-  hasSuper: true,
-);
-const _flaxBinding238 = FlaxProxyMember(
-  "message",
-  1,
-  _flaxBinding4,
-  hasSuper: true,
-);
-const _flaxBinding239 = FlaxProxyMember(
-  "textDirection",
-  1,
-  _flaxBinding8,
-  hasSuper: true,
-);
-const _flaxBinding240 = FlaxProxyMember(
+const _flaxBinding218 = FlaxProxyMember(
   "assertiveness",
   1,
-  _flaxBinding10,
+  _flaxBinding5,
   hasSuper: true,
 );
-const _flaxBinding241 = FlaxObjectBinding(
+const _flaxBinding219 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:AnnounceSemanticsEvent",
-  [_flaxBinding231, _flaxBinding232, _flaxBinding233, _flaxBinding234],
+  [_flaxBinding208, _flaxBinding209, _flaxBinding210, _flaxBinding211],
   {
-    "@super:toMap": FlaxInstanceMethod(
-      _flaxBinding220,
-      _flaxBinding2,
-      _FlaxProxyDispatch0_super_call_toMap,
-    ),
-    "@super:getDataMap": FlaxInstanceMethod.signature(
-      _flaxBinding3,
-      _FlaxProxyDispatch1_super_call_getDataMap,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:viewId": FlaxInstanceMethod.signature(
-      _flaxBinding6,
+    "@super:toMap": _flaxBinding198,
+    "@super:getDataMap": _flaxBinding212,
+    "@super:toString": _flaxBinding199,
+    "@super:get:viewId": FlaxInstanceMethod.shared(
+      flaxIntCall,
       _AnnounceSemanticsEvent_super_get_viewId,
     ),
-    "@super:get:message": FlaxInstanceMethod.signature(
-      _flaxBinding4,
+    "@super:get:message": FlaxInstanceMethod.shared(
+      flaxStringCall,
       _AnnounceSemanticsEvent_super_get_message,
     ),
-    "@super:get:textDirection": FlaxInstanceMethod.signature(
-      _flaxBinding8,
+    "@super:get:textDirection": FlaxInstanceMethod.shared(
+      _flaxBinding3,
       _AnnounceSemanticsEvent_super_get_textDirection,
     ),
-    "@super:get:assertiveness": FlaxInstanceMethod.signature(
-      _flaxBinding10,
+    "@super:get:assertiveness": FlaxInstanceMethod.shared(
+      _flaxBinding5,
       _AnnounceSemanticsEvent_super_get_assertiveness,
     ),
-    "@super:get:type": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_get_type,
-    ),
+    "@super:get:type": _flaxBinding200,
   },
-  constructors: {"@implementation": _flaxBinding235},
+  constructors: {"": _flaxBinding213, "@implementation": _flaxBinding213},
   create: _createAnnounceSemanticsEvent,
   matches: _isAnnounceSemanticsEvent,
   setters: [],
@@ -15663,739 +15401,732 @@ const _flaxBinding241 = FlaxObjectBinding(
     "flax.core/sdk_semantics#type:SemanticsEvent",
     "dart:core::Object",
   ],
-  parent: _flaxBinding230,
+  parent: _flaxBinding207,
   proxy: FlaxProxyBinding([
-    _flaxBinding226,
-    _flaxBinding236,
-    _flaxBinding228,
-    _flaxBinding237,
-    _flaxBinding238,
-    _flaxBinding239,
-    _flaxBinding240,
-    _flaxBinding229,
+    _flaxBinding203,
+    _flaxBinding214,
+    _flaxBinding205,
+    _flaxBinding215,
+    _flaxBinding216,
+    _flaxBinding217,
+    _flaxBinding218,
+    _flaxBinding206,
   ]),
 );
-const _flaxBinding242 = FlaxGetter(
+const _flaxBinding220 = FlaxGetter.plain(
   "string",
-  _flaxBinding1,
+  flaxStringType,
   _AttributedString_string,
 );
-const _flaxBinding243 = FlaxGetter(
+const _flaxBinding221 = FlaxGetter.plain(
   "attributes",
-  _flaxBinding15,
+  _flaxBinding10,
   _AttributedString_attributes,
 );
-const _flaxBinding244 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding222 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _AttributedString_toString,
 );
-const _flaxBinding245 = FlaxInstanceMethod.signature(
-  _flaxBinding12,
+const _flaxBinding223 = FlaxInstanceMethod.shared(
+  _flaxBinding7,
   _AttributedString_operatorAdd,
 );
-const _flaxBinding246 = <FlaxParameter>[
-  FlaxParameter("string", _flaxBinding1, required: true),
+const _flaxBinding224 = <FlaxParameter>[
+  FlaxParameter.required("string", flaxStringType),
   FlaxParameter(
     "attributes",
-    _flaxBinding15,
+    _flaxBinding10,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding247 = FlaxProxyMember(
+const _flaxBinding225 = FlaxProxyMember(
   "operatorAdd",
   0,
-  _flaxBinding12,
+  _flaxBinding7,
   hasSuper: true,
 );
-const _flaxBinding248 = FlaxProxyMember(
+const _flaxBinding226 = FlaxProxyMember(
   "string",
   1,
-  _flaxBinding4,
+  flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding249 = FlaxProxyMember(
+const _flaxBinding227 = FlaxProxyMember(
   "attributes",
   1,
-  _flaxBinding16,
+  _flaxBinding11,
   hasSuper: true,
 );
-const _flaxBinding250 = FlaxObjectBinding(
+const _flaxBinding228 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:AttributedString",
-  [_flaxBinding242, _flaxBinding243],
+  [_flaxBinding220, _flaxBinding221],
   {
-    "toString": _flaxBinding244,
-    "operatorAdd": _flaxBinding245,
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:operatorAdd": FlaxInstanceMethod.signature(
-      _flaxBinding12,
+    "toString": _flaxBinding222,
+    "operatorAdd": _flaxBinding223,
+    "@super:toString": _flaxBinding199,
+    "@super:operatorAdd": FlaxInstanceMethod.shared(
+      _flaxBinding7,
       _AttributedString_super_operatorAdd,
     ),
-    "@super:get:string": FlaxInstanceMethod.signature(
-      _flaxBinding4,
+    "@super:get:string": FlaxInstanceMethod.shared(
+      flaxStringCall,
       _AttributedString_super_get_string,
     ),
-    "@super:get:attributes": FlaxInstanceMethod.signature(
-      _flaxBinding16,
+    "@super:get:attributes": FlaxInstanceMethod.shared(
+      _flaxBinding11,
       _AttributedString_super_get_attributes,
     ),
   },
-  constructors: {"@implementation": _flaxBinding246},
+  constructors: {"": _flaxBinding224, "@implementation": _flaxBinding224},
   create: _createAttributedString,
   matches: _isAttributedString,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding228,
-    _flaxBinding247,
-    _flaxBinding248,
-    _flaxBinding249,
+    _flaxBinding205,
+    _flaxBinding225,
+    _flaxBinding226,
+    _flaxBinding227,
   ]),
 );
-const _flaxBinding251 = FlaxGetter(
+const _flaxBinding229 = FlaxGetter.plain(
   "expandableValue",
-  _flaxBinding24,
+  flaxBoolType,
   _AttributedStringProperty_expandableValue,
 );
-const _flaxBinding252 = FlaxGetter(
+const _flaxBinding230 = FlaxGetter.plain(
   "allowWrap",
-  _flaxBinding24,
+  flaxBoolType,
   _AttributedStringProperty_allowWrap,
 );
-const _flaxBinding253 = FlaxGetter(
+const _flaxBinding231 = FlaxGetter.plain(
   "allowNameWrap",
-  _flaxBinding24,
+  flaxBoolType,
   _AttributedStringProperty_allowNameWrap,
 );
-const _flaxBinding254 = FlaxGetter(
+const _flaxBinding232 = FlaxGetter.plain(
   "ifNull",
-  _flaxBinding29,
+  flaxNullableStringType,
   _AttributedStringProperty_ifNull,
 );
-const _flaxBinding255 = FlaxGetter(
+const _flaxBinding233 = FlaxGetter.plain(
   "ifEmpty",
-  _flaxBinding29,
+  flaxNullableStringType,
   _AttributedStringProperty_ifEmpty,
 );
-const _flaxBinding256 = FlaxGetter(
+const _flaxBinding234 = FlaxGetter.plain(
   "tooltip",
-  _flaxBinding29,
+  flaxNullableStringType,
   _AttributedStringProperty_tooltip,
 );
-const _flaxBinding257 = FlaxGetter(
+const _flaxBinding235 = FlaxGetter.plain(
   "missingIfNull",
-  _flaxBinding24,
+  flaxBoolType,
   _AttributedStringProperty_missingIfNull,
 );
-const _flaxBinding258 = FlaxGetter(
+const _flaxBinding236 = FlaxGetter.plain(
   "propertyType",
-  _flaxBinding31,
+  flaxTypeType,
   _AttributedStringProperty_propertyType,
 );
-const _flaxBinding259 = FlaxGetter(
+const _flaxBinding237 = FlaxGetter.plain(
   "value",
-  _flaxBinding33,
+  _flaxBinding23,
   _AttributedStringProperty_value,
 );
-const _flaxBinding260 = FlaxGetter(
+const _flaxBinding238 = FlaxGetter.plain(
   "exception",
-  _flaxBinding0,
+  flaxNullableAnyType,
   _AttributedStringProperty_exception,
 );
-const _flaxBinding261 = FlaxGetter(
+const _flaxBinding239 = FlaxGetter.plain(
   "defaultValue",
-  _flaxBinding0,
+  flaxNullableAnyType,
   _AttributedStringProperty_defaultValue,
 );
-const _flaxBinding262 = FlaxGetter(
+const _flaxBinding240 = FlaxGetter.plain(
   "isInteresting",
-  _flaxBinding24,
+  flaxBoolType,
   _AttributedStringProperty_isInteresting,
 );
-const _flaxBinding263 = FlaxGetter(
+const _flaxBinding241 = FlaxGetter.plain(
   "level",
-  _flaxBinding23,
+  _flaxBinding18,
   _AttributedStringProperty_level,
 );
-const _flaxBinding264 = FlaxGetter(
+const _flaxBinding242 = FlaxGetter.plain(
   "name",
-  _flaxBinding29,
+  flaxNullableStringType,
   _AttributedStringProperty_name,
 );
-const _flaxBinding265 = FlaxGetter(
+const _flaxBinding243 = FlaxGetter.plain(
   "showSeparator",
-  _flaxBinding24,
+  flaxBoolType,
   _AttributedStringProperty_showSeparator,
 );
-const _flaxBinding266 = FlaxGetter(
+const _flaxBinding244 = FlaxGetter.plain(
   "showName",
-  _flaxBinding24,
+  flaxBoolType,
   _AttributedStringProperty_showName,
 );
-const _flaxBinding267 = FlaxGetter(
+const _flaxBinding245 = FlaxGetter.plain(
   "linePrefix",
-  _flaxBinding29,
+  flaxNullableStringType,
   _AttributedStringProperty_linePrefix,
 );
-const _flaxBinding268 = FlaxGetter(
+const _flaxBinding246 = FlaxGetter.plain(
   "emptyBodyDescription",
-  _flaxBinding29,
+  flaxNullableStringType,
   _AttributedStringProperty_emptyBodyDescription,
 );
-const _flaxBinding269 = FlaxGetter(
+const _flaxBinding247 = FlaxGetter.plain(
   "style",
-  _flaxBinding37,
+  _flaxBinding26,
   _AttributedStringProperty_style,
 );
-const _flaxBinding270 = FlaxGetter(
+const _flaxBinding248 = FlaxGetter.plain(
   "allowTruncate",
-  _flaxBinding24,
+  flaxBoolType,
   _AttributedStringProperty_allowTruncate,
 );
-const _flaxBinding271 = FlaxGetter(
+const _flaxBinding249 = FlaxGetter.plain(
   "textTreeConfiguration",
-  _flaxBinding39,
+  _flaxBinding28,
   _AttributedStringProperty_textTreeConfiguration,
 );
-const _flaxBinding272 = FlaxGetter(
+const _flaxBinding250 = FlaxGetter.plain(
   "showWhenEmpty",
-  _flaxBinding24,
+  flaxBoolType,
   _AttributedStringProperty_showWhenEmpty,
 );
-const _flaxBinding273 = FlaxInstanceMethod.signature(
-  _flaxBinding18,
+const _flaxBinding251 = FlaxInstanceMethod.shared(
+  _flaxBinding13,
   _AttributedStringProperty_toJsonMap,
 );
-const _flaxBinding274 = <FlaxParameter>[
-  FlaxParameter("parentConfiguration", _flaxBinding39, required: false),
+const _flaxBinding252 = <FlaxParameter>[
+  FlaxParameter("parentConfiguration", _flaxBinding28, required: false),
 ];
-const _flaxBinding275 = FlaxInstanceMethod(
-  _flaxBinding274,
-  _flaxBinding1,
+const _flaxBinding253 = FlaxInstanceMethod.plain(
+  _flaxBinding252,
+  flaxStringType,
   _AttributedStringProperty_valueToString,
 );
-const _flaxBinding276 = FlaxInstanceMethod(
-  _flaxBinding274,
-  _flaxBinding1,
+const _flaxBinding254 = FlaxInstanceMethod.plain(
+  _flaxBinding252,
+  flaxStringType,
   _AttributedStringProperty_toDescription,
 );
-const _flaxBinding277 = FlaxInstanceMethod.signature(
-  _flaxBinding22,
+const _flaxBinding255 = FlaxInstanceMethod.shared(
+  _flaxBinding17,
   _AttributedStringProperty_getProperties,
 );
-const _flaxBinding278 = FlaxInstanceMethod.signature(
-  _flaxBinding22,
+const _flaxBinding256 = FlaxInstanceMethod.shared(
+  _flaxBinding17,
   _AttributedStringProperty_getChildren,
 );
-const _flaxBinding279 = FlaxInstanceMethod.signature(
-  _flaxBinding25,
+const _flaxBinding257 = FlaxInstanceMethod.shared(
+  _flaxBinding19,
   _AttributedStringProperty_isFiltered,
 );
-const _flaxBinding280 = FlaxInstanceMethod.signature(
-  _flaxBinding27,
+const _flaxBinding258 = FlaxInstanceMethod.shared(
+  _flaxBinding21,
   _AttributedStringProperty_toTimelineArguments,
 );
-const _flaxBinding281 = FlaxInstanceMethod.signature(
-  _flaxBinding18,
+const _flaxBinding259 = FlaxInstanceMethod.shared(
+  _flaxBinding13,
   _AttributedStringProperty_toJsonMapIterative,
 );
-const _flaxBinding282 = <FlaxParameter>[
+const _flaxBinding260 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
-    _flaxBinding23,
+    _flaxBinding18,
     required: false,
     defaultValue: api2.DiagnosticLevel.debug,
   ),
-  FlaxParameter("parentConfiguration", _flaxBinding39, required: false),
+  FlaxParameter("parentConfiguration", _flaxBinding28, required: false),
   FlaxParameter(
     "prefixLineOne",
-    _flaxBinding1,
+    flaxStringType,
     required: false,
     defaultValue: '',
   ),
-  FlaxParameter("prefixOtherLines", _flaxBinding29, required: false),
-  FlaxParameter("wrapWidth", _flaxBinding5, required: false, defaultValue: 65),
+  FlaxParameter("prefixOtherLines", flaxNullableStringType, required: false),
+  FlaxParameter("wrapWidth", flaxIntType, required: false, defaultValue: 65),
 ];
-const _flaxBinding283 = FlaxInstanceMethod(
-  _flaxBinding282,
-  _flaxBinding1,
+const _flaxBinding261 = FlaxInstanceMethod.plain(
+  _flaxBinding260,
+  flaxStringType,
   _AttributedStringProperty_toStringDeep,
 );
-const _flaxBinding284 = <FlaxParameter>[
+const _flaxBinding262 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
-    _flaxBinding23,
+    _flaxBinding18,
     required: false,
     defaultValue: api2.DiagnosticLevel.info,
   ),
-  FlaxParameter("parentConfiguration", _flaxBinding39, required: false),
+  FlaxParameter("parentConfiguration", _flaxBinding28, required: false),
 ];
-const _flaxBinding285 = FlaxInstanceMethod(
-  _flaxBinding284,
-  _flaxBinding1,
+const _flaxBinding263 = FlaxInstanceMethod.plain(
+  _flaxBinding262,
+  flaxStringType,
   _AttributedStringProperty_toString,
 );
-const _flaxBinding286 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding1, required: true),
-  FlaxParameter("value", _flaxBinding33, required: true),
-  FlaxParameter(
-    "showName",
-    _flaxBinding24,
-    required: false,
-    defaultValue: true,
-  ),
+const _flaxBinding264 = FlaxInstanceMethod.shared(
+  flaxNullableStringCall,
+  _FlaxProxyDispatch5_super_get_name,
+);
+const _flaxBinding265 = <FlaxParameter>[
+  FlaxParameter.required("name", flaxStringType),
+  FlaxParameter.required("value", _flaxBinding23),
+  FlaxParameter("showName", flaxBoolType, required: false, defaultValue: true),
   FlaxParameter(
     "showWhenEmpty",
-    _flaxBinding24,
+    flaxBoolType,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "defaultValue",
-    _flaxBinding0,
+    flaxNullableAnyType,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "level",
-    _flaxBinding23,
+    _flaxBinding18,
     required: false,
     defaultValue: api2.DiagnosticLevel.info,
   ),
-  FlaxParameter("description", _flaxBinding29, required: false),
+  FlaxParameter("description", flaxNullableStringType, required: false),
 ];
-const _flaxBinding287 = FlaxProxyMember(
+const _flaxBinding266 = FlaxProxyMember(
   "toJsonMap",
   0,
-  _flaxBinding18,
+  _flaxBinding13,
   hasSuper: true,
 );
-const _flaxBinding288 = FlaxCallbackBinding.signature(
+const _flaxBinding267 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "parentConfiguration",
-      _flaxBinding39,
+      _flaxBinding28,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding1,
+  flaxStringType,
   id: "callback:<>(n:o:parentConfiguration:object?:flax.core/sdk_foundation#type:TextTreeConfiguration)->String:",
 );
-const _flaxBinding289 = FlaxProxyMember(
+const _flaxBinding268 = FlaxProxyMember(
   "valueToString",
   0,
-  _flaxBinding288,
+  _flaxBinding267,
+  hasSuper: true,
+);
+const _flaxBinding269 = FlaxProxyMember(
+  "toDescription",
+  0,
+  _flaxBinding267,
+  hasSuper: true,
+);
+const _flaxBinding270 = FlaxProxyMember(
+  "getProperties",
+  0,
+  _flaxBinding17,
+  hasSuper: true,
+);
+const _flaxBinding271 = FlaxProxyMember(
+  "getChildren",
+  0,
+  _flaxBinding17,
+  hasSuper: true,
+);
+const _flaxBinding272 = FlaxProxyMember(
+  "isFiltered",
+  0,
+  _flaxBinding19,
+  hasSuper: true,
+);
+const _flaxBinding273 = FlaxProxyMember(
+  "toTimelineArguments",
+  0,
+  _flaxBinding21,
+  hasSuper: true,
+);
+const _flaxBinding274 = FlaxProxyMember(
+  "toJsonMapIterative",
+  0,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding275 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter.plain(
+      "prefixLineOne",
+      flaxStringType,
+      required: false,
+      positional: false,
+    ),
+    FlaxCallbackParameter.plain(
+      "prefixOtherLines",
+      flaxNullableStringType,
+      required: false,
+      positional: false,
+    ),
+    FlaxCallbackParameter.plain(
+      "parentConfiguration",
+      _flaxBinding28,
+      required: false,
+      positional: false,
+    ),
+    FlaxCallbackParameter.plain(
+      "minLevel",
+      _flaxBinding18,
+      required: false,
+      positional: false,
+    ),
+    FlaxCallbackParameter.plain(
+      "wrapWidth",
+      flaxIntType,
+      required: false,
+      positional: false,
+    ),
+  ],
+  flaxStringType,
+  id: "callback:<>(n:o:prefixLineOne:String:,n:o:prefixOtherLines:String?:,n:o:parentConfiguration:object?:flax.core/sdk_foundation#type:TextTreeConfiguration,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel,n:o:wrapWidth:int:)->String:",
+);
+const _flaxBinding276 = FlaxProxyMember(
+  "toStringDeep",
+  0,
+  _flaxBinding275,
+  hasSuper: true,
+);
+const _flaxBinding277 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter.plain(
+      "parentConfiguration",
+      _flaxBinding28,
+      required: false,
+      positional: false,
+    ),
+    FlaxCallbackParameter.plain(
+      "minLevel",
+      _flaxBinding18,
+      required: false,
+      positional: false,
+    ),
+  ],
+  flaxStringType,
+  id: "callback:<>(n:o:parentConfiguration:object?:flax.core/sdk_foundation#type:TextTreeConfiguration,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
+);
+const _flaxBinding278 = FlaxProxyMember(
+  "toString",
+  0,
+  _flaxBinding277,
+  hasSuper: true,
+);
+const _flaxBinding279 = FlaxProxyMember(
+  "showWhenEmpty",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding280 = FlaxProxyMember(
+  "isInteresting",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding281 = FlaxProxyMember(
+  "expandableValue",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding282 = FlaxProxyMember(
+  "allowWrap",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding283 = FlaxProxyMember(
+  "allowNameWrap",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding284 = FlaxProxyMember(
+  "ifNull",
+  1,
+  flaxNullableStringCall,
+  hasSuper: true,
+);
+const _flaxBinding285 = FlaxProxyMember(
+  "ifEmpty",
+  1,
+  flaxNullableStringCall,
+  hasSuper: true,
+);
+const _flaxBinding286 = FlaxProxyMember(
+  "tooltip",
+  1,
+  flaxNullableStringCall,
+  hasSuper: true,
+);
+const _flaxBinding287 = FlaxProxyMember(
+  "missingIfNull",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding288 = FlaxProxyMember(
+  "propertyType",
+  1,
+  _flaxBinding22,
+  hasSuper: true,
+);
+const _flaxBinding289 = FlaxProxyMember(
+  "value",
+  1,
+  _flaxBinding24,
   hasSuper: true,
 );
 const _flaxBinding290 = FlaxProxyMember(
-  "toDescription",
-  0,
-  _flaxBinding288,
+  "exception",
+  1,
+  flaxNullableAnyCall,
   hasSuper: true,
 );
 const _flaxBinding291 = FlaxProxyMember(
-  "getProperties",
-  0,
-  _flaxBinding22,
+  "defaultValue",
+  1,
+  flaxNullableAnyCall,
   hasSuper: true,
 );
 const _flaxBinding292 = FlaxProxyMember(
-  "getChildren",
-  0,
-  _flaxBinding22,
-  hasSuper: true,
-);
-const _flaxBinding293 = FlaxProxyMember(
-  "isFiltered",
-  0,
+  "level",
+  1,
   _flaxBinding25,
   hasSuper: true,
 );
+const _flaxBinding293 = FlaxProxyMember(
+  "name",
+  1,
+  flaxNullableStringCall,
+  hasSuper: true,
+);
 const _flaxBinding294 = FlaxProxyMember(
-  "toTimelineArguments",
-  0,
-  _flaxBinding27,
+  "showSeparator",
+  1,
+  flaxBoolCall,
   hasSuper: true,
 );
 const _flaxBinding295 = FlaxProxyMember(
-  "toJsonMapIterative",
-  0,
-  _flaxBinding18,
+  "showName",
+  1,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding296 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "prefixLineOne",
-      _flaxBinding1,
-      required: false,
-      positional: false,
-    ),
-    FlaxCallbackParameter(
-      "prefixOtherLines",
-      _flaxBinding29,
-      required: false,
-      positional: false,
-    ),
-    FlaxCallbackParameter(
-      "parentConfiguration",
-      _flaxBinding39,
-      required: false,
-      positional: false,
-    ),
-    FlaxCallbackParameter(
-      "minLevel",
-      _flaxBinding23,
-      required: false,
-      positional: false,
-    ),
-    FlaxCallbackParameter(
-      "wrapWidth",
-      _flaxBinding5,
-      required: false,
-      positional: false,
-    ),
-  ],
-  _flaxBinding1,
-  id: "callback:<>(n:o:prefixLineOne:String:,n:o:prefixOtherLines:String?:,n:o:parentConfiguration:object?:flax.core/sdk_foundation#type:TextTreeConfiguration,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel,n:o:wrapWidth:int:)->String:",
+const _flaxBinding296 = FlaxProxyMember(
+  "linePrefix",
+  1,
+  flaxNullableStringCall,
+  hasSuper: true,
 );
 const _flaxBinding297 = FlaxProxyMember(
-  "toStringDeep",
-  0,
-  _flaxBinding296,
+  "emptyBodyDescription",
+  1,
+  flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding298 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parentConfiguration",
-      _flaxBinding39,
-      required: false,
-      positional: false,
-    ),
-    FlaxCallbackParameter(
-      "minLevel",
-      _flaxBinding23,
-      required: false,
-      positional: false,
-    ),
-  ],
-  _flaxBinding1,
-  id: "callback:<>(n:o:parentConfiguration:object?:flax.core/sdk_foundation#type:TextTreeConfiguration,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
+const _flaxBinding298 = FlaxProxyMember(
+  "style",
+  1,
+  _flaxBinding27,
+  hasSuper: true,
 );
 const _flaxBinding299 = FlaxProxyMember(
-  "toString",
-  0,
-  _flaxBinding298,
+  "allowTruncate",
+  1,
+  flaxBoolCall,
   hasSuper: true,
 );
 const _flaxBinding300 = FlaxProxyMember(
-  "showWhenEmpty",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding301 = FlaxProxyMember(
-  "isInteresting",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding302 = FlaxProxyMember(
-  "expandableValue",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding303 = FlaxProxyMember(
-  "allowWrap",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding304 = FlaxProxyMember(
-  "allowNameWrap",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding305 = FlaxProxyMember(
-  "ifNull",
-  1,
-  _flaxBinding30,
-  hasSuper: true,
-);
-const _flaxBinding306 = FlaxProxyMember(
-  "ifEmpty",
-  1,
-  _flaxBinding30,
-  hasSuper: true,
-);
-const _flaxBinding307 = FlaxProxyMember(
-  "tooltip",
-  1,
-  _flaxBinding30,
-  hasSuper: true,
-);
-const _flaxBinding308 = FlaxProxyMember(
-  "missingIfNull",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding309 = FlaxProxyMember(
-  "propertyType",
-  1,
-  _flaxBinding32,
-  hasSuper: true,
-);
-const _flaxBinding310 = FlaxProxyMember(
-  "value",
-  1,
-  _flaxBinding34,
-  hasSuper: true,
-);
-const _flaxBinding311 = FlaxProxyMember(
-  "exception",
-  1,
-  _flaxBinding35,
-  hasSuper: true,
-);
-const _flaxBinding312 = FlaxProxyMember(
-  "defaultValue",
-  1,
-  _flaxBinding35,
-  hasSuper: true,
-);
-const _flaxBinding313 = FlaxProxyMember(
-  "level",
-  1,
-  _flaxBinding36,
-  hasSuper: true,
-);
-const _flaxBinding314 = FlaxProxyMember(
-  "name",
-  1,
-  _flaxBinding30,
-  hasSuper: true,
-);
-const _flaxBinding315 = FlaxProxyMember(
-  "showSeparator",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding316 = FlaxProxyMember(
-  "showName",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding317 = FlaxProxyMember(
-  "linePrefix",
-  1,
-  _flaxBinding30,
-  hasSuper: true,
-);
-const _flaxBinding318 = FlaxProxyMember(
-  "emptyBodyDescription",
-  1,
-  _flaxBinding30,
-  hasSuper: true,
-);
-const _flaxBinding319 = FlaxProxyMember(
-  "style",
-  1,
-  _flaxBinding38,
-  hasSuper: true,
-);
-const _flaxBinding320 = FlaxProxyMember(
-  "allowTruncate",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding321 = FlaxProxyMember(
   "textTreeConfiguration",
   1,
-  _flaxBinding40,
+  _flaxBinding29,
   hasSuper: true,
 );
-const _flaxBinding322 = FlaxObjectBinding(
+const _flaxBinding301 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:AttributedStringProperty",
   [
-    _flaxBinding251,
-    _flaxBinding252,
-    _flaxBinding253,
-    _flaxBinding254,
-    _flaxBinding255,
-    _flaxBinding256,
-    _flaxBinding257,
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding260,
-    _flaxBinding261,
-    _flaxBinding262,
-    _flaxBinding263,
-    _flaxBinding264,
-    _flaxBinding265,
-    _flaxBinding266,
-    _flaxBinding267,
-    _flaxBinding268,
-    _flaxBinding269,
-    _flaxBinding270,
-    _flaxBinding271,
-    _flaxBinding272,
+    _flaxBinding229,
+    _flaxBinding230,
+    _flaxBinding231,
+    _flaxBinding232,
+    _flaxBinding233,
+    _flaxBinding234,
+    _flaxBinding235,
+    _flaxBinding236,
+    _flaxBinding237,
+    _flaxBinding238,
+    _flaxBinding239,
+    _flaxBinding240,
+    _flaxBinding241,
+    _flaxBinding242,
+    _flaxBinding243,
+    _flaxBinding244,
+    _flaxBinding245,
+    _flaxBinding246,
+    _flaxBinding247,
+    _flaxBinding248,
+    _flaxBinding249,
+    _flaxBinding250,
   ],
   {
-    "toJsonMap": _flaxBinding273,
-    "valueToString": _flaxBinding275,
-    "toDescription": _flaxBinding276,
-    "getProperties": _flaxBinding277,
-    "getChildren": _flaxBinding278,
-    "isFiltered": _flaxBinding279,
-    "toTimelineArguments": _flaxBinding280,
-    "toJsonMapIterative": _flaxBinding281,
-    "toStringDeep": _flaxBinding283,
-    "toString": _flaxBinding285,
-    "@super:toJsonMap": FlaxInstanceMethod.signature(
-      _flaxBinding18,
+    "toJsonMap": _flaxBinding251,
+    "valueToString": _flaxBinding253,
+    "toDescription": _flaxBinding254,
+    "getProperties": _flaxBinding255,
+    "getChildren": _flaxBinding256,
+    "isFiltered": _flaxBinding257,
+    "toTimelineArguments": _flaxBinding258,
+    "toJsonMapIterative": _flaxBinding259,
+    "toStringDeep": _flaxBinding261,
+    "toString": _flaxBinding263,
+    "@super:toJsonMap": FlaxInstanceMethod.shared(
+      _flaxBinding13,
       _AttributedStringProperty_super_toJsonMap,
     ),
-    "@super:valueToString": FlaxInstanceMethod(
-      _flaxBinding274,
-      _flaxBinding1,
+    "@super:valueToString": FlaxInstanceMethod.plain(
+      _flaxBinding252,
+      flaxStringType,
       _AttributedStringProperty_super_valueToString,
     ),
-    "@super:toDescription": FlaxInstanceMethod(
-      _flaxBinding274,
-      _flaxBinding1,
+    "@super:toDescription": FlaxInstanceMethod.plain(
+      _flaxBinding252,
+      flaxStringType,
       _AttributedStringProperty_super_toDescription,
     ),
-    "@super:getProperties": FlaxInstanceMethod.signature(
-      _flaxBinding22,
+    "@super:getProperties": FlaxInstanceMethod.shared(
+      _flaxBinding17,
       _AttributedStringProperty_super_getProperties,
     ),
-    "@super:getChildren": FlaxInstanceMethod.signature(
-      _flaxBinding22,
+    "@super:getChildren": FlaxInstanceMethod.shared(
+      _flaxBinding17,
       _AttributedStringProperty_super_getChildren,
     ),
-    "@super:isFiltered": FlaxInstanceMethod.signature(
-      _flaxBinding25,
+    "@super:isFiltered": FlaxInstanceMethod.shared(
+      _flaxBinding19,
       _AttributedStringProperty_super_isFiltered,
     ),
-    "@super:toTimelineArguments": FlaxInstanceMethod.signature(
-      _flaxBinding27,
+    "@super:toTimelineArguments": FlaxInstanceMethod.shared(
+      _flaxBinding21,
       _AttributedStringProperty_super_toTimelineArguments,
     ),
-    "@super:toJsonMapIterative": FlaxInstanceMethod.signature(
-      _flaxBinding18,
+    "@super:toJsonMapIterative": FlaxInstanceMethod.shared(
+      _flaxBinding13,
       _AttributedStringProperty_super_toJsonMapIterative,
     ),
-    "@super:toStringDeep": FlaxInstanceMethod(
-      _flaxBinding282,
-      _flaxBinding1,
+    "@super:toStringDeep": FlaxInstanceMethod.plain(
+      _flaxBinding260,
+      flaxStringType,
       _AttributedStringProperty_super_toStringDeep,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding284,
-      _flaxBinding1,
+    "@super:toString": FlaxInstanceMethod.plain(
+      _flaxBinding262,
+      flaxStringType,
       _AttributedStringProperty_super_toString,
     ),
-    "@super:get:showWhenEmpty": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:showWhenEmpty": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _AttributedStringProperty_super_get_showWhenEmpty,
     ),
-    "@super:get:isInteresting": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:isInteresting": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _AttributedStringProperty_super_get_isInteresting,
     ),
-    "@super:get:expandableValue": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:expandableValue": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _AttributedStringProperty_super_get_expandableValue,
     ),
-    "@super:get:allowWrap": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:allowWrap": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _AttributedStringProperty_super_get_allowWrap,
     ),
-    "@super:get:allowNameWrap": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:allowNameWrap": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _AttributedStringProperty_super_get_allowNameWrap,
     ),
-    "@super:get:ifNull": FlaxInstanceMethod.signature(
-      _flaxBinding30,
+    "@super:get:ifNull": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
       _AttributedStringProperty_super_get_ifNull,
     ),
-    "@super:get:ifEmpty": FlaxInstanceMethod.signature(
-      _flaxBinding30,
+    "@super:get:ifEmpty": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
       _AttributedStringProperty_super_get_ifEmpty,
     ),
-    "@super:get:tooltip": FlaxInstanceMethod.signature(
-      _flaxBinding30,
+    "@super:get:tooltip": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
       _AttributedStringProperty_super_get_tooltip,
     ),
-    "@super:get:missingIfNull": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:missingIfNull": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _AttributedStringProperty_super_get_missingIfNull,
     ),
-    "@super:get:propertyType": FlaxInstanceMethod.signature(
-      _flaxBinding32,
+    "@super:get:propertyType": FlaxInstanceMethod.shared(
+      _flaxBinding22,
       _AttributedStringProperty_super_get_propertyType,
     ),
-    "@super:get:value": FlaxInstanceMethod.signature(
-      _flaxBinding34,
+    "@super:get:value": FlaxInstanceMethod.shared(
+      _flaxBinding24,
       _AttributedStringProperty_super_get_value,
     ),
-    "@super:get:exception": FlaxInstanceMethod.signature(
-      _flaxBinding35,
+    "@super:get:exception": FlaxInstanceMethod.shared(
+      flaxNullableAnyCall,
       _AttributedStringProperty_super_get_exception,
     ),
-    "@super:get:defaultValue": FlaxInstanceMethod.signature(
-      _flaxBinding35,
+    "@super:get:defaultValue": FlaxInstanceMethod.shared(
+      flaxNullableAnyCall,
       _AttributedStringProperty_super_get_defaultValue,
     ),
-    "@super:get:level": FlaxInstanceMethod.signature(
-      _flaxBinding36,
+    "@super:get:level": FlaxInstanceMethod.shared(
+      _flaxBinding25,
       _AttributedStringProperty_super_get_level,
     ),
-    "@super:get:name": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch5_super_get_name,
-    ),
-    "@super:get:showSeparator": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:name": _flaxBinding264,
+    "@super:get:showSeparator": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _AttributedStringProperty_super_get_showSeparator,
     ),
-    "@super:get:showName": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:showName": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _AttributedStringProperty_super_get_showName,
     ),
-    "@super:get:linePrefix": FlaxInstanceMethod.signature(
-      _flaxBinding30,
+    "@super:get:linePrefix": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
       _AttributedStringProperty_super_get_linePrefix,
     ),
-    "@super:get:emptyBodyDescription": FlaxInstanceMethod.signature(
-      _flaxBinding30,
+    "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
       _AttributedStringProperty_super_get_emptyBodyDescription,
     ),
-    "@super:get:style": FlaxInstanceMethod.signature(
-      _flaxBinding38,
+    "@super:get:style": FlaxInstanceMethod.shared(
+      _flaxBinding27,
       _AttributedStringProperty_super_get_style,
     ),
-    "@super:get:allowTruncate": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:allowTruncate": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _AttributedStringProperty_super_get_allowTruncate,
     ),
-    "@super:get:textTreeConfiguration": FlaxInstanceMethod.signature(
-      _flaxBinding40,
+    "@super:get:textTreeConfiguration": FlaxInstanceMethod.shared(
+      _flaxBinding29,
       _AttributedStringProperty_super_get_textTreeConfiguration,
     ),
   },
-  constructors: {"@implementation": _flaxBinding286},
+  constructors: {"": _flaxBinding265, "@implementation": _flaxBinding265},
   create: _createAttributedStringProperty,
   matches: _isAttributedStringProperty,
   setters: [],
@@ -16405,7 +16136,26 @@ const _flaxBinding322 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
+    _flaxBinding266,
+    _flaxBinding268,
+    _flaxBinding269,
+    _flaxBinding270,
+    _flaxBinding271,
+    _flaxBinding272,
+    _flaxBinding273,
+    _flaxBinding274,
+    _flaxBinding276,
+    _flaxBinding278,
+    _flaxBinding279,
+    _flaxBinding280,
+    _flaxBinding281,
+    _flaxBinding282,
+    _flaxBinding283,
+    _flaxBinding284,
+    _flaxBinding285,
+    _flaxBinding286,
     _flaxBinding287,
+    _flaxBinding288,
     _flaxBinding289,
     _flaxBinding290,
     _flaxBinding291,
@@ -16413,214 +16163,188 @@ const _flaxBinding322 = FlaxObjectBinding(
     _flaxBinding293,
     _flaxBinding294,
     _flaxBinding295,
+    _flaxBinding296,
     _flaxBinding297,
+    _flaxBinding298,
     _flaxBinding299,
     _flaxBinding300,
-    _flaxBinding301,
-    _flaxBinding302,
-    _flaxBinding303,
-    _flaxBinding304,
-    _flaxBinding305,
-    _flaxBinding306,
-    _flaxBinding307,
-    _flaxBinding308,
-    _flaxBinding309,
-    _flaxBinding310,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding313,
-    _flaxBinding314,
-    _flaxBinding315,
-    _flaxBinding316,
-    _flaxBinding317,
-    _flaxBinding318,
-    _flaxBinding319,
-    _flaxBinding320,
-    _flaxBinding321,
   ]),
 );
-const _flaxBinding323 = FlaxGetter(
+const _flaxBinding302 = FlaxGetter.plain(
   "mergeUp",
-  _flaxBinding43,
+  _flaxBinding32,
   _ChildSemanticsConfigurationsResult_mergeUp,
 );
-const _flaxBinding324 = FlaxGetter(
+const _flaxBinding303 = FlaxGetter.plain(
   "siblingMergeGroups",
-  _flaxBinding46,
+  _flaxBinding35,
   _ChildSemanticsConfigurationsResult_siblingMergeGroups,
 );
-const _flaxBinding325 = <FlaxParameter>[];
-const _flaxBinding326 = FlaxProxyMember("mergeUp", 1, _flaxBinding44);
-const _flaxBinding327 = FlaxProxyMember(
+const _flaxBinding304 = <FlaxParameter>[];
+const _flaxBinding305 = FlaxProxyMember("mergeUp", 1, _flaxBinding33);
+const _flaxBinding306 = FlaxProxyMember(
   "siblingMergeGroups",
   1,
-  _flaxBinding47,
+  _flaxBinding36,
 );
-const _flaxBinding328 = FlaxObjectBinding(
+const _flaxBinding307 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResult",
-  [_flaxBinding323, _flaxBinding324],
+  [_flaxBinding302, _flaxBinding303],
   {},
-  constructors: {"@implementation": _flaxBinding325},
+  constructors: {"@implementation": _flaxBinding304},
   create: _createChildSemanticsConfigurationsResult,
   matches: _isChildSemanticsConfigurationsResult,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding326, _flaxBinding327]),
+  proxy: FlaxProxyBinding([_flaxBinding305, _flaxBinding306]),
 );
-const _flaxBinding329 = FlaxInstanceMethod.signature(
-  _flaxBinding49,
+const _flaxBinding308 = FlaxInstanceMethod.shared(
+  _flaxBinding37,
   _ChildSemanticsConfigurationsResultBuilder_markAsMergeUp,
 );
-const _flaxBinding330 = FlaxInstanceMethod.signature(
-  _flaxBinding50,
+const _flaxBinding309 = FlaxInstanceMethod.shared(
+  _flaxBinding38,
   _ChildSemanticsConfigurationsResultBuilder_markAsSiblingMergeGroup,
 );
-const _flaxBinding331 = FlaxInstanceMethod.signature(
-  _flaxBinding52,
+const _flaxBinding310 = FlaxInstanceMethod.shared(
+  _flaxBinding40,
   _ChildSemanticsConfigurationsResultBuilder_build,
 );
-const _flaxBinding332 = FlaxProxyMember(
+const _flaxBinding311 = FlaxProxyMember(
   "markAsMergeUp",
   0,
-  _flaxBinding49,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding333 = FlaxProxyMember(
+const _flaxBinding312 = FlaxProxyMember(
   "markAsSiblingMergeGroup",
   0,
-  _flaxBinding50,
+  _flaxBinding38,
   hasSuper: true,
 );
-const _flaxBinding334 = FlaxProxyMember(
+const _flaxBinding313 = FlaxProxyMember(
   "build",
   0,
-  _flaxBinding52,
+  _flaxBinding40,
   hasSuper: true,
 );
-const _flaxBinding335 = FlaxObjectBinding(
+const _flaxBinding314 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder",
   [],
   {
-    "markAsMergeUp": _flaxBinding329,
-    "markAsSiblingMergeGroup": _flaxBinding330,
-    "build": _flaxBinding331,
-    "@super:markAsMergeUp": FlaxInstanceMethod.signature(
-      _flaxBinding49,
+    "markAsMergeUp": _flaxBinding308,
+    "markAsSiblingMergeGroup": _flaxBinding309,
+    "build": _flaxBinding310,
+    "@super:markAsMergeUp": FlaxInstanceMethod.shared(
+      _flaxBinding37,
       _ChildSemanticsConfigurationsResultBuilder_super_markAsMergeUp,
     ),
-    "@super:markAsSiblingMergeGroup": FlaxInstanceMethod.signature(
-      _flaxBinding50,
+    "@super:markAsSiblingMergeGroup": FlaxInstanceMethod.shared(
+      _flaxBinding38,
       _ChildSemanticsConfigurationsResultBuilder_super_markAsSiblingMergeGroup,
     ),
-    "@super:build": FlaxInstanceMethod.signature(
-      _flaxBinding52,
+    "@super:build": FlaxInstanceMethod.shared(
+      _flaxBinding40,
       _ChildSemanticsConfigurationsResultBuilder_super_build,
     ),
   },
-  constructors: {"@implementation": _flaxBinding325},
+  constructors: {"": _flaxBinding304, "@implementation": _flaxBinding304},
   create: _createChildSemanticsConfigurationsResultBuilder,
   matches: _isChildSemanticsConfigurationsResultBuilder,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding332, _flaxBinding333, _flaxBinding334]),
+  proxy: FlaxProxyBinding([_flaxBinding311, _flaxBinding312, _flaxBinding313]),
 );
-const _flaxBinding336 = FlaxGetter(
+const _flaxBinding315 = FlaxGetter.plain(
   "label",
-  _flaxBinding29,
+  flaxNullableStringType,
   _CustomSemanticsAction_label,
 );
-const _flaxBinding337 = FlaxGetter(
+const _flaxBinding316 = FlaxGetter.plain(
   "hint",
-  _flaxBinding29,
+  flaxNullableStringType,
   _CustomSemanticsAction_hint,
 );
-const _flaxBinding338 = FlaxGetter(
+const _flaxBinding317 = FlaxGetter.plain(
   "action",
-  _flaxBinding53,
+  _flaxBinding41,
   _CustomSemanticsAction_action,
 );
-const _flaxBinding339 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding318 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _CustomSemanticsAction_toString,
 );
-const _flaxBinding340 = <FlaxParameter>[
-  FlaxParameter("label", _flaxBinding1, required: true),
+const _flaxBinding319 = <FlaxParameter>[
+  FlaxParameter.required("label", flaxStringType),
 ];
-const _flaxBinding341 = FlaxProxyMember(
+const _flaxBinding320 = <FlaxParameter>[
+  FlaxParameter.required("hint", flaxStringType),
+  FlaxParameter.required("action", _flaxBinding49),
+];
+const _flaxBinding321 = FlaxProxyMember(
   "label",
   1,
-  _flaxBinding30,
+  flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding342 = FlaxProxyMember(
+const _flaxBinding322 = FlaxProxyMember(
   "hint",
   1,
-  _flaxBinding30,
+  flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding343 = FlaxProxyMember(
+const _flaxBinding323 = FlaxProxyMember(
   "action",
   1,
-  _flaxBinding54,
+  _flaxBinding42,
   hasSuper: true,
 );
-const _flaxBinding344 = FlaxObjectBinding(
+const _flaxBinding324 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:CustomSemanticsAction",
-  [_flaxBinding336, _flaxBinding337, _flaxBinding338],
+  [_flaxBinding315, _flaxBinding316, _flaxBinding317],
   {
-    "toString": _flaxBinding339,
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:label": FlaxInstanceMethod.signature(
-      _flaxBinding30,
+    "toString": _flaxBinding318,
+    "@super:toString": _flaxBinding199,
+    "@super:get:label": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
       _CustomSemanticsAction_super_get_label,
     ),
-    "@super:get:hint": FlaxInstanceMethod.signature(
-      _flaxBinding30,
+    "@super:get:hint": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
       _CustomSemanticsAction_super_get_hint,
     ),
-    "@super:get:action": FlaxInstanceMethod.signature(
-      _flaxBinding54,
+    "@super:get:action": FlaxInstanceMethod.shared(
+      _flaxBinding42,
       _CustomSemanticsAction_super_get_action,
     ),
   },
-  constructors: {"@implementation": _flaxBinding340},
+  constructors: {
+    "": _flaxBinding319,
+    "overridingAction": _flaxBinding320,
+    "@implementation": _flaxBinding319,
+    "@implementation:overridingAction": _flaxBinding320,
+  },
   create: _createCustomSemanticsAction,
   matches: _isCustomSemanticsAction,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding228,
-    _flaxBinding341,
-    _flaxBinding342,
-    _flaxBinding343,
+    _flaxBinding205,
+    _flaxBinding321,
+    _flaxBinding322,
+    _flaxBinding323,
   ]),
 );
-const _flaxBinding345 = FlaxObjectBinding(
+const _flaxBinding325 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:FocusSemanticEvent",
   [],
   {
-    "@super:toMap": FlaxInstanceMethod(
-      _flaxBinding220,
-      _flaxBinding2,
-      _FlaxProxyDispatch0_super_call_toMap,
-    ),
-    "@super:getDataMap": FlaxInstanceMethod.signature(
-      _flaxBinding3,
-      _FlaxProxyDispatch1_super_call_getDataMap,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:type": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_get_type,
-    ),
+    "@super:toMap": _flaxBinding198,
+    "@super:getDataMap": _flaxBinding212,
+    "@super:toString": _flaxBinding199,
+    "@super:get:type": _flaxBinding200,
   },
-  constructors: {"@implementation": _flaxBinding325},
+  constructors: {"": _flaxBinding304, "@implementation": _flaxBinding304},
   create: _createFocusSemanticEvent,
   matches: _isFocusSemanticEvent,
   setters: [],
@@ -16628,37 +16352,24 @@ const _flaxBinding345 = FlaxObjectBinding(
     "flax.core/sdk_semantics#type:SemanticsEvent",
     "dart:core::Object",
   ],
-  parent: _flaxBinding230,
+  parent: _flaxBinding207,
   proxy: FlaxProxyBinding([
-    _flaxBinding226,
-    _flaxBinding236,
-    _flaxBinding228,
-    _flaxBinding229,
+    _flaxBinding203,
+    _flaxBinding214,
+    _flaxBinding205,
+    _flaxBinding206,
   ]),
 );
-const _flaxBinding346 = FlaxObjectBinding(
+const _flaxBinding326 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:LongPressSemanticsEvent",
   [],
   {
-    "@super:toMap": FlaxInstanceMethod(
-      _flaxBinding220,
-      _flaxBinding2,
-      _FlaxProxyDispatch0_super_call_toMap,
-    ),
-    "@super:getDataMap": FlaxInstanceMethod.signature(
-      _flaxBinding3,
-      _FlaxProxyDispatch1_super_call_getDataMap,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:type": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_get_type,
-    ),
+    "@super:toMap": _flaxBinding198,
+    "@super:getDataMap": _flaxBinding212,
+    "@super:toString": _flaxBinding199,
+    "@super:get:type": _flaxBinding200,
   },
-  constructors: {"@implementation": _flaxBinding325},
+  constructors: {"": _flaxBinding304, "@implementation": _flaxBinding304},
   create: _createLongPressSemanticsEvent,
   matches: _isLongPressSemanticsEvent,
   setters: [],
@@ -16666,159 +16377,160 @@ const _flaxBinding346 = FlaxObjectBinding(
     "flax.core/sdk_semantics#type:SemanticsEvent",
     "dart:core::Object",
   ],
-  parent: _flaxBinding230,
+  parent: _flaxBinding207,
   proxy: FlaxProxyBinding([
-    _flaxBinding226,
-    _flaxBinding236,
-    _flaxBinding228,
-    _flaxBinding229,
+    _flaxBinding203,
+    _flaxBinding214,
+    _flaxBinding205,
+    _flaxBinding206,
   ]),
 );
-const _flaxBinding347 = FlaxGetter(
+const _flaxBinding327 = FlaxGetter.plain(
   "name",
-  _flaxBinding29,
+  flaxNullableStringType,
   _SemanticsSortKey_name,
 );
-const _flaxBinding348 = FlaxInstanceMethod.signature(
-  _flaxBinding56,
+const _flaxBinding328 = FlaxInstanceMethod.shared(
+  _flaxBinding44,
   _SemanticsSortKey_compareTo,
 );
-const _flaxBinding349 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding329 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _SemanticsSortKey_toStringShort,
 );
-const _flaxBinding350 = <FlaxParameter>[
+const _flaxBinding330 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
-    _flaxBinding23,
+    _flaxBinding18,
     required: false,
     defaultValue: api2.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding351 = FlaxInstanceMethod(
-  _flaxBinding350,
-  _flaxBinding1,
+const _flaxBinding331 = FlaxInstanceMethod.plain(
+  _flaxBinding330,
+  flaxStringType,
   _SemanticsSortKey_toString,
 );
-const _flaxBinding352 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding29, required: false),
-  FlaxParameter("style", _flaxBinding37, required: false),
+const _flaxBinding332 = <FlaxParameter>[
+  FlaxParameter("name", flaxNullableStringType, required: false),
+  FlaxParameter("style", _flaxBinding26, required: false),
 ];
-const _flaxBinding353 = FlaxInstanceMethod(
-  _flaxBinding352,
-  _flaxBinding19,
+const _flaxBinding333 = FlaxInstanceMethod.plain(
+  _flaxBinding332,
+  _flaxBinding14,
   _SemanticsSortKey_toDiagnosticsNode,
 );
-const _flaxBinding354 = FlaxInstanceMethod.signature(
-  _flaxBinding60,
+const _flaxBinding334 = FlaxInstanceMethod.shared(
+  _flaxBinding48,
   _SemanticsSortKey_debugFillProperties,
 );
-const _flaxBinding355 = FlaxInstanceMethod.signature(
-  _flaxBinding56,
+const _flaxBinding335 = FlaxInstanceMethod.shared(
+  _flaxBinding44,
   _SemanticsSortKey_doCompare,
 );
-const _flaxBinding356 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding29, required: false),
+const _flaxBinding336 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch9_super_call_toStringShort,
+);
+const _flaxBinding337 = FlaxInstanceMethod.plain(
+  _flaxBinding330,
+  flaxStringType,
+  _FlaxProxyDispatch9_super_call_toString,
+);
+const _flaxBinding338 = FlaxInstanceMethod.plain(
+  _flaxBinding332,
+  _flaxBinding14,
+  _FlaxProxyDispatch8_super_call_toDiagnosticsNode,
+);
+const _flaxBinding339 = FlaxInstanceMethod.shared(
+  _flaxBinding48,
+  _FlaxProxyDispatch8_super_call_debugFillProperties,
+);
+const _flaxBinding340 = <FlaxParameter>[
+  FlaxParameter("name", flaxNullableStringType, required: false),
 ];
-const _flaxBinding357 = FlaxProxyMember(
+const _flaxBinding341 = FlaxProxyMember(
   "compareTo",
   0,
-  _flaxBinding56,
+  _flaxBinding44,
   hasSuper: true,
 );
-const _flaxBinding358 = FlaxProxyMember(
+const _flaxBinding342 = FlaxProxyMember(
   "toStringShort",
   0,
-  _flaxBinding4,
+  flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding359 = FlaxCallbackBinding.signature(
+const _flaxBinding343 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "minLevel",
-      _flaxBinding23,
+      _flaxBinding18,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding1,
+  flaxStringType,
   id: "callback:<>(n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
 );
-const _flaxBinding360 = FlaxProxyMember(
+const _flaxBinding344 = FlaxProxyMember(
   "toString",
   0,
-  _flaxBinding359,
+  _flaxBinding343,
   hasSuper: true,
 );
-const _flaxBinding361 = FlaxCallbackBinding.signature(
+const _flaxBinding345 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "name",
-      _flaxBinding29,
+      flaxNullableStringType,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "style",
-      _flaxBinding37,
+      _flaxBinding26,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding19,
+  _flaxBinding14,
   id: "callback:<>(n:o:name:String?:,n:o:style:enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle)->object:flax.core/sdk_foundation#type:DiagnosticsNode",
 );
-const _flaxBinding362 = FlaxProxyMember(
+const _flaxBinding346 = FlaxProxyMember(
   "toDiagnosticsNode",
   0,
-  _flaxBinding361,
+  _flaxBinding345,
   hasSuper: true,
 );
-const _flaxBinding363 = FlaxProxyMember(
+const _flaxBinding347 = FlaxProxyMember(
   "debugFillProperties",
   0,
-  _flaxBinding60,
+  _flaxBinding48,
   hasSuper: true,
 );
-const _flaxBinding364 = FlaxProxyMember("doCompare", 0, _flaxBinding56);
-const _flaxBinding365 = FlaxObjectBinding(
+const _flaxBinding348 = FlaxProxyMember("doCompare", 0, _flaxBinding44);
+const _flaxBinding349 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsSortKey",
-  [_flaxBinding347],
+  [_flaxBinding327],
   {
-    "compareTo": _flaxBinding348,
-    "toStringShort": _flaxBinding349,
-    "toString": _flaxBinding351,
-    "toDiagnosticsNode": _flaxBinding353,
-    "debugFillProperties": _flaxBinding354,
-    "doCompare": _flaxBinding355,
-    "@super:compareTo": FlaxInstanceMethod.signature(
-      _flaxBinding56,
+    "compareTo": _flaxBinding328,
+    "toStringShort": _flaxBinding329,
+    "toString": _flaxBinding331,
+    "toDiagnosticsNode": _flaxBinding333,
+    "debugFillProperties": _flaxBinding334,
+    "doCompare": _flaxBinding335,
+    "@super:compareTo": FlaxInstanceMethod.shared(
+      _flaxBinding44,
       _SemanticsSortKey_super_compareTo,
     ),
-    "@super:toStringShort": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch9_super_call_toStringShort,
-    ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding350,
-      _flaxBinding1,
-      _FlaxProxyDispatch9_super_call_toString,
-    ),
-    "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding352,
-      _flaxBinding19,
-      _FlaxProxyDispatch8_super_call_toDiagnosticsNode,
-    ),
-    "@super:debugFillProperties": FlaxInstanceMethod.signature(
-      _flaxBinding60,
-      _FlaxProxyDispatch8_super_call_debugFillProperties,
-    ),
-    "@super:get:name": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch5_super_get_name,
-    ),
+    "@super:toStringShort": _flaxBinding336,
+    "@super:toString": _flaxBinding337,
+    "@super:toDiagnosticsNode": _flaxBinding338,
+    "@super:debugFillProperties": _flaxBinding339,
+    "@super:get:name": _flaxBinding264,
   },
-  constructors: {"@implementation": _flaxBinding356},
+  constructors: {"@implementation": _flaxBinding340},
   create: _createSemanticsSortKey,
   matches: _isSemanticsSortKey,
   setters: [],
@@ -16828,81 +16540,64 @@ const _flaxBinding365 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding357,
-    _flaxBinding358,
-    _flaxBinding360,
-    _flaxBinding362,
-    _flaxBinding363,
-    _flaxBinding364,
-    _flaxBinding314,
+    _flaxBinding341,
+    _flaxBinding342,
+    _flaxBinding344,
+    _flaxBinding346,
+    _flaxBinding347,
+    _flaxBinding348,
+    _flaxBinding293,
   ]),
 );
-const _flaxBinding366 = FlaxGetter(
+const _flaxBinding350 = FlaxGetter.plain(
   "order",
-  _flaxBinding61,
+  flaxDoubleType,
   _OrdinalSortKey_order,
 );
-const _flaxBinding367 = FlaxInstanceMethod.signature(
-  _flaxBinding58,
+const _flaxBinding351 = FlaxInstanceMethod.shared(
+  _flaxBinding46,
   _OrdinalSortKey_doCompare,
 );
-const _flaxBinding368 = <FlaxParameter>[
-  FlaxParameter("order", _flaxBinding61, required: true),
-  FlaxParameter("name", _flaxBinding29, required: false),
+const _flaxBinding352 = <FlaxParameter>[
+  FlaxParameter.required("order", flaxDoubleType),
+  FlaxParameter("name", flaxNullableStringType, required: false),
 ];
-const _flaxBinding369 = FlaxProxyMember(
+const _flaxBinding353 = FlaxProxyMember(
   "doCompare",
   0,
-  _flaxBinding58,
+  _flaxBinding46,
   hasSuper: true,
 );
-const _flaxBinding370 = FlaxProxyMember(
+const _flaxBinding354 = FlaxProxyMember(
   "order",
   1,
-  _flaxBinding62,
+  flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding371 = FlaxObjectBinding(
+const _flaxBinding355 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:OrdinalSortKey",
-  [_flaxBinding366],
+  [_flaxBinding350],
   {
-    "doCompare": _flaxBinding367,
-    "@super:compareTo": FlaxInstanceMethod.signature(
-      _flaxBinding56,
+    "doCompare": _flaxBinding351,
+    "@super:compareTo": FlaxInstanceMethod.shared(
+      _flaxBinding44,
       _OrdinalSortKey_super_compareTo,
     ),
-    "@super:doCompare": FlaxInstanceMethod.signature(
-      _flaxBinding58,
+    "@super:doCompare": FlaxInstanceMethod.shared(
+      _flaxBinding46,
       _OrdinalSortKey_super_doCompare,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod.signature(
-      _flaxBinding60,
-      _FlaxProxyDispatch8_super_call_debugFillProperties,
-    ),
-    "@super:toStringShort": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch9_super_call_toStringShort,
-    ),
-    "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding352,
-      _flaxBinding19,
-      _FlaxProxyDispatch8_super_call_toDiagnosticsNode,
-    ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding350,
-      _flaxBinding1,
-      _FlaxProxyDispatch9_super_call_toString,
-    ),
-    "@super:get:order": FlaxInstanceMethod.signature(
-      _flaxBinding62,
+    "@super:debugFillProperties": _flaxBinding339,
+    "@super:toStringShort": _flaxBinding336,
+    "@super:toDiagnosticsNode": _flaxBinding338,
+    "@super:toString": _flaxBinding337,
+    "@super:get:order": FlaxInstanceMethod.shared(
+      flaxDoubleCall,
       _OrdinalSortKey_super_get_order,
     ),
-    "@super:get:name": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch5_super_get_name,
-    ),
+    "@super:get:name": _flaxBinding264,
   },
-  constructors: {"@implementation": _flaxBinding368},
+  constructors: {"": _flaxBinding352, "@implementation": _flaxBinding352},
   create: _createOrdinalSortKey,
   matches: _isOrdinalSortKey,
   setters: [],
@@ -16912,414 +16607,379 @@ const _flaxBinding371 = FlaxObjectBinding(
     "flax.core/flutter#type:Comparable",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding365,
+  parent: _flaxBinding349,
   proxy: FlaxProxyBinding([
-    _flaxBinding357,
-    _flaxBinding369,
-    _flaxBinding363,
-    _flaxBinding358,
-    _flaxBinding362,
-    _flaxBinding360,
-    _flaxBinding370,
-    _flaxBinding314,
+    _flaxBinding341,
+    _flaxBinding353,
+    _flaxBinding347,
+    _flaxBinding342,
+    _flaxBinding346,
+    _flaxBinding344,
+    _flaxBinding354,
+    _flaxBinding293,
   ]),
 );
-const _flaxBinding372 = FlaxTypeRef(
+const _flaxBinding356 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:SingletonFlutterWindow",
 );
-const _flaxBinding373 = FlaxGetter(
+const _flaxBinding357 = FlaxGetter.plain(
   "window",
-  _flaxBinding372,
+  _flaxBinding356,
   _SemanticsBinding_window,
 );
-const _flaxBinding374 = FlaxTypeRef(
+const _flaxBinding358 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:PlatformDispatcher",
 );
-const _flaxBinding375 = FlaxGetter(
+const _flaxBinding359 = FlaxGetter.plain(
   "platformDispatcher",
-  _flaxBinding374,
+  _flaxBinding358,
   _SemanticsBinding_platformDispatcher,
 );
-const _flaxBinding376 = FlaxGetter(
+const _flaxBinding360 = FlaxGetter.plain(
   "locked",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsBinding_locked,
 );
-const _flaxBinding377 = FlaxGetter(
+const _flaxBinding361 = FlaxGetter.plain(
   "semanticsEnabled",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsBinding_semanticsEnabled,
 );
-const _flaxBinding378 = FlaxGetter(
+const _flaxBinding362 = FlaxGetter.plain(
   "debugOutstandingSemanticsHandles",
-  _flaxBinding5,
+  flaxIntType,
   _SemanticsBinding_debugOutstandingSemanticsHandles,
 );
-const _flaxBinding379 = FlaxTypeRef(
+const _flaxBinding363 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:AccessibilityFeatures",
 );
-const _flaxBinding380 = FlaxGetter(
+const _flaxBinding364 = FlaxGetter.plain(
   "accessibilityFeatures",
-  _flaxBinding379,
+  _flaxBinding363,
   _SemanticsBinding_accessibilityFeatures,
 );
-const _flaxBinding381 = FlaxGetter(
+const _flaxBinding365 = FlaxGetter.plain(
   "disableAnimations",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsBinding_disableAnimations,
 );
-const _flaxBinding382 = FlaxInstanceMethod.signature(
-  _flaxBinding201,
+const _flaxBinding366 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
   _SemanticsBinding_initInstances,
 );
-const _flaxBinding383 = <FlaxParameter>[
-  FlaxParameter("entryPoint", _flaxBinding1, required: true),
+const _flaxBinding367 = <FlaxParameter>[
+  FlaxParameter.required("entryPoint", flaxStringType),
 ];
-const _flaxBinding384 = FlaxInstanceMethod(
-  _flaxBinding383,
-  _flaxBinding24,
+const _flaxBinding368 = FlaxInstanceMethod.plain(
+  _flaxBinding367,
+  flaxBoolType,
   _SemanticsBinding_debugCheckZone,
 );
-const _flaxBinding385 = FlaxInstanceMethod.signature(
-  _flaxBinding201,
+const _flaxBinding369 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
   _SemanticsBinding_initServiceExtensions,
 );
-const _flaxBinding386 = FlaxTypeRef(
+const _flaxBinding370 = FlaxTypeRef(
   "future",
-  item: _flaxBinding48,
+  item: flaxVoidType,
   future: FlaxFutureBinding("void:", _future0Adapt),
 );
-const _flaxBinding387 = FlaxCallbackBinding(
+const _flaxBinding371 = FlaxCallbackBinding(
   [],
-  _flaxBinding386,
+  _flaxBinding370,
   _callback0,
   id: "callback:<>()->future:[void:]",
   invoke: _callback0Invoke,
   matches: _callback0Matches,
 );
-const _flaxBinding388 = FlaxTypeRef("callback", callback: _flaxBinding387);
-const _flaxBinding389 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding388, required: true),
+const _flaxBinding372 = FlaxTypeRef("callback", callback: _flaxBinding371);
+const _flaxBinding373 = <FlaxParameter>[
+  FlaxParameter.required("callback", _flaxBinding372),
 ];
-const _flaxBinding390 = FlaxInstanceMethod(
-  _flaxBinding389,
-  _flaxBinding386,
+const _flaxBinding374 = FlaxInstanceMethod.plain(
+  _flaxBinding373,
+  _flaxBinding370,
   _SemanticsBinding_lockEvents,
 );
-const _flaxBinding391 = FlaxInstanceMethod.signature(
-  _flaxBinding201,
+const _flaxBinding375 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
   _SemanticsBinding_unlocked,
 );
-const _flaxBinding392 = FlaxInstanceMethod(
-  _flaxBinding325,
-  _flaxBinding386,
+const _flaxBinding376 = FlaxInstanceMethod.plain(
+  _flaxBinding304,
+  _flaxBinding370,
   _SemanticsBinding_reassembleApplication,
 );
-const _flaxBinding393 = FlaxInstanceMethod(
-  _flaxBinding325,
-  _flaxBinding386,
+const _flaxBinding377 = FlaxInstanceMethod.plain(
+  _flaxBinding304,
+  _flaxBinding370,
   _SemanticsBinding_performReassemble,
 );
-const _flaxBinding394 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding388, required: true),
-  FlaxParameter("name", _flaxBinding1, required: true),
+const _flaxBinding378 = <FlaxParameter>[
+  FlaxParameter.required("callback", _flaxBinding372),
+  FlaxParameter.required("name", flaxStringType),
 ];
-const _flaxBinding395 = FlaxInstanceMethod(
-  _flaxBinding394,
-  _flaxBinding48,
+const _flaxBinding379 = FlaxInstanceMethod.plain(
+  _flaxBinding378,
+  flaxVoidType,
   _SemanticsBinding_registerSignalServiceExtension,
 );
-const _flaxBinding396 = FlaxTypeRef(
+const _flaxBinding380 = FlaxTypeRef(
   "future",
-  item: _flaxBinding24,
+  item: flaxBoolType,
   future: FlaxFutureBinding("bool:", _future1Adapt),
 );
-const _flaxBinding397 = FlaxCallbackBinding(
+const _flaxBinding381 = FlaxCallbackBinding(
   [],
-  _flaxBinding396,
+  _flaxBinding380,
   _callback1,
   id: "callback:<>()->future:[bool:]",
   invoke: _callback1Invoke,
   matches: _callback1Matches,
 );
-const _flaxBinding398 = FlaxTypeRef("callback", callback: _flaxBinding397);
-const _flaxBinding399 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding386,
+const _flaxBinding382 = FlaxTypeRef("callback", callback: _flaxBinding381);
+const _flaxBinding383 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("value", flaxBoolType)],
+  _flaxBinding370,
   _callback2,
   id: "callback:<>(p:r:value:bool:)->future:[void:]",
   invoke: _callback2Invoke,
   matches: _callback2Matches,
 );
-const _flaxBinding400 = FlaxTypeRef("callback", callback: _flaxBinding399);
-const _flaxBinding401 = <FlaxParameter>[
-  FlaxParameter("getter", _flaxBinding398, required: true),
-  FlaxParameter("name", _flaxBinding1, required: true),
-  FlaxParameter("setter", _flaxBinding400, required: true),
+const _flaxBinding384 = FlaxTypeRef("callback", callback: _flaxBinding383);
+const _flaxBinding385 = <FlaxParameter>[
+  FlaxParameter.required("getter", _flaxBinding382),
+  FlaxParameter.required("name", flaxStringType),
+  FlaxParameter.required("setter", _flaxBinding384),
 ];
-const _flaxBinding402 = FlaxInstanceMethod(
-  _flaxBinding401,
-  _flaxBinding48,
+const _flaxBinding386 = FlaxInstanceMethod.plain(
+  _flaxBinding385,
+  flaxVoidType,
   _SemanticsBinding_registerBoolServiceExtension,
 );
-const _flaxBinding403 = FlaxTypeRef(
+const _flaxBinding387 = FlaxTypeRef(
   "future",
-  item: _flaxBinding61,
+  item: flaxDoubleType,
   future: FlaxFutureBinding("double:", _future2Adapt),
 );
-const _flaxBinding404 = FlaxCallbackBinding(
+const _flaxBinding388 = FlaxCallbackBinding(
   [],
-  _flaxBinding403,
+  _flaxBinding387,
   _callback3,
   id: "callback:<>()->future:[double:]",
   invoke: _callback3Invoke,
   matches: _callback3Matches,
 );
-const _flaxBinding405 = FlaxTypeRef("callback", callback: _flaxBinding404);
-const _flaxBinding406 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding61,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding386,
+const _flaxBinding389 = FlaxTypeRef("callback", callback: _flaxBinding388);
+const _flaxBinding390 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("value", flaxDoubleType)],
+  _flaxBinding370,
   _callback4,
   id: "callback:<>(p:r:value:double:)->future:[void:]",
   invoke: _callback4Invoke,
   matches: _callback4Matches,
 );
-const _flaxBinding407 = FlaxTypeRef("callback", callback: _flaxBinding406);
-const _flaxBinding408 = <FlaxParameter>[
-  FlaxParameter("getter", _flaxBinding405, required: true),
-  FlaxParameter("name", _flaxBinding1, required: true),
-  FlaxParameter("setter", _flaxBinding407, required: true),
+const _flaxBinding391 = FlaxTypeRef("callback", callback: _flaxBinding390);
+const _flaxBinding392 = <FlaxParameter>[
+  FlaxParameter.required("getter", _flaxBinding389),
+  FlaxParameter.required("name", flaxStringType),
+  FlaxParameter.required("setter", _flaxBinding391),
 ];
-const _flaxBinding409 = FlaxInstanceMethod(
-  _flaxBinding408,
-  _flaxBinding48,
+const _flaxBinding393 = FlaxInstanceMethod.plain(
+  _flaxBinding392,
+  flaxVoidType,
   _SemanticsBinding_registerNumericServiceExtension,
 );
-const _flaxBinding410 = <FlaxParameter>[
-  FlaxParameter("eventKind", _flaxBinding1, required: true),
-  FlaxParameter("eventData", _flaxBinding2, required: true),
+const _flaxBinding394 = <FlaxParameter>[
+  FlaxParameter.required("eventKind", flaxStringType),
+  FlaxParameter.required("eventData", _flaxBinding0),
 ];
-const _flaxBinding411 = FlaxInstanceMethod(
-  _flaxBinding410,
-  _flaxBinding48,
+const _flaxBinding395 = FlaxInstanceMethod.plain(
+  _flaxBinding394,
+  flaxVoidType,
   _SemanticsBinding_postEvent,
 );
-const _flaxBinding412 = FlaxTypeRef(
+const _flaxBinding396 = FlaxTypeRef(
   "future",
-  item: _flaxBinding1,
+  item: flaxStringType,
   future: FlaxFutureBinding("String:", _future3Adapt),
 );
-const _flaxBinding413 = FlaxCallbackBinding(
+const _flaxBinding397 = FlaxCallbackBinding(
   [],
-  _flaxBinding412,
+  _flaxBinding396,
   _callback5,
   id: "callback:<>()->future:[String:]",
   invoke: _callback5Invoke,
   matches: _callback5Matches,
 );
-const _flaxBinding414 = FlaxTypeRef("callback", callback: _flaxBinding413);
-const _flaxBinding415 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding1,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding386,
+const _flaxBinding398 = FlaxTypeRef("callback", callback: _flaxBinding397);
+const _flaxBinding399 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("value", flaxStringType)],
+  _flaxBinding370,
   _callback6,
   id: "callback:<>(p:r:value:String:)->future:[void:]",
   invoke: _callback6Invoke,
   matches: _callback6Matches,
 );
-const _flaxBinding416 = FlaxTypeRef("callback", callback: _flaxBinding415);
-const _flaxBinding417 = <FlaxParameter>[
-  FlaxParameter("getter", _flaxBinding414, required: true),
-  FlaxParameter("name", _flaxBinding1, required: true),
-  FlaxParameter("setter", _flaxBinding416, required: true),
+const _flaxBinding400 = FlaxTypeRef("callback", callback: _flaxBinding399);
+const _flaxBinding401 = <FlaxParameter>[
+  FlaxParameter.required("getter", _flaxBinding398),
+  FlaxParameter.required("name", flaxStringType),
+  FlaxParameter.required("setter", _flaxBinding400),
 ];
-const _flaxBinding418 = FlaxInstanceMethod(
-  _flaxBinding417,
-  _flaxBinding48,
+const _flaxBinding402 = FlaxInstanceMethod.plain(
+  _flaxBinding401,
+  flaxVoidType,
   _SemanticsBinding_registerStringServiceExtension,
 );
-const _flaxBinding419 = FlaxTypeRef(
+const _flaxBinding403 = FlaxTypeRef(
   "map",
-  item: _flaxBinding1,
-  key: _flaxBinding1,
+  item: flaxStringType,
+  key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[String:][String:]",
     _collection5Create,
     _collection5Matches,
   ),
 );
-const _flaxBinding420 = FlaxTypeRef(
+const _flaxBinding404 = FlaxTypeRef(
   "future",
-  item: _flaxBinding2,
+  item: _flaxBinding0,
   future: FlaxFutureBinding("map:[any?:][String:]", _future4Adapt),
 );
-const _flaxBinding421 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "parameters",
-      _flaxBinding419,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding420,
+const _flaxBinding405 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("parameters", _flaxBinding403)],
+  _flaxBinding404,
   _callback7,
   id: "callback:<>(p:r:parameters:map:[String:][String:])->future:[map:[any?:][String:]]",
   invoke: _callback7Invoke,
   matches: _callback7Matches,
 );
-const _flaxBinding422 = FlaxTypeRef("callback", callback: _flaxBinding421);
-const _flaxBinding423 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding422, required: true),
-  FlaxParameter("name", _flaxBinding1, required: true),
+const _flaxBinding406 = FlaxTypeRef("callback", callback: _flaxBinding405);
+const _flaxBinding407 = <FlaxParameter>[
+  FlaxParameter.required("callback", _flaxBinding406),
+  FlaxParameter.required("name", flaxStringType),
 ];
-const _flaxBinding424 = FlaxInstanceMethod(
-  _flaxBinding423,
-  _flaxBinding48,
+const _flaxBinding408 = FlaxInstanceMethod.plain(
+  _flaxBinding407,
+  flaxVoidType,
   _SemanticsBinding_registerServiceExtension,
 );
-const _flaxBinding425 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding409 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _SemanticsBinding_toString,
 );
-const _flaxBinding426 = FlaxInstanceMethod.signature(
-  _flaxBinding200,
+const _flaxBinding410 = FlaxInstanceMethod.shared(
+  _flaxBinding175,
   _SemanticsBinding_addSemanticsEnabledListener,
 );
-const _flaxBinding427 = FlaxInstanceMethod.signature(
-  _flaxBinding200,
+const _flaxBinding411 = FlaxInstanceMethod.shared(
+  _flaxBinding175,
   _SemanticsBinding_removeSemanticsEnabledListener,
 );
-const _flaxBinding428 = FlaxTypeRef(
+const _flaxBinding412 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:SemanticsActionEvent",
 );
-const _flaxBinding429 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding428,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding48,
+const _flaxBinding413 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("value", _flaxBinding412)],
+  flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api1.SemanticsActionEvent>,
   id: "callback:<>(p:r:value:object:flax.core/sdk_dart_ui#type:SemanticsActionEvent)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api1.SemanticsActionEvent>,
   matches: FlaxCallbackAdapters.matchesVoid1<api1.SemanticsActionEvent>,
 );
-const _flaxBinding430 = FlaxTypeRef("callback", callback: _flaxBinding429);
-const _flaxBinding431 = <FlaxParameter>[
-  FlaxParameter("listener", _flaxBinding430, required: true),
+const _flaxBinding414 = FlaxTypeRef("callback", callback: _flaxBinding413);
+const _flaxBinding415 = <FlaxParameter>[
+  FlaxParameter.required("listener", _flaxBinding414),
 ];
-const _flaxBinding432 = FlaxInstanceMethod(
-  _flaxBinding431,
-  _flaxBinding48,
+const _flaxBinding416 = FlaxInstanceMethod.plain(
+  _flaxBinding415,
+  flaxVoidType,
   _SemanticsBinding_addSemanticsActionListener,
 );
-const _flaxBinding433 = FlaxInstanceMethod(
-  _flaxBinding431,
-  _flaxBinding48,
+const _flaxBinding417 = FlaxInstanceMethod.plain(
+  _flaxBinding415,
+  flaxVoidType,
   _SemanticsBinding_removeSemanticsActionListener,
 );
-const _flaxBinding434 = <FlaxParameter>[
-  FlaxParameter("viewId", _flaxBinding5, required: true),
-  FlaxParameter("nodeId", _flaxBinding5, required: true),
+const _flaxBinding418 = <FlaxParameter>[
+  FlaxParameter.required("viewId", flaxIntType),
+  FlaxParameter.required("nodeId", flaxIntType),
 ];
-const _flaxBinding435 = FlaxInstanceMethod(
-  _flaxBinding434,
-  _flaxBinding189,
+const _flaxBinding419 = FlaxInstanceMethod.plain(
+  _flaxBinding418,
+  _flaxBinding164,
   _SemanticsBinding_getRectOfSemanticsNodeInViewCoordinates,
 );
-const _flaxBinding436 = FlaxTypeRef(
+const _flaxBinding420 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsHandle",
 );
-const _flaxBinding437 = FlaxInstanceMethod(
-  _flaxBinding325,
-  _flaxBinding436,
+const _flaxBinding421 = FlaxInstanceMethod.plain(
+  _flaxBinding304,
+  _flaxBinding420,
   _SemanticsBinding_ensureSemantics,
 );
-const _flaxBinding438 = <FlaxParameter>[
-  FlaxParameter("action", _flaxBinding428, required: true),
+const _flaxBinding422 = <FlaxParameter>[
+  FlaxParameter.required("action", _flaxBinding412),
 ];
-const _flaxBinding439 = FlaxInstanceMethod(
-  _flaxBinding438,
-  _flaxBinding48,
+const _flaxBinding423 = FlaxInstanceMethod.plain(
+  _flaxBinding422,
+  flaxVoidType,
   _SemanticsBinding_performSemanticsAction,
 );
-const _flaxBinding440 = FlaxInstanceMethod.signature(
-  _flaxBinding201,
+const _flaxBinding424 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
   _SemanticsBinding_handleAccessibilityFeaturesChanged,
 );
-const _flaxBinding441 = FlaxTypeRef(
+const _flaxBinding425 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:SemanticsUpdateBuilder",
 );
-const _flaxBinding442 = FlaxInstanceMethod(
-  _flaxBinding325,
-  _flaxBinding441,
+const _flaxBinding426 = FlaxInstanceMethod.plain(
+  _flaxBinding304,
+  _flaxBinding425,
   _SemanticsBinding_createSemanticsUpdateBuilder,
 );
-const _flaxBinding443 = FlaxObjectBinding(
+const _flaxBinding427 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsBinding",
   [
-    _flaxBinding373,
-    _flaxBinding375,
-    _flaxBinding376,
-    _flaxBinding377,
-    _flaxBinding378,
-    _flaxBinding380,
-    _flaxBinding381,
+    _flaxBinding357,
+    _flaxBinding359,
+    _flaxBinding360,
+    _flaxBinding361,
+    _flaxBinding362,
+    _flaxBinding364,
+    _flaxBinding365,
   ],
   {
-    "initInstances": _flaxBinding382,
-    "debugCheckZone": _flaxBinding384,
-    "initServiceExtensions": _flaxBinding385,
-    "lockEvents": _flaxBinding390,
-    "unlocked": _flaxBinding391,
-    "reassembleApplication": _flaxBinding392,
-    "performReassemble": _flaxBinding393,
-    "registerSignalServiceExtension": _flaxBinding395,
-    "registerBoolServiceExtension": _flaxBinding402,
-    "registerNumericServiceExtension": _flaxBinding409,
-    "postEvent": _flaxBinding411,
-    "registerStringServiceExtension": _flaxBinding418,
-    "registerServiceExtension": _flaxBinding424,
-    "toString": _flaxBinding425,
-    "addSemanticsEnabledListener": _flaxBinding426,
-    "removeSemanticsEnabledListener": _flaxBinding427,
-    "addSemanticsActionListener": _flaxBinding432,
-    "removeSemanticsActionListener": _flaxBinding433,
-    "getRectOfSemanticsNodeInViewCoordinates": _flaxBinding435,
-    "ensureSemantics": _flaxBinding437,
-    "performSemanticsAction": _flaxBinding439,
-    "handleAccessibilityFeaturesChanged": _flaxBinding440,
-    "createSemanticsUpdateBuilder": _flaxBinding442,
+    "initInstances": _flaxBinding366,
+    "debugCheckZone": _flaxBinding368,
+    "initServiceExtensions": _flaxBinding369,
+    "lockEvents": _flaxBinding374,
+    "unlocked": _flaxBinding375,
+    "reassembleApplication": _flaxBinding376,
+    "performReassemble": _flaxBinding377,
+    "registerSignalServiceExtension": _flaxBinding379,
+    "registerBoolServiceExtension": _flaxBinding386,
+    "registerNumericServiceExtension": _flaxBinding393,
+    "postEvent": _flaxBinding395,
+    "registerStringServiceExtension": _flaxBinding402,
+    "registerServiceExtension": _flaxBinding408,
+    "toString": _flaxBinding409,
+    "addSemanticsEnabledListener": _flaxBinding410,
+    "removeSemanticsEnabledListener": _flaxBinding411,
+    "addSemanticsActionListener": _flaxBinding416,
+    "removeSemanticsActionListener": _flaxBinding417,
+    "getRectOfSemanticsNodeInViewCoordinates": _flaxBinding419,
+    "ensureSemantics": _flaxBinding421,
+    "performSemanticsAction": _flaxBinding423,
+    "handleAccessibilityFeaturesChanged": _flaxBinding424,
+    "createSemanticsUpdateBuilder": _flaxBinding426,
   },
   constructors: {},
   create: _createSemanticsBinding,
@@ -17330,2203 +16990,2447 @@ const _flaxBinding443 = FlaxObjectBinding(
     "dart:core::Object",
   ],
 );
-const _flaxBinding444 = FlaxGetter(
+const _flaxBinding428 = FlaxGetter.plain(
   "isSemanticBoundary",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isSemanticBoundary,
 );
-const _flaxBinding445 = FlaxGetter(
+const _flaxBinding429 = FlaxGetter.plain(
   "localeForSubtree",
-  _flaxBinding74,
+  _flaxBinding60,
   _SemanticsConfiguration_localeForSubtree,
 );
-const _flaxBinding446 = FlaxGetter(
+const _flaxBinding430 = FlaxGetter.plain(
   "locale",
-  _flaxBinding74,
+  _flaxBinding60,
   _SemanticsConfiguration_locale,
 );
-const _flaxBinding447 = FlaxGetter(
+const _flaxBinding431 = FlaxGetter.plain(
   "isBlockingUserActions",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isBlockingUserActions,
 );
-const _flaxBinding448 = FlaxGetter(
+const _flaxBinding432 = FlaxGetter.plain(
   "explicitChildNodes",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_explicitChildNodes,
 );
-const _flaxBinding449 = FlaxGetter(
+const _flaxBinding433 = FlaxGetter.plain(
   "isBlockingSemanticsOfPreviouslyPaintedNodes",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isBlockingSemanticsOfPreviouslyPaintedNodes,
 );
-const _flaxBinding450 = FlaxGetter(
+const _flaxBinding434 = FlaxGetter.plain(
   "hasBeenAnnotated",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_hasBeenAnnotated,
 );
-const _flaxBinding451 = FlaxGetter(
+const _flaxBinding435 = FlaxGetter.plain(
   "onTap",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onTap,
 );
-const _flaxBinding452 = FlaxGetter(
+const _flaxBinding436 = FlaxGetter.plain(
   "onLongPress",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onLongPress,
 );
-const _flaxBinding453 = FlaxGetter(
+const _flaxBinding437 = FlaxGetter.plain(
   "onScrollLeft",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onScrollLeft,
 );
-const _flaxBinding454 = FlaxGetter(
+const _flaxBinding438 = FlaxGetter.plain(
   "onDismiss",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onDismiss,
 );
-const _flaxBinding455 = FlaxGetter(
+const _flaxBinding439 = FlaxGetter.plain(
   "onScrollRight",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onScrollRight,
 );
-const _flaxBinding456 = FlaxGetter(
+const _flaxBinding440 = FlaxGetter.plain(
   "onScrollUp",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onScrollUp,
 );
-const _flaxBinding457 = FlaxGetter(
+const _flaxBinding441 = FlaxGetter.plain(
   "onScrollDown",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onScrollDown,
 );
-const _flaxBinding458 = FlaxGetter(
+const _flaxBinding442 = FlaxGetter.plain(
   "onScrollToOffset",
-  _flaxBinding81,
+  _flaxBinding64,
   _SemanticsConfiguration_onScrollToOffset,
 );
-const _flaxBinding459 = FlaxGetter(
+const _flaxBinding443 = FlaxGetter.plain(
   "onIncrease",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onIncrease,
 );
-const _flaxBinding460 = FlaxGetter(
+const _flaxBinding444 = FlaxGetter.plain(
   "onDecrease",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onDecrease,
 );
-const _flaxBinding461 = FlaxGetter(
+const _flaxBinding445 = FlaxGetter.plain(
   "onCopy",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onCopy,
 );
-const _flaxBinding462 = FlaxGetter(
+const _flaxBinding446 = FlaxGetter.plain(
   "onCut",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onCut,
 );
-const _flaxBinding463 = FlaxGetter(
+const _flaxBinding447 = FlaxGetter.plain(
   "onPaste",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onPaste,
 );
-const _flaxBinding464 = FlaxGetter(
+const _flaxBinding448 = FlaxGetter.plain(
   "onShowOnScreen",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onShowOnScreen,
 );
-const _flaxBinding465 = FlaxGetter(
+const _flaxBinding449 = FlaxGetter.plain(
   "onMoveCursorForwardByCharacter",
-  _flaxBinding84,
+  _flaxBinding67,
   _SemanticsConfiguration_onMoveCursorForwardByCharacter,
 );
-const _flaxBinding466 = FlaxGetter(
+const _flaxBinding450 = FlaxGetter.plain(
   "onMoveCursorBackwardByCharacter",
-  _flaxBinding84,
+  _flaxBinding67,
   _SemanticsConfiguration_onMoveCursorBackwardByCharacter,
 );
-const _flaxBinding467 = FlaxGetter(
+const _flaxBinding451 = FlaxGetter.plain(
   "onMoveCursorForwardByWord",
-  _flaxBinding84,
+  _flaxBinding67,
   _SemanticsConfiguration_onMoveCursorForwardByWord,
 );
-const _flaxBinding468 = FlaxGetter(
+const _flaxBinding452 = FlaxGetter.plain(
   "onMoveCursorBackwardByWord",
-  _flaxBinding84,
+  _flaxBinding67,
   _SemanticsConfiguration_onMoveCursorBackwardByWord,
 );
-const _flaxBinding469 = FlaxGetter(
+const _flaxBinding453 = FlaxGetter.plain(
   "onSetSelection",
-  _flaxBinding88,
+  _flaxBinding71,
   _SemanticsConfiguration_onSetSelection,
 );
-const _flaxBinding470 = FlaxGetter(
+const _flaxBinding454 = FlaxGetter.plain(
   "onSetText",
-  _flaxBinding91,
+  _flaxBinding74,
   _SemanticsConfiguration_onSetText,
 );
-const _flaxBinding471 = FlaxGetter(
+const _flaxBinding455 = FlaxGetter.plain(
   "onDidGainAccessibilityFocus",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onDidGainAccessibilityFocus,
 );
-const _flaxBinding472 = FlaxGetter(
+const _flaxBinding456 = FlaxGetter.plain(
   "onDidLoseAccessibilityFocus",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onDidLoseAccessibilityFocus,
 );
-const _flaxBinding473 = FlaxGetter(
+const _flaxBinding457 = FlaxGetter.plain(
   "onFocus",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onFocus,
 );
-const _flaxBinding474 = FlaxGetter(
+const _flaxBinding458 = FlaxGetter.plain(
   "onExpand",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onExpand,
 );
-const _flaxBinding475 = FlaxGetter(
+const _flaxBinding459 = FlaxGetter.plain(
   "onCollapse",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_onCollapse,
 );
-const _flaxBinding476 = FlaxGetter(
+const _flaxBinding460 = FlaxGetter.plain(
   "childConfigurationsDelegate",
-  _flaxBinding94,
+  _flaxBinding77,
   _SemanticsConfiguration_childConfigurationsDelegate,
 );
-const _flaxBinding477 = FlaxGetter(
+const _flaxBinding461 = FlaxGetter.plain(
   "sortKey",
-  _flaxBinding96,
+  _flaxBinding79,
   _SemanticsConfiguration_sortKey,
 );
-const _flaxBinding478 = FlaxGetter(
+const _flaxBinding462 = FlaxGetter.plain(
   "indexInParent",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_indexInParent,
 );
-const _flaxBinding479 = FlaxGetter(
+const _flaxBinding463 = FlaxGetter.plain(
   "scrollChildCount",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_scrollChildCount,
 );
-const _flaxBinding480 = FlaxGetter(
+const _flaxBinding464 = FlaxGetter.plain(
   "scrollIndex",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_scrollIndex,
 );
-const _flaxBinding481 = FlaxGetter(
+const _flaxBinding465 = FlaxGetter.plain(
   "platformViewId",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_platformViewId,
 );
-const _flaxBinding482 = FlaxGetter(
+const _flaxBinding466 = FlaxGetter.plain(
   "maxValueLength",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_maxValueLength,
 );
-const _flaxBinding483 = FlaxGetter(
+const _flaxBinding467 = FlaxGetter.plain(
   "currentValueLength",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_currentValueLength,
 );
-const _flaxBinding484 = FlaxGetter(
+const _flaxBinding468 = FlaxGetter.plain(
   "isMergingSemanticsOfDescendants",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isMergingSemanticsOfDescendants,
 );
-const _flaxBinding485 = FlaxGetter(
+const _flaxBinding469 = FlaxGetter.plain(
   "customSemanticsActions",
-  _flaxBinding102,
+  _flaxBinding82,
   _SemanticsConfiguration_customSemanticsActions,
 );
-const _flaxBinding486 = FlaxGetter(
+const _flaxBinding470 = FlaxGetter.plain(
   "identifier",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_identifier,
 );
-const _flaxBinding487 = FlaxGetter(
+const _flaxBinding471 = FlaxGetter.plain(
   "traversalParentIdentifier",
-  _flaxBinding0,
+  flaxNullableAnyType,
   _SemanticsConfiguration_traversalParentIdentifier,
 );
-const _flaxBinding488 = FlaxGetter(
+const _flaxBinding472 = FlaxGetter.plain(
   "traversalChildIdentifier",
-  _flaxBinding0,
+  flaxNullableAnyType,
   _SemanticsConfiguration_traversalChildIdentifier,
 );
-const _flaxBinding489 = FlaxGetter(
+const _flaxBinding473 = FlaxGetter.plain(
   "role",
-  _flaxBinding104,
+  _flaxBinding84,
   _SemanticsConfiguration_role,
 );
-const _flaxBinding490 = FlaxGetter(
+const _flaxBinding474 = FlaxGetter.plain(
   "label",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_label,
 );
-const _flaxBinding491 = FlaxGetter(
+const _flaxBinding475 = FlaxGetter.plain(
   "attributedLabel",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsConfiguration_attributedLabel,
 );
-const _flaxBinding492 = FlaxGetter(
+const _flaxBinding476 = FlaxGetter.plain(
   "value",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_value,
 );
-const _flaxBinding493 = FlaxGetter(
+const _flaxBinding477 = FlaxGetter.plain(
   "attributedValue",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsConfiguration_attributedValue,
 );
-const _flaxBinding494 = FlaxGetter(
+const _flaxBinding478 = FlaxGetter.plain(
   "increasedValue",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_increasedValue,
 );
-const _flaxBinding495 = FlaxGetter(
+const _flaxBinding479 = FlaxGetter.plain(
   "attributedIncreasedValue",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsConfiguration_attributedIncreasedValue,
 );
-const _flaxBinding496 = FlaxGetter(
+const _flaxBinding480 = FlaxGetter.plain(
   "decreasedValue",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_decreasedValue,
 );
-const _flaxBinding497 = FlaxGetter(
+const _flaxBinding481 = FlaxGetter.plain(
   "attributedDecreasedValue",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsConfiguration_attributedDecreasedValue,
 );
-const _flaxBinding498 = FlaxGetter(
+const _flaxBinding482 = FlaxGetter.plain(
   "hint",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_hint,
 );
-const _flaxBinding499 = FlaxGetter(
+const _flaxBinding483 = FlaxGetter.plain(
   "attributedHint",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsConfiguration_attributedHint,
 );
-const _flaxBinding500 = FlaxGetter(
+const _flaxBinding484 = FlaxGetter.plain(
   "tooltip",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_tooltip,
 );
-const _flaxBinding501 = FlaxGetter(
+const _flaxBinding485 = FlaxGetter.plain(
   "hintOverrides",
-  _flaxBinding107,
+  _flaxBinding87,
   _SemanticsConfiguration_hintOverrides,
 );
-const _flaxBinding502 = FlaxGetter(
+const _flaxBinding486 = FlaxGetter.plain(
   "scopesRoute",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_scopesRoute,
 );
-const _flaxBinding503 = FlaxGetter(
+const _flaxBinding487 = FlaxGetter.plain(
   "namesRoute",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_namesRoute,
 );
-const _flaxBinding504 = FlaxGetter(
+const _flaxBinding488 = FlaxGetter.plain(
   "isImage",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isImage,
 );
-const _flaxBinding505 = FlaxGetter(
+const _flaxBinding489 = FlaxGetter.plain(
   "liveRegion",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_liveRegion,
 );
-const _flaxBinding506 = FlaxGetter(
+const _flaxBinding490 = FlaxGetter.plain(
   "textDirection",
-  _flaxBinding109,
+  _flaxBinding89,
   _SemanticsConfiguration_textDirection,
 );
-const _flaxBinding507 = FlaxGetter(
+const _flaxBinding491 = FlaxGetter.plain(
   "isSelected",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isSelected,
 );
-const _flaxBinding508 = FlaxGetter(
+const _flaxBinding492 = FlaxGetter.plain(
   "isExpanded",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_isExpanded,
 );
-const _flaxBinding509 = FlaxGetter(
+const _flaxBinding493 = FlaxGetter.plain(
   "isEnabled",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_isEnabled,
 );
-const _flaxBinding510 = FlaxGetter(
+const _flaxBinding494 = FlaxGetter.plain(
   "isChecked",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_isChecked,
 );
-const _flaxBinding511 = FlaxGetter(
+const _flaxBinding495 = FlaxGetter.plain(
   "isCheckStateMixed",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_isCheckStateMixed,
 );
-const _flaxBinding512 = FlaxGetter(
+const _flaxBinding496 = FlaxGetter.plain(
   "isToggled",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_isToggled,
 );
-const _flaxBinding513 = FlaxGetter(
+const _flaxBinding497 = FlaxGetter.plain(
   "isInMutuallyExclusiveGroup",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isInMutuallyExclusiveGroup,
 );
-const _flaxBinding514 = FlaxGetter(
+const _flaxBinding498 = FlaxGetter.plain(
   "isFocusable",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isFocusable,
 );
-const _flaxBinding515 = FlaxGetter(
+const _flaxBinding499 = FlaxGetter.plain(
   "isFocused",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_isFocused,
 );
-const _flaxBinding516 = FlaxGetter(
+const _flaxBinding500 = FlaxGetter.plain(
   "accessibilityFocusBlockType",
-  _flaxBinding113,
+  _flaxBinding91,
   _SemanticsConfiguration_accessibilityFocusBlockType,
 );
-const _flaxBinding517 = FlaxGetter(
+const _flaxBinding501 = FlaxGetter.plain(
   "isButton",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isButton,
 );
-const _flaxBinding518 = FlaxGetter(
+const _flaxBinding502 = FlaxGetter.plain(
   "isLink",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isLink,
 );
-const _flaxBinding519 = FlaxGetter(
+const _flaxBinding503 = FlaxGetter.plain(
   "linkUrl",
-  _flaxBinding115,
+  _flaxBinding93,
   _SemanticsConfiguration_linkUrl,
 );
-const _flaxBinding520 = FlaxGetter(
+const _flaxBinding504 = FlaxGetter.plain(
   "isHeader",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isHeader,
 );
-const _flaxBinding521 = FlaxGetter(
+const _flaxBinding505 = FlaxGetter.plain(
   "headingLevel",
-  _flaxBinding5,
+  flaxIntType,
   _SemanticsConfiguration_headingLevel,
 );
-const _flaxBinding522 = FlaxGetter(
+const _flaxBinding506 = FlaxGetter.plain(
   "isSlider",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isSlider,
 );
-const _flaxBinding523 = FlaxGetter(
+const _flaxBinding507 = FlaxGetter.plain(
   "isKeyboardKey",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isKeyboardKey,
 );
-const _flaxBinding524 = FlaxGetter(
+const _flaxBinding508 = FlaxGetter.plain(
   "isHidden",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isHidden,
 );
-const _flaxBinding525 = FlaxGetter(
+const _flaxBinding509 = FlaxGetter.plain(
   "isTextField",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isTextField,
 );
-const _flaxBinding526 = FlaxGetter(
+const _flaxBinding510 = FlaxGetter.plain(
   "isReadOnly",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isReadOnly,
 );
-const _flaxBinding527 = FlaxGetter(
+const _flaxBinding511 = FlaxGetter.plain(
   "isObscured",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isObscured,
 );
-const _flaxBinding528 = FlaxGetter(
+const _flaxBinding512 = FlaxGetter.plain(
   "isMultiline",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_isMultiline,
 );
-const _flaxBinding529 = FlaxGetter(
+const _flaxBinding513 = FlaxGetter.plain(
   "isRequired",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_isRequired,
 );
-const _flaxBinding530 = FlaxGetter(
+const _flaxBinding514 = FlaxGetter.plain(
   "hasImplicitScrolling",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_hasImplicitScrolling,
 );
-const _flaxBinding531 = FlaxGetter(
+const _flaxBinding515 = FlaxGetter.plain(
   "textSelection",
-  _flaxBinding117,
+  _flaxBinding95,
   _SemanticsConfiguration_textSelection,
 );
-const _flaxBinding532 = FlaxGetter(
+const _flaxBinding516 = FlaxGetter.plain(
   "scrollPosition",
-  _flaxBinding119,
+  flaxNullableDoubleType,
   _SemanticsConfiguration_scrollPosition,
 );
-const _flaxBinding533 = FlaxGetter(
+const _flaxBinding517 = FlaxGetter.plain(
   "scrollExtentMax",
-  _flaxBinding119,
+  flaxNullableDoubleType,
   _SemanticsConfiguration_scrollExtentMax,
 );
-const _flaxBinding534 = FlaxGetter(
+const _flaxBinding518 = FlaxGetter.plain(
   "scrollExtentMin",
-  _flaxBinding119,
+  flaxNullableDoubleType,
   _SemanticsConfiguration_scrollExtentMin,
 );
-const _flaxBinding535 = FlaxGetter(
+const _flaxBinding519 = FlaxGetter.plain(
   "controlsNodes",
-  _flaxBinding122,
+  _flaxBinding98,
   _SemanticsConfiguration_controlsNodes,
 );
-const _flaxBinding536 = FlaxGetter(
+const _flaxBinding520 = FlaxGetter.plain(
   "validationResult",
-  _flaxBinding124,
+  _flaxBinding100,
   _SemanticsConfiguration_validationResult,
 );
-const _flaxBinding537 = FlaxGetter(
+const _flaxBinding521 = FlaxGetter.plain(
   "hitTestBehavior",
-  _flaxBinding126,
+  _flaxBinding102,
   _SemanticsConfiguration_hitTestBehavior,
 );
-const _flaxBinding538 = FlaxGetter(
+const _flaxBinding522 = FlaxGetter.plain(
   "inputType",
-  _flaxBinding128,
+  _flaxBinding104,
   _SemanticsConfiguration_inputType,
 );
-const _flaxBinding539 = FlaxGetter(
+const _flaxBinding523 = FlaxGetter.plain(
   "maxValue",
-  _flaxBinding29,
+  flaxNullableStringType,
   _SemanticsConfiguration_maxValue,
 );
-const _flaxBinding540 = FlaxGetter(
+const _flaxBinding524 = FlaxGetter.plain(
   "minValue",
-  _flaxBinding29,
+  flaxNullableStringType,
   _SemanticsConfiguration_minValue,
 );
-const _flaxBinding541 = FlaxGetter(
+const _flaxBinding525 = FlaxGetter.plain(
   "tagsForChildren",
-  _flaxBinding130,
+  _flaxBinding106,
   _SemanticsConfiguration_tagsForChildren,
 );
-const _flaxBinding542 = FlaxSetter(
+const _flaxBinding526 = FlaxSetter(
   "isSemanticBoundary",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isSemanticBoundary,
 );
-const _flaxBinding543 = FlaxSetter(
+const _flaxBinding527 = FlaxSetter(
   "localeForSubtree",
-  _flaxBinding74,
+  _flaxBinding60,
   _SemanticsConfiguration_set_localeForSubtree,
 );
-const _flaxBinding544 = FlaxSetter(
+const _flaxBinding528 = FlaxSetter(
   "locale",
-  _flaxBinding74,
+  _flaxBinding60,
   _SemanticsConfiguration_set_locale,
 );
-const _flaxBinding545 = FlaxSetter(
+const _flaxBinding529 = FlaxSetter(
   "isBlockingUserActions",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isBlockingUserActions,
 );
-const _flaxBinding546 = FlaxSetter(
+const _flaxBinding530 = FlaxSetter(
   "explicitChildNodes",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_explicitChildNodes,
 );
-const _flaxBinding547 = FlaxSetter(
+const _flaxBinding531 = FlaxSetter(
   "isBlockingSemanticsOfPreviouslyPaintedNodes",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isBlockingSemanticsOfPreviouslyPaintedNodes,
 );
-const _flaxBinding548 = FlaxSetter(
+const _flaxBinding532 = FlaxSetter(
   "onTap",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onTap,
 );
-const _flaxBinding549 = FlaxSetter(
+const _flaxBinding533 = FlaxSetter(
   "onLongPress",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onLongPress,
 );
-const _flaxBinding550 = FlaxSetter(
+const _flaxBinding534 = FlaxSetter(
   "onScrollLeft",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onScrollLeft,
 );
-const _flaxBinding551 = FlaxSetter(
+const _flaxBinding535 = FlaxSetter(
   "onDismiss",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onDismiss,
 );
-const _flaxBinding552 = FlaxSetter(
+const _flaxBinding536 = FlaxSetter(
   "onScrollRight",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onScrollRight,
 );
-const _flaxBinding553 = FlaxSetter(
+const _flaxBinding537 = FlaxSetter(
   "onScrollUp",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onScrollUp,
 );
-const _flaxBinding554 = FlaxSetter(
+const _flaxBinding538 = FlaxSetter(
   "onScrollDown",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onScrollDown,
 );
-const _flaxBinding555 = FlaxSetter(
+const _flaxBinding539 = FlaxSetter(
   "onScrollToOffset",
-  _flaxBinding81,
+  _flaxBinding64,
   _SemanticsConfiguration_set_onScrollToOffset,
 );
-const _flaxBinding556 = FlaxSetter(
+const _flaxBinding540 = FlaxSetter(
   "onIncrease",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onIncrease,
 );
-const _flaxBinding557 = FlaxSetter(
+const _flaxBinding541 = FlaxSetter(
   "onDecrease",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onDecrease,
 );
-const _flaxBinding558 = FlaxSetter(
+const _flaxBinding542 = FlaxSetter(
   "onCopy",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onCopy,
 );
-const _flaxBinding559 = FlaxSetter(
+const _flaxBinding543 = FlaxSetter(
   "onCut",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onCut,
 );
-const _flaxBinding560 = FlaxSetter(
+const _flaxBinding544 = FlaxSetter(
   "onPaste",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onPaste,
 );
-const _flaxBinding561 = FlaxSetter(
+const _flaxBinding545 = FlaxSetter(
   "onShowOnScreen",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onShowOnScreen,
 );
-const _flaxBinding562 = FlaxSetter(
+const _flaxBinding546 = FlaxSetter(
   "onMoveCursorForwardByCharacter",
-  _flaxBinding84,
+  _flaxBinding67,
   _SemanticsConfiguration_set_onMoveCursorForwardByCharacter,
 );
-const _flaxBinding563 = FlaxSetter(
+const _flaxBinding547 = FlaxSetter(
   "onMoveCursorBackwardByCharacter",
-  _flaxBinding84,
+  _flaxBinding67,
   _SemanticsConfiguration_set_onMoveCursorBackwardByCharacter,
 );
-const _flaxBinding564 = FlaxSetter(
+const _flaxBinding548 = FlaxSetter(
   "onMoveCursorForwardByWord",
-  _flaxBinding84,
+  _flaxBinding67,
   _SemanticsConfiguration_set_onMoveCursorForwardByWord,
 );
-const _flaxBinding565 = FlaxSetter(
+const _flaxBinding549 = FlaxSetter(
   "onMoveCursorBackwardByWord",
-  _flaxBinding84,
+  _flaxBinding67,
   _SemanticsConfiguration_set_onMoveCursorBackwardByWord,
 );
-const _flaxBinding566 = FlaxSetter(
+const _flaxBinding550 = FlaxSetter(
   "onSetSelection",
-  _flaxBinding88,
+  _flaxBinding71,
   _SemanticsConfiguration_set_onSetSelection,
 );
-const _flaxBinding567 = FlaxSetter(
+const _flaxBinding551 = FlaxSetter(
   "onSetText",
-  _flaxBinding91,
+  _flaxBinding74,
   _SemanticsConfiguration_set_onSetText,
 );
-const _flaxBinding568 = FlaxSetter(
+const _flaxBinding552 = FlaxSetter(
   "onDidGainAccessibilityFocus",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onDidGainAccessibilityFocus,
 );
-const _flaxBinding569 = FlaxSetter(
+const _flaxBinding553 = FlaxSetter(
   "onDidLoseAccessibilityFocus",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onDidLoseAccessibilityFocus,
 );
-const _flaxBinding570 = FlaxSetter(
+const _flaxBinding554 = FlaxSetter(
   "onFocus",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onFocus,
 );
-const _flaxBinding571 = FlaxSetter(
+const _flaxBinding555 = FlaxSetter(
   "onExpand",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onExpand,
 );
-const _flaxBinding572 = FlaxSetter(
+const _flaxBinding556 = FlaxSetter(
   "onCollapse",
-  _flaxBinding77,
+  flaxVoidNullableCallbackType,
   _SemanticsConfiguration_set_onCollapse,
 );
-const _flaxBinding573 = FlaxSetter(
+const _flaxBinding557 = FlaxSetter(
   "childConfigurationsDelegate",
-  _flaxBinding94,
+  _flaxBinding77,
   _SemanticsConfiguration_set_childConfigurationsDelegate,
 );
-const _flaxBinding574 = FlaxSetter(
+const _flaxBinding558 = FlaxSetter(
   "sortKey",
-  _flaxBinding96,
+  _flaxBinding79,
   _SemanticsConfiguration_set_sortKey,
 );
-const _flaxBinding575 = FlaxSetter(
+const _flaxBinding559 = FlaxSetter(
   "indexInParent",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_set_indexInParent,
 );
-const _flaxBinding576 = FlaxSetter(
+const _flaxBinding560 = FlaxSetter(
   "scrollChildCount",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_set_scrollChildCount,
 );
-const _flaxBinding577 = FlaxSetter(
+const _flaxBinding561 = FlaxSetter(
   "scrollIndex",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_set_scrollIndex,
 );
-const _flaxBinding578 = FlaxSetter(
+const _flaxBinding562 = FlaxSetter(
   "platformViewId",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_set_platformViewId,
 );
-const _flaxBinding579 = FlaxSetter(
+const _flaxBinding563 = FlaxSetter(
   "maxValueLength",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_set_maxValueLength,
 );
-const _flaxBinding580 = FlaxSetter(
+const _flaxBinding564 = FlaxSetter(
   "currentValueLength",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsConfiguration_set_currentValueLength,
 );
-const _flaxBinding581 = FlaxSetter(
+const _flaxBinding565 = FlaxSetter(
   "isMergingSemanticsOfDescendants",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isMergingSemanticsOfDescendants,
 );
-const _flaxBinding582 = FlaxSetter(
+const _flaxBinding566 = FlaxSetter(
   "customSemanticsActions",
-  _flaxBinding102,
+  _flaxBinding82,
   _SemanticsConfiguration_set_customSemanticsActions,
 );
-const _flaxBinding583 = FlaxSetter(
+const _flaxBinding567 = FlaxSetter(
   "identifier",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_set_identifier,
 );
-const _flaxBinding584 = FlaxSetter(
+const _flaxBinding568 = FlaxSetter(
   "traversalParentIdentifier",
-  _flaxBinding0,
+  flaxNullableAnyType,
   _SemanticsConfiguration_set_traversalParentIdentifier,
 );
-const _flaxBinding585 = FlaxSetter(
+const _flaxBinding569 = FlaxSetter(
   "traversalChildIdentifier",
-  _flaxBinding0,
+  flaxNullableAnyType,
   _SemanticsConfiguration_set_traversalChildIdentifier,
 );
-const _flaxBinding586 = FlaxSetter(
+const _flaxBinding570 = FlaxSetter(
   "role",
-  _flaxBinding104,
+  _flaxBinding84,
   _SemanticsConfiguration_set_role,
 );
-const _flaxBinding587 = FlaxSetter(
+const _flaxBinding571 = FlaxSetter(
   "label",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_set_label,
 );
-const _flaxBinding588 = FlaxSetter(
+const _flaxBinding572 = FlaxSetter(
   "attributedLabel",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsConfiguration_set_attributedLabel,
 );
-const _flaxBinding589 = FlaxSetter(
+const _flaxBinding573 = FlaxSetter(
   "value",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_set_value,
 );
-const _flaxBinding590 = FlaxSetter(
+const _flaxBinding574 = FlaxSetter(
   "attributedValue",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsConfiguration_set_attributedValue,
 );
-const _flaxBinding591 = FlaxSetter(
+const _flaxBinding575 = FlaxSetter(
   "increasedValue",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_set_increasedValue,
 );
-const _flaxBinding592 = FlaxSetter(
+const _flaxBinding576 = FlaxSetter(
   "attributedIncreasedValue",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsConfiguration_set_attributedIncreasedValue,
 );
-const _flaxBinding593 = FlaxSetter(
+const _flaxBinding577 = FlaxSetter(
   "decreasedValue",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_set_decreasedValue,
 );
-const _flaxBinding594 = FlaxSetter(
+const _flaxBinding578 = FlaxSetter(
   "attributedDecreasedValue",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsConfiguration_set_attributedDecreasedValue,
 );
-const _flaxBinding595 = FlaxSetter(
+const _flaxBinding579 = FlaxSetter(
   "hint",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_set_hint,
 );
-const _flaxBinding596 = FlaxSetter(
+const _flaxBinding580 = FlaxSetter(
   "attributedHint",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsConfiguration_set_attributedHint,
 );
-const _flaxBinding597 = FlaxSetter(
+const _flaxBinding581 = FlaxSetter(
   "tooltip",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsConfiguration_set_tooltip,
 );
-const _flaxBinding598 = FlaxSetter(
+const _flaxBinding582 = FlaxSetter(
   "hintOverrides",
-  _flaxBinding107,
+  _flaxBinding87,
   _SemanticsConfiguration_set_hintOverrides,
 );
-const _flaxBinding599 = FlaxSetter(
+const _flaxBinding583 = FlaxSetter(
   "scopesRoute",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_scopesRoute,
 );
-const _flaxBinding600 = FlaxSetter(
+const _flaxBinding584 = FlaxSetter(
   "namesRoute",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_namesRoute,
 );
-const _flaxBinding601 = FlaxSetter(
+const _flaxBinding585 = FlaxSetter(
   "isImage",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isImage,
 );
-const _flaxBinding602 = FlaxSetter(
+const _flaxBinding586 = FlaxSetter(
   "liveRegion",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_liveRegion,
 );
-const _flaxBinding603 = FlaxSetter(
+const _flaxBinding587 = FlaxSetter(
   "textDirection",
-  _flaxBinding109,
+  _flaxBinding89,
   _SemanticsConfiguration_set_textDirection,
 );
-const _flaxBinding604 = FlaxSetter(
+const _flaxBinding588 = FlaxSetter(
   "isSelected",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isSelected,
 );
-const _flaxBinding605 = FlaxSetter(
+const _flaxBinding589 = FlaxSetter(
   "isExpanded",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_set_isExpanded,
 );
-const _flaxBinding606 = FlaxSetter(
+const _flaxBinding590 = FlaxSetter(
   "isEnabled",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_set_isEnabled,
 );
-const _flaxBinding607 = FlaxSetter(
+const _flaxBinding591 = FlaxSetter(
   "isChecked",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_set_isChecked,
 );
-const _flaxBinding608 = FlaxSetter(
+const _flaxBinding592 = FlaxSetter(
   "isCheckStateMixed",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_set_isCheckStateMixed,
 );
-const _flaxBinding609 = FlaxSetter(
+const _flaxBinding593 = FlaxSetter(
   "isToggled",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_set_isToggled,
 );
-const _flaxBinding610 = FlaxSetter(
+const _flaxBinding594 = FlaxSetter(
   "isInMutuallyExclusiveGroup",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isInMutuallyExclusiveGroup,
 );
-const _flaxBinding611 = FlaxSetter(
+const _flaxBinding595 = FlaxSetter(
   "isFocusable",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isFocusable,
 );
-const _flaxBinding612 = FlaxSetter(
+const _flaxBinding596 = FlaxSetter(
   "isFocused",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_set_isFocused,
 );
-const _flaxBinding613 = FlaxSetter(
+const _flaxBinding597 = FlaxSetter(
   "accessibilityFocusBlockType",
-  _flaxBinding113,
+  _flaxBinding91,
   _SemanticsConfiguration_set_accessibilityFocusBlockType,
 );
-const _flaxBinding614 = FlaxSetter(
+const _flaxBinding598 = FlaxSetter(
   "isButton",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isButton,
 );
-const _flaxBinding615 = FlaxSetter(
+const _flaxBinding599 = FlaxSetter(
   "isLink",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isLink,
 );
-const _flaxBinding616 = FlaxSetter(
+const _flaxBinding600 = FlaxSetter(
   "linkUrl",
-  _flaxBinding115,
+  _flaxBinding93,
   _SemanticsConfiguration_set_linkUrl,
 );
-const _flaxBinding617 = FlaxSetter(
+const _flaxBinding601 = FlaxSetter(
   "isHeader",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isHeader,
 );
-const _flaxBinding618 = FlaxSetter(
+const _flaxBinding602 = FlaxSetter(
   "headingLevel",
-  _flaxBinding5,
+  flaxIntType,
   _SemanticsConfiguration_set_headingLevel,
 );
-const _flaxBinding619 = FlaxSetter(
+const _flaxBinding603 = FlaxSetter(
   "isSlider",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isSlider,
 );
-const _flaxBinding620 = FlaxSetter(
+const _flaxBinding604 = FlaxSetter(
   "isKeyboardKey",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isKeyboardKey,
 );
-const _flaxBinding621 = FlaxSetter(
+const _flaxBinding605 = FlaxSetter(
   "isHidden",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isHidden,
 );
-const _flaxBinding622 = FlaxSetter(
+const _flaxBinding606 = FlaxSetter(
   "isTextField",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isTextField,
 );
-const _flaxBinding623 = FlaxSetter(
+const _flaxBinding607 = FlaxSetter(
   "isReadOnly",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isReadOnly,
 );
-const _flaxBinding624 = FlaxSetter(
+const _flaxBinding608 = FlaxSetter(
   "isObscured",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isObscured,
 );
-const _flaxBinding625 = FlaxSetter(
+const _flaxBinding609 = FlaxSetter(
   "isMultiline",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_isMultiline,
 );
-const _flaxBinding626 = FlaxSetter(
+const _flaxBinding610 = FlaxSetter(
   "isRequired",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsConfiguration_set_isRequired,
 );
-const _flaxBinding627 = FlaxSetter(
+const _flaxBinding611 = FlaxSetter(
   "hasImplicitScrolling",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsConfiguration_set_hasImplicitScrolling,
 );
-const _flaxBinding628 = FlaxSetter(
+const _flaxBinding612 = FlaxSetter(
   "textSelection",
-  _flaxBinding117,
+  _flaxBinding95,
   _SemanticsConfiguration_set_textSelection,
 );
-const _flaxBinding629 = FlaxSetter(
+const _flaxBinding613 = FlaxSetter(
   "scrollPosition",
-  _flaxBinding119,
+  flaxNullableDoubleType,
   _SemanticsConfiguration_set_scrollPosition,
 );
-const _flaxBinding630 = FlaxSetter(
+const _flaxBinding614 = FlaxSetter(
   "scrollExtentMax",
-  _flaxBinding119,
+  flaxNullableDoubleType,
   _SemanticsConfiguration_set_scrollExtentMax,
 );
-const _flaxBinding631 = FlaxSetter(
+const _flaxBinding615 = FlaxSetter(
   "scrollExtentMin",
-  _flaxBinding119,
+  flaxNullableDoubleType,
   _SemanticsConfiguration_set_scrollExtentMin,
 );
-const _flaxBinding632 = FlaxSetter(
+const _flaxBinding616 = FlaxSetter(
   "controlsNodes",
-  _flaxBinding122,
+  _flaxBinding98,
   _SemanticsConfiguration_set_controlsNodes,
 );
-const _flaxBinding633 = FlaxSetter(
+const _flaxBinding617 = FlaxSetter(
   "validationResult",
-  _flaxBinding124,
+  _flaxBinding100,
   _SemanticsConfiguration_set_validationResult,
 );
-const _flaxBinding634 = FlaxSetter(
+const _flaxBinding618 = FlaxSetter(
   "hitTestBehavior",
-  _flaxBinding126,
+  _flaxBinding102,
   _SemanticsConfiguration_set_hitTestBehavior,
 );
-const _flaxBinding635 = FlaxSetter(
+const _flaxBinding619 = FlaxSetter(
   "inputType",
-  _flaxBinding128,
+  _flaxBinding104,
   _SemanticsConfiguration_set_inputType,
 );
-const _flaxBinding636 = FlaxSetter(
+const _flaxBinding620 = FlaxSetter(
   "maxValue",
-  _flaxBinding29,
+  flaxNullableStringType,
   _SemanticsConfiguration_set_maxValue,
 );
-const _flaxBinding637 = FlaxSetter(
+const _flaxBinding621 = FlaxSetter(
   "minValue",
-  _flaxBinding29,
+  flaxNullableStringType,
   _SemanticsConfiguration_set_minValue,
 );
-const _flaxBinding638 = FlaxInstanceMethod.signature(
-  _flaxBinding66,
+const _flaxBinding622 = FlaxInstanceMethod.shared(
+  _flaxBinding52,
   _SemanticsConfiguration_getActionHandler,
 );
-const _flaxBinding639 = FlaxInstanceMethod.signature(
-  _flaxBinding68,
+const _flaxBinding623 = FlaxInstanceMethod.shared(
+  _flaxBinding54,
   _SemanticsConfiguration_tagsChildrenWith,
 );
-const _flaxBinding640 = FlaxInstanceMethod.signature(
-  _flaxBinding69,
+const _flaxBinding624 = FlaxInstanceMethod.shared(
+  _flaxBinding55,
   _SemanticsConfiguration_addTagForChildren,
 );
-const _flaxBinding641 = FlaxInstanceMethod.signature(
-  _flaxBinding71,
+const _flaxBinding625 = FlaxInstanceMethod.shared(
+  _flaxBinding57,
   _SemanticsConfiguration_isCompatibleWith,
 );
-const _flaxBinding642 = FlaxInstanceMethod.signature(
-  _flaxBinding72,
+const _flaxBinding626 = FlaxInstanceMethod.shared(
+  _flaxBinding58,
   _SemanticsConfiguration_absorb,
 );
-const _flaxBinding643 = FlaxInstanceMethod.signature(
-  _flaxBinding73,
+const _flaxBinding627 = FlaxInstanceMethod.shared(
+  _flaxBinding59,
   _SemanticsConfiguration_copy,
 );
-const _flaxBinding644 = FlaxProxyMember(
+const _flaxBinding628 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onTap,
+);
+const _flaxBinding629 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onLongPress,
+);
+const _flaxBinding630 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onScrollLeft,
+);
+const _flaxBinding631 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onDismiss,
+);
+const _flaxBinding632 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onScrollRight,
+);
+const _flaxBinding633 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onScrollUp,
+);
+const _flaxBinding634 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onScrollDown,
+);
+const _flaxBinding635 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onIncrease,
+);
+const _flaxBinding636 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onDecrease,
+);
+const _flaxBinding637 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onCopy,
+);
+const _flaxBinding638 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onCut,
+);
+const _flaxBinding639 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onPaste,
+);
+const _flaxBinding640 = FlaxInstanceMethod.shared(
+  _flaxBinding68,
+  _FlaxProxyDispatch11_super_get_onMoveCursorForwardByCharacter,
+);
+const _flaxBinding641 = FlaxInstanceMethod.shared(
+  _flaxBinding68,
+  _FlaxProxyDispatch11_super_get_onMoveCursorBackwardByCharacter,
+);
+const _flaxBinding642 = FlaxInstanceMethod.shared(
+  _flaxBinding68,
+  _FlaxProxyDispatch11_super_get_onMoveCursorForwardByWord,
+);
+const _flaxBinding643 = FlaxInstanceMethod.shared(
+  _flaxBinding68,
+  _FlaxProxyDispatch11_super_get_onMoveCursorBackwardByWord,
+);
+const _flaxBinding644 = FlaxInstanceMethod.shared(
+  _flaxBinding72,
+  _FlaxProxyDispatch11_super_get_onSetSelection,
+);
+const _flaxBinding645 = FlaxInstanceMethod.shared(
+  _flaxBinding75,
+  _FlaxProxyDispatch11_super_get_onSetText,
+);
+const _flaxBinding646 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onDidGainAccessibilityFocus,
+);
+const _flaxBinding647 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onDidLoseAccessibilityFocus,
+);
+const _flaxBinding648 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onFocus,
+);
+const _flaxBinding649 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onExpand,
+);
+const _flaxBinding650 = FlaxInstanceMethod.shared(
+  _flaxBinding62,
+  _FlaxProxyDispatch11_super_get_onCollapse,
+);
+const _flaxBinding651 = FlaxInstanceMethod.shared(
+  flaxNullableIntCall,
+  _FlaxProxyDispatch14_super_get_scrollChildCount,
+);
+const _flaxBinding652 = FlaxInstanceMethod.shared(
+  flaxNullableIntCall,
+  _FlaxProxyDispatch14_super_get_scrollIndex,
+);
+const _flaxBinding653 = FlaxInstanceMethod.shared(
+  flaxNullableIntCall,
+  _FlaxProxyDispatch14_super_get_platformViewId,
+);
+const _flaxBinding654 = FlaxInstanceMethod.shared(
+  flaxNullableIntCall,
+  _FlaxProxyDispatch15_super_get_maxValueLength,
+);
+const _flaxBinding655 = FlaxInstanceMethod.shared(
+  flaxNullableIntCall,
+  _FlaxProxyDispatch15_super_get_currentValueLength,
+);
+const _flaxBinding656 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch14_super_get_identifier,
+);
+const _flaxBinding657 = FlaxInstanceMethod.shared(
+  flaxNullableAnyCall,
+  _FlaxProxyDispatch15_super_get_traversalParentIdentifier,
+);
+const _flaxBinding658 = FlaxInstanceMethod.shared(
+  flaxNullableAnyCall,
+  _FlaxProxyDispatch15_super_get_traversalChildIdentifier,
+);
+const _flaxBinding659 = FlaxInstanceMethod.shared(
+  _flaxBinding85,
+  _FlaxProxyDispatch14_super_get_role,
+);
+const _flaxBinding660 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch14_super_get_label,
+);
+const _flaxBinding661 = FlaxInstanceMethod.shared(
+  _flaxBinding86,
+  _FlaxProxyDispatch14_super_get_attributedLabel,
+);
+const _flaxBinding662 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch14_super_get_value,
+);
+const _flaxBinding663 = FlaxInstanceMethod.shared(
+  _flaxBinding86,
+  _FlaxProxyDispatch14_super_get_attributedValue,
+);
+const _flaxBinding664 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch14_super_get_increasedValue,
+);
+const _flaxBinding665 = FlaxInstanceMethod.shared(
+  _flaxBinding86,
+  _FlaxProxyDispatch14_super_get_attributedIncreasedValue,
+);
+const _flaxBinding666 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch14_super_get_decreasedValue,
+);
+const _flaxBinding667 = FlaxInstanceMethod.shared(
+  _flaxBinding86,
+  _FlaxProxyDispatch14_super_get_attributedDecreasedValue,
+);
+const _flaxBinding668 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch14_super_get_hint,
+);
+const _flaxBinding669 = FlaxInstanceMethod.shared(
+  _flaxBinding86,
+  _FlaxProxyDispatch14_super_get_attributedHint,
+);
+const _flaxBinding670 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _FlaxProxyDispatch14_super_get_tooltip,
+);
+const _flaxBinding671 = FlaxInstanceMethod.shared(
+  _flaxBinding90,
+  _FlaxProxyDispatch15_super_get_textDirection,
+);
+const _flaxBinding672 = FlaxInstanceMethod.shared(
+  _flaxBinding94,
+  _FlaxProxyDispatch15_super_get_linkUrl,
+);
+const _flaxBinding673 = FlaxInstanceMethod.shared(
+  flaxIntCall,
+  _FlaxProxyDispatch14_super_get_headingLevel,
+);
+const _flaxBinding674 = FlaxInstanceMethod.shared(
+  flaxNullableBoolCall,
+  _FlaxProxyDispatch11_super_get_isRequired,
+);
+const _flaxBinding675 = FlaxInstanceMethod.shared(
+  _flaxBinding96,
+  _FlaxProxyDispatch14_super_get_textSelection,
+);
+const _flaxBinding676 = FlaxInstanceMethod.shared(
+  flaxNullableDoubleCall,
+  _FlaxProxyDispatch14_super_get_scrollPosition,
+);
+const _flaxBinding677 = FlaxInstanceMethod.shared(
+  flaxNullableDoubleCall,
+  _FlaxProxyDispatch14_super_get_scrollExtentMax,
+);
+const _flaxBinding678 = FlaxInstanceMethod.shared(
+  flaxNullableDoubleCall,
+  _FlaxProxyDispatch14_super_get_scrollExtentMin,
+);
+const _flaxBinding679 = FlaxInstanceMethod.shared(
+  _flaxBinding99,
+  _FlaxProxyDispatch15_super_get_controlsNodes,
+);
+const _flaxBinding680 = FlaxInstanceMethod.shared(
+  _flaxBinding101,
+  _FlaxProxyDispatch15_super_get_validationResult,
+);
+const _flaxBinding681 = FlaxInstanceMethod.shared(
+  _flaxBinding103,
+  _FlaxProxyDispatch14_super_get_hitTestBehavior,
+);
+const _flaxBinding682 = FlaxInstanceMethod.shared(
+  _flaxBinding105,
+  _FlaxProxyDispatch14_super_get_inputType,
+);
+const _flaxBinding683 = FlaxInstanceMethod.shared(
+  flaxNullableStringCall,
+  _FlaxProxyDispatch15_super_get_maxValue,
+);
+const _flaxBinding684 = FlaxInstanceMethod.shared(
+  flaxNullableStringCall,
+  _FlaxProxyDispatch15_super_get_minValue,
+);
+const _flaxBinding685 = FlaxProxyMember(
   "getActionHandler",
   0,
-  _flaxBinding66,
+  _flaxBinding52,
   hasSuper: true,
 );
-const _flaxBinding645 = FlaxProxyMember(
+const _flaxBinding686 = FlaxProxyMember(
   "tagsChildrenWith",
   0,
+  _flaxBinding54,
+  hasSuper: true,
+);
+const _flaxBinding687 = FlaxProxyMember(
+  "addTagForChildren",
+  0,
+  _flaxBinding55,
+  hasSuper: true,
+);
+const _flaxBinding688 = FlaxProxyMember(
+  "isCompatibleWith",
+  0,
+  _flaxBinding57,
+  hasSuper: true,
+);
+const _flaxBinding689 = FlaxProxyMember(
+  "absorb",
+  0,
+  _flaxBinding58,
+  hasSuper: true,
+);
+const _flaxBinding690 = FlaxProxyMember(
+  "copy",
+  0,
+  _flaxBinding59,
+  hasSuper: true,
+);
+const _flaxBinding691 = FlaxProxyMember(
+  "isSemanticBoundary",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding692 = FlaxProxyMember(
+  "localeForSubtree",
+  1,
+  _flaxBinding61,
+  hasSuper: true,
+);
+const _flaxBinding693 = FlaxProxyMember(
+  "locale",
+  1,
+  _flaxBinding61,
+  hasSuper: true,
+);
+const _flaxBinding694 = FlaxProxyMember(
+  "isBlockingUserActions",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding695 = FlaxProxyMember(
+  "explicitChildNodes",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding696 = FlaxProxyMember(
+  "isBlockingSemanticsOfPreviouslyPaintedNodes",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding697 = FlaxProxyMember(
+  "hasBeenAnnotated",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding698 = FlaxProxyMember(
+  "onTap",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding699 = FlaxProxyMember(
+  "onLongPress",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding700 = FlaxProxyMember(
+  "onScrollLeft",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding701 = FlaxProxyMember(
+  "onDismiss",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding702 = FlaxProxyMember(
+  "onScrollRight",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding703 = FlaxProxyMember(
+  "onScrollUp",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding704 = FlaxProxyMember(
+  "onScrollDown",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding705 = FlaxProxyMember(
+  "onScrollToOffset",
+  1,
+  _flaxBinding65,
+  hasSuper: true,
+);
+const _flaxBinding706 = FlaxProxyMember(
+  "onIncrease",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding707 = FlaxProxyMember(
+  "onDecrease",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding708 = FlaxProxyMember(
+  "onCopy",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding709 = FlaxProxyMember(
+  "onCut",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding710 = FlaxProxyMember(
+  "onPaste",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding711 = FlaxProxyMember(
+  "onShowOnScreen",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding712 = FlaxProxyMember(
+  "onMoveCursorForwardByCharacter",
+  1,
   _flaxBinding68,
   hasSuper: true,
 );
-const _flaxBinding646 = FlaxProxyMember(
-  "addTagForChildren",
-  0,
-  _flaxBinding69,
+const _flaxBinding713 = FlaxProxyMember(
+  "onMoveCursorBackwardByCharacter",
+  1,
+  _flaxBinding68,
   hasSuper: true,
 );
-const _flaxBinding647 = FlaxProxyMember(
-  "isCompatibleWith",
-  0,
-  _flaxBinding71,
+const _flaxBinding714 = FlaxProxyMember(
+  "onMoveCursorForwardByWord",
+  1,
+  _flaxBinding68,
   hasSuper: true,
 );
-const _flaxBinding648 = FlaxProxyMember(
-  "absorb",
-  0,
+const _flaxBinding715 = FlaxProxyMember(
+  "onMoveCursorBackwardByWord",
+  1,
+  _flaxBinding68,
+  hasSuper: true,
+);
+const _flaxBinding716 = FlaxProxyMember(
+  "onSetSelection",
+  1,
   _flaxBinding72,
   hasSuper: true,
 );
-const _flaxBinding649 = FlaxProxyMember(
-  "copy",
-  0,
-  _flaxBinding73,
-  hasSuper: true,
-);
-const _flaxBinding650 = FlaxProxyMember(
-  "isSemanticBoundary",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding651 = FlaxProxyMember(
-  "localeForSubtree",
-  1,
-  _flaxBinding75,
-  hasSuper: true,
-);
-const _flaxBinding652 = FlaxProxyMember(
-  "locale",
-  1,
-  _flaxBinding75,
-  hasSuper: true,
-);
-const _flaxBinding653 = FlaxProxyMember(
-  "isBlockingUserActions",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding654 = FlaxProxyMember(
-  "explicitChildNodes",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding655 = FlaxProxyMember(
-  "isBlockingSemanticsOfPreviouslyPaintedNodes",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding656 = FlaxProxyMember(
-  "hasBeenAnnotated",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding657 = FlaxProxyMember(
-  "onTap",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding658 = FlaxProxyMember(
-  "onLongPress",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding659 = FlaxProxyMember(
-  "onScrollLeft",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding660 = FlaxProxyMember(
-  "onDismiss",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding661 = FlaxProxyMember(
-  "onScrollRight",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding662 = FlaxProxyMember(
-  "onScrollUp",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding663 = FlaxProxyMember(
-  "onScrollDown",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding664 = FlaxProxyMember(
-  "onScrollToOffset",
-  1,
-  _flaxBinding82,
-  hasSuper: true,
-);
-const _flaxBinding665 = FlaxProxyMember(
-  "onIncrease",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding666 = FlaxProxyMember(
-  "onDecrease",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding667 = FlaxProxyMember(
-  "onCopy",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding668 = FlaxProxyMember(
-  "onCut",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding669 = FlaxProxyMember(
-  "onPaste",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding670 = FlaxProxyMember(
-  "onShowOnScreen",
-  1,
-  _flaxBinding78,
-  hasSuper: true,
-);
-const _flaxBinding671 = FlaxProxyMember(
-  "onMoveCursorForwardByCharacter",
-  1,
-  _flaxBinding85,
-  hasSuper: true,
-);
-const _flaxBinding672 = FlaxProxyMember(
-  "onMoveCursorBackwardByCharacter",
-  1,
-  _flaxBinding85,
-  hasSuper: true,
-);
-const _flaxBinding673 = FlaxProxyMember(
-  "onMoveCursorForwardByWord",
-  1,
-  _flaxBinding85,
-  hasSuper: true,
-);
-const _flaxBinding674 = FlaxProxyMember(
-  "onMoveCursorBackwardByWord",
-  1,
-  _flaxBinding85,
-  hasSuper: true,
-);
-const _flaxBinding675 = FlaxProxyMember(
-  "onSetSelection",
-  1,
-  _flaxBinding89,
-  hasSuper: true,
-);
-const _flaxBinding676 = FlaxProxyMember(
+const _flaxBinding717 = FlaxProxyMember(
   "onSetText",
+  1,
+  _flaxBinding75,
+  hasSuper: true,
+);
+const _flaxBinding718 = FlaxProxyMember(
+  "onDidGainAccessibilityFocus",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding719 = FlaxProxyMember(
+  "onDidLoseAccessibilityFocus",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding720 = FlaxProxyMember(
+  "onFocus",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding721 = FlaxProxyMember(
+  "onExpand",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding722 = FlaxProxyMember(
+  "onCollapse",
+  1,
+  _flaxBinding62,
+  hasSuper: true,
+);
+const _flaxBinding723 = FlaxProxyMember(
+  "childConfigurationsDelegate",
+  1,
+  _flaxBinding78,
+  hasSuper: true,
+);
+const _flaxBinding724 = FlaxProxyMember(
+  "sortKey",
+  1,
+  _flaxBinding80,
+  hasSuper: true,
+);
+const _flaxBinding725 = FlaxProxyMember(
+  "indexInParent",
+  1,
+  flaxNullableIntCall,
+  hasSuper: true,
+);
+const _flaxBinding726 = FlaxProxyMember(
+  "scrollChildCount",
+  1,
+  flaxNullableIntCall,
+  hasSuper: true,
+);
+const _flaxBinding727 = FlaxProxyMember(
+  "scrollIndex",
+  1,
+  flaxNullableIntCall,
+  hasSuper: true,
+);
+const _flaxBinding728 = FlaxProxyMember(
+  "platformViewId",
+  1,
+  flaxNullableIntCall,
+  hasSuper: true,
+);
+const _flaxBinding729 = FlaxProxyMember(
+  "maxValueLength",
+  1,
+  flaxNullableIntCall,
+  hasSuper: true,
+);
+const _flaxBinding730 = FlaxProxyMember(
+  "currentValueLength",
+  1,
+  flaxNullableIntCall,
+  hasSuper: true,
+);
+const _flaxBinding731 = FlaxProxyMember(
+  "isMergingSemanticsOfDescendants",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding732 = FlaxProxyMember(
+  "customSemanticsActions",
+  1,
+  _flaxBinding83,
+  hasSuper: true,
+);
+const _flaxBinding733 = FlaxProxyMember(
+  "identifier",
+  1,
+  flaxStringCall,
+  hasSuper: true,
+);
+const _flaxBinding734 = FlaxProxyMember(
+  "traversalParentIdentifier",
+  1,
+  flaxNullableAnyCall,
+  hasSuper: true,
+);
+const _flaxBinding735 = FlaxProxyMember(
+  "traversalChildIdentifier",
+  1,
+  flaxNullableAnyCall,
+  hasSuper: true,
+);
+const _flaxBinding736 = FlaxProxyMember(
+  "role",
+  1,
+  _flaxBinding85,
+  hasSuper: true,
+);
+const _flaxBinding737 = FlaxProxyMember(
+  "label",
+  1,
+  flaxStringCall,
+  hasSuper: true,
+);
+const _flaxBinding738 = FlaxProxyMember(
+  "attributedLabel",
+  1,
+  _flaxBinding86,
+  hasSuper: true,
+);
+const _flaxBinding739 = FlaxProxyMember(
+  "value",
+  1,
+  flaxStringCall,
+  hasSuper: true,
+);
+const _flaxBinding740 = FlaxProxyMember(
+  "attributedValue",
+  1,
+  _flaxBinding86,
+  hasSuper: true,
+);
+const _flaxBinding741 = FlaxProxyMember(
+  "increasedValue",
+  1,
+  flaxStringCall,
+  hasSuper: true,
+);
+const _flaxBinding742 = FlaxProxyMember(
+  "attributedIncreasedValue",
+  1,
+  _flaxBinding86,
+  hasSuper: true,
+);
+const _flaxBinding743 = FlaxProxyMember(
+  "decreasedValue",
+  1,
+  flaxStringCall,
+  hasSuper: true,
+);
+const _flaxBinding744 = FlaxProxyMember(
+  "attributedDecreasedValue",
+  1,
+  _flaxBinding86,
+  hasSuper: true,
+);
+const _flaxBinding745 = FlaxProxyMember(
+  "hint",
+  1,
+  flaxStringCall,
+  hasSuper: true,
+);
+const _flaxBinding746 = FlaxProxyMember(
+  "attributedHint",
+  1,
+  _flaxBinding86,
+  hasSuper: true,
+);
+const _flaxBinding747 = FlaxProxyMember(
+  "tooltip",
+  1,
+  flaxStringCall,
+  hasSuper: true,
+);
+const _flaxBinding748 = FlaxProxyMember(
+  "hintOverrides",
+  1,
+  _flaxBinding88,
+  hasSuper: true,
+);
+const _flaxBinding749 = FlaxProxyMember(
+  "scopesRoute",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding750 = FlaxProxyMember(
+  "namesRoute",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding751 = FlaxProxyMember(
+  "isImage",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding752 = FlaxProxyMember(
+  "liveRegion",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding753 = FlaxProxyMember(
+  "textDirection",
+  1,
+  _flaxBinding90,
+  hasSuper: true,
+);
+const _flaxBinding754 = FlaxProxyMember(
+  "isSelected",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding755 = FlaxProxyMember(
+  "isExpanded",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding756 = FlaxProxyMember(
+  "isEnabled",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding757 = FlaxProxyMember(
+  "isChecked",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding758 = FlaxProxyMember(
+  "isCheckStateMixed",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding759 = FlaxProxyMember(
+  "isToggled",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding760 = FlaxProxyMember(
+  "isInMutuallyExclusiveGroup",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding761 = FlaxProxyMember(
+  "isFocusable",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding762 = FlaxProxyMember(
+  "isFocused",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding763 = FlaxProxyMember(
+  "accessibilityFocusBlockType",
   1,
   _flaxBinding92,
   hasSuper: true,
 );
-const _flaxBinding677 = FlaxProxyMember(
-  "onDidGainAccessibilityFocus",
+const _flaxBinding764 = FlaxProxyMember(
+  "isButton",
   1,
-  _flaxBinding78,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding678 = FlaxProxyMember(
-  "onDidLoseAccessibilityFocus",
+const _flaxBinding765 = FlaxProxyMember(
+  "isLink",
   1,
-  _flaxBinding78,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding679 = FlaxProxyMember(
-  "onFocus",
+const _flaxBinding766 = FlaxProxyMember(
+  "linkUrl",
   1,
-  _flaxBinding78,
+  _flaxBinding94,
   hasSuper: true,
 );
-const _flaxBinding680 = FlaxProxyMember(
-  "onExpand",
+const _flaxBinding767 = FlaxProxyMember(
+  "isHeader",
   1,
-  _flaxBinding78,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding681 = FlaxProxyMember(
-  "onCollapse",
+const _flaxBinding768 = FlaxProxyMember(
+  "headingLevel",
   1,
-  _flaxBinding78,
+  flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding682 = FlaxProxyMember(
-  "childConfigurationsDelegate",
+const _flaxBinding769 = FlaxProxyMember(
+  "isSlider",
   1,
-  _flaxBinding95,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding683 = FlaxProxyMember(
-  "sortKey",
+const _flaxBinding770 = FlaxProxyMember(
+  "isKeyboardKey",
   1,
-  _flaxBinding97,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding684 = FlaxProxyMember(
-  "indexInParent",
+const _flaxBinding771 = FlaxProxyMember(
+  "isHidden",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding772 = FlaxProxyMember(
+  "isTextField",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding773 = FlaxProxyMember(
+  "isReadOnly",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding774 = FlaxProxyMember(
+  "isObscured",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding775 = FlaxProxyMember(
+  "isMultiline",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding776 = FlaxProxyMember(
+  "isRequired",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding777 = FlaxProxyMember(
+  "hasImplicitScrolling",
+  1,
+  flaxBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding778 = FlaxProxyMember(
+  "textSelection",
+  1,
+  _flaxBinding96,
+  hasSuper: true,
+);
+const _flaxBinding779 = FlaxProxyMember(
+  "scrollPosition",
+  1,
+  flaxNullableDoubleCall,
+  hasSuper: true,
+);
+const _flaxBinding780 = FlaxProxyMember(
+  "scrollExtentMax",
+  1,
+  flaxNullableDoubleCall,
+  hasSuper: true,
+);
+const _flaxBinding781 = FlaxProxyMember(
+  "scrollExtentMin",
+  1,
+  flaxNullableDoubleCall,
+  hasSuper: true,
+);
+const _flaxBinding782 = FlaxProxyMember(
+  "controlsNodes",
   1,
   _flaxBinding99,
   hasSuper: true,
 );
-const _flaxBinding685 = FlaxProxyMember(
-  "scrollChildCount",
+const _flaxBinding783 = FlaxProxyMember(
+  "validationResult",
   1,
-  _flaxBinding99,
+  _flaxBinding101,
   hasSuper: true,
 );
-const _flaxBinding686 = FlaxProxyMember(
-  "scrollIndex",
-  1,
-  _flaxBinding99,
-  hasSuper: true,
-);
-const _flaxBinding687 = FlaxProxyMember(
-  "platformViewId",
-  1,
-  _flaxBinding99,
-  hasSuper: true,
-);
-const _flaxBinding688 = FlaxProxyMember(
-  "maxValueLength",
-  1,
-  _flaxBinding99,
-  hasSuper: true,
-);
-const _flaxBinding689 = FlaxProxyMember(
-  "currentValueLength",
-  1,
-  _flaxBinding99,
-  hasSuper: true,
-);
-const _flaxBinding690 = FlaxProxyMember(
-  "isMergingSemanticsOfDescendants",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding691 = FlaxProxyMember(
-  "customSemanticsActions",
+const _flaxBinding784 = FlaxProxyMember(
+  "hitTestBehavior",
   1,
   _flaxBinding103,
   hasSuper: true,
 );
-const _flaxBinding692 = FlaxProxyMember(
-  "identifier",
-  1,
-  _flaxBinding4,
-  hasSuper: true,
-);
-const _flaxBinding693 = FlaxProxyMember(
-  "traversalParentIdentifier",
-  1,
-  _flaxBinding35,
-  hasSuper: true,
-);
-const _flaxBinding694 = FlaxProxyMember(
-  "traversalChildIdentifier",
-  1,
-  _flaxBinding35,
-  hasSuper: true,
-);
-const _flaxBinding695 = FlaxProxyMember(
-  "role",
+const _flaxBinding785 = FlaxProxyMember(
+  "inputType",
   1,
   _flaxBinding105,
   hasSuper: true,
 );
-const _flaxBinding696 = FlaxProxyMember(
-  "label",
+const _flaxBinding786 = FlaxProxyMember(
+  "maxValue",
   1,
-  _flaxBinding4,
+  flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding697 = FlaxProxyMember(
-  "attributedLabel",
+const _flaxBinding787 = FlaxProxyMember(
+  "minValue",
   1,
-  _flaxBinding106,
+  flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding698 = FlaxProxyMember(
-  "value",
+const _flaxBinding788 = FlaxProxyMember(
+  "tagsForChildren",
   1,
-  _flaxBinding4,
+  _flaxBinding107,
   hasSuper: true,
 );
-const _flaxBinding699 = FlaxProxyMember(
-  "attributedValue",
-  1,
-  _flaxBinding106,
-  hasSuper: true,
-);
-const _flaxBinding700 = FlaxProxyMember(
-  "increasedValue",
-  1,
-  _flaxBinding4,
-  hasSuper: true,
-);
-const _flaxBinding701 = FlaxProxyMember(
-  "attributedIncreasedValue",
-  1,
-  _flaxBinding106,
-  hasSuper: true,
-);
-const _flaxBinding702 = FlaxProxyMember(
-  "decreasedValue",
-  1,
-  _flaxBinding4,
-  hasSuper: true,
-);
-const _flaxBinding703 = FlaxProxyMember(
-  "attributedDecreasedValue",
-  1,
-  _flaxBinding106,
-  hasSuper: true,
-);
-const _flaxBinding704 = FlaxProxyMember(
-  "hint",
-  1,
-  _flaxBinding4,
-  hasSuper: true,
-);
-const _flaxBinding705 = FlaxProxyMember(
-  "attributedHint",
-  1,
-  _flaxBinding106,
-  hasSuper: true,
-);
-const _flaxBinding706 = FlaxProxyMember(
-  "tooltip",
-  1,
-  _flaxBinding4,
-  hasSuper: true,
-);
-const _flaxBinding707 = FlaxProxyMember(
-  "hintOverrides",
-  1,
+const _flaxBinding789 = FlaxProxyMember(
+  "isSemanticBoundary",
+  2,
   _flaxBinding108,
   hasSuper: true,
 );
-const _flaxBinding708 = FlaxProxyMember(
-  "scopesRoute",
-  1,
-  _flaxBinding28,
+const _flaxBinding790 = FlaxProxyMember(
+  "localeForSubtree",
+  2,
+  _flaxBinding109,
   hasSuper: true,
 );
-const _flaxBinding709 = FlaxProxyMember(
-  "namesRoute",
-  1,
-  _flaxBinding28,
+const _flaxBinding791 = FlaxProxyMember(
+  "locale",
+  2,
+  _flaxBinding109,
   hasSuper: true,
 );
-const _flaxBinding710 = FlaxProxyMember(
-  "isImage",
-  1,
-  _flaxBinding28,
+const _flaxBinding792 = FlaxProxyMember(
+  "isBlockingUserActions",
+  2,
+  _flaxBinding108,
   hasSuper: true,
 );
-const _flaxBinding711 = FlaxProxyMember(
-  "liveRegion",
-  1,
-  _flaxBinding28,
+const _flaxBinding793 = FlaxProxyMember(
+  "explicitChildNodes",
+  2,
+  _flaxBinding108,
   hasSuper: true,
 );
-const _flaxBinding712 = FlaxProxyMember(
-  "textDirection",
-  1,
+const _flaxBinding794 = FlaxProxyMember(
+  "isBlockingSemanticsOfPreviouslyPaintedNodes",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding795 = FlaxProxyMember(
+  "onTap",
+  2,
   _flaxBinding110,
   hasSuper: true,
 );
-const _flaxBinding713 = FlaxProxyMember(
-  "isSelected",
-  1,
-  _flaxBinding28,
+const _flaxBinding796 = FlaxProxyMember(
+  "onLongPress",
+  2,
+  _flaxBinding110,
   hasSuper: true,
 );
-const _flaxBinding714 = FlaxProxyMember(
-  "isExpanded",
-  1,
+const _flaxBinding797 = FlaxProxyMember(
+  "onScrollLeft",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding798 = FlaxProxyMember(
+  "onDismiss",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding799 = FlaxProxyMember(
+  "onScrollRight",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding800 = FlaxProxyMember(
+  "onScrollUp",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding801 = FlaxProxyMember(
+  "onScrollDown",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding802 = FlaxProxyMember(
+  "onScrollToOffset",
+  2,
+  _flaxBinding111,
+  hasSuper: true,
+);
+const _flaxBinding803 = FlaxProxyMember(
+  "onIncrease",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding804 = FlaxProxyMember(
+  "onDecrease",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding805 = FlaxProxyMember(
+  "onCopy",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding806 = FlaxProxyMember(
+  "onCut",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding807 = FlaxProxyMember(
+  "onPaste",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding808 = FlaxProxyMember(
+  "onShowOnScreen",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding809 = FlaxProxyMember(
+  "onMoveCursorForwardByCharacter",
+  2,
   _flaxBinding112,
   hasSuper: true,
 );
-const _flaxBinding715 = FlaxProxyMember(
-  "isEnabled",
-  1,
+const _flaxBinding810 = FlaxProxyMember(
+  "onMoveCursorBackwardByCharacter",
+  2,
   _flaxBinding112,
   hasSuper: true,
 );
-const _flaxBinding716 = FlaxProxyMember(
-  "isChecked",
-  1,
+const _flaxBinding811 = FlaxProxyMember(
+  "onMoveCursorForwardByWord",
+  2,
   _flaxBinding112,
   hasSuper: true,
 );
-const _flaxBinding717 = FlaxProxyMember(
-  "isCheckStateMixed",
-  1,
+const _flaxBinding812 = FlaxProxyMember(
+  "onMoveCursorBackwardByWord",
+  2,
   _flaxBinding112,
   hasSuper: true,
 );
-const _flaxBinding718 = FlaxProxyMember(
-  "isToggled",
-  1,
-  _flaxBinding112,
+const _flaxBinding813 = FlaxProxyMember(
+  "onSetSelection",
+  2,
+  _flaxBinding113,
   hasSuper: true,
 );
-const _flaxBinding719 = FlaxProxyMember(
-  "isInMutuallyExclusiveGroup",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding720 = FlaxProxyMember(
-  "isFocusable",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding721 = FlaxProxyMember(
-  "isFocused",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding722 = FlaxProxyMember(
-  "accessibilityFocusBlockType",
-  1,
+const _flaxBinding814 = FlaxProxyMember(
+  "onSetText",
+  2,
   _flaxBinding114,
   hasSuper: true,
 );
-const _flaxBinding723 = FlaxProxyMember(
-  "isButton",
-  1,
-  _flaxBinding28,
+const _flaxBinding815 = FlaxProxyMember(
+  "onDidGainAccessibilityFocus",
+  2,
+  _flaxBinding110,
   hasSuper: true,
 );
-const _flaxBinding724 = FlaxProxyMember(
-  "isLink",
-  1,
-  _flaxBinding28,
+const _flaxBinding816 = FlaxProxyMember(
+  "onDidLoseAccessibilityFocus",
+  2,
+  _flaxBinding110,
   hasSuper: true,
 );
-const _flaxBinding725 = FlaxProxyMember(
-  "linkUrl",
-  1,
+const _flaxBinding817 = FlaxProxyMember(
+  "onFocus",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding818 = FlaxProxyMember(
+  "onExpand",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding819 = FlaxProxyMember(
+  "onCollapse",
+  2,
+  _flaxBinding110,
+  hasSuper: true,
+);
+const _flaxBinding820 = FlaxProxyMember(
+  "childConfigurationsDelegate",
+  2,
+  _flaxBinding115,
+  hasSuper: true,
+);
+const _flaxBinding821 = FlaxProxyMember(
+  "sortKey",
+  2,
   _flaxBinding116,
   hasSuper: true,
 );
-const _flaxBinding726 = FlaxProxyMember(
-  "isHeader",
-  1,
-  _flaxBinding28,
+const _flaxBinding822 = FlaxProxyMember(
+  "indexInParent",
+  2,
+  _flaxBinding117,
   hasSuper: true,
 );
-const _flaxBinding727 = FlaxProxyMember(
-  "headingLevel",
-  1,
-  _flaxBinding6,
+const _flaxBinding823 = FlaxProxyMember(
+  "scrollChildCount",
+  2,
+  _flaxBinding117,
   hasSuper: true,
 );
-const _flaxBinding728 = FlaxProxyMember(
-  "isSlider",
-  1,
-  _flaxBinding28,
+const _flaxBinding824 = FlaxProxyMember(
+  "scrollIndex",
+  2,
+  _flaxBinding117,
   hasSuper: true,
 );
-const _flaxBinding729 = FlaxProxyMember(
-  "isKeyboardKey",
-  1,
-  _flaxBinding28,
+const _flaxBinding825 = FlaxProxyMember(
+  "platformViewId",
+  2,
+  _flaxBinding117,
   hasSuper: true,
 );
-const _flaxBinding730 = FlaxProxyMember(
-  "isHidden",
-  1,
-  _flaxBinding28,
+const _flaxBinding826 = FlaxProxyMember(
+  "maxValueLength",
+  2,
+  _flaxBinding117,
   hasSuper: true,
 );
-const _flaxBinding731 = FlaxProxyMember(
-  "isTextField",
-  1,
-  _flaxBinding28,
+const _flaxBinding827 = FlaxProxyMember(
+  "currentValueLength",
+  2,
+  _flaxBinding117,
   hasSuper: true,
 );
-const _flaxBinding732 = FlaxProxyMember(
-  "isReadOnly",
-  1,
-  _flaxBinding28,
+const _flaxBinding828 = FlaxProxyMember(
+  "isMergingSemanticsOfDescendants",
+  2,
+  _flaxBinding108,
   hasSuper: true,
 );
-const _flaxBinding733 = FlaxProxyMember(
-  "isObscured",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding734 = FlaxProxyMember(
-  "isMultiline",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding735 = FlaxProxyMember(
-  "isRequired",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding736 = FlaxProxyMember(
-  "hasImplicitScrolling",
-  1,
-  _flaxBinding28,
-  hasSuper: true,
-);
-const _flaxBinding737 = FlaxProxyMember(
-  "textSelection",
-  1,
+const _flaxBinding829 = FlaxProxyMember(
+  "customSemanticsActions",
+  2,
   _flaxBinding118,
   hasSuper: true,
 );
-const _flaxBinding738 = FlaxProxyMember(
-  "scrollPosition",
-  1,
+const _flaxBinding830 = FlaxProxyMember(
+  "identifier",
+  2,
+  _flaxBinding119,
+  hasSuper: true,
+);
+const _flaxBinding831 = FlaxProxyMember(
+  "traversalParentIdentifier",
+  2,
   _flaxBinding120,
   hasSuper: true,
 );
-const _flaxBinding739 = FlaxProxyMember(
-  "scrollExtentMax",
-  1,
+const _flaxBinding832 = FlaxProxyMember(
+  "traversalChildIdentifier",
+  2,
   _flaxBinding120,
   hasSuper: true,
 );
-const _flaxBinding740 = FlaxProxyMember(
-  "scrollExtentMin",
-  1,
-  _flaxBinding120,
+const _flaxBinding833 = FlaxProxyMember(
+  "role",
+  2,
+  _flaxBinding121,
   hasSuper: true,
 );
-const _flaxBinding741 = FlaxProxyMember(
-  "controlsNodes",
-  1,
+const _flaxBinding834 = FlaxProxyMember(
+  "label",
+  2,
+  _flaxBinding119,
+  hasSuper: true,
+);
+const _flaxBinding835 = FlaxProxyMember(
+  "attributedLabel",
+  2,
+  _flaxBinding122,
+  hasSuper: true,
+);
+const _flaxBinding836 = FlaxProxyMember(
+  "value",
+  2,
+  _flaxBinding119,
+  hasSuper: true,
+);
+const _flaxBinding837 = FlaxProxyMember(
+  "attributedValue",
+  2,
+  _flaxBinding122,
+  hasSuper: true,
+);
+const _flaxBinding838 = FlaxProxyMember(
+  "increasedValue",
+  2,
+  _flaxBinding119,
+  hasSuper: true,
+);
+const _flaxBinding839 = FlaxProxyMember(
+  "attributedIncreasedValue",
+  2,
+  _flaxBinding122,
+  hasSuper: true,
+);
+const _flaxBinding840 = FlaxProxyMember(
+  "decreasedValue",
+  2,
+  _flaxBinding119,
+  hasSuper: true,
+);
+const _flaxBinding841 = FlaxProxyMember(
+  "attributedDecreasedValue",
+  2,
+  _flaxBinding122,
+  hasSuper: true,
+);
+const _flaxBinding842 = FlaxProxyMember(
+  "hint",
+  2,
+  _flaxBinding119,
+  hasSuper: true,
+);
+const _flaxBinding843 = FlaxProxyMember(
+  "attributedHint",
+  2,
+  _flaxBinding122,
+  hasSuper: true,
+);
+const _flaxBinding844 = FlaxProxyMember(
+  "tooltip",
+  2,
+  _flaxBinding119,
+  hasSuper: true,
+);
+const _flaxBinding845 = FlaxProxyMember(
+  "hintOverrides",
+  2,
   _flaxBinding123,
   hasSuper: true,
 );
-const _flaxBinding742 = FlaxProxyMember(
-  "validationResult",
-  1,
+const _flaxBinding846 = FlaxProxyMember(
+  "scopesRoute",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding847 = FlaxProxyMember(
+  "namesRoute",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding848 = FlaxProxyMember(
+  "isImage",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding849 = FlaxProxyMember(
+  "liveRegion",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding850 = FlaxProxyMember(
+  "textDirection",
+  2,
+  _flaxBinding124,
+  hasSuper: true,
+);
+const _flaxBinding851 = FlaxProxyMember(
+  "isSelected",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding852 = FlaxProxyMember(
+  "isExpanded",
+  2,
   _flaxBinding125,
   hasSuper: true,
 );
-const _flaxBinding743 = FlaxProxyMember(
-  "hitTestBehavior",
-  1,
+const _flaxBinding853 = FlaxProxyMember(
+  "isEnabled",
+  2,
+  _flaxBinding125,
+  hasSuper: true,
+);
+const _flaxBinding854 = FlaxProxyMember(
+  "isChecked",
+  2,
+  _flaxBinding125,
+  hasSuper: true,
+);
+const _flaxBinding855 = FlaxProxyMember(
+  "isCheckStateMixed",
+  2,
+  _flaxBinding125,
+  hasSuper: true,
+);
+const _flaxBinding856 = FlaxProxyMember(
+  "isToggled",
+  2,
+  _flaxBinding125,
+  hasSuper: true,
+);
+const _flaxBinding857 = FlaxProxyMember(
+  "isInMutuallyExclusiveGroup",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding858 = FlaxProxyMember(
+  "isFocusable",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding859 = FlaxProxyMember(
+  "isFocused",
+  2,
+  _flaxBinding125,
+  hasSuper: true,
+);
+const _flaxBinding860 = FlaxProxyMember(
+  "accessibilityFocusBlockType",
+  2,
+  _flaxBinding126,
+  hasSuper: true,
+);
+const _flaxBinding861 = FlaxProxyMember(
+  "isButton",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding862 = FlaxProxyMember(
+  "isLink",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding863 = FlaxProxyMember(
+  "linkUrl",
+  2,
   _flaxBinding127,
   hasSuper: true,
 );
-const _flaxBinding744 = FlaxProxyMember(
-  "inputType",
-  1,
+const _flaxBinding864 = FlaxProxyMember(
+  "isHeader",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding865 = FlaxProxyMember(
+  "headingLevel",
+  2,
+  _flaxBinding128,
+  hasSuper: true,
+);
+const _flaxBinding866 = FlaxProxyMember(
+  "isSlider",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding867 = FlaxProxyMember(
+  "isKeyboardKey",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding868 = FlaxProxyMember(
+  "isHidden",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding869 = FlaxProxyMember(
+  "isTextField",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding870 = FlaxProxyMember(
+  "isReadOnly",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding871 = FlaxProxyMember(
+  "isObscured",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding872 = FlaxProxyMember(
+  "isMultiline",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding873 = FlaxProxyMember(
+  "isRequired",
+  2,
+  _flaxBinding125,
+  hasSuper: true,
+);
+const _flaxBinding874 = FlaxProxyMember(
+  "hasImplicitScrolling",
+  2,
+  _flaxBinding108,
+  hasSuper: true,
+);
+const _flaxBinding875 = FlaxProxyMember(
+  "textSelection",
+  2,
   _flaxBinding129,
   hasSuper: true,
 );
-const _flaxBinding745 = FlaxProxyMember(
-  "maxValue",
-  1,
-  _flaxBinding30,
+const _flaxBinding876 = FlaxProxyMember(
+  "scrollPosition",
+  2,
+  _flaxBinding130,
   hasSuper: true,
 );
-const _flaxBinding746 = FlaxProxyMember(
-  "minValue",
-  1,
-  _flaxBinding30,
+const _flaxBinding877 = FlaxProxyMember(
+  "scrollExtentMax",
+  2,
+  _flaxBinding130,
   hasSuper: true,
 );
-const _flaxBinding747 = FlaxProxyMember(
-  "tagsForChildren",
-  1,
+const _flaxBinding878 = FlaxProxyMember(
+  "scrollExtentMin",
+  2,
+  _flaxBinding130,
+  hasSuper: true,
+);
+const _flaxBinding879 = FlaxProxyMember(
+  "controlsNodes",
+  2,
   _flaxBinding131,
   hasSuper: true,
 );
-const _flaxBinding748 = FlaxProxyMember(
-  "isSemanticBoundary",
+const _flaxBinding880 = FlaxProxyMember(
+  "validationResult",
   2,
   _flaxBinding132,
   hasSuper: true,
 );
-const _flaxBinding749 = FlaxProxyMember(
-  "localeForSubtree",
+const _flaxBinding881 = FlaxProxyMember(
+  "hitTestBehavior",
   2,
   _flaxBinding133,
   hasSuper: true,
 );
-const _flaxBinding750 = FlaxProxyMember(
-  "locale",
-  2,
-  _flaxBinding133,
-  hasSuper: true,
-);
-const _flaxBinding751 = FlaxProxyMember(
-  "isBlockingUserActions",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding752 = FlaxProxyMember(
-  "explicitChildNodes",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding753 = FlaxProxyMember(
-  "isBlockingSemanticsOfPreviouslyPaintedNodes",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding754 = FlaxProxyMember(
-  "onTap",
+const _flaxBinding882 = FlaxProxyMember(
+  "inputType",
   2,
   _flaxBinding134,
   hasSuper: true,
 );
-const _flaxBinding755 = FlaxProxyMember(
-  "onLongPress",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding756 = FlaxProxyMember(
-  "onScrollLeft",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding757 = FlaxProxyMember(
-  "onDismiss",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding758 = FlaxProxyMember(
-  "onScrollRight",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding759 = FlaxProxyMember(
-  "onScrollUp",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding760 = FlaxProxyMember(
-  "onScrollDown",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding761 = FlaxProxyMember(
-  "onScrollToOffset",
+const _flaxBinding883 = FlaxProxyMember(
+  "maxValue",
   2,
   _flaxBinding135,
   hasSuper: true,
 );
-const _flaxBinding762 = FlaxProxyMember(
-  "onIncrease",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding763 = FlaxProxyMember(
-  "onDecrease",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding764 = FlaxProxyMember(
-  "onCopy",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding765 = FlaxProxyMember(
-  "onCut",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding766 = FlaxProxyMember(
-  "onPaste",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding767 = FlaxProxyMember(
-  "onShowOnScreen",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding768 = FlaxProxyMember(
-  "onMoveCursorForwardByCharacter",
-  2,
-  _flaxBinding136,
-  hasSuper: true,
-);
-const _flaxBinding769 = FlaxProxyMember(
-  "onMoveCursorBackwardByCharacter",
-  2,
-  _flaxBinding136,
-  hasSuper: true,
-);
-const _flaxBinding770 = FlaxProxyMember(
-  "onMoveCursorForwardByWord",
-  2,
-  _flaxBinding136,
-  hasSuper: true,
-);
-const _flaxBinding771 = FlaxProxyMember(
-  "onMoveCursorBackwardByWord",
-  2,
-  _flaxBinding136,
-  hasSuper: true,
-);
-const _flaxBinding772 = FlaxProxyMember(
-  "onSetSelection",
-  2,
-  _flaxBinding137,
-  hasSuper: true,
-);
-const _flaxBinding773 = FlaxProxyMember(
-  "onSetText",
-  2,
-  _flaxBinding138,
-  hasSuper: true,
-);
-const _flaxBinding774 = FlaxProxyMember(
-  "onDidGainAccessibilityFocus",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding775 = FlaxProxyMember(
-  "onDidLoseAccessibilityFocus",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding776 = FlaxProxyMember(
-  "onFocus",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding777 = FlaxProxyMember(
-  "onExpand",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding778 = FlaxProxyMember(
-  "onCollapse",
-  2,
-  _flaxBinding134,
-  hasSuper: true,
-);
-const _flaxBinding779 = FlaxProxyMember(
-  "childConfigurationsDelegate",
-  2,
-  _flaxBinding139,
-  hasSuper: true,
-);
-const _flaxBinding780 = FlaxProxyMember(
-  "sortKey",
-  2,
-  _flaxBinding140,
-  hasSuper: true,
-);
-const _flaxBinding781 = FlaxProxyMember(
-  "indexInParent",
-  2,
-  _flaxBinding141,
-  hasSuper: true,
-);
-const _flaxBinding782 = FlaxProxyMember(
-  "scrollChildCount",
-  2,
-  _flaxBinding141,
-  hasSuper: true,
-);
-const _flaxBinding783 = FlaxProxyMember(
-  "scrollIndex",
-  2,
-  _flaxBinding141,
-  hasSuper: true,
-);
-const _flaxBinding784 = FlaxProxyMember(
-  "platformViewId",
-  2,
-  _flaxBinding141,
-  hasSuper: true,
-);
-const _flaxBinding785 = FlaxProxyMember(
-  "maxValueLength",
-  2,
-  _flaxBinding141,
-  hasSuper: true,
-);
-const _flaxBinding786 = FlaxProxyMember(
-  "currentValueLength",
-  2,
-  _flaxBinding141,
-  hasSuper: true,
-);
-const _flaxBinding787 = FlaxProxyMember(
-  "isMergingSemanticsOfDescendants",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding788 = FlaxProxyMember(
-  "customSemanticsActions",
-  2,
-  _flaxBinding142,
-  hasSuper: true,
-);
-const _flaxBinding789 = FlaxProxyMember(
-  "identifier",
-  2,
-  _flaxBinding143,
-  hasSuper: true,
-);
-const _flaxBinding790 = FlaxProxyMember(
-  "traversalParentIdentifier",
-  2,
-  _flaxBinding144,
-  hasSuper: true,
-);
-const _flaxBinding791 = FlaxProxyMember(
-  "traversalChildIdentifier",
-  2,
-  _flaxBinding144,
-  hasSuper: true,
-);
-const _flaxBinding792 = FlaxProxyMember(
-  "role",
-  2,
-  _flaxBinding145,
-  hasSuper: true,
-);
-const _flaxBinding793 = FlaxProxyMember(
-  "label",
-  2,
-  _flaxBinding143,
-  hasSuper: true,
-);
-const _flaxBinding794 = FlaxProxyMember(
-  "attributedLabel",
-  2,
-  _flaxBinding146,
-  hasSuper: true,
-);
-const _flaxBinding795 = FlaxProxyMember(
-  "value",
-  2,
-  _flaxBinding143,
-  hasSuper: true,
-);
-const _flaxBinding796 = FlaxProxyMember(
-  "attributedValue",
-  2,
-  _flaxBinding146,
-  hasSuper: true,
-);
-const _flaxBinding797 = FlaxProxyMember(
-  "increasedValue",
-  2,
-  _flaxBinding143,
-  hasSuper: true,
-);
-const _flaxBinding798 = FlaxProxyMember(
-  "attributedIncreasedValue",
-  2,
-  _flaxBinding146,
-  hasSuper: true,
-);
-const _flaxBinding799 = FlaxProxyMember(
-  "decreasedValue",
-  2,
-  _flaxBinding143,
-  hasSuper: true,
-);
-const _flaxBinding800 = FlaxProxyMember(
-  "attributedDecreasedValue",
-  2,
-  _flaxBinding146,
-  hasSuper: true,
-);
-const _flaxBinding801 = FlaxProxyMember(
-  "hint",
-  2,
-  _flaxBinding143,
-  hasSuper: true,
-);
-const _flaxBinding802 = FlaxProxyMember(
-  "attributedHint",
-  2,
-  _flaxBinding146,
-  hasSuper: true,
-);
-const _flaxBinding803 = FlaxProxyMember(
-  "tooltip",
-  2,
-  _flaxBinding143,
-  hasSuper: true,
-);
-const _flaxBinding804 = FlaxProxyMember(
-  "hintOverrides",
-  2,
-  _flaxBinding147,
-  hasSuper: true,
-);
-const _flaxBinding805 = FlaxProxyMember(
-  "scopesRoute",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding806 = FlaxProxyMember(
-  "namesRoute",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding807 = FlaxProxyMember(
-  "isImage",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding808 = FlaxProxyMember(
-  "liveRegion",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding809 = FlaxProxyMember(
-  "textDirection",
-  2,
-  _flaxBinding148,
-  hasSuper: true,
-);
-const _flaxBinding810 = FlaxProxyMember(
-  "isSelected",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding811 = FlaxProxyMember(
-  "isExpanded",
-  2,
-  _flaxBinding149,
-  hasSuper: true,
-);
-const _flaxBinding812 = FlaxProxyMember(
-  "isEnabled",
-  2,
-  _flaxBinding149,
-  hasSuper: true,
-);
-const _flaxBinding813 = FlaxProxyMember(
-  "isChecked",
-  2,
-  _flaxBinding149,
-  hasSuper: true,
-);
-const _flaxBinding814 = FlaxProxyMember(
-  "isCheckStateMixed",
-  2,
-  _flaxBinding149,
-  hasSuper: true,
-);
-const _flaxBinding815 = FlaxProxyMember(
-  "isToggled",
-  2,
-  _flaxBinding149,
-  hasSuper: true,
-);
-const _flaxBinding816 = FlaxProxyMember(
-  "isInMutuallyExclusiveGroup",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding817 = FlaxProxyMember(
-  "isFocusable",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding818 = FlaxProxyMember(
-  "isFocused",
-  2,
-  _flaxBinding149,
-  hasSuper: true,
-);
-const _flaxBinding819 = FlaxProxyMember(
-  "accessibilityFocusBlockType",
-  2,
-  _flaxBinding150,
-  hasSuper: true,
-);
-const _flaxBinding820 = FlaxProxyMember(
-  "isButton",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding821 = FlaxProxyMember(
-  "isLink",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding822 = FlaxProxyMember(
-  "linkUrl",
-  2,
-  _flaxBinding151,
-  hasSuper: true,
-);
-const _flaxBinding823 = FlaxProxyMember(
-  "isHeader",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding824 = FlaxProxyMember(
-  "headingLevel",
-  2,
-  _flaxBinding152,
-  hasSuper: true,
-);
-const _flaxBinding825 = FlaxProxyMember(
-  "isSlider",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding826 = FlaxProxyMember(
-  "isKeyboardKey",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding827 = FlaxProxyMember(
-  "isHidden",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding828 = FlaxProxyMember(
-  "isTextField",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding829 = FlaxProxyMember(
-  "isReadOnly",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding830 = FlaxProxyMember(
-  "isObscured",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding831 = FlaxProxyMember(
-  "isMultiline",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding832 = FlaxProxyMember(
-  "isRequired",
-  2,
-  _flaxBinding149,
-  hasSuper: true,
-);
-const _flaxBinding833 = FlaxProxyMember(
-  "hasImplicitScrolling",
-  2,
-  _flaxBinding132,
-  hasSuper: true,
-);
-const _flaxBinding834 = FlaxProxyMember(
-  "textSelection",
-  2,
-  _flaxBinding153,
-  hasSuper: true,
-);
-const _flaxBinding835 = FlaxProxyMember(
-  "scrollPosition",
-  2,
-  _flaxBinding154,
-  hasSuper: true,
-);
-const _flaxBinding836 = FlaxProxyMember(
-  "scrollExtentMax",
-  2,
-  _flaxBinding154,
-  hasSuper: true,
-);
-const _flaxBinding837 = FlaxProxyMember(
-  "scrollExtentMin",
-  2,
-  _flaxBinding154,
-  hasSuper: true,
-);
-const _flaxBinding838 = FlaxProxyMember(
-  "controlsNodes",
-  2,
-  _flaxBinding155,
-  hasSuper: true,
-);
-const _flaxBinding839 = FlaxProxyMember(
-  "validationResult",
-  2,
-  _flaxBinding156,
-  hasSuper: true,
-);
-const _flaxBinding840 = FlaxProxyMember(
-  "hitTestBehavior",
-  2,
-  _flaxBinding157,
-  hasSuper: true,
-);
-const _flaxBinding841 = FlaxProxyMember(
-  "inputType",
-  2,
-  _flaxBinding158,
-  hasSuper: true,
-);
-const _flaxBinding842 = FlaxProxyMember(
-  "maxValue",
-  2,
-  _flaxBinding159,
-  hasSuper: true,
-);
-const _flaxBinding843 = FlaxProxyMember(
+const _flaxBinding884 = FlaxProxyMember(
   "minValue",
   2,
-  _flaxBinding159,
+  _flaxBinding135,
   hasSuper: true,
 );
-const _flaxBinding844 = FlaxObjectBinding(
+const _flaxBinding885 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsConfiguration",
   [
+    _flaxBinding428,
+    _flaxBinding429,
+    _flaxBinding430,
+    _flaxBinding431,
+    _flaxBinding432,
+    _flaxBinding433,
+    _flaxBinding434,
+    _flaxBinding435,
+    _flaxBinding436,
+    _flaxBinding437,
+    _flaxBinding438,
+    _flaxBinding439,
+    _flaxBinding440,
+    _flaxBinding441,
+    _flaxBinding442,
+    _flaxBinding443,
     _flaxBinding444,
     _flaxBinding445,
     _flaxBinding446,
@@ -19609,6 +19513,746 @@ const _flaxBinding844 = FlaxObjectBinding(
     _flaxBinding523,
     _flaxBinding524,
     _flaxBinding525,
+  ],
+  {
+    "getActionHandler": _flaxBinding622,
+    "tagsChildrenWith": _flaxBinding623,
+    "addTagForChildren": _flaxBinding624,
+    "isCompatibleWith": _flaxBinding625,
+    "absorb": _flaxBinding626,
+    "copy": _flaxBinding627,
+    "@super:getActionHandler": FlaxInstanceMethod.shared(
+      _flaxBinding52,
+      _SemanticsConfiguration_super_getActionHandler,
+    ),
+    "@super:tagsChildrenWith": FlaxInstanceMethod.shared(
+      _flaxBinding54,
+      _SemanticsConfiguration_super_tagsChildrenWith,
+    ),
+    "@super:addTagForChildren": FlaxInstanceMethod.shared(
+      _flaxBinding55,
+      _SemanticsConfiguration_super_addTagForChildren,
+    ),
+    "@super:isCompatibleWith": FlaxInstanceMethod.shared(
+      _flaxBinding57,
+      _SemanticsConfiguration_super_isCompatibleWith,
+    ),
+    "@super:absorb": FlaxInstanceMethod.shared(
+      _flaxBinding58,
+      _SemanticsConfiguration_super_absorb,
+    ),
+    "@super:copy": FlaxInstanceMethod.shared(
+      _flaxBinding59,
+      _SemanticsConfiguration_super_copy,
+    ),
+    "@super:get:isSemanticBoundary": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isSemanticBoundary,
+    ),
+    "@super:get:localeForSubtree": FlaxInstanceMethod.shared(
+      _flaxBinding61,
+      _SemanticsConfiguration_super_get_localeForSubtree,
+    ),
+    "@super:get:locale": FlaxInstanceMethod.shared(
+      _flaxBinding61,
+      _SemanticsConfiguration_super_get_locale,
+    ),
+    "@super:get:isBlockingUserActions": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isBlockingUserActions,
+    ),
+    "@super:get:explicitChildNodes": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_explicitChildNodes,
+    ),
+    "@super:get:isBlockingSemanticsOfPreviouslyPaintedNodes":
+        FlaxInstanceMethod.shared(
+          flaxBoolCall,
+          _SemanticsConfiguration_super_get_isBlockingSemanticsOfPreviouslyPaintedNodes,
+        ),
+    "@super:get:hasBeenAnnotated": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_hasBeenAnnotated,
+    ),
+    "@super:get:onTap": _flaxBinding628,
+    "@super:get:onLongPress": _flaxBinding629,
+    "@super:get:onScrollLeft": _flaxBinding630,
+    "@super:get:onDismiss": _flaxBinding631,
+    "@super:get:onScrollRight": _flaxBinding632,
+    "@super:get:onScrollUp": _flaxBinding633,
+    "@super:get:onScrollDown": _flaxBinding634,
+    "@super:get:onScrollToOffset": FlaxInstanceMethod.shared(
+      _flaxBinding65,
+      _SemanticsConfiguration_super_get_onScrollToOffset,
+    ),
+    "@super:get:onIncrease": _flaxBinding635,
+    "@super:get:onDecrease": _flaxBinding636,
+    "@super:get:onCopy": _flaxBinding637,
+    "@super:get:onCut": _flaxBinding638,
+    "@super:get:onPaste": _flaxBinding639,
+    "@super:get:onShowOnScreen": FlaxInstanceMethod.shared(
+      _flaxBinding62,
+      _SemanticsConfiguration_super_get_onShowOnScreen,
+    ),
+    "@super:get:onMoveCursorForwardByCharacter": _flaxBinding640,
+    "@super:get:onMoveCursorBackwardByCharacter": _flaxBinding641,
+    "@super:get:onMoveCursorForwardByWord": _flaxBinding642,
+    "@super:get:onMoveCursorBackwardByWord": _flaxBinding643,
+    "@super:get:onSetSelection": _flaxBinding644,
+    "@super:get:onSetText": _flaxBinding645,
+    "@super:get:onDidGainAccessibilityFocus": _flaxBinding646,
+    "@super:get:onDidLoseAccessibilityFocus": _flaxBinding647,
+    "@super:get:onFocus": _flaxBinding648,
+    "@super:get:onExpand": _flaxBinding649,
+    "@super:get:onCollapse": _flaxBinding650,
+    "@super:get:childConfigurationsDelegate": FlaxInstanceMethod.shared(
+      _flaxBinding78,
+      _SemanticsConfiguration_super_get_childConfigurationsDelegate,
+    ),
+    "@super:get:sortKey": FlaxInstanceMethod.shared(
+      _flaxBinding80,
+      _SemanticsConfiguration_super_get_sortKey,
+    ),
+    "@super:get:indexInParent": FlaxInstanceMethod.shared(
+      flaxNullableIntCall,
+      _SemanticsConfiguration_super_get_indexInParent,
+    ),
+    "@super:get:scrollChildCount": _flaxBinding651,
+    "@super:get:scrollIndex": _flaxBinding652,
+    "@super:get:platformViewId": _flaxBinding653,
+    "@super:get:maxValueLength": _flaxBinding654,
+    "@super:get:currentValueLength": _flaxBinding655,
+    "@super:get:isMergingSemanticsOfDescendants": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isMergingSemanticsOfDescendants,
+    ),
+    "@super:get:customSemanticsActions": FlaxInstanceMethod.shared(
+      _flaxBinding83,
+      _SemanticsConfiguration_super_get_customSemanticsActions,
+    ),
+    "@super:get:identifier": _flaxBinding656,
+    "@super:get:traversalParentIdentifier": _flaxBinding657,
+    "@super:get:traversalChildIdentifier": _flaxBinding658,
+    "@super:get:role": _flaxBinding659,
+    "@super:get:label": _flaxBinding660,
+    "@super:get:attributedLabel": _flaxBinding661,
+    "@super:get:value": _flaxBinding662,
+    "@super:get:attributedValue": _flaxBinding663,
+    "@super:get:increasedValue": _flaxBinding664,
+    "@super:get:attributedIncreasedValue": _flaxBinding665,
+    "@super:get:decreasedValue": _flaxBinding666,
+    "@super:get:attributedDecreasedValue": _flaxBinding667,
+    "@super:get:hint": _flaxBinding668,
+    "@super:get:attributedHint": _flaxBinding669,
+    "@super:get:tooltip": _flaxBinding670,
+    "@super:get:hintOverrides": FlaxInstanceMethod.shared(
+      _flaxBinding88,
+      _SemanticsConfiguration_super_get_hintOverrides,
+    ),
+    "@super:get:scopesRoute": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_scopesRoute,
+    ),
+    "@super:get:namesRoute": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_namesRoute,
+    ),
+    "@super:get:isImage": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isImage,
+    ),
+    "@super:get:liveRegion": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_liveRegion,
+    ),
+    "@super:get:textDirection": _flaxBinding671,
+    "@super:get:isSelected": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isSelected,
+    ),
+    "@super:get:isExpanded": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsConfiguration_super_get_isExpanded,
+    ),
+    "@super:get:isEnabled": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsConfiguration_super_get_isEnabled,
+    ),
+    "@super:get:isChecked": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsConfiguration_super_get_isChecked,
+    ),
+    "@super:get:isCheckStateMixed": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsConfiguration_super_get_isCheckStateMixed,
+    ),
+    "@super:get:isToggled": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsConfiguration_super_get_isToggled,
+    ),
+    "@super:get:isInMutuallyExclusiveGroup": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isInMutuallyExclusiveGroup,
+    ),
+    "@super:get:isFocusable": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isFocusable,
+    ),
+    "@super:get:isFocused": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsConfiguration_super_get_isFocused,
+    ),
+    "@super:get:accessibilityFocusBlockType": FlaxInstanceMethod.shared(
+      _flaxBinding92,
+      _SemanticsConfiguration_super_get_accessibilityFocusBlockType,
+    ),
+    "@super:get:isButton": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isButton,
+    ),
+    "@super:get:isLink": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isLink,
+    ),
+    "@super:get:linkUrl": _flaxBinding672,
+    "@super:get:isHeader": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isHeader,
+    ),
+    "@super:get:headingLevel": _flaxBinding673,
+    "@super:get:isSlider": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isSlider,
+    ),
+    "@super:get:isKeyboardKey": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isKeyboardKey,
+    ),
+    "@super:get:isHidden": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isHidden,
+    ),
+    "@super:get:isTextField": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isTextField,
+    ),
+    "@super:get:isReadOnly": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isReadOnly,
+    ),
+    "@super:get:isObscured": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isObscured,
+    ),
+    "@super:get:isMultiline": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_isMultiline,
+    ),
+    "@super:get:isRequired": _flaxBinding674,
+    "@super:get:hasImplicitScrolling": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsConfiguration_super_get_hasImplicitScrolling,
+    ),
+    "@super:get:textSelection": _flaxBinding675,
+    "@super:get:scrollPosition": _flaxBinding676,
+    "@super:get:scrollExtentMax": _flaxBinding677,
+    "@super:get:scrollExtentMin": _flaxBinding678,
+    "@super:get:controlsNodes": _flaxBinding679,
+    "@super:get:validationResult": _flaxBinding680,
+    "@super:get:hitTestBehavior": _flaxBinding681,
+    "@super:get:inputType": _flaxBinding682,
+    "@super:get:maxValue": _flaxBinding683,
+    "@super:get:minValue": _flaxBinding684,
+    "@super:get:tagsForChildren": FlaxInstanceMethod.shared(
+      _flaxBinding107,
+      _SemanticsConfiguration_super_get_tagsForChildren,
+    ),
+    "@super:set:isSemanticBoundary": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isSemanticBoundary,
+    ),
+    "@super:set:localeForSubtree": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding60)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_localeForSubtree,
+    ),
+    "@super:set:locale": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding60)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_locale,
+    ),
+    "@super:set:isBlockingUserActions": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isBlockingUserActions,
+    ),
+    "@super:set:explicitChildNodes": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_explicitChildNodes,
+    ),
+    "@super:set:isBlockingSemanticsOfPreviouslyPaintedNodes":
+        FlaxInstanceMethod.plain(
+          [FlaxParameter.required("value", flaxBoolType)],
+          flaxVoidType,
+          _SemanticsConfiguration_super_set_isBlockingSemanticsOfPreviouslyPaintedNodes,
+        ),
+    "@super:set:onTap": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onTap,
+    ),
+    "@super:set:onLongPress": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onLongPress,
+    ),
+    "@super:set:onScrollLeft": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onScrollLeft,
+    ),
+    "@super:set:onDismiss": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onDismiss,
+    ),
+    "@super:set:onScrollRight": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onScrollRight,
+    ),
+    "@super:set:onScrollUp": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onScrollUp,
+    ),
+    "@super:set:onScrollDown": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onScrollDown,
+    ),
+    "@super:set:onScrollToOffset": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding64)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onScrollToOffset,
+    ),
+    "@super:set:onIncrease": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onIncrease,
+    ),
+    "@super:set:onDecrease": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onDecrease,
+    ),
+    "@super:set:onCopy": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onCopy,
+    ),
+    "@super:set:onCut": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onCut,
+    ),
+    "@super:set:onPaste": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onPaste,
+    ),
+    "@super:set:onShowOnScreen": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onShowOnScreen,
+    ),
+    "@super:set:onMoveCursorForwardByCharacter": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding67)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onMoveCursorForwardByCharacter,
+    ),
+    "@super:set:onMoveCursorBackwardByCharacter": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding67)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onMoveCursorBackwardByCharacter,
+    ),
+    "@super:set:onMoveCursorForwardByWord": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding67)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onMoveCursorForwardByWord,
+    ),
+    "@super:set:onMoveCursorBackwardByWord": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding67)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onMoveCursorBackwardByWord,
+    ),
+    "@super:set:onSetSelection": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding71)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onSetSelection,
+    ),
+    "@super:set:onSetText": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding74)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onSetText,
+    ),
+    "@super:set:onDidGainAccessibilityFocus": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onDidGainAccessibilityFocus,
+    ),
+    "@super:set:onDidLoseAccessibilityFocus": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onDidLoseAccessibilityFocus,
+    ),
+    "@super:set:onFocus": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onFocus,
+    ),
+    "@super:set:onExpand": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onExpand,
+    ),
+    "@super:set:onCollapse": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxVoidNullableCallbackType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_onCollapse,
+    ),
+    "@super:set:childConfigurationsDelegate": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding77)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_childConfigurationsDelegate,
+    ),
+    "@super:set:sortKey": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding79)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_sortKey,
+    ),
+    "@super:set:indexInParent": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableIntType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_indexInParent,
+    ),
+    "@super:set:scrollChildCount": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableIntType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_scrollChildCount,
+    ),
+    "@super:set:scrollIndex": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableIntType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_scrollIndex,
+    ),
+    "@super:set:platformViewId": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableIntType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_platformViewId,
+    ),
+    "@super:set:maxValueLength": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableIntType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_maxValueLength,
+    ),
+    "@super:set:currentValueLength": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableIntType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_currentValueLength,
+    ),
+    "@super:set:isMergingSemanticsOfDescendants": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isMergingSemanticsOfDescendants,
+    ),
+    "@super:set:customSemanticsActions": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding82)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_customSemanticsActions,
+    ),
+    "@super:set:identifier": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxStringType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_identifier,
+    ),
+    "@super:set:traversalParentIdentifier": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableAnyType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_traversalParentIdentifier,
+    ),
+    "@super:set:traversalChildIdentifier": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableAnyType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_traversalChildIdentifier,
+    ),
+    "@super:set:role": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding84)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_role,
+    ),
+    "@super:set:label": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxStringType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_label,
+    ),
+    "@super:set:attributedLabel": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding6)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_attributedLabel,
+    ),
+    "@super:set:value": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxStringType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_value,
+    ),
+    "@super:set:attributedValue": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding6)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_attributedValue,
+    ),
+    "@super:set:increasedValue": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxStringType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_increasedValue,
+    ),
+    "@super:set:attributedIncreasedValue": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding6)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_attributedIncreasedValue,
+    ),
+    "@super:set:decreasedValue": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxStringType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_decreasedValue,
+    ),
+    "@super:set:attributedDecreasedValue": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding6)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_attributedDecreasedValue,
+    ),
+    "@super:set:hint": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxStringType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_hint,
+    ),
+    "@super:set:attributedHint": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding6)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_attributedHint,
+    ),
+    "@super:set:tooltip": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxStringType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_tooltip,
+    ),
+    "@super:set:hintOverrides": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding87)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_hintOverrides,
+    ),
+    "@super:set:scopesRoute": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_scopesRoute,
+    ),
+    "@super:set:namesRoute": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_namesRoute,
+    ),
+    "@super:set:isImage": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isImage,
+    ),
+    "@super:set:liveRegion": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_liveRegion,
+    ),
+    "@super:set:textDirection": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding89)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_textDirection,
+    ),
+    "@super:set:isSelected": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isSelected,
+    ),
+    "@super:set:isExpanded": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isExpanded,
+    ),
+    "@super:set:isEnabled": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isEnabled,
+    ),
+    "@super:set:isChecked": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isChecked,
+    ),
+    "@super:set:isCheckStateMixed": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isCheckStateMixed,
+    ),
+    "@super:set:isToggled": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isToggled,
+    ),
+    "@super:set:isInMutuallyExclusiveGroup": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isInMutuallyExclusiveGroup,
+    ),
+    "@super:set:isFocusable": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isFocusable,
+    ),
+    "@super:set:isFocused": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isFocused,
+    ),
+    "@super:set:accessibilityFocusBlockType": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding91)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_accessibilityFocusBlockType,
+    ),
+    "@super:set:isButton": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isButton,
+    ),
+    "@super:set:isLink": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isLink,
+    ),
+    "@super:set:linkUrl": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding93)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_linkUrl,
+    ),
+    "@super:set:isHeader": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isHeader,
+    ),
+    "@super:set:headingLevel": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxIntType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_headingLevel,
+    ),
+    "@super:set:isSlider": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isSlider,
+    ),
+    "@super:set:isKeyboardKey": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isKeyboardKey,
+    ),
+    "@super:set:isHidden": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isHidden,
+    ),
+    "@super:set:isTextField": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isTextField,
+    ),
+    "@super:set:isReadOnly": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isReadOnly,
+    ),
+    "@super:set:isObscured": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isObscured,
+    ),
+    "@super:set:isMultiline": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isMultiline,
+    ),
+    "@super:set:isRequired": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_isRequired,
+    ),
+    "@super:set:hasImplicitScrolling": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_hasImplicitScrolling,
+    ),
+    "@super:set:textSelection": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding95)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_textSelection,
+    ),
+    "@super:set:scrollPosition": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableDoubleType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_scrollPosition,
+    ),
+    "@super:set:scrollExtentMax": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableDoubleType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_scrollExtentMax,
+    ),
+    "@super:set:scrollExtentMin": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableDoubleType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_scrollExtentMin,
+    ),
+    "@super:set:controlsNodes": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding98)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_controlsNodes,
+    ),
+    "@super:set:validationResult": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding100)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_validationResult,
+    ),
+    "@super:set:hitTestBehavior": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding102)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_hitTestBehavior,
+    ),
+    "@super:set:inputType": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding104)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_inputType,
+    ),
+    "@super:set:maxValue": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableStringType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_maxValue,
+    ),
+    "@super:set:minValue": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableStringType)],
+      flaxVoidType,
+      _SemanticsConfiguration_super_set_minValue,
+    ),
+  },
+  constructors: {"": _flaxBinding304, "@implementation": _flaxBinding304},
+  create: _createSemanticsConfiguration,
+  matches: _isSemanticsConfiguration,
+  setters: [
     _flaxBinding526,
     _flaxBinding527,
     _flaxBinding528,
@@ -19625,916 +20269,6 @@ const _flaxBinding844 = FlaxObjectBinding(
     _flaxBinding539,
     _flaxBinding540,
     _flaxBinding541,
-  ],
-  {
-    "getActionHandler": _flaxBinding638,
-    "tagsChildrenWith": _flaxBinding639,
-    "addTagForChildren": _flaxBinding640,
-    "isCompatibleWith": _flaxBinding641,
-    "absorb": _flaxBinding642,
-    "copy": _flaxBinding643,
-    "@super:getActionHandler": FlaxInstanceMethod.signature(
-      _flaxBinding66,
-      _SemanticsConfiguration_super_getActionHandler,
-    ),
-    "@super:tagsChildrenWith": FlaxInstanceMethod.signature(
-      _flaxBinding68,
-      _SemanticsConfiguration_super_tagsChildrenWith,
-    ),
-    "@super:addTagForChildren": FlaxInstanceMethod.signature(
-      _flaxBinding69,
-      _SemanticsConfiguration_super_addTagForChildren,
-    ),
-    "@super:isCompatibleWith": FlaxInstanceMethod.signature(
-      _flaxBinding71,
-      _SemanticsConfiguration_super_isCompatibleWith,
-    ),
-    "@super:absorb": FlaxInstanceMethod.signature(
-      _flaxBinding72,
-      _SemanticsConfiguration_super_absorb,
-    ),
-    "@super:copy": FlaxInstanceMethod.signature(
-      _flaxBinding73,
-      _SemanticsConfiguration_super_copy,
-    ),
-    "@super:get:isSemanticBoundary": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isSemanticBoundary,
-    ),
-    "@super:get:localeForSubtree": FlaxInstanceMethod.signature(
-      _flaxBinding75,
-      _SemanticsConfiguration_super_get_localeForSubtree,
-    ),
-    "@super:get:locale": FlaxInstanceMethod.signature(
-      _flaxBinding75,
-      _SemanticsConfiguration_super_get_locale,
-    ),
-    "@super:get:isBlockingUserActions": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isBlockingUserActions,
-    ),
-    "@super:get:explicitChildNodes": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_explicitChildNodes,
-    ),
-    "@super:get:isBlockingSemanticsOfPreviouslyPaintedNodes":
-        FlaxInstanceMethod.signature(
-          _flaxBinding28,
-          _SemanticsConfiguration_super_get_isBlockingSemanticsOfPreviouslyPaintedNodes,
-        ),
-    "@super:get:hasBeenAnnotated": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_hasBeenAnnotated,
-    ),
-    "@super:get:onTap": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onTap,
-    ),
-    "@super:get:onLongPress": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onLongPress,
-    ),
-    "@super:get:onScrollLeft": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onScrollLeft,
-    ),
-    "@super:get:onDismiss": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onDismiss,
-    ),
-    "@super:get:onScrollRight": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onScrollRight,
-    ),
-    "@super:get:onScrollUp": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onScrollUp,
-    ),
-    "@super:get:onScrollDown": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onScrollDown,
-    ),
-    "@super:get:onScrollToOffset": FlaxInstanceMethod.signature(
-      _flaxBinding82,
-      _SemanticsConfiguration_super_get_onScrollToOffset,
-    ),
-    "@super:get:onIncrease": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onIncrease,
-    ),
-    "@super:get:onDecrease": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onDecrease,
-    ),
-    "@super:get:onCopy": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onCopy,
-    ),
-    "@super:get:onCut": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onCut,
-    ),
-    "@super:get:onPaste": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onPaste,
-    ),
-    "@super:get:onShowOnScreen": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _SemanticsConfiguration_super_get_onShowOnScreen,
-    ),
-    "@super:get:onMoveCursorForwardByCharacter": FlaxInstanceMethod.signature(
-      _flaxBinding85,
-      _FlaxProxyDispatch11_super_get_onMoveCursorForwardByCharacter,
-    ),
-    "@super:get:onMoveCursorBackwardByCharacter": FlaxInstanceMethod.signature(
-      _flaxBinding85,
-      _FlaxProxyDispatch11_super_get_onMoveCursorBackwardByCharacter,
-    ),
-    "@super:get:onMoveCursorForwardByWord": FlaxInstanceMethod.signature(
-      _flaxBinding85,
-      _FlaxProxyDispatch11_super_get_onMoveCursorForwardByWord,
-    ),
-    "@super:get:onMoveCursorBackwardByWord": FlaxInstanceMethod.signature(
-      _flaxBinding85,
-      _FlaxProxyDispatch11_super_get_onMoveCursorBackwardByWord,
-    ),
-    "@super:get:onSetSelection": FlaxInstanceMethod.signature(
-      _flaxBinding89,
-      _FlaxProxyDispatch11_super_get_onSetSelection,
-    ),
-    "@super:get:onSetText": FlaxInstanceMethod.signature(
-      _flaxBinding92,
-      _FlaxProxyDispatch11_super_get_onSetText,
-    ),
-    "@super:get:onDidGainAccessibilityFocus": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onDidGainAccessibilityFocus,
-    ),
-    "@super:get:onDidLoseAccessibilityFocus": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onDidLoseAccessibilityFocus,
-    ),
-    "@super:get:onFocus": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onFocus,
-    ),
-    "@super:get:onExpand": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onExpand,
-    ),
-    "@super:get:onCollapse": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onCollapse,
-    ),
-    "@super:get:childConfigurationsDelegate": FlaxInstanceMethod.signature(
-      _flaxBinding95,
-      _SemanticsConfiguration_super_get_childConfigurationsDelegate,
-    ),
-    "@super:get:sortKey": FlaxInstanceMethod.signature(
-      _flaxBinding97,
-      _SemanticsConfiguration_super_get_sortKey,
-    ),
-    "@super:get:indexInParent": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _SemanticsConfiguration_super_get_indexInParent,
-    ),
-    "@super:get:scrollChildCount": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch14_super_get_scrollChildCount,
-    ),
-    "@super:get:scrollIndex": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch14_super_get_scrollIndex,
-    ),
-    "@super:get:platformViewId": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch14_super_get_platformViewId,
-    ),
-    "@super:get:maxValueLength": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch15_super_get_maxValueLength,
-    ),
-    "@super:get:currentValueLength": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch15_super_get_currentValueLength,
-    ),
-    "@super:get:isMergingSemanticsOfDescendants": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isMergingSemanticsOfDescendants,
-    ),
-    "@super:get:customSemanticsActions": FlaxInstanceMethod.signature(
-      _flaxBinding103,
-      _SemanticsConfiguration_super_get_customSemanticsActions,
-    ),
-    "@super:get:identifier": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_identifier,
-    ),
-    "@super:get:traversalParentIdentifier": FlaxInstanceMethod.signature(
-      _flaxBinding35,
-      _FlaxProxyDispatch15_super_get_traversalParentIdentifier,
-    ),
-    "@super:get:traversalChildIdentifier": FlaxInstanceMethod.signature(
-      _flaxBinding35,
-      _FlaxProxyDispatch15_super_get_traversalChildIdentifier,
-    ),
-    "@super:get:role": FlaxInstanceMethod.signature(
-      _flaxBinding105,
-      _FlaxProxyDispatch14_super_get_role,
-    ),
-    "@super:get:label": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_label,
-    ),
-    "@super:get:attributedLabel": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedLabel,
-    ),
-    "@super:get:value": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_value,
-    ),
-    "@super:get:attributedValue": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedValue,
-    ),
-    "@super:get:increasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_increasedValue,
-    ),
-    "@super:get:attributedIncreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedIncreasedValue,
-    ),
-    "@super:get:decreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_decreasedValue,
-    ),
-    "@super:get:attributedDecreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedDecreasedValue,
-    ),
-    "@super:get:hint": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_hint,
-    ),
-    "@super:get:attributedHint": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedHint,
-    ),
-    "@super:get:tooltip": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_tooltip,
-    ),
-    "@super:get:hintOverrides": FlaxInstanceMethod.signature(
-      _flaxBinding108,
-      _SemanticsConfiguration_super_get_hintOverrides,
-    ),
-    "@super:get:scopesRoute": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_scopesRoute,
-    ),
-    "@super:get:namesRoute": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_namesRoute,
-    ),
-    "@super:get:isImage": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isImage,
-    ),
-    "@super:get:liveRegion": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_liveRegion,
-    ),
-    "@super:get:textDirection": FlaxInstanceMethod.signature(
-      _flaxBinding110,
-      _FlaxProxyDispatch15_super_get_textDirection,
-    ),
-    "@super:get:isSelected": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isSelected,
-    ),
-    "@super:get:isExpanded": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsConfiguration_super_get_isExpanded,
-    ),
-    "@super:get:isEnabled": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsConfiguration_super_get_isEnabled,
-    ),
-    "@super:get:isChecked": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsConfiguration_super_get_isChecked,
-    ),
-    "@super:get:isCheckStateMixed": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsConfiguration_super_get_isCheckStateMixed,
-    ),
-    "@super:get:isToggled": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsConfiguration_super_get_isToggled,
-    ),
-    "@super:get:isInMutuallyExclusiveGroup": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isInMutuallyExclusiveGroup,
-    ),
-    "@super:get:isFocusable": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isFocusable,
-    ),
-    "@super:get:isFocused": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsConfiguration_super_get_isFocused,
-    ),
-    "@super:get:accessibilityFocusBlockType": FlaxInstanceMethod.signature(
-      _flaxBinding114,
-      _SemanticsConfiguration_super_get_accessibilityFocusBlockType,
-    ),
-    "@super:get:isButton": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isButton,
-    ),
-    "@super:get:isLink": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isLink,
-    ),
-    "@super:get:linkUrl": FlaxInstanceMethod.signature(
-      _flaxBinding116,
-      _FlaxProxyDispatch15_super_get_linkUrl,
-    ),
-    "@super:get:isHeader": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isHeader,
-    ),
-    "@super:get:headingLevel": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch14_super_get_headingLevel,
-    ),
-    "@super:get:isSlider": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isSlider,
-    ),
-    "@super:get:isKeyboardKey": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isKeyboardKey,
-    ),
-    "@super:get:isHidden": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isHidden,
-    ),
-    "@super:get:isTextField": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isTextField,
-    ),
-    "@super:get:isReadOnly": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isReadOnly,
-    ),
-    "@super:get:isObscured": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isObscured,
-    ),
-    "@super:get:isMultiline": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_isMultiline,
-    ),
-    "@super:get:isRequired": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _FlaxProxyDispatch11_super_get_isRequired,
-    ),
-    "@super:get:hasImplicitScrolling": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsConfiguration_super_get_hasImplicitScrolling,
-    ),
-    "@super:get:textSelection": FlaxInstanceMethod.signature(
-      _flaxBinding118,
-      _FlaxProxyDispatch14_super_get_textSelection,
-    ),
-    "@super:get:scrollPosition": FlaxInstanceMethod.signature(
-      _flaxBinding120,
-      _FlaxProxyDispatch14_super_get_scrollPosition,
-    ),
-    "@super:get:scrollExtentMax": FlaxInstanceMethod.signature(
-      _flaxBinding120,
-      _FlaxProxyDispatch14_super_get_scrollExtentMax,
-    ),
-    "@super:get:scrollExtentMin": FlaxInstanceMethod.signature(
-      _flaxBinding120,
-      _FlaxProxyDispatch14_super_get_scrollExtentMin,
-    ),
-    "@super:get:controlsNodes": FlaxInstanceMethod.signature(
-      _flaxBinding123,
-      _FlaxProxyDispatch15_super_get_controlsNodes,
-    ),
-    "@super:get:validationResult": FlaxInstanceMethod.signature(
-      _flaxBinding125,
-      _FlaxProxyDispatch15_super_get_validationResult,
-    ),
-    "@super:get:hitTestBehavior": FlaxInstanceMethod.signature(
-      _flaxBinding127,
-      _FlaxProxyDispatch14_super_get_hitTestBehavior,
-    ),
-    "@super:get:inputType": FlaxInstanceMethod.signature(
-      _flaxBinding129,
-      _FlaxProxyDispatch14_super_get_inputType,
-    ),
-    "@super:get:maxValue": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch15_super_get_maxValue,
-    ),
-    "@super:get:minValue": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch15_super_get_minValue,
-    ),
-    "@super:get:tagsForChildren": FlaxInstanceMethod.signature(
-      _flaxBinding131,
-      _SemanticsConfiguration_super_get_tagsForChildren,
-    ),
-    "@super:set:isSemanticBoundary": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isSemanticBoundary,
-    ),
-    "@super:set:localeForSubtree": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding74, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_localeForSubtree,
-    ),
-    "@super:set:locale": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding74, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_locale,
-    ),
-    "@super:set:isBlockingUserActions": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isBlockingUserActions,
-    ),
-    "@super:set:explicitChildNodes": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_explicitChildNodes,
-    ),
-    "@super:set:isBlockingSemanticsOfPreviouslyPaintedNodes": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isBlockingSemanticsOfPreviouslyPaintedNodes,
-    ),
-    "@super:set:onTap": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onTap,
-    ),
-    "@super:set:onLongPress": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onLongPress,
-    ),
-    "@super:set:onScrollLeft": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onScrollLeft,
-    ),
-    "@super:set:onDismiss": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onDismiss,
-    ),
-    "@super:set:onScrollRight": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onScrollRight,
-    ),
-    "@super:set:onScrollUp": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onScrollUp,
-    ),
-    "@super:set:onScrollDown": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onScrollDown,
-    ),
-    "@super:set:onScrollToOffset": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding81, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onScrollToOffset,
-    ),
-    "@super:set:onIncrease": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onIncrease,
-    ),
-    "@super:set:onDecrease": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onDecrease,
-    ),
-    "@super:set:onCopy": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onCopy,
-    ),
-    "@super:set:onCut": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onCut,
-    ),
-    "@super:set:onPaste": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onPaste,
-    ),
-    "@super:set:onShowOnScreen": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onShowOnScreen,
-    ),
-    "@super:set:onMoveCursorForwardByCharacter": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding84, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onMoveCursorForwardByCharacter,
-    ),
-    "@super:set:onMoveCursorBackwardByCharacter": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding84, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onMoveCursorBackwardByCharacter,
-    ),
-    "@super:set:onMoveCursorForwardByWord": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding84, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onMoveCursorForwardByWord,
-    ),
-    "@super:set:onMoveCursorBackwardByWord": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding84, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onMoveCursorBackwardByWord,
-    ),
-    "@super:set:onSetSelection": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding88, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onSetSelection,
-    ),
-    "@super:set:onSetText": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding91, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onSetText,
-    ),
-    "@super:set:onDidGainAccessibilityFocus": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onDidGainAccessibilityFocus,
-    ),
-    "@super:set:onDidLoseAccessibilityFocus": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onDidLoseAccessibilityFocus,
-    ),
-    "@super:set:onFocus": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onFocus,
-    ),
-    "@super:set:onExpand": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onExpand,
-    ),
-    "@super:set:onCollapse": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding77, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_onCollapse,
-    ),
-    "@super:set:childConfigurationsDelegate": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding94, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_childConfigurationsDelegate,
-    ),
-    "@super:set:sortKey": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding96, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_sortKey,
-    ),
-    "@super:set:indexInParent": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding98, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_indexInParent,
-    ),
-    "@super:set:scrollChildCount": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding98, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_scrollChildCount,
-    ),
-    "@super:set:scrollIndex": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding98, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_scrollIndex,
-    ),
-    "@super:set:platformViewId": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding98, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_platformViewId,
-    ),
-    "@super:set:maxValueLength": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding98, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_maxValueLength,
-    ),
-    "@super:set:currentValueLength": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding98, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_currentValueLength,
-    ),
-    "@super:set:isMergingSemanticsOfDescendants": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isMergingSemanticsOfDescendants,
-    ),
-    "@super:set:customSemanticsActions": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding102, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_customSemanticsActions,
-    ),
-    "@super:set:identifier": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding1, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_identifier,
-    ),
-    "@super:set:traversalParentIdentifier": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding0, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_traversalParentIdentifier,
-    ),
-    "@super:set:traversalChildIdentifier": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding0, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_traversalChildIdentifier,
-    ),
-    "@super:set:role": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding104, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_role,
-    ),
-    "@super:set:label": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding1, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_label,
-    ),
-    "@super:set:attributedLabel": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding11, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_attributedLabel,
-    ),
-    "@super:set:value": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding1, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_value,
-    ),
-    "@super:set:attributedValue": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding11, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_attributedValue,
-    ),
-    "@super:set:increasedValue": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding1, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_increasedValue,
-    ),
-    "@super:set:attributedIncreasedValue": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding11, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_attributedIncreasedValue,
-    ),
-    "@super:set:decreasedValue": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding1, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_decreasedValue,
-    ),
-    "@super:set:attributedDecreasedValue": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding11, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_attributedDecreasedValue,
-    ),
-    "@super:set:hint": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding1, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_hint,
-    ),
-    "@super:set:attributedHint": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding11, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_attributedHint,
-    ),
-    "@super:set:tooltip": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding1, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_tooltip,
-    ),
-    "@super:set:hintOverrides": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding107, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_hintOverrides,
-    ),
-    "@super:set:scopesRoute": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_scopesRoute,
-    ),
-    "@super:set:namesRoute": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_namesRoute,
-    ),
-    "@super:set:isImage": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isImage,
-    ),
-    "@super:set:liveRegion": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_liveRegion,
-    ),
-    "@super:set:textDirection": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding109, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_textDirection,
-    ),
-    "@super:set:isSelected": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isSelected,
-    ),
-    "@super:set:isExpanded": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding111, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isExpanded,
-    ),
-    "@super:set:isEnabled": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding111, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isEnabled,
-    ),
-    "@super:set:isChecked": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding111, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isChecked,
-    ),
-    "@super:set:isCheckStateMixed": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding111, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isCheckStateMixed,
-    ),
-    "@super:set:isToggled": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding111, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isToggled,
-    ),
-    "@super:set:isInMutuallyExclusiveGroup": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isInMutuallyExclusiveGroup,
-    ),
-    "@super:set:isFocusable": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isFocusable,
-    ),
-    "@super:set:isFocused": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding111, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isFocused,
-    ),
-    "@super:set:accessibilityFocusBlockType": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding113, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_accessibilityFocusBlockType,
-    ),
-    "@super:set:isButton": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isButton,
-    ),
-    "@super:set:isLink": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isLink,
-    ),
-    "@super:set:linkUrl": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding115, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_linkUrl,
-    ),
-    "@super:set:isHeader": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isHeader,
-    ),
-    "@super:set:headingLevel": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding5, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_headingLevel,
-    ),
-    "@super:set:isSlider": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isSlider,
-    ),
-    "@super:set:isKeyboardKey": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isKeyboardKey,
-    ),
-    "@super:set:isHidden": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isHidden,
-    ),
-    "@super:set:isTextField": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isTextField,
-    ),
-    "@super:set:isReadOnly": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isReadOnly,
-    ),
-    "@super:set:isObscured": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isObscured,
-    ),
-    "@super:set:isMultiline": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isMultiline,
-    ),
-    "@super:set:isRequired": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding111, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_isRequired,
-    ),
-    "@super:set:hasImplicitScrolling": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_hasImplicitScrolling,
-    ),
-    "@super:set:textSelection": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding117, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_textSelection,
-    ),
-    "@super:set:scrollPosition": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding119, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_scrollPosition,
-    ),
-    "@super:set:scrollExtentMax": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding119, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_scrollExtentMax,
-    ),
-    "@super:set:scrollExtentMin": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding119, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_scrollExtentMin,
-    ),
-    "@super:set:controlsNodes": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding122, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_controlsNodes,
-    ),
-    "@super:set:validationResult": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding124, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_validationResult,
-    ),
-    "@super:set:hitTestBehavior": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding126, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_hitTestBehavior,
-    ),
-    "@super:set:inputType": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding128, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_inputType,
-    ),
-    "@super:set:maxValue": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding29, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_maxValue,
-    ),
-    "@super:set:minValue": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding29, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsConfiguration_super_set_minValue,
-    ),
-  },
-  constructors: {"@implementation": _flaxBinding325},
-  create: _createSemanticsConfiguration,
-  matches: _isSemanticsConfiguration,
-  setters: [
     _flaxBinding542,
     _flaxBinding543,
     _flaxBinding544,
@@ -20615,66 +20349,9 @@ const _flaxBinding844 = FlaxObjectBinding(
     _flaxBinding619,
     _flaxBinding620,
     _flaxBinding621,
-    _flaxBinding622,
-    _flaxBinding623,
-    _flaxBinding624,
-    _flaxBinding625,
-    _flaxBinding626,
-    _flaxBinding627,
-    _flaxBinding628,
-    _flaxBinding629,
-    _flaxBinding630,
-    _flaxBinding631,
-    _flaxBinding632,
-    _flaxBinding633,
-    _flaxBinding634,
-    _flaxBinding635,
-    _flaxBinding636,
-    _flaxBinding637,
   ],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding644,
-    _flaxBinding645,
-    _flaxBinding646,
-    _flaxBinding647,
-    _flaxBinding648,
-    _flaxBinding649,
-    _flaxBinding650,
-    _flaxBinding651,
-    _flaxBinding652,
-    _flaxBinding653,
-    _flaxBinding654,
-    _flaxBinding655,
-    _flaxBinding656,
-    _flaxBinding657,
-    _flaxBinding658,
-    _flaxBinding659,
-    _flaxBinding660,
-    _flaxBinding661,
-    _flaxBinding662,
-    _flaxBinding663,
-    _flaxBinding664,
-    _flaxBinding665,
-    _flaxBinding666,
-    _flaxBinding667,
-    _flaxBinding668,
-    _flaxBinding669,
-    _flaxBinding670,
-    _flaxBinding671,
-    _flaxBinding672,
-    _flaxBinding673,
-    _flaxBinding674,
-    _flaxBinding675,
-    _flaxBinding676,
-    _flaxBinding677,
-    _flaxBinding678,
-    _flaxBinding679,
-    _flaxBinding680,
-    _flaxBinding681,
-    _flaxBinding682,
-    _flaxBinding683,
-    _flaxBinding684,
     _flaxBinding685,
     _flaxBinding686,
     _flaxBinding687,
@@ -20834,329 +20511,7 @@ const _flaxBinding844 = FlaxObjectBinding(
     _flaxBinding841,
     _flaxBinding842,
     _flaxBinding843,
-  ]),
-);
-const _flaxBinding845 = FlaxGetter(
-  "flags",
-  _flaxBinding5,
-  _SemanticsData_flags,
-);
-const _flaxBinding846 = FlaxGetter(
-  "flagsCollection",
-  _flaxBinding163,
-  _SemanticsData_flagsCollection,
-);
-const _flaxBinding847 = FlaxGetter(
-  "actions",
-  _flaxBinding5,
-  _SemanticsData_actions,
-);
-const _flaxBinding848 = FlaxGetter(
-  "identifier",
-  _flaxBinding1,
-  _SemanticsData_identifier,
-);
-const _flaxBinding849 = FlaxGetter(
-  "traversalParentIdentifier",
-  _flaxBinding0,
-  _SemanticsData_traversalParentIdentifier,
-);
-const _flaxBinding850 = FlaxGetter(
-  "traversalChildIdentifier",
-  _flaxBinding0,
-  _SemanticsData_traversalChildIdentifier,
-);
-const _flaxBinding851 = FlaxGetter(
-  "label",
-  _flaxBinding1,
-  _SemanticsData_label,
-);
-const _flaxBinding852 = FlaxGetter(
-  "attributedLabel",
-  _flaxBinding11,
-  _SemanticsData_attributedLabel,
-);
-const _flaxBinding853 = FlaxGetter(
-  "value",
-  _flaxBinding1,
-  _SemanticsData_value,
-);
-const _flaxBinding854 = FlaxGetter(
-  "attributedValue",
-  _flaxBinding11,
-  _SemanticsData_attributedValue,
-);
-const _flaxBinding855 = FlaxGetter(
-  "increasedValue",
-  _flaxBinding1,
-  _SemanticsData_increasedValue,
-);
-const _flaxBinding856 = FlaxGetter(
-  "attributedIncreasedValue",
-  _flaxBinding11,
-  _SemanticsData_attributedIncreasedValue,
-);
-const _flaxBinding857 = FlaxGetter(
-  "decreasedValue",
-  _flaxBinding1,
-  _SemanticsData_decreasedValue,
-);
-const _flaxBinding858 = FlaxGetter(
-  "attributedDecreasedValue",
-  _flaxBinding11,
-  _SemanticsData_attributedDecreasedValue,
-);
-const _flaxBinding859 = FlaxGetter("hint", _flaxBinding1, _SemanticsData_hint);
-const _flaxBinding860 = FlaxGetter(
-  "attributedHint",
-  _flaxBinding11,
-  _SemanticsData_attributedHint,
-);
-const _flaxBinding861 = FlaxGetter(
-  "tooltip",
-  _flaxBinding1,
-  _SemanticsData_tooltip,
-);
-const _flaxBinding862 = FlaxGetter(
-  "headingLevel",
-  _flaxBinding5,
-  _SemanticsData_headingLevel,
-);
-const _flaxBinding863 = FlaxGetter(
-  "textDirection",
-  _flaxBinding109,
-  _SemanticsData_textDirection,
-);
-const _flaxBinding864 = FlaxGetter(
-  "textSelection",
-  _flaxBinding117,
-  _SemanticsData_textSelection,
-);
-const _flaxBinding865 = FlaxGetter(
-  "scrollChildCount",
-  _flaxBinding98,
-  _SemanticsData_scrollChildCount,
-);
-const _flaxBinding866 = FlaxGetter(
-  "scrollIndex",
-  _flaxBinding98,
-  _SemanticsData_scrollIndex,
-);
-const _flaxBinding867 = FlaxGetter(
-  "scrollPosition",
-  _flaxBinding119,
-  _SemanticsData_scrollPosition,
-);
-const _flaxBinding868 = FlaxGetter(
-  "scrollExtentMax",
-  _flaxBinding119,
-  _SemanticsData_scrollExtentMax,
-);
-const _flaxBinding869 = FlaxGetter(
-  "scrollExtentMin",
-  _flaxBinding119,
-  _SemanticsData_scrollExtentMin,
-);
-const _flaxBinding870 = FlaxGetter(
-  "platformViewId",
-  _flaxBinding98,
-  _SemanticsData_platformViewId,
-);
-const _flaxBinding871 = FlaxGetter(
-  "maxValueLength",
-  _flaxBinding98,
-  _SemanticsData_maxValueLength,
-);
-const _flaxBinding872 = FlaxGetter(
-  "currentValueLength",
-  _flaxBinding98,
-  _SemanticsData_currentValueLength,
-);
-const _flaxBinding873 = FlaxGetter(
-  "linkUrl",
-  _flaxBinding115,
-  _SemanticsData_linkUrl,
-);
-const _flaxBinding874 = FlaxGetter(
-  "rect",
-  _flaxBinding165,
-  _SemanticsData_rect,
-);
-const _flaxBinding875 = FlaxGetter(
-  "tags",
-  _flaxBinding168,
-  _SemanticsData_tags,
-);
-const _flaxBinding876 = FlaxGetter(
-  "transform",
-  _flaxBinding170,
-  _SemanticsData_transform,
-);
-const _flaxBinding877 = FlaxGetter(
-  "customSemanticsActionIds",
-  _flaxBinding173,
-  _SemanticsData_customSemanticsActionIds,
-);
-const _flaxBinding878 = FlaxGetter(
-  "role",
-  _flaxBinding104,
-  _SemanticsData_role,
-);
-const _flaxBinding879 = FlaxGetter(
-  "controlsNodes",
-  _flaxBinding122,
-  _SemanticsData_controlsNodes,
-);
-const _flaxBinding880 = FlaxGetter(
-  "validationResult",
-  _flaxBinding124,
-  _SemanticsData_validationResult,
-);
-const _flaxBinding881 = FlaxGetter(
-  "hitTestBehavior",
-  _flaxBinding126,
-  _SemanticsData_hitTestBehavior,
-);
-const _flaxBinding882 = FlaxGetter(
-  "inputType",
-  _flaxBinding128,
-  _SemanticsData_inputType,
-);
-const _flaxBinding883 = FlaxGetter(
-  "locale",
-  _flaxBinding74,
-  _SemanticsData_locale,
-);
-const _flaxBinding884 = FlaxGetter(
-  "maxValue",
-  _flaxBinding29,
-  _SemanticsData_maxValue,
-);
-const _flaxBinding885 = FlaxGetter(
-  "minValue",
-  _flaxBinding29,
-  _SemanticsData_minValue,
-);
-const _flaxBinding886 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
-  _SemanticsData_toStringShort,
-);
-const _flaxBinding887 = FlaxInstanceMethod(
-  _flaxBinding350,
-  _flaxBinding1,
-  _SemanticsData_toString,
-);
-const _flaxBinding888 = FlaxInstanceMethod(
-  _flaxBinding352,
-  _flaxBinding19,
-  _SemanticsData_toDiagnosticsNode,
-);
-const _flaxBinding889 = FlaxInstanceMethod.signature(
-  _flaxBinding60,
-  _SemanticsData_debugFillProperties,
-);
-const _flaxBinding890 = FlaxInstanceMethod.signature(
-  _flaxBinding161,
-  _SemanticsData_hasFlag,
-);
-const _flaxBinding891 = FlaxInstanceMethod.signature(
-  _flaxBinding162,
-  _SemanticsData_hasAction,
-);
-const _flaxBinding892 = <FlaxParameter>[
-  FlaxParameter("flagsCollection", _flaxBinding163, required: true),
-  FlaxParameter("actions", _flaxBinding5, required: true),
-  FlaxParameter("identifier", _flaxBinding1, required: true),
-  FlaxParameter("traversalParentIdentifier", _flaxBinding0, required: true),
-  FlaxParameter("traversalChildIdentifier", _flaxBinding0, required: true),
-  FlaxParameter("attributedLabel", _flaxBinding11, required: true),
-  FlaxParameter("attributedValue", _flaxBinding11, required: true),
-  FlaxParameter("attributedIncreasedValue", _flaxBinding11, required: true),
-  FlaxParameter("attributedDecreasedValue", _flaxBinding11, required: true),
-  FlaxParameter("attributedHint", _flaxBinding11, required: true),
-  FlaxParameter("tooltip", _flaxBinding1, required: true),
-  FlaxParameter("textDirection", _flaxBinding109, required: true),
-  FlaxParameter("rect", _flaxBinding165, required: true),
-  FlaxParameter("textSelection", _flaxBinding117, required: true),
-  FlaxParameter("scrollIndex", _flaxBinding98, required: true),
-  FlaxParameter("scrollChildCount", _flaxBinding98, required: true),
-  FlaxParameter("scrollPosition", _flaxBinding119, required: true),
-  FlaxParameter("scrollExtentMax", _flaxBinding119, required: true),
-  FlaxParameter("scrollExtentMin", _flaxBinding119, required: true),
-  FlaxParameter("platformViewId", _flaxBinding98, required: true),
-  FlaxParameter("maxValueLength", _flaxBinding98, required: true),
-  FlaxParameter("currentValueLength", _flaxBinding98, required: true),
-  FlaxParameter("headingLevel", _flaxBinding5, required: true),
-  FlaxParameter("linkUrl", _flaxBinding115, required: true),
-  FlaxParameter("role", _flaxBinding104, required: true),
-  FlaxParameter("controlsNodes", _flaxBinding122, required: true),
-  FlaxParameter("validationResult", _flaxBinding124, required: true),
-  FlaxParameter("hitTestBehavior", _flaxBinding126, required: true),
-  FlaxParameter("inputType", _flaxBinding128, required: true),
-  FlaxParameter("locale", _flaxBinding74, required: true),
-  FlaxParameter("minValue", _flaxBinding29, required: true),
-  FlaxParameter("maxValue", _flaxBinding29, required: true),
-  FlaxParameter("tags", _flaxBinding168, required: false),
-  FlaxParameter("transform", _flaxBinding170, required: false),
-  FlaxParameter("customSemanticsActionIds", _flaxBinding173, required: false),
-];
-const _flaxBinding893 = FlaxProxyMember(
-  "hasFlag",
-  0,
-  _flaxBinding161,
-  hasSuper: true,
-);
-const _flaxBinding894 = FlaxProxyMember(
-  "hasAction",
-  0,
-  _flaxBinding162,
-  hasSuper: true,
-);
-const _flaxBinding895 = FlaxProxyMember(
-  "flags",
-  1,
-  _flaxBinding6,
-  hasSuper: true,
-);
-const _flaxBinding896 = FlaxProxyMember(
-  "flagsCollection",
-  1,
-  _flaxBinding164,
-  hasSuper: true,
-);
-const _flaxBinding897 = FlaxProxyMember(
-  "actions",
-  1,
-  _flaxBinding6,
-  hasSuper: true,
-);
-const _flaxBinding898 = FlaxProxyMember(
-  "rect",
-  1,
-  _flaxBinding166,
-  hasSuper: true,
-);
-const _flaxBinding899 = FlaxProxyMember(
-  "tags",
-  1,
-  _flaxBinding169,
-  hasSuper: true,
-);
-const _flaxBinding900 = FlaxProxyMember(
-  "transform",
-  1,
-  _flaxBinding171,
-  hasSuper: true,
-);
-const _flaxBinding901 = FlaxProxyMember(
-  "customSemanticsActionIds",
-  1,
-  _flaxBinding174,
-  hasSuper: true,
-);
-const _flaxBinding902 = FlaxObjectBinding(
-  "flax.core/sdk_semantics#type:SemanticsData",
-  [
+    _flaxBinding844,
     _flaxBinding845,
     _flaxBinding846,
     _flaxBinding847,
@@ -21197,207 +20552,468 @@ const _flaxBinding902 = FlaxObjectBinding(
     _flaxBinding882,
     _flaxBinding883,
     _flaxBinding884,
-    _flaxBinding885,
+  ]),
+);
+const _flaxBinding886 = FlaxGetter.plain(
+  "flags",
+  flaxIntType,
+  _SemanticsData_flags,
+);
+const _flaxBinding887 = FlaxGetter.plain(
+  "flagsCollection",
+  _flaxBinding139,
+  _SemanticsData_flagsCollection,
+);
+const _flaxBinding888 = FlaxGetter.plain(
+  "actions",
+  flaxIntType,
+  _SemanticsData_actions,
+);
+const _flaxBinding889 = FlaxGetter.plain(
+  "identifier",
+  flaxStringType,
+  _SemanticsData_identifier,
+);
+const _flaxBinding890 = FlaxGetter.plain(
+  "traversalParentIdentifier",
+  flaxNullableAnyType,
+  _SemanticsData_traversalParentIdentifier,
+);
+const _flaxBinding891 = FlaxGetter.plain(
+  "traversalChildIdentifier",
+  flaxNullableAnyType,
+  _SemanticsData_traversalChildIdentifier,
+);
+const _flaxBinding892 = FlaxGetter.plain(
+  "label",
+  flaxStringType,
+  _SemanticsData_label,
+);
+const _flaxBinding893 = FlaxGetter.plain(
+  "attributedLabel",
+  _flaxBinding6,
+  _SemanticsData_attributedLabel,
+);
+const _flaxBinding894 = FlaxGetter.plain(
+  "value",
+  flaxStringType,
+  _SemanticsData_value,
+);
+const _flaxBinding895 = FlaxGetter.plain(
+  "attributedValue",
+  _flaxBinding6,
+  _SemanticsData_attributedValue,
+);
+const _flaxBinding896 = FlaxGetter.plain(
+  "increasedValue",
+  flaxStringType,
+  _SemanticsData_increasedValue,
+);
+const _flaxBinding897 = FlaxGetter.plain(
+  "attributedIncreasedValue",
+  _flaxBinding6,
+  _SemanticsData_attributedIncreasedValue,
+);
+const _flaxBinding898 = FlaxGetter.plain(
+  "decreasedValue",
+  flaxStringType,
+  _SemanticsData_decreasedValue,
+);
+const _flaxBinding899 = FlaxGetter.plain(
+  "attributedDecreasedValue",
+  _flaxBinding6,
+  _SemanticsData_attributedDecreasedValue,
+);
+const _flaxBinding900 = FlaxGetter.plain(
+  "hint",
+  flaxStringType,
+  _SemanticsData_hint,
+);
+const _flaxBinding901 = FlaxGetter.plain(
+  "attributedHint",
+  _flaxBinding6,
+  _SemanticsData_attributedHint,
+);
+const _flaxBinding902 = FlaxGetter.plain(
+  "tooltip",
+  flaxStringType,
+  _SemanticsData_tooltip,
+);
+const _flaxBinding903 = FlaxGetter.plain(
+  "headingLevel",
+  flaxIntType,
+  _SemanticsData_headingLevel,
+);
+const _flaxBinding904 = FlaxGetter.plain(
+  "textDirection",
+  _flaxBinding89,
+  _SemanticsData_textDirection,
+);
+const _flaxBinding905 = FlaxGetter.plain(
+  "textSelection",
+  _flaxBinding95,
+  _SemanticsData_textSelection,
+);
+const _flaxBinding906 = FlaxGetter.plain(
+  "scrollChildCount",
+  flaxNullableIntType,
+  _SemanticsData_scrollChildCount,
+);
+const _flaxBinding907 = FlaxGetter.plain(
+  "scrollIndex",
+  flaxNullableIntType,
+  _SemanticsData_scrollIndex,
+);
+const _flaxBinding908 = FlaxGetter.plain(
+  "scrollPosition",
+  flaxNullableDoubleType,
+  _SemanticsData_scrollPosition,
+);
+const _flaxBinding909 = FlaxGetter.plain(
+  "scrollExtentMax",
+  flaxNullableDoubleType,
+  _SemanticsData_scrollExtentMax,
+);
+const _flaxBinding910 = FlaxGetter.plain(
+  "scrollExtentMin",
+  flaxNullableDoubleType,
+  _SemanticsData_scrollExtentMin,
+);
+const _flaxBinding911 = FlaxGetter.plain(
+  "platformViewId",
+  flaxNullableIntType,
+  _SemanticsData_platformViewId,
+);
+const _flaxBinding912 = FlaxGetter.plain(
+  "maxValueLength",
+  flaxNullableIntType,
+  _SemanticsData_maxValueLength,
+);
+const _flaxBinding913 = FlaxGetter.plain(
+  "currentValueLength",
+  flaxNullableIntType,
+  _SemanticsData_currentValueLength,
+);
+const _flaxBinding914 = FlaxGetter.plain(
+  "linkUrl",
+  _flaxBinding93,
+  _SemanticsData_linkUrl,
+);
+const _flaxBinding915 = FlaxGetter.plain(
+  "rect",
+  flaxRectType,
+  _SemanticsData_rect,
+);
+const _flaxBinding916 = FlaxGetter.plain(
+  "tags",
+  _flaxBinding143,
+  _SemanticsData_tags,
+);
+const _flaxBinding917 = FlaxGetter.plain(
+  "transform",
+  _flaxBinding145,
+  _SemanticsData_transform,
+);
+const _flaxBinding918 = FlaxGetter.plain(
+  "customSemanticsActionIds",
+  _flaxBinding148,
+  _SemanticsData_customSemanticsActionIds,
+);
+const _flaxBinding919 = FlaxGetter.plain(
+  "role",
+  _flaxBinding84,
+  _SemanticsData_role,
+);
+const _flaxBinding920 = FlaxGetter.plain(
+  "controlsNodes",
+  _flaxBinding98,
+  _SemanticsData_controlsNodes,
+);
+const _flaxBinding921 = FlaxGetter.plain(
+  "validationResult",
+  _flaxBinding100,
+  _SemanticsData_validationResult,
+);
+const _flaxBinding922 = FlaxGetter.plain(
+  "hitTestBehavior",
+  _flaxBinding102,
+  _SemanticsData_hitTestBehavior,
+);
+const _flaxBinding923 = FlaxGetter.plain(
+  "inputType",
+  _flaxBinding104,
+  _SemanticsData_inputType,
+);
+const _flaxBinding924 = FlaxGetter.plain(
+  "locale",
+  _flaxBinding60,
+  _SemanticsData_locale,
+);
+const _flaxBinding925 = FlaxGetter.plain(
+  "maxValue",
+  flaxNullableStringType,
+  _SemanticsData_maxValue,
+);
+const _flaxBinding926 = FlaxGetter.plain(
+  "minValue",
+  flaxNullableStringType,
+  _SemanticsData_minValue,
+);
+const _flaxBinding927 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _SemanticsData_toStringShort,
+);
+const _flaxBinding928 = FlaxInstanceMethod.plain(
+  _flaxBinding330,
+  flaxStringType,
+  _SemanticsData_toString,
+);
+const _flaxBinding929 = FlaxInstanceMethod.plain(
+  _flaxBinding332,
+  _flaxBinding14,
+  _SemanticsData_toDiagnosticsNode,
+);
+const _flaxBinding930 = FlaxInstanceMethod.shared(
+  _flaxBinding48,
+  _SemanticsData_debugFillProperties,
+);
+const _flaxBinding931 = FlaxInstanceMethod.shared(
+  _flaxBinding137,
+  _SemanticsData_hasFlag,
+);
+const _flaxBinding932 = FlaxInstanceMethod.shared(
+  _flaxBinding138,
+  _SemanticsData_hasAction,
+);
+const _flaxBinding933 = <FlaxParameter>[
+  FlaxParameter.required("flagsCollection", _flaxBinding139),
+  FlaxParameter.required("actions", flaxIntType),
+  FlaxParameter.required("identifier", flaxStringType),
+  FlaxParameter.required("traversalParentIdentifier", flaxNullableAnyType),
+  FlaxParameter.required("traversalChildIdentifier", flaxNullableAnyType),
+  FlaxParameter.required("attributedLabel", _flaxBinding6),
+  FlaxParameter.required("attributedValue", _flaxBinding6),
+  FlaxParameter.required("attributedIncreasedValue", _flaxBinding6),
+  FlaxParameter.required("attributedDecreasedValue", _flaxBinding6),
+  FlaxParameter.required("attributedHint", _flaxBinding6),
+  FlaxParameter.required("tooltip", flaxStringType),
+  FlaxParameter.required("textDirection", _flaxBinding89),
+  FlaxParameter.required("rect", flaxRectType),
+  FlaxParameter.required("textSelection", _flaxBinding95),
+  FlaxParameter.required("scrollIndex", flaxNullableIntType),
+  FlaxParameter.required("scrollChildCount", flaxNullableIntType),
+  FlaxParameter.required("scrollPosition", flaxNullableDoubleType),
+  FlaxParameter.required("scrollExtentMax", flaxNullableDoubleType),
+  FlaxParameter.required("scrollExtentMin", flaxNullableDoubleType),
+  FlaxParameter.required("platformViewId", flaxNullableIntType),
+  FlaxParameter.required("maxValueLength", flaxNullableIntType),
+  FlaxParameter.required("currentValueLength", flaxNullableIntType),
+  FlaxParameter.required("headingLevel", flaxIntType),
+  FlaxParameter.required("linkUrl", _flaxBinding93),
+  FlaxParameter.required("role", _flaxBinding84),
+  FlaxParameter.required("controlsNodes", _flaxBinding98),
+  FlaxParameter.required("validationResult", _flaxBinding100),
+  FlaxParameter.required("hitTestBehavior", _flaxBinding102),
+  FlaxParameter.required("inputType", _flaxBinding104),
+  FlaxParameter.required("locale", _flaxBinding60),
+  FlaxParameter.required("minValue", flaxNullableStringType),
+  FlaxParameter.required("maxValue", flaxNullableStringType),
+  FlaxParameter("tags", _flaxBinding143, required: false),
+  FlaxParameter("transform", _flaxBinding145, required: false),
+  FlaxParameter("customSemanticsActionIds", _flaxBinding148, required: false),
+];
+const _flaxBinding934 = FlaxProxyMember(
+  "hasFlag",
+  0,
+  _flaxBinding137,
+  hasSuper: true,
+);
+const _flaxBinding935 = FlaxProxyMember(
+  "hasAction",
+  0,
+  _flaxBinding138,
+  hasSuper: true,
+);
+const _flaxBinding936 = FlaxProxyMember(
+  "flags",
+  1,
+  flaxIntCall,
+  hasSuper: true,
+);
+const _flaxBinding937 = FlaxProxyMember(
+  "flagsCollection",
+  1,
+  _flaxBinding140,
+  hasSuper: true,
+);
+const _flaxBinding938 = FlaxProxyMember(
+  "actions",
+  1,
+  flaxIntCall,
+  hasSuper: true,
+);
+const _flaxBinding939 = FlaxProxyMember(
+  "rect",
+  1,
+  _flaxBinding141,
+  hasSuper: true,
+);
+const _flaxBinding940 = FlaxProxyMember(
+  "tags",
+  1,
+  _flaxBinding144,
+  hasSuper: true,
+);
+const _flaxBinding941 = FlaxProxyMember(
+  "transform",
+  1,
+  _flaxBinding146,
+  hasSuper: true,
+);
+const _flaxBinding942 = FlaxProxyMember(
+  "customSemanticsActionIds",
+  1,
+  _flaxBinding149,
+  hasSuper: true,
+);
+const _flaxBinding943 = FlaxObjectBinding(
+  "flax.core/sdk_semantics#type:SemanticsData",
+  [
+    _flaxBinding886,
+    _flaxBinding887,
+    _flaxBinding888,
+    _flaxBinding889,
+    _flaxBinding890,
+    _flaxBinding891,
+    _flaxBinding892,
+    _flaxBinding893,
+    _flaxBinding894,
+    _flaxBinding895,
+    _flaxBinding896,
+    _flaxBinding897,
+    _flaxBinding898,
+    _flaxBinding899,
+    _flaxBinding900,
+    _flaxBinding901,
+    _flaxBinding902,
+    _flaxBinding903,
+    _flaxBinding904,
+    _flaxBinding905,
+    _flaxBinding906,
+    _flaxBinding907,
+    _flaxBinding908,
+    _flaxBinding909,
+    _flaxBinding910,
+    _flaxBinding911,
+    _flaxBinding912,
+    _flaxBinding913,
+    _flaxBinding914,
+    _flaxBinding915,
+    _flaxBinding916,
+    _flaxBinding917,
+    _flaxBinding918,
+    _flaxBinding919,
+    _flaxBinding920,
+    _flaxBinding921,
+    _flaxBinding922,
+    _flaxBinding923,
+    _flaxBinding924,
+    _flaxBinding925,
+    _flaxBinding926,
   ],
   {
-    "toStringShort": _flaxBinding886,
-    "toString": _flaxBinding887,
-    "toDiagnosticsNode": _flaxBinding888,
-    "debugFillProperties": _flaxBinding889,
-    "hasFlag": _flaxBinding890,
-    "hasAction": _flaxBinding891,
-    "@super:toStringShort": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch9_super_call_toStringShort,
-    ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding350,
-      _flaxBinding1,
-      _FlaxProxyDispatch9_super_call_toString,
-    ),
-    "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding352,
-      _flaxBinding19,
+    "toStringShort": _flaxBinding927,
+    "toString": _flaxBinding928,
+    "toDiagnosticsNode": _flaxBinding929,
+    "debugFillProperties": _flaxBinding930,
+    "hasFlag": _flaxBinding931,
+    "hasAction": _flaxBinding932,
+    "@super:toStringShort": _flaxBinding336,
+    "@super:toString": _flaxBinding337,
+    "@super:toDiagnosticsNode": FlaxInstanceMethod.plain(
+      _flaxBinding332,
+      _flaxBinding14,
       _SemanticsData_super_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod.signature(
-      _flaxBinding60,
+    "@super:debugFillProperties": FlaxInstanceMethod.shared(
+      _flaxBinding48,
       _SemanticsData_super_debugFillProperties,
     ),
-    "@super:hasFlag": FlaxInstanceMethod.signature(
-      _flaxBinding161,
+    "@super:hasFlag": FlaxInstanceMethod.shared(
+      _flaxBinding137,
       _SemanticsData_super_hasFlag,
     ),
-    "@super:hasAction": FlaxInstanceMethod.signature(
-      _flaxBinding162,
+    "@super:hasAction": FlaxInstanceMethod.shared(
+      _flaxBinding138,
       _SemanticsData_super_hasAction,
     ),
-    "@super:get:flags": FlaxInstanceMethod.signature(
-      _flaxBinding6,
+    "@super:get:flags": FlaxInstanceMethod.shared(
+      flaxIntCall,
       _SemanticsData_super_get_flags,
     ),
-    "@super:get:flagsCollection": FlaxInstanceMethod.signature(
-      _flaxBinding164,
+    "@super:get:flagsCollection": FlaxInstanceMethod.shared(
+      _flaxBinding140,
       _SemanticsData_super_get_flagsCollection,
     ),
-    "@super:get:actions": FlaxInstanceMethod.signature(
-      _flaxBinding6,
+    "@super:get:actions": FlaxInstanceMethod.shared(
+      flaxIntCall,
       _SemanticsData_super_get_actions,
     ),
-    "@super:get:identifier": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_identifier,
-    ),
-    "@super:get:traversalParentIdentifier": FlaxInstanceMethod.signature(
-      _flaxBinding35,
-      _FlaxProxyDispatch15_super_get_traversalParentIdentifier,
-    ),
-    "@super:get:traversalChildIdentifier": FlaxInstanceMethod.signature(
-      _flaxBinding35,
-      _FlaxProxyDispatch15_super_get_traversalChildIdentifier,
-    ),
-    "@super:get:label": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_label,
-    ),
-    "@super:get:attributedLabel": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedLabel,
-    ),
-    "@super:get:value": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_value,
-    ),
-    "@super:get:attributedValue": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedValue,
-    ),
-    "@super:get:increasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_increasedValue,
-    ),
-    "@super:get:attributedIncreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedIncreasedValue,
-    ),
-    "@super:get:decreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_decreasedValue,
-    ),
-    "@super:get:attributedDecreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedDecreasedValue,
-    ),
-    "@super:get:hint": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_hint,
-    ),
-    "@super:get:attributedHint": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedHint,
-    ),
-    "@super:get:tooltip": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_tooltip,
-    ),
-    "@super:get:headingLevel": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch14_super_get_headingLevel,
-    ),
-    "@super:get:textDirection": FlaxInstanceMethod.signature(
-      _flaxBinding110,
-      _FlaxProxyDispatch15_super_get_textDirection,
-    ),
-    "@super:get:textSelection": FlaxInstanceMethod.signature(
-      _flaxBinding118,
-      _FlaxProxyDispatch14_super_get_textSelection,
-    ),
-    "@super:get:scrollChildCount": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch14_super_get_scrollChildCount,
-    ),
-    "@super:get:scrollIndex": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch14_super_get_scrollIndex,
-    ),
-    "@super:get:scrollPosition": FlaxInstanceMethod.signature(
-      _flaxBinding120,
-      _FlaxProxyDispatch14_super_get_scrollPosition,
-    ),
-    "@super:get:scrollExtentMax": FlaxInstanceMethod.signature(
-      _flaxBinding120,
-      _FlaxProxyDispatch14_super_get_scrollExtentMax,
-    ),
-    "@super:get:scrollExtentMin": FlaxInstanceMethod.signature(
-      _flaxBinding120,
-      _FlaxProxyDispatch14_super_get_scrollExtentMin,
-    ),
-    "@super:get:platformViewId": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch14_super_get_platformViewId,
-    ),
-    "@super:get:maxValueLength": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch15_super_get_maxValueLength,
-    ),
-    "@super:get:currentValueLength": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch15_super_get_currentValueLength,
-    ),
-    "@super:get:linkUrl": FlaxInstanceMethod.signature(
-      _flaxBinding116,
-      _FlaxProxyDispatch15_super_get_linkUrl,
-    ),
-    "@super:get:rect": FlaxInstanceMethod.signature(
-      _flaxBinding166,
+    "@super:get:identifier": _flaxBinding656,
+    "@super:get:traversalParentIdentifier": _flaxBinding657,
+    "@super:get:traversalChildIdentifier": _flaxBinding658,
+    "@super:get:label": _flaxBinding660,
+    "@super:get:attributedLabel": _flaxBinding661,
+    "@super:get:value": _flaxBinding662,
+    "@super:get:attributedValue": _flaxBinding663,
+    "@super:get:increasedValue": _flaxBinding664,
+    "@super:get:attributedIncreasedValue": _flaxBinding665,
+    "@super:get:decreasedValue": _flaxBinding666,
+    "@super:get:attributedDecreasedValue": _flaxBinding667,
+    "@super:get:hint": _flaxBinding668,
+    "@super:get:attributedHint": _flaxBinding669,
+    "@super:get:tooltip": _flaxBinding670,
+    "@super:get:headingLevel": _flaxBinding673,
+    "@super:get:textDirection": _flaxBinding671,
+    "@super:get:textSelection": _flaxBinding675,
+    "@super:get:scrollChildCount": _flaxBinding651,
+    "@super:get:scrollIndex": _flaxBinding652,
+    "@super:get:scrollPosition": _flaxBinding676,
+    "@super:get:scrollExtentMax": _flaxBinding677,
+    "@super:get:scrollExtentMin": _flaxBinding678,
+    "@super:get:platformViewId": _flaxBinding653,
+    "@super:get:maxValueLength": _flaxBinding654,
+    "@super:get:currentValueLength": _flaxBinding655,
+    "@super:get:linkUrl": _flaxBinding672,
+    "@super:get:rect": FlaxInstanceMethod.shared(
+      _flaxBinding141,
       _SemanticsData_super_get_rect,
     ),
-    "@super:get:tags": FlaxInstanceMethod.signature(
-      _flaxBinding169,
+    "@super:get:tags": FlaxInstanceMethod.shared(
+      _flaxBinding144,
       _SemanticsData_super_get_tags,
     ),
-    "@super:get:transform": FlaxInstanceMethod.signature(
-      _flaxBinding171,
+    "@super:get:transform": FlaxInstanceMethod.shared(
+      _flaxBinding146,
       _SemanticsData_super_get_transform,
     ),
-    "@super:get:customSemanticsActionIds": FlaxInstanceMethod.signature(
-      _flaxBinding174,
+    "@super:get:customSemanticsActionIds": FlaxInstanceMethod.shared(
+      _flaxBinding149,
       _SemanticsData_super_get_customSemanticsActionIds,
     ),
-    "@super:get:role": FlaxInstanceMethod.signature(
-      _flaxBinding105,
-      _FlaxProxyDispatch14_super_get_role,
-    ),
-    "@super:get:controlsNodes": FlaxInstanceMethod.signature(
-      _flaxBinding123,
-      _FlaxProxyDispatch15_super_get_controlsNodes,
-    ),
-    "@super:get:validationResult": FlaxInstanceMethod.signature(
-      _flaxBinding125,
-      _FlaxProxyDispatch15_super_get_validationResult,
-    ),
-    "@super:get:hitTestBehavior": FlaxInstanceMethod.signature(
-      _flaxBinding127,
-      _FlaxProxyDispatch14_super_get_hitTestBehavior,
-    ),
-    "@super:get:inputType": FlaxInstanceMethod.signature(
-      _flaxBinding129,
-      _FlaxProxyDispatch14_super_get_inputType,
-    ),
-    "@super:get:locale": FlaxInstanceMethod.signature(
-      _flaxBinding75,
+    "@super:get:role": _flaxBinding659,
+    "@super:get:controlsNodes": _flaxBinding679,
+    "@super:get:validationResult": _flaxBinding680,
+    "@super:get:hitTestBehavior": _flaxBinding681,
+    "@super:get:inputType": _flaxBinding682,
+    "@super:get:locale": FlaxInstanceMethod.shared(
+      _flaxBinding61,
       _SemanticsData_super_get_locale,
     ),
-    "@super:get:maxValue": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch15_super_get_maxValue,
-    ),
-    "@super:get:minValue": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch15_super_get_minValue,
-    ),
+    "@super:get:maxValue": _flaxBinding683,
+    "@super:get:minValue": _flaxBinding684,
   },
-  constructors: {"@implementation": _flaxBinding892},
+  constructors: {"": _flaxBinding933, "@implementation": _flaxBinding933},
   create: _createSemanticsData,
   matches: _isSemanticsData,
   setters: [],
@@ -21406,63 +21022,63 @@ const _flaxBinding902 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding358,
-    _flaxBinding360,
-    _flaxBinding362,
-    _flaxBinding363,
-    _flaxBinding893,
-    _flaxBinding894,
-    _flaxBinding895,
-    _flaxBinding896,
-    _flaxBinding897,
-    _flaxBinding692,
-    _flaxBinding693,
-    _flaxBinding694,
-    _flaxBinding696,
-    _flaxBinding697,
-    _flaxBinding698,
-    _flaxBinding699,
-    _flaxBinding700,
-    _flaxBinding701,
-    _flaxBinding702,
-    _flaxBinding703,
-    _flaxBinding704,
-    _flaxBinding705,
-    _flaxBinding706,
-    _flaxBinding727,
-    _flaxBinding712,
+    _flaxBinding342,
+    _flaxBinding344,
+    _flaxBinding346,
+    _flaxBinding347,
+    _flaxBinding934,
+    _flaxBinding935,
+    _flaxBinding936,
+    _flaxBinding937,
+    _flaxBinding938,
+    _flaxBinding733,
+    _flaxBinding734,
+    _flaxBinding735,
     _flaxBinding737,
-    _flaxBinding685,
-    _flaxBinding686,
     _flaxBinding738,
     _flaxBinding739,
     _flaxBinding740,
-    _flaxBinding687,
-    _flaxBinding688,
-    _flaxBinding689,
-    _flaxBinding725,
-    _flaxBinding898,
-    _flaxBinding899,
-    _flaxBinding900,
-    _flaxBinding901,
-    _flaxBinding695,
     _flaxBinding741,
     _flaxBinding742,
     _flaxBinding743,
     _flaxBinding744,
-    _flaxBinding652,
     _flaxBinding745,
     _flaxBinding746,
+    _flaxBinding747,
+    _flaxBinding768,
+    _flaxBinding753,
+    _flaxBinding778,
+    _flaxBinding726,
+    _flaxBinding727,
+    _flaxBinding779,
+    _flaxBinding780,
+    _flaxBinding781,
+    _flaxBinding728,
+    _flaxBinding729,
+    _flaxBinding730,
+    _flaxBinding766,
+    _flaxBinding939,
+    _flaxBinding940,
+    _flaxBinding941,
+    _flaxBinding942,
+    _flaxBinding736,
+    _flaxBinding782,
+    _flaxBinding783,
+    _flaxBinding784,
+    _flaxBinding785,
+    _flaxBinding693,
+    _flaxBinding786,
+    _flaxBinding787,
   ]),
 );
-const _flaxBinding903 = FlaxInstanceMethod.signature(
-  _flaxBinding201,
+const _flaxBinding944 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
   _SemanticsHandle_dispose,
 );
-const _flaxBinding904 = FlaxObjectBinding(
+const _flaxBinding945 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsHandle",
   [],
-  {"dispose": _flaxBinding903},
+  {"dispose": _flaxBinding944},
   constructors: {},
   create: _createSemanticsHandle,
   matches: _isSemanticsHandle,
@@ -21470,223 +21086,209 @@ const _flaxBinding904 = FlaxObjectBinding(
   supertypes: ["dart:core::Object"],
   disposeMethod: "dispose",
 );
-const _flaxBinding905 = FlaxGetter(
+const _flaxBinding946 = FlaxGetter.plain(
   "onTapHint",
-  _flaxBinding29,
+  flaxNullableStringType,
   _SemanticsHintOverrides_onTapHint,
 );
-const _flaxBinding906 = FlaxGetter(
+const _flaxBinding947 = FlaxGetter.plain(
   "onLongPressHint",
-  _flaxBinding29,
+  flaxNullableStringType,
   _SemanticsHintOverrides_onLongPressHint,
 );
-const _flaxBinding907 = FlaxGetter(
+const _flaxBinding948 = FlaxGetter.plain(
   "isNotEmpty",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsHintOverrides_isNotEmpty,
 );
-const _flaxBinding908 = <FlaxParameter>[
-  FlaxParameter("joiner", _flaxBinding1, required: false, defaultValue: ', '),
+const _flaxBinding949 = <FlaxParameter>[
+  FlaxParameter("joiner", flaxStringType, required: false, defaultValue: ', '),
   FlaxParameter(
     "minLevel",
-    _flaxBinding23,
+    _flaxBinding18,
     required: false,
     defaultValue: api2.DiagnosticLevel.debug,
   ),
 ];
-const _flaxBinding909 = FlaxInstanceMethod(
-  _flaxBinding908,
-  _flaxBinding1,
+const _flaxBinding950 = FlaxInstanceMethod.plain(
+  _flaxBinding949,
+  flaxStringType,
   _SemanticsHintOverrides_toStringShallow,
 );
-const _flaxBinding910 = <FlaxParameter>[
+const _flaxBinding951 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
-    _flaxBinding23,
+    _flaxBinding18,
     required: false,
     defaultValue: api2.DiagnosticLevel.debug,
   ),
   FlaxParameter(
     "prefixLineOne",
-    _flaxBinding1,
+    flaxStringType,
     required: false,
     defaultValue: '',
   ),
-  FlaxParameter("prefixOtherLines", _flaxBinding29, required: false),
-  FlaxParameter("wrapWidth", _flaxBinding5, required: false, defaultValue: 65),
+  FlaxParameter("prefixOtherLines", flaxNullableStringType, required: false),
+  FlaxParameter("wrapWidth", flaxIntType, required: false, defaultValue: 65),
 ];
-const _flaxBinding911 = FlaxInstanceMethod(
-  _flaxBinding910,
-  _flaxBinding1,
+const _flaxBinding952 = FlaxInstanceMethod.plain(
+  _flaxBinding951,
+  flaxStringType,
   _SemanticsHintOverrides_toStringDeep,
 );
-const _flaxBinding912 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding953 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _SemanticsHintOverrides_toStringShort,
 );
-const _flaxBinding913 = FlaxInstanceMethod(
-  _flaxBinding352,
-  _flaxBinding19,
+const _flaxBinding954 = FlaxInstanceMethod.plain(
+  _flaxBinding332,
+  _flaxBinding14,
   _SemanticsHintOverrides_toDiagnosticsNode,
 );
-const _flaxBinding914 = FlaxInstanceMethod.signature(
-  _flaxBinding22,
+const _flaxBinding955 = FlaxInstanceMethod.shared(
+  _flaxBinding17,
   _SemanticsHintOverrides_debugDescribeChildren,
 );
-const _flaxBinding915 = FlaxInstanceMethod.signature(
-  _flaxBinding60,
+const _flaxBinding956 = FlaxInstanceMethod.shared(
+  _flaxBinding48,
   _SemanticsHintOverrides_debugFillProperties,
 );
-const _flaxBinding916 = FlaxInstanceMethod(
-  _flaxBinding350,
-  _flaxBinding1,
+const _flaxBinding957 = FlaxInstanceMethod.plain(
+  _flaxBinding330,
+  flaxStringType,
   _SemanticsHintOverrides_toString,
 );
-const _flaxBinding917 = <FlaxParameter>[
-  FlaxParameter("onTapHint", _flaxBinding29, required: false),
-  FlaxParameter("onLongPressHint", _flaxBinding29, required: false),
+const _flaxBinding958 = <FlaxParameter>[
+  FlaxParameter("onTapHint", flaxNullableStringType, required: false),
+  FlaxParameter("onLongPressHint", flaxNullableStringType, required: false),
 ];
-const _flaxBinding918 = FlaxCallbackBinding.signature(
+const _flaxBinding959 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "joiner",
-      _flaxBinding1,
+      flaxStringType,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "minLevel",
-      _flaxBinding23,
+      _flaxBinding18,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding1,
+  flaxStringType,
   id: "callback:<>(n:o:joiner:String:,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
 );
-const _flaxBinding919 = FlaxProxyMember(
+const _flaxBinding960 = FlaxProxyMember(
   "toStringShallow",
   0,
-  _flaxBinding918,
+  _flaxBinding959,
   hasSuper: true,
 );
-const _flaxBinding920 = FlaxCallbackBinding.signature(
+const _flaxBinding961 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "prefixLineOne",
-      _flaxBinding1,
+      flaxStringType,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "prefixOtherLines",
-      _flaxBinding29,
+      flaxNullableStringType,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "minLevel",
-      _flaxBinding23,
+      _flaxBinding18,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "wrapWidth",
-      _flaxBinding5,
+      flaxIntType,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding1,
+  flaxStringType,
   id: "callback:<>(n:o:prefixLineOne:String:,n:o:prefixOtherLines:String?:,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel,n:o:wrapWidth:int:)->String:",
 );
-const _flaxBinding921 = FlaxProxyMember(
+const _flaxBinding962 = FlaxProxyMember(
   "toStringDeep",
   0,
-  _flaxBinding920,
+  _flaxBinding961,
   hasSuper: true,
 );
-const _flaxBinding922 = FlaxProxyMember(
+const _flaxBinding963 = FlaxProxyMember(
   "debugDescribeChildren",
   0,
-  _flaxBinding22,
+  _flaxBinding17,
   hasSuper: true,
 );
-const _flaxBinding923 = FlaxProxyMember(
+const _flaxBinding964 = FlaxProxyMember(
   "onTapHint",
   1,
-  _flaxBinding30,
+  flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding924 = FlaxProxyMember(
+const _flaxBinding965 = FlaxProxyMember(
   "onLongPressHint",
   1,
-  _flaxBinding30,
+  flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding925 = FlaxProxyMember(
+const _flaxBinding966 = FlaxProxyMember(
   "isNotEmpty",
   1,
-  _flaxBinding28,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding926 = FlaxObjectBinding(
+const _flaxBinding967 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsHintOverrides",
-  [_flaxBinding905, _flaxBinding906, _flaxBinding907],
+  [_flaxBinding946, _flaxBinding947, _flaxBinding948],
   {
-    "toStringShallow": _flaxBinding909,
-    "toStringDeep": _flaxBinding911,
-    "toStringShort": _flaxBinding912,
-    "toDiagnosticsNode": _flaxBinding913,
-    "debugDescribeChildren": _flaxBinding914,
-    "debugFillProperties": _flaxBinding915,
-    "toString": _flaxBinding916,
-    "@super:toStringShallow": FlaxInstanceMethod(
-      _flaxBinding908,
-      _flaxBinding1,
+    "toStringShallow": _flaxBinding950,
+    "toStringDeep": _flaxBinding952,
+    "toStringShort": _flaxBinding953,
+    "toDiagnosticsNode": _flaxBinding954,
+    "debugDescribeChildren": _flaxBinding955,
+    "debugFillProperties": _flaxBinding956,
+    "toString": _flaxBinding957,
+    "@super:toStringShallow": FlaxInstanceMethod.plain(
+      _flaxBinding949,
+      flaxStringType,
       _SemanticsHintOverrides_super_toStringShallow,
     ),
-    "@super:toStringDeep": FlaxInstanceMethod(
-      _flaxBinding910,
-      _flaxBinding1,
+    "@super:toStringDeep": FlaxInstanceMethod.plain(
+      _flaxBinding951,
+      flaxStringType,
       _SemanticsHintOverrides_super_toStringDeep,
     ),
-    "@super:toStringShort": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch9_super_call_toStringShort,
-    ),
-    "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding352,
-      _flaxBinding19,
-      _FlaxProxyDispatch8_super_call_toDiagnosticsNode,
-    ),
-    "@super:debugDescribeChildren": FlaxInstanceMethod.signature(
-      _flaxBinding22,
+    "@super:toStringShort": _flaxBinding336,
+    "@super:toDiagnosticsNode": _flaxBinding338,
+    "@super:debugDescribeChildren": FlaxInstanceMethod.shared(
+      _flaxBinding17,
       _SemanticsHintOverrides_super_debugDescribeChildren,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod.signature(
-      _flaxBinding60,
-      _FlaxProxyDispatch8_super_call_debugFillProperties,
-    ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding350,
-      _flaxBinding1,
-      _FlaxProxyDispatch9_super_call_toString,
-    ),
-    "@super:get:onTapHint": FlaxInstanceMethod.signature(
-      _flaxBinding30,
+    "@super:debugFillProperties": _flaxBinding339,
+    "@super:toString": _flaxBinding337,
+    "@super:get:onTapHint": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
       _SemanticsHintOverrides_super_get_onTapHint,
     ),
-    "@super:get:onLongPressHint": FlaxInstanceMethod.signature(
-      _flaxBinding30,
+    "@super:get:onLongPressHint": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
       _SemanticsHintOverrides_super_get_onLongPressHint,
     ),
-    "@super:get:isNotEmpty": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:isNotEmpty": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _SemanticsHintOverrides_super_get_isNotEmpty,
     ),
   },
-  constructors: {"@implementation": _flaxBinding917},
+  constructors: {"": _flaxBinding958, "@implementation": _flaxBinding958},
   create: _createSemanticsHintOverrides,
   matches: _isSemanticsHintOverrides,
   setters: [],
@@ -21696,870 +21298,841 @@ const _flaxBinding926 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding919,
-    _flaxBinding921,
-    _flaxBinding358,
-    _flaxBinding362,
-    _flaxBinding922,
-    _flaxBinding363,
-    _flaxBinding360,
-    _flaxBinding923,
-    _flaxBinding924,
-    _flaxBinding925,
+    _flaxBinding960,
+    _flaxBinding962,
+    _flaxBinding342,
+    _flaxBinding346,
+    _flaxBinding963,
+    _flaxBinding347,
+    _flaxBinding344,
+    _flaxBinding964,
+    _flaxBinding965,
+    _flaxBinding966,
   ]),
 );
-const _flaxBinding927 = FlaxGetter(
+const _flaxBinding968 = FlaxGetter.plain(
   "separator",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsLabelBuilder_separator,
 );
-const _flaxBinding928 = FlaxGetter(
+const _flaxBinding969 = FlaxGetter.plain(
   "textDirection",
-  _flaxBinding109,
+  _flaxBinding89,
   _SemanticsLabelBuilder_textDirection,
 );
-const _flaxBinding929 = FlaxGetter(
+const _flaxBinding970 = FlaxGetter.plain(
   "isEmpty",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsLabelBuilder_isEmpty,
 );
-const _flaxBinding930 = FlaxGetter(
+const _flaxBinding971 = FlaxGetter.plain(
   "length",
-  _flaxBinding5,
+  flaxIntType,
   _SemanticsLabelBuilder_length,
 );
-const _flaxBinding931 = <FlaxParameter>[
-  FlaxParameter("label", _flaxBinding1, required: true),
-  FlaxParameter("textDirection", _flaxBinding109, required: false),
+const _flaxBinding972 = <FlaxParameter>[
+  FlaxParameter.required("label", flaxStringType),
+  FlaxParameter("textDirection", _flaxBinding89, required: false),
 ];
-const _flaxBinding932 = FlaxInstanceMethod(
-  _flaxBinding931,
-  _flaxBinding48,
+const _flaxBinding973 = FlaxInstanceMethod.plain(
+  _flaxBinding972,
+  flaxVoidType,
   _SemanticsLabelBuilder_addPart,
 );
-const _flaxBinding933 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding974 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _SemanticsLabelBuilder_build,
 );
-const _flaxBinding934 = FlaxInstanceMethod.signature(
-  _flaxBinding201,
+const _flaxBinding975 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
   _SemanticsLabelBuilder_clear,
 );
-const _flaxBinding935 = <FlaxParameter>[
-  FlaxParameter("separator", _flaxBinding1, required: false, defaultValue: ' '),
-  FlaxParameter("textDirection", _flaxBinding109, required: false),
+const _flaxBinding976 = <FlaxParameter>[
+  FlaxParameter(
+    "separator",
+    flaxStringType,
+    required: false,
+    defaultValue: ' ',
+  ),
+  FlaxParameter("textDirection", _flaxBinding89, required: false),
 ];
-const _flaxBinding936 = FlaxObjectBinding(
+const _flaxBinding977 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsLabelBuilder",
-  [_flaxBinding927, _flaxBinding928, _flaxBinding929, _flaxBinding930],
+  [_flaxBinding968, _flaxBinding969, _flaxBinding970, _flaxBinding971],
   {
-    "addPart": _flaxBinding932,
-    "build": _flaxBinding933,
-    "clear": _flaxBinding934,
+    "addPart": _flaxBinding973,
+    "build": _flaxBinding974,
+    "clear": _flaxBinding975,
   },
-  constructors: {"": _flaxBinding935},
+  constructors: {"": _flaxBinding976},
   create: _createSemanticsLabelBuilder,
   matches: _isSemanticsLabelBuilder,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding937 = FlaxGetter("key", _flaxBinding187, _SemanticsNode_key);
-const _flaxBinding938 = FlaxGetter("id", _flaxBinding5, _SemanticsNode_id);
-const _flaxBinding939 = FlaxGetter(
+const _flaxBinding978 = FlaxGetter.plain(
+  "key",
+  _flaxBinding162,
+  _SemanticsNode_key,
+);
+const _flaxBinding979 = FlaxGetter.plain("id", flaxIntType, _SemanticsNode_id);
+const _flaxBinding980 = FlaxGetter.plain(
   "transform",
-  _flaxBinding170,
+  _flaxBinding145,
   _SemanticsNode_transform,
 );
-const _flaxBinding940 = FlaxGetter(
+const _flaxBinding981 = FlaxGetter.plain(
   "rect",
-  _flaxBinding165,
+  flaxRectType,
   _SemanticsNode_rect,
 );
-const _flaxBinding941 = FlaxGetter(
+const _flaxBinding982 = FlaxGetter.plain(
   "parentSemanticsClipRect",
-  _flaxBinding189,
+  _flaxBinding164,
   _SemanticsNode_parentSemanticsClipRect,
 );
-const _flaxBinding942 = FlaxGetter(
+const _flaxBinding983 = FlaxGetter.plain(
   "parentPaintClipRect",
-  _flaxBinding189,
+  _flaxBinding164,
   _SemanticsNode_parentPaintClipRect,
 );
-const _flaxBinding943 = FlaxGetter(
+const _flaxBinding984 = FlaxGetter.plain(
   "indexInParent",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsNode_indexInParent,
 );
-const _flaxBinding944 = FlaxGetter(
+const _flaxBinding985 = FlaxGetter.plain(
   "isInvisible",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsNode_isInvisible,
 );
-const _flaxBinding945 = FlaxGetter(
+const _flaxBinding986 = FlaxGetter.plain(
   "isMergedIntoParent",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsNode_isMergedIntoParent,
 );
-const _flaxBinding946 = FlaxGetter(
+const _flaxBinding987 = FlaxGetter.plain(
   "areUserActionsBlocked",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsNode_areUserActionsBlocked,
 );
-const _flaxBinding947 = FlaxGetter(
+const _flaxBinding988 = FlaxGetter.plain(
   "isPartOfNodeMerging",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsNode_isPartOfNodeMerging,
 );
-const _flaxBinding948 = FlaxGetter(
+const _flaxBinding989 = FlaxGetter.plain(
   "mergeAllDescendantsIntoThisNode",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsNode_mergeAllDescendantsIntoThisNode,
 );
-const _flaxBinding949 = FlaxGetter(
+const _flaxBinding990 = FlaxGetter.plain(
   "hasChildren",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsNode_hasChildren,
 );
-const _flaxBinding950 = FlaxGetter(
+const _flaxBinding991 = FlaxGetter.plain(
   "childrenCount",
-  _flaxBinding5,
+  flaxIntType,
   _SemanticsNode_childrenCount,
 );
-const _flaxBinding951 = FlaxGetter(
+const _flaxBinding992 = FlaxGetter.plain(
   "childrenCountInTraversalOrder",
-  _flaxBinding5,
+  flaxIntType,
   _SemanticsNode_childrenCountInTraversalOrder,
 );
-const _flaxBinding952 = FlaxGetter(
+const _flaxBinding993 = FlaxGetter.plain(
   "owner",
-  _flaxBinding191,
+  _flaxBinding166,
   _SemanticsNode_owner,
 );
-const _flaxBinding953 = FlaxGetter(
+const _flaxBinding994 = FlaxGetter.plain(
   "attached",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsNode_attached,
 );
-const _flaxBinding954 = FlaxGetter(
+const _flaxBinding995 = FlaxGetter.plain(
   "parent",
-  _flaxBinding193,
+  _flaxBinding168,
   _SemanticsNode_parent,
 );
-const _flaxBinding955 = FlaxGetter(
+const _flaxBinding996 = FlaxGetter.plain(
   "traversalParent",
-  _flaxBinding193,
+  _flaxBinding168,
   _SemanticsNode_traversalParent,
 );
-const _flaxBinding956 = FlaxGetter(
+const _flaxBinding997 = FlaxGetter.plain(
   "depth",
-  _flaxBinding5,
+  flaxIntType,
   _SemanticsNode_depth,
 );
-const _flaxBinding957 = FlaxGetter(
+const _flaxBinding998 = FlaxGetter.plain(
   "tags",
-  _flaxBinding168,
+  _flaxBinding143,
   _SemanticsNode_tags,
 );
-const _flaxBinding958 = FlaxGetter(
+const _flaxBinding999 = FlaxGetter.plain(
   "flagsCollection",
-  _flaxBinding163,
+  _flaxBinding139,
   _SemanticsNode_flagsCollection,
 );
-const _flaxBinding959 = FlaxGetter(
+const _flaxBinding1000 = FlaxGetter.plain(
   "identifier",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsNode_identifier,
 );
-const _flaxBinding960 = FlaxGetter(
+const _flaxBinding1001 = FlaxGetter.plain(
   "traversalParentIdentifier",
-  _flaxBinding0,
+  flaxNullableAnyType,
   _SemanticsNode_traversalParentIdentifier,
 );
-const _flaxBinding961 = FlaxGetter(
+const _flaxBinding1002 = FlaxGetter.plain(
   "traversalChildIdentifier",
-  _flaxBinding0,
+  flaxNullableAnyType,
   _SemanticsNode_traversalChildIdentifier,
 );
-const _flaxBinding962 = FlaxGetter(
+const _flaxBinding1003 = FlaxGetter.plain(
   "label",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsNode_label,
 );
-const _flaxBinding963 = FlaxGetter(
+const _flaxBinding1004 = FlaxGetter.plain(
   "attributedLabel",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsNode_attributedLabel,
 );
-const _flaxBinding964 = FlaxGetter(
+const _flaxBinding1005 = FlaxGetter.plain(
   "value",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsNode_value,
 );
-const _flaxBinding965 = FlaxGetter(
+const _flaxBinding1006 = FlaxGetter.plain(
   "attributedValue",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsNode_attributedValue,
 );
-const _flaxBinding966 = FlaxGetter(
+const _flaxBinding1007 = FlaxGetter.plain(
   "increasedValue",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsNode_increasedValue,
 );
-const _flaxBinding967 = FlaxGetter(
+const _flaxBinding1008 = FlaxGetter.plain(
   "attributedIncreasedValue",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsNode_attributedIncreasedValue,
 );
-const _flaxBinding968 = FlaxGetter(
+const _flaxBinding1009 = FlaxGetter.plain(
   "decreasedValue",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsNode_decreasedValue,
 );
-const _flaxBinding969 = FlaxGetter(
+const _flaxBinding1010 = FlaxGetter.plain(
   "attributedDecreasedValue",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsNode_attributedDecreasedValue,
 );
-const _flaxBinding970 = FlaxGetter("hint", _flaxBinding1, _SemanticsNode_hint);
-const _flaxBinding971 = FlaxGetter(
+const _flaxBinding1011 = FlaxGetter.plain(
+  "hint",
+  flaxStringType,
+  _SemanticsNode_hint,
+);
+const _flaxBinding1012 = FlaxGetter.plain(
   "attributedHint",
-  _flaxBinding11,
+  _flaxBinding6,
   _SemanticsNode_attributedHint,
 );
-const _flaxBinding972 = FlaxGetter(
+const _flaxBinding1013 = FlaxGetter.plain(
   "tooltip",
-  _flaxBinding1,
+  flaxStringType,
   _SemanticsNode_tooltip,
 );
-const _flaxBinding973 = FlaxGetter(
+const _flaxBinding1014 = FlaxGetter.plain(
   "hintOverrides",
-  _flaxBinding107,
+  _flaxBinding87,
   _SemanticsNode_hintOverrides,
 );
-const _flaxBinding974 = FlaxGetter(
+const _flaxBinding1015 = FlaxGetter.plain(
   "textDirection",
-  _flaxBinding109,
+  _flaxBinding89,
   _SemanticsNode_textDirection,
 );
-const _flaxBinding975 = FlaxGetter(
+const _flaxBinding1016 = FlaxGetter.plain(
   "sortKey",
-  _flaxBinding96,
+  _flaxBinding79,
   _SemanticsNode_sortKey,
 );
-const _flaxBinding976 = FlaxGetter(
+const _flaxBinding1017 = FlaxGetter.plain(
   "textSelection",
-  _flaxBinding117,
+  _flaxBinding95,
   _SemanticsNode_textSelection,
 );
-const _flaxBinding977 = FlaxGetter(
+const _flaxBinding1018 = FlaxGetter.plain(
   "isMultiline",
-  _flaxBinding111,
+  flaxNullableBoolType,
   _SemanticsNode_isMultiline,
 );
-const _flaxBinding978 = FlaxGetter(
+const _flaxBinding1019 = FlaxGetter.plain(
   "scrollChildCount",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsNode_scrollChildCount,
 );
-const _flaxBinding979 = FlaxGetter(
+const _flaxBinding1020 = FlaxGetter.plain(
   "scrollIndex",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsNode_scrollIndex,
 );
-const _flaxBinding980 = FlaxGetter(
+const _flaxBinding1021 = FlaxGetter.plain(
   "scrollPosition",
-  _flaxBinding119,
+  flaxNullableDoubleType,
   _SemanticsNode_scrollPosition,
 );
-const _flaxBinding981 = FlaxGetter(
+const _flaxBinding1022 = FlaxGetter.plain(
   "scrollExtentMax",
-  _flaxBinding119,
+  flaxNullableDoubleType,
   _SemanticsNode_scrollExtentMax,
 );
-const _flaxBinding982 = FlaxGetter(
+const _flaxBinding1023 = FlaxGetter.plain(
   "scrollExtentMin",
-  _flaxBinding119,
+  flaxNullableDoubleType,
   _SemanticsNode_scrollExtentMin,
 );
-const _flaxBinding983 = FlaxGetter(
+const _flaxBinding1024 = FlaxGetter.plain(
   "platformViewId",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsNode_platformViewId,
 );
-const _flaxBinding984 = FlaxGetter(
+const _flaxBinding1025 = FlaxGetter.plain(
   "maxValueLength",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsNode_maxValueLength,
 );
-const _flaxBinding985 = FlaxGetter(
+const _flaxBinding1026 = FlaxGetter.plain(
   "currentValueLength",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsNode_currentValueLength,
 );
-const _flaxBinding986 = FlaxGetter(
+const _flaxBinding1027 = FlaxGetter.plain(
   "headingLevel",
-  _flaxBinding5,
+  flaxIntType,
   _SemanticsNode_headingLevel,
 );
-const _flaxBinding987 = FlaxGetter(
+const _flaxBinding1028 = FlaxGetter.plain(
   "linkUrl",
-  _flaxBinding115,
+  _flaxBinding93,
   _SemanticsNode_linkUrl,
 );
-const _flaxBinding988 = FlaxGetter(
+const _flaxBinding1029 = FlaxGetter.plain(
   "role",
-  _flaxBinding104,
+  _flaxBinding84,
   _SemanticsNode_role,
 );
-const _flaxBinding989 = FlaxGetter(
+const _flaxBinding1030 = FlaxGetter.plain(
   "controlsNodes",
-  _flaxBinding122,
+  _flaxBinding98,
   _SemanticsNode_controlsNodes,
 );
-const _flaxBinding990 = FlaxGetter(
+const _flaxBinding1031 = FlaxGetter.plain(
   "minValue",
-  _flaxBinding29,
+  flaxNullableStringType,
   _SemanticsNode_minValue,
 );
-const _flaxBinding991 = FlaxGetter(
+const _flaxBinding1032 = FlaxGetter.plain(
   "maxValue",
-  _flaxBinding29,
+  flaxNullableStringType,
   _SemanticsNode_maxValue,
 );
-const _flaxBinding992 = FlaxGetter(
+const _flaxBinding1033 = FlaxGetter.plain(
   "validationResult",
-  _flaxBinding124,
+  _flaxBinding100,
   _SemanticsNode_validationResult,
 );
-const _flaxBinding993 = FlaxGetter(
+const _flaxBinding1034 = FlaxGetter.plain(
   "hitTestBehavior",
-  _flaxBinding126,
+  _flaxBinding102,
   _SemanticsNode_hitTestBehavior,
 );
-const _flaxBinding994 = FlaxGetter(
+const _flaxBinding1035 = FlaxGetter.plain(
   "inputType",
-  _flaxBinding128,
+  _flaxBinding104,
   _SemanticsNode_inputType,
 );
-const _flaxBinding995 = FlaxSetter(
+const _flaxBinding1036 = FlaxSetter(
   "transform",
-  _flaxBinding170,
+  _flaxBinding145,
   _SemanticsNode_set_transform,
 );
-const _flaxBinding996 = FlaxSetter(
+const _flaxBinding1037 = FlaxSetter(
   "rect",
-  _flaxBinding165,
+  flaxRectType,
   _SemanticsNode_set_rect,
 );
-const _flaxBinding997 = FlaxSetter(
+const _flaxBinding1038 = FlaxSetter(
   "parentSemanticsClipRect",
-  _flaxBinding189,
+  _flaxBinding164,
   _SemanticsNode_set_parentSemanticsClipRect,
 );
-const _flaxBinding998 = FlaxSetter(
+const _flaxBinding1039 = FlaxSetter(
   "parentPaintClipRect",
-  _flaxBinding189,
+  _flaxBinding164,
   _SemanticsNode_set_parentPaintClipRect,
 );
-const _flaxBinding999 = FlaxSetter(
+const _flaxBinding1040 = FlaxSetter(
   "indexInParent",
-  _flaxBinding98,
+  flaxNullableIntType,
   _SemanticsNode_set_indexInParent,
 );
-const _flaxBinding1000 = FlaxSetter(
+const _flaxBinding1041 = FlaxSetter(
   "isMergedIntoParent",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsNode_set_isMergedIntoParent,
 );
-const _flaxBinding1001 = FlaxSetter(
+const _flaxBinding1042 = FlaxSetter(
   "areUserActionsBlocked",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsNode_set_areUserActionsBlocked,
 );
-const _flaxBinding1002 = FlaxSetter(
+const _flaxBinding1043 = FlaxSetter(
   "traversalParent",
-  _flaxBinding193,
+  _flaxBinding168,
   _SemanticsNode_set_traversalParent,
 );
-const _flaxBinding1003 = FlaxSetter(
+const _flaxBinding1044 = FlaxSetter(
   "tags",
-  _flaxBinding168,
+  _flaxBinding143,
   _SemanticsNode_set_tags,
 );
-const _flaxBinding1004 = FlaxInstanceMethod(
-  _flaxBinding350,
-  _flaxBinding1,
+const _flaxBinding1045 = FlaxInstanceMethod.plain(
+  _flaxBinding330,
+  flaxStringType,
   _SemanticsNode_toString,
 );
-const _flaxBinding1005 = FlaxInstanceMethod(
-  _flaxBinding908,
-  _flaxBinding1,
+const _flaxBinding1046 = FlaxInstanceMethod.plain(
+  _flaxBinding949,
+  flaxStringType,
   _SemanticsNode_toStringShallow,
 );
-const _flaxBinding1006 = <FlaxParameter>[
+const _flaxBinding1047 = <FlaxParameter>[
   FlaxParameter(
     "childOrder",
-    _flaxBinding183,
+    _flaxBinding158,
     required: false,
     defaultValue: api.DebugSemanticsDumpOrder.traversalOrder,
   ),
   FlaxParameter(
     "minLevel",
-    _flaxBinding23,
+    _flaxBinding18,
     required: false,
     defaultValue: api2.DiagnosticLevel.debug,
   ),
   FlaxParameter(
     "prefixLineOne",
-    _flaxBinding1,
+    flaxStringType,
     required: false,
     defaultValue: '',
   ),
-  FlaxParameter("prefixOtherLines", _flaxBinding29, required: false),
-  FlaxParameter("wrapWidth", _flaxBinding5, required: false, defaultValue: 65),
+  FlaxParameter("prefixOtherLines", flaxNullableStringType, required: false),
+  FlaxParameter("wrapWidth", flaxIntType, required: false, defaultValue: 65),
 ];
-const _flaxBinding1007 = FlaxInstanceMethod(
-  _flaxBinding1006,
-  _flaxBinding1,
+const _flaxBinding1048 = FlaxInstanceMethod.plain(
+  _flaxBinding1047,
+  flaxStringType,
   _SemanticsNode_toStringDeep,
 );
-const _flaxBinding1008 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding1049 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _SemanticsNode_toStringShort,
 );
-const _flaxBinding1009 = <FlaxParameter>[
+const _flaxBinding1050 = <FlaxParameter>[
   FlaxParameter(
     "childOrder",
-    _flaxBinding183,
+    _flaxBinding158,
     required: false,
     defaultValue: api.DebugSemanticsDumpOrder.traversalOrder,
   ),
-  FlaxParameter("name", _flaxBinding29, required: false),
+  FlaxParameter("name", flaxNullableStringType, required: false),
   FlaxParameter(
     "style",
-    _flaxBinding37,
+    _flaxBinding26,
     required: false,
     defaultValue: api2.DiagnosticsTreeStyle.sparse,
   ),
 ];
-const _flaxBinding1010 = FlaxInstanceMethod(
-  _flaxBinding1009,
-  _flaxBinding19,
+const _flaxBinding1051 = FlaxInstanceMethod.plain(
+  _flaxBinding1050,
+  _flaxBinding14,
   _SemanticsNode_toDiagnosticsNode,
 );
-const _flaxBinding1011 = <FlaxParameter>[
+const _flaxBinding1052 = <FlaxParameter>[
   FlaxParameter(
     "childOrder",
-    _flaxBinding183,
+    _flaxBinding158,
     required: false,
     defaultValue: api.DebugSemanticsDumpOrder.traversalOrder,
   ),
 ];
-const _flaxBinding1012 = FlaxInstanceMethod(
-  _flaxBinding1011,
-  _flaxBinding21,
+const _flaxBinding1053 = FlaxInstanceMethod.plain(
+  _flaxBinding1052,
+  _flaxBinding16,
   _SemanticsNode_debugDescribeChildren,
 );
-const _flaxBinding1013 = FlaxInstanceMethod.signature(
-  _flaxBinding60,
+const _flaxBinding1054 = FlaxInstanceMethod.shared(
+  _flaxBinding48,
   _SemanticsNode_debugFillProperties,
 );
-const _flaxBinding1014 = FlaxInstanceMethod.signature(
-  _flaxBinding178,
+const _flaxBinding1055 = FlaxInstanceMethod.shared(
+  _flaxBinding153,
   _SemanticsNode_visitChildren,
 );
-const _flaxBinding1015 = FlaxInstanceMethod.signature(
-  _flaxBinding68,
+const _flaxBinding1056 = FlaxInstanceMethod.shared(
+  _flaxBinding54,
   _SemanticsNode_isTagged,
 );
-const _flaxBinding1016 = FlaxInstanceMethod.signature(
-  _flaxBinding161,
+const _flaxBinding1057 = FlaxInstanceMethod.shared(
+  _flaxBinding137,
   _SemanticsNode_hasFlag,
 );
-const _flaxBinding1017 = FlaxTypeRef(
+const _flaxBinding1058 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding175,
+  item: _flaxBinding150,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_semantics#type:SemanticsNode]",
     _collection17Create,
     _collection17Matches,
   ),
-  iterable: _flaxBinding184,
+  iterable: _flaxBinding159,
 );
-const _flaxBinding1018 = <FlaxParameter>[
+const _flaxBinding1059 = <FlaxParameter>[
   FlaxParameter(
     "childrenInInversePaintOrder",
-    _flaxBinding1017,
+    _flaxBinding1058,
     required: false,
   ),
-  FlaxParameter("config", _flaxBinding70, required: true),
+  FlaxParameter.required("config", _flaxBinding56),
 ];
-const _flaxBinding1019 = FlaxInstanceMethod(
-  _flaxBinding1018,
-  _flaxBinding48,
+const _flaxBinding1060 = FlaxInstanceMethod.plain(
+  _flaxBinding1059,
+  flaxVoidType,
   _SemanticsNode_updateWith,
 );
-const _flaxBinding1020 = FlaxInstanceMethod.signature(
-  _flaxBinding180,
+const _flaxBinding1061 = FlaxInstanceMethod.shared(
+  _flaxBinding155,
   _SemanticsNode_getSemanticsData,
 );
-const _flaxBinding1021 = FlaxInstanceMethod.signature(
-  _flaxBinding182,
+const _flaxBinding1062 = FlaxInstanceMethod.shared(
+  _flaxBinding157,
   _SemanticsNode_sendEvent,
 );
-const _flaxBinding1022 = FlaxInstanceMethod.signature(
-  _flaxBinding186,
+const _flaxBinding1063 = FlaxInstanceMethod.shared(
+  _flaxBinding161,
   _SemanticsNode_debugListChildrenInOrder,
 );
-const _flaxBinding1023 = <FlaxParameter>[
-  FlaxParameter("key", _flaxBinding187, required: false),
-  FlaxParameter("showOnScreen", _flaxBinding77, required: false),
+const _flaxBinding1064 = <FlaxParameter>[
+  FlaxParameter("key", _flaxBinding162, required: false),
+  FlaxParameter("showOnScreen", flaxVoidNullableCallbackType, required: false),
 ];
-const _flaxBinding1024 = FlaxCallbackBinding.signature(
+const _flaxBinding1065 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_semantics#type:SemanticsOwner",
+);
+const _flaxBinding1066 = <FlaxParameter>[
+  FlaxParameter("key", _flaxBinding162, required: false),
+  FlaxParameter("showOnScreen", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter.required("owner", _flaxBinding1065),
+];
+const _flaxBinding1067 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "prefixLineOne",
-      _flaxBinding1,
+      flaxStringType,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "prefixOtherLines",
-      _flaxBinding29,
+      flaxNullableStringType,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "minLevel",
-      _flaxBinding23,
+      _flaxBinding18,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "childOrder",
-      _flaxBinding183,
+      _flaxBinding158,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "wrapWidth",
-      _flaxBinding5,
+      flaxIntType,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding1,
+  flaxStringType,
   id: "callback:<>(n:o:prefixLineOne:String:,n:o:prefixOtherLines:String?:,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel,n:o:childOrder:enum:flax.core/sdk_semantics#type:DebugSemanticsDumpOrder,n:o:wrapWidth:int:)->String:",
 );
-const _flaxBinding1025 = FlaxProxyMember(
+const _flaxBinding1068 = FlaxProxyMember(
   "toStringDeep",
   0,
-  _flaxBinding1024,
+  _flaxBinding1067,
   hasSuper: true,
 );
-const _flaxBinding1026 = FlaxCallbackBinding.signature(
+const _flaxBinding1069 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "name",
-      _flaxBinding29,
+      flaxNullableStringType,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "style",
-      _flaxBinding37,
+      _flaxBinding26,
       required: false,
       positional: false,
     ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "childOrder",
-      _flaxBinding183,
+      _flaxBinding158,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding19,
+  _flaxBinding14,
   id: "callback:<>(n:o:name:String?:,n:o:style:enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle,n:o:childOrder:enum:flax.core/sdk_semantics#type:DebugSemanticsDumpOrder)->object:flax.core/sdk_foundation#type:DiagnosticsNode",
 );
-const _flaxBinding1027 = FlaxProxyMember(
+const _flaxBinding1070 = FlaxProxyMember(
   "toDiagnosticsNode",
   0,
-  _flaxBinding1026,
+  _flaxBinding1069,
   hasSuper: true,
 );
-const _flaxBinding1028 = FlaxCallbackBinding.signature(
+const _flaxBinding1071 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain(
       "childOrder",
-      _flaxBinding183,
+      _flaxBinding158,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding21,
+  _flaxBinding16,
   id: "callback:<>(n:o:childOrder:enum:flax.core/sdk_semantics#type:DebugSemanticsDumpOrder)->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
 );
-const _flaxBinding1029 = FlaxProxyMember(
+const _flaxBinding1072 = FlaxProxyMember(
   "debugDescribeChildren",
   0,
-  _flaxBinding1028,
+  _flaxBinding1071,
   hasSuper: true,
 );
-const _flaxBinding1030 = FlaxProxyMember(
+const _flaxBinding1073 = FlaxProxyMember(
   "visitChildren",
   0,
-  _flaxBinding178,
+  _flaxBinding153,
   hasSuper: true,
 );
-const _flaxBinding1031 = FlaxProxyMember(
+const _flaxBinding1074 = FlaxProxyMember(
   "isTagged",
   0,
-  _flaxBinding68,
+  _flaxBinding54,
   hasSuper: true,
 );
-const _flaxBinding1032 = FlaxCallbackBinding.signature(
+const _flaxBinding1075 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
-      "config",
-      _flaxBinding70,
-      required: true,
-      positional: false,
-    ),
-    FlaxCallbackParameter(
+    FlaxCallbackParameter.plain("config", _flaxBinding56, positional: false),
+    FlaxCallbackParameter.plain(
       "childrenInInversePaintOrder",
-      _flaxBinding1017,
+      _flaxBinding1058,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding48,
+  flaxVoidType,
   id: "callback:<>(n:r:config:object?:flax.core/sdk_semantics#type:SemanticsConfiguration,n:o:childrenInInversePaintOrder:list?:[object:flax.core/sdk_semantics#type:SemanticsNode])->void:",
 );
-const _flaxBinding1033 = FlaxProxyMember(
+const _flaxBinding1076 = FlaxProxyMember(
   "updateWith",
   0,
-  _flaxBinding1032,
+  _flaxBinding1075,
   hasSuper: true,
 );
-const _flaxBinding1034 = FlaxProxyMember(
+const _flaxBinding1077 = FlaxProxyMember(
   "getSemanticsData",
   0,
-  _flaxBinding180,
+  _flaxBinding155,
   hasSuper: true,
 );
-const _flaxBinding1035 = FlaxProxyMember(
+const _flaxBinding1078 = FlaxProxyMember(
   "sendEvent",
   0,
-  _flaxBinding182,
+  _flaxBinding157,
   hasSuper: true,
 );
-const _flaxBinding1036 = FlaxProxyMember(
+const _flaxBinding1079 = FlaxProxyMember(
   "debugListChildrenInOrder",
   0,
-  _flaxBinding186,
+  _flaxBinding161,
   hasSuper: true,
 );
-const _flaxBinding1037 = FlaxProxyMember(
+const _flaxBinding1080 = FlaxProxyMember(
   "key",
   1,
-  _flaxBinding188,
+  _flaxBinding163,
   hasSuper: true,
 );
-const _flaxBinding1038 = FlaxProxyMember(
-  "id",
-  1,
-  _flaxBinding6,
-  hasSuper: true,
-);
-const _flaxBinding1039 = FlaxProxyMember(
+const _flaxBinding1081 = FlaxProxyMember("id", 1, flaxIntCall, hasSuper: true);
+const _flaxBinding1082 = FlaxProxyMember(
   "parentSemanticsClipRect",
   1,
-  _flaxBinding190,
+  _flaxBinding165,
   hasSuper: true,
 );
-const _flaxBinding1040 = FlaxProxyMember(
+const _flaxBinding1083 = FlaxProxyMember(
   "parentPaintClipRect",
   1,
-  _flaxBinding190,
+  _flaxBinding165,
   hasSuper: true,
 );
-const _flaxBinding1041 = FlaxProxyMember(
+const _flaxBinding1084 = FlaxProxyMember(
   "isInvisible",
   1,
-  _flaxBinding28,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1042 = FlaxProxyMember(
+const _flaxBinding1085 = FlaxProxyMember(
   "isMergedIntoParent",
   1,
-  _flaxBinding28,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1043 = FlaxProxyMember(
+const _flaxBinding1086 = FlaxProxyMember(
   "areUserActionsBlocked",
   1,
-  _flaxBinding28,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1044 = FlaxProxyMember(
+const _flaxBinding1087 = FlaxProxyMember(
   "isPartOfNodeMerging",
   1,
-  _flaxBinding28,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1045 = FlaxProxyMember(
+const _flaxBinding1088 = FlaxProxyMember(
   "mergeAllDescendantsIntoThisNode",
   1,
-  _flaxBinding28,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1046 = FlaxProxyMember(
+const _flaxBinding1089 = FlaxProxyMember(
   "hasChildren",
   1,
-  _flaxBinding28,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1047 = FlaxProxyMember(
+const _flaxBinding1090 = FlaxProxyMember(
   "childrenCount",
   1,
-  _flaxBinding6,
+  flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1048 = FlaxProxyMember(
+const _flaxBinding1091 = FlaxProxyMember(
   "childrenCountInTraversalOrder",
   1,
-  _flaxBinding6,
+  flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1049 = FlaxProxyMember(
+const _flaxBinding1092 = FlaxProxyMember(
   "owner",
   1,
-  _flaxBinding192,
+  _flaxBinding167,
   hasSuper: true,
 );
-const _flaxBinding1050 = FlaxProxyMember(
+const _flaxBinding1093 = FlaxProxyMember(
   "attached",
   1,
-  _flaxBinding28,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1051 = FlaxProxyMember(
+const _flaxBinding1094 = FlaxProxyMember(
   "parent",
   1,
-  _flaxBinding194,
+  _flaxBinding169,
   hasSuper: true,
 );
-const _flaxBinding1052 = FlaxProxyMember(
+const _flaxBinding1095 = FlaxProxyMember(
   "traversalParent",
   1,
-  _flaxBinding194,
+  _flaxBinding169,
   hasSuper: true,
 );
-const _flaxBinding1053 = FlaxProxyMember(
+const _flaxBinding1096 = FlaxProxyMember(
   "depth",
   1,
-  _flaxBinding6,
+  flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1054 = FlaxProxyMember(
+const _flaxBinding1097 = FlaxProxyMember(
   "isMultiline",
   1,
-  _flaxBinding112,
+  flaxNullableBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1055 = FlaxProxyMember(
+const _flaxBinding1098 = FlaxProxyMember(
   "transform",
   2,
-  _flaxBinding195,
+  _flaxBinding170,
   hasSuper: true,
 );
-const _flaxBinding1056 = FlaxProxyMember(
+const _flaxBinding1099 = FlaxProxyMember(
   "rect",
   2,
-  _flaxBinding196,
+  _flaxBinding171,
   hasSuper: true,
 );
-const _flaxBinding1057 = FlaxProxyMember(
+const _flaxBinding1100 = FlaxProxyMember(
   "parentSemanticsClipRect",
   2,
-  _flaxBinding197,
+  _flaxBinding172,
   hasSuper: true,
 );
-const _flaxBinding1058 = FlaxProxyMember(
+const _flaxBinding1101 = FlaxProxyMember(
   "parentPaintClipRect",
   2,
-  _flaxBinding197,
+  _flaxBinding172,
   hasSuper: true,
 );
-const _flaxBinding1059 = FlaxProxyMember(
+const _flaxBinding1102 = FlaxProxyMember(
   "isMergedIntoParent",
   2,
-  _flaxBinding132,
+  _flaxBinding108,
   hasSuper: true,
 );
-const _flaxBinding1060 = FlaxProxyMember(
+const _flaxBinding1103 = FlaxProxyMember(
   "areUserActionsBlocked",
   2,
-  _flaxBinding132,
+  _flaxBinding108,
   hasSuper: true,
 );
-const _flaxBinding1061 = FlaxProxyMember(
+const _flaxBinding1104 = FlaxProxyMember(
   "traversalParent",
   2,
-  _flaxBinding198,
+  _flaxBinding173,
   hasSuper: true,
 );
-const _flaxBinding1062 = FlaxProxyMember(
+const _flaxBinding1105 = FlaxProxyMember(
   "tags",
   2,
-  _flaxBinding199,
+  _flaxBinding174,
   hasSuper: true,
 );
-const _flaxBinding1063 = FlaxObjectBinding(
+const _flaxBinding1106 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsNode",
   [
-    _flaxBinding937,
-    _flaxBinding938,
-    _flaxBinding939,
-    _flaxBinding940,
-    _flaxBinding941,
-    _flaxBinding942,
-    _flaxBinding943,
-    _flaxBinding944,
-    _flaxBinding945,
-    _flaxBinding946,
-    _flaxBinding947,
-    _flaxBinding948,
-    _flaxBinding949,
-    _flaxBinding950,
-    _flaxBinding951,
-    _flaxBinding952,
-    _flaxBinding953,
-    _flaxBinding954,
-    _flaxBinding955,
-    _flaxBinding956,
-    _flaxBinding957,
-    _flaxBinding958,
-    _flaxBinding959,
-    _flaxBinding960,
-    _flaxBinding961,
-    _flaxBinding962,
-    _flaxBinding963,
-    _flaxBinding964,
-    _flaxBinding965,
-    _flaxBinding966,
-    _flaxBinding967,
-    _flaxBinding968,
-    _flaxBinding969,
-    _flaxBinding970,
-    _flaxBinding971,
-    _flaxBinding972,
-    _flaxBinding973,
-    _flaxBinding974,
-    _flaxBinding975,
-    _flaxBinding976,
-    _flaxBinding977,
     _flaxBinding978,
     _flaxBinding979,
     _flaxBinding980,
@@ -22577,366 +22150,6 @@ const _flaxBinding1063 = FlaxObjectBinding(
     _flaxBinding992,
     _flaxBinding993,
     _flaxBinding994,
-  ],
-  {
-    "toString": _flaxBinding1004,
-    "toStringShallow": _flaxBinding1005,
-    "toStringDeep": _flaxBinding1007,
-    "toStringShort": _flaxBinding1008,
-    "toDiagnosticsNode": _flaxBinding1010,
-    "debugDescribeChildren": _flaxBinding1012,
-    "debugFillProperties": _flaxBinding1013,
-    "visitChildren": _flaxBinding1014,
-    "isTagged": _flaxBinding1015,
-    "hasFlag": _flaxBinding1016,
-    "updateWith": _flaxBinding1019,
-    "getSemanticsData": _flaxBinding1020,
-    "sendEvent": _flaxBinding1021,
-    "debugListChildrenInOrder": _flaxBinding1022,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding350,
-      _flaxBinding1,
-      _FlaxProxyDispatch9_super_call_toString,
-    ),
-    "@super:toStringShallow": FlaxInstanceMethod(
-      _flaxBinding908,
-      _flaxBinding1,
-      _SemanticsNode_super_toStringShallow,
-    ),
-    "@super:toStringDeep": FlaxInstanceMethod(
-      _flaxBinding1006,
-      _flaxBinding1,
-      _SemanticsNode_super_toStringDeep,
-    ),
-    "@super:toStringShort": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch9_super_call_toStringShort,
-    ),
-    "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding1009,
-      _flaxBinding19,
-      _SemanticsNode_super_toDiagnosticsNode,
-    ),
-    "@super:debugDescribeChildren": FlaxInstanceMethod(
-      _flaxBinding1011,
-      _flaxBinding21,
-      _SemanticsNode_super_debugDescribeChildren,
-    ),
-    "@super:debugFillProperties": FlaxInstanceMethod.signature(
-      _flaxBinding60,
-      _SemanticsNode_super_debugFillProperties,
-    ),
-    "@super:visitChildren": FlaxInstanceMethod.signature(
-      _flaxBinding178,
-      _SemanticsNode_super_visitChildren,
-    ),
-    "@super:isTagged": FlaxInstanceMethod.signature(
-      _flaxBinding68,
-      _SemanticsNode_super_isTagged,
-    ),
-    "@super:hasFlag": FlaxInstanceMethod.signature(
-      _flaxBinding161,
-      _SemanticsNode_super_hasFlag,
-    ),
-    "@super:updateWith": FlaxInstanceMethod(
-      _flaxBinding1018,
-      _flaxBinding48,
-      _SemanticsNode_super_updateWith,
-    ),
-    "@super:getSemanticsData": FlaxInstanceMethod.signature(
-      _flaxBinding180,
-      _SemanticsNode_super_getSemanticsData,
-    ),
-    "@super:sendEvent": FlaxInstanceMethod.signature(
-      _flaxBinding182,
-      _SemanticsNode_super_sendEvent,
-    ),
-    "@super:debugListChildrenInOrder": FlaxInstanceMethod.signature(
-      _flaxBinding186,
-      _SemanticsNode_super_debugListChildrenInOrder,
-    ),
-    "@super:get:key": FlaxInstanceMethod.signature(
-      _flaxBinding188,
-      _SemanticsNode_super_get_key,
-    ),
-    "@super:get:id": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _SemanticsNode_super_get_id,
-    ),
-    "@super:get:transform": FlaxInstanceMethod.signature(
-      _flaxBinding171,
-      _SemanticsNode_super_get_transform,
-    ),
-    "@super:get:rect": FlaxInstanceMethod.signature(
-      _flaxBinding166,
-      _SemanticsNode_super_get_rect,
-    ),
-    "@super:get:parentSemanticsClipRect": FlaxInstanceMethod.signature(
-      _flaxBinding190,
-      _SemanticsNode_super_get_parentSemanticsClipRect,
-    ),
-    "@super:get:parentPaintClipRect": FlaxInstanceMethod.signature(
-      _flaxBinding190,
-      _SemanticsNode_super_get_parentPaintClipRect,
-    ),
-    "@super:get:indexInParent": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _SemanticsNode_super_get_indexInParent,
-    ),
-    "@super:get:isInvisible": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsNode_super_get_isInvisible,
-    ),
-    "@super:get:isMergedIntoParent": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsNode_super_get_isMergedIntoParent,
-    ),
-    "@super:get:areUserActionsBlocked": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsNode_super_get_areUserActionsBlocked,
-    ),
-    "@super:get:isPartOfNodeMerging": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsNode_super_get_isPartOfNodeMerging,
-    ),
-    "@super:get:mergeAllDescendantsIntoThisNode": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsNode_super_get_mergeAllDescendantsIntoThisNode,
-    ),
-    "@super:get:hasChildren": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsNode_super_get_hasChildren,
-    ),
-    "@super:get:childrenCount": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _SemanticsNode_super_get_childrenCount,
-    ),
-    "@super:get:childrenCountInTraversalOrder": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _SemanticsNode_super_get_childrenCountInTraversalOrder,
-    ),
-    "@super:get:owner": FlaxInstanceMethod.signature(
-      _flaxBinding192,
-      _SemanticsNode_super_get_owner,
-    ),
-    "@super:get:attached": FlaxInstanceMethod.signature(
-      _flaxBinding28,
-      _SemanticsNode_super_get_attached,
-    ),
-    "@super:get:parent": FlaxInstanceMethod.signature(
-      _flaxBinding194,
-      _SemanticsNode_super_get_parent,
-    ),
-    "@super:get:traversalParent": FlaxInstanceMethod.signature(
-      _flaxBinding194,
-      _SemanticsNode_super_get_traversalParent,
-    ),
-    "@super:get:depth": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _SemanticsNode_super_get_depth,
-    ),
-    "@super:get:tags": FlaxInstanceMethod.signature(
-      _flaxBinding169,
-      _SemanticsNode_super_get_tags,
-    ),
-    "@super:get:flagsCollection": FlaxInstanceMethod.signature(
-      _flaxBinding164,
-      _SemanticsNode_super_get_flagsCollection,
-    ),
-    "@super:get:identifier": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_identifier,
-    ),
-    "@super:get:traversalParentIdentifier": FlaxInstanceMethod.signature(
-      _flaxBinding35,
-      _FlaxProxyDispatch15_super_get_traversalParentIdentifier,
-    ),
-    "@super:get:traversalChildIdentifier": FlaxInstanceMethod.signature(
-      _flaxBinding35,
-      _FlaxProxyDispatch15_super_get_traversalChildIdentifier,
-    ),
-    "@super:get:label": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_label,
-    ),
-    "@super:get:attributedLabel": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedLabel,
-    ),
-    "@super:get:value": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_value,
-    ),
-    "@super:get:attributedValue": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedValue,
-    ),
-    "@super:get:increasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_increasedValue,
-    ),
-    "@super:get:attributedIncreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedIncreasedValue,
-    ),
-    "@super:get:decreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_decreasedValue,
-    ),
-    "@super:get:attributedDecreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedDecreasedValue,
-    ),
-    "@super:get:hint": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_hint,
-    ),
-    "@super:get:attributedHint": FlaxInstanceMethod.signature(
-      _flaxBinding106,
-      _FlaxProxyDispatch14_super_get_attributedHint,
-    ),
-    "@super:get:tooltip": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch14_super_get_tooltip,
-    ),
-    "@super:get:hintOverrides": FlaxInstanceMethod.signature(
-      _flaxBinding108,
-      _SemanticsNode_super_get_hintOverrides,
-    ),
-    "@super:get:textDirection": FlaxInstanceMethod.signature(
-      _flaxBinding110,
-      _FlaxProxyDispatch15_super_get_textDirection,
-    ),
-    "@super:get:sortKey": FlaxInstanceMethod.signature(
-      _flaxBinding97,
-      _SemanticsNode_super_get_sortKey,
-    ),
-    "@super:get:textSelection": FlaxInstanceMethod.signature(
-      _flaxBinding118,
-      _FlaxProxyDispatch14_super_get_textSelection,
-    ),
-    "@super:get:isMultiline": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsNode_super_get_isMultiline,
-    ),
-    "@super:get:scrollChildCount": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch14_super_get_scrollChildCount,
-    ),
-    "@super:get:scrollIndex": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch14_super_get_scrollIndex,
-    ),
-    "@super:get:scrollPosition": FlaxInstanceMethod.signature(
-      _flaxBinding120,
-      _FlaxProxyDispatch14_super_get_scrollPosition,
-    ),
-    "@super:get:scrollExtentMax": FlaxInstanceMethod.signature(
-      _flaxBinding120,
-      _FlaxProxyDispatch14_super_get_scrollExtentMax,
-    ),
-    "@super:get:scrollExtentMin": FlaxInstanceMethod.signature(
-      _flaxBinding120,
-      _FlaxProxyDispatch14_super_get_scrollExtentMin,
-    ),
-    "@super:get:platformViewId": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch14_super_get_platformViewId,
-    ),
-    "@super:get:maxValueLength": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch15_super_get_maxValueLength,
-    ),
-    "@super:get:currentValueLength": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch15_super_get_currentValueLength,
-    ),
-    "@super:get:headingLevel": FlaxInstanceMethod.signature(
-      _flaxBinding6,
-      _FlaxProxyDispatch14_super_get_headingLevel,
-    ),
-    "@super:get:linkUrl": FlaxInstanceMethod.signature(
-      _flaxBinding116,
-      _FlaxProxyDispatch15_super_get_linkUrl,
-    ),
-    "@super:get:role": FlaxInstanceMethod.signature(
-      _flaxBinding105,
-      _FlaxProxyDispatch14_super_get_role,
-    ),
-    "@super:get:controlsNodes": FlaxInstanceMethod.signature(
-      _flaxBinding123,
-      _FlaxProxyDispatch15_super_get_controlsNodes,
-    ),
-    "@super:get:minValue": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch15_super_get_minValue,
-    ),
-    "@super:get:maxValue": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch15_super_get_maxValue,
-    ),
-    "@super:get:validationResult": FlaxInstanceMethod.signature(
-      _flaxBinding125,
-      _FlaxProxyDispatch15_super_get_validationResult,
-    ),
-    "@super:get:hitTestBehavior": FlaxInstanceMethod.signature(
-      _flaxBinding127,
-      _FlaxProxyDispatch14_super_get_hitTestBehavior,
-    ),
-    "@super:get:inputType": FlaxInstanceMethod.signature(
-      _flaxBinding129,
-      _FlaxProxyDispatch14_super_get_inputType,
-    ),
-    "@super:set:transform": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding170, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsNode_super_set_transform,
-    ),
-    "@super:set:rect": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding165, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsNode_super_set_rect,
-    ),
-    "@super:set:parentSemanticsClipRect": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding189, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsNode_super_set_parentSemanticsClipRect,
-    ),
-    "@super:set:parentPaintClipRect": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding189, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsNode_super_set_parentPaintClipRect,
-    ),
-    "@super:set:indexInParent": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding98, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsNode_super_set_indexInParent,
-    ),
-    "@super:set:isMergedIntoParent": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsNode_super_set_isMergedIntoParent,
-    ),
-    "@super:set:areUserActionsBlocked": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding24, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsNode_super_set_areUserActionsBlocked,
-    ),
-    "@super:set:traversalParent": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding193, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsNode_super_set_traversalParent,
-    ),
-    "@super:set:tags": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding168, required: true)],
-      const FlaxTypeRef("void"),
-      _SemanticsNode_super_set_tags,
-    ),
-  },
-  constructors: {"@implementation": _flaxBinding1023},
-  create: _createSemanticsNode,
-  matches: _isSemanticsNode,
-  setters: [
     _flaxBinding995,
     _flaxBinding996,
     _flaxBinding997,
@@ -22946,6 +22159,306 @@ const _flaxBinding1063 = FlaxObjectBinding(
     _flaxBinding1001,
     _flaxBinding1002,
     _flaxBinding1003,
+    _flaxBinding1004,
+    _flaxBinding1005,
+    _flaxBinding1006,
+    _flaxBinding1007,
+    _flaxBinding1008,
+    _flaxBinding1009,
+    _flaxBinding1010,
+    _flaxBinding1011,
+    _flaxBinding1012,
+    _flaxBinding1013,
+    _flaxBinding1014,
+    _flaxBinding1015,
+    _flaxBinding1016,
+    _flaxBinding1017,
+    _flaxBinding1018,
+    _flaxBinding1019,
+    _flaxBinding1020,
+    _flaxBinding1021,
+    _flaxBinding1022,
+    _flaxBinding1023,
+    _flaxBinding1024,
+    _flaxBinding1025,
+    _flaxBinding1026,
+    _flaxBinding1027,
+    _flaxBinding1028,
+    _flaxBinding1029,
+    _flaxBinding1030,
+    _flaxBinding1031,
+    _flaxBinding1032,
+    _flaxBinding1033,
+    _flaxBinding1034,
+    _flaxBinding1035,
+  ],
+  {
+    "toString": _flaxBinding1045,
+    "toStringShallow": _flaxBinding1046,
+    "toStringDeep": _flaxBinding1048,
+    "toStringShort": _flaxBinding1049,
+    "toDiagnosticsNode": _flaxBinding1051,
+    "debugDescribeChildren": _flaxBinding1053,
+    "debugFillProperties": _flaxBinding1054,
+    "visitChildren": _flaxBinding1055,
+    "isTagged": _flaxBinding1056,
+    "hasFlag": _flaxBinding1057,
+    "updateWith": _flaxBinding1060,
+    "getSemanticsData": _flaxBinding1061,
+    "sendEvent": _flaxBinding1062,
+    "debugListChildrenInOrder": _flaxBinding1063,
+    "@super:toString": _flaxBinding337,
+    "@super:toStringShallow": FlaxInstanceMethod.plain(
+      _flaxBinding949,
+      flaxStringType,
+      _SemanticsNode_super_toStringShallow,
+    ),
+    "@super:toStringDeep": FlaxInstanceMethod.plain(
+      _flaxBinding1047,
+      flaxStringType,
+      _SemanticsNode_super_toStringDeep,
+    ),
+    "@super:toStringShort": _flaxBinding336,
+    "@super:toDiagnosticsNode": FlaxInstanceMethod.plain(
+      _flaxBinding1050,
+      _flaxBinding14,
+      _SemanticsNode_super_toDiagnosticsNode,
+    ),
+    "@super:debugDescribeChildren": FlaxInstanceMethod.plain(
+      _flaxBinding1052,
+      _flaxBinding16,
+      _SemanticsNode_super_debugDescribeChildren,
+    ),
+    "@super:debugFillProperties": FlaxInstanceMethod.shared(
+      _flaxBinding48,
+      _SemanticsNode_super_debugFillProperties,
+    ),
+    "@super:visitChildren": FlaxInstanceMethod.shared(
+      _flaxBinding153,
+      _SemanticsNode_super_visitChildren,
+    ),
+    "@super:isTagged": FlaxInstanceMethod.shared(
+      _flaxBinding54,
+      _SemanticsNode_super_isTagged,
+    ),
+    "@super:hasFlag": FlaxInstanceMethod.shared(
+      _flaxBinding137,
+      _SemanticsNode_super_hasFlag,
+    ),
+    "@super:updateWith": FlaxInstanceMethod.plain(
+      _flaxBinding1059,
+      flaxVoidType,
+      _SemanticsNode_super_updateWith,
+    ),
+    "@super:getSemanticsData": FlaxInstanceMethod.shared(
+      _flaxBinding155,
+      _SemanticsNode_super_getSemanticsData,
+    ),
+    "@super:sendEvent": FlaxInstanceMethod.shared(
+      _flaxBinding157,
+      _SemanticsNode_super_sendEvent,
+    ),
+    "@super:debugListChildrenInOrder": FlaxInstanceMethod.shared(
+      _flaxBinding161,
+      _SemanticsNode_super_debugListChildrenInOrder,
+    ),
+    "@super:get:key": FlaxInstanceMethod.shared(
+      _flaxBinding163,
+      _SemanticsNode_super_get_key,
+    ),
+    "@super:get:id": FlaxInstanceMethod.shared(
+      flaxIntCall,
+      _SemanticsNode_super_get_id,
+    ),
+    "@super:get:transform": FlaxInstanceMethod.shared(
+      _flaxBinding146,
+      _SemanticsNode_super_get_transform,
+    ),
+    "@super:get:rect": FlaxInstanceMethod.shared(
+      _flaxBinding141,
+      _SemanticsNode_super_get_rect,
+    ),
+    "@super:get:parentSemanticsClipRect": FlaxInstanceMethod.shared(
+      _flaxBinding165,
+      _SemanticsNode_super_get_parentSemanticsClipRect,
+    ),
+    "@super:get:parentPaintClipRect": FlaxInstanceMethod.shared(
+      _flaxBinding165,
+      _SemanticsNode_super_get_parentPaintClipRect,
+    ),
+    "@super:get:indexInParent": FlaxInstanceMethod.shared(
+      flaxNullableIntCall,
+      _SemanticsNode_super_get_indexInParent,
+    ),
+    "@super:get:isInvisible": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsNode_super_get_isInvisible,
+    ),
+    "@super:get:isMergedIntoParent": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsNode_super_get_isMergedIntoParent,
+    ),
+    "@super:get:areUserActionsBlocked": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsNode_super_get_areUserActionsBlocked,
+    ),
+    "@super:get:isPartOfNodeMerging": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsNode_super_get_isPartOfNodeMerging,
+    ),
+    "@super:get:mergeAllDescendantsIntoThisNode": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsNode_super_get_mergeAllDescendantsIntoThisNode,
+    ),
+    "@super:get:hasChildren": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsNode_super_get_hasChildren,
+    ),
+    "@super:get:childrenCount": FlaxInstanceMethod.shared(
+      flaxIntCall,
+      _SemanticsNode_super_get_childrenCount,
+    ),
+    "@super:get:childrenCountInTraversalOrder": FlaxInstanceMethod.shared(
+      flaxIntCall,
+      _SemanticsNode_super_get_childrenCountInTraversalOrder,
+    ),
+    "@super:get:owner": FlaxInstanceMethod.shared(
+      _flaxBinding167,
+      _SemanticsNode_super_get_owner,
+    ),
+    "@super:get:attached": FlaxInstanceMethod.shared(
+      flaxBoolCall,
+      _SemanticsNode_super_get_attached,
+    ),
+    "@super:get:parent": FlaxInstanceMethod.shared(
+      _flaxBinding169,
+      _SemanticsNode_super_get_parent,
+    ),
+    "@super:get:traversalParent": FlaxInstanceMethod.shared(
+      _flaxBinding169,
+      _SemanticsNode_super_get_traversalParent,
+    ),
+    "@super:get:depth": FlaxInstanceMethod.shared(
+      flaxIntCall,
+      _SemanticsNode_super_get_depth,
+    ),
+    "@super:get:tags": FlaxInstanceMethod.shared(
+      _flaxBinding144,
+      _SemanticsNode_super_get_tags,
+    ),
+    "@super:get:flagsCollection": FlaxInstanceMethod.shared(
+      _flaxBinding140,
+      _SemanticsNode_super_get_flagsCollection,
+    ),
+    "@super:get:identifier": _flaxBinding656,
+    "@super:get:traversalParentIdentifier": _flaxBinding657,
+    "@super:get:traversalChildIdentifier": _flaxBinding658,
+    "@super:get:label": _flaxBinding660,
+    "@super:get:attributedLabel": _flaxBinding661,
+    "@super:get:value": _flaxBinding662,
+    "@super:get:attributedValue": _flaxBinding663,
+    "@super:get:increasedValue": _flaxBinding664,
+    "@super:get:attributedIncreasedValue": _flaxBinding665,
+    "@super:get:decreasedValue": _flaxBinding666,
+    "@super:get:attributedDecreasedValue": _flaxBinding667,
+    "@super:get:hint": _flaxBinding668,
+    "@super:get:attributedHint": _flaxBinding669,
+    "@super:get:tooltip": _flaxBinding670,
+    "@super:get:hintOverrides": FlaxInstanceMethod.shared(
+      _flaxBinding88,
+      _SemanticsNode_super_get_hintOverrides,
+    ),
+    "@super:get:textDirection": _flaxBinding671,
+    "@super:get:sortKey": FlaxInstanceMethod.shared(
+      _flaxBinding80,
+      _SemanticsNode_super_get_sortKey,
+    ),
+    "@super:get:textSelection": _flaxBinding675,
+    "@super:get:isMultiline": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsNode_super_get_isMultiline,
+    ),
+    "@super:get:scrollChildCount": _flaxBinding651,
+    "@super:get:scrollIndex": _flaxBinding652,
+    "@super:get:scrollPosition": _flaxBinding676,
+    "@super:get:scrollExtentMax": _flaxBinding677,
+    "@super:get:scrollExtentMin": _flaxBinding678,
+    "@super:get:platformViewId": _flaxBinding653,
+    "@super:get:maxValueLength": _flaxBinding654,
+    "@super:get:currentValueLength": _flaxBinding655,
+    "@super:get:headingLevel": _flaxBinding673,
+    "@super:get:linkUrl": _flaxBinding672,
+    "@super:get:role": _flaxBinding659,
+    "@super:get:controlsNodes": _flaxBinding679,
+    "@super:get:minValue": _flaxBinding684,
+    "@super:get:maxValue": _flaxBinding683,
+    "@super:get:validationResult": _flaxBinding680,
+    "@super:get:hitTestBehavior": _flaxBinding681,
+    "@super:get:inputType": _flaxBinding682,
+    "@super:set:transform": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding145)],
+      flaxVoidType,
+      _SemanticsNode_super_set_transform,
+    ),
+    "@super:set:rect": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxRectType)],
+      flaxVoidType,
+      _SemanticsNode_super_set_rect,
+    ),
+    "@super:set:parentSemanticsClipRect": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding164)],
+      flaxVoidType,
+      _SemanticsNode_super_set_parentSemanticsClipRect,
+    ),
+    "@super:set:parentPaintClipRect": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding164)],
+      flaxVoidType,
+      _SemanticsNode_super_set_parentPaintClipRect,
+    ),
+    "@super:set:indexInParent": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxNullableIntType)],
+      flaxVoidType,
+      _SemanticsNode_super_set_indexInParent,
+    ),
+    "@super:set:isMergedIntoParent": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsNode_super_set_isMergedIntoParent,
+    ),
+    "@super:set:areUserActionsBlocked": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", flaxBoolType)],
+      flaxVoidType,
+      _SemanticsNode_super_set_areUserActionsBlocked,
+    ),
+    "@super:set:traversalParent": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding168)],
+      flaxVoidType,
+      _SemanticsNode_super_set_traversalParent,
+    ),
+    "@super:set:tags": FlaxInstanceMethod.plain(
+      [FlaxParameter.required("value", _flaxBinding143)],
+      flaxVoidType,
+      _SemanticsNode_super_set_tags,
+    ),
+  },
+  constructors: {
+    "": _flaxBinding1064,
+    "root": _flaxBinding1066,
+    "@implementation": _flaxBinding1064,
+    "@implementation:root": _flaxBinding1066,
+  },
+  create: _createSemanticsNode,
+  matches: _isSemanticsNode,
+  setters: [
+    _flaxBinding1036,
+    _flaxBinding1037,
+    _flaxBinding1038,
+    _flaxBinding1039,
+    _flaxBinding1040,
+    _flaxBinding1041,
+    _flaxBinding1042,
+    _flaxBinding1043,
+    _flaxBinding1044,
   ],
   supertypes: [
     "dart:core::Object",
@@ -22954,319 +22467,286 @@ const _flaxBinding1063 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding360,
-    _flaxBinding919,
-    _flaxBinding1025,
-    _flaxBinding358,
-    _flaxBinding1027,
-    _flaxBinding1029,
-    _flaxBinding363,
-    _flaxBinding1030,
-    _flaxBinding1031,
-    _flaxBinding893,
-    _flaxBinding1033,
-    _flaxBinding1034,
-    _flaxBinding1035,
-    _flaxBinding1036,
-    _flaxBinding1037,
-    _flaxBinding1038,
-    _flaxBinding900,
-    _flaxBinding898,
-    _flaxBinding1039,
-    _flaxBinding1040,
-    _flaxBinding684,
-    _flaxBinding1041,
-    _flaxBinding1042,
-    _flaxBinding1043,
-    _flaxBinding1044,
-    _flaxBinding1045,
-    _flaxBinding1046,
-    _flaxBinding1047,
-    _flaxBinding1048,
-    _flaxBinding1049,
-    _flaxBinding1050,
-    _flaxBinding1051,
-    _flaxBinding1052,
-    _flaxBinding1053,
-    _flaxBinding899,
-    _flaxBinding896,
-    _flaxBinding692,
-    _flaxBinding693,
-    _flaxBinding694,
-    _flaxBinding696,
-    _flaxBinding697,
-    _flaxBinding698,
-    _flaxBinding699,
-    _flaxBinding700,
-    _flaxBinding701,
-    _flaxBinding702,
-    _flaxBinding703,
-    _flaxBinding704,
-    _flaxBinding705,
-    _flaxBinding706,
-    _flaxBinding707,
-    _flaxBinding712,
-    _flaxBinding683,
+    _flaxBinding344,
+    _flaxBinding960,
+    _flaxBinding1068,
+    _flaxBinding342,
+    _flaxBinding1070,
+    _flaxBinding1072,
+    _flaxBinding347,
+    _flaxBinding1073,
+    _flaxBinding1074,
+    _flaxBinding934,
+    _flaxBinding1076,
+    _flaxBinding1077,
+    _flaxBinding1078,
+    _flaxBinding1079,
+    _flaxBinding1080,
+    _flaxBinding1081,
+    _flaxBinding941,
+    _flaxBinding939,
+    _flaxBinding1082,
+    _flaxBinding1083,
+    _flaxBinding725,
+    _flaxBinding1084,
+    _flaxBinding1085,
+    _flaxBinding1086,
+    _flaxBinding1087,
+    _flaxBinding1088,
+    _flaxBinding1089,
+    _flaxBinding1090,
+    _flaxBinding1091,
+    _flaxBinding1092,
+    _flaxBinding1093,
+    _flaxBinding1094,
+    _flaxBinding1095,
+    _flaxBinding1096,
+    _flaxBinding940,
+    _flaxBinding937,
+    _flaxBinding733,
+    _flaxBinding734,
+    _flaxBinding735,
     _flaxBinding737,
-    _flaxBinding1054,
-    _flaxBinding685,
-    _flaxBinding686,
     _flaxBinding738,
     _flaxBinding739,
     _flaxBinding740,
-    _flaxBinding687,
-    _flaxBinding688,
-    _flaxBinding689,
-    _flaxBinding727,
-    _flaxBinding725,
-    _flaxBinding695,
     _flaxBinding741,
-    _flaxBinding746,
-    _flaxBinding745,
     _flaxBinding742,
     _flaxBinding743,
     _flaxBinding744,
-    _flaxBinding1055,
-    _flaxBinding1056,
-    _flaxBinding1057,
-    _flaxBinding1058,
+    _flaxBinding745,
+    _flaxBinding746,
+    _flaxBinding747,
+    _flaxBinding748,
+    _flaxBinding753,
+    _flaxBinding724,
+    _flaxBinding778,
+    _flaxBinding1097,
+    _flaxBinding726,
+    _flaxBinding727,
+    _flaxBinding779,
+    _flaxBinding780,
     _flaxBinding781,
-    _flaxBinding1059,
-    _flaxBinding1060,
-    _flaxBinding1061,
-    _flaxBinding1062,
+    _flaxBinding728,
+    _flaxBinding729,
+    _flaxBinding730,
+    _flaxBinding768,
+    _flaxBinding766,
+    _flaxBinding736,
+    _flaxBinding782,
+    _flaxBinding787,
+    _flaxBinding786,
+    _flaxBinding783,
+    _flaxBinding784,
+    _flaxBinding785,
+    _flaxBinding1098,
+    _flaxBinding1099,
+    _flaxBinding1100,
+    _flaxBinding1101,
+    _flaxBinding822,
+    _flaxBinding1102,
+    _flaxBinding1103,
+    _flaxBinding1104,
+    _flaxBinding1105,
   ]),
 );
-const _flaxBinding1064 = FlaxGetter(
+const _flaxBinding1107 = FlaxGetter.plain(
   "hasListeners",
-  _flaxBinding24,
+  flaxBoolType,
   _SemanticsOwner_hasListeners,
 );
-const _flaxBinding1065 = FlaxGetter(
+const _flaxBinding1108 = FlaxGetter.plain(
   "onSemanticsUpdate",
-  _flaxBinding205,
+  _flaxBinding179,
   _SemanticsOwner_onSemanticsUpdate,
 );
-const _flaxBinding1066 = FlaxGetter(
+const _flaxBinding1109 = FlaxGetter.plain(
   "rootSemanticsNode",
-  _flaxBinding193,
+  _flaxBinding168,
   _SemanticsOwner_rootSemanticsNode,
 );
-const _flaxBinding1067 = FlaxInstanceMethod.signature(
-  _flaxBinding200,
+const _flaxBinding1110 = FlaxInstanceMethod.shared(
+  _flaxBinding175,
   _SemanticsOwner_addListener,
 );
-const _flaxBinding1068 = FlaxInstanceMethod.signature(
-  _flaxBinding200,
+const _flaxBinding1111 = FlaxInstanceMethod.shared(
+  _flaxBinding175,
   _SemanticsOwner_removeListener,
 );
-const _flaxBinding1069 = FlaxInstanceMethod.signature(
-  _flaxBinding201,
+const _flaxBinding1112 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
   _SemanticsOwner_dispose,
 );
-const _flaxBinding1070 = FlaxInstanceMethod.signature(
-  _flaxBinding202,
+const _flaxBinding1113 = FlaxInstanceMethod.shared(
+  _flaxBinding176,
   _SemanticsOwner_getSemanticsNode,
 );
-const _flaxBinding1071 = FlaxInstanceMethod.signature(
-  _flaxBinding201,
+const _flaxBinding1114 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
   _SemanticsOwner_sendSemanticsUpdate,
 );
-const _flaxBinding1072 = <FlaxParameter>[
-  FlaxParameter("id", _flaxBinding5, required: true),
-  FlaxParameter("action", _flaxBinding63, required: true),
-  FlaxParameter("args", _flaxBinding0, required: false),
+const _flaxBinding1115 = <FlaxParameter>[
+  FlaxParameter.required("id", flaxIntType),
+  FlaxParameter.required("action", _flaxBinding49),
+  FlaxParameter("args", flaxNullableAnyType, required: false),
 ];
-const _flaxBinding1073 = FlaxInstanceMethod(
-  _flaxBinding1072,
-  _flaxBinding48,
+const _flaxBinding1116 = FlaxInstanceMethod.plain(
+  _flaxBinding1115,
+  flaxVoidType,
   _SemanticsOwner_performAction,
 );
-const _flaxBinding1074 = <FlaxParameter>[
-  FlaxParameter("position", _flaxBinding79, required: true),
-  FlaxParameter("action", _flaxBinding63, required: true),
-  FlaxParameter("args", _flaxBinding0, required: false),
+const _flaxBinding1117 = <FlaxParameter>[
+  FlaxParameter.required("position", flaxOffsetType),
+  FlaxParameter.required("action", _flaxBinding49),
+  FlaxParameter("args", flaxNullableAnyType, required: false),
 ];
-const _flaxBinding1075 = FlaxInstanceMethod(
-  _flaxBinding1074,
-  _flaxBinding48,
+const _flaxBinding1118 = FlaxInstanceMethod.plain(
+  _flaxBinding1117,
+  flaxVoidType,
   _SemanticsOwner_performActionAt,
 );
-const _flaxBinding1076 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding1119 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _SemanticsOwner_toString,
 );
-const _flaxBinding1077 = <FlaxParameter>[
-  FlaxParameter("onSemanticsUpdate", _flaxBinding205, required: true),
+const _flaxBinding1120 = <FlaxParameter>[
+  FlaxParameter.required("onSemanticsUpdate", _flaxBinding179),
 ];
-const _flaxBinding1078 = FlaxProxyMember(
+const _flaxBinding1121 = FlaxProxyMember(
   "addListener",
   0,
-  _flaxBinding200,
+  _flaxBinding175,
   hasSuper: true,
 );
-const _flaxBinding1079 = FlaxProxyMember(
+const _flaxBinding1122 = FlaxProxyMember(
   "removeListener",
   0,
-  _flaxBinding200,
+  _flaxBinding175,
   hasSuper: true,
 );
-const _flaxBinding1080 = FlaxProxyMember(
+const _flaxBinding1123 = FlaxProxyMember(
   "dispose",
   0,
-  _flaxBinding201,
+  flaxVoidCall,
   hasSuper: true,
 );
-const _flaxBinding1081 = FlaxProxyMember(
+const _flaxBinding1124 = FlaxProxyMember(
   "getSemanticsNode",
   0,
-  _flaxBinding202,
+  _flaxBinding176,
   hasSuper: true,
 );
-const _flaxBinding1082 = FlaxProxyMember(
+const _flaxBinding1125 = FlaxProxyMember(
   "sendSemanticsUpdate",
   0,
-  _flaxBinding201,
+  flaxVoidCall,
   hasSuper: true,
 );
-const _flaxBinding1083 = FlaxCallbackBinding.signature(
+const _flaxBinding1126 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
-      "id",
-      _flaxBinding5,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "action",
-      _flaxBinding63,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "args",
-      _flaxBinding0,
-      required: false,
-      positional: true,
-    ),
+    FlaxCallbackParameter.plain("id", flaxIntType),
+    FlaxCallbackParameter.plain("action", _flaxBinding49),
+    FlaxCallbackParameter.plain("args", flaxNullableAnyType, required: false),
   ],
-  _flaxBinding48,
+  flaxVoidType,
   id: "callback:<>(p:r:id:int:,p:r:action:object:flax.core/sdk_dart_ui#type:SemanticsAction,p:o:args:any?:)->void:",
 );
-const _flaxBinding1084 = FlaxProxyMember(
+const _flaxBinding1127 = FlaxProxyMember(
   "performAction",
   0,
-  _flaxBinding1083,
+  _flaxBinding1126,
   hasSuper: true,
 );
-const _flaxBinding1085 = FlaxCallbackBinding.signature(
+const _flaxBinding1128 = FlaxCallbackBinding.signature(
   [
-    FlaxCallbackParameter(
-      "position",
-      _flaxBinding79,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "action",
-      _flaxBinding63,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "args",
-      _flaxBinding0,
-      required: false,
-      positional: true,
-    ),
+    FlaxCallbackParameter.plain("position", flaxOffsetType),
+    FlaxCallbackParameter.plain("action", _flaxBinding49),
+    FlaxCallbackParameter.plain("args", flaxNullableAnyType, required: false),
   ],
-  _flaxBinding48,
+  flaxVoidType,
   id: "callback:<>(p:r:position:object:flax.core/flutter#type:Offset,p:r:action:object:flax.core/sdk_dart_ui#type:SemanticsAction,p:o:args:any?:)->void:",
 );
-const _flaxBinding1086 = FlaxProxyMember(
+const _flaxBinding1129 = FlaxProxyMember(
   "performActionAt",
   0,
-  _flaxBinding1085,
+  _flaxBinding1128,
   hasSuper: true,
 );
-const _flaxBinding1087 = FlaxProxyMember(
+const _flaxBinding1130 = FlaxProxyMember(
   "onSemanticsUpdate",
   1,
-  _flaxBinding206,
+  _flaxBinding180,
   hasSuper: true,
 );
-const _flaxBinding1088 = FlaxProxyMember(
+const _flaxBinding1131 = FlaxProxyMember(
   "rootSemanticsNode",
   1,
-  _flaxBinding194,
+  _flaxBinding169,
   hasSuper: true,
 );
-const _flaxBinding1089 = FlaxProxyMember(
+const _flaxBinding1132 = FlaxProxyMember(
   "hasListeners",
   1,
-  _flaxBinding28,
+  flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1090 = FlaxObjectBinding(
+const _flaxBinding1133 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsOwner",
-  [_flaxBinding1064, _flaxBinding1065, _flaxBinding1066],
+  [_flaxBinding1107, _flaxBinding1108, _flaxBinding1109],
   {
-    "addListener": _flaxBinding1067,
-    "removeListener": _flaxBinding1068,
-    "dispose": _flaxBinding1069,
-    "getSemanticsNode": _flaxBinding1070,
-    "sendSemanticsUpdate": _flaxBinding1071,
-    "performAction": _flaxBinding1073,
-    "performActionAt": _flaxBinding1075,
-    "toString": _flaxBinding1076,
-    "@super:addListener": FlaxInstanceMethod.signature(
-      _flaxBinding200,
+    "addListener": _flaxBinding1110,
+    "removeListener": _flaxBinding1111,
+    "dispose": _flaxBinding1112,
+    "getSemanticsNode": _flaxBinding1113,
+    "sendSemanticsUpdate": _flaxBinding1114,
+    "performAction": _flaxBinding1116,
+    "performActionAt": _flaxBinding1118,
+    "toString": _flaxBinding1119,
+    "@super:addListener": FlaxInstanceMethod.shared(
+      _flaxBinding175,
       _SemanticsOwner_super_addListener,
     ),
-    "@super:removeListener": FlaxInstanceMethod.signature(
-      _flaxBinding200,
+    "@super:removeListener": FlaxInstanceMethod.shared(
+      _flaxBinding175,
       _SemanticsOwner_super_removeListener,
     ),
-    "@super:dispose": FlaxInstanceMethod.signature(
-      _flaxBinding201,
+    "@super:dispose": FlaxInstanceMethod.shared(
+      flaxVoidCall,
       _SemanticsOwner_super_dispose,
     ),
-    "@super:getSemanticsNode": FlaxInstanceMethod.signature(
-      _flaxBinding202,
+    "@super:getSemanticsNode": FlaxInstanceMethod.shared(
+      _flaxBinding176,
       _SemanticsOwner_super_getSemanticsNode,
     ),
-    "@super:sendSemanticsUpdate": FlaxInstanceMethod.signature(
-      _flaxBinding201,
+    "@super:sendSemanticsUpdate": FlaxInstanceMethod.shared(
+      flaxVoidCall,
       _SemanticsOwner_super_sendSemanticsUpdate,
     ),
-    "@super:performAction": FlaxInstanceMethod(
-      _flaxBinding1072,
-      _flaxBinding48,
+    "@super:performAction": FlaxInstanceMethod.plain(
+      _flaxBinding1115,
+      flaxVoidType,
       _SemanticsOwner_super_performAction,
     ),
-    "@super:performActionAt": FlaxInstanceMethod(
-      _flaxBinding1074,
-      _flaxBinding48,
+    "@super:performActionAt": FlaxInstanceMethod.plain(
+      _flaxBinding1117,
+      flaxVoidType,
       _SemanticsOwner_super_performActionAt,
     ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:onSemanticsUpdate": FlaxInstanceMethod.signature(
-      _flaxBinding206,
+    "@super:toString": _flaxBinding199,
+    "@super:get:onSemanticsUpdate": FlaxInstanceMethod.shared(
+      _flaxBinding180,
       _SemanticsOwner_super_get_onSemanticsUpdate,
     ),
-    "@super:get:rootSemanticsNode": FlaxInstanceMethod.signature(
-      _flaxBinding194,
+    "@super:get:rootSemanticsNode": FlaxInstanceMethod.shared(
+      _flaxBinding169,
       _SemanticsOwner_super_get_rootSemanticsNode,
     ),
-    "@super:get:hasListeners": FlaxInstanceMethod.signature(
-      _flaxBinding28,
+    "@super:get:hasListeners": FlaxInstanceMethod.shared(
+      flaxBoolCall,
       _SemanticsOwner_super_get_hasListeners,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1077},
+  constructors: {"": _flaxBinding1120, "@implementation": _flaxBinding1120},
   create: _createSemanticsOwner,
   matches: _isSemanticsOwner,
   setters: [],
@@ -23278,818 +22758,795 @@ const _flaxBinding1090 = FlaxObjectBinding(
   disposeMethod: "dispose",
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding1078,
-    _flaxBinding1079,
-    _flaxBinding1080,
-    _flaxBinding1081,
-    _flaxBinding1082,
-    _flaxBinding1084,
-    _flaxBinding1086,
-    _flaxBinding228,
-    _flaxBinding1087,
-    _flaxBinding1088,
-    _flaxBinding1089,
-  ]),
-);
-const _flaxBinding1091 = FlaxGetter(
-  "enabled",
-  _flaxBinding111,
-  _SemanticsProperties_enabled,
-);
-const _flaxBinding1092 = FlaxGetter(
-  "checked",
-  _flaxBinding111,
-  _SemanticsProperties_checked,
-);
-const _flaxBinding1093 = FlaxGetter(
-  "mixed",
-  _flaxBinding111,
-  _SemanticsProperties_mixed,
-);
-const _flaxBinding1094 = FlaxGetter(
-  "expanded",
-  _flaxBinding111,
-  _SemanticsProperties_expanded,
-);
-const _flaxBinding1095 = FlaxGetter(
-  "toggled",
-  _flaxBinding111,
-  _SemanticsProperties_toggled,
-);
-const _flaxBinding1096 = FlaxGetter(
-  "selected",
-  _flaxBinding111,
-  _SemanticsProperties_selected,
-);
-const _flaxBinding1097 = FlaxGetter(
-  "button",
-  _flaxBinding111,
-  _SemanticsProperties_button,
-);
-const _flaxBinding1098 = FlaxGetter(
-  "link",
-  _flaxBinding111,
-  _SemanticsProperties_link,
-);
-const _flaxBinding1099 = FlaxGetter(
-  "header",
-  _flaxBinding111,
-  _SemanticsProperties_header,
-);
-const _flaxBinding1100 = FlaxGetter(
-  "textField",
-  _flaxBinding111,
-  _SemanticsProperties_textField,
-);
-const _flaxBinding1101 = FlaxGetter(
-  "slider",
-  _flaxBinding111,
-  _SemanticsProperties_slider,
-);
-const _flaxBinding1102 = FlaxGetter(
-  "keyboardKey",
-  _flaxBinding111,
-  _SemanticsProperties_keyboardKey,
-);
-const _flaxBinding1103 = FlaxGetter(
-  "readOnly",
-  _flaxBinding111,
-  _SemanticsProperties_readOnly,
-);
-const _flaxBinding1104 = FlaxGetter(
-  "focusable",
-  _flaxBinding111,
-  _SemanticsProperties_focusable,
-);
-const _flaxBinding1105 = FlaxGetter(
-  "focused",
-  _flaxBinding111,
-  _SemanticsProperties_focused,
-);
-const _flaxBinding1106 = FlaxGetter(
-  "accessibilityFocusBlockType",
-  _flaxBinding207,
-  _SemanticsProperties_accessibilityFocusBlockType,
-);
-const _flaxBinding1107 = FlaxGetter(
-  "inMutuallyExclusiveGroup",
-  _flaxBinding111,
-  _SemanticsProperties_inMutuallyExclusiveGroup,
-);
-const _flaxBinding1108 = FlaxGetter(
-  "hidden",
-  _flaxBinding111,
-  _SemanticsProperties_hidden,
-);
-const _flaxBinding1109 = FlaxGetter(
-  "obscured",
-  _flaxBinding111,
-  _SemanticsProperties_obscured,
-);
-const _flaxBinding1110 = FlaxGetter(
-  "multiline",
-  _flaxBinding111,
-  _SemanticsProperties_multiline,
-);
-const _flaxBinding1111 = FlaxGetter(
-  "scopesRoute",
-  _flaxBinding111,
-  _SemanticsProperties_scopesRoute,
-);
-const _flaxBinding1112 = FlaxGetter(
-  "namesRoute",
-  _flaxBinding111,
-  _SemanticsProperties_namesRoute,
-);
-const _flaxBinding1113 = FlaxGetter(
-  "image",
-  _flaxBinding111,
-  _SemanticsProperties_image,
-);
-const _flaxBinding1114 = FlaxGetter(
-  "liveRegion",
-  _flaxBinding111,
-  _SemanticsProperties_liveRegion,
-);
-const _flaxBinding1115 = FlaxGetter(
-  "isRequired",
-  _flaxBinding111,
-  _SemanticsProperties_isRequired,
-);
-const _flaxBinding1116 = FlaxGetter(
-  "maxValueLength",
-  _flaxBinding98,
-  _SemanticsProperties_maxValueLength,
-);
-const _flaxBinding1117 = FlaxGetter(
-  "currentValueLength",
-  _flaxBinding98,
-  _SemanticsProperties_currentValueLength,
-);
-const _flaxBinding1118 = FlaxGetter(
-  "identifier",
-  _flaxBinding29,
-  _SemanticsProperties_identifier,
-);
-const _flaxBinding1119 = FlaxGetter(
-  "traversalParentIdentifier",
-  _flaxBinding0,
-  _SemanticsProperties_traversalParentIdentifier,
-);
-const _flaxBinding1120 = FlaxGetter(
-  "traversalChildIdentifier",
-  _flaxBinding0,
-  _SemanticsProperties_traversalChildIdentifier,
-);
-const _flaxBinding1121 = FlaxGetter(
-  "label",
-  _flaxBinding29,
-  _SemanticsProperties_label,
-);
-const _flaxBinding1122 = FlaxGetter(
-  "attributedLabel",
-  _flaxBinding33,
-  _SemanticsProperties_attributedLabel,
-);
-const _flaxBinding1123 = FlaxGetter(
-  "value",
-  _flaxBinding29,
-  _SemanticsProperties_value,
-);
-const _flaxBinding1124 = FlaxGetter(
-  "attributedValue",
-  _flaxBinding33,
-  _SemanticsProperties_attributedValue,
-);
-const _flaxBinding1125 = FlaxGetter(
-  "increasedValue",
-  _flaxBinding29,
-  _SemanticsProperties_increasedValue,
-);
-const _flaxBinding1126 = FlaxGetter(
-  "attributedIncreasedValue",
-  _flaxBinding33,
-  _SemanticsProperties_attributedIncreasedValue,
-);
-const _flaxBinding1127 = FlaxGetter(
-  "decreasedValue",
-  _flaxBinding29,
-  _SemanticsProperties_decreasedValue,
-);
-const _flaxBinding1128 = FlaxGetter(
-  "attributedDecreasedValue",
-  _flaxBinding33,
-  _SemanticsProperties_attributedDecreasedValue,
-);
-const _flaxBinding1129 = FlaxGetter(
-  "hint",
-  _flaxBinding29,
-  _SemanticsProperties_hint,
-);
-const _flaxBinding1130 = FlaxGetter(
-  "attributedHint",
-  _flaxBinding33,
-  _SemanticsProperties_attributedHint,
-);
-const _flaxBinding1131 = FlaxGetter(
-  "tooltip",
-  _flaxBinding29,
-  _SemanticsProperties_tooltip,
-);
-const _flaxBinding1132 = FlaxGetter(
-  "headingLevel",
-  _flaxBinding98,
-  _SemanticsProperties_headingLevel,
-);
-const _flaxBinding1133 = FlaxGetter(
-  "hintOverrides",
-  _flaxBinding107,
-  _SemanticsProperties_hintOverrides,
-);
-const _flaxBinding1134 = FlaxGetter(
-  "textDirection",
-  _flaxBinding109,
-  _SemanticsProperties_textDirection,
-);
-const _flaxBinding1135 = FlaxGetter(
-  "sortKey",
-  _flaxBinding96,
-  _SemanticsProperties_sortKey,
-);
-const _flaxBinding1136 = FlaxGetter(
-  "tagForChildren",
-  _flaxBinding209,
-  _SemanticsProperties_tagForChildren,
-);
-const _flaxBinding1137 = FlaxGetter(
-  "linkUrl",
-  _flaxBinding115,
-  _SemanticsProperties_linkUrl,
-);
-const _flaxBinding1138 = FlaxGetter(
-  "onTap",
-  _flaxBinding77,
-  _SemanticsProperties_onTap,
-);
-const _flaxBinding1139 = FlaxGetter(
-  "onLongPress",
-  _flaxBinding77,
-  _SemanticsProperties_onLongPress,
-);
-const _flaxBinding1140 = FlaxGetter(
-  "onScrollLeft",
-  _flaxBinding77,
-  _SemanticsProperties_onScrollLeft,
-);
-const _flaxBinding1141 = FlaxGetter(
-  "onScrollRight",
-  _flaxBinding77,
-  _SemanticsProperties_onScrollRight,
-);
-const _flaxBinding1142 = FlaxGetter(
-  "onScrollUp",
-  _flaxBinding77,
-  _SemanticsProperties_onScrollUp,
-);
-const _flaxBinding1143 = FlaxGetter(
-  "onScrollDown",
-  _flaxBinding77,
-  _SemanticsProperties_onScrollDown,
-);
-const _flaxBinding1144 = FlaxGetter(
-  "onIncrease",
-  _flaxBinding77,
-  _SemanticsProperties_onIncrease,
-);
-const _flaxBinding1145 = FlaxGetter(
-  "onDecrease",
-  _flaxBinding77,
-  _SemanticsProperties_onDecrease,
-);
-const _flaxBinding1146 = FlaxGetter(
-  "onCopy",
-  _flaxBinding77,
-  _SemanticsProperties_onCopy,
-);
-const _flaxBinding1147 = FlaxGetter(
-  "onCut",
-  _flaxBinding77,
-  _SemanticsProperties_onCut,
-);
-const _flaxBinding1148 = FlaxGetter(
-  "onPaste",
-  _flaxBinding77,
-  _SemanticsProperties_onPaste,
-);
-const _flaxBinding1149 = FlaxGetter(
-  "onMoveCursorForwardByCharacter",
-  _flaxBinding84,
-  _SemanticsProperties_onMoveCursorForwardByCharacter,
-);
-const _flaxBinding1150 = FlaxGetter(
-  "onMoveCursorBackwardByCharacter",
-  _flaxBinding84,
-  _SemanticsProperties_onMoveCursorBackwardByCharacter,
-);
-const _flaxBinding1151 = FlaxGetter(
-  "onMoveCursorForwardByWord",
-  _flaxBinding84,
-  _SemanticsProperties_onMoveCursorForwardByWord,
-);
-const _flaxBinding1152 = FlaxGetter(
-  "onMoveCursorBackwardByWord",
-  _flaxBinding84,
-  _SemanticsProperties_onMoveCursorBackwardByWord,
-);
-const _flaxBinding1153 = FlaxGetter(
-  "onSetSelection",
-  _flaxBinding88,
-  _SemanticsProperties_onSetSelection,
-);
-const _flaxBinding1154 = FlaxGetter(
-  "onSetText",
-  _flaxBinding91,
-  _SemanticsProperties_onSetText,
-);
-const _flaxBinding1155 = FlaxGetter(
-  "onDidGainAccessibilityFocus",
-  _flaxBinding77,
-  _SemanticsProperties_onDidGainAccessibilityFocus,
-);
-const _flaxBinding1156 = FlaxGetter(
-  "onDidLoseAccessibilityFocus",
-  _flaxBinding77,
-  _SemanticsProperties_onDidLoseAccessibilityFocus,
-);
-const _flaxBinding1157 = FlaxGetter(
-  "onFocus",
-  _flaxBinding77,
-  _SemanticsProperties_onFocus,
-);
-const _flaxBinding1158 = FlaxGetter(
-  "onDismiss",
-  _flaxBinding77,
-  _SemanticsProperties_onDismiss,
-);
-const _flaxBinding1159 = FlaxGetter(
-  "onExpand",
-  _flaxBinding77,
-  _SemanticsProperties_onExpand,
-);
-const _flaxBinding1160 = FlaxGetter(
-  "onCollapse",
-  _flaxBinding77,
-  _SemanticsProperties_onCollapse,
-);
-const _flaxBinding1161 = FlaxGetter(
-  "customSemanticsActions",
-  _flaxBinding211,
-  _SemanticsProperties_customSemanticsActions,
-);
-const _flaxBinding1162 = FlaxGetter(
-  "role",
-  _flaxBinding213,
-  _SemanticsProperties_role,
-);
-const _flaxBinding1163 = FlaxGetter(
-  "controlsNodes",
-  _flaxBinding122,
-  _SemanticsProperties_controlsNodes,
-);
-const _flaxBinding1164 = FlaxGetter(
-  "validationResult",
-  _flaxBinding124,
-  _SemanticsProperties_validationResult,
-);
-const _flaxBinding1165 = FlaxGetter(
-  "hitTestBehavior",
-  _flaxBinding215,
-  _SemanticsProperties_hitTestBehavior,
-);
-const _flaxBinding1166 = FlaxGetter(
-  "inputType",
-  _flaxBinding217,
-  _SemanticsProperties_inputType,
-);
-const _flaxBinding1167 = FlaxGetter(
-  "maxValue",
-  _flaxBinding29,
-  _SemanticsProperties_maxValue,
-);
-const _flaxBinding1168 = FlaxGetter(
-  "minValue",
-  _flaxBinding29,
-  _SemanticsProperties_minValue,
-);
-const _flaxBinding1169 = FlaxInstanceMethod(
-  _flaxBinding908,
-  _flaxBinding1,
-  _SemanticsProperties_toStringShallow,
-);
-const _flaxBinding1170 = FlaxInstanceMethod(
-  _flaxBinding910,
-  _flaxBinding1,
-  _SemanticsProperties_toStringDeep,
-);
-const _flaxBinding1171 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
-  _SemanticsProperties_toStringShort,
-);
-const _flaxBinding1172 = FlaxInstanceMethod(
-  _flaxBinding352,
-  _flaxBinding19,
-  _SemanticsProperties_toDiagnosticsNode,
-);
-const _flaxBinding1173 = FlaxInstanceMethod.signature(
-  _flaxBinding22,
-  _SemanticsProperties_debugDescribeChildren,
-);
-const _flaxBinding1174 = FlaxInstanceMethod.signature(
-  _flaxBinding60,
-  _SemanticsProperties_debugFillProperties,
-);
-const _flaxBinding1175 = FlaxInstanceMethod(
-  _flaxBinding350,
-  _flaxBinding1,
-  _SemanticsProperties_toString,
-);
-const _flaxBinding1176 = <FlaxParameter>[
-  FlaxParameter("enabled", _flaxBinding111, required: false),
-  FlaxParameter("checked", _flaxBinding111, required: false),
-  FlaxParameter("mixed", _flaxBinding111, required: false),
-  FlaxParameter("expanded", _flaxBinding111, required: false),
-  FlaxParameter("selected", _flaxBinding111, required: false),
-  FlaxParameter("toggled", _flaxBinding111, required: false),
-  FlaxParameter("button", _flaxBinding111, required: false),
-  FlaxParameter("link", _flaxBinding111, required: false),
-  FlaxParameter("linkUrl", _flaxBinding115, required: false),
-  FlaxParameter("header", _flaxBinding111, required: false),
-  FlaxParameter("headingLevel", _flaxBinding98, required: false),
-  FlaxParameter("textField", _flaxBinding111, required: false),
-  FlaxParameter("slider", _flaxBinding111, required: false),
-  FlaxParameter("keyboardKey", _flaxBinding111, required: false),
-  FlaxParameter("readOnly", _flaxBinding111, required: false),
-  FlaxParameter("focusable", _flaxBinding111, required: false),
-  FlaxParameter("focused", _flaxBinding111, required: false),
-  FlaxParameter(
-    "accessibilityFocusBlockType",
-    _flaxBinding207,
-    required: false,
-  ),
-  FlaxParameter("inMutuallyExclusiveGroup", _flaxBinding111, required: false),
-  FlaxParameter("hidden", _flaxBinding111, required: false),
-  FlaxParameter("obscured", _flaxBinding111, required: false),
-  FlaxParameter("multiline", _flaxBinding111, required: false),
-  FlaxParameter("scopesRoute", _flaxBinding111, required: false),
-  FlaxParameter("namesRoute", _flaxBinding111, required: false),
-  FlaxParameter("image", _flaxBinding111, required: false),
-  FlaxParameter("liveRegion", _flaxBinding111, required: false),
-  FlaxParameter("isRequired", _flaxBinding111, required: false),
-  FlaxParameter("maxValueLength", _flaxBinding98, required: false),
-  FlaxParameter("currentValueLength", _flaxBinding98, required: false),
-  FlaxParameter("identifier", _flaxBinding29, required: false),
-  FlaxParameter("traversalParentIdentifier", _flaxBinding0, required: false),
-  FlaxParameter("traversalChildIdentifier", _flaxBinding0, required: false),
-  FlaxParameter("label", _flaxBinding29, required: false),
-  FlaxParameter("attributedLabel", _flaxBinding33, required: false),
-  FlaxParameter("value", _flaxBinding29, required: false),
-  FlaxParameter("attributedValue", _flaxBinding33, required: false),
-  FlaxParameter("increasedValue", _flaxBinding29, required: false),
-  FlaxParameter("attributedIncreasedValue", _flaxBinding33, required: false),
-  FlaxParameter("decreasedValue", _flaxBinding29, required: false),
-  FlaxParameter("attributedDecreasedValue", _flaxBinding33, required: false),
-  FlaxParameter("hint", _flaxBinding29, required: false),
-  FlaxParameter("tooltip", _flaxBinding29, required: false),
-  FlaxParameter("attributedHint", _flaxBinding33, required: false),
-  FlaxParameter("hintOverrides", _flaxBinding107, required: false),
-  FlaxParameter("textDirection", _flaxBinding109, required: false),
-  FlaxParameter("sortKey", _flaxBinding96, required: false),
-  FlaxParameter("tagForChildren", _flaxBinding209, required: false),
-  FlaxParameter("role", _flaxBinding213, required: false),
-  FlaxParameter("controlsNodes", _flaxBinding122, required: false),
-  FlaxParameter("inputType", _flaxBinding217, required: false),
-  FlaxParameter(
-    "validationResult",
-    _flaxBinding124,
-    required: false,
-    defaultValue: api1.SemanticsValidationResult.none,
-  ),
-  FlaxParameter("hitTestBehavior", _flaxBinding215, required: false),
-  FlaxParameter("onTap", _flaxBinding77, required: false),
-  FlaxParameter("onLongPress", _flaxBinding77, required: false),
-  FlaxParameter("onScrollLeft", _flaxBinding77, required: false),
-  FlaxParameter("onScrollRight", _flaxBinding77, required: false),
-  FlaxParameter("onScrollUp", _flaxBinding77, required: false),
-  FlaxParameter("onScrollDown", _flaxBinding77, required: false),
-  FlaxParameter("onIncrease", _flaxBinding77, required: false),
-  FlaxParameter("onDecrease", _flaxBinding77, required: false),
-  FlaxParameter("onCopy", _flaxBinding77, required: false),
-  FlaxParameter("onCut", _flaxBinding77, required: false),
-  FlaxParameter("onPaste", _flaxBinding77, required: false),
-  FlaxParameter(
-    "onMoveCursorForwardByCharacter",
-    _flaxBinding84,
-    required: false,
-  ),
-  FlaxParameter(
-    "onMoveCursorBackwardByCharacter",
-    _flaxBinding84,
-    required: false,
-  ),
-  FlaxParameter("onMoveCursorForwardByWord", _flaxBinding84, required: false),
-  FlaxParameter("onMoveCursorBackwardByWord", _flaxBinding84, required: false),
-  FlaxParameter("onSetSelection", _flaxBinding88, required: false),
-  FlaxParameter("onSetText", _flaxBinding91, required: false),
-  FlaxParameter("onDidGainAccessibilityFocus", _flaxBinding77, required: false),
-  FlaxParameter("onDidLoseAccessibilityFocus", _flaxBinding77, required: false),
-  FlaxParameter("onFocus", _flaxBinding77, required: false),
-  FlaxParameter("onDismiss", _flaxBinding77, required: false),
-  FlaxParameter("onExpand", _flaxBinding77, required: false),
-  FlaxParameter("onCollapse", _flaxBinding77, required: false),
-  FlaxParameter("customSemanticsActions", _flaxBinding211, required: false),
-  FlaxParameter("minValue", _flaxBinding29, required: false),
-  FlaxParameter("maxValue", _flaxBinding29, required: false),
-];
-const _flaxBinding1177 = FlaxProxyMember(
-  "enabled",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1178 = FlaxProxyMember(
-  "checked",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1179 = FlaxProxyMember(
-  "mixed",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1180 = FlaxProxyMember(
-  "expanded",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1181 = FlaxProxyMember(
-  "toggled",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1182 = FlaxProxyMember(
-  "selected",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1183 = FlaxProxyMember(
-  "button",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1184 = FlaxProxyMember(
-  "link",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1185 = FlaxProxyMember(
-  "header",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1186 = FlaxProxyMember(
-  "textField",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1187 = FlaxProxyMember(
-  "slider",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1188 = FlaxProxyMember(
-  "keyboardKey",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1189 = FlaxProxyMember(
-  "readOnly",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1190 = FlaxProxyMember(
-  "focusable",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1191 = FlaxProxyMember(
-  "focused",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1192 = FlaxProxyMember(
-  "accessibilityFocusBlockType",
-  1,
-  _flaxBinding208,
-  hasSuper: true,
-);
-const _flaxBinding1193 = FlaxProxyMember(
-  "inMutuallyExclusiveGroup",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1194 = FlaxProxyMember(
-  "hidden",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1195 = FlaxProxyMember(
-  "obscured",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1196 = FlaxProxyMember(
-  "multiline",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1197 = FlaxProxyMember(
-  "scopesRoute",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1198 = FlaxProxyMember(
-  "namesRoute",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1199 = FlaxProxyMember(
-  "image",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1200 = FlaxProxyMember(
-  "liveRegion",
-  1,
-  _flaxBinding112,
-  hasSuper: true,
-);
-const _flaxBinding1201 = FlaxProxyMember(
-  "identifier",
-  1,
-  _flaxBinding30,
-  hasSuper: true,
-);
-const _flaxBinding1202 = FlaxProxyMember(
-  "attributedLabel",
-  1,
-  _flaxBinding34,
-  hasSuper: true,
-);
-const _flaxBinding1203 = FlaxProxyMember(
-  "value",
-  1,
-  _flaxBinding30,
-  hasSuper: true,
-);
-const _flaxBinding1204 = FlaxProxyMember(
-  "attributedValue",
-  1,
-  _flaxBinding34,
-  hasSuper: true,
-);
-const _flaxBinding1205 = FlaxProxyMember(
-  "increasedValue",
-  1,
-  _flaxBinding30,
-  hasSuper: true,
-);
-const _flaxBinding1206 = FlaxProxyMember(
-  "attributedIncreasedValue",
-  1,
-  _flaxBinding34,
-  hasSuper: true,
-);
-const _flaxBinding1207 = FlaxProxyMember(
-  "decreasedValue",
-  1,
-  _flaxBinding30,
-  hasSuper: true,
-);
-const _flaxBinding1208 = FlaxProxyMember(
-  "attributedDecreasedValue",
-  1,
-  _flaxBinding34,
-  hasSuper: true,
-);
-const _flaxBinding1209 = FlaxProxyMember(
-  "attributedHint",
-  1,
-  _flaxBinding34,
-  hasSuper: true,
-);
-const _flaxBinding1210 = FlaxProxyMember(
-  "headingLevel",
-  1,
-  _flaxBinding99,
-  hasSuper: true,
-);
-const _flaxBinding1211 = FlaxProxyMember(
-  "tagForChildren",
-  1,
-  _flaxBinding210,
-  hasSuper: true,
-);
-const _flaxBinding1212 = FlaxProxyMember(
-  "customSemanticsActions",
-  1,
-  _flaxBinding212,
-  hasSuper: true,
-);
-const _flaxBinding1213 = FlaxProxyMember(
-  "role",
-  1,
-  _flaxBinding214,
-  hasSuper: true,
-);
-const _flaxBinding1214 = FlaxProxyMember(
-  "hitTestBehavior",
-  1,
-  _flaxBinding216,
-  hasSuper: true,
-);
-const _flaxBinding1215 = FlaxProxyMember(
-  "inputType",
-  1,
-  _flaxBinding218,
-  hasSuper: true,
-);
-const _flaxBinding1216 = FlaxObjectBinding(
-  "flax.core/sdk_semantics#type:SemanticsProperties",
-  [
-    _flaxBinding1091,
-    _flaxBinding1092,
-    _flaxBinding1093,
-    _flaxBinding1094,
-    _flaxBinding1095,
-    _flaxBinding1096,
-    _flaxBinding1097,
-    _flaxBinding1098,
-    _flaxBinding1099,
-    _flaxBinding1100,
-    _flaxBinding1101,
-    _flaxBinding1102,
-    _flaxBinding1103,
-    _flaxBinding1104,
-    _flaxBinding1105,
-    _flaxBinding1106,
-    _flaxBinding1107,
-    _flaxBinding1108,
-    _flaxBinding1109,
-    _flaxBinding1110,
-    _flaxBinding1111,
-    _flaxBinding1112,
-    _flaxBinding1113,
-    _flaxBinding1114,
-    _flaxBinding1115,
-    _flaxBinding1116,
-    _flaxBinding1117,
-    _flaxBinding1118,
-    _flaxBinding1119,
-    _flaxBinding1120,
     _flaxBinding1121,
     _flaxBinding1122,
     _flaxBinding1123,
     _flaxBinding1124,
     _flaxBinding1125,
-    _flaxBinding1126,
     _flaxBinding1127,
-    _flaxBinding1128,
     _flaxBinding1129,
+    _flaxBinding205,
     _flaxBinding1130,
     _flaxBinding1131,
     _flaxBinding1132,
-    _flaxBinding1133,
+  ]),
+);
+const _flaxBinding1134 = FlaxGetter.plain(
+  "enabled",
+  flaxNullableBoolType,
+  _SemanticsProperties_enabled,
+);
+const _flaxBinding1135 = FlaxGetter.plain(
+  "checked",
+  flaxNullableBoolType,
+  _SemanticsProperties_checked,
+);
+const _flaxBinding1136 = FlaxGetter.plain(
+  "mixed",
+  flaxNullableBoolType,
+  _SemanticsProperties_mixed,
+);
+const _flaxBinding1137 = FlaxGetter.plain(
+  "expanded",
+  flaxNullableBoolType,
+  _SemanticsProperties_expanded,
+);
+const _flaxBinding1138 = FlaxGetter.plain(
+  "toggled",
+  flaxNullableBoolType,
+  _SemanticsProperties_toggled,
+);
+const _flaxBinding1139 = FlaxGetter.plain(
+  "selected",
+  flaxNullableBoolType,
+  _SemanticsProperties_selected,
+);
+const _flaxBinding1140 = FlaxGetter.plain(
+  "button",
+  flaxNullableBoolType,
+  _SemanticsProperties_button,
+);
+const _flaxBinding1141 = FlaxGetter.plain(
+  "link",
+  flaxNullableBoolType,
+  _SemanticsProperties_link,
+);
+const _flaxBinding1142 = FlaxGetter.plain(
+  "header",
+  flaxNullableBoolType,
+  _SemanticsProperties_header,
+);
+const _flaxBinding1143 = FlaxGetter.plain(
+  "textField",
+  flaxNullableBoolType,
+  _SemanticsProperties_textField,
+);
+const _flaxBinding1144 = FlaxGetter.plain(
+  "slider",
+  flaxNullableBoolType,
+  _SemanticsProperties_slider,
+);
+const _flaxBinding1145 = FlaxGetter.plain(
+  "keyboardKey",
+  flaxNullableBoolType,
+  _SemanticsProperties_keyboardKey,
+);
+const _flaxBinding1146 = FlaxGetter.plain(
+  "readOnly",
+  flaxNullableBoolType,
+  _SemanticsProperties_readOnly,
+);
+const _flaxBinding1147 = FlaxGetter.plain(
+  "focusable",
+  flaxNullableBoolType,
+  _SemanticsProperties_focusable,
+);
+const _flaxBinding1148 = FlaxGetter.plain(
+  "focused",
+  flaxNullableBoolType,
+  _SemanticsProperties_focused,
+);
+const _flaxBinding1149 = FlaxGetter.plain(
+  "accessibilityFocusBlockType",
+  _flaxBinding181,
+  _SemanticsProperties_accessibilityFocusBlockType,
+);
+const _flaxBinding1150 = FlaxGetter.plain(
+  "inMutuallyExclusiveGroup",
+  flaxNullableBoolType,
+  _SemanticsProperties_inMutuallyExclusiveGroup,
+);
+const _flaxBinding1151 = FlaxGetter.plain(
+  "hidden",
+  flaxNullableBoolType,
+  _SemanticsProperties_hidden,
+);
+const _flaxBinding1152 = FlaxGetter.plain(
+  "obscured",
+  flaxNullableBoolType,
+  _SemanticsProperties_obscured,
+);
+const _flaxBinding1153 = FlaxGetter.plain(
+  "multiline",
+  flaxNullableBoolType,
+  _SemanticsProperties_multiline,
+);
+const _flaxBinding1154 = FlaxGetter.plain(
+  "scopesRoute",
+  flaxNullableBoolType,
+  _SemanticsProperties_scopesRoute,
+);
+const _flaxBinding1155 = FlaxGetter.plain(
+  "namesRoute",
+  flaxNullableBoolType,
+  _SemanticsProperties_namesRoute,
+);
+const _flaxBinding1156 = FlaxGetter.plain(
+  "image",
+  flaxNullableBoolType,
+  _SemanticsProperties_image,
+);
+const _flaxBinding1157 = FlaxGetter.plain(
+  "liveRegion",
+  flaxNullableBoolType,
+  _SemanticsProperties_liveRegion,
+);
+const _flaxBinding1158 = FlaxGetter.plain(
+  "isRequired",
+  flaxNullableBoolType,
+  _SemanticsProperties_isRequired,
+);
+const _flaxBinding1159 = FlaxGetter.plain(
+  "maxValueLength",
+  flaxNullableIntType,
+  _SemanticsProperties_maxValueLength,
+);
+const _flaxBinding1160 = FlaxGetter.plain(
+  "currentValueLength",
+  flaxNullableIntType,
+  _SemanticsProperties_currentValueLength,
+);
+const _flaxBinding1161 = FlaxGetter.plain(
+  "identifier",
+  flaxNullableStringType,
+  _SemanticsProperties_identifier,
+);
+const _flaxBinding1162 = FlaxGetter.plain(
+  "traversalParentIdentifier",
+  flaxNullableAnyType,
+  _SemanticsProperties_traversalParentIdentifier,
+);
+const _flaxBinding1163 = FlaxGetter.plain(
+  "traversalChildIdentifier",
+  flaxNullableAnyType,
+  _SemanticsProperties_traversalChildIdentifier,
+);
+const _flaxBinding1164 = FlaxGetter.plain(
+  "label",
+  flaxNullableStringType,
+  _SemanticsProperties_label,
+);
+const _flaxBinding1165 = FlaxGetter.plain(
+  "attributedLabel",
+  _flaxBinding23,
+  _SemanticsProperties_attributedLabel,
+);
+const _flaxBinding1166 = FlaxGetter.plain(
+  "value",
+  flaxNullableStringType,
+  _SemanticsProperties_value,
+);
+const _flaxBinding1167 = FlaxGetter.plain(
+  "attributedValue",
+  _flaxBinding23,
+  _SemanticsProperties_attributedValue,
+);
+const _flaxBinding1168 = FlaxGetter.plain(
+  "increasedValue",
+  flaxNullableStringType,
+  _SemanticsProperties_increasedValue,
+);
+const _flaxBinding1169 = FlaxGetter.plain(
+  "attributedIncreasedValue",
+  _flaxBinding23,
+  _SemanticsProperties_attributedIncreasedValue,
+);
+const _flaxBinding1170 = FlaxGetter.plain(
+  "decreasedValue",
+  flaxNullableStringType,
+  _SemanticsProperties_decreasedValue,
+);
+const _flaxBinding1171 = FlaxGetter.plain(
+  "attributedDecreasedValue",
+  _flaxBinding23,
+  _SemanticsProperties_attributedDecreasedValue,
+);
+const _flaxBinding1172 = FlaxGetter.plain(
+  "hint",
+  flaxNullableStringType,
+  _SemanticsProperties_hint,
+);
+const _flaxBinding1173 = FlaxGetter.plain(
+  "attributedHint",
+  _flaxBinding23,
+  _SemanticsProperties_attributedHint,
+);
+const _flaxBinding1174 = FlaxGetter.plain(
+  "tooltip",
+  flaxNullableStringType,
+  _SemanticsProperties_tooltip,
+);
+const _flaxBinding1175 = FlaxGetter.plain(
+  "headingLevel",
+  flaxNullableIntType,
+  _SemanticsProperties_headingLevel,
+);
+const _flaxBinding1176 = FlaxGetter.plain(
+  "hintOverrides",
+  _flaxBinding87,
+  _SemanticsProperties_hintOverrides,
+);
+const _flaxBinding1177 = FlaxGetter.plain(
+  "textDirection",
+  _flaxBinding89,
+  _SemanticsProperties_textDirection,
+);
+const _flaxBinding1178 = FlaxGetter.plain(
+  "sortKey",
+  _flaxBinding79,
+  _SemanticsProperties_sortKey,
+);
+const _flaxBinding1179 = FlaxGetter.plain(
+  "tagForChildren",
+  _flaxBinding183,
+  _SemanticsProperties_tagForChildren,
+);
+const _flaxBinding1180 = FlaxGetter.plain(
+  "linkUrl",
+  _flaxBinding93,
+  _SemanticsProperties_linkUrl,
+);
+const _flaxBinding1181 = FlaxGetter.plain(
+  "onTap",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onTap,
+);
+const _flaxBinding1182 = FlaxGetter.plain(
+  "onLongPress",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onLongPress,
+);
+const _flaxBinding1183 = FlaxGetter.plain(
+  "onScrollLeft",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onScrollLeft,
+);
+const _flaxBinding1184 = FlaxGetter.plain(
+  "onScrollRight",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onScrollRight,
+);
+const _flaxBinding1185 = FlaxGetter.plain(
+  "onScrollUp",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onScrollUp,
+);
+const _flaxBinding1186 = FlaxGetter.plain(
+  "onScrollDown",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onScrollDown,
+);
+const _flaxBinding1187 = FlaxGetter.plain(
+  "onIncrease",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onIncrease,
+);
+const _flaxBinding1188 = FlaxGetter.plain(
+  "onDecrease",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onDecrease,
+);
+const _flaxBinding1189 = FlaxGetter.plain(
+  "onCopy",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onCopy,
+);
+const _flaxBinding1190 = FlaxGetter.plain(
+  "onCut",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onCut,
+);
+const _flaxBinding1191 = FlaxGetter.plain(
+  "onPaste",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onPaste,
+);
+const _flaxBinding1192 = FlaxGetter.plain(
+  "onMoveCursorForwardByCharacter",
+  _flaxBinding67,
+  _SemanticsProperties_onMoveCursorForwardByCharacter,
+);
+const _flaxBinding1193 = FlaxGetter.plain(
+  "onMoveCursorBackwardByCharacter",
+  _flaxBinding67,
+  _SemanticsProperties_onMoveCursorBackwardByCharacter,
+);
+const _flaxBinding1194 = FlaxGetter.plain(
+  "onMoveCursorForwardByWord",
+  _flaxBinding67,
+  _SemanticsProperties_onMoveCursorForwardByWord,
+);
+const _flaxBinding1195 = FlaxGetter.plain(
+  "onMoveCursorBackwardByWord",
+  _flaxBinding67,
+  _SemanticsProperties_onMoveCursorBackwardByWord,
+);
+const _flaxBinding1196 = FlaxGetter.plain(
+  "onSetSelection",
+  _flaxBinding71,
+  _SemanticsProperties_onSetSelection,
+);
+const _flaxBinding1197 = FlaxGetter.plain(
+  "onSetText",
+  _flaxBinding74,
+  _SemanticsProperties_onSetText,
+);
+const _flaxBinding1198 = FlaxGetter.plain(
+  "onDidGainAccessibilityFocus",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onDidGainAccessibilityFocus,
+);
+const _flaxBinding1199 = FlaxGetter.plain(
+  "onDidLoseAccessibilityFocus",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onDidLoseAccessibilityFocus,
+);
+const _flaxBinding1200 = FlaxGetter.plain(
+  "onFocus",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onFocus,
+);
+const _flaxBinding1201 = FlaxGetter.plain(
+  "onDismiss",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onDismiss,
+);
+const _flaxBinding1202 = FlaxGetter.plain(
+  "onExpand",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onExpand,
+);
+const _flaxBinding1203 = FlaxGetter.plain(
+  "onCollapse",
+  flaxVoidNullableCallbackType,
+  _SemanticsProperties_onCollapse,
+);
+const _flaxBinding1204 = FlaxGetter.plain(
+  "customSemanticsActions",
+  _flaxBinding185,
+  _SemanticsProperties_customSemanticsActions,
+);
+const _flaxBinding1205 = FlaxGetter.plain(
+  "role",
+  _flaxBinding187,
+  _SemanticsProperties_role,
+);
+const _flaxBinding1206 = FlaxGetter.plain(
+  "controlsNodes",
+  _flaxBinding98,
+  _SemanticsProperties_controlsNodes,
+);
+const _flaxBinding1207 = FlaxGetter.plain(
+  "validationResult",
+  _flaxBinding100,
+  _SemanticsProperties_validationResult,
+);
+const _flaxBinding1208 = FlaxGetter.plain(
+  "hitTestBehavior",
+  _flaxBinding189,
+  _SemanticsProperties_hitTestBehavior,
+);
+const _flaxBinding1209 = FlaxGetter.plain(
+  "inputType",
+  _flaxBinding191,
+  _SemanticsProperties_inputType,
+);
+const _flaxBinding1210 = FlaxGetter.plain(
+  "maxValue",
+  flaxNullableStringType,
+  _SemanticsProperties_maxValue,
+);
+const _flaxBinding1211 = FlaxGetter.plain(
+  "minValue",
+  flaxNullableStringType,
+  _SemanticsProperties_minValue,
+);
+const _flaxBinding1212 = FlaxInstanceMethod.plain(
+  _flaxBinding949,
+  flaxStringType,
+  _SemanticsProperties_toStringShallow,
+);
+const _flaxBinding1213 = FlaxInstanceMethod.plain(
+  _flaxBinding951,
+  flaxStringType,
+  _SemanticsProperties_toStringDeep,
+);
+const _flaxBinding1214 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _SemanticsProperties_toStringShort,
+);
+const _flaxBinding1215 = FlaxInstanceMethod.plain(
+  _flaxBinding332,
+  _flaxBinding14,
+  _SemanticsProperties_toDiagnosticsNode,
+);
+const _flaxBinding1216 = FlaxInstanceMethod.shared(
+  _flaxBinding17,
+  _SemanticsProperties_debugDescribeChildren,
+);
+const _flaxBinding1217 = FlaxInstanceMethod.shared(
+  _flaxBinding48,
+  _SemanticsProperties_debugFillProperties,
+);
+const _flaxBinding1218 = FlaxInstanceMethod.plain(
+  _flaxBinding330,
+  flaxStringType,
+  _SemanticsProperties_toString,
+);
+const _flaxBinding1219 = <FlaxParameter>[
+  FlaxParameter("enabled", flaxNullableBoolType, required: false),
+  FlaxParameter("checked", flaxNullableBoolType, required: false),
+  FlaxParameter("mixed", flaxNullableBoolType, required: false),
+  FlaxParameter("expanded", flaxNullableBoolType, required: false),
+  FlaxParameter("selected", flaxNullableBoolType, required: false),
+  FlaxParameter("toggled", flaxNullableBoolType, required: false),
+  FlaxParameter("button", flaxNullableBoolType, required: false),
+  FlaxParameter("link", flaxNullableBoolType, required: false),
+  FlaxParameter("linkUrl", _flaxBinding93, required: false),
+  FlaxParameter("header", flaxNullableBoolType, required: false),
+  FlaxParameter("headingLevel", flaxNullableIntType, required: false),
+  FlaxParameter("textField", flaxNullableBoolType, required: false),
+  FlaxParameter("slider", flaxNullableBoolType, required: false),
+  FlaxParameter("keyboardKey", flaxNullableBoolType, required: false),
+  FlaxParameter("readOnly", flaxNullableBoolType, required: false),
+  FlaxParameter("focusable", flaxNullableBoolType, required: false),
+  FlaxParameter("focused", flaxNullableBoolType, required: false),
+  FlaxParameter(
+    "accessibilityFocusBlockType",
+    _flaxBinding181,
+    required: false,
+  ),
+  FlaxParameter(
+    "inMutuallyExclusiveGroup",
+    flaxNullableBoolType,
+    required: false,
+  ),
+  FlaxParameter("hidden", flaxNullableBoolType, required: false),
+  FlaxParameter("obscured", flaxNullableBoolType, required: false),
+  FlaxParameter("multiline", flaxNullableBoolType, required: false),
+  FlaxParameter("scopesRoute", flaxNullableBoolType, required: false),
+  FlaxParameter("namesRoute", flaxNullableBoolType, required: false),
+  FlaxParameter("image", flaxNullableBoolType, required: false),
+  FlaxParameter("liveRegion", flaxNullableBoolType, required: false),
+  FlaxParameter("isRequired", flaxNullableBoolType, required: false),
+  FlaxParameter("maxValueLength", flaxNullableIntType, required: false),
+  FlaxParameter("currentValueLength", flaxNullableIntType, required: false),
+  FlaxParameter("identifier", flaxNullableStringType, required: false),
+  FlaxParameter(
+    "traversalParentIdentifier",
+    flaxNullableAnyType,
+    required: false,
+  ),
+  FlaxParameter(
+    "traversalChildIdentifier",
+    flaxNullableAnyType,
+    required: false,
+  ),
+  FlaxParameter("label", flaxNullableStringType, required: false),
+  FlaxParameter("attributedLabel", _flaxBinding23, required: false),
+  FlaxParameter("value", flaxNullableStringType, required: false),
+  FlaxParameter("attributedValue", _flaxBinding23, required: false),
+  FlaxParameter("increasedValue", flaxNullableStringType, required: false),
+  FlaxParameter("attributedIncreasedValue", _flaxBinding23, required: false),
+  FlaxParameter("decreasedValue", flaxNullableStringType, required: false),
+  FlaxParameter("attributedDecreasedValue", _flaxBinding23, required: false),
+  FlaxParameter("hint", flaxNullableStringType, required: false),
+  FlaxParameter("tooltip", flaxNullableStringType, required: false),
+  FlaxParameter("attributedHint", _flaxBinding23, required: false),
+  FlaxParameter("hintOverrides", _flaxBinding87, required: false),
+  FlaxParameter("textDirection", _flaxBinding89, required: false),
+  FlaxParameter("sortKey", _flaxBinding79, required: false),
+  FlaxParameter("tagForChildren", _flaxBinding183, required: false),
+  FlaxParameter("role", _flaxBinding187, required: false),
+  FlaxParameter("controlsNodes", _flaxBinding98, required: false),
+  FlaxParameter("inputType", _flaxBinding191, required: false),
+  FlaxParameter(
+    "validationResult",
+    _flaxBinding100,
+    required: false,
+    defaultValue: api1.SemanticsValidationResult.none,
+  ),
+  FlaxParameter("hitTestBehavior", _flaxBinding189, required: false),
+  FlaxParameter("onTap", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onLongPress", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onScrollLeft", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onScrollRight", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onScrollUp", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onScrollDown", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onIncrease", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onDecrease", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onCopy", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onCut", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onPaste", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter(
+    "onMoveCursorForwardByCharacter",
+    _flaxBinding67,
+    required: false,
+  ),
+  FlaxParameter(
+    "onMoveCursorBackwardByCharacter",
+    _flaxBinding67,
+    required: false,
+  ),
+  FlaxParameter("onMoveCursorForwardByWord", _flaxBinding67, required: false),
+  FlaxParameter("onMoveCursorBackwardByWord", _flaxBinding67, required: false),
+  FlaxParameter("onSetSelection", _flaxBinding71, required: false),
+  FlaxParameter("onSetText", _flaxBinding74, required: false),
+  FlaxParameter(
+    "onDidGainAccessibilityFocus",
+    flaxVoidNullableCallbackType,
+    required: false,
+  ),
+  FlaxParameter(
+    "onDidLoseAccessibilityFocus",
+    flaxVoidNullableCallbackType,
+    required: false,
+  ),
+  FlaxParameter("onFocus", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onDismiss", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onExpand", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("onCollapse", flaxVoidNullableCallbackType, required: false),
+  FlaxParameter("customSemanticsActions", _flaxBinding185, required: false),
+  FlaxParameter("minValue", flaxNullableStringType, required: false),
+  FlaxParameter("maxValue", flaxNullableStringType, required: false),
+];
+const _flaxBinding1220 = FlaxProxyMember(
+  "enabled",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1221 = FlaxProxyMember(
+  "checked",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1222 = FlaxProxyMember(
+  "mixed",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1223 = FlaxProxyMember(
+  "expanded",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1224 = FlaxProxyMember(
+  "toggled",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1225 = FlaxProxyMember(
+  "selected",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1226 = FlaxProxyMember(
+  "button",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1227 = FlaxProxyMember(
+  "link",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1228 = FlaxProxyMember(
+  "header",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1229 = FlaxProxyMember(
+  "textField",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1230 = FlaxProxyMember(
+  "slider",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1231 = FlaxProxyMember(
+  "keyboardKey",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1232 = FlaxProxyMember(
+  "readOnly",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1233 = FlaxProxyMember(
+  "focusable",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1234 = FlaxProxyMember(
+  "focused",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1235 = FlaxProxyMember(
+  "accessibilityFocusBlockType",
+  1,
+  _flaxBinding182,
+  hasSuper: true,
+);
+const _flaxBinding1236 = FlaxProxyMember(
+  "inMutuallyExclusiveGroup",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1237 = FlaxProxyMember(
+  "hidden",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1238 = FlaxProxyMember(
+  "obscured",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1239 = FlaxProxyMember(
+  "multiline",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1240 = FlaxProxyMember(
+  "scopesRoute",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1241 = FlaxProxyMember(
+  "namesRoute",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1242 = FlaxProxyMember(
+  "image",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1243 = FlaxProxyMember(
+  "liveRegion",
+  1,
+  flaxNullableBoolCall,
+  hasSuper: true,
+);
+const _flaxBinding1244 = FlaxProxyMember(
+  "identifier",
+  1,
+  flaxNullableStringCall,
+  hasSuper: true,
+);
+const _flaxBinding1245 = FlaxProxyMember(
+  "attributedLabel",
+  1,
+  _flaxBinding24,
+  hasSuper: true,
+);
+const _flaxBinding1246 = FlaxProxyMember(
+  "value",
+  1,
+  flaxNullableStringCall,
+  hasSuper: true,
+);
+const _flaxBinding1247 = FlaxProxyMember(
+  "attributedValue",
+  1,
+  _flaxBinding24,
+  hasSuper: true,
+);
+const _flaxBinding1248 = FlaxProxyMember(
+  "increasedValue",
+  1,
+  flaxNullableStringCall,
+  hasSuper: true,
+);
+const _flaxBinding1249 = FlaxProxyMember(
+  "attributedIncreasedValue",
+  1,
+  _flaxBinding24,
+  hasSuper: true,
+);
+const _flaxBinding1250 = FlaxProxyMember(
+  "decreasedValue",
+  1,
+  flaxNullableStringCall,
+  hasSuper: true,
+);
+const _flaxBinding1251 = FlaxProxyMember(
+  "attributedDecreasedValue",
+  1,
+  _flaxBinding24,
+  hasSuper: true,
+);
+const _flaxBinding1252 = FlaxProxyMember(
+  "attributedHint",
+  1,
+  _flaxBinding24,
+  hasSuper: true,
+);
+const _flaxBinding1253 = FlaxProxyMember(
+  "headingLevel",
+  1,
+  flaxNullableIntCall,
+  hasSuper: true,
+);
+const _flaxBinding1254 = FlaxProxyMember(
+  "tagForChildren",
+  1,
+  _flaxBinding184,
+  hasSuper: true,
+);
+const _flaxBinding1255 = FlaxProxyMember(
+  "customSemanticsActions",
+  1,
+  _flaxBinding186,
+  hasSuper: true,
+);
+const _flaxBinding1256 = FlaxProxyMember(
+  "role",
+  1,
+  _flaxBinding188,
+  hasSuper: true,
+);
+const _flaxBinding1257 = FlaxProxyMember(
+  "hitTestBehavior",
+  1,
+  _flaxBinding190,
+  hasSuper: true,
+);
+const _flaxBinding1258 = FlaxProxyMember(
+  "inputType",
+  1,
+  _flaxBinding192,
+  hasSuper: true,
+);
+const _flaxBinding1259 = FlaxObjectBinding(
+  "flax.core/sdk_semantics#type:SemanticsProperties",
+  [
     _flaxBinding1134,
     _flaxBinding1135,
     _flaxBinding1136,
@@ -24125,377 +23582,14 @@ const _flaxBinding1216 = FlaxObjectBinding(
     _flaxBinding1166,
     _flaxBinding1167,
     _flaxBinding1168,
-  ],
-  {
-    "toStringShallow": _flaxBinding1169,
-    "toStringDeep": _flaxBinding1170,
-    "toStringShort": _flaxBinding1171,
-    "toDiagnosticsNode": _flaxBinding1172,
-    "debugDescribeChildren": _flaxBinding1173,
-    "debugFillProperties": _flaxBinding1174,
-    "toString": _flaxBinding1175,
-    "@super:toStringShallow": FlaxInstanceMethod(
-      _flaxBinding908,
-      _flaxBinding1,
-      _SemanticsProperties_super_toStringShallow,
-    ),
-    "@super:toStringDeep": FlaxInstanceMethod(
-      _flaxBinding910,
-      _flaxBinding1,
-      _SemanticsProperties_super_toStringDeep,
-    ),
-    "@super:toStringShort": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch9_super_call_toStringShort,
-    ),
-    "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding352,
-      _flaxBinding19,
-      _SemanticsProperties_super_toDiagnosticsNode,
-    ),
-    "@super:debugDescribeChildren": FlaxInstanceMethod.signature(
-      _flaxBinding22,
-      _SemanticsProperties_super_debugDescribeChildren,
-    ),
-    "@super:debugFillProperties": FlaxInstanceMethod.signature(
-      _flaxBinding60,
-      _SemanticsProperties_super_debugFillProperties,
-    ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding350,
-      _flaxBinding1,
-      _FlaxProxyDispatch9_super_call_toString,
-    ),
-    "@super:get:enabled": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_enabled,
-    ),
-    "@super:get:checked": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_checked,
-    ),
-    "@super:get:mixed": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_mixed,
-    ),
-    "@super:get:expanded": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_expanded,
-    ),
-    "@super:get:toggled": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_toggled,
-    ),
-    "@super:get:selected": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_selected,
-    ),
-    "@super:get:button": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_button,
-    ),
-    "@super:get:link": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_link,
-    ),
-    "@super:get:header": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_header,
-    ),
-    "@super:get:textField": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_textField,
-    ),
-    "@super:get:slider": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_slider,
-    ),
-    "@super:get:keyboardKey": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_keyboardKey,
-    ),
-    "@super:get:readOnly": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_readOnly,
-    ),
-    "@super:get:focusable": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_focusable,
-    ),
-    "@super:get:focused": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_focused,
-    ),
-    "@super:get:accessibilityFocusBlockType": FlaxInstanceMethod.signature(
-      _flaxBinding208,
-      _SemanticsProperties_super_get_accessibilityFocusBlockType,
-    ),
-    "@super:get:inMutuallyExclusiveGroup": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_inMutuallyExclusiveGroup,
-    ),
-    "@super:get:hidden": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_hidden,
-    ),
-    "@super:get:obscured": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_obscured,
-    ),
-    "@super:get:multiline": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_multiline,
-    ),
-    "@super:get:scopesRoute": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_scopesRoute,
-    ),
-    "@super:get:namesRoute": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_namesRoute,
-    ),
-    "@super:get:image": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_image,
-    ),
-    "@super:get:liveRegion": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _SemanticsProperties_super_get_liveRegion,
-    ),
-    "@super:get:isRequired": FlaxInstanceMethod.signature(
-      _flaxBinding112,
-      _FlaxProxyDispatch11_super_get_isRequired,
-    ),
-    "@super:get:maxValueLength": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch15_super_get_maxValueLength,
-    ),
-    "@super:get:currentValueLength": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _FlaxProxyDispatch15_super_get_currentValueLength,
-    ),
-    "@super:get:identifier": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _SemanticsProperties_super_get_identifier,
-    ),
-    "@super:get:traversalParentIdentifier": FlaxInstanceMethod.signature(
-      _flaxBinding35,
-      _FlaxProxyDispatch15_super_get_traversalParentIdentifier,
-    ),
-    "@super:get:traversalChildIdentifier": FlaxInstanceMethod.signature(
-      _flaxBinding35,
-      _FlaxProxyDispatch15_super_get_traversalChildIdentifier,
-    ),
-    "@super:get:label": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _SemanticsProperties_super_get_label,
-    ),
-    "@super:get:attributedLabel": FlaxInstanceMethod.signature(
-      _flaxBinding34,
-      _SemanticsProperties_super_get_attributedLabel,
-    ),
-    "@super:get:value": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _SemanticsProperties_super_get_value,
-    ),
-    "@super:get:attributedValue": FlaxInstanceMethod.signature(
-      _flaxBinding34,
-      _SemanticsProperties_super_get_attributedValue,
-    ),
-    "@super:get:increasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _SemanticsProperties_super_get_increasedValue,
-    ),
-    "@super:get:attributedIncreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding34,
-      _SemanticsProperties_super_get_attributedIncreasedValue,
-    ),
-    "@super:get:decreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _SemanticsProperties_super_get_decreasedValue,
-    ),
-    "@super:get:attributedDecreasedValue": FlaxInstanceMethod.signature(
-      _flaxBinding34,
-      _SemanticsProperties_super_get_attributedDecreasedValue,
-    ),
-    "@super:get:hint": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _SemanticsProperties_super_get_hint,
-    ),
-    "@super:get:attributedHint": FlaxInstanceMethod.signature(
-      _flaxBinding34,
-      _SemanticsProperties_super_get_attributedHint,
-    ),
-    "@super:get:tooltip": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _SemanticsProperties_super_get_tooltip,
-    ),
-    "@super:get:headingLevel": FlaxInstanceMethod.signature(
-      _flaxBinding99,
-      _SemanticsProperties_super_get_headingLevel,
-    ),
-    "@super:get:hintOverrides": FlaxInstanceMethod.signature(
-      _flaxBinding108,
-      _SemanticsProperties_super_get_hintOverrides,
-    ),
-    "@super:get:textDirection": FlaxInstanceMethod.signature(
-      _flaxBinding110,
-      _FlaxProxyDispatch15_super_get_textDirection,
-    ),
-    "@super:get:sortKey": FlaxInstanceMethod.signature(
-      _flaxBinding97,
-      _SemanticsProperties_super_get_sortKey,
-    ),
-    "@super:get:tagForChildren": FlaxInstanceMethod.signature(
-      _flaxBinding210,
-      _SemanticsProperties_super_get_tagForChildren,
-    ),
-    "@super:get:linkUrl": FlaxInstanceMethod.signature(
-      _flaxBinding116,
-      _FlaxProxyDispatch15_super_get_linkUrl,
-    ),
-    "@super:get:onTap": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onTap,
-    ),
-    "@super:get:onLongPress": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onLongPress,
-    ),
-    "@super:get:onScrollLeft": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onScrollLeft,
-    ),
-    "@super:get:onScrollRight": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onScrollRight,
-    ),
-    "@super:get:onScrollUp": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onScrollUp,
-    ),
-    "@super:get:onScrollDown": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onScrollDown,
-    ),
-    "@super:get:onIncrease": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onIncrease,
-    ),
-    "@super:get:onDecrease": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onDecrease,
-    ),
-    "@super:get:onCopy": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onCopy,
-    ),
-    "@super:get:onCut": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onCut,
-    ),
-    "@super:get:onPaste": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onPaste,
-    ),
-    "@super:get:onMoveCursorForwardByCharacter": FlaxInstanceMethod.signature(
-      _flaxBinding85,
-      _FlaxProxyDispatch11_super_get_onMoveCursorForwardByCharacter,
-    ),
-    "@super:get:onMoveCursorBackwardByCharacter": FlaxInstanceMethod.signature(
-      _flaxBinding85,
-      _FlaxProxyDispatch11_super_get_onMoveCursorBackwardByCharacter,
-    ),
-    "@super:get:onMoveCursorForwardByWord": FlaxInstanceMethod.signature(
-      _flaxBinding85,
-      _FlaxProxyDispatch11_super_get_onMoveCursorForwardByWord,
-    ),
-    "@super:get:onMoveCursorBackwardByWord": FlaxInstanceMethod.signature(
-      _flaxBinding85,
-      _FlaxProxyDispatch11_super_get_onMoveCursorBackwardByWord,
-    ),
-    "@super:get:onSetSelection": FlaxInstanceMethod.signature(
-      _flaxBinding89,
-      _FlaxProxyDispatch11_super_get_onSetSelection,
-    ),
-    "@super:get:onSetText": FlaxInstanceMethod.signature(
-      _flaxBinding92,
-      _FlaxProxyDispatch11_super_get_onSetText,
-    ),
-    "@super:get:onDidGainAccessibilityFocus": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onDidGainAccessibilityFocus,
-    ),
-    "@super:get:onDidLoseAccessibilityFocus": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onDidLoseAccessibilityFocus,
-    ),
-    "@super:get:onFocus": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onFocus,
-    ),
-    "@super:get:onDismiss": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onDismiss,
-    ),
-    "@super:get:onExpand": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onExpand,
-    ),
-    "@super:get:onCollapse": FlaxInstanceMethod.signature(
-      _flaxBinding78,
-      _FlaxProxyDispatch11_super_get_onCollapse,
-    ),
-    "@super:get:customSemanticsActions": FlaxInstanceMethod.signature(
-      _flaxBinding212,
-      _SemanticsProperties_super_get_customSemanticsActions,
-    ),
-    "@super:get:role": FlaxInstanceMethod.signature(
-      _flaxBinding214,
-      _SemanticsProperties_super_get_role,
-    ),
-    "@super:get:controlsNodes": FlaxInstanceMethod.signature(
-      _flaxBinding123,
-      _FlaxProxyDispatch15_super_get_controlsNodes,
-    ),
-    "@super:get:validationResult": FlaxInstanceMethod.signature(
-      _flaxBinding125,
-      _FlaxProxyDispatch15_super_get_validationResult,
-    ),
-    "@super:get:hitTestBehavior": FlaxInstanceMethod.signature(
-      _flaxBinding216,
-      _SemanticsProperties_super_get_hitTestBehavior,
-    ),
-    "@super:get:inputType": FlaxInstanceMethod.signature(
-      _flaxBinding218,
-      _SemanticsProperties_super_get_inputType,
-    ),
-    "@super:get:maxValue": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch15_super_get_maxValue,
-    ),
-    "@super:get:minValue": FlaxInstanceMethod.signature(
-      _flaxBinding30,
-      _FlaxProxyDispatch15_super_get_minValue,
-    ),
-  },
-  constructors: {"@implementation": _flaxBinding1176},
-  create: _createSemanticsProperties,
-  matches: _isSemanticsProperties,
-  setters: [],
-  supertypes: [
-    "flax.core/sdk_foundation#type:DiagnosticableTree",
-    "dart:core::Object",
-    "flax.core/sdk_foundation#type:Diagnosticable",
-  ],
-  proxy: FlaxProxyBinding([
-    _flaxBinding919,
-    _flaxBinding921,
-    _flaxBinding358,
-    _flaxBinding362,
-    _flaxBinding922,
-    _flaxBinding363,
-    _flaxBinding360,
+    _flaxBinding1169,
+    _flaxBinding1170,
+    _flaxBinding1171,
+    _flaxBinding1172,
+    _flaxBinding1173,
+    _flaxBinding1174,
+    _flaxBinding1175,
+    _flaxBinding1176,
     _flaxBinding1177,
     _flaxBinding1178,
     _flaxBinding1179,
@@ -24520,13 +23614,7 @@ const _flaxBinding1216 = FlaxObjectBinding(
     _flaxBinding1198,
     _flaxBinding1199,
     _flaxBinding1200,
-    _flaxBinding735,
-    _flaxBinding688,
-    _flaxBinding689,
     _flaxBinding1201,
-    _flaxBinding693,
-    _flaxBinding694,
-    _flaxBinding341,
     _flaxBinding1202,
     _flaxBinding1203,
     _flaxBinding1204,
@@ -24534,49 +23622,352 @@ const _flaxBinding1216 = FlaxObjectBinding(
     _flaxBinding1206,
     _flaxBinding1207,
     _flaxBinding1208,
-    _flaxBinding342,
     _flaxBinding1209,
-    _flaxBinding307,
     _flaxBinding1210,
-    _flaxBinding707,
-    _flaxBinding712,
-    _flaxBinding683,
     _flaxBinding1211,
-    _flaxBinding725,
-    _flaxBinding657,
-    _flaxBinding658,
-    _flaxBinding659,
-    _flaxBinding661,
-    _flaxBinding662,
-    _flaxBinding663,
-    _flaxBinding665,
-    _flaxBinding666,
-    _flaxBinding667,
-    _flaxBinding668,
-    _flaxBinding669,
-    _flaxBinding671,
-    _flaxBinding672,
-    _flaxBinding673,
-    _flaxBinding674,
-    _flaxBinding675,
-    _flaxBinding676,
-    _flaxBinding677,
-    _flaxBinding678,
-    _flaxBinding679,
-    _flaxBinding660,
-    _flaxBinding680,
-    _flaxBinding681,
-    _flaxBinding1212,
-    _flaxBinding1213,
-    _flaxBinding741,
-    _flaxBinding742,
-    _flaxBinding1214,
-    _flaxBinding1215,
-    _flaxBinding745,
-    _flaxBinding746,
+  ],
+  {
+    "toStringShallow": _flaxBinding1212,
+    "toStringDeep": _flaxBinding1213,
+    "toStringShort": _flaxBinding1214,
+    "toDiagnosticsNode": _flaxBinding1215,
+    "debugDescribeChildren": _flaxBinding1216,
+    "debugFillProperties": _flaxBinding1217,
+    "toString": _flaxBinding1218,
+    "@super:toStringShallow": FlaxInstanceMethod.plain(
+      _flaxBinding949,
+      flaxStringType,
+      _SemanticsProperties_super_toStringShallow,
+    ),
+    "@super:toStringDeep": FlaxInstanceMethod.plain(
+      _flaxBinding951,
+      flaxStringType,
+      _SemanticsProperties_super_toStringDeep,
+    ),
+    "@super:toStringShort": _flaxBinding336,
+    "@super:toDiagnosticsNode": FlaxInstanceMethod.plain(
+      _flaxBinding332,
+      _flaxBinding14,
+      _SemanticsProperties_super_toDiagnosticsNode,
+    ),
+    "@super:debugDescribeChildren": FlaxInstanceMethod.shared(
+      _flaxBinding17,
+      _SemanticsProperties_super_debugDescribeChildren,
+    ),
+    "@super:debugFillProperties": FlaxInstanceMethod.shared(
+      _flaxBinding48,
+      _SemanticsProperties_super_debugFillProperties,
+    ),
+    "@super:toString": _flaxBinding337,
+    "@super:get:enabled": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_enabled,
+    ),
+    "@super:get:checked": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_checked,
+    ),
+    "@super:get:mixed": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_mixed,
+    ),
+    "@super:get:expanded": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_expanded,
+    ),
+    "@super:get:toggled": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_toggled,
+    ),
+    "@super:get:selected": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_selected,
+    ),
+    "@super:get:button": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_button,
+    ),
+    "@super:get:link": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_link,
+    ),
+    "@super:get:header": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_header,
+    ),
+    "@super:get:textField": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_textField,
+    ),
+    "@super:get:slider": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_slider,
+    ),
+    "@super:get:keyboardKey": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_keyboardKey,
+    ),
+    "@super:get:readOnly": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_readOnly,
+    ),
+    "@super:get:focusable": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_focusable,
+    ),
+    "@super:get:focused": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_focused,
+    ),
+    "@super:get:accessibilityFocusBlockType": FlaxInstanceMethod.shared(
+      _flaxBinding182,
+      _SemanticsProperties_super_get_accessibilityFocusBlockType,
+    ),
+    "@super:get:inMutuallyExclusiveGroup": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_inMutuallyExclusiveGroup,
+    ),
+    "@super:get:hidden": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_hidden,
+    ),
+    "@super:get:obscured": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_obscured,
+    ),
+    "@super:get:multiline": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_multiline,
+    ),
+    "@super:get:scopesRoute": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_scopesRoute,
+    ),
+    "@super:get:namesRoute": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_namesRoute,
+    ),
+    "@super:get:image": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_image,
+    ),
+    "@super:get:liveRegion": FlaxInstanceMethod.shared(
+      flaxNullableBoolCall,
+      _SemanticsProperties_super_get_liveRegion,
+    ),
+    "@super:get:isRequired": _flaxBinding674,
+    "@super:get:maxValueLength": _flaxBinding654,
+    "@super:get:currentValueLength": _flaxBinding655,
+    "@super:get:identifier": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
+      _SemanticsProperties_super_get_identifier,
+    ),
+    "@super:get:traversalParentIdentifier": _flaxBinding657,
+    "@super:get:traversalChildIdentifier": _flaxBinding658,
+    "@super:get:label": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
+      _SemanticsProperties_super_get_label,
+    ),
+    "@super:get:attributedLabel": FlaxInstanceMethod.shared(
+      _flaxBinding24,
+      _SemanticsProperties_super_get_attributedLabel,
+    ),
+    "@super:get:value": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
+      _SemanticsProperties_super_get_value,
+    ),
+    "@super:get:attributedValue": FlaxInstanceMethod.shared(
+      _flaxBinding24,
+      _SemanticsProperties_super_get_attributedValue,
+    ),
+    "@super:get:increasedValue": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
+      _SemanticsProperties_super_get_increasedValue,
+    ),
+    "@super:get:attributedIncreasedValue": FlaxInstanceMethod.shared(
+      _flaxBinding24,
+      _SemanticsProperties_super_get_attributedIncreasedValue,
+    ),
+    "@super:get:decreasedValue": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
+      _SemanticsProperties_super_get_decreasedValue,
+    ),
+    "@super:get:attributedDecreasedValue": FlaxInstanceMethod.shared(
+      _flaxBinding24,
+      _SemanticsProperties_super_get_attributedDecreasedValue,
+    ),
+    "@super:get:hint": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
+      _SemanticsProperties_super_get_hint,
+    ),
+    "@super:get:attributedHint": FlaxInstanceMethod.shared(
+      _flaxBinding24,
+      _SemanticsProperties_super_get_attributedHint,
+    ),
+    "@super:get:tooltip": FlaxInstanceMethod.shared(
+      flaxNullableStringCall,
+      _SemanticsProperties_super_get_tooltip,
+    ),
+    "@super:get:headingLevel": FlaxInstanceMethod.shared(
+      flaxNullableIntCall,
+      _SemanticsProperties_super_get_headingLevel,
+    ),
+    "@super:get:hintOverrides": FlaxInstanceMethod.shared(
+      _flaxBinding88,
+      _SemanticsProperties_super_get_hintOverrides,
+    ),
+    "@super:get:textDirection": _flaxBinding671,
+    "@super:get:sortKey": FlaxInstanceMethod.shared(
+      _flaxBinding80,
+      _SemanticsProperties_super_get_sortKey,
+    ),
+    "@super:get:tagForChildren": FlaxInstanceMethod.shared(
+      _flaxBinding184,
+      _SemanticsProperties_super_get_tagForChildren,
+    ),
+    "@super:get:linkUrl": _flaxBinding672,
+    "@super:get:onTap": _flaxBinding628,
+    "@super:get:onLongPress": _flaxBinding629,
+    "@super:get:onScrollLeft": _flaxBinding630,
+    "@super:get:onScrollRight": _flaxBinding632,
+    "@super:get:onScrollUp": _flaxBinding633,
+    "@super:get:onScrollDown": _flaxBinding634,
+    "@super:get:onIncrease": _flaxBinding635,
+    "@super:get:onDecrease": _flaxBinding636,
+    "@super:get:onCopy": _flaxBinding637,
+    "@super:get:onCut": _flaxBinding638,
+    "@super:get:onPaste": _flaxBinding639,
+    "@super:get:onMoveCursorForwardByCharacter": _flaxBinding640,
+    "@super:get:onMoveCursorBackwardByCharacter": _flaxBinding641,
+    "@super:get:onMoveCursorForwardByWord": _flaxBinding642,
+    "@super:get:onMoveCursorBackwardByWord": _flaxBinding643,
+    "@super:get:onSetSelection": _flaxBinding644,
+    "@super:get:onSetText": _flaxBinding645,
+    "@super:get:onDidGainAccessibilityFocus": _flaxBinding646,
+    "@super:get:onDidLoseAccessibilityFocus": _flaxBinding647,
+    "@super:get:onFocus": _flaxBinding648,
+    "@super:get:onDismiss": _flaxBinding631,
+    "@super:get:onExpand": _flaxBinding649,
+    "@super:get:onCollapse": _flaxBinding650,
+    "@super:get:customSemanticsActions": FlaxInstanceMethod.shared(
+      _flaxBinding186,
+      _SemanticsProperties_super_get_customSemanticsActions,
+    ),
+    "@super:get:role": FlaxInstanceMethod.shared(
+      _flaxBinding188,
+      _SemanticsProperties_super_get_role,
+    ),
+    "@super:get:controlsNodes": _flaxBinding679,
+    "@super:get:validationResult": _flaxBinding680,
+    "@super:get:hitTestBehavior": FlaxInstanceMethod.shared(
+      _flaxBinding190,
+      _SemanticsProperties_super_get_hitTestBehavior,
+    ),
+    "@super:get:inputType": FlaxInstanceMethod.shared(
+      _flaxBinding192,
+      _SemanticsProperties_super_get_inputType,
+    ),
+    "@super:get:maxValue": _flaxBinding683,
+    "@super:get:minValue": _flaxBinding684,
+  },
+  constructors: {"": _flaxBinding1219, "@implementation": _flaxBinding1219},
+  create: _createSemanticsProperties,
+  matches: _isSemanticsProperties,
+  setters: [],
+  supertypes: [
+    "flax.core/sdk_foundation#type:DiagnosticableTree",
+    "dart:core::Object",
+    "flax.core/sdk_foundation#type:Diagnosticable",
+  ],
+  proxy: FlaxProxyBinding([
+    _flaxBinding960,
+    _flaxBinding962,
+    _flaxBinding342,
+    _flaxBinding346,
+    _flaxBinding963,
+    _flaxBinding347,
+    _flaxBinding344,
+    _flaxBinding1220,
+    _flaxBinding1221,
+    _flaxBinding1222,
+    _flaxBinding1223,
+    _flaxBinding1224,
+    _flaxBinding1225,
+    _flaxBinding1226,
+    _flaxBinding1227,
+    _flaxBinding1228,
+    _flaxBinding1229,
+    _flaxBinding1230,
+    _flaxBinding1231,
+    _flaxBinding1232,
+    _flaxBinding1233,
+    _flaxBinding1234,
+    _flaxBinding1235,
+    _flaxBinding1236,
+    _flaxBinding1237,
+    _flaxBinding1238,
+    _flaxBinding1239,
+    _flaxBinding1240,
+    _flaxBinding1241,
+    _flaxBinding1242,
+    _flaxBinding1243,
+    _flaxBinding776,
+    _flaxBinding729,
+    _flaxBinding730,
+    _flaxBinding1244,
+    _flaxBinding734,
+    _flaxBinding735,
+    _flaxBinding321,
+    _flaxBinding1245,
+    _flaxBinding1246,
+    _flaxBinding1247,
+    _flaxBinding1248,
+    _flaxBinding1249,
+    _flaxBinding1250,
+    _flaxBinding1251,
+    _flaxBinding322,
+    _flaxBinding1252,
+    _flaxBinding286,
+    _flaxBinding1253,
+    _flaxBinding748,
+    _flaxBinding753,
+    _flaxBinding724,
+    _flaxBinding1254,
+    _flaxBinding766,
+    _flaxBinding698,
+    _flaxBinding699,
+    _flaxBinding700,
+    _flaxBinding702,
+    _flaxBinding703,
+    _flaxBinding704,
+    _flaxBinding706,
+    _flaxBinding707,
+    _flaxBinding708,
+    _flaxBinding709,
+    _flaxBinding710,
+    _flaxBinding712,
+    _flaxBinding713,
+    _flaxBinding714,
+    _flaxBinding715,
+    _flaxBinding716,
+    _flaxBinding717,
+    _flaxBinding718,
+    _flaxBinding719,
+    _flaxBinding720,
+    _flaxBinding701,
+    _flaxBinding721,
+    _flaxBinding722,
+    _flaxBinding1255,
+    _flaxBinding1256,
+    _flaxBinding782,
+    _flaxBinding783,
+    _flaxBinding1257,
+    _flaxBinding1258,
+    _flaxBinding786,
+    _flaxBinding787,
   ]),
 );
-const _flaxBinding1217 = FlaxObjectBinding(
+const _flaxBinding1260 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsService",
   [],
   {},
@@ -24586,64 +23977,52 @@ const _flaxBinding1217 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1218 = FlaxGetter("name", _flaxBinding1, _SemanticsTag_name);
-const _flaxBinding1219 = FlaxInstanceMethod.signature(
-  _flaxBinding4,
+const _flaxBinding1261 = FlaxGetter.plain(
+  "name",
+  flaxStringType,
+  _SemanticsTag_name,
+);
+const _flaxBinding1262 = FlaxInstanceMethod.shared(
+  flaxStringCall,
   _SemanticsTag_toString,
 );
-const _flaxBinding1220 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding1, required: true),
+const _flaxBinding1263 = <FlaxParameter>[
+  FlaxParameter.required("name", flaxStringType),
 ];
-const _flaxBinding1221 = FlaxProxyMember(
+const _flaxBinding1264 = FlaxProxyMember(
   "name",
   1,
-  _flaxBinding4,
+  flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding1222 = FlaxObjectBinding(
+const _flaxBinding1265 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:SemanticsTag",
-  [_flaxBinding1218],
+  [_flaxBinding1261],
   {
-    "toString": _flaxBinding1219,
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:name": FlaxInstanceMethod.signature(
-      _flaxBinding4,
+    "toString": _flaxBinding1262,
+    "@super:toString": _flaxBinding199,
+    "@super:get:name": FlaxInstanceMethod.shared(
+      flaxStringCall,
       _SemanticsTag_super_get_name,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1220},
+  constructors: {"": _flaxBinding1263, "@implementation": _flaxBinding1263},
   create: _createSemanticsTag,
   matches: _isSemanticsTag,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding228, _flaxBinding1221]),
+  proxy: FlaxProxyBinding([_flaxBinding205, _flaxBinding1264]),
 );
-const _flaxBinding1223 = FlaxObjectBinding(
+const _flaxBinding1266 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:TapSemanticEvent",
   [],
   {
-    "@super:toMap": FlaxInstanceMethod(
-      _flaxBinding220,
-      _flaxBinding2,
-      _FlaxProxyDispatch0_super_call_toMap,
-    ),
-    "@super:getDataMap": FlaxInstanceMethod.signature(
-      _flaxBinding3,
-      _FlaxProxyDispatch1_super_call_getDataMap,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:type": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_get_type,
-    ),
+    "@super:toMap": _flaxBinding198,
+    "@super:getDataMap": _flaxBinding212,
+    "@super:toString": _flaxBinding199,
+    "@super:get:type": _flaxBinding200,
   },
-  constructors: {"@implementation": _flaxBinding325},
+  constructors: {"": _flaxBinding304, "@implementation": _flaxBinding304},
   create: _createTapSemanticEvent,
   matches: _isTapSemanticEvent,
   setters: [],
@@ -24651,49 +24030,36 @@ const _flaxBinding1223 = FlaxObjectBinding(
     "flax.core/sdk_semantics#type:SemanticsEvent",
     "dart:core::Object",
   ],
-  parent: _flaxBinding230,
+  parent: _flaxBinding207,
   proxy: FlaxProxyBinding([
-    _flaxBinding226,
-    _flaxBinding236,
-    _flaxBinding228,
-    _flaxBinding229,
+    _flaxBinding203,
+    _flaxBinding214,
+    _flaxBinding205,
+    _flaxBinding206,
   ]),
 );
-const _flaxBinding1224 = FlaxGetter(
+const _flaxBinding1267 = FlaxGetter.plain(
   "message",
-  _flaxBinding1,
+  flaxStringType,
   _TooltipSemanticsEvent_message,
 );
-const _flaxBinding1225 = <FlaxParameter>[
-  FlaxParameter("message", _flaxBinding1, required: true),
+const _flaxBinding1268 = <FlaxParameter>[
+  FlaxParameter.required("message", flaxStringType),
 ];
-const _flaxBinding1226 = FlaxObjectBinding(
+const _flaxBinding1269 = FlaxObjectBinding(
   "flax.core/sdk_semantics#type:TooltipSemanticsEvent",
-  [_flaxBinding1224],
+  [_flaxBinding1267],
   {
-    "@super:toMap": FlaxInstanceMethod(
-      _flaxBinding220,
-      _flaxBinding2,
-      _FlaxProxyDispatch0_super_call_toMap,
-    ),
-    "@super:getDataMap": FlaxInstanceMethod.signature(
-      _flaxBinding3,
-      _FlaxProxyDispatch1_super_call_getDataMap,
-    ),
-    "@super:toString": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch2_super_call_toString,
-    ),
-    "@super:get:message": FlaxInstanceMethod.signature(
-      _flaxBinding4,
+    "@super:toMap": _flaxBinding198,
+    "@super:getDataMap": _flaxBinding212,
+    "@super:toString": _flaxBinding199,
+    "@super:get:message": FlaxInstanceMethod.shared(
+      flaxStringCall,
       _TooltipSemanticsEvent_super_get_message,
     ),
-    "@super:get:type": FlaxInstanceMethod.signature(
-      _flaxBinding4,
-      _FlaxProxyDispatch0_super_get_type,
-    ),
+    "@super:get:type": _flaxBinding200,
   },
-  constructors: {"@implementation": _flaxBinding1225},
+  constructors: {"": _flaxBinding1268, "@implementation": _flaxBinding1268},
   create: _createTooltipSemanticsEvent,
   matches: _isTooltipSemanticsEvent,
   setters: [],
@@ -24701,25 +24067,25 @@ const _flaxBinding1226 = FlaxObjectBinding(
     "flax.core/sdk_semantics#type:SemanticsEvent",
     "dart:core::Object",
   ],
-  parent: _flaxBinding230,
+  parent: _flaxBinding207,
   proxy: FlaxProxyBinding([
-    _flaxBinding226,
-    _flaxBinding236,
-    _flaxBinding228,
-    _flaxBinding238,
-    _flaxBinding229,
+    _flaxBinding203,
+    _flaxBinding214,
+    _flaxBinding205,
+    _flaxBinding216,
+    _flaxBinding206,
   ]),
 );
-const _flaxBinding1227 = FlaxTypeRef(
+const _flaxBinding1270 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:CustomSemanticsAction",
   nullable: true,
 );
-const _flaxBinding1228 = FlaxTypeRef(
+const _flaxBinding1271 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsBinding",
 );
-const _flaxBinding1229 = FlaxTypeRef(
+const _flaxBinding1272 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:FlutterView",
 );

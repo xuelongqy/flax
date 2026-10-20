@@ -316,8 +316,9 @@ export interface MemberParameter extends Parameter {
 export declare abstract class FlaxProxyBase {
     protected constructor(definition: ProxyDefinition, args: readonly unknown[]);
 }
-/** Keeps descriptor calls and native subclass construction on one public export. */
-export declare function widgetProxyFactory<F extends object, C extends abstract new (...args: never[]) => object>(factory: F, native: C): F & (new (...args: ConstructorParameters<C>) => InstanceType<C>);
+/** Keeps Dart factory calls and JS subclass construction on one public export. */
+export declare function proxyFactory<F extends object, C extends abstract new (...args: never[]) => object>(factory: F, native: C): F & C;
+export declare const widgetProxyFactory: typeof proxyFactory;
 export declare function bindingMethods(type: string, category: 'object' | 'state' | 'stream' | 'context', methods: Readonly<Record<string, readonly MemberParameter[]>>, generic?: Readonly<Record<string, DartCallTarget>>): Record<string, StateMethod>;
 export declare function defineProxyBase(prototype: object, definition: ProxyDefinition, nativeGetters?: readonly string[]): void;
 export declare function defineStateMembers(prototype: object, methods: Readonly<Record<string, readonly MemberParameter[]>>, getters: readonly string[], setters: readonly string[]): void;

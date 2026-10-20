@@ -8,7 +8,7 @@ import '@flax/flutter/animation/_bindings/sdk_animation_Animatable';
 import type * as upstream3 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Matrix4Tween extends Omit<upstream0.Tween<upstream1.Matrix4>, _flaxOwnMembers0>, Omit<upstream2.Animatable<upstream1.Matrix4>, _flaxOwnMembers0 | keyof upstream0.Tween<upstream1.Matrix4>>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::Matrix4Tween": readonly [];
 }>, Readonly<{
@@ -18,9 +18,45 @@ export interface Matrix4Tween extends Omit<upstream0.Tween<upstream1.Matrix4>, _
 }> {
     readonly __Matrix4Tween: unique symbol;
     readonly [_flaxDartTypeValue]: Matrix4Tween;
+    get begin(): upstream1.Matrix4 | null;
+    get end(): upstream1.Matrix4 | null;
+    lerp(t: number): upstream1.Matrix4;
+    transform(t: number): upstream1.Matrix4;
+    toString(): string;
+    evaluate(animation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>): upstream1.Matrix4;
+    animate(parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>): upstream3.Animation<upstream1.Matrix4>;
+    chain(parent: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number];
+    }>): upstream2.Animatable<upstream1.Matrix4>;
+    set begin(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null);
+    set end(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null);
 }
-export interface Matrix4Tween {
-    readonly [_flaxDartTypeValue]: Matrix4Tween;
+export declare function _Matrix4TweenFactory(options?: {
+    begin?: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null | undefined;
+    end?: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null | undefined;
+}): Matrix4Tween;
+export interface _Matrix4TweenNative extends Matrix4Tween {
+    readonly [_flaxDartTypeValue]: _Matrix4TweenNative;
     lerp(t: number): upstream1.Matrix4;
     transform(t: number): upstream1.Matrix4;
     toString(): string;
@@ -50,7 +86,7 @@ export interface Matrix4Tween {
         "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
     }> | null);
 }
-export declare abstract class Matrix4Tween extends _FlaxProxyBase {
+export declare abstract class _Matrix4TweenNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<Matrix4Tween>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: Matrix4Tween;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:Matrix4Tween", readonly [], false];
@@ -63,7 +99,7 @@ export declare abstract class Matrix4Tween extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace Matrix4Tween {
+export declare namespace _Matrix4TweenFactory {
     function implement(args: [options?: {
         begin?: Readonly<{
             "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
@@ -73,5 +109,14 @@ export declare namespace Matrix4Tween {
         }> | null | undefined;
     }], implementation: {}): Matrix4Tween;
 }
+declare const _Matrix4TweenBinding: typeof _Matrix4TweenFactory & (new (options?: {
+    begin?: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null | undefined;
+    end?: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null | undefined;
+}) => _Matrix4TweenNative);
+export declare const Matrix4Tween: typeof _Matrix4TweenBinding & _FlaxInstanceType<Matrix4Tween> & _FlaxDartType<Matrix4Tween, readonly ["class", "flax.core/sdk_widgets#type:Matrix4Tween", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "begin" | "end" | "lerp" | "transform" | "toString" | "evaluate" | "animate" | "chain" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::Matrix4Tween" | "__flaxBound:package:flutter/src/animation/tween.dart::Tween" | "__flaxBound:package:flutter/src/animation/tween.dart::Animatable";
 export {};

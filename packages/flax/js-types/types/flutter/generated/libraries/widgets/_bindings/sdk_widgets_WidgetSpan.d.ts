@@ -32,7 +32,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface WidgetSpan extends Omit<upstream0.PlaceholderSpan, _flaxOwnMembers0>, Omit<upstream1.InlineSpan, _flaxOwnMembers0 | keyof upstream0.PlaceholderSpan>, Omit<upstream2.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.PlaceholderSpan | keyof upstream1.InlineSpan>, Omit<upstream3.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PlaceholderSpan | keyof upstream1.InlineSpan | keyof upstream2.DiagnosticableTree>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/widget_span.dart::WidgetSpan": readonly [];
 }>, Readonly<{
@@ -46,9 +46,93 @@ export interface WidgetSpan extends Omit<upstream0.PlaceholderSpan, _flaxOwnMemb
 }> {
     readonly __WidgetSpan: unique symbol;
     readonly [_flaxDartTypeValue]: WidgetSpan;
+    readonly alignment: upstream4.PlaceholderAlignment;
+    readonly baseline: upstream5.TextBaseline | null;
+    readonly style: upstream6.TextStyle | null;
+    readonly child: Widget;
+    computeToPlainText(buffer: Readonly<{
+        "__flaxBound:dart:core::StringBuffer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::StringSink": readonly [];
+    }>, options?: {
+        includePlaceholders?: boolean | undefined;
+        includeSemanticsLabels?: boolean | undefined;
+    }): void;
+    computeSemanticsInformation(collector: DartListInput<upstream9.InlineSpanSemanticsInformation, Readonly<{
+        "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpanSemanticsInformation": readonly [];
+    }>>): void;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    debugAssertIsValid(): boolean;
+    build(builder: Readonly<{
+        "__flaxBound:dart:ui::ParagraphBuilder": readonly [];
+    }>, options?: {
+        dimensions?: DartListInput<upstream12.PlaceholderDimensions, Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_painter.dart::PlaceholderDimensions": readonly [];
+        }>> | null | undefined;
+        textScaler?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
+        }> | undefined;
+    }): void;
+    visitChildren(visitor: ((span: upstream1.InlineSpan) => boolean)): boolean;
+    visitDirectChildren(visitor: ((span: upstream1.InlineSpan) => boolean)): boolean;
+    getSpanForPosition(position: Readonly<{
+        "__flaxBound:dart:ui::TextPosition": readonly [];
+    }>): upstream1.InlineSpan | null;
+    getSpanForPositionVisitor(position: Readonly<{
+        "__flaxBound:dart:ui::TextPosition": readonly [];
+    }>, offset: Readonly<{
+        "__flaxBound:package:flutter/src/painting/inline_span.dart::Accumulator": readonly [];
+    }>): upstream1.InlineSpan | null;
+    toPlainText(options?: {
+        includePlaceholders?: boolean | undefined;
+        includeSemanticsLabels?: boolean | undefined;
+    }): string;
+    getSemanticsInformation(): DartList<upstream9.InlineSpanSemanticsInformation>;
+    codeUnitAt(index: number): number | null;
+    codeUnitAtVisitor(index: number, offset: Readonly<{
+        "__flaxBound:package:flutter/src/painting/inline_span.dart::Accumulator": readonly [];
+    }>): number | null;
+    compareTo(other: Readonly<{
+        "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): upstream15.RenderComparison;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream16.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream16.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream18.DiagnosticsTreeStyle | null | undefined;
+    }): upstream17.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream17.DiagnosticsNode>;
+    toString(options?: {
+        minLevel?: upstream16.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface WidgetSpan {
-    readonly [_flaxDartTypeValue]: WidgetSpan;
+export declare function _WidgetSpanFactory(options: {
+    child: Widget;
+    alignment?: upstream4.PlaceholderAlignment | undefined;
+    baseline?: upstream5.TextBaseline | null | undefined;
+    style?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+}): WidgetSpan;
+export interface _WidgetSpanNative extends WidgetSpan {
+    readonly [_flaxDartTypeValue]: _WidgetSpanNative;
     computeToPlainText(buffer: Readonly<{
         "__flaxBound:dart:core::StringBuffer": readonly [];
     }> & Readonly<{
@@ -124,7 +208,7 @@ export interface WidgetSpan {
     get baseline(): upstream5.TextBaseline | null;
     get style(): upstream6.TextStyle | null;
 }
-export declare abstract class WidgetSpan extends _FlaxProxyBase {
+export declare abstract class _WidgetSpanNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<WidgetSpan>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: WidgetSpan;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:WidgetSpan", readonly [], false];
@@ -139,7 +223,7 @@ export declare abstract class WidgetSpan extends _FlaxProxyBase {
         }>) | null | undefined;
     });
 }
-export declare namespace WidgetSpan {
+export declare namespace _WidgetSpanFactory {
     function implement(args: [options: {
         child: Widget;
         alignment?: upstream4.PlaceholderAlignment | undefined;
@@ -151,7 +235,17 @@ export declare namespace WidgetSpan {
         }>) | null | undefined;
     }], implementation: {}): WidgetSpan;
 }
-export declare namespace WidgetSpan {
+declare const _WidgetSpanBinding: typeof _WidgetSpanFactory & (new (options: {
+    child: Widget;
+    alignment?: upstream4.PlaceholderAlignment | undefined;
+    baseline?: upstream5.TextBaseline | null | undefined;
+    style?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+}) => _WidgetSpanNative);
+export declare namespace _WidgetSpanFactory {
     function extractFromInlineSpan(span: Readonly<{
         "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
     }> & Readonly<{
@@ -162,5 +256,6 @@ export declare namespace WidgetSpan {
         "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
     }>): DartList<Widget>;
 }
+export declare const WidgetSpan: typeof _WidgetSpanBinding & _FlaxInstanceType<WidgetSpan> & _FlaxDartType<WidgetSpan, readonly ["class", "flax.core/sdk_widgets#type:WidgetSpan", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "alignment" | "baseline" | "style" | "child" | "computeToPlainText" | "computeSemanticsInformation" | "debugFillProperties" | "debugAssertIsValid" | "build" | "visitChildren" | "visitDirectChildren" | "getSpanForPosition" | "getSpanForPositionVisitor" | "toPlainText" | "getSemanticsInformation" | "codeUnitAt" | "codeUnitAtVisitor" | "compareTo" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "toString" | "__flaxBound:package:flutter/src/widgets/widget_span.dart::WidgetSpan" | "__flaxBound:package:flutter/src/painting/placeholder_span.dart::PlaceholderSpan" | "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

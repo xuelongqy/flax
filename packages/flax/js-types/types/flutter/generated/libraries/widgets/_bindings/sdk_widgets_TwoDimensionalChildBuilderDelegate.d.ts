@@ -10,7 +10,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/sdk_widgets_ChildVicinity';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ChildVicinity';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TwoDimensionalChildBuilderDelegate extends Omit<upstream0.TwoDimensionalChildDelegate, _flaxOwnMembers0>, Omit<upstream1.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.TwoDimensionalChildDelegate>, Omit<upstream2.Listenable, _flaxOwnMembers0 | keyof upstream0.TwoDimensionalChildDelegate | keyof upstream1.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildBuilderDelegate": readonly [];
 }>, Readonly<{
@@ -22,9 +22,43 @@ export interface TwoDimensionalChildBuilderDelegate extends Omit<upstream0.TwoDi
 }> {
     readonly __TwoDimensionalChildBuilderDelegate: unique symbol;
     readonly [_flaxDartTypeValue]: TwoDimensionalChildBuilderDelegate;
+    readonly hasListeners: boolean;
+    readonly builder: ((context: upstream3.BuildContext, vicinity: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/two_dimensional_viewport.dart::ChildVicinity": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream4.ChildVicinity];
+    }>) => Widget | null);
+    get maxXIndex(): number | null;
+    get maxYIndex(): number | null;
+    readonly addRepaintBoundaries: boolean;
+    readonly addAutomaticKeepAlives: boolean;
+    build(context: upstream3.BuildContext, vicinity: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/two_dimensional_viewport.dart::ChildVicinity": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream4.ChildVicinity];
+    }>): Widget | null;
+    shouldRebuild(oldDelegate: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildDelegate": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>): boolean;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    set maxXIndex(value: number | null);
+    set maxYIndex(value: number | null);
 }
-export interface TwoDimensionalChildBuilderDelegate {
-    readonly [_flaxDartTypeValue]: TwoDimensionalChildBuilderDelegate;
+export declare function _TwoDimensionalChildBuilderDelegateFactory(options: {
+    builder: ((context: upstream3.BuildContext, vicinity: upstream4.ChildVicinity) => Widget | null);
+    maxXIndex?: number | null | undefined;
+    maxYIndex?: number | null | undefined;
+    addRepaintBoundaries?: boolean | undefined;
+    addAutomaticKeepAlives?: boolean | undefined;
+}): TwoDimensionalChildBuilderDelegate;
+export interface _TwoDimensionalChildBuilderDelegateNative extends TwoDimensionalChildBuilderDelegate {
+    readonly [_flaxDartTypeValue]: _TwoDimensionalChildBuilderDelegateNative;
     build(context: upstream3.BuildContext, vicinity: Readonly<{
         "__flaxBound:package:flutter/src/widgets/two_dimensional_viewport.dart::ChildVicinity": readonly [];
     }> & Readonly<{
@@ -53,7 +87,7 @@ export interface TwoDimensionalChildBuilderDelegate {
     set maxXIndex(value: number | null);
     set maxYIndex(value: number | null);
 }
-export declare abstract class TwoDimensionalChildBuilderDelegate extends _FlaxProxyBase {
+export declare abstract class _TwoDimensionalChildBuilderDelegateNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TwoDimensionalChildBuilderDelegate>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TwoDimensionalChildBuilderDelegate;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:TwoDimensionalChildBuilderDelegate", readonly [], false];
@@ -65,7 +99,7 @@ export declare abstract class TwoDimensionalChildBuilderDelegate extends _FlaxPr
         addAutomaticKeepAlives?: boolean | undefined;
     });
 }
-export declare namespace TwoDimensionalChildBuilderDelegate {
+export declare namespace _TwoDimensionalChildBuilderDelegateFactory {
     function implement(args: [options: {
         builder: ((context: upstream3.BuildContext, vicinity: upstream4.ChildVicinity) => Widget | null);
         maxXIndex?: number | null | undefined;
@@ -74,5 +108,13 @@ export declare namespace TwoDimensionalChildBuilderDelegate {
         addAutomaticKeepAlives?: boolean | undefined;
     }], implementation: {}): TwoDimensionalChildBuilderDelegate;
 }
+declare const _TwoDimensionalChildBuilderDelegateBinding: typeof _TwoDimensionalChildBuilderDelegateFactory & (new (options: {
+    builder: ((context: upstream3.BuildContext, vicinity: upstream4.ChildVicinity) => Widget | null);
+    maxXIndex?: number | null | undefined;
+    maxYIndex?: number | null | undefined;
+    addRepaintBoundaries?: boolean | undefined;
+    addAutomaticKeepAlives?: boolean | undefined;
+}) => _TwoDimensionalChildBuilderDelegateNative);
+export declare const TwoDimensionalChildBuilderDelegate: typeof _TwoDimensionalChildBuilderDelegateBinding & _FlaxInstanceType<TwoDimensionalChildBuilderDelegate> & _FlaxDartType<TwoDimensionalChildBuilderDelegate, readonly ["class", "flax.core/sdk_widgets#type:TwoDimensionalChildBuilderDelegate", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "builder" | "maxXIndex" | "maxYIndex" | "addRepaintBoundaries" | "addAutomaticKeepAlives" | "build" | "shouldRebuild" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildBuilderDelegate" | "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildDelegate" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

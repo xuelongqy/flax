@@ -280,7 +280,7 @@ extension _ProxyEmission on FlaxCodegenBindingEmitter {
         in group != null
             ? <FlaxCodegenConstructorModel>[]
             : proxy.kind == 'extends'
-            ? type.constructors.map(_runtimeConstructor)
+            ? _proxyConstructors(type).map(_runtimeConstructor)
             : [ctor]) {
       final fields = ['this._flaxPeer'];
       final parameters = _superParameters(constructor.parameters);

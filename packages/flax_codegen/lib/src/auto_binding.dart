@@ -41,9 +41,11 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         throw StateError('Unknown public automatic declaration: $name');
       }
     }
-    final typeCarriers = inferPublicTypeCarriers
-        ? await _discoverAutoTypeCarriers(seed.library, result.element)
-        : const <String, String>{};
+    final typeCarriers = {
+      ..._localDependencyCarriers,
+      if (inferPublicTypeCarriers)
+        ...await _discoverAutoTypeCarriers(seed.library, result.element),
+    };
     final scope = await _openTypeScope(
       seed,
       automaticTypeCarriers: typeCarriers,
@@ -74,6 +76,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final seenOverrides = <String>{};
     final reusedDeclarations = <String>{};
     final hiddenTypes = <String>{};
+    final policySkipped = <String>{};
 
     final names =
         exports.keys
@@ -82,7 +85,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             .toList()
           ..sort();
     for (final name in names) {
-      if (scoped && !requested.contains(name)) continue;
+      if (scoped && !requested.contains(name)) {
+        if (excluded.contains(name)) seenOverrides.add(name);
+        continue;
+      }
       final element = exports[name] ?? exports['$name='];
       if (element == null || element.isPrivate) continue;
       final localOwner = _localDeclarationOwners[_declarationSource(element)];
@@ -124,6 +130,21 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           ),
         );
         continue;
+      }
+      if (element is InterfaceElement) {
+        final reason = _dependencyPolicyError(element);
+        if (reason != null) {
+          policySkipped.add(name);
+          hiddenTypes.add(identity(element));
+          skips.add(
+            FlaxCodegenSkip(
+              target: name,
+              reason: reason,
+              code: 'external_dependency_unbound',
+            ),
+          );
+          continue;
+        }
       }
       if (element.metadata.hasDeprecated) {
         notices.add(
@@ -261,7 +282,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         inferred: inferred,
         expandOwned:
             seed.automaticLibrary || seed.automaticClasses.contains(name),
-        inferProxy: !scoped,
+        inferProxy: !scoped || _localDependencyModuleNames.contains(seed.name),
         selectionOverride: classOverride,
       );
       skips.addAll(proposed.skips);
@@ -522,6 +543,14 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
 
     for (final name in requested.difference(excluded)) {
+      if (policySkipped.contains(name) ||
+          skips.any(
+            (skip) =>
+                skip.code == 'external_dependency_unbound' &&
+                (skip.target == name || skip.target.startsWith('$name.')),
+          )) {
+        continue;
+      }
       final element = exports[name];
       final id = element is InterfaceElement ? identity(element) : null;
       final reused =
@@ -1126,6 +1155,14 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
 
     bool resultSupported(ExecutableElement member, String target) {
+      if (!_supportsDependencySignature(
+        member.type,
+        target,
+        skips,
+        scope: scope,
+      )) {
+        return false;
+      }
       try {
         for (final parameter in member.typeParameters) {
           final bound =
@@ -1310,6 +1347,14 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     required String name,
     required List<FlaxCodegenSkip> skips,
   }) {
+    if (!_supportsDependencySignature(
+      function.type,
+      name,
+      skips,
+      scope: scope,
+    )) {
+      return null;
+    }
     final sharedArguments = function.typeParameters.isEmpty
         ? null
         : _sharedTypeArguments(

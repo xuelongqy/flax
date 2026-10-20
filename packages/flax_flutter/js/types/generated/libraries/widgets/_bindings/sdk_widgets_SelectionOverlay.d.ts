@@ -32,15 +32,185 @@ import '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_MagnifierInfo';
 import type * as upstream16 from '@flax/flutter/widgets/_bindings/sdk_widgets_ClipboardStatus';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SelectionOverlay extends Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_selection.dart::SelectionOverlay": readonly [];
 }> {
     readonly __SelectionOverlay: unique symbol;
     readonly [_flaxDartTypeValue]: SelectionOverlay;
+    readonly context: upstream0.BuildContext;
+    readonly magnifierConfiguration: upstream13.TextMagnifierConfiguration;
+    readonly toolbarIsVisible: boolean;
+    readonly magnifierIsVisible: boolean;
+    readonly magnifierExists: boolean;
+    get startHandleType(): upstream1.TextSelectionHandleType;
+    get lineHeightAtStart(): number;
+    readonly isDraggingStartHandle: boolean;
+    readonly startHandlesVisible: upstream2.ValueListenable<boolean> | null;
+    readonly onStartHandleDragStart: ((value: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragStartDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    readonly onStartHandleDragUpdate: ((value: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragUpdateDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    readonly onStartHandleDragEnd: ((value: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragEndDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    get endHandleType(): upstream1.TextSelectionHandleType;
+    get lineHeightAtEnd(): number;
+    readonly isDraggingEndHandle: boolean;
+    readonly endHandlesVisible: upstream2.ValueListenable<boolean> | null;
+    readonly onEndHandleDragStart: ((value: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragStartDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    readonly onEndHandleDragUpdate: ((value: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragUpdateDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    readonly onEndHandleDragEnd: ((value: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragEndDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    readonly toolbarVisible: upstream2.ValueListenable<boolean> | null;
+    get selectionEndpoints(): DartList<upstream6.TextSelectionPoint>;
+    readonly debugRequiredFor: Widget | null;
+    readonly toolbarLayerLink: upstream10.LayerLink;
+    readonly startHandleLayerLink: upstream10.LayerLink;
+    readonly endHandleLayerLink: upstream10.LayerLink;
+    readonly selectionControls: upstream7.TextSelectionControls | null;
+    readonly selectionDelegate: upstream8.TextSelectionDelegate | null;
+    readonly dragStartBehavior: upstream11.DragStartBehavior;
+    readonly onSelectionHandleTapped: (() => void) | null;
+    readonly clipboardStatus: upstream9.ClipboardStatusNotifier | null;
+    get toolbarLocation(): upstream12.Offset | null;
+    showMagnifier(initialMagnifierInfo: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/magnifier.dart::MagnifierInfo": readonly [];
+    }>): void;
+    hideMagnifier(): void;
+    showHandles(): void;
+    hideHandles(): void;
+    showToolbar(options?: {
+        context?: upstream0.BuildContext | null | undefined;
+        contextMenuBuilder?: ((context: upstream0.BuildContext) => Widget) | null | undefined;
+    }): void;
+    showSpellCheckSuggestionsToolbar(options: {
+        builder: ((context: upstream0.BuildContext) => Widget);
+        context?: upstream0.BuildContext | null | undefined;
+    }): void;
+    markNeedsBuild(): void;
+    hide(): void;
+    hideToolbar(): void;
+    dispose(): void;
+    updateMagnifier(magnifierInfo: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/magnifier.dart::MagnifierInfo": readonly [];
+    }>): void;
+    set startHandleType(value: upstream1.TextSelectionHandleType);
+    set lineHeightAtStart(value: number);
+    set endHandleType(value: upstream1.TextSelectionHandleType);
+    set lineHeightAtEnd(value: number);
+    set selectionEndpoints(value: DartListInput<upstream6.TextSelectionPoint, Readonly<{
+        "__flaxBound:package:flutter/src/rendering/editable.dart::TextSelectionPoint": readonly [];
+    }>>);
+    set toolbarLocation(value: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null);
 }
-export interface SelectionOverlay {
-    readonly [_flaxDartTypeValue]: SelectionOverlay;
+export declare function _SelectionOverlayFactory(options: {
+    context: upstream0.BuildContext;
+    debugRequiredFor?: Widget | null | undefined;
+    startHandleType: upstream1.TextSelectionHandleType;
+    lineHeightAtStart: number;
+    startHandlesVisible?: (Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>) | null | undefined;
+    onStartHandleDragStart?: ((value: upstream3.DragStartDetails) => void) | null | undefined;
+    onStartHandleDragUpdate?: ((value: upstream4.DragUpdateDetails) => void) | null | undefined;
+    onStartHandleDragEnd?: ((value: upstream5.DragEndDetails) => void) | null | undefined;
+    endHandleType: upstream1.TextSelectionHandleType;
+    lineHeightAtEnd: number;
+    endHandlesVisible?: (Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>) | null | undefined;
+    onEndHandleDragStart?: ((value: upstream3.DragStartDetails) => void) | null | undefined;
+    onEndHandleDragUpdate?: ((value: upstream4.DragUpdateDetails) => void) | null | undefined;
+    onEndHandleDragEnd?: ((value: upstream5.DragEndDetails) => void) | null | undefined;
+    toolbarVisible?: (Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>) | null | undefined;
+    selectionEndpoints: DartListInput<upstream6.TextSelectionPoint, Readonly<{
+        "__flaxBound:package:flutter/src/rendering/editable.dart::TextSelectionPoint": readonly [];
+    }>>;
+    selectionControls: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionControls": readonly [];
+    }> | null;
+    selectionDelegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }> | null;
+    clipboardStatus: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/text_selection.dart::ClipboardStatusNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream16.ClipboardStatus];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream16.ClipboardStatus];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
+    }>) | null;
+    startHandleLayerLink: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::LayerLink": readonly [];
+    }>;
+    endHandleLayerLink: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::LayerLink": readonly [];
+    }>;
+    toolbarLayerLink: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::LayerLink": readonly [];
+    }>;
+    dragStartBehavior?: upstream11.DragStartBehavior | undefined;
+    onSelectionHandleTapped?: (() => void) | null | undefined;
+    toolbarLocation?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    magnifierConfiguration?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/magnifier.dart::TextMagnifierConfiguration": readonly [];
+    }> | undefined;
+}): SelectionOverlay;
+export interface _SelectionOverlayNative extends SelectionOverlay {
+    readonly [_flaxDartTypeValue]: _SelectionOverlayNative;
     showMagnifier(initialMagnifierInfo: Readonly<{
         "__flaxBound:package:flutter/src/widgets/magnifier.dart::MagnifierInfo": readonly [];
     }>): void;
@@ -142,7 +312,7 @@ export interface SelectionOverlay {
         "__flaxBound:dart:ui::OffsetBase": readonly [];
     }>) | null);
 }
-export declare abstract class SelectionOverlay extends _FlaxProxyBase {
+export declare abstract class _SelectionOverlayNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SelectionOverlay>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SelectionOverlay;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:SelectionOverlay", readonly [], false];
@@ -217,7 +387,7 @@ export declare abstract class SelectionOverlay extends _FlaxProxyBase {
         }> | undefined;
     });
 }
-export declare namespace SelectionOverlay {
+export declare namespace _SelectionOverlayFactory {
     function implement(args: [options: {
         context: upstream0.BuildContext;
         debugRequiredFor?: Widget | null | undefined;
@@ -289,6 +459,78 @@ export declare namespace SelectionOverlay {
         }> | undefined;
     }], implementation: {}): SelectionOverlay;
 }
-export declare namespace SelectionOverlay {
+declare const _SelectionOverlayBinding: typeof _SelectionOverlayFactory & (new (options: {
+    context: upstream0.BuildContext;
+    debugRequiredFor?: Widget | null | undefined;
+    startHandleType: upstream1.TextSelectionHandleType;
+    lineHeightAtStart: number;
+    startHandlesVisible?: (Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>) | null | undefined;
+    onStartHandleDragStart?: ((value: upstream3.DragStartDetails) => void) | null | undefined;
+    onStartHandleDragUpdate?: ((value: upstream4.DragUpdateDetails) => void) | null | undefined;
+    onStartHandleDragEnd?: ((value: upstream5.DragEndDetails) => void) | null | undefined;
+    endHandleType: upstream1.TextSelectionHandleType;
+    lineHeightAtEnd: number;
+    endHandlesVisible?: (Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>) | null | undefined;
+    onEndHandleDragStart?: ((value: upstream3.DragStartDetails) => void) | null | undefined;
+    onEndHandleDragUpdate?: ((value: upstream4.DragUpdateDetails) => void) | null | undefined;
+    onEndHandleDragEnd?: ((value: upstream5.DragEndDetails) => void) | null | undefined;
+    toolbarVisible?: (Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>) | null | undefined;
+    selectionEndpoints: DartListInput<upstream6.TextSelectionPoint, Readonly<{
+        "__flaxBound:package:flutter/src/rendering/editable.dart::TextSelectionPoint": readonly [];
+    }>>;
+    selectionControls: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionControls": readonly [];
+    }> | null;
+    selectionDelegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }> | null;
+    clipboardStatus: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/text_selection.dart::ClipboardStatusNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream16.ClipboardStatus];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream16.ClipboardStatus];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
+    }>) | null;
+    startHandleLayerLink: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::LayerLink": readonly [];
+    }>;
+    endHandleLayerLink: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::LayerLink": readonly [];
+    }>;
+    toolbarLayerLink: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::LayerLink": readonly [];
+    }>;
+    dragStartBehavior?: upstream11.DragStartBehavior | undefined;
+    onSelectionHandleTapped?: (() => void) | null | undefined;
+    toolbarLocation?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    magnifierConfiguration?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/magnifier.dart::TextMagnifierConfiguration": readonly [];
+    }> | undefined;
+}) => _SelectionOverlayNative);
+export declare namespace _SelectionOverlayFactory {
     const fadeDuration: upstream14.Duration;
 }
+export declare const SelectionOverlay: typeof _SelectionOverlayBinding & _FlaxInstanceType<SelectionOverlay> & _FlaxDartType<SelectionOverlay, readonly ["class", "flax.core/sdk_widgets#type:SelectionOverlay", readonly [], false]>;
+export {};

@@ -14,7 +14,7 @@ const _flaxOmitted = Object();
 const componentsBindings = FlaxBindingModule(
   'components',
   [
-    _flaxBinding23,
+    _flaxBinding19,
     FlaxStateBinding(
       "flax.core/components#type:State",
       [],
@@ -67,9 +67,9 @@ const _stateVariant_KeepAliveState = FlaxStateVariantBinding(
   getters: [],
   setters: [],
   methods: {
-    "updateKeepAlive": FlaxInstanceMethod(
+    "updateKeepAlive": FlaxInstanceMethod.plain(
       [],
-      _flaxBinding18,
+      flaxVoidType,
       _KeepAliveState_call_updateKeepAlive,
     ),
   },
@@ -80,7 +80,7 @@ abstract class _KeepAliveStateStateHostBase extends FlaxComponentStateBase
   _KeepAliveStateStateHostBase(Object seed) : super(seed);
   @override
   bool get wantKeepAlive =>
-      flaxInvokeMember("get:wantKeepAlive", const [], const [], _flaxBinding24)
+      flaxInvokeMember("get:wantKeepAlive", const [], const [], flaxBoolType)
           as bool;
   Object? _flaxCall_updateKeepAlive(Map<String, Object?> values) {
     updateKeepAlive();
@@ -157,9 +157,9 @@ const _stateVariant_KeepAliveTickerState = FlaxStateVariantBinding(
   getters: [],
   setters: [],
   methods: {
-    "updateKeepAlive": FlaxInstanceMethod(
+    "updateKeepAlive": FlaxInstanceMethod.plain(
       [],
-      _flaxBinding18,
+      flaxVoidType,
       _KeepAliveTickerState_call_updateKeepAlive,
     ),
   },
@@ -172,7 +172,7 @@ abstract class _KeepAliveTickerStateStateHostBase extends FlaxComponentStateBase
   _KeepAliveTickerStateStateHostBase(Object seed) : super(seed);
   @override
   bool get wantKeepAlive =>
-      flaxInvokeMember("get:wantKeepAlive", const [], const [], _flaxBinding24)
+      flaxInvokeMember("get:wantKeepAlive", const [], const [], flaxBoolType)
           as bool;
   Object? _flaxCall_updateKeepAlive(Map<String, Object?> values) {
     updateKeepAlive();
@@ -206,9 +206,9 @@ const _stateVariant_KeepAliveSingleTickerState = FlaxStateVariantBinding(
   getters: [],
   setters: [],
   methods: {
-    "updateKeepAlive": FlaxInstanceMethod(
+    "updateKeepAlive": FlaxInstanceMethod.plain(
       [],
-      _flaxBinding18,
+      flaxVoidType,
       _KeepAliveSingleTickerState_call_updateKeepAlive,
     ),
   },
@@ -222,7 +222,7 @@ abstract class _KeepAliveSingleTickerStateStateHostBase
   _KeepAliveSingleTickerStateStateHostBase(Object seed) : super(seed);
   @override
   bool get wantKeepAlive =>
-      flaxInvokeMember("get:wantKeepAlive", const [], const [], _flaxBinding24)
+      flaxInvokeMember("get:wantKeepAlive", const [], const [], flaxBoolType)
           as bool;
   Object? _flaxCall_updateKeepAlive(Map<String, Object?> values) {
     updateKeepAlive();
@@ -342,75 +342,72 @@ Object _collection1Restore(Object value) =>
     (value as Iterable<Object?>).cast<api1.DiagnosticsNode>();
 bool _collection1Matches(Object value) =>
     value is Iterable<api1.DiagnosticsNode>;
-const _flaxBinding0 = FlaxTypeRef("String");
-const _flaxBinding1 = FlaxTypeRef(
+const _flaxBinding0 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticLevel",
 );
-const _flaxBinding2 = <FlaxParameter>[
-  FlaxParameter("joiner", _flaxBinding0, required: false, defaultValue: ', '),
+const _flaxBinding1 = <FlaxParameter>[
+  FlaxParameter("joiner", flaxStringType, required: false, defaultValue: ', '),
   FlaxParameter(
     "minLevel",
-    _flaxBinding1,
+    _flaxBinding0,
     required: false,
     defaultValue: api1.DiagnosticLevel.debug,
   ),
 ];
-const _flaxBinding3 = FlaxInstanceMethod(
-  _flaxBinding2,
-  _flaxBinding0,
+const _flaxBinding2 = FlaxInstanceMethod.plain(
+  _flaxBinding1,
+  flaxStringType,
   _StatefulWidget_toStringShallow,
 );
-const _flaxBinding4 = FlaxTypeRef("String", nullable: true);
-const _flaxBinding5 = FlaxTypeRef("int");
-const _flaxBinding6 = <FlaxParameter>[
+const _flaxBinding3 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
-    _flaxBinding1,
+    _flaxBinding0,
     required: false,
     defaultValue: api1.DiagnosticLevel.debug,
   ),
   FlaxParameter(
     "prefixLineOne",
-    _flaxBinding0,
+    flaxStringType,
     required: false,
     defaultValue: '',
   ),
-  FlaxParameter("prefixOtherLines", _flaxBinding4, required: false),
-  FlaxParameter("wrapWidth", _flaxBinding5, required: false, defaultValue: 65),
+  FlaxParameter("prefixOtherLines", flaxNullableStringType, required: false),
+  FlaxParameter("wrapWidth", flaxIntType, required: false, defaultValue: 65),
 ];
-const _flaxBinding7 = FlaxInstanceMethod(
-  _flaxBinding6,
-  _flaxBinding0,
+const _flaxBinding4 = FlaxInstanceMethod.plain(
+  _flaxBinding3,
+  flaxStringType,
   _StatefulWidget_toStringDeep,
 );
-const _flaxBinding8 = <FlaxParameter>[];
-const _flaxBinding9 = FlaxInstanceMethod(
-  _flaxBinding8,
-  _flaxBinding0,
+const _flaxBinding5 = <FlaxParameter>[];
+const _flaxBinding6 = FlaxInstanceMethod.plain(
+  _flaxBinding5,
+  flaxStringType,
   _StatefulWidget_toStringShort,
 );
-const _flaxBinding10 = FlaxTypeRef(
+const _flaxBinding7 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
   nullable: true,
 );
-const _flaxBinding11 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding4, required: false),
-  FlaxParameter("style", _flaxBinding10, required: false),
+const _flaxBinding8 = <FlaxParameter>[
+  FlaxParameter("name", flaxNullableStringType, required: false),
+  FlaxParameter("style", _flaxBinding7, required: false),
 ];
-const _flaxBinding12 = FlaxTypeRef(
+const _flaxBinding9 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticsNode",
 );
-const _flaxBinding13 = FlaxInstanceMethod(
-  _flaxBinding11,
-  _flaxBinding12,
+const _flaxBinding10 = FlaxInstanceMethod.plain(
+  _flaxBinding8,
+  _flaxBinding9,
   _StatefulWidget_toDiagnosticsNode,
 );
-const _flaxBinding14 = FlaxTypeRef(
+const _flaxBinding11 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding12,
+  item: _flaxBinding9,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
     _collection1Create,
@@ -418,58 +415,57 @@ const _flaxBinding14 = FlaxTypeRef(
     restore: _collection1Restore,
   ),
 );
-const _flaxBinding15 = FlaxTypeRef(
+const _flaxBinding12 = FlaxTypeRef(
   "list",
-  item: _flaxBinding12,
+  item: _flaxBinding9,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
     _collection0Create,
     _collection0Matches,
   ),
-  iterable: _flaxBinding14,
+  iterable: _flaxBinding11,
 );
-const _flaxBinding16 = FlaxInstanceMethod(
-  _flaxBinding8,
-  _flaxBinding15,
+const _flaxBinding13 = FlaxInstanceMethod.plain(
+  _flaxBinding5,
+  _flaxBinding12,
   _StatefulWidget_debugDescribeChildren,
 );
-const _flaxBinding17 = FlaxTypeRef(
+const _flaxBinding14 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
 );
-const _flaxBinding18 = FlaxTypeRef("void");
-const _flaxBinding19 = <FlaxParameter>[
-  FlaxParameter("properties", _flaxBinding17, required: true),
+const _flaxBinding15 = <FlaxParameter>[
+  FlaxParameter.required("properties", _flaxBinding14),
 ];
-const _flaxBinding20 = FlaxInstanceMethod(
-  _flaxBinding19,
-  _flaxBinding18,
+const _flaxBinding16 = FlaxInstanceMethod.plain(
+  _flaxBinding15,
+  flaxVoidType,
   _StatefulWidget_debugFillProperties,
 );
-const _flaxBinding21 = <FlaxParameter>[
+const _flaxBinding17 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
-    _flaxBinding1,
+    _flaxBinding0,
     required: false,
     defaultValue: api1.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding22 = FlaxInstanceMethod(
-  _flaxBinding21,
-  _flaxBinding0,
+const _flaxBinding18 = FlaxInstanceMethod.plain(
+  _flaxBinding17,
+  flaxStringType,
   _StatefulWidget_toString,
 );
-const _flaxBinding23 = FlaxObjectBinding(
+const _flaxBinding19 = FlaxObjectBinding(
   "flax.core/components#type:StatefulWidget",
   [],
   {
-    "toStringShallow": _flaxBinding3,
-    "toStringDeep": _flaxBinding7,
-    "toStringShort": _flaxBinding9,
-    "toDiagnosticsNode": _flaxBinding13,
-    "debugDescribeChildren": _flaxBinding16,
-    "debugFillProperties": _flaxBinding20,
-    "toString": _flaxBinding22,
+    "toStringShallow": _flaxBinding2,
+    "toStringDeep": _flaxBinding4,
+    "toStringShort": _flaxBinding6,
+    "toDiagnosticsNode": _flaxBinding10,
+    "debugDescribeChildren": _flaxBinding13,
+    "debugFillProperties": _flaxBinding16,
+    "toString": _flaxBinding18,
   },
   constructors: {},
   create: _createStatefulWidget,
@@ -482,4 +478,3 @@ const _flaxBinding23 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding24 = FlaxTypeRef("bool");

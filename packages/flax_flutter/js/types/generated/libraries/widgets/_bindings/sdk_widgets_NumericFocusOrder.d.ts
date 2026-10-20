@@ -13,7 +13,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface NumericFocusOrder extends Omit<upstream0.FocusOrder, _flaxOwnMembers0>, Omit<upstream1.Comparable<upstream0.FocusOrder>, _flaxOwnMembers0 | keyof upstream0.FocusOrder>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.FocusOrder | keyof upstream1.Comparable<upstream0.FocusOrder>>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NumericFocusOrder": readonly [];
 }>, Readonly<{
@@ -25,9 +25,38 @@ export interface NumericFocusOrder extends Omit<upstream0.FocusOrder, _flaxOwnMe
 }> {
     readonly __NumericFocusOrder: unique symbol;
     readonly [_flaxDartTypeValue]: NumericFocusOrder;
+    readonly order: number;
+    compareTo(other: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream0.FocusOrder];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): number;
+    doCompare(other: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NumericFocusOrder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream0.FocusOrder];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): number;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream4.DiagnosticsTreeStyle | null | undefined;
+    }): upstream3.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface NumericFocusOrder {
-    readonly [_flaxDartTypeValue]: NumericFocusOrder;
+export declare function _NumericFocusOrderFactory(order: number): NumericFocusOrder;
+export interface _NumericFocusOrderNative extends NumericFocusOrder {
+    readonly [_flaxDartTypeValue]: _NumericFocusOrderNative;
     compareTo(other: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [];
     }> & Readonly<{
@@ -57,14 +86,16 @@ export interface NumericFocusOrder {
     }): string;
     get order(): number;
 }
-export declare abstract class NumericFocusOrder extends _FlaxProxyBase {
+export declare abstract class _NumericFocusOrderNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<NumericFocusOrder>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: NumericFocusOrder;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:NumericFocusOrder", readonly [], false];
     constructor(order: number);
 }
-export declare namespace NumericFocusOrder {
+export declare namespace _NumericFocusOrderFactory {
     function implement(args: [order: number], implementation: {}): NumericFocusOrder;
 }
+declare const _NumericFocusOrderBinding: typeof _NumericFocusOrderFactory & (new (order: number) => _NumericFocusOrderNative);
+export declare const NumericFocusOrder: typeof _NumericFocusOrderBinding & _FlaxInstanceType<NumericFocusOrder> & _FlaxDartType<NumericFocusOrder, readonly ["class", "flax.core/sdk_widgets#type:NumericFocusOrder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "order" | "compareTo" | "doCompare" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NumericFocusOrder" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder" | "__flaxBound:dart:core::Comparable" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

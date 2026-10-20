@@ -7,64 +7,96 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
-import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_Color';
-import '@flax/dart/ui/_bindings/flutter_Color';
-import type * as upstream4 from '@flax/flutter/painting/_bindings/flutter_BorderStyle';
-import '@flax/flutter/painting/_bindings/flutter_BorderStyle';
-import type * as upstream5 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
-import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
-import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream10 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
+import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
-import { _flaxMemberParameters468, _flaxMemberParameters2, _flaxMemberParameters469, _flaxMemberParameters42, _flaxMemberParameters5, _flaxMemberParameters8, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import type * as upstream4 from '@flax/flutter/widgets/_bindings/sdk_widgets_WidgetStatesConstraint';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_WidgetStatesConstraint';
+import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream6 from '@flax/flutter/painting/_bindings/flutter_BorderStyle';
+import '@flax/flutter/painting/_bindings/flutter_BorderStyle';
+import type * as upstream7 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
+import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import { _flaxMemberParameters454, _flaxMemberParameters2, _flaxMemberParameters455, _flaxMemberParameters42, _flaxMemberParameters5, _flaxMemberParameters8, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface WidgetStateBorderSide extends Omit<upstream0.BorderSide, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.BorderSide>, Omit<upstream2.WidgetStateProperty<upstream0.BorderSide | null>, _flaxOwnMembers0 | keyof upstream0.BorderSide | keyof upstream1.Diagnosticable>, Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateBorderSide": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream0.BorderSide | null] }> { readonly __WidgetStateBorderSide: unique symbol;
 readonly [_flaxDartTypeValue]: WidgetStateBorderSide;
 
-}
-defineObject("flax.core/sdk_widgets#type:WidgetStateBorderSide", ["color","width","style","strokeAlign","strokeInset","strokeOutset","strokeOffset"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStateBorderSide", "object", {"resolve":_flaxMemberParameters468}, {}), [], undefined, "flax.core/flutter#type:BorderSide");
-const _WidgetStateBorderSideProxy = {type: "flax.core/sdk_widgets#type:WidgetStateBorderSide", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"copyWith":_flaxMemberParameters469,"scale":_flaxMemberParameters42,"toPaint":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters5,"toDiagnosticsNode":_flaxMemberParameters8,"toString":_flaxMemberParameters9,"resolve":_flaxMemberParameters468}, getters: ["color","width","style","strokeAlign","strokeInset","strokeOutset","strokeOffset"], setters: [], contextMembers: [], superMembers: ["get:color","get:width","get:style","get:strokeAlign","get:strokeInset","get:strokeOutset","get:strokeOffset","copyWith","scale","toPaint","toStringShort","debugFillProperties","toDiagnosticsNode","toString"]} as const;
-export interface WidgetStateBorderSide {
-readonly [_flaxDartTypeValue]: WidgetStateBorderSide;
-
-copyWith(options?: {color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; width?: number | null | undefined; style?: upstream4.BorderStyle | null | undefined; strokeAlign?: number | null | undefined}): upstream0.BorderSide;
+readonly color: upstream5.Color;
+readonly width: number;
+readonly style: upstream6.BorderStyle;
+readonly strokeAlign: number;
+readonly strokeInset: number;
+readonly strokeOutset: number;
+readonly strokeOffset: number;
+copyWith(options?: {color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; strokeAlign?: number | null | undefined; style?: upstream6.BorderStyle | null | undefined; width?: number | null | undefined}): upstream0.BorderSide;
 scale(t: number): upstream0.BorderSide;
-toPaint(): upstream5.Paint;
+toPaint(): upstream7.Paint;
 toStringShort(): string;
 debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
-toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream8.DiagnosticsTreeStyle | null | undefined}): upstream7.DiagnosticsNode;
-toString(options?: {minLevel?: upstream9.DiagnosticLevel | undefined}): string;
-get color(): upstream3.Color;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream10.DiagnosticsTreeStyle | null | undefined}): upstream9.DiagnosticsNode;
+toString(options?: {minLevel?: upstream11.DiagnosticLevel | undefined}): string;
+resolve(states: DartSetInput<upstream3.WidgetState, upstream3.WidgetState>): upstream0.BorderSide | null;
+}
+defineObject("flax.core/sdk_widgets#type:WidgetStateBorderSide", ["color","width","style","strokeAlign","strokeInset","strokeOutset","strokeOffset"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStateBorderSide", "object", {"resolve":_flaxMemberParameters454}, {}), [], undefined, "flax.core/flutter#type:BorderSide");
+export namespace _WidgetStateBorderSideFactory {
+export function resolveWith(callback: ((states: DartSet<upstream3.WidgetState>) => Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null)): WidgetStateBorderSide {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:WidgetStateBorderSide", "resolveWith", [{"name":"callback","required":true,"positional":true}], [callback], {}) as WidgetStateBorderSide;
+}
+}
+export namespace _WidgetStateBorderSideFactory {
+export function fromMap(map: DartMapInput<upstream4.WidgetStatesConstraint, upstream0.BorderSide | null, Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesConstraint": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null>): WidgetStateBorderSide {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:WidgetStateBorderSide", "fromMap", [{"name":"map","required":true,"positional":true}], [map], {}) as WidgetStateBorderSide;
+}
+}
+const _WidgetStateBorderSideProxy = {type: "flax.core/sdk_widgets#type:WidgetStateBorderSide", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"copyWith":_flaxMemberParameters455,"scale":_flaxMemberParameters42,"toPaint":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters5,"toDiagnosticsNode":_flaxMemberParameters8,"toString":_flaxMemberParameters9,"resolve":_flaxMemberParameters454}, getters: ["color","width","style","strokeAlign","strokeInset","strokeOutset","strokeOffset"], setters: [], contextMembers: [], superMembers: ["get:color","get:width","get:style","get:strokeAlign","get:strokeInset","get:strokeOutset","get:strokeOffset","copyWith","scale","toPaint","toStringShort","debugFillProperties","toDiagnosticsNode","toString"]} as const;
+export interface _WidgetStateBorderSideNative extends WidgetStateBorderSide {
+readonly [_flaxDartTypeValue]: _WidgetStateBorderSideNative;
+
+copyWith(options?: {color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; width?: number | null | undefined; style?: upstream6.BorderStyle | null | undefined; strokeAlign?: number | null | undefined}): upstream0.BorderSide;
+scale(t: number): upstream0.BorderSide;
+toPaint(): upstream7.Paint;
+toStringShort(): string;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream10.DiagnosticsTreeStyle | null | undefined}): upstream9.DiagnosticsNode;
+toString(options?: {minLevel?: upstream11.DiagnosticLevel | undefined}): string;
+get color(): upstream5.Color;
 get width(): number;
-get style(): upstream4.BorderStyle;
+get style(): upstream6.BorderStyle;
 get strokeAlign(): number;
 get strokeInset(): number;
 get strokeOutset(): number;
 get strokeOffset(): number;
 }
-export abstract class WidgetStateBorderSide extends _FlaxProxyBase {
+export abstract class _WidgetStateBorderSideNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<WidgetStateBorderSide>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: WidgetStateBorderSide;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:WidgetStateBorderSide", readonly [], false];
 constructor() { super(_WidgetStateBorderSideProxy, Array.from(arguments)); }
-abstract resolve(states: DartSetInput<upstream10.WidgetState, upstream10.WidgetState>): upstream0.BorderSide | null;
+abstract resolve(states: DartSetInput<upstream3.WidgetState, upstream3.WidgetState>): upstream0.BorderSide | null;
 }
-_flaxDefineProxyBase(WidgetStateBorderSide.prototype, _WidgetStateBorderSideProxy);
-export namespace WidgetStateBorderSide { export function implement(args: [], implementation: {resolve: ((states: DartSet<upstream10.WidgetState>) => Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null)}): WidgetStateBorderSide {
+_flaxDefineProxyBase(_WidgetStateBorderSideNative.prototype, _WidgetStateBorderSideProxy);
+export namespace _WidgetStateBorderSideFactory { export function implement(args: [], implementation: {resolve: ((states: DartSet<upstream3.WidgetState>) => Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null)}): WidgetStateBorderSide {
 return constructProxy(_WidgetStateBorderSideProxy, args, implementation) as WidgetStateBorderSide; } }
-export namespace WidgetStateBorderSide { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream0.BorderSide | null] }> | null, b: Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream0.BorderSide | null] }> | null, t: number): upstream2.WidgetStateProperty<upstream0.BorderSide | null> | null {
+const _WidgetStateBorderSideBinding = _flaxProxyFactory(_WidgetStateBorderSideFactory, _WidgetStateBorderSideNative) as unknown as typeof _WidgetStateBorderSideFactory & (abstract new() => _WidgetStateBorderSideNative);
+export namespace _WidgetStateBorderSideFactory { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream0.BorderSide | null] }> | null, b: Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream0.BorderSide | null] }> | null, t: number): upstream2.WidgetStateProperty<upstream0.BorderSide | null> | null {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:WidgetStateBorderSide.lerp", [a, b, t]);
 return _flaxResult as upstream2.WidgetStateProperty<upstream0.BorderSide | null> | null;
 } }
-_flaxBindInstanceType<WidgetStateBorderSide, typeof WidgetStateBorderSide>(WidgetStateBorderSide, "flax.core/sdk_widgets#type:WidgetStateBorderSide", ["flax.core/flutter#type:BorderSide","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable","flax.core/flutter#type:WidgetStateProperty"]);
+export const WidgetStateBorderSide: typeof _WidgetStateBorderSideBinding & _FlaxInstanceType<WidgetStateBorderSide> & _FlaxDartType<WidgetStateBorderSide, readonly ["class", "flax.core/sdk_widgets#type:WidgetStateBorderSide", readonly [], false]> = _flaxBindInstanceType<WidgetStateBorderSide, typeof _WidgetStateBorderSideBinding>(_WidgetStateBorderSideBinding, "flax.core/sdk_widgets#type:WidgetStateBorderSide", ["flax.core/flutter#type:BorderSide","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable","flax.core/flutter#type:WidgetStateProperty"]) as typeof _WidgetStateBorderSideBinding & _FlaxInstanceType<WidgetStateBorderSide> & _FlaxDartType<WidgetStateBorderSide, readonly ["class", "flax.core/sdk_widgets#type:WidgetStateBorderSide", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "color" | "width" | "style" | "strokeAlign" | "strokeInset" | "strokeOutset" | "strokeOffset" | "copyWith" | "scale" | "toPaint" | "toStringShort" | "debugFillProperties" | "toDiagnosticsNode" | "toString" | "resolve" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateBorderSide" | "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty";

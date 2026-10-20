@@ -14,8 +14,8 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoDynamicColor extends Omit<upstream0.Color, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Color>, Readonly<{
     "__flaxBound:package:flutter/src/cupertino/colors.dart::CupertinoDynamicColor": readonly [];
 }>, Readonly<{
@@ -25,9 +25,162 @@ export interface CupertinoDynamicColor extends Omit<upstream0.Color, _flaxOwnMem
 }> {
     readonly __CupertinoDynamicColor: unique symbol;
     readonly [_flaxDartTypeValue]: CupertinoDynamicColor;
+    readonly a: number;
+    readonly r: number;
+    readonly g: number;
+    readonly b: number;
+    readonly colorSpace: upstream2.ColorSpace;
+    readonly value: number;
+    readonly alpha: number;
+    readonly opacity: number;
+    readonly red: number;
+    readonly green: number;
+    readonly blue: number;
+    readonly color: upstream0.Color;
+    readonly darkColor: upstream0.Color;
+    readonly highContrastColor: upstream0.Color;
+    readonly darkHighContrastColor: upstream0.Color;
+    readonly elevatedColor: upstream0.Color;
+    readonly darkElevatedColor: upstream0.Color;
+    readonly highContrastElevatedColor: upstream0.Color;
+    readonly darkHighContrastElevatedColor: upstream0.Color;
+    toARGB32(): number;
+    withValues(options?: {
+        alpha?: number | null | undefined;
+        blue?: number | null | undefined;
+        colorSpace?: upstream2.ColorSpace | null | undefined;
+        green?: number | null | undefined;
+        red?: number | null | undefined;
+    }): upstream0.Color;
+    withAlpha(a: number): upstream0.Color;
+    withOpacity(opacity: number): upstream0.Color;
+    withRed(r: number): upstream0.Color;
+    withGreen(g: number): upstream0.Color;
+    withBlue(b: number): upstream0.Color;
+    computeLuminance(): number;
+    toString(options?: {
+        minLevel?: upstream4.DiagnosticLevel | undefined;
+    }): string;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream6.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    resolveFrom(context: upstream3.BuildContext): CupertinoDynamicColor;
 }
-export interface CupertinoDynamicColor {
-    readonly [_flaxDartTypeValue]: CupertinoDynamicColor;
+export declare function _CupertinoDynamicColorFactory(options: {
+    debugLabel?: string | null | undefined;
+    color: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    darkColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    highContrastColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    darkHighContrastColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    elevatedColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    darkElevatedColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    highContrastElevatedColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    darkHighContrastElevatedColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+}): CupertinoDynamicColor;
+export declare namespace _CupertinoDynamicColorFactory {
+    function withBrightnessAndContrast(options: {
+        debugLabel?: string | null | undefined;
+        color: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        darkColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        highContrastColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        darkHighContrastColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+    }): CupertinoDynamicColor;
+}
+export declare namespace _CupertinoDynamicColorFactory {
+    function withBrightness(options: {
+        debugLabel?: string | null | undefined;
+        color: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        darkColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+    }): CupertinoDynamicColor;
+}
+export interface _CupertinoDynamicColorNative extends CupertinoDynamicColor {
+    readonly [_flaxDartTypeValue]: _CupertinoDynamicColorNative;
+    readonly [_flaxDartConstructors]?: {
+        "": (options: {
+            debugLabel?: string | null | undefined;
+            color: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            darkColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            highContrastColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            darkHighContrastColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            elevatedColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            darkElevatedColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            highContrastElevatedColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            darkHighContrastElevatedColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+        }) => void;
+        "withBrightnessAndContrast": (options: {
+            debugLabel?: string | null | undefined;
+            color: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            darkColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            highContrastColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            darkHighContrastColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+        }) => void;
+        "withBrightness": (options: {
+            debugLabel?: string | null | undefined;
+            color: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+            darkColor: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }>;
+        }) => void;
+    };
     toARGB32(): number;
     withValues(options?: {
         alpha?: number | null | undefined;
@@ -74,7 +227,7 @@ export interface CupertinoDynamicColor {
     get b(): number;
     get colorSpace(): upstream2.ColorSpace;
 }
-export declare abstract class CupertinoDynamicColor extends _FlaxProxyBase {
+export declare abstract class _CupertinoDynamicColorNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CupertinoDynamicColor>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: CupertinoDynamicColor;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_cupertino#type:CupertinoDynamicColor", readonly [], false];
@@ -105,8 +258,9 @@ export declare abstract class CupertinoDynamicColor extends _FlaxProxyBase {
             "__flaxBound:dart:ui::Color": readonly [];
         }>;
     });
+    constructor(call: _FlaxProxySuper<_CupertinoDynamicColorNative>);
 }
-export declare namespace CupertinoDynamicColor {
+export declare namespace _CupertinoDynamicColorFactory {
     function implement(args: [options: {
         debugLabel?: string | null | undefined;
         color: Readonly<{
@@ -135,15 +289,43 @@ export declare namespace CupertinoDynamicColor {
         }>;
     }], implementation: {}): CupertinoDynamicColor;
 }
-export declare namespace CupertinoDynamicColor {
+declare const _CupertinoDynamicColorBinding: typeof _CupertinoDynamicColorFactory & (new (options: {
+    debugLabel?: string | null | undefined;
+    color: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    darkColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    highContrastColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    darkHighContrastColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    elevatedColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    darkElevatedColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    highContrastElevatedColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    darkHighContrastElevatedColor: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+}) => _CupertinoDynamicColorNative) & (new (call: _FlaxProxySuper<_CupertinoDynamicColorNative>) => _CupertinoDynamicColorNative);
+export declare namespace _CupertinoDynamicColorFactory {
     function resolve(resolvable: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }>, context: upstream3.BuildContext): upstream0.Color;
 }
-export declare namespace CupertinoDynamicColor {
+export declare namespace _CupertinoDynamicColorFactory {
     function maybeResolve(resolvable: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null, context: upstream3.BuildContext): upstream0.Color | null;
 }
+export declare const CupertinoDynamicColor: typeof _CupertinoDynamicColorBinding & _FlaxInstanceType<CupertinoDynamicColor> & _FlaxDartType<CupertinoDynamicColor, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoDynamicColor", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "a" | "r" | "g" | "b" | "colorSpace" | "value" | "alpha" | "opacity" | "red" | "green" | "blue" | "color" | "darkColor" | "highContrastColor" | "darkHighContrastColor" | "elevatedColor" | "darkElevatedColor" | "highContrastElevatedColor" | "darkHighContrastElevatedColor" | "toARGB32" | "withValues" | "withAlpha" | "withOpacity" | "withRed" | "withGreen" | "withBlue" | "computeLuminance" | "toString" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "resolveFrom" | "__flaxBound:package:flutter/src/cupertino/colors.dart::CupertinoDynamicColor" | "__flaxBound:dart:ui::Color" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

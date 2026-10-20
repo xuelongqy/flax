@@ -15,7 +15,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MaterialBannerThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/banner_theme.dart::MaterialBannerThemeData": readonly [];
 }>, Readonly<{
@@ -23,9 +23,80 @@ export interface MaterialBannerThemeData extends Omit<upstream0.Diagnosticable, 
 }> {
     readonly __MaterialBannerThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: MaterialBannerThemeData;
+    readonly backgroundColor: upstream1.Color | null;
+    readonly surfaceTintColor: upstream1.Color | null;
+    readonly shadowColor: upstream1.Color | null;
+    readonly dividerColor: upstream1.Color | null;
+    readonly contentTextStyle: upstream2.TextStyle | null;
+    readonly elevation: number | null;
+    readonly padding: upstream3.EdgeInsetsGeometry | null;
+    readonly leadingPadding: upstream3.EdgeInsetsGeometry | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream4.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream6.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        backgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        contentTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        dividerColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        elevation?: number | null | undefined;
+        leadingPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        padding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        shadowColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        surfaceTintColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+    }): MaterialBannerThemeData;
 }
-export interface MaterialBannerThemeData {
-    readonly [_flaxDartTypeValue]: MaterialBannerThemeData;
+export declare function _MaterialBannerThemeDataFactory(options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    dividerColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    contentTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    elevation?: number | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    leadingPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+}): MaterialBannerThemeData;
+export interface _MaterialBannerThemeDataNative extends MaterialBannerThemeData {
+    readonly [_flaxDartTypeValue]: _MaterialBannerThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream4.DiagnosticLevel | undefined;
@@ -72,7 +143,7 @@ export interface MaterialBannerThemeData {
     get padding(): upstream3.EdgeInsetsGeometry | null;
     get leadingPadding(): upstream3.EdgeInsetsGeometry | null;
 }
-export declare abstract class MaterialBannerThemeData extends _FlaxProxyBase {
+export declare abstract class _MaterialBannerThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MaterialBannerThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MaterialBannerThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:MaterialBannerThemeData", readonly [], false];
@@ -103,7 +174,7 @@ export declare abstract class MaterialBannerThemeData extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace MaterialBannerThemeData {
+export declare namespace _MaterialBannerThemeDataFactory {
     function implement(args: [options?: {
         backgroundColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -131,7 +202,33 @@ export declare namespace MaterialBannerThemeData {
         }> | null | undefined;
     }], implementation: {}): MaterialBannerThemeData;
 }
-export declare namespace MaterialBannerThemeData {
+declare const _MaterialBannerThemeDataBinding: typeof _MaterialBannerThemeDataFactory & (new (options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    dividerColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    contentTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    elevation?: number | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    leadingPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+}) => _MaterialBannerThemeDataNative);
+export declare namespace _MaterialBannerThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/banner_theme.dart::MaterialBannerThemeData": readonly [];
     }> & Readonly<{
@@ -142,5 +239,6 @@ export declare namespace MaterialBannerThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): MaterialBannerThemeData;
 }
+export declare const MaterialBannerThemeData: typeof _MaterialBannerThemeDataBinding & _FlaxInstanceType<MaterialBannerThemeData> & _FlaxDartType<MaterialBannerThemeData, readonly ["class", "flax.core/sdk_material#type:MaterialBannerThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "backgroundColor" | "surfaceTintColor" | "shadowColor" | "dividerColor" | "contentTextStyle" | "elevation" | "padding" | "leadingPadding" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/banner_theme.dart::MaterialBannerThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

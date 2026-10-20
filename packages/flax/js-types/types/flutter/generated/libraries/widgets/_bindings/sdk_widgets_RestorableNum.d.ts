@@ -30,9 +30,25 @@ export interface RestorableNum<T extends number = number> extends Omit<upstream0
 }> {
     readonly __RestorableNum: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableNum<T>;
+    get value(): T;
+    readonly enabled: boolean;
+    readonly state: upstream4.State<upstream5.StatefulWidget>;
+    readonly isRegistered: boolean;
+    readonly hasListeners: boolean;
+    initWithValue(value: (T | DartInput<T>)): void;
+    didUpdateValue(oldValue: (T | DartInput<T>) | null): void;
+    createDefaultValue(): T;
+    fromPrimitives(serialized: unknown | null): T;
+    toPrimitives(): {};
+    dispose(): void;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    set value(value: (T | DartInput<T>));
 }
-export interface RestorableNum<T extends number = number> {
-    readonly [_flaxDartTypeValue]: RestorableNum<T>;
+export declare function _RestorableNumFactory<T extends number = number>(defaultValue: (T | DartInput<T>)): RestorableNum<T>;
+export declare function _RestorableNumFactory(defaultValue: number): RestorableNum<number>;
+export interface _RestorableNumNative<T extends number = number> extends RestorableNum<T> {
+    readonly [_flaxDartTypeValue]: _RestorableNumNative<T>;
     initWithValue(value: (T | DartInput<T>)): void;
     didUpdateValue(oldValue: (T | DartInput<T>) | null): void;
     createDefaultValue(): T;
@@ -48,7 +64,7 @@ export interface RestorableNum<T extends number = number> {
     get hasListeners(): boolean;
     set value(value: (T | DartInput<T>));
 }
-export declare abstract class RestorableNum<T extends number = number> extends _FlaxProxyBase {
+export declare abstract class _RestorableNumNative<T extends number = number> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RestorableNum<number>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RestorableNum<number>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:RestorableNum", readonly [readonly ["num", null, readonly [], false]], false];
@@ -56,14 +72,24 @@ export declare abstract class RestorableNum<T extends number = number> extends _
     static [_flaxDartTypeCases]: _FlaxSignature1;
     constructor(defaultValue: number);
 }
-export declare namespace RestorableNum {
+export declare namespace _RestorableNumFactory {
     function implement<T extends number = number>(args: [defaultValue: number], implementation: {}): RestorableNum<T>;
 }
+declare const _RestorableNumBinding: typeof _RestorableNumFactory & (new <T extends number = number>(defaultValue: number) => _RestorableNumNative<T>);
+export declare const RestorableNum: typeof _RestorableNumBinding & _FlaxInstanceType<RestorableNum<number>> & _FlaxDartType<RestorableNum<number>, readonly ["class", "flax.core/sdk_widgets#type:RestorableNum", readonly [readonly ["num", null, readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "initWithValue" | "didUpdateValue" | "createDefaultValue" | "fromPrimitives" | "toPrimitives" | "dispose" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableNum" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValue" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValueN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [number] ? (new (defaultValue: number) => _RestorableNumNative<_Selected0>) & {
+        (defaultValue: (_Selected0 | DartInput<_Selected0>)): _RestorableNumNative<_Selected0>;
+        readonly prototype: _RestorableNumNative<_Selected0>;
+        implement(args: readonly [number], implementation: Partial<_RestorableNumNative<_Selected0>>): _RestorableNumNative<_Selected0>;
+    } & _FlaxInstanceType<_RestorableNumNative<_Selected0>> & _FlaxDartType<_RestorableNumNative<_Selected0>> : never : never;
+}
 interface _FlaxSignature1 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [number] ? (abstract new (defaultValue: number) => RestorableNum<_Selected0>) & {
-        readonly prototype: RestorableNum<_Selected0>;
-        implement(args: readonly [number], implementation: Partial<RestorableNum<_Selected0>>): RestorableNum<_Selected0>;
-    } & _FlaxInstanceType<RestorableNum<_Selected0>> & _FlaxDartType<RestorableNum<_Selected0>> : never : never;
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [number] ? (new (defaultValue: number) => _RestorableNumNative<_Selected0>) & {
+        (defaultValue: (_Selected0 | DartInput<_Selected0>)): _RestorableNumNative<_Selected0>;
+        readonly prototype: _RestorableNumNative<_Selected0>;
+        implement(args: readonly [number], implementation: Partial<_RestorableNumNative<_Selected0>>): _RestorableNumNative<_Selected0>;
+    } & _FlaxInstanceType<_RestorableNumNative<_Selected0>> & _FlaxDartType<_RestorableNumNative<_Selected0>> : never : never;
 }
 export {};

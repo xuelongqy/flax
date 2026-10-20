@@ -18,9 +18,52 @@ export interface HashedObserverList<T extends unknown | null = unknown | null> e
         expand: _FlaxSignature4<T>;
         fold: _FlaxSignature5<T>;
     };
+    readonly iterator: upstream0.Iterator<T>;
+    readonly isEmpty: boolean;
+    readonly isNotEmpty: boolean;
+    readonly length: number;
+    readonly first: T;
+    readonly last: T;
+    readonly single: T;
+    add(item: (T | DartInput<T>)): void;
+    remove(item: (T | DartInput<T>)): boolean;
+    clear(): void;
+    contains(element: unknown | null): boolean;
+    toList(options?: {
+        growable?: boolean | undefined;
+    }): DartList<T>;
+    cast<R extends unknown | null = unknown | null>(): DartIterable<_FlaxDartOutput<R>>;
+    followedBy(other: DartIterableInput<T, (T | DartInput<T>)>): DartIterable<T>;
+    map<T extends unknown | null = unknown | null>(toElement: ((e: _FlaxDartOutput<T>) => (T | _FlaxDartOutput<T>))): DartIterable<_FlaxDartOutput<T>>;
+    where(test: ((element: T) => boolean)): DartIterable<T>;
+    whereType<T extends unknown | null = unknown | null>(): DartIterable<_FlaxDartOutput<T>>;
+    expand<T extends unknown | null = unknown | null>(toElements: ((element: _FlaxDartOutput<T>) => DartIterableInput<_FlaxDartOutput<T>, (T | _FlaxDartOutput<T>)>)): DartIterable<_FlaxDartOutput<T>>;
+    forEach(action: ((element: T) => void)): void;
+    reduce(combine: ((value: T, element: T) => (T | DartInput<T>))): T;
+    fold<T extends unknown | null = unknown | null>(initialValue: (T | _FlaxDartOutput<T>), combine: ((previousValue: _FlaxDartOutput<T>, element: _FlaxDartOutput<T>) => (T | _FlaxDartOutput<T>))): _FlaxDartOutput<T>;
+    every(test: ((element: T) => boolean)): boolean;
+    join(separator?: string): string;
+    any(test: ((element: T) => boolean)): boolean;
+    toSet(): DartSet<T>;
+    take(count: number): DartIterable<T>;
+    takeWhile(test: ((value: T) => boolean)): DartIterable<T>;
+    skip(count: number): DartIterable<T>;
+    skipWhile(test: ((value: T) => boolean)): DartIterable<T>;
+    firstWhere(test: ((element: T) => boolean), options?: {
+        orElse?: (() => (T | DartInput<T>)) | null | undefined;
+    }): T;
+    lastWhere(test: ((element: T) => boolean), options?: {
+        orElse?: (() => (T | DartInput<T>)) | null | undefined;
+    }): T;
+    singleWhere(test: ((element: T) => boolean), options?: {
+        orElse?: (() => (T | DartInput<T>)) | null | undefined;
+    }): T;
+    elementAt(index: number): T;
 }
-export interface HashedObserverList<T extends unknown | null = unknown | null> {
-    readonly [_flaxDartTypeValue]: HashedObserverList<T>;
+export declare function _HashedObserverListFactory<T extends unknown | null = unknown | null>(): HashedObserverList<T>;
+export declare function _HashedObserverListFactory(): HashedObserverList<unknown | null>;
+export interface _HashedObserverListNative<T extends unknown | null = unknown | null> extends HashedObserverList<T> {
+    readonly [_flaxDartTypeValue]: _HashedObserverListNative<T>;
     readonly [_flaxDartMethodCases]?: {
         cast: _FlaxSignature6<T>;
         map: _FlaxSignature7<T>;
@@ -70,7 +113,7 @@ export interface HashedObserverList<T extends unknown | null = unknown | null> {
     get last(): T;
     get single(): T;
 }
-export declare abstract class HashedObserverList<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
+export declare abstract class _HashedObserverListNative<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<HashedObserverList<unknown | null>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: HashedObserverList<unknown | null>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_foundation#type:HashedObserverList", readonly [readonly ["any", null, readonly [], true]], false];
@@ -78,10 +121,19 @@ export declare abstract class HashedObserverList<T extends unknown | null = unkn
     static [_flaxDartTypeCases]: _FlaxSignature11;
     constructor();
 }
-export declare namespace HashedObserverList {
+export declare namespace _HashedObserverListFactory {
     function implement<T extends unknown | null = unknown | null>(args: [], implementation: {}): HashedObserverList<T>;
 }
+declare const _HashedObserverListBinding: typeof _HashedObserverListFactory & (new <T extends unknown | null = unknown | null>() => _HashedObserverListNative<T>);
+export declare const HashedObserverList: typeof _HashedObserverListBinding & _FlaxInstanceType<HashedObserverList<unknown | null>> & _FlaxDartType<HashedObserverList<unknown | null>, readonly ["class", "flax.core/sdk_foundation#type:HashedObserverList", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "iterator" | "isEmpty" | "isNotEmpty" | "length" | "first" | "last" | "single" | "add" | "remove" | "clear" | "contains" | "toList" | "cast" | "followedBy" | "map" | "where" | "whereType" | "expand" | "forEach" | "reduce" | "fold" | "every" | "join" | "any" | "toSet" | "take" | "takeWhile" | "skip" | "skipWhile" | "firstWhere" | "lastWhere" | "singleWhere" | "elementAt" | "__flaxBound:package:flutter/src/foundation/observer_list.dart::HashedObserverList" | "__flaxBound:dart:core::Iterable";
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new () => _HashedObserverListNative<_Selected0>) & {
+        (): _HashedObserverListNative<_Selected0>;
+        readonly prototype: _HashedObserverListNative<_Selected0>;
+        implement(args: readonly [], implementation: Partial<_HashedObserverListNative<_Selected0>>): _HashedObserverListNative<_Selected0>;
+    } & _FlaxInstanceType<_HashedObserverListNative<_Selected0>> & _FlaxDartType<_HashedObserverListNative<_Selected0>> : never : never;
+}
 interface _FlaxSignature1<_OwnerType0 extends unknown | null> extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? () => DartIterable<_Selected0> : never : never;
 }
@@ -113,9 +165,10 @@ interface _FlaxSignature10<_OwnerType0 extends unknown | null> extends _FlaxDart
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (initialValue: (_Selected0 | DartInput<_Selected0>), combine: ((previousValue: _Selected0, element: _OwnerType0) => (_Selected0 | DartInput<_Selected0>))) => _Selected0 : never : never;
 }
 interface _FlaxSignature11 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new () => HashedObserverList<_Selected0>) & {
-        readonly prototype: HashedObserverList<_Selected0>;
-        implement(args: readonly [], implementation: Partial<HashedObserverList<_Selected0>>): HashedObserverList<_Selected0>;
-    } & _FlaxInstanceType<HashedObserverList<_Selected0>> & _FlaxDartType<HashedObserverList<_Selected0>> : never : never;
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new () => _HashedObserverListNative<_Selected0>) & {
+        (): _HashedObserverListNative<_Selected0>;
+        readonly prototype: _HashedObserverListNative<_Selected0>;
+        implement(args: readonly [], implementation: Partial<_HashedObserverListNative<_Selected0>>): _HashedObserverListNative<_Selected0>;
+    } & _FlaxInstanceType<_HashedObserverListNative<_Selected0>> & _FlaxDartType<_HashedObserverListNative<_Selected0>> : never : never;
 }
 export {};

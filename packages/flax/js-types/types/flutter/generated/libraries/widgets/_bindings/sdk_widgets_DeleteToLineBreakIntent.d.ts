@@ -13,7 +13,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DeleteToLineBreakIntent extends Omit<upstream0.DirectionalTextEditingIntent, _flaxOwnMembers0>, Omit<upstream1.Intent, _flaxOwnMembers0 | keyof upstream0.DirectionalTextEditingIntent>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.DirectionalTextEditingIntent | keyof upstream1.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DeleteToLineBreakIntent": readonly [];
 }>, Readonly<{
@@ -25,9 +25,24 @@ export interface DeleteToLineBreakIntent extends Omit<upstream0.DirectionalTextE
 }> {
     readonly __DeleteToLineBreakIntent: unique symbol;
     readonly [_flaxDartTypeValue]: DeleteToLineBreakIntent;
+    readonly forward: boolean;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream4.DiagnosticsTreeStyle | null | undefined;
+    }): upstream3.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface DeleteToLineBreakIntent {
-    readonly [_flaxDartTypeValue]: DeleteToLineBreakIntent;
+export declare function _DeleteToLineBreakIntentFactory(options: {
+    forward: boolean;
+}): DeleteToLineBreakIntent;
+export interface _DeleteToLineBreakIntentNative extends DeleteToLineBreakIntent {
+    readonly [_flaxDartTypeValue]: _DeleteToLineBreakIntentNative;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
@@ -41,7 +56,7 @@ export interface DeleteToLineBreakIntent {
     }): string;
     get forward(): boolean;
 }
-export declare abstract class DeleteToLineBreakIntent extends _FlaxProxyBase {
+export declare abstract class _DeleteToLineBreakIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DeleteToLineBreakIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: DeleteToLineBreakIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:DeleteToLineBreakIntent", readonly [], false];
@@ -49,10 +64,14 @@ export declare abstract class DeleteToLineBreakIntent extends _FlaxProxyBase {
         forward: boolean;
     });
 }
-export declare namespace DeleteToLineBreakIntent {
+export declare namespace _DeleteToLineBreakIntentFactory {
     function implement(args: [options: {
         forward: boolean;
     }], implementation: {}): DeleteToLineBreakIntent;
 }
+declare const _DeleteToLineBreakIntentBinding: typeof _DeleteToLineBreakIntentFactory & (new (options: {
+    forward: boolean;
+}) => _DeleteToLineBreakIntentNative);
+export declare const DeleteToLineBreakIntent: typeof _DeleteToLineBreakIntentBinding & _FlaxInstanceType<DeleteToLineBreakIntent> & _FlaxDartType<DeleteToLineBreakIntent, readonly ["class", "flax.core/sdk_widgets#type:DeleteToLineBreakIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "forward" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DeleteToLineBreakIntent" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalTextEditingIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -37,7 +37,7 @@ import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import type * as upstream20 from '@flax/flutter/rendering/_bindings/sdk_rendering_OpacityLayer';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_OpacityLayer';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface PaintingContext extends Omit<upstream0.ClipContext, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
 }>, Readonly<{
@@ -45,9 +45,284 @@ export interface PaintingContext extends Omit<upstream0.ClipContext, _flaxOwnMem
 }> {
     readonly __PaintingContext: unique symbol;
     readonly [_flaxDartTypeValue]: PaintingContext;
+    readonly canvas: upstream3.Canvas;
+    readonly estimatedBounds: upstream2.Rect;
+    readonly recorder: upstream4.PictureRecorder;
+    clipPathAndPaint(path: Readonly<{
+        "__flaxBound:dart:ui::Path": readonly [];
+    }>, clipBehavior: upstream7.Clip, bounds: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, painter: (() => void)): void;
+    clipRRectAndPaint(rrect: Readonly<{
+        "__flaxBound:dart:ui::RRect": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::_RRectLike": readonly [upstream8.RRect];
+    }>, clipBehavior: upstream7.Clip, bounds: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, painter: (() => void)): void;
+    clipRSuperellipseAndPaint(rse: Readonly<{
+        "__flaxBound:dart:ui::RSuperellipse": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::_RRectLike": readonly [upstream9.RSuperellipse];
+    }>, clipBehavior: upstream7.Clip, bounds: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, painter: (() => void)): void;
+    clipRectAndPaint(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, clipBehavior: upstream7.Clip, bounds: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, painter: (() => void)): void;
+    paintChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): void;
+    appendLayer(layer: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    addCompositionCallback(callback: ((layer: upstream11.Layer) => void)): (() => void);
+    stopRecordingIfNeeded(): void;
+    setIsComplexHint(): void;
+    setWillChangeHint(): void;
+    addLayer(layer: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    pushLayer(childLayer: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, painter: ((context: PaintingContext, offset: upstream10.Offset) => void), offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        childPaintBounds?: Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }> | null | undefined;
+    }): void;
+    createChildContext(childLayer: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, bounds: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>): PaintingContext;
+    pushClipRect(needsCompositing: boolean, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, clipRect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, painter: ((context: PaintingContext, offset: upstream10.Offset) => void), options?: {
+        clipBehavior?: upstream7.Clip | undefined;
+        oldLayer?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ClipRectLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): upstream12.ClipRectLayer | null;
+    pushClipRRect(needsCompositing: boolean, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, bounds: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, clipRRect: Readonly<{
+        "__flaxBound:dart:ui::RRect": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::_RRectLike": readonly [upstream8.RRect];
+    }>, painter: ((context: PaintingContext, offset: upstream10.Offset) => void), options?: {
+        clipBehavior?: upstream7.Clip | undefined;
+        oldLayer?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ClipRRectLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): upstream13.ClipRRectLayer | null;
+    pushClipRSuperellipse(needsCompositing: boolean, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, bounds: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, clipRSuperellipse: Readonly<{
+        "__flaxBound:dart:ui::RSuperellipse": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::_RRectLike": readonly [upstream9.RSuperellipse];
+    }>, painter: ((context: PaintingContext, offset: upstream10.Offset) => void), options?: {
+        clipBehavior?: upstream7.Clip | undefined;
+        oldLayer?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ClipRSuperellipseLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): upstream14.ClipRSuperellipseLayer | null;
+    pushClipPath(needsCompositing: boolean, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, bounds: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, clipPath: Readonly<{
+        "__flaxBound:dart:ui::Path": readonly [];
+    }>, painter: ((context: PaintingContext, offset: upstream10.Offset) => void), options?: {
+        clipBehavior?: upstream7.Clip | undefined;
+        oldLayer?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ClipPathLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): upstream15.ClipPathLayer | null;
+    pushColorFilter(offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, colorFilter: Readonly<{
+        "__flaxBound:dart:ui::ColorFilter": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::ImageFilter": readonly [];
+    }>, painter: ((context: PaintingContext, offset: upstream10.Offset) => void), options?: {
+        oldLayer?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ColorFilterLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): upstream16.ColorFilterLayer;
+    pushTransform(needsCompositing: boolean, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }>, painter: ((context: PaintingContext, offset: upstream10.Offset) => void), options?: {
+        oldLayer?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::TransformLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::OffsetLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): upstream18.TransformLayer | null;
+    pushOpacity(offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, alpha: number, painter: ((context: PaintingContext, offset: upstream10.Offset) => void), options?: {
+        oldLayer?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::OpacityLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::OffsetLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): upstream20.OpacityLayer;
+    toString(): string;
 }
-export interface PaintingContext {
-    readonly [_flaxDartTypeValue]: PaintingContext;
+export declare function _PaintingContextFactory(_containerLayer: Readonly<{
+    "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>, estimatedBounds: Readonly<{
+    "__flaxBound:dart:ui::Rect": readonly [];
+}>): PaintingContext;
+export interface _PaintingContextNative extends PaintingContext {
+    readonly [_flaxDartTypeValue]: _PaintingContextNative;
     clipPathAndPaint(path: Readonly<{
         "__flaxBound:dart:ui::Path": readonly [];
     }>, clipBehavior: upstream7.Clip, bounds: Readonly<{
@@ -311,7 +586,7 @@ export interface PaintingContext {
     get recorder(): upstream4.PictureRecorder;
     get canvas(): upstream3.Canvas;
 }
-export declare abstract class PaintingContext extends _FlaxProxyBase {
+export declare abstract class _PaintingContextNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PaintingContext>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: PaintingContext;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:PaintingContext", readonly [], false];
@@ -329,7 +604,7 @@ export declare abstract class PaintingContext extends _FlaxProxyBase {
         "__flaxBound:dart:ui::Rect": readonly [];
     }>);
 }
-export declare namespace PaintingContext {
+export declare namespace _PaintingContextFactory {
     function implement(args: [_containerLayer: Readonly<{
         "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
     }> & Readonly<{
@@ -344,7 +619,20 @@ export declare namespace PaintingContext {
         "__flaxBound:dart:ui::Rect": readonly [];
     }>], implementation: {}): PaintingContext;
 }
-export declare namespace PaintingContext {
+declare const _PaintingContextBinding: typeof _PaintingContextFactory & (new (_containerLayer: Readonly<{
+    "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>, estimatedBounds: Readonly<{
+    "__flaxBound:dart:ui::Rect": readonly [];
+}>) => _PaintingContextNative);
+export declare namespace _PaintingContextFactory {
     function repaintCompositedChild(child: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
     }> & Readonly<{
@@ -359,7 +647,7 @@ export declare namespace PaintingContext {
         debugAlsoPaintedParent?: boolean | undefined;
     }): void;
 }
-export declare namespace PaintingContext {
+export declare namespace _PaintingContextFactory {
     function updateLayerProperties(child: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
     }> & Readonly<{
@@ -372,7 +660,7 @@ export declare namespace PaintingContext {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>): void;
 }
-export declare namespace PaintingContext {
+export declare namespace _PaintingContextFactory {
     function debugInstrumentRepaintCompositedChild(child: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
     }> & Readonly<{
@@ -392,5 +680,6 @@ export declare namespace PaintingContext {
         debugAlsoPaintedParent?: boolean | undefined;
     }): void;
 }
+export declare const PaintingContext: typeof _PaintingContextBinding & _FlaxInstanceType<PaintingContext> & _FlaxDartType<PaintingContext, readonly ["class", "flax.core/sdk_rendering#type:PaintingContext", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "canvas" | "estimatedBounds" | "recorder" | "clipPathAndPaint" | "clipRRectAndPaint" | "clipRSuperellipseAndPaint" | "clipRectAndPaint" | "paintChild" | "appendLayer" | "addCompositionCallback" | "stopRecordingIfNeeded" | "setIsComplexHint" | "setWillChangeHint" | "addLayer" | "pushLayer" | "createChildContext" | "pushClipRect" | "pushClipRRect" | "pushClipRSuperellipse" | "pushClipPath" | "pushColorFilter" | "pushTransform" | "pushOpacity" | "toString" | "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext" | "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext";
 export {};

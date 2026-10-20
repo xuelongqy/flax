@@ -15,7 +15,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent extends Omit<upstream0.DirectionalCaretMovementIntent, _flaxOwnMembers0>, Omit<upstream1.DirectionalTextEditingIntent, _flaxOwnMembers0 | keyof upstream0.DirectionalCaretMovementIntent>, Omit<upstream2.Intent, _flaxOwnMembers0 | keyof upstream0.DirectionalCaretMovementIntent | keyof upstream1.DirectionalTextEditingIntent>, Omit<upstream3.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.DirectionalCaretMovementIntent | keyof upstream1.DirectionalTextEditingIntent | keyof upstream2.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent": readonly [];
 }>, Readonly<{
@@ -29,9 +29,27 @@ export interface ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent ext
 }> {
     readonly __ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent: unique symbol;
     readonly [_flaxDartTypeValue]: ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent;
+    readonly collapseSelection: boolean;
+    readonly collapseAtReversal: boolean;
+    readonly continuesAtWrap: boolean;
+    readonly forward: boolean;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream5.DiagnosticsTreeStyle | null | undefined;
+    }): upstream4.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream7.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent {
-    readonly [_flaxDartTypeValue]: ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent;
+export declare function _ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntentFactory(options: {
+    forward: boolean;
+}): ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent;
+export interface _ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntentNative extends ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent {
+    readonly [_flaxDartTypeValue]: _ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntentNative;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
@@ -48,7 +66,7 @@ export interface ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent {
     get continuesAtWrap(): boolean;
     get forward(): boolean;
 }
-export declare abstract class ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent extends _FlaxProxyBase {
+export declare abstract class _ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent", readonly [], false];
@@ -56,10 +74,14 @@ export declare abstract class ExtendSelectionToNextParagraphBoundaryOrCaretLocat
         forward: boolean;
     });
 }
-export declare namespace ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent {
+export declare namespace _ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntentFactory {
     function implement(args: [options: {
         forward: boolean;
     }], implementation: {}): ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent;
 }
+declare const _ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntentBinding: typeof _ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntentFactory & (new (options: {
+    forward: boolean;
+}) => _ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntentNative);
+export declare const ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent: typeof _ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntentBinding & _FlaxInstanceType<ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent> & _FlaxDartType<ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent, readonly ["class", "flax.core/sdk_widgets#type:ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "collapseSelection" | "collapseAtReversal" | "continuesAtWrap" | "forward" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::ExtendSelectionToNextParagraphBoundaryOrCaretLocationIntent" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalCaretMovementIntent" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DirectionalTextEditingIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

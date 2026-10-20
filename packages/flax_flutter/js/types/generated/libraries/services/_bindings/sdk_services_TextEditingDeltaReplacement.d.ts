@@ -17,7 +17,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextEditingDeltaReplacement extends Omit<upstream0.TextEditingDelta, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.TextEditingDelta>, Readonly<{
     "__flaxBound:package:flutter/src/services/text_editing_delta.dart::TextEditingDeltaReplacement": readonly [];
 }>, Readonly<{
@@ -27,9 +27,44 @@ export interface TextEditingDeltaReplacement extends Omit<upstream0.TextEditingD
 }> {
     readonly __TextEditingDeltaReplacement: unique symbol;
     readonly [_flaxDartTypeValue]: TextEditingDeltaReplacement;
+    readonly oldText: string;
+    readonly selection: upstream3.TextSelection;
+    readonly composing: upstream2.TextRange;
+    readonly replacementText: string;
+    readonly replacedRange: upstream2.TextRange;
+    readonly textReplaced: string;
+    apply(value: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
+    }>): upstream4.TextEditingValue;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream6.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream8.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface TextEditingDeltaReplacement {
-    readonly [_flaxDartTypeValue]: TextEditingDeltaReplacement;
+export declare function _TextEditingDeltaReplacementFactory(options: {
+    oldText: string;
+    replacementText: string;
+    replacedRange: Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>;
+    selection: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>;
+    composing: Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>;
+}): TextEditingDeltaReplacement;
+export interface _TextEditingDeltaReplacementNative extends TextEditingDeltaReplacement {
+    readonly [_flaxDartTypeValue]: _TextEditingDeltaReplacementNative;
     apply(value: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
     }>): upstream4.TextEditingValue;
@@ -51,7 +86,7 @@ export interface TextEditingDeltaReplacement {
     get selection(): upstream3.TextSelection;
     get composing(): upstream2.TextRange;
 }
-export declare abstract class TextEditingDeltaReplacement extends _FlaxProxyBase {
+export declare abstract class _TextEditingDeltaReplacementNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TextEditingDeltaReplacement>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TextEditingDeltaReplacement;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:TextEditingDeltaReplacement", readonly [], false];
@@ -71,7 +106,7 @@ export declare abstract class TextEditingDeltaReplacement extends _FlaxProxyBase
         }>;
     });
 }
-export declare namespace TextEditingDeltaReplacement {
+export declare namespace _TextEditingDeltaReplacementFactory {
     function implement(args: [options: {
         oldText: string;
         replacementText: string;
@@ -88,5 +123,21 @@ export declare namespace TextEditingDeltaReplacement {
         }>;
     }], implementation: {}): TextEditingDeltaReplacement;
 }
+declare const _TextEditingDeltaReplacementBinding: typeof _TextEditingDeltaReplacementFactory & (new (options: {
+    oldText: string;
+    replacementText: string;
+    replacedRange: Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>;
+    selection: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>;
+    composing: Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>;
+}) => _TextEditingDeltaReplacementNative);
+export declare const TextEditingDeltaReplacement: typeof _TextEditingDeltaReplacementBinding & _FlaxInstanceType<TextEditingDeltaReplacement> & _FlaxDartType<TextEditingDeltaReplacement, readonly ["class", "flax.core/sdk_services#type:TextEditingDeltaReplacement", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "oldText" | "selection" | "composing" | "replacementText" | "replacedRange" | "textReplaced" | "apply" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/services/text_editing_delta.dart::TextEditingDeltaReplacement" | "__flaxBound:package:flutter/src/services/text_editing_delta.dart::TextEditingDelta" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

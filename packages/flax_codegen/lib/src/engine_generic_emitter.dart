@@ -99,7 +99,7 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         withinCallbackExpression ?? (withinCallback ? 'true' : null);
     final flag = context == null ? '' : ', withinCallback: $context';
     if (type.kind == 'data') {
-      return 'const FlaxTypeRef("data", nullable: ${type.nullable})';
+      return _ref(FlaxCodegenTypeRef('data', nullable: type.nullable));
     }
     if (type.kind == 'callback') {
       return 'types.define<$dart>(FlaxTypeRef("callback", nullable: ${type.nullable}, callback: ${_callbackBinding(type)})$flag)';
@@ -377,7 +377,7 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         _callbacks.entries.toList(),
       );
       out.writeln(
-        'return ${method.instance ? 'FlaxInstanceMethod' : 'FlaxFunctionBinding'}(${method.instance ? '' : '${_quote(functionId!)}, '}$parameters, $result, invoke${method.startsRoute && method.instance ? ', startsRoute: true' : ''}${route == null ? '' : ', route: FlaxRouteCallBinding(${jsonEncode(route.builders)})'});',
+        'return ${method.instance ? 'FlaxInstanceMethod${method.startsRoute ? '' : '.plain'}' : 'FlaxFunctionBinding'}(${method.instance ? '' : '${_quote(functionId!)}, '}$parameters, $result, invoke${method.startsRoute && method.instance ? ', startsRoute: true' : ''}${route == null ? '' : ', route: FlaxRouteCallBinding(${jsonEncode(route.builders)})'});',
       );
       out.writeln('};');
     });
@@ -407,9 +407,12 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
       kind: owner.kind,
       constructors: [
         for (final ctor in owner.constructors)
-          FlaxCodegenConstructorModel(ctor.name, [
-            for (final p in ctor.parameters) p.specialize(substitutions),
-          ]),
+          FlaxCodegenConstructorModel(
+            ctor.name,
+            [for (final p in ctor.parameters) p.specialize(substitutions)],
+            proxyOnly: ctor.proxyOnly,
+            isFactory: ctor.isFactory,
+          ),
       ],
       supertypes: owner.supertypes,
       superTypes: [
@@ -547,7 +550,7 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
       out.writeln(
         '${_dartName('Widget')} $helper$generics(String ctor, Map<String, Object?> values) { switch (ctor) {',
       );
-      for (final constructor in type.constructors) {
+      for (final constructor in _ordinaryConstructors(type)) {
         out.writeln('case ${_quote(constructor.name)}:');
         _emitConstructorCalls(out, type, constructor);
       }
@@ -661,7 +664,7 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         }
         out.writeln('default: throw ArgumentError("Unknown constructor"); } }');
         final getters =
-            '[${type.getters.map((g) => 'FlaxGetter(${_quote(g.name)}, ${_ref(g.type)}, _${type.name}_${g.name}${g.encodeKind == null ? '' : ', encode: const FlaxTypeRef(${_quote(g.encodeKind!)})'})').join(',')}]';
+            '[${type.getters.map((g) => 'FlaxGetter${g.encodeKind == null ? '.plain' : ''}(${_quote(g.name)}, ${_ref(g.type)}, _${type.name}_${g.name}${g.encodeKind == null ? '' : ', encode: ${_constant('FlaxTypeRef(${_quote(g.encodeKind!)})')}'})').join(',')}]';
         final setters =
             '[${type.setters.map((g) => 'FlaxSetter(${_quote(g.name)}, ${_ref(g.type)}, _${type.name}_set_${g.name})').join(',')}]';
         final methods = _instanceMethods(type);

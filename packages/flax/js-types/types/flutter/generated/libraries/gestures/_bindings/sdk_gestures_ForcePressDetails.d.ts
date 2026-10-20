@@ -13,7 +13,7 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ForcePressDetails extends Omit<upstream0.PositionedGestureDetails, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PositionedGestureDetails>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/force_press.dart::ForcePressDetails": readonly [];
 }>, Readonly<{
@@ -23,9 +23,36 @@ export interface ForcePressDetails extends Omit<upstream0.PositionedGestureDetai
 }> {
     readonly __ForcePressDetails: unique symbol;
     readonly [_flaxDartTypeValue]: ForcePressDetails;
+    readonly globalPosition: upstream2.Offset;
+    readonly localPosition: upstream2.Offset;
+    readonly pressure: number;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream5.DiagnosticsTreeStyle | null | undefined;
+    }): upstream4.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
 }
-export interface ForcePressDetails {
-    readonly [_flaxDartTypeValue]: ForcePressDetails;
+export declare function _ForcePressDetailsFactory(options: {
+    globalPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    localPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    pressure: number;
+}): ForcePressDetails;
+export interface _ForcePressDetailsNative extends ForcePressDetails {
+    readonly [_flaxDartTypeValue]: _ForcePressDetailsNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream3.DiagnosticLevel | undefined;
@@ -41,7 +68,7 @@ export interface ForcePressDetails {
     get localPosition(): upstream2.Offset;
     get pressure(): number;
 }
-export declare abstract class ForcePressDetails extends _FlaxProxyBase {
+export declare abstract class _ForcePressDetailsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ForcePressDetails>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ForcePressDetails;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:ForcePressDetails", readonly [], false];
@@ -59,7 +86,7 @@ export declare abstract class ForcePressDetails extends _FlaxProxyBase {
         pressure: number;
     });
 }
-export declare namespace ForcePressDetails {
+export declare namespace _ForcePressDetailsFactory {
     function implement(args: [options: {
         globalPosition: Readonly<{
             "__flaxBound:dart:ui::Offset": readonly [];
@@ -74,5 +101,19 @@ export declare namespace ForcePressDetails {
         pressure: number;
     }], implementation: {}): ForcePressDetails;
 }
+declare const _ForcePressDetailsBinding: typeof _ForcePressDetailsFactory & (new (options: {
+    globalPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    localPosition?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    pressure: number;
+}) => _ForcePressDetailsNative);
+export declare const ForcePressDetails: typeof _ForcePressDetailsBinding & _FlaxInstanceType<ForcePressDetails> & _FlaxDartType<ForcePressDetails, readonly ["class", "flax.core/sdk_gestures#type:ForcePressDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "globalPosition" | "localPosition" | "pressure" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/force_press.dart::ForcePressDetails" | "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

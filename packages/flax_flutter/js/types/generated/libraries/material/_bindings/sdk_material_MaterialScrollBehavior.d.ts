@@ -20,7 +20,7 @@ import type * as upstream9 from '@flax/flutter/gestures/_bindings/sdk_gestures_V
 import '@flax/flutter/gestures/_bindings/sdk_gestures_VelocityTracker';
 import '@flax/flutter/gestures/_bindings/flutter_PointerEvent';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MaterialScrollBehavior extends Omit<upstream0.ScrollBehavior, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/app.dart::MaterialScrollBehavior": readonly [];
 }>, Readonly<{
@@ -28,9 +28,49 @@ export interface MaterialScrollBehavior extends Omit<upstream0.ScrollBehavior, _
 }> {
     readonly __MaterialScrollBehavior: unique symbol;
     readonly [_flaxDartTypeValue]: MaterialScrollBehavior;
+    readonly dragDevices: DartSet<upstream1.PointerDeviceKind>;
+    readonly pointerAxisModifiers: DartSet<upstream2.LogicalKeyboardKey>;
+    copyWith(options?: {
+        dragDevices?: DartSetInput<upstream1.PointerDeviceKind, upstream1.PointerDeviceKind> | null | undefined;
+        keyboardDismissBehavior?: upstream3.ScrollViewKeyboardDismissBehavior | null | undefined;
+        multitouchDragStrategy?: upstream4.MultitouchDragStrategy | null | undefined;
+        overscroll?: boolean | null | undefined;
+        physics?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+        }> | null | undefined;
+        platform?: upstream6.TargetPlatform | null | undefined;
+        pointerAxisModifiers?: DartSetInput<upstream2.LogicalKeyboardKey, Readonly<{
+            "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>> | null | undefined;
+        scrollbars?: boolean | null | undefined;
+    }): upstream0.ScrollBehavior;
+    getPlatform(context: upstream7.BuildContext): upstream6.TargetPlatform;
+    getMultitouchDragStrategy(context: upstream7.BuildContext): upstream4.MultitouchDragStrategy;
+    buildScrollbar(context: upstream7.BuildContext, child: Widget, details: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scrollable_helpers.dart::ScrollableDetails": readonly [];
+    }>): Widget;
+    buildOverscrollIndicator(context: upstream7.BuildContext, child: Widget, details: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scrollable_helpers.dart::ScrollableDetails": readonly [];
+    }>): Widget;
+    velocityTrackerBuilder(context: upstream7.BuildContext): ((event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => upstream9.VelocityTracker);
+    getScrollPhysics(context: upstream7.BuildContext): upstream5.ScrollPhysics;
+    shouldNotify(oldDelegate: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_configuration.dart::ScrollBehavior": readonly [];
+    }>): boolean;
+    getKeyboardDismissBehavior(context: upstream7.BuildContext): upstream3.ScrollViewKeyboardDismissBehavior;
+    toString(): string;
 }
-export interface MaterialScrollBehavior {
-    readonly [_flaxDartTypeValue]: MaterialScrollBehavior;
+export declare function _MaterialScrollBehaviorFactory(): MaterialScrollBehavior;
+export interface _MaterialScrollBehaviorNative extends MaterialScrollBehavior {
+    readonly [_flaxDartTypeValue]: _MaterialScrollBehaviorNative;
     copyWith(options?: {
         scrollbars?: boolean | null | undefined;
         overscroll?: boolean | null | undefined;
@@ -71,14 +111,16 @@ export interface MaterialScrollBehavior {
     get dragDevices(): DartSet<upstream1.PointerDeviceKind>;
     get pointerAxisModifiers(): DartSet<upstream2.LogicalKeyboardKey>;
 }
-export declare abstract class MaterialScrollBehavior extends _FlaxProxyBase {
+export declare abstract class _MaterialScrollBehaviorNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MaterialScrollBehavior>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MaterialScrollBehavior;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:MaterialScrollBehavior", readonly [], false];
     constructor();
 }
-export declare namespace MaterialScrollBehavior {
+export declare namespace _MaterialScrollBehaviorFactory {
     function implement(args: [], implementation: {}): MaterialScrollBehavior;
 }
+declare const _MaterialScrollBehaviorBinding: typeof _MaterialScrollBehaviorFactory & (new () => _MaterialScrollBehaviorNative);
+export declare const MaterialScrollBehavior: typeof _MaterialScrollBehaviorBinding & _FlaxInstanceType<MaterialScrollBehavior> & _FlaxDartType<MaterialScrollBehavior, readonly ["class", "flax.core/sdk_material#type:MaterialScrollBehavior", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dragDevices" | "pointerAxisModifiers" | "copyWith" | "getPlatform" | "getMultitouchDragStrategy" | "buildScrollbar" | "buildOverscrollIndicator" | "velocityTrackerBuilder" | "getScrollPhysics" | "shouldNotify" | "getKeyboardDismissBehavior" | "toString" | "__flaxBound:package:flutter/src/material/app.dart::MaterialScrollBehavior" | "__flaxBound:package:flutter/src/widgets/scroll_configuration.dart::ScrollBehavior";
 export {};

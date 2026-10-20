@@ -63,6 +63,30 @@ class FlaxCodegenBindingConfig {
   final List<String> automaticExtensions;
   final FlaxCodegenAutoOverrides overrides;
 
+  FlaxCodegenBindingConfig withOverrides(FlaxCodegenAutoOverrides value) =>
+      FlaxCodegenBindingConfig(
+        name,
+        library,
+        jsPackage,
+        dartOutput,
+        tsOutput,
+        classes,
+        additionalLibraries: additionalLibraries,
+        functions: functions,
+        extensions: extensions,
+        callbackSnapshots: callbackSnapshots,
+        imports: imports,
+        types: types,
+        typedefs: typedefs,
+        topLevel: topLevel,
+        publicLibraries: publicLibraries,
+        automaticLibrary: automaticLibrary,
+        automaticClasses: automaticClasses,
+        automaticFunctions: automaticFunctions,
+        automaticExtensions: automaticExtensions,
+        overrides: value,
+      );
+
   bool get hasAutomaticSelection =>
       automaticLibrary ||
       automaticClasses.isNotEmpty ||

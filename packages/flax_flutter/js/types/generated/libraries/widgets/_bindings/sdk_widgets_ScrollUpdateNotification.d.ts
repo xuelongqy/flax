@@ -14,7 +14,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream6 from '@flax/flutter/gestures/_bindings/sdk_gestures_DragUpdateDetails';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_DragUpdateDetails';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ScrollUpdateNotification extends Omit<upstream0.ScrollNotification, _flaxOwnMembers0>, Omit<upstream1.LayoutChangedNotification, _flaxOwnMembers0 | keyof upstream0.ScrollNotification>, Omit<upstream2.Notification, _flaxOwnMembers0 | keyof upstream0.ScrollNotification | keyof upstream1.LayoutChangedNotification>, Omit<upstream3.ViewportNotificationMixin, _flaxOwnMembers0 | keyof upstream0.ScrollNotification | keyof upstream1.LayoutChangedNotification | keyof upstream2.Notification>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::ScrollUpdateNotification": readonly [];
 }>, Readonly<{
@@ -28,9 +28,32 @@ export interface ScrollUpdateNotification extends Omit<upstream0.ScrollNotificat
 }> {
     readonly __ScrollUpdateNotification: unique symbol;
     readonly [_flaxDartTypeValue]: ScrollUpdateNotification;
+    readonly metrics: upstream4.ScrollMetrics;
+    readonly context: upstream5.BuildContext | null;
+    readonly depth: number;
+    readonly dragDetails: upstream6.DragUpdateDetails | null;
+    readonly scrollDelta: number | null;
+    debugFillDescription(description: DartListInput<string, string>): void;
+    dispatch(target: upstream5.BuildContext | null): void;
+    toString(): string;
 }
-export interface ScrollUpdateNotification {
-    readonly [_flaxDartTypeValue]: ScrollUpdateNotification;
+export declare function _ScrollUpdateNotificationFactory(options: {
+    metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>;
+    context: upstream5.BuildContext;
+    dragDetails?: (Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragUpdateDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    scrollDelta?: number | null | undefined;
+    depth?: number | null | undefined;
+}): ScrollUpdateNotification;
+export interface _ScrollUpdateNotificationNative extends ScrollUpdateNotification {
+    readonly [_flaxDartTypeValue]: _ScrollUpdateNotificationNative;
     debugFillDescription(description: DartListInput<string, string>): void;
     dispatch(target: upstream5.BuildContext | null): void;
     toString(): string;
@@ -40,7 +63,7 @@ export interface ScrollUpdateNotification {
     get context(): upstream5.BuildContext | null;
     get depth(): number;
 }
-export declare abstract class ScrollUpdateNotification extends _FlaxProxyBase {
+export declare abstract class _ScrollUpdateNotificationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ScrollUpdateNotification>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ScrollUpdateNotification;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ScrollUpdateNotification", readonly [], false];
@@ -60,7 +83,7 @@ export declare abstract class ScrollUpdateNotification extends _FlaxProxyBase {
         depth?: number | null | undefined;
     });
 }
-export declare namespace ScrollUpdateNotification {
+export declare namespace _ScrollUpdateNotificationFactory {
     function implement(args: [options: {
         metrics: Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
@@ -77,5 +100,21 @@ export declare namespace ScrollUpdateNotification {
         depth?: number | null | undefined;
     }], implementation: {}): ScrollUpdateNotification;
 }
+declare const _ScrollUpdateNotificationBinding: typeof _ScrollUpdateNotificationFactory & (new (options: {
+    metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>;
+    context: upstream5.BuildContext;
+    dragDetails?: (Readonly<{
+        "__flaxBound:package:flutter/src/gestures/drag_details.dart::DragUpdateDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    scrollDelta?: number | null | undefined;
+    depth?: number | null | undefined;
+}) => _ScrollUpdateNotificationNative);
+export declare const ScrollUpdateNotification: typeof _ScrollUpdateNotificationBinding & _FlaxInstanceType<ScrollUpdateNotification> & _FlaxDartType<ScrollUpdateNotification, readonly ["class", "flax.core/sdk_widgets#type:ScrollUpdateNotification", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "metrics" | "context" | "depth" | "dragDetails" | "scrollDelta" | "debugFillDescription" | "dispatch" | "toString" | "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::ScrollUpdateNotification" | "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::ScrollNotification" | "__flaxBound:package:flutter/src/widgets/notification_listener.dart::LayoutChangedNotification" | "__flaxBound:package:flutter/src/widgets/notification_listener.dart::Notification" | "__flaxBound:package:flutter/src/widgets/scroll_notification.dart::ViewportNotificationMixin";
 export {};

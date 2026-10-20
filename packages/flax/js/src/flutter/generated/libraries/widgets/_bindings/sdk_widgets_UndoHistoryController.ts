@@ -11,18 +11,34 @@ import type * as upstream3 from '@flax/flutter/foundation/_bindings/flutter_List
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
-import { _flaxMemberParameters2, _flaxMemberParameters80, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters2, _flaxMemberParameters59, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface UndoHistoryController extends Omit<upstream0.ValueNotifier<upstream1.UndoHistoryValue>, _flaxOwnMembers0>, Omit<upstream2.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.UndoHistoryValue>>, Omit<upstream3.Listenable, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.UndoHistoryValue> | keyof upstream2.ChangeNotifier>, Omit<upstream4.ValueListenable<upstream1.UndoHistoryValue>, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.UndoHistoryValue> | keyof upstream2.ChangeNotifier | keyof upstream3.Listenable>, Readonly<{ "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryController": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream1.UndoHistoryValue] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream1.UndoHistoryValue] }> { readonly __UndoHistoryController: unique symbol;
 readonly [_flaxDartTypeValue]: UndoHistoryController;
 
+get value(): upstream1.UndoHistoryValue;
+readonly hasListeners: boolean;
+readonly onUndo: upstream2.ChangeNotifier;
+readonly onRedo: upstream2.ChangeNotifier;
+toString(): string;
+addListener(listener: (() => void)): void;
+removeListener(listener: (() => void)): void;
+dispose(): void;
+undo(): void;
+redo(): void;
+set value(value: Readonly<{ "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryValue": readonly [] }>);
 }
 defineObject("flax.core/sdk_widgets#type:UndoHistoryController", ["value","hasListeners","onUndo","onRedo"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:UndoHistoryController", "object", {"toString":_flaxMemberParameters2,"undo":_flaxMemberParameters2,"redo":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _UndoHistoryControllerProxy = {type: "flax.core/sdk_widgets#type:UndoHistoryController", parameters: _flaxMemberParameters80, constructors: {"": _flaxMemberParameters80}, methods: {"toString":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"undo":_flaxMemberParameters2,"redo":_flaxMemberParameters2}, getters: ["onUndo","onRedo","value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:onUndo","get:onRedo","get:value","get:hasListeners","set:value","toString","addListener","removeListener","dispose","undo","redo"]} as const;
-export interface UndoHistoryController {
-readonly [_flaxDartTypeValue]: UndoHistoryController;
+export function _UndoHistoryControllerFactory(options: { value?: Readonly<{ "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryValue": readonly [] }> | null | undefined } = {}): UndoHistoryController {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:UndoHistoryController", "", [{"name":"value"}], [], options) as UndoHistoryController;
+}
+const _UndoHistoryControllerProxy = {type: "flax.core/sdk_widgets#type:UndoHistoryController", parameters: _flaxMemberParameters59, constructors: {"": _flaxMemberParameters59}, methods: {"toString":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"undo":_flaxMemberParameters2,"redo":_flaxMemberParameters2}, getters: ["onUndo","onRedo","value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:onUndo","get:onRedo","get:value","get:hasListeners","set:value","toString","addListener","removeListener","dispose","undo","redo"]} as const;
+export interface _UndoHistoryControllerNative extends UndoHistoryController {
+readonly [_flaxDartTypeValue]: _UndoHistoryControllerNative;
 
 toString(): string;
 addListener(listener: (() => void)): void;
@@ -36,14 +52,15 @@ get value(): upstream1.UndoHistoryValue;
 get hasListeners(): boolean;
 set value(value: Readonly<{ "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryValue": readonly [] }>);
 }
-export abstract class UndoHistoryController extends _FlaxProxyBase {
+export abstract class _UndoHistoryControllerNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<UndoHistoryController>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: UndoHistoryController;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:UndoHistoryController", readonly [], false];
 constructor(options?: {value?: Readonly<{ "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryValue": readonly [] }> | null | undefined}) { super(_UndoHistoryControllerProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(UndoHistoryController.prototype, _UndoHistoryControllerProxy);
-export namespace UndoHistoryController { export function implement(args: [options?: {value?: Readonly<{ "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryValue": readonly [] }> | null | undefined}], implementation: {}): UndoHistoryController {
+_flaxDefineProxyBase(_UndoHistoryControllerNative.prototype, _UndoHistoryControllerProxy);
+export namespace _UndoHistoryControllerFactory { export function implement(args: [options?: {value?: Readonly<{ "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryValue": readonly [] }> | null | undefined}], implementation: {}): UndoHistoryController {
 return constructProxy(_UndoHistoryControllerProxy, args, implementation) as UndoHistoryController; } }
-_flaxBindInstanceType<UndoHistoryController, typeof UndoHistoryController>(UndoHistoryController, "flax.core/sdk_widgets#type:UndoHistoryController", ["flax.core/sdk_foundation#type:ValueNotifier","flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable","flax.core/flutter#type:ValueListenable"]);
+const _UndoHistoryControllerBinding = _flaxProxyFactory(_UndoHistoryControllerFactory, _UndoHistoryControllerNative) as unknown as typeof _UndoHistoryControllerFactory & (new(options?: {value?: Readonly<{ "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryValue": readonly [] }> | null | undefined}) => _UndoHistoryControllerNative);
+export const UndoHistoryController: typeof _UndoHistoryControllerBinding & _FlaxInstanceType<UndoHistoryController> & _FlaxDartType<UndoHistoryController, readonly ["class", "flax.core/sdk_widgets#type:UndoHistoryController", readonly [], false]> = _flaxBindInstanceType<UndoHistoryController, typeof _UndoHistoryControllerBinding>(_UndoHistoryControllerBinding, "flax.core/sdk_widgets#type:UndoHistoryController", ["flax.core/sdk_foundation#type:ValueNotifier","flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable","flax.core/flutter#type:ValueListenable"]) as typeof _UndoHistoryControllerBinding & _FlaxInstanceType<UndoHistoryController> & _FlaxDartType<UndoHistoryController, readonly ["class", "flax.core/sdk_widgets#type:UndoHistoryController", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "onUndo" | "onRedo" | "toString" | "addListener" | "removeListener" | "dispose" | "undo" | "redo" | "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";

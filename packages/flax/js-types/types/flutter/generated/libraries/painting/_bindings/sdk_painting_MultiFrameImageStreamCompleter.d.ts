@@ -21,7 +21,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MultiFrameImageStreamCompleter extends Omit<upstream0.ImageStreamCompleter, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.ImageStreamCompleter>, Readonly<{
     "__flaxBound:package:flutter/src/painting/image_stream.dart::MultiFrameImageStreamCompleter": readonly [];
 }>, Readonly<{
@@ -31,9 +31,70 @@ export interface MultiFrameImageStreamCompleter extends Omit<upstream0.ImageStre
 }> {
     readonly __MultiFrameImageStreamCompleter: unique symbol;
     readonly [_flaxDartTypeValue]: MultiFrameImageStreamCompleter;
+    get debugLabel(): string | null;
+    addListener(listener: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamListener": readonly [];
+    }>): void;
+    addEphemeralErrorListener(listener: ((exception: {}, stackTrace: upstream7.StackTrace | null) => void)): void;
+    keepAlive(): upstream8.ImageStreamCompleterHandle;
+    removeListener(listener: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamListener": readonly [];
+    }>): void;
+    onDisposed(): void;
+    maybeDispose(): void;
+    addOnLastListenerRemovedCallback(callback: (() => void)): void;
+    removeOnLastListenerRemovedCallback(callback: (() => void)): void;
+    setImage(image: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageInfo": readonly [];
+    }>): void;
+    reportError(options: {
+        context?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [];
+        }> | null | undefined;
+        exception: {};
+        informationCollector?: (() => DartIterableInput<upstream5.DiagnosticsNode, Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [];
+        }>>) | null | undefined;
+        silent?: boolean | undefined;
+        stack?: Readonly<{
+            "__flaxBound:dart:core::StackTrace": readonly [];
+        }> | null | undefined;
+    }): void;
+    reportImageChunkEvent(event: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageChunkEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    debugFillProperties(description: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream11.DiagnosticsTreeStyle | null | undefined;
+    }): upstream5.DiagnosticsNode;
+    toString(options?: {
+        minLevel?: upstream12.DiagnosticLevel | undefined;
+    }): string;
+    set debugLabel(value: string | null);
 }
-export interface MultiFrameImageStreamCompleter {
-    readonly [_flaxDartTypeValue]: MultiFrameImageStreamCompleter;
+export declare function _MultiFrameImageStreamCompleterFactory(options: {
+    codec: Promise<Readonly<{
+        "__flaxBound:dart:ui::Codec": readonly [];
+    }>>;
+    scale: number;
+    debugLabel?: string | null | undefined;
+    chunkEvents?: (upstream3.Stream<upstream4.ImageChunkEvent> | upstream3.Stream<Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageChunkEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>) | null | undefined;
+    informationCollector?: (() => DartIterableInput<upstream5.DiagnosticsNode, Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [];
+    }>>) | null | undefined;
+}): MultiFrameImageStreamCompleter;
+export interface _MultiFrameImageStreamCompleterNative extends MultiFrameImageStreamCompleter {
+    readonly [_flaxDartTypeValue]: _MultiFrameImageStreamCompleterNative;
     maybeDispose(): void;
     addListener(listener: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamListener": readonly [];
@@ -81,7 +142,7 @@ export interface MultiFrameImageStreamCompleter {
     get debugLabel(): string | null;
     set debugLabel(value: string | null);
 }
-export declare abstract class MultiFrameImageStreamCompleter extends _FlaxProxyBase {
+export declare abstract class _MultiFrameImageStreamCompleterNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MultiFrameImageStreamCompleter>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MultiFrameImageStreamCompleter;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_painting#type:MultiFrameImageStreamCompleter", readonly [], false];
@@ -101,7 +162,7 @@ export declare abstract class MultiFrameImageStreamCompleter extends _FlaxProxyB
         }>>) | null | undefined;
     });
 }
-export declare namespace MultiFrameImageStreamCompleter {
+export declare namespace _MultiFrameImageStreamCompleterFactory {
     function implement(args: [options: {
         codec: Promise<Readonly<{
             "__flaxBound:dart:ui::Codec": readonly [];
@@ -118,5 +179,21 @@ export declare namespace MultiFrameImageStreamCompleter {
         }>>) | null | undefined;
     }], implementation: {}): MultiFrameImageStreamCompleter;
 }
+declare const _MultiFrameImageStreamCompleterBinding: typeof _MultiFrameImageStreamCompleterFactory & (new (options: {
+    codec: Promise<Readonly<{
+        "__flaxBound:dart:ui::Codec": readonly [];
+    }>>;
+    scale: number;
+    debugLabel?: string | null | undefined;
+    chunkEvents?: (upstream3.Stream<upstream4.ImageChunkEvent> | upstream3.Stream<Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageChunkEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>) | null | undefined;
+    informationCollector?: (() => DartIterableInput<upstream5.DiagnosticsNode, Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [];
+    }>>) | null | undefined;
+}) => _MultiFrameImageStreamCompleterNative);
+export declare const MultiFrameImageStreamCompleter: typeof _MultiFrameImageStreamCompleterBinding & _FlaxInstanceType<MultiFrameImageStreamCompleter> & _FlaxDartType<MultiFrameImageStreamCompleter, readonly ["class", "flax.core/sdk_painting#type:MultiFrameImageStreamCompleter", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "debugLabel" | "addListener" | "addEphemeralErrorListener" | "keepAlive" | "removeListener" | "onDisposed" | "maybeDispose" | "addOnLastListenerRemovedCallback" | "removeOnLastListenerRemovedCallback" | "setImage" | "reportError" | "reportImageChunkEvent" | "debugFillProperties" | "toStringShort" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/painting/image_stream.dart::MultiFrameImageStreamCompleter" | "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamCompleter" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

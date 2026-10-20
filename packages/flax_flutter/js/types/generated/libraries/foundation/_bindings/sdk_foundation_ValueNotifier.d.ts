@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
@@ -18,9 +19,18 @@ export interface ValueNotifier<T extends unknown | null = unknown | null> extend
 }> {
     readonly __ValueNotifier: unique symbol;
     readonly [_flaxDartTypeValue]: ValueNotifier<T>;
+    readonly hasListeners: boolean;
+    get value(): T;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    toString(): string;
+    set value(value: (T | DartInput<T>));
 }
-export interface ValueNotifier<T extends unknown | null = unknown | null> {
-    readonly [_flaxDartTypeValue]: ValueNotifier<T>;
+export declare function _ValueNotifierFactory<T extends unknown | null = unknown | null>(_value: (T | _FlaxDartOutput<T>)): ValueNotifier<T>;
+export declare function _ValueNotifierFactory(_value: unknown | null): ValueNotifier<unknown | null>;
+export interface _ValueNotifierNative<T extends unknown | null = unknown | null> extends ValueNotifier<T> {
+    readonly [_flaxDartTypeValue]: _ValueNotifierNative<T>;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
     dispose(): void;
@@ -29,7 +39,7 @@ export interface ValueNotifier<T extends unknown | null = unknown | null> {
     get hasListeners(): boolean;
     set value(value: (T | DartInput<T>));
 }
-export declare abstract class ValueNotifier<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
+export declare abstract class _ValueNotifierNative<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ValueNotifier<unknown | null>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ValueNotifier<unknown | null>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_foundation#type:ValueNotifier", readonly [readonly ["any", null, readonly [], true]], false];
@@ -37,14 +47,24 @@ export declare abstract class ValueNotifier<T extends unknown | null = unknown |
     static [_flaxDartTypeCases]: _FlaxSignature1;
     constructor(_value: unknown | null);
 }
-export declare namespace ValueNotifier {
+export declare namespace _ValueNotifierFactory {
     function implement<T extends unknown | null = unknown | null>(args: [_value: unknown | null], implementation: {}): ValueNotifier<T>;
 }
+declare const _ValueNotifierBinding: typeof _ValueNotifierFactory & (new <T extends unknown | null = unknown | null>(_value: unknown | null) => _ValueNotifierNative<T>);
+export declare const ValueNotifier: typeof _ValueNotifierBinding & _FlaxInstanceType<ValueNotifier<unknown | null>> & _FlaxDartType<ValueNotifier<unknown | null>, readonly ["class", "flax.core/sdk_foundation#type:ValueNotifier", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "value" | "addListener" | "removeListener" | "dispose" | "toString" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new (_value: unknown | null) => _ValueNotifierNative<_Selected0>) & {
+        (_value: (_Selected0 | DartInput<_Selected0>)): _ValueNotifierNative<_Selected0>;
+        readonly prototype: _ValueNotifierNative<_Selected0>;
+        implement(args: readonly [unknown | null], implementation: Partial<_ValueNotifierNative<_Selected0>>): _ValueNotifierNative<_Selected0>;
+    } & _FlaxInstanceType<_ValueNotifierNative<_Selected0>> & _FlaxDartType<_ValueNotifierNative<_Selected0>> : never : never;
+}
 interface _FlaxSignature1 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new (_value: unknown | null) => ValueNotifier<_Selected0>) & {
-        readonly prototype: ValueNotifier<_Selected0>;
-        implement(args: readonly [unknown | null], implementation: Partial<ValueNotifier<_Selected0>>): ValueNotifier<_Selected0>;
-    } & _FlaxInstanceType<ValueNotifier<_Selected0>> & _FlaxDartType<ValueNotifier<_Selected0>> : never : never;
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new (_value: unknown | null) => _ValueNotifierNative<_Selected0>) & {
+        (_value: (_Selected0 | DartInput<_Selected0>)): _ValueNotifierNative<_Selected0>;
+        readonly prototype: _ValueNotifierNative<_Selected0>;
+        implement(args: readonly [unknown | null], implementation: Partial<_ValueNotifierNative<_Selected0>>): _ValueNotifierNative<_Selected0>;
+    } & _FlaxInstanceType<_ValueNotifierNative<_Selected0>> & _FlaxDartType<_ValueNotifierNative<_Selected0>> : never : never;
 }
 export {};

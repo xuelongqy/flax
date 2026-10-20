@@ -10,17 +10,36 @@ import '@flax/flutter/services/_bindings/sdk_services_KeyboardLockMode';
 import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_KeyEvent';
 import '@flax/flutter/services/_bindings/flutter_KeyEvent';
 import { _flaxMemberParameters37, _flaxMemberParameters10, _flaxMemberParameters19, _flaxMemberParameters0, _flaxMemberParameters6 } from "@flax/flutter/services/_bindings/sdk_services.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface HardwareKeyboard extends Readonly<{ "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::HardwareKeyboard": readonly [] }> { readonly __HardwareKeyboard: unique symbol;
 readonly [_flaxDartTypeValue]: HardwareKeyboard;
 
+readonly physicalKeysPressed: DartSet<upstream0.PhysicalKeyboardKey>;
+readonly logicalKeysPressed: DartSet<upstream1.LogicalKeyboardKey>;
+readonly lockModesEnabled: DartSet<upstream2.KeyboardLockMode>;
+readonly isControlPressed: boolean;
+readonly isShiftPressed: boolean;
+readonly isAltPressed: boolean;
+readonly isMetaPressed: boolean;
+lookUpLayout(physicalKey: Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::PhysicalKeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): upstream1.LogicalKeyboardKey | null;
+isLogicalKeyPressed(key: Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
+isPhysicalKeyPressed(key: Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::PhysicalKeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
+addHandler(handler: ((event: upstream3.KeyEvent) => boolean)): void;
+removeHandler(handler: ((event: upstream3.KeyEvent) => boolean)): void;
+syncKeyboardState(): Promise<void>;
+handleKeyEvent(event: Readonly<{ "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyEvent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
 }
 defineObject("flax.core/sdk_services#type:HardwareKeyboard", ["physicalKeysPressed","logicalKeysPressed","lockModesEnabled","isControlPressed","isShiftPressed","isAltPressed","isMetaPressed"], [], _flaxBindingMethods("flax.core/sdk_services#type:HardwareKeyboard", "object", {"lookUpLayout":_flaxMemberParameters37,"isLogicalKeyPressed":_flaxMemberParameters10,"isPhysicalKeyPressed":_flaxMemberParameters10,"addHandler":_flaxMemberParameters19,"removeHandler":_flaxMemberParameters19,"syncKeyboardState":_flaxMemberParameters0,"handleKeyEvent":_flaxMemberParameters6}, {}), []);
+export function _HardwareKeyboardFactory(): HardwareKeyboard {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_services#type:HardwareKeyboard", "", _flaxMemberParameters0, [], {}) as HardwareKeyboard;
+}
 const _HardwareKeyboardProxy = {type: "flax.core/sdk_services#type:HardwareKeyboard", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"lookUpLayout":_flaxMemberParameters37,"isLogicalKeyPressed":_flaxMemberParameters10,"isPhysicalKeyPressed":_flaxMemberParameters10,"addHandler":_flaxMemberParameters19,"removeHandler":_flaxMemberParameters19,"syncKeyboardState":_flaxMemberParameters0,"handleKeyEvent":_flaxMemberParameters6}, getters: ["physicalKeysPressed","logicalKeysPressed","lockModesEnabled","isControlPressed","isShiftPressed","isAltPressed","isMetaPressed"], setters: [], contextMembers: [], superMembers: ["get:physicalKeysPressed","get:logicalKeysPressed","get:lockModesEnabled","get:isControlPressed","get:isShiftPressed","get:isAltPressed","get:isMetaPressed","lookUpLayout","isLogicalKeyPressed","isPhysicalKeyPressed","addHandler","removeHandler","syncKeyboardState","handleKeyEvent"]} as const;
-export interface HardwareKeyboard {
-readonly [_flaxDartTypeValue]: HardwareKeyboard;
+export interface _HardwareKeyboardNative extends HardwareKeyboard {
+readonly [_flaxDartTypeValue]: _HardwareKeyboardNative;
 
 lookUpLayout(physicalKey: Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::PhysicalKeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): upstream1.LogicalKeyboardKey | null;
 isLogicalKeyPressed(key: Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
@@ -37,15 +56,16 @@ get isShiftPressed(): boolean;
 get isAltPressed(): boolean;
 get isMetaPressed(): boolean;
 }
-export abstract class HardwareKeyboard extends _FlaxProxyBase {
+export abstract class _HardwareKeyboardNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<HardwareKeyboard>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: HardwareKeyboard;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:HardwareKeyboard", readonly [], false];
 constructor() { super(_HardwareKeyboardProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(HardwareKeyboard.prototype, _HardwareKeyboardProxy);
-export namespace HardwareKeyboard { export function implement(args: [], implementation: {}): HardwareKeyboard {
+_flaxDefineProxyBase(_HardwareKeyboardNative.prototype, _HardwareKeyboardProxy);
+export namespace _HardwareKeyboardFactory { export function implement(args: [], implementation: {}): HardwareKeyboard {
 return constructProxy(_HardwareKeyboardProxy, args, implementation) as HardwareKeyboard; } }
-export namespace HardwareKeyboard { export declare const instance: HardwareKeyboard; }
-_flaxDefineStaticGetters(HardwareKeyboard, "flax.core/sdk_services#read:HardwareKeyboard.", ["instance"]);
-_flaxBindInstanceType<HardwareKeyboard, typeof HardwareKeyboard>(HardwareKeyboard, "flax.core/sdk_services#type:HardwareKeyboard", ["dart:core::Object"]);
+const _HardwareKeyboardBinding = _flaxProxyFactory(_HardwareKeyboardFactory, _HardwareKeyboardNative) as unknown as typeof _HardwareKeyboardFactory & (new() => _HardwareKeyboardNative);
+export namespace _HardwareKeyboardFactory { export declare const instance: HardwareKeyboard; }
+_flaxDefineStaticGetters(_HardwareKeyboardFactory, "flax.core/sdk_services#read:HardwareKeyboard.", ["instance"]);
+export const HardwareKeyboard: typeof _HardwareKeyboardBinding & _FlaxInstanceType<HardwareKeyboard> & _FlaxDartType<HardwareKeyboard, readonly ["class", "flax.core/sdk_services#type:HardwareKeyboard", readonly [], false]> = _flaxBindInstanceType<HardwareKeyboard, typeof _HardwareKeyboardBinding>(_HardwareKeyboardBinding, "flax.core/sdk_services#type:HardwareKeyboard", ["dart:core::Object"]) as typeof _HardwareKeyboardBinding & _FlaxInstanceType<HardwareKeyboard> & _FlaxDartType<HardwareKeyboard, readonly ["class", "flax.core/sdk_services#type:HardwareKeyboard", readonly [], false]>;

@@ -11,7 +11,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface AutocompleteLastOptionIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/autocomplete.dart::AutocompleteLastOptionIntent": readonly [];
 }>, Readonly<{
@@ -20,9 +20,6 @@ export interface AutocompleteLastOptionIntent extends Omit<upstream0.Intent, _fl
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }> {
     readonly __AutocompleteLastOptionIntent: unique symbol;
-    readonly [_flaxDartTypeValue]: AutocompleteLastOptionIntent;
-}
-export interface AutocompleteLastOptionIntent {
     readonly [_flaxDartTypeValue]: AutocompleteLastOptionIntent;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
@@ -36,14 +33,31 @@ export interface AutocompleteLastOptionIntent {
         minLevel?: upstream5.DiagnosticLevel | undefined;
     }): string;
 }
-export declare abstract class AutocompleteLastOptionIntent extends _FlaxProxyBase {
+export declare function _AutocompleteLastOptionIntentFactory(): AutocompleteLastOptionIntent;
+export interface _AutocompleteLastOptionIntentNative extends AutocompleteLastOptionIntent {
+    readonly [_flaxDartTypeValue]: _AutocompleteLastOptionIntentNative;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream3.DiagnosticsTreeStyle | null | undefined;
+    }): upstream2.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream5.DiagnosticLevel | undefined;
+    }): string;
+}
+export declare abstract class _AutocompleteLastOptionIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AutocompleteLastOptionIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AutocompleteLastOptionIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:AutocompleteLastOptionIntent", readonly [], false];
     constructor();
 }
-export declare namespace AutocompleteLastOptionIntent {
+export declare namespace _AutocompleteLastOptionIntentFactory {
     function implement(args: [], implementation: {}): AutocompleteLastOptionIntent;
 }
+declare const _AutocompleteLastOptionIntentBinding: typeof _AutocompleteLastOptionIntentFactory & (new () => _AutocompleteLastOptionIntentNative);
+export declare const AutocompleteLastOptionIntent: typeof _AutocompleteLastOptionIntentBinding & _FlaxInstanceType<AutocompleteLastOptionIntent> & _FlaxDartType<AutocompleteLastOptionIntent, readonly ["class", "flax.core/sdk_widgets#type:AutocompleteLastOptionIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/autocomplete.dart::AutocompleteLastOptionIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

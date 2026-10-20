@@ -465,7 +465,13 @@ test('generated client retries rejected dependency changes and sends acknowledge
   const observer = new WebSocket(`ws://127.0.0.1:${dev.port}`, 'vite-hmr');
   t.after(() => observer.close());
   await waitOpen(observer);
-  waiting = waitCustom(observer, 'flax:update');
+  // A repeated dependency notification can precede the fixed importer snapshot.
+  waiting = waitCustom(observer, 'flax:update', (batch) =>
+    batch.modules.some(
+      (module) =>
+        module.id === '/src/main.ts' && module.revision !== before['/src/main.ts'],
+    ),
+  );
   await writeFile(
     main,
     "import { value } from './dep.ts';\nexport const result = value;\n",

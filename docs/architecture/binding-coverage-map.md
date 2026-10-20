@@ -305,7 +305,7 @@ Dart value permits them. See
 
 Class static reads and writes are independent capabilities on every supported class
 category. Reads use `Class.property`; writes use `Class.setProperty(value)`. They retain
-their own types and operation identities in Manifest 27. Static declarations are not
+their own types and operation identities in Manifest 28. Static declarations are not
 inherited; a read-only provider cannot supply a write. A generated setter name collision
 fails explicit selection or produces `static_setter_export_collision` in automatic
 selection. See [static property rules](bindings.md#class-static-properties) and the

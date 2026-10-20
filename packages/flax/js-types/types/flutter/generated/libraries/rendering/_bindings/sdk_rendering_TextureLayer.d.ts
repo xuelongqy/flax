@@ -26,7 +26,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextureLayer extends Omit<upstream0.Layer, _flaxOwnMembers0>, Omit<upstream1.DiagnosticableTreeMixin, _flaxOwnMembers0 | keyof upstream0.Layer>, Omit<upstream2.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.Layer | keyof upstream1.DiagnosticableTreeMixin>, Omit<upstream3.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Layer | keyof upstream1.DiagnosticableTreeMixin | keyof upstream2.DiagnosticableTree>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/layer.dart::TextureLayer": readonly [];
 }>, Readonly<{
@@ -45,9 +45,84 @@ export interface TextureLayer extends Omit<upstream0.Layer, _flaxOwnMembers0>, O
         find: _FlaxSignature1;
         findAllAnnotations: _FlaxSignature2;
     };
+    readonly subtreeHasCompositionCallbacks: boolean;
+    readonly debugDisposed: boolean;
+    readonly debugHandleCount: number;
+    readonly parent: upstream6.ContainerLayer | null;
+    readonly alwaysNeedsAddToScene: boolean;
+    readonly owner: unknown | null;
+    readonly attached: boolean;
+    readonly depth: number;
+    readonly nextSibling: upstream0.Layer | null;
+    readonly previousSibling: upstream0.Layer | null;
+    get debugCreator(): unknown | null;
+    readonly rect: upstream4.Rect;
+    readonly textureId: number;
+    readonly freeze: boolean;
+    readonly filterQuality: upstream5.FilterQuality;
+    supportsRasterization(): boolean;
+    describeClipBounds(): upstream4.Rect | null;
+    addCompositionCallback(callback: ((layer: upstream0.Layer) => void)): (() => void);
+    attach(owner: {}): void;
+    detach(): void;
+    redepthChildren(): void;
+    remove(): void;
+    findAnnotations<S extends {} = {}>(result: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotationResult": readonly [_FlaxDartOutput<S>];
+    }>, localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options: {
+        onlyFirst: boolean;
+    }): boolean;
+    find<S extends {} = {}>(localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): _FlaxDartOutput<S> | null;
+    findAllAnnotations<S extends {} = {}>(localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): upstream7.AnnotationResult<_FlaxDartOutput<S>>;
+    addToScene(builder: Readonly<{
+        "__flaxBound:dart:ui::SceneBuilder": readonly [];
+    }>): void;
+    toStringShort(): string;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream11.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream11.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream13.DiagnosticsTreeStyle | null | undefined;
+    }): upstream12.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream12.DiagnosticsNode>;
+    toString(options?: {
+        minLevel?: upstream11.DiagnosticLevel | undefined;
+    }): string;
+    set debugCreator(value: unknown | null);
 }
-export interface TextureLayer {
-    readonly [_flaxDartTypeValue]: TextureLayer;
+export declare function _TextureLayerFactory(options: {
+    rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>;
+    textureId: number;
+    freeze?: boolean | undefined;
+    filterQuality?: upstream5.FilterQuality | undefined;
+}): TextureLayer;
+export interface _TextureLayerNative extends TextureLayer {
+    readonly [_flaxDartTypeValue]: _TextureLayerNative;
     readonly [_flaxDartMethodCases]?: {
         findAnnotations: _FlaxSignature3;
         find: _FlaxSignature4;
@@ -121,7 +196,7 @@ export interface TextureLayer {
     get debugCreator(): unknown | null;
     set debugCreator(value: unknown | null);
 }
-export declare abstract class TextureLayer extends _FlaxProxyBase {
+export declare abstract class _TextureLayerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TextureLayer>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TextureLayer;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:TextureLayer", readonly [], false];
@@ -134,7 +209,7 @@ export declare abstract class TextureLayer extends _FlaxProxyBase {
         filterQuality?: upstream5.FilterQuality | undefined;
     });
 }
-export declare namespace TextureLayer {
+export declare namespace _TextureLayerFactory {
     function implement(args: [options: {
         rect: Readonly<{
             "__flaxBound:dart:ui::Rect": readonly [];
@@ -144,6 +219,15 @@ export declare namespace TextureLayer {
         filterQuality?: upstream5.FilterQuality | undefined;
     }], implementation: {}): TextureLayer;
 }
+declare const _TextureLayerBinding: typeof _TextureLayerFactory & (new (options: {
+    rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>;
+    textureId: number;
+    freeze?: boolean | undefined;
+    filterQuality?: upstream5.FilterQuality | undefined;
+}) => _TextureLayerNative);
+export declare const TextureLayer: typeof _TextureLayerBinding & _FlaxInstanceType<TextureLayer> & _FlaxDartType<TextureLayer, readonly ["class", "flax.core/sdk_rendering#type:TextureLayer", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "subtreeHasCompositionCallbacks" | "debugDisposed" | "debugHandleCount" | "parent" | "alwaysNeedsAddToScene" | "owner" | "attached" | "depth" | "nextSibling" | "previousSibling" | "debugCreator" | "rect" | "textureId" | "freeze" | "filterQuality" | "supportsRasterization" | "describeClipBounds" | "addCompositionCallback" | "attach" | "detach" | "redepthChildren" | "remove" | "findAnnotations" | "find" | "findAllAnnotations" | "addToScene" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "toString" | "__flaxBound:package:flutter/src/rendering/layer.dart::TextureLayer" | "__flaxBound:package:flutter/src/rendering/layer.dart::Layer" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (result: Readonly<{

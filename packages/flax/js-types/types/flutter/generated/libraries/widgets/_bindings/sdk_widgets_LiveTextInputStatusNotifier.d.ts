@@ -21,7 +21,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_ViewFocusEvent';
 import type * as upstream11 from '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitResponse';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitResponse';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface LiveTextInputStatusNotifier extends Omit<upstream0.ValueNotifier<upstream1.LiveTextInputStatus>, _flaxOwnMembers0>, Omit<upstream2.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.LiveTextInputStatus>>, Omit<upstream3.Listenable, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.LiveTextInputStatus> | keyof upstream2.ChangeNotifier>, Omit<upstream4.ValueListenable<upstream1.LiveTextInputStatus>, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.LiveTextInputStatus> | keyof upstream2.ChangeNotifier | keyof upstream3.Listenable>, Omit<upstream5.WidgetsBindingObserver, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.LiveTextInputStatus> | keyof upstream2.ChangeNotifier | keyof upstream3.Listenable | keyof upstream4.ValueListenable<upstream1.LiveTextInputStatus>>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/text_selection.dart::LiveTextInputStatusNotifier": readonly [];
 }>, Readonly<{
@@ -37,9 +37,47 @@ export interface LiveTextInputStatusNotifier extends Omit<upstream0.ValueNotifie
 }> {
     readonly __LiveTextInputStatusNotifier: unique symbol;
     readonly [_flaxDartTypeValue]: LiveTextInputStatusNotifier;
+    get value(): upstream1.LiveTextInputStatus;
+    readonly hasListeners: boolean;
+    toString(): string;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    didPopRoute(): Promise<boolean>;
+    handleStartBackGesture(backEvent: Readonly<{
+        "__flaxBound:package:flutter/src/services/predictive_back_event.dart::PredictiveBackEvent": readonly [];
+    }>): boolean;
+    handleUpdateBackGestureProgress(backEvent: Readonly<{
+        "__flaxBound:package:flutter/src/services/predictive_back_event.dart::PredictiveBackEvent": readonly [];
+    }>): void;
+    handleCommitBackGesture(): void;
+    handleCancelBackGesture(): void;
+    handleStatusBarTap(): void;
+    didPushRoute(route: string): Promise<boolean>;
+    didPushRouteInformation(routeInformation: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformation": readonly [];
+    }>): Promise<boolean>;
+    didChangeMetrics(): void;
+    didChangeTextScaleFactor(): void;
+    didChangePlatformBrightness(): void;
+    didChangeLocales(locales: DartListInput<upstream8.Locale, Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }>> | null): void;
+    didChangeAppLifecycleState(state: upstream9.AppLifecycleState): void;
+    didChangeViewFocus(event: Readonly<{
+        "__flaxBound:dart:ui::ViewFocusEvent": readonly [];
+    }>): void;
+    didRequestAppExit(): Promise<upstream11.AppExitResponse>;
+    didHaveMemoryPressure(): void;
+    didChangeAccessibilityFeatures(): void;
+    update(): Promise<void>;
+    set value(value: upstream1.LiveTextInputStatus);
 }
-export interface LiveTextInputStatusNotifier {
-    readonly [_flaxDartTypeValue]: LiveTextInputStatusNotifier;
+export declare function _LiveTextInputStatusNotifierFactory(options?: {
+    value?: upstream1.LiveTextInputStatus | undefined;
+}): LiveTextInputStatusNotifier;
+export interface _LiveTextInputStatusNotifierNative extends LiveTextInputStatusNotifier {
+    readonly [_flaxDartTypeValue]: _LiveTextInputStatusNotifierNative;
     toString(): string;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
@@ -76,7 +114,7 @@ export interface LiveTextInputStatusNotifier {
     get hasListeners(): boolean;
     set value(value: upstream1.LiveTextInputStatus);
 }
-export declare abstract class LiveTextInputStatusNotifier extends _FlaxProxyBase {
+export declare abstract class _LiveTextInputStatusNotifierNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<LiveTextInputStatusNotifier>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: LiveTextInputStatusNotifier;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:LiveTextInputStatusNotifier", readonly [], false];
@@ -84,10 +122,14 @@ export declare abstract class LiveTextInputStatusNotifier extends _FlaxProxyBase
         value?: upstream1.LiveTextInputStatus | undefined;
     });
 }
-export declare namespace LiveTextInputStatusNotifier {
+export declare namespace _LiveTextInputStatusNotifierFactory {
     function implement(args: [options?: {
         value?: upstream1.LiveTextInputStatus | undefined;
     }], implementation: {}): LiveTextInputStatusNotifier;
 }
+declare const _LiveTextInputStatusNotifierBinding: typeof _LiveTextInputStatusNotifierFactory & (new (options?: {
+    value?: upstream1.LiveTextInputStatus | undefined;
+}) => _LiveTextInputStatusNotifierNative);
+export declare const LiveTextInputStatusNotifier: typeof _LiveTextInputStatusNotifierBinding & _FlaxInstanceType<LiveTextInputStatusNotifier> & _FlaxDartType<LiveTextInputStatusNotifier, readonly ["class", "flax.core/sdk_widgets#type:LiveTextInputStatusNotifier", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "toString" | "addListener" | "removeListener" | "dispose" | "didPopRoute" | "handleStartBackGesture" | "handleUpdateBackGestureProgress" | "handleCommitBackGesture" | "handleCancelBackGesture" | "handleStatusBarTap" | "didPushRoute" | "didPushRouteInformation" | "didChangeMetrics" | "didChangeTextScaleFactor" | "didChangePlatformBrightness" | "didChangeLocales" | "didChangeAppLifecycleState" | "didChangeViewFocus" | "didRequestAppExit" | "didHaveMemoryPressure" | "didChangeAccessibilityFeatures" | "update" | "__flaxBound:package:flutter/src/widgets/text_selection.dart::LiveTextInputStatusNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver";
 export {};

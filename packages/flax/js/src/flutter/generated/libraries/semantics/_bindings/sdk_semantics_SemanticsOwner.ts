@@ -13,18 +13,34 @@ import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsAc
 import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsAction';
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import { _flaxMemberParameters38, _flaxMemberParameters2, _flaxMemberParameters39, _flaxMemberParameters40, _flaxMemberParameters41, _flaxMemberParameters18 } from "@flax/flutter/semantics/_bindings/sdk_semantics.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters40, _flaxMemberParameters2, _flaxMemberParameters41, _flaxMemberParameters42, _flaxMemberParameters43, _flaxMemberParameters19 } from "@flax/flutter/semantics/_bindings/sdk_semantics.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/semantics/_bindings/sdk_semantics.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface SemanticsOwner extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{ "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsOwner": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> { readonly __SemanticsOwner: unique symbol;
 readonly [_flaxDartTypeValue]: SemanticsOwner;
 
+readonly hasListeners: boolean;
+readonly onSemanticsUpdate: ((update: Readonly<{ "__flaxBound:dart:ui::SemanticsUpdate": readonly [] }>) => void);
+readonly rootSemanticsNode: upstream3.SemanticsNode | null;
+addListener(listener: (() => void)): void;
+removeListener(listener: (() => void)): void;
+dispose(): void;
+getSemanticsNode(id: number): upstream3.SemanticsNode | null;
+sendSemanticsUpdate(): void;
+performAction(id: number, action: Readonly<{ "__flaxBound:dart:ui::SemanticsAction": readonly [] }>, args?: unknown | null): void;
+performActionAt(position: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>, action: Readonly<{ "__flaxBound:dart:ui::SemanticsAction": readonly [] }>, args?: unknown | null): void;
+toString(): string;
 }
-defineObject("flax.core/sdk_semantics#type:SemanticsOwner", ["hasListeners","onSemanticsUpdate","rootSemanticsNode"], [], _flaxBindingMethods("flax.core/sdk_semantics#type:SemanticsOwner", "object", {"getSemanticsNode":_flaxMemberParameters38,"sendSemanticsUpdate":_flaxMemberParameters2,"performAction":_flaxMemberParameters39,"performActionAt":_flaxMemberParameters40,"toString":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _SemanticsOwnerProxy = {type: "flax.core/sdk_semantics#type:SemanticsOwner", parameters: _flaxMemberParameters41, constructors: {"": _flaxMemberParameters41}, methods: {"addListener":_flaxMemberParameters18,"removeListener":_flaxMemberParameters18,"dispose":_flaxMemberParameters2,"getSemanticsNode":_flaxMemberParameters38,"sendSemanticsUpdate":_flaxMemberParameters2,"performAction":_flaxMemberParameters39,"performActionAt":_flaxMemberParameters40,"toString":_flaxMemberParameters2}, getters: ["onSemanticsUpdate","rootSemanticsNode","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:onSemanticsUpdate","get:rootSemanticsNode","get:hasListeners","addListener","removeListener","dispose","getSemanticsNode","sendSemanticsUpdate","performAction","performActionAt","toString"]} as const;
-export interface SemanticsOwner {
-readonly [_flaxDartTypeValue]: SemanticsOwner;
+defineObject("flax.core/sdk_semantics#type:SemanticsOwner", ["hasListeners","onSemanticsUpdate","rootSemanticsNode"], [], _flaxBindingMethods("flax.core/sdk_semantics#type:SemanticsOwner", "object", {"getSemanticsNode":_flaxMemberParameters40,"sendSemanticsUpdate":_flaxMemberParameters2,"performAction":_flaxMemberParameters41,"performActionAt":_flaxMemberParameters42,"toString":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+export function _SemanticsOwnerFactory(options: { onSemanticsUpdate: ((update: upstream2.SemanticsUpdate) => void) }): SemanticsOwner {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_semantics#type:SemanticsOwner", "", [{"name":"onSemanticsUpdate","required":true}], [], options) as SemanticsOwner;
+}
+const _SemanticsOwnerProxy = {type: "flax.core/sdk_semantics#type:SemanticsOwner", parameters: _flaxMemberParameters43, constructors: {"": _flaxMemberParameters43}, methods: {"addListener":_flaxMemberParameters19,"removeListener":_flaxMemberParameters19,"dispose":_flaxMemberParameters2,"getSemanticsNode":_flaxMemberParameters40,"sendSemanticsUpdate":_flaxMemberParameters2,"performAction":_flaxMemberParameters41,"performActionAt":_flaxMemberParameters42,"toString":_flaxMemberParameters2}, getters: ["onSemanticsUpdate","rootSemanticsNode","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:onSemanticsUpdate","get:rootSemanticsNode","get:hasListeners","addListener","removeListener","dispose","getSemanticsNode","sendSemanticsUpdate","performAction","performActionAt","toString"]} as const;
+export interface _SemanticsOwnerNative extends SemanticsOwner {
+readonly [_flaxDartTypeValue]: _SemanticsOwnerNative;
 
 addListener(listener: (() => void)): void;
 removeListener(listener: (() => void)): void;
@@ -38,14 +54,15 @@ get onSemanticsUpdate(): ((update: Readonly<{ "__flaxBound:dart:ui::SemanticsUpd
 get rootSemanticsNode(): upstream3.SemanticsNode | null;
 get hasListeners(): boolean;
 }
-export abstract class SemanticsOwner extends _FlaxProxyBase {
+export abstract class _SemanticsOwnerNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SemanticsOwner>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: SemanticsOwner;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_semantics#type:SemanticsOwner", readonly [], false];
 constructor(options: {onSemanticsUpdate: ((update: upstream2.SemanticsUpdate) => void)}) { super(_SemanticsOwnerProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(SemanticsOwner.prototype, _SemanticsOwnerProxy);
-export namespace SemanticsOwner { export function implement(args: [options: {onSemanticsUpdate: ((update: upstream2.SemanticsUpdate) => void)}], implementation: {}): SemanticsOwner {
+_flaxDefineProxyBase(_SemanticsOwnerNative.prototype, _SemanticsOwnerProxy);
+export namespace _SemanticsOwnerFactory { export function implement(args: [options: {onSemanticsUpdate: ((update: upstream2.SemanticsUpdate) => void)}], implementation: {}): SemanticsOwner {
 return constructProxy(_SemanticsOwnerProxy, args, implementation) as SemanticsOwner; } }
-_flaxBindInstanceType<SemanticsOwner, typeof SemanticsOwner>(SemanticsOwner, "flax.core/sdk_semantics#type:SemanticsOwner", ["flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable"]);
+const _SemanticsOwnerBinding = _flaxProxyFactory(_SemanticsOwnerFactory, _SemanticsOwnerNative) as unknown as typeof _SemanticsOwnerFactory & (new(options: {onSemanticsUpdate: ((update: upstream2.SemanticsUpdate) => void)}) => _SemanticsOwnerNative);
+export const SemanticsOwner: typeof _SemanticsOwnerBinding & _FlaxInstanceType<SemanticsOwner> & _FlaxDartType<SemanticsOwner, readonly ["class", "flax.core/sdk_semantics#type:SemanticsOwner", readonly [], false]> = _flaxBindInstanceType<SemanticsOwner, typeof _SemanticsOwnerBinding>(_SemanticsOwnerBinding, "flax.core/sdk_semantics#type:SemanticsOwner", ["flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable"]) as typeof _SemanticsOwnerBinding & _FlaxInstanceType<SemanticsOwner> & _FlaxDartType<SemanticsOwner, readonly ["class", "flax.core/sdk_semantics#type:SemanticsOwner", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "onSemanticsUpdate" | "rootSemanticsNode" | "addListener" | "removeListener" | "dispose" | "getSemanticsNode" | "sendSemanticsUpdate" | "performAction" | "performActionAt" | "toString" | "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsOwner" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";

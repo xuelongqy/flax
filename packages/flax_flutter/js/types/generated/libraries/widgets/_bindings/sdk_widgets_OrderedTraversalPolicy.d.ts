@@ -24,7 +24,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface OrderedTraversalPolicy extends Omit<upstream0.FocusTraversalPolicy, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.FocusTraversalPolicy>, Omit<upstream2.DirectionalFocusTraversalPolicyMixin, _flaxOwnMembers0 | keyof upstream0.FocusTraversalPolicy | keyof upstream1.Diagnosticable>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::OrderedTraversalPolicy": readonly [];
 }>, Readonly<{
@@ -36,9 +36,212 @@ export interface OrderedTraversalPolicy extends Omit<upstream0.FocusTraversalPol
 }> {
     readonly __OrderedTraversalPolicy: unique symbol;
     readonly [_flaxDartTypeValue]: OrderedTraversalPolicy;
+    readonly requestFocusCallback: ((node: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>, options?: {
+        alignment?: number | null | undefined;
+        alignmentPolicy?: upstream4.ScrollPositionAlignmentPolicy | null | undefined;
+        curve?: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+        }>) | null | undefined;
+        duration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+        }>) | null | undefined;
+    }) => void);
+    readonly secondary: upstream0.FocusTraversalPolicy | null;
+    findFirstFocus(currentNode: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>, options?: {
+        ignoreCurrentFocus?: boolean | undefined;
+    }): upstream3.FocusNode | null;
+    findLastFocus(currentNode: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>, options?: {
+        ignoreCurrentFocus?: boolean | undefined;
+    }): upstream3.FocusNode;
+    findFirstFocusInDirection(currentNode: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>, direction: upstream7.TraversalDirection): upstream3.FocusNode | null;
+    invalidateScopeData(node: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusScopeNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>): void;
+    changedScope(options?: {
+        node?: (Readonly<{
+            "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }>) | null | undefined;
+        oldScope?: (Readonly<{
+            "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusScopeNode": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }>) | null | undefined;
+    }): void;
+    next(currentNode: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>): boolean;
+    previous(currentNode: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>): boolean;
+    inDirection(currentNode: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>, direction: upstream7.TraversalDirection): boolean;
+    sortDescendants(descendants: DartIterableInput<upstream3.FocusNode, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>>, currentNode: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>): DartIterable<upstream3.FocusNode>;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream10.DiagnosticsTreeStyle | null | undefined;
+    }): upstream9.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream12.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface OrderedTraversalPolicy {
-    readonly [_flaxDartTypeValue]: OrderedTraversalPolicy;
+export declare function _OrderedTraversalPolicyFactory(options?: {
+    secondary?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusTraversalPolicy": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    requestFocusCallback?: ((node: upstream3.FocusNode, options?: {
+        alignment?: number | null | undefined;
+        alignmentPolicy?: upstream4.ScrollPositionAlignmentPolicy | null | undefined;
+        curve?: upstream5.Curve | null | undefined;
+        duration?: upstream6.Duration | null | undefined;
+    }) => void) | null | undefined;
+}): OrderedTraversalPolicy;
+export interface _OrderedTraversalPolicyNative extends OrderedTraversalPolicy {
+    readonly [_flaxDartTypeValue]: _OrderedTraversalPolicyNative;
     findFirstFocus(currentNode: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
     }> & Readonly<{
@@ -230,7 +433,7 @@ export interface OrderedTraversalPolicy {
         }>) | null | undefined;
     }) => void);
 }
-export declare abstract class OrderedTraversalPolicy extends _FlaxProxyBase {
+export declare abstract class _OrderedTraversalPolicyNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<OrderedTraversalPolicy>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: OrderedTraversalPolicy;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:OrderedTraversalPolicy", readonly [], false];
@@ -248,7 +451,7 @@ export declare abstract class OrderedTraversalPolicy extends _FlaxProxyBase {
         }) => void) | null | undefined;
     });
 }
-export declare namespace OrderedTraversalPolicy {
+export declare namespace _OrderedTraversalPolicyFactory {
     function implement(args: [options?: {
         secondary?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusTraversalPolicy": readonly [];
@@ -263,5 +466,19 @@ export declare namespace OrderedTraversalPolicy {
         }) => void) | null | undefined;
     }], implementation: {}): OrderedTraversalPolicy;
 }
+declare const _OrderedTraversalPolicyBinding: typeof _OrderedTraversalPolicyFactory & (new (options?: {
+    secondary?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusTraversalPolicy": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    requestFocusCallback?: ((node: upstream3.FocusNode, options?: {
+        alignment?: number | null | undefined;
+        alignmentPolicy?: upstream4.ScrollPositionAlignmentPolicy | null | undefined;
+        curve?: upstream5.Curve | null | undefined;
+        duration?: upstream6.Duration | null | undefined;
+    }) => void) | null | undefined;
+}) => _OrderedTraversalPolicyNative);
+export declare const OrderedTraversalPolicy: typeof _OrderedTraversalPolicyBinding & _FlaxInstanceType<OrderedTraversalPolicy> & _FlaxDartType<OrderedTraversalPolicy, readonly ["class", "flax.core/sdk_widgets#type:OrderedTraversalPolicy", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "requestFocusCallback" | "secondary" | "findFirstFocus" | "findLastFocus" | "findFirstFocusInDirection" | "invalidateScopeData" | "changedScope" | "next" | "previous" | "inDirection" | "sortDescendants" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::OrderedTraversalPolicy" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusTraversalPolicy" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::DirectionalFocusTraversalPolicyMixin";
 export {};

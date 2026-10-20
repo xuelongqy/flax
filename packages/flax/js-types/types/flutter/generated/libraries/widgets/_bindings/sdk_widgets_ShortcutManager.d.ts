@@ -22,7 +22,7 @@ import type * as upstream10 from '@flax/flutter/widgets/_bindings/flutter_BuildC
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/services/_bindings/flutter_KeyEvent';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ShortcutManager extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Omit<upstream1.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.Diagnosticable>, Omit<upstream2.Listenable, _flaxOwnMembers0 | keyof upstream0.Diagnosticable | keyof upstream1.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutManager": readonly [];
 }>, Readonly<{
@@ -34,9 +34,48 @@ export interface ShortcutManager extends Omit<upstream0.Diagnosticable, _flaxOwn
 }> {
     readonly __ShortcutManager: unique symbol;
     readonly [_flaxDartTypeValue]: ShortcutManager;
+    readonly hasListeners: boolean;
+    readonly modal: boolean;
+    get shortcuts(): DartMap<upstream4.ShortcutActivator, upstream3.Intent>;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream5.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    handleKeypress(context: upstream10.BuildContext, event: Readonly<{
+        "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): upstream9.KeyEventResult;
+    set shortcuts(value: DartMapInput<upstream4.ShortcutActivator, upstream3.Intent, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [];
+    }>, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>);
 }
-export interface ShortcutManager {
-    readonly [_flaxDartTypeValue]: ShortcutManager;
+export declare function _ShortcutManagerFactory(options?: {
+    shortcuts?: DartMapInput<upstream4.ShortcutActivator, upstream3.Intent, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [];
+    }>, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>> | undefined;
+    modal?: boolean | undefined;
+}): ShortcutManager;
+export interface _ShortcutManagerNative extends ShortcutManager {
+    readonly [_flaxDartTypeValue]: _ShortcutManagerNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream5.DiagnosticLevel | undefined;
@@ -67,7 +106,7 @@ export interface ShortcutManager {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>>);
 }
-export declare abstract class ShortcutManager extends _FlaxProxyBase {
+export declare abstract class _ShortcutManagerNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ShortcutManager>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ShortcutManager;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ShortcutManager", readonly [], false];
@@ -82,7 +121,7 @@ export declare abstract class ShortcutManager extends _FlaxProxyBase {
         modal?: boolean | undefined;
     });
 }
-export declare namespace ShortcutManager {
+export declare namespace _ShortcutManagerFactory {
     function implement(args: [options?: {
         shortcuts?: DartMapInput<upstream4.ShortcutActivator, upstream3.Intent, Readonly<{
             "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [];
@@ -94,5 +133,16 @@ export declare namespace ShortcutManager {
         modal?: boolean | undefined;
     }], implementation: {}): ShortcutManager;
 }
+declare const _ShortcutManagerBinding: typeof _ShortcutManagerFactory & (new (options?: {
+    shortcuts?: DartMapInput<upstream4.ShortcutActivator, upstream3.Intent, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [];
+    }>, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>> | undefined;
+    modal?: boolean | undefined;
+}) => _ShortcutManagerNative);
+export declare const ShortcutManager: typeof _ShortcutManagerBinding & _FlaxInstanceType<ShortcutManager> & _FlaxDartType<ShortcutManager, readonly ["class", "flax.core/sdk_widgets#type:ShortcutManager", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "modal" | "shortcuts" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "addListener" | "removeListener" | "dispose" | "handleKeypress" | "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutManager" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

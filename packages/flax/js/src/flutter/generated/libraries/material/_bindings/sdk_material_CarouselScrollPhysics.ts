@@ -14,17 +14,42 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream5 from '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import { _flaxMemberParameters53, _flaxMemberParameters54, _flaxMemberParameters55, _flaxMemberParameters49, _flaxMemberParameters56, _flaxMemberParameters57, _flaxMemberParameters58, _flaxMemberParameters59, _flaxMemberParameters60, _flaxMemberParameters61, _flaxMemberParameters2 } from "@flax/flutter/material/_bindings/sdk_material.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface CarouselScrollPhysics extends Omit<upstream0.ScrollPhysics, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/material/carousel.dart::CarouselScrollPhysics": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> { readonly __CarouselScrollPhysics: unique symbol;
 readonly [_flaxDartTypeValue]: CarouselScrollPhysics;
 
+readonly parent: upstream0.ScrollPhysics | null;
+readonly spring: upstream1.SpringDescription;
+readonly tolerance: upstream2.Tolerance;
+readonly minFlingDistance: number;
+readonly minFlingVelocity: number;
+readonly maxFlingVelocity: number;
+readonly dragStartDistanceMotionThreshold: number | null;
+readonly allowImplicitScrolling: boolean;
+readonly allowUserScrolling: boolean;
+buildParent(ancestor: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null): upstream0.ScrollPhysics | null;
+applyTo(ancestor: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null): CarouselScrollPhysics;
+applyPhysicsToUserOffset(position: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>, offset: number): number;
+shouldAcceptUserOffset(position: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>): boolean;
+recommendDeferredLoading(velocity: number, metrics: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>, context: upstream4.BuildContext): boolean;
+applyBoundaryConditions(position: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>, value: number): number;
+adjustPositionForNewDimensions(options: {isScrolling: boolean; newPosition: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>; oldPosition: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>; velocity: number}): number;
+createBallisticSimulation(position: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>, velocity: number): upstream5.Simulation | null;
+toleranceFor(metrics: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>): upstream2.Tolerance;
+carriedMomentum(existingVelocity: number): number;
+toString(): string;
 }
 defineObject("flax.core/sdk_material#type:CarouselScrollPhysics", ["parent","spring","tolerance","minFlingDistance","minFlingVelocity","maxFlingVelocity","dragStartDistanceMotionThreshold","allowImplicitScrolling","allowUserScrolling"], [], _flaxBindingMethods("flax.core/sdk_material#type:CarouselScrollPhysics", "object", {"applyTo":_flaxMemberParameters53}, {}), [], undefined, "flax.core/flutter#type:ScrollPhysics");
+export function _CarouselScrollPhysicsFactory(options: { parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined } = {}): CarouselScrollPhysics {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_material#type:CarouselScrollPhysics", "", [{"name":"parent"}], [], options) as CarouselScrollPhysics;
+}
 const _CarouselScrollPhysicsProxy = {type: "flax.core/sdk_material#type:CarouselScrollPhysics", parameters: _flaxMemberParameters54, constructors: {"": _flaxMemberParameters54}, methods: {"buildParent":_flaxMemberParameters53,"applyTo":_flaxMemberParameters53,"applyPhysicsToUserOffset":_flaxMemberParameters55,"shouldAcceptUserOffset":_flaxMemberParameters49,"recommendDeferredLoading":_flaxMemberParameters56,"applyBoundaryConditions":_flaxMemberParameters57,"adjustPositionForNewDimensions":_flaxMemberParameters58,"createBallisticSimulation":_flaxMemberParameters59,"toleranceFor":_flaxMemberParameters60,"carriedMomentum":_flaxMemberParameters61,"toString":_flaxMemberParameters2}, getters: ["allowImplicitScrolling","parent","spring","tolerance","minFlingDistance","minFlingVelocity","maxFlingVelocity","dragStartDistanceMotionThreshold","allowUserScrolling"], setters: [], contextMembers: [], superMembers: ["get:allowImplicitScrolling","get:parent","get:spring","get:tolerance","get:minFlingDistance","get:minFlingVelocity","get:maxFlingVelocity","get:dragStartDistanceMotionThreshold","get:allowUserScrolling","buildParent","applyTo","applyPhysicsToUserOffset","shouldAcceptUserOffset","recommendDeferredLoading","applyBoundaryConditions","adjustPositionForNewDimensions","createBallisticSimulation","toleranceFor","carriedMomentum","toString"]} as const;
-export interface CarouselScrollPhysics {
-readonly [_flaxDartTypeValue]: CarouselScrollPhysics;
+export interface _CarouselScrollPhysicsNative extends CarouselScrollPhysics {
+readonly [_flaxDartTypeValue]: _CarouselScrollPhysicsNative;
 
 buildParent(ancestor: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null): upstream0.ScrollPhysics | null;
 applyTo(ancestor: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null): CarouselScrollPhysics;
@@ -47,14 +72,15 @@ get maxFlingVelocity(): number;
 get dragStartDistanceMotionThreshold(): number | null;
 get allowUserScrolling(): boolean;
 }
-export abstract class CarouselScrollPhysics extends _FlaxProxyBase {
+export abstract class _CarouselScrollPhysicsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CarouselScrollPhysics>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: CarouselScrollPhysics;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:CarouselScrollPhysics", readonly [], false];
 constructor(options?: {parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined}) { super(_CarouselScrollPhysicsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(CarouselScrollPhysics.prototype, _CarouselScrollPhysicsProxy);
-export namespace CarouselScrollPhysics { export function implement(args: [options?: {parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined}], implementation: {}): CarouselScrollPhysics {
+_flaxDefineProxyBase(_CarouselScrollPhysicsNative.prototype, _CarouselScrollPhysicsProxy);
+export namespace _CarouselScrollPhysicsFactory { export function implement(args: [options?: {parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined}], implementation: {}): CarouselScrollPhysics {
 return constructProxy(_CarouselScrollPhysicsProxy, args, implementation) as CarouselScrollPhysics; } }
-_flaxBindInstanceType<CarouselScrollPhysics, typeof CarouselScrollPhysics>(CarouselScrollPhysics, "flax.core/sdk_material#type:CarouselScrollPhysics", ["flax.core/flutter#type:ScrollPhysics","dart:core::Object"]);
+const _CarouselScrollPhysicsBinding = _flaxProxyFactory(_CarouselScrollPhysicsFactory, _CarouselScrollPhysicsNative) as unknown as typeof _CarouselScrollPhysicsFactory & (new(options?: {parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined}) => _CarouselScrollPhysicsNative);
+export const CarouselScrollPhysics: typeof _CarouselScrollPhysicsBinding & _FlaxInstanceType<CarouselScrollPhysics> & _FlaxDartType<CarouselScrollPhysics, readonly ["class", "flax.core/sdk_material#type:CarouselScrollPhysics", readonly [], false]> = _flaxBindInstanceType<CarouselScrollPhysics, typeof _CarouselScrollPhysicsBinding>(_CarouselScrollPhysicsBinding, "flax.core/sdk_material#type:CarouselScrollPhysics", ["flax.core/flutter#type:ScrollPhysics","dart:core::Object"]) as typeof _CarouselScrollPhysicsBinding & _FlaxInstanceType<CarouselScrollPhysics> & _FlaxDartType<CarouselScrollPhysics, readonly ["class", "flax.core/sdk_material#type:CarouselScrollPhysics", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "parent" | "spring" | "tolerance" | "minFlingDistance" | "minFlingVelocity" | "maxFlingVelocity" | "dragStartDistanceMotionThreshold" | "allowImplicitScrolling" | "allowUserScrolling" | "buildParent" | "applyTo" | "applyPhysicsToUserOffset" | "shouldAcceptUserOffset" | "recommendDeferredLoading" | "applyBoundaryConditions" | "adjustPositionForNewDimensions" | "createBallisticSimulation" | "toleranceFor" | "carriedMomentum" | "toString" | "__flaxBound:package:flutter/src/material/carousel.dart::CarouselScrollPhysics" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics";

@@ -22,17 +22,35 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { _flaxMemberParameters10, _flaxMemberParameters11, _flaxMemberParameters12, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface VoidCallbackAction extends Omit<upstream0.Action<upstream1.VoidCallbackIntent>, _flaxOwnMembers0>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Action<upstream1.VoidCallbackIntent>>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::VoidCallbackAction": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream1.VoidCallbackIntent] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __VoidCallbackAction: unique symbol;
 readonly [_flaxDartTypeValue]: VoidCallbackAction;
 
+readonly callingAction: upstream0.Action<upstream1.VoidCallbackIntent> | null;
+readonly intentType: upstream3.Type;
+readonly isActionEnabled: boolean;
+isEnabled(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::VoidCallbackIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
+consumesKey(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::VoidCallbackIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
+toKeyEventResult(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::VoidCallbackIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, invokeResult: unknown | null): upstream4.KeyEventResult;
+invoke(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::VoidCallbackIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): unknown | null;
+addActionListener(listener: ((action: upstream0.Action<upstream5.Intent>) => void)): void;
+removeActionListener(listener: ((action: upstream0.Action<upstream5.Intent>) => void)): void;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream7.DiagnosticsTreeStyle | null | undefined}): upstream6.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream9.DiagnosticLevel | undefined}): string;
 }
 defineObject("flax.core/sdk_widgets#type:VoidCallbackAction", ["callingAction","intentType","isActionEnabled"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:VoidCallbackAction", "object", {"isEnabled":_flaxMemberParameters10,"consumesKey":_flaxMemberParameters10,"toKeyEventResult":_flaxMemberParameters11,"invoke":_flaxMemberParameters10,"addActionListener":_flaxMemberParameters12,"removeActionListener":_flaxMemberParameters12}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+export function _VoidCallbackActionFactory(): VoidCallbackAction {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:VoidCallbackAction", "", [], [], {}) as VoidCallbackAction;
+}
 const _VoidCallbackActionProxy = {type: "flax.core/sdk_widgets#type:VoidCallbackAction", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"isEnabled":_flaxMemberParameters10,"consumesKey":_flaxMemberParameters10,"toKeyEventResult":_flaxMemberParameters11,"invoke":_flaxMemberParameters10,"addActionListener":_flaxMemberParameters12,"removeActionListener":_flaxMemberParameters12,"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["callingAction","intentType","isActionEnabled"], setters: [], contextMembers: [], superMembers: ["get:callingAction","get:intentType","get:isActionEnabled","isEnabled","consumesKey","toKeyEventResult","invoke","addActionListener","removeActionListener","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface VoidCallbackAction {
-readonly [_flaxDartTypeValue]: VoidCallbackAction;
+export interface _VoidCallbackActionNative extends VoidCallbackAction {
+readonly [_flaxDartTypeValue]: _VoidCallbackActionNative;
 
 isEnabled(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::VoidCallbackIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
 consumesKey(intent: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::VoidCallbackIntent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): boolean;
@@ -48,14 +66,15 @@ get callingAction(): upstream0.Action<upstream1.VoidCallbackIntent> | null;
 get intentType(): upstream3.Type;
 get isActionEnabled(): boolean;
 }
-export abstract class VoidCallbackAction extends _FlaxProxyBase {
+export abstract class _VoidCallbackActionNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<VoidCallbackAction>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: VoidCallbackAction;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:VoidCallbackAction", readonly [], false];
 constructor() { super(_VoidCallbackActionProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(VoidCallbackAction.prototype, _VoidCallbackActionProxy);
-export namespace VoidCallbackAction { export function implement(args: [], implementation: {}): VoidCallbackAction {
+_flaxDefineProxyBase(_VoidCallbackActionNative.prototype, _VoidCallbackActionProxy);
+export namespace _VoidCallbackActionFactory { export function implement(args: [], implementation: {}): VoidCallbackAction {
 return constructProxy(_VoidCallbackActionProxy, args, implementation) as VoidCallbackAction; } }
-_flaxBindInstanceType<VoidCallbackAction, typeof VoidCallbackAction>(VoidCallbackAction, "flax.core/sdk_widgets#type:VoidCallbackAction", ["flax.core/sdk_widgets#type:Action","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _VoidCallbackActionBinding = _flaxProxyFactory(_VoidCallbackActionFactory, _VoidCallbackActionNative) as unknown as typeof _VoidCallbackActionFactory & (new() => _VoidCallbackActionNative);
+export const VoidCallbackAction: typeof _VoidCallbackActionBinding & _FlaxInstanceType<VoidCallbackAction> & _FlaxDartType<VoidCallbackAction, readonly ["class", "flax.core/sdk_widgets#type:VoidCallbackAction", readonly [], false]> = _flaxBindInstanceType<VoidCallbackAction, typeof _VoidCallbackActionBinding>(_VoidCallbackActionBinding, "flax.core/sdk_widgets#type:VoidCallbackAction", ["flax.core/sdk_widgets#type:Action","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _VoidCallbackActionBinding & _FlaxInstanceType<VoidCallbackAction> & _FlaxDartType<VoidCallbackAction, readonly ["class", "flax.core/sdk_widgets#type:VoidCallbackAction", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "callingAction" | "intentType" | "isActionEnabled" | "isEnabled" | "consumesKey" | "toKeyEventResult" | "invoke" | "addActionListener" | "removeActionListener" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/actions.dart::VoidCallbackAction" | "__flaxBound:package:flutter/src/widgets/actions.dart::Action" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

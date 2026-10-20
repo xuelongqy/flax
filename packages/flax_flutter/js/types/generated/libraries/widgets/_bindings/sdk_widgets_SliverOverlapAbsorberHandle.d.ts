@@ -4,7 +4,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SliverOverlapAbsorberHandle extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle": readonly [];
 }>, Readonly<{
@@ -14,9 +14,17 @@ export interface SliverOverlapAbsorberHandle extends Omit<upstream0.ChangeNotifi
 }> {
     readonly __SliverOverlapAbsorberHandle: unique symbol;
     readonly [_flaxDartTypeValue]: SliverOverlapAbsorberHandle;
+    readonly hasListeners: boolean;
+    readonly layoutExtent: number | null;
+    readonly scrollExtent: number | null;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    toString(): string;
 }
-export interface SliverOverlapAbsorberHandle {
-    readonly [_flaxDartTypeValue]: SliverOverlapAbsorberHandle;
+export declare function _SliverOverlapAbsorberHandleFactory(): SliverOverlapAbsorberHandle;
+export interface _SliverOverlapAbsorberHandleNative extends SliverOverlapAbsorberHandle {
+    readonly [_flaxDartTypeValue]: _SliverOverlapAbsorberHandleNative;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
     dispose(): void;
@@ -25,14 +33,16 @@ export interface SliverOverlapAbsorberHandle {
     get scrollExtent(): number | null;
     get hasListeners(): boolean;
 }
-export declare abstract class SliverOverlapAbsorberHandle extends _FlaxProxyBase {
+export declare abstract class _SliverOverlapAbsorberHandleNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SliverOverlapAbsorberHandle>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SliverOverlapAbsorberHandle;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:SliverOverlapAbsorberHandle", readonly [], false];
     constructor();
 }
-export declare namespace SliverOverlapAbsorberHandle {
+export declare namespace _SliverOverlapAbsorberHandleFactory {
     function implement(args: [], implementation: {}): SliverOverlapAbsorberHandle;
 }
+declare const _SliverOverlapAbsorberHandleBinding: typeof _SliverOverlapAbsorberHandleFactory & (new () => _SliverOverlapAbsorberHandleNative);
+export declare const SliverOverlapAbsorberHandle: typeof _SliverOverlapAbsorberHandleBinding & _FlaxInstanceType<SliverOverlapAbsorberHandle> & _FlaxDartType<SliverOverlapAbsorberHandle, readonly ["class", "flax.core/sdk_widgets#type:SliverOverlapAbsorberHandle", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "layoutExtent" | "scrollExtent" | "addListener" | "removeListener" | "dispose" | "toString" | "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
 export {};

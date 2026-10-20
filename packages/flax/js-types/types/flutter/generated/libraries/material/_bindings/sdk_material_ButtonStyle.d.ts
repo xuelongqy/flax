@@ -41,7 +41,7 @@ import type * as upstream19 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ButtonStyle extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/button_style.dart::ButtonStyle": readonly [];
 }>, Readonly<{
@@ -49,9 +49,192 @@ export interface ButtonStyle extends Omit<upstream0.Diagnosticable, _flaxOwnMemb
 }> {
     readonly __ButtonStyle: unique symbol;
     readonly [_flaxDartTypeValue]: ButtonStyle;
+    readonly textStyle: upstream1.WidgetStateProperty<upstream2.TextStyle | null> | null;
+    readonly backgroundColor: upstream1.WidgetStateProperty<upstream3.Color | null> | null;
+    readonly foregroundColor: upstream1.WidgetStateProperty<upstream3.Color | null> | null;
+    readonly overlayColor: upstream1.WidgetStateProperty<upstream3.Color | null> | null;
+    readonly shadowColor: upstream1.WidgetStateProperty<upstream3.Color | null> | null;
+    readonly surfaceTintColor: upstream1.WidgetStateProperty<upstream3.Color | null> | null;
+    readonly elevation: upstream1.WidgetStateProperty<number | null> | null;
+    readonly padding: upstream1.WidgetStateProperty<upstream4.EdgeInsetsGeometry | null> | null;
+    readonly minimumSize: upstream1.WidgetStateProperty<upstream5.Size | null> | null;
+    readonly fixedSize: upstream1.WidgetStateProperty<upstream5.Size | null> | null;
+    readonly maximumSize: upstream1.WidgetStateProperty<upstream5.Size | null> | null;
+    readonly iconColor: upstream1.WidgetStateProperty<upstream3.Color | null> | null;
+    readonly iconSize: upstream1.WidgetStateProperty<number | null> | null;
+    readonly iconAlignment: upstream6.IconAlignment | null;
+    readonly side: upstream1.WidgetStateProperty<upstream7.BorderSide | null> | null;
+    readonly shape: upstream1.WidgetStateProperty<upstream8.OutlinedBorder | null> | null;
+    readonly mouseCursor: upstream1.WidgetStateProperty<upstream9.MouseCursor | null> | null;
+    readonly visualDensity: upstream10.VisualDensity | null;
+    readonly tapTargetSize: upstream11.MaterialTapTargetSize | null;
+    readonly animationDuration: upstream12.Duration | null;
+    readonly enableFeedback: boolean | null;
+    readonly alignment: upstream13.AlignmentGeometry | null;
+    readonly splashFactory: upstream14.InteractiveInkFeatureFactory | null;
+    readonly backgroundBuilder: ((context: upstream15.BuildContext, states: DartSetInput<upstream16.WidgetState, upstream16.WidgetState>, child: Widget | null) => Widget) | null;
+    readonly foregroundBuilder: ((context: upstream15.BuildContext, states: DartSetInput<upstream16.WidgetState, upstream16.WidgetState>, child: Widget | null) => Widget) | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream17.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream19.DiagnosticsTreeStyle | null | undefined;
+    }): upstream18.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        alignment?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+        }> | null | undefined;
+        animationDuration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream12.Duration];
+        }>) | null | undefined;
+        backgroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+        backgroundColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+        }> | null | undefined;
+        elevation?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+        }> | null | undefined;
+        enableFeedback?: boolean | null | undefined;
+        fixedSize?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Size | null];
+        }> | null | undefined;
+        foregroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+        foregroundColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+        }> | null | undefined;
+        iconAlignment?: upstream6.IconAlignment | null | undefined;
+        iconColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+        }> | null | undefined;
+        iconSize?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+        }> | null | undefined;
+        maximumSize?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Size | null];
+        }> | null | undefined;
+        minimumSize?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Size | null];
+        }> | null | undefined;
+        mouseCursor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream9.MouseCursor | null];
+        }> | null | undefined;
+        overlayColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+        }> | null | undefined;
+        padding?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.EdgeInsetsGeometry | null];
+        }> | null | undefined;
+        shadowColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+        }> | null | undefined;
+        shape?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream8.OutlinedBorder | null];
+        }> | null | undefined;
+        side?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.BorderSide | null];
+        }> | null | undefined;
+        splashFactory?: Readonly<{
+            "__flaxBound:package:flutter/src/material/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
+        }> | null | undefined;
+        surfaceTintColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+        }> | null | undefined;
+        tapTargetSize?: upstream11.MaterialTapTargetSize | null | undefined;
+        textStyle?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.TextStyle | null];
+        }> | null | undefined;
+        visualDensity?: (Readonly<{
+            "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): ButtonStyle;
+    merge(style: (Readonly<{
+        "__flaxBound:package:flutter/src/material/button_style.dart::ButtonStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null): ButtonStyle;
 }
-export interface ButtonStyle {
-    readonly [_flaxDartTypeValue]: ButtonStyle;
+export declare function _ButtonStyleFactory(options?: {
+    textStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.TextStyle | null];
+    }> | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    foregroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    elevation?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.EdgeInsetsGeometry | null];
+    }> | null | undefined;
+    minimumSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Size | null];
+    }> | null | undefined;
+    fixedSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Size | null];
+    }> | null | undefined;
+    maximumSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Size | null];
+    }> | null | undefined;
+    iconColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    iconSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    iconAlignment?: upstream6.IconAlignment | null | undefined;
+    side?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.BorderSide | null];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream8.OutlinedBorder | null];
+    }> | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream9.MouseCursor | null];
+    }> | null | undefined;
+    visualDensity?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    tapTargetSize?: upstream11.MaterialTapTargetSize | null | undefined;
+    animationDuration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream12.Duration];
+    }>) | null | undefined;
+    enableFeedback?: boolean | null | undefined;
+    alignment?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null | undefined;
+    splashFactory?: Readonly<{
+        "__flaxBound:package:flutter/src/material/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
+    }> | null | undefined;
+    backgroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+    foregroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+}): ButtonStyle;
+export interface _ButtonStyleNative extends ButtonStyle {
+    readonly [_flaxDartTypeValue]: _ButtonStyleNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream17.DiagnosticLevel | undefined;
@@ -165,7 +348,7 @@ export interface ButtonStyle {
     get backgroundBuilder(): ((context: upstream15.BuildContext, states: DartSetInput<upstream16.WidgetState, upstream16.WidgetState>, child: Widget | null) => Widget) | null;
     get foregroundBuilder(): ((context: upstream15.BuildContext, states: DartSetInput<upstream16.WidgetState, upstream16.WidgetState>, child: Widget | null) => Widget) | null;
 }
-export declare abstract class ButtonStyle extends _FlaxProxyBase {
+export declare abstract class _ButtonStyleNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ButtonStyle>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ButtonStyle;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:ButtonStyle", readonly [], false];
@@ -241,7 +424,7 @@ export declare abstract class ButtonStyle extends _FlaxProxyBase {
         foregroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
     });
 }
-export declare namespace ButtonStyle {
+export declare namespace _ButtonStyleFactory {
     function implement(args: [options?: {
         textStyle?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.TextStyle | null];
@@ -314,7 +497,78 @@ export declare namespace ButtonStyle {
         foregroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
     }], implementation: {}): ButtonStyle;
 }
-export declare namespace ButtonStyle {
+declare const _ButtonStyleBinding: typeof _ButtonStyleFactory & (new (options?: {
+    textStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.TextStyle | null];
+    }> | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    foregroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    elevation?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.EdgeInsetsGeometry | null];
+    }> | null | undefined;
+    minimumSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Size | null];
+    }> | null | undefined;
+    fixedSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Size | null];
+    }> | null | undefined;
+    maximumSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Size | null];
+    }> | null | undefined;
+    iconColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
+    }> | null | undefined;
+    iconSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    iconAlignment?: upstream6.IconAlignment | null | undefined;
+    side?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.BorderSide | null];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream8.OutlinedBorder | null];
+    }> | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream9.MouseCursor | null];
+    }> | null | undefined;
+    visualDensity?: (Readonly<{
+        "__flaxBound:package:flutter/src/material/theme_data.dart::VisualDensity": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    tapTargetSize?: upstream11.MaterialTapTargetSize | null | undefined;
+    animationDuration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream12.Duration];
+    }>) | null | undefined;
+    enableFeedback?: boolean | null | undefined;
+    alignment?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null | undefined;
+    splashFactory?: Readonly<{
+        "__flaxBound:package:flutter/src/material/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
+    }> | null | undefined;
+    backgroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+    foregroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+}) => _ButtonStyleNative);
+export declare namespace _ButtonStyleFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/button_style.dart::ButtonStyle": readonly [];
     }> & Readonly<{
@@ -325,5 +579,6 @@ export declare namespace ButtonStyle {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): ButtonStyle | null;
 }
+export declare const ButtonStyle: typeof _ButtonStyleBinding & _FlaxInstanceType<ButtonStyle> & _FlaxDartType<ButtonStyle, readonly ["class", "flax.core/sdk_material#type:ButtonStyle", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "textStyle" | "backgroundColor" | "foregroundColor" | "overlayColor" | "shadowColor" | "surfaceTintColor" | "elevation" | "padding" | "minimumSize" | "fixedSize" | "maximumSize" | "iconColor" | "iconSize" | "iconAlignment" | "side" | "shape" | "mouseCursor" | "visualDensity" | "tapTargetSize" | "animationDuration" | "enableFeedback" | "alignment" | "splashFactory" | "backgroundBuilder" | "foregroundBuilder" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "merge" | "__flaxBound:package:flutter/src/material/button_style.dart::ButtonStyle" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

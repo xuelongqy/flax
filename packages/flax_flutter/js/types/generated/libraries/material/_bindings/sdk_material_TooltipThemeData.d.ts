@@ -23,7 +23,7 @@ import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TooltipThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/tooltip_theme.dart::TooltipThemeData": readonly [];
 }>, Readonly<{
@@ -31,9 +31,125 @@ export interface TooltipThemeData extends Omit<upstream0.Diagnosticable, _flaxOw
 }> {
     readonly __TooltipThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: TooltipThemeData;
+    readonly height: number | null;
+    readonly constraints: upstream1.BoxConstraints | null;
+    readonly padding: upstream2.EdgeInsetsGeometry | null;
+    readonly margin: upstream2.EdgeInsetsGeometry | null;
+    readonly verticalOffset: number | null;
+    readonly preferBelow: boolean | null;
+    readonly excludeFromSemantics: boolean | null;
+    readonly decoration: upstream3.Decoration | null;
+    readonly textStyle: upstream4.TextStyle | null;
+    readonly textAlign: upstream5.TextAlign | null;
+    readonly waitDuration: upstream6.Duration | null;
+    readonly showDuration: upstream6.Duration | null;
+    readonly exitDuration: upstream6.Duration | null;
+    readonly triggerMode: upstream7.TooltipTriggerMode | null;
+    readonly enableFeedback: boolean | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream8.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream10.DiagnosticsTreeStyle | null | undefined;
+    }): upstream9.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        constraints?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+        }>) | null | undefined;
+        decoration?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        enableFeedback?: boolean | null | undefined;
+        excludeFromSemantics?: boolean | null | undefined;
+        exitDuration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+        }>) | null | undefined;
+        height?: number | null | undefined;
+        margin?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        padding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        preferBelow?: boolean | null | undefined;
+        showDuration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+        }>) | null | undefined;
+        textAlign?: upstream5.TextAlign | null | undefined;
+        textStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        triggerMode?: upstream7.TooltipTriggerMode | null | undefined;
+        verticalOffset?: number | null | undefined;
+        waitDuration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+        }>) | null | undefined;
+    }): TooltipThemeData;
 }
-export interface TooltipThemeData {
-    readonly [_flaxDartTypeValue]: TooltipThemeData;
+export declare function _TooltipThemeDataFactory(options?: {
+    height?: number | null | undefined;
+    constraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    margin?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    verticalOffset?: number | null | undefined;
+    preferBelow?: boolean | null | undefined;
+    excludeFromSemantics?: boolean | null | undefined;
+    decoration?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textAlign?: upstream5.TextAlign | null | undefined;
+    waitDuration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null | undefined;
+    showDuration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null | undefined;
+    exitDuration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null | undefined;
+    triggerMode?: upstream7.TooltipTriggerMode | null | undefined;
+    enableFeedback?: boolean | null | undefined;
+}): TooltipThemeData;
+export interface _TooltipThemeDataNative extends TooltipThemeData {
+    readonly [_flaxDartTypeValue]: _TooltipThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream8.DiagnosticLevel | undefined;
@@ -106,7 +222,7 @@ export interface TooltipThemeData {
     get triggerMode(): upstream7.TooltipTriggerMode | null;
     get enableFeedback(): boolean | null;
 }
-export declare abstract class TooltipThemeData extends _FlaxProxyBase {
+export declare abstract class _TooltipThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TooltipThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TooltipThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:TooltipThemeData", readonly [], false];
@@ -156,7 +272,7 @@ export declare abstract class TooltipThemeData extends _FlaxProxyBase {
         enableFeedback?: boolean | null | undefined;
     });
 }
-export declare namespace TooltipThemeData {
+export declare namespace _TooltipThemeDataFactory {
     function implement(args: [options?: {
         height?: number | null | undefined;
         constraints?: (Readonly<{
@@ -203,7 +319,52 @@ export declare namespace TooltipThemeData {
         enableFeedback?: boolean | null | undefined;
     }], implementation: {}): TooltipThemeData;
 }
-export declare namespace TooltipThemeData {
+declare const _TooltipThemeDataBinding: typeof _TooltipThemeDataFactory & (new (options?: {
+    height?: number | null | undefined;
+    constraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    margin?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    verticalOffset?: number | null | undefined;
+    preferBelow?: boolean | null | undefined;
+    excludeFromSemantics?: boolean | null | undefined;
+    decoration?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    textAlign?: upstream5.TextAlign | null | undefined;
+    waitDuration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null | undefined;
+    showDuration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null | undefined;
+    exitDuration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
+    }>) | null | undefined;
+    triggerMode?: upstream7.TooltipTriggerMode | null | undefined;
+    enableFeedback?: boolean | null | undefined;
+}) => _TooltipThemeDataNative);
+export declare namespace _TooltipThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/tooltip_theme.dart::TooltipThemeData": readonly [];
     }> & Readonly<{
@@ -214,5 +375,6 @@ export declare namespace TooltipThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): TooltipThemeData | null;
 }
+export declare const TooltipThemeData: typeof _TooltipThemeDataBinding & _FlaxInstanceType<TooltipThemeData> & _FlaxDartType<TooltipThemeData, readonly ["class", "flax.core/sdk_material#type:TooltipThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "height" | "constraints" | "padding" | "margin" | "verticalOffset" | "preferBelow" | "excludeFromSemantics" | "decoration" | "textStyle" | "textAlign" | "waitDuration" | "showDuration" | "exitDuration" | "triggerMode" | "enableFeedback" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/tooltip_theme.dart::TooltipThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

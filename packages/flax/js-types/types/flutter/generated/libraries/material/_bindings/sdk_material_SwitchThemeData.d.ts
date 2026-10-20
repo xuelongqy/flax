@@ -20,7 +20,7 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SwitchThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/switch_theme.dart::SwitchThemeData": readonly [];
 }>, Readonly<{
@@ -28,9 +28,86 @@ export interface SwitchThemeData extends Omit<upstream0.Diagnosticable, _flaxOwn
 }> {
     readonly __SwitchThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: SwitchThemeData;
+    readonly thumbColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly trackColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly trackOutlineColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly trackOutlineWidth: upstream1.WidgetStateProperty<number | null> | null;
+    readonly materialTapTargetSize: upstream3.MaterialTapTargetSize | null;
+    readonly mouseCursor: upstream1.WidgetStateProperty<upstream4.MouseCursor | null> | null;
+    readonly overlayColor: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly splashRadius: number | null;
+    readonly thumbIcon: upstream1.WidgetStateProperty<upstream5.Icon | null> | null;
+    readonly padding: upstream6.EdgeInsetsGeometry | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream7.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream9.DiagnosticsTreeStyle | null | undefined;
+    }): upstream8.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        materialTapTargetSize?: upstream3.MaterialTapTargetSize | null | undefined;
+        mouseCursor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.MouseCursor | null];
+        }> | null | undefined;
+        overlayColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        padding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        splashRadius?: number | null | undefined;
+        thumbColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        thumbIcon?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Icon | null];
+        }> | null | undefined;
+        trackColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        trackOutlineColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        trackOutlineWidth?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+        }> | null | undefined;
+    }): SwitchThemeData;
 }
-export interface SwitchThemeData {
-    readonly [_flaxDartTypeValue]: SwitchThemeData;
+export declare function _SwitchThemeDataFactory(options?: {
+    thumbColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    trackColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    trackOutlineColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    trackOutlineWidth?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    materialTapTargetSize?: upstream3.MaterialTapTargetSize | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.MouseCursor | null];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    splashRadius?: number | null | undefined;
+    thumbIcon?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Icon | null];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+}): SwitchThemeData;
+export interface _SwitchThemeDataNative extends SwitchThemeData {
+    readonly [_flaxDartTypeValue]: _SwitchThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream7.DiagnosticLevel | undefined;
@@ -81,7 +158,7 @@ export interface SwitchThemeData {
     get thumbIcon(): upstream1.WidgetStateProperty<upstream5.Icon | null> | null;
     get padding(): upstream6.EdgeInsetsGeometry | null;
 }
-export declare abstract class SwitchThemeData extends _FlaxProxyBase {
+export declare abstract class _SwitchThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SwitchThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SwitchThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:SwitchThemeData", readonly [], false];
@@ -114,7 +191,7 @@ export declare abstract class SwitchThemeData extends _FlaxProxyBase {
         }> | null | undefined;
     });
 }
-export declare namespace SwitchThemeData {
+export declare namespace _SwitchThemeDataFactory {
     function implement(args: [options?: {
         thumbColor?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
@@ -144,7 +221,35 @@ export declare namespace SwitchThemeData {
         }> | null | undefined;
     }], implementation: {}): SwitchThemeData;
 }
-export declare namespace SwitchThemeData {
+declare const _SwitchThemeDataBinding: typeof _SwitchThemeDataFactory & (new (options?: {
+    thumbColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    trackColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    trackOutlineColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    trackOutlineWidth?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    materialTapTargetSize?: upstream3.MaterialTapTargetSize | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.MouseCursor | null];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    splashRadius?: number | null | undefined;
+    thumbIcon?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Icon | null];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+}) => _SwitchThemeDataNative);
+export declare namespace _SwitchThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/switch_theme.dart::SwitchThemeData": readonly [];
     }> & Readonly<{
@@ -155,5 +260,6 @@ export declare namespace SwitchThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): SwitchThemeData;
 }
+export declare const SwitchThemeData: typeof _SwitchThemeDataBinding & _FlaxInstanceType<SwitchThemeData> & _FlaxDartType<SwitchThemeData, readonly ["class", "flax.core/sdk_material#type:SwitchThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "thumbColor" | "trackColor" | "trackOutlineColor" | "trackOutlineWidth" | "materialTapTargetSize" | "mouseCursor" | "overlayColor" | "splashRadius" | "thumbIcon" | "padding" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/switch_theme.dart::SwitchThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

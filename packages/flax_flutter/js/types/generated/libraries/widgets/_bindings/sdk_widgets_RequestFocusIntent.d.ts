@@ -19,7 +19,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RequestFocusIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::RequestFocusIntent": readonly [];
 }>, Readonly<{
@@ -29,9 +29,67 @@ export interface RequestFocusIntent extends Omit<upstream0.Intent, _flaxOwnMembe
 }> {
     readonly __RequestFocusIntent: unique symbol;
     readonly [_flaxDartTypeValue]: RequestFocusIntent;
+    readonly requestFocusCallback: ((node: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>, options?: {
+        alignment?: number | null | undefined;
+        alignmentPolicy?: upstream3.ScrollPositionAlignmentPolicy | null | undefined;
+        curve?: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+        }>) | null | undefined;
+        duration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream5.Duration];
+        }>) | null | undefined;
+    }) => void);
+    readonly focusNode: upstream2.FocusNode;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream9.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface RequestFocusIntent {
-    readonly [_flaxDartTypeValue]: RequestFocusIntent;
+export declare function _RequestFocusIntentFactory(focusNode: Readonly<{
+    "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}>, options?: {
+    requestFocusCallback?: ((node: upstream2.FocusNode, options?: {
+        alignment?: number | null | undefined;
+        alignmentPolicy?: upstream3.ScrollPositionAlignmentPolicy | null | undefined;
+        curve?: upstream4.Curve | null | undefined;
+        duration?: upstream5.Duration | null | undefined;
+    }) => void) | null | undefined;
+}): RequestFocusIntent;
+export interface _RequestFocusIntentNative extends RequestFocusIntent {
+    readonly [_flaxDartTypeValue]: _RequestFocusIntentNative;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
@@ -71,7 +129,7 @@ export interface RequestFocusIntent {
     }) => void);
     get focusNode(): upstream2.FocusNode;
 }
-export declare abstract class RequestFocusIntent extends _FlaxProxyBase {
+export declare abstract class _RequestFocusIntentNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RequestFocusIntent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RequestFocusIntent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:RequestFocusIntent", readonly [], false];
@@ -96,7 +154,7 @@ export declare abstract class RequestFocusIntent extends _FlaxProxyBase {
         }) => void) | null | undefined;
     });
 }
-export declare namespace RequestFocusIntent {
+export declare namespace _RequestFocusIntentFactory {
     function implement(args: [focusNode: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
     }> & Readonly<{
@@ -118,5 +176,26 @@ export declare namespace RequestFocusIntent {
         }) => void) | null | undefined;
     }], implementation: {}): RequestFocusIntent;
 }
+declare const _RequestFocusIntentBinding: typeof _RequestFocusIntentFactory & (new (focusNode: Readonly<{
+    "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}>, options?: {
+    requestFocusCallback?: ((node: upstream2.FocusNode, options?: {
+        alignment?: number | null | undefined;
+        alignmentPolicy?: upstream3.ScrollPositionAlignmentPolicy | null | undefined;
+        curve?: upstream4.Curve | null | undefined;
+        duration?: upstream5.Duration | null | undefined;
+    }) => void) | null | undefined;
+}) => _RequestFocusIntentNative);
+export declare const RequestFocusIntent: typeof _RequestFocusIntentBinding & _FlaxInstanceType<RequestFocusIntent> & _FlaxDartType<RequestFocusIntent, readonly ["class", "flax.core/sdk_widgets#type:RequestFocusIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "requestFocusCallback" | "focusNode" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::RequestFocusIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -39,17 +39,69 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import { _flaxMemberParameters6, _flaxMemberParameters11, _flaxMemberParameters20, _flaxMemberParameters1, _flaxMemberParameters5, _flaxMemberParameters7, _flaxMemberParameters8, _flaxMemberParameters9, _flaxMemberParameters10, _flaxMemberParameters12, _flaxMemberParameters13, _flaxMemberParameters14, _flaxMemberParameters15, _flaxMemberParameters16 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface BackdropFilterLayer extends Omit<upstream0.ContainerLayer, _flaxOwnMembers0>, Omit<upstream1.Layer, _flaxOwnMembers0 | keyof upstream0.ContainerLayer>, Omit<upstream2.DiagnosticableTreeMixin, _flaxOwnMembers0 | keyof upstream0.ContainerLayer | keyof upstream1.Layer>, Omit<upstream3.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.ContainerLayer | keyof upstream1.Layer | keyof upstream2.DiagnosticableTreeMixin>, Omit<upstream4.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.ContainerLayer | keyof upstream1.Layer | keyof upstream2.DiagnosticableTreeMixin | keyof upstream3.DiagnosticableTree>, Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::BackdropFilterLayer": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __BackdropFilterLayer: unique symbol;
 readonly [_flaxDartTypeValue]: BackdropFilterLayer;
 readonly [_flaxDartMethodCases]?: {findAnnotations: _FlaxSignature0;find: _FlaxSignature1;findAllAnnotations: _FlaxSignature2;};
+readonly firstChild: upstream1.Layer | null;
+readonly lastChild: upstream1.Layer | null;
+readonly hasChildren: boolean;
+readonly subtreeHasCompositionCallbacks: boolean;
+readonly debugDisposed: boolean;
+readonly debugHandleCount: number;
+readonly parent: upstream0.ContainerLayer | null;
+readonly alwaysNeedsAddToScene: boolean;
+readonly owner: unknown | null;
+readonly attached: boolean;
+readonly depth: number;
+readonly nextSibling: upstream1.Layer | null;
+readonly previousSibling: upstream1.Layer | null;
+get debugCreator(): unknown | null;
+get filter(): upstream5.ImageFilter | null;
+get blendMode(): upstream6.BlendMode;
+get backdropKey(): upstream7.BackdropKey | null;
+supportsRasterization(): boolean;
+buildScene(builder: Readonly<{ "__flaxBound:dart:ui::SceneBuilder": readonly [] }>): upstream8.Scene;
+dispose(): void;
+updateSubtreeNeedsAddToScene(): void;
+findAnnotations<S extends {} = {}>(result: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotationResult": readonly [_FlaxDartOutput<S>] }>, localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>, options: {onlyFirst: boolean}): boolean;
+attach(owner: {}): void;
+detach(): void;
+append(child: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): void;
+redepthChildren(): void;
+redepthChild(child: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): void;
+removeAllChildren(): void;
+addToScene(builder: Readonly<{ "__flaxBound:dart:ui::SceneBuilder": readonly [] }>): void;
+addChildrenToScene(builder: Readonly<{ "__flaxBound:dart:ui::SceneBuilder": readonly [] }>): void;
+applyTransform(child: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null, transform: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }>): void;
+debugDescribeChildren(): DartList<upstream13.DiagnosticsNode>;
+describeClipBounds(): upstream14.Rect | null;
+addCompositionCallback(callback: ((layer: upstream1.Layer) => void)): (() => void);
+remove(): void;
+find<S extends {} = {}>(localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): _FlaxDartOutput<S> | null;
+findAllAnnotations<S extends {} = {}>(localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): upstream10.AnnotationResult<_FlaxDartOutput<S>>;
+toStringShort(): string;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream16.DiagnosticLevel | undefined}): string;
+toStringDeep(options?: {minLevel?: upstream16.DiagnosticLevel | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream17.DiagnosticsTreeStyle | null | undefined}): upstream13.DiagnosticsNode;
+toString(options?: {minLevel?: upstream16.DiagnosticLevel | undefined}): string;
+set debugCreator(value: unknown | null);
+set filter(value: Readonly<{ "__flaxBound:dart:ui::ImageFilter": readonly [] }> | null);
+set blendMode(value: upstream6.BlendMode);
+set backdropKey(value: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::BackdropKey": readonly [] }> | null);
 }
 defineObject("flax.core/sdk_rendering#type:BackdropFilterLayer", ["firstChild","lastChild","hasChildren","subtreeHasCompositionCallbacks","debugDisposed","debugHandleCount","parent","alwaysNeedsAddToScene","owner","attached","depth","nextSibling","previousSibling","debugCreator","filter","blendMode","backdropKey"], ["debugCreator","filter","blendMode","backdropKey"], _flaxBindingMethods("flax.core/sdk_rendering#type:BackdropFilterLayer", "object", {"findAnnotations":_flaxMemberParameters6,"find":_flaxMemberParameters11,"findAllAnnotations":_flaxMemberParameters11}, {"findAnnotations":{"id":"findAnnotations","parameters":[{"name":"result","required":true,"positional":true},{"name":"localPosition","required":true,"positional":true},{"name":"onlyFirst","required":true}]},"find":{"id":"find","parameters":[{"name":"localPosition","required":true,"positional":true}]},"findAllAnnotations":{"id":"findAllAnnotations","parameters":[{"name":"localPosition","required":true,"positional":true}]}}), [], undefined, "flax.core/sdk_rendering#type:ContainerLayer");
+export function _BackdropFilterLayerFactory(options: { filter?: Readonly<{ "__flaxBound:dart:ui::ImageFilter": readonly [] }> | null | undefined; blendMode?: upstream6.BlendMode | undefined } = {}): BackdropFilterLayer {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_rendering#type:BackdropFilterLayer", "", [{"name":"filter"},{"name":"blendMode"}], [], options) as BackdropFilterLayer;
+}
 const _BackdropFilterLayerProxy = {type: "flax.core/sdk_rendering#type:BackdropFilterLayer", parameters: _flaxMemberParameters20, constructors: {"": _flaxMemberParameters20}, methods: {"supportsRasterization":_flaxMemberParameters1,"buildScene":_flaxMemberParameters5,"dispose":_flaxMemberParameters1,"updateSubtreeNeedsAddToScene":_flaxMemberParameters1,"findAnnotations":_flaxMemberParameters6,"attach":_flaxMemberParameters7,"detach":_flaxMemberParameters1,"append":_flaxMemberParameters8,"redepthChildren":_flaxMemberParameters1,"redepthChild":_flaxMemberParameters8,"removeAllChildren":_flaxMemberParameters1,"addToScene":_flaxMemberParameters5,"addChildrenToScene":_flaxMemberParameters5,"applyTransform":_flaxMemberParameters9,"debugDescribeChildren":_flaxMemberParameters1,"describeClipBounds":_flaxMemberParameters1,"addCompositionCallback":_flaxMemberParameters10,"remove":_flaxMemberParameters1,"find":_flaxMemberParameters11,"findAllAnnotations":_flaxMemberParameters11,"toStringShort":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters12,"toStringShallow":_flaxMemberParameters13,"toStringDeep":_flaxMemberParameters14,"toDiagnosticsNode":_flaxMemberParameters15,"toString":_flaxMemberParameters16}, getters: ["filter","blendMode","backdropKey","firstChild","lastChild","hasChildren","subtreeHasCompositionCallbacks","debugDisposed","debugHandleCount","parent","alwaysNeedsAddToScene","owner","attached","depth","nextSibling","previousSibling","debugCreator"], setters: ["filter","blendMode","backdropKey","debugCreator"], contextMembers: ["findAnnotations","find","findAllAnnotations"], superMembers: ["get:filter","get:blendMode","get:backdropKey","get:firstChild","get:lastChild","get:hasChildren","get:subtreeHasCompositionCallbacks","get:debugDisposed","get:debugHandleCount","get:parent","get:alwaysNeedsAddToScene","get:owner","get:attached","get:depth","get:nextSibling","get:previousSibling","get:debugCreator","set:filter","set:blendMode","set:backdropKey","set:debugCreator","supportsRasterization","buildScene","dispose","updateSubtreeNeedsAddToScene","findAnnotations","attach","detach","append","redepthChildren","redepthChild","removeAllChildren","addToScene","addChildrenToScene","applyTransform","debugDescribeChildren","describeClipBounds","addCompositionCallback","remove","find","findAllAnnotations","toStringShort","debugFillProperties","toStringShallow","toStringDeep","toDiagnosticsNode","toString"]} as const;
-export interface BackdropFilterLayer {
-readonly [_flaxDartTypeValue]: BackdropFilterLayer;
+export interface _BackdropFilterLayerNative extends BackdropFilterLayer {
+readonly [_flaxDartTypeValue]: _BackdropFilterLayerNative;
 readonly [_flaxDartMethodCases]?: {findAnnotations: _FlaxSignature3;find: _FlaxSignature4;findAllAnnotations: _FlaxSignature5;};
 supportsRasterization(): boolean;
 buildScene(builder: Readonly<{ "__flaxBound:dart:ui::SceneBuilder": readonly [] }>): upstream8.Scene;
@@ -99,16 +151,17 @@ set blendMode(value: upstream6.BlendMode);
 set backdropKey(value: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::BackdropKey": readonly [] }> | null);
 set debugCreator(value: unknown | null);
 }
-export abstract class BackdropFilterLayer extends _FlaxProxyBase {
+export abstract class _BackdropFilterLayerNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<BackdropFilterLayer>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: BackdropFilterLayer;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:BackdropFilterLayer", readonly [], false];
 constructor(options?: {filter?: Readonly<{ "__flaxBound:dart:ui::ImageFilter": readonly [] }> | null | undefined; blendMode?: upstream6.BlendMode | undefined}) { super(_BackdropFilterLayerProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(BackdropFilterLayer.prototype, _BackdropFilterLayerProxy);
-export namespace BackdropFilterLayer { export function implement(args: [options?: {filter?: Readonly<{ "__flaxBound:dart:ui::ImageFilter": readonly [] }> | null | undefined; blendMode?: upstream6.BlendMode | undefined}], implementation: {}): BackdropFilterLayer {
+_flaxDefineProxyBase(_BackdropFilterLayerNative.prototype, _BackdropFilterLayerProxy);
+export namespace _BackdropFilterLayerFactory { export function implement(args: [options?: {filter?: Readonly<{ "__flaxBound:dart:ui::ImageFilter": readonly [] }> | null | undefined; blendMode?: upstream6.BlendMode | undefined}], implementation: {}): BackdropFilterLayer {
 return constructProxy(_BackdropFilterLayerProxy, args, implementation) as BackdropFilterLayer; } }
-_flaxBindInstanceType<BackdropFilterLayer, typeof BackdropFilterLayer>(BackdropFilterLayer, "flax.core/sdk_rendering#type:BackdropFilterLayer", ["flax.core/sdk_rendering#type:ContainerLayer","flax.core/sdk_rendering#type:Layer","dart:core::Object","flax.core/sdk_foundation#type:DiagnosticableTreeMixin","flax.core/sdk_foundation#type:DiagnosticableTree","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _BackdropFilterLayerBinding = _flaxProxyFactory(_BackdropFilterLayerFactory, _BackdropFilterLayerNative) as unknown as typeof _BackdropFilterLayerFactory & (new(options?: {filter?: Readonly<{ "__flaxBound:dart:ui::ImageFilter": readonly [] }> | null | undefined; blendMode?: upstream6.BlendMode | undefined}) => _BackdropFilterLayerNative);
+export const BackdropFilterLayer: typeof _BackdropFilterLayerBinding & _FlaxInstanceType<BackdropFilterLayer> & _FlaxDartType<BackdropFilterLayer, readonly ["class", "flax.core/sdk_rendering#type:BackdropFilterLayer", readonly [], false]> = _flaxBindInstanceType<BackdropFilterLayer, typeof _BackdropFilterLayerBinding>(_BackdropFilterLayerBinding, "flax.core/sdk_rendering#type:BackdropFilterLayer", ["flax.core/sdk_rendering#type:ContainerLayer","flax.core/sdk_rendering#type:Layer","dart:core::Object","flax.core/sdk_foundation#type:DiagnosticableTreeMixin","flax.core/sdk_foundation#type:DiagnosticableTree","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _BackdropFilterLayerBinding & _FlaxInstanceType<BackdropFilterLayer> & _FlaxDartType<BackdropFilterLayer, readonly ["class", "flax.core/sdk_rendering#type:BackdropFilterLayer", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "firstChild" | "lastChild" | "hasChildren" | "subtreeHasCompositionCallbacks" | "debugDisposed" | "debugHandleCount" | "parent" | "alwaysNeedsAddToScene" | "owner" | "attached" | "depth" | "nextSibling" | "previousSibling" | "debugCreator" | "filter" | "blendMode" | "backdropKey" | "supportsRasterization" | "buildScene" | "dispose" | "updateSubtreeNeedsAddToScene" | "findAnnotations" | "attach" | "detach" | "append" | "redepthChildren" | "redepthChild" | "removeAllChildren" | "addToScene" | "addChildrenToScene" | "applyTransform" | "debugDescribeChildren" | "describeClipBounds" | "addCompositionCallback" | "remove" | "find" | "findAllAnnotations" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/rendering/layer.dart::BackdropFilterLayer" | "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer" | "__flaxBound:package:flutter/src/rendering/layer.dart::Layer" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (result: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::AnnotationResult": readonly [_Selected0] }>,localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>,options: {onlyFirst: boolean}) => boolean : never : never; }
 interface _FlaxSignature1 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>) => _Selected0 | null : never : never; }

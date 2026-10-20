@@ -8,17 +8,30 @@ import '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import type * as upstream2 from '@flax/flutter/physics/_bindings/sdk_physics_Tolerance';
 import '@flax/flutter/physics/_bindings/sdk_physics_Tolerance';
 import { _flaxMemberParameters0, _flaxMemberParameters1, _flaxMemberParameters2, _flaxMemberParameters3 } from "@flax/flutter/physics/_bindings/sdk_physics.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/physics/_bindings/sdk_physics.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface BoundedFrictionSimulation extends Omit<upstream0.FrictionSimulation, _flaxOwnMembers0>, Omit<upstream1.Simulation, _flaxOwnMembers0 | keyof upstream0.FrictionSimulation>, Readonly<{ "__flaxBound:package:flutter/src/physics/friction_simulation.dart::BoundedFrictionSimulation": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/physics/friction_simulation.dart::FrictionSimulation": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/physics/simulation.dart::Simulation": readonly [] }> { readonly __BoundedFrictionSimulation: unique symbol;
 readonly [_flaxDartTypeValue]: BoundedFrictionSimulation;
 
+readonly finalX: number;
+get tolerance(): upstream2.Tolerance;
+x(time: number): number;
+dx(time: number): number;
+timeAtX(x: number): number;
+isDone(time: number): boolean;
+toString(): string;
+set tolerance(value: Readonly<{ "__flaxBound:package:flutter/src/physics/tolerance.dart::Tolerance": readonly [] }>);
 }
 defineObject("flax.core/sdk_physics#type:BoundedFrictionSimulation", ["finalX","tolerance"], ["tolerance"], _flaxBindingMethods("flax.core/sdk_physics#type:BoundedFrictionSimulation", "object", {}, {}), [], undefined, "flax.core/sdk_physics#type:FrictionSimulation");
+export function _BoundedFrictionSimulationFactory(drag: number, position: number, velocity: number, _minX: number, _maxX: number): BoundedFrictionSimulation {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 5) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_physics#type:BoundedFrictionSimulation", "", [{"name":"drag","required":true,"positional":true},{"name":"position","required":true,"positional":true},{"name":"velocity","required":true,"positional":true},{"name":"_minX","required":true,"positional":true},{"name":"_maxX","required":true,"positional":true}], [drag, position, velocity, _minX, _maxX], {}) as BoundedFrictionSimulation;
+}
 const _BoundedFrictionSimulationProxy = {type: "flax.core/sdk_physics#type:BoundedFrictionSimulation", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"x":_flaxMemberParameters1,"dx":_flaxMemberParameters1,"timeAtX":_flaxMemberParameters2,"isDone":_flaxMemberParameters1,"toString":_flaxMemberParameters3}, getters: ["finalX","tolerance"], setters: ["tolerance"], contextMembers: [], superMembers: ["get:finalX","get:tolerance","set:tolerance","x","dx","timeAtX","isDone","toString"]} as const;
-export interface BoundedFrictionSimulation {
-readonly [_flaxDartTypeValue]: BoundedFrictionSimulation;
+export interface _BoundedFrictionSimulationNative extends BoundedFrictionSimulation {
+readonly [_flaxDartTypeValue]: _BoundedFrictionSimulationNative;
 
 x(time: number): number;
 dx(time: number): number;
@@ -29,14 +42,15 @@ get finalX(): number;
 get tolerance(): upstream2.Tolerance;
 set tolerance(value: Readonly<{ "__flaxBound:package:flutter/src/physics/tolerance.dart::Tolerance": readonly [] }>);
 }
-export abstract class BoundedFrictionSimulation extends _FlaxProxyBase {
+export abstract class _BoundedFrictionSimulationNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<BoundedFrictionSimulation>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: BoundedFrictionSimulation;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_physics#type:BoundedFrictionSimulation", readonly [], false];
 constructor(drag: number, position: number, velocity: number, _minX: number, _maxX: number) { super(_BoundedFrictionSimulationProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(BoundedFrictionSimulation.prototype, _BoundedFrictionSimulationProxy);
-export namespace BoundedFrictionSimulation { export function implement(args: [drag: number, position: number, velocity: number, _minX: number, _maxX: number], implementation: {}): BoundedFrictionSimulation {
+_flaxDefineProxyBase(_BoundedFrictionSimulationNative.prototype, _BoundedFrictionSimulationProxy);
+export namespace _BoundedFrictionSimulationFactory { export function implement(args: [drag: number, position: number, velocity: number, _minX: number, _maxX: number], implementation: {}): BoundedFrictionSimulation {
 return constructProxy(_BoundedFrictionSimulationProxy, args, implementation) as BoundedFrictionSimulation; } }
-_flaxBindInstanceType<BoundedFrictionSimulation, typeof BoundedFrictionSimulation>(BoundedFrictionSimulation, "flax.core/sdk_physics#type:BoundedFrictionSimulation", ["flax.core/sdk_physics#type:FrictionSimulation","flax.core/sdk_physics#type:Simulation","dart:core::Object"]);
+const _BoundedFrictionSimulationBinding = _flaxProxyFactory(_BoundedFrictionSimulationFactory, _BoundedFrictionSimulationNative) as unknown as typeof _BoundedFrictionSimulationFactory & (new(drag: number, position: number, velocity: number, _minX: number, _maxX: number) => _BoundedFrictionSimulationNative);
+export const BoundedFrictionSimulation: typeof _BoundedFrictionSimulationBinding & _FlaxInstanceType<BoundedFrictionSimulation> & _FlaxDartType<BoundedFrictionSimulation, readonly ["class", "flax.core/sdk_physics#type:BoundedFrictionSimulation", readonly [], false]> = _flaxBindInstanceType<BoundedFrictionSimulation, typeof _BoundedFrictionSimulationBinding>(_BoundedFrictionSimulationBinding, "flax.core/sdk_physics#type:BoundedFrictionSimulation", ["flax.core/sdk_physics#type:FrictionSimulation","flax.core/sdk_physics#type:Simulation","dart:core::Object"]) as typeof _BoundedFrictionSimulationBinding & _FlaxInstanceType<BoundedFrictionSimulation> & _FlaxDartType<BoundedFrictionSimulation, readonly ["class", "flax.core/sdk_physics#type:BoundedFrictionSimulation", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "finalX" | "tolerance" | "x" | "dx" | "timeAtX" | "isDone" | "toString" | "__flaxBound:package:flutter/src/physics/friction_simulation.dart::BoundedFrictionSimulation" | "__flaxBound:package:flutter/src/physics/friction_simulation.dart::FrictionSimulation" | "__flaxBound:package:flutter/src/physics/simulation.dart::Simulation";

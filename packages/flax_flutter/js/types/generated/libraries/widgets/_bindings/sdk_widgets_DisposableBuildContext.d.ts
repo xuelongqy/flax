@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/components_State';
 import '@flax/flutter/widgets/_bindings/components_State';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
@@ -20,8 +20,10 @@ export interface DisposableBuildContext<T extends upstream0.State<Readonly<{
 }> {
     readonly __DisposableBuildContext: unique symbol;
     readonly [_flaxDartTypeValue]: DisposableBuildContext<T>;
+    readonly context: upstream2.BuildContext | null;
+    dispose(): void;
 }
-export interface DisposableBuildContext<T extends upstream0.State<Readonly<{
+export declare function _DisposableBuildContextFactory<T extends upstream0.State<Readonly<{
     "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
 }> & Readonly<{
     "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
@@ -29,12 +31,22 @@ export interface DisposableBuildContext<T extends upstream0.State<Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
 }> & Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-}>> = upstream0.State<upstream1.StatefulWidget>> {
-    readonly [_flaxDartTypeValue]: DisposableBuildContext<T>;
+}>> = upstream0.State<upstream1.StatefulWidget>>(_state: (T | DartInput<T>)): DisposableBuildContext<T>;
+export declare function _DisposableBuildContextFactory(_state: upstream0.State<upstream1.StatefulWidget>): DisposableBuildContext<upstream0.State<upstream1.StatefulWidget>>;
+export interface _DisposableBuildContextNative<T extends upstream0.State<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>> = upstream0.State<upstream1.StatefulWidget>> extends DisposableBuildContext<T> {
+    readonly [_flaxDartTypeValue]: _DisposableBuildContextNative<T>;
     dispose(): void;
     get context(): upstream2.BuildContext | null;
 }
-export declare abstract class DisposableBuildContext<T extends upstream0.State<Readonly<{
+export declare abstract class _DisposableBuildContextNative<T extends upstream0.State<Readonly<{
     "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
 }> & Readonly<{
     "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
@@ -50,7 +62,7 @@ export declare abstract class DisposableBuildContext<T extends upstream0.State<R
     static [_flaxDartTypeCases]: _FlaxSignature1;
     constructor(_state: upstream0.State<upstream1.StatefulWidget>);
 }
-export declare namespace DisposableBuildContext {
+export declare namespace _DisposableBuildContextFactory {
     function implement<T extends upstream0.State<Readonly<{
         "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
     }> & Readonly<{
@@ -61,6 +73,31 @@ export declare namespace DisposableBuildContext {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>> = upstream0.State<upstream1.StatefulWidget>>(args: [_state: upstream0.State<upstream1.StatefulWidget>], implementation: {}): DisposableBuildContext<T>;
 }
+declare const _DisposableBuildContextBinding: typeof _DisposableBuildContextFactory & (new <T extends upstream0.State<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}> & Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>> = upstream0.State<upstream1.StatefulWidget>>(_state: upstream0.State<upstream1.StatefulWidget>) => _DisposableBuildContextNative<T>);
+export declare const DisposableBuildContext: typeof _DisposableBuildContextBinding & _FlaxInstanceType<DisposableBuildContext<upstream0.State<upstream1.StatefulWidget>>> & _FlaxDartType<DisposableBuildContext<upstream0.State<upstream1.StatefulWidget>>, readonly ["class", "flax.core/sdk_widgets#type:DisposableBuildContext", readonly [readonly ["class", "flax.core/components#type:State", readonly [readonly ["class", "flax.core/components#type:StatefulWidget", readonly [], false]], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream0.State<Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>] ? (new (_state: upstream0.State<upstream1.StatefulWidget>) => _DisposableBuildContextNative<_Selected0>) & {
+        (_state: (_Selected0 | DartInput<_Selected0>)): _DisposableBuildContextNative<_Selected0>;
+        readonly prototype: _DisposableBuildContextNative<_Selected0>;
+        implement(args: readonly [upstream0.State<upstream1.StatefulWidget>], implementation: Partial<_DisposableBuildContextNative<_Selected0>>): _DisposableBuildContextNative<_Selected0>;
+    } & _FlaxInstanceType<_DisposableBuildContextNative<_Selected0>> & _FlaxDartType<_DisposableBuildContextNative<_Selected0>> : never : never;
+}
 interface _FlaxSignature1 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream0.State<Readonly<{
         "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
@@ -70,9 +107,10 @@ interface _FlaxSignature1 extends _FlaxDartSignature {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>>] ? (abstract new (_state: upstream0.State<upstream1.StatefulWidget>) => DisposableBuildContext<_Selected0>) & {
-        readonly prototype: DisposableBuildContext<_Selected0>;
-        implement(args: readonly [upstream0.State<upstream1.StatefulWidget>], implementation: Partial<DisposableBuildContext<_Selected0>>): DisposableBuildContext<_Selected0>;
-    } & _FlaxInstanceType<DisposableBuildContext<_Selected0>> & _FlaxDartType<DisposableBuildContext<_Selected0>> : never : never;
+    }>>] ? (new (_state: upstream0.State<upstream1.StatefulWidget>) => _DisposableBuildContextNative<_Selected0>) & {
+        (_state: (_Selected0 | DartInput<_Selected0>)): _DisposableBuildContextNative<_Selected0>;
+        readonly prototype: _DisposableBuildContextNative<_Selected0>;
+        implement(args: readonly [upstream0.State<upstream1.StatefulWidget>], implementation: Partial<_DisposableBuildContextNative<_Selected0>>): _DisposableBuildContextNative<_Selected0>;
+    } & _FlaxInstanceType<_DisposableBuildContextNative<_Selected0>> & _FlaxDartType<_DisposableBuildContextNative<_Selected0>> : never : never;
 }
 export {};

@@ -12,7 +12,7 @@ import '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerParentDataMixin
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MultiChildLayoutParentData extends Omit<upstream0.ContainerBoxParentData<upstream1.RenderBox>, _flaxOwnMembers0>, Omit<upstream2.BoxParentData, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox>>, Omit<upstream3.ParentData, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox> | keyof upstream2.BoxParentData>, Omit<upstream4.ContainerParentDataMixin<upstream1.RenderBox>, _flaxOwnMembers0 | keyof upstream0.ContainerBoxParentData<upstream1.RenderBox> | keyof upstream2.BoxParentData | keyof upstream3.ParentData>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/custom_layout.dart::MultiChildLayoutParentData": readonly [];
 }>, Readonly<{
@@ -26,9 +26,48 @@ export interface MultiChildLayoutParentData extends Omit<upstream0.ContainerBoxP
 }> {
     readonly __MultiChildLayoutParentData: unique symbol;
     readonly [_flaxDartTypeValue]: MultiChildLayoutParentData;
+    get offset(): upstream5.Offset;
+    get previousSibling(): upstream1.RenderBox | null;
+    get nextSibling(): upstream1.RenderBox | null;
+    get id(): unknown | null;
+    detach(): void;
+    toString(): string;
+    set offset(value: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>);
+    set previousSibling(value: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
+    set nextSibling(value: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
+    set id(value: unknown | null);
 }
-export interface MultiChildLayoutParentData {
-    readonly [_flaxDartTypeValue]: MultiChildLayoutParentData;
+export declare function _MultiChildLayoutParentDataFactory(): MultiChildLayoutParentData;
+export interface _MultiChildLayoutParentDataNative extends MultiChildLayoutParentData {
+    readonly [_flaxDartTypeValue]: _MultiChildLayoutParentDataNative;
     detach(): void;
     toString(): string;
     get id(): unknown | null;
@@ -68,14 +107,16 @@ export interface MultiChildLayoutParentData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null);
 }
-export declare abstract class MultiChildLayoutParentData extends _FlaxProxyBase {
+export declare abstract class _MultiChildLayoutParentDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MultiChildLayoutParentData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: MultiChildLayoutParentData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:MultiChildLayoutParentData", readonly [], false];
     constructor();
 }
-export declare namespace MultiChildLayoutParentData {
+export declare namespace _MultiChildLayoutParentDataFactory {
     function implement(args: [], implementation: {}): MultiChildLayoutParentData;
 }
+declare const _MultiChildLayoutParentDataBinding: typeof _MultiChildLayoutParentDataFactory & (new () => _MultiChildLayoutParentDataNative);
+export declare const MultiChildLayoutParentData: typeof _MultiChildLayoutParentDataBinding & _FlaxInstanceType<MultiChildLayoutParentData> & _FlaxDartType<MultiChildLayoutParentData, readonly ["class", "flax.core/sdk_rendering#type:MultiChildLayoutParentData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "offset" | "previousSibling" | "nextSibling" | "id" | "detach" | "toString" | "__flaxBound:package:flutter/src/rendering/custom_layout.dart::MultiChildLayoutParentData" | "__flaxBound:package:flutter/src/rendering/box.dart::ContainerBoxParentData" | "__flaxBound:package:flutter/src/rendering/box.dart::BoxParentData" | "__flaxBound:package:flutter/src/rendering/object.dart::ParentData" | "__flaxBound:package:flutter/src/rendering/object.dart::ContainerParentDataMixin";
 export {};

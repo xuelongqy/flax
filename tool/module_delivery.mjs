@@ -18,8 +18,8 @@ async function json(path) {
 
 async function bindingManifest(path) {
   const manifest = await json(join(root, path));
-  if (manifest.formatVersion !== 27) {
-    throw new Error(`Expected Binding Manifest 27: ${path}`);
+  if (manifest.formatVersion !== 28) {
+    throw new Error(`Expected Binding Manifest 28: ${path}`);
   }
   return expandManifestMembers(manifest);
 }
@@ -182,23 +182,22 @@ function coreSource(specifier) {
   throw new Error(`No @flax/core delivery source for ${specifier}`);
 }
 
-function materialSource(specifier) {
-  if (specifier !== '@flax/material-ui') {
-    throw new Error(`No @flax/material-ui delivery source for ${specifier}`);
+function uiSource(specifier, library) {
+  const publicName = `@flax/${library}-ui`;
+  let subpathRoot = `dist/generated/libraries/${library}`;
+  if (specifier !== publicName) {
+    const prefix = `${publicName}/dependencies/`;
+    const dependency = specifier.startsWith(prefix)
+      ? specifier.slice(prefix.length)
+      : '';
+    if (!/^[a-z]/.test(dependency) || /[^a-z0-9_]/.test(dependency)) {
+      throw new Error(`No ${publicName} delivery source for ${specifier}`);
+    }
+    subpathRoot = `dist/generated/dependencies/${dependency}`;
   }
   return {
-    source: 'dist/generated/libraries/material/index.js',
-    subpathRoot: 'dist/generated/libraries/material',
-  };
-}
-
-function cupertinoSource(specifier) {
-  if (specifier !== '@flax/cupertino-ui') {
-    throw new Error('Unexpected Cupertino module specifier');
-  }
-  return {
-    source: 'dist/generated/libraries/cupertino/index.js',
-    subpathRoot: 'dist/generated/libraries/cupertino',
+    source: `${subpathRoot}/index.js`,
+    subpathRoot,
   };
 }
 
@@ -269,12 +268,12 @@ const targets = [
   {
     packageDirectory: 'packages/flax_material_ui/js',
     manifestPath: 'packages/flax_material_ui/bindings/manifest.json',
-    sourceFor: materialSource,
+    sourceFor: (specifier) => uiSource(specifier, 'material'),
   },
   {
     packageDirectory: 'packages/flax_cupertino_ui/js',
     manifestPath: 'packages/flax_cupertino_ui/bindings/manifest.json',
-    sourceFor: cupertinoSource,
+    sourceFor: (specifier) => uiSource(specifier, 'cupertino'),
   },
 ];
 

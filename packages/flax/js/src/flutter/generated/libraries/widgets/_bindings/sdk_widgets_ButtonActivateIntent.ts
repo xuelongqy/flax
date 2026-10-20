@@ -14,16 +14,10 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ButtonActivateIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::ButtonActivateIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __ButtonActivateIntent: unique symbol;
-readonly [_flaxDartTypeValue]: ButtonActivateIntent;
-
-}
-defineObject("flax.core/sdk_widgets#type:ButtonActivateIntent", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ButtonActivateIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
-const _ButtonActivateIntentProxy = {type: "flax.core/sdk_widgets#type:ButtonActivateIntent", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface ButtonActivateIntent {
 readonly [_flaxDartTypeValue]: ButtonActivateIntent;
 
 toStringShort(): string;
@@ -31,14 +25,30 @@ toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream3
 debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 toString(options?: {minLevel?: upstream5.DiagnosticLevel | undefined}): string;
 }
-export abstract class ButtonActivateIntent extends _FlaxProxyBase {
+defineObject("flax.core/sdk_widgets#type:ButtonActivateIntent", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ButtonActivateIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
+export function _ButtonActivateIntentFactory(): ButtonActivateIntent {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:ButtonActivateIntent", "", [], [], {}) as ButtonActivateIntent;
+}
+const _ButtonActivateIntentProxy = {type: "flax.core/sdk_widgets#type:ButtonActivateIntent", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+export interface _ButtonActivateIntentNative extends ButtonActivateIntent {
+readonly [_flaxDartTypeValue]: _ButtonActivateIntentNative;
+
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream3.DiagnosticsTreeStyle | null | undefined}): upstream2.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream5.DiagnosticLevel | undefined}): string;
+}
+export abstract class _ButtonActivateIntentNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ButtonActivateIntent>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ButtonActivateIntent;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ButtonActivateIntent", readonly [], false];
 constructor() { super(_ButtonActivateIntentProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ButtonActivateIntent.prototype, _ButtonActivateIntentProxy);
-export namespace ButtonActivateIntent { export function implement(args: [], implementation: {}): ButtonActivateIntent {
+_flaxDefineProxyBase(_ButtonActivateIntentNative.prototype, _ButtonActivateIntentProxy);
+export namespace _ButtonActivateIntentFactory { export function implement(args: [], implementation: {}): ButtonActivateIntent {
 return constructProxy(_ButtonActivateIntentProxy, args, implementation) as ButtonActivateIntent; } }
-_flaxBindInstanceType<ButtonActivateIntent, typeof ButtonActivateIntent>(ButtonActivateIntent, "flax.core/sdk_widgets#type:ButtonActivateIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _ButtonActivateIntentBinding = _flaxProxyFactory(_ButtonActivateIntentFactory, _ButtonActivateIntentNative) as unknown as typeof _ButtonActivateIntentFactory & (new() => _ButtonActivateIntentNative);
+export const ButtonActivateIntent: typeof _ButtonActivateIntentBinding & _FlaxInstanceType<ButtonActivateIntent> & _FlaxDartType<ButtonActivateIntent, readonly ["class", "flax.core/sdk_widgets#type:ButtonActivateIntent", readonly [], false]> = _flaxBindInstanceType<ButtonActivateIntent, typeof _ButtonActivateIntentBinding>(_ButtonActivateIntentBinding, "flax.core/sdk_widgets#type:ButtonActivateIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ButtonActivateIntentBinding & _FlaxInstanceType<ButtonActivateIntent> & _FlaxDartType<ButtonActivateIntent, readonly ["class", "flax.core/sdk_widgets#type:ButtonActivateIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/actions.dart::ButtonActivateIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

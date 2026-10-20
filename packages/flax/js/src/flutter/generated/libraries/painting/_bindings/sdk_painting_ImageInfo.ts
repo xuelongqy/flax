@@ -4,17 +4,30 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
 import { _flaxMemberParameters2, _flaxMemberParameters21, _flaxMemberParameters74 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ImageInfo extends Readonly<{ "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageInfo": readonly [] }> { readonly __ImageInfo: unique symbol;
 readonly [_flaxDartTypeValue]: ImageInfo;
 
+readonly image: upstream0.Image;
+readonly sizeBytes: number;
+readonly scale: number;
+readonly debugLabel: string | null;
+clone(): ImageInfo;
+isCloneOf(other: Readonly<{ "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageInfo": readonly [] }>): boolean;
+dispose(): void;
+toString(): string;
 }
 defineObject("flax.core/sdk_painting#type:ImageInfo", ["image","sizeBytes","scale","debugLabel"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ImageInfo", "object", {"clone":_flaxMemberParameters2,"isCloneOf":_flaxMemberParameters21,"dispose":_flaxMemberParameters2,"toString":_flaxMemberParameters2}, {}), []);
+export function _ImageInfoFactory(options: { image: Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>; scale?: number | undefined; debugLabel?: string | null | undefined }): ImageInfo {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_painting#type:ImageInfo", "", [{"name":"image","required":true},{"name":"scale"},{"name":"debugLabel"}], [], options) as ImageInfo;
+}
 const _ImageInfoProxy = {type: "flax.core/sdk_painting#type:ImageInfo", parameters: _flaxMemberParameters74, constructors: {"": _flaxMemberParameters74}, methods: {"clone":_flaxMemberParameters2,"isCloneOf":_flaxMemberParameters21,"dispose":_flaxMemberParameters2,"toString":_flaxMemberParameters2}, getters: ["image","sizeBytes","scale","debugLabel"], setters: [], contextMembers: [], superMembers: ["get:image","get:sizeBytes","get:scale","get:debugLabel","clone","isCloneOf","dispose","toString"]} as const;
-export interface ImageInfo {
-readonly [_flaxDartTypeValue]: ImageInfo;
+export interface _ImageInfoNative extends ImageInfo {
+readonly [_flaxDartTypeValue]: _ImageInfoNative;
 
 clone(): ImageInfo;
 isCloneOf(other: Readonly<{ "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageInfo": readonly [] }>): boolean;
@@ -25,13 +38,14 @@ get sizeBytes(): number;
 get scale(): number;
 get debugLabel(): string | null;
 }
-export abstract class ImageInfo extends _FlaxProxyBase {
+export abstract class _ImageInfoNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ImageInfo>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ImageInfo;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_painting#type:ImageInfo", readonly [], false];
 constructor(options: {image: Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>; scale?: number | undefined; debugLabel?: string | null | undefined}) { super(_ImageInfoProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ImageInfo.prototype, _ImageInfoProxy);
-export namespace ImageInfo { export function implement(args: [options: {image: Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>; scale?: number | undefined; debugLabel?: string | null | undefined}], implementation: {}): ImageInfo {
+_flaxDefineProxyBase(_ImageInfoNative.prototype, _ImageInfoProxy);
+export namespace _ImageInfoFactory { export function implement(args: [options: {image: Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>; scale?: number | undefined; debugLabel?: string | null | undefined}], implementation: {}): ImageInfo {
 return constructProxy(_ImageInfoProxy, args, implementation) as ImageInfo; } }
-_flaxBindInstanceType<ImageInfo, typeof ImageInfo>(ImageInfo, "flax.core/sdk_painting#type:ImageInfo", ["dart:core::Object"]);
+const _ImageInfoBinding = _flaxProxyFactory(_ImageInfoFactory, _ImageInfoNative) as unknown as typeof _ImageInfoFactory & (new(options: {image: Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>; scale?: number | undefined; debugLabel?: string | null | undefined}) => _ImageInfoNative);
+export const ImageInfo: typeof _ImageInfoBinding & _FlaxInstanceType<ImageInfo> & _FlaxDartType<ImageInfo, readonly ["class", "flax.core/sdk_painting#type:ImageInfo", readonly [], false]> = _flaxBindInstanceType<ImageInfo, typeof _ImageInfoBinding>(_ImageInfoBinding, "flax.core/sdk_painting#type:ImageInfo", ["dart:core::Object"]) as typeof _ImageInfoBinding & _FlaxInstanceType<ImageInfo> & _FlaxDartType<ImageInfo, readonly ["class", "flax.core/sdk_painting#type:ImageInfo", readonly [], false]>;

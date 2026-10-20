@@ -12,7 +12,7 @@ import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import type * as upstream7 from '@flax/flutter/material/_bindings/sdk_material_Thumb';
 import '@flax/flutter/material/_bindings/sdk_material_Thumb';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface HandleRangeSliderThumbShape extends Omit<upstream0.RangeSliderThumbShape, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/range_slider_parts.dart::HandleRangeSliderThumbShape": readonly [];
 }>, Readonly<{
@@ -20,9 +20,46 @@ export interface HandleRangeSliderThumbShape extends Omit<upstream0.RangeSliderT
 }> {
     readonly __HandleRangeSliderThumbShape: unique symbol;
     readonly [_flaxDartTypeValue]: HandleRangeSliderThumbShape;
+    getPreferredSize(isEnabled: boolean, isDiscrete: boolean): upstream1.Size;
+    paint(context: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext": readonly [];
+    }>, center: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options: {
+        activationAnimation: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>;
+        enableAnimation: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>;
+        isDiscrete?: boolean | undefined;
+        isEnabled?: boolean | undefined;
+        isOnTop?: boolean | null | undefined;
+        isPressed?: boolean | null | undefined;
+        sliderTheme: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        textDirection?: upstream6.TextDirection | null | undefined;
+        thumb?: upstream7.Thumb | null | undefined;
+    }): void;
 }
-export interface HandleRangeSliderThumbShape {
-    readonly [_flaxDartTypeValue]: HandleRangeSliderThumbShape;
+export declare function _HandleRangeSliderThumbShapeFactory(): HandleRangeSliderThumbShape;
+export interface _HandleRangeSliderThumbShapeNative extends HandleRangeSliderThumbShape {
+    readonly [_flaxDartTypeValue]: _HandleRangeSliderThumbShapeNative;
     getPreferredSize(isEnabled: boolean, isDiscrete: boolean): upstream1.Size;
     paint(context: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
@@ -60,14 +97,16 @@ export interface HandleRangeSliderThumbShape {
         isPressed?: boolean | null | undefined;
     }): void;
 }
-export declare abstract class HandleRangeSliderThumbShape extends _FlaxProxyBase {
+export declare abstract class _HandleRangeSliderThumbShapeNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<HandleRangeSliderThumbShape>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: HandleRangeSliderThumbShape;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:HandleRangeSliderThumbShape", readonly [], false];
     constructor();
 }
-export declare namespace HandleRangeSliderThumbShape {
+export declare namespace _HandleRangeSliderThumbShapeFactory {
     function implement(args: [], implementation: {}): HandleRangeSliderThumbShape;
 }
+declare const _HandleRangeSliderThumbShapeBinding: typeof _HandleRangeSliderThumbShapeFactory & (new () => _HandleRangeSliderThumbShapeNative);
+export declare const HandleRangeSliderThumbShape: typeof _HandleRangeSliderThumbShapeBinding & _FlaxInstanceType<HandleRangeSliderThumbShape> & _FlaxDartType<HandleRangeSliderThumbShape, readonly ["class", "flax.core/sdk_material#type:HandleRangeSliderThumbShape", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "getPreferredSize" | "paint" | "__flaxBound:package:flutter/src/material/range_slider_parts.dart::HandleRangeSliderThumbShape" | "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderThumbShape";
 export {};

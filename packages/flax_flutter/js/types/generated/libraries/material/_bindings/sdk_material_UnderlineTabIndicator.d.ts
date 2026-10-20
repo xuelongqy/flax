@@ -26,7 +26,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface UnderlineTabIndicator extends Omit<upstream0.Decoration, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Decoration>, Readonly<{
     "__flaxBound:package:flutter/src/material/tab_indicator.dart::UnderlineTabIndicator": readonly [];
 }>, Readonly<{
@@ -36,9 +36,66 @@ export interface UnderlineTabIndicator extends Omit<upstream0.Decoration, _flaxO
 }> {
     readonly __UnderlineTabIndicator: unique symbol;
     readonly [_flaxDartTypeValue]: UnderlineTabIndicator;
+    readonly padding: upstream4.EdgeInsetsGeometry;
+    readonly isComplex: boolean;
+    readonly borderRadius: upstream2.BorderRadius | null;
+    readonly borderSide: upstream3.BorderSide;
+    readonly insets: upstream4.EdgeInsetsGeometry;
+    toStringShort(): string;
+    debugAssertIsValid(): boolean;
+    lerpFrom(a: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null, t: number): upstream0.Decoration | null;
+    lerpTo(b: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null, t: number): upstream0.Decoration | null;
+    hitTest(size: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream7.TextDirection | null | undefined;
+    }): boolean;
+    createBoxPainter(onChanged?: (() => void) | null): upstream8.BoxPainter;
+    getClipPath(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, textDirection: upstream7.TextDirection): upstream9.Path;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream12.DiagnosticsTreeStyle | null | undefined;
+    }): upstream11.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toString(options?: {
+        minLevel?: upstream14.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface UnderlineTabIndicator {
-    readonly [_flaxDartTypeValue]: UnderlineTabIndicator;
+export declare function _UnderlineTabIndicatorFactory(options?: {
+    borderRadius?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+    }>) | null | undefined;
+    borderSide?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | undefined;
+    insets?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | undefined;
+}): UnderlineTabIndicator;
+export interface _UnderlineTabIndicatorNative extends UnderlineTabIndicator {
+    readonly [_flaxDartTypeValue]: _UnderlineTabIndicatorNative;
     toStringShort(): string;
     debugAssertIsValid(): boolean;
     lerpFrom(a: (Readonly<{
@@ -82,7 +139,7 @@ export interface UnderlineTabIndicator {
     get padding(): upstream4.EdgeInsetsGeometry;
     get isComplex(): boolean;
 }
-export declare abstract class UnderlineTabIndicator extends _FlaxProxyBase {
+export declare abstract class _UnderlineTabIndicatorNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<UnderlineTabIndicator>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: UnderlineTabIndicator;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:UnderlineTabIndicator", readonly [], false];
@@ -102,7 +159,7 @@ export declare abstract class UnderlineTabIndicator extends _FlaxProxyBase {
         }> | undefined;
     });
 }
-export declare namespace UnderlineTabIndicator {
+export declare namespace _UnderlineTabIndicatorFactory {
     function implement(args: [options?: {
         borderRadius?: (Readonly<{
             "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
@@ -119,5 +176,21 @@ export declare namespace UnderlineTabIndicator {
         }> | undefined;
     }], implementation: {}): UnderlineTabIndicator;
 }
+declare const _UnderlineTabIndicatorBinding: typeof _UnderlineTabIndicatorFactory & (new (options?: {
+    borderRadius?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+    }>) | null | undefined;
+    borderSide?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | undefined;
+    insets?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | undefined;
+}) => _UnderlineTabIndicatorNative);
+export declare const UnderlineTabIndicator: typeof _UnderlineTabIndicatorBinding & _FlaxInstanceType<UnderlineTabIndicator> & _FlaxDartType<UnderlineTabIndicator, readonly ["class", "flax.core/sdk_material#type:UnderlineTabIndicator", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "padding" | "isComplex" | "borderRadius" | "borderSide" | "insets" | "toStringShort" | "debugAssertIsValid" | "lerpFrom" | "lerpTo" | "hitTest" | "createBoxPainter" | "getClipPath" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/material/tab_indicator.dart::UnderlineTabIndicator" | "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

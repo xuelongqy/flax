@@ -15,7 +15,7 @@ import type * as upstream5 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import type * as upstream6 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import { _flaxMemberParameters14, _flaxMemberParameters240, _flaxMemberParameters2, _flaxMemberParameters236, _flaxMemberParameters285 } from "@flax/flutter/material/_bindings/sdk_material.__module";
+import { _flaxMemberParameters14, _flaxMemberParameters243, _flaxMemberParameters2, _flaxMemberParameters239, _flaxMemberParameters288 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,8 +23,8 @@ export interface SliderTrackShape extends Readonly<{ "__flaxBound:package:flutte
 readonly [_flaxDartTypeValue]: SliderTrackShape;
 
 }
-defineObject("flax.core/sdk_material#type:SliderTrackShape", ["isRounded"], [], _flaxBindingMethods("flax.core/sdk_material#type:SliderTrackShape", "object", {"getPreferredRect":_flaxMemberParameters14,"paint":_flaxMemberParameters240}, {}), []);
-const _SliderTrackShapeProxy = {type: "flax.core/sdk_material#type:SliderTrackShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredRect":_flaxMemberParameters236,"paint":_flaxMemberParameters285}, getters: ["isRounded"], setters: [], contextMembers: [], superMembers: ["get:isRounded"]} as const;
+defineObject("flax.core/sdk_material#type:SliderTrackShape", ["isRounded"], [], _flaxBindingMethods("flax.core/sdk_material#type:SliderTrackShape", "object", {"getPreferredRect":_flaxMemberParameters14,"paint":_flaxMemberParameters243}, {}), []);
+const _SliderTrackShapeProxy = {type: "flax.core/sdk_material#type:SliderTrackShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredRect":_flaxMemberParameters239,"paint":_flaxMemberParameters288}, getters: ["isRounded"], setters: [], contextMembers: [], superMembers: ["get:isRounded"]} as const;
 export interface SliderTrackShape {
 readonly [_flaxDartTypeValue]: SliderTrackShape;
 

@@ -45,7 +45,7 @@ import type * as upstream21 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SliderThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
 }>, Readonly<{
@@ -53,9 +53,280 @@ export interface SliderThemeData extends Omit<upstream0.Diagnosticable, _flaxOwn
 }> {
     readonly __SliderThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: SliderThemeData;
+    readonly trackHeight: number | null;
+    readonly activeTrackColor: upstream1.Color | null;
+    readonly inactiveTrackColor: upstream1.Color | null;
+    readonly secondaryActiveTrackColor: upstream1.Color | null;
+    readonly disabledActiveTrackColor: upstream1.Color | null;
+    readonly disabledSecondaryActiveTrackColor: upstream1.Color | null;
+    readonly disabledInactiveTrackColor: upstream1.Color | null;
+    readonly activeTickMarkColor: upstream1.Color | null;
+    readonly inactiveTickMarkColor: upstream1.Color | null;
+    readonly disabledActiveTickMarkColor: upstream1.Color | null;
+    readonly disabledInactiveTickMarkColor: upstream1.Color | null;
+    readonly thumbColor: upstream1.Color | null;
+    readonly overlappingShapeStrokeColor: upstream1.Color | null;
+    readonly disabledThumbColor: upstream1.Color | null;
+    readonly overlayColor: upstream1.Color | null;
+    readonly valueIndicatorColor: upstream1.Color | null;
+    readonly valueIndicatorStrokeColor: upstream1.Color | null;
+    readonly overlayShape: upstream2.SliderComponentShape | null;
+    readonly tickMarkShape: upstream3.SliderTickMarkShape | null;
+    readonly thumbShape: upstream2.SliderComponentShape | null;
+    readonly trackShape: upstream4.SliderTrackShape | null;
+    readonly valueIndicatorShape: upstream2.SliderComponentShape | null;
+    readonly rangeTickMarkShape: upstream5.RangeSliderTickMarkShape | null;
+    readonly rangeThumbShape: upstream6.RangeSliderThumbShape | null;
+    readonly rangeTrackShape: upstream7.RangeSliderTrackShape | null;
+    readonly rangeValueIndicatorShape: upstream8.RangeSliderValueIndicatorShape | null;
+    readonly showValueIndicator: upstream9.ShowValueIndicator | null;
+    readonly valueIndicatorTextStyle: upstream10.TextStyle | null;
+    readonly minThumbSeparation: number | null;
+    readonly thumbSelector: ((textDirection: upstream12.TextDirection, values: Readonly<{
+        "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeValues": readonly [];
+    }>, tapValue: number, thumbSize: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, trackSize: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, dx: number) => upstream11.Thumb | null) | null;
+    readonly mouseCursor: upstream15.WidgetStateProperty<upstream16.MouseCursor | null> | null;
+    readonly allowedInteraction: upstream17.SliderInteraction | null;
+    readonly padding: upstream18.EdgeInsetsGeometry | null;
+    readonly thumbSize: upstream15.WidgetStateProperty<upstream14.Size | null> | null;
+    readonly trackGap: number | null;
+    readonly year2023: boolean | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream19.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream21.DiagnosticsTreeStyle | null | undefined;
+    }): upstream20.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        activeTickMarkColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        activeTrackColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        allowedInteraction?: upstream17.SliderInteraction | null | undefined;
+        disabledActiveTickMarkColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        disabledActiveTrackColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        disabledInactiveTickMarkColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        disabledInactiveTrackColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        disabledSecondaryActiveTrackColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        disabledThumbColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        inactiveTickMarkColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        inactiveTrackColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        minThumbSeparation?: number | null | undefined;
+        mouseCursor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream16.MouseCursor | null];
+        }> | null | undefined;
+        overlappingShapeStrokeColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        overlayColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        overlayShape?: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::SliderComponentShape": readonly [];
+        }> | null | undefined;
+        padding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        rangeThumbShape?: Readonly<{
+            "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderThumbShape": readonly [];
+        }> | null | undefined;
+        rangeTickMarkShape?: Readonly<{
+            "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderTickMarkShape": readonly [];
+        }> | null | undefined;
+        rangeTrackShape?: Readonly<{
+            "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderTrackShape": readonly [];
+        }> | null | undefined;
+        rangeValueIndicatorShape?: Readonly<{
+            "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderValueIndicatorShape": readonly [];
+        }> | null | undefined;
+        secondaryActiveTrackColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        showValueIndicator?: upstream9.ShowValueIndicator | null | undefined;
+        thumbColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        thumbSelector?: ((textDirection: upstream12.TextDirection, values: upstream13.RangeValues, tapValue: number, thumbSize: upstream14.Size, trackSize: upstream14.Size, dx: number) => upstream11.Thumb | null) | null | undefined;
+        thumbShape?: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::SliderComponentShape": readonly [];
+        }> | null | undefined;
+        thumbSize?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream14.Size | null];
+        }> | null | undefined;
+        tickMarkShape?: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_parts.dart::SliderTickMarkShape": readonly [];
+        }> | null | undefined;
+        trackGap?: number | null | undefined;
+        trackHeight?: number | null | undefined;
+        trackShape?: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_parts.dart::SliderTrackShape": readonly [];
+        }> | null | undefined;
+        valueIndicatorColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        valueIndicatorShape?: Readonly<{
+            "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::SliderComponentShape": readonly [];
+        }> | null | undefined;
+        valueIndicatorStrokeColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        valueIndicatorTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        year2023?: boolean | null | undefined;
+    }): SliderThemeData;
 }
-export interface SliderThemeData {
-    readonly [_flaxDartTypeValue]: SliderThemeData;
+export declare function _SliderThemeDataFactory(options?: {
+    trackHeight?: number | null | undefined;
+    activeTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    inactiveTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    secondaryActiveTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledActiveTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledInactiveTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledSecondaryActiveTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    activeTickMarkColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    inactiveTickMarkColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledActiveTickMarkColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledInactiveTickMarkColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    thumbColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    overlappingShapeStrokeColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledThumbColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    valueIndicatorColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    valueIndicatorStrokeColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    overlayShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::SliderComponentShape": readonly [];
+    }> | null | undefined;
+    tickMarkShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_parts.dart::SliderTickMarkShape": readonly [];
+    }> | null | undefined;
+    thumbShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::SliderComponentShape": readonly [];
+    }> | null | undefined;
+    trackShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_parts.dart::SliderTrackShape": readonly [];
+    }> | null | undefined;
+    valueIndicatorShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::SliderComponentShape": readonly [];
+    }> | null | undefined;
+    rangeTickMarkShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderTickMarkShape": readonly [];
+    }> | null | undefined;
+    rangeThumbShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderThumbShape": readonly [];
+    }> | null | undefined;
+    rangeTrackShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderTrackShape": readonly [];
+    }> | null | undefined;
+    rangeValueIndicatorShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderValueIndicatorShape": readonly [];
+    }> | null | undefined;
+    showValueIndicator?: upstream9.ShowValueIndicator | null | undefined;
+    valueIndicatorTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    minThumbSeparation?: number | null | undefined;
+    thumbSelector?: ((textDirection: upstream12.TextDirection, values: upstream13.RangeValues, tapValue: number, thumbSize: upstream14.Size, trackSize: upstream14.Size, dx: number) => upstream11.Thumb | null) | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream16.MouseCursor | null];
+    }> | null | undefined;
+    allowedInteraction?: upstream17.SliderInteraction | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    thumbSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream14.Size | null];
+    }> | null | undefined;
+    trackGap?: number | null | undefined;
+    year2023?: boolean | null | undefined;
+}): SliderThemeData;
+export declare namespace _SliderThemeDataFactory {
+    function fromPrimaryColors(options: {
+        primaryColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        primaryColorDark: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        primaryColorLight: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        valueIndicatorTextStyle: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+    }): SliderThemeData;
+}
+export interface _SliderThemeDataNative extends SliderThemeData {
+    readonly [_flaxDartTypeValue]: _SliderThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream19.DiagnosticLevel | undefined;
@@ -212,7 +483,7 @@ export interface SliderThemeData {
     get trackGap(): number | null;
     get year2023(): boolean | null;
 }
-export declare abstract class SliderThemeData extends _FlaxProxyBase {
+export declare abstract class _SliderThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SliderThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SliderThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:SliderThemeData", readonly [], false];
@@ -315,7 +586,7 @@ export declare abstract class SliderThemeData extends _FlaxProxyBase {
         year2023?: boolean | null | undefined;
     });
 }
-export declare namespace SliderThemeData {
+export declare namespace _SliderThemeDataFactory {
     function implement(args: [options?: {
         trackHeight?: number | null | undefined;
         activeTrackColor?: Readonly<{
@@ -415,7 +686,105 @@ export declare namespace SliderThemeData {
         year2023?: boolean | null | undefined;
     }], implementation: {}): SliderThemeData;
 }
-export declare namespace SliderThemeData {
+declare const _SliderThemeDataBinding: typeof _SliderThemeDataFactory & (new (options?: {
+    trackHeight?: number | null | undefined;
+    activeTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    inactiveTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    secondaryActiveTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledActiveTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledInactiveTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledSecondaryActiveTrackColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    activeTickMarkColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    inactiveTickMarkColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledActiveTickMarkColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledInactiveTickMarkColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    thumbColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    overlappingShapeStrokeColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledThumbColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    valueIndicatorColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    valueIndicatorStrokeColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    overlayShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::SliderComponentShape": readonly [];
+    }> | null | undefined;
+    tickMarkShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_parts.dart::SliderTickMarkShape": readonly [];
+    }> | null | undefined;
+    thumbShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::SliderComponentShape": readonly [];
+    }> | null | undefined;
+    trackShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_parts.dart::SliderTrackShape": readonly [];
+    }> | null | undefined;
+    valueIndicatorShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/slider_value_indicator_shape.dart::SliderComponentShape": readonly [];
+    }> | null | undefined;
+    rangeTickMarkShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderTickMarkShape": readonly [];
+    }> | null | undefined;
+    rangeThumbShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderThumbShape": readonly [];
+    }> | null | undefined;
+    rangeTrackShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderTrackShape": readonly [];
+    }> | null | undefined;
+    rangeValueIndicatorShape?: Readonly<{
+        "__flaxBound:package:flutter/src/material/range_slider_parts.dart::RangeSliderValueIndicatorShape": readonly [];
+    }> | null | undefined;
+    showValueIndicator?: upstream9.ShowValueIndicator | null | undefined;
+    valueIndicatorTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    minThumbSeparation?: number | null | undefined;
+    thumbSelector?: ((textDirection: upstream12.TextDirection, values: upstream13.RangeValues, tapValue: number, thumbSize: upstream14.Size, trackSize: upstream14.Size, dx: number) => upstream11.Thumb | null) | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream16.MouseCursor | null];
+    }> | null | undefined;
+    allowedInteraction?: upstream17.SliderInteraction | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    thumbSize?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream14.Size | null];
+    }> | null | undefined;
+    trackGap?: number | null | undefined;
+    year2023?: boolean | null | undefined;
+}) => _SliderThemeDataNative);
+export declare namespace _SliderThemeDataFactory {
     function lerp(a: Readonly<{
         "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData": readonly [];
     }> & Readonly<{
@@ -426,5 +795,6 @@ export declare namespace SliderThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>, t: number): SliderThemeData;
 }
+export declare const SliderThemeData: typeof _SliderThemeDataBinding & _FlaxInstanceType<SliderThemeData> & _FlaxDartType<SliderThemeData, readonly ["class", "flax.core/sdk_material#type:SliderThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "trackHeight" | "activeTrackColor" | "inactiveTrackColor" | "secondaryActiveTrackColor" | "disabledActiveTrackColor" | "disabledSecondaryActiveTrackColor" | "disabledInactiveTrackColor" | "activeTickMarkColor" | "inactiveTickMarkColor" | "disabledActiveTickMarkColor" | "disabledInactiveTickMarkColor" | "thumbColor" | "overlappingShapeStrokeColor" | "disabledThumbColor" | "overlayColor" | "valueIndicatorColor" | "valueIndicatorStrokeColor" | "overlayShape" | "tickMarkShape" | "thumbShape" | "trackShape" | "valueIndicatorShape" | "rangeTickMarkShape" | "rangeThumbShape" | "rangeTrackShape" | "rangeValueIndicatorShape" | "showValueIndicator" | "valueIndicatorTextStyle" | "minThumbSeparation" | "thumbSelector" | "mouseCursor" | "allowedInteraction" | "padding" | "thumbSize" | "trackGap" | "year2023" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/slider_theme.dart::SliderThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

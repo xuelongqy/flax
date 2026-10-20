@@ -16,17 +16,29 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { _flaxMemberParameters31, _flaxMemberParameters7, _flaxMemberParameters16, _flaxMemberParameters15, _flaxMemberParameters9 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ForcePressDetails extends Omit<upstream0.PositionedGestureDetails, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PositionedGestureDetails>, Readonly<{ "__flaxBound:package:flutter/src/gestures/force_press.dart::ForcePressDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __ForcePressDetails: unique symbol;
 readonly [_flaxDartTypeValue]: ForcePressDetails;
 
+readonly globalPosition: upstream2.Offset;
+readonly localPosition: upstream2.Offset;
+readonly pressure: number;
+toStringShort(): string;
+toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream5.DiagnosticsTreeStyle | null | undefined}): upstream4.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 }
 defineObject("flax.core/sdk_gestures#type:ForcePressDetails", ["globalPosition","localPosition","pressure"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:ForcePressDetails", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+export function _ForcePressDetailsFactory(options: { globalPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; pressure: number }): ForcePressDetails {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_gestures#type:ForcePressDetails", "", [{"name":"globalPosition","required":true},{"name":"localPosition"},{"name":"pressure","required":true}], [], options) as ForcePressDetails;
+}
 const _ForcePressDetailsProxy = {type: "flax.core/sdk_gestures#type:ForcePressDetails", parameters: _flaxMemberParameters31, constructors: {"": _flaxMemberParameters31}, methods: {"toStringShort":_flaxMemberParameters7,"toString":_flaxMemberParameters16,"toDiagnosticsNode":_flaxMemberParameters15,"debugFillProperties":_flaxMemberParameters9}, getters: ["globalPosition","localPosition","pressure"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","get:pressure","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
-export interface ForcePressDetails {
-readonly [_flaxDartTypeValue]: ForcePressDetails;
+export interface _ForcePressDetailsNative extends ForcePressDetails {
+readonly [_flaxDartTypeValue]: _ForcePressDetailsNative;
 
 toStringShort(): string;
 toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined}): string;
@@ -36,14 +48,15 @@ get globalPosition(): upstream2.Offset;
 get localPosition(): upstream2.Offset;
 get pressure(): number;
 }
-export abstract class ForcePressDetails extends _FlaxProxyBase {
+export abstract class _ForcePressDetailsNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ForcePressDetails>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: ForcePressDetails;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:ForcePressDetails", readonly [], false];
 constructor(options: {globalPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; pressure: number}) { super(_ForcePressDetailsProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(ForcePressDetails.prototype, _ForcePressDetailsProxy);
-export namespace ForcePressDetails { export function implement(args: [options: {globalPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; pressure: number}], implementation: {}): ForcePressDetails {
+_flaxDefineProxyBase(_ForcePressDetailsNative.prototype, _ForcePressDetailsProxy);
+export namespace _ForcePressDetailsFactory { export function implement(args: [options: {globalPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; pressure: number}], implementation: {}): ForcePressDetails {
 return constructProxy(_ForcePressDetailsProxy, args, implementation) as ForcePressDetails; } }
-_flaxBindInstanceType<ForcePressDetails, typeof ForcePressDetails>(ForcePressDetails, "flax.core/sdk_gestures#type:ForcePressDetails", ["dart:core::Object","flax.core/sdk_gestures#type:PositionedGestureDetails","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _ForcePressDetailsBinding = _flaxProxyFactory(_ForcePressDetailsFactory, _ForcePressDetailsNative) as unknown as typeof _ForcePressDetailsFactory & (new(options: {globalPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; localPosition?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; pressure: number}) => _ForcePressDetailsNative);
+export const ForcePressDetails: typeof _ForcePressDetailsBinding & _FlaxInstanceType<ForcePressDetails> & _FlaxDartType<ForcePressDetails, readonly ["class", "flax.core/sdk_gestures#type:ForcePressDetails", readonly [], false]> = _flaxBindInstanceType<ForcePressDetails, typeof _ForcePressDetailsBinding>(_ForcePressDetailsBinding, "flax.core/sdk_gestures#type:ForcePressDetails", ["dart:core::Object","flax.core/sdk_gestures#type:PositionedGestureDetails","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ForcePressDetailsBinding & _FlaxInstanceType<ForcePressDetails> & _FlaxDartType<ForcePressDetails, readonly ["class", "flax.core/sdk_gestures#type:ForcePressDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "globalPosition" | "localPosition" | "pressure" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/force_press.dart::ForcePressDetails" | "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

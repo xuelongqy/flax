@@ -55,6 +55,11 @@ void main() {
       var weak = new WeakRef(order);
       order.self = order;
       var comparison = order.compareTo(other);
+      var C = ${_require('@flax/flutter/cupertino')};
+      var M = ${_require('@flax/flutter/material')};
+      var factoryConstruction = C.CupertinoThemeData() instanceof C.CupertinoThemeData &&
+        M.ThemeData() instanceof M.ThemeData &&
+        M.ThemeData.light() instanceof M.ThemeData;
       var callable = typeof new P.AssetImage('not-loaded.png').resolve === 'function' &&
         typeof new P.ImageStreamCompleter().maybeDispose === 'function';
       W.registerPage('sdk', () => W.SizedBox());
@@ -69,6 +74,7 @@ void main() {
         await tester.pumpWidget(h.page('sdk'));
         expect(h.errors, isEmpty);
         expect(h.boolean('callable'), isTrue);
+        expect(h.boolean('factoryConstruction'), isTrue);
         expect(h.number('comparison'), -1);
         expect(h.number('calls'), 1);
         expect(peers, hasLength(2));

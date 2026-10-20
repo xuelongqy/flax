@@ -50,6 +50,10 @@ void main() {
           projection['capabilities'],
         );
         expect(metadata.bindingNamespace, projection['bindingNamespace']);
+        expect(
+          metadata.generateDependencies,
+          projection['generateDependencies'] ?? const <String>[],
+        );
         return;
       }
 
@@ -91,6 +95,116 @@ void main() {
   test('parses an explicit binding namespace', () {
     final metadata = _read(temporary, '$_valid\nbindingNamespace: flax.core\n');
     expect(metadata.bindingNamespace, 'flax.core');
+  });
+
+  test('binding dependency generation is optional in both reading modes', () {
+    for (final strict in [false, true]) {
+      for (final policy in [
+        '',
+        'bindingDependencies: {}',
+        'bindingDependencies:\n  generate: []',
+      ]) {
+        final metadata = _read(
+          temporary,
+          '${_strictBindings('flax.example')}$policy\n',
+          strict: strict,
+        );
+        expect(metadata.generateDependencies, isEmpty);
+        expect(
+          () => metadata.generateDependencies.add('intl'),
+          throwsUnsupportedError,
+        );
+      }
+    }
+  });
+
+  test(
+    'parses sorted immutable binding dependencies in both reading modes',
+    () {
+      for (final strict in [false, true]) {
+        final metadata = _read(
+          temporary,
+          '''${_strictBindings('flax.example')}bindingDependencies:
+  generate: [zebra2, intl, cupertino_ui]
+''',
+          strict: strict,
+        );
+        expect(metadata.generateDependencies, [
+          'cupertino_ui',
+          'intl',
+          'zebra2',
+        ]);
+        expect(
+          () => metadata.generateDependencies.add('other'),
+          throwsUnsupportedError,
+        );
+        expect(
+          () => metadata.generateDependencies[0] = 'other',
+          throwsUnsupportedError,
+        );
+      }
+    },
+  );
+
+  test('both reading modes reject malformed dependency policies', () {
+    for (final policy in [
+      'bindingDependencies: null',
+      'bindingDependencies: []',
+      'bindingDependencies: intl',
+      'bindingDependencies:\n  generate: null',
+      'bindingDependencies:\n  generate: {}',
+      'bindingDependencies:\n  generate: intl',
+      'bindingDependencies:\n  generate: [42]',
+      'bindingDependencies:\n  generate: [null]',
+      "bindingDependencies:\n  generate: ['']",
+      'bindingDependencies:\n  generate: [intl, intl]',
+      'bindingDependencies:\n  generated: [intl]',
+    ]) {
+      expect(
+        () => _read(temporary, '$_valid$policy\n'),
+        throwsFormatException,
+        reason: policy,
+      );
+      expect(
+        _strictErrors(
+          temporary,
+          '${_strictBindings('flax.example')}$policy\n',
+        ).single.pointer,
+        startsWith('/bindingDependencies'),
+        reason: policy,
+      );
+    }
+  });
+
+  test('both reading modes reject noncanonical dependency package names', () {
+    for (final name in [
+      'Intl',
+      '_intl',
+      '1intl',
+      'foo-bar',
+      'foo.bar',
+      'foo/bar',
+      'package:intl',
+      '@flax/intl',
+      ' intl',
+      'intl ',
+      'intl\n',
+      'café',
+    ]) {
+      final source =
+          '''${_strictBindings('flax.example')}bindingDependencies:
+  generate: [${jsonEncode(name)}]
+''';
+      expect(
+        () => _read(temporary, source),
+        throwsFormatException,
+        reason: name,
+      );
+      final diagnostics = _strictErrors(temporary, source);
+      expect(diagnostics.single.code, 'FCG_INVALID_VALUE', reason: name);
+      expect(diagnostics.single.pointer, '/bindingDependencies/generate/0');
+      expect(diagnostics.single.message, 'Invalid Dart package name.');
+    }
   });
 
   test('rejects unknown fields and formats', () {

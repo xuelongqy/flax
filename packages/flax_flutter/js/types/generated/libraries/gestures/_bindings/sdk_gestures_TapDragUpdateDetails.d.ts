@@ -17,7 +17,7 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TapDragUpdateDetails extends Omit<upstream0.PositionedGestureDetails, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.PositionedGestureDetails>, Readonly<{
     "__flaxBound:package:flutter/src/gestures/tap_and_drag.dart::TapDragUpdateDetails": readonly [];
 }>, Readonly<{
@@ -27,9 +27,64 @@ export interface TapDragUpdateDetails extends Omit<upstream0.PositionedGestureDe
 }> {
     readonly __TapDragUpdateDetails: unique symbol;
     readonly [_flaxDartTypeValue]: TapDragUpdateDetails;
+    readonly globalPosition: upstream2.Offset;
+    readonly localPosition: upstream2.Offset;
+    readonly sourceTimeStamp: upstream3.Duration | null;
+    readonly delta: upstream2.Offset;
+    readonly primaryDelta: number | null;
+    readonly kind: upstream4.PointerDeviceKind | null;
+    readonly offsetFromOrigin: upstream2.Offset;
+    readonly localOffsetFromOrigin: upstream2.Offset;
+    readonly consecutiveTapCount: number;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream5.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
 }
-export interface TapDragUpdateDetails {
-    readonly [_flaxDartTypeValue]: TapDragUpdateDetails;
+export declare function _TapDragUpdateDetailsFactory(options: {
+    globalPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    sourceTimeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream3.Duration];
+    }>) | null | undefined;
+    delta?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    primaryDelta?: number | null | undefined;
+    kind?: upstream4.PointerDeviceKind | null | undefined;
+    offsetFromOrigin: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    localOffsetFromOrigin: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    consecutiveTapCount: number;
+}): TapDragUpdateDetails;
+export interface _TapDragUpdateDetailsNative extends TapDragUpdateDetails {
+    readonly [_flaxDartTypeValue]: _TapDragUpdateDetailsNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream5.DiagnosticLevel | undefined;
@@ -51,7 +106,7 @@ export interface TapDragUpdateDetails {
     get localOffsetFromOrigin(): upstream2.Offset;
     get consecutiveTapCount(): number;
 }
-export declare abstract class TapDragUpdateDetails extends _FlaxProxyBase {
+export declare abstract class _TapDragUpdateDetailsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TapDragUpdateDetails>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: TapDragUpdateDetails;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_gestures#type:TapDragUpdateDetails", readonly [], false];
@@ -91,7 +146,7 @@ export declare abstract class TapDragUpdateDetails extends _FlaxProxyBase {
         consecutiveTapCount: number;
     });
 }
-export declare namespace TapDragUpdateDetails {
+export declare namespace _TapDragUpdateDetailsFactory {
     function implement(args: [options: {
         globalPosition: Readonly<{
             "__flaxBound:dart:ui::Offset": readonly [];
@@ -128,5 +183,41 @@ export declare namespace TapDragUpdateDetails {
         consecutiveTapCount: number;
     }], implementation: {}): TapDragUpdateDetails;
 }
+declare const _TapDragUpdateDetailsBinding: typeof _TapDragUpdateDetailsFactory & (new (options: {
+    globalPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    localPosition: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    sourceTimeStamp?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream3.Duration];
+    }>) | null | undefined;
+    delta?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | undefined;
+    primaryDelta?: number | null | undefined;
+    kind?: upstream4.PointerDeviceKind | null | undefined;
+    offsetFromOrigin: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    localOffsetFromOrigin: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>;
+    consecutiveTapCount: number;
+}) => _TapDragUpdateDetailsNative);
+export declare const TapDragUpdateDetails: typeof _TapDragUpdateDetailsBinding & _FlaxInstanceType<TapDragUpdateDetails> & _FlaxDartType<TapDragUpdateDetails, readonly ["class", "flax.core/sdk_gestures#type:TapDragUpdateDetails", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "globalPosition" | "localPosition" | "sourceTimeStamp" | "delta" | "primaryDelta" | "kind" | "offsetFromOrigin" | "localOffsetFromOrigin" | "consecutiveTapCount" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/gestures/tap_and_drag.dart::TapDragUpdateDetails" | "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

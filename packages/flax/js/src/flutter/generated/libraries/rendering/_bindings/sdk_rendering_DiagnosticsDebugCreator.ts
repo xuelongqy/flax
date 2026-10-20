@@ -15,18 +15,54 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_TextTreeConfiguration';
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsSerializationDelegate';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsSerializationDelegate';
-import { _flaxMemberParameters58, _flaxMemberParameters59, _flaxMemberParameters60, _flaxMemberParameters1, _flaxMemberParameters61, _flaxMemberParameters62, _flaxMemberParameters63 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters59, _flaxMemberParameters60, _flaxMemberParameters61, _flaxMemberParameters1, _flaxMemberParameters62, _flaxMemberParameters63, _flaxMemberParameters64 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface DiagnosticsDebugCreator extends Omit<upstream0.DiagnosticsProperty<{}>, _flaxOwnMembers0>, Omit<upstream1.DiagnosticsNode, _flaxOwnMembers0 | keyof upstream0.DiagnosticsProperty<{}>>, Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::DiagnosticsDebugCreator": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsProperty": readonly [{}] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }> { readonly __DiagnosticsDebugCreator: unique symbol;
 readonly [_flaxDartTypeValue]: DiagnosticsDebugCreator;
 
+readonly expandableValue: boolean;
+readonly allowWrap: boolean;
+readonly allowNameWrap: boolean;
+readonly ifNull: string | null;
+readonly ifEmpty: string | null;
+readonly tooltip: string | null;
+readonly missingIfNull: boolean;
+readonly propertyType: upstream2.Type;
+readonly value: unknown | null;
+readonly exception: unknown | null;
+readonly defaultValue: unknown | null;
+readonly isInteresting: boolean;
+readonly level: upstream3.DiagnosticLevel;
+readonly name: string | null;
+readonly showSeparator: boolean;
+readonly showName: boolean;
+readonly linePrefix: string | null;
+readonly emptyBodyDescription: string | null;
+readonly style: upstream4.DiagnosticsTreeStyle | null;
+readonly allowTruncate: boolean;
+readonly textTreeConfiguration: upstream5.TextTreeConfiguration | null;
+toJsonMap(delegate: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [] }>): DartMap<string, unknown | null>;
+valueToString(options?: {parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined}): string;
+toDescription(options?: {parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined}): string;
+getProperties(): DartList<upstream1.DiagnosticsNode>;
+getChildren(): DartList<upstream1.DiagnosticsNode>;
+isFiltered(minLevel: upstream3.DiagnosticLevel): boolean;
+toTimelineArguments(): DartMap<string, string> | null;
+toJsonMapIterative(delegate: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [] }>): DartMap<string, unknown | null>;
+toStringDeep(options?: {minLevel?: upstream3.DiagnosticLevel | undefined; parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined; parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined}): string;
 }
-defineObject("flax.core/sdk_rendering#type:DiagnosticsDebugCreator", ["expandableValue","allowWrap","allowNameWrap","ifNull","ifEmpty","tooltip","missingIfNull","propertyType","value","exception","defaultValue","isInteresting","level","name","showSeparator","showName","linePrefix","emptyBodyDescription","style","allowTruncate","textTreeConfiguration"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:DiagnosticsDebugCreator", "object", {"valueToString":_flaxMemberParameters58}, {}), [], undefined, "flax.core/sdk_foundation#type:DiagnosticsNode");
-const _DiagnosticsDebugCreatorProxy = {type: "flax.core/sdk_rendering#type:DiagnosticsDebugCreator", parameters: _flaxMemberParameters59, constructors: {"": _flaxMemberParameters59}, methods: {"toJsonMap":_flaxMemberParameters60,"valueToString":_flaxMemberParameters58,"toDescription":_flaxMemberParameters58,"getProperties":_flaxMemberParameters1,"getChildren":_flaxMemberParameters1,"isFiltered":_flaxMemberParameters61,"toTimelineArguments":_flaxMemberParameters1,"toJsonMapIterative":_flaxMemberParameters60,"toStringDeep":_flaxMemberParameters62,"toString":_flaxMemberParameters63}, getters: ["expandableValue","allowWrap","allowNameWrap","ifNull","ifEmpty","tooltip","missingIfNull","propertyType","value","exception","defaultValue","isInteresting","level","name","showSeparator","showName","linePrefix","emptyBodyDescription","style","allowTruncate","textTreeConfiguration"], setters: [], contextMembers: [], superMembers: ["get:expandableValue","get:allowWrap","get:allowNameWrap","get:ifNull","get:ifEmpty","get:tooltip","get:missingIfNull","get:propertyType","get:value","get:exception","get:defaultValue","get:isInteresting","get:level","get:name","get:showSeparator","get:showName","get:linePrefix","get:emptyBodyDescription","get:style","get:allowTruncate","get:textTreeConfiguration","toJsonMap","valueToString","toDescription","getProperties","getChildren","isFiltered","toTimelineArguments","toJsonMapIterative","toStringDeep","toString"]} as const;
-export interface DiagnosticsDebugCreator {
-readonly [_flaxDartTypeValue]: DiagnosticsDebugCreator;
+defineObject("flax.core/sdk_rendering#type:DiagnosticsDebugCreator", ["expandableValue","allowWrap","allowNameWrap","ifNull","ifEmpty","tooltip","missingIfNull","propertyType","value","exception","defaultValue","isInteresting","level","name","showSeparator","showName","linePrefix","emptyBodyDescription","style","allowTruncate","textTreeConfiguration"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:DiagnosticsDebugCreator", "object", {"valueToString":_flaxMemberParameters59}, {}), [], undefined, "flax.core/sdk_foundation#type:DiagnosticsNode");
+export function _DiagnosticsDebugCreatorFactory(value: {}): DiagnosticsDebugCreator {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_rendering#type:DiagnosticsDebugCreator", "", [{"name":"value","required":true,"positional":true}], [value], {}) as DiagnosticsDebugCreator;
+}
+const _DiagnosticsDebugCreatorProxy = {type: "flax.core/sdk_rendering#type:DiagnosticsDebugCreator", parameters: _flaxMemberParameters60, constructors: {"": _flaxMemberParameters60}, methods: {"toJsonMap":_flaxMemberParameters61,"valueToString":_flaxMemberParameters59,"toDescription":_flaxMemberParameters59,"getProperties":_flaxMemberParameters1,"getChildren":_flaxMemberParameters1,"isFiltered":_flaxMemberParameters62,"toTimelineArguments":_flaxMemberParameters1,"toJsonMapIterative":_flaxMemberParameters61,"toStringDeep":_flaxMemberParameters63,"toString":_flaxMemberParameters64}, getters: ["expandableValue","allowWrap","allowNameWrap","ifNull","ifEmpty","tooltip","missingIfNull","propertyType","value","exception","defaultValue","isInteresting","level","name","showSeparator","showName","linePrefix","emptyBodyDescription","style","allowTruncate","textTreeConfiguration"], setters: [], contextMembers: [], superMembers: ["get:expandableValue","get:allowWrap","get:allowNameWrap","get:ifNull","get:ifEmpty","get:tooltip","get:missingIfNull","get:propertyType","get:value","get:exception","get:defaultValue","get:isInteresting","get:level","get:name","get:showSeparator","get:showName","get:linePrefix","get:emptyBodyDescription","get:style","get:allowTruncate","get:textTreeConfiguration","toJsonMap","valueToString","toDescription","getProperties","getChildren","isFiltered","toTimelineArguments","toJsonMapIterative","toStringDeep","toString"]} as const;
+export interface _DiagnosticsDebugCreatorNative extends DiagnosticsDebugCreator {
+readonly [_flaxDartTypeValue]: _DiagnosticsDebugCreatorNative;
 
 toJsonMap(delegate: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [] }>): DartMap<string, unknown | null>;
 valueToString(options?: {parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined}): string;
@@ -60,14 +96,15 @@ get style(): upstream4.DiagnosticsTreeStyle | null;
 get allowTruncate(): boolean;
 get textTreeConfiguration(): upstream5.TextTreeConfiguration | null;
 }
-export abstract class DiagnosticsDebugCreator extends _FlaxProxyBase {
+export abstract class _DiagnosticsDebugCreatorNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DiagnosticsDebugCreator>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: DiagnosticsDebugCreator;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:DiagnosticsDebugCreator", readonly [], false];
 constructor(value: {}) { super(_DiagnosticsDebugCreatorProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(DiagnosticsDebugCreator.prototype, _DiagnosticsDebugCreatorProxy);
-export namespace DiagnosticsDebugCreator { export function implement(args: [value: {}], implementation: {}): DiagnosticsDebugCreator {
+_flaxDefineProxyBase(_DiagnosticsDebugCreatorNative.prototype, _DiagnosticsDebugCreatorProxy);
+export namespace _DiagnosticsDebugCreatorFactory { export function implement(args: [value: {}], implementation: {}): DiagnosticsDebugCreator {
 return constructProxy(_DiagnosticsDebugCreatorProxy, args, implementation) as DiagnosticsDebugCreator; } }
-_flaxBindInstanceType<DiagnosticsDebugCreator, typeof DiagnosticsDebugCreator>(DiagnosticsDebugCreator, "flax.core/sdk_rendering#type:DiagnosticsDebugCreator", ["flax.core/sdk_foundation#type:DiagnosticsProperty","flax.core/sdk_foundation#type:DiagnosticsNode","dart:core::Object"]);
+const _DiagnosticsDebugCreatorBinding = _flaxProxyFactory(_DiagnosticsDebugCreatorFactory, _DiagnosticsDebugCreatorNative) as unknown as typeof _DiagnosticsDebugCreatorFactory & (new(value: {}) => _DiagnosticsDebugCreatorNative);
+export const DiagnosticsDebugCreator: typeof _DiagnosticsDebugCreatorBinding & _FlaxInstanceType<DiagnosticsDebugCreator> & _FlaxDartType<DiagnosticsDebugCreator, readonly ["class", "flax.core/sdk_rendering#type:DiagnosticsDebugCreator", readonly [], false]> = _flaxBindInstanceType<DiagnosticsDebugCreator, typeof _DiagnosticsDebugCreatorBinding>(_DiagnosticsDebugCreatorBinding, "flax.core/sdk_rendering#type:DiagnosticsDebugCreator", ["flax.core/sdk_foundation#type:DiagnosticsProperty","flax.core/sdk_foundation#type:DiagnosticsNode","dart:core::Object"]) as typeof _DiagnosticsDebugCreatorBinding & _FlaxInstanceType<DiagnosticsDebugCreator> & _FlaxDartType<DiagnosticsDebugCreator, readonly ["class", "flax.core/sdk_rendering#type:DiagnosticsDebugCreator", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "expandableValue" | "allowWrap" | "allowNameWrap" | "ifNull" | "ifEmpty" | "tooltip" | "missingIfNull" | "propertyType" | "value" | "exception" | "defaultValue" | "isInteresting" | "level" | "name" | "showSeparator" | "showName" | "linePrefix" | "emptyBodyDescription" | "style" | "allowTruncate" | "textTreeConfiguration" | "toJsonMap" | "valueToString" | "toDescription" | "getProperties" | "getChildren" | "isFiltered" | "toTimelineArguments" | "toJsonMapIterative" | "toStringDeep" | "toString" | "__flaxBound:package:flutter/src/rendering/object.dart::DiagnosticsDebugCreator" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode";

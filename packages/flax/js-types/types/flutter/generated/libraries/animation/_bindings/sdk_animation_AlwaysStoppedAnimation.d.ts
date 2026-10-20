@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
@@ -25,9 +25,26 @@ export interface AlwaysStoppedAnimation<T extends unknown | null = unknown | nul
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature1<T>;
     };
+    readonly status: upstream3.AnimationStatus;
+    readonly value: T;
+    readonly isDismissed: boolean;
+    readonly isCompleted: boolean;
+    readonly isAnimating: boolean;
+    readonly isForwardOrCompleted: boolean;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    addStatusListener(listener: ((status: upstream3.AnimationStatus) => void)): void;
+    removeStatusListener(listener: ((status: upstream3.AnimationStatus) => void)): void;
+    drive<U extends unknown | null = unknown | null>(child: Readonly<{
+        "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_FlaxDartOutput<U>];
+    }>): upstream0.Animation<_FlaxDartOutput<U>>;
+    toString(): string;
+    toStringDetails(): string;
 }
-export interface AlwaysStoppedAnimation<T extends unknown | null = unknown | null> {
-    readonly [_flaxDartTypeValue]: AlwaysStoppedAnimation<T>;
+export declare function _AlwaysStoppedAnimationFactory<T extends unknown | null = unknown | null>(value: (T | _FlaxDartOutput<T>)): AlwaysStoppedAnimation<T>;
+export declare function _AlwaysStoppedAnimationFactory(value: unknown | null): AlwaysStoppedAnimation<unknown | null>;
+export interface _AlwaysStoppedAnimationNative<T extends unknown | null = unknown | null> extends AlwaysStoppedAnimation<T> {
+    readonly [_flaxDartTypeValue]: _AlwaysStoppedAnimationNative<T>;
     readonly [_flaxDartMethodCases]?: {
         drive: _FlaxSignature2<T>;
     };
@@ -47,7 +64,7 @@ export interface AlwaysStoppedAnimation<T extends unknown | null = unknown | nul
     get isAnimating(): boolean;
     get isForwardOrCompleted(): boolean;
 }
-export declare abstract class AlwaysStoppedAnimation<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
+export declare abstract class _AlwaysStoppedAnimationNative<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<AlwaysStoppedAnimation<unknown | null>>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: AlwaysStoppedAnimation<unknown | null>;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_animation#type:AlwaysStoppedAnimation", readonly [readonly ["any", null, readonly [], true]], false];
@@ -55,10 +72,19 @@ export declare abstract class AlwaysStoppedAnimation<T extends unknown | null = 
     static [_flaxDartTypeCases]: _FlaxSignature3;
     constructor(value: unknown | null);
 }
-export declare namespace AlwaysStoppedAnimation {
+export declare namespace _AlwaysStoppedAnimationFactory {
     function implement<T extends unknown | null = unknown | null>(args: [value: unknown | null], implementation: {}): AlwaysStoppedAnimation<T>;
 }
+declare const _AlwaysStoppedAnimationBinding: typeof _AlwaysStoppedAnimationFactory & (new <T extends unknown | null = unknown | null>(value: unknown | null) => _AlwaysStoppedAnimationNative<T>);
+export declare const AlwaysStoppedAnimation: typeof _AlwaysStoppedAnimationBinding & _FlaxInstanceType<AlwaysStoppedAnimation<unknown | null>> & _FlaxDartType<AlwaysStoppedAnimation<unknown | null>, readonly ["class", "flax.core/sdk_animation#type:AlwaysStoppedAnimation", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "__flaxBound:package:flutter/src/animation/animations.dart::AlwaysStoppedAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new (value: unknown | null) => _AlwaysStoppedAnimationNative<_Selected0>) & {
+        (value: (_Selected0 | DartInput<_Selected0>)): _AlwaysStoppedAnimationNative<_Selected0>;
+        readonly prototype: _AlwaysStoppedAnimationNative<_Selected0>;
+        implement(args: readonly [unknown | null], implementation: Partial<_AlwaysStoppedAnimationNative<_Selected0>>): _AlwaysStoppedAnimationNative<_Selected0>;
+    } & _FlaxInstanceType<_AlwaysStoppedAnimationNative<_Selected0>> & _FlaxDartType<_AlwaysStoppedAnimationNative<_Selected0>> : never : never;
+}
 interface _FlaxSignature1<_OwnerType0 extends unknown | null> extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{
         "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_Selected0];
@@ -70,9 +96,10 @@ interface _FlaxSignature2<_OwnerType0 extends unknown | null> extends _FlaxDartS
     }>) => upstream0.Animation<_Selected0> : never : never;
 }
 interface _FlaxSignature3 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new (value: unknown | null) => AlwaysStoppedAnimation<_Selected0>) & {
-        readonly prototype: AlwaysStoppedAnimation<_Selected0>;
-        implement(args: readonly [unknown | null], implementation: Partial<AlwaysStoppedAnimation<_Selected0>>): AlwaysStoppedAnimation<_Selected0>;
-    } & _FlaxInstanceType<AlwaysStoppedAnimation<_Selected0>> & _FlaxDartType<AlwaysStoppedAnimation<_Selected0>> : never : never;
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new (value: unknown | null) => _AlwaysStoppedAnimationNative<_Selected0>) & {
+        (value: (_Selected0 | DartInput<_Selected0>)): _AlwaysStoppedAnimationNative<_Selected0>;
+        readonly prototype: _AlwaysStoppedAnimationNative<_Selected0>;
+        implement(args: readonly [unknown | null], implementation: Partial<_AlwaysStoppedAnimationNative<_Selected0>>): _AlwaysStoppedAnimationNative<_Selected0>;
+    } & _FlaxInstanceType<_AlwaysStoppedAnimationNative<_Selected0>> & _FlaxDartType<_AlwaysStoppedAnimationNative<_Selected0>> : never : never;
 }
 export {};

@@ -21,7 +21,7 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ExpansionTileThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/expansion_tile_theme.dart::ExpansionTileThemeData": readonly [];
 }>, Readonly<{
@@ -29,9 +29,115 @@ export interface ExpansionTileThemeData extends Omit<upstream0.Diagnosticable, _
 }> {
     readonly __ExpansionTileThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: ExpansionTileThemeData;
+    readonly backgroundColor: upstream1.Color | null;
+    readonly collapsedBackgroundColor: upstream1.Color | null;
+    readonly tilePadding: upstream2.EdgeInsetsGeometry | null;
+    readonly expandedAlignment: upstream3.AlignmentGeometry | null;
+    readonly childrenPadding: upstream2.EdgeInsetsGeometry | null;
+    readonly iconColor: upstream1.Color | null;
+    readonly collapsedIconColor: upstream1.Color | null;
+    readonly textColor: upstream1.Color | null;
+    readonly collapsedTextColor: upstream1.Color | null;
+    readonly shape: upstream4.ShapeBorder | null;
+    readonly collapsedShape: upstream4.ShapeBorder | null;
+    readonly clipBehavior: upstream5.Clip | null;
+    readonly expansionAnimationStyle: upstream6.AnimationStyle | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream7.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream9.DiagnosticsTreeStyle | null | undefined;
+    }): upstream8.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        backgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        childrenPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        clipBehavior?: upstream5.Clip | null | undefined;
+        collapsedBackgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        collapsedIconColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        collapsedShape?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        collapsedTextColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        expandedAlignment?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+        }> | null | undefined;
+        expansionAnimationStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation_style.dart::AnimationStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        iconColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        shape?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        textColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        tilePadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+    }): ExpansionTileThemeData;
 }
-export interface ExpansionTileThemeData {
-    readonly [_flaxDartTypeValue]: ExpansionTileThemeData;
+export declare function _ExpansionTileThemeDataFactory(options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    collapsedBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    tilePadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    expandedAlignment?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null | undefined;
+    childrenPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    iconColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    collapsedIconColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    textColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    collapsedTextColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    collapsedShape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    clipBehavior?: upstream5.Clip | null | undefined;
+    expansionAnimationStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation_style.dart::AnimationStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+}): ExpansionTileThemeData;
+export interface _ExpansionTileThemeDataNative extends ExpansionTileThemeData {
+    readonly [_flaxDartTypeValue]: _ExpansionTileThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream7.DiagnosticLevel | undefined;
@@ -98,7 +204,7 @@ export interface ExpansionTileThemeData {
     get clipBehavior(): upstream5.Clip | null;
     get expansionAnimationStyle(): upstream6.AnimationStyle | null;
 }
-export declare abstract class ExpansionTileThemeData extends _FlaxProxyBase {
+export declare abstract class _ExpansionTileThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ExpansionTileThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ExpansionTileThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:ExpansionTileThemeData", readonly [], false];
@@ -144,7 +250,7 @@ export declare abstract class ExpansionTileThemeData extends _FlaxProxyBase {
         }>) | null | undefined;
     });
 }
-export declare namespace ExpansionTileThemeData {
+export declare namespace _ExpansionTileThemeDataFactory {
     function implement(args: [options?: {
         backgroundColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -187,7 +293,48 @@ export declare namespace ExpansionTileThemeData {
         }>) | null | undefined;
     }], implementation: {}): ExpansionTileThemeData;
 }
-export declare namespace ExpansionTileThemeData {
+declare const _ExpansionTileThemeDataBinding: typeof _ExpansionTileThemeDataFactory & (new (options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    collapsedBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    tilePadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    expandedAlignment?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null | undefined;
+    childrenPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    iconColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    collapsedIconColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    textColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    collapsedTextColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    collapsedShape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    clipBehavior?: upstream5.Clip | null | undefined;
+    expansionAnimationStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation_style.dart::AnimationStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+}) => _ExpansionTileThemeDataNative);
+export declare namespace _ExpansionTileThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/expansion_tile_theme.dart::ExpansionTileThemeData": readonly [];
     }> & Readonly<{
@@ -198,5 +345,6 @@ export declare namespace ExpansionTileThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): ExpansionTileThemeData | null;
 }
+export declare const ExpansionTileThemeData: typeof _ExpansionTileThemeDataBinding & _FlaxInstanceType<ExpansionTileThemeData> & _FlaxDartType<ExpansionTileThemeData, readonly ["class", "flax.core/sdk_material#type:ExpansionTileThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "backgroundColor" | "collapsedBackgroundColor" | "tilePadding" | "expandedAlignment" | "childrenPadding" | "iconColor" | "collapsedIconColor" | "textColor" | "collapsedTextColor" | "shape" | "collapsedShape" | "clipBehavior" | "expansionAnimationStyle" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/expansion_tile_theme.dart::ExpansionTileThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

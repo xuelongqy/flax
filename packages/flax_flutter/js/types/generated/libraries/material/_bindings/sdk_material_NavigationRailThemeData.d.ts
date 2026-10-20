@@ -19,7 +19,7 @@ import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface NavigationRailThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/navigation_rail_theme.dart::NavigationRailThemeData": readonly [];
 }>, Readonly<{
@@ -27,9 +27,107 @@ export interface NavigationRailThemeData extends Omit<upstream0.Diagnosticable, 
 }> {
     readonly __NavigationRailThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: NavigationRailThemeData;
+    readonly backgroundColor: upstream1.Color | null;
+    readonly elevation: number | null;
+    readonly unselectedLabelTextStyle: upstream2.TextStyle | null;
+    readonly selectedLabelTextStyle: upstream2.TextStyle | null;
+    readonly unselectedIconTheme: upstream3.IconThemeData | null;
+    readonly selectedIconTheme: upstream3.IconThemeData | null;
+    readonly groupAlignment: number | null;
+    readonly labelType: upstream4.NavigationRailLabelType | null;
+    readonly useIndicator: boolean | null;
+    readonly indicatorColor: upstream1.Color | null;
+    readonly indicatorShape: upstream5.ShapeBorder | null;
+    readonly minWidth: number | null;
+    readonly minExtendedWidth: number | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream6.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream8.DiagnosticsTreeStyle | null | undefined;
+    }): upstream7.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        backgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        elevation?: number | null | undefined;
+        groupAlignment?: number | null | undefined;
+        indicatorColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        indicatorShape?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        labelType?: upstream4.NavigationRailLabelType | null | undefined;
+        minExtendedWidth?: number | null | undefined;
+        minWidth?: number | null | undefined;
+        selectedIconTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        selectedLabelTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        unselectedIconTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        unselectedLabelTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        useIndicator?: boolean | null | undefined;
+    }): NavigationRailThemeData;
 }
-export interface NavigationRailThemeData {
-    readonly [_flaxDartTypeValue]: NavigationRailThemeData;
+export declare function _NavigationRailThemeDataFactory(options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    unselectedLabelTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    selectedLabelTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    unselectedIconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    selectedIconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    groupAlignment?: number | null | undefined;
+    labelType?: upstream4.NavigationRailLabelType | null | undefined;
+    useIndicator?: boolean | null | undefined;
+    indicatorColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    indicatorShape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    minWidth?: number | null | undefined;
+    minExtendedWidth?: number | null | undefined;
+}): NavigationRailThemeData;
+export interface _NavigationRailThemeDataNative extends NavigationRailThemeData {
+    readonly [_flaxDartTypeValue]: _NavigationRailThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream6.DiagnosticLevel | undefined;
@@ -92,7 +190,7 @@ export interface NavigationRailThemeData {
     get minWidth(): number | null;
     get minExtendedWidth(): number | null;
 }
-export declare abstract class NavigationRailThemeData extends _FlaxProxyBase {
+export declare abstract class _NavigationRailThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<NavigationRailThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: NavigationRailThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:NavigationRailThemeData", readonly [], false];
@@ -134,7 +232,7 @@ export declare abstract class NavigationRailThemeData extends _FlaxProxyBase {
         minExtendedWidth?: number | null | undefined;
     });
 }
-export declare namespace NavigationRailThemeData {
+export declare namespace _NavigationRailThemeDataFactory {
     function implement(args: [options?: {
         backgroundColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -173,7 +271,44 @@ export declare namespace NavigationRailThemeData {
         minExtendedWidth?: number | null | undefined;
     }], implementation: {}): NavigationRailThemeData;
 }
-export declare namespace NavigationRailThemeData {
+declare const _NavigationRailThemeDataBinding: typeof _NavigationRailThemeDataFactory & (new (options?: {
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    unselectedLabelTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    selectedLabelTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    unselectedIconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    selectedIconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    groupAlignment?: number | null | undefined;
+    labelType?: upstream4.NavigationRailLabelType | null | undefined;
+    useIndicator?: boolean | null | undefined;
+    indicatorColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    indicatorShape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    minWidth?: number | null | undefined;
+    minExtendedWidth?: number | null | undefined;
+}) => _NavigationRailThemeDataNative);
+export declare namespace _NavigationRailThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/navigation_rail_theme.dart::NavigationRailThemeData": readonly [];
     }> & Readonly<{
@@ -184,5 +319,6 @@ export declare namespace NavigationRailThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): NavigationRailThemeData | null;
 }
+export declare const NavigationRailThemeData: typeof _NavigationRailThemeDataBinding & _FlaxInstanceType<NavigationRailThemeData> & _FlaxDartType<NavigationRailThemeData, readonly ["class", "flax.core/sdk_material#type:NavigationRailThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "backgroundColor" | "elevation" | "unselectedLabelTextStyle" | "selectedLabelTextStyle" | "unselectedIconTheme" | "selectedIconTheme" | "groupAlignment" | "labelType" | "useIndicator" | "indicatorColor" | "indicatorShape" | "minWidth" | "minExtendedWidth" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/navigation_rail_theme.dart::NavigationRailThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

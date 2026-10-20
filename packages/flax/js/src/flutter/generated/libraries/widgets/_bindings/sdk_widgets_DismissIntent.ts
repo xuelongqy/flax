@@ -14,16 +14,10 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface DismissIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::DismissIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __DismissIntent: unique symbol;
-readonly [_flaxDartTypeValue]: DismissIntent;
-
-}
-defineObject("flax.core/sdk_widgets#type:DismissIntent", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DismissIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
-const _DismissIntentProxy = {type: "flax.core/sdk_widgets#type:DismissIntent", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface DismissIntent {
 readonly [_flaxDartTypeValue]: DismissIntent;
 
 toStringShort(): string;
@@ -31,14 +25,30 @@ toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream3
 debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 toString(options?: {minLevel?: upstream5.DiagnosticLevel | undefined}): string;
 }
-export abstract class DismissIntent extends _FlaxProxyBase {
+defineObject("flax.core/sdk_widgets#type:DismissIntent", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DismissIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
+export function _DismissIntentFactory(): DismissIntent {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:DismissIntent", "", [], [], {}) as DismissIntent;
+}
+const _DismissIntentProxy = {type: "flax.core/sdk_widgets#type:DismissIntent", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+export interface _DismissIntentNative extends DismissIntent {
+readonly [_flaxDartTypeValue]: _DismissIntentNative;
+
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream3.DiagnosticsTreeStyle | null | undefined}): upstream2.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream5.DiagnosticLevel | undefined}): string;
+}
+export abstract class _DismissIntentNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DismissIntent>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: DismissIntent;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:DismissIntent", readonly [], false];
 constructor() { super(_DismissIntentProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(DismissIntent.prototype, _DismissIntentProxy);
-export namespace DismissIntent { export function implement(args: [], implementation: {}): DismissIntent {
+_flaxDefineProxyBase(_DismissIntentNative.prototype, _DismissIntentProxy);
+export namespace _DismissIntentFactory { export function implement(args: [], implementation: {}): DismissIntent {
 return constructProxy(_DismissIntentProxy, args, implementation) as DismissIntent; } }
-_flaxBindInstanceType<DismissIntent, typeof DismissIntent>(DismissIntent, "flax.core/sdk_widgets#type:DismissIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _DismissIntentBinding = _flaxProxyFactory(_DismissIntentFactory, _DismissIntentNative) as unknown as typeof _DismissIntentFactory & (new() => _DismissIntentNative);
+export const DismissIntent: typeof _DismissIntentBinding & _FlaxInstanceType<DismissIntent> & _FlaxDartType<DismissIntent, readonly ["class", "flax.core/sdk_widgets#type:DismissIntent", readonly [], false]> = _flaxBindInstanceType<DismissIntent, typeof _DismissIntentBinding>(_DismissIntentBinding, "flax.core/sdk_widgets#type:DismissIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _DismissIntentBinding & _FlaxInstanceType<DismissIntent> & _FlaxDartType<DismissIntent, readonly ["class", "flax.core/sdk_widgets#type:DismissIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/actions.dart::DismissIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

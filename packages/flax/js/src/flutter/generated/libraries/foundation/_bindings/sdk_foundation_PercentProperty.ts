@@ -17,18 +17,56 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_TextTreeConfiguration';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsSerializationDelegate';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsSerializationDelegate';
-import { _flaxMemberParameters73, _flaxMemberParameters1, _flaxMemberParameters35, _flaxMemberParameters33, _flaxMemberParameters34, _flaxMemberParameters37, _flaxMemberParameters36 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters75, _flaxMemberParameters1, _flaxMemberParameters33, _flaxMemberParameters31, _flaxMemberParameters32, _flaxMemberParameters35, _flaxMemberParameters34 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface PercentProperty extends Omit<upstream0.DoubleProperty, _flaxOwnMembers0>, Omit<upstream1.DiagnosticsProperty<number>, _flaxOwnMembers0 | keyof upstream0.DoubleProperty>, Omit<upstream2.DiagnosticsNode, _flaxOwnMembers0 | keyof upstream0.DoubleProperty | keyof upstream1.DiagnosticsProperty<number>>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::PercentProperty": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DoubleProperty": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::_NumProperty": readonly [number] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsProperty": readonly [number] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }> { readonly __PercentProperty: unique symbol;
 readonly [_flaxDartTypeValue]: PercentProperty;
 
+readonly unit: string | null;
+readonly expandableValue: boolean;
+readonly allowWrap: boolean;
+readonly allowNameWrap: boolean;
+readonly ifNull: string | null;
+readonly ifEmpty: string | null;
+readonly tooltip: string | null;
+readonly missingIfNull: boolean;
+readonly propertyType: upstream4.Type;
+readonly value: number | null;
+readonly exception: unknown | null;
+readonly defaultValue: unknown | null;
+readonly isInteresting: boolean;
+readonly level: upstream3.DiagnosticLevel;
+readonly name: string | null;
+readonly showSeparator: boolean;
+readonly showName: boolean;
+readonly linePrefix: string | null;
+readonly emptyBodyDescription: string | null;
+readonly style: upstream5.DiagnosticsTreeStyle | null;
+readonly allowTruncate: boolean;
+readonly textTreeConfiguration: upstream6.TextTreeConfiguration | null;
+numberToString(): string;
+toJsonMap(delegate: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [] }>): DartMap<string, unknown | null>;
+valueToString(options?: {parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined}): string;
+toDescription(options?: {parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined}): string;
+getProperties(): DartList<upstream2.DiagnosticsNode>;
+getChildren(): DartList<upstream2.DiagnosticsNode>;
+isFiltered(minLevel: upstream3.DiagnosticLevel): boolean;
+toTimelineArguments(): DartMap<string, string> | null;
+toJsonMapIterative(delegate: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [] }>): DartMap<string, unknown | null>;
+toStringDeep(options?: {minLevel?: upstream3.DiagnosticLevel | undefined; parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined; parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined}): string;
 }
 defineObject("flax.core/sdk_foundation#type:PercentProperty", ["unit","expandableValue","allowWrap","allowNameWrap","ifNull","ifEmpty","tooltip","missingIfNull","propertyType","value","exception","defaultValue","isInteresting","level","name","showSeparator","showName","linePrefix","emptyBodyDescription","style","allowTruncate","textTreeConfiguration"], [], _flaxBindingMethods("flax.core/sdk_foundation#type:PercentProperty", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:DoubleProperty");
-const _PercentPropertyProxy = {type: "flax.core/sdk_foundation#type:PercentProperty", parameters: _flaxMemberParameters73, constructors: {"": _flaxMemberParameters73}, methods: {"numberToString":_flaxMemberParameters1,"toJsonMap":_flaxMemberParameters35,"valueToString":_flaxMemberParameters33,"toDescription":_flaxMemberParameters33,"getProperties":_flaxMemberParameters1,"getChildren":_flaxMemberParameters1,"isFiltered":_flaxMemberParameters34,"toTimelineArguments":_flaxMemberParameters1,"toJsonMapIterative":_flaxMemberParameters35,"toStringDeep":_flaxMemberParameters37,"toString":_flaxMemberParameters36}, getters: ["unit","expandableValue","allowWrap","allowNameWrap","ifNull","ifEmpty","tooltip","missingIfNull","propertyType","value","exception","defaultValue","isInteresting","level","name","showSeparator","showName","linePrefix","emptyBodyDescription","style","allowTruncate","textTreeConfiguration"], setters: [], contextMembers: [], superMembers: ["get:unit","get:expandableValue","get:allowWrap","get:allowNameWrap","get:ifNull","get:ifEmpty","get:tooltip","get:missingIfNull","get:propertyType","get:value","get:exception","get:defaultValue","get:isInteresting","get:level","get:name","get:showSeparator","get:showName","get:linePrefix","get:emptyBodyDescription","get:style","get:allowTruncate","get:textTreeConfiguration","numberToString","toJsonMap","valueToString","toDescription","getProperties","getChildren","isFiltered","toTimelineArguments","toJsonMapIterative","toStringDeep","toString"]} as const;
-export interface PercentProperty {
-readonly [_flaxDartTypeValue]: PercentProperty;
+export function _PercentPropertyFactory(name: string, fraction: number | null, options: { ifNull?: string | null | undefined; showName?: boolean | undefined; tooltip?: string | null | undefined; unit?: string | null | undefined; level?: upstream3.DiagnosticLevel | undefined } = {}): PercentProperty {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_foundation#type:PercentProperty", "", [{"name":"name","required":true,"positional":true},{"name":"fraction","required":true,"positional":true},{"name":"ifNull"},{"name":"showName"},{"name":"tooltip"},{"name":"unit"},{"name":"level"}], [name, fraction], options) as PercentProperty;
+}
+const _PercentPropertyProxy = {type: "flax.core/sdk_foundation#type:PercentProperty", parameters: _flaxMemberParameters75, constructors: {"": _flaxMemberParameters75}, methods: {"numberToString":_flaxMemberParameters1,"toJsonMap":_flaxMemberParameters33,"valueToString":_flaxMemberParameters31,"toDescription":_flaxMemberParameters31,"getProperties":_flaxMemberParameters1,"getChildren":_flaxMemberParameters1,"isFiltered":_flaxMemberParameters32,"toTimelineArguments":_flaxMemberParameters1,"toJsonMapIterative":_flaxMemberParameters33,"toStringDeep":_flaxMemberParameters35,"toString":_flaxMemberParameters34}, getters: ["unit","expandableValue","allowWrap","allowNameWrap","ifNull","ifEmpty","tooltip","missingIfNull","propertyType","value","exception","defaultValue","isInteresting","level","name","showSeparator","showName","linePrefix","emptyBodyDescription","style","allowTruncate","textTreeConfiguration"], setters: [], contextMembers: [], superMembers: ["get:unit","get:expandableValue","get:allowWrap","get:allowNameWrap","get:ifNull","get:ifEmpty","get:tooltip","get:missingIfNull","get:propertyType","get:value","get:exception","get:defaultValue","get:isInteresting","get:level","get:name","get:showSeparator","get:showName","get:linePrefix","get:emptyBodyDescription","get:style","get:allowTruncate","get:textTreeConfiguration","numberToString","toJsonMap","valueToString","toDescription","getProperties","getChildren","isFiltered","toTimelineArguments","toJsonMapIterative","toStringDeep","toString"]} as const;
+export interface _PercentPropertyNative extends PercentProperty {
+readonly [_flaxDartTypeValue]: _PercentPropertyNative;
 
 numberToString(): string;
 toJsonMap(delegate: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [] }>): DartMap<string, unknown | null>;
@@ -64,14 +102,15 @@ get style(): upstream5.DiagnosticsTreeStyle | null;
 get allowTruncate(): boolean;
 get textTreeConfiguration(): upstream6.TextTreeConfiguration | null;
 }
-export abstract class PercentProperty extends _FlaxProxyBase {
+export abstract class _PercentPropertyNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PercentProperty>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: PercentProperty;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_foundation#type:PercentProperty", readonly [], false];
 constructor(name: string, fraction: number | null, options?: {ifNull?: string | null | undefined; showName?: boolean | undefined; tooltip?: string | null | undefined; unit?: string | null | undefined; level?: upstream3.DiagnosticLevel | undefined}) { super(_PercentPropertyProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(PercentProperty.prototype, _PercentPropertyProxy);
-export namespace PercentProperty { export function implement(args: [name: string, fraction: number | null, options?: {ifNull?: string | null | undefined; showName?: boolean | undefined; tooltip?: string | null | undefined; unit?: string | null | undefined; level?: upstream3.DiagnosticLevel | undefined}], implementation: {}): PercentProperty {
+_flaxDefineProxyBase(_PercentPropertyNative.prototype, _PercentPropertyProxy);
+export namespace _PercentPropertyFactory { export function implement(args: [name: string, fraction: number | null, options?: {ifNull?: string | null | undefined; showName?: boolean | undefined; tooltip?: string | null | undefined; unit?: string | null | undefined; level?: upstream3.DiagnosticLevel | undefined}], implementation: {}): PercentProperty {
 return constructProxy(_PercentPropertyProxy, args, implementation) as PercentProperty; } }
-_flaxBindInstanceType<PercentProperty, typeof PercentProperty>(PercentProperty, "flax.core/sdk_foundation#type:PercentProperty", ["flax.core/sdk_foundation#type:DoubleProperty","package:flutter/src/foundation/diagnostics.dart::_NumProperty","flax.core/sdk_foundation#type:DiagnosticsProperty","flax.core/sdk_foundation#type:DiagnosticsNode","dart:core::Object"]);
+const _PercentPropertyBinding = _flaxProxyFactory(_PercentPropertyFactory, _PercentPropertyNative) as unknown as typeof _PercentPropertyFactory & (new(name: string, fraction: number | null, options?: {ifNull?: string | null | undefined; showName?: boolean | undefined; tooltip?: string | null | undefined; unit?: string | null | undefined; level?: upstream3.DiagnosticLevel | undefined}) => _PercentPropertyNative);
+export const PercentProperty: typeof _PercentPropertyBinding & _FlaxInstanceType<PercentProperty> & _FlaxDartType<PercentProperty, readonly ["class", "flax.core/sdk_foundation#type:PercentProperty", readonly [], false]> = _flaxBindInstanceType<PercentProperty, typeof _PercentPropertyBinding>(_PercentPropertyBinding, "flax.core/sdk_foundation#type:PercentProperty", ["flax.core/sdk_foundation#type:DoubleProperty","package:flutter/src/foundation/diagnostics.dart::_NumProperty","flax.core/sdk_foundation#type:DiagnosticsProperty","flax.core/sdk_foundation#type:DiagnosticsNode","dart:core::Object"]) as typeof _PercentPropertyBinding & _FlaxInstanceType<PercentProperty> & _FlaxDartType<PercentProperty, readonly ["class", "flax.core/sdk_foundation#type:PercentProperty", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "unit" | "expandableValue" | "allowWrap" | "allowNameWrap" | "ifNull" | "ifEmpty" | "tooltip" | "missingIfNull" | "propertyType" | "value" | "exception" | "defaultValue" | "isInteresting" | "level" | "name" | "showSeparator" | "showName" | "linePrefix" | "emptyBodyDescription" | "style" | "allowTruncate" | "textTreeConfiguration" | "numberToString" | "toJsonMap" | "valueToString" | "toDescription" | "getProperties" | "getChildren" | "isFiltered" | "toTimelineArguments" | "toJsonMapIterative" | "toStringDeep" | "toString" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::PercentProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DoubleProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::_NumProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode";

@@ -36,9 +36,10 @@ class FlaxSession {
     if (_loadError != null) throw StateError('The Flax session failed to load');
     try {
       if (_session == null) {
+        final registry = _bindingsWithPlugins(bindings, plugins);
         final session = _Session(
           createRuntime(),
-          _bindingsWithPlugins(bindings, plugins),
+          registry,
           report ?? onError,
           namespace: namespace,
         );

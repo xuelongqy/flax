@@ -13,7 +13,7 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_TextTreeConfiguration';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsSerializationDelegate';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ErrorHint extends Omit<upstream0.DiagnosticsProperty<DartList<{}>>, _flaxOwnMembers0>, Omit<upstream1.DiagnosticsNode, _flaxOwnMembers0 | keyof upstream0.DiagnosticsProperty<DartList<{}>>>, Readonly<{
     "__flaxBound:package:flutter/src/foundation/assertions.dart::ErrorHint": readonly [];
 }>, Readonly<{
@@ -25,9 +25,66 @@ export interface ErrorHint extends Omit<upstream0.DiagnosticsProperty<DartList<{
 }> {
     readonly __ErrorHint: unique symbol;
     readonly [_flaxDartTypeValue]: ErrorHint;
+    readonly expandableValue: boolean;
+    readonly allowWrap: boolean;
+    readonly allowNameWrap: boolean;
+    readonly ifNull: string | null;
+    readonly ifEmpty: string | null;
+    readonly tooltip: string | null;
+    readonly missingIfNull: boolean;
+    readonly propertyType: upstream2.Type;
+    readonly value: DartList<{}>;
+    readonly exception: unknown | null;
+    readonly defaultValue: unknown | null;
+    readonly isInteresting: boolean;
+    readonly level: upstream3.DiagnosticLevel;
+    readonly name: string | null;
+    readonly showSeparator: boolean;
+    readonly showName: boolean;
+    readonly linePrefix: string | null;
+    readonly emptyBodyDescription: string | null;
+    readonly style: upstream4.DiagnosticsTreeStyle | null;
+    readonly allowTruncate: boolean;
+    readonly textTreeConfiguration: upstream5.TextTreeConfiguration | null;
+    toJsonMap(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
+    }>): DartMap<string, unknown | null>;
+    valueToString(options?: {
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
+    toDescription(options?: {
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
+    getProperties(): DartList<upstream1.DiagnosticsNode>;
+    getChildren(): DartList<upstream1.DiagnosticsNode>;
+    isFiltered(minLevel: upstream3.DiagnosticLevel): boolean;
+    toTimelineArguments(): DartMap<string, string> | null;
+    toJsonMapIterative(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
+    }>): DartMap<string, unknown | null>;
+    toStringDeep(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toString(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+        parentConfiguration?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [];
+        }> | null | undefined;
+    }): string;
 }
-export interface ErrorHint {
-    readonly [_flaxDartTypeValue]: ErrorHint;
+export declare function _ErrorHintFactory(message: string): ErrorHint;
+export interface _ErrorHintNative extends ErrorHint {
+    readonly [_flaxDartTypeValue]: _ErrorHintNative;
     toJsonMap(delegate: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [];
     }>): DartMap<string, unknown | null>;
@@ -85,14 +142,16 @@ export interface ErrorHint {
     get allowTruncate(): boolean;
     get textTreeConfiguration(): upstream5.TextTreeConfiguration | null;
 }
-export declare abstract class ErrorHint extends _FlaxProxyBase {
+export declare abstract class _ErrorHintNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ErrorHint>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ErrorHint;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_foundation#type:ErrorHint", readonly [], false];
     constructor(message: string);
 }
-export declare namespace ErrorHint {
+export declare namespace _ErrorHintFactory {
     function implement(args: [message: string], implementation: {}): ErrorHint;
 }
+declare const _ErrorHintBinding: typeof _ErrorHintFactory & (new (message: string) => _ErrorHintNative);
+export declare const ErrorHint: typeof _ErrorHintBinding & _FlaxInstanceType<ErrorHint> & _FlaxDartType<ErrorHint, readonly ["class", "flax.core/sdk_foundation#type:ErrorHint", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "expandableValue" | "allowWrap" | "allowNameWrap" | "ifNull" | "ifEmpty" | "tooltip" | "missingIfNull" | "propertyType" | "value" | "exception" | "defaultValue" | "isInteresting" | "level" | "name" | "showSeparator" | "showName" | "linePrefix" | "emptyBodyDescription" | "style" | "allowTruncate" | "textTreeConfiguration" | "toJsonMap" | "valueToString" | "toDescription" | "getProperties" | "getChildren" | "isFiltered" | "toTimelineArguments" | "toJsonMapIterative" | "toStringDeep" | "toString" | "__flaxBound:package:flutter/src/foundation/assertions.dart::ErrorHint" | "__flaxBound:package:flutter/src/foundation/assertions.dart::_ErrorDiagnostic" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsProperty" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode";
 export {};

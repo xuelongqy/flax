@@ -27,7 +27,7 @@ import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ChipThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/material/chip_theme.dart::ChipThemeData": readonly [];
 }>, Readonly<{
@@ -35,9 +35,213 @@ export interface ChipThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMe
 }> {
     readonly __ChipThemeData: unique symbol;
     readonly [_flaxDartTypeValue]: ChipThemeData;
+    readonly color: upstream1.WidgetStateProperty<upstream2.Color | null> | null;
+    readonly backgroundColor: upstream2.Color | null;
+    readonly deleteIconColor: upstream2.Color | null;
+    readonly disabledColor: upstream2.Color | null;
+    readonly selectedColor: upstream2.Color | null;
+    readonly secondarySelectedColor: upstream2.Color | null;
+    readonly shadowColor: upstream2.Color | null;
+    readonly surfaceTintColor: upstream2.Color | null;
+    readonly selectedShadowColor: upstream2.Color | null;
+    readonly showCheckmark: boolean | null;
+    readonly checkmarkColor: upstream2.Color | null;
+    readonly labelPadding: upstream3.EdgeInsetsGeometry | null;
+    readonly padding: upstream3.EdgeInsetsGeometry | null;
+    readonly side: upstream4.BorderSide | null;
+    readonly shape: upstream5.OutlinedBorder | null;
+    readonly labelStyle: upstream6.TextStyle | null;
+    readonly secondaryLabelStyle: upstream6.TextStyle | null;
+    readonly brightness: upstream7.Brightness | null;
+    readonly elevation: number | null;
+    readonly pressElevation: number | null;
+    readonly iconTheme: upstream8.IconThemeData | null;
+    readonly avatarBoxConstraints: upstream9.BoxConstraints | null;
+    readonly deleteIconBoxConstraints: upstream9.BoxConstraints | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream10.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream12.DiagnosticsTreeStyle | null | undefined;
+    }): upstream11.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        avatarBoxConstraints?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+        }>) | null | undefined;
+        backgroundColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        brightness?: upstream7.Brightness | null | undefined;
+        checkmarkColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        color?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null | undefined;
+        deleteIconBoxConstraints?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+        }>) | null | undefined;
+        deleteIconColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        disabledColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        elevation?: number | null | undefined;
+        iconTheme?: (Readonly<{
+            "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        labelPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        labelStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        padding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        pressElevation?: number | null | undefined;
+        secondaryLabelStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        secondarySelectedColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        selectedColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        selectedShadowColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        shadowColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        shape?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }>) | null | undefined;
+        showCheckmark?: boolean | null | undefined;
+        side?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        surfaceTintColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+    }): ChipThemeData;
 }
-export interface ChipThemeData {
-    readonly [_flaxDartTypeValue]: ChipThemeData;
+export declare function _ChipThemeDataFactory(options?: {
+    color?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    deleteIconColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    secondarySelectedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectedShadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    showCheckmark?: boolean | null | undefined;
+    checkmarkColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    labelPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    side?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    shape?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }>) | null | undefined;
+    labelStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    secondaryLabelStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    brightness?: upstream7.Brightness | null | undefined;
+    elevation?: number | null | undefined;
+    pressElevation?: number | null | undefined;
+    iconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    avatarBoxConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    deleteIconBoxConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+}): ChipThemeData;
+export declare namespace _ChipThemeDataFactory {
+    function fromDefaults(options: {
+        brightness?: upstream7.Brightness | null | undefined;
+        primaryColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        secondaryColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        labelStyle: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+    }): ChipThemeData;
+}
+export interface _ChipThemeDataNative extends ChipThemeData {
+    readonly [_flaxDartTypeValue]: _ChipThemeDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream10.DiagnosticLevel | undefined;
@@ -150,7 +354,7 @@ export interface ChipThemeData {
     get avatarBoxConstraints(): upstream9.BoxConstraints | null;
     get deleteIconBoxConstraints(): upstream9.BoxConstraints | null;
 }
-export declare abstract class ChipThemeData extends _FlaxProxyBase {
+export declare abstract class _ChipThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ChipThemeData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: ChipThemeData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:ChipThemeData", readonly [], false];
@@ -232,7 +436,7 @@ export declare abstract class ChipThemeData extends _FlaxProxyBase {
         }>) | null | undefined;
     });
 }
-export declare namespace ChipThemeData {
+export declare namespace _ChipThemeDataFactory {
     function implement(args: [options?: {
         color?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
@@ -311,7 +515,84 @@ export declare namespace ChipThemeData {
         }>) | null | undefined;
     }], implementation: {}): ChipThemeData;
 }
-export declare namespace ChipThemeData {
+declare const _ChipThemeDataBinding: typeof _ChipThemeDataFactory & (new (options?: {
+    color?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    deleteIconColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    secondarySelectedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectedShadowColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    showCheckmark?: boolean | null | undefined;
+    checkmarkColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    labelPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    side?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    shape?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }>) | null | undefined;
+    labelStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    secondaryLabelStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    brightness?: upstream7.Brightness | null | undefined;
+    elevation?: number | null | undefined;
+    pressElevation?: number | null | undefined;
+    iconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    avatarBoxConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    deleteIconBoxConstraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+}) => _ChipThemeDataNative);
+export declare namespace _ChipThemeDataFactory {
     function lerp(a: (Readonly<{
         "__flaxBound:package:flutter/src/material/chip_theme.dart::ChipThemeData": readonly [];
     }> & Readonly<{
@@ -322,5 +603,6 @@ export declare namespace ChipThemeData {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): ChipThemeData | null;
 }
+export declare const ChipThemeData: typeof _ChipThemeDataBinding & _FlaxInstanceType<ChipThemeData> & _FlaxDartType<ChipThemeData, readonly ["class", "flax.core/sdk_material#type:ChipThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "color" | "backgroundColor" | "deleteIconColor" | "disabledColor" | "selectedColor" | "secondarySelectedColor" | "shadowColor" | "surfaceTintColor" | "selectedShadowColor" | "showCheckmark" | "checkmarkColor" | "labelPadding" | "padding" | "side" | "shape" | "labelStyle" | "secondaryLabelStyle" | "brightness" | "elevation" | "pressElevation" | "iconTheme" | "avatarBoxConstraints" | "deleteIconBoxConstraints" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/chip_theme.dart::ChipThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

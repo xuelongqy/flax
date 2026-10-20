@@ -15,18 +15,52 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_TextTreeConfiguration';
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsSerializationDelegate';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsSerializationDelegate';
-import { _flaxMemberParameters49, _flaxMemberParameters1, _flaxMemberParameters33, _flaxMemberParameters34, _flaxMemberParameters35, _flaxMemberParameters37, _flaxMemberParameters36 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { _flaxMemberParameters48, _flaxMemberParameters49, _flaxMemberParameters1, _flaxMemberParameters31, _flaxMemberParameters32, _flaxMemberParameters33, _flaxMemberParameters35, _flaxMemberParameters34 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface DiagnosticsStackTrace extends Omit<upstream0.DiagnosticsBlock, _flaxOwnMembers0>, Omit<upstream1.DiagnosticsNode, _flaxOwnMembers0 | keyof upstream0.DiagnosticsBlock>, Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::DiagnosticsStackTrace": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsBlock": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }> { readonly __DiagnosticsStackTrace: unique symbol;
 readonly [_flaxDartTypeValue]: DiagnosticsStackTrace;
 
+readonly level: upstream3.DiagnosticLevel;
+readonly value: unknown | null;
+readonly allowTruncate: boolean;
+readonly name: string | null;
+readonly showSeparator: boolean;
+readonly showName: boolean;
+readonly linePrefix: string | null;
+readonly emptyBodyDescription: string | null;
+readonly style: upstream4.DiagnosticsTreeStyle | null;
+readonly allowWrap: boolean;
+readonly allowNameWrap: boolean;
+readonly textTreeConfiguration: upstream5.TextTreeConfiguration | null;
+getChildren(): DartList<upstream1.DiagnosticsNode>;
+getProperties(): DartList<upstream1.DiagnosticsNode>;
+toDescription(options?: {parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined}): string;
+isFiltered(minLevel: upstream3.DiagnosticLevel): boolean;
+toTimelineArguments(): DartMap<string, string> | null;
+toJsonMap(delegate: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [] }>): DartMap<string, unknown | null>;
+toJsonMapIterative(delegate: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsSerializationDelegate": readonly [] }>): DartMap<string, unknown | null>;
+toStringDeep(options?: {minLevel?: upstream3.DiagnosticLevel | undefined; parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined; parentConfiguration?: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::TextTreeConfiguration": readonly [] }> | null | undefined}): string;
 }
 defineObject("flax.core/sdk_foundation#type:DiagnosticsStackTrace", ["level","value","allowTruncate","name","showSeparator","showName","linePrefix","emptyBodyDescription","style","allowWrap","allowNameWrap","textTreeConfiguration"], [], _flaxBindingMethods("flax.core/sdk_foundation#type:DiagnosticsStackTrace", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:DiagnosticsBlock");
-const _DiagnosticsStackTraceProxy = {type: "flax.core/sdk_foundation#type:DiagnosticsStackTrace", parameters: _flaxMemberParameters49, constructors: {"": _flaxMemberParameters49}, methods: {"getChildren":_flaxMemberParameters1,"getProperties":_flaxMemberParameters1,"toDescription":_flaxMemberParameters33,"isFiltered":_flaxMemberParameters34,"toTimelineArguments":_flaxMemberParameters1,"toJsonMap":_flaxMemberParameters35,"toJsonMapIterative":_flaxMemberParameters35,"toStringDeep":_flaxMemberParameters37,"toString":_flaxMemberParameters36}, getters: ["allowTruncate","level","value","name","showSeparator","showName","linePrefix","emptyBodyDescription","style","allowWrap","allowNameWrap","textTreeConfiguration"], setters: [], contextMembers: [], superMembers: ["get:allowTruncate","get:level","get:value","get:name","get:showSeparator","get:showName","get:linePrefix","get:emptyBodyDescription","get:style","get:allowWrap","get:allowNameWrap","get:textTreeConfiguration","getChildren","getProperties","toDescription","isFiltered","toTimelineArguments","toJsonMap","toJsonMapIterative","toStringDeep","toString"]} as const;
-export interface DiagnosticsStackTrace {
-readonly [_flaxDartTypeValue]: DiagnosticsStackTrace;
+export function _DiagnosticsStackTraceFactory(name: string, stack: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null, options: { stackFilter?: ((input: DartIterable<string>) => DartIterableInput<string, string>) | null | undefined; showSeparator?: boolean | undefined } = {}): DiagnosticsStackTrace {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_foundation#type:DiagnosticsStackTrace", "", [{"name":"name","required":true,"positional":true},{"name":"stack","required":true,"positional":true},{"name":"stackFilter"},{"name":"showSeparator"}], [name, stack], options) as DiagnosticsStackTrace;
+}
+export namespace _DiagnosticsStackTraceFactory {
+export function singleFrame(name: string, options: { frame: string; showSeparator?: boolean | undefined }): DiagnosticsStackTrace {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_foundation#type:DiagnosticsStackTrace", "singleFrame", [{"name":"name","required":true,"positional":true},{"name":"frame","required":true},{"name":"showSeparator"}], [name], options) as DiagnosticsStackTrace;
+}
+}
+const _DiagnosticsStackTraceProxy = {type: "flax.core/sdk_foundation#type:DiagnosticsStackTrace", parameters: _flaxMemberParameters48, constructors: {"": _flaxMemberParameters48,"singleFrame": _flaxMemberParameters49}, methods: {"getChildren":_flaxMemberParameters1,"getProperties":_flaxMemberParameters1,"toDescription":_flaxMemberParameters31,"isFiltered":_flaxMemberParameters32,"toTimelineArguments":_flaxMemberParameters1,"toJsonMap":_flaxMemberParameters33,"toJsonMapIterative":_flaxMemberParameters33,"toStringDeep":_flaxMemberParameters35,"toString":_flaxMemberParameters34}, getters: ["allowTruncate","level","value","name","showSeparator","showName","linePrefix","emptyBodyDescription","style","allowWrap","allowNameWrap","textTreeConfiguration"], setters: [], contextMembers: [], superMembers: ["get:allowTruncate","get:level","get:value","get:name","get:showSeparator","get:showName","get:linePrefix","get:emptyBodyDescription","get:style","get:allowWrap","get:allowNameWrap","get:textTreeConfiguration","getChildren","getProperties","toDescription","isFiltered","toTimelineArguments","toJsonMap","toJsonMapIterative","toStringDeep","toString"]} as const;
+export interface _DiagnosticsStackTraceNative extends DiagnosticsStackTrace {
+readonly [_flaxDartTypeValue]: _DiagnosticsStackTraceNative;
+readonly [_flaxDartConstructors]?: {"": (name: string, stack: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null, options?: {stackFilter?: ((input: DartIterable<string>) => DartIterableInput<string, string>) | null | undefined; showSeparator?: boolean | undefined}) => void;"singleFrame": (name: string, options: {frame: string; showSeparator?: boolean | undefined}) => void;};
 
 getChildren(): DartList<upstream1.DiagnosticsNode>;
 getProperties(): DartList<upstream1.DiagnosticsNode>;
@@ -50,14 +84,15 @@ get allowWrap(): boolean;
 get allowNameWrap(): boolean;
 get textTreeConfiguration(): upstream5.TextTreeConfiguration | null;
 }
-export abstract class DiagnosticsStackTrace extends _FlaxProxyBase {
+export abstract class _DiagnosticsStackTraceNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DiagnosticsStackTrace>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: DiagnosticsStackTrace;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_foundation#type:DiagnosticsStackTrace", readonly [], false];
-constructor(name: string, stack: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null, options?: {stackFilter?: ((input: DartIterable<string>) => DartIterableInput<string, string>) | null | undefined; showSeparator?: boolean | undefined}) { super(_DiagnosticsStackTraceProxy, Array.from(arguments)); }
+constructor(name: string, stack: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null, options?: {stackFilter?: ((input: DartIterable<string>) => DartIterableInput<string, string>) | null | undefined; showSeparator?: boolean | undefined}); constructor(call: _FlaxProxySuper<_DiagnosticsStackTraceNative>); constructor(...args: unknown[]) { super(_DiagnosticsStackTraceProxy, args); }
 }
-_flaxDefineProxyBase(DiagnosticsStackTrace.prototype, _DiagnosticsStackTraceProxy);
-export namespace DiagnosticsStackTrace { export function implement(args: [name: string, stack: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null, options?: {stackFilter?: ((input: DartIterable<string>) => DartIterableInput<string, string>) | null | undefined; showSeparator?: boolean | undefined}], implementation: {}): DiagnosticsStackTrace {
+_flaxDefineProxyBase(_DiagnosticsStackTraceNative.prototype, _DiagnosticsStackTraceProxy);
+export namespace _DiagnosticsStackTraceFactory { export function implement(args: [name: string, stack: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null, options?: {stackFilter?: ((input: DartIterable<string>) => DartIterableInput<string, string>) | null | undefined; showSeparator?: boolean | undefined}], implementation: {}): DiagnosticsStackTrace {
 return constructProxy(_DiagnosticsStackTraceProxy, args, implementation) as DiagnosticsStackTrace; } }
-_flaxBindInstanceType<DiagnosticsStackTrace, typeof DiagnosticsStackTrace>(DiagnosticsStackTrace, "flax.core/sdk_foundation#type:DiagnosticsStackTrace", ["flax.core/sdk_foundation#type:DiagnosticsBlock","flax.core/sdk_foundation#type:DiagnosticsNode","dart:core::Object"]);
+const _DiagnosticsStackTraceBinding = _flaxProxyFactory(_DiagnosticsStackTraceFactory, _DiagnosticsStackTraceNative) as unknown as typeof _DiagnosticsStackTraceFactory & (new(name: string, stack: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null, options?: {stackFilter?: ((input: DartIterable<string>) => DartIterableInput<string, string>) | null | undefined; showSeparator?: boolean | undefined}) => _DiagnosticsStackTraceNative) & (new(call: _FlaxProxySuper<_DiagnosticsStackTraceNative>) => _DiagnosticsStackTraceNative);
+export const DiagnosticsStackTrace: typeof _DiagnosticsStackTraceBinding & _FlaxInstanceType<DiagnosticsStackTrace> & _FlaxDartType<DiagnosticsStackTrace, readonly ["class", "flax.core/sdk_foundation#type:DiagnosticsStackTrace", readonly [], false]> = _flaxBindInstanceType<DiagnosticsStackTrace, typeof _DiagnosticsStackTraceBinding>(_DiagnosticsStackTraceBinding, "flax.core/sdk_foundation#type:DiagnosticsStackTrace", ["flax.core/sdk_foundation#type:DiagnosticsBlock","flax.core/sdk_foundation#type:DiagnosticsNode","dart:core::Object"]) as typeof _DiagnosticsStackTraceBinding & _FlaxInstanceType<DiagnosticsStackTrace> & _FlaxDartType<DiagnosticsStackTrace, readonly ["class", "flax.core/sdk_foundation#type:DiagnosticsStackTrace", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "level" | "value" | "allowTruncate" | "name" | "showSeparator" | "showName" | "linePrefix" | "emptyBodyDescription" | "style" | "allowWrap" | "allowNameWrap" | "textTreeConfiguration" | "getChildren" | "getProperties" | "toDescription" | "isFiltered" | "toTimelineArguments" | "toJsonMap" | "toJsonMapIterative" | "toStringDeep" | "toString" | "__flaxBound:package:flutter/src/foundation/assertions.dart::DiagnosticsStackTrace" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsBlock" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode";

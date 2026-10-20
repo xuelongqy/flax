@@ -1,6 +1,132 @@
 {
   "cases": [
     {
+      "id": "valid-binding-dependencies",
+      "file": "valid-binding-dependencies.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": { "name": "@flax/example-runtime", "version": "0.0.0" },
+      "toolingOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 2,
+          "capabilities": ["bindings"],
+          "bindingNamespace": "flax.example",
+          "generateDependencies": ["cupertino_ui", "intl", "zebra2"]
+        }
+      },
+      "codegenProjectionOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 2,
+          "capabilities": ["bindings"],
+          "bindingNamespace": "flax.example",
+          "generateDependencies": ["cupertino_ui", "intl", "zebra2"],
+          "javascriptPackage": "@flax/example",
+          "javascriptRuntimePackage": "@flax/example-runtime"
+        }
+      }
+    },
+    {
+      "id": "invalid-binding-dependencies",
+      "file": "invalid-binding-dependencies.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_DUPLICATE_VALUE",
+            "pointer": "/bindingDependencies/generate/1",
+            "line": 6,
+            "column": 7,
+            "message": "Duplicate value."
+          },
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/bindingDependencies/generate/2",
+            "line": 7,
+            "column": 7,
+            "message": "Expected a string."
+          },
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/bindingDependencies/generate/3",
+            "line": 8,
+            "column": 7,
+            "message": "Expected a string."
+          },
+          {
+            "code": "FCG_INVALID_VALUE",
+            "pointer": "/bindingDependencies/generate/4",
+            "line": 9,
+            "column": 7,
+            "message": "Expected a nonempty string."
+          },
+          {
+            "code": "FCG_INVALID_VALUE",
+            "pointer": "/bindingDependencies/generate/5",
+            "line": 10,
+            "column": 7,
+            "message": "Invalid Dart package name."
+          },
+          {
+            "code": "FCG_UNKNOWN_FIELD",
+            "pointer": "/bindingDependencies/generated",
+            "line": 11,
+            "column": 3,
+            "message": "Unknown field."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_DUPLICATE_VALUE",
+            "pointer": "/bindingDependencies/generate/1",
+            "line": 6,
+            "column": 7,
+            "message": "Duplicate value."
+          },
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/bindingDependencies/generate/2",
+            "line": 7,
+            "column": 7,
+            "message": "Expected a string."
+          },
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/bindingDependencies/generate/3",
+            "line": 8,
+            "column": 7,
+            "message": "Expected a string."
+          },
+          {
+            "code": "FCG_INVALID_VALUE",
+            "pointer": "/bindingDependencies/generate/4",
+            "line": 9,
+            "column": 7,
+            "message": "Expected a nonempty string."
+          },
+          {
+            "code": "FCG_INVALID_VALUE",
+            "pointer": "/bindingDependencies/generate/5",
+            "line": 10,
+            "column": 7,
+            "message": "Invalid Dart package name."
+          },
+          {
+            "code": "FCG_UNKNOWN_FIELD",
+            "pointer": "/bindingDependencies/generated",
+            "line": 11,
+            "column": 3,
+            "message": "Unknown field."
+          }
+        ]
+      }
+    },
+    {
       "id": "valid-bindings",
       "file": "valid-bindings.yaml",
       "pubspec": { "name": "example", "version": "0.0.0" },

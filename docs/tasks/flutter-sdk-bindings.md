@@ -138,6 +138,189 @@ samples, compiled-source hashes, engine audits, regression receipts and private
 four-file patch are under `.local/object-type-index-20261019/`. No engine/SDK rebuild,
 commit, push or CI trigger is performed.
 
+## Compact runtime-table experiment
+
+Decision: retain the existing generated descriptors and inherited-member caches. All
+runtime, generator and generated-source inputs from this experiment are restored to the
+task's starting worktree, including its earlier uncommitted optimizations. The evaluated
+schemas and cache alternatives remain private experiment artifacts, not supported APIs.
+No Manifest, JS API, protocol or ABI change is introduced.
+
+The compact prototype stores method names, indexes, flags and descriptions in shared
+rows, with typed call targets kept separate. It reuses the existing conversion rules and
+readable IDs. Its view also resolves inherited entries lazily. A separate lazy-only
+control removes packing, and a split-cache control retains flattened method maps while
+separating their cache from getter/setter lists.
+
+| Measurement                                       | Starting implementation | Compact rows and lazy inheritance | Lazy-only control | Split-cache control |
+| ------------------------------------------------- | ----------------------: | --------------------------------: | ----------------: | ------------------: |
+| Complete Core generated Dart, 17 files, bytes     |              45,217,391 |                        44,302,319 |        45,217,391 |          45,217,391 |
+| Same complete-SDK acceptance app AOT image, bytes |              71,968,096 |                        72,050,176 |        71,951,680 |          71,968,096 |
+
+The compact+lazy prototype reduces generated source by 915,072 bytes (2.02%), excluding
+its runtime reader, while its AOT image grows by 82,080 bytes relative to baseline. The
+lazy-only control's earlier separate memory run demonstrates that the observed memory
+benefit does not require a packed schema. It also introduces recursive lookup and live
+parent-map semantics. The split control keeps ordinary lookup, ordering, overrides,
+local-only lexical super and post-snapshot immutability, but changes when each metadata
+category takes its snapshot.
+
+The measured AOT image is `App.framework/Versions/A/App`: it includes the identical
+private measurement entrypoint, all complete SDK module roots and application code.
+Separate Flutter/V8 native binaries and bundled assets are excluded from that image;
+whole-bundle sizes and fixture/unsigned-engine hashes are recorded separately. These are
+not binding-only binary sizes and cannot be subtracted from the preceding
+71,836,768-byte application, which lacks that entrypoint. Section sizes are retained.
+
+Memory and traversal measurements use separate fresh macOS release processes in mirrored
+order: starting implementation, compact, split, split, compact, starting implementation.
+Each process constructs the same 16 SDK module roots, traverses ordinary-object and
+Widget-view method metadata once, and then repeats that traversal ten times. Every
+traversal produces checksum 1,979,903. The five-second phase windows exclude the timed
+traversal; every external footprint sample completes within three seconds.
+
+| Measurement                                                          | Starting implementation | Compact rows and lazy inheritance | Split-cache control |
+| -------------------------------------------------------------------- | ----------------------: | --------------------------------: | ------------------: |
+| Initial physical footprint, mean bytes                               |             100,205,696 |                       100,000,920 |         100,164,724 |
+| First-traversal physical footprint, mean bytes                       |             108,192,896 |                       104,875,160 |         107,308,148 |
+| After ten additional traversals, physical footprint, mean bytes      |             121,291,916 |                       111,183,000 |         120,497,280 |
+| After ten additional traversals, RSS, mean bytes                     |             226,885,632 |                       216,711,168 |         226,082,816 |
+| Pooled median of 20 repeated traversals, two processes, microseconds |                   2,267 |                            10,739 |             2,439.5 |
+
+These are process physical-footprint and RSS observations from two independent processes
+per variant, not retained Dart/JS heap or business-session savings. Repeated samples
+within a process are not independent replications. The compact traversal takes about
+4.74 times as long, despite the lower process footprint. The split control saves about
+0.795 MB in this method-only workload, without reducing generated source or AOT size.
+Ordinary object-operation resolution generally reads both metadata categories, so this
+probe does not establish the same saving in normal application calls; separate caches
+also add bookkeeping when both categories are populated. These gains do not justify the
+new schema, lookup behavior or snapshot timing.
+
+The original inherited maps, const descriptions, typed invocations, generic factories
+and joint-GC ownership therefore remain unchanged. The experiment adds no production
+cache or decoder. Raw measurements, case maps, source hashes, archived prototype code
+and rejected/interrupted runs are retained under
+`.local/compact-runtime-tables-20261019/`.
+
+The same mirrored order is used for the six full V8 release acceptance launches. Each
+process runs two warm-up batches and five measured batches of 200 composite rendering
+iterations. The following numbers are pooled medians and full sample ranges in
+milliseconds, with ten measured batches from two independent processes per variant:
+
+| Warm rendering path                         |   Starting implementation | Compact rows and lazy inheritance |       Split-cache control |
+| ------------------------------------------- | ------------------------: | --------------------------------: | ------------------------: |
+| JS inherited calls                          | 359.140 (333.162–375.640) |         350.887 (342.450–380.498) | 349.675 (338.362–382.425) |
+| JS override and lexical super               | 312.562 (284.089–333.145) |         311.005 (291.173–326.632) | 302.606 (283.647–328.503) |
+| Native parent through JS override and super | 388.123 (372.340–413.983) |         387.329 (378.035–396.041) | 383.788 (370.752–396.610) |
+
+Every checksum matches: 6,400 for inherited calls and 8,000 for the two override/super
+paths. The ranges overlap, and baseline process medians also vary; these samples do not
+establish a stable speedup. The owned render harness materializes inherited method maps
+before timing, so these are warm-dispatch measurements, not measurements of cold method
+resolution or lazy inherited-name lookup. Desktop foreground state is not pinned; one
+backgrounded control run was reactivated. Full-suite elapsed times are not compared as
+performance results. Raw per-process medians and samples are retained, with no timing
+assertions or frame-rate claims.
+
+The complete generator suite passes all 655 cases. Official generation checks for Core,
+Canvas, Cupertino and Material, public-type projection and module delivery pass. All
+9,325 recorded generated files (9,295 JS/TS and 30 Dart) and five binding manifests are
+byte-identical to the starting worktree. The compact prototype also preserves all 17
+expanded Dart descriptor graphs and typed call bodies. All six final V8 launches pass
+the same 246 named cases, with two explicit debug-only rebuild checks inapplicable in
+release. The split-cache control additionally passes all 248 Hermes debug cases on the
+existing iOS 27.0 Simulator, matching the previous case map and engine hashes. These
+include generic contexts, JS inheritance, overrides, lexical/async super and both Dart
+and JS roots before cycle collection. The compact schema itself was not rerun on Hermes
+after the unfavorable size result; none of the evaluated runtime changes is retained.
+
+The initial baseline launch timed out without captured assertion failures; its unchanged
+binary passes both final serial launches. The original cause is not established.
+Interrupted prototype suites, a temporary source-file removal during a duplicated
+compilation, and the corrected test instrumentation remain in the private evidence. The
+enclosing `bindings:check` command was interrupted after its generation/delivery stages
+to stop an unnecessary duplicate generator suite; it is not reported as a green whole
+invocation. The separate full generator run passes. No SDK/engine rebuild, commit, push
+or CI trigger is performed.
+
+After restoration, all eight registry cases and the previously interrupted dependent
+bounds compilation regression pass again. Documentation checks cover 184 linted files,
+four tooling tests and 765 local links. Seven task-owned application copies, totaling
+1,395,740,145 logical file bytes, the expanded baseline source copy and this
+experiment's Xcode DerivedData are removed after recording file hashes. The identical
+fixture snapshot is retained as gzip. The failed iOS 27.1 migration is left without
+erasing user data; that Simulator is back in its original shutdown state. The existing
+iOS 27.0 Simulator remains booted and the newly installed test application is
+uninstalled. Maintained SDK/engine builds and unrelated task files are preserved.
+
+## Shared Dart conversion descriptions
+
+Generated Dart now directly references common const descriptions exported by
+`flax/bindings.dart`, without `_flaxBindingN` aliases for those public values. The
+existing module constant pool recognizes complete emitted descriptions. It retains its
+fallback for module-specific conversions, provider identities and generic-local
+callbacks. No new runtime registry, lookup, callback instance cache or GC edge is added.
+
+The catalog contains 15 primitive descriptions, 13 proxy-only signatures, nine callable
+bindings, their 18 nullable/non-nullable function references, and 20 frequently used
+native/Core views. The additional views include Duration, DateTime, Color, Offset, Size,
+Rect, EdgeInsets and Uint8List. Core-owned views require their exact provider ID; an
+independently bound Duration keeps its own metadata. Special encoding, parameter names,
+roles, snapshots, scope flags and generic identities cannot be merged by type name.
+Source-frequency estimates exclude candidates that would grow the output. Shared names
+remain readable; shorter proxy signature names avoid repeating `CallbackSignature` at
+thousands of call sites.
+
+Measurements use the task's starting worktree, including the earlier uncommitted Dart
+optimizations and the preceding JS parameter-layout commit:
+
+| Measurement                                         | Before bytes | After bytes | Difference |
+| --------------------------------------------------- | -----------: | ----------: | ---------: |
+| Complete Core generated Dart, 17 files              |   45,258,062 |  45,217,391 |    -40,671 |
+| New shared base definitions and part directive      |            0 |       8,844 |     +8,844 |
+| Net Dart source change                              |              |             |    -31,827 |
+| Same full-SDK acceptance application AOT executable |   71,836,768 |  71,836,768 |          0 |
+
+Dart already canonicalizes equal const values; these source reductions alone do not
+claim an AOT or live-memory improvement. The measured AOT executable size is unchanged,
+so this is source deduplication rather than a measured application-size optimization.
+The controlled native comparison reuses the baseline application's exact fixture asset,
+including TLS material. Its private runner uses the original application checker,
+assertions, budgets and maintained engine while isolating output paths. Engine and SDK
+builds are unchanged.
+
+All 75 catalog entries match their exported base definitions. All 17 complete generated
+modules have equal descriptor graphs and typed source after resolving constants,
+normalizing spelling and excluding only the replaced declarations. The provider
+regression compiles the real Duration call and rejects reuse for a foreign provider ID.
+No aliases to public common descriptions remain. Exact size receipts, source hashes,
+generator logs and native acceptance are recorded under
+`.local/shared-type-refs-20261019/`.
+
+Official four-package generation, complete Core reproducibility, public-type projection
+and module delivery pass. All 6,179 tracked generated JS/TS files and five binding
+manifests are byte-identical. All 203 workspace JS cases and scoped Dart analysis pass.
+The initial complete generator run passes 654 cases but records one newly added
+provider-sharing activation assertion against an intermediate catalog. The additional
+catalog's expression spelling is corrected; the fresh complete shared-binding file
+passes all ten cases, including the real provider call and independent provider
+rejection. The original failed run is retained rather than reported as a single fully
+green invocation. Together these runs provide passing evidence for all 655 cases.
+
+Fresh V8 macOS release/AOT acceptance passes the same 246 named cases as the baseline.
+Two debug-only Flutter rebuild cases remain inapplicable in release. The exact fixture
+asset and five unsigned V8 library hashes match; signing, JIT entitlement, one engine
+closure and source removal before launch are verified. These cases include generic
+contexts, JS inheritance, overrides, lexical/async super and bidirectional roots before
+collection. Fresh iOS Simulator Hermes debug acceptance passes all 248 named cases,
+matching the prior acceptance map. Its normalized engine and three static-library hashes
+are unchanged; the embedded interpreter has no JIT. No engine/SDK rebuild, commit, push
+or CI run is performed. Task-owned applications, expanded baseline copies and Xcode
+DerivedData are removed after preserving their hashes and receipts. The fixture snapshot
+is retained as gzip, and the Simulator returns to its previous shutdown state; the
+pre-existing booted device is preserved.
+
 ## Shared JS parameter layouts
 
 Split JS binding declarations now reuse complete parameter layouts from their existing
@@ -219,6 +402,142 @@ and results; the test-booted Simulator returns to shutdown. Runtime throughput, 
 platforms, compact super-member lists and delivery-JSON sharing remain outside this
 change. The preceding Dart description optimizations are preserved separately. No push,
 CI run or engine/SDK rebuild is performed.
+
+## Shared super descriptions
+
+The baseline includes the preceding uncommitted compact-description implementation.
+Closed super-call descriptions now use the existing module constant pool when they
+target an already-shared typed dispatch helper. The generator interns 983 complete
+method rows; each class keeps its own method map, readable keys, operation order and
+native lexical-super bodies. Factory-local descriptions retain their existing scope.
+Runtime definitions, generic factory emission and metadata ownership are byte-identical
+to this baseline. There is no new runtime representation, lookup or GC cache.
+
+| Measurement                                 | Before bytes | After bytes | Reduction |
+| ------------------------------------------- | -----------: | ----------: | --------: |
+| Complete Core Dart, excluding bootstrap     |   46,520,829 |  45,258,062 |     2.71% |
+| Rendering Dart                              |   14,669,520 |  13,821,257 |     5.78% |
+| Same standard macOS release application AOT |   71,836,768 |  71,836,768 |     0.00% |
+
+All 9,929 tracked JS/TS/JSON files remain byte-identical, including five Manifests and
+all 3,076 Core TS files. Manifest 27, UI protocol 24 and native ABI 2 are unchanged.
+Recursive constant/declaration comparison of 20 generated Dart files finds no semantic
+differences after resolving the new aliases. It includes imports, type aliases, ordinary
+and generic functions, proxy classes, method order and proxy member slots.
+
+An eager shared-map prototype was rejected. It reduced Core source to 44,730,534 bytes
+and the instrumented acceptance AOT by 65,664 bytes, but introduced cached table
+expansion. Two first-use observations per variant under concurrent checks showed about
+1.41 MB of extra RSS growth. These are process observations, not precise heap-allocation
+measurements or timing acceptance. The adopted constant-row approach removes that new
+runtime field and expansion path entirely.
+
+The all-SDK first-use probe also changed the native application's initial metadata
+state: an unchanged baseline containing that probe exceeded the existing ten-minute
+desktop limit. Final V8 correctness and call measurements therefore use the original
+acceptance entrypoint without the probe; logs stream live with the existing activation
+and timeout behavior. Prototype and interrupted checks are retained separately and are
+not acceptance evidence.
+
+All 652 generator tests and eight metadata/registry tests pass. Four-package generation
+reproducibility, public type projection, module delivery and workspace analysis pass.
+iOS Simulator Hermes debug passes the same 248 named cases and retains the previous
+Hermes static-library and normalized engine hashes. Covered behavior includes owner and
+method generics, JS inheritance, overrides, async super, callback cycles and joint
+collection. The task-booted Simulator is restored to shutdown. Four macOS V8 release/AOT
+launches each pass the same 246 named cases; two debug-only rebuild checks are
+inapplicable in release. Both standard application builds retain identical Flutter
+engine hashes and all five unsigned V8 library hashes, with signing, JIT entitlement and
+single-engine-closure checks passing. The standard baseline AOT also matches the
+previous accepted application's exact size. AOT measures the whole application,
+including Flutter and tests, not bindings alone. Identical constant rows were already
+canonicalized by Dart, so this optimization reduces source rather than binary size.
+
+The standard application uses the original acceptance entrypoint. Runs use baseline,
+optimized, optimized, baseline order after other builds, checks and the Simulator have
+finished. Each process warms up two batches and measures five batches of 200 composite
+operations per path. The table pools ten measured batches per variant in microseconds;
+all iterations and checksums agree.
+
+| Path                         |     Baseline median (range) |    Optimized median (range) | Median change |
+| ---------------------------- | --------------------------: | --------------------------: | ------------: |
+| JS inherited calls           | 351,698.5 (327,792–378,821) |   352,655 (332,939–380,725) |        +0.27% |
+| JS override and super        |   310,583 (275,598–326,364) | 313,123.5 (278,250–322,869) |        +0.82% |
+| Native parent override/super |   382,323 (371,867–390,951) |   382,503 (377,090–390,461) |        +0.05% |
+
+The sample ranges overlap. These observations show no clear throughput regression and do
+not establish a speed improvement or universal latency guarantee. Workspace-wide
+TypeScript was not rerun: tracked API files are byte-identical and strict TS consumers
+are exercised in the generator fixtures. Other platforms were not rerun.
+
+Evidence is kept in `.local/super-tables-20261019/`. No commit, push, CI run or
+engine/SDK rebuild is part of this task.
+
+## Compact common descriptions
+
+The measurements compare the current implementation with baseline `da91eb25`.
+
+Common metadata uses five shared compact implementations in the base package rather than
+one implementation per bound class. Required parameters store their name and type;
+ordinary callback parameters and getters derive default encoding. Plain methods keep
+only their call description and typed invocation, or a reference to an existing proxy
+signature. Required positional callback flags are omitted from generated source. Special
+encoding, snapshots, scoped callbacks, optional/defaulted arguments, navigation and
+generic dispatch keep the complete policy. Existing metadata constructors remain valid.
+
+| Measurement                               | Before bytes | After bytes | Reduction |
+| ----------------------------------------- | -----------: | ----------: | --------: |
+| Complete Core Dart, excluding bootstrap   |   47,091,884 |  46,520,829 |     1.21% |
+| Same macOS release application AOT binary |   72,263,584 |  71,836,768 |     0.59% |
+
+The shared base implementation adds 2,951 source bytes. Rendering saves 213,207 source
+bytes, Widgets 125,576 and Material 36,816. The AOT code section saves 192,512 bytes and
+its constant section saves 229,360. AOT measures the complete acceptance application,
+including Flutter and tests, not binding code alone. Signing, hardened-runtime/JIT and
+single-V8-closure checks pass; all five unsigned V8 library hashes match the baseline.
+
+All 9,929 tracked JS/TS/JSON files remain byte-identical, including five package
+Manifests. The current JS API, readable IDs, Manifest 27, UI protocol 24 and native ABI
+2 are unchanged. Token comparison of all 21 generated Dart files, after expanding
+compact metadata defaults and removing optional formatting commas, finds no other code
+changes. Typed adapters, factory-local generic context, native inheritance, overrides
+and lexical super bodies are unchanged. The compact forms add no business-reference
+cache or joint-GC root. A focused regression checks conversion roles, errors and
+complete-policy fallback; it also corrects an existing registry expectation missing the
+Context-call capability.
+
+All 652 generator tests and eight metadata/registry contract tests pass. Official
+four-package generation and reproducibility, public types, module delivery, strict
+workspace TypeScript and full workspace Dart analysis pass. Changed-source formatting,
+Markdown lint and local links pass. iOS Simulator Hermes debug passes all 248 named
+cases, matching the previous accepted case map and engine hashes. Four macOS V8
+release/AOT launches each pass the same 246 named cases; two debug-only rebuild checks
+are inapplicable in release. Covered behavior includes owner/method generic contexts, JS
+inheritance, overrides, lexical super and bidirectional collection, including repeated
+Widget/State lifecycle cycles. The task-owned Simulator is restored to shutdown.
+
+The Rendering benchmark runs in baseline, optimized, optimized, baseline order after all
+other builds, checks and the Simulator run have finished. Each application process warms
+up two batches and measures five batches of 200 composite operations per path. The table
+pools ten measured batches per variant and reports microseconds; iterations and
+checksums agree in all four processes. FlutterMacOS and all five unsigned V8 libraries
+are identical between applications.
+
+| Path                         |     Baseline median (range) |    Optimized median (range) | Median change |
+| ---------------------------- | --------------------------: | --------------------------: | ------------: |
+| JS inherited calls           |   347,892 (335,419–380,117) |   354,518 (333,286–372,530) |        +1.90% |
+| JS override and super        | 307,835.5 (289,581–328,583) |   308,176 (274,800–321,284) |        +0.11% |
+| Native parent override/super | 381,438.5 (373,458–391,312) | 384,902.5 (374,948–393,211) |        +0.91% |
+
+The sample ranges overlap. These observations show no clear throughput regression but do
+not establish a speed improvement or a universal timing guarantee. Cold generic factory
+creation, every SDK operation and complete optional-plugin UI suites were not measured
+separately; other platforms were not rerun. Review finds no additional
+business-reference root or change to conversion policy.
+
+Evidence is kept in `.local/compact-descriptors-20261019/`; task-owned application
+copies, Xcode DerivedData and completed scratch directories are removed after recording
+results. No commit, push, CI run or engine/SDK rebuild is part of this task.
 
 ## Fixed descriptions in generic factories
 

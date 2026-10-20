@@ -10,8 +10,10 @@ environment:
 
 dependencies:
   flax: 0.0.0
+  flax_cupertino_ui: 0.0.0
   flutter:
     sdk: flutter
+  intl: 0.20.3
   material_ui: 1.1.1
 
 dev_dependencies:

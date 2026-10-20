@@ -14,16 +14,10 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
-import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface DoNothingAndStopPropagationTextIntent extends Omit<upstream0.Intent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Intent>, Readonly<{ "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DoNothingAndStopPropagationTextIntent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __DoNothingAndStopPropagationTextIntent: unique symbol;
-readonly [_flaxDartTypeValue]: DoNothingAndStopPropagationTextIntent;
-
-}
-defineObject("flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
-const _DoNothingAndStopPropagationTextIntentProxy = {type: "flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
-export interface DoNothingAndStopPropagationTextIntent {
 readonly [_flaxDartTypeValue]: DoNothingAndStopPropagationTextIntent;
 
 toStringShort(): string;
@@ -31,14 +25,30 @@ toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream3
 debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 toString(options?: {minLevel?: upstream5.DiagnosticLevel | undefined}): string;
 }
-export abstract class DoNothingAndStopPropagationTextIntent extends _FlaxProxyBase {
+defineObject("flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
+export function _DoNothingAndStopPropagationTextIntentFactory(): DoNothingAndStopPropagationTextIntent {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", "", [], [], {}) as DoNothingAndStopPropagationTextIntent;
+}
+const _DoNothingAndStopPropagationTextIntentProxy = {type: "flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+export interface _DoNothingAndStopPropagationTextIntentNative extends DoNothingAndStopPropagationTextIntent {
+readonly [_flaxDartTypeValue]: _DoNothingAndStopPropagationTextIntentNative;
+
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream3.DiagnosticsTreeStyle | null | undefined}): upstream2.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream5.DiagnosticLevel | undefined}): string;
+}
+export abstract class _DoNothingAndStopPropagationTextIntentNative extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DoNothingAndStopPropagationTextIntent>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: DoNothingAndStopPropagationTextIntent;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", readonly [], false];
 constructor() { super(_DoNothingAndStopPropagationTextIntentProxy, Array.from(arguments)); }
 }
-_flaxDefineProxyBase(DoNothingAndStopPropagationTextIntent.prototype, _DoNothingAndStopPropagationTextIntentProxy);
-export namespace DoNothingAndStopPropagationTextIntent { export function implement(args: [], implementation: {}): DoNothingAndStopPropagationTextIntent {
+_flaxDefineProxyBase(_DoNothingAndStopPropagationTextIntentNative.prototype, _DoNothingAndStopPropagationTextIntentProxy);
+export namespace _DoNothingAndStopPropagationTextIntentFactory { export function implement(args: [], implementation: {}): DoNothingAndStopPropagationTextIntent {
 return constructProxy(_DoNothingAndStopPropagationTextIntentProxy, args, implementation) as DoNothingAndStopPropagationTextIntent; } }
-_flaxBindInstanceType<DoNothingAndStopPropagationTextIntent, typeof DoNothingAndStopPropagationTextIntent>(DoNothingAndStopPropagationTextIntent, "flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+const _DoNothingAndStopPropagationTextIntentBinding = _flaxProxyFactory(_DoNothingAndStopPropagationTextIntentFactory, _DoNothingAndStopPropagationTextIntentNative) as unknown as typeof _DoNothingAndStopPropagationTextIntentFactory & (new() => _DoNothingAndStopPropagationTextIntentNative);
+export const DoNothingAndStopPropagationTextIntent: typeof _DoNothingAndStopPropagationTextIntentBinding & _FlaxInstanceType<DoNothingAndStopPropagationTextIntent> & _FlaxDartType<DoNothingAndStopPropagationTextIntent, readonly ["class", "flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", readonly [], false]> = _flaxBindInstanceType<DoNothingAndStopPropagationTextIntent, typeof _DoNothingAndStopPropagationTextIntentBinding>(_DoNothingAndStopPropagationTextIntentBinding, "flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", ["flax.core/sdk_widgets#type:Intent","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _DoNothingAndStopPropagationTextIntentBinding & _FlaxInstanceType<DoNothingAndStopPropagationTextIntent> & _FlaxDartType<DoNothingAndStopPropagationTextIntent, readonly ["class", "flax.core/sdk_widgets#type:DoNothingAndStopPropagationTextIntent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/text_editing_intents.dart::DoNothingAndStopPropagationTextIntent" | "__flaxBound:package:flutter/src/widgets/actions.dart::Intent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

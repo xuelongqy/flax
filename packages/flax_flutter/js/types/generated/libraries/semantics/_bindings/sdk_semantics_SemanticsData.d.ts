@@ -37,7 +37,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsFlag';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsAction';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SemanticsData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsData": readonly [];
 }>, Readonly<{
@@ -45,9 +45,130 @@ export interface SemanticsData extends Omit<upstream0.Diagnosticable, _flaxOwnMe
 }> {
     readonly __SemanticsData: unique symbol;
     readonly [_flaxDartTypeValue]: SemanticsData;
+    readonly flags: number;
+    readonly flagsCollection: upstream1.SemanticsFlags;
+    readonly actions: number;
+    readonly identifier: string;
+    readonly traversalParentIdentifier: unknown | null;
+    readonly traversalChildIdentifier: unknown | null;
+    readonly label: string;
+    readonly attributedLabel: upstream2.AttributedString;
+    readonly value: string;
+    readonly attributedValue: upstream2.AttributedString;
+    readonly increasedValue: string;
+    readonly attributedIncreasedValue: upstream2.AttributedString;
+    readonly decreasedValue: string;
+    readonly attributedDecreasedValue: upstream2.AttributedString;
+    readonly hint: string;
+    readonly attributedHint: upstream2.AttributedString;
+    readonly tooltip: string;
+    readonly headingLevel: number;
+    readonly textDirection: upstream3.TextDirection | null;
+    readonly textSelection: upstream5.TextSelection | null;
+    readonly scrollChildCount: number | null;
+    readonly scrollIndex: number | null;
+    readonly scrollPosition: number | null;
+    readonly scrollExtentMax: number | null;
+    readonly scrollExtentMin: number | null;
+    readonly platformViewId: number | null;
+    readonly maxValueLength: number | null;
+    readonly currentValueLength: number | null;
+    readonly linkUrl: upstream6.Uri | null;
+    readonly rect: upstream4.Rect;
+    readonly tags: DartSet<upstream12.SemanticsTag> | null;
+    readonly transform: upstream13.Matrix4 | null;
+    readonly customSemanticsActionIds: DartList<number> | null;
+    readonly role: upstream7.SemanticsRole;
+    readonly controlsNodes: DartSet<string> | null;
+    readonly validationResult: upstream8.SemanticsValidationResult;
+    readonly hitTestBehavior: upstream9.SemanticsHitTestBehavior;
+    readonly inputType: upstream10.SemanticsInputType;
+    readonly locale: upstream11.Locale | null;
+    readonly maxValue: string | null;
+    readonly minValue: string | null;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream14.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream16.DiagnosticsTreeStyle | null | undefined;
+    }): upstream15.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    hasFlag(flag: Readonly<{
+        "__flaxBound:dart:ui::SemanticsFlag": readonly [];
+    }>): boolean;
+    hasAction(action: Readonly<{
+        "__flaxBound:dart:ui::SemanticsAction": readonly [];
+    }>): boolean;
 }
-export interface SemanticsData {
-    readonly [_flaxDartTypeValue]: SemanticsData;
+export declare function _SemanticsDataFactory(options: {
+    flagsCollection: Readonly<{
+        "__flaxBound:dart:ui::SemanticsFlags": readonly [];
+    }>;
+    actions: number;
+    identifier: string;
+    traversalParentIdentifier: unknown | null;
+    traversalChildIdentifier: unknown | null;
+    attributedLabel: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }>;
+    attributedValue: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }>;
+    attributedIncreasedValue: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }>;
+    attributedDecreasedValue: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }>;
+    attributedHint: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }>;
+    tooltip: string;
+    textDirection: upstream3.TextDirection | null;
+    rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>;
+    textSelection: (Readonly<{
+        "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>) | null;
+    scrollIndex: number | null;
+    scrollChildCount: number | null;
+    scrollPosition: number | null;
+    scrollExtentMax: number | null;
+    scrollExtentMin: number | null;
+    platformViewId: number | null;
+    maxValueLength: number | null;
+    currentValueLength: number | null;
+    headingLevel: number;
+    linkUrl: DartInput<Readonly<{
+        "__flaxBound:dart:core::Uri": readonly [];
+    }>> | null;
+    role: upstream7.SemanticsRole;
+    controlsNodes: DartSetInput<string, string> | null;
+    validationResult: upstream8.SemanticsValidationResult;
+    hitTestBehavior: upstream9.SemanticsHitTestBehavior;
+    inputType: upstream10.SemanticsInputType;
+    locale: Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null;
+    minValue: string | null;
+    maxValue: string | null;
+    tags?: DartSetInput<upstream12.SemanticsTag, Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsTag": readonly [];
+    }>> | null | undefined;
+    transform?: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null | undefined;
+    customSemanticsActionIds?: DartListInput<number, number> | null | undefined;
+}): SemanticsData;
+export interface _SemanticsDataNative extends SemanticsData {
+    readonly [_flaxDartTypeValue]: _SemanticsDataNative;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream14.DiagnosticLevel | undefined;
@@ -107,7 +228,7 @@ export interface SemanticsData {
     get maxValue(): string | null;
     get minValue(): string | null;
 }
-export declare abstract class SemanticsData extends _FlaxProxyBase {
+export declare abstract class _SemanticsDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SemanticsData>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: SemanticsData;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_semantics#type:SemanticsData", readonly [], false];
@@ -175,7 +296,7 @@ export declare abstract class SemanticsData extends _FlaxProxyBase {
         customSemanticsActionIds?: DartListInput<number, number> | null | undefined;
     });
 }
-export declare namespace SemanticsData {
+export declare namespace _SemanticsDataFactory {
     function implement(args: [options: {
         flagsCollection: Readonly<{
             "__flaxBound:dart:ui::SemanticsFlags": readonly [];
@@ -240,5 +361,69 @@ export declare namespace SemanticsData {
         customSemanticsActionIds?: DartListInput<number, number> | null | undefined;
     }], implementation: {}): SemanticsData;
 }
+declare const _SemanticsDataBinding: typeof _SemanticsDataFactory & (new (options: {
+    flagsCollection: Readonly<{
+        "__flaxBound:dart:ui::SemanticsFlags": readonly [];
+    }>;
+    actions: number;
+    identifier: string;
+    traversalParentIdentifier: unknown | null;
+    traversalChildIdentifier: unknown | null;
+    attributedLabel: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }>;
+    attributedValue: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }>;
+    attributedIncreasedValue: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }>;
+    attributedDecreasedValue: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }>;
+    attributedHint: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::AttributedString": readonly [];
+    }>;
+    tooltip: string;
+    textDirection: upstream3.TextDirection | null;
+    rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>;
+    textSelection: (Readonly<{
+        "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>) | null;
+    scrollIndex: number | null;
+    scrollChildCount: number | null;
+    scrollPosition: number | null;
+    scrollExtentMax: number | null;
+    scrollExtentMin: number | null;
+    platformViewId: number | null;
+    maxValueLength: number | null;
+    currentValueLength: number | null;
+    headingLevel: number;
+    linkUrl: DartInput<Readonly<{
+        "__flaxBound:dart:core::Uri": readonly [];
+    }>> | null;
+    role: upstream7.SemanticsRole;
+    controlsNodes: DartSetInput<string, string> | null;
+    validationResult: upstream8.SemanticsValidationResult;
+    hitTestBehavior: upstream9.SemanticsHitTestBehavior;
+    inputType: upstream10.SemanticsInputType;
+    locale: Readonly<{
+        "__flaxBound:dart:ui::Locale": readonly [];
+    }> | null;
+    minValue: string | null;
+    maxValue: string | null;
+    tags?: DartSetInput<upstream12.SemanticsTag, Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsTag": readonly [];
+    }>> | null | undefined;
+    transform?: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }> | null | undefined;
+    customSemanticsActionIds?: DartListInput<number, number> | null | undefined;
+}) => _SemanticsDataNative);
+export declare const SemanticsData: typeof _SemanticsDataBinding & _FlaxInstanceType<SemanticsData> & _FlaxDartType<SemanticsData, readonly ["class", "flax.core/sdk_semantics#type:SemanticsData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "flags" | "flagsCollection" | "actions" | "identifier" | "traversalParentIdentifier" | "traversalChildIdentifier" | "label" | "attributedLabel" | "value" | "attributedValue" | "increasedValue" | "attributedIncreasedValue" | "decreasedValue" | "attributedDecreasedValue" | "hint" | "attributedHint" | "tooltip" | "headingLevel" | "textDirection" | "textSelection" | "scrollChildCount" | "scrollIndex" | "scrollPosition" | "scrollExtentMax" | "scrollExtentMin" | "platformViewId" | "maxValueLength" | "currentValueLength" | "linkUrl" | "rect" | "tags" | "transform" | "customSemanticsActionIds" | "role" | "controlsNodes" | "validationResult" | "hitTestBehavior" | "inputType" | "locale" | "maxValue" | "minValue" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "hasFlag" | "hasAction" | "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

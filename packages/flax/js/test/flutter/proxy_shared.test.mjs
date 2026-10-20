@@ -9,7 +9,106 @@ import {
   bindInstanceType,
   defineStaticGetters,
   invokeObject,
+  proxyFactory,
+  defineDartTypes,
+  dartType,
+  dartTypes,
 } from '../../dist/runtime/bindings.js';
+import { dartTypeDescription } from '../../dist/runtime/dart_types.js';
+
+test('factory and internal proxy share authenticated generic type identity', (t) => {
+  const type = 'fixture:ProxyFactoryType';
+  defineObject(type, [], [], {}, []);
+  const definition = {
+    type,
+    parameters: [],
+    constructors: { '': [] },
+    methods: {},
+    getters: [],
+    setters: [],
+    superMembers: [],
+    contextMembers: [],
+  };
+  class Native extends FlaxProxyBase {
+    constructor() {
+      super(definition, []);
+    }
+  }
+  defineProxyBase(Native.prototype, definition);
+  const Factory = bindInstanceType(
+    proxyFactory(() => {}, Native),
+    type,
+    [],
+  );
+  defineDartTypes(Factory, type, {
+    category: 'object',
+    constructors: { '': [] },
+    proxy: definition,
+  });
+  assert.deepEqual(dartTypeDescription(Native), dartTypeDescription(Factory));
+  assert.deepEqual(
+    dartTypeDescription(dartTypes.list(Native)),
+    dartTypeDescription(dartTypes.list(Factory)),
+  );
+  assert.throws(() => dartTypeDescription(class Foreign {}), /authenticated Dart type/);
+  const previous = globalThis.__flaxDartType;
+  t.after(() => {
+    globalThis.__flaxDartType = previous;
+  });
+  globalThis.__flaxDartType = () => type + '<String>';
+  assert.equal(dartType(Native), Factory);
+  assert.equal(dartType(Native, dartTypes.string), dartType(Factory, dartTypes.string));
+});
+
+test('shared constructor exports preserve factory calls, statics and JS super', () => {
+  const calls = [];
+  const factory = (value) => {
+    calls.push('factory');
+    return { value };
+  };
+  factory.named = (value) => factory(value);
+  let current = 3;
+  Object.defineProperty(factory, 'current', { get: () => current });
+  Object.defineProperty(factory, 'name', { get: () => current });
+  Object.defineProperty(factory, 'length', { get: () => current });
+  class Native {
+    constructor(value) {
+      calls.push('proxy');
+      this.value = value;
+    }
+    add(value) {
+      return this.value + value;
+    }
+  }
+  const Base = proxyFactory(factory, Native);
+  assert.deepEqual(Base(2), { value: 2 });
+  assert.deepEqual(Base.named(4), { value: 4 });
+  assert.equal(Base.current, 3);
+  assert.equal(Base.name, 3);
+  assert.equal(Base.length, 3);
+  current = 7;
+  assert.equal(Base.current, 7);
+  assert.equal(Base.name, 7);
+  assert.equal(Base.length, 7);
+  const direct = new Base(5);
+  assert.ok(direct instanceof Base);
+  assert.ok(direct instanceof Native);
+  assert.equal(direct.add(2), 7);
+  class Child extends Base {
+    #extra = 10;
+    add(value) {
+      return super.add(value) + this.#extra;
+    }
+  }
+  const child = new Child(3);
+  assert.ok(child instanceof Child);
+  assert.ok(child instanceof Base);
+  assert.equal(child.add(2), 15);
+  assert.deepEqual(calls, ['factory', 'factory', 'proxy', 'proxy']);
+  const Named = proxyFactory({ named: factory.named }, Native);
+  assert.throws(() => Named(), /only named constructors/);
+  assert.deepEqual(Named.named(6), { value: 6 });
+});
 
 test('shared static readers stay lazy, live, readonly and preserve native values', (t) => {
   const calls = [];

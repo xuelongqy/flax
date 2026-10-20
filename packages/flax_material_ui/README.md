@@ -5,6 +5,10 @@ TextField, Material, InkWell, progress, MaterialPageRoute, and MaterialPage APIs
 Register it alongside flutterBindings in FlaxBindingRegistry. Generated host types use
 the public flax/bindings.dart extension and preserve Flutter Element matching.
 
+This standalone selection is still curated. The formal Core continues to own Flutter's
+native Material and Cupertino bindings; this package does not replace them, and a
+full-library split migration is not complete.
+
 The public Material library is `@flax/material-ui`. It exports the safe primitive
 constant `kToolbarHeight` directly and exposes the Dart-backed duration through
 `getKTabScrollDuration()`, reusing Core's `Duration` object binding and identity. The
@@ -35,6 +39,42 @@ matching version. Applications that include it in `Flax.moduleAssets` can let bu
 JavaScript install only the `@flax/material-ui` declarations; add `FlaxMaterialPlugin`
 to each `FlaxView` / `FlaxSession` that should inject `@flax/material-ui`. See
 [package boundaries](../../docs/architecture/packaging.md#application-module-inventory-and-host-delivery).
+
+Binding selection follows the shared four rules: generate the configured `material_ui`
+source, reuse Core and declared providers, generate external types only through an
+owner-local opt-in, otherwise skip the affected signature. The package declares a direct
+Dart dependency on `flax_cupertino_ui`. Its public types package depends on
+`@flax/cupertino-ui`; its source package depends on both `@flax/cupertino-ui` and
+`@flax/cupertino-ui-runtime`. Types declarations alone are insufficient for provider
+reuse. Generated Dart dependency imports use the provider Manifest's
+`modules[].dartLibrary` package URI, which may point into generated `lib/src`; the
+provider's main Dart entry point need not export that module. JS delivery follows the
+declared runtime dependency without inlining its implementation. Binding wiring does not
+activate host-capability plugins.
+
+For an external type without a provider, an owner-local opt-in such as
+`bindingDependencies: {generate: [intl]}` in `flax_package.yaml` also requires a direct
+`intl` entry in the Dart `pubspec.yaml` dependencies. It generates only needed types,
+not all of `intl`. Without a binding or opt-in, even an optional unbound parameter skips
+the whole signature rather than silently disappearing from it. The metadata allows
+`intl`, but the curated selection does not reference its types and emits no local `intl`
+views. Whole-library discovery can generate the required views independently.
+
+When generated, these local views are exposed through
+`@flax/material-ui/dependencies/intl`. Their runtime source is
+`dist/generated/dependencies/intl/index.js`, with the same directory as `subpathRoot`.
+The specific types-only `./dependencies/*` export tries
+`types/generated/dependencies/*.d.ts` before
+`types/generated/dependencies/*/index.d.ts`; the runtime package uses the corresponding
+`dist/generated/dependencies/` targets. The first candidate supports nested generated
+type helpers, while the second resolves the dependency root. Both take precedence over
+the general library wildcard and preserve the same public API without aliases. Manifest
+28 marks their owning identities with the sparse `localDependency: true` field so other
+packages do not automatically reuse them as providers; format 27 is rejected. For
+independently generated views of the same Dart object, existing `asDart(value, Target)`
+requests the exact target view with normal type and generic checks, retaining existing
+joint-GC ownership. Core remains implicit and cannot be duplicated. See the
+[binding dependency policy](../../docs/architecture/packaging.md#binding-dependency-policy).
 
 Navigation now includes explicit sessions, shared or nested Flutter Navigators, native
 callback ownership, ordinary Dart reference results, and UI Future delivery. See the

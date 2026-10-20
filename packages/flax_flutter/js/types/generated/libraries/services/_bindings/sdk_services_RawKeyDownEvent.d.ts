@@ -17,7 +17,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RawKeyDownEvent extends Omit<upstream0.RawKeyEvent, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.RawKeyEvent>, Readonly<{
     "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyDownEvent": readonly [];
 }>, Readonly<{
@@ -27,9 +27,45 @@ export interface RawKeyDownEvent extends Omit<upstream0.RawKeyEvent, _flaxOwnMem
 }> {
     readonly __RawKeyDownEvent: unique symbol;
     readonly [_flaxDartTypeValue]: RawKeyDownEvent;
+    readonly isControlPressed: boolean;
+    readonly isShiftPressed: boolean;
+    readonly isAltPressed: boolean;
+    readonly isMetaPressed: boolean;
+    readonly physicalKey: upstream3.PhysicalKeyboardKey;
+    readonly logicalKey: upstream4.LogicalKeyboardKey;
+    readonly character: string | null;
+    readonly repeat: boolean;
+    readonly data: upstream2.RawKeyEventData;
+    isKeyPressed(key: Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): boolean;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream7.DiagnosticsTreeStyle | null | undefined;
+    }): upstream6.DiagnosticsNode;
+    toString(options?: {
+        minLevel?: upstream8.DiagnosticLevel | undefined;
+    }): string;
 }
-export interface RawKeyDownEvent {
-    readonly [_flaxDartTypeValue]: RawKeyDownEvent;
+export declare function _RawKeyDownEventFactory(options: {
+    data: Readonly<{
+        "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    character?: string | null | undefined;
+    repeat?: boolean | undefined;
+}): RawKeyDownEvent;
+export interface _RawKeyDownEventNative extends RawKeyDownEvent {
+    readonly [_flaxDartTypeValue]: _RawKeyDownEventNative;
     isKeyPressed(key: Readonly<{
         "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [];
     }> & Readonly<{
@@ -58,7 +94,7 @@ export interface RawKeyDownEvent {
     get repeat(): boolean;
     get data(): upstream2.RawKeyEventData;
 }
-export declare abstract class RawKeyDownEvent extends _FlaxProxyBase {
+export declare abstract class _RawKeyDownEventNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RawKeyDownEvent>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: RawKeyDownEvent;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_services#type:RawKeyDownEvent", readonly [], false];
@@ -72,7 +108,7 @@ export declare abstract class RawKeyDownEvent extends _FlaxProxyBase {
         repeat?: boolean | undefined;
     });
 }
-export declare namespace RawKeyDownEvent {
+export declare namespace _RawKeyDownEventFactory {
     function implement(args: [options: {
         data: Readonly<{
             "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData": readonly [];
@@ -83,5 +119,15 @@ export declare namespace RawKeyDownEvent {
         repeat?: boolean | undefined;
     }], implementation: {}): RawKeyDownEvent;
 }
+declare const _RawKeyDownEventBinding: typeof _RawKeyDownEventFactory & (new (options: {
+    data: Readonly<{
+        "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEventData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    character?: string | null | undefined;
+    repeat?: boolean | undefined;
+}) => _RawKeyDownEventNative);
+export declare const RawKeyDownEvent: typeof _RawKeyDownEventBinding & _FlaxInstanceType<RawKeyDownEvent> & _FlaxDartType<RawKeyDownEvent, readonly ["class", "flax.core/sdk_services#type:RawKeyDownEvent", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "isControlPressed" | "isShiftPressed" | "isAltPressed" | "isMetaPressed" | "physicalKey" | "logicalKey" | "character" | "repeat" | "data" | "isKeyPressed" | "debugFillProperties" | "toStringShort" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyDownEvent" | "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEvent" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

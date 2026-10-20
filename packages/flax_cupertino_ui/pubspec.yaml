@@ -13,6 +13,7 @@ dependencies:
   flax: 0.0.0
   flutter:
     sdk: flutter
+  intl: 0.20.3
 
 dev_dependencies:
   flax_codegen: 0.0.0

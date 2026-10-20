@@ -299,7 +299,7 @@ tsOutput: js/extra.ts
 functions: [readCount]
 ''',
             'notes.yaml': 'not a binding selection',
-            'flax_overrides.yaml': 'only used by library inference',
+            'flax_overrides.yaml': 'format: 2\noverrides: {}\n',
           },
           libraries: {
             'api.dart':
@@ -387,12 +387,23 @@ Value pass(Value value) => value;
       final metaRoot = Directory.fromUri(
         repo.uri.resolve(meta['rootUri'] as String),
       );
-      _writePackageConfig(workspace, {
-        'base_pkg': base.root,
-        'middle_pkg': middle.root,
-        'host_pkg': host.root,
-        'meta': metaRoot,
-      });
+      _writePackageConfig(
+        workspace,
+        {
+          'base_pkg': base.root,
+          'middle_pkg': middle.root,
+          'host_pkg': host.root,
+          'meta': metaRoot,
+        },
+        javascriptDependencies: {
+          'middle_pkg': ['@example/base_pkg'],
+          'host_pkg': ['@example/base_pkg', '@example/middle_pkg'],
+        },
+        providerJavascript: {
+          'base_pkg': '@example/base_pkg',
+          'middle_pkg': '@example/middle_pkg',
+        },
+      );
       File(p.join(base.root.path, 'bindings/flax_overrides.yaml'))
           .writeAsStringSync('''
 format: 2
@@ -527,10 +538,20 @@ int convert(int left, int right) => left + right;
           '${metadata.readAsStringSync()}javascript: {package: "@example/${p.basename(package.root.path)}", version: same, mode: runtime}\n',
         );
       }
-      _writePackageConfig(workspace, {
-        'host_pkg': host.root,
-        for (final entry in providers.entries) entry.key: entry.value.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {
+          'host_pkg': host.root,
+          for (final entry in providers.entries) entry.key: entry.value.root,
+        },
+        javascriptDependencies: {
+          'host_pkg': ['@example/base_a', '@example/base_b'],
+        },
+        providerJavascript: {
+          'base_a': '@example/base_a',
+          'base_b': '@example/base_b',
+        },
+      );
       for (final entry in providers.entries) {
         final provider = await FlaxCodegenPackagePipeline.validateLibrary(
           'package:${entry.key}/api.dart',
@@ -728,10 +749,14 @@ classes:
           '${metadata.readAsStringSync()}javascript: {package: "@${entry.$2}/api", version: same, mode: runtime}\n',
         );
       }
-      _writePackageConfig(workspace, {
-        'static_base': base.root,
-        'static_host': host.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'static_base': base.root, 'static_host': host.root},
+        javascriptDependencies: {
+          'static_host': ['@static_base/counter', '@static_base/api'],
+        },
+        providerJavascript: {'static_base': '@static_base/api'},
+      );
       final configFile = File(base.configPath('flax_counter.yaml'));
       final original = configFile.readAsStringSync();
       final complete = await FlaxCodegenPackagePipeline.validateConfig(
@@ -823,11 +848,13 @@ classes:
             isTrue,
           );
         } else {
+          expect(classes, isEmpty);
           expect(
-            classes.single.staticSetters.map((setter) => setter.name),
-            containsAll(['count', 'tracked']),
+            consumer.skips
+                .where((skip) => skip.code == 'provider_surface_insufficient')
+                .map((skip) => skip.target),
+            containsAll(['Counter.count', 'Counter.tracked']),
           );
-          expect(classes.single.id, startsWith('example.statichost/'));
         }
       }
     });
@@ -980,10 +1007,14 @@ classes:
 ''',
           },
         );
-        _writePackageConfig(workspace, {
-          'base_pkg': base.root,
-          'host_pkg': host.root,
-        });
+        _writePackageConfig(
+          workspace,
+          {'base_pkg': base.root, 'host_pkg': host.root},
+          javascriptDependencies: {
+            'host_pkg': ['@base/values'],
+          },
+          providerJavascript: {'base_pkg': '@base/values'},
+        );
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
           host.configPath('flax_api.yaml'),
@@ -1053,10 +1084,14 @@ classes:
 ''',
         },
       );
-      _writePackageConfig(workspace, {
-        'base_pkg': base.root,
-        'host_pkg': host.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'base_pkg': base.root, 'host_pkg': host.root},
+        javascriptDependencies: {
+          'host_pkg': ['@base/values'],
+        },
+        providerJavascript: {'base_pkg': '@base/values'},
+      );
 
       await expectLater(
         FlaxCodegenPackagePipeline.validateConfig(
@@ -1066,7 +1101,9 @@ classes:
           isA<FlaxCodegenException>().having(
             (error) => error.diagnostics.map((item) => item.message).join('\n'),
             'message',
-            contains('must publicly export the referenced type HiddenBase'),
+            contains(
+              'External type HiddenBase from base_pkg has no binding provider',
+            ),
           ),
         ),
       );
@@ -1139,10 +1176,14 @@ classes:
 ''',
         },
       );
-      _writePackageConfig(workspace, {
-        'base_pkg': base.root,
-        'host_pkg': host.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'base_pkg': base.root, 'host_pkg': host.root},
+        javascriptDependencies: {
+          'host_pkg': ['@base/values'],
+        },
+        providerJavascript: {'base_pkg': '@base/values'},
+      );
       final provider = await FlaxCodegenPackagePipeline.validateConfig(
         base.configPath('flax_base.yaml'),
       );
@@ -1318,6 +1359,7 @@ topLevel:
       final host = _writeHostPackage(
         workspace: workspace,
         name: 'host_pkg',
+        dependencies: ['base_pkg'],
         libraries: {'consumer.dart': "export 'package:base_pkg/base.dart';"},
         configs: {
           'flax_consumer.yaml': """
@@ -1333,10 +1375,14 @@ topLevel:
 """,
         },
       );
-      _writePackageConfig(workspace, {
-        'base_pkg': base.root,
-        'host_pkg': host.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'base_pkg': base.root, 'host_pkg': host.root},
+        javascriptDependencies: {
+          'host_pkg': ['@base/values'],
+        },
+        providerJavascript: {'base_pkg': '@base/values'},
+      );
       final configFile = File(base.configPath('flax_base.yaml'));
       final originalConfig = configFile.readAsStringSync();
       final first = await FlaxCodegenPackagePipeline.validateConfig(
@@ -1416,6 +1462,7 @@ bindingNamespace: example.base
       final host = _writeHostPackage(
         workspace: workspace,
         name: 'host_pkg',
+        dependencies: ['base_pkg'],
         libraries: {
           'consumer.dart': "export 'package:base_pkg/base.dart' show sink;",
         },
@@ -1433,10 +1480,14 @@ topLevel:
 """,
         },
       );
-      _writePackageConfig(workspace, {
-        'base_pkg': base.root,
-        'host_pkg': host.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'base_pkg': base.root, 'host_pkg': host.root},
+        javascriptDependencies: {
+          'host_pkg': ['@base/values'],
+        },
+        providerJavascript: {'base_pkg': '@base/values'},
+      );
       final owner = await FlaxCodegenPackagePipeline.validateConfig(
         base.configPath('flax_base.yaml'),
       );
@@ -1538,10 +1589,17 @@ extensions:
 ''',
         },
       );
-      _writePackageConfig(workspace, {
-        'base_pkg': base.root,
-        'host_pkg': host.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'base_pkg': base.root, 'host_pkg': host.root},
+        javascriptDependencies: {
+          'host_pkg': ['@base/values'],
+        },
+        providerJavascript: {
+          'base_pkg': '@base/values',
+          'host_pkg': '@host/api',
+        },
+      );
       final provider = await FlaxCodegenPackagePipeline.validateConfig(
         base.configPath('flax_base.yaml'),
       );
@@ -1555,7 +1613,7 @@ extensions:
       expect(module.extensions.single.name, 'ItemX');
       expect(module.classes, isEmpty);
       expect(module.extensions.single.onType.id, 'example.base/base#type:Item');
-      expect(validated.manifest.toJson()['formatVersion'], 27);
+      expect(validated.manifest.toJson()['formatVersion'], 28);
       expect(
         validated.manifest.modules.single.model.identities.where(
           (row) => row.owner,
@@ -1614,11 +1672,22 @@ extensions:
       File(p.join(consumer.root.path, 'flax_package.yaml')).writeAsStringSync(
         'format: 2\ncapabilities: [bindings]\nbindingNamespace: example.consumer\n',
       );
-      _writePackageConfig(workspace, {
-        'base_pkg': base.root,
-        'host_pkg': host.root,
-        'consumer_pkg': consumer.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {
+          'base_pkg': base.root,
+          'host_pkg': host.root,
+          'consumer_pkg': consumer.root,
+        },
+        javascriptDependencies: {
+          'host_pkg': ['@base/values'],
+          'consumer_pkg': ['@host/api'],
+        },
+        providerJavascript: {
+          'base_pkg': '@base/values',
+          'host_pkg': '@host/api',
+        },
+      );
       final consumed = await FlaxCodegenPackagePipeline.validateConfig(
         consumer.configPath('flax_api.yaml'),
       );
@@ -1705,6 +1774,7 @@ bindingNamespace: example.base
         final host = _writeHostPackage(
           workspace: workspace,
           name: 'host_pkg',
+          dependencies: ['base_pkg'],
           libraries: {
             'consumer.dart': "export 'package:base_pkg/alias.dart';\n",
           },
@@ -1727,10 +1797,14 @@ topLevel:
 ''',
           },
         );
-        _writePackageConfig(workspace, {
-          'base_pkg': base.root,
-          'host_pkg': host.root,
-        });
+        _writePackageConfig(
+          workspace,
+          {'base_pkg': base.root, 'host_pkg': host.root},
+          javascriptDependencies: {
+            'host_pkg': ['@base/values'],
+          },
+          providerJavascript: {'base_pkg': '@base/values'},
+        );
         final owner = await FlaxCodegenPackagePipeline.validateConfig(
           base.configPath('flax_base.yaml'),
         );
@@ -1832,6 +1906,7 @@ bindingNamespace: example.base
         final host = _writeHostPackage(
           workspace: workspace,
           name: 'host_pkg',
+          dependencies: ['base_pkg'],
           libraries: {
             'consumer.dart': '''
 export 'package:base_pkg/base.dart';
@@ -1853,10 +1928,14 @@ topLevel:
 ''',
           },
         );
-        _writePackageConfig(workspace, {
-          'base_pkg': base.root,
-          'host_pkg': host.root,
-        });
+        _writePackageConfig(
+          workspace,
+          {'base_pkg': base.root, 'host_pkg': host.root},
+          javascriptDependencies: {
+            'host_pkg': ['@base/values'],
+          },
+          providerJavascript: {'base_pkg': '@base/values'},
+        );
         final owner = await FlaxCodegenPackagePipeline.validateConfig(
           base.configPath('flax_base.yaml'),
         );
@@ -2003,6 +2082,7 @@ bindingNamespace: example.base
       final host = _writeHostPackage(
         workspace: workspace,
         name: 'host_pkg',
+        dependencies: ['base_pkg'],
         libraries: {
           'consumer.dart': '''
 import 'package:base_pkg/base.dart';
@@ -2036,10 +2116,14 @@ classes:
 ''',
         },
       );
-      _writePackageConfig(workspace, {
-        'base_pkg': base.root,
-        'host_pkg': host.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'base_pkg': base.root, 'host_pkg': host.root},
+        javascriptDependencies: {
+          'host_pkg': ['@base/values'],
+        },
+        providerJavascript: {'base_pkg': '@base/values'},
+      );
       final owner = await FlaxCodegenPackagePipeline.validateConfig(
         base.configPath('flax_base.yaml'),
       );
@@ -2985,32 +3069,30 @@ classes:
       },
     );
 
-    test(
-      'reuses a direct Dart dependency provider without a YAML import',
-      () async {
-        final workspace = _tempWorkspace();
-        final base = _writeManifestPackage(
-          workspace: workspace,
-          name: 'base_pkg',
-          namespace: 'example.base',
-          moduleName: 'base',
-          typeName: 'Item',
-          imports: const [],
-        );
-        final unused = _writeManifestPackage(
-          workspace: workspace,
-          name: 'unused_pkg',
-          namespace: 'example.unused',
-          moduleName: 'unused',
-          typeName: 'Unused',
-          imports: const [],
-        );
-        final host = _writeHostPackage(
-          workspace: workspace,
-          name: 'host_pkg',
-          dependencies: const ['base_pkg', 'unused_pkg'],
-          libraries: {
-            'api.dart': '''
+    test('reuses declared JS types and a direct Dart provider without a YAML import', () async {
+      final workspace = _tempWorkspace();
+      final base = _writeManifestPackage(
+        workspace: workspace,
+        name: 'base_pkg',
+        namespace: 'example.base',
+        moduleName: 'base',
+        typeName: 'Item',
+        imports: const [],
+      );
+      final unused = _writeManifestPackage(
+        workspace: workspace,
+        name: 'unused_pkg',
+        namespace: 'example.unused',
+        moduleName: 'unused',
+        typeName: 'Unused',
+        imports: const [],
+      );
+      final host = _writeHostPackage(
+        workspace: workspace,
+        name: 'host_pkg',
+        dependencies: const ['base_pkg', 'unused_pkg'],
+        libraries: {
+          'api.dart': '''
 import 'package:base_pkg/base.dart';
 
 class Holder {
@@ -3018,9 +3100,9 @@ class Holder {
   Item get item => Item();
 }
 ''',
-          },
-          configs: {
-            'flax_api.yaml': '''
+        },
+        configs: {
+          'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -3034,37 +3116,43 @@ classes:
       '': []
     getters: [item]
 ''',
-          },
-        );
-        _writePackageConfig(workspace, {
+        },
+      );
+      _writePackageConfig(
+        workspace,
+        {
           'base_pkg': base.root,
           'host_pkg': host.root,
           'unused_pkg': unused.root,
-        });
+        },
+        javascriptDependencies: {
+          'host_pkg': ['@base_pkg/base'],
+        },
+        providerJavascript: {'base_pkg': '@base_pkg/base'},
+      );
 
-        final result = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('flax_api.yaml'),
-        );
+      final result = await FlaxCodegenPackagePipeline.validateConfig(
+        host.configPath('flax_api.yaml'),
+      );
 
-        expect(result.directDependencies.keys.toList(), ['base_pkg', 'flax']);
-        expect(result.manifest.imports, ['base_pkg', 'flax']);
-        expect(
-          result.localModels.single.types.map((value) => value.name),
-          isNot(contains('Item')),
-        );
-        expect(
-          result.directDependencies['base_pkg']!.authoritativeWireId(
-            FlaxCodegenSourceIdentity(
-              kind: FlaxCodegenDeclarationKind.type,
-              originatingUri: 'package:base_pkg/base.dart',
-              name: 'Item',
-              origin: FlaxCodegenOriginState.resolved,
-            ),
+      expect(result.directDependencies.keys.toList(), ['base_pkg', 'flax']);
+      expect(result.manifest.imports, ['base_pkg', 'flax']);
+      expect(
+        result.localModels.single.types.map((value) => value.name),
+        isNot(contains('Item')),
+      );
+      expect(
+        result.directDependencies['base_pkg']!.authoritativeWireId(
+          FlaxCodegenSourceIdentity(
+            kind: FlaxCodegenDeclarationKind.type,
+            originatingUri: 'package:base_pkg/base.dart',
+            name: 'Item',
+            origin: FlaxCodegenOriginState.resolved,
           ),
-          isNotNull,
-        );
-      },
-    );
+        ),
+        isNotNull,
+      );
+    });
 
     test(
       'loads direct dependency projections with transitive modules',
@@ -3089,6 +3177,7 @@ classes:
         final host = _writeHostPackage(
           workspace: workspace,
           name: 'host_pkg',
+          dependencies: ['mid_pkg'],
           libraries: {'host.dart': 'library;\n', 'widgets.dart': 'library;\n'},
           configs: {
             'flax_widgets.yaml': _minimalConfig(
@@ -3109,11 +3198,17 @@ classes:
             ),
           },
         );
-        _writePackageConfig(workspace, {
-          'host_pkg': host.root,
-          'mid_pkg': mid.root,
-          'leaf_pkg': leaf.root,
-        });
+        _writePackageConfig(
+          workspace,
+          {'host_pkg': host.root, 'mid_pkg': mid.root, 'leaf_pkg': leaf.root},
+          javascriptDependencies: {
+            'host_pkg': ['@mid_pkg/bridge'],
+          },
+          providerJavascript: {
+            'mid_pkg': '@mid_pkg/bridge',
+            'leaf_pkg': '@leaf_pkg/core',
+          },
+        );
 
         Future<ProcessResult> runner(
           String executable,
@@ -3171,6 +3266,7 @@ classes:
         final host = _writeHostPackage(
           workspace: workspace,
           name: 'host_pkg',
+          dependencies: ['mid_pkg'],
           libraries: {
             'host.dart': 'library;\n',
             'widgets.dart': '''
@@ -3205,11 +3301,17 @@ classes:
             ),
           },
         );
-        _writePackageConfig(workspace, {
-          'host_pkg': host.root,
-          'mid_pkg': mid.root,
-          'leaf_pkg': leaf.root,
-        });
+        _writePackageConfig(
+          workspace,
+          {'host_pkg': host.root, 'mid_pkg': mid.root, 'leaf_pkg': leaf.root},
+          javascriptDependencies: {
+            'host_pkg': ['@mid_pkg/bridge'],
+          },
+          providerJavascript: {
+            'mid_pkg': '@mid_pkg/bridge',
+            'leaf_pkg': '@leaf_pkg/core',
+          },
+        );
         final before = _listing(workspace);
         Future<ProcessResult> runner(
           String executable,
@@ -3286,6 +3388,7 @@ classes:
       final host = _writeHostPackage(
         workspace: workspace,
         name: 'host_pkg',
+        dependencies: ['mid_pkg'],
         libraries: {
           'widgets.dart': '''
 import 'package:mid_pkg/bridge.dart' show Mid;
@@ -3318,10 +3421,14 @@ classes:
 ''',
         },
       );
-      _writePackageConfig(workspace, {
-        'host_pkg': host.root,
-        'mid_pkg': mid.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'host_pkg': host.root, 'mid_pkg': mid.root},
+        javascriptDependencies: {
+          'host_pkg': ['@mid_pkg/bridge'],
+        },
+        providerJavascript: {'mid_pkg': '@mid_pkg/bridge'},
+      );
 
       final result = await FlaxCodegenPackagePipeline.validateConfig(
         host.configPath('flax_widgets.yaml'),
@@ -3354,6 +3461,7 @@ classes:
         final host = _writeHostPackage(
           workspace: workspace,
           name: 'host_pkg',
+          dependencies: ['base_pkg'],
           libraries: {
             'child.dart': '''
 import 'package:base_pkg/base.dart';
@@ -3383,10 +3491,14 @@ classes:
 ''',
           },
         );
-        _writePackageConfig(workspace, {
-          'host_pkg': host.root,
-          'base_pkg': base.root,
-        });
+        _writePackageConfig(
+          workspace,
+          {'host_pkg': host.root, 'base_pkg': base.root},
+          javascriptDependencies: {
+            'host_pkg': ['@base_pkg/base'],
+          },
+          providerJavascript: {'base_pkg': '@base_pkg/base'},
+        );
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
           host.configPath('flax_child.yaml'),
@@ -3462,6 +3574,7 @@ classes:
         final host = _writeHostPackage(
           workspace: workspace,
           name: 'host_pkg',
+          dependencies: ['base_pkg'],
           libraries: {
             'child.dart': '''
 import 'package:base_pkg/base.dart';
@@ -3491,10 +3604,14 @@ classes:
 ''',
           },
         );
-        _writePackageConfig(workspace, {
-          'host_pkg': host.root,
-          'base_pkg': base.root,
-        });
+        _writePackageConfig(
+          workspace,
+          {'host_pkg': host.root, 'base_pkg': base.root},
+          javascriptDependencies: {
+            'host_pkg': ['@base_pkg/base'],
+          },
+          providerJavascript: {'base_pkg': '@base_pkg/base'},
+        );
 
         try {
           await FlaxCodegenPackagePipeline.validateConfig(
@@ -3526,6 +3643,7 @@ classes:
         final host = _writeHostPackage(
           workspace: workspace,
           name: 'host_pkg',
+          dependencies: ['base_pkg'],
           libraries: {
             'child.dart': '''
 import 'package:base_pkg/base.dart';
@@ -3555,10 +3673,14 @@ classes:
 ''',
           },
         );
-        _writePackageConfig(workspace, {
-          'host_pkg': host.root,
-          'base_pkg': base.root,
-        });
+        _writePackageConfig(
+          workspace,
+          {'host_pkg': host.root, 'base_pkg': base.root},
+          javascriptDependencies: {
+            'host_pkg': ['@base_pkg/base'],
+          },
+          providerJavascript: {'base_pkg': '@base_pkg/base'},
+        );
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
           host.configPath('flax_child.yaml'),
@@ -3593,6 +3715,7 @@ classes:
         final host = _writeHostPackage(
           workspace: workspace,
           name: 'host_pkg',
+          dependencies: ['base_pkg'],
           libraries: {
             'child.dart': '''
 import 'package:base_pkg/base.dart';
@@ -3622,10 +3745,14 @@ classes:
 ''',
           },
         );
-        _writePackageConfig(workspace, {
-          'host_pkg': host.root,
-          'base_pkg': base.root,
-        });
+        _writePackageConfig(
+          workspace,
+          {'host_pkg': host.root, 'base_pkg': base.root},
+          javascriptDependencies: {
+            'host_pkg': ['@base_pkg/base'],
+          },
+          providerJavascript: {'base_pkg': '@base_pkg/base'},
+        );
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
           host.configPath('flax_child.yaml'),
@@ -3657,6 +3784,7 @@ classes:
       final host = _writeHostPackage(
         workspace: workspace,
         name: 'host_pkg',
+        dependencies: ['base_pkg'],
         libraries: {
           'child.dart': '''
 import 'package:base_pkg/base.dart';
@@ -3686,10 +3814,14 @@ classes:
 ''',
         },
       );
-      _writePackageConfig(workspace, {
-        'host_pkg': host.root,
-        'base_pkg': base.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'host_pkg': host.root, 'base_pkg': base.root},
+        javascriptDependencies: {
+          'host_pkg': ['@base_pkg/base'],
+        },
+        providerJavascript: {'base_pkg': '@base_pkg/base'},
+      );
 
       final result = await FlaxCodegenPackagePipeline.validateConfig(
         host.configPath('flax_child.yaml'),
@@ -3722,6 +3854,7 @@ classes:
       final host = _writeHostPackage(
         workspace: workspace,
         name: 'host_pkg',
+        dependencies: ['base_pkg'],
         libraries: {
           'child.dart': '''
 import 'package:base_pkg/base.dart';
@@ -3751,10 +3884,14 @@ classes:
 ''',
         },
       );
-      _writePackageConfig(workspace, {
-        'host_pkg': host.root,
-        'base_pkg': base.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'host_pkg': host.root, 'base_pkg': base.root},
+        javascriptDependencies: {
+          'host_pkg': ['@base_pkg/base'],
+        },
+        providerJavascript: {'base_pkg': '@base_pkg/base'},
+      );
 
       final result = await FlaxCodegenPackagePipeline.validateConfig(
         host.configPath('flax_child.yaml'),
@@ -4220,6 +4357,7 @@ classes:
       final host = _writeHostPackage(
         workspace: workspace,
         name: 'host_pkg',
+        dependencies: ['base_pkg'],
         libraries: {
           'child.dart': '''
 import 'package:base_pkg/base.dart';
@@ -4249,10 +4387,14 @@ classes:
 ''',
         },
       );
-      _writePackageConfig(workspace, {
-        'host_pkg': host.root,
-        'base_pkg': base.root,
-      });
+      _writePackageConfig(
+        workspace,
+        {'host_pkg': host.root, 'base_pkg': base.root},
+        javascriptDependencies: {
+          'host_pkg': ['@base_pkg/base'],
+        },
+        providerJavascript: {'base_pkg': '@base_pkg/base'},
+      );
 
       final validation = await FlaxCodegenPackagePipeline.validateConfig(
         host.configPath('flax_child.yaml'),
@@ -4295,9 +4437,19 @@ classes:
       final temporary = Directory.systemTemp.createTempSync('flax-check-dep-');
       try {
         final module = validation.localModels.single;
-        final emitter = FlaxCodegenBindingEmitter(contextModules);
+        final emitter = FlaxCodegenBindingEmitter(
+          contextModules,
+          bindingEntrypoints: {
+            for (final provider in base.manifest.modules)
+              provider.moduleId.value: provider.dartLibrary!,
+          },
+        );
         final staged = File(p.join(temporary.path, 'child.dart'));
         staged.writeAsStringSync(emitter.dart(module));
+        expect(
+          staged.readAsStringSync(),
+          contains('package:base_pkg/base.g.dart'),
+        );
         final format = await runner(Platform.resolvedExecutable, [
           'format',
           '--page-width=80',
@@ -5516,6 +5668,9 @@ class GenericValue<T> extends HiddenBase {}
   );
   File(p.join(bindings.path, 'manifest.json'))
       .writeAsStringSync(manifest.encode());
+  final generated = File(p.join(root.path, model.dartOutput));
+  generated.parent.createSync(recursive: true);
+  generated.writeAsStringSync(FlaxCodegenBindingEmitter([model]).dart(model));
   return (root: root, manifest: manifest);
 }
 
@@ -5658,6 +5813,9 @@ class Base {
   );
   File(p.join(bindings.path, 'manifest.json'))
       .writeAsStringSync(manifest.encode());
+  final generated = File(p.join(root.path, model.dartOutput));
+  generated.parent.createSync(recursive: true);
+  generated.writeAsStringSync(FlaxCodegenBindingEmitter([model]).dart(model));
   return (root: root, manifest: manifest);
 }
 
@@ -5821,6 +5979,9 @@ class Base {
   );
   File(p.join(bindings.path, 'manifest.json'))
       .writeAsStringSync(manifest.encode());
+  final generated = File(p.join(root.path, model.dartOutput));
+  generated.parent.createSync(recursive: true);
+  generated.writeAsStringSync(FlaxCodegenBindingEmitter([model]).dart(model));
   return (root: root, manifest: manifest);
 }
 
@@ -6036,6 +6197,9 @@ class Base {
   );
   File(p.join(bindings.path, 'manifest.json'))
       .writeAsStringSync(manifest.encode());
+  final generated = File(p.join(root.path, model.dartOutput));
+  generated.parent.createSync(recursive: true);
+  generated.writeAsStringSync(FlaxCodegenBindingEmitter([model]).dart(model));
   return (root: root, manifest: manifest);
 }
 
@@ -6094,10 +6258,56 @@ class $typeName {
   );
   File(p.join(bindings.path, 'manifest.json'))
       .writeAsStringSync(manifest.encode());
+  final model = manifest.modules.single.model.module;
+  final generated = File(p.join(root.path, 'lib/$moduleName.g.dart'));
+  generated.parent.createSync(recursive: true);
+  generated.writeAsStringSync(FlaxCodegenBindingEmitter([model]).dart(model));
   return (root: root, manifest: manifest);
 }
 
-void _writePackageConfig(Directory workspace, Map<String, Directory> packages) {
+void _writePackageConfig(
+  Directory workspace,
+  Map<String, Directory> packages, {
+  Map<String, List<String>> javascriptDependencies = const {},
+  Map<String, String> providerJavascript = const {},
+}) {
+  for (final entry in providerJavascript.entries) {
+    final root = packages[entry.key]!;
+    final file = File(p.join(root.path, 'flax_package.yaml'));
+    var metadata = file.existsSync() ? file.readAsStringSync() : '';
+    if (metadata.isEmpty) {
+      final diagnostics = FlaxCodegenManifestDiagnostics(file.path);
+      final manifest = FlaxCodegenManifest.parse(
+        File(p.join(root.path, 'bindings/manifest.json')).readAsStringSync(),
+        diagnostics,
+      )!;
+      diagnostics.throwIfAny();
+      metadata =
+          'format: 2\ncapabilities: [bindings]\n'
+          'bindingNamespace: ${manifest.bindingNamespace.value}\n';
+    }
+    if (!RegExp(r'^javascript:', multiLine: true).hasMatch(metadata)) {
+      file.writeAsStringSync(
+        '${metadata}javascript: '
+        '{package: "${entry.value}", version: same, mode: runtime}\n',
+      );
+    }
+  }
+  for (final entry in javascriptDependencies.entries) {
+    for (final folder in ['js-types', 'js']) {
+      final file = File(
+        p.join(packages[entry.key]!.path, folder, 'package.json'),
+      );
+      file.parent.createSync(recursive: true);
+      file.writeAsStringSync(
+        jsonEncode({
+          'name': '@test/${entry.key}${folder == 'js' ? '-runtime' : ''}',
+          'version': '0.0.0',
+          'dependencies': {for (final name in entry.value) name: '*'},
+        }),
+      );
+    }
+  }
   final tool = Directory(p.join(workspace.path, '.dart_tool'))..createSync();
   File(p.join(tool.path, 'package_config.json'))
       .writeAsStringSync(_packageConfigJson(packages, packageConfigDir: tool));
