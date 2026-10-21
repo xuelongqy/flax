@@ -4,6 +4,7 @@ library;
 import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/scheduler.dart';
@@ -11,6 +12,9 @@ import 'package:flutter/services.dart' show AssetBundle, rootBundle;
 import 'package:flutter/widgets.dart';
 
 import 'runtime.dart';
+import 'src/application.dart';
+import 'src/network.dart';
+import 'src/prefixed_asset_bundle.dart';
 import 'src/generated/state_callbacks.dart';
 import 'src/generated/flutter_bindings.g.dart';
 import 'src/generated/sdk_animation_bindings.g.dart';

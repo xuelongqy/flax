@@ -18,6 +18,26 @@ class FlaxSession {
       throw ArgumentError.value(namespace, 'namespace', 'Must not be empty');
     }
   }
+
+  /// Builds an explicit Session from any application loaded by FlaxApplication.
+  FlaxSession.application({
+    required FlaxApplication application,
+    required FlaxJsRuntime Function() createRuntime,
+    required FlaxBindingRegistry bindings,
+    String? namespace,
+    void Function(Object, StackTrace)? onError,
+    List<FlaxPlugin>? plugins,
+  }) : this(
+         createRuntime: createRuntime,
+         bindings: bindings,
+         source: application.source,
+         sourceUrl: application.sourceUrl,
+         assetBundle: application.assetBundle,
+         namespace: namespace,
+         onError: onError,
+         plugins: plugins,
+       );
+
   final String? namespace;
 
   /// The stable resource source shared by this session's UI and business code.
@@ -111,14 +131,193 @@ class FlaxView extends StatelessWidget {
     this.onError,
     this.plugins,
     this.assetBundle,
-  }) : _session = null,
+  }) : _input = null,
+       loadingBuilder = null,
+       errorBuilder = null,
+       _session = null,
+       _pageName = null,
+       _arguments = null;
+
+  /// Reads flax.json and its entry from a business-root bundle.
+  /// Without [assetBundle], selects [prefix] inside the inherited Flutter bundle.
+  factory FlaxView.bundle({
+    Key? key,
+    required FlaxJsRuntime Function() createRuntime,
+    required FlaxBindingRegistry bindings,
+    AssetBundle? assetBundle,
+    String prefix = 'assets/flax',
+    String? namespace,
+    void Function(Object, StackTrace)? onError,
+    List<FlaxPlugin>? plugins,
+    WidgetBuilder? loadingBuilder,
+    Widget Function(BuildContext, Object, StackTrace)? errorBuilder,
+  }) {
+    if (assetBundle != null && prefix != 'assets/flax') {
+      throw ArgumentError('prefix only applies when assetBundle is omitted');
+    }
+    return FlaxView._application(
+      key: key,
+      createRuntime: createRuntime,
+      bindings: bindings,
+      assetBundle: assetBundle,
+      namespace: namespace,
+      onError: onError,
+      plugins: plugins,
+      loadingBuilder: loadingBuilder,
+      errorBuilder: errorBuilder,
+      input: _BundleInput(prefix),
+    );
+  }
+
+  /// Loads a prepared application directory without copying its resources.
+  factory FlaxView.directory({
+    Key? key,
+    required FlaxJsRuntime Function() createRuntime,
+    required FlaxBindingRegistry bindings,
+    required Directory directory,
+    String? namespace,
+    void Function(Object, StackTrace)? onError,
+    List<FlaxPlugin>? plugins,
+    WidgetBuilder? loadingBuilder,
+    Widget Function(BuildContext, Object, StackTrace)? errorBuilder,
+  }) => FlaxView._application(
+    key: key,
+    createRuntime: createRuntime,
+    bindings: bindings,
+    assetBundle: null,
+    namespace: namespace,
+    onError: onError,
+    plugins: plugins,
+    loadingBuilder: loadingBuilder,
+    errorBuilder: errorBuilder,
+    input: _DirectoryInput(directory.absolute.path),
+  );
+
+  /// Installs a local .flax file and loads its immutable cached directory.
+  /// The installation root defaults to ApplicationSupport/flax.
+  factory FlaxView.package({
+    Key? key,
+    required FlaxJsRuntime Function() createRuntime,
+    required FlaxBindingRegistry bindings,
+    required File file,
+    Directory? installationDirectory,
+    String? namespace,
+    void Function(Object, StackTrace)? onError,
+    List<FlaxPlugin>? plugins,
+    WidgetBuilder? loadingBuilder,
+    Widget Function(BuildContext, Object, StackTrace)? errorBuilder,
+  }) => FlaxView._application(
+    key: key,
+    createRuntime: createRuntime,
+    bindings: bindings,
+    assetBundle: null,
+    namespace: namespace,
+    onError: onError,
+    plugins: plugins,
+    loadingBuilder: loadingBuilder,
+    errorBuilder: errorBuilder,
+    input: _PackageInput(
+      file.absolute.path,
+      installationDirectory?.absolute.path,
+    ),
+  );
+
+  /// Reads one JS file without discovering neighboring metadata or resources.
+  /// Resources use [assetBundle], or the inherited Flutter bundle when omitted.
+  factory FlaxView.file({
+    Key? key,
+    required FlaxJsRuntime Function() createRuntime,
+    required FlaxBindingRegistry bindings,
+    required File file,
+    AssetBundle? assetBundle,
+    String? namespace,
+    void Function(Object, StackTrace)? onError,
+    List<FlaxPlugin>? plugins,
+    WidgetBuilder? loadingBuilder,
+    Widget Function(BuildContext, Object, StackTrace)? errorBuilder,
+  }) => FlaxView._application(
+    key: key,
+    createRuntime: createRuntime,
+    bindings: bindings,
+    assetBundle: assetBundle,
+    namespace: namespace,
+    onError: onError,
+    plugins: plugins,
+    loadingBuilder: loadingBuilder,
+    errorBuilder: errorBuilder,
+    input: _FileInput(file.absolute.path),
+  );
+
+  /// Downloads an explicitly selected JS or .flax format and reuses local loading.
+  /// Script resources use [assetBundle] or the inherited bundle; packages own theirs.
+  factory FlaxView.network({
+    Key? key,
+    required FlaxJsRuntime Function() createRuntime,
+    required FlaxBindingRegistry bindings,
+    required Uri uri,
+    required FlaxRemoteFormat format,
+    Map<String, String> headers = const {},
+    String? expectedSha256,
+    FlaxDownloader? download,
+    Directory? cacheDirectory,
+    Directory? installationDirectory,
+    AssetBundle? assetBundle,
+    String? namespace,
+    void Function(Object, StackTrace)? onError,
+    List<FlaxPlugin>? plugins,
+    WidgetBuilder? loadingBuilder,
+    Widget Function(BuildContext, Object, StackTrace)? errorBuilder,
+  }) {
+    if (format == FlaxRemoteFormat.package && assetBundle != null) {
+      throw ArgumentError('Package resources come from the package itself');
+    }
+    final options = FlaxNetworkOptions(
+      uri: uri,
+      format: format,
+      headers: headers,
+      expectedSha256: expectedSha256,
+      download: download,
+      cacheDirectory: cacheDirectory,
+      installationDirectory: installationDirectory,
+    );
+    return FlaxView._application(
+      key: key,
+      createRuntime: createRuntime,
+      bindings: bindings,
+      assetBundle: assetBundle,
+      namespace: namespace,
+      onError: onError,
+      plugins: plugins,
+      loadingBuilder: loadingBuilder,
+      errorBuilder: errorBuilder,
+      input: _NetworkInput(options),
+    );
+  }
+
+  const FlaxView._application({
+    super.key,
+    required this.createRuntime,
+    required this.bindings,
+    required this._input,
+    this.assetBundle,
+    this.namespace,
+    this.onError,
+    this.plugins,
+    this.loadingBuilder,
+    this.errorBuilder,
+  }) : source = null,
+       sourceUrl = null,
+       _session = null,
        _pageName = null,
        _arguments = null;
 
   const FlaxView.session({super.key, required FlaxSession session})
-    // Keep the borrowed session private; the public input is named session.
-    // ignore: prefer_initializing_formals
-    : _session = session,
+    : _input = null,
+      loadingBuilder = null,
+      errorBuilder = null,
+      // Keep the public parameter named session rather than exposing the field.
+      // ignore: prefer_initializing_formals
+      _session = session,
       createRuntime = null,
       source = null,
       bindings = null,
@@ -136,9 +335,11 @@ class FlaxView extends StatelessWidget {
     required FlaxSession session,
     required String name,
     Object? arguments,
-  }) // These public inputs initialize private configuration fields.
-    // ignore: prefer_initializing_formals
-    : _session = session,
+  }) : _input = null,
+       loadingBuilder = null,
+       errorBuilder = null,
+       // ignore: prefer_initializing_formals
+       _session = session,
        _pageName = name,
        // ignore: prefer_initializing_formals
        _arguments = arguments,
@@ -151,6 +352,13 @@ class FlaxView extends StatelessWidget {
        sourceUrl = null,
        onError = null;
 
+  final _ApplicationInput? _input;
+
+  /// Optional presentation while an automatic entrance is reading or installing.
+  final WidgetBuilder? loadingBuilder;
+
+  /// Handles loading failures; runtime failures retain the existing onError path.
+  final Widget Function(BuildContext, Object, StackTrace)? errorBuilder;
   final List<FlaxPlugin>? plugins;
   final String? namespace;
 
@@ -168,6 +376,29 @@ class FlaxView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final input = _input;
+    if (input != null) {
+      final usesBundle = switch (input) {
+        _BundleInput() || _FileInput() => true,
+        _NetworkInput(:final options) =>
+          options.format == FlaxRemoteFormat.javascript,
+        _ => false,
+      };
+      final bundle = usesBundle
+          ? assetBundle ?? DefaultAssetBundle.of(context)
+          : rootBundle;
+      return _ApplicationView(
+        key: ValueKey((
+          input.identity,
+          ObjectKey(bundle),
+          createRuntime,
+          bindings,
+          namespace,
+        )),
+        configuration: this,
+        inheritedBundle: bundle,
+      );
+    }
     if (_pageName != null) {
       return _NamedPageRoot(
         key: ValueKey((_session, _pageName)),
@@ -271,5 +502,158 @@ class _SessionRootState extends State<_SessionRoot> {
     if (_attached) _session._unmount();
     if (widget.configuration._session == null) unawaited(_session.close());
     super.dispose();
+  }
+}
+
+sealed class _ApplicationInput {
+  const _ApplicationInput();
+  Object get identity;
+}
+
+class _BundleInput extends _ApplicationInput {
+  const _BundleInput(this.prefix);
+  final String prefix;
+  @override
+  Object get identity => (runtimeType, prefix);
+}
+
+class _DirectoryInput extends _ApplicationInput {
+  const _DirectoryInput(this.path);
+  final String path;
+  @override
+  Object get identity => (runtimeType, path);
+}
+
+class _PackageInput extends _ApplicationInput {
+  const _PackageInput(this.path, this.installationDirectory);
+  final String path;
+  final String? installationDirectory;
+  @override
+  Object get identity => (runtimeType, path, installationDirectory);
+}
+
+class _FileInput extends _ApplicationInput {
+  const _FileInput(this.path);
+  final String path;
+  @override
+  Object get identity => (runtimeType, path);
+}
+
+class _NetworkInput extends _ApplicationInput {
+  const _NetworkInput(this.options);
+  final FlaxNetworkOptions options;
+  @override
+  Object get identity => (runtimeType, options.identity);
+}
+
+class _ApplicationView extends StatefulWidget {
+  const _ApplicationView({
+    super.key,
+    required this.configuration,
+    required this.inheritedBundle,
+  });
+  final FlaxView configuration;
+  final AssetBundle inheritedBundle;
+  @override
+  State<_ApplicationView> createState() => _ApplicationViewState();
+}
+
+class _ApplicationViewState extends State<_ApplicationView> {
+  final _cancelled = Completer<void>();
+  FlaxApplication? _application;
+  Object? _error;
+  StackTrace? _stack;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final configuration = widget.configuration;
+    final input = configuration._input!;
+    try {
+      final application = await switch (input) {
+        _BundleInput(:final prefix) => FlaxApplication.bundle(
+          configuration.assetBundle ??
+              FlaxPrefixedAssetBundle(
+                bundle: widget.inheritedBundle,
+                prefix: prefix,
+              ),
+        ),
+        _DirectoryInput(:final path) => FlaxApplication.directory(
+          Directory(path),
+        ),
+        _PackageInput(:final path, :final installationDirectory) =>
+          FlaxApplication.package(
+            File(path),
+            installationDirectory: installationDirectory == null
+                ? null
+                : Directory(installationDirectory),
+          ),
+        _FileInput(:final path) => FlaxApplication.file(
+          File(path),
+          assetBundle: widget.inheritedBundle,
+        ),
+        _NetworkInput(:final options) => FlaxApplication.network(
+          uri: options.uri,
+          format: options.format,
+          headers: options.headers,
+          expectedSha256: options.expectedSha256,
+          download: options.download,
+          cacheDirectory: options.cacheDirectory,
+          installationDirectory: options.installationDirectory,
+          assetBundle: options.format == FlaxRemoteFormat.javascript
+              ? widget.inheritedBundle
+              : null,
+          cancelled: _cancelled.future,
+        ),
+      };
+      if (mounted) setState(() => _application = application);
+    } catch (error, stack) {
+      if (!mounted) return;
+      setState(() {
+        _error = error;
+        _stack = stack;
+      });
+      if (widget.configuration.onError case final callback?) {
+        callback(error, stack);
+      } else {
+        FlutterError.reportError(
+          FlutterErrorDetails(exception: error, stack: stack, library: 'flax'),
+        );
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _cancelled.complete();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final configuration = widget.configuration;
+    if (_error case final error?) {
+      return configuration.errorBuilder?.call(context, error, _stack!) ??
+          _errorWidget(error);
+    }
+    final application = _application;
+    if (application == null) {
+      return configuration.loadingBuilder?.call(context) ??
+          const SizedBox.shrink();
+    }
+    return FlaxView(
+      createRuntime: configuration.createRuntime!,
+      bindings: configuration.bindings!,
+      source: application.source,
+      sourceUrl: application.sourceUrl,
+      assetBundle: application.assetBundle,
+      namespace: configuration.namespace,
+      plugins: configuration.plugins,
+      onError: configuration.onError,
+    );
   }
 }

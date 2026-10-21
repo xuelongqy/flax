@@ -1,4 +1,5 @@
 import 'package:flax_standalone/main.dart' as app;
+import 'package:flax/flax.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,22 +14,31 @@ void main() {
   testWidgets('missing manifest reports an error without Material ancestors', (
     t,
   ) async {
-    rootBundle.evict('assets/flax/flax.json');
-    addTearDown(() => rootBundle.evict('assets/flax/flax.json'));
-    t.binding.defaultBinaryMessenger.setMockMessageHandler(
-      'flutter/assets',
-      (_) async => null,
-    );
-    addTearDown(
-      () => t.binding.defaultBinaryMessenger.setMockMessageHandler(
-        'flutter/assets',
-        null,
+    await t.pumpWidget(
+      FlaxView.bundle(
+        createRuntime: app.createRuntime,
+        bindings: app.bindings,
+        assetBundle: _MissingBundle(),
       ),
     );
-    await t.runAsync(app.main);
-    await t.pump();
+    for (
+      var i = 0;
+      i < 200 && find.byType(ErrorWidget).evaluate().isEmpty;
+      i++
+    ) {
+      await t.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 5)),
+      );
+      await t.pump();
+    }
     expect(find.byType(ErrorWidget), findsOneWidget);
-    expect(t.takeException().toString(), contains('assets/flax/flax.json'));
+    expect(t.takeException().toString(), contains('flax.json'));
     await t.pumpWidget(const SizedBox());
   });
+}
+
+class _MissingBundle extends CachingAssetBundle {
+  @override
+  Future<ByteData> load(String key) async =>
+      throw FlutterError('Missing application asset: $key');
 }

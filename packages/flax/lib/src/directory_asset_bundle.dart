@@ -6,11 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
 
 import 'asset_key.dart';
+import 'asset_manifest.dart';
 
 /// Reads immutable application resources from one installed directory.
 ///
 /// Keys are slash-separated paths relative to [directory]. The directory must
-/// include its own Flutter-compatible AssetManifest.bin for image variants.
+/// include AssetManifest.bin or the generated portable flax.assets.json index.
 class FlaxDirectoryAssetBundle extends CachingAssetBundle {
   FlaxDirectoryAssetBundle(this.directory);
 
@@ -36,6 +37,12 @@ class FlaxDirectoryAssetBundle extends CachingAssetBundle {
 
   @override
   Future<ByteData> load(String key) async {
+    if (key == 'AssetManifest.bin' &&
+        !await File(p.join(directory.path, key)).exists()) {
+      return const StandardMessageCodec().encodeMessage(
+        parseFlaxAssetManifest(await loadString('flax.assets.json')),
+      )!;
+    }
     final file = await _file(key);
     try {
       return ByteData.sublistView(await file.readAsBytes());
@@ -46,5 +53,7 @@ class FlaxDirectoryAssetBundle extends CachingAssetBundle {
 
   @override
   Future<ui.ImmutableBuffer> loadBuffer(String key) async =>
-      ui.ImmutableBuffer.fromFilePath((await _file(key)).path);
+      key == 'AssetManifest.bin'
+      ? ui.ImmutableBuffer.fromUint8List(Uint8List.sublistView(await load(key)))
+      : ui.ImmutableBuffer.fromFilePath((await _file(key)).path);
 }

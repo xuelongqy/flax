@@ -1,9 +1,10 @@
 # Standalone Flutter Host
 
 The private flax_standalone application uses the maintained Flutter 3.47.6 / Dart 3.13.5
-engine and macOS arm64 (macOS 15 or newer). main.dart initializes Flutter, reads
-`assets/flax/flax.json`, loads its JS entry, registers core/Material bindings, and mounts
-an owning FlaxView. It adds no MaterialApp, Theme, Navigator or Scaffold around the JS root.
+engine and macOS arm64 (macOS 15 or newer). main.dart initializes Flutter and host
+plugins, then mounts FlaxView.bundle, which automatically reads `assets/flax/flax.json`
+and its JS entry. It adds no MaterialApp, Theme, Navigator or Scaffold around the JS
+root.
 
 The details route returns `Map<String, Object?>`. Its JS pop call selects
 `DartMapInput<string, unknown>` so a plain object becomes that Dart map type; the push
@@ -17,10 +18,11 @@ after building the local Flax engine. See the [complete setup](../README.md).
 The **Open assets** page displays a bundled PNG and reads `assets/data/example.json`
 through the generated Flutter bindings. `pnpm run bundle` copies resources from
 `js/assets/` into the independent `assets/flax/` business directory and generates
-`flax.json` beside `app.js`. Its `id` is `main`; version and description come from
-`js/package.json`. The pubspec declares the generated directories; Flutter builds the
-native image-variant manifest. The PNG reuses this
-example's existing Flutter application icon.
+`flax.json` and the portable `flax.assets.json` index beside `app.js`. It also writes
+`assets/flax.flax`, including a file inventory for local installation. Its `id` is
+`main`; version and description come from `js/package.json`. The pubspec declares the
+generated directories; Flutter builds the native image-variant manifest. The PNG reuses
+this example's existing Flutter application icon.
 
 Resource keys such as `assets/images/flutter.png` start at the application resource
 root, with no leading slash or source-file-relative `./` or `../`. Images use
@@ -81,3 +83,38 @@ cycles, performs three hot restarts, checks fresh Context and callback state, an
 the same app. Its receipt is `build/engine-hot-restart.json`. Local staged applications
 use ad-hoc signatures and a temporary library-validation exception. This verifies local
 execution, not Developer ID distribution signing.
+
+## Automatic loading examples
+
+The default command uses FlaxView.bundle and reads built-in assets without extraction.
+`--sandbox-assets` demonstrates FlaxView.directory with the copied directory. The other
+local sources use the same business code and image/JSON keys:
+
+```sh
+dart run tool/standalone_run.dart --package-assets
+dart run tool/standalone_run.dart --script-assets
+```
+
+Package mode copies the bundled `.flax` file to application support storage, then lets
+FlaxView.package install/cache it under `<ApplicationSupport>/flax/installed/<digest>/`.
+Script mode copies app.js and uses FlaxView.file with the built-in resource Bundle; no
+flax.json is required by that entry. The scenario validates built-in, directory, package
+cold/warm cache loads and single-file entrances, including actual decoded image pixels,
+JSON and native image variants. The package cache has no automatic rollback or cleanup.
+Damaged completed installations fail without overwriting live files.
+
+Remote modes use the same constructors and resource rules:
+
+```sh
+FLAX_NETWORK_URL=https://example.com/app.js dart run tool/standalone_run.dart --remote-js
+FLAX_NETWORK_URL=https://example.com/app.flax dart run tool/standalone_run.dart --remote-package
+```
+
+Optionally set `FLAX_EXPECTED_SHA256` to a trusted artifact digest. Remote JS uses the
+built-in business resource Bundle; a remote package supplies its own PNG/JSON.
+Programmatic startApplication arguments also demonstrate headers, cacheDirectory and
+downloader injection. The scenario serves actual JS/package build outputs over loopback
+HTTP, requires a request header, pins their digests, and checks cold 200/warm 304 loads,
+decoded PNG variants, JSON and unchanged installation receipts. Download cache defaults
+to `<ApplicationSupport>/flax/downloads/`; installation defaults remain unchanged.
+Production URLs, credentials and update selection belong to the host application.

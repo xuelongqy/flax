@@ -100,8 +100,8 @@ lifecycle rules.
 code. `FlaxView` can capture an inherited bundle; `FlaxDirectoryAssetBundle` supplies
 installed directory resources using the same keys and native Image providers.
 `FlaxPrefixedAssetBundle` scopes built-in assets to `assets/flax/` by default;
-`FlaxManifest.load(bundle)` reads the shared `flax.json` descriptor. JS
-accesses the Session bundle through `getAssetBundle()` from `@flax/core/assets`. See
+`FlaxManifest.load(bundle)` reads the shared `flax.json` descriptor. JS accesses the
+Session bundle through `getAssetBundle()` from `@flax/core/assets`. See
 [application resources](../../docs/architecture/applications.md#application-resources).
 
 `FlaxView.page` borrows a session and mounts a registered JS factory without its initial
@@ -215,3 +215,23 @@ operators and derived collection reads.
 
 Optional storage uses `FlaxSession.namespace` or owned `FlaxView.namespace`. See the
 [storage contract](../../docs/architecture/local-storage.md).
+
+## Application loading
+
+Keep `FlaxView(source: ..., createRuntime: ..., bindings: ...)` for in-memory source.
+Use `FlaxView.bundle(...)` to automatically load `assets/flax/flax.json` and its entry,
+with optional `prefix` or an explicit business-root `assetBundle`. `FlaxView.directory`,
+`.package` and `.file` accept a Directory, local `.flax` File and single JS File,
+respectively. `FlaxView.network(uri: ..., format: FlaxRemoteFormat.package, ...)` loads
+a remote package; `.javascript` selects a remote script with explicit/inherited
+resources. Optional headers, expectedSha256, download callback and cacheDirectory
+configure its download and revalidation cache. Invalid combinations of prefix/Bundle or
+package/Bundle are rejected. All automatic entries provide optional
+loadingBuilder/errorBuilder and preserve the Session across ordinary rebuilds. Package
+installation defaults to ApplicationSupport/flax and accepts an explicit
+installationDirectory.
+
+For explicit Session ownership, load through `FlaxApplication` and construct
+`FlaxSession.application(application: ..., createRuntime: ..., bindings: ...)`. Resource
+reads and native images keep using the Session AssetBundle. See
+[application loading and integrity checks](../../docs/architecture/applications.md).

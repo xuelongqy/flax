@@ -26,3 +26,6 @@ void [
 flaxEsbuildPlugin('modules.json');
 // @ts-expect-error Use Vite's server configuration for watching, not compiler options.
 flaxVitePlugin({ port: 5173 });
+
+import { packApplication } from '../src/application.mjs';
+void packApplication({ directory: 'build/flax', outputFile: 'build/application.flax' });

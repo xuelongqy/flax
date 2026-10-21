@@ -226,3 +226,21 @@ Android USB development forwards the default port with `adb reverse tcp:5173 tcp
 the iOS simulator can reach the host loopback directly. Keep staged module
 initialization free of business side effects: registry validation does not undo
 arbitrary effects.
+
+### Local application archives
+
+`prepareApplication` also generates `flax.assets.json`, the portable resource/variant
+index consumed by directory bundles. After compiling the returned entryPath, call:
+
+```javascript
+import { packApplication } from '@flax/build/application';
+
+const archivePath = await packApplication({ directory: application.directory });
+```
+
+The default archive path is `application.directory + '.flax'`; outputFile may select
+another path outside that directory. The archive includes a SHA-256/size file inventory
+and only managed application files, not unrelated output files. Failed packaging retains
+the previous archive. FlaxView.package installs it once per content digest and reads it
+through the same native AssetBundle as directory mode. This is local packaging and
+installation, not downloading or a complete update manager.

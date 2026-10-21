@@ -2,7 +2,7 @@ import { build } from 'esbuild';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { writeFile } from 'node:fs/promises';
-import { prepareApplication } from '@flax/build/application';
+import { prepareApplication, packApplication } from '@flax/build/application';
 import { readModuleManifest } from '@flax/build';
 import { flaxEsbuildPlugin } from '@flax/build/esbuild';
 
@@ -38,3 +38,4 @@ const application = await prepareApplication({
   outputDirectory: resolve(workingDirectory, '..', prefix),
 });
 await writeFile(application.entryPath, result.outputFiles[0].contents);
+await packApplication({ directory: application.directory });

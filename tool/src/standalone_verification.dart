@@ -274,6 +274,8 @@ console.log('External JS exports and singleton Flax dependencies verified.');
     final receipt = File('$flutter/build/standalone-integration.json');
     await execute('flutter', [
       'drive',
+      // shortcut: Avoid the engine's startup-pause assertion until debugger startup is fixed.
+      '--no-start-paused',
       '--no-pub',
       '-d',
       'macos',

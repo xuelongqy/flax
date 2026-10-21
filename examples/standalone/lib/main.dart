@@ -26,52 +26,151 @@ Future<void> startApplication({
   String? apiBaseUrl,
   String? storageDirectory,
   AssetBundle? assetBundle,
+  Directory? applicationDirectory,
+  File? packageFile,
+  File? scriptFile,
+  Directory? installationDirectory,
+  Uri? networkUri,
+  FlaxRemoteFormat? networkFormat,
+  Map<String, String> headers = const {},
+  String? expectedSha256,
+  Directory? cacheDirectory,
+  FlaxDownloader? download,
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
-    final builtin = FlaxPrefixedAssetBundle(
-      prefix: const String.fromEnvironment(
-        'FLAX_ASSET_PREFIX',
-        defaultValue: 'assets/flax',
-      ),
+    const prefix = String.fromEnvironment(
+      'FLAX_ASSET_PREFIX',
+      defaultValue: 'assets/flax',
     );
-    var bundle = assetBundle ?? builtin;
-    if (assetBundle == null &&
-        const bool.fromEnvironment('FLAX_SANDBOX_ASSETS')) {
-      const configured = String.fromEnvironment('FLAX_SANDBOX_DIRECTORY');
-      final directory = configured.isEmpty
-          ? Directory('${(await getApplicationSupportDirectory()).path}/flax')
-          : Directory(configured);
-      bundle = await prepareSandboxAssets(directory, source: builtin);
+    if (applicationDirectory == null &&
+        packageFile == null &&
+        scriptFile == null &&
+        networkUri == null &&
+        assetBundle == null) {
+      const mode = String.fromEnvironment('FLAX_APPLICATION_MODE');
+      final builtin = FlaxPrefixedAssetBundle(prefix: prefix);
+      if (mode.isNotEmpty ||
+          const bool.fromEnvironment('FLAX_SANDBOX_ASSETS')) {
+        const configured = String.fromEnvironment('FLAX_SANDBOX_DIRECTORY');
+        final directory = configured.isEmpty
+            ? Directory('${(await getApplicationSupportDirectory()).path}/flax')
+            : Directory(configured);
+        if (mode == 'remote-js' || mode == 'remote-package') {
+          const url = String.fromEnvironment('FLAX_NETWORK_URL');
+          if (url.isEmpty) {
+            throw ArgumentError('Set FLAX_NETWORK_URL for network mode');
+          }
+          networkUri = Uri.parse(url);
+          networkFormat = mode == 'remote-js'
+              ? FlaxRemoteFormat.javascript
+              : FlaxRemoteFormat.package;
+          const digest = String.fromEnvironment('FLAX_EXPECTED_SHA256');
+          expectedSha256 = digest.isEmpty ? null : digest;
+          if (networkFormat == FlaxRemoteFormat.javascript) {
+            assetBundle = builtin;
+          }
+        } else if (mode == 'package') {
+          await directory.create(recursive: true);
+          packageFile = File('${directory.path}/application.flax');
+          final data = await rootBundle.load('$prefix.flax');
+          await packageFile.writeAsBytes(Uint8List.sublistView(data));
+        } else if (mode == 'file') {
+          await directory.create(recursive: true);
+          scriptFile = File('${directory.path}/app.js');
+          await scriptFile.writeAsString(await builtin.loadString('app.js'));
+          assetBundle = builtin;
+        } else {
+          applicationDirectory = (await prepareSandboxAssets(
+            directory,
+            source: builtin,
+          )).directory;
+        }
+      }
     }
-    final manifest = await FlaxManifest.load(bundle);
-    final source = await bundle.loadString(manifest.entry);
+    if ([
+          applicationDirectory,
+          packageFile,
+          scriptFile,
+          networkUri,
+        ].where((value) => value != null).length >
+        1) {
+      throw ArgumentError('Select one application source.');
+    }
+    if ((networkUri == null) != (networkFormat == null)) {
+      throw ArgumentError(
+        'networkUri and networkFormat must be provided together',
+      );
+    }
+    if (assetBundle != null &&
+        (applicationDirectory != null || packageFile != null)) {
+      throw ArgumentError(
+        'Directory and package modes own their resource bundle',
+      );
+    }
     Flax.moduleAssets = await FlaxModuleAssets.load(
       bundle: rootBundle,
       manifest: 'assets/flax_modules/modules.json',
     );
     await FlaxLocalStoragePlugin.initialize(directory: storageDirectory);
     Icons.add;
-    runApp(
-      FlaxView(
-        createRuntime: createRuntime,
-        source: source,
-        assetBundle: bundle,
-        sourceUrl: 'flax:${manifest.id}/${manifest.version}/${manifest.entry}',
-        bindings: bindings,
-        plugins: [
-          const FlaxMaterialPlugin(),
-          const FlaxLocalStoragePlugin(),
-          const FlaxCanvasPlugin(),
-          FlaxWebSocketPlugin(
-            baseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl,
-          ),
-          FlaxFetchPlugin(
-            baseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl,
-          ),
-        ],
+    final plugins = <FlaxPlugin>[
+      const FlaxMaterialPlugin(),
+      const FlaxLocalStoragePlugin(),
+      const FlaxCanvasPlugin(),
+      FlaxWebSocketPlugin(
+        baseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl,
       ),
-    );
+      FlaxFetchPlugin(baseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl),
+    ];
+    final Widget view;
+    if (networkUri != null) {
+      view = FlaxView.network(
+        uri: networkUri,
+        format: networkFormat!,
+        headers: headers,
+        expectedSha256: expectedSha256,
+        cacheDirectory: cacheDirectory,
+        installationDirectory: installationDirectory,
+        download: download,
+        assetBundle: assetBundle,
+        createRuntime: createRuntime,
+        bindings: bindings,
+        plugins: plugins,
+      );
+    } else if (packageFile != null) {
+      view = FlaxView.package(
+        file: packageFile,
+        installationDirectory: installationDirectory,
+        createRuntime: createRuntime,
+        bindings: bindings,
+        plugins: plugins,
+      );
+    } else if (applicationDirectory != null) {
+      view = FlaxView.directory(
+        directory: applicationDirectory,
+        createRuntime: createRuntime,
+        bindings: bindings,
+        plugins: plugins,
+      );
+    } else if (scriptFile != null) {
+      view = FlaxView.file(
+        file: scriptFile,
+        assetBundle: assetBundle,
+        createRuntime: createRuntime,
+        bindings: bindings,
+        plugins: plugins,
+      );
+    } else {
+      view = FlaxView.bundle(
+        assetBundle: assetBundle,
+        prefix: assetBundle == null ? prefix : 'assets/flax',
+        createRuntime: createRuntime,
+        bindings: bindings,
+        plugins: plugins,
+      );
+    }
+    runApp(view);
   } catch (error, stack) {
     FlutterError.reportError(
       FlutterErrorDetails(

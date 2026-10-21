@@ -13,7 +13,9 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { prepareApplication } from '../src/application.mjs';
+import { prepareApplication, packApplication } from '../src/application.mjs';
+import { unzipSync } from 'fflate';
+import { createHash } from 'node:crypto';
 
 test('application staging defaults, metadata, resource copies and configurable paths', async () => {
   const root = await realpath(await mkdtemp(join(tmpdir(), 'flax-application-')));
@@ -185,6 +187,68 @@ test('example compiler failure preserves the previous code, resources and descri
     assert.deepEqual(
       await Promise.all(paths.map((path) => readFile(path, 'utf8'))),
       previous,
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('application packages contain managed files, variants and a verified inventory', async () => {
+  const root = await realpath(await mkdtemp(join(tmpdir(), 'flax-package-')));
+  try {
+    const project = join(root, 'js');
+    await mkdir(join(project, 'assets/images/2.0x'), { recursive: true });
+    await writeFile(
+      join(project, 'package.json'),
+      JSON.stringify({ name: 'main', version: '1.0.0' }),
+    );
+    await writeFile(join(project, 'assets/images/icon.png'), 'base');
+    await writeFile(join(project, 'assets/images/2.0x/icon.png'), 'variant');
+    await writeFile(join(project, 'assets/data.json'), '{"value":1}');
+    const application = await prepareApplication({ projectDirectory: project });
+    await writeFile(application.entryPath, 'runApp();');
+    await writeFile(
+      join(application.directory, 'unrelated.txt'),
+      'preserve outside package',
+    );
+    const path = await packApplication({ directory: application.directory });
+    assert.equal(path, `${application.directory}.flax`);
+    const bytes = await readFile(path);
+    const files = unzipSync(bytes);
+    assert.equal(files['unrelated.txt'], undefined);
+    const index = JSON.parse(Buffer.from(files['flax.assets.json']).toString());
+    assert.deepEqual(index.assets['assets/images/icon.png'], [
+      { asset: 'assets/images/2.0x/icon.png', dpr: 2 },
+      { asset: 'assets/images/icon.png' },
+    ]);
+    const inventory = JSON.parse(Buffer.from(files['flax.files.json']).toString());
+    assert.deepEqual(
+      Object.keys(inventory.files).sort(),
+      Object.keys(files)
+        .filter((key) => key !== 'flax.files.json')
+        .sort(),
+    );
+    for (const [key, expected] of Object.entries(inventory.files)) {
+      assert.equal(files[key].length, expected.size);
+      assert.equal(
+        createHash('sha256').update(files[key]).digest('hex'),
+        expected.sha256,
+      );
+    }
+    await packApplication({ directory: application.directory });
+    assert.deepEqual(await readFile(path), bytes);
+    await assert.rejects(
+      packApplication({
+        directory: application.directory,
+        outputFile: application.entryPath,
+      }),
+    );
+    await rm(application.entryPath);
+    await assert.rejects(packApplication({ directory: application.directory }));
+    assert.deepEqual(await readFile(path), bytes); // Failed packaging retains the previous archive.
+    assert.equal(
+      await readFile(join(application.directory, 'unrelated.txt'), 'utf8'),
+      'preserve outside package',
     );
   } finally {
     await rm(root, { recursive: true, force: true });

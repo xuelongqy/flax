@@ -35,6 +35,10 @@ import '../../../packages/flax/test/ui/bridge_gc_test.dart' as bridge;
 import '../../../packages/flax/test/ui/streams_test.dart' as streams;
 import '../../../packages/flax/test/ui/session_test.dart' as sessions;
 import '../../../packages/flax/test/ui/assets_test.dart' as assets;
+import '../../../packages/flax/test/ui/application_loading_test.dart'
+    as applications;
+import '../../../packages/flax/test/ui/application_network_test.dart'
+    as network;
 import '../../../packages/flax/test/ui/flax_view_test.dart' as views;
 import '../../../packages/flax/test/ui/interop_test.dart' as interop;
 import '../../../packages/flax/test/ui/proxy_properties_test.dart'
@@ -218,6 +222,8 @@ void _registerTests() {
   group('Streams', streams.main);
   group('Sessions', sessions.main);
   group('Application assets', assets.main);
+  group('Application loading', applications.main);
+  group('Network application loading', network.main);
   group('FlaxView', views.main);
   group('generated object peers', interop.main);
   group('current proxy properties', properties.main);

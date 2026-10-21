@@ -21,3 +21,10 @@ export function prepareApplication(options?: {
   manifest: FlaxApplicationManifest;
   entryPath: string;
 }>;
+
+/** Packages the prepared directory after the caller has compiled its JS entry. */
+export function packApplication(options: {
+  directory: string;
+  /** Defaults to directory + '.flax'. Must be outside directory. */
+  outputFile?: string;
+}): Promise<string>;

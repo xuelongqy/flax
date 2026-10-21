@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 
 import 'dart:io';
 
+import 'package:crypto/crypto.dart';
+
 import 'package:flax_standalone/main.dart' as app;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -232,7 +234,7 @@ runApp(SizedBox());
   await t.runAsync(
     () => app.startApplication(
       storageDirectory: storageDirectory!.path,
-      assetBundle: sandbox,
+      applicationDirectory: sandbox!.directory,
     ),
   );
   await _pumpUntilFound(t, find.text('Count: 0'));
@@ -243,6 +245,163 @@ runApp(SizedBox());
   await t.pumpWidget(const SizedBox());
   await _pumpApplicationFrame(t);
   expect(t.takeException(), isNull);
+  final packageFile = await t.runAsync(() async {
+    final bytes = await rootBundle.load('assets/flax.flax');
+    return File('${storageDirectory!.path}/application.flax')
+        .writeAsBytes(Uint8List.sublistView(bytes));
+  });
+  final installationDirectory = Directory('${storageDirectory!.path}/packages');
+  DateTime? installationTime;
+  for (var launch = 0; launch < 2; launch++) {
+    await t.runAsync(
+      () => app.startApplication(
+        storageDirectory: storageDirectory.path,
+        packageFile: packageFile!,
+        installationDirectory: installationDirectory,
+      ),
+    );
+    await _pumpUntilFound(t, find.text('Count: 0'));
+    final installed = await t.runAsync(
+      () => FlaxPackage.install(
+        packageFile!,
+        installationDirectory: installationDirectory,
+      ),
+    );
+    final receiptTime = await t.runAsync(
+      () => File('${installed!.path}/.flax-install.json').lastModified(),
+    );
+    if (launch == 0) {
+      installationTime = receiptTime;
+    } else {
+      expect(receiptTime, installationTime);
+    }
+    await press('Open assets');
+    await _verifyAssets(
+      t,
+      FlaxDirectoryAssetBundle(installed!),
+      'JSON loaded from the application asset bundle',
+    );
+    await t.tap(find.byType(BackButton));
+    await _pumpApplicationFrame(t);
+    await t.pumpWidget(const SizedBox());
+    await _pumpApplicationFrame(t);
+  }
+  final scriptFile = await t.runAsync(
+    () async =>
+        File('${storageDirectory.path}/single.js')
+            .writeAsString(await builtin.loadString('app.js')),
+  );
+  await t.runAsync(
+    () => app.startApplication(
+      storageDirectory: storageDirectory.path,
+      scriptFile: scriptFile!,
+      assetBundle: builtin,
+    ),
+  );
+  await _pumpUntilFound(t, find.text('Count: 0'));
+  await press('Open assets');
+  await _verifyAssets(
+    t,
+    builtin,
+    'JSON loaded from the application asset bundle',
+  );
+  await t.tap(find.byType(BackButton));
+  await _pumpApplicationFrame(t);
+  await t.pumpWidget(const SizedBox());
+  await _pumpApplicationFrame(t);
+  expect(t.takeException(), isNull);
+  // Exercise the native downloader with the real build output, including PNG variants.
+  final networkOverrides = HttpOverrides.current;
+  HttpOverrides.global = null;
+  final payloads = await t.runAsync(
+    () async => <FlaxRemoteFormat, List<int>>{
+      FlaxRemoteFormat.javascript: await scriptFile!.readAsBytes(),
+      FlaxRemoteFormat.package: await packageFile!.readAsBytes(),
+    },
+  );
+  final validators = <String?>[];
+  final authorizations = <String?>[];
+  final artifactServer = await t.runAsync(() async {
+    final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+    server.listen((request) async {
+      authorizations.add(request.headers.value('x-flax-demo'));
+      validators.add(request.headers.value('if-none-match'));
+      final format = request.uri.path == '/js'
+          ? FlaxRemoteFormat.javascript
+          : FlaxRemoteFormat.package;
+      final bytes = payloads![format]!;
+      final etag = '"${sha256.convert(bytes)}"';
+      request.response.headers.set('etag', etag);
+      if (request.headers.value('if-none-match') == etag) {
+        request.response.statusCode = HttpStatus.notModified;
+      } else {
+        request.response.contentLength = bytes.length;
+        request.response.add(bytes);
+      }
+      await request.response.close();
+    });
+    return server;
+  });
+  try {
+    for (final format in FlaxRemoteFormat.values) {
+      for (var launch = 0; launch < 2; launch++) {
+        await t.runAsync(
+          () => app.startApplication(
+            storageDirectory: storageDirectory.path,
+            networkUri: Uri.parse(
+              'http://127.0.0.1:${artifactServer!.port}/${format == FlaxRemoteFormat.javascript ? 'js' : 'package'}',
+            ),
+            networkFormat: format,
+            headers: {'X-Flax-Demo': 'authorized'},
+            expectedSha256: sha256.convert(payloads![format]!).toString(),
+            cacheDirectory: Directory('${storageDirectory.path}/downloads'),
+            installationDirectory: format == FlaxRemoteFormat.package
+                ? installationDirectory
+                : null,
+            assetBundle: format == FlaxRemoteFormat.javascript ? builtin : null,
+          ),
+        );
+        await _pumpUntilFound(t, find.text('Count: 0'));
+        await press('Open assets');
+        final installed = format == FlaxRemoteFormat.package
+            ? await t.runAsync(
+                () => FlaxPackage.install(
+                  packageFile!,
+                  installationDirectory: installationDirectory,
+                ),
+              )
+            : null;
+        await _verifyAssets(
+          t,
+          installed == null ? builtin : FlaxDirectoryAssetBundle(installed),
+          'JSON loaded from the application asset bundle',
+        );
+        if (installed != null) {
+          expect(
+            await t.runAsync(
+              () => File('${installed.path}/.flax-install.json').lastModified(),
+            ),
+            installationTime,
+          );
+        }
+        await t.tap(find.byType(BackButton));
+        await _pumpApplicationFrame(t);
+        await t.pumpWidget(const SizedBox());
+        await _pumpApplicationFrame(t);
+      }
+    }
+    expect(validators, [
+      null,
+      '"${sha256.convert(payloads![FlaxRemoteFormat.javascript]!)}"',
+      null,
+      '"${sha256.convert(payloads[FlaxRemoteFormat.package]!)}"',
+    ]);
+    expect(authorizations, everyElement('authorized'));
+    expect(t.takeException(), isNull);
+  } finally {
+    await t.runAsync(() => artifactServer!.close(force: true));
+    HttpOverrides.global = networkOverrides;
+  }
   var closed = false;
   Object? storageError;
   // Hive continuations created in a widget test need that test zone to keep pumping.
@@ -261,7 +420,7 @@ runApp(SizedBox());
   }
   expect(closed, isTrue);
   expect(storageError, isNull);
-  await t.runAsync(() => storageDirectory!.delete(recursive: true));
+  await t.runAsync(() => storageDirectory.delete(recursive: true));
 }
 
 Future<void> _verifyAssets(
@@ -283,7 +442,14 @@ Future<void> _verifyAssets(
   final key = await t.runAsync(
     () => provider.obtainKey(createLocalImageConfiguration(t.element(image))),
   );
-  expect(key!.bundle, same(bundle));
+  if (bundle is FlaxDirectoryAssetBundle) {
+    expect(
+      (key!.bundle as FlaxDirectoryAssetBundle).directory.path,
+      bundle.directory.path,
+    );
+  } else {
+    expect(key!.bundle, same(bundle));
+  }
   final pixels = find.descendant(
     of: image,
     matching: find.byWidgetPredicate(

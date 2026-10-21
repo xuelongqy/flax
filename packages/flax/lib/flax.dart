@@ -3,6 +3,14 @@ library;
 
 export 'bindings.dart';
 export 'runtime.dart';
+export 'src/application.dart' show FlaxApplication;
+export 'src/package.dart';
+export 'src/network.dart'
+    show
+        FlaxRemoteFormat,
+        FlaxDownloader,
+        FlaxDownloadRequest,
+        FlaxDownloadResponse;
 export 'src/directory_asset_bundle.dart';
 export 'src/manifest.dart';
 export 'src/prefixed_asset_bundle.dart';
