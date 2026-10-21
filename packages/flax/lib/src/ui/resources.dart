@@ -268,11 +268,23 @@ class _Callback extends _Resource with _JsInvocation implements FlaxCallback {
     List<Object?> positional,
     Map<String, Object?> named, {
     FlaxCallbackBinding? signature,
-  }) => context == null
-      ? invoke(signature ?? this.signature, positional, named).$2
-      : context!.run(
-          () => invoke(signature ?? this.signature, positional, named).$2,
+  }) {
+    final selected = signature ?? this.signature;
+    final wrapAssets =
+        active &&
+        selected.result.kind == 'widget' &&
+        selected.result.id == null &&
+        positional.any(
+          (value) => value is BuildContext && session.needsAssetScope(value),
         );
+    final result = context == null
+        ? invoke(selected, positional, named).$2
+        : context!.run(() => invoke(selected, positional, named).$2);
+    // Scope native Route/dialog content while keeping the callback synchronous.
+    return wrapAssets && result is Widget
+        ? session.scopeAssets(result)
+        : result;
+  }
 
   @override
   FlaxJsObject get receiver => function;

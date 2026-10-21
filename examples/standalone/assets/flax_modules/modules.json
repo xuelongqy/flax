@@ -4,7 +4,7 @@
   "bootstrap": "assets/flax_modules/registry.js",
   "lock": {
     "manager": "pnpm",
-    "digest": "439f5e6d9979537158da4415638e31655d4ee514cecea99c12de612cef5ee0e2"
+    "digest": "94bb7e6d77a40f9a6a27e67b9ccccb85aa2c8478f5657cca769f3f16b830e3e7"
   },
   "modules": [
     {
@@ -52,6 +52,20 @@
       "package": "@flax/core-runtime",
       "source": "dist/runtime/index.js",
       "dependencies": {},
+      "bindings": [],
+      "subpaths": []
+    },
+    {
+      "specifier": "@flax/core/assets",
+      "owner": "@flax/core-runtime:dist/runtime/assets.js",
+      "version": "0.0.0",
+      "artifact": "4e4f31a2c6ead243d8883af9116977f47b98e30623f8c85e43cc594e156307d1",
+      "asset": "assets/flax_modules/_flax_core_assets-1118e7ba327f.js",
+      "package": "@flax/core-runtime",
+      "source": "dist/runtime/assets.js",
+      "dependencies": {
+        "@flax/flutter/services": "0.0.0"
+      },
       "bindings": [],
       "subpaths": []
     },
@@ -1220,13 +1234,12 @@
       "specifier": "@flax/cupertino-ui",
       "owner": "@flax/cupertino-ui-runtime:dist/index.js",
       "version": "0.0.0",
-      "artifact": "1eadcb43327f62892cb1d319773cca2f860f497819ca5e9f27bce1a7aa650951",
+      "artifact": "68273918282bc13b8a65acf1d2014aae5372518248d4b7a974b9756be06eb0cc",
       "asset": "assets/flax_modules/_flax_cupertino-ui-80e2a289ba26.js",
       "package": "@flax/cupertino-ui-runtime",
       "source": "dist/index.js",
       "dependencies": {
         "@flax/core/bindings": "0.0.0",
-        "@flax/cupertino-ui/dependencies/intl": "0.0.0",
         "@flax/dart/core": "0.0.0",
         "@flax/dart/io": "0.0.0",
         "@flax/dart/ui": "0.0.0",
@@ -2761,84 +2774,6 @@
       ],
       "subpaths": [
         "@flax/cupertino-ui/index"
-      ]
-    },
-    {
-      "specifier": "@flax/cupertino-ui/dependencies/intl",
-      "owner": "@flax/cupertino-ui-runtime:dist/generated/dependencies/intl/index.js",
-      "version": "0.0.0",
-      "artifact": "6d0921170d5aa6a0c200f6d4745c88dfcfe16394f240a0b893605d225316f9f7",
-      "asset": "assets/flax_modules/_flax_cupertino-ui_dependencies_intl-9df0edfa225e.js",
-      "package": "@flax/cupertino-ui-runtime",
-      "source": "dist/generated/dependencies/intl/index.js",
-      "dependencies": {
-        "@flax/core/bindings": "0.0.0",
-        "@flax/dart/core": "0.0.0"
-      },
-      "bindings": [
-        {
-          "moduleId": "flax.cupertino/dependency_intl",
-          "uiProtocol": 24,
-          "requiredCapabilities": [
-            "generic-member-views",
-            "instance-checks",
-            "native-navigation-objects",
-            "native-widget-proxies"
-          ],
-          "types": [
-            "flax.cupertino/dependency_intl#type:DateFormat",
-            "flax.cupertino/dependency_intl#type:DateSymbols",
-            "flax.cupertino/dependency_intl#type:NumberFormat",
-            "flax.cupertino/dependency_intl#type:NumberParserBase",
-            "flax.cupertino/dependency_intl#type:NumberSymbols"
-          ],
-          "functions": [
-            "flax.cupertino/dependency_intl#read:DateFormat.ABBR_MONTH",
-            "flax.cupertino/dependency_intl#read:DateFormat.ABBR_MONTH_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.ABBR_MONTH_WEEKDAY_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.ABBR_QUARTER",
-            "flax.cupertino/dependency_intl#read:DateFormat.ABBR_STANDALONE_MONTH",
-            "flax.cupertino/dependency_intl#read:DateFormat.ABBR_WEEKDAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.HOUR",
-            "flax.cupertino/dependency_intl#read:DateFormat.HOUR24",
-            "flax.cupertino/dependency_intl#read:DateFormat.HOUR24_MINUTE",
-            "flax.cupertino/dependency_intl#read:DateFormat.HOUR24_MINUTE_SECOND",
-            "flax.cupertino/dependency_intl#read:DateFormat.HOUR_GENERIC_TZ",
-            "flax.cupertino/dependency_intl#read:DateFormat.HOUR_MINUTE",
-            "flax.cupertino/dependency_intl#read:DateFormat.HOUR_MINUTE_GENERIC_TZ",
-            "flax.cupertino/dependency_intl#read:DateFormat.HOUR_MINUTE_SECOND",
-            "flax.cupertino/dependency_intl#read:DateFormat.HOUR_MINUTE_TZ",
-            "flax.cupertino/dependency_intl#read:DateFormat.HOUR_TZ",
-            "flax.cupertino/dependency_intl#read:DateFormat.MINUTE",
-            "flax.cupertino/dependency_intl#read:DateFormat.MINUTE_SECOND",
-            "flax.cupertino/dependency_intl#read:DateFormat.MONTH",
-            "flax.cupertino/dependency_intl#read:DateFormat.MONTH_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.MONTH_WEEKDAY_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.NUM_MONTH",
-            "flax.cupertino/dependency_intl#read:DateFormat.NUM_MONTH_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.NUM_MONTH_WEEKDAY_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.QUARTER",
-            "flax.cupertino/dependency_intl#read:DateFormat.SECOND",
-            "flax.cupertino/dependency_intl#read:DateFormat.STANDALONE_MONTH",
-            "flax.cupertino/dependency_intl#read:DateFormat.WEEKDAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_ABBR_MONTH",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_ABBR_MONTH_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_ABBR_QUARTER",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_MONTH",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_MONTH_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_MONTH_WEEKDAY_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_NUM_MONTH",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_NUM_MONTH_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_NUM_MONTH_WEEKDAY_DAY",
-            "flax.cupertino/dependency_intl#read:DateFormat.YEAR_QUARTER"
-          ]
-        }
-      ],
-      "subpaths": [
-        "@flax/cupertino-ui/dependencies/intl/index"
       ]
     },
     {
@@ -26652,7 +26587,7 @@
       "specifier": "@flax/material-ui",
       "owner": "@flax/material-ui-runtime:dist/index.js",
       "version": "0.0.0",
-      "artifact": "dd80b5deb9f0102ea58e26ab3ce675359bb4ae110504a78d30cd810f88b9d10c",
+      "artifact": "d5ddb71504696aca7d4f87447db6c8317aed80f1f2f0d1dc3a1baa1fab4e664a",
       "asset": "assets/flax_modules/_flax_material-ui-4c8270528419.js",
       "package": "@flax/material-ui-runtime",
       "source": "dist/index.js",
@@ -26671,8 +26606,7 @@
         "@flax/flutter/scheduler": "0.0.0",
         "@flax/flutter/semantics": "0.0.0",
         "@flax/flutter/services": "0.0.0",
-        "@flax/flutter/widgets": "0.0.0",
-        "@flax/material-ui/dependencies/intl": "0.0.0"
+        "@flax/flutter/widgets": "0.0.0"
       },
       "bindings": [
         {
@@ -36168,84 +36102,6 @@
       ],
       "subpaths": [
         "@flax/material-ui/index"
-      ]
-    },
-    {
-      "specifier": "@flax/material-ui/dependencies/intl",
-      "owner": "@flax/material-ui-runtime:dist/generated/dependencies/intl/index.js",
-      "version": "0.0.0",
-      "artifact": "1412cc49199ff22a01d066086e793767269fc57400a49b33da8381b1e446214c",
-      "asset": "assets/flax_modules/_flax_material-ui_dependencies_intl-f9bd6f06b72a.js",
-      "package": "@flax/material-ui-runtime",
-      "source": "dist/generated/dependencies/intl/index.js",
-      "dependencies": {
-        "@flax/core/bindings": "0.0.0",
-        "@flax/dart/core": "0.0.0"
-      },
-      "bindings": [
-        {
-          "moduleId": "flax.material/dependency_intl",
-          "uiProtocol": 24,
-          "requiredCapabilities": [
-            "generic-member-views",
-            "instance-checks",
-            "native-navigation-objects",
-            "native-widget-proxies"
-          ],
-          "types": [
-            "flax.material/dependency_intl#type:DateFormat",
-            "flax.material/dependency_intl#type:DateSymbols",
-            "flax.material/dependency_intl#type:NumberFormat",
-            "flax.material/dependency_intl#type:NumberParserBase",
-            "flax.material/dependency_intl#type:NumberSymbols"
-          ],
-          "functions": [
-            "flax.material/dependency_intl#read:DateFormat.ABBR_MONTH",
-            "flax.material/dependency_intl#read:DateFormat.ABBR_MONTH_DAY",
-            "flax.material/dependency_intl#read:DateFormat.ABBR_MONTH_WEEKDAY_DAY",
-            "flax.material/dependency_intl#read:DateFormat.ABBR_QUARTER",
-            "flax.material/dependency_intl#read:DateFormat.ABBR_STANDALONE_MONTH",
-            "flax.material/dependency_intl#read:DateFormat.ABBR_WEEKDAY",
-            "flax.material/dependency_intl#read:DateFormat.DAY",
-            "flax.material/dependency_intl#read:DateFormat.HOUR",
-            "flax.material/dependency_intl#read:DateFormat.HOUR24",
-            "flax.material/dependency_intl#read:DateFormat.HOUR24_MINUTE",
-            "flax.material/dependency_intl#read:DateFormat.HOUR24_MINUTE_SECOND",
-            "flax.material/dependency_intl#read:DateFormat.HOUR_GENERIC_TZ",
-            "flax.material/dependency_intl#read:DateFormat.HOUR_MINUTE",
-            "flax.material/dependency_intl#read:DateFormat.HOUR_MINUTE_GENERIC_TZ",
-            "flax.material/dependency_intl#read:DateFormat.HOUR_MINUTE_SECOND",
-            "flax.material/dependency_intl#read:DateFormat.HOUR_MINUTE_TZ",
-            "flax.material/dependency_intl#read:DateFormat.HOUR_TZ",
-            "flax.material/dependency_intl#read:DateFormat.MINUTE",
-            "flax.material/dependency_intl#read:DateFormat.MINUTE_SECOND",
-            "flax.material/dependency_intl#read:DateFormat.MONTH",
-            "flax.material/dependency_intl#read:DateFormat.MONTH_DAY",
-            "flax.material/dependency_intl#read:DateFormat.MONTH_WEEKDAY_DAY",
-            "flax.material/dependency_intl#read:DateFormat.NUM_MONTH",
-            "flax.material/dependency_intl#read:DateFormat.NUM_MONTH_DAY",
-            "flax.material/dependency_intl#read:DateFormat.NUM_MONTH_WEEKDAY_DAY",
-            "flax.material/dependency_intl#read:DateFormat.QUARTER",
-            "flax.material/dependency_intl#read:DateFormat.SECOND",
-            "flax.material/dependency_intl#read:DateFormat.STANDALONE_MONTH",
-            "flax.material/dependency_intl#read:DateFormat.WEEKDAY",
-            "flax.material/dependency_intl#read:DateFormat.YEAR",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_ABBR_MONTH",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_ABBR_MONTH_DAY",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_ABBR_QUARTER",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_MONTH",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_MONTH_DAY",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_MONTH_WEEKDAY_DAY",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_NUM_MONTH",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_NUM_MONTH_DAY",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_NUM_MONTH_WEEKDAY_DAY",
-            "flax.material/dependency_intl#read:DateFormat.YEAR_QUARTER"
-          ]
-        }
-      ],
-      "subpaths": [
-        "@flax/material-ui/dependencies/intl/index"
       ]
     },
     {

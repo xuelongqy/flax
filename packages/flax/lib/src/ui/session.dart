@@ -45,8 +45,15 @@ typedef _BindingOperation = FlaxJsValue Function(
 );
 
 class _Session {
-  _Session(this.runtime, this.registry, this.onError, {this.namespace});
+  _Session(
+    this.runtime,
+    this.registry,
+    this.onError, {
+    this.namespace,
+    AssetBundle? assetBundle,
+  }) : assetBundle = assetBundle ?? rootBundle;
   final String? namespace;
+  final AssetBundle assetBundle;
   _BindingContext? _contextForBinding(String id) {
     final selected = _specializedContexts[id];
     if (selected != null) return selected;
@@ -226,6 +233,7 @@ class _Session {
     '__flaxHotStage',
     '__flaxMount',
     '__flaxInvalidate',
+    '__flaxAssetBundle',
   };
   final _hostTasks = ListQueue<(_HostContext, void Function())>();
   bool _hostClosing = false;
@@ -357,6 +365,20 @@ class _Session {
       registerStreams();
       registerFunctions();
       registerAsync();
+      runtime.registerHostFunction('__flaxAssetBundle', (_, args) {
+        if (args.isNotEmpty || !active) {
+          throw StateError('Invalid session asset bundle request');
+        }
+        return holdHostResult(
+          objectResult(
+            assetBundle,
+            const FlaxTypeRef(
+              'object',
+              id: 'flax.core/sdk_services#type:AssetBundle',
+            ),
+          ),
+        );
+      });
       installModules(moduleAssets, plugins);
       installHost(plugins);
       runtime.registerHostFunction('__flaxInvalidate', (_, args) {

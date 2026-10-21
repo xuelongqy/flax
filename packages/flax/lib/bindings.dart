@@ -7,6 +7,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart' show AssetBundle, rootBundle;
 import 'package:flutter/widgets.dart';
 
 import 'runtime.dart';
@@ -41,6 +42,7 @@ part 'src/ui/session.dart';
 part 'src/ui/node.dart';
 part 'src/ui/components.dart';
 part 'src/ui/view.dart';
+part 'src/ui/assets.dart';
 part 'src/ui/navigation.dart';
 part 'src/ui/async.dart';
 part 'src/ui/data.dart';

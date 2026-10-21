@@ -211,9 +211,14 @@ class _PageBodyState extends State<_PageBody> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      _content?.data as Widget? ??
-      _errorWidget(_error ?? StateError('Page initialization failed'));
+  Widget build(BuildContext context) {
+    final content =
+        _content?.data as Widget? ??
+        _errorWidget(_error ?? StateError('Page initialization failed'));
+    return widget.session.needsAssetScope(context)
+        ? widget.session.scopeAssets(content)
+        : content;
+  }
 
   @override
   void dispose() {

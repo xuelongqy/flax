@@ -19,6 +19,114 @@ those ancestors. Title signals inside an AppBar remain local; binding MaterialAp
 themeMode updates its native configuration and preserves Flutter's type/key matching.
 Flutter's own theme animation and inherited rebuilds are not additional Flax scheduling.
 
+## Application resources
+
+Main-project business code and resources form one directory, separate from prepared
+host modules. `prepareApplication()` from `@flax/build/application` stages resources
+from the JS project's `assets/` directory and generates `flax.json`; the existing
+esbuild configuration compiles to its returned `entryPath`. The default output is
+`../assets/flax/`, relative to the JS project. No directory configuration is required.
+Flutter packages that directory through `pubspec.yaml` and generates its native asset
+manifest, including resolution-aware image variants. Resources are not inlined into JS.
+
+```text
+assets/flax/
+  flax.json
+  app.js
+  assets/images/flutter.png
+  assets/images/2.0x/flutter.png
+  assets/data/example.json
+```
+
+`flax.json` sits beside the entry and describes the business package:
+
+```json
+{
+  "formatVersion": 1,
+  "id": "main",
+  "version": "1.0.0",
+  "entry": "app.js",
+  "description": "Main application"
+}
+```
+
+`id` defaults to `package.json`'s `flax.id`, then its `name`; `version` and optional
+`description` come from that file. The builder accepts an explicit `id`, `entry`,
+`assetsDirectory` and `outputDirectory`. Output is generated: staging replaces only
+its `assets/` subtree, so removed source resources do not remain in the next build.
+`FlaxManifest.load(bundle)` validates the descriptor and its relative entry path before
+startup. Unknown descriptor fields are allowed; unsupported format versions are rejected.
+Both the builder and loader reject absolute, traversal, NUL and reserved entry paths
+(`flax.json`, `assets/` and `AssetManifest.*`).
+The business version is metadata, not a native-binding compatibility check or a
+filesystem layout rule. This descriptor is separate from host `modules.json`.
+
+Use application-root asset keys such as `assets/images/flutter.png` and
+`assets/data/example.json`, without a leading slash. These keys are independent of the
+calling TS file; `./` and `../` source-relative strings and filesystem paths are outside
+this resource convention. Native Flutter package assets outside the business root
+require an explicit host bundle, for example `bundle: rootBundle` on the Dart side.
+
+`FlaxSession(assetBundle: bundle)` selects one stable native `AssetBundle` for the
+Session; its default is Flutter's `rootBundle`. An owning `FlaxView` also accepts
+`assetBundle` and otherwise captures the surrounding `DefaultAssetBundle`. Changing that
+bundle's identity replaces an owning View's Session. Borrowed root and named page Views
+use their Session's bundle.
+
+Generated `Image.asset`, `AssetImage` and `ImageProvider` keep their native behavior.
+Session roots and named pages inject `DefaultAssetBundle`. Native Route and dialog
+builders also scope their returned Widgets when building outside the Session subtree.
+The builder remains synchronous and receives Flutter's original context; that context is
+above the newly injected bundle. Use `getAssetBundle()` there, or read the inherited
+bundle inside the returned page's build method. Deliberate local `DefaultAssetBundle`
+overrides inside the Session subtree remain effective. An image's explicit `bundle`
+still wins.
+
+Context-free business code reads the same native object through `@flax/core/assets`:
+
+```typescript
+import { getAssetBundle } from '@flax/core/assets';
+
+const configuration = JSON.parse(
+  await getAssetBundle().loadString('assets/data/example.json'),
+);
+```
+
+Use `DefaultAssetBundle.of(context)` when a local inherited override is intentional.
+Keep loading Futures in State and let Flutter's `FutureBuilder` own asynchronous
+presentation. Direct `getRootBundle()` reads intentionally access host resources.
+Resource errors remain visible; there is no fallback from missing Session resources to
+host resources.
+
+`FlaxPrefixedAssetBundle()` exposes the built-in `assets/flax/` directory without
+copying files. It prepends the configurable `prefix` to ordinary reads and native buffer
+loads, and projects Flutter's global asset manifest into package-relative keys and
+variants. The projection is cached by Flutter when images request it. Host resources
+outside the prefix are not part of this bundle. Set `bundle` to wrap another native
+bundle. Trailing directory slashes are accepted and normalized.
+
+`FlaxDirectoryAssetBundle(Directory(path))` reads an installed directory with the same
+logical keys. It rejects absolute paths, traversal and symlinks escaping its directory.
+Its `loadBuffer` uses Flutter's native file-buffer API. Include a Flutter-compatible
+`AssetManifest.bin` for native resolution-aware images; directory paths are not exposed
+to application JS. The standalone example copies the descriptor, entry, PNG variants,
+JSON and the projected native manifest into `<ApplicationSupport>/flax/` to demonstrate this source.
+The destination is an explicit `Directory`, without an enforced id/version hierarchy.
+The example accepts `FLAX_SANDBOX_DIRECTORY` to override it. Its demonstration copier
+refreshes the managed `assets/` subtree on startup in sandbox mode, removing stale
+resources. A nonempty destination must already contain a descriptor with the same id;
+unrelated directories are rejected. This copy is not an atomic update installer.
+
+Built-in resources load directly from Flutter assets without startup extraction. A
+future installed business package can supply the JS entry and resources from one
+immutable directory to a new Session. Metadata does not make overwriting an active
+directory safe; versioned or staging directories remain useful for atomic activation.
+Keep an active Session's directory intact: overwriting it can mix versions and leave
+native image caches stale. Bundle identity
+separates native image cache entries across versions. Prepared host modules and native
+bindings remain supplied by the host. Archive creation, downloads, validation,
+installation and activation are deferred; development HMR does not implement them.
+
 ## Startup and ownership
 
 Factory and binding registry identities stay stable. Ordinary Flutter rebuilds keep the

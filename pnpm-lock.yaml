@@ -163,6 +163,9 @@ importers:
 
   packages/flax/js-types:
     dependencies:
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../flax_flutter/js
       '@preact/signals-core':
         specifier: 1.14.4
         version: 1.14.4

@@ -113,7 +113,8 @@ extension _SessionModules on _Session {
     final requested = <String>{
       for (final plugin in _pluginsWithBase(plugins)) ...plugin.jsModules,
       for (final module in assets._modules)
-        if (module.specifier.startsWith('@flax/flutter/') ||
+        if (module.specifier == '@flax/core/assets' ||
+            module.specifier.startsWith('@flax/flutter/') ||
             module.specifier.startsWith('@flax/dart/'))
           module.specifier,
     };

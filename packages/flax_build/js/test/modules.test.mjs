@@ -5,6 +5,7 @@ import {
   mkdir,
   mkdtemp,
   readFile,
+  readdir,
   realpath,
   rm,
   writeFile,
@@ -487,10 +488,37 @@ test('real delivery metadata preserves public library binding topology', async (
   assert.equal(widgets.source, 'dist/flutter/widgets.js');
   assert.equal(widgets.subpathRoot, 'dist/flutter/generated/libraries/widgets');
   const helpers = core.modules.flatMap((module) => module.helperSubpaths ?? []);
-  assert.equal(helpers.length, 15);
   assert.equal(new Set(helpers).size, helpers.length);
   assert.ok(helpers.includes('_bindings/components.__module'));
   assert.ok(helpers.includes('_bindings/sdk_widgets.__module'));
+  for (const [delivery, owner, roots] of [
+    [core, 'flax', ['flutter/generated/libraries', 'dart/generated/libraries']],
+    [material, 'flax_material_ui', ['generated']],
+    [cupertino, 'flax_cupertino_ui', ['generated']],
+  ]) {
+    const emitted = [];
+    for (const root of roots) {
+      const files = await readdir(join(repository, 'packages', owner, 'js/src', root), {
+        recursive: true,
+      });
+      for (const file of files) {
+        if (file.endsWith('.__module.ts')) {
+          emitted.push(`${root}/${file.replaceAll('\\', '/')}`);
+        }
+      }
+    }
+    const delivered = delivery.modules.flatMap((module) =>
+      (module.helperSubpaths ?? []).map(
+        (helper) => `${module.subpathRoot.replace(/^dist\//, '')}/${helper}.ts`,
+      ),
+    );
+    assert.deepEqual(
+      delivered.toSorted(),
+      emitted.toSorted(),
+      `${owner} helper ownership`,
+    );
+  }
+  assert.equal(entry(core, '@flax/flutter/widget_previews'), undefined);
   for (const library of ['material', 'cupertino']) {
     assert.equal(entry(core, `@flax/flutter/${library}`), undefined);
   }
@@ -499,17 +527,18 @@ test('real delivery metadata preserves public library binding topology', async (
     [cupertino, 'cupertino'],
   ]) {
     assert.equal(entry(delivery, `@flax/${library}-ui`).source, 'dist/index.js');
-    const local = entry(delivery, `@flax/${library}-ui/dependencies/intl`);
-    const id = `flax.${library}/dependency_intl`;
-    assert.equal(local.source, 'dist/generated/dependencies/intl/index.js');
-    const owner = join(repository, `packages/flax_${library}_ui`);
-    await access(join(owner, 'js', local.source));
-    await access(join(owner, 'js-types/types/generated/dependencies/intl/index.d.ts'));
-    assert.deepEqual(
-      local.bindings.map((binding) => binding.moduleId),
-      [id],
+    assert.equal(entry(delivery, `@flax/${library}-ui/dependencies/intl`), undefined);
+    const bindings = entry(delivery, `@flax/${library}-ui`).bindings;
+    assert.ok(
+      !bindings.some((binding) => binding.moduleId.endsWith('/dependency_intl')),
     );
-    assert.ok(local.bindings[0].types.includes(`${id}#type:DateFormat`));
+    const id = `flax.${library}/${library}`;
+    const localization = `Global${library === 'material' ? 'Material' : 'Cupertino'}Localizations`;
+    const binding = bindings.find((binding) => binding.moduleId === id);
+    assert.ok(binding.types.includes(`${id}#type:${localization}`));
+    for (const getter of ['delegate', 'delegates']) {
+      assert.ok(binding.functions.includes(`${id}#read:${localization}.${getter}`));
+    }
   }
   assert.deepEqual(entry(core, '@flax/flutter/vector_math').helperSubpaths, [
     '_bindings/sdk_dependencies.__module',

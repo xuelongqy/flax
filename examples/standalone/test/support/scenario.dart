@@ -8,7 +8,10 @@ import 'package:flax_standalone/main.dart' as app;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
+import 'package:flax_standalone/assets.dart';
+
 Future<void> applicationScenario(WidgetTester t) async {
+  final builtin = FlaxPrefixedAssetBundle();
   final storageDirectory = await t.runAsync(
     () => Directory.systemTemp.createTemp('flax-standalone-storage-'),
   );
@@ -52,7 +55,10 @@ runApp(SizedBox());
   await t.pumpAndSettle();
   expect(baseRuntime!.isDisposed, isTrue);
   await t.runAsync(
-    () => app.startApplication(storageDirectory: storageDirectory!.path),
+    () => app.startApplication(
+      storageDirectory: storageDirectory!.path,
+      assetBundle: builtin,
+    ),
   );
   await _pumpUntilFound(t, find.text('Count: 0'));
   expect(find.byType(MaterialApp), findsOneWidget);
@@ -93,6 +99,7 @@ runApp(SizedBox());
       () => app.startApplication(
         apiBaseUrl: 'http://127.0.0.1:${server!.port}/',
         storageDirectory: storageDirectory!.path,
+        assetBundle: builtin,
       ),
     );
     await _pumpUntilFound(t, find.text('Count: 0'));
@@ -135,6 +142,16 @@ runApp(SizedBox());
     await t.tap(find.widgetWithText(TextButton, text));
     await _pumpApplicationFrame(t);
   }
+
+  await press('Open assets');
+  await _verifyAssets(
+    t,
+    builtin,
+    'JSON loaded from the application asset bundle',
+  );
+  await t.tap(find.byType(BackButton));
+  await _pumpApplicationFrame(t);
+  expect(t.takeException(), isNull);
 
   await press('Increment');
   await press('Change title');
@@ -190,6 +207,42 @@ runApp(SizedBox());
   await t.pumpWidget(const SizedBox());
   await _pumpApplicationFrame(t);
   expect(t.takeException(), isNull);
+  final sandbox = await t.runAsync(() async {
+    final unrelated = Directory('${storageDirectory!.path}/unrelated');
+    await unrelated.create();
+    final sentinel = File('${unrelated.path}/keep.txt');
+    await sentinel.writeAsString('keep');
+    await expectLater(
+      prepareSandboxAssets(unrelated, source: builtin),
+      throwsA(isA<FlutterError>()),
+    );
+    expect(await sentinel.readAsString(), 'keep');
+    final directory = Directory('${storageDirectory.path}/flax');
+    await prepareSandboxAssets(directory, source: builtin);
+    await File('${directory.path}/assets/obsolete.json').writeAsString('{}');
+    final refreshed = await prepareSandboxAssets(directory, source: builtin);
+    for (final bundle in [builtin, refreshed]) {
+      await expectLater(
+        bundle.load('assets/obsolete.json'),
+        throwsA(isA<FlutterError>()),
+      );
+    }
+    return refreshed;
+  });
+  await t.runAsync(
+    () => app.startApplication(
+      storageDirectory: storageDirectory!.path,
+      assetBundle: sandbox,
+    ),
+  );
+  await _pumpUntilFound(t, find.text('Count: 0'));
+  await press('Open assets');
+  await _verifyAssets(t, sandbox!, 'JSON loaded from the sandbox asset bundle');
+  await t.tap(find.byType(BackButton));
+  await _pumpApplicationFrame(t);
+  await t.pumpWidget(const SizedBox());
+  await _pumpApplicationFrame(t);
+  expect(t.takeException(), isNull);
   var closed = false;
   Object? storageError;
   // Hive continuations created in a widget test need that test zone to keep pumping.
@@ -209,6 +262,36 @@ runApp(SizedBox());
   expect(closed, isTrue);
   expect(storageError, isNull);
   await t.runAsync(() => storageDirectory!.delete(recursive: true));
+}
+
+Future<void> _verifyAssets(
+  WidgetTester t,
+  AssetBundle bundle,
+  String message,
+) async {
+  final manifest = await t.runAsync(() => FlaxManifest.load(bundle));
+  expect(manifest!.id, 'main');
+  expect(manifest.version, '0.0.0');
+  expect(manifest.entry, 'app.js');
+  await _pumpUntilFound(t, find.text(message));
+  final image = find.byWidgetPredicate(
+    (widget) =>
+        widget is Image && widget.semanticLabel == 'Bundled Flutter image',
+  );
+  final provider = t.widget<Image>(image).image as AssetImage;
+  expect(provider.assetName, 'assets/images/flutter.png');
+  final key = await t.runAsync(
+    () => provider.obtainKey(createLocalImageConfiguration(t.element(image))),
+  );
+  expect(key!.bundle, same(bundle));
+  final pixels = find.descendant(
+    of: image,
+    matching: find.byWidgetPredicate(
+      (widget) => widget is RawImage && widget.image != null,
+    ),
+  );
+  await _pumpUntilFound(t, pixels);
+  expect(t.widget<RawImage>(pixels).image!.width, 128 * key.scale);
 }
 
 Future<void> _pumpUntilFound(WidgetTester tester, Finder finder) async {

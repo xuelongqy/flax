@@ -12,6 +12,7 @@ import { signal } from '@flax/core';
 import {
   Column,
   Navigator,
+  SingleChildScrollView,
   State,
   StatefulWidget,
   StatelessWidget,
@@ -35,6 +36,7 @@ import {
 } from '@flax/material-ui';
 import { Color } from '@flax/flutter/services';
 import { CanvasView } from '@flax/canvas';
+import { AssetsPage } from './assets';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 const DetailsRoute = MaterialPageRoute.$type(
@@ -119,55 +121,66 @@ class HomeState extends State<HomePage> {
   build(_context: BuildContext) {
     return Scaffold({
       appBar: AppBar({ title: Text(this.title.bind, { key: StringKey('app-title') }) }),
-      body: Column({
-        children: [
-          TextField({
-            key: StringKey('editor'),
-            controller: this.editing,
-            onChanged: (text) => {
-              if (typeof localStorage !== 'undefined')
-                localStorage.setItem('draft', text);
-            },
-          }),
-          new CounterText(`Count: ${this.count}`),
-          TextButton({
-            onPressed: () => this.setState(() => this.count++),
-            child: Text('Increment'),
-          }),
-          TextButton({
-            onPressed: () => (this.title.value = 'Updated title'),
-            child: Text('Change title'),
-          }),
-          TextButton({
-            onPressed: () =>
-              (themeMode.value =
-                themeMode.value === ThemeMode.dark ? ThemeMode.light : ThemeMode.dark),
-            child: Text('Toggle theme'),
-          }),
-          TextButton({
-            onPressed: () => this.openDetails(),
-            child: Text('Open details'),
-          }),
-          TextButton({
-            onPressed: () =>
-              Navigator.of(this.context).push(
-                MaterialPageRoute({ builder: () => new CanvasPage() }),
-              ),
-            child: Text('Open canvas'),
-          }),
-          Text(this.result.bind),
-          TextButton({
-            onPressed: () => this.checkNetwork(),
-            child: Text('Fetch status'),
-          }),
-          Text(this.network.bind),
-          TextButton({
-            onPressed: () => this.checkSocket(),
-            child: Text('WebSocket echo'),
-          }),
-          Text(this.socketStatus.bind),
-          Text('Static application content', { key: StringKey('static') }),
-        ],
+      body: SingleChildScrollView({
+        child: Column({
+          children: [
+            TextField({
+              key: StringKey('editor'),
+              controller: this.editing,
+              onChanged: (text) => {
+                if (typeof localStorage !== 'undefined')
+                  localStorage.setItem('draft', text);
+              },
+            }),
+            new CounterText(`Count: ${this.count}`),
+            TextButton({
+              onPressed: () => this.setState(() => this.count++),
+              child: Text('Increment'),
+            }),
+            TextButton({
+              onPressed: () => (this.title.value = 'Updated title'),
+              child: Text('Change title'),
+            }),
+            TextButton({
+              onPressed: () =>
+                (themeMode.value =
+                  themeMode.value === ThemeMode.dark
+                    ? ThemeMode.light
+                    : ThemeMode.dark),
+              child: Text('Toggle theme'),
+            }),
+            TextButton({
+              onPressed: () => this.openDetails(),
+              child: Text('Open details'),
+            }),
+            TextButton({
+              onPressed: () =>
+                Navigator.of(this.context).push(
+                  MaterialPageRoute({ builder: () => new CanvasPage() }),
+                ),
+              child: Text('Open canvas'),
+            }),
+            TextButton({
+              onPressed: () =>
+                Navigator.of(this.context).push(
+                  MaterialPageRoute({ builder: () => new AssetsPage() }),
+                ),
+              child: Text('Open assets'),
+            }),
+            Text(this.result.bind),
+            TextButton({
+              onPressed: () => this.checkNetwork(),
+              child: Text('Fetch status'),
+            }),
+            Text(this.network.bind),
+            TextButton({
+              onPressed: () => this.checkSocket(),
+              child: Text('WebSocket echo'),
+            }),
+            Text(this.socketStatus.bind),
+            Text('Static application content', { key: StringKey('static') }),
+          ],
+        }),
       }),
     });
   }

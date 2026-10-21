@@ -35,6 +35,42 @@ void _copyExampleTree(Directory source, Directory target) {
   }
 }
 
+/// Includes generated asset roots that Git source enumeration intentionally skips.
+void copyExampleAssets(
+  Directory source,
+  Directory target,
+  Map<String, dynamic> pubspec,
+) {
+  final roots = <String>{'assets'};
+  for (final entry
+      in (pubspec['flutter'] as Map?)?['assets'] as List? ?? const []) {
+    final path = entry is String
+        ? entry
+        : entry is Map
+        ? entry['path']
+        : null;
+    if (path is! String ||
+        path.contains('\\') ||
+        path.contains(':') ||
+        p.posix.isAbsolute(path) ||
+        path.split('/').contains('..')) {
+      continue;
+    }
+    final root = path.split('/').first;
+    if (root.isNotEmpty && root != '.') roots.add(root);
+  }
+  for (final root in roots) {
+    final input = Directory(p.join(source.path, root));
+    final output = p.join(target.path, root);
+    if (input.existsSync()) {
+      copyTree(input, Directory(output));
+    } else if (File(input.path).existsSync()) {
+      File(output).parent.createSync(recursive: true);
+      File(input.path).copySync(output);
+    }
+  }
+}
+
 void _replaceEngineDependencies(
   Map<String, dynamic> dependencies,
   String engine,
@@ -212,9 +248,10 @@ Future<void> withExample(
       source.copySync(target.path);
     }
     final flutter = '${temporary.path}/examples/$kind';
-    copyTree(
-      Directory('$root/examples/$kind/assets'),
-      Directory('$flutter/assets'),
+    copyExampleAssets(
+      Directory('$root/examples/$kind'),
+      Directory(flutter),
+      sourcePubspec,
     );
     rewriteDartDirectiveUris(Directory(flutter), Directory(root), temporary);
     final manifest = File('$flutter/pubspec.yaml');

@@ -25,7 +25,11 @@
       "types": "./dist/host/index.d.ts",
       "import": "./dist/host/index.js"
     },
-    "./flax_modules.json": "./flax_modules.json"
+    "./flax_modules.json": "./flax_modules.json",
+    "./assets": {
+      "types": "./dist/runtime/assets.d.ts",
+      "import": "./dist/runtime/assets.js"
+    }
   },
   "files": [
     "dist/runtime",

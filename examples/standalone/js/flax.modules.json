@@ -36,6 +36,10 @@
     {
       "specifier": "@flax/canvas",
       "package": "@flax/canvas-runtime"
+    },
+    {
+      "specifier": "@flax/core/assets",
+      "package": "@flax/core-runtime"
     }
   ],
   "flutterProject": "..",

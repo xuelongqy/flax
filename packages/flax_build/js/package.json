@@ -19,6 +19,10 @@
     "./register-node-loader": {
       "types": "./src/register-node-loader.d.mts",
       "import": "./src/register-node-loader.mjs"
+    },
+    "./application": {
+      "types": "./src/application.d.mts",
+      "import": "./src/application.mjs"
     }
   },
   "bin": {
@@ -31,7 +35,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node --check src/compiler.mjs && node --check src/esbuild.mjs && node --check src/vite.mjs && node --check src/modules.mjs && node --check src/registry.mjs && node --check src/dev.mjs && node --check src/node-loader.mjs && node --check src/register-node-loader.mjs && node --check bin/flax-dev.mjs && node --check bin/flax-modules.mjs",
+    "build": "node --check src/application.mjs && node --check src/compiler.mjs && node --check src/esbuild.mjs && node --check src/vite.mjs && node --check src/modules.mjs && node --check src/registry.mjs && node --check src/dev.mjs && node --check src/node-loader.mjs && node --check src/register-node-loader.mjs && node --check bin/flax-dev.mjs && node --check bin/flax-modules.mjs",
     "typecheck": "pnpm run build && tsc --project tsconfig.json",
     "test": "node --test test/*.test.mjs"
   },

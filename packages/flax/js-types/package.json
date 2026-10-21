@@ -19,6 +19,9 @@
     },
     "./host": {
       "types": "./types/host/index.d.ts"
+    },
+    "./assets": {
+      "types": "./types/runtime/assets.d.ts"
     }
   },
   "files": [
@@ -32,5 +35,13 @@
   "dependencies": {
     "@preact/signals-core": "1.14.4",
     "web-streams-polyfill": "4.3.0"
+  },
+  "peerDependencies": {
+    "@flax/flutter": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@flax/flutter": {
+      "optional": true
+    }
   }
 }

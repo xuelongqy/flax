@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "files": [
     "src/runtime/index.ts",
+    "src/runtime/assets.ts",
     "src/runtime/bindings.ts",
     "src/flutter/generated/libraries/navigation/index.ts",
     "src/host/index.ts",

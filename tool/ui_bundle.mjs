@@ -46,6 +46,7 @@ await writeFile(
 );
 const moduleEntries = [
   ['@flax/core', '@flax/core-runtime'],
+  ['@flax/core/assets', '@flax/core-runtime'],
   ['@flax/core/host', '@flax/core-runtime'],
   ['@flax/core/navigation', '@flax/core-runtime'],
   ['@flax/core/bindings', '@flax/core-runtime'],

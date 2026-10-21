@@ -8,6 +8,7 @@ import '../src/package_discovery.dart';
 import '../src/ui_testing.dart';
 import '../src/platform_selection.dart';
 import '../src/package_verification.dart';
+import '../src/example_engine.dart';
 
 void main() {
   late Directory temporary;
@@ -18,6 +19,32 @@ void main() {
     commands = [];
   });
   tearDown(() => temporary.deleteSync(recursive: true));
+
+  test('example copies declared business roots outside assets', () {
+    final source = Directory('${temporary.path}/source')..createSync();
+    final target = Directory('${temporary.path}/target');
+    _write(source, 'assets/flax_modules/modules.json', '{}');
+    _write(source, 'flax/flax.json', '{"id":"main"}');
+    _write(source, 'flax/assets/data.json', '{}');
+    _write(source, 'config.json', '{}');
+    copyExampleAssets(source, target, {
+      'flutter': {
+        'assets': [
+          'flax/',
+          {'path': 'flax/assets/'},
+          'config.json',
+          '../outside/',
+        ],
+      },
+    });
+    expect(File('${target.path}/flax/flax.json').existsSync(), isTrue);
+    expect(File('${target.path}/flax/assets/data.json').existsSync(), isTrue);
+    expect(
+      File('${target.path}/assets/flax_modules/modules.json').existsSync(),
+      isTrue,
+    );
+    expect(File('${target.path}/config.json').existsSync(), isTrue);
+  });
 
   test('nested consumer directive relocation is idempotent and preserves IDs', () {
     final consumer = Directory('${temporary.path}/consumer')..createSync();

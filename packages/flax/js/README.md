@@ -3,6 +3,8 @@
 The physical JavaScript runtime and Core binding-delivery package. Applications import
 signals from `@flax/core`, binding transport from `@flax/core/bindings`, Flax-owned
 navigation from `@flax/core/navigation`, and host declarations from `@flax/core/host`.
+`@flax/core/assets` exports `getAssetBundle()` for the Session's native Flutter
+resources; its types use the optional `@flax/flutter` peer installed by UI applications.
 Public Flutter and Dart SDK declarations live under `@flax/flutter/*` and
 `@flax/dart/*`; this package may physically carry their selected implementation modules
 without changing those public specifiers.

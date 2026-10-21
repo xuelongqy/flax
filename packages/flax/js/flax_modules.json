@@ -10,6 +10,11 @@
     },
     {
       "bindings": [],
+      "specifier": "@flax/core/assets",
+      "source": "dist/runtime/assets.js"
+    },
+    {
+      "bindings": [],
       "specifier": "@flax/core/bindings",
       "source": "dist/runtime/bindings.js"
     },

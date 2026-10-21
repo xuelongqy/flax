@@ -8,12 +8,14 @@ import {
 } from '@flax/build';
 import { flaxEsbuildPlugin } from '@flax/build/esbuild';
 import { flaxVitePlugin } from '@flax/build/vite';
+import { prepareApplication } from '@flax/build/application';
 
 const manifest = validateModuleManifest({});
 const esbuild: EsbuildPlugin = flaxEsbuildPlugin(manifest);
 const resolution: EsbuildPlugin = flaxHostModulesPlugin(manifest);
 const vite: VitePlugin = flaxVitePlugin();
 void [
+  prepareApplication({ outputDirectory: '../assets/flax', id: 'main' }),
   readModuleManifest('modules.json'),
   prepareModules({ configPath: 'flax.modules.json', check: true }),
   esbuild,

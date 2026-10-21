@@ -1,9 +1,9 @@
 # Standalone Flutter Host
 
 The private flax_standalone application uses the maintained Flutter 3.47.6 / Dart 3.13.5
-engine and macOS arm64 (macOS 15 or newer). main.dart initializes Flutter, loads
-assets/app.js, registers core/Material bindings, and mounts an owning FlaxView. It adds
-no MaterialApp, Theme, Navigator or Scaffold around the JS root.
+engine and macOS arm64 (macOS 15 or newer). main.dart initializes Flutter, reads
+`assets/flax/flax.json`, loads its JS entry, registers core/Material bindings, and mounts
+an owning FlaxView. It adds no MaterialApp, Theme, Navigator or Scaffold around the JS root.
 
 The details route returns `Map<String, Object?>`. Its JS pop call selects
 `DartMapInput<string, unknown>` so a plain object becomes that Dart map type; the push
@@ -13,6 +13,40 @@ the separate pop call cannot infer a route's result type from its Navigator.
 The sibling JS project supplies the generated asset. From that project, run
 `pnpm run bundle`; then use `dart run melos run standalone:run` from the repository root
 after building the local Flax engine. See the [complete setup](../README.md).
+
+The **Open assets** page displays a bundled PNG and reads `assets/data/example.json`
+through the generated Flutter bindings. `pnpm run bundle` copies resources from
+`js/assets/` into the independent `assets/flax/` business directory and generates
+`flax.json` beside `app.js`. Its `id` is `main`; version and description come from
+`js/package.json`. The pubspec declares the generated directories; Flutter builds the
+native image-variant manifest. The PNG reuses this
+example's existing Flutter application icon.
+
+Resource keys such as `assets/images/flutter.png` start at the application resource
+root, with no leading slash or source-file-relative `./` or `../`. Images use
+`Image.asset`, and JSON uses `getAssetBundle().loadString` from `@flax/core/assets`.
+Both follow the Session's native Flutter asset bundle. To copy the application JS, PNG
+variants and JSON into application support storage and run from that directory:
+
+```sh
+dart run tool/standalone_run.dart --sandbox-assets
+```
+
+Run this command from the repository root. The sandbox JSON displays a different
+message; the JS resource keys and native Image API stay the same. Refreshing the demo
+removes stale files from its managed `assets/` directory. An unrelated nonempty
+destination, or a directory with another package id, is rejected. This is a
+demonstration copier, not a hotfix installer. The normal command loads built-in assets
+directly through `FlaxPrefixedAssetBundle`; it does not copy or extract them.
+
+The default roots are `assets/flax/` for built-in resources and
+`<ApplicationSupport>/flax/` for the sandbox demo. Both contain `flax.json` and `app.js`
+with the same logical `assets/...` resource layout. No id/version directory is required.
+To customize the built-in root, set `FLAX_ASSET_PREFIX` when running the command and
+update the asset directories in `pubspec.yaml` to match. The bundle script uses the same
+variable. `FLAX_SANDBOX_DIRECTORY` selects an exact sandbox destination. Both are
+optional; public Bundle constructors also accept explicit paths. See the
+[application resource contract](../../docs/architecture/applications.md#application-resources).
 
 Tests here cover this application only. Framework contract tests stay in their owning
 packages. The release verification target is integration_test/app_test.dart and contains

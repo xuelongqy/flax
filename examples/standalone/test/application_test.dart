@@ -10,11 +10,11 @@ void main() {
     'standalone input, State, signals, themes and navigation',
     applicationScenario,
   );
-  testWidgets('missing JS asset reports an error without Material ancestors', (
+  testWidgets('missing manifest reports an error without Material ancestors', (
     t,
   ) async {
-    rootBundle.evict('assets/app.js');
-    addTearDown(() => rootBundle.evict('assets/app.js'));
+    rootBundle.evict('assets/flax/flax.json');
+    addTearDown(() => rootBundle.evict('assets/flax/flax.json'));
     t.binding.defaultBinaryMessenger.setMockMessageHandler(
       'flutter/assets',
       (_) async => null,
@@ -28,7 +28,7 @@ void main() {
     await t.runAsync(app.main);
     await t.pump();
     expect(find.byType(ErrorWidget), findsOneWidget);
-    expect(t.takeException().toString(), contains('assets/app.js'));
+    expect(t.takeException().toString(), contains('assets/flax/flax.json'));
     await t.pumpWidget(const SizedBox());
   });
 }

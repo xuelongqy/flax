@@ -33,6 +33,7 @@ packages/flax_engine_hermes/native/generated/
 # Workspace lockfiles are intentionally tracked.
 
 # Prepared example bundles
+examples/*/assets/flax/
 examples/*/assets/*.js
 examples/*/assets/*.js.map
 packages/*/example/assets/*.js

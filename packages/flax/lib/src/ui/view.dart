@@ -9,14 +9,19 @@ class FlaxSession {
     this.sourceUrl = 'flax:app',
     this.namespace,
     this.onError,
+    AssetBundle? assetBundle,
     List<FlaxPlugin>? plugins,
   }) : plugins = _pluginSnapshot(plugins ?? Flax._plugins),
+       assetBundle = assetBundle ?? rootBundle,
        _moduleAssets = Flax.moduleAssets {
     if (namespace != null && namespace!.isEmpty) {
       throw ArgumentError.value(namespace, 'namespace', 'Must not be empty');
     }
   }
   final String? namespace;
+
+  /// The stable resource source shared by this session's UI and business code.
+  final AssetBundle assetBundle;
   final List<FlaxPlugin> plugins;
   final FlaxModuleAssets? _moduleAssets;
   final FlaxJsRuntime Function() createRuntime;
@@ -42,6 +47,7 @@ class FlaxSession {
           registry,
           report ?? onError,
           namespace: namespace,
+          assetBundle: assetBundle,
         );
         _session = session;
         session.load(
@@ -104,6 +110,7 @@ class FlaxView extends StatelessWidget {
     this.namespace,
     this.onError,
     this.plugins,
+    this.assetBundle,
   }) : _session = null,
        _pageName = null,
        _arguments = null;
@@ -117,6 +124,7 @@ class FlaxView extends StatelessWidget {
       bindings = null,
       plugins = null,
       namespace = null,
+      assetBundle = null,
       sourceUrl = null,
       onError = null,
       _pageName = null,
@@ -139,11 +147,16 @@ class FlaxView extends StatelessWidget {
        bindings = null,
        plugins = null,
        namespace = null,
+       assetBundle = null,
        sourceUrl = null,
        onError = null;
 
   final List<FlaxPlugin>? plugins;
   final String? namespace;
+
+  /// Captures the inherited DefaultAssetBundle when omitted on an owning View.
+  /// Borrowed Views always use their Session's bundle.
+  final AssetBundle? assetBundle;
   final FlaxJsRuntime Function()? createRuntime;
   final String? source;
   final String? sourceUrl;
@@ -154,24 +167,43 @@ class FlaxView extends StatelessWidget {
   final void Function(Object, StackTrace)? onError;
 
   @override
-  Widget build(BuildContext context) => _pageName != null
-      ? _NamedPageRoot(
-          key: ValueKey((_session, _pageName)),
-          session: _session!,
-          name: _pageName,
-          arguments: _arguments,
-        )
-      : _SessionRoot(
-          key: ValueKey(
-            _session ?? (createRuntime, source, sourceUrl, bindings, namespace),
-          ),
-          configuration: this,
-        );
+  Widget build(BuildContext context) {
+    if (_pageName != null) {
+      return _NamedPageRoot(
+        key: ValueKey((_session, _pageName)),
+        session: _session!,
+        name: _pageName,
+        arguments: _arguments,
+      );
+    }
+    final bundle =
+        _session?.assetBundle ?? assetBundle ?? DefaultAssetBundle.of(context);
+    return _SessionRoot(
+      key: ValueKey(
+        _session ??
+            (
+              createRuntime,
+              source,
+              sourceUrl,
+              bindings,
+              namespace,
+              ObjectKey(bundle),
+            ),
+      ),
+      configuration: this,
+      assetBundle: bundle,
+    );
+  }
 }
 
 class _SessionRoot extends StatefulWidget {
-  const _SessionRoot({super.key, required this.configuration});
+  const _SessionRoot({
+    super.key,
+    required this.configuration,
+    required this.assetBundle,
+  });
   final FlaxView configuration;
+  final AssetBundle assetBundle;
   @override
   State<_SessionRoot> createState() => _SessionRootState();
 }
@@ -206,6 +238,7 @@ class _SessionRootState extends State<_SessionRoot> {
           bindings: configuration.bindings!,
           plugins: configuration.plugins,
           namespace: configuration.namespace,
+          assetBundle: widget.assetBundle,
         );
     try {
       _root = _session._mount(configuration._session == null ? _report : null);
@@ -218,7 +251,8 @@ class _SessionRootState extends State<_SessionRoot> {
   }
 
   @override
-  Widget build(BuildContext context) => _root;
+  Widget build(BuildContext context) =>
+      _session._session?.scopeAssets(_root) ?? _root;
 
   @override
   void reassemble() {

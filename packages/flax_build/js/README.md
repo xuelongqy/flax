@@ -87,6 +87,35 @@ separately for complete type diagnostics. The compiler's pinned TypeScript API i
 build dependency; raw `tsc` or esbuild without the Flax plugin only erases `<T>` and
 does not select Dart types. Both plugins retain source maps to the original TS source.
 
+## Business application directory
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+import { prepareApplication } from '@flax/build/application';
+
+const result = await build({ /* existing esbuild options */ write: false });
+const application = await prepareApplication({ projectDirectory: workingDirectory });
+await writeFile(application.entryPath, result.outputFiles[0].contents);
+```
+
+The default output `../assets/flax/` contains `flax.json`, the compiled `app.js`, and
+resources copied from the JS project's `assets/` directory into `assets/`. The descriptor
+uses `formatVersion: 1`, `id` (from `package.json`'s `flax.id`, then `name`), `version`,
+`entry`, and optional `description`. Version and description come from `package.json`.
+Override `id`, `entry`, `assetsDirectory` or `outputDirectory` through options. Paths are
+relative to `projectDirectory`; absolute directory options are also accepted. Entry
+paths must stay relative and cannot collide with descriptor or resource paths.
+
+Compile before staging so compiler errors preserve the previous directory. Resource
+copying also finishes in a temporary directory before replacing the generated `assets/`
+subtree. An explicitly configured `assetsDirectory` must exist and be a directory; a
+missing default `assets/` directory means the project has no resources. Source and
+output directories must not overlap. Declare output, entry and resource subdirectories
+in the Flutter pubspec. Flutter handles native image variants; this helper neither emits
+an archive nor builds a standalone Flutter `AssetManifest.bin`. Installed directories
+must supply that native manifest separately. See the
+[application resource contract](../../../docs/architecture/applications.md#application-resources).
+
 ## Host module preparation
 
 ```json

@@ -257,6 +257,10 @@ const targets = [
     sourceFor: coreSource,
     extraModules: [
       { specifier: '@flax/core', source: 'dist/runtime/index.js' },
+      {
+        specifier: '@flax/core/assets',
+        source: 'dist/runtime/assets.js',
+      },
       { specifier: '@flax/core/host', source: 'dist/host/index.js' },
       {
         specifier: '@flax/core/bindings',

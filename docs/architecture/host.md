@@ -53,6 +53,11 @@ does not impose Dart binding requirements on the session. Module instances and t
 registry are session-local even when multiple sessions reuse the same preloaded
 `FlaxModuleAssets`.
 
+The host also selects `@flax/core/assets` when present in the prepared inventory. Its
+context-free getter returns the Session's native AssetBundle through the reserved
+private `__flaxAssetBundle` dispatcher. This bundle is independent of the host module
+inventory; see [application resources](applications.md#application-resources).
+
 Plugins may also contribute `bindingModules`; those merge with the application registry
 before module selection and source execution. Duplicate full module IDs, type IDs,
 function IDs and incompatible protocol versions fail before installation. Declare

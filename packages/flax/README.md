@@ -65,7 +65,7 @@ select a Dart instantiation.
   reference interfaces, synchronous host callbacks, and `FlaxJsException`. No Flutter UI
   type imports.
 - `package:flax/flax.dart`: exports runtime, FlaxSession, FlaxView, binding extension
-  APIs, and flutterBindings.
+  APIs, FlaxDirectoryAssetBundle, and flutterBindings.
 - `package:flax/bindings.dart`: public generator/plugin registration and host extension
   types.
 - `package:flax/native_runtime.dart`: public engine-author extension exposing the shared
@@ -95,6 +95,14 @@ Navigation includes explicit sessions, shared or nested Flutter Navigators, ordi
 Dart object results, joint-GC callback ownership and UI Future delivery. See the
 [navigation contract](../../docs/architecture/navigation.md) for the selected subset and
 lifecycle rules.
+
+`FlaxSession.assetBundle` selects the native resource source for its UI and business
+code. `FlaxView` can capture an inherited bundle; `FlaxDirectoryAssetBundle` supplies
+installed directory resources using the same keys and native Image providers.
+`FlaxPrefixedAssetBundle` scopes built-in assets to `assets/flax/` by default;
+`FlaxManifest.load(bundle)` reads the shared `flax.json` descriptor. JS
+accesses the Session bundle through `getAssetBundle()` from `@flax/core/assets`. See
+[application resources](../../docs/architecture/applications.md#application-resources).
 
 `FlaxView.page` borrows a session and mounts a registered JS factory without its initial
 root. Same-identity parameter changes update a readonly signal while keeping local

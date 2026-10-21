@@ -3,6 +3,9 @@ library;
 
 export 'bindings.dart';
 export 'runtime.dart';
+export 'src/directory_asset_bundle.dart';
+export 'src/manifest.dart';
+export 'src/prefixed_asset_bundle.dart';
 export 'src/generated/flutter_bindings.g.dart';
 export 'src/generated/sdk_animation_bindings.g.dart';
 export 'src/generated/sdk_dart_ui_bindings.g.dart';

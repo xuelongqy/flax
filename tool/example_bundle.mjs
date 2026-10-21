@@ -47,11 +47,9 @@ if (!selectedPackage) {
       'examples/standalone/js',
     );
     await prepareBundleModulesFor(standaloneRoot);
-    const standaloneOptions = await bundleOptionsFor(standaloneRoot);
-    await build({
-      ...standaloneOptions,
-      entryPoints: ['examples/standalone/js/src/main.ts'],
-      outfile: 'examples/standalone/assets/app.js',
+    execFileSync(process.execPath, [resolve(standaloneRoot, 'tool/bundle.mjs')], {
+      cwd: standaloneRoot,
+      stdio: 'inherit',
     });
   }
 }
