@@ -14,6 +14,169 @@ import '../support/harness.dart' show registry;
 
 void main() {
   test(
+    'script loaders and Sessions share the default business bundle',
+    () async {
+      final root = await Directory.systemTemp.createTemp('flax-script-bundle-');
+      final session = FlaxSession(
+        createRuntime: createTestRuntime,
+        source: _source,
+        bindings: registry,
+      );
+      try {
+        expect(session.assetBundle, isA<FlaxPrefixedAssetBundle>());
+        final sessionBundle = session.assetBundle as FlaxPrefixedAssetBundle;
+        expect(sessionBundle.bundle, same(rootBundle));
+        expect(sessionBundle.prefix, 'assets/flax');
+        final file = await File('${root.path}/app.js').writeAsString(_source);
+        for (final explicit in [null, rootBundle]) {
+          final applications = [
+            await FlaxApplication.file(file, assetBundle: explicit),
+            await FlaxApplication.network(
+              uri: Uri.parse('https://example.invalid/app.js'),
+              format: FlaxRemoteFormat.javascript,
+              assetBundle: explicit,
+              cacheDirectory: root,
+              download: (_) async => FlaxDownloadResponse(
+                statusCode: 200,
+                body: Stream.value(utf8.encode(_source)),
+              ),
+            ),
+          ];
+          for (final application in applications) {
+            expect(application.source, _source);
+            expect(application.manifest, isNull);
+            if (explicit != null) {
+              expect(application.assetBundle, same(explicit));
+            } else {
+              final bundle = application.assetBundle as FlaxPrefixedAssetBundle;
+              expect(bundle.bundle, same(rootBundle));
+              expect(bundle.prefix, 'assets/flax');
+            }
+          }
+        }
+      } finally {
+        await session.close();
+        await root.delete(recursive: true);
+      }
+    },
+  );
+
+  for (final mode in ['source', 'file', 'network']) {
+    testWidgets('$mode business assets survive rebuilds and honor overrides', (
+      t,
+    ) async {
+      final root = await t.runAsync(
+        () => Directory.systemTemp.createTemp('flax-view-bundle-'),
+      );
+      final file = await t.runAsync(
+        () => File('${root!.path}/app.js').writeAsString(_resourceSource),
+      );
+      var host = _resourceBundle('first', prefix: 'assets/flax/');
+      AssetBundle? explicit;
+      var starts = 0;
+      var downloads = 0;
+      FlaxJsRuntime runtime() {
+        starts++;
+        return createTestRuntime();
+      }
+
+      Future<FlaxDownloadResponse> download(FlaxDownloadRequest request) async {
+        downloads++;
+        return FlaxDownloadResponse(
+          statusCode: 200,
+          body: Stream.value(utf8.encode(_resourceSource)),
+        );
+      }
+
+      Widget view() => DefaultAssetBundle(
+        bundle: host,
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: switch (mode) {
+            'source' => FlaxView(
+              source: _resourceSource,
+              assetBundle: explicit,
+              createRuntime: runtime,
+              bindings: registry,
+            ),
+            'file' => FlaxView.file(
+              file: file!,
+              assetBundle: explicit,
+              createRuntime: runtime,
+              bindings: registry,
+            ),
+            _ => FlaxView.network(
+              uri: Uri.parse('https://example.invalid/app.js'),
+              format: FlaxRemoteFormat.javascript,
+              assetBundle: explicit,
+              cacheDirectory: root,
+              download: download,
+              createRuntime: runtime,
+              bindings: registry,
+            ),
+          },
+        ),
+      );
+
+      Future<AssetBundle> verify(String message) async {
+        await _pumpUntil(t, find.text(message));
+        final bundle = DefaultAssetBundle.of(t.element(find.text(message)));
+        final key = await t.runAsync(
+          () => AssetImage(
+            'assets/icon.png',
+            bundle: bundle,
+          ).obtainKey(const ImageConfiguration(devicePixelRatio: 2)),
+        );
+        expect(key!.name, 'assets/2.0x/icon.png');
+        expect(key.scale, 2);
+        expect(key.bundle, same(bundle));
+        return bundle;
+      }
+
+      try {
+        await t.pumpWidget(view());
+        final first = await verify('first');
+        expect((first as FlaxPrefixedAssetBundle).bundle, same(host));
+        expect(starts, 1);
+        await t.pumpWidget(view());
+        expect(await verify('first'), same(first));
+        expect(starts, 1);
+        expect(downloads, mode == 'network' ? 1 : 0);
+
+        host = _resourceBundle('second', prefix: 'assets/flax/');
+        await t.pumpWidget(view());
+        final second = await verify('second');
+        expect(second, isNot(same(first)));
+        expect(starts, 2);
+
+        explicit = host;
+        await t.pumpWidget(view());
+        expect(await verify('host'), same(host));
+        expect(starts, 3);
+        explicit = null;
+        await t.pumpWidget(view());
+        expect(await verify('second'), isA<FlaxPrefixedAssetBundle>());
+        expect(starts, 4);
+
+        explicit = _resourceBundle('explicit');
+        await t.pumpWidget(view());
+        expect(await verify('explicit'), same(explicit));
+        expect(starts, 5);
+        host = _resourceBundle('ignored', prefix: 'assets/flax/');
+        await t.pumpWidget(view());
+        expect(await verify('explicit'), same(explicit));
+        expect(starts, 5);
+        expect(downloads, mode == 'network' ? 5 : 0);
+        expect(t.takeException(), isNull);
+      } finally {
+        await t.pumpWidget(const SizedBox());
+        await t.pumpAndSettle();
+        await t.runAsync(() => root!.delete(recursive: true));
+      }
+    });
+  }
+
+  test(
     'package installation checks integrity and reuses immutable content',
     () async {
       final root = await Directory.systemTemp.createTemp('flax-install-test-');
@@ -360,20 +523,51 @@ Future<void> _pumpUntil(WidgetTester t, Finder finder) async {
 }
 
 class _Bundle extends CachingAssetBundle {
-  _Bundle(this.files);
+  _Bundle(this.files, {this.manifest = const {}});
   final Map<String, List<int>> files;
+  final Map<String, Object> manifest;
   final loads = <String, int>{};
   @override
   Future<ByteData> load(String key) async {
     loads.update(key, (n) => n + 1, ifAbsent: () => 1);
     if (key == 'AssetManifest.bin') {
-      return const StandardMessageCodec().encodeMessage(<String, Object>{})!;
+      return const StandardMessageCodec().encodeMessage(manifest)!;
     }
     final bytes = files[key];
     if (bytes == null) throw FlutterError('Missing asset: $key');
     return ByteData.sublistView(Uint8List.fromList(bytes));
   }
 }
+
+_Bundle _resourceBundle(String message, {String prefix = ''}) => _Bundle(
+  {
+    if (prefix.isNotEmpty)
+      'assets/data.json': utf8.encode('{"message":"host"}'),
+    '${prefix}assets/data.json': utf8.encode(jsonEncode({'message': message})),
+  },
+  manifest: {
+    if (prefix.isNotEmpty)
+      'assets/icon.png': [
+        {'asset': 'assets/icon.png'},
+        {'asset': 'assets/2.0x/icon.png', 'dpr': 2.0},
+      ],
+    '${prefix}assets/icon.png': [
+      {'asset': '${prefix}assets/icon.png'},
+      {'asset': '${prefix}assets/2.0x/icon.png', 'dpr': 2.0},
+    ],
+  },
+);
+
+const _resourceSource = r"""
+const { runApp, Text, FutureBuilder } = __flaxModules.require('@flax/flutter/widgets');
+const { getAssetBundle } = __flaxModules.require('@flax/core/assets');
+runApp(FutureBuilder({
+  future: getAssetBundle().loadString('assets/data.json'),
+  builder: (_, snapshot) => Text(snapshot.hasData
+    ? JSON.parse(snapshot.requireData).message
+    : (snapshot.hasError ? String(snapshot.error) : 'loading')),
+}));
+""";
 
 class _DelayedBundle extends CachingAssetBundle {
   _DelayedBundle(this.pending);

@@ -292,10 +292,26 @@ runApp(SizedBox());
             .writeAsString(await builtin.loadString('app.js')),
   );
   await t.runAsync(
+    () async => app.startApplication(
+      storageDirectory: storageDirectory.path,
+      source: await scriptFile!.readAsString(),
+    ),
+  );
+  await _pumpUntilFound(t, find.text('Count: 0'));
+  await press('Open assets');
+  await _verifyAssets(
+    t,
+    builtin,
+    'JSON loaded from the application asset bundle',
+  );
+  await t.tap(find.byType(BackButton));
+  await _pumpApplicationFrame(t);
+  await t.pumpWidget(const SizedBox());
+  await _pumpApplicationFrame(t);
+  await t.runAsync(
     () => app.startApplication(
       storageDirectory: storageDirectory.path,
       scriptFile: scriptFile!,
-      assetBundle: builtin,
     ),
   );
   await _pumpUntilFound(t, find.text('Count: 0'));
@@ -358,7 +374,6 @@ runApp(SizedBox());
             installationDirectory: format == FlaxRemoteFormat.package
                 ? installationDirectory
                 : null,
-            assetBundle: format == FlaxRemoteFormat.javascript ? builtin : null,
           ),
         );
         await _pumpUntilFound(t, find.text('Count: 0'));
@@ -447,6 +462,10 @@ Future<void> _verifyAssets(
       (key!.bundle as FlaxDirectoryAssetBundle).directory.path,
       bundle.directory.path,
     );
+  } else if (bundle is FlaxPrefixedAssetBundle) {
+    final selected = key!.bundle as FlaxPrefixedAssetBundle;
+    expect(selected.bundle, same(bundle.bundle));
+    expect(selected.prefix, bundle.prefix);
   } else {
     expect(key!.bundle, same(bundle));
   }

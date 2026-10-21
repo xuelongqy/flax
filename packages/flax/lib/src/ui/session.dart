@@ -50,8 +50,8 @@ class _Session {
     this.registry,
     this.onError, {
     this.namespace,
-    AssetBundle? assetBundle,
-  }) : assetBundle = assetBundle ?? rootBundle;
+    required this.assetBundle,
+  });
   final String? namespace;
   final AssetBundle assetBundle;
   _BindingContext? _contextForBinding(String id) {

@@ -12,7 +12,7 @@ class FlaxSession {
     AssetBundle? assetBundle,
     List<FlaxPlugin>? plugins,
   }) : plugins = _pluginSnapshot(plugins ?? Flax._plugins),
-       assetBundle = assetBundle ?? rootBundle,
+       assetBundle = assetBundle ?? FlaxPrefixedAssetBundle(),
        _moduleAssets = Flax.moduleAssets {
     if (namespace != null && namespace!.isEmpty) {
       throw ArgumentError.value(namespace, 'namespace', 'Must not be empty');
@@ -41,6 +41,7 @@ class FlaxSession {
   final String? namespace;
 
   /// The stable resource source shared by this session's UI and business code.
+  /// Defaults to assets/flax inside Flutter's rootBundle.
   final AssetBundle assetBundle;
   final List<FlaxPlugin> plugins;
   final FlaxModuleAssets? _moduleAssets;
@@ -223,7 +224,7 @@ class FlaxView extends StatelessWidget {
   );
 
   /// Reads one JS file without discovering neighboring metadata or resources.
-  /// Resources use [assetBundle], or the inherited Flutter bundle when omitted.
+  /// Resources use [assetBundle], or assets/flax inside the inherited host bundle.
   factory FlaxView.file({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
@@ -249,7 +250,7 @@ class FlaxView extends StatelessWidget {
   );
 
   /// Downloads an explicitly selected JS or .flax format and reuses local loading.
-  /// Script resources use [assetBundle] or the inherited bundle; packages own theirs.
+  /// Scripts default to assets/flax inside the host bundle; packages own resources.
   factory FlaxView.network({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
@@ -362,7 +363,8 @@ class FlaxView extends StatelessWidget {
   final List<FlaxPlugin>? plugins;
   final String? namespace;
 
-  /// Captures the inherited DefaultAssetBundle when omitted on an owning View.
+  /// Uses an explicit business-root bundle unchanged. Otherwise source/script
+  /// entries select assets/flax inside the inherited DefaultAssetBundle.
   /// Borrowed Views always use their Session's bundle.
   final AssetBundle? assetBundle;
   final FlaxJsRuntime Function()? createRuntime;
@@ -376,6 +378,7 @@ class FlaxView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // An explicit business root can be the same object as the default host bundle.
     final input = _input;
     if (input != null) {
       final usesBundle = switch (input) {
@@ -391,6 +394,7 @@ class FlaxView extends StatelessWidget {
         key: ValueKey((
           input.identity,
           ObjectKey(bundle),
+          assetBundle != null,
           createRuntime,
           bindings,
           namespace,
@@ -419,6 +423,7 @@ class FlaxView extends StatelessWidget {
               bindings,
               namespace,
               ObjectKey(bundle),
+              assetBundle != null,
             ),
       ),
       configuration: this,
@@ -469,7 +474,9 @@ class _SessionRootState extends State<_SessionRoot> {
           bindings: configuration.bindings!,
           plugins: configuration.plugins,
           namespace: configuration.namespace,
-          assetBundle: widget.assetBundle,
+          assetBundle:
+              configuration.assetBundle ??
+              FlaxPrefixedAssetBundle(bundle: widget.assetBundle),
         );
     try {
       _root = _session._mount(configuration._session == null ? _report : null);
@@ -594,7 +601,9 @@ class _ApplicationViewState extends State<_ApplicationView> {
           ),
         _FileInput(:final path) => FlaxApplication.file(
           File(path),
-          assetBundle: widget.inheritedBundle,
+          assetBundle:
+              configuration.assetBundle ??
+              FlaxPrefixedAssetBundle(bundle: widget.inheritedBundle),
         ),
         _NetworkInput(:final options) => FlaxApplication.network(
           uri: options.uri,
@@ -605,7 +614,8 @@ class _ApplicationViewState extends State<_ApplicationView> {
           cacheDirectory: options.cacheDirectory,
           installationDirectory: options.installationDirectory,
           assetBundle: options.format == FlaxRemoteFormat.javascript
-              ? widget.inheritedBundle
+              ? configuration.assetBundle ??
+                    FlaxPrefixedAssetBundle(bundle: widget.inheritedBundle)
               : null,
           cancelled: _cancelled.future,
         ),

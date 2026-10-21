@@ -72,14 +72,14 @@ require an explicit host bundle, for example `bundle: rootBundle` on the Dart si
 
 ### Application loading modes
 
-| Owning View               | Input                                         | Descriptor and resources                                                     |
-| ------------------------- | --------------------------------------------- | ---------------------------------------------------------------------------- |
-| `FlaxView(source: ...)`   | Already loaded JS string                      | Explicit or inherited Bundle; no descriptor discovery                        |
-| `FlaxView.bundle(...)`    | Business-root AssetBundle, or built-in prefix | Reads flax.json and the entry from that Bundle                               |
-| `FlaxView.directory(...)` | Prepared Directory                            | Reads descriptor, entry and resources in place                               |
-| `FlaxView.package(...)`   | Local .flax File                              | Installs once per content digest, then loads its Directory                   |
-| `FlaxView.file(...)`      | Local JS File                                 | Explicit or inherited Bundle; no neighboring resource discovery              |
-| `FlaxView.network(...)`   | HTTP(S) Uri and explicit format               | JS uses an explicit/inherited Bundle; packages use their installed resources |
+| Owning View               | Input                                         | Descriptor and resources                                                       |
+| ------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------ |
+| `FlaxView(source: ...)`   | Already loaded JS string                      | Explicit Bundle or built-in business prefix; no descriptor discovery           |
+| `FlaxView.bundle(...)`    | Business-root AssetBundle, or built-in prefix | Reads flax.json and the entry from that Bundle                                 |
+| `FlaxView.directory(...)` | Prepared Directory                            | Reads descriptor, entry and resources in place                                 |
+| `FlaxView.package(...)`   | Local .flax File                              | Installs once per content digest, then loads its Directory                     |
+| `FlaxView.file(...)`      | Local JS File                                 | Explicit Bundle or built-in business prefix; no neighboring resource discovery |
+| `FlaxView.network(...)`   | HTTP(S) Uri and explicit format               | JS uses the business Bundle default; packages use their installed resources    |
 
 `FlaxView.session` and `.page` mount an existing Session; they are not additional
 loading modes. Keep the existing source entry for hosts that already manage loading. The
@@ -100,10 +100,11 @@ FlaxDirectoryAssetBundle and uses the same descriptor and source loading path.
 overrides the default `<ApplicationSupport>/flax/` installation root.
 
 `FlaxView.file(file: ..., createRuntime: ..., bindings: ...)` reads exactly one JS file.
-It does not discover neighboring metadata or assets. Its optional `assetBundle` defaults
-to the inherited DefaultAssetBundle. A script with companion resources should use an
-application directory, or explicitly select its bundle. The existing
-`FlaxView(source: ..., createRuntime: ..., bindings: ...)` is unchanged.
+It does not discover neighboring metadata or assets. Like the source-string and network
+JS entries, its optional `assetBundle` defaults to `assets/flax/` inside the inherited
+Flutter bundle. A script with companion resources should use an application directory,
+or explicitly select its bundle. The source-string constructor keeps its existing
+signature and const support, with the same business resource default.
 
 All five automatic constructors accept the existing namespace, plugins and onError
 options. `loadingBuilder` defaults to an empty Widget; `errorBuilder` defaults to the
@@ -119,14 +120,34 @@ Explicit hosts can use `FlaxApplication.bundle`, `.directory`, `.package`, `.fil
 `.network` and pass the loaded value to `FlaxSession.application`. This shares loading
 and installation without introducing another resource or image API. The source-string
 Session constructor remains available. FlaxApplication's manifest is null for
-script-only mode. Prepared host modules, binding registries and plugin capabilities
-still come from the host; a business archive does not supply native bindings.
+script-only mode. Script loaders do not read flax.json, and scripts without resource
+reads do not require a built-in business directory. Prepared host modules, binding
+registries and plugin capabilities still come from the host; a business archive does not
+supply native bindings.
 
 `FlaxSession(assetBundle: bundle)` selects one stable native `AssetBundle` for the
-Session; its default is Flutter's `rootBundle`. An owning `FlaxView` also accepts
-`assetBundle` and otherwise captures the surrounding `DefaultAssetBundle`. Changing that
-bundle's identity replaces an owning View's Session. Borrowed root and named page Views
-use their Session's bundle.
+Session; its default is `FlaxPrefixedAssetBundle()`, exposing `assets/flax/` from
+Flutter's rootBundle. `FlaxApplication.file` and network JS use that same default
+without a BuildContext. An owning source/file/network-JS View instead wraps the
+surrounding DefaultAssetBundle with the same prefix. The inherited object is the host
+container; an explicitly supplied assetBundle already represents the business root and
+is used unchanged, without another prefix. Automatic wrappers are created once per
+owning Session or loading operation. Ordinary rebuilds retain both the wrapper and
+Session; changing the underlying host bundle's identity replaces them. Borrowed root and
+named page Views use their Session's bundle.
+
+Switching between the prefixed default and an explicit bundle also replaces an owning
+View's Session, even when both selections use the same underlying host object. Explicit
+selection changes the resource root; an ordinary rebuild with the same selection does
+not.
+
+This changes the previous script defaults, which directly used the host/inherited
+bundle. Callers that intentionally use host-root keys must pass
+`assetBundle: rootBundle`, or explicitly pass `DefaultAssetBundle.of(context)` to retain
+a custom inherited business bundle without prefixing it. An inherited bundle is not
+inspected to guess its root. There is no missing-resource fallback to another bundle. A
+script file's parent directory and a network download cache are never treated as
+resource directories.
 
 Generated `Image.asset`, `AssetImage` and `ImageProvider` keep their native behavior.
 Session roots and named pages inject `DefaultAssetBundle`. Native Route and dialog
@@ -214,10 +235,11 @@ can pin content; the package's own inventory is only an integrity check.
 
 `format` is required: `FlaxRemoteFormat.javascript` reads one JS file, while `.package`
 uses FlaxPackage.install and the directory loader. Script mode does not fetch companion
-images or JSON; select its resource Bundle explicitly or inherit DefaultAssetBundle.
-Package mode rejects an external assetBundle. `installationDirectory` only applies to
-package mode. The network JS source URL omits query parameters, which may contain
-tokens.
+images or JSON; it uses the built-in `assets/flax/` business Bundle by default, or an
+explicit resource Bundle. Remote JS therefore shares the App's installed resource
+version; ship a remote package when code and resources need to change together. Package
+mode rejects an external assetBundle. `installationDirectory` only applies to package
+mode. The network JS source URL omits query parameters, which may contain tokens.
 
 `cacheDirectory` overrides the download cache root, defaulting to
 `<ApplicationSupport>/flax/downloads/`. Its `requests/<key>.json` records contain only

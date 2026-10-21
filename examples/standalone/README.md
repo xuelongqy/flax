@@ -97,7 +97,7 @@ dart run tool/standalone_run.dart --script-assets
 
 Package mode copies the bundled `.flax` file to application support storage, then lets
 FlaxView.package install/cache it under `<ApplicationSupport>/flax/installed/<digest>/`.
-Script mode copies app.js and uses FlaxView.file with the built-in resource Bundle; no
+Script mode copies app.js and uses FlaxView.file's default built-in business Bundle; no
 flax.json is required by that entry. The scenario validates built-in, directory, package
 cold/warm cache loads and single-file entrances, including actual decoded image pixels,
 JSON and native image variants. The package cache has no automatic rollback or cleanup.
@@ -111,10 +111,17 @@ FLAX_NETWORK_URL=https://example.com/app.flax dart run tool/standalone_run.dart 
 ```
 
 Optionally set `FLAX_EXPECTED_SHA256` to a trusted artifact digest. Remote JS uses the
-built-in business resource Bundle; a remote package supplies its own PNG/JSON.
-Programmatic startApplication arguments also demonstrate headers, cacheDirectory and
-downloader injection. The scenario serves actual JS/package build outputs over loopback
-HTTP, requires a request header, pins their digests, and checks cold 200/warm 304 loads,
-decoded PNG variants, JSON and unchanged installation receipts. Download cache defaults
-to `<ApplicationSupport>/flax/downloads/`; installation defaults remain unchanged.
-Production URLs, credentials and update selection belong to the host application.
+built-in business resource Bundle without manually supplying it; a remote package
+supplies its own PNG/JSON. Programmatic startApplication arguments also demonstrate
+headers, cacheDirectory and downloader injection. The scenario serves actual JS/package
+build outputs over loopback HTTP, requires a request header, pins their digests, and
+checks cold 200/warm 304 loads, decoded PNG variants, JSON and unchanged installation
+receipts. Download cache defaults to `<ApplicationSupport>/flax/downloads/`;
+installation defaults remain unchanged. Production URLs, credentials and update
+selection belong to the host application.
+
+Programmatic `startApplication(source: jsSource)` demonstrates the source-string entry
+with the same default business Bundle. The scenario verifies source/file/network-JS
+images and JSON without passing an assetBundle. A custom FLAX_ASSET_PREFIX still selects
+an explicit prefixed Bundle in the example. Host-root resources require an explicit
+assetBundle, such as rootBundle; a script's disk location does not select resources.
