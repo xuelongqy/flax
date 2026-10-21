@@ -1,0 +1,27 @@
+{
+  "formatVersion": 2,
+  "package": "@flax/app-runtime",
+  "version": "0.0.0",
+  "modules": [
+    {
+      "specifier": "@flax/app/admin",
+      "source": "dist/admin.js",
+      "bindings": [
+        {
+          "moduleId": "example.shop/admin",
+          "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-navigation-objects",
+            "native-widget-proxies"
+          ],
+          "types": [],
+          "functions": [
+            "example.shop/admin#function:resetCart"
+          ]
+        }
+      ]
+    }
+  ]
+}

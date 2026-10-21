@@ -41,3 +41,6 @@ packages/*/example/assets/*.js
 packages/*/example/assets/*.js.map
 
 packages/flax_engine_v8/native/generated/
+
+# Built business applications in the configured binding example.
+examples/configured_bindings/host/applications/

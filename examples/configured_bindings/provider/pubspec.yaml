@@ -1,0 +1,17 @@
+name: configured_prices
+description: Example existing binding provider reused by a Flutter host.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2
+  flutter: '>=3.47.2'
+
+dependencies:
+  flax: 0.0.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flax_codegen: 0.0.0

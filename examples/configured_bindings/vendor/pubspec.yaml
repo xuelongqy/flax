@@ -1,0 +1,8 @@
+name: configured_delivery
+description: Example Dart dependency without its own Flax bindings.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2

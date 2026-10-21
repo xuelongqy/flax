@@ -1,0 +1,49 @@
+{
+  "formatVersion": 2,
+  "package": "@example/shop-runtime",
+  "version": "0.0.0",
+  "modules": [
+    {
+      "specifier": "@example/shop/api",
+      "source": "dist/bindings.js",
+      "bindings": [
+        {
+          "moduleId": "example.shop/shop",
+          "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-navigation-objects",
+            "native-widget-proxies"
+          ],
+          "types": [
+            "example.shop/shop#type:Cart"
+          ],
+          "functions": [
+            "example.shop/shop#function:currentCart"
+          ]
+        }
+      ]
+    },
+    {
+      "specifier": "@example/shop/delivery",
+      "source": "dist/delivery.js",
+      "bindings": [
+        {
+          "moduleId": "example.shop/delivery",
+          "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-navigation-objects",
+            "native-widget-proxies"
+          ],
+          "types": [
+            "example.shop/delivery#type:DeliveryEstimate"
+          ],
+          "functions": []
+        }
+      ]
+    }
+  ]
+}

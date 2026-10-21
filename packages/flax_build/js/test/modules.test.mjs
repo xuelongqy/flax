@@ -12,12 +12,13 @@ import {
 } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { dirname, join, relative, sep } from 'node:path';
 import { after, before, test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { createContext, runInContext } from 'node:vm';
 import { build } from 'esbuild';
 import {
+  bindingModuleRequirements,
   createModuleDeliveryResolver,
   flaxHostModulesPlugin,
   prepareModules,
@@ -32,6 +33,42 @@ import {
 } from './fixture.mjs';
 
 const repository = fileURLToPath(new URL('../../../../', import.meta.url));
+
+test('binding requirements retain generated identities for independent npm builds', () => {
+  const requirements = bindingModuleRequirements({
+    formatVersion: 28,
+    modules: [
+      {
+        name: 'api',
+        moduleId: 'example.app/api',
+        uiProtocol: 24,
+        model: {
+          jsPackage: '@example/sdk/api',
+          classes: [],
+          functions: [{ id: 'example.app/api#function:currentCart' }],
+        },
+      },
+      {
+        name: 'admin',
+        moduleId: 'example.app/admin',
+        uiProtocol: 24,
+        model: {
+          jsPackage: '@flax/app/admin',
+          classes: [],
+          functions: [{ id: 'example.app/admin#function:resetCart' }],
+        },
+      },
+    ],
+  });
+  assert.deepEqual(requirements.get('@example/sdk/api').bindings[0].functions, [
+    'example.app/api#function:currentCart',
+  ]);
+  assert.equal(
+    requirements.get('@flax/app/admin').bindings[0].moduleId,
+    'example.app/admin',
+  );
+  assert.throws(() => bindingModuleRequirements({ formatVersion: 27 }), /Manifest 28/);
+});
 
 let root;
 let fixture;
@@ -265,7 +302,7 @@ test('separate runtimes never share cached JS instances and close rejects new im
   assert.equal(second.__flaxModules.require('@fixture/a').getValue(), 7);
 });
 
-test('business build fails clearly against a missing or stale host contract', () => {
+test('business build fails clearly against a missing host contract or module', () => {
   assert.throws(
     () => runInContext(fixture.code, createContext({})),
     /Missing or incompatible Flax module host/,
@@ -275,14 +312,41 @@ test('business build fails clearly against a missing or stale host contract', ()
     () => context.__flaxModules.require('@fixture/missing'),
     /Missing Flax module/,
   );
-  assert.throws(
-    () => context.__flaxModules.require('@fixture/a', '2.0.0'),
-    /Incompatible Flax module/,
+});
+
+test('an unchanged business bundle uses compatible host updates across versions and hashes', () => {
+  const context = createContext({ fixtureValue: 9 });
+  runInContext(fixture.assets[fixture.manifest.bootstrap], context);
+  const updated = fixture.manifest.modules.map((entry) => ({
+    ...entry,
+    version: '2.0.0',
+    artifact: 'f'.repeat(64),
+    dependencies: Object.fromEntries(
+      Object.keys(entry.dependencies).map((name) => [name, '2.0.0']),
+    ),
+  }));
+  for (const entry of updated) {
+    const old = fixture.manifest.modules.find(
+      (previous) => previous.specifier === entry.specifier,
+    );
+    const source = fixture.assets[old.asset].replace(
+      /globalThis\.__flaxModules\.define\([^\n]+, function/,
+      `globalThis.__flaxModules.define(${JSON.stringify(entry)}, function`,
+    );
+    assert.notEqual(source, fixture.assets[old.asset]);
+    runInContext(source, context);
+  }
+  context.__flaxModules.seal(updated);
+  runInContext(fixture.code, context);
+  assert.equal(context.fixtureResult.read(), 9);
+  const old = fixture.manifest.modules.find(
+    (entry) => entry.specifier === '@fixture/a',
   );
-  assert.throws(
-    () => context.__flaxModules.require('@fixture/a', '1.0.0', 'other'),
-    /Incompatible Flax module/,
+  assert.equal(
+    context.__flaxModules.require(old.specifier, old.version, old.artifact).getValue(),
+    9,
   );
+  assert.ok(!fixture.code.includes(old.artifact));
 });
 
 test('strict inventory rejects unknown fields, duplicate owners and missing dependencies', () => {
@@ -333,6 +397,105 @@ test('strict inventory rejects unknown fields, duplicate owners and missing depe
         modules: [{ ...original, dependencies: { '@fixture/missing': '1.0.0' } }],
       }),
     /Missing Flax module/,
+  );
+});
+
+test('pnpm file archive records verify the actual package version', async () => {
+  const lockPath = join(fixture.hostJs, 'pnpm-lock.yaml');
+  const packages = {
+    '@fixture/base@file:../base-1.0.0.tgz': { version: '1.0.0' },
+    '@fixture/a-impl@file:../a-impl-1.0.0.tgz': { version: '1.0.0' },
+  };
+  try {
+    await writeFile(lockPath, JSON.stringify({ lockfileVersion: '9.0', packages }));
+    const prepared = await prepareModules({ configPath: fixture.configPath });
+    assert.equal(prepared.manifest.lock.manager, 'pnpm');
+
+    packages['@fixture/a-impl@file:../a-impl-1.0.0.tgz'].version = '2.0.0';
+    await writeFile(lockPath, JSON.stringify({ lockfileVersion: '9.0', packages }));
+    await assert.rejects(
+      prepareModules({ configPath: fixture.configPath }),
+      /not locked at @fixture\/a-impl@1\.0\.0/,
+    );
+  } finally {
+    await rm(lockPath, { force: true });
+    await prepareModules({ configPath: fixture.configPath });
+  }
+});
+
+test('pnpm local directory records verify the source package identity and version', async () => {
+  const lockPath = join(fixture.hostJs, 'pnpm-lock.yaml');
+  const sourcePath = join(root, 'a-impl/package.json');
+  const original = await readFile(sourcePath, 'utf8');
+  const packages = {};
+  for (const [name, folder] of [
+    ['@fixture/base', 'core'],
+    ['@fixture/a-impl', 'a-impl'],
+  ]) {
+    const directory = relative(fixture.hostJs, join(root, folder)).split(sep).join('/');
+    packages[`${name}@file:${directory}`] = {
+      resolution: { type: 'directory', directory },
+    };
+  }
+  try {
+    await writeFile(lockPath, JSON.stringify({ lockfileVersion: '9.0', packages }));
+    await prepareModules({ configPath: fixture.configPath });
+    const source = JSON.parse(original);
+    for (const fields of [{ version: '2.0.0' }, { name: '@fixture/wrong' }]) {
+      await writeFile(sourcePath, JSON.stringify({ ...source, ...fields }));
+      await assert.rejects(
+        prepareModules({ configPath: fixture.configPath }),
+        /not locked at @fixture\/a-impl@1\.0\.0/,
+      );
+    }
+  } finally {
+    await writeFile(sourcePath, original);
+    await rm(lockPath, { force: true });
+    await prepareModules({ configPath: fixture.configPath });
+  }
+});
+
+test('pnpm root importer prepares modules owned by the current project', async () => {
+  const directory = join(root, 'pnpm-root-project');
+  await mkdir(join(directory, 'js'), { recursive: true });
+  const files = {
+    'pubspec.yaml': 'name: root_fixture\nflutter:\n  assets:\n    - assets/modules/\n',
+    'js/package.json': JSON.stringify({
+      name: '@fixture/local-impl',
+      version: '1.0.0',
+      type: 'module',
+      exports: { './flax_modules.json': './flax_modules.json' },
+    }),
+    'js/flax_modules.json': JSON.stringify({
+      formatVersion: 2,
+      package: '@fixture/local-impl',
+      version: '1.0.0',
+      modules: [{ specifier: '@fixture/local', source: 'index.js', bindings: [] }],
+    }),
+    'js/index.js': 'export const local = 1;\n',
+    'js/pnpm-lock.yaml': JSON.stringify({
+      lockfileVersion: '9.0',
+      importers: { '.': {} },
+    }),
+    'js/flax.modules.json': JSON.stringify({
+      formatVersion: 1,
+      modules: [{ specifier: '@fixture/local', package: '@fixture/local-impl' }],
+      flutterProject: '..',
+      output: 'assets/modules',
+    }),
+  };
+  await Promise.all(
+    Object.entries(files).map(([name, source]) =>
+      writeFile(join(directory, name), source),
+    ),
+  );
+  const prepared = await prepareModules({
+    configPath: join(directory, 'js/flax.modules.json'),
+  });
+  assert.equal(prepared.manifest.lock.manager, 'pnpm');
+  assert.deepEqual(
+    prepared.manifest.modules.map((m) => m.specifier),
+    ['@fixture/local'],
   );
 });
 

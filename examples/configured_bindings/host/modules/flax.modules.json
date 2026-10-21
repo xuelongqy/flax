@@ -1,0 +1,47 @@
+{
+  "formatVersion": 1,
+  "modules": [
+    {
+      "specifier": "@flax/core",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/core/host",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/core/navigation",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/flutter/widgets",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/dart/ui",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@example/prices/api",
+      "package": "@example/prices-runtime"
+    },
+    {
+      "specifier": "@example/shop/api",
+      "package": "@example/shop-runtime"
+    },
+    {
+      "specifier": "@example/shop/delivery",
+      "package": "@example/shop-runtime"
+    },
+    {
+      "specifier": "@flax/app/admin",
+      "package": "@flax/app-runtime"
+    },
+    {
+      "specifier": "@flax/material-ui",
+      "package": "@flax/material-ui-runtime"
+    }
+  ],
+  "flutterProject": "..",
+  "output": "assets/flax_modules"
+}

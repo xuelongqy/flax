@@ -92,6 +92,59 @@ void main() {
     expect(config.callbackSnapshots['Scroll']!.fields, ['delta']);
   });
 
+  test('omitted JS entry uses the package root and binding name', () {
+    final yaml = _minimal.replaceFirst("jsPackage: '@x/x'\n", '');
+    expect(
+      FlaxCodegenBindingConfig.parseStrict(yaml).jsPackage,
+      '@flax/app/plugin',
+    );
+    expect(
+      FlaxCodegenBindingConfig.parseStrict(
+        yaml,
+        jsPackageRoot: '@example/sdk',
+      ).jsPackage,
+      '@example/sdk/plugin',
+    );
+    expect(
+      FlaxCodegenBindingConfig.parseStrict(
+        _minimal,
+        jsPackageRoot: '@example/sdk',
+      ).jsPackage,
+      '@x/x',
+    );
+    final values = <String, dynamic>{
+      'name': 'plugin',
+      'library': 'package:x/x.dart',
+      'dartOutput': 'a.dart',
+      'tsOutput': 'b.ts',
+    };
+    expect(
+      FlaxCodegenBindingConfig.fromMap(values).jsPackage,
+      '@flax/app/plugin',
+    );
+    expect(
+      FlaxCodegenBindingConfig.fromMap(
+        values,
+        jsPackageRoot: '@example/sdk',
+      ).jsPackage,
+      '@example/sdk/plugin',
+    );
+    for (final invalid in ['null', '42', "''"]) {
+      expect(
+        () => FlaxCodegenBindingConfig.parseStrict(
+          '${yaml}jsPackage: $invalid\n',
+        ),
+        throwsA(
+          isA<FlaxCodegenException>().having(
+            (error) => error.diagnostics.single.pointer,
+            'invalid explicit JS entry',
+            '/jsPackage',
+          ),
+        ),
+      );
+    }
+  });
+
   test('omitted optional collections default to empty', () {
     final config = FlaxCodegenBindingConfig.parseStrict(_minimal);
     expect(config.additionalLibraries, isEmpty);
@@ -389,7 +442,6 @@ callbackSnapshots:
   test('independent diagnostics sort by code, pointer, and span', () {
     expectDiagnostic(_errors('format: 2\n'), [
       _d(FlaxCodegenDiagnosticCode.missingField, '/dartOutput', 1, 1),
-      _d(FlaxCodegenDiagnosticCode.missingField, '/jsPackage', 1, 1),
       _d(FlaxCodegenDiagnosticCode.missingField, '/library', 1, 1),
       _d(FlaxCodegenDiagnosticCode.missingField, '/name', 1, 1),
       _d(FlaxCodegenDiagnosticCode.missingField, '/tsOutput', 1, 1),

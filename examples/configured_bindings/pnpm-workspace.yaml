@@ -1,0 +1,26 @@
+packages:
+  - provider/js
+  - provider/js-types
+  - host/js
+  - host/js/sdk/*
+  - host/js/internal/*
+  - host/modules
+  - miniapps/*
+
+linkWorkspacePackages: true
+preferWorkspacePackages: true
+
+# Framework artifacts are built in the repository before installing this example.
+overrides:
+  '@flax/core': file:../../packages/flax/js-types
+  '@flax/core-runtime': file:../../packages/flax/js
+  '@flax/flutter': file:../../packages/flax_flutter/js
+  '@flax/dart': file:../../packages/flax_dart/js
+  '@flax/material-ui': file:../../packages/flax_material_ui/js-types
+  '@flax/material-ui-runtime': file:../../packages/flax_material_ui/js
+  '@flax/cupertino-ui': file:../../packages/flax_cupertino_ui/js-types
+  '@flax/cupertino-ui-runtime': file:../../packages/flax_cupertino_ui/js
+  '@flax/build': file:../../packages/flax_build/js
+
+allowBuilds:
+  esbuild: true

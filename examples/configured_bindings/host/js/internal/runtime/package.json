@@ -1,0 +1,27 @@
+{
+  "name": "@flax/app-runtime",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    "./admin": "./dist/admin.js",
+    "./flax_modules.json": "./flax_modules.json"
+  },
+  "files": [
+    "dist",
+    "flax_modules.json"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node build.mjs"
+  },
+  "dependencies": {
+    "@flax/core": "0.0.0",
+    "@flax/core-runtime": "0.0.0",
+    "@example/prices": "0.0.0",
+    "@example/prices-runtime": "0.0.0"
+  },
+  "devDependencies": {
+    "@flax/build": "0.0.0",
+    "typescript": "7.0.2"
+  },
+  "private": true
+}

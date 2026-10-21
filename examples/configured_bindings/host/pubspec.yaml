@@ -1,0 +1,32 @@
+name: configured_host
+description: Runnable host with public SDK and private application bindings.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2
+  flutter: '>=3.47.2'
+
+dependencies:
+  configured_delivery: 0.0.0
+  configured_prices: 0.0.0
+  flax: 0.0.0
+  flax_material_ui: 0.0.0
+  flutter:
+    sdk: flutter
+  material_ui: 1.1.1
+
+dev_dependencies:
+  flax_codegen: 0.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/flax_modules/
+    - applications/first/
+    - applications/second/
+    - applications/manager/
+    - applications/forbidden/

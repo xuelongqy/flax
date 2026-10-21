@@ -44,8 +44,12 @@ void main() {
     final script = File(p.join(temporary.path, 'tool/module_delivery.mjs'));
     script.parent.createSync(recursive: true);
     File(p.join(root, 'tool/module_delivery.mjs')).copySync(script.path);
-    File(p.join(root, 'tool/binding_manifest.mjs'))
-        .copySync(p.join(temporary.path, 'tool/binding_manifest.mjs'));
+    for (final name in ['binding_manifest.mjs', 'binding_delivery.mjs']) {
+      final path = 'packages/flax_build/js/src/$name';
+      final target = File(p.join(temporary.path, path));
+      target.parent.createSync(recursive: true);
+      File(p.join(root, path)).copySync(target.path);
+    }
     for (final owner in [
       'flax_fetch',
       'flax_websocket',
@@ -439,7 +443,7 @@ void moduleId;
         '-e',
         r'''
 import assert from 'node:assert/strict';
-import {expandManifestMembers as expand} from './tool/binding_manifest.mjs';
+import {expandManifestMembers as expand} from './packages/flax_build/js/src/binding_manifest.mjs';
 const row = {name: 'read', parameters: [{name: 'value', type: {$type: 0}}], result: {$type: 0}};
 const body = {typeTable: [{kind: 'String'}], modules: [{methods: [{$member: 0}, {$member: 0}]}], typeLibraries: {$member: 'package:example/types.dart'}};
 assert.deepEqual(expand({...body, memberTable: [row]}), {...body, modules: [{methods: [row, row]}]});

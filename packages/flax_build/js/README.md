@@ -99,12 +99,13 @@ await writeFile(application.entryPath, result.outputFiles[0].contents);
 ```
 
 The default output `../assets/flax/` contains `flax.json`, the compiled `app.js`, and
-resources copied from the JS project's `assets/` directory into `assets/`. The descriptor
-uses `formatVersion: 1`, `id` (from `package.json`'s `flax.id`, then `name`), `version`,
-`entry`, and optional `description`. Version and description come from `package.json`.
-Override `id`, `entry`, `assetsDirectory` or `outputDirectory` through options. Paths are
-relative to `projectDirectory`; absolute directory options are also accepted. Entry
-paths must stay relative and cannot collide with descriptor or resource paths.
+resources copied from the JS project's `assets/` directory into `assets/`. The
+descriptor uses `formatVersion: 1`, `id` (from `package.json`'s `flax.id`, then `name`),
+`version`, `entry`, and optional `description`. Version and description come from
+`package.json`. Override `id`, `entry`, `assetsDirectory` or `outputDirectory` through
+options. Paths are relative to `projectDirectory`; absolute directory options are also
+accepted. Entry paths must stay relative and cannot collide with descriptor or resource
+paths.
 
 Compile before staging so compiler errors preserve the previous directory. Resource
 copying also finishes in a temporary directory before replacing the generated `assets/`
@@ -115,6 +116,59 @@ in the Flutter pubspec. Flutter handles native image variants; this helper neith
 an archive nor builds a standalone Flutter `AssetManifest.bin`. Installed directories
 must supply that native manifest separately. See the
 [application resource contract](../../../docs/architecture/applications.md#application-resources).
+
+## Binding npm packages
+
+Binding libraries use ordinary npm packages. Keep `name`, `version`, `exports`, `files`,
+dependencies and publication settings in each project's `package.json`. Compile
+generated TypeScript with the project's `tsconfig.json` and normal build script, then
+inspect `npm pack --dry-run` or pack with the package manager. Flax does not rewrite
+package manifests, choose publication policy or publish packages.
+
+Public declarations and host implementations remain separate packages. Publish only the
+`.d.ts` package for an SDK whose implementation comes from the host. Its runtime
+counterpart exports compiled JS and `flax_modules.json`, stays private, and is prepared
+through a local dependency in the host. Business projects depend on declarations, with
+no runtime package in their bundle. A package providing additional JavaScript wrappers
+can publish those as ordinary JS. These bindings execute inside a compatible Flax host.
+
+Use `bindingModuleRequirements(bindingManifest)` from `@flax/build` in a normal build
+script to read generated binding requirements. It accepts the current Binding Manifest
+28 and returns a map keyed by public module specifier; each value contains `bindings`
+and `helperSubpaths`. It shares the official Manifest projection, including operation
+IDs, protocols and capabilities. It does not compile, write files or construct an npm
+package. For a single-file generated entry, a project can write delivery metadata as:
+
+```javascript
+import { bindingModuleRequirements } from '@flax/build';
+
+const requirements = bindingModuleRequirements(bindingManifest);
+const delivery = {
+  formatVersion: 2,
+  package: runtimePackage.name,
+  version: runtimePackage.version,
+  modules: [
+    {
+      specifier: '@example/shop/api',
+      source: 'dist/bindings.js',
+      bindings: requirements.get('@example/shop/api').bindings,
+    },
+  ],
+};
+```
+
+The project's public exports select which generated scopes it packages. Include the
+complete import closure and retain dependencies on existing providers; a public SDK must
+not depend on an unpublished internal package. Public facade directories also need their
+public subpaths and generated private-helper rules in delivery metadata.
+
+An application can generate public SDK and internal scopes into different directories,
+then inject them through separate plugins. Internal npm packages use `private: true` and
+can be consumed through local dependencies without publication. `private` prevents
+accidental package publication; per-View availability comes from `bindingModules` and
+`jsModules` on the selected plugins. See the
+[configured host walkthrough](../../../examples/configured_bindings/README.md) for
+ordinary package manifests, build scripts, archive consumers and real View checks.
 
 ## Host module preparation
 
@@ -133,6 +187,11 @@ Run `flax-modules flax.modules.json` from the JavaScript project. The config loc
 determines npm resolution; `flutterProject` is relative to that location. Commit the npm
 or pnpm lockfile and declare `assets/flax_modules/` in the Flutter pubspec first.
 `--check` verifies the complete generated inventory without modifying it.
+
+Pnpm preparation accepts locked local `file:` archives using the package version in
+their lock record, local `file:` directories by checking the declared source package's
+name/version, and root projects using the `.` importer. A local directory whose source
+name or version changed after installation is rejected.
 
 Business esbuild configurations use the same prepared manifest:
 
@@ -168,14 +227,19 @@ Prepared production modules use esbuild minification with function/class names p
 and without property mangling. The full binding requirements, capabilities and public
 subpaths remain in `modules.json`, where Dart validates them before module execution.
 Each JS registration carries only its specifier, owner, version, artifact hash and
-dependencies; it no longer repeats unused inventory fields. Updating prepared modules
-also updates artifact hashes and requires rebuilding consuming business bundles.
+dependencies; it no longer repeats unused inventory fields. Business bundles request a
+public specifier without pinning its version or hash. Older bundles that pass these
+arguments also use the host's implementation. A compatible host update can therefore
+reuse unchanged business bundles and older declarations without equal npm versions.
 Development transforms and the HMR protocol remain unchanged.
 
 Runtime format `flax-cjs-1` registers factories before business execution. Factories run
 once, lazily, within one runtime. Dependency cycles reuse published CommonJS exports;
-failed initializers remain failed. The artifact digest detects stale contract pairings;
-it is not a code-signing or untrusted-code security boundary.
+failed initializers remain failed. Versions, owners, hashes and dependency edges still
+match strictly within one prepared host inventory; the artifact digest detects stale
+host assets, not API compatibility. It is not a code-signing boundary. Providers must
+preserve the APIs used by old applications; removing or changing an API can still break
+them. Declaration versions alone cannot prove semantic compatibility.
 
 ## Development hot reload
 

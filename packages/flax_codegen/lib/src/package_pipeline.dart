@@ -132,7 +132,13 @@ final class FlaxCodegenPackagePipeline {
     final configs = <FlaxCodegenBindingConfig>[];
     for (final path in configPaths) {
       try {
-        configs.add(FlaxCodegenBindingConfig.readStrict(path));
+        configs.add(
+          FlaxCodegenBindingConfig.readStrict(
+            path,
+            jsPackageRoot:
+                metadata?.javascriptPackage ?? flaxCodegenDefaultJsPackage,
+          ),
+        );
       } on FlaxCodegenException catch (error) {
         diagnostics.addAll(error.diagnostics);
       }
@@ -259,15 +265,7 @@ final class FlaxCodegenPackagePipeline {
     final metadata = FlaxCodegenPackageMetadataProjection.readStrict(
       metadataPath,
     );
-    final jsPackage = metadata.javascriptPackage;
-    if (jsPackage == null) {
-      throw FlaxCodegenException([
-        _pathDiagnostic(
-          metadataPath,
-          'Auto binding requires javascript.package in flax_package.yaml.',
-        ),
-      ]);
-    }
+    final jsPackage = metadata.javascriptPackage ?? flaxCodegenDefaultJsPackage;
     final packageConfig = _readPackageConfigRoots(
       root,
       dartPackage: dartPackage,

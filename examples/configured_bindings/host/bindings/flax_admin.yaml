@@ -1,0 +1,7 @@
+format: 2
+name: admin
+library: package:configured_host/api.dart
+dartOutput: lib/src/generated/internal/admin.g.dart
+tsOutput: js/internal/runtime/src/generated/admin.ts
+imports: [configured_prices]
+functions: [resetCart]

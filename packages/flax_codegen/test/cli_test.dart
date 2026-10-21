@@ -225,6 +225,20 @@ void main() {
       },
     );
 
+    test('automatic library mode defaults to the app entry', () async {
+      final package = _tempCliPackage();
+      File(p.join(package.root.path, 'flax_package.yaml')).writeAsStringSync('''
+format: 2
+capabilities: [bindings]
+bindingNamespace: example.cli
+''');
+      final validation = await FlaxCodegenPackagePipeline.validateLibrary(
+        'package:cli_pkg/widgets.dart',
+        packageRoot: package.root.path,
+      );
+      expect(validation.localModels.single.jsPackage, '@flax/app');
+    });
+
     test(
       'automatic library mode applies partial overrides and excludes',
       () async {

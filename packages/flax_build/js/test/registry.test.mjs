@@ -83,6 +83,18 @@ test('undeclared and incompatible dependency edges cannot initialize a factory',
   assert.throws(() => registry.seal([entry, dependency]), /Incompatible Flax module/);
 });
 
+test('host inventory still rejects stale version/hash metadata before execution', () => {
+  for (const change of [{ version: '2.0.0' }, { artifact: 'different' }]) {
+    const registry = createFlaxModuleRegistry();
+    const entry = metadata('a');
+    registry.define(entry, () => assert.fail('must not run'));
+    assert.throws(
+      () => registry.seal([{ ...entry, ...change }]),
+      /Incompatible Flax module/,
+    );
+  }
+});
+
 function hotModule(version, options = {}) {
   return {
     id: '/counter.js',

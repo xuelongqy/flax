@@ -1,0 +1,20 @@
+{
+  "name": "configured-bindings-example",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.24.0",
+  "scripts": {
+    "generate:provider": "cd provider && dart run flax_codegen generate --config bindings/flax_bindings.yaml",
+    "generate:host": "cd host && dart run flax_codegen generate --config bindings/flax_bindings.yaml",
+    "generate": "pnpm run generate:provider && pnpm run generate:host",
+    "build:host": "pnpm --filter @example/prices-runtime run build && pnpm --filter configured-host-js run build && pnpm --filter @example/host-modules run build",
+    "build:apps": "pnpm --filter @example/first --filter @example/second --filter @example/manager --filter @example/forbidden run build",
+    "build": "pnpm run build:host && pnpm run build:apps",
+    "pack:sdk": "pnpm --dir provider/js-types pack && pnpm --dir host/js/sdk/types pack"
+  },
+  "devDependencies": {
+    "@flax/build": "0.0.0",
+    "esbuild": "0.28.2"
+  }
+}

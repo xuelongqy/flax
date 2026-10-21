@@ -139,6 +139,20 @@ existing `package.dart integration <owner>` command uses the same collector.
 
 ## Shared preparation and compiler caches
 
+`check_configured_bindings.dart` reuses the checked-in runnable configured-binding
+example and stages an outside Flutter host, a reusable binding provider, an unbound Dart
+dependency and independent shop/admin JS projects. It generates several YAML-selected
+scopes, runs ordinary npm build scripts, packs only the public types directories, and
+consumes those archives outside the workspace. SDK runtimes and internal bindings stay
+in private local packages with separate View plugins. Real `FlaxView.directory` tests
+click the miniapps' JS Material buttons to check cross-View cart subscriptions and their
+cleanup, allowed calls, unselected admin modules and missing native bindings. It reruns
+the unchanged applications after a compatible host runtime version/hash upgrade,
+including legacy imports, without requiring equal types versions. It writes
+`build/configured-bindings.json` and preserves SDK trees/archives under
+`build/configured-sdk/`, without publishing. See the
+[runnable example](../examples/configured_bindings/README.md).
+
 `prepare_checks.dart --output=build/prepared` builds JavaScript, owner UI fixtures and
 example assets once. Its manifest binds checkout SHA, PR revisions, all source inputs
 and toolchain/lock files to every output digest. `--consume=build/prepared` verifies all

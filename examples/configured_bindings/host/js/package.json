@@ -1,0 +1,24 @@
+{
+  "name": "configured-host-js",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.24.0",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm --filter @example/shop-runtime run build && pnpm --filter @flax/app-runtime run build"
+  },
+  "dependencies": {
+    "@flax/core": "0.0.0",
+    "@flax/core-runtime": "0.0.0",
+    "@example/prices": "0.0.0",
+    "@example/prices-runtime": "0.0.0",
+    "@example/shop": "workspace:*",
+    "@example/shop-runtime": "workspace:*",
+    "@flax/app": "workspace:*",
+    "@flax/app-runtime": "workspace:*"
+  },
+  "devDependencies": {
+    "@flax/build": "0.0.0",
+    "typescript": "7.0.2"
+  }
+}

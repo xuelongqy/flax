@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "strict": true,
+    "skipLibCheck": true,
+    "rootDir": "src/generated",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "../types/types",
+    "noEmitOnError": true,
+    "paths": {
+      "@example/shop/delivery": ["./src/generated/delivery.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@example/manager",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p . && node ../build.mjs manager"
+  },
+  "dependencies": {
+    "@flax/core": "0.0.0",
+    "@flax/flutter": "0.0.0",
+    "@flax/dart": "0.0.0",
+    "@example/prices": "workspace:*",
+    "@example/shop": "workspace:*",
+    "@flax/app": "workspace:*",
+    "@flax/material-ui": "0.0.0"
+  },
+  "devDependencies": {
+    "@flax/build": "0.0.0",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  }
+}

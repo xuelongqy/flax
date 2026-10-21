@@ -63,6 +63,10 @@ Application builds and Vite hot reload share
 existing checked Dart type handles. JS uses the same package; `$type` and `dartType`
 remain available for explicit runtime tokens.
 
+For application-owned bindings, separate public/internal View plugins and types-only npm
+SDKs, follow the [integration guide](docs/guides/host-bindings.md) and
+[runnable example](examples/configured_bindings/README.md).
+
 Use the [Flutter fork](https://github.com/xuelongqy/flutter) on `flax/main` with its
 matching local engine. macOS arm64 requires macOS 15 or newer, Xcode and Ninja. Build
 artifacts from the fork using its revision-checked helper and an already verified V8

@@ -1,0 +1,24 @@
+{
+  "name": "@example/host-modules",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "flax-modules flax.modules.json"
+  },
+  "dependencies": {
+    "@flax/core": "0.0.0",
+    "@flax/core-runtime": "0.0.0",
+    "@example/prices": "workspace:*",
+    "@example/prices-runtime": "workspace:*",
+    "@example/shop": "workspace:*",
+    "@example/shop-runtime": "workspace:*",
+    "@flax/app": "workspace:*",
+    "@flax/app-runtime": "workspace:*",
+    "@flax/material-ui": "0.0.0",
+    "@flax/material-ui-runtime": "0.0.0"
+  },
+  "devDependencies": {
+    "@flax/build": "0.0.0"
+  }
+}

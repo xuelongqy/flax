@@ -72,6 +72,7 @@ final _classKinds = {
 FlaxCodegenBindingConfig _parseBindingConfigStrict(
   String contents,
   String source,
+  String jsPackageRoot,
 ) {
   final diagnostics = _StrictDiagnostics(source);
   final rootNode = _loadYamlNode(contents, diagnostics);
@@ -98,7 +99,7 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
   final name = root.requiredString('name');
   final library = root.requiredString('library');
   final automaticLibrary = root.boolean('automatic');
-  final jsPackage = root.requiredString('jsPackage');
+  final jsPackage = root.optionalString('jsPackage') ?? '$jsPackageRoot/$name';
   final dartOutput = root.requiredString('dartOutput');
   final tsOutput = root.requiredString('tsOutput');
   final additionalLibraries = root.stringList('additionalLibraries');
@@ -133,7 +134,7 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
   return FlaxCodegenBindingConfig(
     name!,
     library!,
-    jsPackage!,
+    jsPackage,
     dartOutput!,
     tsOutput!,
     classes,

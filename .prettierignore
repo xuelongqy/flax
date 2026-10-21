@@ -44,3 +44,12 @@ packages/flax_flutter/js/types/
 packages/flax_dart/js/types/
 packages/flax_codegen/example/author_template/bindings/manifest.json
 packages/flax_codegen/example/author_template/js/src/generated/
+
+# The runnable example uses the same generated binding and application formats.
+examples/configured_bindings/**/bindings/manifest.json
+examples/configured_bindings/**/src/generated/
+examples/configured_bindings/**/flax_modules.json
+examples/configured_bindings/**/types/types/
+examples/configured_bindings/provider/js-types/types/
+examples/configured_bindings/host/applications/
+examples/configured_bindings/host/assets/flax_modules/

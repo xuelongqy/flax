@@ -15,6 +15,8 @@ import { build } from 'esbuild';
 import { load as loadYaml } from 'js-yaml';
 import { moduleRegistrySource } from './registry.mjs';
 
+export { publicRequirements as bindingModuleRequirements } from './binding_delivery.mjs';
+
 const runtimeFormat = 'flax-cjs-1';
 const exactVersion = /^\d+\.\d+\.\d+(?:-[\w.-]+)?(?:\+[\w.-]+)?$/;
 const identifier =
@@ -285,19 +287,30 @@ async function findLock(start) {
   }
 }
 
-function verifyLocked(lock, directory, manifest) {
+async function verifyLocked(lock, directory, manifest) {
   const path = relative(lock.directory, directory).split(sep).join('/');
   if (lock.manager === 'pnpm') {
     // Workspace links have a lockfile importer instead of a published resolution.
-    if (lock.data.importers?.[path] !== undefined && !path.includes('node_modules/'))
-      return;
-    const key = `${manifest.name}@${manifest.version}`;
     if (
-      Object.keys(lock.data.packages ?? {}).some(
-        (entry) => entry === key || entry.startsWith(`${key}(`),
-      )
+      lock.data.importers?.[path || '.'] !== undefined &&
+      !path.includes('node_modules/')
     )
       return;
+    const key = `${manifest.name}@${manifest.version}`;
+    for (const [entry, record] of Object.entries(lock.data.packages ?? {})) {
+      if (entry === key || entry.startsWith(`${key}(`)) return;
+      if (!entry.startsWith(`${manifest.name}@file:`)) continue;
+      if (record?.resolution?.type === 'directory') {
+        const source = record.resolution.directory;
+        if (typeof source !== 'string' || entry !== `${manifest.name}@file:${source}`)
+          continue;
+        // Directory records omit versions; verify the declared local source instead.
+        const local = await json(resolve(lock.directory, source, 'package.json'));
+        if (local.name === manifest.name && local.version === manifest.version) return;
+      } else if (record?.version === manifest.version) {
+        return;
+      }
+    }
   } else {
     const record = lock.data.packages?.[path];
     if (record?.version === manifest.version) return;
@@ -372,7 +385,7 @@ class DeliveryPackages {
         fail(`Module delivery package/version mismatch: ${directory}`);
       implementationPackage(npm.name, 'delivery package');
       version(npm.version);
-      if (this.lock) verifyLocked(this.lock, directory, npm);
+      if (this.lock) await verifyLocked(this.lock, directory, npm);
       const entries = new Map();
       for (const entry of array(delivery.modules, 'delivery.modules')) {
         object(
@@ -875,7 +888,7 @@ export function flaxHostModulesPlugin(manifest = null) {
         const entry = provided.get(args.path);
         return {
           loader: 'js',
-          contents: `if (!globalThis.__flaxModules || globalThis.__flaxModules.format !== ${JSON.stringify(runtimeFormat)}) throw new Error('Missing or incompatible Flax module host');\nmodule.exports = globalThis.__flaxModules.require(${JSON.stringify(entry.specifier)}, ${JSON.stringify(entry.version)}, ${JSON.stringify(entry.artifact)});`,
+          contents: `if (!globalThis.__flaxModules || globalThis.__flaxModules.format !== ${JSON.stringify(runtimeFormat)}) throw new Error('Missing or incompatible Flax module host');\nmodule.exports = globalThis.__flaxModules.require(${JSON.stringify(entry.specifier)});`,
         };
       });
     },

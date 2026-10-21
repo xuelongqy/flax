@@ -1,0 +1,12 @@
+format: 2
+bindingNamespace: example.prices
+capabilities: [bindings]
+dart:
+  entrypoint: package:configured_prices/configured_prices.dart
+javascript:
+  package: '@example/prices-runtime'
+  types: '@example/prices'
+  version: same
+  mode: runtime
+registration:
+  bindings: [pricesBindings]

@@ -10,6 +10,7 @@ import 'model.dart';
 part 'config_strict.dart';
 
 const flaxCodegenOverridesFilename = 'flax_overrides.yaml';
+const flaxCodegenDefaultJsPackage = '@flax/app';
 
 bool flaxCodegenIsBindingConfigPath(String path) =>
     p.basename(path).startsWith('flax_') &&
@@ -93,10 +94,18 @@ class FlaxCodegenBindingConfig {
       automaticFunctions.isNotEmpty ||
       automaticExtensions.isNotEmpty;
 
-  factory FlaxCodegenBindingConfig.read(String filename) =>
-      FlaxCodegenBindingConfig.readStrict(filename);
+  factory FlaxCodegenBindingConfig.read(
+    String filename, {
+    String jsPackageRoot = flaxCodegenDefaultJsPackage,
+  }) => FlaxCodegenBindingConfig.readStrict(
+    filename,
+    jsPackageRoot: jsPackageRoot,
+  );
 
-  factory FlaxCodegenBindingConfig.fromMap(Map<String, dynamic> data) {
+  factory FlaxCodegenBindingConfig.fromMap(
+    Map<String, dynamic> data, {
+    String jsPackageRoot = flaxCodegenDefaultJsPackage,
+  }) {
     List<String> scope(String key) =>
         data[key] is List ? (data[key] as List).cast<String>() : const [];
     final automaticClasses = scope('classes');
@@ -117,7 +126,9 @@ class FlaxCodegenBindingConfig {
     return FlaxCodegenBindingConfig(
       data['name'] as String,
       data['library'] as String,
-      data['jsPackage'] as String,
+      data.containsKey('jsPackage')
+          ? data['jsPackage'] as String
+          : '$jsPackageRoot/${data['name']}',
       data['dartOutput'] as String,
       data['tsOutput'] as String,
       classes.map((name, value) {
@@ -292,13 +303,18 @@ class FlaxCodegenBindingConfig {
   factory FlaxCodegenBindingConfig.parseStrict(
     String contents, {
     String source = 'flax_bindings.yaml',
-  }) => _parseBindingConfigStrict(contents, source);
+    String jsPackageRoot = flaxCodegenDefaultJsPackage,
+  }) => _parseBindingConfigStrict(contents, source, jsPackageRoot);
 
-  factory FlaxCodegenBindingConfig.readStrict(String filename) {
+  factory FlaxCodegenBindingConfig.readStrict(
+    String filename, {
+    String jsPackageRoot = flaxCodegenDefaultJsPackage,
+  }) {
     try {
       return FlaxCodegenBindingConfig.parseStrict(
         File(filename).readAsStringSync(),
         source: filename,
+        jsPackageRoot: jsPackageRoot,
       );
     } on FileSystemException {
       throw FlaxCodegenException([

@@ -4891,6 +4891,97 @@ classes:
   });
 
   group('FlaxCodegenPackagePipeline.generateConfig', () {
+    test(
+      'default app entries can be renamed without changing wire IDs',
+      () async {
+        final package = _tempPackage(
+          name: 'scope_pkg',
+          libraries: {
+            'api.dart': '''
+class Item { Item(); }
+class Store { Store(); Item get item => Item(); }
+''',
+          },
+          configs: {
+            'flax_public.yaml': '''
+format: 2
+name: public
+library: package:scope_pkg/api.dart
+dartOutput: lib/public.g.dart
+tsOutput: js/public/bindings.ts
+classes:
+  Item:
+    kind: object
+    constructors: {'': []}
+''',
+            'flax_internal.yaml': '''
+format: 2
+name: internal
+library: package:scope_pkg/api.dart
+dartOutput: lib/internal.g.dart
+tsOutput: js/internal/bindings.ts
+classes:
+  Store:
+    kind: object
+    constructors: {'': []}
+    getters: [item]
+''',
+          },
+        );
+        final configPath = package.configPath('flax_public.yaml');
+        final generated = await FlaxCodegenPackagePipeline.generateConfig(
+          configPath,
+        );
+        expect(
+          generated.localModels.map((module) => module.jsPackage),
+          unorderedEquals(['@flax/app/public', '@flax/app/internal']),
+        );
+        final source = File(
+          p.join(package.root.path, 'js/internal/bindings.ts'),
+        );
+        expect(source.readAsStringSync(), contains("from '@flax/app/public'"));
+        final originalIds = generated.localModels
+            .expand((module) => module.classes.map((type) => type.id))
+            .toList();
+        final metadata = File(p.join(package.root.path, 'flax_package.yaml'));
+        metadata.writeAsStringSync('''
+${metadata.readAsStringSync()}javascript:
+  types: '@example/sdk'
+  package: '@example/sdk-runtime'
+''');
+        final renamed = await FlaxCodegenPackagePipeline.generateConfig(
+          configPath,
+        );
+        expect(
+          renamed.localModels.map((module) => module.jsPackage),
+          unorderedEquals(['@example/sdk/public', '@example/sdk/internal']),
+        );
+        expect(
+          renamed.localModels.expand(
+            (module) => module.classes.map((type) => type.id),
+          ),
+          originalIds,
+        );
+        expect(
+          source.readAsStringSync(),
+          contains("from '@example/sdk/public'"),
+        );
+        expect(source.readAsStringSync(), isNot(contains('@flax/app')));
+        final internal = File(package.configPath('flax_internal.yaml'));
+        internal.writeAsStringSync(
+          "${internal.readAsStringSync()}jsPackage: '@custom/internal'\n",
+        );
+        final overridden = await FlaxCodegenPackagePipeline.generateConfig(
+          configPath,
+        );
+        expect(
+          overridden.localModels.map((module) => module.jsPackage),
+          unorderedEquals(['@example/sdk/public', '@custom/internal']),
+        );
+        await FlaxCodegenPackagePipeline.checkConfig(configPath);
+      },
+    );
+
     Future<ProcessResult> formatRunner(
       String executable,
       List<String> arguments, {

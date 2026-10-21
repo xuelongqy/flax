@@ -1,6 +1,7 @@
 import type { Plugin as EsbuildPlugin } from 'esbuild';
 import type { Plugin as VitePlugin } from 'vite';
 import {
+  bindingModuleRequirements,
   readModuleManifest,
   prepareModules,
   validateModuleManifest,
@@ -10,6 +11,8 @@ import { flaxEsbuildPlugin } from '@flax/build/esbuild';
 import { flaxVitePlugin } from '@flax/build/vite';
 import { prepareApplication } from '@flax/build/application';
 
+const requirements = bindingModuleRequirements({});
+void requirements.get('@flax/app/internal')?.bindings;
 const manifest = validateModuleManifest({});
 const esbuild: EsbuildPlugin = flaxEsbuildPlugin(manifest);
 const resolution: EsbuildPlugin = flaxHostModulesPlugin(manifest);

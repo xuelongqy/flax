@@ -1,0 +1,7 @@
+format: 2
+bindingNamespace: example.shop
+capabilities: [bindings]
+dart:
+  entrypoint: package:configured_host/configured_host.dart
+registration:
+  bindings: [shopBindings, deliveryBindings, adminBindings]

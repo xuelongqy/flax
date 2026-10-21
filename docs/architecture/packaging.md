@@ -78,6 +78,10 @@ to have exactly the same version. It does not force all Flax packages to share o
 version. Consumers install the Dart and npm halves of a capability at matching versions,
 while core and each extension can evolve independently.
 
+This producer-side pairing does not require a miniapp's SDK declaration version to equal
+the host runtime version. Compatible public APIs can span releases, including when the
+host keeps its implementation private and publishes declarations only.
+
 ## JavaScript packages and public library specifiers
 
 Application code imports Flutter and Dart APIs by their public library specifier:
@@ -328,6 +332,31 @@ listener ownership.
 
 ## Application module inventory and host delivery
 
+Application binding owners can use several sibling `bindings/flax_*.yaml` scopes with
+distinct names and output paths. Generation plans them together, retaining one local
+owner per Dart declaration. Shared types belong in one scope or an existing provider.
+When a scope omits `jsPackage`, its entry is `<public-package>/<name>`. The public
+package comes from `javascript.types`, then `javascript.package`, then `@flax/app`; an
+explicit scope entry takes precedence. Regeneration updates generated references, while
+application imports and plugin/module selections must use the resulting names. Each View
+selects its business scopes through explicit plugins: `bindingModules` contributes
+native bindings and `jsModules` selects prepared JS entries. Local sibling native
+modules must be listed explicitly where needed. Selected JS module dependencies are
+included transitively; splitting YAML alone does not restrict a View's API.
+
+After generation, applications own ordinary npm package manifests and TypeScript build
+scripts. Public SDK and internal bindings can use separate source/output directories and
+separate plugins in the same Dart application. A host-provided SDK publishes
+declarations only, using explicit exports and file allowlists. Its JS binding runtime
+stays private and uses a local host dependency, as do internal bindings. Additional JS
+wrappers may ship as ordinary JS packages. Packaging follows the selected modules and
+their dependency closure; public declarations cannot depend on unpublished internal
+scopes. `bindingModuleRequirements` from `@flax/build` reads generated Manifest
+requirements for a project's delivery metadata; it does not compile or publish packages.
+See the
+[npm binding contract](../../packages/flax_build/js/README.md#binding-npm-packages) and
+[outside-workspace verification](../../examples/configured_bindings/README.md).
+
 Implementation delivery uses a versioned `flax_modules.json`, separate from the Binding
 Manifest. It records public specifiers, the physical npm package and source entry,
 delivery dependencies, and the Dart binding requirements needed if that module is
@@ -375,6 +404,15 @@ business bundler externalizes prepared imports to the session registry and rejec
 unprepared Flax implementation imports, including private implementation paths. Direct
 imports, transitive imports and reexports share one session-local instance. Unselected
 optional inventory modules remain inactive. Wire IDs remain independent of npm paths.
+
+Business bundles select public modules by specifier, without requiring the same npm
+version or artifact hash as their build-time inventory. Legacy imports that pass
+version/hash arguments follow the same rule. Compatible host upgrades can run unchanged
+old bundles and declarations; providers remain responsible for preserving API signatures
+and behavior. Version equality alone does not establish compatibility. Host factory
+registration and sealing still strictly match the current inventory's owners, versions,
+hashes and dependency graph, and Dart binding protocol/capability checks remain
+required.
 
 Config paths are package-relative. `flax_codegen` locates the nearest
 `.dart_tool/package_config.json` by walking upward from the owning configuration, then

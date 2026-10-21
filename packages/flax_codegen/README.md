@@ -189,6 +189,17 @@ current-only Manifest 28 dependency projections through the package config, and 
 `generate`) writes `lib/...`, `js/...`, and `bindings/manifest.json` below the owning
 package. The old `dart run flax_codegen [--check] <config>` form is not supported.
 
+`jsPackage` is optional in each binding scope. An omitted value becomes
+`<public-package>/<name>`: the public package is `javascript.types` from
+`flax_package.yaml`, falling back to `javascript.package`, then `@flax/app`. For
+example, `name: internal` needs no package-name configuration to expose
+`@flax/app/internal`. The same rule applies with one or several sibling scopes. An
+explicit `jsPackage` always wins, and invalid explicit values remain errors. Changing
+the package name and regenerating updates generated cross-scope imports; update
+application imports, plugin `jsModules` and prepared module configuration too. Package
+names do not change Dart wire IDs. These are module naming defaults, not an instruction
+to install or publish an npm package named `@flax/app`.
+
 A package can infer complete public libraries alongside its explicit scopes:
 
 ```yaml
@@ -353,10 +364,12 @@ javascript:
 capabilities: [bindings]
 ```
 
-The CLI defaults to `lib/src/generated/<library-name>_bindings.g.dart`,
-`js/src/generated/bindings.ts`, and `bindings/manifest.json`. A dependency such as `gap`
-can be the target while these files belong to your binding package. JavaScript package
-setup and registering the generated bindings remain the normal author workflow.
+In `--library` mode the public JS entry uses the configured public package directly,
+falling back to `@flax/app`; it does not add a binding-name subpath. The CLI defaults to
+`lib/src/generated/<library-name>_bindings.g.dart`, `js/src/generated/bindings.ts`, and
+`bindings/manifest.json`. A dependency such as `gap` can be the target while these files
+belong to your binding package. JavaScript package setup and registering the generated
+bindings remain the normal author workflow.
 
 ## Binding dependency policy
 

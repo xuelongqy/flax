@@ -1,0 +1,5 @@
+# Compiled declarations and prepared host assets are built from checked-in sources.
+/provider/js-types/types/
+/host/js/sdk/types/types/
+/host/js/internal/types/types/
+/host/assets/flax_modules/

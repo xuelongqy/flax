@@ -27,6 +27,11 @@ export interface FlaxModuleManifest {
   modules: FlaxModule[];
 }
 
+/** Read generated requirements; package compilation and publication stay project-owned. */
+export function bindingModuleRequirements(
+  manifest: unknown,
+): ReadonlyMap<string, { bindings: FlaxModuleBinding[]; helperSubpaths: string[] }>;
+
 export function validateModuleManifest(value: unknown): FlaxModuleManifest;
 export function readModuleManifest(path: string): Promise<FlaxModuleManifest>;
 export function prepareModules(options: {

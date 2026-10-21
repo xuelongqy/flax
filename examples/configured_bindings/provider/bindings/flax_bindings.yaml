@@ -1,0 +1,7 @@
+format: 2
+name: prices
+library: package:configured_prices/api.dart
+jsPackage: '@example/prices/api'
+dartOutput: lib/src/generated/bindings.g.dart
+tsOutput: js/src/generated/bindings.ts
+classes: [Money]

@@ -10,6 +10,7 @@ Start with the [project README](../README.md) for supported scope and setup, the
 | Layers and package ownership              | [Architecture](architecture/README.md), [packaging](architecture/packaging.md)                                                                             |
 | Runtime and engines                       | [Runtime](architecture/runtime.md)                                                                                                                         |
 | Generation and authoring                  | [Binding Generation](architecture/bindings.md), [author template](../packages/flax_codegen/docs/author-template.md)                                        |
+| Host application bindings and SDKs        | [Integration guide](guides/host-bindings.md), [runnable example](../examples/configured_bindings/README.md)                                                |
 | Capability status and remaining gaps      | [Binding Coverage Map](architecture/binding-coverage-map.md)                                                                                               |
 | External binding verification             | [Verification scope](architecture/external-binding-verification.md)                                                                                        |
 | Flutter lifecycle and application startup | [UI](architecture/ui.md), [applications](architecture/applications.md)                                                                                     |
@@ -17,10 +18,9 @@ Start with the [project README](../README.md) for supported scope and setup, the
 | Navigation and components                 | [Navigation](architecture/navigation.md), [components](architecture/components.md)                                                                         |
 | Optional services                         | [Host and Fetch](architecture/host.md), [WebSocket](architecture/websocket.md), [storage](architecture/local-storage.md), [Canvas](architecture/canvas.md) |
 
-Binding selection format 2, package metadata format 1, current-only Manifest 12, UI
-protocol 21 and native ABI 2 are separate domains. The supported runtime scope is
-experimental macOS arm64 Hermes and V8; broader API coverage and public distribution are
-unfinished.
+Binding selection format 2, package metadata format 2, current-only Manifest 28, UI
+protocol 24 and native ABI 2 are separate domains. See the project README for current
+platform acceptance; broader API coverage and public distribution are unfinished.
 
 ## Decisions and active work
 
