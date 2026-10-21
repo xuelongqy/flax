@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/flutter/painting/_bindings/flutter_EdgeIn
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsets';
 import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import { _flaxMemberParameters47, _flaxMemberParameters19, _flaxMemberParameters0, _flaxMemberParameters48, _flaxMemberParameters4, _flaxMemberParameters3 } from "@flax/core/navigation/_bindings/flutter.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters54, _flaxMemberParameters22, _flaxMemberParameters1, _flaxMemberParameters55, _flaxMemberParameters5, _flaxMemberParameters4 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface EdgeInsetsGeometry extends Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> { readonly __EdgeInsetsGeometry: unique symbol;
@@ -36,7 +36,7 @@ operatorTruncateDivide(other: number): EdgeInsetsGeometry;
 operatorModulo(other: number): EdgeInsetsGeometry;
 operatorNegate(): EdgeInsetsGeometry;
 }
-defineObject("flax.core/flutter#type:EdgeInsetsGeometry", ["isNonNegative","horizontal","vertical","collapsedSize","flipped"], [], _flaxBindingMethods("flax.core/flutter#type:EdgeInsetsGeometry", "object", {"along":_flaxMemberParameters47,"inflateSize":_flaxMemberParameters19,"deflateSize":_flaxMemberParameters19,"subtract":_flaxMemberParameters0,"add":_flaxMemberParameters0,"clamp":_flaxMemberParameters48,"resolve":_flaxMemberParameters4,"toString":_flaxMemberParameters3,"operatorMultiply":_flaxMemberParameters0,"operatorDivide":_flaxMemberParameters0,"operatorTruncateDivide":_flaxMemberParameters0,"operatorModulo":_flaxMemberParameters0,"operatorNegate":_flaxMemberParameters3}, {}), []);
+defineObject("flax.core/flutter#type:EdgeInsetsGeometry", ["isNonNegative","horizontal","vertical","collapsedSize","flipped"], [], _flaxBindingMethods("flax.core/flutter#type:EdgeInsetsGeometry", "object", {"along":_flaxMemberParameters54,"inflateSize":_flaxMemberParameters22,"deflateSize":_flaxMemberParameters22,"subtract":_flaxMemberParameters1,"add":_flaxMemberParameters1,"clamp":_flaxMemberParameters55,"resolve":_flaxMemberParameters5,"toString":_flaxMemberParameters4,"operatorMultiply":_flaxMemberParameters1,"operatorDivide":_flaxMemberParameters1,"operatorTruncateDivide":_flaxMemberParameters1,"operatorModulo":_flaxMemberParameters1,"operatorNegate":_flaxMemberParameters4}, {}), []);
 export namespace _EdgeInsetsGeometryFactory {
 export function all(value: number): EdgeInsetsGeometry {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
@@ -91,7 +91,7 @@ export namespace _EdgeInsetsGeometryFactory { export declare const infinity: Edg
 _flaxDefineStaticGetters(_EdgeInsetsGeometryFactory, "flax.core/flutter#read:EdgeInsetsGeometry.", ["zero","infinity"]);
 export namespace _EdgeInsetsGeometryFactory { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> | null, b: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> | null, t: number): EdgeInsetsGeometry | null {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:EdgeInsetsGeometry.lerp", [a, b, t]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:EdgeInsetsGeometry.lerp", [a, b, t], _flaxMemberParameters0);
 return _flaxResult as EdgeInsetsGeometry | null;
 } }
 export const EdgeInsetsGeometry: typeof _EdgeInsetsGeometryFactory & _FlaxInstanceType<EdgeInsetsGeometry> & _FlaxDartType<EdgeInsetsGeometry, readonly ["class", "flax.core/flutter#type:EdgeInsetsGeometry", readonly [], false]> = _flaxBindInstanceType<EdgeInsetsGeometry, typeof _EdgeInsetsGeometryFactory>(_EdgeInsetsGeometryFactory, "flax.core/flutter#type:EdgeInsetsGeometry", ["dart:core::Object"]) as typeof _EdgeInsetsGeometryFactory & _FlaxInstanceType<EdgeInsetsGeometry> & _FlaxDartType<EdgeInsetsGeometry, readonly ["class", "flax.core/flutter#type:EdgeInsetsGeometry", readonly [], false]>;

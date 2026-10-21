@@ -102,6 +102,10 @@ current language support is in the
   Session close drains mounted JS content without retaining native Routes or
   transitions.
 
+- [0046: Compiler entries for native default arguments](0046-compiler-default-entries.md)
+  is an experimental integration. Known targets use fixed entries; dynamic callback
+  values retain their shared invocation path. Platform acceptance remains separate.
+
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,
 its reason and practical consequences, and update this index.

@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Type';
 import '@flax/dart/core/_bindings/flutter_Type';
 import type * as upstream1 from '@flax/material-ui/_bindings/material_ThemeData';
 import '@flax/material-ui/_bindings/material_ThemeData';
-import { _flaxMemberParameters6, _flaxMemberParameters2 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters8, _flaxMemberParameters4 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,7 +15,7 @@ readonly [_flaxDartTypeValue]: Adaptation<T>;
 readonly type: upstream0.Type;
 adapt(theme: Readonly<{ "__flaxBound:package:material_ui/src/theme_data.dart::ThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, defaultValue: (T | DartInput<T>)): T;
 }
-defineObject("flax.material/material#type:Adaptation", ["type"], [], _flaxBindingMethods("flax.material/material#type:Adaptation", "object", {"adapt":_flaxMemberParameters6}, {}), []);
+defineObject("flax.material/material#type:Adaptation", ["type"], [], _flaxBindingMethods("flax.material/material#type:Adaptation", "object", {"adapt":_flaxMemberParameters8}, {}), []);
 export function _AdaptationFactory<T extends unknown | null = unknown | null>(): Adaptation<T>;
 export function _AdaptationFactory(): Adaptation<unknown | null>;
 export function _AdaptationFactory(): unknown {
@@ -23,7 +23,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:Adaptation", "", [], [], {}) as Adaptation<unknown | null>;
 }
-const _AdaptationProxy = {type: "flax.material/material#type:Adaptation", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"adapt":_flaxMemberParameters6}, getters: ["type"], setters: [], contextMembers: [], superMembers: ["get:type","adapt"]} as const;
+const _AdaptationProxy = {type: "flax.material/material#type:Adaptation", parameters: _flaxMemberParameters4, constructors: {"": _flaxMemberParameters4}, methods: {"adapt":_flaxMemberParameters8}, getters: ["type"], setters: [], contextMembers: [], superMembers: ["get:type","adapt"]} as const;
 export interface _AdaptationNative<T extends unknown | null = unknown | null> extends Adaptation<T> {
 readonly [_flaxDartTypeValue]: _AdaptationNative<T>;
 

@@ -7771,6 +7771,7 @@ const sdk_foundationBindings = FlaxBindingModule(
   ],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "dart-type-tokens",
     "engine-type-handles",
     "explicit-generic-types",
@@ -8191,15 +8192,19 @@ Object? _function_consolidateHttpClientResponseBytes(
 Object? _function_debugAssertAllFoundationVarsUnset(
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("debugPrintOverride")) {
-    return api.debugAssertAllFoundationVarsUnset(values["reason"] as String);
-  }
-  return api.debugAssertAllFoundationVarsUnset(
-    values["reason"] as String,
-    debugPrintOverride:
-        values["debugPrintOverride"]
-            as void Function(String? message, {int? wrapWidth}),
-  );
+  final _flaxHas1 = values.containsKey("debugPrintOverride");
+  return flaxInvokeWithDefaults(
+    api.debugAssertAllFoundationVarsUnset,
+    <Object?>[
+      values["reason"] as String,
+      (_flaxHas1
+          ? values["debugPrintOverride"]
+                as void Function(String? message, {int? wrapWidth})
+          : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", "debugPrintOverride"],
+  ) as bool;
 }
 
 Object? _function_debugFormatDouble(Map<String, Object?> values) {
@@ -10041,119 +10046,102 @@ Object? _DiagnosticsBlock_super_get_style(
 Object _createDiagnosticsBlock(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("children")) {
-        if (!values.containsKey("properties")) {
-          return api.DiagnosticsBlock(
-            name: values["name"] as String?,
-            style: values["style"] as api.DiagnosticsTreeStyle,
-            showName: values["showName"] as bool,
-            showSeparator: values["showSeparator"] as bool,
-            linePrefix: values["linePrefix"] as String?,
-            value: values["value"],
-            description: values["description"] as String?,
-            level: values["level"] as api.DiagnosticLevel,
-            allowTruncate: values["allowTruncate"] as bool,
-          );
-        }
-        return api.DiagnosticsBlock(
-          name: values["name"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          linePrefix: values["linePrefix"] as String?,
-          value: values["value"],
-          description: values["description"] as String?,
-          level: values["level"] as api.DiagnosticLevel,
-          allowTruncate: values["allowTruncate"] as bool,
-          properties: values["properties"] as List<api.DiagnosticsNode>,
-        );
-      }
-      if (!values.containsKey("properties")) {
-        return api.DiagnosticsBlock(
-          name: values["name"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          linePrefix: values["linePrefix"] as String?,
-          value: values["value"],
-          description: values["description"] as String?,
-          level: values["level"] as api.DiagnosticLevel,
-          allowTruncate: values["allowTruncate"] as bool,
-          children: values["children"] as List<api.DiagnosticsNode>,
-        );
-      }
-      return api.DiagnosticsBlock(
-        name: values["name"] as String?,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        showName: values["showName"] as bool,
-        showSeparator: values["showSeparator"] as bool,
-        linePrefix: values["linePrefix"] as String?,
-        value: values["value"],
-        description: values["description"] as String?,
-        level: values["level"] as api.DiagnosticLevel,
-        allowTruncate: values["allowTruncate"] as bool,
-        children: values["children"] as List<api.DiagnosticsNode>,
-        properties: values["properties"] as List<api.DiagnosticsNode>,
-      );
+      final _flaxHas9 = values.containsKey("children");
+      final _flaxHas10 = values.containsKey("properties");
+      return flaxInvokeWithDefaults(
+        api.DiagnosticsBlock.new,
+        <Object?>[
+          values["name"] as String?,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["showName"] as bool,
+          values["showSeparator"] as bool,
+          values["linePrefix"] as String?,
+          values["value"],
+          values["description"] as String?,
+          values["level"] as api.DiagnosticLevel,
+          values["allowTruncate"] as bool,
+          (_flaxHas9 ? values["children"] as List<api.DiagnosticsNode> : null),
+          (_flaxHas10
+              ? values["properties"] as List<api.DiagnosticsNode>
+              : null),
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              (_flaxHas9 ? 512 : 0) |
+              (_flaxHas10 ? 1024 : 0),
+        ],
+        const <String>[
+          "name",
+          "style",
+          "showName",
+          "showSeparator",
+          "linePrefix",
+          "value",
+          "description",
+          "level",
+          "allowTruncate",
+          "children",
+          "properties",
+        ],
+      ) as api.DiagnosticsBlock;
     case '@implementation':
-      if (!values.containsKey("children")) {
-        if (!values.containsKey("properties")) {
-          return _DiagnosticsBlockProxy(
-            values['@peer'] as FlaxProxyPeer,
-            name: values["name"] as String?,
-            style: values["style"] as api.DiagnosticsTreeStyle,
-            showName: values["showName"] as bool,
-            showSeparator: values["showSeparator"] as bool,
-            linePrefix: values["linePrefix"] as String?,
-            value: values["value"],
-            description: values["description"] as String?,
-            level: values["level"] as api.DiagnosticLevel,
-            allowTruncate: values["allowTruncate"] as bool,
-          );
-        }
-        return _DiagnosticsBlockProxy(
+      final _flaxHas10 = values.containsKey("children");
+      final _flaxHas11 = values.containsKey("properties");
+      return flaxInvokeWithDefaults(
+        _DiagnosticsBlockProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          name: values["name"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          linePrefix: values["linePrefix"] as String?,
-          value: values["value"],
-          description: values["description"] as String?,
-          level: values["level"] as api.DiagnosticLevel,
-          allowTruncate: values["allowTruncate"] as bool,
-          properties: values["properties"] as List<api.DiagnosticsNode>,
-        );
-      }
-      if (!values.containsKey("properties")) {
-        return _DiagnosticsBlockProxy(
-          values['@peer'] as FlaxProxyPeer,
-          name: values["name"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          linePrefix: values["linePrefix"] as String?,
-          value: values["value"],
-          description: values["description"] as String?,
-          level: values["level"] as api.DiagnosticLevel,
-          allowTruncate: values["allowTruncate"] as bool,
-          children: values["children"] as List<api.DiagnosticsNode>,
-        );
-      }
-      return _DiagnosticsBlockProxy(
-        values['@peer'] as FlaxProxyPeer,
-        name: values["name"] as String?,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        showName: values["showName"] as bool,
-        showSeparator: values["showSeparator"] as bool,
-        linePrefix: values["linePrefix"] as String?,
-        value: values["value"],
-        description: values["description"] as String?,
-        level: values["level"] as api.DiagnosticLevel,
-        allowTruncate: values["allowTruncate"] as bool,
-        children: values["children"] as List<api.DiagnosticsNode>,
-        properties: values["properties"] as List<api.DiagnosticsNode>,
-      );
+          values["name"] as String?,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["showName"] as bool,
+          values["showSeparator"] as bool,
+          values["linePrefix"] as String?,
+          values["value"],
+          values["description"] as String?,
+          values["level"] as api.DiagnosticLevel,
+          values["allowTruncate"] as bool,
+          (_flaxHas10 ? values["children"] as List<api.DiagnosticsNode> : null),
+          (_flaxHas11
+              ? values["properties"] as List<api.DiagnosticsNode>
+              : null),
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              (_flaxHas10 ? 1024 : 0) |
+              (_flaxHas11 ? 2048 : 0),
+        ],
+        const <String>[
+          "",
+          "name",
+          "style",
+          "showName",
+          "showSeparator",
+          "linePrefix",
+          "value",
+          "description",
+          "level",
+          "allowTruncate",
+          "children",
+          "properties",
+        ],
+      ) as api.DiagnosticsBlock;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10500,161 +10488,261 @@ Object? _DiagnosticsProperty_super_get_style(
 Object _createDiagnosticsProperty(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("defaultValue")) {
-        return api.DiagnosticsProperty<Object?>(
+      final _flaxHas7 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.DiagnosticsProperty<Object?>.new,
+        <Object?>[
           values["name"] as String?,
           ((values["value"] == null ? null : values["value"])) as Object?,
-          description: values["description"] as String?,
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          tooltip: values["tooltip"] as String?,
-          missingIfNull: values["missingIfNull"] as bool,
-          linePrefix: values["linePrefix"] as String?,
-          expandableValue: values["expandableValue"] as bool,
-          allowWrap: values["allowWrap"] as bool,
-          allowNameWrap: values["allowNameWrap"] as bool,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return api.DiagnosticsProperty<Object?>(
-        values["name"] as String?,
-        ((values["value"] == null ? null : values["value"])) as Object?,
-        description: values["description"] as String?,
-        ifNull: values["ifNull"] as String?,
-        ifEmpty: values["ifEmpty"] as String?,
-        showName: values["showName"] as bool,
-        showSeparator: values["showSeparator"] as bool,
-        defaultValue:
-            ((values["defaultValue"] == null ? null : values["defaultValue"]))
-                as Object?,
-        tooltip: values["tooltip"] as String?,
-        missingIfNull: values["missingIfNull"] as bool,
-        linePrefix: values["linePrefix"] as String?,
-        expandableValue: values["expandableValue"] as bool,
-        allowWrap: values["allowWrap"] as bool,
-        allowNameWrap: values["allowNameWrap"] as bool,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["description"] as String?,
+          values["ifNull"] as String?,
+          values["ifEmpty"] as String?,
+          values["showName"] as bool,
+          values["showSeparator"] as bool,
+          (_flaxHas7
+              ? ((values["defaultValue"] == null
+                        ? null
+                        : values["defaultValue"]))
+                    as Object?
+              : null),
+          values["tooltip"] as String?,
+          values["missingIfNull"] as bool,
+          values["linePrefix"] as String?,
+          values["expandableValue"] as bool,
+          values["allowWrap"] as bool,
+          values["allowNameWrap"] as bool,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768,
+        ],
+        const <String>[
+          "",
+          "",
+          "description",
+          "ifNull",
+          "ifEmpty",
+          "showName",
+          "showSeparator",
+          "defaultValue",
+          "tooltip",
+          "missingIfNull",
+          "linePrefix",
+          "expandableValue",
+          "allowWrap",
+          "allowNameWrap",
+          "style",
+          "level",
+        ],
+      ) as api.DiagnosticsProperty<Object?>;
     case "lazy":
-      if (!values.containsKey("defaultValue")) {
-        return api.DiagnosticsProperty<Object?>.lazy(
+      final _flaxHas7 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.DiagnosticsProperty<Object?>.lazy,
+        <Object?>[
           values["name"] as String?,
           values["computeValue"] as Object? Function(),
-          description: values["description"] as String?,
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          tooltip: values["tooltip"] as String?,
-          missingIfNull: values["missingIfNull"] as bool,
-          expandableValue: values["expandableValue"] as bool,
-          allowWrap: values["allowWrap"] as bool,
-          allowNameWrap: values["allowNameWrap"] as bool,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return api.DiagnosticsProperty<Object?>.lazy(
-        values["name"] as String?,
-        values["computeValue"] as Object? Function(),
-        description: values["description"] as String?,
-        ifNull: values["ifNull"] as String?,
-        ifEmpty: values["ifEmpty"] as String?,
-        showName: values["showName"] as bool,
-        showSeparator: values["showSeparator"] as bool,
-        defaultValue:
-            ((values["defaultValue"] == null ? null : values["defaultValue"]))
-                as Object?,
-        tooltip: values["tooltip"] as String?,
-        missingIfNull: values["missingIfNull"] as bool,
-        expandableValue: values["expandableValue"] as bool,
-        allowWrap: values["allowWrap"] as bool,
-        allowNameWrap: values["allowNameWrap"] as bool,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["description"] as String?,
+          values["ifNull"] as String?,
+          values["ifEmpty"] as String?,
+          values["showName"] as bool,
+          values["showSeparator"] as bool,
+          (_flaxHas7
+              ? ((values["defaultValue"] == null
+                        ? null
+                        : values["defaultValue"]))
+                    as Object?
+              : null),
+          values["tooltip"] as String?,
+          values["missingIfNull"] as bool,
+          values["expandableValue"] as bool,
+          values["allowWrap"] as bool,
+          values["allowNameWrap"] as bool,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384,
+        ],
+        const <String>[
+          "",
+          "",
+          "description",
+          "ifNull",
+          "ifEmpty",
+          "showName",
+          "showSeparator",
+          "defaultValue",
+          "tooltip",
+          "missingIfNull",
+          "expandableValue",
+          "allowWrap",
+          "allowNameWrap",
+          "style",
+          "level",
+        ],
+      ) as api.DiagnosticsProperty<Object?>;
     case '@implementation':
-      if (!values.containsKey("defaultValue")) {
-        return _DiagnosticsPropertyProxy<Object?>(
+      final _flaxHas8 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _DiagnosticsPropertyProxy<Object?>.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String?,
-          values["value"],
-          description: values["description"] as String?,
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          tooltip: values["tooltip"] as String?,
-          missingIfNull: values["missingIfNull"] as bool,
-          linePrefix: values["linePrefix"] as String?,
-          expandableValue: values["expandableValue"] as bool,
-          allowWrap: values["allowWrap"] as bool,
-          allowNameWrap: values["allowNameWrap"] as bool,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return _DiagnosticsPropertyProxy<Object?>(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String?,
-        values["value"],
-        description: values["description"] as String?,
-        ifNull: values["ifNull"] as String?,
-        ifEmpty: values["ifEmpty"] as String?,
-        showName: values["showName"] as bool,
-        showSeparator: values["showSeparator"] as bool,
-        defaultValue: values["defaultValue"],
-        tooltip: values["tooltip"] as String?,
-        missingIfNull: values["missingIfNull"] as bool,
-        linePrefix: values["linePrefix"] as String?,
-        expandableValue: values["expandableValue"] as bool,
-        allowWrap: values["allowWrap"] as bool,
-        allowNameWrap: values["allowNameWrap"] as bool,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          ((values["value"] == null ? null : values["value"])) as Object?,
+          values["description"] as String?,
+          values["ifNull"] as String?,
+          values["ifEmpty"] as String?,
+          values["showName"] as bool,
+          values["showSeparator"] as bool,
+          (_flaxHas8
+              ? ((values["defaultValue"] == null
+                        ? null
+                        : values["defaultValue"]))
+                    as Object?
+              : null),
+          values["tooltip"] as String?,
+          values["missingIfNull"] as bool,
+          values["linePrefix"] as String?,
+          values["expandableValue"] as bool,
+          values["allowWrap"] as bool,
+          values["allowNameWrap"] as bool,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              (_flaxHas8 ? 256 : 0) |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536,
+        ],
+        const <String>[
+          "",
+          "",
+          "",
+          "description",
+          "ifNull",
+          "ifEmpty",
+          "showName",
+          "showSeparator",
+          "defaultValue",
+          "tooltip",
+          "missingIfNull",
+          "linePrefix",
+          "expandableValue",
+          "allowWrap",
+          "allowNameWrap",
+          "style",
+          "level",
+        ],
+      ) as api.DiagnosticsProperty<Object?>;
     case "@implementation:lazy":
-      if (!values.containsKey("defaultValue")) {
-        return _DiagnosticsPropertyProxy<Object?>.lazy(
+      final _flaxHas8 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _DiagnosticsPropertyProxy<Object?>.lazy,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String?,
           values["computeValue"] as Object? Function(),
-          description: values["description"] as String?,
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          tooltip: values["tooltip"] as String?,
-          missingIfNull: values["missingIfNull"] as bool,
-          expandableValue: values["expandableValue"] as bool,
-          allowWrap: values["allowWrap"] as bool,
-          allowNameWrap: values["allowNameWrap"] as bool,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return _DiagnosticsPropertyProxy<Object?>.lazy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String?,
-        values["computeValue"] as Object? Function(),
-        description: values["description"] as String?,
-        ifNull: values["ifNull"] as String?,
-        ifEmpty: values["ifEmpty"] as String?,
-        showName: values["showName"] as bool,
-        showSeparator: values["showSeparator"] as bool,
-        defaultValue: values["defaultValue"],
-        tooltip: values["tooltip"] as String?,
-        missingIfNull: values["missingIfNull"] as bool,
-        expandableValue: values["expandableValue"] as bool,
-        allowWrap: values["allowWrap"] as bool,
-        allowNameWrap: values["allowNameWrap"] as bool,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["description"] as String?,
+          values["ifNull"] as String?,
+          values["ifEmpty"] as String?,
+          values["showName"] as bool,
+          values["showSeparator"] as bool,
+          (_flaxHas8
+              ? ((values["defaultValue"] == null
+                        ? null
+                        : values["defaultValue"]))
+                    as Object?
+              : null),
+          values["tooltip"] as String?,
+          values["missingIfNull"] as bool,
+          values["expandableValue"] as bool,
+          values["allowWrap"] as bool,
+          values["allowNameWrap"] as bool,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              (_flaxHas8 ? 256 : 0) |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768,
+        ],
+        const <String>[
+          "",
+          "",
+          "",
+          "description",
+          "ifNull",
+          "ifEmpty",
+          "showName",
+          "showSeparator",
+          "defaultValue",
+          "tooltip",
+          "missingIfNull",
+          "expandableValue",
+          "allowWrap",
+          "allowNameWrap",
+          "style",
+          "level",
+        ],
+      ) as api.DiagnosticsProperty<Object?>;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10722,23 +10810,17 @@ Object? _DiagnosticsSerializationDelegate_copyWith(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("includeProperties")) {
-    if (!values.containsKey("subtreeDepth")) {
-      return (receiver as api.DiagnosticsSerializationDelegate).copyWith();
-    }
-    return (receiver as api.DiagnosticsSerializationDelegate).copyWith(
-      subtreeDepth: values["subtreeDepth"] as int,
-    );
-  }
-  if (!values.containsKey("subtreeDepth")) {
-    return (receiver as api.DiagnosticsSerializationDelegate).copyWith(
-      includeProperties: values["includeProperties"] as bool,
-    );
-  }
-  return (receiver as api.DiagnosticsSerializationDelegate).copyWith(
-    includeProperties: values["includeProperties"] as bool,
-    subtreeDepth: values["subtreeDepth"] as int,
-  );
+  final _flaxHas0 = values.containsKey("includeProperties");
+  final _flaxHas1 = values.containsKey("subtreeDepth");
+  return flaxInvokeWithDefaults(
+    (receiver as api.DiagnosticsSerializationDelegate).copyWith,
+    <Object?>[
+      (_flaxHas0 ? values["includeProperties"] as bool : null),
+      (_flaxHas1 ? values["subtreeDepth"] as int : null),
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+    const <String>["includeProperties", "subtreeDepth"],
+  ) as api.DiagnosticsSerializationDelegate;
 }
 
 Object _createDiagnosticsSerializationDelegate(
@@ -10896,101 +10978,117 @@ Object? _DoubleProperty_super_get_style(
 Object _createDoubleProperty(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("defaultValue")) {
-        return api.DoubleProperty(
+      final _flaxHas5 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.DoubleProperty.new,
+        <Object?>[
           values["name"] as String,
           values["value"] as double?,
-          ifNull: values["ifNull"] as String?,
-          unit: values["unit"] as String?,
-          tooltip: values["tooltip"] as String?,
-          showName: values["showName"] as bool,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return api.DoubleProperty(
-        values["name"] as String,
-        values["value"] as double?,
-        ifNull: values["ifNull"] as String?,
-        unit: values["unit"] as String?,
-        tooltip: values["tooltip"] as String?,
-        defaultValue: values["defaultValue"],
-        showName: values["showName"] as bool,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["ifNull"] as String?,
+          values["unit"] as String?,
+          values["tooltip"] as String?,
+          (_flaxHas5 ? values["defaultValue"] : null),
+          values["showName"] as bool,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64 | 128 | 256],
+        const <String>[
+          "",
+          "",
+          "ifNull",
+          "unit",
+          "tooltip",
+          "defaultValue",
+          "showName",
+          "style",
+          "level",
+        ],
+      ) as api.DoubleProperty;
     case "lazy":
-      if (!values.containsKey("defaultValue")) {
-        return api.DoubleProperty.lazy(
+      final _flaxHas6 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.DoubleProperty.lazy,
+        <Object?>[
           values["name"] as String,
           values["computeValue"] as double? Function(),
-          ifNull: values["ifNull"] as String?,
-          showName: values["showName"] as bool,
-          unit: values["unit"] as String?,
-          tooltip: values["tooltip"] as String?,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return api.DoubleProperty.lazy(
-        values["name"] as String,
-        values["computeValue"] as double? Function(),
-        ifNull: values["ifNull"] as String?,
-        showName: values["showName"] as bool,
-        unit: values["unit"] as String?,
-        tooltip: values["tooltip"] as String?,
-        defaultValue: values["defaultValue"],
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["ifNull"] as String?,
+          values["showName"] as bool,
+          values["unit"] as String?,
+          values["tooltip"] as String?,
+          (_flaxHas6 ? values["defaultValue"] : null),
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | 32 | (_flaxHas6 ? 64 : 0) | 128],
+        const <String>[
+          "",
+          "",
+          "ifNull",
+          "showName",
+          "unit",
+          "tooltip",
+          "defaultValue",
+          "level",
+        ],
+      ) as api.DoubleProperty;
     case '@implementation':
-      if (!values.containsKey("defaultValue")) {
-        return _DoublePropertyProxy(
+      final _flaxHas6 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _DoublePropertyProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
           values["value"] as double?,
-          ifNull: values["ifNull"] as String?,
-          unit: values["unit"] as String?,
-          tooltip: values["tooltip"] as String?,
-          showName: values["showName"] as bool,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return _DoublePropertyProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["value"] as double?,
-        ifNull: values["ifNull"] as String?,
-        unit: values["unit"] as String?,
-        tooltip: values["tooltip"] as String?,
-        defaultValue: values["defaultValue"],
-        showName: values["showName"] as bool,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["ifNull"] as String?,
+          values["unit"] as String?,
+          values["tooltip"] as String?,
+          (_flaxHas6 ? values["defaultValue"] : null),
+          values["showName"] as bool,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | 32 | (_flaxHas6 ? 64 : 0) | 128 | 256 | 512],
+        const <String>[
+          "",
+          "",
+          "",
+          "ifNull",
+          "unit",
+          "tooltip",
+          "defaultValue",
+          "showName",
+          "style",
+          "level",
+        ],
+      ) as api.DoubleProperty;
     case "@implementation:lazy":
-      if (!values.containsKey("defaultValue")) {
-        return _DoublePropertyProxy.lazy(
+      final _flaxHas7 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _DoublePropertyProxy.lazy,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
           values["computeValue"] as double? Function(),
-          ifNull: values["ifNull"] as String?,
-          showName: values["showName"] as bool,
-          unit: values["unit"] as String?,
-          tooltip: values["tooltip"] as String?,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return _DoublePropertyProxy.lazy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["computeValue"] as double? Function(),
-        ifNull: values["ifNull"] as String?,
-        showName: values["showName"] as bool,
-        unit: values["unit"] as String?,
-        tooltip: values["tooltip"] as String?,
-        defaultValue: values["defaultValue"],
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["ifNull"] as String?,
+          values["showName"] as bool,
+          values["unit"] as String?,
+          values["tooltip"] as String?,
+          (_flaxHas7 ? values["defaultValue"] : null),
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | 32 | 64 | (_flaxHas7 ? 128 : 0) | 256],
+        const <String>[
+          "",
+          "",
+          "",
+          "ifNull",
+          "showName",
+          "unit",
+          "tooltip",
+          "defaultValue",
+          "level",
+        ],
+      ) as api.DoubleProperty;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -11142,35 +11240,32 @@ Object? _EnumProperty_super_get_style(
 Object _createEnumProperty(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("defaultValue")) {
-        return api.EnumProperty<api3.Enum?>(
+      final _flaxHas2 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.EnumProperty<api3.Enum?>.new,
+        <Object?>[
           values["name"] as String,
           values["value"] as api3.Enum?,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return api.EnumProperty<api3.Enum?>(
-        values["name"] as String,
-        values["value"] as api3.Enum?,
-        defaultValue: values["defaultValue"],
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          (_flaxHas2 ? values["defaultValue"] : null),
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8],
+        const <String>["", "", "defaultValue", "level"],
+      ) as api.EnumProperty<api3.Enum?>;
     case '@implementation':
-      if (!values.containsKey("defaultValue")) {
-        return _EnumPropertyProxy<api3.Enum?>(
+      final _flaxHas3 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _EnumPropertyProxy<api3.Enum?>.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
           values["value"] as api3.Enum?,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return _EnumPropertyProxy<api3.Enum?>(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["value"] as api3.Enum?,
-        defaultValue: values["defaultValue"],
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          (_flaxHas3 ? values["defaultValue"] : null),
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16],
+        const <String>["", "", "", "defaultValue", "level"],
+      ) as api.EnumProperty<api3.Enum?>;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12597,51 +12692,59 @@ Object? _IntProperty_super_get_style(
 Object _createIntProperty(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("defaultValue")) {
-        return api.IntProperty(
+      final _flaxHas5 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.IntProperty.new,
+        <Object?>[
           values["name"] as String,
           values["value"] as int?,
-          ifNull: values["ifNull"] as String?,
-          showName: values["showName"] as bool,
-          unit: values["unit"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return api.IntProperty(
-        values["name"] as String,
-        values["value"] as int?,
-        ifNull: values["ifNull"] as String?,
-        showName: values["showName"] as bool,
-        unit: values["unit"] as String?,
-        defaultValue: values["defaultValue"],
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["ifNull"] as String?,
+          values["showName"] as bool,
+          values["unit"] as String?,
+          (_flaxHas5 ? values["defaultValue"] : null),
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64 | 128],
+        const <String>[
+          "",
+          "",
+          "ifNull",
+          "showName",
+          "unit",
+          "defaultValue",
+          "style",
+          "level",
+        ],
+      ) as api.IntProperty;
     case '@implementation':
-      if (!values.containsKey("defaultValue")) {
-        return _IntPropertyProxy(
+      final _flaxHas6 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _IntPropertyProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
           values["value"] as int?,
-          ifNull: values["ifNull"] as String?,
-          showName: values["showName"] as bool,
-          unit: values["unit"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return _IntPropertyProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["value"] as int?,
-        ifNull: values["ifNull"] as String?,
-        showName: values["showName"] as bool,
-        unit: values["unit"] as String?,
-        defaultValue: values["defaultValue"],
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["ifNull"] as String?,
+          values["showName"] as bool,
+          values["unit"] as String?,
+          (_flaxHas6 ? values["defaultValue"] : null),
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | 32 | (_flaxHas6 ? 64 : 0) | 128 | 256],
+        const <String>[
+          "",
+          "",
+          "",
+          "ifNull",
+          "showName",
+          "unit",
+          "defaultValue",
+          "style",
+          "level",
+        ],
+      ) as api.IntProperty;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12799,55 +12902,63 @@ Object? _IterableProperty_super_get_style(
 Object _createIterableProperty(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("defaultValue")) {
-        return api.IterableProperty<Object?>(
+      final _flaxHas2 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.IterableProperty<Object?>.new,
+        <Object?>[
           values["name"] as String,
           values["value"] as Iterable<Object?>?,
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return api.IterableProperty<Object?>(
-        values["name"] as String,
-        values["value"] as Iterable<Object?>?,
-        defaultValue: values["defaultValue"],
-        ifNull: values["ifNull"] as String?,
-        ifEmpty: values["ifEmpty"] as String?,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        showName: values["showName"] as bool,
-        showSeparator: values["showSeparator"] as bool,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          (_flaxHas2 ? values["defaultValue"] : null),
+          values["ifNull"] as String?,
+          values["ifEmpty"] as String?,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["showName"] as bool,
+          values["showSeparator"] as bool,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | 32 | 64 | 128 | 256],
+        const <String>[
+          "",
+          "",
+          "defaultValue",
+          "ifNull",
+          "ifEmpty",
+          "style",
+          "showName",
+          "showSeparator",
+          "level",
+        ],
+      ) as api.IterableProperty<Object?>;
     case '@implementation':
-      if (!values.containsKey("defaultValue")) {
-        return _IterablePropertyProxy<Object?>(
+      final _flaxHas3 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _IterablePropertyProxy<Object?>.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
           values["value"] as Iterable<Object?>?,
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return _IterablePropertyProxy<Object?>(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["value"] as Iterable<Object?>?,
-        defaultValue: values["defaultValue"],
-        ifNull: values["ifNull"] as String?,
-        ifEmpty: values["ifEmpty"] as String?,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        showName: values["showName"] as bool,
-        showSeparator: values["showSeparator"] as bool,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          (_flaxHas3 ? values["defaultValue"] : null),
+          values["ifNull"] as String?,
+          values["ifEmpty"] as String?,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["showName"] as bool,
+          values["showSeparator"] as bool,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32 | 64 | 128 | 256 | 512],
+        const <String>[
+          "",
+          "",
+          "",
+          "defaultValue",
+          "ifNull",
+          "ifEmpty",
+          "style",
+          "showName",
+          "showSeparator",
+          "level",
+        ],
+      ) as api.IterableProperty<Object?>;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14222,59 +14333,79 @@ Object? _StringProperty_super_get_style(
 Object _createStringProperty(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("defaultValue")) {
-        return api.StringProperty(
+      final _flaxHas5 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.StringProperty.new,
+        <Object?>[
           values["name"] as String,
           values["value"] as String?,
-          description: values["description"] as String?,
-          tooltip: values["tooltip"] as String?,
-          showName: values["showName"] as bool,
-          quoted: values["quoted"] as bool,
-          ifEmpty: values["ifEmpty"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return api.StringProperty(
-        values["name"] as String,
-        values["value"] as String?,
-        description: values["description"] as String?,
-        tooltip: values["tooltip"] as String?,
-        showName: values["showName"] as bool,
-        defaultValue: values["defaultValue"],
-        quoted: values["quoted"] as bool,
-        ifEmpty: values["ifEmpty"] as String?,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["description"] as String?,
+          values["tooltip"] as String?,
+          values["showName"] as bool,
+          (_flaxHas5 ? values["defaultValue"] : null),
+          values["quoted"] as bool,
+          values["ifEmpty"] as String?,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64 | 128 | 256 | 512],
+        const <String>[
+          "",
+          "",
+          "description",
+          "tooltip",
+          "showName",
+          "defaultValue",
+          "quoted",
+          "ifEmpty",
+          "style",
+          "level",
+        ],
+      ) as api.StringProperty;
     case '@implementation':
-      if (!values.containsKey("defaultValue")) {
-        return _StringPropertyProxy(
+      final _flaxHas6 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _StringPropertyProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
           values["value"] as String?,
-          description: values["description"] as String?,
-          tooltip: values["tooltip"] as String?,
-          showName: values["showName"] as bool,
-          quoted: values["quoted"] as bool,
-          ifEmpty: values["ifEmpty"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
-      }
-      return _StringPropertyProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["value"] as String?,
-        description: values["description"] as String?,
-        tooltip: values["tooltip"] as String?,
-        showName: values["showName"] as bool,
-        defaultValue: values["defaultValue"],
-        quoted: values["quoted"] as bool,
-        ifEmpty: values["ifEmpty"] as String?,
-        style: values["style"] as api.DiagnosticsTreeStyle,
-        level: values["level"] as api.DiagnosticLevel,
-      );
+          values["description"] as String?,
+          values["tooltip"] as String?,
+          values["showName"] as bool,
+          (_flaxHas6 ? values["defaultValue"] : null),
+          values["quoted"] as bool,
+          values["ifEmpty"] as String?,
+          values["style"] as api.DiagnosticsTreeStyle,
+          values["level"] as api.DiagnosticLevel,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024,
+        ],
+        const <String>[
+          "",
+          "",
+          "",
+          "description",
+          "tooltip",
+          "showName",
+          "defaultValue",
+          "quoted",
+          "ifEmpty",
+          "style",
+          "level",
+        ],
+      ) as api.StringProperty;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -16770,10 +16901,13 @@ final class _CachingIterableProxy<_Owner0 extends Object?>
   }
 
   List<_Owner0> _flaxSuper_toList({Object? growable = _flaxOmitted}) {
-    if (identical(growable, _flaxOmitted)) {
-      return super.toList();
-    }
-    return super.toList(growable: growable as bool);
+    final _flaxHas0 = !identical(growable, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toList,
+      <Object?>[(_flaxHas0 ? growable as bool : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["growable"],
+    ) as List<_Owner0>);
   }
 
   @override
@@ -16958,10 +17092,13 @@ final class _CachingIterableProxy<_Owner0 extends Object?>
   }
 
   String _flaxSuper_join([Object? separator = _flaxOmitted]) {
-    if (identical(separator, _flaxOmitted)) {
-      return super.join();
-    }
-    return super.join(separator as String);
+    final _flaxHas0 = !identical(separator, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.join,
+      <Object?>[(_flaxHas0 ? separator as String : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>[""],
+    ) as String);
   }
 
   @override
@@ -17015,10 +17152,13 @@ final class _CachingIterableProxy<_Owner0 extends Object?>
     bool Function(_Owner0 element) test, {
     Object? orElse = _flaxOmitted,
   }) {
-    if (identical(orElse, _flaxOmitted)) {
-      return super.firstWhere(test);
-    }
-    return super.firstWhere(test, orElse: orElse as _Owner0 Function()?);
+    final _flaxHas1 = !identical(orElse, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.firstWhere,
+      <Object?>[test, (_flaxHas1 ? orElse as _Owner0 Function()? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "orElse"],
+    ) as _Owner0);
   }
 
   @override
@@ -17042,10 +17182,13 @@ final class _CachingIterableProxy<_Owner0 extends Object?>
     bool Function(_Owner0 element) test, {
     Object? orElse = _flaxOmitted,
   }) {
-    if (identical(orElse, _flaxOmitted)) {
-      return super.lastWhere(test);
-    }
-    return super.lastWhere(test, orElse: orElse as _Owner0 Function()?);
+    final _flaxHas1 = !identical(orElse, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.lastWhere,
+      <Object?>[test, (_flaxHas1 ? orElse as _Owner0 Function()? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "orElse"],
+    ) as _Owner0);
   }
 
   @override
@@ -17069,10 +17212,13 @@ final class _CachingIterableProxy<_Owner0 extends Object?>
     bool Function(_Owner0 element) test, {
     Object? orElse = _flaxOmitted,
   }) {
-    if (identical(orElse, _flaxOmitted)) {
-      return super.singleWhere(test);
-    }
-    return super.singleWhere(test, orElse: orElse as _Owner0 Function()?);
+    final _flaxHas1 = !identical(orElse, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.singleWhere,
+      <Object?>[test, (_flaxHas1 ? orElse as _Owner0 Function()? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "orElse"],
+    ) as _Owner0);
   }
 
   @override
@@ -17496,12 +17642,15 @@ final class _DiagnosticableNodeProxy<_Owner0 extends api.Diagnosticable>
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -17585,21 +17734,17 @@ final class _DiagnosticableNodeProxy<_Owner0 extends api.Diagnosticable>
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -17628,218 +17773,35 @@ final class _DiagnosticableNodeProxy<_Owner0 extends api.Diagnosticable>
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -17965,10 +17927,13 @@ final class _DiagnosticableTreeProxy extends api.DiagnosticableTree
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -17988,19 +17953,17 @@ final class _DiagnosticableTreeProxy extends api.DiagnosticableTree
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(style: style as api.DiagnosticsTreeStyle?);
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api.DiagnosticsNode);
   }
 
   @override
@@ -18035,19 +17998,17 @@ final class _DiagnosticableTreeProxy extends api.DiagnosticableTree
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -18073,93 +18034,31 @@ final class _DiagnosticableTreeProxy extends api.DiagnosticableTree
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -18215,12 +18114,15 @@ final class _DiagnosticableTreeNodeProxy extends api.DiagnosticableTreeNode
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -18295,218 +18197,35 @@ final class _DiagnosticableTreeNodeProxy extends api.DiagnosticableTreeNode
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -18526,21 +18245,17 @@ final class _DiagnosticableTreeNodeProxy extends api.DiagnosticableTreeNode
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -18676,12 +18391,15 @@ final class _DiagnosticsBlockProxy extends api.DiagnosticsBlock
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -18765,21 +18483,17 @@ final class _DiagnosticsBlockProxy extends api.DiagnosticsBlock
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -18808,218 +18522,35 @@ final class _DiagnosticsBlockProxy extends api.DiagnosticsBlock
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -19220,21 +18751,17 @@ final class _DiagnosticsNodeProxy extends api.DiagnosticsNode
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -19263,218 +18790,35 @@ final class _DiagnosticsNodeProxy extends api.DiagnosticsNode
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -19616,12 +18960,15 @@ final class _DiagnosticsPropertyProxy<_Owner0 extends Object?>
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -19705,21 +19052,17 @@ final class _DiagnosticsPropertyProxy<_Owner0 extends Object?>
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -19748,218 +19091,35 @@ final class _DiagnosticsPropertyProxy<_Owner0 extends Object?>
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -19974,12 +19134,15 @@ final class _DiagnosticsPropertyProxy<_Owner0 extends Object?>
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -20303,12 +19466,15 @@ final class _DiagnosticsStackTraceProxy extends api.DiagnosticsStackTrace
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -20383,218 +19549,35 @@ final class _DiagnosticsStackTraceProxy extends api.DiagnosticsStackTrace
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -20614,21 +19597,17 @@ final class _DiagnosticsStackTraceProxy extends api.DiagnosticsStackTrace
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -20791,12 +19770,15 @@ final class _DoublePropertyProxy extends api.DoubleProperty
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -20811,12 +19793,15 @@ final class _DoublePropertyProxy extends api.DoubleProperty
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -20894,218 +19879,35 @@ final class _DoublePropertyProxy extends api.DoubleProperty
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -21125,21 +19927,17 @@ final class _DoublePropertyProxy extends api.DoubleProperty
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -21357,12 +20155,15 @@ final class _EnumPropertyProxy<_Owner0 extends api3.Enum?>
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -21377,12 +20178,15 @@ final class _EnumPropertyProxy<_Owner0 extends api3.Enum?>
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -21460,218 +20264,35 @@ final class _EnumPropertyProxy<_Owner0 extends api3.Enum?>
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -21691,21 +20312,17 @@ final class _EnumPropertyProxy<_Owner0 extends api3.Enum?>
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -21890,12 +20507,15 @@ final class _ErrorDescriptionProxy extends api.ErrorDescription
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -21910,12 +20530,15 @@ final class _ErrorDescriptionProxy extends api.ErrorDescription
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -21993,218 +20616,35 @@ final class _ErrorDescriptionProxy extends api.ErrorDescription
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -22224,21 +20664,17 @@ final class _ErrorDescriptionProxy extends api.ErrorDescription
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -22423,12 +20859,15 @@ final class _ErrorHintProxy extends api.ErrorHint
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -22443,12 +20882,15 @@ final class _ErrorHintProxy extends api.ErrorHint
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -22526,218 +20968,35 @@ final class _ErrorHintProxy extends api.ErrorHint
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -22757,21 +21016,17 @@ final class _ErrorHintProxy extends api.ErrorHint
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -22956,12 +21211,15 @@ final class _ErrorSpacerProxy extends api.ErrorSpacer
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -22976,12 +21234,15 @@ final class _ErrorSpacerProxy extends api.ErrorSpacer
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -23059,218 +21320,35 @@ final class _ErrorSpacerProxy extends api.ErrorSpacer
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -23290,21 +21368,17 @@ final class _ErrorSpacerProxy extends api.ErrorSpacer
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -23491,12 +21565,15 @@ final class _ErrorSummaryProxy extends api.ErrorSummary
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -23511,12 +21588,15 @@ final class _ErrorSummaryProxy extends api.ErrorSummary
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -23594,218 +21674,35 @@ final class _ErrorSummaryProxy extends api.ErrorSummary
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -23825,21 +21722,17 @@ final class _ErrorSummaryProxy extends api.ErrorSummary
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -24071,12 +21964,15 @@ final class _FlagPropertyProxy extends api.FlagProperty
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -24091,12 +21987,15 @@ final class _FlagPropertyProxy extends api.FlagProperty
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -24174,218 +22073,35 @@ final class _FlagPropertyProxy extends api.FlagProperty
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -24405,21 +22121,17 @@ final class _FlagPropertyProxy extends api.FlagProperty
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -24637,12 +22349,15 @@ final class _FlagsSummaryProxy<_Owner0 extends Object?>
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -24657,12 +22372,15 @@ final class _FlagsSummaryProxy<_Owner0 extends Object?>
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -24740,218 +22458,35 @@ final class _FlagsSummaryProxy<_Owner0 extends Object?>
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -24971,21 +22506,17 @@ final class _FlagsSummaryProxy<_Owner0 extends Object?>
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -25148,10 +22679,13 @@ final class _FlutterErrorProxy extends api.FlutterError
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -25171,19 +22705,17 @@ final class _FlutterErrorProxy extends api.FlutterError
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -25209,93 +22741,31 @@ final class _FlutterErrorProxy extends api.FlutterError
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -25324,19 +22794,17 @@ final class _FlutterErrorProxy extends api.FlutterError
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(style: style as api.DiagnosticsTreeStyle?);
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api.DiagnosticsNode);
   }
 
   @override
@@ -25436,10 +22904,13 @@ final class _FlutterErrorDetailsProxy extends api.FlutterErrorDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -25459,19 +22930,17 @@ final class _FlutterErrorDetailsProxy extends api.FlutterErrorDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(style: style as api.DiagnosticsTreeStyle?);
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api.DiagnosticsNode);
   }
 
   @override
@@ -25533,20 +23002,47 @@ final class _FlutterErrorDetailsProxy extends api.FlutterErrorDetails
     Object? stack = _flaxOmitted,
     Object? stackFilter = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(context, _flaxOmitted))
-        #context: context as api.DiagnosticsNode?,
-      if (!identical(exception, _flaxOmitted)) #exception: exception,
-      if (!identical(informationCollector, _flaxOmitted))
-        #informationCollector:
-            informationCollector as Iterable<api.DiagnosticsNode> Function()?,
-      if (!identical(library, _flaxOmitted)) #library: library as String?,
-      if (!identical(silent, _flaxOmitted)) #silent: silent as bool?,
-      if (!identical(stack, _flaxOmitted)) #stack: stack as api3.StackTrace?,
-      if (!identical(stackFilter, _flaxOmitted))
-        #stackFilter:
-            stackFilter as Iterable<String> Function(Iterable<String> input)?,
-    }) as api.FlutterErrorDetails);
+    final _flaxHas0 = !identical(context, _flaxOmitted);
+    final _flaxHas1 = !identical(exception, _flaxOmitted);
+    final _flaxHas2 = !identical(informationCollector, _flaxOmitted);
+    final _flaxHas3 = !identical(library, _flaxOmitted);
+    final _flaxHas4 = !identical(silent, _flaxOmitted);
+    final _flaxHas5 = !identical(stack, _flaxOmitted);
+    final _flaxHas6 = !identical(stackFilter, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? context as api.DiagnosticsNode? : null),
+        (_flaxHas1 ? exception : null),
+        (_flaxHas2
+            ? informationCollector as Iterable<api.DiagnosticsNode> Function()?
+            : null),
+        (_flaxHas3 ? library as String? : null),
+        (_flaxHas4 ? silent as bool? : null),
+        (_flaxHas5 ? stack as api3.StackTrace? : null),
+        (_flaxHas6
+            ? stackFilter as Iterable<String> Function(Iterable<String> input)?
+            : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0),
+      ],
+      const <String>[
+        "context",
+        "exception",
+        "informationCollector",
+        "library",
+        "silent",
+        "stack",
+        "stackFilter",
+      ],
+    ) as api.FlutterErrorDetails);
   }
 
   @override
@@ -25730,10 +23226,13 @@ final class _HashedObserverListProxy<_Owner0 extends Object?>
   }
 
   List<_Owner0> _flaxSuper_toList({Object? growable = _flaxOmitted}) {
-    if (identical(growable, _flaxOmitted)) {
-      return super.toList();
-    }
-    return super.toList(growable: growable as bool);
+    final _flaxHas0 = !identical(growable, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toList,
+      <Object?>[(_flaxHas0 ? growable as bool : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["growable"],
+    ) as List<_Owner0>);
   }
 
   @override
@@ -25993,10 +23492,13 @@ final class _HashedObserverListProxy<_Owner0 extends Object?>
   }
 
   String _flaxSuper_join([Object? separator = _flaxOmitted]) {
-    if (identical(separator, _flaxOmitted)) {
-      return super.join();
-    }
-    return super.join(separator as String);
+    final _flaxHas0 = !identical(separator, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.join,
+      <Object?>[(_flaxHas0 ? separator as String : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>[""],
+    ) as String);
   }
 
   @override
@@ -26114,10 +23616,13 @@ final class _HashedObserverListProxy<_Owner0 extends Object?>
     bool Function(_Owner0 element) test, {
     Object? orElse = _flaxOmitted,
   }) {
-    if (identical(orElse, _flaxOmitted)) {
-      return super.firstWhere(test);
-    }
-    return super.firstWhere(test, orElse: orElse as _Owner0 Function()?);
+    final _flaxHas1 = !identical(orElse, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.firstWhere,
+      <Object?>[test, (_flaxHas1 ? orElse as _Owner0 Function()? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "orElse"],
+    ) as _Owner0);
   }
 
   @override
@@ -26141,10 +23646,13 @@ final class _HashedObserverListProxy<_Owner0 extends Object?>
     bool Function(_Owner0 element) test, {
     Object? orElse = _flaxOmitted,
   }) {
-    if (identical(orElse, _flaxOmitted)) {
-      return super.lastWhere(test);
-    }
-    return super.lastWhere(test, orElse: orElse as _Owner0 Function()?);
+    final _flaxHas1 = !identical(orElse, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.lastWhere,
+      <Object?>[test, (_flaxHas1 ? orElse as _Owner0 Function()? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "orElse"],
+    ) as _Owner0);
   }
 
   @override
@@ -26168,10 +23676,13 @@ final class _HashedObserverListProxy<_Owner0 extends Object?>
     bool Function(_Owner0 element) test, {
     Object? orElse = _flaxOmitted,
   }) {
-    if (identical(orElse, _flaxOmitted)) {
-      return super.singleWhere(test);
-    }
-    return super.singleWhere(test, orElse: orElse as _Owner0 Function()?);
+    final _flaxHas1 = !identical(orElse, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.singleWhere,
+      <Object?>[test, (_flaxHas1 ? orElse as _Owner0 Function()? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "orElse"],
+    ) as _Owner0);
   }
 
   @override
@@ -26481,12 +23992,15 @@ final class _IntPropertyProxy extends api.IntProperty
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -26501,12 +24015,15 @@ final class _IntPropertyProxy extends api.IntProperty
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -26584,218 +24101,35 @@ final class _IntPropertyProxy extends api.IntProperty
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -26815,21 +24149,17 @@ final class _IntPropertyProxy extends api.IntProperty
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -27052,12 +24382,15 @@ final class _IterablePropertyProxy<_Owner0 extends Object?>
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -27072,12 +24405,15 @@ final class _IterablePropertyProxy<_Owner0 extends Object?>
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -27155,218 +24491,35 @@ final class _IterablePropertyProxy<_Owner0 extends Object?>
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -27386,21 +24539,17 @@ final class _IterablePropertyProxy<_Owner0 extends Object?>
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -27674,12 +24823,15 @@ final class _MessagePropertyProxy extends api.MessageProperty
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -27694,12 +24846,15 @@ final class _MessagePropertyProxy extends api.MessageProperty
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -27777,218 +24932,35 @@ final class _MessagePropertyProxy extends api.MessageProperty
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -28008,21 +24980,17 @@ final class _MessagePropertyProxy extends api.MessageProperty
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -28312,12 +25280,15 @@ final class _ObjectFlagPropertyProxy<_Owner0 extends Object?>
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -28332,12 +25303,15 @@ final class _ObjectFlagPropertyProxy<_Owner0 extends Object?>
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -28415,218 +25389,35 @@ final class _ObjectFlagPropertyProxy<_Owner0 extends Object?>
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -28646,21 +25437,17 @@ final class _ObjectFlagPropertyProxy<_Owner0 extends Object?>
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -28888,10 +25675,13 @@ final class _ObserverListProxy<_Owner0 extends Object?>
   }
 
   List<_Owner0> _flaxSuper_toList({Object? growable = _flaxOmitted}) {
-    if (identical(growable, _flaxOmitted)) {
-      return super.toList();
-    }
-    return super.toList(growable: growable as bool);
+    final _flaxHas0 = !identical(growable, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toList,
+      <Object?>[(_flaxHas0 ? growable as bool : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["growable"],
+    ) as List<_Owner0>);
   }
 
   @override
@@ -29151,10 +25941,13 @@ final class _ObserverListProxy<_Owner0 extends Object?>
   }
 
   String _flaxSuper_join([Object? separator = _flaxOmitted]) {
-    if (identical(separator, _flaxOmitted)) {
-      return super.join();
-    }
-    return super.join(separator as String);
+    final _flaxHas0 = !identical(separator, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.join,
+      <Object?>[(_flaxHas0 ? separator as String : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>[""],
+    ) as String);
   }
 
   @override
@@ -29272,10 +26065,13 @@ final class _ObserverListProxy<_Owner0 extends Object?>
     bool Function(_Owner0 element) test, {
     Object? orElse = _flaxOmitted,
   }) {
-    if (identical(orElse, _flaxOmitted)) {
-      return super.firstWhere(test);
-    }
-    return super.firstWhere(test, orElse: orElse as _Owner0 Function()?);
+    final _flaxHas1 = !identical(orElse, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.firstWhere,
+      <Object?>[test, (_flaxHas1 ? orElse as _Owner0 Function()? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "orElse"],
+    ) as _Owner0);
   }
 
   @override
@@ -29299,10 +26095,13 @@ final class _ObserverListProxy<_Owner0 extends Object?>
     bool Function(_Owner0 element) test, {
     Object? orElse = _flaxOmitted,
   }) {
-    if (identical(orElse, _flaxOmitted)) {
-      return super.lastWhere(test);
-    }
-    return super.lastWhere(test, orElse: orElse as _Owner0 Function()?);
+    final _flaxHas1 = !identical(orElse, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.lastWhere,
+      <Object?>[test, (_flaxHas1 ? orElse as _Owner0 Function()? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "orElse"],
+    ) as _Owner0);
   }
 
   @override
@@ -29326,10 +26125,13 @@ final class _ObserverListProxy<_Owner0 extends Object?>
     bool Function(_Owner0 element) test, {
     Object? orElse = _flaxOmitted,
   }) {
-    if (identical(orElse, _flaxOmitted)) {
-      return super.singleWhere(test);
-    }
-    return super.singleWhere(test, orElse: orElse as _Owner0 Function()?);
+    final _flaxHas1 = !identical(orElse, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.singleWhere,
+      <Object?>[test, (_flaxHas1 ? orElse as _Owner0 Function()? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "orElse"],
+    ) as _Owner0);
   }
 
   @override
@@ -29702,12 +26504,15 @@ final class _PercentPropertyProxy extends api.PercentProperty
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -29722,12 +26527,15 @@ final class _PercentPropertyProxy extends api.PercentProperty
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -29805,218 +26613,35 @@ final class _PercentPropertyProxy extends api.PercentProperty
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -30036,21 +26661,17 @@ final class _PercentPropertyProxy extends api.PercentProperty
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -30285,10 +26906,13 @@ final class _ReadBufferProxy extends api.ReadBuffer {
   }
 
   int _flaxSuper_getUint16({Object? endian = _flaxOmitted}) {
-    if (identical(endian, _flaxOmitted)) {
-      return super.getUint16();
-    }
-    return super.getUint16(endian: endian as api.Endian?);
+    final _flaxHas0 = !identical(endian, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getUint16,
+      <Object?>[(_flaxHas0 ? endian as api.Endian? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["endian"],
+    ) as int);
   }
 
   @override
@@ -30304,10 +26928,13 @@ final class _ReadBufferProxy extends api.ReadBuffer {
   }
 
   int _flaxSuper_getUint32({Object? endian = _flaxOmitted}) {
-    if (identical(endian, _flaxOmitted)) {
-      return super.getUint32();
-    }
-    return super.getUint32(endian: endian as api.Endian?);
+    final _flaxHas0 = !identical(endian, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getUint32,
+      <Object?>[(_flaxHas0 ? endian as api.Endian? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["endian"],
+    ) as int);
   }
 
   @override
@@ -30323,10 +26950,13 @@ final class _ReadBufferProxy extends api.ReadBuffer {
   }
 
   int _flaxSuper_getInt32({Object? endian = _flaxOmitted}) {
-    if (identical(endian, _flaxOmitted)) {
-      return super.getInt32();
-    }
-    return super.getInt32(endian: endian as api.Endian?);
+    final _flaxHas0 = !identical(endian, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getInt32,
+      <Object?>[(_flaxHas0 ? endian as api.Endian? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["endian"],
+    ) as int);
   }
 
   @override
@@ -30342,10 +26972,13 @@ final class _ReadBufferProxy extends api.ReadBuffer {
   }
 
   int _flaxSuper_getInt64({Object? endian = _flaxOmitted}) {
-    if (identical(endian, _flaxOmitted)) {
-      return super.getInt64();
-    }
-    return super.getInt64(endian: endian as api.Endian?);
+    final _flaxHas0 = !identical(endian, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getInt64,
+      <Object?>[(_flaxHas0 ? endian as api.Endian? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["endian"],
+    ) as int);
   }
 
   @override
@@ -30361,10 +26994,13 @@ final class _ReadBufferProxy extends api.ReadBuffer {
   }
 
   double _flaxSuper_getFloat64({Object? endian = _flaxOmitted}) {
-    if (identical(endian, _flaxOmitted)) {
-      return super.getFloat64();
-    }
-    return super.getFloat64(endian: endian as api.Endian?);
+    final _flaxHas0 = !identical(endian, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getFloat64,
+      <Object?>[(_flaxHas0 ? endian as api.Endian? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["endian"],
+    ) as double);
   }
 
   @override
@@ -30735,12 +27371,15 @@ final class _StringPropertyProxy extends api.StringProperty
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -30755,12 +27394,15 @@ final class _StringPropertyProxy extends api.StringProperty
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -30838,218 +27480,35 @@ final class _StringPropertyProxy extends api.StringProperty
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-        minLevel: minLevel as api.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -31069,21 +27528,17 @@ final class _StringPropertyProxy extends api.StringProperty
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      minLevel: minLevel as api.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -31292,13 +27747,16 @@ final class _SynchronousFutureProxy<_Owner0 extends Object?>
     Function onError, {
     Object? test = _flaxOmitted,
   }) {
-    if (identical(test, _flaxOmitted)) {
-      return super.catchError(onError);
-    }
-    return super.catchError(
-      onError,
-      test: test as bool Function(Object error)?,
-    );
+    final _flaxHas1 = !identical(test, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.catchError,
+      <Object?>[
+        onError,
+        (_flaxHas1 ? test as bool Function(Object error)? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "test"],
+    ) as Future<_Owner0>);
   }
 
   @override
@@ -31340,10 +27798,13 @@ final class _SynchronousFutureProxy<_Owner0 extends Object?>
     api5.FutureOr<R> Function(_Owner0 value) onValue, {
     Object? onError = _flaxOmitted,
   }) {
-    if (identical(onError, _flaxOmitted)) {
-      return super.then<R>(onValue);
-    }
-    return super.then<R>(onValue, onError: onError as Function?);
+    final _flaxHas1 = !identical(onError, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.then<R>,
+      <Object?>[onValue, (_flaxHas1 ? onError as Function? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "onError"],
+    ) as Future<R>);
   }
 
   @override
@@ -31370,13 +27831,16 @@ final class _SynchronousFutureProxy<_Owner0 extends Object?>
     api3.Duration timeLimit, {
     Object? onTimeout = _flaxOmitted,
   }) {
-    if (identical(onTimeout, _flaxOmitted)) {
-      return super.timeout(timeLimit);
-    }
-    return super.timeout(
-      timeLimit,
-      onTimeout: onTimeout as api5.FutureOr<_Owner0> Function()?,
-    );
+    final _flaxHas1 = !identical(onTimeout, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.timeout,
+      <Object?>[
+        timeLimit,
+        (_flaxHas1 ? onTimeout as api5.FutureOr<_Owner0> Function()? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "onTimeout"],
+    ) as Future<_Owner0>);
   }
 
   @override
@@ -31900,52 +28364,27 @@ final class _TextTreeRendererProxy extends api.TextTreeRenderer {
     Object? prefixOtherLines = _flaxOmitted,
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          return super.render(node);
-        }
-        return super.render(
-          node,
-          parentConfiguration:
-              parentConfiguration as api.TextTreeConfiguration?,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        return super.render(
-          node,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.render(
+    final _flaxHas1 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas2 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas3 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.render,
+      <Object?>[
         node,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        return super.render(node, prefixLineOne: prefixLineOne as String);
-      }
-      return super.render(
-        node,
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.render(
-        node,
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-      );
-    }
-    return super.render(
-      node,
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api.TextTreeConfiguration?,
-    );
+        (_flaxHas1 ? prefixLineOne as String : null),
+        (_flaxHas2 ? prefixOtherLines as String? : null),
+        (_flaxHas3 ? parentConfiguration as api.TextTreeConfiguration? : null),
+      ],
+      <int>[
+        1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0) | (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "",
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+      ],
+    ) as String);
   }
 }
 
@@ -36573,157 +33012,241 @@ Function _flaxClass_DiagnosticsProperty<
   Object _createDiagnosticsProperty(String ctor, Map<String, Object?> values) {
     switch (ctor) {
       case "":
-        if (!values.containsKey("defaultValue")) {
-          return api.DiagnosticsProperty<_Owner0>(
+        final _flaxHas7 = values.containsKey("defaultValue");
+        return flaxInvokeWithDefaults(
+          api.DiagnosticsProperty<_Owner0>.new,
+          <Object?>[
             values["name"] as String?,
             values["value"] as _Owner0?,
-            description: values["description"] as String?,
-            ifNull: values["ifNull"] as String?,
-            ifEmpty: values["ifEmpty"] as String?,
-            showName: values["showName"] as bool,
-            showSeparator: values["showSeparator"] as bool,
-            tooltip: values["tooltip"] as String?,
-            missingIfNull: values["missingIfNull"] as bool,
-            linePrefix: values["linePrefix"] as String?,
-            expandableValue: values["expandableValue"] as bool,
-            allowWrap: values["allowWrap"] as bool,
-            allowNameWrap: values["allowNameWrap"] as bool,
-            style: values["style"] as api.DiagnosticsTreeStyle,
-            level: values["level"] as api.DiagnosticLevel,
-          );
-        }
-        return api.DiagnosticsProperty<_Owner0>(
-          values["name"] as String?,
-          values["value"] as _Owner0?,
-          description: values["description"] as String?,
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          defaultValue: values["defaultValue"],
-          tooltip: values["tooltip"] as String?,
-          missingIfNull: values["missingIfNull"] as bool,
-          linePrefix: values["linePrefix"] as String?,
-          expandableValue: values["expandableValue"] as bool,
-          allowWrap: values["allowWrap"] as bool,
-          allowNameWrap: values["allowNameWrap"] as bool,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
+            values["description"] as String?,
+            values["ifNull"] as String?,
+            values["ifEmpty"] as String?,
+            values["showName"] as bool,
+            values["showSeparator"] as bool,
+            (_flaxHas7 ? values["defaultValue"] : null),
+            values["tooltip"] as String?,
+            values["missingIfNull"] as bool,
+            values["linePrefix"] as String?,
+            values["expandableValue"] as bool,
+            values["allowWrap"] as bool,
+            values["allowNameWrap"] as bool,
+            values["style"] as api.DiagnosticsTreeStyle,
+            values["level"] as api.DiagnosticLevel,
+          ],
+          <int>[
+            1 |
+                2 |
+                4 |
+                8 |
+                16 |
+                32 |
+                64 |
+                (_flaxHas7 ? 128 : 0) |
+                256 |
+                512 |
+                1024 |
+                2048 |
+                4096 |
+                8192 |
+                16384 |
+                32768,
+          ],
+          const <String>[
+            "",
+            "",
+            "description",
+            "ifNull",
+            "ifEmpty",
+            "showName",
+            "showSeparator",
+            "defaultValue",
+            "tooltip",
+            "missingIfNull",
+            "linePrefix",
+            "expandableValue",
+            "allowWrap",
+            "allowNameWrap",
+            "style",
+            "level",
+          ],
+        ) as api.DiagnosticsProperty<_Owner0>;
       case "lazy":
-        if (!values.containsKey("defaultValue")) {
-          return api.DiagnosticsProperty<_Owner0>.lazy(
+        final _flaxHas7 = values.containsKey("defaultValue");
+        return flaxInvokeWithDefaults(
+          api.DiagnosticsProperty<_Owner0>.lazy,
+          <Object?>[
             values["name"] as String?,
             values["computeValue"] as _Owner0? Function(),
-            description: values["description"] as String?,
-            ifNull: values["ifNull"] as String?,
-            ifEmpty: values["ifEmpty"] as String?,
-            showName: values["showName"] as bool,
-            showSeparator: values["showSeparator"] as bool,
-            tooltip: values["tooltip"] as String?,
-            missingIfNull: values["missingIfNull"] as bool,
-            expandableValue: values["expandableValue"] as bool,
-            allowWrap: values["allowWrap"] as bool,
-            allowNameWrap: values["allowNameWrap"] as bool,
-            style: values["style"] as api.DiagnosticsTreeStyle,
-            level: values["level"] as api.DiagnosticLevel,
-          );
-        }
-        return api.DiagnosticsProperty<_Owner0>.lazy(
-          values["name"] as String?,
-          values["computeValue"] as _Owner0? Function(),
-          description: values["description"] as String?,
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          defaultValue: values["defaultValue"],
-          tooltip: values["tooltip"] as String?,
-          missingIfNull: values["missingIfNull"] as bool,
-          expandableValue: values["expandableValue"] as bool,
-          allowWrap: values["allowWrap"] as bool,
-          allowNameWrap: values["allowNameWrap"] as bool,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
+            values["description"] as String?,
+            values["ifNull"] as String?,
+            values["ifEmpty"] as String?,
+            values["showName"] as bool,
+            values["showSeparator"] as bool,
+            (_flaxHas7 ? values["defaultValue"] : null),
+            values["tooltip"] as String?,
+            values["missingIfNull"] as bool,
+            values["expandableValue"] as bool,
+            values["allowWrap"] as bool,
+            values["allowNameWrap"] as bool,
+            values["style"] as api.DiagnosticsTreeStyle,
+            values["level"] as api.DiagnosticLevel,
+          ],
+          <int>[
+            1 |
+                2 |
+                4 |
+                8 |
+                16 |
+                32 |
+                64 |
+                (_flaxHas7 ? 128 : 0) |
+                256 |
+                512 |
+                1024 |
+                2048 |
+                4096 |
+                8192 |
+                16384,
+          ],
+          const <String>[
+            "",
+            "",
+            "description",
+            "ifNull",
+            "ifEmpty",
+            "showName",
+            "showSeparator",
+            "defaultValue",
+            "tooltip",
+            "missingIfNull",
+            "expandableValue",
+            "allowWrap",
+            "allowNameWrap",
+            "style",
+            "level",
+          ],
+        ) as api.DiagnosticsProperty<_Owner0>;
       case "@implementation":
-        if (!values.containsKey("defaultValue")) {
-          return _DiagnosticsPropertyProxy<_Owner0>(
+        final _flaxHas8 = values.containsKey("defaultValue");
+        return flaxInvokeWithDefaults(
+          _DiagnosticsPropertyProxy<_Owner0>.new,
+          <Object?>[
             values['@peer'] as FlaxProxyPeer,
             values["name"] as String?,
             values["value"] as _Owner0?,
-            description: values["description"] as String?,
-            ifNull: values["ifNull"] as String?,
-            ifEmpty: values["ifEmpty"] as String?,
-            showName: values["showName"] as bool,
-            showSeparator: values["showSeparator"] as bool,
-            tooltip: values["tooltip"] as String?,
-            missingIfNull: values["missingIfNull"] as bool,
-            linePrefix: values["linePrefix"] as String?,
-            expandableValue: values["expandableValue"] as bool,
-            allowWrap: values["allowWrap"] as bool,
-            allowNameWrap: values["allowNameWrap"] as bool,
-            style: values["style"] as api.DiagnosticsTreeStyle,
-            level: values["level"] as api.DiagnosticLevel,
-          );
-        }
-        return _DiagnosticsPropertyProxy<_Owner0>(
-          values['@peer'] as FlaxProxyPeer,
-          values["name"] as String?,
-          values["value"] as _Owner0?,
-          description: values["description"] as String?,
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          defaultValue: values["defaultValue"],
-          tooltip: values["tooltip"] as String?,
-          missingIfNull: values["missingIfNull"] as bool,
-          linePrefix: values["linePrefix"] as String?,
-          expandableValue: values["expandableValue"] as bool,
-          allowWrap: values["allowWrap"] as bool,
-          allowNameWrap: values["allowNameWrap"] as bool,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
+            values["description"] as String?,
+            values["ifNull"] as String?,
+            values["ifEmpty"] as String?,
+            values["showName"] as bool,
+            values["showSeparator"] as bool,
+            (_flaxHas8 ? values["defaultValue"] : null),
+            values["tooltip"] as String?,
+            values["missingIfNull"] as bool,
+            values["linePrefix"] as String?,
+            values["expandableValue"] as bool,
+            values["allowWrap"] as bool,
+            values["allowNameWrap"] as bool,
+            values["style"] as api.DiagnosticsTreeStyle,
+            values["level"] as api.DiagnosticLevel,
+          ],
+          <int>[
+            1 |
+                2 |
+                4 |
+                8 |
+                16 |
+                32 |
+                64 |
+                128 |
+                (_flaxHas8 ? 256 : 0) |
+                512 |
+                1024 |
+                2048 |
+                4096 |
+                8192 |
+                16384 |
+                32768 |
+                65536,
+          ],
+          const <String>[
+            "",
+            "",
+            "",
+            "description",
+            "ifNull",
+            "ifEmpty",
+            "showName",
+            "showSeparator",
+            "defaultValue",
+            "tooltip",
+            "missingIfNull",
+            "linePrefix",
+            "expandableValue",
+            "allowWrap",
+            "allowNameWrap",
+            "style",
+            "level",
+          ],
+        ) as api.DiagnosticsProperty<_Owner0>;
       case "@implementation:lazy":
-        if (!values.containsKey("defaultValue")) {
-          return _DiagnosticsPropertyProxy<_Owner0>.lazy(
+        final _flaxHas8 = values.containsKey("defaultValue");
+        return flaxInvokeWithDefaults(
+          _DiagnosticsPropertyProxy<_Owner0>.lazy,
+          <Object?>[
             values['@peer'] as FlaxProxyPeer,
             values["name"] as String?,
             values["computeValue"] as _Owner0? Function(),
-            description: values["description"] as String?,
-            ifNull: values["ifNull"] as String?,
-            ifEmpty: values["ifEmpty"] as String?,
-            showName: values["showName"] as bool,
-            showSeparator: values["showSeparator"] as bool,
-            tooltip: values["tooltip"] as String?,
-            missingIfNull: values["missingIfNull"] as bool,
-            expandableValue: values["expandableValue"] as bool,
-            allowWrap: values["allowWrap"] as bool,
-            allowNameWrap: values["allowNameWrap"] as bool,
-            style: values["style"] as api.DiagnosticsTreeStyle,
-            level: values["level"] as api.DiagnosticLevel,
-          );
-        }
-        return _DiagnosticsPropertyProxy<_Owner0>.lazy(
-          values['@peer'] as FlaxProxyPeer,
-          values["name"] as String?,
-          values["computeValue"] as _Owner0? Function(),
-          description: values["description"] as String?,
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          defaultValue: values["defaultValue"],
-          tooltip: values["tooltip"] as String?,
-          missingIfNull: values["missingIfNull"] as bool,
-          expandableValue: values["expandableValue"] as bool,
-          allowWrap: values["allowWrap"] as bool,
-          allowNameWrap: values["allowNameWrap"] as bool,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          level: values["level"] as api.DiagnosticLevel,
-        );
+            values["description"] as String?,
+            values["ifNull"] as String?,
+            values["ifEmpty"] as String?,
+            values["showName"] as bool,
+            values["showSeparator"] as bool,
+            (_flaxHas8 ? values["defaultValue"] : null),
+            values["tooltip"] as String?,
+            values["missingIfNull"] as bool,
+            values["expandableValue"] as bool,
+            values["allowWrap"] as bool,
+            values["allowNameWrap"] as bool,
+            values["style"] as api.DiagnosticsTreeStyle,
+            values["level"] as api.DiagnosticLevel,
+          ],
+          <int>[
+            1 |
+                2 |
+                4 |
+                8 |
+                16 |
+                32 |
+                64 |
+                128 |
+                (_flaxHas8 ? 256 : 0) |
+                512 |
+                1024 |
+                2048 |
+                4096 |
+                8192 |
+                16384 |
+                32768,
+          ],
+          const <String>[
+            "",
+            "",
+            "",
+            "description",
+            "ifNull",
+            "ifEmpty",
+            "showName",
+            "showSeparator",
+            "defaultValue",
+            "tooltip",
+            "missingIfNull",
+            "expandableValue",
+            "allowWrap",
+            "allowNameWrap",
+            "style",
+            "level",
+          ],
+        ) as api.DiagnosticsProperty<_Owner0>;
       default:
         throw ArgumentError("Unknown constructor");
     }
@@ -37942,35 +34465,32 @@ Function _flaxClass_EnumProperty<
   Object _createEnumProperty(String ctor, Map<String, Object?> values) {
     switch (ctor) {
       case "":
-        if (!values.containsKey("defaultValue")) {
-          return api.EnumProperty<_Owner0>(
+        final _flaxHas2 = values.containsKey("defaultValue");
+        return flaxInvokeWithDefaults(
+          api.EnumProperty<_Owner0>.new,
+          <Object?>[
             values["name"] as String,
             values["value"] as _Owner0?,
-            level: values["level"] as api.DiagnosticLevel,
-          );
-        }
-        return api.EnumProperty<_Owner0>(
-          values["name"] as String,
-          values["value"] as _Owner0?,
-          defaultValue: values["defaultValue"],
-          level: values["level"] as api.DiagnosticLevel,
-        );
+            (_flaxHas2 ? values["defaultValue"] : null),
+            values["level"] as api.DiagnosticLevel,
+          ],
+          <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8],
+          const <String>["", "", "defaultValue", "level"],
+        ) as api.EnumProperty<_Owner0>;
       case "@implementation":
-        if (!values.containsKey("defaultValue")) {
-          return _EnumPropertyProxy<_Owner0>(
+        final _flaxHas3 = values.containsKey("defaultValue");
+        return flaxInvokeWithDefaults(
+          _EnumPropertyProxy<_Owner0>.new,
+          <Object?>[
             values['@peer'] as FlaxProxyPeer,
             values["name"] as String,
             values["value"] as _Owner0?,
-            level: values["level"] as api.DiagnosticLevel,
-          );
-        }
-        return _EnumPropertyProxy<_Owner0>(
-          values['@peer'] as FlaxProxyPeer,
-          values["name"] as String,
-          values["value"] as _Owner0?,
-          defaultValue: values["defaultValue"],
-          level: values["level"] as api.DiagnosticLevel,
-        );
+            (_flaxHas3 ? values["defaultValue"] : null),
+            values["level"] as api.DiagnosticLevel,
+          ],
+          <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16],
+          const <String>["", "", "", "defaultValue", "level"],
+        ) as api.EnumProperty<_Owner0>;
       default:
         throw ArgumentError("Unknown constructor");
     }
@@ -43435,55 +39955,65 @@ Function _flaxClass_IterableProperty<
   Object _createIterableProperty(String ctor, Map<String, Object?> values) {
     switch (ctor) {
       case "":
-        if (!values.containsKey("defaultValue")) {
-          return api.IterableProperty<_Owner0>(
+        final _flaxHas2 = values.containsKey("defaultValue");
+        return flaxInvokeWithDefaults(
+          api.IterableProperty<_Owner0>.new,
+          <Object?>[
             values["name"] as String,
             values["value"] as Iterable<_Owner0>?,
-            ifNull: values["ifNull"] as String?,
-            ifEmpty: values["ifEmpty"] as String?,
-            style: values["style"] as api.DiagnosticsTreeStyle,
-            showName: values["showName"] as bool,
-            showSeparator: values["showSeparator"] as bool,
-            level: values["level"] as api.DiagnosticLevel,
-          );
-        }
-        return api.IterableProperty<_Owner0>(
-          values["name"] as String,
-          values["value"] as Iterable<_Owner0>?,
-          defaultValue: values["defaultValue"],
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          level: values["level"] as api.DiagnosticLevel,
-        );
+            (_flaxHas2 ? values["defaultValue"] : null),
+            values["ifNull"] as String?,
+            values["ifEmpty"] as String?,
+            values["style"] as api.DiagnosticsTreeStyle,
+            values["showName"] as bool,
+            values["showSeparator"] as bool,
+            values["level"] as api.DiagnosticLevel,
+          ],
+          <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | 32 | 64 | 128 | 256],
+          const <String>[
+            "",
+            "",
+            "defaultValue",
+            "ifNull",
+            "ifEmpty",
+            "style",
+            "showName",
+            "showSeparator",
+            "level",
+          ],
+        ) as api.IterableProperty<_Owner0>;
       case "@implementation":
-        if (!values.containsKey("defaultValue")) {
-          return _IterablePropertyProxy<_Owner0>(
+        final _flaxHas3 = values.containsKey("defaultValue");
+        return flaxInvokeWithDefaults(
+          _IterablePropertyProxy<_Owner0>.new,
+          <Object?>[
             values['@peer'] as FlaxProxyPeer,
             values["name"] as String,
             values["value"] as Iterable<_Owner0>?,
-            ifNull: values["ifNull"] as String?,
-            ifEmpty: values["ifEmpty"] as String?,
-            style: values["style"] as api.DiagnosticsTreeStyle,
-            showName: values["showName"] as bool,
-            showSeparator: values["showSeparator"] as bool,
-            level: values["level"] as api.DiagnosticLevel,
-          );
-        }
-        return _IterablePropertyProxy<_Owner0>(
-          values['@peer'] as FlaxProxyPeer,
-          values["name"] as String,
-          values["value"] as Iterable<_Owner0>?,
-          defaultValue: values["defaultValue"],
-          ifNull: values["ifNull"] as String?,
-          ifEmpty: values["ifEmpty"] as String?,
-          style: values["style"] as api.DiagnosticsTreeStyle,
-          showName: values["showName"] as bool,
-          showSeparator: values["showSeparator"] as bool,
-          level: values["level"] as api.DiagnosticLevel,
-        );
+            (_flaxHas3 ? values["defaultValue"] : null),
+            values["ifNull"] as String?,
+            values["ifEmpty"] as String?,
+            values["style"] as api.DiagnosticsTreeStyle,
+            values["showName"] as bool,
+            values["showSeparator"] as bool,
+            values["level"] as api.DiagnosticLevel,
+          ],
+          <int>[
+            1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32 | 64 | 128 | 256 | 512,
+          ],
+          const <String>[
+            "",
+            "",
+            "",
+            "defaultValue",
+            "ifNull",
+            "ifEmpty",
+            "style",
+            "showName",
+            "showSeparator",
+            "level",
+          ],
+        ) as api.IterableProperty<_Owner0>;
       default:
         throw ArgumentError("Unknown constructor");
     }

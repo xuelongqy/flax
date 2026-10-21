@@ -58,6 +58,7 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_BackButtonDispatcher';
 import type * as upstream27 from '@flax/flutter/widgets/_bindings/sdk_widgets_HeroController';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_HeroController';
 import type * as upstream28 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation';
+import { _flaxMemberParameters4 } from "@flax/material-ui/_bindings/material.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface MaterialApp extends WidgetDescription, Omit<Readonly<{ "__flaxBound:package:material_ui/src/app.dart::MaterialApp": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, 'type'> { readonly type: "flax.material/material#type:MaterialApp";  }
@@ -75,7 +76,7 @@ return construct("widget", "flax.material/material#type:MaterialApp", "router", 
 }
 export namespace _MaterialAppFactory { export function createMaterialHeroController(): upstream27.HeroController {
 if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:MaterialApp.createMaterialHeroController", []);
+const _flaxResult = invokeTopLevel("flax.material/material#function:MaterialApp.createMaterialHeroController", [], _flaxMemberParameters4);
 return _flaxResult as upstream27.HeroController;
 } }
 export const MaterialApp: typeof _MaterialAppFactory & _FlaxInstanceType<MaterialApp> & _FlaxDartType<MaterialApp, readonly ["class", "flax.material/material#type:MaterialApp", readonly [], false]> = _flaxBindInstanceType<MaterialApp, typeof _MaterialAppFactory>(_MaterialAppFactory, "flax.material/material#type:MaterialApp", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _MaterialAppFactory & _FlaxInstanceType<MaterialApp> & _FlaxDartType<MaterialApp, readonly ["class", "flax.material/material#type:MaterialApp", readonly [], false]>;

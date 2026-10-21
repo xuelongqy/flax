@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/sdk_widgets_ChildVicinity';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ChildVicinity';
-import { _flaxMemberParameters426, _flaxMemberParameters38, _flaxMemberParameters2, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters483, _flaxMemberParameters43, _flaxMemberParameters2, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,8 +17,8 @@ export interface TwoDimensionalChildDelegate extends Omit<upstream0.ChangeNotifi
 readonly [_flaxDartTypeValue]: TwoDimensionalChildDelegate;
 
 }
-defineObject("flax.core/sdk_widgets#type:TwoDimensionalChildDelegate", ["hasListeners"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:TwoDimensionalChildDelegate", "object", {"build":_flaxMemberParameters426,"shouldRebuild":_flaxMemberParameters38}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _TwoDimensionalChildDelegateProxy = {type: "flax.core/sdk_widgets#type:TwoDimensionalChildDelegate", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"build":_flaxMemberParameters426,"shouldRebuild":_flaxMemberParameters38}, getters: ["hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
+defineObject("flax.core/sdk_widgets#type:TwoDimensionalChildDelegate", ["hasListeners"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:TwoDimensionalChildDelegate", "object", {"build":_flaxMemberParameters483,"shouldRebuild":_flaxMemberParameters43}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+const _TwoDimensionalChildDelegateProxy = {type: "flax.core/sdk_widgets#type:TwoDimensionalChildDelegate", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"build":_flaxMemberParameters483,"shouldRebuild":_flaxMemberParameters43}, getters: ["hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
 export interface TwoDimensionalChildDelegate {
 readonly [_flaxDartTypeValue]: TwoDimensionalChildDelegate;
 

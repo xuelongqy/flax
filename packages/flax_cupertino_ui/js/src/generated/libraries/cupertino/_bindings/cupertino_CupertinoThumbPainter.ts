@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-import { _flaxMemberParameters62, _flaxMemberParameters63 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
+import { _flaxMemberParameters70, _flaxMemberParameters71 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,7 +20,7 @@ readonly color: upstream0.Color;
 readonly shadows: DartList<upstream1.BoxShadow>;
 paint(canvas: Readonly<{ "__flaxBound:dart:ui::Canvas": readonly [] }>, rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>): void;
 }
-defineObject("flax.cupertino/cupertino#type:CupertinoThumbPainter", ["color","shadows"], [], _flaxBindingMethods("flax.cupertino/cupertino#type:CupertinoThumbPainter", "object", {"paint":_flaxMemberParameters62}, {}), []);
+defineObject("flax.cupertino/cupertino#type:CupertinoThumbPainter", ["color","shadows"], [], _flaxBindingMethods("flax.cupertino/cupertino#type:CupertinoThumbPainter", "object", {"paint":_flaxMemberParameters70}, {}), []);
 export function _CupertinoThumbPainterFactory(options: { color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | undefined; shadows?: DartListInput<upstream1.BoxShadow, Readonly<{ "__flaxBound:package:flutter/src/painting/box_shadow.dart::BoxShadow": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::Shadow": readonly [] }>> | undefined } = {}): CupertinoThumbPainter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -33,7 +33,7 @@ if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoThumbPainter", "switchThumb", [{"name":"color"},{"name":"shadows"}], [], options) as CupertinoThumbPainter;
 }
 }
-const _CupertinoThumbPainterProxy = {type: "flax.cupertino/cupertino#type:CupertinoThumbPainter", parameters: _flaxMemberParameters63, constructors: {"": _flaxMemberParameters63,"switchThumb": _flaxMemberParameters63}, methods: {"paint":_flaxMemberParameters62}, getters: ["color","shadows"], setters: [], contextMembers: [], superMembers: ["get:color","get:shadows","paint"]} as const;
+const _CupertinoThumbPainterProxy = {type: "flax.cupertino/cupertino#type:CupertinoThumbPainter", parameters: _flaxMemberParameters71, constructors: {"": _flaxMemberParameters71,"switchThumb": _flaxMemberParameters71}, methods: {"paint":_flaxMemberParameters70}, getters: ["color","shadows"], setters: [], contextMembers: [], superMembers: ["get:color","get:shadows","paint"]} as const;
 export interface _CupertinoThumbPainterNative extends CupertinoThumbPainter {
 readonly [_flaxDartTypeValue]: _CupertinoThumbPainterNative;
 readonly [_flaxDartConstructors]?: {"": (options?: {color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | undefined; shadows?: DartListInput<upstream1.BoxShadow, Readonly<{ "__flaxBound:package:flutter/src/painting/box_shadow.dart::BoxShadow": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::Shadow": readonly [] }>> | undefined}) => void;"switchThumb": (options?: {color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | undefined; shadows?: DartListInput<upstream1.BoxShadow, Readonly<{ "__flaxBound:package:flutter/src/painting/box_shadow.dart::BoxShadow": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::Shadow": readonly [] }>> | undefined}) => void;};

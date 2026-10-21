@@ -22,7 +22,7 @@ import type * as upstream9 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessElement';
-import { _flaxMemberParameters9, _flaxMemberParameters2 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters4 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -46,7 +46,7 @@ debugDescribeChildren(): DartList<upstream6.DiagnosticsNode>;
 build(context: upstream9.BuildContext): Widget;
 createElement(): upstream10.StatelessElement;
 }
-defineObject("flax.material/material#type:Tab", ["preferredSize","text","child","icon","iconMargin","height","key"], [], _flaxBindingMethods("flax.material/material#type:Tab", "object", {"build":_flaxMemberParameters9,"createElement":_flaxMemberParameters2}, {}), [], undefined, "flax.core/flutter#type:PreferredSizeWidget");
+defineObject("flax.material/material#type:Tab", ["preferredSize","text","child","icon","iconMargin","height","key"], [], _flaxBindingMethods("flax.material/material#type:Tab", "object", {"build":_flaxMemberParameters0,"createElement":_flaxMemberParameters4}, {}), [], undefined, "flax.core/flutter#type:PreferredSizeWidget");
 export function _TabFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; text?: string | null | undefined; icon?: Widget | null | undefined; iconMargin?: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> | null | undefined; height?: number | null | undefined; child?: Widget | null | undefined } = {}): Tab {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

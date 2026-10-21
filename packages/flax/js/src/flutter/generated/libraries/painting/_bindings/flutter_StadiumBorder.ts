@@ -19,7 +19,7 @@ import type * as upstream7 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
-import { _flaxMemberParameters93 } from "@flax/core/navigation/_bindings/flutter.__module";
+import { _flaxMemberParameters129 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StadiumBorder extends Omit<upstream0.OutlinedBorder, _flaxOwnMembers0>, Omit<upstream1.ShapeBorder, _flaxOwnMembers0 | keyof upstream0.OutlinedBorder>, Readonly<{ "__flaxBound:package:flutter/src/painting/stadium_border.dart::StadiumBorder": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> { readonly __StadiumBorder: unique symbol;
@@ -40,11 +40,11 @@ paint(canvas: Readonly<{ "__flaxBound:dart:ui::Canvas": readonly [] }>, rect: Re
 toString(): string;
 operatorAdd(other: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }>): upstream1.ShapeBorder;
 }
-defineObject("flax.core/flutter#type:StadiumBorder", ["dimensions","side","preferPaintInterior"], [], _flaxBindingMethods("flax.core/flutter#type:StadiumBorder", "object", {"copyWith":_flaxMemberParameters93}, {}), [], undefined, "flax.core/flutter#type:OutlinedBorder");
+defineObject("flax.core/flutter#type:StadiumBorder", ["dimensions","side","preferPaintInterior"], [], _flaxBindingMethods("flax.core/flutter#type:StadiumBorder", "object", {"copyWith":_flaxMemberParameters129}, {}), [], undefined, "flax.core/flutter#type:OutlinedBorder");
 export function _StadiumBorderFactory(options: { side?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | undefined } = {}): StadiumBorder {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:StadiumBorder", "", _flaxMemberParameters93, [], options) as StadiumBorder;
+return constructObject("object", "flax.core/flutter#type:StadiumBorder", "", _flaxMemberParameters129, [], options) as StadiumBorder;
 }
 export const StadiumBorder: typeof _StadiumBorderFactory & _FlaxInstanceType<StadiumBorder> & _FlaxDartType<StadiumBorder, readonly ["class", "flax.core/flutter#type:StadiumBorder", readonly [], false]> = _flaxBindInstanceType<StadiumBorder, typeof _StadiumBorderFactory>(_StadiumBorderFactory, "flax.core/flutter#type:StadiumBorder", ["flax.core/flutter#type:OutlinedBorder","flax.core/flutter#type:ShapeBorder","dart:core::Object"]) as typeof _StadiumBorderFactory & _FlaxInstanceType<StadiumBorder> & _FlaxDartType<StadiumBorder, readonly ["class", "flax.core/flutter#type:StadiumBorder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "paintInterior" | "paint" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/stadium_border.dart::StadiumBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";

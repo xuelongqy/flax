@@ -3,6 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Enum';
 import '@flax/dart/core/_bindings/flutter_Enum';
+import { _flaxMemberParameters40, _flaxMemberParameters41 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface CheckedState extends DartEnum, Omit<upstream0.Enum, typeof _flaxDartTypeValue | "value" | "hasConflict" | "merge" | "__flaxBound:dart:ui::CheckedState">, Readonly<{ "__flaxBound:dart:ui::CheckedState": readonly [] }> { readonly __CheckedState: unique symbol;
@@ -18,12 +19,12 @@ defineEnum("flax.core/sdk_dart_ui#type:CheckedState", ["none","isTrue","isFalse"
 get value(): number { return invokeTopLevel("flax.core/sdk_dart_ui#function:CheckedState.value%3Aget", [this]) as number; },
 hasConflict(this: object, other: CheckedState): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dart_ui#function:CheckedState.hasConflict%3Acall", [this, other]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dart_ui#function:CheckedState.hasConflict%3Acall", [this, other], _flaxMemberParameters41);
 return _flaxResult as boolean;
 },
 merge(this: object, other: CheckedState): CheckedState {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dart_ui#function:CheckedState.merge%3Acall", [this, other]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dart_ui#function:CheckedState.merge%3Acall", [this, other], _flaxMemberParameters41);
 return _flaxResult as CheckedState;
 },
 }, ["value"], ["flax.core/flutter#type:Enum","dart:core::Object"]);

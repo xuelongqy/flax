@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import { _flaxMemberParameters18, _flaxMemberParameters24, _flaxMemberParameters41, _flaxMemberParameters58, _flaxMemberParameters15, _flaxMemberParameters16, _flaxMemberParameters59 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
+import { _flaxMemberParameters24, _flaxMemberParameters18, _flaxMemberParameters25, _flaxMemberParameters42, _flaxMemberParameters59, _flaxMemberParameters15, _flaxMemberParameters16, _flaxMemberParameters60 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -19,8 +19,8 @@ export interface Gradient extends Readonly<{ "__flaxBound:package:flutter/src/pa
 readonly [_flaxDartTypeValue]: Gradient;
 
 }
-defineObject("flax.core/sdk_painting#type:Gradient", ["colors","stops","transform"], [], _flaxBindingMethods("flax.core/sdk_painting#type:Gradient", "object", {"createShader":_flaxMemberParameters18,"scale":_flaxMemberParameters24,"withOpacity":_flaxMemberParameters41,"fromColor":_flaxMemberParameters58,"lerpFrom":_flaxMemberParameters15,"lerpTo":_flaxMemberParameters16}, {}), []);
-const _GradientProxy = {type: "flax.core/sdk_painting#type:Gradient", parameters: _flaxMemberParameters59, constructors: {"": _flaxMemberParameters59}, methods: {"createShader":_flaxMemberParameters18,"scale":_flaxMemberParameters24,"withOpacity":_flaxMemberParameters41,"fromColor":_flaxMemberParameters58,"lerpFrom":_flaxMemberParameters15,"lerpTo":_flaxMemberParameters16}, getters: ["colors","stops","transform"], setters: [], contextMembers: [], superMembers: ["get:colors","get:stops","get:transform","fromColor","lerpFrom","lerpTo"]} as const;
+defineObject("flax.core/sdk_painting#type:Gradient", ["colors","stops","transform"], [], _flaxBindingMethods("flax.core/sdk_painting#type:Gradient", "object", {"createShader":_flaxMemberParameters18,"scale":_flaxMemberParameters25,"withOpacity":_flaxMemberParameters42,"fromColor":_flaxMemberParameters59,"lerpFrom":_flaxMemberParameters15,"lerpTo":_flaxMemberParameters16}, {}), []);
+const _GradientProxy = {type: "flax.core/sdk_painting#type:Gradient", parameters: _flaxMemberParameters60, constructors: {"": _flaxMemberParameters60}, methods: {"createShader":_flaxMemberParameters18,"scale":_flaxMemberParameters25,"withOpacity":_flaxMemberParameters42,"fromColor":_flaxMemberParameters59,"lerpFrom":_flaxMemberParameters15,"lerpTo":_flaxMemberParameters16}, getters: ["colors","stops","transform"], setters: [], contextMembers: [], superMembers: ["get:colors","get:stops","get:transform","fromColor","lerpFrom","lerpTo"]} as const;
 export interface Gradient {
 readonly [_flaxDartTypeValue]: Gradient;
 
@@ -45,7 +45,7 @@ export namespace Gradient { export function implement(args: [options: {colors: D
 return constructProxy(_GradientProxy, args, implementation) as Gradient; } }
 export namespace Gradient { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/painting/gradient.dart::Gradient": readonly [] }> | null, b: Readonly<{ "__flaxBound:package:flutter/src/painting/gradient.dart::Gradient": readonly [] }> | null, t: number): Gradient | null {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:Gradient.lerp", [a, b, t]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:Gradient.lerp", [a, b, t], _flaxMemberParameters24);
 return _flaxResult as Gradient | null;
 } }
 _flaxBindInstanceType<Gradient, typeof Gradient>(Gradient, "flax.core/sdk_painting#type:Gradient", ["dart:core::Object"]);

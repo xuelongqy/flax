@@ -71,7 +71,7 @@ return constructObject("object", "flax.core/sdk_widgets#type:RawTooltip", "", [{
 }
 export namespace _RawTooltipFactory { export function dismissAllToolTips(): boolean {
 if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:RawTooltip.dismissAllToolTips", []);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:RawTooltip.dismissAllToolTips", [], _flaxMemberParameters2);
 return _flaxResult as boolean;
 } }
 export const RawTooltip: typeof _RawTooltipFactory & _FlaxInstanceType<RawTooltip> & _FlaxDartType<RawTooltip, readonly ["class", "flax.core/sdk_widgets#type:RawTooltip", readonly [], false]> = _flaxBindInstanceType<RawTooltip, typeof _RawTooltipFactory>(_RawTooltipFactory, "flax.core/sdk_widgets#type:RawTooltip", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _RawTooltipFactory & _FlaxInstanceType<RawTooltip> & _FlaxDartType<RawTooltip, readonly ["class", "flax.core/sdk_widgets#type:RawTooltip", readonly [], false]>;

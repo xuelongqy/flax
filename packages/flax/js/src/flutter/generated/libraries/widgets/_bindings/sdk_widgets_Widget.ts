@@ -13,7 +13,7 @@ import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters2, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters490, _flaxMemberParameters2, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -32,7 +32,7 @@ debugDescribeChildren(): DartList<upstream4.DiagnosticsNode>;
 defineObject("flax.core/sdk_widgets#type:Widget", ["key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:Widget", "object", {"createElement":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters5,"toStringShallow":_flaxMemberParameters6,"toStringDeep":_flaxMemberParameters7,"toDiagnosticsNode":_flaxMemberParameters8,"debugDescribeChildren":_flaxMemberParameters2}, {}), []);
 export namespace _WidgetFactory { export function canUpdate(oldWidget: _FlaxWidget, newWidget: _FlaxWidget): boolean {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Widget.canUpdate", [oldWidget, newWidget]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Widget.canUpdate", [oldWidget, newWidget], _flaxMemberParameters490);
 return _flaxResult as boolean;
 } }
 export const Widget: typeof _WidgetFactory & _FlaxInstanceType<Widget> & _FlaxDartType<Widget, readonly ["class", "flax.core/sdk_widgets#type:Widget", readonly [], false]> = _flaxBindInstanceType<Widget, typeof _WidgetFactory>(_WidgetFactory, "flax.core/sdk_widgets#type:Widget", ["flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _WidgetFactory & _FlaxInstanceType<Widget> & _FlaxDartType<Widget, readonly ["class", "flax.core/sdk_widgets#type:Widget", readonly [], false]>;

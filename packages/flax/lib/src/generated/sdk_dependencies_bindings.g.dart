@@ -724,6 +724,7 @@ const sdk_dependenciesBindings = FlaxBindingModule(
   dependencyModules: ["flax.core/flutter", "flax.core/sdk_rendering"],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "engine-type-handles",
     "generic-call-types",
     "generic-member-views",
@@ -1200,19 +1201,23 @@ Object? _File_setLastModifiedSync(
 }
 
 Object? _File_open(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("mode")) {
-    return (receiver as api3.File).open();
-  }
-  return (receiver as api3.File).open(mode: values["mode"] as api3.FileMode);
+  final _flaxHas0 = values.containsKey("mode");
+  return flaxInvokeWithDefaults(
+    (receiver as api3.File).open,
+    <Object?>[(_flaxHas0 ? values["mode"] as api3.FileMode : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>["mode"],
+  ) as Future<api3.RandomAccessFile>;
 }
 
 Object? _File_openSync(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("mode")) {
-    return (receiver as api3.File).openSync();
-  }
-  return (receiver as api3.File).openSync(
-    mode: values["mode"] as api3.FileMode,
-  );
+  final _flaxHas0 = values.containsKey("mode");
+  return flaxInvokeWithDefaults(
+    (receiver as api3.File).openSync,
+    <Object?>[(_flaxHas0 ? values["mode"] as api3.FileMode : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>["mode"],
+  ) as api3.RandomAccessFile;
 }
 
 Object? _File_openRead(Object receiver, Map<String, Object?> values) {
@@ -1231,129 +1236,103 @@ Object? _File_readAsBytesSync(Object receiver, Map<String, Object?> values) {
 }
 
 Object? _File_readAsString(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("encoding")) {
-    return (receiver as api3.File).readAsString();
-  }
-  return (receiver as api3.File).readAsString(
-    encoding: values["encoding"] as api1.Encoding,
-  );
+  final _flaxHas0 = values.containsKey("encoding");
+  return flaxInvokeWithDefaults(
+    (receiver as api3.File).readAsString,
+    <Object?>[(_flaxHas0 ? values["encoding"] as api1.Encoding : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>["encoding"],
+  ) as Future<String>;
 }
 
 Object? _File_readAsStringSync(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("encoding")) {
-    return (receiver as api3.File).readAsStringSync();
-  }
-  return (receiver as api3.File).readAsStringSync(
-    encoding: values["encoding"] as api1.Encoding,
-  );
+  final _flaxHas0 = values.containsKey("encoding");
+  return flaxInvokeWithDefaults(
+    (receiver as api3.File).readAsStringSync,
+    <Object?>[(_flaxHas0 ? values["encoding"] as api1.Encoding : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>["encoding"],
+  ) as String;
 }
 
 Object? _File_readAsLines(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("encoding")) {
-    return (receiver as api3.File).readAsLines();
-  }
-  return (receiver as api3.File).readAsLines(
-    encoding: values["encoding"] as api1.Encoding,
-  );
+  final _flaxHas0 = values.containsKey("encoding");
+  return flaxInvokeWithDefaults(
+    (receiver as api3.File).readAsLines,
+    <Object?>[(_flaxHas0 ? values["encoding"] as api1.Encoding : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>["encoding"],
+  ) as Future<List<String>>;
 }
 
 Object? _File_readAsLinesSync(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("encoding")) {
-    return (receiver as api3.File).readAsLinesSync();
-  }
-  return (receiver as api3.File).readAsLinesSync(
-    encoding: values["encoding"] as api1.Encoding,
-  );
+  final _flaxHas0 = values.containsKey("encoding");
+  return flaxInvokeWithDefaults(
+    (receiver as api3.File).readAsLinesSync,
+    <Object?>[(_flaxHas0 ? values["encoding"] as api1.Encoding : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>["encoding"],
+  ) as List<String>;
 }
 
 Object? _File_writeAsBytes(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("mode")) {
-    return (receiver as api3.File).writeAsBytes(
+  final _flaxHas2 = values.containsKey("mode");
+  return flaxInvokeWithDefaults(
+    (receiver as api3.File).writeAsBytes,
+    <Object?>[
       values["bytes"] as List<int>,
-      flush: values["flush"] as bool,
-    );
-  }
-  return (receiver as api3.File).writeAsBytes(
-    values["bytes"] as List<int>,
-    flush: values["flush"] as bool,
-    mode: values["mode"] as api3.FileMode,
-  );
+      values["flush"] as bool,
+      (_flaxHas2 ? values["mode"] as api3.FileMode : null),
+    ],
+    <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+    const <String>["", "flush", "mode"],
+  ) as Future<api3.File>;
 }
 
 Object? _File_writeAsBytesSync(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("mode")) {
-    (receiver as api3.File).writeAsBytesSync(
+  final _flaxHas2 = values.containsKey("mode");
+  flaxInvokeWithDefaults(
+    (receiver as api3.File).writeAsBytesSync,
+    <Object?>[
       values["bytes"] as List<int>,
-      flush: values["flush"] as bool,
-    );
-    return null;
-  }
-  (receiver as api3.File).writeAsBytesSync(
-    values["bytes"] as List<int>,
-    flush: values["flush"] as bool,
-    mode: values["mode"] as api3.FileMode,
+      values["flush"] as bool,
+      (_flaxHas2 ? values["mode"] as api3.FileMode : null),
+    ],
+    <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+    const <String>["", "flush", "mode"],
   );
   return null;
 }
 
 Object? _File_writeAsString(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("encoding")) {
-    if (!values.containsKey("mode")) {
-      return (receiver as api3.File).writeAsString(
-        values["contents"] as String,
-        flush: values["flush"] as bool,
-      );
-    }
-    return (receiver as api3.File).writeAsString(
+  final _flaxHas1 = values.containsKey("encoding");
+  final _flaxHas3 = values.containsKey("mode");
+  return flaxInvokeWithDefaults(
+    (receiver as api3.File).writeAsString,
+    <Object?>[
       values["contents"] as String,
-      flush: values["flush"] as bool,
-      mode: values["mode"] as api3.FileMode,
-    );
-  }
-  if (!values.containsKey("mode")) {
-    return (receiver as api3.File).writeAsString(
-      values["contents"] as String,
-      encoding: values["encoding"] as api1.Encoding,
-      flush: values["flush"] as bool,
-    );
-  }
-  return (receiver as api3.File).writeAsString(
-    values["contents"] as String,
-    encoding: values["encoding"] as api1.Encoding,
-    flush: values["flush"] as bool,
-    mode: values["mode"] as api3.FileMode,
-  );
+      (_flaxHas1 ? values["encoding"] as api1.Encoding : null),
+      values["flush"] as bool,
+      (_flaxHas3 ? values["mode"] as api3.FileMode : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0)],
+    const <String>["", "encoding", "flush", "mode"],
+  ) as Future<api3.File>;
 }
 
 Object? _File_writeAsStringSync(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("encoding")) {
-    if (!values.containsKey("mode")) {
-      (receiver as api3.File).writeAsStringSync(
-        values["contents"] as String,
-        flush: values["flush"] as bool,
-      );
-      return null;
-    }
-    (receiver as api3.File).writeAsStringSync(
+  final _flaxHas1 = values.containsKey("encoding");
+  final _flaxHas3 = values.containsKey("mode");
+  flaxInvokeWithDefaults(
+    (receiver as api3.File).writeAsStringSync,
+    <Object?>[
       values["contents"] as String,
-      flush: values["flush"] as bool,
-      mode: values["mode"] as api3.FileMode,
-    );
-    return null;
-  }
-  if (!values.containsKey("mode")) {
-    (receiver as api3.File).writeAsStringSync(
-      values["contents"] as String,
-      encoding: values["encoding"] as api1.Encoding,
-      flush: values["flush"] as bool,
-    );
-    return null;
-  }
-  (receiver as api3.File).writeAsStringSync(
-    values["contents"] as String,
-    encoding: values["encoding"] as api1.Encoding,
-    flush: values["flush"] as bool,
-    mode: values["mode"] as api3.FileMode,
+      (_flaxHas1 ? values["encoding"] as api1.Encoding : null),
+      values["flush"] as bool,
+      (_flaxHas3 ? values["mode"] as api3.FileMode : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0)],
+    const <String>["", "encoding", "flush", "mode"],
   );
   return null;
 }
@@ -1861,11 +1840,13 @@ Object? _HttpClientRequest_writeln(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("object")) {
-    (receiver as api3.HttpClientRequest).writeln();
-    return null;
-  }
-  (receiver as api3.HttpClientRequest).writeln(values["object"]);
+  final _flaxHas0 = values.containsKey("object");
+  flaxInvokeWithDefaults(
+    (receiver as api3.HttpClientRequest).writeln,
+    <Object?>[(_flaxHas0 ? values["object"] : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>[""],
+  );
   return null;
 }
 
@@ -2337,13 +2318,16 @@ Object? _InternetAddress_static_get_anyIPv4(Map<String, Object?> values) =>
 Object? _InternetAddress_static_get_anyIPv6(Map<String, Object?> values) =>
     api3.InternetAddress.anyIPv6;
 Object? _InternetAddress_lookup(Map<String, Object?> values) {
-  if (!values.containsKey("type")) {
-    return api3.InternetAddress.lookup(values["host"] as String);
-  }
-  return api3.InternetAddress.lookup(
-    values["host"] as String,
-    type: values["type"] as api3.InternetAddressType,
-  );
+  final _flaxHas1 = values.containsKey("type");
+  return flaxInvokeWithDefaults(
+    api3.InternetAddress.lookup,
+    <Object?>[
+      values["host"] as String,
+      (_flaxHas1 ? values["type"] as api3.InternetAddressType : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", "type"],
+  ) as Future<List<api3.InternetAddress>>;
 }
 
 Object? _InternetAddress_tryParse(Map<String, Object?> values) {
@@ -3678,30 +3662,31 @@ Object? _RandomAccessFile_writeString(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("encoding")) {
-    return (receiver as api3.RandomAccessFile).writeString(
+  final _flaxHas1 = values.containsKey("encoding");
+  return flaxInvokeWithDefaults(
+    (receiver as api3.RandomAccessFile).writeString,
+    <Object?>[
       values["string"] as String,
-    );
-  }
-  return (receiver as api3.RandomAccessFile).writeString(
-    values["string"] as String,
-    encoding: values["encoding"] as api1.Encoding,
-  );
+      (_flaxHas1 ? values["encoding"] as api1.Encoding : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", "encoding"],
+  ) as Future<api3.RandomAccessFile>;
 }
 
 Object? _RandomAccessFile_writeStringSync(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("encoding")) {
-    (receiver as api3.RandomAccessFile).writeStringSync(
+  final _flaxHas1 = values.containsKey("encoding");
+  flaxInvokeWithDefaults(
+    (receiver as api3.RandomAccessFile).writeStringSync,
+    <Object?>[
       values["string"] as String,
-    );
-    return null;
-  }
-  (receiver as api3.RandomAccessFile).writeStringSync(
-    values["string"] as String,
-    encoding: values["encoding"] as api1.Encoding,
+      (_flaxHas1 ? values["encoding"] as api1.Encoding : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", "encoding"],
   );
   return null;
 }
@@ -3787,25 +3772,19 @@ Object? _RandomAccessFile_lock(Object receiver, Map<String, Object?> values) {
     throw ArgumentError(
       'Optional positional arguments must omit a trailing suffix',
     );
-  if (!values.containsKey("mode")) {
-    return (receiver as api3.RandomAccessFile).lock();
-  }
-  if (!values.containsKey("start")) {
-    return (receiver as api3.RandomAccessFile).lock(
-      values["mode"] as api3.FileLock,
-    );
-  }
-  if (!values.containsKey("end")) {
-    return (receiver as api3.RandomAccessFile).lock(
-      values["mode"] as api3.FileLock,
-      values["start"] as int,
-    );
-  }
-  return (receiver as api3.RandomAccessFile).lock(
-    values["mode"] as api3.FileLock,
-    values["start"] as int,
-    values["end"] as int,
-  );
+  final _flaxHas0 = values.containsKey("mode");
+  final _flaxHas1 = values.containsKey("start");
+  final _flaxHas2 = values.containsKey("end");
+  return flaxInvokeWithDefaults(
+    (receiver as api3.RandomAccessFile).lock,
+    <Object?>[
+      (_flaxHas0 ? values["mode"] as api3.FileLock : null),
+      (_flaxHas1 ? values["start"] as int : null),
+      (_flaxHas2 ? values["end"] as int : null),
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+    const <String>["", "", ""],
+  ) as Future<api3.RandomAccessFile>;
 }
 
 Object? _RandomAccessFile_lockSync(
@@ -3821,27 +3800,18 @@ Object? _RandomAccessFile_lockSync(
     throw ArgumentError(
       'Optional positional arguments must omit a trailing suffix',
     );
-  if (!values.containsKey("mode")) {
-    (receiver as api3.RandomAccessFile).lockSync();
-    return null;
-  }
-  if (!values.containsKey("start")) {
-    (receiver as api3.RandomAccessFile).lockSync(
-      values["mode"] as api3.FileLock,
-    );
-    return null;
-  }
-  if (!values.containsKey("end")) {
-    (receiver as api3.RandomAccessFile).lockSync(
-      values["mode"] as api3.FileLock,
-      values["start"] as int,
-    );
-    return null;
-  }
-  (receiver as api3.RandomAccessFile).lockSync(
-    values["mode"] as api3.FileLock,
-    values["start"] as int,
-    values["end"] as int,
+  final _flaxHas0 = values.containsKey("mode");
+  final _flaxHas1 = values.containsKey("start");
+  final _flaxHas2 = values.containsKey("end");
+  flaxInvokeWithDefaults(
+    (receiver as api3.RandomAccessFile).lockSync,
+    <Object?>[
+      (_flaxHas0 ? values["mode"] as api3.FileLock : null),
+      (_flaxHas1 ? values["start"] as int : null),
+      (_flaxHas2 ? values["end"] as int : null),
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+    const <String>["", "", ""],
   );
   return null;
 }
@@ -3950,27 +3920,28 @@ Object? _SecureSocket_connect(Map<String, Object?> values) {
 }
 
 Object? _SecureSocket_secure(Map<String, Object?> values) {
-  if (!values.containsKey("host")) {
-    return api3.SecureSocket.secure(
+  final _flaxHas2 = values.containsKey("host");
+  return flaxInvokeWithDefaults(
+    api3.SecureSocket.secure,
+    <Object?>[
       values["socket"] as api3.Socket,
-      context: values["context"] as api3.SecurityContext?,
-      keyLog: values["keyLog"] as void Function(String line)?,
-      onBadCertificate:
-          values["onBadCertificate"]
-              as bool Function(api3.X509Certificate certificate)?,
-      supportedProtocols: values["supportedProtocols"] as List<String>?,
-    );
-  }
-  return api3.SecureSocket.secure(
-    values["socket"] as api3.Socket,
-    context: values["context"] as api3.SecurityContext?,
-    host: values["host"],
-    keyLog: values["keyLog"] as void Function(String line)?,
-    onBadCertificate:
-        values["onBadCertificate"]
-            as bool Function(api3.X509Certificate certificate)?,
-    supportedProtocols: values["supportedProtocols"] as List<String>?,
-  );
+      values["context"] as api3.SecurityContext?,
+      (_flaxHas2 ? values["host"] : null),
+      values["keyLog"] as void Function(String line)?,
+      values["onBadCertificate"]
+          as bool Function(api3.X509Certificate certificate)?,
+      values["supportedProtocols"] as List<String>?,
+    ],
+    <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | 32],
+    const <String>[
+      "",
+      "context",
+      "host",
+      "keyLog",
+      "onBadCertificate",
+      "supportedProtocols",
+    ],
+  ) as Future<api3.SecureSocket>;
 }
 
 Object? _SecureSocket_secureServer(Map<String, Object?> values) {
@@ -4202,21 +4173,19 @@ void _Socket_set_encoding(Object receiver, Object? value) {
 }
 
 Object? _Socket_connect(Map<String, Object?> values) {
-  if (!values.containsKey("sourceAddress")) {
-    return api3.Socket.connect(
+  final _flaxHas2 = values.containsKey("sourceAddress");
+  return flaxInvokeWithDefaults(
+    api3.Socket.connect,
+    <Object?>[
       values["host"],
       values["port"] as int,
-      sourcePort: values["sourcePort"] as int,
-      timeout: values["timeout"] as api4.Duration?,
-    );
-  }
-  return api3.Socket.connect(
-    values["host"],
-    values["port"] as int,
-    sourceAddress: values["sourceAddress"],
-    sourcePort: values["sourcePort"] as int,
-    timeout: values["timeout"] as api4.Duration?,
-  );
+      (_flaxHas2 ? values["sourceAddress"] : null),
+      values["sourcePort"] as int,
+      values["timeout"] as api4.Duration?,
+    ],
+    <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16],
+    const <String>["", "", "sourceAddress", "sourcePort", "timeout"],
+  ) as Future<api3.Socket>;
 }
 
 Object? _Socket_close(Object receiver, Map<String, Object?> values) {
@@ -4479,11 +4448,13 @@ Object? _Socket_writeAll(Object receiver, Map<String, Object?> values) {
 }
 
 Object? _Socket_writeln(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("object")) {
-    (receiver as api3.Socket).writeln();
-    return null;
-  }
-  (receiver as api3.Socket).writeln(values["object"]);
+  final _flaxHas0 = values.containsKey("object");
+  flaxInvokeWithDefaults(
+    (receiver as api3.Socket).writeln,
+    <Object?>[(_flaxHas0 ? values["object"] : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>[""],
+  );
   return null;
 }
 

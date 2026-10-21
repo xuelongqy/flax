@@ -25,7 +25,7 @@ import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream11 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters175, _flaxMemberParameters0, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -56,17 +56,17 @@ return constructObject("object", "flax.core/sdk_widgets#type:FocusTraversalGroup
 }
 export namespace _FocusTraversalGroupFactory { export function maybeOfNode(node: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): upstream2.FocusTraversalPolicy | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:FocusTraversalGroup.maybeOfNode", [node]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:FocusTraversalGroup.maybeOfNode", [node], _flaxMemberParameters175);
 return _flaxResult as upstream2.FocusTraversalPolicy | null;
 } }
 export namespace _FocusTraversalGroupFactory { export function of(context: upstream4.BuildContext): upstream2.FocusTraversalPolicy {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:FocusTraversalGroup.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:FocusTraversalGroup.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream2.FocusTraversalPolicy;
 } }
 export namespace _FocusTraversalGroupFactory { export function maybeOf(context: upstream4.BuildContext): upstream2.FocusTraversalPolicy | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:FocusTraversalGroup.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:FocusTraversalGroup.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream2.FocusTraversalPolicy | null;
 } }
 export const FocusTraversalGroup: typeof _FocusTraversalGroupFactory & _FlaxInstanceType<FocusTraversalGroup> & _FlaxDartType<FocusTraversalGroup, readonly ["class", "flax.core/sdk_widgets#type:FocusTraversalGroup", readonly [], false]> = _flaxBindInstanceType<FocusTraversalGroup, typeof _FocusTraversalGroupFactory>(_FocusTraversalGroupFactory, "flax.core/sdk_widgets#type:FocusTraversalGroup", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _FocusTraversalGroupFactory & _FlaxInstanceType<FocusTraversalGroup> & _FlaxDartType<FocusTraversalGroup, readonly ["class", "flax.core/sdk_widgets#type:FocusTraversalGroup", readonly [], false]>;

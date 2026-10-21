@@ -11,7 +11,7 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_RouterDelegate';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/sdk_widgets_BackButtonDispatcher';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_BackButtonDispatcher';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation';
-import { _flaxMemberParameters332 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters376 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -31,7 +31,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:RouterConfig", "", [{"name":"routeInformationProvider"},{"name":"routeInformationParser"},{"name":"routerDelegate","required":true},{"name":"backButtonDispatcher"}], [], options) as RouterConfig<unknown | null>;
 }
-const _RouterConfigProxy = {type: "flax.core/sdk_widgets#type:RouterConfig", parameters: _flaxMemberParameters332, constructors: {"": _flaxMemberParameters332}, methods: {}, getters: ["routeInformationProvider","routeInformationParser","routerDelegate","backButtonDispatcher"], setters: [], contextMembers: [], superMembers: ["get:routeInformationProvider","get:routeInformationParser","get:routerDelegate","get:backButtonDispatcher"]} as const;
+const _RouterConfigProxy = {type: "flax.core/sdk_widgets#type:RouterConfig", parameters: _flaxMemberParameters376, constructors: {"": _flaxMemberParameters376}, methods: {}, getters: ["routeInformationProvider","routeInformationParser","routerDelegate","backButtonDispatcher"], setters: [], contextMembers: [], superMembers: ["get:routeInformationProvider","get:routeInformationParser","get:routerDelegate","get:backButtonDispatcher"]} as const;
 export interface _RouterConfigNative<T extends unknown | null = unknown | null> extends RouterConfig<T> {
 readonly [_flaxDartTypeValue]: _RouterConfigNative<T>;
 

@@ -63,6 +63,7 @@ const sdk_physicsBindings = FlaxBindingModule(
   dependencyModules: ["flax.core/flutter"],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "generic-member-views",
     "inherited-binding-members",
     "instance-checks",
@@ -309,21 +310,19 @@ Object? _FrictionSimulation_super_get_finalX(
 Object _createFrictionSimulation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("tolerance")) {
-        return api.FrictionSimulation(
+      final _flaxHas3 = values.containsKey("tolerance");
+      return flaxInvokeWithDefaults(
+        api.FrictionSimulation.new,
+        <Object?>[
           values["drag"] as double,
           values["position"] as double,
           values["velocity"] as double,
-          constantDeceleration: values["constantDeceleration"] as double,
-        );
-      }
-      return api.FrictionSimulation(
-        values["drag"] as double,
-        values["position"] as double,
-        values["velocity"] as double,
-        tolerance: values["tolerance"] as api.Tolerance,
-        constantDeceleration: values["constantDeceleration"] as double,
-      );
+          (_flaxHas3 ? values["tolerance"] as api.Tolerance : null),
+          values["constantDeceleration"] as double,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16],
+        const <String>["", "", "", "tolerance", "constantDeceleration"],
+      ) as api.FrictionSimulation;
     case "through":
       return api.FrictionSimulation.through(
         values["startPosition"] as double,
@@ -332,23 +331,20 @@ Object _createFrictionSimulation(String ctor, Map<String, Object?> values) {
         values["endVelocity"] as double,
       );
     case '@implementation':
-      if (!values.containsKey("tolerance")) {
-        return _FrictionSimulationProxy(
+      final _flaxHas4 = values.containsKey("tolerance");
+      return flaxInvokeWithDefaults(
+        _FrictionSimulationProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["drag"] as double,
           values["position"] as double,
           values["velocity"] as double,
-          constantDeceleration: values["constantDeceleration"] as double,
-        );
-      }
-      return _FrictionSimulationProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["drag"] as double,
-        values["position"] as double,
-        values["velocity"] as double,
-        tolerance: values["tolerance"] as api.Tolerance,
-        constantDeceleration: values["constantDeceleration"] as double,
-      );
+          (_flaxHas4 ? values["tolerance"] as api.Tolerance : null),
+          values["constantDeceleration"] as double,
+        ],
+        <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32],
+        const <String>["", "", "", "", "tolerance", "constantDeceleration"],
+      ) as api.FrictionSimulation;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -386,39 +382,34 @@ Object? _ScrollSpringSimulation_super_get_type(
 Object _createScrollSpringSimulation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("tolerance")) {
-        return api.ScrollSpringSimulation(
+      final _flaxHas4 = values.containsKey("tolerance");
+      return flaxInvokeWithDefaults(
+        api.ScrollSpringSimulation.new,
+        <Object?>[
           values["spring"] as api.SpringDescription,
           values["start"] as double,
           values["end"] as double,
           values["velocity"] as double,
-        );
-      }
-      return api.ScrollSpringSimulation(
-        values["spring"] as api.SpringDescription,
-        values["start"] as double,
-        values["end"] as double,
-        values["velocity"] as double,
-        tolerance: values["tolerance"] as api.Tolerance,
-      );
+          (_flaxHas4 ? values["tolerance"] as api.Tolerance : null),
+        ],
+        <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0)],
+        const <String>["", "", "", "", "tolerance"],
+      ) as api.ScrollSpringSimulation;
     case '@implementation':
-      if (!values.containsKey("tolerance")) {
-        return _ScrollSpringSimulationProxy(
+      final _flaxHas5 = values.containsKey("tolerance");
+      return flaxInvokeWithDefaults(
+        _ScrollSpringSimulationProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["spring"] as api.SpringDescription,
           values["start"] as double,
           values["end"] as double,
           values["velocity"] as double,
-        );
-      }
-      return _ScrollSpringSimulationProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["spring"] as api.SpringDescription,
-        values["start"] as double,
-        values["end"] as double,
-        values["velocity"] as double,
-        tolerance: values["tolerance"] as api.Tolerance,
-      );
+          (_flaxHas5 ? values["tolerance"] as api.Tolerance : null),
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0)],
+        const <String>["", "", "", "", "", "tolerance"],
+      ) as api.ScrollSpringSimulation;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -450,13 +441,16 @@ Object? _Simulation_toString(Object receiver, Map<String, Object?> values) {
 Object _createSimulation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case '@implementation':
-      if (!values.containsKey("tolerance")) {
-        return _SimulationProxy(values['@peer'] as FlaxProxyPeer);
-      }
-      return _SimulationProxy(
-        values['@peer'] as FlaxProxyPeer,
-        tolerance: values["tolerance"] as api.Tolerance,
-      );
+      final _flaxHas1 = values.containsKey("tolerance");
+      return flaxInvokeWithDefaults(
+        _SimulationProxy.new,
+        <Object?>[
+          values['@peer'] as FlaxProxyPeer,
+          (_flaxHas1 ? values["tolerance"] as api.Tolerance : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0)],
+        const <String>["", "tolerance"],
+      ) as api.Simulation;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -515,15 +509,16 @@ Object _createSpringDescription(String ctor, Map<String, Object?> values) {
         ratio: values["ratio"] as double,
       );
     case "withDurationAndBounce":
-      if (!values.containsKey("duration")) {
-        return api.SpringDescription.withDurationAndBounce(
-          bounce: values["bounce"] as double,
-        );
-      }
-      return api.SpringDescription.withDurationAndBounce(
-        duration: values["duration"] as api1.Duration,
-        bounce: values["bounce"] as double,
-      );
+      final _flaxHas0 = values.containsKey("duration");
+      return flaxInvokeWithDefaults(
+        api.SpringDescription.withDurationAndBounce,
+        <Object?>[
+          (_flaxHas0 ? values["duration"] as api1.Duration : null),
+          values["bounce"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2],
+        const <String>["duration", "bounce"],
+      ) as api.SpringDescription;
     case '@implementation':
       return _SpringDescriptionProxy(
         values['@peer'] as FlaxProxyPeer,
@@ -553,43 +548,36 @@ Object? _SpringSimulation_super_get_type(
 Object _createSpringSimulation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("tolerance")) {
-        return api.SpringSimulation(
+      final _flaxHas5 = values.containsKey("tolerance");
+      return flaxInvokeWithDefaults(
+        api.SpringSimulation.new,
+        <Object?>[
           values["spring"] as api.SpringDescription,
           values["start"] as double,
           values["end"] as double,
           values["velocity"] as double,
-          snapToEnd: values["snapToEnd"] as bool,
-        );
-      }
-      return api.SpringSimulation(
-        values["spring"] as api.SpringDescription,
-        values["start"] as double,
-        values["end"] as double,
-        values["velocity"] as double,
-        snapToEnd: values["snapToEnd"] as bool,
-        tolerance: values["tolerance"] as api.Tolerance,
-      );
+          values["snapToEnd"] as bool,
+          (_flaxHas5 ? values["tolerance"] as api.Tolerance : null),
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0)],
+        const <String>["", "", "", "", "snapToEnd", "tolerance"],
+      ) as api.SpringSimulation;
     case '@implementation':
-      if (!values.containsKey("tolerance")) {
-        return _SpringSimulationProxy(
+      final _flaxHas6 = values.containsKey("tolerance");
+      return flaxInvokeWithDefaults(
+        _SpringSimulationProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["spring"] as api.SpringDescription,
           values["start"] as double,
           values["end"] as double,
           values["velocity"] as double,
-          snapToEnd: values["snapToEnd"] as bool,
-        );
-      }
-      return _SpringSimulationProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["spring"] as api.SpringDescription,
-        values["start"] as double,
-        values["end"] as double,
-        values["velocity"] as double,
-        snapToEnd: values["snapToEnd"] as bool,
-        tolerance: values["tolerance"] as api.Tolerance,
-      );
+          values["snapToEnd"] as bool,
+          (_flaxHas6 ? values["tolerance"] as api.Tolerance : null),
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | 32 | (_flaxHas6 ? 64 : 0)],
+        const <String>["", "", "", "", "", "snapToEnd", "tolerance"],
+      ) as api.SpringSimulation;
     default:
       throw ArgumentError('Unknown generated constructor');
   }

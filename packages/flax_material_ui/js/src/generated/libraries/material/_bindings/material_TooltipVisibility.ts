@@ -17,6 +17,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import { _flaxMemberParameters0 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -43,7 +44,7 @@ return constructObject("object", "flax.material/material#type:TooltipVisibility"
 }
 export namespace _TooltipVisibilityFactory { export function of(context: upstream2.BuildContext): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:TooltipVisibility.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:TooltipVisibility.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as boolean;
 } }
 export const TooltipVisibility: typeof _TooltipVisibilityFactory & _FlaxInstanceType<TooltipVisibility> & _FlaxDartType<TooltipVisibility, readonly ["class", "flax.material/material#type:TooltipVisibility", readonly [], false]> = _flaxBindInstanceType<TooltipVisibility, typeof _TooltipVisibilityFactory>(_TooltipVisibilityFactory, "flax.material/material#type:TooltipVisibility", ["flax.core/sdk_widgets#type:StatelessWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _TooltipVisibilityFactory & _FlaxInstanceType<TooltipVisibility> & _FlaxDartType<TooltipVisibility, readonly ["class", "flax.material/material#type:TooltipVisibility", readonly [], false]>;

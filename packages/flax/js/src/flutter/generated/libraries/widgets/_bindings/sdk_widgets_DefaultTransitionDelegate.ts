@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Tra
 import '@flax/flutter/widgets/_bindings/sdk_widgets_TransitionDelegate';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteTransitionRecord';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RouteTransitionRecord';
-import { _flaxMemberParameters70, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters79, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,7 +14,7 @@ readonly [_flaxDartTypeValue]: DefaultTransitionDelegate<T>;
 
 resolve(options: {locationToExitingPageRoute: DartMapInput<upstream1.RouteTransitionRecord | null, upstream1.RouteTransitionRecord, Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteTransitionRecord": readonly [] }> | null, Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteTransitionRecord": readonly [] }>>; newPageRouteHistory: DartListInput<upstream1.RouteTransitionRecord, Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteTransitionRecord": readonly [] }>>; pageRouteToPagelessRoutes: DartMapInput<upstream1.RouteTransitionRecord | null, DartList<upstream1.RouteTransitionRecord>, Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteTransitionRecord": readonly [] }> | null, DartListInput<upstream1.RouteTransitionRecord, Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteTransitionRecord": readonly [] }>>>}): DartIterable<upstream1.RouteTransitionRecord>;
 }
-defineObject("flax.core/sdk_widgets#type:DefaultTransitionDelegate", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DefaultTransitionDelegate", "object", {"resolve":_flaxMemberParameters70}, {}), []);
+defineObject("flax.core/sdk_widgets#type:DefaultTransitionDelegate", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DefaultTransitionDelegate", "object", {"resolve":_flaxMemberParameters79}, {}), []);
 export function _DefaultTransitionDelegateFactory<T extends unknown | null = unknown | null>(): DefaultTransitionDelegate<T>;
 export function _DefaultTransitionDelegateFactory(): DefaultTransitionDelegate<unknown | null>;
 export function _DefaultTransitionDelegateFactory(): unknown {
@@ -22,7 +22,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:DefaultTransitionDelegate", "", [], [], {}) as DefaultTransitionDelegate<unknown | null>;
 }
-const _DefaultTransitionDelegateProxy = {type: "flax.core/sdk_widgets#type:DefaultTransitionDelegate", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"resolve":_flaxMemberParameters70}, getters: [], setters: [], contextMembers: [], superMembers: ["resolve"]} as const;
+const _DefaultTransitionDelegateProxy = {type: "flax.core/sdk_widgets#type:DefaultTransitionDelegate", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"resolve":_flaxMemberParameters79}, getters: [], setters: [], contextMembers: [], superMembers: ["resolve"]} as const;
 export interface _DefaultTransitionDelegateNative<T extends unknown | null = unknown | null> extends DefaultTransitionDelegate<T> {
 readonly [_flaxDartTypeValue]: _DefaultTransitionDelegateNative<T>;
 

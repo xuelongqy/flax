@@ -5,11 +5,12 @@ import type * as upstream0 from '@flax/flutter/painting/_bindings/flutter_Axis';
 import '@flax/flutter/painting/_bindings/flutter_Axis';
 import type * as upstream1 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
+import { _flaxMemberParameters384 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_debugCheckHasBoundedAxis(axis: upstream0.Axis, constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): boolean {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:debugCheckHasBoundedAxis", [axis, constraints]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:debugCheckHasBoundedAxis", [axis, constraints], _flaxMemberParameters384);
 return _flaxResult as boolean;
 }
 export { _flaxTopLevel_debugCheckHasBoundedAxis as debugCheckHasBoundedAxis };

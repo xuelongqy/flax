@@ -8,7 +8,7 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_List
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream2 from '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
-import { _flaxMemberParameters26, _flaxMemberParameters1, _flaxMemberParameters89 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
+import { _flaxMemberParameters30, _flaxMemberParameters1, _flaxMemberParameters104 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,7 +23,7 @@ dispose(): void;
 toString(): string;
 set value(value: (T | DartInput<T>));
 }
-defineObject("flax.core/sdk_foundation#type:ValueNotifier", ["hasListeners","value"], ["value"], _flaxBindingMethods("flax.core/sdk_foundation#type:ValueNotifier", "object", {"addListener":_flaxMemberParameters26,"removeListener":_flaxMemberParameters26,"dispose":_flaxMemberParameters1,"toString":_flaxMemberParameters1}, {}), ["removeListener"]);
+defineObject("flax.core/sdk_foundation#type:ValueNotifier", ["hasListeners","value"], ["value"], _flaxBindingMethods("flax.core/sdk_foundation#type:ValueNotifier", "object", {"addListener":_flaxMemberParameters30,"removeListener":_flaxMemberParameters30,"dispose":_flaxMemberParameters1,"toString":_flaxMemberParameters1}, {}), ["removeListener"]);
 export function _ValueNotifierFactory<T extends unknown | null = unknown | null>(_value: (T | _FlaxDartOutput<T>)): ValueNotifier<T>;
 export function _ValueNotifierFactory(_value: unknown | null): ValueNotifier<unknown | null>;
 export function _ValueNotifierFactory(_value: unknown): unknown {
@@ -31,7 +31,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_foundation#type:ValueNotifier", "", [{"name":"_value","required":true,"positional":true}], [_value], {}) as ValueNotifier<unknown | null>;
 }
-const _ValueNotifierProxy = {type: "flax.core/sdk_foundation#type:ValueNotifier", parameters: _flaxMemberParameters89, constructors: {"": _flaxMemberParameters89}, methods: {"addListener":_flaxMemberParameters26,"removeListener":_flaxMemberParameters26,"dispose":_flaxMemberParameters1,"toString":_flaxMemberParameters1}, getters: ["value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:hasListeners","set:value","addListener","removeListener","dispose","toString"]} as const;
+const _ValueNotifierProxy = {type: "flax.core/sdk_foundation#type:ValueNotifier", parameters: _flaxMemberParameters104, constructors: {"": _flaxMemberParameters104}, methods: {"addListener":_flaxMemberParameters30,"removeListener":_flaxMemberParameters30,"dispose":_flaxMemberParameters1,"toString":_flaxMemberParameters1}, getters: ["value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:hasListeners","set:value","addListener","removeListener","dispose","toString"]} as const;
 export interface _ValueNotifierNative<T extends unknown | null = unknown | null> extends ValueNotifier<T> {
 readonly [_flaxDartTypeValue]: _ValueNotifierNative<T>;
 

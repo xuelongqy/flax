@@ -52,6 +52,7 @@ const canvasBindings = FlaxBindingModule(
   ],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "generic-member-views",
     "inherited-binding-members",
     "instance-checks",

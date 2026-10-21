@@ -13,6 +13,7 @@ import type * as upstream4 from '@flax/flutter/services/_bindings/sdk_services_R
 import '@flax/flutter/services/_bindings/sdk_services_RawKeyEvent';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import { _flaxMemberParameters63, _flaxMemberParameters50 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Focus extends WidgetDescription, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_scope.dart::Focus": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, 'type'> { readonly type: "flax.core/flutter#type:Focus";  }
@@ -31,18 +32,18 @@ return construct("widget", "flax.core/flutter#type:Focus", "withExternalFocusNod
 export namespace _FocusFactory { export function of(context: upstream5.BuildContext, options: { createDependency?: boolean | undefined; scopeOk?: boolean | undefined } = {}): upstream1.FocusNode {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["createDependency","scopeOk"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Focus.of", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.createDependency, options.scopeOk]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Focus.of", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.createDependency, options.scopeOk], _flaxMemberParameters63);
 return _flaxResult as upstream1.FocusNode;
 } }
 export namespace _FocusFactory { export function maybeOf(context: upstream5.BuildContext, options: { createDependency?: boolean | undefined; scopeOk?: boolean | undefined } = {}): upstream1.FocusNode | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["createDependency","scopeOk"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Focus.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.createDependency, options.scopeOk]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Focus.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.createDependency, options.scopeOk], _flaxMemberParameters63);
 return _flaxResult as upstream1.FocusNode | null;
 } }
 export namespace _FocusFactory { export function isAt(context: upstream5.BuildContext): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Focus.isAt", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Focus.isAt", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters50);
 return _flaxResult as boolean;
 } }
 export const Focus: typeof _FocusFactory & _FlaxInstanceType<Focus> & _FlaxDartType<Focus, readonly ["class", "flax.core/flutter#type:Focus", readonly [], false]> = _flaxBindInstanceType<Focus, typeof _FocusFactory>(_FocusFactory, "flax.core/flutter#type:Focus", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _FocusFactory & _FlaxInstanceType<Focus> & _FlaxDartType<Focus, readonly ["class", "flax.core/flutter#type:Focus", readonly [], false]>;

@@ -12,7 +12,7 @@ import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream4 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
-import { _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters2, _flaxMemberParameters28 } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
+import { _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters2, _flaxMemberParameters30 } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -38,7 +38,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_animation#type:Tween", "", [{"name":"begin"},{"name":"end"}], [], options) as Tween<unknown | null>;
 }
-const _TweenProxy = {type: "flax.core/sdk_animation#type:Tween", parameters: _flaxMemberParameters28, constructors: {"": _flaxMemberParameters28}, methods: {"transform":_flaxMemberParameters4,"evaluate":_flaxMemberParameters5,"animate":_flaxMemberParameters6,"chain":_flaxMemberParameters6,"lerp":_flaxMemberParameters4,"toString":_flaxMemberParameters2}, getters: ["begin","end"], setters: ["begin","end"], contextMembers: [], superMembers: ["get:begin","get:end","set:begin","set:end","transform","evaluate","animate","chain","lerp","toString"]} as const;
+const _TweenProxy = {type: "flax.core/sdk_animation#type:Tween", parameters: _flaxMemberParameters30, constructors: {"": _flaxMemberParameters30}, methods: {"transform":_flaxMemberParameters4,"evaluate":_flaxMemberParameters5,"animate":_flaxMemberParameters6,"chain":_flaxMemberParameters6,"lerp":_flaxMemberParameters4,"toString":_flaxMemberParameters2}, getters: ["begin","end"], setters: ["begin","end"], contextMembers: [], superMembers: ["get:begin","get:end","set:begin","set:end","transform","evaluate","animate","chain","lerp","toString"]} as const;
 export interface _TweenNative<T extends unknown | null = unknown | null> extends Tween<T> {
 readonly [_flaxDartTypeValue]: _TweenNative<T>;
 

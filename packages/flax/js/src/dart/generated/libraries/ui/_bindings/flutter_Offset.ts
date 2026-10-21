@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
-import { _flaxMemberParameters90, _flaxMemberParameters91, _flaxMemberParameters0, _flaxMemberParameters92, _flaxMemberParameters3 } from "@flax/core/navigation/_bindings/flutter.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters126, _flaxMemberParameters127, _flaxMemberParameters1, _flaxMemberParameters128, _flaxMemberParameters4 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Offset extends Omit<upstream0.OffsetBase, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }>, Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> { readonly __Offset: unique symbol;
@@ -36,7 +36,7 @@ operatorModulo(operand: number): Offset;
 operatorBitAnd(other: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): upstream1.Rect;
 operatorNegate(): Offset;
 }
-defineObject("flax.core/flutter#type:Offset", ["isInfinite","isFinite","dx","dy","distance","distanceSquared","direction"], [], _flaxBindingMethods("flax.core/flutter#type:Offset", "object", {"scale":_flaxMemberParameters90,"translate":_flaxMemberParameters91,"operatorAdd":_flaxMemberParameters0,"operatorSubtract":_flaxMemberParameters0,"operatorMultiply":_flaxMemberParameters92,"operatorDivide":_flaxMemberParameters92,"operatorTruncateDivide":_flaxMemberParameters92,"operatorModulo":_flaxMemberParameters92,"operatorBitAnd":_flaxMemberParameters0,"operatorNegate":_flaxMemberParameters3}, {}), [], undefined, "flax.core/sdk_dart_ui#type:OffsetBase");
+defineObject("flax.core/flutter#type:Offset", ["isInfinite","isFinite","dx","dy","distance","distanceSquared","direction"], [], _flaxBindingMethods("flax.core/flutter#type:Offset", "object", {"scale":_flaxMemberParameters126,"translate":_flaxMemberParameters127,"operatorAdd":_flaxMemberParameters1,"operatorSubtract":_flaxMemberParameters1,"operatorMultiply":_flaxMemberParameters128,"operatorDivide":_flaxMemberParameters128,"operatorTruncateDivide":_flaxMemberParameters128,"operatorModulo":_flaxMemberParameters128,"operatorBitAnd":_flaxMemberParameters1,"operatorNegate":_flaxMemberParameters4}, {}), [], undefined, "flax.core/sdk_dart_ui#type:OffsetBase");
 export function _OffsetFactory(dx: number, dy: number): Offset {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
@@ -54,7 +54,7 @@ export namespace _OffsetFactory { export declare const infinite: Offset; }
 _flaxDefineStaticGetters(_OffsetFactory, "flax.core/flutter#read:Offset.", ["zero","infinite"]);
 export namespace _OffsetFactory { export function lerp(a: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null, b: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null, t: number): Offset | null {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Offset.lerp", [a, b, t]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Offset.lerp", [a, b, t], _flaxMemberParameters0);
 return _flaxResult as Offset | null;
 } }
 export const Offset: typeof _OffsetFactory & _FlaxInstanceType<Offset> & _FlaxDartType<Offset, readonly ["class", "flax.core/flutter#type:Offset", readonly [], false]> = _flaxBindInstanceType<Offset, typeof _OffsetFactory>(_OffsetFactory, "flax.core/flutter#type:Offset", ["flax.core/sdk_dart_ui#type:OffsetBase","dart:core::Object"]) as typeof _OffsetFactory & _FlaxInstanceType<Offset> & _FlaxDartType<Offset, readonly ["class", "flax.core/flutter#type:Offset", readonly [], false]>;

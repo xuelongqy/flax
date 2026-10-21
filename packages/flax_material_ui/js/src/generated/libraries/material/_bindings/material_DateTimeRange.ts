@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/core/_bindings/flutter_DateTime';
 import '@flax/dart/core/_bindings/flutter_DateTime';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
-import { _flaxMemberParameters2, _flaxMemberParameters83 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters4, _flaxMemberParameters91 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,7 +17,7 @@ readonly end: T;
 readonly duration: upstream1.Duration;
 toString(): string;
 }
-defineObject("flax.material/material#type:DateTimeRange", ["start","end","duration"], [], _flaxBindingMethods("flax.material/material#type:DateTimeRange", "object", {"toString":_flaxMemberParameters2}, {}), []);
+defineObject("flax.material/material#type:DateTimeRange", ["start","end","duration"], [], _flaxBindingMethods("flax.material/material#type:DateTimeRange", "object", {"toString":_flaxMemberParameters4}, {}), []);
 export function _DateTimeRangeFactory<T extends upstream0.DateTime = upstream0.DateTime>(options: { start: (T | DartInput<T>); end: (T | DartInput<T>) }): DateTimeRange<T>;
 export function _DateTimeRangeFactory(options: { start: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>; end: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>> }): DateTimeRange<upstream0.DateTime>;
 export function _DateTimeRangeFactory(options: Record<string, unknown>): unknown {
@@ -25,7 +25,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:DateTimeRange", "", [{"name":"start","required":true},{"name":"end","required":true}], [], options) as DateTimeRange<upstream0.DateTime>;
 }
-const _DateTimeRangeProxy = {type: "flax.material/material#type:DateTimeRange", parameters: _flaxMemberParameters83, constructors: {"": _flaxMemberParameters83}, methods: {"toString":_flaxMemberParameters2}, getters: ["start","end","duration"], setters: [], contextMembers: [], superMembers: ["get:start","get:end","get:duration","toString"]} as const;
+const _DateTimeRangeProxy = {type: "flax.material/material#type:DateTimeRange", parameters: _flaxMemberParameters91, constructors: {"": _flaxMemberParameters91}, methods: {"toString":_flaxMemberParameters4}, getters: ["start","end","duration"], setters: [], contextMembers: [], superMembers: ["get:start","get:end","get:duration","toString"]} as const;
 export interface _DateTimeRangeNative<T extends upstream0.DateTime = upstream0.DateTime> extends DateTimeRange<T> {
 readonly [_flaxDartTypeValue]: _DateTimeRangeNative<T>;
 

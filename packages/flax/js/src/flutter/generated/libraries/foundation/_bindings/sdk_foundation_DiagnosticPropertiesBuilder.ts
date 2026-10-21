@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters27, _flaxMemberParameters1, _flaxMemberParameters28 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
+import { _flaxMemberParameters31, _flaxMemberParameters1, _flaxMemberParameters32 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -19,7 +19,7 @@ add(property: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics
 set defaultDiagnosticsTreeStyle(value: upstream1.DiagnosticsTreeStyle);
 set emptyBodyDescription(value: string | null);
 }
-defineObject("flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder", ["properties","defaultDiagnosticsTreeStyle","emptyBodyDescription"], ["defaultDiagnosticsTreeStyle","emptyBodyDescription"], _flaxBindingMethods("flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder", "object", {"add":_flaxMemberParameters27}, {}), []);
+defineObject("flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder", ["properties","defaultDiagnosticsTreeStyle","emptyBodyDescription"], ["defaultDiagnosticsTreeStyle","emptyBodyDescription"], _flaxBindingMethods("flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder", "object", {"add":_flaxMemberParameters31}, {}), []);
 export function _DiagnosticPropertiesBuilderFactory(): DiagnosticPropertiesBuilder {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
@@ -32,7 +32,7 @@ if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder", "fromProperties", [{"name":"properties","required":true,"positional":true}], [properties], {}) as DiagnosticPropertiesBuilder;
 }
 }
-const _DiagnosticPropertiesBuilderProxy = {type: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1,"fromProperties": _flaxMemberParameters28}, methods: {"add":_flaxMemberParameters27}, getters: ["properties","defaultDiagnosticsTreeStyle","emptyBodyDescription"], setters: ["defaultDiagnosticsTreeStyle","emptyBodyDescription"], contextMembers: [], superMembers: ["get:properties","get:defaultDiagnosticsTreeStyle","get:emptyBodyDescription","set:defaultDiagnosticsTreeStyle","set:emptyBodyDescription","add"]} as const;
+const _DiagnosticPropertiesBuilderProxy = {type: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1,"fromProperties": _flaxMemberParameters32}, methods: {"add":_flaxMemberParameters31}, getters: ["properties","defaultDiagnosticsTreeStyle","emptyBodyDescription"], setters: ["defaultDiagnosticsTreeStyle","emptyBodyDescription"], contextMembers: [], superMembers: ["get:properties","get:defaultDiagnosticsTreeStyle","get:emptyBodyDescription","set:defaultDiagnosticsTreeStyle","set:emptyBodyDescription","add"]} as const;
 export interface _DiagnosticPropertiesBuilderNative extends DiagnosticPropertiesBuilder {
 readonly [_flaxDartTypeValue]: _DiagnosticPropertiesBuilderNative;
 readonly [_flaxDartConstructors]?: {"": () => void;"fromProperties": (properties: DartListInput<upstream0.DiagnosticsNode, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticsNode": readonly [] }>>) => void;};

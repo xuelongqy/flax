@@ -13,7 +13,7 @@ import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/sdk_widgets_ShortcutRegistryEntry';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ShortcutRegistryEntry';
-import { _flaxMemberParameters33, _flaxMemberParameters2, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters38, _flaxMemberParameters2, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -27,13 +27,13 @@ removeListener(listener: (() => void)): void;
 dispose(): void;
 addAll(value: DartMapInput<upstream3.ShortcutActivator, upstream2.Intent, Readonly<{ "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>>): upstream5.ShortcutRegistryEntry;
 }
-defineObject("flax.core/sdk_widgets#type:ShortcutRegistry", ["hasListeners","shortcuts"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ShortcutRegistry", "object", {"addAll":_flaxMemberParameters33}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+defineObject("flax.core/sdk_widgets#type:ShortcutRegistry", ["hasListeners","shortcuts"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ShortcutRegistry", "object", {"addAll":_flaxMemberParameters38}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
 export function _ShortcutRegistryFactory(): ShortcutRegistry {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:ShortcutRegistry", "", [], [], {}) as ShortcutRegistry;
 }
-const _ShortcutRegistryProxy = {type: "flax.core/sdk_widgets#type:ShortcutRegistry", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"addAll":_flaxMemberParameters33}, getters: ["shortcuts","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:shortcuts","get:hasListeners","addListener","removeListener","dispose","addAll"]} as const;
+const _ShortcutRegistryProxy = {type: "flax.core/sdk_widgets#type:ShortcutRegistry", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"addAll":_flaxMemberParameters38}, getters: ["shortcuts","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:shortcuts","get:hasListeners","addListener","removeListener","dispose","addAll"]} as const;
 export interface _ShortcutRegistryNative extends ShortcutRegistry {
 readonly [_flaxDartTypeValue]: _ShortcutRegistryNative;
 
@@ -56,12 +56,12 @@ return constructProxy(_ShortcutRegistryProxy, args, implementation) as ShortcutR
 const _ShortcutRegistryBinding = _flaxProxyFactory(_ShortcutRegistryFactory, _ShortcutRegistryNative) as unknown as typeof _ShortcutRegistryFactory & (new() => _ShortcutRegistryNative);
 export namespace _ShortcutRegistryFactory { export function of(context: upstream4.BuildContext): ShortcutRegistry {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ShortcutRegistry.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ShortcutRegistry.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as ShortcutRegistry;
 } }
 export namespace _ShortcutRegistryFactory { export function maybeOf(context: upstream4.BuildContext): ShortcutRegistry | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ShortcutRegistry.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ShortcutRegistry.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as ShortcutRegistry | null;
 } }
 export const ShortcutRegistry: typeof _ShortcutRegistryBinding & _FlaxInstanceType<ShortcutRegistry> & _FlaxDartType<ShortcutRegistry, readonly ["class", "flax.core/sdk_widgets#type:ShortcutRegistry", readonly [], false]> = _flaxBindInstanceType<ShortcutRegistry, typeof _ShortcutRegistryBinding>(_ShortcutRegistryBinding, "flax.core/sdk_widgets#type:ShortcutRegistry", ["dart:core::Object","flax.core/sdk_foundation#type:ChangeNotifier","flax.core/flutter#type:Listenable"]) as typeof _ShortcutRegistryBinding & _FlaxInstanceType<ShortcutRegistry> & _FlaxDartType<ShortcutRegistry, readonly ["class", "flax.core/sdk_widgets#type:ShortcutRegistry", readonly [], false]>;

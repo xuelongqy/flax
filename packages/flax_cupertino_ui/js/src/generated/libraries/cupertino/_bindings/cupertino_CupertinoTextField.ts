@@ -96,7 +96,7 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import type * as upstream46 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableText';
 import type * as upstream47 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import type * as upstream48 from '@flax/flutter/widgets/_bindings/sdk_widgets_UndoHistoryValue';
-import { _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
+import { _flaxMemberParameters62, _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -204,7 +204,7 @@ export namespace _CupertinoTextFieldFactory { export declare const kMisspelledSe
 _flaxDefineStaticGetters(_CupertinoTextFieldFactory, "flax.cupertino/cupertino#read:CupertinoTextField.", ["cupertinoMisspelledTextStyle","kMisspelledSelectionColor"]);
 export namespace _CupertinoTextFieldFactory { export function inferIOSSpellCheckConfiguration(configuration: Readonly<{ "__flaxBound:package:flutter/src/widgets/spell_check.dart::SpellCheckConfiguration": readonly [] }> | null): upstream37.SpellCheckConfiguration {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoTextField.inferIOSSpellCheckConfiguration", [configuration]);
+const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoTextField.inferIOSSpellCheckConfiguration", [configuration], _flaxMemberParameters62);
 return _flaxResult as upstream37.SpellCheckConfiguration;
 } }
 export const CupertinoTextField: typeof _CupertinoTextFieldFactory & _FlaxInstanceType<CupertinoTextField> & _FlaxDartType<CupertinoTextField, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTextField", readonly [], false]> = _flaxBindInstanceType<CupertinoTextField, typeof _CupertinoTextFieldFactory>(_CupertinoTextFieldFactory, "flax.cupertino/cupertino#type:CupertinoTextField", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _CupertinoTextFieldFactory & _FlaxInstanceType<CupertinoTextField> & _FlaxDartType<CupertinoTextField, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTextField", readonly [], false]>;

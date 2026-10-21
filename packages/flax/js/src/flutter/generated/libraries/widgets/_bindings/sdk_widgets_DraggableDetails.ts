@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/gestures/_bindings/sdk_gestures_V
 import '@flax/flutter/gestures/_bindings/sdk_gestures_Velocity';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import { _flaxMemberParameters92 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters104 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,7 +22,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:DraggableDetails", "", [{"name":"wasAccepted"},{"name":"velocity","required":true},{"name":"offset","required":true}], [], options) as DraggableDetails;
 }
-const _DraggableDetailsProxy = {type: "flax.core/sdk_widgets#type:DraggableDetails", parameters: _flaxMemberParameters92, constructors: {"": _flaxMemberParameters92}, methods: {}, getters: ["wasAccepted","velocity","offset"], setters: [], contextMembers: [], superMembers: ["get:wasAccepted","get:velocity","get:offset"]} as const;
+const _DraggableDetailsProxy = {type: "flax.core/sdk_widgets#type:DraggableDetails", parameters: _flaxMemberParameters104, constructors: {"": _flaxMemberParameters104}, methods: {}, getters: ["wasAccepted","velocity","offset"], setters: [], contextMembers: [], superMembers: ["get:wasAccepted","get:velocity","get:offset"]} as const;
 export interface _DraggableDetailsNative extends DraggableDetails {
 readonly [_flaxDartTypeValue]: _DraggableDetailsNative;
 

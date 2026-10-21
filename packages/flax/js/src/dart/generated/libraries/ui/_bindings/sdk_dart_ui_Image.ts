@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_ImageByteFo
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ImageByteFormat';
 import type * as upstream2 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
-import { _flaxMemberParameters0, _flaxMemberParameters58, _flaxMemberParameters59 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
+import { _flaxMemberParameters48, _flaxMemberParameters0, _flaxMemberParameters62, _flaxMemberParameters40 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Image extends Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }> { readonly __Image: unique symbol;
@@ -24,14 +24,14 @@ clone(): Image;
 isCloneOf(other: Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>): boolean;
 toString(): string;
 }
-defineObject("flax.core/sdk_dart_ui#type:Image", ["width","height","debugDisposed","colorSpace"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:Image", "object", {"dispose":_flaxMemberParameters0,"toByteData":_flaxMemberParameters58,"debugGetOpenHandleStackTraces":_flaxMemberParameters0,"clone":_flaxMemberParameters0,"isCloneOf":_flaxMemberParameters59,"toString":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_dart_ui#type:Image", ["width","height","debugDisposed","colorSpace"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:Image", "object", {"dispose":_flaxMemberParameters0,"toByteData":_flaxMemberParameters62,"debugGetOpenHandleStackTraces":_flaxMemberParameters0,"clone":_flaxMemberParameters0,"isCloneOf":_flaxMemberParameters40,"toString":_flaxMemberParameters0}, {}), []);
 export namespace _ImageFactory { export function setOnCreate(value: ((image: Image) => void) | null): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dart_ui#function:Image.onCreate%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dart_ui#function:Image.onCreate%3D", [value], _flaxMemberParameters48);
 } }
 export namespace _ImageFactory { export function setOnDispose(value: ((image: Image) => void) | null): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dart_ui#function:Image.onDispose%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dart_ui#function:Image.onDispose%3D", [value], _flaxMemberParameters48);
 } }
 export namespace _ImageFactory { export declare const onCreate: ((image: Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>) => void) | null; }
 export namespace _ImageFactory { export declare const onDispose: ((image: Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>) => void) | null; }

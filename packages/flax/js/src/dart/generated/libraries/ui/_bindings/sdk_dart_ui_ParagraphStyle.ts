@@ -15,7 +15,7 @@ import type * as upstream5 from '@flax/dart/ui/_bindings/sdk_dart_ui_StrutStyle'
 import '@flax/dart/ui/_bindings/sdk_dart_ui_StrutStyle';
 import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
-import { _flaxMemberParameters0, _flaxMemberParameters83 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters90 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -30,7 +30,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_dart_ui#type:ParagraphStyle", "", [{"name":"textAlign"},{"name":"textDirection"},{"name":"maxLines"},{"name":"fontFamily"},{"name":"fontSize"},{"name":"height"},{"name":"textHeightBehavior"},{"name":"fontWeight"},{"name":"fontStyle"},{"name":"strutStyle"},{"name":"ellipsis"},{"name":"locale"}], [], options) as ParagraphStyle;
 }
-const _ParagraphStyleProxy = {type: "flax.core/sdk_dart_ui#type:ParagraphStyle", parameters: _flaxMemberParameters83, constructors: {"": _flaxMemberParameters83}, methods: {"toString":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
+const _ParagraphStyleProxy = {type: "flax.core/sdk_dart_ui#type:ParagraphStyle", parameters: _flaxMemberParameters90, constructors: {"": _flaxMemberParameters90}, methods: {"toString":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
 export interface _ParagraphStyleNative extends ParagraphStyle {
 readonly [_flaxDartTypeValue]: _ParagraphStyleNative;
 

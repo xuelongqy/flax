@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream4 from '@flax/flutter/gestures/_bindings/flutter_PointerEvent';
 import '@flax/flutter/gestures/_bindings/flutter_PointerEvent';
-import { _flaxMemberParameters120, _flaxMemberParameters1, _flaxMemberParameters121, _flaxMemberParameters49 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { _flaxMemberParameters127, _flaxMemberParameters1, _flaxMemberParameters128, _flaxMemberParameters54 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -26,13 +26,13 @@ dispose(): void;
 updateWithEvent(event: Readonly<{ "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, hitTestResult: Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestResult": readonly [] }> | null): void;
 updateAllDevices(): void;
 }
-defineObject("flax.core/sdk_rendering#type:MouseTracker", ["hasListeners","mouseIsConnected"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:MouseTracker", "object", {"updateWithEvent":_flaxMemberParameters120,"updateAllDevices":_flaxMemberParameters1}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+defineObject("flax.core/sdk_rendering#type:MouseTracker", ["hasListeners","mouseIsConnected"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:MouseTracker", "object", {"updateWithEvent":_flaxMemberParameters127,"updateAllDevices":_flaxMemberParameters1}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
 export function _MouseTrackerFactory(hitTestInView: ((offset: upstream3.Offset, viewId: number) => Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestResult": readonly [] }>)): MouseTracker {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_rendering#type:MouseTracker", "", [{"name":"hitTestInView","required":true,"positional":true}], [hitTestInView], {}) as MouseTracker;
 }
-const _MouseTrackerProxy = {type: "flax.core/sdk_rendering#type:MouseTracker", parameters: _flaxMemberParameters121, constructors: {"": _flaxMemberParameters121}, methods: {"addListener":_flaxMemberParameters49,"removeListener":_flaxMemberParameters49,"dispose":_flaxMemberParameters1,"updateWithEvent":_flaxMemberParameters120,"updateAllDevices":_flaxMemberParameters1}, getters: ["mouseIsConnected","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:mouseIsConnected","get:hasListeners","addListener","removeListener","dispose","updateWithEvent","updateAllDevices"]} as const;
+const _MouseTrackerProxy = {type: "flax.core/sdk_rendering#type:MouseTracker", parameters: _flaxMemberParameters128, constructors: {"": _flaxMemberParameters128}, methods: {"addListener":_flaxMemberParameters54,"removeListener":_flaxMemberParameters54,"dispose":_flaxMemberParameters1,"updateWithEvent":_flaxMemberParameters127,"updateAllDevices":_flaxMemberParameters1}, getters: ["mouseIsConnected","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:mouseIsConnected","get:hasListeners","addListener","removeListener","dispose","updateWithEvent","updateAllDevices"]} as const;
 export interface _MouseTrackerNative extends MouseTracker {
 readonly [_flaxDartTypeValue]: _MouseTrackerNative;
 

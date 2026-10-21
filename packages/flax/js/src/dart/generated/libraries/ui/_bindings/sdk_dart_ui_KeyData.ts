@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_KeyEventTyp
 import '@flax/dart/ui/_bindings/sdk_dart_ui_KeyEventType';
 import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_KeyEventDeviceType';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_KeyEventDeviceType';
-import { _flaxMemberParameters0, _flaxMemberParameters64 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters71 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -30,7 +30,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_dart_ui#type:KeyData", "", [{"name":"timeStamp","required":true},{"name":"type","required":true},{"name":"physical","required":true},{"name":"logical","required":true},{"name":"character","required":true},{"name":"synthesized","required":true},{"name":"deviceType"}], [], options) as KeyData;
 }
-const _KeyDataProxy = {type: "flax.core/sdk_dart_ui#type:KeyData", parameters: _flaxMemberParameters64, constructors: {"": _flaxMemberParameters64}, methods: {"toString":_flaxMemberParameters0,"toStringFull":_flaxMemberParameters0}, getters: ["timeStamp","type","deviceType","physical","logical","character","synthesized"], setters: [], contextMembers: [], superMembers: ["get:timeStamp","get:type","get:deviceType","get:physical","get:logical","get:character","get:synthesized","toString","toStringFull"]} as const;
+const _KeyDataProxy = {type: "flax.core/sdk_dart_ui#type:KeyData", parameters: _flaxMemberParameters71, constructors: {"": _flaxMemberParameters71}, methods: {"toString":_flaxMemberParameters0,"toStringFull":_flaxMemberParameters0}, getters: ["timeStamp","type","deviceType","physical","logical","character","synthesized"], setters: [], contextMembers: [], superMembers: ["get:timeStamp","get:type","get:deviceType","get:physical","get:logical","get:character","get:synthesized","toString","toStringFull"]} as const;
 export interface _KeyDataNative extends KeyData {
 readonly [_flaxDartTypeValue]: _KeyDataNative;
 

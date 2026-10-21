@@ -9,12 +9,13 @@ import type * as upstream2 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import { _flaxMemberParameters75 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_createCupertinoColorProperty(name: string, value: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null, options: { defaultValue?: unknown | null | undefined; level?: upstream2.DiagnosticLevel | undefined; showName?: boolean | undefined; style?: upstream3.DiagnosticsTreeStyle | undefined } = {}): upstream0.DiagnosticsProperty<upstream1.Color> {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["defaultValue","level","showName","style"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:createCupertinoColorProperty", [name, value, options.defaultValue, options.level, options.showName, options.style]);
+const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:createCupertinoColorProperty", [name, value, options.defaultValue, options.level, options.showName, options.style], _flaxMemberParameters75);
 return _flaxResult as upstream0.DiagnosticsProperty<upstream1.Color>;
 }
 export { _flaxTopLevel_createCupertinoColorProperty as createCupertinoColorProperty };

@@ -31,7 +31,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream15 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
-import { _flaxMemberParameters0, _flaxMemberParameters1 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters67, _flaxMemberParameters0, _flaxMemberParameters1 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -63,37 +63,37 @@ return constructObject("object", "flax.core/sdk_widgets#type:ConstraintsTransfor
 }
 export namespace _ConstraintsTransformBoxFactory { export function unmodified(constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): upstream5.BoxConstraints {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.unmodified", [constraints]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.unmodified", [constraints], _flaxMemberParameters67);
 return _flaxResult as upstream5.BoxConstraints;
 } }
 export namespace _ConstraintsTransformBoxFactory { export function unconstrained(constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): upstream5.BoxConstraints {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.unconstrained", [constraints]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.unconstrained", [constraints], _flaxMemberParameters67);
 return _flaxResult as upstream5.BoxConstraints;
 } }
 export namespace _ConstraintsTransformBoxFactory { export function widthUnconstrained(constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): upstream5.BoxConstraints {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.widthUnconstrained", [constraints]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.widthUnconstrained", [constraints], _flaxMemberParameters67);
 return _flaxResult as upstream5.BoxConstraints;
 } }
 export namespace _ConstraintsTransformBoxFactory { export function heightUnconstrained(constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): upstream5.BoxConstraints {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.heightUnconstrained", [constraints]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.heightUnconstrained", [constraints], _flaxMemberParameters67);
 return _flaxResult as upstream5.BoxConstraints;
 } }
 export namespace _ConstraintsTransformBoxFactory { export function maxHeightUnconstrained(constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): upstream5.BoxConstraints {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.maxHeightUnconstrained", [constraints]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.maxHeightUnconstrained", [constraints], _flaxMemberParameters67);
 return _flaxResult as upstream5.BoxConstraints;
 } }
 export namespace _ConstraintsTransformBoxFactory { export function maxWidthUnconstrained(constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): upstream5.BoxConstraints {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.maxWidthUnconstrained", [constraints]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.maxWidthUnconstrained", [constraints], _flaxMemberParameters67);
 return _flaxResult as upstream5.BoxConstraints;
 } }
 export namespace _ConstraintsTransformBoxFactory { export function maxUnconstrained(constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): upstream5.BoxConstraints {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.maxUnconstrained", [constraints]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.maxUnconstrained", [constraints], _flaxMemberParameters67);
 return _flaxResult as upstream5.BoxConstraints;
 } }
 export const ConstraintsTransformBox: typeof _ConstraintsTransformBoxFactory & _FlaxInstanceType<ConstraintsTransformBox> & _FlaxDartType<ConstraintsTransformBox, readonly ["class", "flax.core/sdk_widgets#type:ConstraintsTransformBox", readonly [], false]> = _flaxBindInstanceType<ConstraintsTransformBox, typeof _ConstraintsTransformBoxFactory>(_ConstraintsTransformBoxFactory, "flax.core/sdk_widgets#type:ConstraintsTransformBox", ["flax.core/sdk_widgets#type:SingleChildRenderObjectWidget","flax.core/sdk_widgets#type:RenderObjectWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ConstraintsTransformBoxFactory & _FlaxInstanceType<ConstraintsTransformBox> & _FlaxDartType<ConstraintsTransformBox, readonly ["class", "flax.core/sdk_widgets#type:ConstraintsTransformBox", readonly [], false]>;

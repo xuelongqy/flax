@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_Loc
 import '@flax/flutter/widgets/_bindings/sdk_widgets_LocalizationsDelegate';
 import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
-import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters80, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -76,7 +76,7 @@ export namespace _DefaultWidgetsLocalizationsFactory { export declare const dele
 _flaxDefineStaticGetters(_DefaultWidgetsLocalizationsFactory, "flax.core/sdk_widgets#read:DefaultWidgetsLocalizations.", ["delegate"]);
 export namespace _DefaultWidgetsLocalizationsFactory { export function load(locale: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }>): Promise<upstream0.WidgetsLocalizations> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:DefaultWidgetsLocalizations.load", [locale]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:DefaultWidgetsLocalizations.load", [locale], _flaxMemberParameters80);
 return _flaxResult as Promise<upstream0.WidgetsLocalizations>;
 } }
 export const DefaultWidgetsLocalizations: typeof _DefaultWidgetsLocalizationsBinding & _FlaxInstanceType<DefaultWidgetsLocalizations> & _FlaxDartType<DefaultWidgetsLocalizations, readonly ["class", "flax.core/sdk_widgets#type:DefaultWidgetsLocalizations", readonly [], false]> = _flaxBindInstanceType<DefaultWidgetsLocalizations, typeof _DefaultWidgetsLocalizationsBinding>(_DefaultWidgetsLocalizationsBinding, "flax.core/sdk_widgets#type:DefaultWidgetsLocalizations", ["dart:core::Object","flax.core/sdk_widgets#type:WidgetsLocalizations"]) as typeof _DefaultWidgetsLocalizationsBinding & _FlaxInstanceType<DefaultWidgetsLocalizations> & _FlaxDartType<DefaultWidgetsLocalizations, readonly ["class", "flax.core/sdk_widgets#type:DefaultWidgetsLocalizations", readonly [], false]>;

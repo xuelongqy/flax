@@ -38,7 +38,7 @@ import type * as upstream16 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream17 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters9, _flaxMemberParameters2 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters32, _flaxMemberParameters33, _flaxMemberParameters34, _flaxMemberParameters0, _flaxMemberParameters4 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -71,22 +71,22 @@ toStringDeep(options?: {minLevel?: upstream14.DiagnosticLevel | undefined; prefi
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream16.DiagnosticsTreeStyle | null | undefined}): upstream15.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream15.DiagnosticsNode>;
 }
-defineObject("flax.material/material#type:ButtonStyleButton", ["onPressed","onLongPress","onHover","onFocusChange","style","clipBehavior","focusNode","autofocus","statesController","isSemanticButton","iconAlignment","tooltip","child","enabled","key"], [], _flaxBindingMethods("flax.material/material#type:ButtonStyleButton", "object", {"defaultStyleOf":_flaxMemberParameters9,"themeStyleOf":_flaxMemberParameters9,"createState":_flaxMemberParameters2,"createElement":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_widgets#type:Widget");
+defineObject("flax.material/material#type:ButtonStyleButton", ["onPressed","onLongPress","onHover","onFocusChange","style","clipBehavior","focusNode","autofocus","statesController","isSemanticButton","iconAlignment","tooltip","child","enabled","key"], [], _flaxBindingMethods("flax.material/material#type:ButtonStyleButton", "object", {"defaultStyleOf":_flaxMemberParameters0,"themeStyleOf":_flaxMemberParameters0,"createState":_flaxMemberParameters4,"createElement":_flaxMemberParameters4}, {}), [], undefined, "flax.core/sdk_widgets#type:Widget");
 export namespace _ButtonStyleButtonFactory { function _flaxDefault_allOrNull<T extends unknown | null = unknown | null>(value: (T | _FlaxDartOutput<T>) | null): upstream7.WidgetStateProperty<_FlaxDartOutput<T>> | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:ButtonStyleButton.allOrNull", [value]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:ButtonStyleButton.allOrNull", [value], _flaxMemberParameters32);
 return _flaxResult as upstream7.WidgetStateProperty<_FlaxDartOutput<T>> | null;
 }
 export const allOrNull = _flaxDefineDartCallTypes(_flaxDefault_allOrNull, {"id":"flax.material/material#function:ButtonStyleButton.allOrNull","parameters":[{"name":"value","required":true,"positional":true}]}) as _FlaxDartCallable<typeof _flaxDefault_allOrNull, _FlaxSignature0>;
 }
 export namespace _ButtonStyleButtonFactory { export function defaultColor(enabled: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null, disabled: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null): upstream7.WidgetStateProperty<upstream8.Color | null> | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:ButtonStyleButton.defaultColor", [enabled, disabled]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:ButtonStyleButton.defaultColor", [enabled, disabled], _flaxMemberParameters33);
 return _flaxResult as upstream7.WidgetStateProperty<upstream8.Color | null> | null;
 } }
 export namespace _ButtonStyleButtonFactory { export function scaledPadding(geometry1x: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }>, geometry2x: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }>, geometry3x: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }>, fontSizeMultiplier: number): upstream9.EdgeInsetsGeometry {
 if (arguments.length > 4) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:ButtonStyleButton.scaledPadding", [geometry1x, geometry2x, geometry3x, fontSizeMultiplier]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:ButtonStyleButton.scaledPadding", [geometry1x, geometry2x, geometry3x, fontSizeMultiplier], _flaxMemberParameters34);
 return _flaxResult as upstream9.EdgeInsetsGeometry;
 } }
 export const ButtonStyleButton: typeof _ButtonStyleButtonFactory & _FlaxInstanceType<ButtonStyleButton> & _FlaxDartType<ButtonStyleButton, readonly ["class", "flax.material/material#type:ButtonStyleButton", readonly [], false]> = _flaxBindInstanceType<ButtonStyleButton, typeof _ButtonStyleButtonFactory>(_ButtonStyleButtonFactory, "flax.material/material#type:ButtonStyleButton", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ButtonStyleButtonFactory & _FlaxInstanceType<ButtonStyleButton> & _FlaxDartType<ButtonStyleButton, readonly ["class", "flax.material/material#type:ButtonStyleButton", readonly [], false]>;

@@ -120,6 +120,7 @@ void main() {
     expect(flutterBindings.uiProtocol, 24);
     expect(flutterBindings.requiredCapabilities, [
       'bottom-types',
+      'call-layouts',
       'context-instance-methods',
       'dart-type-tokens',
       'engine-type-handles',

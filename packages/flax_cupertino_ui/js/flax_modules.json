@@ -13,6 +13,7 @@
           "moduleId": "flax.cupertino/cupertino",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",

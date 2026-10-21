@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_StringAttri
 import '@flax/dart/ui/_bindings/sdk_dart_ui_StringAttribute';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_TextRange';
 import '@flax/dart/ui/_bindings/flutter_TextRange';
-import { _flaxMemberParameters0, _flaxMemberParameters69 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters76 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,7 +22,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_dart_ui#type:SpellOutStringAttribute", "", [{"name":"range","required":true}], [], options) as SpellOutStringAttribute;
 }
-const _SpellOutStringAttributeProxy = {type: "flax.core/sdk_dart_ui#type:SpellOutStringAttribute", parameters: _flaxMemberParameters69, constructors: {"": _flaxMemberParameters69}, methods: {"copy":_flaxMemberParameters69,"toString":_flaxMemberParameters0}, getters: ["range"], setters: [], contextMembers: [], superMembers: ["get:range","copy","toString"]} as const;
+const _SpellOutStringAttributeProxy = {type: "flax.core/sdk_dart_ui#type:SpellOutStringAttribute", parameters: _flaxMemberParameters76, constructors: {"": _flaxMemberParameters76}, methods: {"copy":_flaxMemberParameters76,"toString":_flaxMemberParameters0}, getters: ["range"], setters: [], contextMembers: [], superMembers: ["get:range","copy","toString"]} as const;
 export interface _SpellOutStringAttributeNative extends SpellOutStringAttribute {
 readonly [_flaxDartTypeValue]: _SpellOutStringAttributeNative;
 

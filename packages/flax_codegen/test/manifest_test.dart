@@ -7516,6 +7516,7 @@ void _expectEnvelopeShape(
     _expectExactKeys(module, _moduleEntryKeys);
     expect(module['uiProtocol'], 24);
     expect(module['requiredCapabilities'], [
+      'call-layouts',
       'generic-member-views',
       'instance-checks',
       'native-navigation-objects',
@@ -7536,6 +7537,7 @@ void _expectEnvelopeShape(
   final host = manifest.modules.first;
   expect(host.name, 'host');
   expect(host.requiredCapabilities, [
+    'call-layouts',
     'generic-member-views',
     'instance-checks',
     'native-navigation-objects',
@@ -7549,6 +7551,7 @@ void _expectEnvelopeShape(
   final widgets = manifest.modules.last;
   expect(widgets.name, 'widgets');
   expect(widgets.requiredCapabilities, [
+    'call-layouts',
     'generic-member-views',
     'instance-checks',
     'native-navigation-objects',

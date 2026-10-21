@@ -8,7 +8,7 @@ import '@flax/dart/core/_bindings/flutter_Uri';
 import type * as upstream2 from '@flax/dart/io/_bindings/sdk_dependencies_FileStat';
 import '@flax/dart/io/_bindings/sdk_dependencies_FileStat';
 import type * as upstream3 from '@flax/dart/async/_bindings/flutter_Stream';
-import { _flaxMemberParameters3, _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters2 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
+import { _flaxMemberParameters3, _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters2 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Directory extends Omit<upstream0.FileSystemEntity, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:io::Directory": readonly [] }>, Readonly<{ "__flaxBound:dart:io::FileSystemEntity": readonly [] }> { readonly __Directory: unique symbol;
@@ -37,7 +37,7 @@ list(options?: {followLinks?: boolean | undefined; recursive?: boolean | undefin
 listSync(options?: {followLinks?: boolean | undefined; recursive?: boolean | undefined}): DartList<upstream0.FileSystemEntity>;
 toString(): string;
 }
-defineObject("flax.core/sdk_dependencies#type:Directory", ["path","uri","isAbsolute","absolute","parent"], [], _flaxBindingMethods("flax.core/sdk_dependencies#type:Directory", "object", {"rename":_flaxMemberParameters3,"renameSync":_flaxMemberParameters3,"create":_flaxMemberParameters4,"createSync":_flaxMemberParameters4,"createTemp":_flaxMemberParameters5,"createTempSync":_flaxMemberParameters5,"list":_flaxMemberParameters6,"listSync":_flaxMemberParameters6,"toString":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_dependencies#type:FileSystemEntity");
+defineObject("flax.core/sdk_dependencies#type:Directory", ["path","uri","isAbsolute","absolute","parent"], [], _flaxBindingMethods("flax.core/sdk_dependencies#type:Directory", "object", {"rename":_flaxMemberParameters4,"renameSync":_flaxMemberParameters4,"create":_flaxMemberParameters5,"createSync":_flaxMemberParameters5,"createTemp":_flaxMemberParameters6,"createTempSync":_flaxMemberParameters6,"list":_flaxMemberParameters7,"listSync":_flaxMemberParameters7,"toString":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_dependencies#type:FileSystemEntity");
 export function _DirectoryFactory(path: string): Directory {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -59,7 +59,7 @@ return constructObject("object", "flax.core/sdk_dependencies#type:Directory", "f
 }
 export namespace _DirectoryFactory { export function setCurrent(value: unknown | null): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:Directory.current%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:Directory.current%3D", [value], _flaxMemberParameters3);
 } }
 export namespace _DirectoryFactory { export declare const current: Directory; }
 export namespace _DirectoryFactory { export declare const systemTemp: Directory; }

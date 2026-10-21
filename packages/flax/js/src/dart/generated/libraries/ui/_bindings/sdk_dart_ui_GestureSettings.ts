@@ -1,7 +1,7 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
-import { _flaxMemberParameters54, _flaxMemberParameters0, _flaxMemberParameters55 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
+import { _flaxMemberParameters58, _flaxMemberParameters0, _flaxMemberParameters59 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -13,13 +13,13 @@ readonly physicalDoubleTapSlop: number | null;
 copyWith(options?: {physicalDoubleTapSlop?: number | null | undefined; physicalTouchSlop?: number | null | undefined}): GestureSettings;
 toString(): string;
 }
-defineObject("flax.core/sdk_dart_ui#type:GestureSettings", ["physicalTouchSlop","physicalDoubleTapSlop"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:GestureSettings", "object", {"copyWith":_flaxMemberParameters54,"toString":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_dart_ui#type:GestureSettings", ["physicalTouchSlop","physicalDoubleTapSlop"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:GestureSettings", "object", {"copyWith":_flaxMemberParameters58,"toString":_flaxMemberParameters0}, {}), []);
 export function _GestureSettingsFactory(options: { physicalTouchSlop?: number | null | undefined; physicalDoubleTapSlop?: number | null | undefined } = {}): GestureSettings {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_dart_ui#type:GestureSettings", "", [{"name":"physicalTouchSlop"},{"name":"physicalDoubleTapSlop"}], [], options) as GestureSettings;
 }
-const _GestureSettingsProxy = {type: "flax.core/sdk_dart_ui#type:GestureSettings", parameters: _flaxMemberParameters55, constructors: {"": _flaxMemberParameters55}, methods: {"copyWith":_flaxMemberParameters54,"toString":_flaxMemberParameters0}, getters: ["physicalTouchSlop","physicalDoubleTapSlop"], setters: [], contextMembers: [], superMembers: ["get:physicalTouchSlop","get:physicalDoubleTapSlop","copyWith","toString"]} as const;
+const _GestureSettingsProxy = {type: "flax.core/sdk_dart_ui#type:GestureSettings", parameters: _flaxMemberParameters59, constructors: {"": _flaxMemberParameters59}, methods: {"copyWith":_flaxMemberParameters58,"toString":_flaxMemberParameters0}, getters: ["physicalTouchSlop","physicalDoubleTapSlop"], setters: [], contextMembers: [], superMembers: ["get:physicalTouchSlop","get:physicalDoubleTapSlop","copyWith","toString"]} as const;
 export interface _GestureSettingsNative extends GestureSettings {
 readonly [_flaxDartTypeValue]: _GestureSettingsNative;
 

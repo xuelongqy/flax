@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Color';
-import { _flaxMemberParameters133 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters148 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -29,7 +29,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:ExpansionPanelRadio", "", [{"name":"value","required":true},{"name":"headerBuilder","required":true},{"name":"body","required":true},{"name":"canTapOnHeader"},{"name":"backgroundColor"},{"name":"splashColor"},{"name":"highlightColor"}], [], options) as ExpansionPanelRadio;
 }
-const _ExpansionPanelRadioProxy = {type: "flax.material/material#type:ExpansionPanelRadio", parameters: _flaxMemberParameters133, constructors: {"": _flaxMemberParameters133}, methods: {}, getters: ["value","headerBuilder","body","isExpanded","splashColor","highlightColor","canTapOnHeader","backgroundColor"], setters: [], contextMembers: [], superMembers: ["get:value","get:headerBuilder","get:body","get:isExpanded","get:splashColor","get:highlightColor","get:canTapOnHeader","get:backgroundColor"]} as const;
+const _ExpansionPanelRadioProxy = {type: "flax.material/material#type:ExpansionPanelRadio", parameters: _flaxMemberParameters148, constructors: {"": _flaxMemberParameters148}, methods: {}, getters: ["value","headerBuilder","body","isExpanded","splashColor","highlightColor","canTapOnHeader","backgroundColor"], setters: [], contextMembers: [], superMembers: ["get:value","get:headerBuilder","get:body","get:isExpanded","get:splashColor","get:highlightColor","get:canTapOnHeader","get:backgroundColor"]} as const;
 export interface _ExpansionPanelRadioNative extends ExpansionPanelRadio {
 readonly [_flaxDartTypeValue]: _ExpansionPanelRadioNative;
 

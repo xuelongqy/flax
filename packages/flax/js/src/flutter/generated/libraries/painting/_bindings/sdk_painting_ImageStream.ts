@@ -15,7 +15,7 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream6 from '@flax/flutter/painting/_bindings/sdk_painting_ImageStreamListener';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageStreamListener';
-import { _flaxMemberParameters67, _flaxMemberParameters76, _flaxMemberParameters2, _flaxMemberParameters57, _flaxMemberParameters55, _flaxMemberParameters56 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
+import { _flaxMemberParameters68, _flaxMemberParameters77, _flaxMemberParameters2, _flaxMemberParameters58, _flaxMemberParameters56, _flaxMemberParameters57 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -32,13 +32,13 @@ setCompleter(value: Readonly<{ "__flaxBound:package:flutter/src/painting/image_s
 addListener(listener: Readonly<{ "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamListener": readonly [] }>): void;
 removeListener(listener: Readonly<{ "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamListener": readonly [] }>): void;
 }
-defineObject("flax.core/sdk_painting#type:ImageStream", ["completer","key"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ImageStream", "object", {"setCompleter":_flaxMemberParameters67,"addListener":_flaxMemberParameters76,"removeListener":_flaxMemberParameters76}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+defineObject("flax.core/sdk_painting#type:ImageStream", ["completer","key"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ImageStream", "object", {"setCompleter":_flaxMemberParameters68,"addListener":_flaxMemberParameters77,"removeListener":_flaxMemberParameters77}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
 export function _ImageStreamFactory(): ImageStream {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_painting#type:ImageStream", "", [], [], {}) as ImageStream;
 }
-const _ImageStreamProxy = {type: "flax.core/sdk_painting#type:ImageStream", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters57,"toDiagnosticsNode":_flaxMemberParameters55,"debugFillProperties":_flaxMemberParameters56,"setCompleter":_flaxMemberParameters67,"addListener":_flaxMemberParameters76,"removeListener":_flaxMemberParameters76}, getters: ["completer","key"], setters: [], contextMembers: [], superMembers: ["get:completer","get:key","toStringShort","toString","toDiagnosticsNode","debugFillProperties","setCompleter","addListener","removeListener"]} as const;
+const _ImageStreamProxy = {type: "flax.core/sdk_painting#type:ImageStream", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters58,"toDiagnosticsNode":_flaxMemberParameters56,"debugFillProperties":_flaxMemberParameters57,"setCompleter":_flaxMemberParameters68,"addListener":_flaxMemberParameters77,"removeListener":_flaxMemberParameters77}, getters: ["completer","key"], setters: [], contextMembers: [], superMembers: ["get:completer","get:key","toStringShort","toString","toDiagnosticsNode","debugFillProperties","setCompleter","addListener","removeListener"]} as const;
 export interface _ImageStreamNative extends ImageStream {
 readonly [_flaxDartTypeValue]: _ImageStreamNative;
 

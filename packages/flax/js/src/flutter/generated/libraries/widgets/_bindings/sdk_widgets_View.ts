@@ -28,7 +28,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream12 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import type * as upstream13 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
-import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -55,17 +55,17 @@ return constructObject("object", "flax.core/sdk_widgets#type:View", "", [{"name"
 }
 export namespace _ViewFactory { export function maybeOf(context: upstream5.BuildContext): upstream2.FlutterView | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:View.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:View.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream2.FlutterView | null;
 } }
 export namespace _ViewFactory { export function of(context: upstream5.BuildContext): upstream2.FlutterView {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:View.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:View.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream2.FlutterView;
 } }
 export namespace _ViewFactory { export function pipelineOwnerOf(context: upstream5.BuildContext): upstream3.PipelineOwner {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:View.pipelineOwnerOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:View.pipelineOwnerOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream3.PipelineOwner;
 } }
 export const View: typeof _ViewFactory & _FlaxInstanceType<View> & _FlaxDartType<View, readonly ["class", "flax.core/sdk_widgets#type:View", readonly [], false]> = _flaxBindInstanceType<View, typeof _ViewFactory>(_ViewFactory, "flax.core/sdk_widgets#type:View", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ViewFactory & _FlaxInstanceType<View> & _FlaxDartType<View, readonly ["class", "flax.core/sdk_widgets#type:View", readonly [], false]>;

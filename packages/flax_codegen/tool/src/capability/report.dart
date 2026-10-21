@@ -383,6 +383,7 @@ String capabilityMarkdown({
         'ok=${result['ok']} estimated=${result['estimated']} '
         'strategy=${result['strategy']} directBranches=${result['dartBranches']} '
         'applyCalls=${result['applyCalls']} '
+        'fixedCalls=${result['fixedCalls']} '
         'dartBytes=${result['dartBytes']} tsBytes=${result['tsBytes']} '
         'emitMs=${result['emitMilliseconds']}'
         '${result['error'] != null ? ' error=${result['error']}' : ''}'

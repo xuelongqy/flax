@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
-import { _flaxMemberParameters1, _flaxMemberParameters355, _flaxMemberParameters356, _flaxMemberParameters357 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { _flaxMemberParameters1, _flaxMemberParameters371, _flaxMemberParameters372, _flaxMemberParameters373 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -24,7 +24,7 @@ shouldUpdateMatrix(oldConfiguration: Readonly<{ "__flaxBound:package:flutter/src
 toPhysicalSize(logicalSize: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): upstream3.Size;
 toString(): string;
 }
-defineObject("flax.core/sdk_rendering#type:ViewConfiguration", ["logicalConstraints","physicalConstraints","devicePixelRatio"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:ViewConfiguration", "object", {"toMatrix":_flaxMemberParameters1,"shouldUpdateMatrix":_flaxMemberParameters355,"toPhysicalSize":_flaxMemberParameters356,"toString":_flaxMemberParameters1}, {}), []);
+defineObject("flax.core/sdk_rendering#type:ViewConfiguration", ["logicalConstraints","physicalConstraints","devicePixelRatio"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:ViewConfiguration", "object", {"toMatrix":_flaxMemberParameters1,"shouldUpdateMatrix":_flaxMemberParameters371,"toPhysicalSize":_flaxMemberParameters372,"toString":_flaxMemberParameters1}, {}), []);
 export function _ViewConfigurationFactory(options: { physicalConstraints?: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }> | undefined; logicalConstraints?: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }> | undefined; devicePixelRatio?: number | undefined } = {}): ViewConfiguration {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -37,7 +37,7 @@ if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_rendering#type:ViewConfiguration", "fromView", [{"name":"view","required":true,"positional":true}], [view], {}) as ViewConfiguration;
 }
 }
-const _ViewConfigurationProxy = {type: "flax.core/sdk_rendering#type:ViewConfiguration", parameters: _flaxMemberParameters357, constructors: {"": _flaxMemberParameters357}, methods: {"toMatrix":_flaxMemberParameters1,"shouldUpdateMatrix":_flaxMemberParameters355,"toPhysicalSize":_flaxMemberParameters356,"toString":_flaxMemberParameters1}, getters: ["logicalConstraints","physicalConstraints","devicePixelRatio"], setters: [], contextMembers: [], superMembers: ["get:logicalConstraints","get:physicalConstraints","get:devicePixelRatio","toMatrix","shouldUpdateMatrix","toPhysicalSize","toString"]} as const;
+const _ViewConfigurationProxy = {type: "flax.core/sdk_rendering#type:ViewConfiguration", parameters: _flaxMemberParameters373, constructors: {"": _flaxMemberParameters373}, methods: {"toMatrix":_flaxMemberParameters1,"shouldUpdateMatrix":_flaxMemberParameters371,"toPhysicalSize":_flaxMemberParameters372,"toString":_flaxMemberParameters1}, getters: ["logicalConstraints","physicalConstraints","devicePixelRatio"], setters: [], contextMembers: [], superMembers: ["get:logicalConstraints","get:physicalConstraints","get:devicePixelRatio","toMatrix","shouldUpdateMatrix","toPhysicalSize","toString"]} as const;
 export interface _ViewConfigurationNative extends ViewConfiguration {
 readonly [_flaxDartTypeValue]: _ViewConfigurationNative;
 

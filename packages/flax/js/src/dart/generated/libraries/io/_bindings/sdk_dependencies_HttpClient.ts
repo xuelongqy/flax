@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/dart/io/_bindings/sdk_dependencies_X509Ce
 import '@flax/dart/io/_bindings/sdk_dependencies_X509Certificate';
 import type * as upstream4 from '@flax/dart/io/_bindings/sdk_dependencies_HttpClientRequest';
 import '@flax/dart/io/_bindings/sdk_dependencies_HttpClientRequest';
-import { _flaxMemberParameters17, _flaxMemberParameters18, _flaxMemberParameters19, _flaxMemberParameters20, _flaxMemberParameters21 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
+import { _flaxMemberParameters3, _flaxMemberParameters24, _flaxMemberParameters25, _flaxMemberParameters26, _flaxMemberParameters27, _flaxMemberParameters28, _flaxMemberParameters29 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface HttpClient extends Readonly<{ "__flaxBound:dart:_http::HttpClient": readonly [] }> { readonly __HttpClient: unique symbol;
@@ -48,7 +48,7 @@ set authenticateProxy(value: ((host: string, port: number, scheme: string, realm
 set badCertificateCallback(value: ((cert: upstream3.X509Certificate, host: string, port: number) => boolean) | null);
 set keyLog(value: ((line: string) => unknown | null) | null);
 }
-defineObject("flax.core/sdk_dependencies#type:HttpClient", ["idleTimeout","connectionTimeout","maxConnectionsPerHost","autoUncompress","userAgent"], ["idleTimeout","connectionTimeout","maxConnectionsPerHost","autoUncompress","userAgent","authenticate","findProxy","authenticateProxy","badCertificateCallback","keyLog"], _flaxBindingMethods("flax.core/sdk_dependencies#type:HttpClient", "object", {"open":_flaxMemberParameters17,"openUrl":_flaxMemberParameters18,"get":_flaxMemberParameters19,"getUrl":_flaxMemberParameters20,"post":_flaxMemberParameters19,"postUrl":_flaxMemberParameters20,"put":_flaxMemberParameters19,"putUrl":_flaxMemberParameters20,"delete":_flaxMemberParameters19,"deleteUrl":_flaxMemberParameters20,"patch":_flaxMemberParameters19,"patchUrl":_flaxMemberParameters20,"head":_flaxMemberParameters19,"headUrl":_flaxMemberParameters20,"close":_flaxMemberParameters21}, {}), []);
+defineObject("flax.core/sdk_dependencies#type:HttpClient", ["idleTimeout","connectionTimeout","maxConnectionsPerHost","autoUncompress","userAgent"], ["idleTimeout","connectionTimeout","maxConnectionsPerHost","autoUncompress","userAgent","authenticate","findProxy","authenticateProxy","badCertificateCallback","keyLog"], _flaxBindingMethods("flax.core/sdk_dependencies#type:HttpClient", "object", {"open":_flaxMemberParameters25,"openUrl":_flaxMemberParameters26,"get":_flaxMemberParameters27,"getUrl":_flaxMemberParameters28,"post":_flaxMemberParameters27,"postUrl":_flaxMemberParameters28,"put":_flaxMemberParameters27,"putUrl":_flaxMemberParameters28,"delete":_flaxMemberParameters27,"deleteUrl":_flaxMemberParameters28,"patch":_flaxMemberParameters27,"patchUrl":_flaxMemberParameters28,"head":_flaxMemberParameters27,"headUrl":_flaxMemberParameters28,"close":_flaxMemberParameters29}, {}), []);
 export function _HttpClientFactory(options: { context?: Readonly<{ "__flaxBound:dart:io::SecurityContext": readonly [] }> | null | undefined } = {}): HttpClient {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -56,7 +56,7 @@ return constructObject("object", "flax.core/sdk_dependencies#type:HttpClient", "
 }
 export namespace _HttpClientFactory { export function setEnableTimelineLogging(value: boolean): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:HttpClient.enableTimelineLogging%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:HttpClient.enableTimelineLogging%3D", [value], _flaxMemberParameters3);
 } }
 export namespace _HttpClientFactory { export declare const defaultHttpPort: number; }
 export namespace _HttpClientFactory { export declare const defaultHttpsPort: number; }
@@ -65,7 +65,7 @@ _flaxDefineStaticGetters(_HttpClientFactory, "flax.core/sdk_dependencies#read:Ht
 export namespace _HttpClientFactory { export function findProxyFromEnvironment(url: DartInput<Readonly<{ "__flaxBound:dart:core::Uri": readonly [] }>>, options: { environment?: DartMapInput<string, string, string, string> | null | undefined } = {}): string {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["environment"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:HttpClient.findProxyFromEnvironment", [url, options.environment]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:HttpClient.findProxyFromEnvironment", [url, options.environment], _flaxMemberParameters24);
 return _flaxResult as string;
 } }
 export const HttpClient: typeof _HttpClientFactory & _FlaxInstanceType<HttpClient> & _FlaxDartType<HttpClient, readonly ["class", "flax.core/sdk_dependencies#type:HttpClient", readonly [], false]> = _flaxBindInstanceType<HttpClient, typeof _HttpClientFactory>(_HttpClientFactory, "flax.core/sdk_dependencies#type:HttpClient", ["dart:core::Object"]) as typeof _HttpClientFactory & _FlaxInstanceType<HttpClient> & _FlaxDartType<HttpClient, readonly ["class", "flax.core/sdk_dependencies#type:HttpClient", readonly [], false]>;

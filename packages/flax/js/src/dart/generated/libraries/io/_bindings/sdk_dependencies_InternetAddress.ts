@@ -3,7 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/io/_bindings/sdk_dependencies_InternetAddressType';
 import '@flax/dart/io/_bindings/sdk_dependencies_InternetAddressType';
-import { _flaxMemberParameters2 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
+import { _flaxMemberParameters59, _flaxMemberParameters60, _flaxMemberParameters2 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface InternetAddress extends Readonly<{ "__flaxBound:dart:io::InternetAddress": readonly [] }> { readonly __InternetAddress: unique symbol;
@@ -39,12 +39,12 @@ _flaxDefineStaticGetters(_InternetAddressFactory, "flax.core/sdk_dependencies#re
 export namespace _InternetAddressFactory { export function lookup(host: string, options: { type?: Readonly<{ "__flaxBound:dart:io::InternetAddressType": readonly [] }> | undefined } = {}): Promise<DartList<InternetAddress>> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["type"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:InternetAddress.lookup", [host, options.type]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:InternetAddress.lookup", [host, options.type], _flaxMemberParameters59);
 return _flaxResult as Promise<DartList<InternetAddress>>;
 } }
 export namespace _InternetAddressFactory { export function tryParse(address: string): InternetAddress | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:InternetAddress.tryParse", [address]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:InternetAddress.tryParse", [address], _flaxMemberParameters60);
 return _flaxResult as InternetAddress | null;
 } }
 export const InternetAddress: typeof _InternetAddressFactory & _FlaxInstanceType<InternetAddress> & _FlaxDartType<InternetAddress, readonly ["class", "flax.core/sdk_dependencies#type:InternetAddress", readonly [], false]> = _flaxBindInstanceType<InternetAddress, typeof _InternetAddressFactory>(_InternetAddressFactory, "flax.core/sdk_dependencies#type:InternetAddress", ["dart:core::Object"]) as typeof _InternetAddressFactory & _FlaxInstanceType<InternetAddress> & _FlaxDartType<InternetAddress, readonly ["class", "flax.core/sdk_dependencies#type:InternetAddress", readonly [], false]>;

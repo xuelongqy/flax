@@ -1391,9 +1391,11 @@ class FlaxCodegenModuleModel {
   /// it; the emitter then infers from wireIds or a test fallback.
   final String? moduleId;
 
-  /// Sorted unique capability literals. Protocol 21 is empty.
+  /// Sorted capabilities required by emitted calls and declared providers.
   final List<String> _requiredCapabilities;
   List<String> get requiredCapabilities {
+    final required = {..._requiredCapabilities, 'call-layouts'}.toList()
+      ..sort();
     bool callback(FlaxCodegenTypeRef type) =>
         type.kind == 'callback' && type.typeParameters.isNotEmpty ||
         [
@@ -1538,10 +1540,10 @@ class FlaxCodegenModuleModel {
         !sharedBuffers &&
         !nativeBigInt &&
         !nativeCoreInputs) {
-      return _requiredCapabilities;
+      return required;
     }
     return ({
-      ..._requiredCapabilities,
+      ...required,
       if (sharedStaticReaders) 'shared-static-readers',
       if (inheritedMembers) 'inherited-binding-members',
       if (nativeFunctions) 'native-functions',

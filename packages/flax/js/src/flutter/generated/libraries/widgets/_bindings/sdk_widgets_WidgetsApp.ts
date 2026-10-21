@@ -63,7 +63,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream29 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import type * as upstream30 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation';
-import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters38, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -131,19 +131,19 @@ return constructObject("object", "flax.core/sdk_widgets#type:WidgetsApp", "route
 }
 export namespace _WidgetsAppFactory { export function setShowPerformanceOverlayOverride(value: boolean): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:WidgetsApp.showPerformanceOverlayOverride%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:WidgetsApp.showPerformanceOverlayOverride%3D", [value], _flaxMemberParameters38);
 } }
 export namespace _WidgetsAppFactory { export function setDebugShowWidgetInspectorOverride(value: boolean): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:WidgetsApp.debugShowWidgetInspectorOverride%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:WidgetsApp.debugShowWidgetInspectorOverride%3D", [value], _flaxMemberParameters38);
 } }
 export namespace _WidgetsAppFactory { export function setDebugAllowBannerOverride(value: boolean): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:WidgetsApp.debugAllowBannerOverride%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:WidgetsApp.debugAllowBannerOverride%3D", [value], _flaxMemberParameters38);
 } }
 export namespace _WidgetsAppFactory { export function setDefaultActions(value: DartMapInput<upstream18.Type, upstream17.Action<upstream15.Intent>, Readonly<{ "__flaxBound:dart:core::Type": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream15.Intent] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>>): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:WidgetsApp.defaultActions%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:WidgetsApp.defaultActions%3D", [value], _flaxMemberParameters38);
 } }
 export namespace _WidgetsAppFactory { export declare const showPerformanceOverlayOverride: boolean; }
 export namespace _WidgetsAppFactory { export declare const debugShowWidgetInspectorOverride: boolean; }

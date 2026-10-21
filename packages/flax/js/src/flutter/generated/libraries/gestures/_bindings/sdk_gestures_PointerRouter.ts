@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/gestures/_bindings/flutter_Pointe
 import '@flax/flutter/gestures/_bindings/flutter_PointerEvent';
 import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
-import { _flaxMemberParameters72, _flaxMemberParameters73, _flaxMemberParameters74, _flaxMemberParameters75, _flaxMemberParameters0, _flaxMemberParameters7 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
+import { _flaxMemberParameters73, _flaxMemberParameters74, _flaxMemberParameters75, _flaxMemberParameters76, _flaxMemberParameters0, _flaxMemberParameters7 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -19,13 +19,13 @@ addGlobalRoute(route: ((event: upstream0.PointerEvent) => void), transform?: Rea
 removeGlobalRoute(route: ((event: upstream0.PointerEvent) => void)): void;
 route(event: Readonly<{ "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): void;
 }
-defineObject("flax.core/sdk_gestures#type:PointerRouter", ["debugGlobalRouteCount"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:PointerRouter", "object", {"addRoute":_flaxMemberParameters72,"removeRoute":_flaxMemberParameters73,"addGlobalRoute":_flaxMemberParameters74,"removeGlobalRoute":_flaxMemberParameters75,"route":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_gestures#type:PointerRouter", ["debugGlobalRouteCount"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:PointerRouter", "object", {"addRoute":_flaxMemberParameters73,"removeRoute":_flaxMemberParameters74,"addGlobalRoute":_flaxMemberParameters75,"removeGlobalRoute":_flaxMemberParameters76,"route":_flaxMemberParameters0}, {}), []);
 export function _PointerRouterFactory(): PointerRouter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_gestures#type:PointerRouter", "", [], [], {}) as PointerRouter;
 }
-const _PointerRouterProxy = {type: "flax.core/sdk_gestures#type:PointerRouter", parameters: _flaxMemberParameters7, constructors: {"": _flaxMemberParameters7}, methods: {"addRoute":_flaxMemberParameters72,"removeRoute":_flaxMemberParameters73,"addGlobalRoute":_flaxMemberParameters74,"removeGlobalRoute":_flaxMemberParameters75,"route":_flaxMemberParameters0}, getters: ["debugGlobalRouteCount"], setters: [], contextMembers: [], superMembers: ["get:debugGlobalRouteCount","addRoute","removeRoute","addGlobalRoute","removeGlobalRoute","route"]} as const;
+const _PointerRouterProxy = {type: "flax.core/sdk_gestures#type:PointerRouter", parameters: _flaxMemberParameters7, constructors: {"": _flaxMemberParameters7}, methods: {"addRoute":_flaxMemberParameters73,"removeRoute":_flaxMemberParameters74,"addGlobalRoute":_flaxMemberParameters75,"removeGlobalRoute":_flaxMemberParameters76,"route":_flaxMemberParameters0}, getters: ["debugGlobalRouteCount"], setters: [], contextMembers: [], superMembers: ["get:debugGlobalRouteCount","addRoute","removeRoute","addGlobalRoute","removeGlobalRoute","route"]} as const;
 export interface _PointerRouterNative extends PointerRouter {
 readonly [_flaxDartTypeValue]: _PointerRouterNative;
 

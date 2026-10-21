@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/convert/_bindings/sdk_dependencies_E
 import '@flax/dart/convert/_bindings/sdk_dependencies_Encoding';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_UriData';
 import '@flax/dart/core/_bindings/flutter_UriData';
-import { _flaxMemberParameters184, _flaxMemberParameters185, _flaxMemberParameters3, _flaxMemberParameters186, _flaxMemberParameters187 } from "@flax/core/navigation/_bindings/flutter.__module";
+import { _flaxMemberParameters222, _flaxMemberParameters223, _flaxMemberParameters224, _flaxMemberParameters225, _flaxMemberParameters226, _flaxMemberParameters227, _flaxMemberParameters228, _flaxMemberParameters229, _flaxMemberParameters230, _flaxMemberParameters231, _flaxMemberParameters4, _flaxMemberParameters232, _flaxMemberParameters233 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Uri extends Readonly<{ "__flaxBound:dart:core::Uri": readonly [] }> { readonly __Uri: unique symbol;
@@ -41,7 +41,7 @@ resolve(reference: string): Uri;
 resolveUri(reference: DartInput<Readonly<{ "__flaxBound:dart:core::Uri": readonly [] }>>): Uri;
 normalizePath(): Uri;
 }
-defineObject("flax.core/flutter#type:Uri", ["scheme","authority","userInfo","host","port","path","query","fragment","pathSegments","queryParameters","queryParametersAll","isAbsolute","hasScheme","hasAuthority","hasPort","hasQuery","hasFragment","hasEmptyPath","hasAbsolutePath","origin","data"], [], _flaxBindingMethods("flax.core/flutter#type:Uri", "object", {"isScheme":_flaxMemberParameters184,"toFilePath":_flaxMemberParameters185,"toString":_flaxMemberParameters3,"replace":_flaxMemberParameters186,"removeFragment":_flaxMemberParameters3,"resolve":_flaxMemberParameters187,"resolveUri":_flaxMemberParameters187,"normalizePath":_flaxMemberParameters3}, {}), []);
+defineObject("flax.core/flutter#type:Uri", ["scheme","authority","userInfo","host","port","path","query","fragment","pathSegments","queryParameters","queryParametersAll","isAbsolute","hasScheme","hasAuthority","hasPort","hasQuery","hasFragment","hasEmptyPath","hasAbsolutePath","origin","data"], [], _flaxBindingMethods("flax.core/flutter#type:Uri", "object", {"isScheme":_flaxMemberParameters230,"toFilePath":_flaxMemberParameters231,"toString":_flaxMemberParameters4,"replace":_flaxMemberParameters232,"removeFragment":_flaxMemberParameters4,"resolve":_flaxMemberParameters233,"resolveUri":_flaxMemberParameters233,"normalizePath":_flaxMemberParameters4}, {}), []);
 export function _UriFactory(options: { scheme?: string | null | undefined; userInfo?: string | null | undefined; host?: string | null | undefined; port?: number | null | undefined; path?: string | null | undefined; pathSegments?: DartIterableInput<string, string> | null | undefined; query?: string | null | undefined; queryParameters?: DartMapInput<string, unknown | null, string, unknown | null> | null | undefined; fragment?: string | null | undefined } = {}): Uri {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -96,63 +96,63 @@ _flaxDefineStaticGetters(_UriFactory, "flax.core/flutter#read:Uri.", ["base"]);
 export namespace _UriFactory { export function parse(uri: string, start?: number, end?: number | null): Uri {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 if (start === undefined && (end !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.parse", [uri, start, end]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.parse", [uri, start, end], _flaxMemberParameters222);
 return _flaxResult as Uri;
 } }
 export namespace _UriFactory { export function tryParse(uri: string, start?: number, end?: number | null): Uri | null {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 if (start === undefined && (end !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.tryParse", [uri, start, end]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.tryParse", [uri, start, end], _flaxMemberParameters222);
 return _flaxResult as Uri | null;
 } }
 export namespace _UriFactory { export function encodeComponent(component: string): string {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.encodeComponent", [component]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.encodeComponent", [component], _flaxMemberParameters223);
 return _flaxResult as string;
 } }
 export namespace _UriFactory { export function encodeQueryComponent(component: string, options: { encoding?: Readonly<{ "__flaxBound:dart:convert::Encoding": readonly [] }> & Readonly<{ "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>] }> | undefined } = {}): string {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["encoding"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.encodeQueryComponent", [component, options.encoding]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.encodeQueryComponent", [component, options.encoding], _flaxMemberParameters224);
 return _flaxResult as string;
 } }
 export namespace _UriFactory { export function decodeComponent(encodedComponent: string): string {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.decodeComponent", [encodedComponent]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.decodeComponent", [encodedComponent], _flaxMemberParameters225);
 return _flaxResult as string;
 } }
 export namespace _UriFactory { export function decodeQueryComponent(encodedComponent: string, options: { encoding?: Readonly<{ "__flaxBound:dart:convert::Encoding": readonly [] }> & Readonly<{ "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>] }> | undefined } = {}): string {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["encoding"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.decodeQueryComponent", [encodedComponent, options.encoding]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.decodeQueryComponent", [encodedComponent, options.encoding], _flaxMemberParameters226);
 return _flaxResult as string;
 } }
 export namespace _UriFactory { export function encodeFull(uri: string): string {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.encodeFull", [uri]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.encodeFull", [uri], _flaxMemberParameters227);
 return _flaxResult as string;
 } }
 export namespace _UriFactory { export function decodeFull(uri: string): string {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.decodeFull", [uri]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.decodeFull", [uri], _flaxMemberParameters227);
 return _flaxResult as string;
 } }
 export namespace _UriFactory { export function splitQueryString(query: string, options: { encoding?: Readonly<{ "__flaxBound:dart:convert::Encoding": readonly [] }> & Readonly<{ "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>] }> | undefined } = {}): DartMap<string, string> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["encoding"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.splitQueryString", [query, options.encoding]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.splitQueryString", [query, options.encoding], _flaxMemberParameters228);
 return _flaxResult as DartMap<string, string>;
 } }
 export namespace _UriFactory { export function parseIPv4Address(host: string, start?: number, end?: number | null): DartList<number> {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 if (start === undefined && (end !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.parseIPv4Address", [host, start, end]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.parseIPv4Address", [host, start, end], _flaxMemberParameters229);
 return _flaxResult as DartList<number>;
 } }
 export namespace _UriFactory { export function parseIPv6Address(host: string, start?: number, end?: number | null): DartList<number> {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 if (start === undefined && (end !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.parseIPv6Address", [host, start, end]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Uri.parseIPv6Address", [host, start, end], _flaxMemberParameters229);
 return _flaxResult as DartList<number>;
 } }
 export const Uri: typeof _UriFactory & _FlaxInstanceType<Uri> & _FlaxDartType<Uri, readonly ["class", "flax.core/flutter#type:Uri", readonly [], false]> = _flaxBindInstanceType<Uri, typeof _UriFactory>(_UriFactory, "flax.core/flutter#type:Uri", ["dart:core::Object"]) as typeof _UriFactory & _FlaxInstanceType<Uri> & _FlaxDartType<Uri, readonly ["class", "flax.core/flutter#type:Uri", readonly [], false]>;

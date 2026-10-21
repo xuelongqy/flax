@@ -7,11 +7,12 @@ import type * as upstream1 from '@flax/flutter/painting/_bindings/flutter_BoxFit
 import '@flax/flutter/painting/_bindings/flutter_BoxFit';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
+import { _flaxMemberParameters241 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_applyBoxFit(fit: upstream1.BoxFit, inputSize: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>, outputSize: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): upstream0.FittedSizes {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:applyBoxFit", [fit, inputSize, outputSize]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:applyBoxFit", [fit, inputSize, outputSize], _flaxMemberParameters241);
 return _flaxResult as upstream0.FittedSizes;
 }
 export { _flaxTopLevel_applyBoxFit as applyBoxFit };

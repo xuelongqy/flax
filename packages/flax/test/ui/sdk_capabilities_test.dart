@@ -149,7 +149,8 @@ void main() {
       var decoration = B.asDart(P.BoxDecoration(), P.Decoration);
       // Call the abstract declaration, whose callback is non-null when supplied.
       var painterSlot = __flaxResolveOperation(24,
-        'flax.core/flutter#type:Decoration', 'object', 'call', 'createBoxPainter');
+        'flax.core/flutter#type:Decoration', 'object', 'call', 'createBoxPainter',
+        [{name: 'onChanged', positional: true}]);
       var createPainter = (...args) => __flaxInvokeOperation(painterSlot,
         __flaxBindings.objectHandle(decoration), ...args);
       var painter = createPainter();

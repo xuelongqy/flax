@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_KeyEve
 import '@flax/flutter/services/_bindings/flutter_KeyEvent';
 import type * as upstream1 from '@flax/flutter/services/_bindings/sdk_services_RawKeyEvent';
 import '@flax/flutter/services/_bindings/sdk_services_RawKeyEvent';
-import { _flaxMemberParameters0, _flaxMemberParameters49 } from "@flax/flutter/services/_bindings/sdk_services.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters55 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,7 +22,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_services#type:KeyMessage", "", [{"name":"events","required":true,"positional":true},{"name":"rawEvent","required":true,"positional":true}], [events, rawEvent], {}) as KeyMessage;
 }
-const _KeyMessageProxy = {type: "flax.core/sdk_services#type:KeyMessage", parameters: _flaxMemberParameters49, constructors: {"": _flaxMemberParameters49}, methods: {"toString":_flaxMemberParameters0}, getters: ["events","rawEvent"], setters: [], contextMembers: [], superMembers: ["get:events","get:rawEvent","toString"]} as const;
+const _KeyMessageProxy = {type: "flax.core/sdk_services#type:KeyMessage", parameters: _flaxMemberParameters55, constructors: {"": _flaxMemberParameters55}, methods: {"toString":_flaxMemberParameters0}, getters: ["events","rawEvent"], setters: [], contextMembers: [], superMembers: ["get:events","get:rawEvent","toString"]} as const;
 export interface _KeyMessageNative extends KeyMessage {
 readonly [_flaxDartTypeValue]: _KeyMessageNative;
 

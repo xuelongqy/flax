@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/sdk_services_M
 import '@flax/flutter/services/_bindings/sdk_services_MethodCodec';
 import type * as upstream1 from '@flax/flutter/services/_bindings/sdk_services_MethodCall';
 import '@flax/flutter/services/_bindings/sdk_services_MethodCall';
-import { _flaxMemberParameters0, _flaxMemberParameters38, _flaxMemberParameters39, _flaxMemberParameters40, _flaxMemberParameters41 } from "@flax/flutter/services/_bindings/sdk_services.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters45, _flaxMemberParameters46, _flaxMemberParameters47, _flaxMemberParameters48 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -24,7 +24,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_services#type:JSONMethodCodec", "", [], [], {}) as JSONMethodCodec;
 }
-const _JSONMethodCodecProxy = {type: "flax.core/sdk_services#type:JSONMethodCodec", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"encodeMethodCall":_flaxMemberParameters38,"decodeMethodCall":_flaxMemberParameters38,"decodeEnvelope":_flaxMemberParameters39,"encodeSuccessEnvelope":_flaxMemberParameters40,"encodeErrorEnvelope":_flaxMemberParameters41}, getters: [], setters: [], contextMembers: [], superMembers: ["encodeMethodCall","decodeMethodCall","decodeEnvelope","encodeSuccessEnvelope","encodeErrorEnvelope"]} as const;
+const _JSONMethodCodecProxy = {type: "flax.core/sdk_services#type:JSONMethodCodec", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"encodeMethodCall":_flaxMemberParameters45,"decodeMethodCall":_flaxMemberParameters45,"decodeEnvelope":_flaxMemberParameters46,"encodeSuccessEnvelope":_flaxMemberParameters47,"encodeErrorEnvelope":_flaxMemberParameters48}, getters: [], setters: [], contextMembers: [], superMembers: ["encodeMethodCall","decodeMethodCall","decodeEnvelope","encodeSuccessEnvelope","encodeErrorEnvelope"]} as const;
 export interface _JSONMethodCodecNative extends JSONMethodCodec {
 readonly [_flaxDartTypeValue]: _JSONMethodCodecNative;
 

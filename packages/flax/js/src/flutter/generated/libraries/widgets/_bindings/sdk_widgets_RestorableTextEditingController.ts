@@ -19,7 +19,7 @@ import type * as upstream7 from '@flax/flutter/widgets/_bindings/components_Stat
 import '@flax/flutter/widgets/_bindings/components_State';
 import type * as upstream8 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
-import { _flaxMemberParameters33, _flaxMemberParameters2, _flaxMemberParameters323, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters38, _flaxMemberParameters2, _flaxMemberParameters366, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -39,7 +39,7 @@ toPrimitives(): {};
 addListener(listener: (() => void)): void;
 removeListener(listener: (() => void)): void;
 }
-defineObject("flax.core/sdk_widgets#type:RestorableTextEditingController", ["value","enabled","state","isRegistered","hasListeners"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:RestorableTextEditingController", "object", {"initWithValue":_flaxMemberParameters33,"createDefaultValue":_flaxMemberParameters2,"fromPrimitives":_flaxMemberParameters323,"toPrimitives":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+defineObject("flax.core/sdk_widgets#type:RestorableTextEditingController", ["value","enabled","state","isRegistered","hasListeners"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:RestorableTextEditingController", "object", {"initWithValue":_flaxMemberParameters38,"createDefaultValue":_flaxMemberParameters2,"fromPrimitives":_flaxMemberParameters366,"toPrimitives":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
 export function _RestorableTextEditingControllerFactory(options: { text?: string | null | undefined } = {}): RestorableTextEditingController {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -49,10 +49,10 @@ export namespace _RestorableTextEditingControllerFactory {
 export function fromValue(value: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>): RestorableTextEditingController {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:RestorableTextEditingController", "fromValue", _flaxMemberParameters33, [value], {}) as RestorableTextEditingController;
+return constructObject("object", "flax.core/sdk_widgets#type:RestorableTextEditingController", "fromValue", _flaxMemberParameters38, [value], {}) as RestorableTextEditingController;
 }
 }
-const _RestorableTextEditingControllerProxy = {type: "flax.core/sdk_widgets#type:RestorableTextEditingController", parameters: _flaxMemberParameters33, constructors: {"fromValue": _flaxMemberParameters33}, methods: {"initWithValue":_flaxMemberParameters33,"dispose":_flaxMemberParameters2,"createDefaultValue":_flaxMemberParameters2,"fromPrimitives":_flaxMemberParameters323,"toPrimitives":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12}, getters: ["value","enabled","state","isRegistered","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:value","get:enabled","get:state","get:isRegistered","get:hasListeners","initWithValue","dispose","createDefaultValue","fromPrimitives","toPrimitives","addListener","removeListener"]} as const;
+const _RestorableTextEditingControllerProxy = {type: "flax.core/sdk_widgets#type:RestorableTextEditingController", parameters: _flaxMemberParameters38, constructors: {"fromValue": _flaxMemberParameters38}, methods: {"initWithValue":_flaxMemberParameters38,"dispose":_flaxMemberParameters2,"createDefaultValue":_flaxMemberParameters2,"fromPrimitives":_flaxMemberParameters366,"toPrimitives":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12}, getters: ["value","enabled","state","isRegistered","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:value","get:enabled","get:state","get:isRegistered","get:hasListeners","initWithValue","dispose","createDefaultValue","fromPrimitives","toPrimitives","addListener","removeListener"]} as const;
 export interface _RestorableTextEditingControllerNative extends RestorableTextEditingController {
 readonly [_flaxDartTypeValue]: _RestorableTextEditingControllerNative;
 readonly [_flaxDartConstructors]?: {"fromValue": (value: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>) => void;};

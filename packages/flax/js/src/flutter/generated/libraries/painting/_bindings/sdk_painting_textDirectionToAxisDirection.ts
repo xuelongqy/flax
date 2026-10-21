@@ -5,11 +5,12 @@ import type * as upstream0 from '@flax/flutter/painting/_bindings/sdk_painting_A
 import '@flax/flutter/painting/_bindings/sdk_painting_AxisDirection';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import { _flaxMemberParameters157 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_textDirectionToAxisDirection(textDirection: upstream1.TextDirection): upstream0.AxisDirection {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:textDirectionToAxisDirection", [textDirection]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:textDirectionToAxisDirection", [textDirection], _flaxMemberParameters157);
 return _flaxResult as upstream0.AxisDirection;
 }
 export { _flaxTopLevel_textDirectionToAxisDirection as textDirectionToAxisDirection };

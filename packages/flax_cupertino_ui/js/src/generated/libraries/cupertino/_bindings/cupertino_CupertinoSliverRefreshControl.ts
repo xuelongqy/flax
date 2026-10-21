@@ -23,7 +23,7 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
+import { _flaxMemberParameters57, _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -52,7 +52,7 @@ return constructObject("object", "flax.cupertino/cupertino#type:CupertinoSliverR
 }
 export namespace _CupertinoSliverRefreshControlFactory { export function buildRefreshIndicator(context: upstream2.BuildContext, refreshState: upstream3.RefreshIndicatorMode, pulledExtent: number, refreshTriggerPullDistance: number, refreshIndicatorExtent: number): Widget {
 if (arguments.length > 5) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoSliverRefreshControl.buildRefreshIndicator", [contextHandle(context, "flax.core/flutter#type:BuildContext"), refreshState, pulledExtent, refreshTriggerPullDistance, refreshIndicatorExtent]);
+const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoSliverRefreshControl.buildRefreshIndicator", [contextHandle(context, "flax.core/flutter#type:BuildContext"), refreshState, pulledExtent, refreshTriggerPullDistance, refreshIndicatorExtent], _flaxMemberParameters57);
 return _flaxResult as Widget;
 } }
 export const CupertinoSliverRefreshControl: typeof _CupertinoSliverRefreshControlFactory & _FlaxInstanceType<CupertinoSliverRefreshControl> & _FlaxDartType<CupertinoSliverRefreshControl, readonly ["class", "flax.cupertino/cupertino#type:CupertinoSliverRefreshControl", readonly [], false]> = _flaxBindInstanceType<CupertinoSliverRefreshControl, typeof _CupertinoSliverRefreshControlFactory>(_CupertinoSliverRefreshControlFactory, "flax.cupertino/cupertino#type:CupertinoSliverRefreshControl", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _CupertinoSliverRefreshControlFactory & _FlaxInstanceType<CupertinoSliverRefreshControl> & _FlaxDartType<CupertinoSliverRefreshControl, readonly ["class", "flax.cupertino/cupertino#type:CupertinoSliverRefreshControl", readonly [], false]>;

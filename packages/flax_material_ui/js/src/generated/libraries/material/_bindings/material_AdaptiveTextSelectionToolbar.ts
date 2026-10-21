@@ -31,6 +31,7 @@ import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream14 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableText';
 import type * as upstream15 from '@flax/flutter/widgets/_bindings/sdk_widgets_SelectableRegion';
+import { _flaxMemberParameters9, _flaxMemberParameters10 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -93,12 +94,12 @@ return constructObject("object", "flax.material/material#type:AdaptiveTextSelect
 }
 export namespace _AdaptiveTextSelectionToolbarFactory { export function getButtonLabel(context: upstream8.BuildContext, buttonItem: Readonly<{ "__flaxBound:package:flutter/src/widgets/context_menu_button_item.dart::ContextMenuButtonItem": readonly [] }>): string {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:AdaptiveTextSelectionToolbar.getButtonLabel", [contextHandle(context, "flax.core/flutter#type:BuildContext"), buttonItem]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:AdaptiveTextSelectionToolbar.getButtonLabel", [contextHandle(context, "flax.core/flutter#type:BuildContext"), buttonItem], _flaxMemberParameters9);
 return _flaxResult as string;
 } }
 export namespace _AdaptiveTextSelectionToolbarFactory { export function getAdaptiveButtons(context: upstream8.BuildContext, buttonItems: DartListInput<upstream3.ContextMenuButtonItem, Readonly<{ "__flaxBound:package:flutter/src/widgets/context_menu_button_item.dart::ContextMenuButtonItem": readonly [] }>>): DartIterable<Widget> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:AdaptiveTextSelectionToolbar.getAdaptiveButtons", [contextHandle(context, "flax.core/flutter#type:BuildContext"), buttonItems]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:AdaptiveTextSelectionToolbar.getAdaptiveButtons", [contextHandle(context, "flax.core/flutter#type:BuildContext"), buttonItems], _flaxMemberParameters10);
 return _flaxResult as DartIterable<Widget>;
 } }
 export const AdaptiveTextSelectionToolbar: typeof _AdaptiveTextSelectionToolbarFactory & _FlaxInstanceType<AdaptiveTextSelectionToolbar> & _FlaxDartType<AdaptiveTextSelectionToolbar, readonly ["class", "flax.material/material#type:AdaptiveTextSelectionToolbar", readonly [], false]> = _flaxBindInstanceType<AdaptiveTextSelectionToolbar, typeof _AdaptiveTextSelectionToolbarFactory>(_AdaptiveTextSelectionToolbarFactory, "flax.material/material#type:AdaptiveTextSelectionToolbar", ["flax.core/sdk_widgets#type:StatelessWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _AdaptiveTextSelectionToolbarFactory & _FlaxInstanceType<AdaptiveTextSelectionToolbar> & _FlaxDartType<AdaptiveTextSelectionToolbar, readonly ["class", "flax.material/material#type:AdaptiveTextSelectionToolbar", readonly [], false]>;

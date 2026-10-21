@@ -22,8 +22,8 @@ overrides. ADR 0035 adds shared generic owners, safe constructor specialization 
 fixed Flutter State mixin variants. The remaining questions below concern broader
 composition and specialization. Package-scoped provider selection is defined by
 [ADR 0037](0037-package-scoped-binding-providers.md), and scalable default omission uses
-the five/six-parameter hybrid described in
-[Binding Generation](../architecture/bindings.md).
+the compiler entries and retained dynamic-callback dispatch described in
+[ADR 0046](0046-compiler-default-entries.md).
 
 | Decision                                            | Evidence required before choosing                                                                                                                                                                                                                                             |
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

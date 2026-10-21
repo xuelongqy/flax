@@ -564,9 +564,14 @@ promise exhaustive TS unions. See
 `additionalLibraries` merges public exports by actual declaration identity. Generic
 bounds and inheritance are resolved before emission; TS keeps type relationships while
 Dart calls use configured legal concrete types. Private defaults remain omitted in real
-calls. Each concrete signature uses direct typed calls through five independently
-omitted parameters and `Function.apply` from six, with explicit typed tear-offs, static
-named Symbols and the same argument conversions. Selection keeps all bindable
+calls. A statically known constructor, method, function or lexical-super target uses one
+`flaxInvokeWithDefaults` marker when native defaults must be omitted. The maintained
+compiler lowers its typed slots and 32-bit presence words to a fixed entry; it does not
+allocate those marker lists at runtime or expand parameter combinations. Matching SDK
+entries are built before the JIT core snapshot. Dynamic returned callback values retain
+direct named dispatch through five independent omissions and `Function.apply` from six;
+optional positional callback values retain their linear prefix dispatch. Both paths use
+the same argument conversion and ownership rules. Selection keeps all bindable
 parameters. Missing or undefined arguments omit defaults; explicit null remains
 provided. Optional positional arguments may only omit a trailing suffix. Redirecting
 factories and super parameters resolve defaults from their target declarations;
@@ -1039,6 +1044,18 @@ up all bridge-owned subscriptions and AsyncIterable sources. Restricted Widget I
 callback views check inner Stream events lazily, including inside native Records and
 collections. Asynchronous lifecycle overrides remain unsupported. See the
 [interop examples](../../docs/architecture/interop.md#future-and-stream-callback-combinations).
+
+Generated modules require the additive `call-layouts` capability. Their shared parameter
+metadata lets a frozen JS binding call a newer Dart declaration after optional named
+parameters are added/reordered or optional positional parameters are appended. The
+shared host resolves names once, retains native defaults and rejects missing layouts or
+incompatible required inputs before invocation. Existing named options can forward new
+native names through JS overrides and `super`; an old override still has its old
+positional signature and generic-context position. Pre-capability function bindings need
+one regeneration because their old value arrays did not retain parameter names. This
+requires the current shared runtime and fresh binding registration, not an old SDK or
+arbitrary in-place signature reload. See the
+[compatibility rules](../../docs/decisions/0046-compiler-default-entries.md#older-generated-js-and-newer-dart-declarations).
 
 Protocol 24 callback models also preserve optional positional parameters, named
 parameters and function-local generics. Generated Dart adapters use a private omission

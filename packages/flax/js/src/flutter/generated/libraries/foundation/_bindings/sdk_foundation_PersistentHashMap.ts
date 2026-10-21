@@ -1,7 +1,7 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
-import { _flaxMemberParameters76, _flaxMemberParameters77, _flaxMemberParameters1 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
+import { _flaxMemberParameters89, _flaxMemberParameters90, _flaxMemberParameters1 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -11,7 +11,7 @@ readonly [_flaxDartTypeValue]: PersistentHashMap<K, V>;
 put(key: (K | DartInput<K>), value: (V | DartInput<V>)): PersistentHashMap<K, V>;
 operatorGetIndex(key: (K | DartInput<K>)): V | null;
 }
-defineObject("flax.core/sdk_foundation#type:PersistentHashMap", [], [], _flaxBindingMethods("flax.core/sdk_foundation#type:PersistentHashMap", "object", {"put":_flaxMemberParameters76,"operatorGetIndex":_flaxMemberParameters77}, {}), []);
+defineObject("flax.core/sdk_foundation#type:PersistentHashMap", [], [], _flaxBindingMethods("flax.core/sdk_foundation#type:PersistentHashMap", "object", {"put":_flaxMemberParameters89,"operatorGetIndex":_flaxMemberParameters90}, {}), []);
 export namespace _PersistentHashMapFactory {
 export function empty<K extends {} = {}, V extends unknown | null = unknown | null>(): PersistentHashMap<K, V>;
 export function empty(): PersistentHashMap<{}, unknown | null>;
@@ -21,7 +21,7 @@ if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_foundation#type:PersistentHashMap", "empty", [], [], {}) as PersistentHashMap<{}, unknown | null>;
 }
 }
-const _PersistentHashMapProxy = {type: "flax.core/sdk_foundation#type:PersistentHashMap", parameters: _flaxMemberParameters1, constructors: {"empty": _flaxMemberParameters1}, methods: {"put":_flaxMemberParameters76,"operatorGetIndex":_flaxMemberParameters77}, getters: [], setters: [], contextMembers: [], superMembers: ["put","operatorGetIndex"]} as const;
+const _PersistentHashMapProxy = {type: "flax.core/sdk_foundation#type:PersistentHashMap", parameters: _flaxMemberParameters1, constructors: {"empty": _flaxMemberParameters1}, methods: {"put":_flaxMemberParameters89,"operatorGetIndex":_flaxMemberParameters90}, getters: [], setters: [], contextMembers: [], superMembers: ["put","operatorGetIndex"]} as const;
 export interface _PersistentHashMapNative<K extends {} = {}, V extends unknown | null = unknown | null> extends PersistentHashMap<K, V> {
 readonly [_flaxDartTypeValue]: _PersistentHashMapNative<K, V>;
 readonly [_flaxDartConstructors]?: {"empty": () => void;};

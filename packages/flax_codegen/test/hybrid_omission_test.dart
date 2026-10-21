@@ -10,7 +10,7 @@ import 'generator_test.dart' show compileFixture;
 void main() {
   final root = p.normalize(p.join(Directory.current.path, '../..'));
   test(
-    'hybrid call shapes retain typed defaults, generics and super checks',
+    'fixed call shapes retain defaults and leave dynamic callbacks unchanged',
     () async {
       final parser = FlaxCodegenBindingParser(root);
       addTearDown(parser.dispose);
@@ -36,17 +36,25 @@ void main() {
       final emitter = FlaxCodegenBindingEmitter([core, module]);
       expect(
         emitter.dart(module),
-        contains('Function.apply(api.OmissionCalls.new'),
+        contains('flaxInvokeWithDefaults(api.OmissionCalls.new'),
       );
       expect(
         emitter.dart(module),
-        contains('Function.apply(api.OmissionCalls.measure'),
+        contains('flaxInvokeWithDefaults(api.OmissionCalls.measure'),
       );
       expect(
         emitter.dart(module),
-        contains('Function.apply(api.omissionTotal'),
+        contains('flaxInvokeWithDefaults(api.omissionTotal'),
       );
-      expect(emitter.dart(module), contains('Function.apply(super.work'));
+      expect(
+        emitter.dart(module),
+        contains('flaxInvokeWithDefaults(super.work'),
+      );
+      expect(emitter.dart(module), contains('Function.apply((function as'));
+      expect(
+        emitter.dart(module),
+        isNot(contains('flaxInvokeWithDefaults((function as')),
+      );
       expect(
         emitter.dart(module),
         contains('final _flaxResult = _flaxPeer.call('),

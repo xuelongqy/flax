@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/components_Stat
 import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import { _flaxMemberParameters2, _flaxMemberParameters86 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters2, _flaxMemberParameters97 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -25,7 +25,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:DisposableBuildContext", "", [{"name":"_state","required":true,"positional":true}], [_state], {}) as DisposableBuildContext<upstream0.State<upstream1.StatefulWidget>>;
 }
-const _DisposableBuildContextProxy = {type: "flax.core/sdk_widgets#type:DisposableBuildContext", parameters: _flaxMemberParameters86, constructors: {"": _flaxMemberParameters86}, methods: {"dispose":_flaxMemberParameters2}, getters: ["context"], setters: [], contextMembers: [], superMembers: ["get:context","dispose"]} as const;
+const _DisposableBuildContextProxy = {type: "flax.core/sdk_widgets#type:DisposableBuildContext", parameters: _flaxMemberParameters97, constructors: {"": _flaxMemberParameters97}, methods: {"dispose":_flaxMemberParameters2}, getters: ["context"], setters: [], contextMembers: [], superMembers: ["get:context","dispose"]} as const;
 export interface _DisposableBuildContextNative<T extends upstream0.State<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>> = upstream0.State<upstream1.StatefulWidget>> extends DisposableBuildContext<T> {
 readonly [_flaxDartTypeValue]: _DisposableBuildContextNative<T>;
 

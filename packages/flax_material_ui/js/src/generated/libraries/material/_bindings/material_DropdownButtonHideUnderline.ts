@@ -18,7 +18,7 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters0 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters1 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -36,7 +36,7 @@ toStringDeep(options?: {minLevel?: upstream6.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream8.DiagnosticsTreeStyle | null | undefined}): upstream7.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream7.DiagnosticsNode>;
 }
-defineObject("flax.material/material#type:DropdownButtonHideUnderline", ["child","key"], [], _flaxBindingMethods("flax.material/material#type:DropdownButtonHideUnderline", "object", {"updateShouldNotify":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
+defineObject("flax.material/material#type:DropdownButtonHideUnderline", ["child","key"], [], _flaxBindingMethods("flax.material/material#type:DropdownButtonHideUnderline", "object", {"updateShouldNotify":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
 export function _DropdownButtonHideUnderlineFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child: Widget }): DropdownButtonHideUnderline {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -44,7 +44,7 @@ return constructObject("object", "flax.material/material#type:DropdownButtonHide
 }
 export namespace _DropdownButtonHideUnderlineFactory { export function at(context: upstream3.BuildContext): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:DropdownButtonHideUnderline.at", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:DropdownButtonHideUnderline.at", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as boolean;
 } }
 export const DropdownButtonHideUnderline: typeof _DropdownButtonHideUnderlineFactory & _FlaxInstanceType<DropdownButtonHideUnderline> & _FlaxDartType<DropdownButtonHideUnderline, readonly ["class", "flax.material/material#type:DropdownButtonHideUnderline", readonly [], false]> = _flaxBindInstanceType<DropdownButtonHideUnderline, typeof _DropdownButtonHideUnderlineFactory>(_DropdownButtonHideUnderlineFactory, "flax.material/material#type:DropdownButtonHideUnderline", ["flax.core/sdk_widgets#type:InheritedWidget","flax.core/sdk_widgets#type:ProxyWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _DropdownButtonHideUnderlineFactory & _FlaxInstanceType<DropdownButtonHideUnderline> & _FlaxDartType<DropdownButtonHideUnderline, readonly ["class", "flax.material/material#type:DropdownButtonHideUnderline", readonly [], false]>;

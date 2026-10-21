@@ -17,6 +17,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import { _flaxMemberParameters220 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -50,7 +51,7 @@ return constructObject("object", "flax.core/sdk_widgets#type:KeyedSubtree", "wra
 export namespace _KeyedSubtreeFactory { export function ensureUniqueKeysForList(items: DartListInput<Widget, Widget>, options: { baseIndex?: number | undefined } = {}): DartList<Widget> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["baseIndex"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:KeyedSubtree.ensureUniqueKeysForList", [items, options.baseIndex]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:KeyedSubtree.ensureUniqueKeysForList", [items, options.baseIndex], _flaxMemberParameters220);
 return _flaxResult as DartList<Widget>;
 } }
 export const KeyedSubtree: typeof _KeyedSubtreeFactory & _FlaxInstanceType<KeyedSubtree> & _FlaxDartType<KeyedSubtree, readonly ["class", "flax.core/sdk_widgets#type:KeyedSubtree", readonly [], false]> = _flaxBindInstanceType<KeyedSubtree, typeof _KeyedSubtreeFactory>(_KeyedSubtreeFactory, "flax.core/sdk_widgets#type:KeyedSubtree", ["flax.core/sdk_widgets#type:StatelessWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _KeyedSubtreeFactory & _FlaxInstanceType<KeyedSubtree> & _FlaxDartType<KeyedSubtree, readonly ["class", "flax.core/sdk_widgets#type:KeyedSubtree", readonly [], false]>;

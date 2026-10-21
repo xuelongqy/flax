@@ -49,6 +49,7 @@ const nativeHasOwn = Object.hasOwn;
 export const bindingVersion = 24;
 
 const supportedBindingCapabilities = new Set([
+  'call-layouts',
   'native-functions',
   'native-async-objects',
   'lazy-js-iterables',
@@ -745,11 +746,12 @@ export function invokeEnum(
   receiver: object,
   operations: readonly string[],
   args: readonly unknown[],
+  parameters?: readonly Parameter[],
 ): unknown {
   const identity = enumIdentities.get(receiver);
   const operation = identity && operations[identity.index];
   if (!operation) throw new TypeError('Invalid or foreign Dart enum');
-  return invokeTopLevel(operation, [receiver, ...args]);
+  return invokeTopLevel(operation, [receiver, ...args], parameters);
 }
 const contextTypes = new Map<
   string,
@@ -796,12 +798,19 @@ export function invokeStatic(
   type: string,
   member: string,
   args: readonly unknown[],
+  parameters?: readonly Parameter[],
 ): unknown {
+  if (parameters) argumentLayouts.set(args, parameters);
   return invokeOperation('static', type, 0, 'call', member, args);
 }
 
 /** Generated exports share a typed Dart function registry. */
-export function invokeTopLevel(id: string, args: readonly unknown[]): unknown {
+export function invokeTopLevel(
+  id: string,
+  args: readonly unknown[],
+  parameters?: readonly Parameter[],
+): unknown {
+  if (parameters) argumentLayouts.set(args, parameters);
   return invokeOperation('top', id, 0, 'call', '', args);
 }
 
@@ -1007,7 +1016,9 @@ export function invokeInstance(
   type: string,
   method: string,
   args: readonly unknown[],
+  parameters?: readonly Parameter[],
 ): unknown {
+  if (parameters) argumentLayouts.set(args, parameters);
   const ref = stateHandles.get(receiver);
   if (!ref || (ref.type !== type && objectViewTypes.get(ref.type) !== type))
     throw new TypeError('Invalid or foreign State');
@@ -1547,6 +1558,7 @@ type OperationHost = typeof globalThis & {
     category: string,
     operation: string,
     member: string,
+    parameters?: readonly Parameter[],
   ) => number;
   __flaxInvokeOperation?: (
     operation: number,
@@ -1554,7 +1566,9 @@ type OperationHost = typeof globalThis & {
     ...args: unknown[]
   ) => unknown;
 };
-const operationIds = new Map<string, number>();
+const operationIds = new Map<string, Map<string | undefined, number>>();
+const argumentLayouts = new WeakMap<readonly unknown[], readonly Parameter[]>();
+const parameterLayoutKeys = new WeakMap<readonly Parameter[], string>();
 function invokeOperation(
   category: string,
   type: string,
@@ -1567,7 +1581,19 @@ function invokeOperation(
   if (!host.__flaxResolveOperation || !host.__flaxInvokeOperation)
     throw new Error('Dart bindings require the Flax engine');
   const key = `${category}\0${type}\0${operation}\0${member}`;
-  let slot = operationIds.get(key);
+  let layouts = operationIds.get(key);
+  if (!layouts) operationIds.set(key, (layouts = new Map()));
+  const parameters = argumentLayouts.get(args);
+  let layoutKey = parameters && parameterLayoutKeys.get(parameters);
+  if (parameters && layoutKey === undefined) {
+    for (const parameter of parameters) Object.freeze(parameter);
+    Object.freeze(parameters);
+    layoutKey = JSON.stringify(
+      parameters.map((p) => [p.name, parameterIsRequired(p), parameterIsPositional(p)]),
+    );
+    parameterLayoutKeys.set(parameters, layoutKey);
+  }
+  let slot = layouts.get(layoutKey);
   if (slot === undefined) {
     slot = host.__flaxResolveOperation(
       bindingVersion,
@@ -1575,8 +1601,9 @@ function invokeOperation(
       category,
       operation,
       member,
+      ...(parameters ? [parameters] : []),
     );
-    operationIds.set(key, slot);
+    layouts.set(layoutKey, slot);
   }
   return withBindingSnapshots(() =>
     unwrapCall(host.__flaxInvokeOperation!(slot, id, ...args)),
@@ -1593,6 +1620,7 @@ type ObjectHost = typeof globalThis & {
     version: number,
     type: string,
     rows: readonly (readonly unknown[])[],
+    parameters?: readonly (readonly Parameter[] | undefined)[],
   ) => number;
   __flaxBindPeer?: (version: number, source: object, target: object) => void;
 };
@@ -1877,7 +1905,9 @@ export function invokeStream(
   type: string,
   method: string,
   args: readonly unknown[],
+  parameters?: readonly Parameter[],
 ): unknown {
+  if (parameters) argumentLayouts.set(args, parameters);
   if (args.some(isBinding))
     throw new TypeError('Stream methods do not accept bindings');
   return callStream(receiver, type, 'call', method, args);
@@ -2027,7 +2057,9 @@ function proxyLayout(definition: ProxyDefinition): number {
   if (prepared.token !== undefined) return prepared.token;
   const supers = new Set(definition.superMembers);
   const contexts = new Set(definition.contextMembers);
+  const layouts: (readonly MemberParameter[] | undefined)[] = [];
   const row = (name: string, kind: number, parameters: readonly MemberParameter[]) => {
+    layouts.push(kind === 0 ? parameters : undefined);
     const property =
       prepared!.prototype && Object.getOwnPropertyDescriptor(prepared!.prototype, name);
     const base =
@@ -2055,7 +2087,12 @@ function proxyLayout(definition: ProxyDefinition): number {
   ];
   const prepare = (globalThis as ObjectHost).__flaxPrepareProxy;
   if (!prepare) throw new Error('Dart proxies require the Flax engine');
-  prepared.token = prepare(bindingVersion, definition.type, Object.freeze(rows));
+  prepared.token = prepare(
+    bindingVersion,
+    definition.type,
+    Object.freeze(rows),
+    Object.freeze(layouts),
+  );
   return prepared.token;
 }
 
@@ -2341,13 +2378,18 @@ export const widgetProxyFactory: typeof proxyFactory = (factory, native) => {
   return callable;
 };
 
+const superMemberLayouts = new WeakMap<
+  readonly MemberParameter[],
+  (args: readonly unknown[]) => readonly unknown[]
+>();
 const memberLayouts = new WeakMap<
   readonly MemberParameter[],
   (args: readonly unknown[]) => readonly unknown[]
 >();
 
-function memberArguments(parameters: readonly MemberParameter[]) {
-  const cached = memberLayouts.get(parameters);
+function memberArguments(parameters: readonly MemberParameter[], forwardNamed = false) {
+  const cache = forwardNamed ? superMemberLayouts : memberLayouts;
+  const cached = cache.get(parameters);
   if (cached) return cached;
   for (const parameter of parameters) Object.freeze(parameter);
   Object.freeze(parameters);
@@ -2362,9 +2404,10 @@ function memberArguments(parameters: readonly MemberParameter[]) {
       for (let i = 0; i < parameters.length; i++)
         if (args[i] === undefined)
           throw new TypeError(`Missing required argument: ${parameters[i]!.name}`);
+      argumentLayouts.set(args, parameters);
       return args;
     };
-    memberLayouts.set(parameters, argumentsFor);
+    cache.set(parameters, argumentsFor);
     return argumentsFor;
   }
 
@@ -2383,7 +2426,7 @@ function memberArguments(parameters: readonly MemberParameter[]) {
       options === null ||
       typeof options !== 'object' ||
       Array.isArray(options) ||
-      Object.keys(options).some((name) => !names.has(name))
+      (!forwardNamed && Object.keys(options).some((name) => !names.has(name)))
     )
       throw new TypeError('Invalid named method arguments');
     let omitted = false;
@@ -2395,7 +2438,7 @@ function memberArguments(parameters: readonly MemberParameter[]) {
         );
     }
     let index = 0;
-    return parameters.map((parameter) => {
+    const values = parameters.map((parameter) => {
       const value = parameterIsPositional(parameter)
         ? args[index++]
         : (options as Record<string, unknown>)[parameter.name];
@@ -2403,8 +2446,18 @@ function memberArguments(parameters: readonly MemberParameter[]) {
         throw new TypeError(`Missing required argument: ${parameter.name}`);
       return parameter.context ? contextHandle(value, parameter.context) : value;
     });
+    let layout: readonly Parameter[] = parameters;
+    if (forwardNamed) {
+      const extra = Object.keys(options).filter((name) => !names.has(name));
+      if (extra.length) {
+        layout = [...parameters, ...extra.map((name) => ({ name }))];
+        values.push(...extra.map((name) => (options as Record<string, unknown>)[name]));
+      }
+    }
+    argumentLayouts.set(values, layout);
+    return values;
   };
-  memberLayouts.set(parameters, argumentsFor);
+  cache.set(parameters, argumentsFor);
   return argumentsFor;
 }
 
@@ -2443,9 +2496,10 @@ function installMembers(
   getters: readonly string[],
   setters: readonly string[],
   invoke: (receiver: object, member: string, args: readonly unknown[]) => unknown,
+  forwardNamed = false,
 ): void {
   for (const [name, parameters] of Object.entries(methods)) {
-    const argumentsFor = memberArguments(parameters);
+    const argumentsFor = memberArguments(parameters, forwardNamed);
     Object.defineProperty(prototype, name, {
       configurable: true,
       writable: true,
@@ -2514,6 +2568,7 @@ export function defineProxyBase(
     definition.setters.filter((name) => members.has(`set:${name}`)),
     (receiver, member, args) =>
       invokeProxySuper(receiver, definition.type, member, args),
+    true,
   );
   for (const name of members) {
     const value = Object.getOwnPropertyDescriptor(prototype, name)?.value;
@@ -2727,7 +2782,9 @@ export function invokeObject(
   type: string,
   method: string,
   args: readonly unknown[],
+  parameters?: readonly Parameter[],
 ): unknown {
+  if (parameters) argumentLayouts.set(args, parameters);
   if (args.some(isBinding))
     throw new TypeError('Object methods do not accept bindings');
   return callObject(receiver, type, 'call', method, args);

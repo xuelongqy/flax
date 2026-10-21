@@ -29,7 +29,7 @@ import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream13 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters16, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -67,7 +67,7 @@ return constructObject("object", "flax.core/sdk_widgets#type:AnimatedCrossFade",
 }
 export namespace _AnimatedCrossFadeFactory { export function defaultLayoutBuilder(topChild: Widget, topChildKey: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }>, bottomChild: Widget, bottomChildKey: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }>): Widget {
 if (arguments.length > 4) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AnimatedCrossFade.defaultLayoutBuilder", [topChild, topChildKey, bottomChild, bottomChildKey]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AnimatedCrossFade.defaultLayoutBuilder", [topChild, topChildKey, bottomChild, bottomChildKey], _flaxMemberParameters16);
 return _flaxResult as Widget;
 } }
 export const AnimatedCrossFade: typeof _AnimatedCrossFadeFactory & _FlaxInstanceType<AnimatedCrossFade> & _FlaxDartType<AnimatedCrossFade, readonly ["class", "flax.core/sdk_widgets#type:AnimatedCrossFade", readonly [], false]> = _flaxBindInstanceType<AnimatedCrossFade, typeof _AnimatedCrossFadeFactory>(_AnimatedCrossFadeFactory, "flax.core/sdk_widgets#type:AnimatedCrossFade", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _AnimatedCrossFadeFactory & _FlaxInstanceType<AnimatedCrossFade> & _FlaxDartType<AnimatedCrossFade, readonly ["class", "flax.core/sdk_widgets#type:AnimatedCrossFade", readonly [], false]>;

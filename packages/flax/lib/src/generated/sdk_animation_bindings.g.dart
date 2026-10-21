@@ -2202,6 +2202,7 @@ const sdk_animationBindings = FlaxBindingModule(
   ],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "dart-type-tokens",
     "engine-type-handles",
     "generic-call-types",
@@ -2920,34 +2921,34 @@ Object? _AnimationController_animateTo(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("curve")) {
-    return (receiver as api.AnimationController).animateTo(
+  final _flaxHas1 = values.containsKey("curve");
+  return flaxInvokeWithDefaults(
+    (receiver as api.AnimationController).animateTo,
+    <Object?>[
       values["target"] as double,
-      duration: values["duration"] as api4.Duration?,
-    );
-  }
-  return (receiver as api.AnimationController).animateTo(
-    values["target"] as double,
-    curve: values["curve"] as api.Curve,
-    duration: values["duration"] as api4.Duration?,
-  );
+      (_flaxHas1 ? values["curve"] as api.Curve : null),
+      values["duration"] as api4.Duration?,
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+    const <String>["", "curve", "duration"],
+  ) as api6.TickerFuture;
 }
 
 Object? _AnimationController_animateBack(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("curve")) {
-    return (receiver as api.AnimationController).animateBack(
+  final _flaxHas1 = values.containsKey("curve");
+  return flaxInvokeWithDefaults(
+    (receiver as api.AnimationController).animateBack,
+    <Object?>[
       values["target"] as double,
-      duration: values["duration"] as api4.Duration?,
-    );
-  }
-  return (receiver as api.AnimationController).animateBack(
-    values["target"] as double,
-    curve: values["curve"] as api.Curve,
-    duration: values["duration"] as api4.Duration?,
-  );
+      (_flaxHas1 ? values["curve"] as api.Curve : null),
+      values["duration"] as api4.Duration?,
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+    const <String>["", "curve", "duration"],
+  ) as api6.TickerFuture;
 }
 
 Object? _AnimationController_repeat(
@@ -3118,34 +3119,34 @@ Object? _AnimationController_super_animateTo(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("curve")) {
-    return (receiver as _AnimationControllerProxy)._flaxSuper_animateTo(
+  final _flaxHas1 = values.containsKey("curve");
+  return flaxInvokeWithDefaults(
+    (receiver as _AnimationControllerProxy)._flaxSuper_animateTo,
+    <Object?>[
       values["target"] as double,
-      duration: values["duration"] as api4.Duration?,
-    );
-  }
-  return (receiver as _AnimationControllerProxy)._flaxSuper_animateTo(
-    values["target"] as double,
-    curve: values["curve"] as api.Curve,
-    duration: values["duration"] as api4.Duration?,
-  );
+      (_flaxHas1 ? values["curve"] as api.Curve : null),
+      values["duration"] as api4.Duration?,
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+    const <String>["", "curve", "duration"],
+  ) as api6.TickerFuture;
 }
 
 Object? _AnimationController_super_animateBack(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("curve")) {
-    return (receiver as _AnimationControllerProxy)._flaxSuper_animateBack(
+  final _flaxHas1 = values.containsKey("curve");
+  return flaxInvokeWithDefaults(
+    (receiver as _AnimationControllerProxy)._flaxSuper_animateBack,
+    <Object?>[
       values["target"] as double,
-      duration: values["duration"] as api4.Duration?,
-    );
-  }
-  return (receiver as _AnimationControllerProxy)._flaxSuper_animateBack(
-    values["target"] as double,
-    curve: values["curve"] as api.Curve,
-    duration: values["duration"] as api4.Duration?,
-  );
+      (_flaxHas1 ? values["curve"] as api.Curve : null),
+      values["duration"] as api4.Duration?,
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+    const <String>["", "curve", "duration"],
+  ) as api6.TickerFuture;
 }
 
 Object? _AnimationController_super_repeat(
@@ -5787,28 +5788,30 @@ Object? _Interval_super_get_curve(
 Object _createInterval(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("curve")) {
-        return api.Interval(values["begin"] as double, values["end"] as double);
-      }
-      return api.Interval(
-        values["begin"] as double,
-        values["end"] as double,
-        curve: values["curve"] as api.Curve,
-      );
+      final _flaxHas2 = values.containsKey("curve");
+      return flaxInvokeWithDefaults(
+        api.Interval.new,
+        <Object?>[
+          values["begin"] as double,
+          values["end"] as double,
+          (_flaxHas2 ? values["curve"] as api.Curve : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "", "curve"],
+      ) as api.Interval;
     case '@implementation':
-      if (!values.containsKey("curve")) {
-        return _IntervalProxy(
+      final _flaxHas3 = values.containsKey("curve");
+      return flaxInvokeWithDefaults(
+        _IntervalProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["begin"] as double,
           values["end"] as double,
-        );
-      }
-      return _IntervalProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["begin"] as double,
-        values["end"] as double,
-        curve: values["curve"] as api.Curve,
-      );
+          (_flaxHas3 ? values["curve"] as api.Curve : null),
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+        const <String>["", "", "", "curve"],
+      ) as api.Interval;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6587,53 +6590,32 @@ Object? _Split_super_get_endCurve(
 Object _createSplit(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("beginCurve")) {
-        if (!values.containsKey("endCurve")) {
-          return api.Split(values["split"] as double);
-        }
-        return api.Split(
+      final _flaxHas1 = values.containsKey("beginCurve");
+      final _flaxHas2 = values.containsKey("endCurve");
+      return flaxInvokeWithDefaults(
+        api.Split.new,
+        <Object?>[
           values["split"] as double,
-          endCurve: values["endCurve"] as api.Curve,
-        );
-      }
-      if (!values.containsKey("endCurve")) {
-        return api.Split(
-          values["split"] as double,
-          beginCurve: values["beginCurve"] as api.Curve,
-        );
-      }
-      return api.Split(
-        values["split"] as double,
-        beginCurve: values["beginCurve"] as api.Curve,
-        endCurve: values["endCurve"] as api.Curve,
-      );
+          (_flaxHas1 ? values["beginCurve"] as api.Curve : null),
+          (_flaxHas2 ? values["endCurve"] as api.Curve : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "beginCurve", "endCurve"],
+      ) as api.Split;
     case '@implementation':
-      if (!values.containsKey("beginCurve")) {
-        if (!values.containsKey("endCurve")) {
-          return _SplitProxy(
-            values['@peer'] as FlaxProxyPeer,
-            values["split"] as double,
-          );
-        }
-        return _SplitProxy(
+      final _flaxHas2 = values.containsKey("beginCurve");
+      final _flaxHas3 = values.containsKey("endCurve");
+      return flaxInvokeWithDefaults(
+        _SplitProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["split"] as double,
-          endCurve: values["endCurve"] as api.Curve,
-        );
-      }
-      if (!values.containsKey("endCurve")) {
-        return _SplitProxy(
-          values['@peer'] as FlaxProxyPeer,
-          values["split"] as double,
-          beginCurve: values["beginCurve"] as api.Curve,
-        );
-      }
-      return _SplitProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["split"] as double,
-        beginCurve: values["beginCurve"] as api.Curve,
-        endCurve: values["endCurve"] as api.Curve,
-      );
+          (_flaxHas2 ? values["beginCurve"] as api.Curve : null),
+          (_flaxHas3 ? values["endCurve"] as api.Curve : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | (_flaxHas3 ? 8 : 0)],
+        const <String>["", "", "beginCurve", "endCurve"],
+      ) as api.Split;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -8395,10 +8377,13 @@ final class _AnimationControllerProxy extends api.AnimationController
   }
 
   api6.TickerFuture _flaxSuper_forward({Object? from = _flaxOmitted}) {
-    if (identical(from, _flaxOmitted)) {
-      return super.forward();
-    }
-    return super.forward(from: from as double?);
+    final _flaxHas0 = !identical(from, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.forward,
+      <Object?>[(_flaxHas0 ? from as double? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["from"],
+    ) as api6.TickerFuture);
   }
 
   @override
@@ -8414,10 +8399,13 @@ final class _AnimationControllerProxy extends api.AnimationController
   }
 
   api6.TickerFuture _flaxSuper_reverse({Object? from = _flaxOmitted}) {
-    if (identical(from, _flaxOmitted)) {
-      return super.reverse();
-    }
-    return super.reverse(from: from as double?);
+    final _flaxHas0 = !identical(from, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.reverse,
+      <Object?>[(_flaxHas0 ? from as double? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["from"],
+    ) as api6.TickerFuture);
   }
 
   @override
@@ -8433,10 +8421,13 @@ final class _AnimationControllerProxy extends api.AnimationController
   }
 
   api6.TickerFuture _flaxSuper_toggle({Object? from = _flaxOmitted}) {
-    if (identical(from, _flaxOmitted)) {
-      return super.toggle();
-    }
-    return super.toggle(from: from as double?);
+    final _flaxHas0 = !identical(from, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toggle,
+      <Object?>[(_flaxHas0 ? from as double? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["from"],
+    ) as api6.TickerFuture);
   }
 
   @override
@@ -8465,20 +8456,18 @@ final class _AnimationControllerProxy extends api.AnimationController
     Object? duration = _flaxOmitted,
     Object? curve = _flaxOmitted,
   }) {
-    if (identical(duration, _flaxOmitted)) {
-      if (identical(curve, _flaxOmitted)) {
-        return super.animateTo(target);
-      }
-      return super.animateTo(target, curve: curve as api.Curve);
-    }
-    if (identical(curve, _flaxOmitted)) {
-      return super.animateTo(target, duration: duration as api4.Duration?);
-    }
-    return super.animateTo(
-      target,
-      duration: duration as api4.Duration?,
-      curve: curve as api.Curve,
-    );
+    final _flaxHas1 = !identical(duration, _flaxOmitted);
+    final _flaxHas2 = !identical(curve, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.animateTo,
+      <Object?>[
+        target,
+        (_flaxHas1 ? duration as api4.Duration? : null),
+        (_flaxHas2 ? curve as api.Curve : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "duration", "curve"],
+    ) as api6.TickerFuture);
   }
 
   @override
@@ -8507,20 +8496,18 @@ final class _AnimationControllerProxy extends api.AnimationController
     Object? duration = _flaxOmitted,
     Object? curve = _flaxOmitted,
   }) {
-    if (identical(duration, _flaxOmitted)) {
-      if (identical(curve, _flaxOmitted)) {
-        return super.animateBack(target);
-      }
-      return super.animateBack(target, curve: curve as api.Curve);
-    }
-    if (identical(curve, _flaxOmitted)) {
-      return super.animateBack(target, duration: duration as api4.Duration?);
-    }
-    return super.animateBack(
-      target,
-      duration: duration as api4.Duration?,
-      curve: curve as api.Curve,
-    );
+    final _flaxHas1 = !identical(duration, _flaxOmitted);
+    final _flaxHas2 = !identical(curve, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.animateBack,
+      <Object?>[
+        target,
+        (_flaxHas1 ? duration as api4.Duration? : null),
+        (_flaxHas2 ? curve as api.Curve : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "duration", "curve"],
+    ) as api6.TickerFuture);
   }
 
   @override
@@ -8558,183 +8545,29 @@ final class _AnimationControllerProxy extends api.AnimationController
     Object? period = _flaxOmitted,
     Object? count = _flaxOmitted,
   }) {
-    if (identical(min, _flaxOmitted)) {
-      if (identical(max, _flaxOmitted)) {
-        if (identical(reverse, _flaxOmitted)) {
-          if (identical(period, _flaxOmitted)) {
-            if (identical(count, _flaxOmitted)) {
-              return super.repeat();
-            }
-            return super.repeat(count: count as int?);
-          }
-          if (identical(count, _flaxOmitted)) {
-            return super.repeat(period: period as api4.Duration?);
-          }
-          return super.repeat(
-            period: period as api4.Duration?,
-            count: count as int?,
-          );
-        }
-        if (identical(period, _flaxOmitted)) {
-          if (identical(count, _flaxOmitted)) {
-            return super.repeat(reverse: reverse as bool);
-          }
-          return super.repeat(reverse: reverse as bool, count: count as int?);
-        }
-        if (identical(count, _flaxOmitted)) {
-          return super.repeat(
-            reverse: reverse as bool,
-            period: period as api4.Duration?,
-          );
-        }
-        return super.repeat(
-          reverse: reverse as bool,
-          period: period as api4.Duration?,
-          count: count as int?,
-        );
-      }
-      if (identical(reverse, _flaxOmitted)) {
-        if (identical(period, _flaxOmitted)) {
-          if (identical(count, _flaxOmitted)) {
-            return super.repeat(max: max as double?);
-          }
-          return super.repeat(max: max as double?, count: count as int?);
-        }
-        if (identical(count, _flaxOmitted)) {
-          return super.repeat(
-            max: max as double?,
-            period: period as api4.Duration?,
-          );
-        }
-        return super.repeat(
-          max: max as double?,
-          period: period as api4.Duration?,
-          count: count as int?,
-        );
-      }
-      if (identical(period, _flaxOmitted)) {
-        if (identical(count, _flaxOmitted)) {
-          return super.repeat(max: max as double?, reverse: reverse as bool);
-        }
-        return super.repeat(
-          max: max as double?,
-          reverse: reverse as bool,
-          count: count as int?,
-        );
-      }
-      if (identical(count, _flaxOmitted)) {
-        return super.repeat(
-          max: max as double?,
-          reverse: reverse as bool,
-          period: period as api4.Duration?,
-        );
-      }
-      return super.repeat(
-        max: max as double?,
-        reverse: reverse as bool,
-        period: period as api4.Duration?,
-        count: count as int?,
-      );
-    }
-    if (identical(max, _flaxOmitted)) {
-      if (identical(reverse, _flaxOmitted)) {
-        if (identical(period, _flaxOmitted)) {
-          if (identical(count, _flaxOmitted)) {
-            return super.repeat(min: min as double?);
-          }
-          return super.repeat(min: min as double?, count: count as int?);
-        }
-        if (identical(count, _flaxOmitted)) {
-          return super.repeat(
-            min: min as double?,
-            period: period as api4.Duration?,
-          );
-        }
-        return super.repeat(
-          min: min as double?,
-          period: period as api4.Duration?,
-          count: count as int?,
-        );
-      }
-      if (identical(period, _flaxOmitted)) {
-        if (identical(count, _flaxOmitted)) {
-          return super.repeat(min: min as double?, reverse: reverse as bool);
-        }
-        return super.repeat(
-          min: min as double?,
-          reverse: reverse as bool,
-          count: count as int?,
-        );
-      }
-      if (identical(count, _flaxOmitted)) {
-        return super.repeat(
-          min: min as double?,
-          reverse: reverse as bool,
-          period: period as api4.Duration?,
-        );
-      }
-      return super.repeat(
-        min: min as double?,
-        reverse: reverse as bool,
-        period: period as api4.Duration?,
-        count: count as int?,
-      );
-    }
-    if (identical(reverse, _flaxOmitted)) {
-      if (identical(period, _flaxOmitted)) {
-        if (identical(count, _flaxOmitted)) {
-          return super.repeat(min: min as double?, max: max as double?);
-        }
-        return super.repeat(
-          min: min as double?,
-          max: max as double?,
-          count: count as int?,
-        );
-      }
-      if (identical(count, _flaxOmitted)) {
-        return super.repeat(
-          min: min as double?,
-          max: max as double?,
-          period: period as api4.Duration?,
-        );
-      }
-      return super.repeat(
-        min: min as double?,
-        max: max as double?,
-        period: period as api4.Duration?,
-        count: count as int?,
-      );
-    }
-    if (identical(period, _flaxOmitted)) {
-      if (identical(count, _flaxOmitted)) {
-        return super.repeat(
-          min: min as double?,
-          max: max as double?,
-          reverse: reverse as bool,
-        );
-      }
-      return super.repeat(
-        min: min as double?,
-        max: max as double?,
-        reverse: reverse as bool,
-        count: count as int?,
-      );
-    }
-    if (identical(count, _flaxOmitted)) {
-      return super.repeat(
-        min: min as double?,
-        max: max as double?,
-        reverse: reverse as bool,
-        period: period as api4.Duration?,
-      );
-    }
-    return super.repeat(
-      min: min as double?,
-      max: max as double?,
-      reverse: reverse as bool,
-      period: period as api4.Duration?,
-      count: count as int?,
-    );
+    final _flaxHas0 = !identical(min, _flaxOmitted);
+    final _flaxHas1 = !identical(max, _flaxOmitted);
+    final _flaxHas2 = !identical(reverse, _flaxOmitted);
+    final _flaxHas3 = !identical(period, _flaxOmitted);
+    final _flaxHas4 = !identical(count, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.repeat,
+      <Object?>[
+        (_flaxHas0 ? min as double? : null),
+        (_flaxHas1 ? max as double? : null),
+        (_flaxHas2 ? reverse as bool : null),
+        (_flaxHas3 ? period as api4.Duration? : null),
+        (_flaxHas4 ? count as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>["min", "max", "reverse", "period", "count"],
+    ) as api6.TickerFuture);
   }
 
   @override
@@ -8766,45 +8599,19 @@ final class _AnimationControllerProxy extends api.AnimationController
     Object? springDescription = _flaxOmitted,
     Object? animationBehavior = _flaxOmitted,
   }) {
-    if (identical(velocity, _flaxOmitted)) {
-      if (identical(springDescription, _flaxOmitted)) {
-        if (identical(animationBehavior, _flaxOmitted)) {
-          return super.fling();
-        }
-        return super.fling(
-          animationBehavior: animationBehavior as api.AnimationBehavior?,
-        );
-      }
-      if (identical(animationBehavior, _flaxOmitted)) {
-        return super.fling(
-          springDescription: springDescription as api5.SpringDescription?,
-        );
-      }
-      return super.fling(
-        springDescription: springDescription as api5.SpringDescription?,
-        animationBehavior: animationBehavior as api.AnimationBehavior?,
-      );
-    }
-    if (identical(springDescription, _flaxOmitted)) {
-      if (identical(animationBehavior, _flaxOmitted)) {
-        return super.fling(velocity: velocity as double);
-      }
-      return super.fling(
-        velocity: velocity as double,
-        animationBehavior: animationBehavior as api.AnimationBehavior?,
-      );
-    }
-    if (identical(animationBehavior, _flaxOmitted)) {
-      return super.fling(
-        velocity: velocity as double,
-        springDescription: springDescription as api5.SpringDescription?,
-      );
-    }
-    return super.fling(
-      velocity: velocity as double,
-      springDescription: springDescription as api5.SpringDescription?,
-      animationBehavior: animationBehavior as api.AnimationBehavior?,
-    );
+    final _flaxHas0 = !identical(velocity, _flaxOmitted);
+    final _flaxHas1 = !identical(springDescription, _flaxOmitted);
+    final _flaxHas2 = !identical(animationBehavior, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.fling,
+      <Object?>[
+        (_flaxHas0 ? velocity as double : null),
+        (_flaxHas1 ? springDescription as api5.SpringDescription? : null),
+        (_flaxHas2 ? animationBehavior as api.AnimationBehavior? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["velocity", "springDescription", "animationBehavior"],
+    ) as api6.TickerFuture);
   }
 
   @override
@@ -8852,11 +8659,13 @@ final class _AnimationControllerProxy extends api.AnimationController
   }
 
   void _flaxSuper_stop({Object? canceled = _flaxOmitted}) {
-    if (identical(canceled, _flaxOmitted)) {
-      super.stop();
-      return;
-    }
-    super.stop(canceled: canceled as bool);
+    final _flaxHas0 = !identical(canceled, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.stop,
+      <Object?>[(_flaxHas0 ? canceled as bool : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["canceled"],
+    );
     return;
   }
 
@@ -10088,10 +9897,13 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api3.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -10114,21 +9926,17 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api3.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api3.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api3.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api3.DiagnosticsNode);
   }
 
   @override
@@ -10199,93 +10007,26 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
     Object? reverseCurve = _flaxOmitted,
     Object? reverseDuration = _flaxOmitted,
   }) {
-    if (identical(curve, _flaxOmitted)) {
-      if (identical(duration, _flaxOmitted)) {
-        if (identical(reverseCurve, _flaxOmitted)) {
-          if (identical(reverseDuration, _flaxOmitted)) {
-            return super.copyWith();
-          }
-          return super.copyWith(
-            reverseDuration: reverseDuration as api4.Duration?,
-          );
-        }
-        if (identical(reverseDuration, _flaxOmitted)) {
-          return super.copyWith(reverseCurve: reverseCurve as api.Curve?);
-        }
-        return super.copyWith(
-          reverseCurve: reverseCurve as api.Curve?,
-          reverseDuration: reverseDuration as api4.Duration?,
-        );
-      }
-      if (identical(reverseCurve, _flaxOmitted)) {
-        if (identical(reverseDuration, _flaxOmitted)) {
-          return super.copyWith(duration: duration as api4.Duration?);
-        }
-        return super.copyWith(
-          duration: duration as api4.Duration?,
-          reverseDuration: reverseDuration as api4.Duration?,
-        );
-      }
-      if (identical(reverseDuration, _flaxOmitted)) {
-        return super.copyWith(
-          duration: duration as api4.Duration?,
-          reverseCurve: reverseCurve as api.Curve?,
-        );
-      }
-      return super.copyWith(
-        duration: duration as api4.Duration?,
-        reverseCurve: reverseCurve as api.Curve?,
-        reverseDuration: reverseDuration as api4.Duration?,
-      );
-    }
-    if (identical(duration, _flaxOmitted)) {
-      if (identical(reverseCurve, _flaxOmitted)) {
-        if (identical(reverseDuration, _flaxOmitted)) {
-          return super.copyWith(curve: curve as api.Curve?);
-        }
-        return super.copyWith(
-          curve: curve as api.Curve?,
-          reverseDuration: reverseDuration as api4.Duration?,
-        );
-      }
-      if (identical(reverseDuration, _flaxOmitted)) {
-        return super.copyWith(
-          curve: curve as api.Curve?,
-          reverseCurve: reverseCurve as api.Curve?,
-        );
-      }
-      return super.copyWith(
-        curve: curve as api.Curve?,
-        reverseCurve: reverseCurve as api.Curve?,
-        reverseDuration: reverseDuration as api4.Duration?,
-      );
-    }
-    if (identical(reverseCurve, _flaxOmitted)) {
-      if (identical(reverseDuration, _flaxOmitted)) {
-        return super.copyWith(
-          curve: curve as api.Curve?,
-          duration: duration as api4.Duration?,
-        );
-      }
-      return super.copyWith(
-        curve: curve as api.Curve?,
-        duration: duration as api4.Duration?,
-        reverseDuration: reverseDuration as api4.Duration?,
-      );
-    }
-    if (identical(reverseDuration, _flaxOmitted)) {
-      return super.copyWith(
-        curve: curve as api.Curve?,
-        duration: duration as api4.Duration?,
-        reverseCurve: reverseCurve as api.Curve?,
-      );
-    }
-    return super.copyWith(
-      curve: curve as api.Curve?,
-      duration: duration as api4.Duration?,
-      reverseCurve: reverseCurve as api.Curve?,
-      reverseDuration: reverseDuration as api4.Duration?,
-    );
+    final _flaxHas0 = !identical(curve, _flaxOmitted);
+    final _flaxHas1 = !identical(duration, _flaxOmitted);
+    final _flaxHas2 = !identical(reverseCurve, _flaxOmitted);
+    final _flaxHas3 = !identical(reverseDuration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? curve as api.Curve? : null),
+        (_flaxHas1 ? duration as api4.Duration? : null),
+        (_flaxHas2 ? reverseCurve as api.Curve? : null),
+        (_flaxHas3 ? reverseDuration as api4.Duration? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>["curve", "duration", "reverseCurve", "reverseDuration"],
+    ) as api.AnimationStyle);
   }
 
   @override
@@ -10461,38 +10202,19 @@ final class _CatmullRomSplineProxy extends api.CatmullRomSpline
     Object? end = _flaxOmitted,
     Object? tolerance = _flaxOmitted,
   }) {
-    if (identical(start, _flaxOmitted)) {
-      if (identical(end, _flaxOmitted)) {
-        if (identical(tolerance, _flaxOmitted)) {
-          return super.generateSamples();
-        }
-        return super.generateSamples(tolerance: tolerance as double);
-      }
-      if (identical(tolerance, _flaxOmitted)) {
-        return super.generateSamples(end: end as double);
-      }
-      return super.generateSamples(
-        end: end as double,
-        tolerance: tolerance as double,
-      );
-    }
-    if (identical(end, _flaxOmitted)) {
-      if (identical(tolerance, _flaxOmitted)) {
-        return super.generateSamples(start: start as double);
-      }
-      return super.generateSamples(
-        start: start as double,
-        tolerance: tolerance as double,
-      );
-    }
-    if (identical(tolerance, _flaxOmitted)) {
-      return super.generateSamples(start: start as double, end: end as double);
-    }
-    return super.generateSamples(
-      start: start as double,
-      end: end as double,
-      tolerance: tolerance as double,
-    );
+    final _flaxHas0 = !identical(start, _flaxOmitted);
+    final _flaxHas1 = !identical(end, _flaxOmitted);
+    final _flaxHas2 = !identical(tolerance, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.generateSamples,
+      <Object?>[
+        (_flaxHas0 ? start as double : null),
+        (_flaxHas1 ? end as double : null),
+        (_flaxHas2 ? tolerance as double : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["start", "end", "tolerance"],
+    ) as Iterable<api.Curve2DSample>);
   }
 
   @override
@@ -11196,38 +10918,19 @@ final class _Curve2DProxy extends api.Curve2D
     Object? end = _flaxOmitted,
     Object? tolerance = _flaxOmitted,
   }) {
-    if (identical(start, _flaxOmitted)) {
-      if (identical(end, _flaxOmitted)) {
-        if (identical(tolerance, _flaxOmitted)) {
-          return super.generateSamples();
-        }
-        return super.generateSamples(tolerance: tolerance as double);
-      }
-      if (identical(tolerance, _flaxOmitted)) {
-        return super.generateSamples(end: end as double);
-      }
-      return super.generateSamples(
-        end: end as double,
-        tolerance: tolerance as double,
-      );
-    }
-    if (identical(end, _flaxOmitted)) {
-      if (identical(tolerance, _flaxOmitted)) {
-        return super.generateSamples(start: start as double);
-      }
-      return super.generateSamples(
-        start: start as double,
-        tolerance: tolerance as double,
-      );
-    }
-    if (identical(tolerance, _flaxOmitted)) {
-      return super.generateSamples(start: start as double, end: end as double);
-    }
-    return super.generateSamples(
-      start: start as double,
-      end: end as double,
-      tolerance: tolerance as double,
-    );
+    final _flaxHas0 = !identical(start, _flaxOmitted);
+    final _flaxHas1 = !identical(end, _flaxOmitted);
+    final _flaxHas2 = !identical(tolerance, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.generateSamples,
+      <Object?>[
+        (_flaxHas0 ? start as double : null),
+        (_flaxHas1 ? end as double : null),
+        (_flaxHas2 ? tolerance as double : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["start", "end", "tolerance"],
+    ) as Iterable<api.Curve2DSample>);
   }
 
   @override

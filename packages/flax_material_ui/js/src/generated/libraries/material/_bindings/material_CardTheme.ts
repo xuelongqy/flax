@@ -28,7 +28,7 @@ import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters43, _flaxMemberParameters0 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters2, _flaxMemberParameters51, _flaxMemberParameters1 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -55,7 +55,7 @@ toStringDeep(options?: {minLevel?: upstream11.DiagnosticLevel | undefined; prefi
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream13.DiagnosticsTreeStyle | null | undefined}): upstream12.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream12.DiagnosticsNode>;
 }
-defineObject("flax.material/material#type:CardTheme", ["clipBehavior","color","surfaceTintColor","shadowColor","elevation","margin","shape","data","child","key"], [], _flaxBindingMethods("flax.material/material#type:CardTheme", "object", {"copyWith":_flaxMemberParameters43,"updateShouldNotify":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
+defineObject("flax.material/material#type:CardTheme", ["clipBehavior","color","surfaceTintColor","shadowColor","elevation","margin","shape","data","child","key"], [], _flaxBindingMethods("flax.material/material#type:CardTheme", "object", {"copyWith":_flaxMemberParameters51,"updateShouldNotify":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
 export function _CardThemeFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; clipBehavior?: upstream3.Clip | null | undefined; color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; surfaceTintColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; shadowColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; elevation?: number | null | undefined; margin?: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> | null | undefined; shape?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null | undefined; data?: Readonly<{ "__flaxBound:package:material_ui/src/card_theme.dart::CardThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; child?: Widget | null | undefined } = {}): CardTheme {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -63,12 +63,12 @@ return constructObject("object", "flax.material/material#type:CardTheme", "", [{
 }
 export namespace _CardThemeFactory { export function of(context: upstream8.BuildContext): upstream7.CardThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:CardTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:CardTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream7.CardThemeData;
 } }
 export namespace _CardThemeFactory { export function lerp(a: CardTheme | null, b: CardTheme | null, t: number): CardTheme {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:CardTheme.lerp", [a, b, t]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:CardTheme.lerp", [a, b, t], _flaxMemberParameters2);
 return _flaxResult as CardTheme;
 } }
 export const CardTheme: typeof _CardThemeFactory & _FlaxInstanceType<CardTheme> & _FlaxDartType<CardTheme, readonly ["class", "flax.material/material#type:CardTheme", readonly [], false]> = _flaxBindInstanceType<CardTheme, typeof _CardThemeFactory>(_CardThemeFactory, "flax.material/material#type:CardTheme", ["flax.core/sdk_widgets#type:InheritedWidget","flax.core/sdk_widgets#type:ProxyWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _CardThemeFactory & _FlaxInstanceType<CardTheme> & _FlaxDartType<CardTheme, readonly ["class", "flax.material/material#type:CardTheme", readonly [], false]>;

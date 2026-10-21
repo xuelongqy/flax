@@ -986,16 +986,31 @@ and Dart use the same model; unsupported signatures fail generation. See
 
 Constructors and methods preserve optional omission and explicit null. Optional JS
 undefined means omitted; collection undefined is rejected. Non-null constant objects,
-collections and private callback defaults remain omitted from actual Dart calls. Direct
-typed branches cover up to five independent omission parameters (at most 32
-combinations). From six, typed constructor/method/function tear-offs use
-`Function.apply` with static Symbols for provided named parameters and the same argument
-conversions. All bindable parameters remain selected. Default resolution follows super
-parameters and redirecting factory chains, matching names or positional indexes;
-unresolved targets, mismatches and cycles fail closed. Generative redirects retain their
-own defaults. Route, Page and extends-proxy adapters use super formals, preserving
-private defaults without copying them. Optional positional parameters permit only
-trailing omission; provided arguments after a hole are rejected.
+collections and private callback defaults preserve the actual target's defaults. Known
+constructor, method, top-level and lexical-super targets emit one compiler marker with
+typed slots and 32-bit presence words. The maintained compiler removes the marker's
+lists and invokes a fixed entry in the declaration's library. It uses the target's real
+defaults and virtual override family, without generating omission combinations. Public
+SDK instance entries are prepared before compiling the SDK's JIT core snapshot; an
+incompatible SDK fails compilation. Calls with no omission dispatch remain direct. See
+[compiler default entries](../decisions/0046-compiler-default-entries.md). All bindable
+parameters remain selected. Default resolution follows super parameters and redirecting
+factory chains, matching names or positional indexes; unresolved targets, mismatches and
+cycles fail closed. Generative redirects retain their own defaults. Route, Page and
+extends-proxy adapters use super formals, preserving private defaults without copying
+them. Optional positional parameters permit only trailing omission; provided arguments
+after a hole are rejected.
+
+Generated calls also retain a shared source parameter layout. Resolution caches a
+name-based mapping to the current Dart declaration, so older JS modules keep the right
+values when Dart adds optional named parameters or an optional positional tail. Proxy
+calls preserve the old JS positional/options/generic-context boundaries, including
+lexical `super`. A new `call-layouts` module rejects optional legacy calls without a
+layout rather than guessing their names; pre-capability function bindings need one
+regeneration. Proxy slots match names and accessor direction; new concrete members
+retain native fallbacks. Named parameter/member removals or renames, new abstract
+members and new required inputs are outside this guarantee. See the
+[compatibility boundary](../decisions/0046-compiler-default-entries.md#older-generated-js-and-newer-dart-declarations).
 
 Direct Context inputs are supported by automatic and explicit selection in functions,
 constructors, methods, setters, returned Dart functions and supported collections. They
@@ -1011,15 +1026,17 @@ conversion; see [Context results](interop.md#context-results).
 Widget parameters except key may bind. Ordinary object construction and writes do not
 bind. Callbacks support required/optional positional parameters, required/optional named
 parameters, and analyzer-validated generic parameters. Named arguments use a final JS
-options object. The same five/six threshold preserves omitted named defaults in proxy
-and returned Dart callback calls; optional positional callbacks retain linear prefix
-dispatch. Generic callback calls convert through erased upper bounds while TS keeps the
-declared relationship. A callback declared to return Future requires a JS Promise or
-thenable and produces the typed Dart Future awaited by the caller. Future-returning Dart
-members use the reverse conversion and the same UI checkpoint. Future and FutureOr
-values compose recursively through supported collection, Record and callback positions
-under protocol 24; nested completion values retain their own declared async semantics.
-Asynchronous lifecycle/build callbacks remain unsupported. Callback Map keys reuse a
+options object. Proxy lexical-super calls use the same fixed entries. A dynamically
+supplied Dart callback has no statically known default declaration: its existing direct
+named dispatch through five optional parameters and `Function.apply` from six remain.
+Optional positional callback values retain linear prefix dispatch. Generic callback
+calls convert through erased upper bounds while TS keeps the declared relationship. A
+callback declared to return Future requires a JS Promise or thenable and produces the
+typed Dart Future awaited by the caller. Future-returning Dart members use the reverse
+conversion and the same UI checkpoint. Future and FutureOr values compose recursively
+through supported collection, Record and callback positions under protocol 24; nested
+completion values retain their own declared async semantics. Asynchronous
+lifecycle/build callbacks remain unsupported. Callback Map keys reuse a
 session/signature/context memo for stable Dart closure identity. Ordinary
 List/Set/Map/Record and Iterable Widget callback parameters and results support nullable
 containers and elements. Iterable callback signatures accept JS arrays/Sets and Dart

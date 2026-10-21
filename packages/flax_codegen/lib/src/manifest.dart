@@ -391,6 +391,7 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
   );
   if (requiredCapabilities.any(
     (capability) => !{
+      'call-layouts',
       'native-functions',
       'native-async-objects',
       'lazy-js-iterables',

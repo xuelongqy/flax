@@ -328,6 +328,7 @@ mixin _JsInvocation {
     int? member,
     bool getter = false,
     Function? superCall,
+    _CallLayout? layout,
   }) {
     if (!active) {
       if (signature.result.kind == 'void') return (true, null);
@@ -350,8 +351,14 @@ mixin _JsInvocation {
           named.any((p) => p.required && !namedArguments.containsKey(p.name))) {
         throw ArgumentError('Invalid callback arity');
       }
+      final jsPositional = layout == null
+          ? positional.length
+          : layout.parameters.where((p) => p.positional).length;
+      final jsNamed = layout == null
+          ? named.isNotEmpty
+          : layout.parameters.any((p) => !p.positional);
       final args = <FlaxJsValue>[];
-      for (var i = 0; i < positionalArguments.length; i++) {
+      for (var i = 0; i < positionalArguments.length && i < jsPositional; i++) {
         args.add(
           positional[i].scoped
               ? session.scopedObjectResult(
@@ -374,7 +381,8 @@ mixin _JsInvocation {
         );
       }
       final namedArgs = <FlaxJsValue>[];
-      for (final entry in namedArguments.entries) {
+      for (final entry
+          in (jsNamed ? namedArguments : const <String, Object?>{}).entries) {
         final parameter = named.firstWhere((p) => p.name == entry.key);
         namedArgs
           ..add(FlaxJsString(entry.key))
@@ -406,11 +414,11 @@ mixin _JsInvocation {
           ]);
         } else {
           if (superCall != null) {
-            while (args.length < positional.length) {
+            while (args.length < jsPositional) {
               args.add(const FlaxJsUndefined());
             }
           }
-          if (signature.parameters.any((p) => !p.positional)) {
+          if (jsNamed) {
             final options = session.helper('callbackOptions').call(namedArgs);
             if (options is! FlaxJsObject) {
               throw StateError('Invalid callback options');
@@ -515,8 +523,13 @@ class _ProxyHandle extends _BridgeReference {
 }
 
 class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
-  _ProxyPeer(this.session, FlaxJsObject receiver, this.binding, this.first)
-    : _handle = _ProxyHandle(session, receiver),
+  _ProxyPeer(
+    this.session,
+    FlaxJsObject receiver,
+    this.binding,
+    this.first,
+    this.layouts,
+  ) : _handle = _ProxyHandle(session, receiver),
       context = _bindingContext {
     _handle.attach(this);
   }
@@ -524,6 +537,7 @@ class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
   final _Session session;
   final FlaxProxyBinding binding;
   final int first;
+  final List<(_CallLayout?, int)> layouts;
   @override
   final _ProxyHandle _handle;
   @override
@@ -549,23 +563,27 @@ class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
       throw ArgumentError('Unknown proxy member');
     }
     final selected = binding.members[member];
+    final (layout, slot) = layouts[member];
+    if (slot < 0) return (false, null);
     return context == null
         ? invoke(
             signature ?? selected.signature,
             positional,
             named,
-            member: first + member,
+            member: first + slot,
             getter: selected.kind == 1,
             superCall: superCall,
+            layout: layout,
           )
         : context!.run(
             () => invoke(
               signature ?? selected.signature,
               positional,
               named,
-              member: first + member,
+              member: first + slot,
               getter: selected.kind == 1,
               superCall: superCall,
+              layout: layout,
             ),
           );
   }

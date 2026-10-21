@@ -47,7 +47,7 @@ import type * as upstream21 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream22 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters411, _flaxMemberParameters412, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -86,25 +86,25 @@ return constructObject("object", "flax.core/sdk_widgets#type:Scrollable", "", [{
 export namespace _ScrollableFactory { export function maybeOf(context: upstream5.BuildContext, options: { axis?: upstream12.Axis | null | undefined } = {}): upstream13.ScrollableState | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["axis"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Scrollable.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.axis]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Scrollable.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.axis], _flaxMemberParameters411);
 return _flaxResult as upstream13.ScrollableState | null;
 } }
 export namespace _ScrollableFactory { export function of(context: upstream5.BuildContext, options: { axis?: upstream12.Axis | null | undefined } = {}): upstream13.ScrollableState {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["axis"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Scrollable.of", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.axis]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Scrollable.of", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.axis], _flaxMemberParameters411);
 return _flaxResult as upstream13.ScrollableState;
 } }
 export namespace _ScrollableFactory { export function recommendDeferredLoadingForContext(context: upstream5.BuildContext, options: { axis?: upstream12.Axis | null | undefined } = {}): boolean {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["axis"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Scrollable.recommendDeferredLoadingForContext", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.axis]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Scrollable.recommendDeferredLoadingForContext", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.axis], _flaxMemberParameters411);
 return _flaxResult as boolean;
 } }
 export namespace _ScrollableFactory { export function ensureVisible(context: upstream5.BuildContext, options: { alignment?: number | undefined; alignmentPolicy?: upstream14.ScrollPositionAlignmentPolicy | undefined; curve?: Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number] }> | undefined; duration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream16.Duration] }> | undefined } = {}): Promise<void> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["alignment","alignmentPolicy","curve","duration"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Scrollable.ensureVisible", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.alignment, options.alignmentPolicy, options.curve, options.duration]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Scrollable.ensureVisible", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.alignment, options.alignmentPolicy, options.curve, options.duration], _flaxMemberParameters412);
 return _flaxResult as Promise<void>;
 } }
 export const Scrollable: typeof _ScrollableFactory & _FlaxInstanceType<Scrollable> & _FlaxDartType<Scrollable, readonly ["class", "flax.core/sdk_widgets#type:Scrollable", readonly [], false]> = _flaxBindInstanceType<Scrollable, typeof _ScrollableFactory>(_ScrollableFactory, "flax.core/sdk_widgets#type:Scrollable", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ScrollableFactory & _FlaxInstanceType<Scrollable> & _FlaxDartType<Scrollable, readonly ["class", "flax.core/sdk_widgets#type:Scrollable", readonly [], false]>;

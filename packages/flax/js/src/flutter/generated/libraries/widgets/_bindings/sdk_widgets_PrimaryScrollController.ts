@@ -24,7 +24,7 @@ import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters3 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters302, _flaxMemberParameters0, _flaxMemberParameters3 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -60,17 +60,17 @@ return constructObject("object", "flax.core/sdk_widgets#type:PrimaryScrollContro
 }
 export namespace _PrimaryScrollControllerFactory { export function shouldInherit(context: upstream6.BuildContext, scrollDirection: upstream5.Axis): boolean {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:PrimaryScrollController.shouldInherit", [contextHandle(context, "flax.core/flutter#type:BuildContext"), scrollDirection]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:PrimaryScrollController.shouldInherit", [contextHandle(context, "flax.core/flutter#type:BuildContext"), scrollDirection], _flaxMemberParameters302);
 return _flaxResult as boolean;
 } }
 export namespace _PrimaryScrollControllerFactory { export function maybeOf(context: upstream6.BuildContext): upstream3.ScrollController | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:PrimaryScrollController.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:PrimaryScrollController.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream3.ScrollController | null;
 } }
 export namespace _PrimaryScrollControllerFactory { export function of(context: upstream6.BuildContext): upstream3.ScrollController {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:PrimaryScrollController.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:PrimaryScrollController.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream3.ScrollController;
 } }
 export const PrimaryScrollController: typeof _PrimaryScrollControllerFactory & _FlaxInstanceType<PrimaryScrollController> & _FlaxDartType<PrimaryScrollController, readonly ["class", "flax.core/sdk_widgets#type:PrimaryScrollController", readonly [], false]> = _flaxBindInstanceType<PrimaryScrollController, typeof _PrimaryScrollControllerFactory>(_PrimaryScrollControllerFactory, "flax.core/sdk_widgets#type:PrimaryScrollController", ["flax.core/sdk_widgets#type:InheritedWidget","flax.core/sdk_widgets#type:ProxyWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _PrimaryScrollControllerFactory & _FlaxInstanceType<PrimaryScrollController> & _FlaxDartType<PrimaryScrollController, readonly ["class", "flax.core/sdk_widgets#type:PrimaryScrollController", readonly [], false]>;

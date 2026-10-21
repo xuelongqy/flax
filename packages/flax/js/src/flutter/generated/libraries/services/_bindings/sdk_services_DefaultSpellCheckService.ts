@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/flutter/services/_bindings/sdk_services_S
 import '@flax/flutter/services/_bindings/sdk_services_SuggestionSpan';
 import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
-import { _flaxMemberParameters0, _flaxMemberParameters29 } from "@flax/flutter/services/_bindings/sdk_services.__module";
+import { _flaxMemberParameters34, _flaxMemberParameters0, _flaxMemberParameters35 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -30,7 +30,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_services#type:DefaultSpellCheckService", "", [], [], {}) as DefaultSpellCheckService;
 }
-const _DefaultSpellCheckServiceProxy = {type: "flax.core/sdk_services#type:DefaultSpellCheckService", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"fetchSpellCheckSuggestions":_flaxMemberParameters29}, getters: ["lastSavedResults","spellCheckChannel"], setters: ["lastSavedResults","spellCheckChannel"], contextMembers: [], superMembers: ["get:lastSavedResults","get:spellCheckChannel","set:lastSavedResults","set:spellCheckChannel","fetchSpellCheckSuggestions"]} as const;
+const _DefaultSpellCheckServiceProxy = {type: "flax.core/sdk_services#type:DefaultSpellCheckService", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"fetchSpellCheckSuggestions":_flaxMemberParameters35}, getters: ["lastSavedResults","spellCheckChannel"], setters: ["lastSavedResults","spellCheckChannel"], contextMembers: [], superMembers: ["get:lastSavedResults","get:spellCheckChannel","set:lastSavedResults","set:spellCheckChannel","fetchSpellCheckSuggestions"]} as const;
 export interface _DefaultSpellCheckServiceNative extends DefaultSpellCheckService {
 readonly [_flaxDartTypeValue]: _DefaultSpellCheckServiceNative;
 
@@ -52,7 +52,7 @@ return constructProxy(_DefaultSpellCheckServiceProxy, args, implementation) as D
 const _DefaultSpellCheckServiceBinding = _flaxProxyFactory(_DefaultSpellCheckServiceFactory, _DefaultSpellCheckServiceNative) as unknown as typeof _DefaultSpellCheckServiceFactory & (new() => _DefaultSpellCheckServiceNative);
 export namespace _DefaultSpellCheckServiceFactory { export function mergeResults(oldResults: DartListInput<upstream3.SuggestionSpan, Readonly<{ "__flaxBound:package:flutter/src/services/spell_check.dart::SuggestionSpan": readonly [] }>>, newResults: DartListInput<upstream3.SuggestionSpan, Readonly<{ "__flaxBound:package:flutter/src/services/spell_check.dart::SuggestionSpan": readonly [] }>>): DartList<upstream3.SuggestionSpan> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:DefaultSpellCheckService.mergeResults", [oldResults, newResults]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:DefaultSpellCheckService.mergeResults", [oldResults, newResults], _flaxMemberParameters34);
 return _flaxResult as DartList<upstream3.SuggestionSpan>;
 } }
 export const DefaultSpellCheckService: typeof _DefaultSpellCheckServiceBinding & _FlaxInstanceType<DefaultSpellCheckService> & _FlaxDartType<DefaultSpellCheckService, readonly ["class", "flax.core/sdk_services#type:DefaultSpellCheckService", readonly [], false]> = _flaxBindInstanceType<DefaultSpellCheckService, typeof _DefaultSpellCheckServiceBinding>(_DefaultSpellCheckServiceBinding, "flax.core/sdk_services#type:DefaultSpellCheckService", ["dart:core::Object","flax.core/sdk_services#type:SpellCheckService"]) as typeof _DefaultSpellCheckServiceBinding & _FlaxInstanceType<DefaultSpellCheckService> & _FlaxDartType<DefaultSpellCheckService, readonly ["class", "flax.core/sdk_services#type:DefaultSpellCheckService", readonly [], false]>;

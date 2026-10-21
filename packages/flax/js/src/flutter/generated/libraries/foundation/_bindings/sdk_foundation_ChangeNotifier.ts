@@ -3,7 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
-import { _flaxMemberParameters1, _flaxMemberParameters26 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
+import { _flaxMemberParameters28, _flaxMemberParameters29, _flaxMemberParameters1, _flaxMemberParameters30 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -21,7 +21,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_foundation#type:ChangeNotifier", "", _flaxMemberParameters1, [], {}) as ChangeNotifier;
 }
-const _ChangeNotifierProxy = {type: "flax.core/sdk_foundation#type:ChangeNotifier", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"addListener":_flaxMemberParameters26,"removeListener":_flaxMemberParameters26,"dispose":_flaxMemberParameters1}, getters: ["hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
+const _ChangeNotifierProxy = {type: "flax.core/sdk_foundation#type:ChangeNotifier", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"addListener":_flaxMemberParameters30,"removeListener":_flaxMemberParameters30,"dispose":_flaxMemberParameters1}, getters: ["hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
 export interface _ChangeNotifierNative extends ChangeNotifier {
 readonly [_flaxDartTypeValue]: _ChangeNotifierNative;
 
@@ -42,12 +42,12 @@ return constructProxy(_ChangeNotifierProxy, args, implementation) as ChangeNotif
 const _ChangeNotifierBinding = _flaxProxyFactory(_ChangeNotifierFactory, _ChangeNotifierNative) as unknown as typeof _ChangeNotifierFactory & (new() => _ChangeNotifierNative);
 export namespace _ChangeNotifierFactory { export function debugAssertNotDisposed(notifier: Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:ChangeNotifier.debugAssertNotDisposed", [notifier]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:ChangeNotifier.debugAssertNotDisposed", [notifier], _flaxMemberParameters28);
 return _flaxResult as boolean;
 } }
 export namespace _ChangeNotifierFactory { export function maybeDispatchObjectCreation(object: Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:ChangeNotifier.maybeDispatchObjectCreation", [object]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:ChangeNotifier.maybeDispatchObjectCreation", [object], _flaxMemberParameters29);
 } }
 export const ChangeNotifier: typeof _ChangeNotifierBinding & _FlaxInstanceType<ChangeNotifier> & _FlaxDartType<ChangeNotifier, readonly ["class", "flax.core/sdk_foundation#type:ChangeNotifier", readonly [], false]> = _flaxBindInstanceType<ChangeNotifier, typeof _ChangeNotifierBinding>(_ChangeNotifierBinding, "flax.core/sdk_foundation#type:ChangeNotifier", ["dart:core::Object","flax.core/flutter#type:Listenable"]) as typeof _ChangeNotifierBinding & _FlaxInstanceType<ChangeNotifier> & _FlaxDartType<ChangeNotifier, readonly ["class", "flax.core/sdk_foundation#type:ChangeNotifier", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";

@@ -16,9 +16,8 @@ part 'proxy_dispatch_emitter.dart';
 /// Generated modules pin UI protocol 24. Do not read Core `flaxBindingVersion`.
 const _generatedUiProtocol = 24;
 
-// Bound direct dispatch to 32 branches; larger signatures keep Dart defaults
-// through a typed tear-off without duplicating private constants.
-const _applyOmissionThreshold = 6;
+// Dynamic callback values have no declaration from which to compile defaults.
+const _dynamicApplyOmissionThreshold = 6;
 
 bool _isWidgetObject(FlaxCodegenClassModel type) =>
     type.kind == 'object' && type.isWidgetSubtype;
@@ -1937,6 +1936,54 @@ class FlaxCodegenBindingEmitter {
     }
   }
 
+  String _fixedCall(
+    StringBuffer out,
+    String target,
+    List<FlaxCodegenParameterModel> parameters,
+    String Function(FlaxCodegenParameterModel) value,
+    String Function(FlaxCodegenParameterModel) present, {
+    List<String> prefix = const [],
+  }) {
+    final slots = <String>[...prefix];
+    final flags = <List<String>>[];
+    void flag(int index, String provided) {
+      while (flags.length <= index ~/ 32) {
+        flags.add(<String>[]);
+      }
+      final bit = 1 << (index % 32);
+      flags[index ~/ 32].add(
+        provided == 'true' ? '$bit' : '($provided ? $bit : 0)',
+      );
+    }
+
+    for (var i = 0; i < prefix.length; i++) {
+      flag(i, 'true');
+    }
+    final names = <String>[for (final _ in prefix) _quote('')];
+    for (final parameter in parameters) {
+      final index = slots.length;
+      var provided = 'true';
+      if (parameter.omitWhenAbsent) {
+        var local = '_flaxHas$index';
+        while (parameters.any(
+          (p) => p.name == local || _parameterLocalName(p) == local,
+        )) {
+          local = '${local}_';
+        }
+        out.writeln('final $local = ${present(parameter)};');
+        provided = local;
+      }
+      slots.add(
+        parameter.omitWhenAbsent
+            ? '($provided ? ${value(parameter)} : null)'
+            : value(parameter),
+      );
+      flag(index, provided);
+      names.add(_quote(parameter.positional ? '' : parameter.name));
+    }
+    return 'flaxInvokeWithDefaults($target, <Object?>[${slots.join(', ')}], <int>[${flags.map((word) => word.join(' | ')).join(', ')}], const <String>[${names.join(', ')}])';
+  }
+
   String _applyCall(
     String target,
     List<FlaxCodegenParameterModel> parameters,
@@ -2061,16 +2108,13 @@ class FlaxCodegenBindingEmitter {
     ctor = _runtimeConstructor(ctor);
     final optional = ctor.parameters.where((p) => p.omitWhenAbsent).toList();
     _guardPositionalOmission(out, ctor.parameters);
-    void emit(
-      int index,
-      Set<String> omitted,
-      FlaxCodegenConstructorSpecializationModel? specialization,
-    ) {
-      if (optional.length >= _applyOmissionThreshold) {
+    void emit(FlaxCodegenConstructorSpecializationModel? specialization) {
+      if (optional.isNotEmpty) {
         final prefix = <String>[
           if (proxyImplementation) "values['@peer'] as FlaxProxyPeer",
         ];
-        final call = _applyCall(
+        final call = _fixedCall(
+          out,
           _constructorTarget(
             type,
             ctor,
@@ -2092,33 +2136,17 @@ class FlaxCodegenBindingEmitter {
         );
         return;
       }
-      if (index == optional.length) {
-        out.writeln(
-          'return ${_constructorCall(type, ctor, specialization: specialization, omitted: omitted, proxyImplementation: proxyImplementation)};',
-        );
-        return;
-      }
-      final name = optional[index].name;
-      out.writeln('if (!values.containsKey(${_quote(name)})) {');
-      emit(optional[index].positional ? optional.length : index + 1, {
-        ...omitted,
-        name,
-        if (optional[index].positional)
-          ...ctor.parameters
-              .skipWhile((p) => p.name != name)
-              .where((p) => p.positional)
-              .map((p) => p.name),
-      }, specialization);
-      out.writeln('}');
-      emit(index + 1, omitted, specialization);
+      out.writeln(
+        'return ${_constructorCall(type, ctor, specialization: specialization, proxyImplementation: proxyImplementation)};',
+      );
     }
 
     if (type.kind == 'object' || _hasWidgetObjectView(type)) {
-      emit(0, {}, null);
+      emit(null);
       return;
     }
     if (ctor.specializations.length <= 1) {
-      emit(0, {}, ctor.specializations.firstOrNull);
+      emit(ctor.specializations.firstOrNull);
       return;
     }
     for (final specialization in ctor.specializations) {
@@ -2155,7 +2183,7 @@ class FlaxCodegenBindingEmitter {
         );
       }
       out.writeln('if (${checks.join(' && ')}) {');
-      emit(0, {}, specialization);
+      emit(specialization);
       out.writeln('}');
     }
     out.writeln(
@@ -2175,11 +2203,12 @@ class FlaxCodegenBindingEmitter {
     }
     _guardPositionalOmission(out, method.parameters);
     final optional = method.parameters.where((p) => p.omitWhenAbsent).toList();
-    if (optional.length >= _applyOmissionThreshold) {
+    if (optional.isNotEmpty) {
       if (tearOff == null) {
         throw StateError('Missing callable tear-off: ${method.name}');
       }
-      final call = _applyCall(
+      final call = _fixedCall(
+        out,
         tearOff,
         method.parameters,
         (p) => _cast('values[${_quote(p.name)}]', p.type),
@@ -2193,36 +2222,15 @@ class FlaxCodegenBindingEmitter {
       if (method.result.kind == 'void') out.writeln('return null;');
       return;
     }
-    void emitCall(int index, Set<String> omitted) {
-      if (index < optional.length) {
-        final name = optional[index].name;
-        out.writeln('if (!values.containsKey(${_quote(name)})) {');
-        emitCall(optional[index].positional ? optional.length : index + 1, {
-          ...omitted,
-          name,
-          if (optional[index].positional)
-            ...method.parameters
-                .skipWhile((p) => p.name != name)
-                .where((p) => p.positional)
-                .map((p) => p.name),
-        });
-        out.writeln('}');
-        emitCall(index + 1, omitted);
-        return;
-      }
-      final args = method.parameters
-          .where((p) => !omitted.contains(p.name))
-          .map(
-            (p) =>
-                '${p.positional ? '' : '${p.name}: '}${_cast('values[${_quote(p.name)}]', p.type)}',
-          )
-          .join(', ');
-      final call = target(args);
-      out.writeln('${method.result.kind == 'void' ? '' : 'return '}$call;');
-      if (method.result.kind == 'void') out.writeln('return null;');
-    }
-
-    emitCall(0, {});
+    final args = method.parameters
+        .map(
+          (p) =>
+              '${p.positional ? '' : '${p.name}: '}${_cast('values[${_quote(p.name)}]', p.type)}',
+        )
+        .join(', ');
+    final call = target(args);
+    out.writeln('${method.result.kind == 'void' ? '' : 'return '}$call;');
+    if (method.result.kind == 'void') out.writeln('return null;');
   }
 
   void _writeSnapshots(StringBuffer out, FlaxCodegenModuleModel module) {
@@ -3314,7 +3322,7 @@ import 'package:flax/bindings.dart';
           'default: throw ArgumentError("Invalid callback arity"); }',
         );
       } else if (named.where((p) => !p.required).length >=
-          _applyOmissionThreshold) {
+          _dynamicApplyOmissionThreshold) {
         final parameters = [
           for (final p in type.parameters)
             FlaxCodegenParameterModel(
@@ -4971,6 +4979,20 @@ $_typescriptHostImport
       return '$construct{${constructors.join()}} & _FlaxInstanceType<$result> & _FlaxDartType<$result>';
     });
 
+    final memberLayouts = <String, String>{};
+    String parameterMetadata(List<Map<String, Object?>> parameters) {
+      final layout = jsonEncode(parameters);
+      return memberLayouts.putIfAbsent(
+        layout,
+        () => sharedMemberLayouts == null
+            ? '_flaxMemberParameters${memberLayouts.length}'
+            : sharedMemberLayouts.putIfAbsent(
+                layout,
+                () => '_flaxMemberParameters${sharedMemberLayouts.length}',
+              ),
+      );
+    }
+
     void emitTsCallable(
       StringBuffer target,
       FlaxCodegenMethodModel method, {
@@ -5138,10 +5160,21 @@ $_typescriptHostImport
         invocation = '$helper(this, ';
       }
       if (!method.deferredFactory) {
+        final layout = parameterMetadata(_memberParameters(method.parameters));
+        var receiverName = 'receiver';
+        while (method.parameters.any((p) => p.name == receiverName)) {
+          receiverName = '_$receiverName';
+        }
+        final callLayout = enumOperation && method.instance
+            ? parameterMetadata([
+                {'name': receiverName, 'required': true, 'positional': true},
+                ..._memberParameters(method.parameters),
+              ])
+            : layout;
         target.writeln(
           enumOperationIds == null
-              ? 'const _flaxResult = $invocation${jsonEncode(id)}, ${namespace == null || functionTransport || enumOperation ? "" : "${jsonEncode(method.name)}, "}[${enumOperation && method.instance ? 'this${values.isEmpty ? '' : ', '}' : ''}$values]);'
-              : 'const _flaxResult = invokeEnum(this, $enumOperationIds, [$values]);',
+              ? 'const _flaxResult = $invocation${jsonEncode(id)}, ${namespace == null || functionTransport || enumOperation ? "" : "${jsonEncode(method.name)}, "}[${enumOperation && method.instance ? 'this${values.isEmpty ? '' : ', '}' : ''}$values], $callLayout);'
+              : 'const _flaxResult = invokeEnum(this, $enumOperationIds, [$values], $callLayout);',
         );
       }
       if (method.result.kind != 'void') {
@@ -5205,20 +5238,6 @@ $_typescriptHostImport
         "import type { flaxDartExtensionTypes as _flaxDartExtensionTypes } from '@flax/core/bindings';",
       );
     }
-    final memberLayouts = <String, String>{};
-    String parameterMetadata(List<Map<String, Object?>> parameters) {
-      final layout = jsonEncode(parameters);
-      return memberLayouts.putIfAbsent(
-        layout,
-        () => sharedMemberLayouts == null
-            ? '_flaxMemberParameters${memberLayouts.length}'
-            : sharedMemberLayouts.putIfAbsent(
-                layout,
-                () => '_flaxMemberParameters${sharedMemberLayouts.length}',
-              ),
-      );
-    }
-
     String memberMetadata(Iterable<FlaxCodegenMethodModel> methods) =>
         '{${methods.map((method) {
           final name = parameterMetadata(_memberParameters(method.parameters));

@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_PlatformDis
 import '@flax/dart/ui/_bindings/sdk_dart_ui_PlatformDispatcher';
 import type * as upstream2 from '@flax/dart/core/_bindings/flutter_Type';
 import '@flax/dart/core/_bindings/flutter_Type';
-import { _flaxMemberParameters1, _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
+import { _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters1, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8, _flaxMemberParameters9, _flaxMemberParameters10 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,8 +15,8 @@ export interface BindingBase extends Readonly<{ "__flaxBound:package:flutter/src
 readonly [_flaxDartTypeValue]: BindingBase;
 
 }
-defineObject("flax.core/sdk_foundation#type:BindingBase", ["window","platformDispatcher","locked"], [], _flaxBindingMethods("flax.core/sdk_foundation#type:BindingBase", "object", {"initInstances":_flaxMemberParameters1,"debugCheckZone":_flaxMemberParameters4,"initServiceExtensions":_flaxMemberParameters1,"lockEvents":_flaxMemberParameters5,"unlocked":_flaxMemberParameters1,"reassembleApplication":_flaxMemberParameters1,"performReassemble":_flaxMemberParameters1,"registerSignalServiceExtension":_flaxMemberParameters6,"registerBoolServiceExtension":_flaxMemberParameters7,"registerNumericServiceExtension":_flaxMemberParameters7,"postEvent":_flaxMemberParameters8,"registerStringServiceExtension":_flaxMemberParameters7,"registerServiceExtension":_flaxMemberParameters6,"toString":_flaxMemberParameters1}, {}), []);
-const _BindingBaseProxy = {type: "flax.core/sdk_foundation#type:BindingBase", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"initInstances":_flaxMemberParameters1,"debugCheckZone":_flaxMemberParameters4,"initServiceExtensions":_flaxMemberParameters1,"lockEvents":_flaxMemberParameters5,"unlocked":_flaxMemberParameters1,"reassembleApplication":_flaxMemberParameters1,"performReassemble":_flaxMemberParameters1,"registerSignalServiceExtension":_flaxMemberParameters6,"registerBoolServiceExtension":_flaxMemberParameters7,"registerNumericServiceExtension":_flaxMemberParameters7,"postEvent":_flaxMemberParameters8,"registerStringServiceExtension":_flaxMemberParameters7,"registerServiceExtension":_flaxMemberParameters6,"toString":_flaxMemberParameters1}, getters: ["window","platformDispatcher","locked"], setters: [], contextMembers: [], superMembers: ["get:window","get:platformDispatcher","get:locked","initInstances","debugCheckZone","initServiceExtensions","lockEvents","unlocked","reassembleApplication","performReassemble","registerSignalServiceExtension","registerBoolServiceExtension","registerNumericServiceExtension","postEvent","registerStringServiceExtension","registerServiceExtension","toString"]} as const;
+defineObject("flax.core/sdk_foundation#type:BindingBase", ["window","platformDispatcher","locked"], [], _flaxBindingMethods("flax.core/sdk_foundation#type:BindingBase", "object", {"initInstances":_flaxMemberParameters1,"debugCheckZone":_flaxMemberParameters6,"initServiceExtensions":_flaxMemberParameters1,"lockEvents":_flaxMemberParameters7,"unlocked":_flaxMemberParameters1,"reassembleApplication":_flaxMemberParameters1,"performReassemble":_flaxMemberParameters1,"registerSignalServiceExtension":_flaxMemberParameters8,"registerBoolServiceExtension":_flaxMemberParameters9,"registerNumericServiceExtension":_flaxMemberParameters9,"postEvent":_flaxMemberParameters10,"registerStringServiceExtension":_flaxMemberParameters9,"registerServiceExtension":_flaxMemberParameters8,"toString":_flaxMemberParameters1}, {}), []);
+const _BindingBaseProxy = {type: "flax.core/sdk_foundation#type:BindingBase", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"initInstances":_flaxMemberParameters1,"debugCheckZone":_flaxMemberParameters6,"initServiceExtensions":_flaxMemberParameters1,"lockEvents":_flaxMemberParameters7,"unlocked":_flaxMemberParameters1,"reassembleApplication":_flaxMemberParameters1,"performReassemble":_flaxMemberParameters1,"registerSignalServiceExtension":_flaxMemberParameters8,"registerBoolServiceExtension":_flaxMemberParameters9,"registerNumericServiceExtension":_flaxMemberParameters9,"postEvent":_flaxMemberParameters10,"registerStringServiceExtension":_flaxMemberParameters9,"registerServiceExtension":_flaxMemberParameters8,"toString":_flaxMemberParameters1}, getters: ["window","platformDispatcher","locked"], setters: [], contextMembers: [], superMembers: ["get:window","get:platformDispatcher","get:locked","initInstances","debugCheckZone","initServiceExtensions","lockEvents","unlocked","reassembleApplication","performReassemble","registerSignalServiceExtension","registerBoolServiceExtension","registerNumericServiceExtension","postEvent","registerStringServiceExtension","registerServiceExtension","toString"]} as const;
 export interface BindingBase {
 readonly [_flaxDartTypeValue]: BindingBase;
 
@@ -49,20 +49,20 @@ export namespace BindingBase { export function implement(args: [], implementatio
 return constructProxy(_BindingBaseProxy, args, implementation) as BindingBase; } }
 export namespace BindingBase { export function setDebugZoneErrorsAreFatal(value: boolean): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:BindingBase.debugZoneErrorsAreFatal%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:BindingBase.debugZoneErrorsAreFatal%3D", [value], _flaxMemberParameters4);
 } }
 export namespace BindingBase { export declare const debugZoneErrorsAreFatal: boolean; }
 _flaxDefineStaticGetters(BindingBase, "flax.core/sdk_foundation#read:BindingBase.", ["debugZoneErrorsAreFatal"]);
 export namespace BindingBase { function _flaxDefault_checkInstance<T extends BindingBase = BindingBase>(instance: (T | DartInput<T>) | null): T {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:BindingBase.checkInstance", [instance]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:BindingBase.checkInstance", [instance], _flaxMemberParameters5);
 return _flaxResult as T;
 }
 export const checkInstance = _flaxDefineDartCallTypes(_flaxDefault_checkInstance, {"id":"flax.core/sdk_foundation#function:BindingBase.checkInstance","parameters":[{"name":"instance","required":true,"positional":true}]}) as _FlaxDartCallable<typeof _flaxDefault_checkInstance, _FlaxSignature0>;
 }
 export namespace BindingBase { export function debugBindingType(): upstream2.Type | null {
 if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:BindingBase.debugBindingType", []);
+const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:BindingBase.debugBindingType", [], _flaxMemberParameters1);
 return _flaxResult as upstream2.Type | null;
 } }
 _flaxBindInstanceType<BindingBase, typeof BindingBase>(BindingBase, "flax.core/sdk_foundation#type:BindingBase", ["dart:core::Object"]);

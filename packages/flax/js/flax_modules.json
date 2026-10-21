@@ -33,6 +33,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -1157,6 +1158,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -2281,6 +2283,7 @@
           "moduleId": "flax.core/sdk_dependencies",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -2445,6 +2448,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -3562,6 +3566,7 @@
           "moduleId": "flax.core/sdk_dependencies",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -3726,6 +3731,7 @@
           "moduleId": "flax.core/sdk_dependencies",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -3890,6 +3896,7 @@
           "moduleId": "flax.core/sdk_dependencies",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -4054,6 +4061,7 @@
           "moduleId": "flax.core/sdk_dependencies",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -4219,6 +4227,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -5336,6 +5345,7 @@
           "moduleId": "flax.core/sdk_dart_ui",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -5612,6 +5622,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -6729,6 +6740,7 @@
           "moduleId": "flax.core/sdk_animation",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -6796,6 +6808,7 @@
           "moduleId": "flax.core/sdk_dart_ui",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -7064,6 +7077,7 @@
           "moduleId": "flax.core/sdk_physics",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -7091,6 +7105,7 @@
           "moduleId": "flax.core/sdk_scheduler",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -7136,6 +7151,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -8253,6 +8269,7 @@
           "moduleId": "flax.core/sdk_dart_ui",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -8521,6 +8538,7 @@
           "moduleId": "flax.core/sdk_dependencies",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -8678,6 +8696,7 @@
           "moduleId": "flax.core/sdk_foundation",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -8868,6 +8887,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -9985,6 +10005,7 @@
           "moduleId": "flax.core/sdk_dart_ui",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -10253,6 +10274,7 @@
           "moduleId": "flax.core/sdk_foundation",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -10435,6 +10457,7 @@
           "moduleId": "flax.core/sdk_gestures",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -10586,6 +10609,7 @@
           "moduleId": "flax.core/sdk_rendering",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -10949,6 +10973,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -12066,6 +12091,7 @@
           "moduleId": "flax.core/sdk_dart_ui",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -12334,6 +12360,7 @@
           "moduleId": "flax.core/sdk_painting",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -12481,6 +12508,7 @@
           "moduleId": "flax.core/sdk_physics",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -12516,6 +12544,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -13633,6 +13662,7 @@
           "moduleId": "flax.core/sdk_dart_ui",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -13901,6 +13931,7 @@
           "moduleId": "flax.core/sdk_foundation",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -14083,6 +14114,7 @@
           "moduleId": "flax.core/sdk_gestures",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -14234,6 +14266,7 @@
           "moduleId": "flax.core/sdk_painting",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -14373,6 +14406,7 @@
           "moduleId": "flax.core/sdk_rendering",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -14728,6 +14762,7 @@
           "moduleId": "flax.core/sdk_semantics",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -14781,6 +14816,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -15898,6 +15934,7 @@
           "moduleId": "flax.core/sdk_dart_ui",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -16166,6 +16203,7 @@
           "moduleId": "flax.core/sdk_foundation",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -16348,6 +16386,7 @@
           "moduleId": "flax.core/sdk_scheduler",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -16393,6 +16432,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -17510,6 +17550,7 @@
           "moduleId": "flax.core/sdk_dart_ui",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -17778,6 +17819,7 @@
           "moduleId": "flax.core/sdk_foundation",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -17960,6 +18002,7 @@
           "moduleId": "flax.core/sdk_rendering",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -18315,6 +18358,7 @@
           "moduleId": "flax.core/sdk_semantics",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -18368,6 +18412,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -19485,6 +19530,7 @@
           "moduleId": "flax.core/sdk_dart_ui",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -19753,6 +19799,7 @@
           "moduleId": "flax.core/sdk_foundation",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -19935,6 +19982,7 @@
           "moduleId": "flax.core/sdk_gestures",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -20086,6 +20134,7 @@
           "moduleId": "flax.core/sdk_rendering",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -20441,6 +20490,7 @@
           "moduleId": "flax.core/sdk_services",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -20898,6 +20948,7 @@
           "moduleId": "flax.core/sdk_dependencies",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -21066,6 +21117,7 @@
           "moduleId": "flax.core/components",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -21081,6 +21133,7 @@
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -22198,6 +22251,7 @@
           "moduleId": "flax.core/sdk_animation",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -22265,6 +22319,7 @@
           "moduleId": "flax.core/sdk_dart_ui",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -22533,6 +22588,7 @@
           "moduleId": "flax.core/sdk_foundation",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -22715,6 +22771,7 @@
           "moduleId": "flax.core/sdk_gestures",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -22866,6 +22923,7 @@
           "moduleId": "flax.core/sdk_painting",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -23005,6 +23063,7 @@
           "moduleId": "flax.core/sdk_physics",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -23032,6 +23091,7 @@
           "moduleId": "flax.core/sdk_rendering",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -23387,6 +23447,7 @@
           "moduleId": "flax.core/sdk_scheduler",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -23424,6 +23485,7 @@
           "moduleId": "flax.core/sdk_services",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",
@@ -23873,6 +23935,7 @@
           "moduleId": "flax.core/sdk_widgets",
           "uiProtocol": 24,
           "requiredCapabilities": [
+            "call-layouts",
             "generic-member-views",
             "instance-checks",
             "native-navigation-objects",

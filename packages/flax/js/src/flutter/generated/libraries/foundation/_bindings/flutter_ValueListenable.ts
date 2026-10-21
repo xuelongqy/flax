@@ -23,7 +23,7 @@ import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_Und
 import '@flax/flutter/widgets/_bindings/sdk_widgets_UndoHistoryValue';
 import type * as upstream10 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
-import { _flaxMemberParameters51, _flaxMemberParameters3 } from "@flax/core/navigation/_bindings/flutter.__module";
+import { _flaxMemberParameters64, _flaxMemberParameters4 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -31,8 +31,8 @@ export interface ValueListenable<T extends unknown | null = unknown | null> exte
 readonly [_flaxDartTypeValue]: ValueListenable<T>;
 
 }
-defineObject("flax.core/flutter#type:ValueListenable", ["value"], [], _flaxBindingMethods("flax.core/flutter#type:ValueListenable", "object", {"addListener":_flaxMemberParameters51,"removeListener":_flaxMemberParameters51}, {}), ["removeListener"]);
-const _ValueListenableProxy = {type: "flax.core/flutter#type:ValueListenable", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"addListener":_flaxMemberParameters51,"removeListener":_flaxMemberParameters51}, getters: ["value"], setters: [], contextMembers: [], superMembers: []} as const;
+defineObject("flax.core/flutter#type:ValueListenable", ["value"], [], _flaxBindingMethods("flax.core/flutter#type:ValueListenable", "object", {"addListener":_flaxMemberParameters64,"removeListener":_flaxMemberParameters64}, {}), ["removeListener"]);
+const _ValueListenableProxy = {type: "flax.core/flutter#type:ValueListenable", parameters: _flaxMemberParameters4, constructors: {"": _flaxMemberParameters4}, methods: {"addListener":_flaxMemberParameters64,"removeListener":_flaxMemberParameters64}, getters: ["value"], setters: [], contextMembers: [], superMembers: []} as const;
 export interface ValueListenable<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: ValueListenable<T>;
 

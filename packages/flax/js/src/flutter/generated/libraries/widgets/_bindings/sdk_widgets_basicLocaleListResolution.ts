@@ -3,11 +3,12 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
+import { _flaxMemberParameters565 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_basicLocaleListResolution(preferredLocales: DartListInput<upstream0.Locale, Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }>> | null, supportedLocales: DartIterableInput<upstream0.Locale, Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }>>): upstream0.Locale {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:basicLocaleListResolution", [preferredLocales, supportedLocales]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:basicLocaleListResolution", [preferredLocales, supportedLocales], _flaxMemberParameters565);
 return _flaxResult as upstream0.Locale;
 }
 export { _flaxTopLevel_basicLocaleListResolution as basicLocaleListResolution };

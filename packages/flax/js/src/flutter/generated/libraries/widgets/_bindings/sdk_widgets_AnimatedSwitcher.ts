@@ -25,7 +25,7 @@ import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream11 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters22, _flaxMemberParameters23, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -57,12 +57,12 @@ return constructObject("object", "flax.core/sdk_widgets#type:AnimatedSwitcher", 
 }
 export namespace _AnimatedSwitcherFactory { export function defaultTransitionBuilder(child: Widget, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): Widget {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AnimatedSwitcher.defaultTransitionBuilder", [child, animation]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AnimatedSwitcher.defaultTransitionBuilder", [child, animation], _flaxMemberParameters22);
 return _flaxResult as Widget;
 } }
 export namespace _AnimatedSwitcherFactory { export function defaultLayoutBuilder(currentChild: Widget | null, previousChildren: DartListInput<Widget, Widget>): Widget {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AnimatedSwitcher.defaultLayoutBuilder", [currentChild, previousChildren]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AnimatedSwitcher.defaultLayoutBuilder", [currentChild, previousChildren], _flaxMemberParameters23);
 return _flaxResult as Widget;
 } }
 export const AnimatedSwitcher: typeof _AnimatedSwitcherFactory & _FlaxInstanceType<AnimatedSwitcher> & _FlaxDartType<AnimatedSwitcher, readonly ["class", "flax.core/sdk_widgets#type:AnimatedSwitcher", readonly [], false]> = _flaxBindInstanceType<AnimatedSwitcher, typeof _AnimatedSwitcherFactory>(_AnimatedSwitcherFactory, "flax.core/sdk_widgets#type:AnimatedSwitcher", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _AnimatedSwitcherFactory & _FlaxInstanceType<AnimatedSwitcher> & _FlaxDartType<AnimatedSwitcher, readonly ["class", "flax.core/sdk_widgets#type:AnimatedSwitcher", readonly [], false]>;
