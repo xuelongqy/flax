@@ -598,23 +598,15 @@ extension _StreamCalls on _Session {
       }
       final selected =
           _genericMethod(type, name) ?? actual.instanceMethods[name]!;
-      final values = _callArguments(
+      final input = _callArguments(
         args,
         selected.parameters,
         0,
         argumentKind: 'object',
       );
       try {
-        for (final parameter in selected.parameters) {
-          final value = values[parameter.name];
-          if (value == null) continue;
-          value.escapeCallbacks();
-          escapeWidget(value.data, parameter.type);
-        }
-        var result = selected.invoke(
-          reference.value!,
-          values.map((name, value) => MapEntry(name, value.data)),
-        );
+        input.escape(this);
+        var result = selected.invoke(reference.value!, input.values);
         if (result is StreamSubscription<Object?>) {
           final template = dartTypes._template(
             dartTypes.parts(Stream<Object?>),
@@ -632,11 +624,12 @@ extension _StreamCalls on _Session {
             <E>() => _TrackedStreamSubscription<E>(
               this,
               result as StreamSubscription<E>,
-              onData: values['onData']?.data as void Function(E)?,
-              onError:
-                  values['onError']?.data as void Function(Object, StackTrace)?,
-              onDone: values['onDone']?.data as void Function()?,
-              cancelOnError: values['cancelOnError']?.data == true,
+              onData: input.original('onData') as void Function(E)?,
+              onError: input.original(
+                'onError',
+              ) as void Function(Object, StackTrace)?,
+              onDone: input.original('onDone') as void Function()?,
+              cancelOnError: input.original('cancelOnError') == true,
             ),
             [eventType],
             const [],
@@ -646,9 +639,7 @@ extension _StreamCalls on _Session {
         }
         return holdHostResult(memberResult(result, selected.result));
       } finally {
-        for (final value in values.values.toList().reversed) {
-          value.release();
-        }
+        input.release();
         checkpoint();
       }
     };

@@ -675,6 +675,13 @@ field; Flax does not inspect native Widget fields or retain the entire invocatio
 substitute. All arguments must validate first. Once Dart is called, a throwing callee
 may already have saved a Widget, so its configuration hold remains valid.
 
+Ordinary function and member calls decode directly into one mutable argument Map. A
+separate, call-local list owns conversion resources and releases them in reverse
+parameter order, including partial decode failures. A binding may change or retain the
+Map without retaining that resource list. Stream subscription tracking reads the
+original decoded callbacks, even if the binding changes the Map. Argument validation,
+callback escape and checkpoint ordering stay the same.
+
 Configuration holds reuse resource reference counts. Their Finalizer records contain
 only cleanup dependencies, JS handles and weak owner/session links, never Widget data or
 whole descriptions. Component description and Widget identity caches are weak. The live

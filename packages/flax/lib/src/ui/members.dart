@@ -62,6 +62,45 @@ class _ContextReference extends _BridgeReference {
   }
 }
 
+// Binding code may mutate or retain the raw Map without owning conversion leases.
+class _CallArguments {
+  _CallArguments(this.parameters);
+  final List<FlaxParameter> parameters;
+  final values = <String, Object?>{};
+  List<_Value?>? _decoded;
+
+  void add(int index, _Value value) {
+    (_decoded ??= List<_Value?>.filled(parameters.length, null))[index] = value;
+    values[parameters[index].name] = value.data;
+  }
+
+  void escape(_Session session) {
+    final decoded = _decoded;
+    if (decoded == null) return;
+    for (var i = 0; i < decoded.length; i++) {
+      final value = decoded[i];
+      if (value == null) continue;
+      value.escapeCallbacks();
+      session.escapeWidget(value.data, parameters[i].type);
+    }
+  }
+
+  Object? original(String name) {
+    for (var i = 0; i < parameters.length; i++) {
+      if (parameters[i].name == name) return _decoded?[i]?.data;
+    }
+    return null;
+  }
+
+  void release() {
+    final decoded = _decoded;
+    if (decoded == null) return;
+    for (var i = decoded.length - 1; i >= 0; i--) {
+      decoded[i]?.release();
+    }
+  }
+}
+
 extension _MemberCalls on _Session {
   void sweepContexts() {
     final count = _contexts.length < 64 ? _contexts.length : 64;
@@ -144,26 +183,18 @@ extension _MemberCalls on _Session {
       if (definition.requiresTypeArguments) FlaxDartTypes.requireArguments();
       final route = definition.route;
       if (route != null) requireOpen();
-      final values = _callArguments(
+      final input = _callArguments(
         args,
         definition.parameters,
         0,
         uiCallbacks: route?.builders ?? const [],
       );
       try {
-        final inputs = values.map((name, value) => MapEntry(name, value.data));
-        for (final parameter in definition.parameters) {
-          final value = values[parameter.name];
-          if (value == null) continue;
-          value.escapeCallbacks();
-          escapeWidget(value.data, parameter.type);
-        }
-        final result = definition.invoke(inputs);
+        input.escape(this);
+        final result = definition.invoke(input.values);
         return holdHostResult(memberResult(result, definition.result));
       } finally {
-        for (final value in values.values.toList().reversed) {
-          value.release();
-        }
+        input.release();
         checkpoint();
       }
     };
@@ -183,28 +214,19 @@ extension _MemberCalls on _Session {
       if (args.length > method.parameters.length) {
         throw ArgumentError('Too many method arguments');
       }
-      final values = _callArguments(args, method.parameters, 0);
+      final input = _callArguments(args, method.parameters, 0);
       try {
-        for (final parameter in method.parameters) {
-          final value = values[parameter.name];
-          if (value == null) continue;
-          value.escapeCallbacks();
-          escapeWidget(value.data, parameter.type);
-        }
-        final result = method.invoke(
-          values.map((name, value) => MapEntry(name, value.data)),
-        );
+        input.escape(this);
+        final result = method.invoke(input.values);
         return holdHostResult(memberResult(result, method.result));
       } finally {
         checkpoint();
-        for (final value in values.values.toList().reversed) {
-          value.release();
-        }
+        input.release();
       }
     };
   }
 
-  Map<String, _Value> _callArguments(
+  _CallArguments _callArguments(
     List<FlaxJsValue> args,
     List<FlaxParameter> parameters,
     int offset, {
@@ -214,7 +236,7 @@ extension _MemberCalls on _Session {
     if (args.length > parameters.length + offset) {
       throw ArgumentError('Too many $argumentKind arguments');
     }
-    final values = <String, _Value>{};
+    final input = _CallArguments(parameters);
     try {
       for (var i = 0; i < parameters.length; i++) {
         final p = parameters[i];
@@ -225,24 +247,25 @@ extension _MemberCalls on _Session {
           if (p.required) {
             throw ArgumentError('Missing $argumentKind argument: ${p.name}');
           }
-          if (!p.omitWhenAbsent) values[p.name] = _Value(p.defaultValue);
+          if (!p.omitWhenAbsent) input.add(i, _Value(p.defaultValue));
         } else if (p.type.kind == 'context' && arg is FlaxJsNumber) {
-          values[p.name] = _Value(_context(arg, p.type.id!).requireActive());
+          input.add(i, _Value(_context(arg, p.type.id!).requireActive()));
         } else {
-          values[p.name] = decode(
-            arg,
-            p.type,
-            callbackScope: uiCallbacks.contains(p.name)
-                ? _CallbackScope.ui
-                : _CallbackScope.member,
+          input.add(
+            i,
+            decode(
+              arg,
+              p.type,
+              callbackScope: uiCallbacks.contains(p.name)
+                  ? _CallbackScope.ui
+                  : _CallbackScope.member,
+            ),
           );
         }
       }
-      return values;
+      return input;
     } catch (_) {
-      for (final value in values.values.toList().reversed) {
-        value.release();
-      }
+      input.release();
       rethrow;
     }
   }
@@ -464,30 +487,20 @@ extension _MemberCalls on _Session {
   ) {
     if (method.requiresTypeArguments) FlaxDartTypes.requireArguments();
     if (method.startsRoute) requireOpen();
-    Map<String, _Value>? values;
+    _CallArguments? input;
     try {
-      values = _callArguments(
+      input = _callArguments(
         args,
         method.parameters,
         0,
         argumentKind: 'method',
       );
-      for (final parameter in method.parameters) {
-        final value = values[parameter.name];
-        if (value == null) continue;
-        value.escapeCallbacks();
-        escapeWidget(value.data, parameter.type);
-      }
-      final inputs = values.map((k, v) => MapEntry(k, v.data));
+      input.escape(this);
       return holdHostResult(
-        memberResult(method.invoke(receiver, inputs), method.result),
+        memberResult(method.invoke(receiver, input.values), method.result),
       );
     } finally {
-      if (values != null) {
-        for (final value in values.values.toList().reversed) {
-          value.release();
-        }
-      }
+      input?.release();
       checkpoint();
     }
   }

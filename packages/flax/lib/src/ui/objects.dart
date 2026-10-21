@@ -1024,27 +1024,19 @@ extension _ObjectCalls on _Session {
         return const FlaxJsUndefined();
       }
       if (method.requiresTypeArguments) FlaxDartTypes.requireArguments();
-      final values = _callArguments(
+      final input = _callArguments(
         args,
         method.parameters,
         0,
         argumentKind: 'object',
       );
       try {
-        for (final parameter in method.parameters) {
-          final value = values[parameter.name];
-          if (value == null) continue;
-          value.escapeCallbacks();
-          escapeWidget(value.data, parameter.type);
-        }
-        final inputs = values.map((k, v) => MapEntry(k, v.data));
+        input.escape(this);
         final invoke = method.invoke;
-        final result = invoke(receiver, inputs);
+        final result = invoke(receiver, input.values);
         return holdHostResult(memberResult(result, method.result));
       } finally {
-        for (final value in values.values.toList().reversed) {
-          value.release();
-        }
+        input.release();
       }
     };
   }
