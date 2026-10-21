@@ -236,6 +236,29 @@ loadingBuilder/errorBuilder and preserve the Session across ordinary rebuilds. P
 installation defaults to ApplicationSupport/flax and accepts an explicit
 installationDirectory.
 
+Built-in business assets load directly from `assets/flax/`. A prepared directory is read
+in place. Local and remote packages share
+`<ApplicationSupport>/flax/installed/<package-sha256>/`; network artifacts are cached
+separately under `<ApplicationSupport>/flax/downloads/`. `installationDirectory`
+replaces the installation root, while `cacheDirectory` replaces the download root.
+Remote JS continues to use the built-in business resources unless given an explicit
+assetBundle; use a remote package to update code and resources together.
+
+Images and JSON inside either built-in resources or an installed package use
+`Image.asset('assets/images/flutter.png')` and
+`getAssetBundle().loadString('assets/data/example.json')`. Independent URLs use
+`Image.network(url)` and `fetch(url)`; they do not use the Flax artifact cache. Business
+Fetch requires the optional FlaxFetchPlugin, independently of the application
+downloader. See the
+[loading examples](../../docs/architecture/applications.md#application-loading-modes),
+[directory and cache reference](../../docs/architecture/applications.md#resource-and-cache-locations),
+and
+[resource API comparison](../../docs/architecture/applications.md#packaged-resources-and-independent-http-resources).
+
+A JSON request's AbortController controls that Fetch request and its response body.
+Image.network follows Flutter's separate request/cache lifetime; page disposal does not
+guarantee that its transfer stops immediately.
+
 For explicit Session ownership, load through `FlaxApplication` and construct
 `FlaxSession.application(application: ..., createRuntime: ..., bindings: ...)`. Resource
 reads and native images keep using the Session AssetBundle. See

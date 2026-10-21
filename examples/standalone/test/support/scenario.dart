@@ -3,6 +3,8 @@ import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flutter/services.dart';
 
 import 'dart:io';
+import 'dart:convert';
+import 'dart:async';
 
 import 'package:crypto/crypto.dart';
 
@@ -77,6 +79,14 @@ runApp(SizedBox());
   );
   final previousOverrides = HttpOverrides.current;
   HttpOverrides.global = null;
+  final resourceRequests = <String>[];
+  var networkCase = 'success';
+  final heldSockets = <Socket>[];
+  var requestStarted = Completer<void>();
+  var requestClosed = Completer<void>();
+  final networkImage = await t.runAsync(
+    () => builtin.load('assets/images/flutter.png'),
+  );
   final server = await t.runAsync(() async {
     final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
     server.listen((request) async {
@@ -88,8 +98,62 @@ runApp(SizedBox());
         socket.listen(socket.add, onError: (Object _) {});
         return;
       }
-      request.response.headers.contentType = ContentType.json;
-      request.response.write('{"message":"Local Fetch verified"}');
+      resourceRequests.add(request.uri.path);
+      if (request.uri.path == '/assets/config.json' &&
+          {
+            'http-error',
+            'cancel-headers',
+            'cancel-body',
+          }.contains(networkCase)) {
+        final started = requestStarted;
+        final closed = requestClosed;
+        final socket = await request.response.detachSocket(writeHeaders: false);
+        heldSockets.add(socket);
+        socket.listen(
+          (_) {},
+          onDone: () {
+            if (!closed.isCompleted) closed.complete();
+          },
+          onError: (Object _) {
+            if (!closed.isCompleted) closed.complete();
+          },
+        );
+        if (networkCase != 'cancel-headers') {
+          final status = networkCase == 'http-error'
+              ? '503 Service Unavailable'
+              : '200 OK';
+          socket.write(
+            'HTTP/1.1 $status\r\nContent-Length: 1000000\r\n'
+            'Content-Type: application/json\r\nConnection: close\r\n\r\n{',
+          );
+          await socket.flush();
+        }
+        started.complete();
+        return;
+      }
+      if (request.uri.path == '/assets/flutter.png') {
+        request.response.headers.contentType = ContentType('image', 'png');
+        request.response.add(Uint8List.sublistView(networkImage!));
+      } else {
+        request.response.headers.contentType = ContentType.json;
+        if (request.uri.path == '/assets/missing.png') {
+          request.response.statusCode = HttpStatus.notFound;
+        } else if (request.uri.path == '/assets/config.json') {
+          request.response.write(switch (networkCase) {
+            'invalid-json' => '{',
+            'invalid-fields' => '{}',
+            _ => jsonEncode({
+              'message': 'JSON loaded over HTTP',
+              'imageUrl': networkCase == 'invalid-url'
+                  ? 'file:///image.png'
+                  : 'http://127.0.0.1:${server.port}/assets/'
+                        '${networkCase == 'image-error' ? 'missing' : 'flutter'}.png',
+            }),
+          });
+        } else {
+          request.response.write('{"message":"Local Fetch verified"}');
+        }
+      }
       await request.response.close();
     });
     return server;
@@ -129,7 +193,81 @@ runApp(SizedBox());
       );
     }
     expect(find.text('Local WebSocket verified'), findsOneWidget);
+    final networkButton = find.widgetWithText(
+      TextButton,
+      'Open network assets',
+    );
+    await t.ensureVisible(networkButton);
+    await t.pump();
+    await t.tap(networkButton);
+    await _pumpApplicationFrame(t);
+    await _pumpUntilFound(t, find.text('JSON loaded over HTTP'));
+    final image = find.byWidgetPredicate(
+      (widget) =>
+          widget is Image && widget.semanticLabel == 'Network Flutter image',
+    );
+    final pixels = find.descendant(
+      of: image,
+      matching: find.byWidgetPredicate(
+        (widget) => widget is RawImage && widget.image != null,
+      ),
+    );
+    await _pumpUntilFound(t, pixels);
+    expect(t.widget<RawImage>(pixels).image!.width, 128);
+    expect(
+      resourceRequests,
+      containsAll(['/assets/config.json', '/assets/flutter.png']),
+    );
+    await t.tap(find.byType(BackButton));
+    await _pumpApplicationFrame(t);
+
+    Future<void> waitFor(Completer<void> event) async {
+      for (var i = 0; i < 200 && !event.isCompleted; i++) {
+        await t.pump(const Duration(milliseconds: 10));
+        await t.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 10)),
+        );
+      }
+      expect(event.isCompleted, isTrue, reason: networkCase);
+    }
+
+    for (final (mode, message) in [
+      ('http-error', 'HTTP 503'),
+      ('invalid-json', 'Network JSON failed:'),
+      (
+        'invalid-fields',
+        'Network JSON must contain message and imageUrl strings',
+      ),
+      ('invalid-url', 'Network imageUrl must be an absolute HTTP(S) URL'),
+      ('image-error', 'Network image failed:'),
+      ('cancel-headers', 'Loading network JSON'),
+      ('cancel-body', 'Loading network JSON'),
+    ]) {
+      networkCase = mode;
+      requestStarted = Completer<void>();
+      requestClosed = Completer<void>();
+      final button = find.widgetWithText(TextButton, 'Open network assets');
+      await t.ensureVisible(button);
+      await t.pump();
+      await t.tap(button);
+      await _pumpApplicationFrame(t);
+      await _pumpUntilFound(t, find.textContaining(message));
+      if (mode == 'http-error') await waitFor(requestClosed);
+      if (mode.startsWith('cancel-')) await waitFor(requestStarted);
+      await t.tap(find.byType(BackButton));
+      await _pumpApplicationFrame(t);
+      if (mode.startsWith('cancel-')) await waitFor(requestClosed);
+      expect(find.textContaining('Network JSON failed:'), findsNothing);
+      expect(t.takeException(), isNull);
+    }
+
+    await t.ensureVisible(find.byType(TextField));
+    await t.pump();
+    expect(t.takeException(), isNull);
   } finally {
+    for (final socket in heldSockets) {
+      socket.destroy();
+    }
     await t.runAsync(() => server!.close(force: true));
     HttpOverrides.global = previousOverrides;
   }

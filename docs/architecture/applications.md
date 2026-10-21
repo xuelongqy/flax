@@ -41,6 +41,18 @@ assets/flax/
   assets/data/example.json
 ```
 
+Declare the generated business directories in the Flutter application's pubspec. Asset
+declarations include their direct files; declare image and JSON subdirectories too.
+Flutter discovers image-density variants under the declared image directory.
+
+```yaml
+flutter:
+  assets:
+    - assets/flax/
+    - assets/flax/assets/images/
+    - assets/flax/assets/data/
+```
+
 `flax.json` sits beside the entry and describes the business package:
 
 ```json
@@ -72,20 +84,73 @@ require an explicit host bundle, for example `bundle: rootBundle` on the Dart si
 
 ### Application loading modes
 
-| Owning View               | Input                                         | Descriptor and resources                                                       |
-| ------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------ |
-| `FlaxView(source: ...)`   | Already loaded JS string                      | Explicit Bundle or built-in business prefix; no descriptor discovery           |
-| `FlaxView.bundle(...)`    | Business-root AssetBundle, or built-in prefix | Reads flax.json and the entry from that Bundle                                 |
-| `FlaxView.directory(...)` | Prepared Directory                            | Reads descriptor, entry and resources in place                                 |
-| `FlaxView.package(...)`   | Local .flax File                              | Installs once per content digest, then loads its Directory                     |
-| `FlaxView.file(...)`      | Local JS File                                 | Explicit Bundle or built-in business prefix; no neighboring resource discovery |
-| `FlaxView.network(...)`   | HTTP(S) Uri and explicit format               | JS uses the business Bundle default; packages use their installed resources    |
+| Owning View                                                  | Input                                                 | Default resource source                            | Reads flax.json |
+| ------------------------------------------------------------ | ----------------------------------------------------- | -------------------------------------------------- | --------------- |
+| `FlaxView(source: ...)`                                      | Already loaded JS string                              | `assets/flax/` inside the inherited host bundle    | No              |
+| `FlaxView.bundle(...)`                                       | Built-in prefix or explicit business-root AssetBundle | The selected bundle; default prefix `assets/flax/` | Yes             |
+| `FlaxView.directory(...)`                                    | Prepared Directory                                    | The supplied directory, read in place              | Yes             |
+| `FlaxView.package(...)`                                      | Local .flax File                                      | Its installed directory                            | Yes             |
+| `FlaxView.file(...)`                                         | Local JS File                                         | `assets/flax/` inside the inherited host bundle    | No              |
+| `FlaxView.network(..., format: FlaxRemoteFormat.javascript)` | HTTP(S) JS artifact                                   | `assets/flax/` inside the inherited host bundle    | No              |
+| `FlaxView.network(..., format: FlaxRemoteFormat.package)`    | HTTP(S) .flax artifact                                | Its installed directory                            | Yes             |
+
+The source/file/network-JS defaults can be replaced with an explicit `assetBundle`. They
+do not discover resources beside the script file or relative to its remote URL.
 
 `FlaxView.session` and `.page` mount an existing Session; they are not additional
 loading modes. Keep the existing source entry for hosts that already manage loading. The
 file/package distinction stays explicit locally and remotely; URL extensions do not
 select behavior. Internal source configurations are typed rather than nullable
 combinations of file, directory and URL fields.
+
+Choose one of these alternatives using the host's existing `createRuntime` and
+`bindings`. Here `source` is a JS string, `applicationDirectory` is a Directory, and
+`packageFile` and `jsFile` are Files selected by the host.
+
+```dart
+FlaxView(
+  source: source,
+  createRuntime: createRuntime,
+  bindings: bindings,
+);
+
+FlaxView.bundle(
+  createRuntime: createRuntime,
+  bindings: bindings,
+);
+
+FlaxView.directory(
+  directory: applicationDirectory,
+  createRuntime: createRuntime,
+  bindings: bindings,
+);
+
+FlaxView.package(
+  file: packageFile,
+  createRuntime: createRuntime,
+  bindings: bindings,
+);
+
+FlaxView.file(
+  file: jsFile,
+  createRuntime: createRuntime,
+  bindings: bindings,
+);
+
+FlaxView.network(
+  uri: Uri.parse('https://example.com/app.js'),
+  format: FlaxRemoteFormat.javascript,
+  createRuntime: createRuntime,
+  bindings: bindings,
+);
+
+FlaxView.network(
+  uri: Uri.parse('https://example.com/app.flax'),
+  format: FlaxRemoteFormat.package,
+  createRuntime: createRuntime,
+  bindings: bindings,
+);
+```
 
 `FlaxView.bundle(createRuntime: ..., bindings: ...)` reads `flax.json` and its entry
 from the default `assets/flax/` prefix of the inherited Flutter bundle. Set `prefix` to
@@ -208,6 +273,103 @@ downloading and installation are supported below. Update selection, activation p
 rollback, old-install cleanup and publisher signature verification are not implemented;
 development HMR does not implement them.
 
+### Resource and cache locations
+
+`ApplicationSupport` below means the directory returned by
+`getApplicationSupportDirectory()` on the current platform. No absolute sandbox path is
+hard-coded into Flax.
+
+| Location                    | Default                                | Override and behavior                                                                                             |
+| --------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Built-in business resources | Flutter assets under `assets/flax/`    | `.bundle(prefix: ...)`, or an explicit `FlaxPrefixedAssetBundle` for script entries; no startup extraction        |
+| Prepared directory          | The Directory supplied to `.directory` | No implicit default, copy or id/version hierarchy; the sandbox demonstration chooses `<ApplicationSupport>/flax/` |
+| Package installation root   | `<ApplicationSupport>/flax/`           | `installationDirectory`; the installer appends `installed/<package-sha256>/`                                      |
+| Network artifact cache      | `<ApplicationSupport>/flax/downloads/` | `cacheDirectory`; the downloader appends `requests/` and `blobs/`                                                 |
+
+```text
+<ApplicationSupport>/flax/
+  downloads/
+    requests/<request-key>.json
+    blobs/<artifact-sha256>
+  installed/<package-sha256>/
+    flax.json
+    app.js
+    flax.assets.json
+    assets/...
+```
+
+A local or remote package uses the same installer. An unchanged package reuses its
+installation after basic integrity checks. Different package bytes select a different
+SHA256 directory even when id/version metadata is unchanged. An explicit installation
+root still contains the `installed/` child; it does not select an exact final business
+directory. The download and installation roots are independent settings.
+
+### Packaged resources and independent HTTP resources
+
+| Resource                                                   | Image API            | JSON API                           | Storage behavior                                            |
+| ---------------------------------------------------------- | -------------------- | ---------------------------------- | ----------------------------------------------------------- |
+| Built-in business resources                                | `Image.asset(key)`   | `getAssetBundle().loadString(key)` | Reads the selected Flutter assets                           |
+| Prepared directory or installed local/remote .flax package | `Image.asset(key)`   | `getAssetBundle().loadString(key)` | Reads the selected business directory                       |
+| Independent HTTP(S) URL                                    | `Image.network(url)` | `fetch(url)`                       | Separate requests; outside the Flax artifact download cache |
+
+The same business code works for built-in assets and remote package contents:
+
+```typescript
+import { Image } from '@flax/flutter/widgets';
+import { getAssetBundle } from '@flax/core/assets';
+
+Image.asset('assets/images/flutter.png');
+
+async function loadBundledConfiguration() {
+  const text = await getAssetBundle().loadString('assets/data/example.json');
+  return JSON.parse(text);
+}
+```
+
+For an independent server resource, use an HTTP(S) URL:
+
+```typescript
+import type {} from '@flax/fetch/globals';
+import { Image } from '@flax/flutter/widgets';
+
+Image.network('https://example.com/flutter.png');
+
+async function loadRemoteConfiguration(signal: AbortSignal) {
+  const response = await fetch('https://example.com/config.json', { signal });
+  if (!response.ok) {
+    await response.body?.cancel();
+    throw new Error(`HTTP ${response.status}`);
+  }
+  return response.json();
+}
+```
+
+Business `fetch` requires the Dart `flax_fetch` package and a registered
+`const FlaxFetchPlugin()` in the View/Session plugins, plus `@flax/fetch` for TypeScript
+declarations. Keep other plugins required by the application in that list. Relative
+Fetch URLs require the plugin's `baseUrl`. Give `Image.network` an absolute URL: it does
+not inherit that baseUrl or a remote JS artifact's URL. Image.network and the
+FlaxView.network artifact downloader do not require the Fetch plugin.
+
+Image.network follows Flutter's native image-cache behavior; Flax adds no persistent
+image cache. Fetch has no HTTP cache. FlaxView.network's `headers`, ETag handling,
+`expectedSha256` and `cacheDirectory` apply to the application artifact only; configure
+independent image/API requests separately. Keep each JSON-loading Promise in State and
+pass it to FutureBuilder rather than issuing requests from build.
+
+Pass a State-owned AbortController's signal to the JSON loader and abort it in dispose.
+An HTTP error also needs to cancel its unread response body before reporting the error;
+the example uses its request controller for that cleanup. The controller owns the JSON
+Fetch only. Image.network retains Flutter's request and image-cache lifetime, so an
+image transfer can finish after its page closes. Flax does not add per-page image
+transfer cancellation.
+
+The standalone [packaged resource page](../../examples/standalone/js/src/assets.ts) and
+[independent HTTP page](../../examples/standalone/js/src/network_assets.ts) show both
+paths. The scenario supplies a local HTTP server and checks decoded images, invalid
+JSON/URLs, HTTP and image failures, and JSON cancellation before response headers and
+during body reading, without relying on an external website.
+
 ### Remote JS and .flax downloads
 
 ```dart
@@ -236,10 +398,11 @@ can pin content; the package's own inventory is only an integrity check.
 `format` is required: `FlaxRemoteFormat.javascript` reads one JS file, while `.package`
 uses FlaxPackage.install and the directory loader. Script mode does not fetch companion
 images or JSON; it uses the built-in `assets/flax/` business Bundle by default, or an
-explicit resource Bundle. Remote JS therefore shares the App's installed resource
-version; ship a remote package when code and resources need to change together. Package
-mode rejects an external assetBundle. `installationDirectory` only applies to package
-mode. The network JS source URL omits query parameters, which may contain tokens.
+explicit resource Bundle. Remote JS therefore uses the resource version shipped with the
+host App by default; ship a remote package when code and resources need to change
+together. Package mode rejects an external assetBundle. `installationDirectory` only
+applies to package mode. The network JS source URL omits query parameters, which may
+contain tokens.
 
 `cacheDirectory` overrides the download cache root, defaulting to
 `<ApplicationSupport>/flax/downloads/`. Its `requests/<key>.json` records contain only
