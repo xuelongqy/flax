@@ -1,5 +1,5 @@
 name: flax_embedded
-description: Cross-module Flax composition fixture for macOS UI validation.
+description: A modular playground for Flax widgets and host capabilities.
 version: 0.0.0
 publish_to: none
 resolution: workspace
@@ -11,6 +11,11 @@ environment:
 dependencies:
   flax: 0.0.0
   flax_material_ui: 0.0.0
+  flax_cupertino_ui: 0.0.0
+  flax_canvas: 0.0.0
+  flax_fetch: 0.0.0
+  flax_websocket: 0.0.0
+  flax_local_storage: 0.0.0
   flutter:
     sdk: flutter
   material_ui: 1.1.1

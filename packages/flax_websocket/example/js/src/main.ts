@@ -1,5 +1,4 @@
-import type {} from '@flax/websocket/globals';
-import { runApp, Text } from '@flax/flutter/widgets';
+import { runExample } from '@flax/example-core/ui';
+import { createWebSocketExample } from './showcase';
 
-if (typeof WebSocket !== 'function') throw Error('WebSocket was not installed');
-runApp(Text('WebSocket ready'));
+runExample(createWebSocketExample());

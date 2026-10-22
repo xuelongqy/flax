@@ -76,6 +76,7 @@ keep the maintained engine/SDK outputs for subsequent checks.
 | Cross-module aggregate with the matching Flax engine   | `dart run melos run check:aggregate`                      |
 | All UI-owning packages plus aggregate                  | `dart run melos run check:ui`                             |
 | Launch prepared macOS example                          | `dart run melos run example:run`                          |
+| Launch one package's example only                      | `dart run tool/example_run.dart --package=NAME`           |
 | Standalone source and release with the matching engine | `dart run melos run check:standalone`                     |
 | Launch standalone macOS app                            | `dart run melos run standalone:run`                       |
 | Workspace-wide or cross-layer changes                  | `dart run melos run check`                                |
@@ -90,6 +91,11 @@ macOS arm64 selects V8 JIT automatically. `check:runtime:v8`, `ui:test:v8`,
 checks use `dart run tool/ui_test.dart --package=flax_fetch` and optionally
 `--file=test/ui/host_test.dart`. The shared and full entries retain the original
 assertions. `check:ui` also runs package examples and aggregate composition.
+
+For a package-only edit, use its package checks and example. Both
+`tool/package.dart integration NAME` and `tool/example_run.dart --package=NAME` select
+that owner and its dependencies; they do not start the aggregate or other examples. The
+outer gallery is for presenting all modules and checking their composition.
 
 `check:runtime` validates the ABI and joint GC in the local Flutter UI isolate.
 Independent Dart hosts and standalone SDK bridge builds are retired. Do not run

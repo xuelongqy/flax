@@ -99,7 +99,7 @@ Future<void> _check(String root, FlaxWorkspacePackage package) async {
   }
 
   if (File(p.join(package.js.path, 'package.json')).existsSync()) {
-    await _buildJsDependencies(root, package.js);
+    await buildJsDependencies(root, package.js);
     final manifest = jsonDecode(
       File(p.join(package.js.path, 'package.json')).readAsStringSync(),
     ) as Map<String, dynamic>;
@@ -134,7 +134,7 @@ Future<void> _check(String root, FlaxWorkspacePackage package) async {
   if (package.hasFlutterExample) {
     final exampleJs = Directory(p.join(package.example.path, 'js'));
     if (File(p.join(exampleJs.path, 'package.json')).existsSync()) {
-      await _buildJsDependencies(root, exampleJs);
+      await buildJsDependencies(root, exampleJs);
       await run('pnpm', [
         '--silent',
         'run',
@@ -218,7 +218,7 @@ Future<void> _integration(
   var testCount = 0;
   if (package.uiTests.existsSync()) {
     if (Platform.environment['FLAX_CHECK_PREPARED'] != '1') {
-      await _buildJsDependencies(root, package.js);
+      await buildJsDependencies(root, package.js);
       await run('node', [
         'tool/ui_bundle.mjs',
         '--package',
@@ -248,7 +248,7 @@ Future<void> _integration(
     final exampleJs = Directory(p.join(package.example.path, 'js'));
     if (File(p.join(exampleJs.path, 'package.json')).existsSync() &&
         Platform.environment['FLAX_CHECK_PREPARED'] != '1') {
-      await _buildJsDependencies(root, exampleJs);
+      await buildJsDependencies(root, exampleJs);
       await run('node', [
         'tool/example_bundle.mjs',
         '--package',
@@ -260,18 +260,4 @@ Future<void> _integration(
   if (testCount == 0) {
     throw StateError('No integration tests for ${package.name}');
   }
-}
-
-Future<void> _buildJsDependencies(String root, Directory package) async {
-  final manifestFile = File(p.join(package.path, 'package.json'));
-  if (!manifestFile.existsSync()) return;
-  final manifest = jsonDecode(manifestFile.readAsStringSync()) as Map;
-  final name = manifest['name'] as String;
-  await run('pnpm', [
-    '--silent',
-    '--filter',
-    '$name...',
-    'run',
-    'build',
-  ], directory: root);
 }

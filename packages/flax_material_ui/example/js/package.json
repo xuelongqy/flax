@@ -12,6 +12,14 @@
     "@flax/flutter": "workspace:*",
     "@flax/material-ui": "workspace:*",
     "@flax/core-runtime": "workspace:*",
-    "@flax/material-ui-runtime": "workspace:*"
+    "@flax/material-ui-runtime": "workspace:*",
+    "@flax/example-core": "workspace:*",
+    "@flax/dart": "workspace:*"
+  },
+  "exports": {
+    "./showcase": {
+      "types": "./dist/showcase.d.ts",
+      "import": "./src/showcase.ts"
+    }
   }
 }

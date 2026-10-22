@@ -131,7 +131,20 @@ the host and each test still owns its server, connections and temporary director
 `ui:test` runs UI only, in one test process per engine. `check_ui.dart` runs that entry,
 each selected package's example once, and `check_aggregate.dart` once. It does not build
 engine source or rerun runtime, standalone, engine-coexistence, archive, or release
-gates. `example_run.dart` bundles and launches the embedded app.
+gates. `example_run.dart` bundles and launches the aggregate gallery. With
+`--package=flax_material_ui`, it instead builds only the selected example and its JS
+dependencies, then launches that package's own Flutter host through the existing engine
+staging helper. It never bundles or starts the other example applications. Package
+checks, aggregate checks and launches share dependency builds with visible failure
+output. Builds run sequentially because public type generation shares a staging
+directory.
+
+For an example declaring `@flax/fetch` or `@flax/websocket` in its existing module
+inventory, the launcher also starts a loopback-only Dart server on a random port. It
+injects `FLAX_FETCH_BASE_URL` into Flutter and serves `/status` JSON, a five-second
+`/slow` response and `/socket` WebSocket echo. A `finally` block closes the listener,
+pending delays and upgraded connections when Flutter exits or detaches. The service
+stays in development tooling rather than application or plugin packages.
 
 Both UI commands accept `--package=<owner>` and `--file=test/ui/<file>_test.dart`. Files
 require an explicit owner; unknown, empty and outside-owner selections fail. The
@@ -168,10 +181,10 @@ source consumption, real macOS integration and relocated release assertions. See
 
 `native.dart`, `check_runtime.dart`, `ui_test.dart`, `check_ui.dart`,
 `example_run.dart`, `standalone_run.dart`, and `check_standalone.dart` accept
-`--engine=<name>`. Omitting the option preserves the default Hermes behavior. Engine
-packages are discovered by package name. Example staging rewrites the existing runtime
-factory boundary and reads JIT requirements from the selected package's SDK lock. Hooks
-download the SDK and compile only the bridge.
+`--engine=<name>`. The default is V8 for the maintained macOS arm64 Flutter engine.
+Engine packages are discovered by package name. Example staging selects the runtime at
+the existing factory boundary and uses the matching maintained local engine. It does not
+rebuild the engine. Mobile acceptance remains in the platform-specific gates.
 
 Use `native:build:v8`, `check:runtime:v8`, `ui:test:v8`, `check:aggregate:v8`, and
 `check:ui:v8` for the V8 Melos entries. After preparing both assets, `check:engines`

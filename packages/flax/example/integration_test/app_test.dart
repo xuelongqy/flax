@@ -8,6 +8,6 @@ void main() {
     await tester.runAsync(app.startApplication);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 20));
-    expect(find.text('Flax core ready'), findsOneWidget);
+    expect(find.text('Small pieces. Real Flutter.'), findsOneWidget);
   });
 }

@@ -1,20 +1,4 @@
-import { Text, runApp } from '@flax/flutter/widgets';
-import {
-  CupertinoApp,
-  CupertinoButton,
-  CupertinoPageScaffold,
-  CupertinoThemeData,
-} from '@flax/cupertino-ui';
+import { runApp } from '@flax/flutter/widgets';
+import { createCupertinoExample } from './showcase';
 
-runApp(
-  CupertinoApp({
-    debugShowCheckedModeBanner: false,
-    theme: CupertinoThemeData(),
-    home: CupertinoPageScaffold({
-      child: CupertinoButton({
-        onPressed: () => {},
-        child: Text('Cupertino UI ready'),
-      }),
-    }),
-  }),
-);
+runApp(createCupertinoExample());

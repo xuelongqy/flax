@@ -1,5 +1,4 @@
-import type {} from '@flax/fetch/globals';
-import { runApp, Text } from '@flax/flutter/widgets';
+import { runExample } from '@flax/example-core/ui';
+import { createFetchExample } from './showcase';
 
-if (typeof fetch !== 'function') throw Error('Fetch was not installed');
-runApp(Text('Fetch ready'));
+runExample(createFetchExample());
