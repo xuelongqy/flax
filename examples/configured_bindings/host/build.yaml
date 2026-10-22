@@ -1,0 +1,30 @@
+targets:
+  $default:
+    sources:
+      - $package$
+      - lib/**
+      - test/**
+      - integration_test/**
+      - assets/**
+      - pubspec.yaml
+      - flax_package.yaml
+      - bindings/*.yaml
+      - bindings/*.yml
+      - js/package.json
+      - js-types/package.json
+    builders:
+      flax_codegen:bindings:
+        enabled: true
+        options:
+          outputs:
+            - lib/src/generated/sdk/bindings.g.dart
+            - lib/src/generated/sdk/delivery.g.dart
+            - lib/src/generated/internal/admin.g.dart
+            - lib/src/generated/internal/app.g.dart
+            - lib/flax_bindings/shop.dart
+            - lib/flax_bindings/admin.dart
+            - lib/flax_bindings/app.dart
+            - js/sdk/runtime/src/generated/bindings.ts
+            - js/sdk/runtime/src/generated/delivery.ts
+            - js/internal/runtime/src/generated/admin.ts
+            - js/internal/runtime/src/generated/app.ts

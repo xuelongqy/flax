@@ -6,9 +6,9 @@ import 'package_pipeline.dart';
 /// Canonical flax_codegen CLI usage.
 const flaxCodegenCliUsage =
     'Usage:\n'
-    '  dart run flax_codegen validate --config <direct-yaml>\n'
-    '  dart run flax_codegen check --config <direct-yaml>\n'
-    '  dart run flax_codegen generate --config <direct-yaml>\n'
+    '  dart run flax_codegen validate [--config <direct-yaml>]\n'
+    '  dart run flax_codegen check [--config <direct-yaml>]\n'
+    '  dart run flax_codegen generate [--config <direct-yaml>]\n'
     '  dart run flax_codegen validate --library <package:...dart>\n'
     '  dart run flax_codegen check --library <package:...dart>\n'
     '  dart run flax_codegen generate --library <package:...dart>';
@@ -43,7 +43,7 @@ final class FlaxCodegenCliUsageException implements Exception {
   String toString() => message;
 }
 
-/// Parses exactly `validate|check|generate --config <direct-yaml>` or the
+/// Parses `validate|check|generate [--config <direct-yaml>]` or the
 /// fail-open automatic `--library <package:...dart>` form.
 ///
 /// Rejects every other argument shape.
@@ -59,6 +59,7 @@ FlaxCodegenCliArgs parseFlaxCodegenCliArgs(List<String> arguments) {
       'Unknown command: $command\n$flaxCodegenCliUsage',
     );
   }
+  if (arguments.length == 1) return FlaxCodegenCliArgs(command: command);
   if (arguments.length != 3 ||
       !{'--config', '--library'}.contains(arguments[1]) ||
       arguments[2].isEmpty ||
@@ -93,7 +94,8 @@ Future<int> runFlaxCodegenCli(
           _writeAutoSummary(out, 'Validated', validation);
         } else {
           final validation = await FlaxCodegenPackagePipeline.validateConfig(
-            parsed.configPath!,
+            parsed.configPath,
+            packageRoot: workingDirectory,
           );
           out(
             'Validated package ${validation.dartPackage} '
@@ -111,7 +113,8 @@ Future<int> runFlaxCodegenCli(
           _writeAutoSummary(out, 'Checked', validation);
         } else {
           final validation = await FlaxCodegenPackagePipeline.checkConfig(
-            parsed.configPath!,
+            parsed.configPath,
+            packageRoot: workingDirectory,
           );
           out('Generated bindings and manifests are reproducible.');
           _writeSelectionDiagnostics(out, validation);
@@ -125,7 +128,8 @@ Future<int> runFlaxCodegenCli(
           _writeAutoSummary(out, 'Generated', validation);
         } else {
           final validation = await FlaxCodegenPackagePipeline.generateConfig(
-            parsed.configPath!,
+            parsed.configPath,
+            packageRoot: workingDirectory,
           );
           out('Generated selected Dart, TypeScript, and manifest bindings.');
           _writeSelectionDiagnostics(out, validation);

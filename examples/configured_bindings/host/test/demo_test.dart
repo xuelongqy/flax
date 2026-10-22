@@ -95,6 +95,16 @@ void main() {
       expect(adminCalls, 1);
       expect(hostCart.quantity, 1);
 
+      await tester.tap(_button('manager', 'Host app name'));
+      await _waitFor(
+        tester,
+        () => find
+            .text('manager host=Configured host calls=2')
+            .evaluate()
+            .isNotEmpty,
+      );
+      expect(adminCalls, 1);
+
       for (final attempt in [1, 2]) {
         await tester.tap(_button('forbidden', 'Try internal API'));
         await _waitFor(
@@ -114,6 +124,15 @@ void main() {
       tester.view.physicalSize = const Size(600, 850);
       await tester.pump();
       expect(tester.takeException(), isNull);
+      expect(
+        find.text('first calls=1 added total=2400 days=3'),
+        findsOneWidget,
+      );
+      expect(
+        find.text('second calls=1 added total=3600 days=4'),
+        findsOneWidget,
+      );
+      expect(find.text('manager host=Configured host calls=2'), findsOneWidget);
       for (final entry in views.entries) {
         expect(
           tester.element(find.byKey(ValueKey('view-${entry.key}'))),

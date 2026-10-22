@@ -18,6 +18,8 @@ import 'ownership.dart';
 import 'package_metadata.dart';
 import 'parser.dart';
 
+part 'package_inputs.dart';
+
 /// Narrow injectable runner matching [Process.run]'s positional executable and
 /// arguments. Named [Process.run] options are intentionally unsupported.
 typedef FlaxCodegenProcessRunner = Future<ProcessResult> Function(
@@ -44,11 +46,16 @@ final class FlaxCodegenPackageValidation {
     required this.manifest,
     required this.projection,
     required List<String> outputInventory,
+    Map<String, String> sourceExports = const {},
+    Map<String, ({String library, Map<String, String> types})> dartLibraries =
+        const {},
     List<FlaxCodegenSkip> skips = const [],
     List<FlaxCodegenNotice> notices = const [],
   }) : configPaths = List.unmodifiable(configPaths),
        directDependencies = Map.unmodifiable(directDependencies),
        _localModels = List.unmodifiable(localModels),
+       _sourceExports = Map.unmodifiable(sourceExports),
+       _dartLibraries = Map.unmodifiable(dartLibraries),
        outputInventory = List.unmodifiable(outputInventory),
        skips = List.unmodifiable(skips),
        notices = List.unmodifiable(notices);
@@ -63,6 +70,9 @@ final class FlaxCodegenPackageValidation {
   final Map<String, FlaxCodegenManifestProjection> directDependencies;
 
   final List<FlaxCodegenModuleModel> _localModels;
+  final Map<String, String> _sourceExports;
+  final Map<String, ({String library, Map<String, String> types})>
+  _dartLibraries;
 
   /// Fresh frozen local-module snapshots with wireIds, in canonical config-path
   /// order. Mutating a returned module collection cannot affect later reads,
@@ -100,30 +110,51 @@ final class FlaxCodegenPackagePipeline {
   /// configs, reads package metadata plus every strict format-2 selection, builds
   /// current Manifest projections for each direct config import, parses local modules,
   /// resolves ownership, and preflights the output inventory.
+  /// A null path discovers scopes in packageRoot/current package, defaulting to app.
   ///
   /// [processRunner] is accepted so callers can prove validation never formats
   /// or spawns processes; this path never invokes it.
   static Future<FlaxCodegenPackageValidation> validateConfig(
-    String configPath, {
+    String? configPath, {
+    String? packageRoot,
     FlaxCodegenProcessRunner? processRunner,
+    FlaxCodegenBuildInputs? buildInputs,
   }) async {
     // Reserved for later generate/check stages; validation must not call it.
     processRunner;
-    final located = _locateBindingConfig(configPath);
+    final files = _PackageInputFiles(buildInputs?.files);
+    final root =
+        buildInputs?.packageRoot ??
+        (configPath == null
+            ? _locateAutoPackageRoot(packageRoot ?? Directory.current.path)
+            : null);
+    final located = root == null
+        ? _locateBindingConfig(configPath!)
+        : _LocatedPackage(
+            packageRoot: root,
+            bindingsDirectory: p.join(root, 'bindings'),
+          );
     final configPaths = _discoverBindingConfigs(
       located.bindingsDirectory,
-      explicitConfig: p.normalize(p.absolute(configPath)),
+      explicitConfig: configPath == null
+          ? null
+          : p.normalize(p.absolute(configPath)),
+      files: files,
     );
+    final useDefaults = configPaths.isEmpty;
+    if (useDefaults) {
+      configPaths.add(p.join(located.bindingsDirectory, 'flax_bindings.yaml'));
+    }
     final diagnostics = <FlaxCodegenDiagnostic>[];
     String? dartPackage;
     try {
-      dartPackage = _readPubspecPackageName(located.packageRoot);
+      dartPackage = _readPubspecPackageName(located.packageRoot, files: files);
     } on FlaxCodegenException catch (error) {
       diagnostics.addAll(error.diagnostics);
     }
     FlaxCodegenPackageMetadataProjection? metadata;
     try {
-      metadata = FlaxCodegenPackageMetadataProjection.readStrict(
+      metadata = files.metadata(
         p.join(located.packageRoot, 'flax_package.yaml'),
       );
     } on FlaxCodegenException catch (error) {
@@ -133,8 +164,9 @@ final class FlaxCodegenPackagePipeline {
     for (final path in configPaths) {
       try {
         configs.add(
-          FlaxCodegenBindingConfig.readStrict(
-            path,
+          FlaxCodegenBindingConfig.parseStrict(
+            useDefaults ? flaxCodegenDefaultBindingConfig : files.read(path),
+            source: path,
             jsPackageRoot:
                 metadata?.javascriptPackage ?? flaxCodegenDefaultJsPackage,
           ),
@@ -146,13 +178,17 @@ final class FlaxCodegenPackagePipeline {
     if (diagnostics.isNotEmpty) {
       throw FlaxCodegenException(diagnostics);
     }
-    final packageConfig = _readPackageConfigRoots(
-      located.packageRoot,
-      dartPackage: dartPackage!,
-    );
+    if (dartPackage == null || metadata == null) {
+      throw StateError('Package validation did not resolve its metadata.');
+    }
+    final packageConfig = buildInputs == null
+        ? _readPackageConfigRoots(located.packageRoot, dartPackage: dartPackage)
+        : null;
+    final packageRoots = buildInputs?.packageRoots ?? packageConfig!.roots;
     final dartDependencies = _readPubspecDirectDependencyNames(
       located.packageRoot,
-      requireFlax: !metadata!.capabilities.contains('core'),
+      files: files,
+      requireFlax: !metadata.capabilities.contains('core'),
     );
     _validateGeneratedDependencies(
       metadata,
@@ -160,28 +196,32 @@ final class FlaxCodegenPackagePipeline {
       dartPackage,
       located.packageRoot,
     );
-    _applyPackageOverrides(configs, located.packageRoot);
     final imports = <String>{
       for (final config in configs) ...config.imports,
     }.toList()..sort();
     final providerCandidates = _loadProviderCandidateProjections(
       imports: imports,
       dartDependencies: dartDependencies,
-      packageRoots: packageConfig.roots,
+      packageRoots: packageRoots,
       packageRoot: located.packageRoot,
+      files: files,
     );
 
     final selectionSkips = <FlaxCodegenSkip>[];
     final selectionNotices = <FlaxCodegenNotice>[];
     final parsedModels = await _parseLocalModules(
-      workspaceRoot: packageConfig.workspaceRoot,
+      workspaceRoot: packageConfig?.workspaceRoot ?? buildInputs!.packageRoot,
+      packageRoot: located.packageRoot,
+      files: files,
+      libraryResolver: buildInputs?.libraryResolver,
+      publicLibraries: buildInputs?.publicLibraries,
       configs: configs,
       configPaths: configPaths,
       directDependencies: providerCandidates,
       selectionSkips: selectionSkips,
       selectionNotices: selectionNotices,
       generateDependencies: metadata.generateDependencies,
-      packageRoots: packageConfig.roots,
+      packageRoots: packageRoots,
     );
     final directDependencies = _selectDirectDependencyProjections(
       dartPackage: dartPackage,
@@ -193,7 +233,8 @@ final class FlaxCodegenPackagePipeline {
     _validateProviderDelivery(
       located.packageRoot,
       directDependencies,
-      packageConfig.roots,
+      packageRoots,
+      files: files,
     );
     final resolved = _resolveLocalOwnership(
       dartPackage: dartPackage,
@@ -204,11 +245,94 @@ final class FlaxCodegenPackagePipeline {
       parsedModels: parsedModels,
       directDependencies: directDependencies,
     );
+    final sourceExports = <String, String>{};
+    final carriers = <String, String>{};
+    for (final config in configs.where((config) => config.sources != null)) {
+      final module = resolved.modules.singleWhere(
+        (module) => module.moduleId.name.value == config.name,
+      );
+      final exports = <String, Set<String>>{};
+      final publicLibrary =
+          'package:$dartPackage/flax_bindings/${config.name}.dart';
+      for (final owner in module.owners) {
+        final identity = owner.sourceIdentity;
+        if (!identity.originatingUri.startsWith('package:$dartPackage/')) {
+          continue;
+        }
+        final name = identity.name
+            .split('.')
+            .first
+            .replaceFirst(RegExp(r'=$'), '');
+        // Static operations export their class, not a dotted member name.
+        if (!identity.name.contains('.')) {
+          carriers['${identity.originatingUri}::$name'] = publicLibrary;
+        }
+        exports.putIfAbsent(identity.originatingUri, () => {}).add(name);
+      }
+      // Typedefs have no runtime owner, but remain part of the public Dart API.
+      for (final alias
+          in parsedModels
+              .singleWhere((model) => model.name == config.name)
+              .typedefs) {
+        exports
+            .putIfAbsent(alias.originatingUri, () => {})
+            .add(alias.originatingName);
+      }
+      final output = flaxCodegenPublicLibrary(config.name);
+      final absolute = p.join(located.packageRoot, output);
+      final bindingLibrary = config.dartOutput.startsWith('lib/')
+          ? Uri(
+              scheme: 'package',
+              path: '$dartPackage/${config.dartOutput.substring(4)}',
+            )
+          : null;
+      for (final name in ['${config.name}Bindings', '${config.name}Plugin']) {
+        if (bindingLibrary != null &&
+            exports.values.any((names) => names.contains(name))) {
+          throw FlaxCodegenException([
+            _outputDiagnostic(
+              absolute,
+              'The generated scope entry reserves $name. Use a distinct scope name or a legacy public library entry for this API.',
+            ),
+          ]);
+        }
+      }
+      if (files.isFile(absolute) &&
+          !files
+              .read(absolute)
+              .startsWith(_normalGeneratedHeaderLines.join('\n'))) {
+        throw FlaxCodegenException([
+          _outputDiagnostic(
+            absolute,
+            'Refusing to replace a non-generated annotation export library.',
+          ),
+        ]);
+      }
+      sourceExports[output] = [
+        ..._normalGeneratedHeaderLines,
+        if (bindingLibrary != null)
+          'export ${jsonEncode(bindingLibrary.toString())} show ${config.name}Bindings, ${config.name}Plugin;',
+        for (final uri in exports.keys.toList()..sort())
+          "export '$uri' show ${(exports[uri]!.toList()..sort()).join(', ')};",
+        '',
+      ].join('\n');
+    }
     final frozenModels = _freezeLocalModels(
       configs: configs,
       parsedModels: parsedModels,
       resolved: resolved,
+      sourceCarriers: carriers,
+      dartPackage: dartPackage,
     );
+    final dartLibraries = {
+      for (final (index, model) in frozenModels.indexed)
+        model.moduleId!: (
+          library: parsedModels[index].library,
+          types: Map<String, String>.unmodifiable(
+            parsedModels[index].typeLibraries,
+          ),
+        ),
+    };
     final modulesByName = <String, FlaxCodegenModuleModel>{
       for (final module in frozenModels) module.name: module,
     };
@@ -231,7 +355,35 @@ final class FlaxCodegenPackagePipeline {
     final outputInventory = _planValidationInventory(
       modules: frozenModels,
       packageRoot: located.packageRoot,
+      additionalDartSources: sourceExports,
     );
+    final planPath = p.join(located.packageRoot, flaxCodegenJsBuildPlan);
+    if (sourceExports.isNotEmpty && files.isFile(planPath)) {
+      if (!_isGeneratedJsBuildPlan(files.read(planPath))) {
+        throw FlaxCodegenException([
+          _outputDiagnostic(
+            planPath,
+            'Refusing to replace a non-generated JS build plan.',
+          ),
+        ]);
+      }
+    }
+    for (final config in configs.where((config) => config.sources != null)) {
+      for (final path in [config.dartOutput, config.tsOutput]) {
+        final absolute = p.join(located.packageRoot, path);
+        if (files.isFile(absolute) &&
+            !files
+                .read(absolute)
+                .startsWith(_normalGeneratedHeaderLines.join('\n'))) {
+          throw FlaxCodegenException([
+            _outputDiagnostic(
+              absolute,
+              'Refusing to replace a non-generated annotation binding output. Configure a different output path.',
+            ),
+          ]);
+        }
+      }
+    }
     return FlaxCodegenPackageValidation._(
       packageRoot: located.packageRoot,
       dartPackage: dartPackage,
@@ -239,6 +391,8 @@ final class FlaxCodegenPackagePipeline {
       metadata: metadata,
       directDependencies: directDependencies,
       localModels: frozenModels,
+      sourceExports: sourceExports,
+      dartLibraries: dartLibraries,
       resolvedPackage: resolved,
       manifest: manifest,
       projection: projection,
@@ -369,6 +523,7 @@ final class FlaxCodegenPackagePipeline {
     final selectionNotices = [...proposal.notices];
     final parsedModels = await _parseLocalModules(
       workspaceRoot: packageConfig.workspaceRoot,
+      packageRoot: root,
       configs: configs,
       configPaths: configPaths,
       directDependencies: providerCandidates,
@@ -446,11 +601,16 @@ final class FlaxCodegenPackagePipeline {
   /// in a cleaned temporary directory outside the package), then compares the
   /// package filesystem without writing, renaming, deleting, or creating paths.
   static Future<FlaxCodegenPackageValidation> checkConfig(
-    String configPath, {
+    String? configPath, {
+    String? packageRoot,
     FlaxCodegenProcessRunner? processRunner,
   }) async {
     final runner = processRunner ?? Process.run;
-    final validation = await validateConfig(configPath, processRunner: runner);
+    final validation = await validateConfig(
+      configPath,
+      packageRoot: packageRoot,
+      processRunner: runner,
+    );
     await _checkValidation(validation, runner);
     return validation;
   }
@@ -481,6 +641,8 @@ final class FlaxCodegenPackagePipeline {
       modules: validation.localModels,
       directDependencies: validation.directDependencies,
       manifest: validation.manifest,
+      sourceExports: validation._sourceExports,
+      dartLibraries: validation._dartLibraries,
       processRunner: runner,
     );
     final diagnostics = <FlaxCodegenDiagnostic>[];
@@ -552,12 +714,17 @@ final class FlaxCodegenPackagePipeline {
   /// After a successful generate, [checkConfig] on the same config succeeds
   /// without writes.
   static Future<FlaxCodegenPackageValidation> generateConfig(
-    String configPath, {
+    String? configPath, {
+    String? packageRoot,
     FlaxCodegenProcessRunner? processRunner,
     FlaxCodegenInstallMutationProbe? beforeInstallMutation,
   }) async {
     final runner = processRunner ?? Process.run;
-    final validation = await validateConfig(configPath, processRunner: runner);
+    final validation = await validateConfig(
+      configPath,
+      packageRoot: packageRoot,
+      processRunner: runner,
+    );
     await _generateValidation(
       validation,
       runner,
@@ -565,6 +732,24 @@ final class FlaxCodegenPackagePipeline {
     );
     return validation;
   }
+
+  /// Plans tracked build outputs without installing files or spawning processes.
+  static Future<Map<String, List<int>>> emitBuild(
+    FlaxCodegenPackageValidation validation,
+    FlaxCodegenBuildInputs inputs, {
+    required String Function(String) formatDart,
+  }) => _planExpectedPackageOutputs(
+    packageRoot: validation.packageRoot,
+    modules: validation.localModels,
+    directDependencies: validation.directDependencies,
+    manifest: validation.manifest,
+    sourceExports: validation._sourceExports,
+    dartLibraries: validation._dartLibraries,
+    processRunner: (_, _) =>
+        throw StateError('Build emission cannot spawn processes.'),
+    formatDart: formatDart,
+    buildInputs: inputs,
+  );
 
   /// Package-atomic generation for automatic [library] binding.
   static Future<FlaxCodegenPackageValidation> generateLibrary(
@@ -598,6 +783,8 @@ final class FlaxCodegenPackagePipeline {
       modules: validation.localModels,
       directDependencies: validation.directDependencies,
       manifest: validation.manifest,
+      sourceExports: validation._sourceExports,
+      dartLibraries: validation._dartLibraries,
       processRunner: runner,
     );
 
@@ -683,11 +870,16 @@ final class FlaxCodegenPackagePipeline {
     List<FlaxCodegenModuleModel> modules, {
     List<FlaxCodegenModuleModel> additionalEmitterModules = const [],
     Map<String, String> bindingEntrypoints = const {},
+    String Function(String)? formatDart,
+    Map<String, String> additionalDartSources = const {},
+    Map<String, ({String library, Map<String, String> types})> dartLibraries =
+        const {},
   }) async {
     final planned = _planOutputs(modules, packageRoot);
     final emitter = FlaxCodegenBindingEmitter(
       _orderedModules([...modules, ...additionalEmitterModules]),
       bindingEntrypoints: bindingEntrypoints,
+      dartLibraries: dartLibraries,
     );
     final typescript = {
       for (final module in modules)
@@ -702,35 +894,41 @@ final class FlaxCodegenPackagePipeline {
     final formatFailures = <String, String>{};
     Directory? temporary;
     try {
-      temporary = Directory.systemTemp.createTempSync('flax-pipeline-');
+      if (formatDart == null) {
+        temporary = Directory.systemTemp.createTempSync('flax-pipeline-');
+      }
       var dartIndex = 0;
+      Future<void> emitDart(String path, String source) async {
+        if (formatDart != null) {
+          outputs[path] = utf8.encode(formatDart(source));
+          return;
+        }
+        final staged = File(p.join(temporary!.path, '${dartIndex++}.dart'));
+        staged.writeAsStringSync(source);
+        try {
+          final result = await _processRunner(Platform.resolvedExecutable, [
+            'format',
+            '--page-width=80',
+            staged.path,
+          ]);
+          if (result.exitCode != 0) {
+            formatFailures[path] =
+                "Formatting failed for '$path' (exit code ${result.exitCode}).";
+            return;
+          }
+          outputs[path] = List<int>.unmodifiable(
+            utf8.encode(staged.readAsStringSync()),
+          );
+        } on ProcessException catch (error) {
+          formatFailures[path] =
+              "Formatting failed to start for '$path': ${error.message}.";
+        }
+      }
+
       for (final entry in planned) {
         final module = entry.module;
         if (entry.isDart) {
-          final staged = File(
-            p.join(temporary.path, '${dartIndex++}_${module.name}.dart'),
-          );
-          staged.writeAsStringSync(emitter.dart(module));
-          try {
-            final result = await _processRunner(Platform.resolvedExecutable, [
-              'format',
-              '--page-width=80',
-              staged.path,
-            ]);
-            if (result.exitCode != 0) {
-              formatFailures[entry.path] =
-                  "Formatting failed for '${entry.path}' "
-                  '(exit code ${result.exitCode}).';
-              continue;
-            }
-            outputs[entry.path] = List<int>.unmodifiable(
-              utf8.encode(staged.readAsStringSync()),
-            );
-          } on ProcessException catch (error) {
-            formatFailures[entry.path] =
-                "Formatting failed to start for '${entry.path}': "
-                '${error.message}.';
-          }
+          await emitDart(entry.path, emitter.dart(module));
         } else {
           var source = typescript[module]![entry.path]!;
           if (outputs[entry.path] case final previous?) {
@@ -742,6 +940,9 @@ final class FlaxCodegenPackagePipeline {
           }
           outputs[entry.path] = List<int>.unmodifiable(utf8.encode(source));
         }
+      }
+      for (final entry in additionalDartSources.entries) {
+        await emitDart(entry.key, entry.value);
       }
     } finally {
       if (temporary != null && temporary.existsSync()) {
@@ -908,8 +1109,21 @@ void _rejectSymlinkPathComponents(String absolute) {
 
 List<String> _discoverBindingConfigs(
   String bindingsDirectory, {
-  required String explicitConfig,
+  String? explicitConfig,
+  _PackageInputFiles files = const _PackageInputFiles(),
 }) {
+  if (files.contents case final contents?) {
+    return contents.keys
+        .where(
+          (path) =>
+              p.dirname(path) == bindingsDirectory &&
+              (flaxCodegenIsBindingConfigPath(path) || path == explicitConfig),
+        )
+        .toList()
+      ..sort();
+  }
+  _rejectSymlinkPathComponents(bindingsDirectory);
+  if (!Directory(bindingsDirectory).existsSync()) return [];
   final paths = <String>[];
   for (final entity in Directory(
     bindingsDirectory,
@@ -928,11 +1142,14 @@ List<String> _discoverBindingConfigs(
   return paths;
 }
 
-String _readPubspecPackageName(String packageRoot) {
+String _readPubspecPackageName(
+  String packageRoot, {
+  _PackageInputFiles files = const _PackageInputFiles(),
+}) {
   final path = p.join(packageRoot, 'pubspec.yaml');
   final String contents;
   try {
-    contents = File(path).readAsStringSync();
+    contents = files.read(path);
   } on FileSystemException {
     throw FlaxCodegenException([_pathDiagnostic(path, 'Cannot read file.')]);
   }
@@ -969,11 +1186,12 @@ String _readPubspecPackageName(String packageRoot) {
 List<String> _readPubspecDirectDependencyNames(
   String packageRoot, {
   required bool requireFlax,
+  _PackageInputFiles files = const _PackageInputFiles(),
 }) {
   final path = p.join(packageRoot, 'pubspec.yaml');
   final Object? loaded;
   try {
-    loaded = loadYaml(File(path).readAsStringSync(), sourceUrl: Uri.file(path));
+    loaded = loadYaml(files.read(path), sourceUrl: Uri.file(path));
   } on FileSystemException {
     throw FlaxCodegenException([_pathDiagnostic(path, 'Cannot read file.')]);
   } on YamlException {
@@ -1235,15 +1453,16 @@ Map<String, FlaxCodegenManifestProjection> _loadProviderCandidateProjections({
   required List<String> dartDependencies,
   required Map<String, String> packageRoots,
   required String packageRoot,
+  _PackageInputFiles files = const _PackageInputFiles(),
 }) {
-  final javascript = _declaredJavascriptDependencies(packageRoot);
+  final javascript = _declaredJavascriptDependencies(packageRoot, files: files);
   for (final entry in packageRoots.entries) {
     if (entry.key == 'flax' ||
         dartDependencies.contains(entry.key) ||
         p.equals(entry.value, packageRoot)) {
       continue;
     }
-    if (_declaresProviderMetadata(entry.value, javascript)) {
+    if (_declaresProviderMetadata(entry.value, javascript, files: files)) {
       throw FlaxCodegenException([
         _dependencyDiagnostic(
           p.join(packageRoot, 'pubspec.yaml'),
@@ -1266,6 +1485,7 @@ Map<String, FlaxCodegenManifestProjection> _loadProviderCandidateProjections({
         packageRoots: packageRoots,
         cache: cache,
         visiting: <String>{},
+        files: files,
       );
       if (name != 'flax' && !_declaresProviderTypes(projection, javascript)) {
         throw FlaxCodegenException([
@@ -1288,9 +1508,8 @@ Map<String, FlaxCodegenManifestProjection> _loadProviderCandidateProjections({
     final root = packageRoots[name];
     if (root == null) continue;
     final manifestPath = p.join(root, 'bindings', 'manifest.json');
-    if (FileSystemEntity.typeSync(manifestPath, followLinks: false) !=
-            FileSystemEntityType.file &&
-        !_declaresProviderMetadata(root, javascript)) {
+    if (!files.isFile(manifestPath) &&
+        !_declaresProviderMetadata(root, javascript, files: files)) {
       continue;
     }
     try {
@@ -1299,6 +1518,7 @@ Map<String, FlaxCodegenManifestProjection> _loadProviderCandidateProjections({
         packageRoots: packageRoots,
         cache: cache,
         visiting: <String>{},
+        files: files,
       );
       if (_declaresProviderTypes(projection, javascript)) {
         direct[name] = projection;
@@ -1307,17 +1527,21 @@ Map<String, FlaxCodegenManifestProjection> _loadProviderCandidateProjections({
       // Optional provider candidates are only authoritative once referenced.
       // An unrelated Dart dependency with stale Flax metadata must not make
       // this package invalid. A declared JS provider must not fail silently.
-      if (_declaresProviderMetadata(root, javascript)) rethrow;
+      if (_declaresProviderMetadata(root, javascript, files: files)) rethrow;
     }
   }
   return direct;
 }
 
-bool _declaresProviderMetadata(String root, Set<String> javascript) {
-  final file = File(p.join(root, 'flax_package.yaml'));
-  if (!file.existsSync()) return false;
+bool _declaresProviderMetadata(
+  String root,
+  Set<String> javascript, {
+  _PackageInputFiles files = const _PackageInputFiles(),
+}) {
+  final path = p.join(root, 'flax_package.yaml');
+  if (!files.isFile(path)) return false;
   try {
-    final metadata = FlaxCodegenPackageMetadataProjection.readStrict(file.path);
+    final metadata = files.metadata(path);
     return metadata.capabilities.contains('bindings') &&
         javascript.contains(metadata.javascriptPackage);
   } on FlaxCodegenException {
@@ -1328,14 +1552,15 @@ bool _declaresProviderMetadata(String root, Set<String> javascript) {
 Set<String> _declaredJavascriptDependencies(
   String root, {
   List<String> manifests = const ['js-types/package.json', 'js/package.json'],
+  _PackageInputFiles files = const _PackageInputFiles(),
 }) {
   final result = <String>{};
   for (final relative in manifests) {
-    final file = File(p.join(root, relative));
-    if (!file.existsSync()) continue;
-    final value = jsonDecode(file.readAsStringSync());
+    final path = p.join(root, relative);
+    if (!files.isFile(path)) continue;
+    final value = jsonDecode(files.read(path));
     if (value is! Map) {
-      throw FormatException('Expected npm package object', file.path);
+      throw FormatException('Expected npm package object', path);
     }
     for (final field in ['dependencies', 'peerDependencies']) {
       final dependencies = value[field];
@@ -1348,24 +1573,25 @@ Set<String> _declaredJavascriptDependencies(
 void _validateProviderDelivery(
   String packageRoot,
   Map<String, FlaxCodegenManifestProjection> selected,
-  Map<String, String> roots,
-) {
+  Map<String, String> roots, {
+  _PackageInputFiles files = const _PackageInputFiles(),
+}) {
   final runtime = _declaredJavascriptDependencies(
     packageRoot,
     manifests: ['js/package.json'],
+    files: files,
   );
   final typeDependencies = {
     'js/package.json': runtime,
-    if (File(p.join(packageRoot, 'js-types/package.json')).existsSync())
+    if (files.isFile(p.join(packageRoot, 'js-types/package.json')))
       'js-types/package.json': _declaredJavascriptDependencies(
         packageRoot,
         manifests: ['js-types/package.json'],
+        files: files,
       ),
   };
   for (final name in selected.keys.where((name) => name != 'flax')) {
-    final metadata = FlaxCodegenPackageMetadataProjection.readStrict(
-      p.join(roots[name]!, 'flax_package.yaml'),
-    );
+    final metadata = files.metadata(p.join(roots[name]!, 'flax_package.yaml'));
     if (metadata.javascriptRuntimePackage == null ||
         !runtime.contains(metadata.javascriptRuntimePackage)) {
       throw FlaxCodegenException([
@@ -1492,6 +1718,7 @@ FlaxCodegenManifestProjection _loadManifestProjection(
   required Map<String, String> packageRoots,
   required Map<String, FlaxCodegenManifestProjection> cache,
   required Set<String> visiting,
+  _PackageInputFiles files = const _PackageInputFiles(),
 }) {
   final cached = cache[packageName];
   if (cached != null) {
@@ -1517,7 +1744,7 @@ FlaxCodegenManifestProjection _loadManifestProjection(
   final manifestPath = p.normalize(p.join(root, 'bindings', 'manifest.json'));
   final String contents;
   try {
-    contents = File(manifestPath).readAsStringSync();
+    contents = files.read(manifestPath);
   } on FileSystemException {
     throw FlaxCodegenException([
       _resolutionDiagnostic(manifestPath, 'Cannot read file.'),
@@ -1545,6 +1772,7 @@ FlaxCodegenManifestProjection _loadManifestProjection(
         packageRoots: packageRoots,
         cache: cache,
         visiting: {...visiting},
+        files: files,
       );
     } on FlaxCodegenException catch (error) {
       childDiagnostics.addAll(error.diagnostics);
@@ -1564,6 +1792,10 @@ FlaxCodegenManifestProjection _loadManifestProjection(
 
 Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
   required String workspaceRoot,
+  required String packageRoot,
+  _PackageInputFiles files = const _PackageInputFiles(),
+  FlaxCodegenLibraryResolver? libraryResolver,
+  FlaxCodegenPublicLibraries? publicLibraries,
   required List<FlaxCodegenBindingConfig> configs,
   required List<String> configPaths,
   required Map<String, FlaxCodegenManifestProjection> directDependencies,
@@ -1573,9 +1805,26 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
   List<String> generateDependencies = const [],
   Map<String, String> packageRoots = const {},
 }) async {
-  final parser = FlaxCodegenBindingParser(workspaceRoot);
+  final parser = FlaxCodegenBindingParser(
+    workspaceRoot,
+    libraryResolver: libraryResolver,
+    publicLibraries: publicLibraries,
+  );
   try {
     try {
+      if (configs.any((config) => config.sources != null)) {
+        await parser.discoverAnnotationSources(
+          configs,
+          package: _readPubspecPackageName(packageRoot, files: files),
+          sources: files.dartSources(packageRoot, {
+            for (final config in configs) config.dartOutput,
+            for (final config in configs.where(
+              (config) => config.sources != null,
+            ))
+              'lib/flax_bindings/${config.name}.dart',
+          }),
+        );
+      }
       await parser.prepare(configs);
     } on StateError catch (error) {
       throw FlaxCodegenException([
@@ -1614,6 +1863,14 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
       for (var index = 0; index < configs.length; index++)
         automaticTypeCarriers?[index] ?? const <String, String>{},
     ];
+    if (configs.any((config) => config.annotations)) {
+      await parser.selectAnnotations(configs);
+    }
+    _applyPackageOverrides(configs, packageRoot, files: files);
+    if (configs.any((config) => config.annotations)) {
+      await parser.validateAnnotationMembers(configs);
+      await parser.prepare(configs);
+    }
     await parser.prepareDependencyPolicy(
       configs: configs,
       generate: generateDependencies,
@@ -1626,6 +1883,11 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
           final proposal = await parser.proposeLibrary(
             configs[index],
             overrides: configs[index].overrides,
+          );
+          parser.validateAnnotationSelection(
+            configs[index],
+            proposal.config,
+            proposal.skips,
           );
           configs[index] = proposal.config;
           carriersByModule[index] = {
@@ -1771,11 +2033,15 @@ void _validateGeneratedDependencies(
 
 void _applyPackageOverrides(
   List<FlaxCodegenBindingConfig> configs,
-  String root,
-) {
+  String root, {
+  _PackageInputFiles files = const _PackageInputFiles(),
+}) {
   final path = p.join(root, 'bindings', _autoOverridesFilename);
-  if (!File(path).existsSync()) return;
-  final shared = FlaxCodegenAutoOverrides.readStrict(path);
+  if (!files.isFile(path)) return;
+  final shared = FlaxCodegenAutoOverrides.parseStrict(
+    files.read(path),
+    source: path,
+  );
   for (var i = 0; i < configs.length; i++) {
     final config = configs[i];
     if (!config.hasAutomaticSelection) continue;
@@ -2441,6 +2707,8 @@ List<FlaxCodegenModuleModel> _freezeLocalModels({
   required List<FlaxCodegenModuleModel> parsedModels,
   required FlaxCodegenResolvedPackage resolved,
   bool internalizeAutomaticTypes = false,
+  Map<String, String> sourceCarriers = const {},
+  String? dartPackage,
 }) {
   final rawToWire = <String, String>{};
   void mapIdentity(FlaxCodegenSourceIdentity identity, FlaxCodegenWireId wire) {
@@ -2490,6 +2758,10 @@ List<FlaxCodegenModuleModel> _freezeLocalModels({
         },
         resolvedModule,
         internalizeAutomaticTypes: internalizeAutomaticTypes,
+        sourceCarriers: sourceCarriers,
+        sourceLibrary: configs[index].sources == null
+            ? null
+            : 'package:$dartPackage/flax_bindings/${parsed.name}.dart',
       ),
     );
   }
@@ -2502,6 +2774,8 @@ FlaxCodegenModuleModel _freezeModule(
   Map<String, String> rawToWire,
   FlaxCodegenResolvedModule resolvedModule, {
   required bool internalizeAutomaticTypes,
+  required Map<String, String> sourceCarriers,
+  String? sourceLibrary,
 }) {
   final claimedNames = <String>{
     for (final entry in config.classes.entries)
@@ -2602,7 +2876,7 @@ FlaxCodegenModuleModel _freezeModule(
 
   final filtered = FlaxCodegenModuleModel(
     name: parsed.name,
-    library: parsed.library,
+    library: sourceLibrary ?? parsed.library,
     jsPackage: parsed.jsPackage,
     dartOutput: parsed.dartOutput,
     tsOutput: parsed.tsOutput,
@@ -2618,7 +2892,11 @@ FlaxCodegenModuleModel _freezeModule(
             ))
           type,
     ],
-    typeLibraries: parsed.typeLibraries,
+    typeLibraries: {
+      for (final entry in parsed.typeLibraries.entries)
+        entry.key:
+            sourceCarriers['${entry.value}::${entry.key}'] ?? entry.value,
+    },
     functions: parsed.functions,
     extensions: parsed.extensions,
     snapshots: parsed.snapshots,
@@ -2667,6 +2945,7 @@ FlaxCodegenModuleModel _freezeModule(
 List<String> _planValidationInventory({
   required List<FlaxCodegenModuleModel> modules,
   required String packageRoot,
+  Map<String, String> additionalDartSources = const {},
 }) {
   const reservedPath = 'bindings/manifest.json';
   const reservedLabel = 'package:manifest';
@@ -2722,12 +3001,28 @@ List<String> _planValidationInventory({
           types: [],
         )
       : modules.first;
+  for (final path in additionalDartSources.keys) {
+    addCandidate(
+      rawPath: path,
+      label: 'annotation:publicLibrary',
+      module: placeholder,
+      isDart: true,
+    );
+  }
   addCandidate(
     rawPath: reservedPath,
     label: reservedLabel,
     module: placeholder,
     isDart: false,
   );
+  if (additionalDartSources.isNotEmpty) {
+    addCandidate(
+      rawPath: flaxCodegenJsBuildPlan,
+      label: 'package:jsModules',
+      module: placeholder,
+      isDart: false,
+    );
+  }
   if (diagnostics.isNotEmpty) {
     throw FlaxCodegenException(diagnostics);
   }
@@ -2776,6 +3071,11 @@ Future<Map<String, List<int>>> _planExpectedPackageOutputs({
   required Map<String, FlaxCodegenManifestProjection> directDependencies,
   required FlaxCodegenManifest manifest,
   required FlaxCodegenProcessRunner processRunner,
+  String Function(String)? formatDart,
+  FlaxCodegenBuildInputs? buildInputs,
+  Map<String, String> sourceExports = const {},
+  Map<String, ({String library, Map<String, String> types})> dartLibraries =
+      const {},
 }) async {
   final pipeline = FlaxCodegenPackagePipeline(
     packageRoot: packageRoot,
@@ -2783,11 +3083,16 @@ Future<Map<String, List<int>>> _planExpectedPackageOutputs({
   );
   final emitted = await pipeline.emit(
     modules,
+    formatDart: formatDart,
+    additionalDartSources: sourceExports,
+    dartLibraries: dartLibraries,
     additionalEmitterModules: _flattenedDependencyModules(directDependencies),
     bindingEntrypoints: _bindingEntrypoints(
       packageRoot,
       modules,
       directDependencies,
+      files: _PackageInputFiles(buildInputs?.files),
+      packageRoots: buildInputs?.packageRoots,
       localDependencyModules: {
         for (final module in manifest.modules)
           if (module.model.identities.any(
@@ -2800,7 +3105,101 @@ Future<Map<String, List<int>>> _planExpectedPackageOutputs({
   return {
     for (final entry in emitted.entries) entry.key: entry.value,
     'bindings/manifest.json': utf8.encode(manifest.encode()),
+    if (sourceExports.isNotEmpty)
+      flaxCodegenJsBuildPlan: utf8.encode(
+        _jsBuildPlan(
+          packageRoot,
+          modules,
+          manifest,
+          directDependencies,
+          buildInputs,
+        ),
+      ),
   };
+}
+
+String _jsBuildPlan(
+  String packageRoot,
+  List<FlaxCodegenModuleModel> modules,
+  FlaxCodegenManifest manifest,
+  Map<String, FlaxCodegenManifestProjection> dependencies,
+  FlaxCodegenBuildInputs? inputs,
+) {
+  final files = _PackageInputFiles(inputs?.files);
+  final pubspec =
+      loadYaml(files.read(p.join(packageRoot, 'pubspec.yaml'))) as Map;
+  final roots =
+      inputs?.packageRoots ??
+      _readPackageConfigRoots(packageRoot, dartPackage: manifest.package).roots;
+  final providers = <String>{'@flax/core-runtime'};
+  for (final name in dependencies.keys.where((name) => name != 'flax')) {
+    final runtime = files
+        .metadata(p.join(roots[name]!, 'flax_package.yaml'))
+        .javascriptRuntimePackage;
+    if (runtime != null) providers.add(runtime);
+  }
+  final candidates = <Map<String, String>>[
+    for (final module in modules)
+      if (module.publicLibraries.isEmpty)
+        {
+          'specifier': module.jsPackage,
+          'source': p.posix.joinAll(p.split(p.normalize(module.tsOutput))),
+        }
+      else
+        for (final route in module.publicLibraries)
+          {
+            'specifier': route.jsPackage,
+            'source': p.posix.joinAll(p.split(p.normalize(route.tsOutput))),
+            'subpathRoot': p.posix.joinAll(
+              p.split(p.dirname(p.normalize(route.tsOutput))),
+            ),
+          },
+  ];
+  final bySpecifier = <String, Map<String, String>>{};
+  for (final entry in candidates) {
+    final specifier = entry['specifier']!;
+    final previous = bySpecifier[specifier];
+    if (previous != null &&
+        (previous['source'] != entry['source'] ||
+            previous['subpathRoot'] != entry['subpathRoot'])) {
+      throw FlaxCodegenException([
+        _outputDiagnostic(
+          flaxCodegenJsBuildPlan,
+          'Conflicting generated JS entries for $specifier.',
+        ),
+      ]);
+    }
+    bySpecifier[specifier] = entry;
+  }
+  final entries = bySpecifier.values.toList()
+    ..sort((a, b) => a['specifier']!.compareTo(b['specifier']!));
+  final plan = {
+    'formatVersion': 2,
+    'generatedBy': 'flax_codegen',
+    'package': manifest.package,
+    'version': pubspec['version'] ?? '0.0.0',
+    'modules': entries,
+    'providers': providers.toList()..sort(),
+    'compilerOptions': {
+      'paths': {
+        for (final entry in entries)
+          entry['specifier']!: ['../${entry['source']}'],
+        for (final entry in entries)
+          if (entry['subpathRoot'] != null)
+            '${entry['specifier']}/*': ['../${entry['subpathRoot']}/*'],
+      },
+    },
+  };
+  return '${const JsonEncoder.withIndent('  ').convert(plan)}\n';
+}
+
+bool _isGeneratedJsBuildPlan(String source) {
+  try {
+    final data = jsonDecode(source);
+    return data is Map && data['generatedBy'] == 'flax_codegen';
+  } on FormatException {
+    return false;
+  }
 }
 
 Map<String, String> _bindingEntrypoints(
@@ -2808,12 +3207,13 @@ Map<String, String> _bindingEntrypoints(
   List<FlaxCodegenModuleModel> modules,
   Map<String, FlaxCodegenManifestProjection> dependencies, {
   required Set<String> localDependencyModules,
+  _PackageInputFiles files = const _PackageInputFiles(),
+  Map<String, String>? packageRoots,
 }) {
-  final package = _readPubspecPackageName(packageRoot);
-  final roots = _readPackageConfigRoots(
-    packageRoot,
-    dartPackage: package,
-  ).roots;
+  final package = _readPubspecPackageName(packageRoot, files: files);
+  final roots =
+      packageRoots ??
+      _readPackageConfigRoots(packageRoot, dartPackage: package).roots;
   final result = <String, String>{
     for (final module in modules)
       if (localDependencyModules.contains(module.moduleId))
@@ -2832,8 +3232,9 @@ Map<String, String> _bindingEntrypoints(
         final library = module.dartLibrary;
         final uri = library == null ? null : Uri.parse(library);
         if (uri == null ||
-            !File(p.joinAll([root, 'lib', ...uri.pathSegments.skip(1)]))
-                .existsSync()) {
+            !files.isFile(
+              p.joinAll([root, 'lib', ...uri.pathSegments.skip(1)]),
+            )) {
           throw FlaxCodegenException([
             _dependencyDiagnostic(
               p.join(root, 'bindings/manifest.json'),
@@ -2933,6 +3334,13 @@ List<String> _listOwnedGeneratedOrphans({
   required Set<String> expectedAbsolute,
 }) {
   final orphans = <String>[];
+  final plan = File(p.join(packageRoot, flaxCodegenJsBuildPlan));
+  if (!expectedAbsolute.contains(plan.path) &&
+      FileSystemEntity.typeSync(plan.path, followLinks: false) ==
+          FileSystemEntityType.file &&
+      _isGeneratedJsBuildPlan(plan.readAsStringSync())) {
+    orphans.add(plan.path);
+  }
   final normalizedRoot = p.normalize(packageRoot);
   void walk(Directory directory) {
     final atPackageRoot = p.equals(p.normalize(directory.path), normalizedRoot);
@@ -2958,7 +3366,7 @@ List<String> _listOwnedGeneratedOrphans({
   }
 
   walk(Directory(packageRoot));
-  return orphans;
+  return orphans..sort();
 }
 
 /// Pre-install snapshot of affected write and delete targets.

@@ -19463,6 +19463,11 @@ const sdk_widgetsBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_widgetsPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_widgets",
+  bindingModules: [sdk_widgetsBindings],
+  jsModules: {"@flax/flutter/widgets"},
+);
 Object? _extension_OverlayChildLayoutInfo_getter_childPaintTransform(
   Map<String, Object?> values,
 ) {

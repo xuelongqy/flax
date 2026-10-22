@@ -28668,6 +28668,11 @@ const materialBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final materialPlugin = FlaxBindingPlugin(
+  id: "binding:flax.material/material",
+  bindingModules: [materialBindings],
+  jsModules: {"@flax/material-ui"},
+);
 Object? _function_debugCheckHasMaterial(Map<String, Object?> values) {
   return api.debugCheckHasMaterial(values["context"] as api13.BuildContext);
 }

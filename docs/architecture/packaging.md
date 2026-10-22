@@ -32,6 +32,7 @@ package has no concrete engine dependency.
 | `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                                          |
 | `flax_native_assets`                                 | Build-only owner of shared Android C++ and Windows CRT native assets                                                  |
 | `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                                  |
+| `flax_annotations`                                   | Pure Dart FlaxExport scope and FlaxIgnore markers; no Flutter or analyzer dependency                                  |
 | `flax_codegen`                                       | Analyzer model, manifest format, and Dart/TypeScript emitters                                                         |
 | `flax_test`                                          | Development-only engine-neutral runtime contracts and shared test harnesses                                           |
 
@@ -332,17 +333,21 @@ listener ownership.
 
 ## Application module inventory and host delivery
 
-Application binding owners can use several sibling `bindings/flax_*.yaml` scopes with
-distinct names and output paths. Generation plans them together, retaining one local
-owner per Dart declaration. Shared types belong in one scope or an existing provider.
-When a scope omits `jsPackage`, its entry is `<public-package>/<name>`. The public
-package comes from `javascript.types`, then `javascript.package`, then `@flax/app`; an
-explicit scope entry takes precedence. Regeneration updates generated references, while
-application imports and plugin/module selections must use the resulting names. Each View
-selects its business scopes through explicit plugins: `bindingModules` contributes
-native bindings and `jsModules` selects prepared JS entries. Local sibling native
-modules must be listed explicitly where needed. Selected JS module dependencies are
-included transitively; splitting YAML alone does not restrict a View's API.
+A package without scope YAML uses one app binding with conventional paths; the CLI's
+package commands and optional Builder share these defaults. Annotation scope files only
+need fields that override them. Each generated Dart adapter exports <name>Plugin for
+explicit FlaxView injection. Package metadata still owns a stable namespace. Application
+binding owners can use several sibling `bindings/flax_*.yaml` scopes with distinct names
+and output paths. Generation plans them together, retaining one local owner per Dart
+declaration. Shared types belong in one scope or an existing provider. When a scope
+omits `jsPackage`, its entry is `<public-package>/<name>`. The public package comes from
+`javascript.types`, then `javascript.package`, then `@flax/app`; an explicit scope entry
+takes precedence. Regeneration updates generated references, while application imports
+and plugin/module selections must use the resulting names. Each View selects its
+business scopes through explicit plugins: `bindingModules` contributes native bindings
+and `jsModules` selects prepared JS entries. Local sibling native modules must be listed
+explicitly where needed. Selected JS module dependencies are included transitively;
+splitting YAML alone does not restrict a View's API.
 
 After generation, applications own ordinary npm package manifests and TypeScript build
 scripts. Public SDK and internal bindings can use separate source/output directories and

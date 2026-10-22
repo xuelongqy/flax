@@ -1,0 +1,20 @@
+{
+  "name": "configured-default-js",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p . && node build.mjs"
+  },
+  "dependencies": {
+    "@flax/core": "0.0.0",
+    "@flax/core-runtime": "0.0.0",
+    "@flax/flutter": "0.0.0",
+    "@flax/dart": "0.0.0"
+  },
+  "devDependencies": {
+    "@flax/build": "0.0.0",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  }
+}

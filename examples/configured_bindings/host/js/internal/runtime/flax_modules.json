@@ -22,6 +22,26 @@
           ]
         }
       ]
+    },
+    {
+      "specifier": "@flax/app/host",
+      "source": "dist/app.js",
+      "bindings": [
+        {
+          "moduleId": "example.shop/app",
+          "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-navigation-objects",
+            "native-widget-proxies"
+          ],
+          "types": [],
+          "functions": [
+            "example.shop/app#function:hostAppName"
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,9 +1,27 @@
 # Configured host bindings
 
+Start with [default_app](default_app/README.md) for one app scope without a scope YAML
+or explicit output paths. This shopping host demonstrates the advanced case: separate
+SDK/internal scopes, custom directories, per-View generated plugins and provider reuse.
+
 This is a runnable macOS arm64 Flutter application, with checked-in Pub manifests, a
 separate pnpm workspace, three normal miniapps and one negative-test miniapp. Its source
 and configuration are the same inputs used by the outside-consumer verifier; running the
 application does not call that verifier or create temporary projects.
+
+The host uses Dart annotations for shop/admin and the default app scope. Annotations are
+enabled without a flag when library is omitted: shop uses sources: [lib/api.dart], while
+admin/app use the default scan of this package's lib. The unexported
+lib/src/app_api.dart uses @FlaxExport() and belongs to app. The existing Money provider
+and unbound delivery dependency retain legacy configuration-only selection. FlaxIgnore
+keeps Cart.debugLabel out of the SDK. The CLI and optional build_runner use the same
+binding model; the host script below uses build_runner.
+
+The generated host/bindings/js_modules.json is the normal JS preparation configuration.
+pnpm run build compiles every local scope directly and prepares the host module assets;
+adding a scope does not require another JS entry list. The host/modules project remains
+an explicit format-1 compatibility example and is not used by the normal build script.
+Node is needed on the development/CI machine only.
 
 The complete [host binding integration guide](../../docs/guides/host-bindings.md)
 explains configuration, provider reuse, View plugins, types-only SDK packaging and
@@ -50,11 +68,11 @@ flutter --local-engine-src-path="$FLUTTER_ROOT/engine/src" \
 The window displays four FlaxViews together. Each card names its injected plugins and
 APIs. The buttons and live results below the divider are rendered by that JS miniapp.
 
-| View                    | Injected plugins                                            | Behavior                                                                                                      |
-| ----------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Shop A / Shop B         | FlaxMaterialPlugin + FlaxPublicSdkPlugin + FlaxPricesPlugin | Add item calls add(1); a cart.quantities subscription updates both shops automatically.                       |
-| Internal manager        | FlaxMaterialPlugin + FlaxInternalPlugin + FlaxPricesPlugin  | Reset cart calls resetCart() and returns the 1200-cent unit price.                                            |
-| Missing internal plugin | FlaxMaterialPlugin + FlaxPublicSdkPlugin + FlaxPricesPlugin | Try internal API lazily imports the internal SDK; the missing module is rejected before resetCart() executes. |
+| View                    | Injected plugins                                                    | Behavior                                                                                                      |
+| ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Shop A / Shop B         | FlaxMaterialPlugin + shopPlugin + deliveryPlugin + FlaxPricesPlugin | Add item calls add(1); a cart.quantities subscription updates both shops automatically.                       |
+| Internal manager        | FlaxMaterialPlugin + adminPlugin + appPlugin + FlaxPricesPlugin     | Reset cart calls resetCart(); Host app name calls the default-scope hostAppName().                            |
+| Missing internal plugin | FlaxMaterialPlugin + shopPlugin + deliveryPlugin + FlaxPricesPlugin | Try internal API lazily imports the internal SDK; the missing module is rejected before resetCart() executes. |
 
 These are real Material TextButtons created by each JS miniapp. Their handlers call host
 APIs and update local signals rendered through Text(...bind). Each shop also consumes
@@ -71,7 +89,9 @@ Try this sequence after launching:
    B's own call counter increases; its call result also shows delivery 4 days.
 3. Internal manager **Reset cart**: both live rows return to quantity 1 and total 1200
    cents automatically, without any shop click.
-4. Missing internal plugin **Try internal API**, twice: both attempts show the real
+4. Internal manager **Host app name**: its result shows Configured host, from the
+   unexported Dart file annotated without a scope.
+5. Missing internal plugin **Try internal API**, twice: both attempts show the real
    missing-module error, without changing the cart or restarting a View.
 
 Each shop owns its JS signal and subscription; their shared source is the
@@ -89,17 +109,26 @@ short; narrow host windows also stack the cards vertically.
 
 ## Files to follow
 
-| Area                                            | Source                                                                                                                                                        |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Host APIs, including an unbound Dart dependency | [api.dart](host/lib/api.dart), [vendor](vendor/lib/configured_delivery.dart)                                                                                  |
-| Three binding selections                        | [shop](host/bindings/flax_bindings.yaml), [delivery](host/bindings/flax_delivery.yaml), [internal](host/bindings/flax_admin.yaml)                             |
-| Existing Money provider                         | [provider metadata](provider/flax_package.yaml), [provider bindings](provider/bindings/flax_bindings.yaml)                                                    |
-| Startup and per-View injection                  | [main.dart](host/lib/main.dart), [plugins](host/lib/configured_host.dart), [module configuration](host/modules/flax.modules.json)                             |
-| Independent business projects                   | [Shop A](miniapps/first/package.json), [Shop B](miniapps/second/package.json), [manager](miniapps/manager/package.json), [shared bundler](miniapps/build.mjs) |
+| Area                                            | Source                                                                                                                                                                        |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Host APIs, including an unbound Dart dependency | [api.dart](host/lib/api.dart), [vendor](vendor/lib/configured_delivery.dart)                                                                                                  |
+| Four binding selections                         | [shop](host/bindings/flax_bindings.yaml), [delivery](host/bindings/flax_delivery.yaml), [internal](host/bindings/flax_admin.yaml), [default app](host/bindings/flax_app.yaml) |
+| Existing Money provider                         | [provider metadata](provider/flax_package.yaml), [provider bindings](provider/bindings/flax_bindings.yaml)                                                                    |
+| Startup and per-View injection                  | [main.dart](host/lib/main.dart), [plugins](host/lib/configured_host.dart), [module configuration](host/modules/flax.modules.json)                                             |
+| Independent business projects                   | [Shop A](miniapps/first/package.json), [Shop B](miniapps/second/package.json), [manager](miniapps/manager/package.json), [shared bundler](miniapps/build.mjs)                 |
 
 Public native/TS outputs live in `host/lib/src/generated/sdk/` and
 `host/js/sdk/runtime/src/generated/`. Internal outputs use sibling `internal/`
-directories. Each generation command processes all sibling YAML scopes.
+directories. Each generation command processes all sibling YAML scopes. Source-scanned
+scopes also generate public Dart exports under host/lib/flax_bindings/. These carriers
+are for Dart/provider references; npm consumers still receive only public declarations.
+
+The host uses the optional build_runner entry configured in
+[build.yaml](host/build.yaml). Its inputs include the binding YAML/npm files; its
+outputs list declares every public/internal generated path. The provider keeps its CLI
+configuration and exposes its existing metadata through
+[additional_public_assets](provider/build.yaml). No duplicate Money binding is
+generated.
 
 ## Build, pack and test separately
 
@@ -112,6 +141,11 @@ pnpm run build:host
 pnpm run build:apps
 pnpm run pack:sdk
 ```
+
+Run `pnpm run watch:host` for ongoing binding generation alongside other host builders.
+It updates binding sources; run the normal host/miniapp builds when their artifacts are
+needed. `pnpm run generate:host:cli` retains the original CLI entry. Stop watch before
+using the CLI writer; CLI check can verify build_runner's output without writing.
 
 Only `provider/js-types` and `host/js/sdk/types` are packed. The two runtime packages
 and both internal packages stay private. Archives are written beside their package.json:

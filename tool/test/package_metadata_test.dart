@@ -14,6 +14,23 @@ void main() {
   );
   tearDown(() => temporary.deleteSync(recursive: true));
 
+  test('binding providers expose metadata to consuming builders', () {
+    for (final package in discoverPackages(Directory.current.path)) {
+      final capabilities = package.metadata.capabilities;
+      if (!capabilities.contains('bindings') &&
+          !capabilities.contains('core')) {
+        continue;
+      }
+      final config = File(p.join(package.directory.path, 'build.yaml'));
+      expect(config.existsSync(), isTrue, reason: package.name);
+      expect(
+        readYamlFile(config)['additional_public_assets'],
+        containsAll(['flax_package.yaml', 'bindings/manifest.json']),
+        reason: package.name,
+      );
+    }
+  });
+
   final corpus = Directory(
     p.join(Directory.current.path, 'tests/compatibility/package_metadata'),
   );

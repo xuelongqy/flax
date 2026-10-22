@@ -102,6 +102,18 @@ current language support is in the
   Session close drains mounted JS content without retaining native Routes or
   transitions.
 
+- [0046: Scoped binding annotations](0046-scoped-binding-annotations.md) is accepted.
+  Explicit annotation scopes normalize into the existing package selection pipeline,
+  preserving configuration-only generation and provider identities.
+
+- [0047: Optional build_runner binding generation](0047-build-runner-bindings.md) is
+  accepted. A tracked package-wide Builder shares CLI selection and emission while
+  build_runner owns declared assets and incremental rebuilds.
+
+- [0048: Generated binding JS build configuration](0048-generated-binding-js-build.md)
+  is accepted. A shared generated plan drives host JS compilation and preparation
+  without repeated scope lists; Node remains a build-time dependency.
+
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,
 its reason and practical consequences, and update this index.

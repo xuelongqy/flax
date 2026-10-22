@@ -438,7 +438,7 @@ void main() {
         };
         final result = await Process.run(
           Platform.resolvedExecutable,
-          ['--packages=${packageConfig.uri}', 'run', probe.path, output.path],
+          ['--packages=${packageConfig.uri}', probe.path, output.path],
           workingDirectory: temp.path,
           environment: environment,
         );

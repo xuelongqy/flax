@@ -3,6 +3,7 @@ import { Column, SingleChildScrollView, Text, runApp } from '@flax/flutter/widge
 import { TextDirection } from '@flax/dart/ui';
 import { TextButton } from '@flax/material-ui';
 import { resetCart } from '@flax/app/admin';
+import { hostAppName } from '@flax/app/host';
 
 const result = signal('manager ready · calls=0');
 let calls = 0;
@@ -17,6 +18,12 @@ runApp(
             result.value = `manager calls=${++calls} price=${price.cents}`;
           },
           child: Text('Reset cart'),
+        }),
+        TextButton({
+          onPressed: () => {
+            result.value = `manager host=${hostAppName()} calls=${++calls}`;
+          },
+          child: Text('Host app name'),
         }),
         Text(result.bind, { textDirection: TextDirection.ltr }),
       ],

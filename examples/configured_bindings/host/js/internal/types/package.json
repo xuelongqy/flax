@@ -5,6 +5,9 @@
   "exports": {
     "./admin": {
       "types": "./types/admin.d.ts"
+    },
+    "./host": {
+      "types": "./types/app.d.ts"
     }
   },
   "files": [

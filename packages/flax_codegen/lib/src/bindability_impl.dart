@@ -984,6 +984,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
             selection,
             skips,
             automaticNotices,
+            annotations: library.annotations,
           ),
     skips: skips,
     proxyCapability: proxyCapability,
@@ -1701,6 +1702,9 @@ List<String>? _bindConstructor({
   required List<FlaxCodegenSkip> skips,
 }) => scope.withMember(constructor, () {
   final location = '${element.name}.$ctorName';
+  if (_skipIgnoredAnnotation(scope.config, constructor, location, skips)) {
+    return null;
+  }
   if (!parser._supportsDependencySignature(
     constructor.type,
     location,
@@ -1868,6 +1872,9 @@ FlaxCodegenTypeRef? _tryMemberType(
   ExecutableElement? member,
   bool allowRecursiveErasure = false,
 }) {
+  if (_skipIgnoredAnnotation(scope.config, member, location, skips)) {
+    return null;
+  }
   FlaxCodegenTypeRef? convert() {
     final converted = scope.tryTypeRef(
       type,
@@ -1931,6 +1938,9 @@ List<String>? _bindMethod({
   required List<FlaxCodegenSkip> skips,
   bool deferredFactory = false,
 }) => scope.withMember(method, () {
+  if (_skipIgnoredAnnotation(scope.config, method, location, skips)) {
+    return null;
+  }
   if (!parser._supportsDependencySignature(
     method.type,
     location,

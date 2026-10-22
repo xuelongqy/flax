@@ -7,6 +7,31 @@ import 'package:test/test.dart';
 void main() {
   final root = p.normalize(p.join(Directory.current.path, '../..'));
 
+  test('annotation scopes default names and paths without changing legacy requirements', () {
+    for (final config in [
+      FlaxCodegenBindingConfig.parseStrict('format: 2\n'),
+      FlaxCodegenBindingConfig.fromMap({'format': 2}),
+    ]) {
+      expect(config.name, 'app');
+      expect(config.annotations, isTrue);
+      expect(config.sources, ['lib/**.dart']);
+      expect(config.jsPackage, '@flax/app/app');
+      expect(config.dartOutput, 'lib/src/generated/app.g.dart');
+      expect(config.tsOutput, 'js/src/generated/app.ts');
+    }
+    final shop = FlaxCodegenBindingConfig.parseStrict(
+      'format: 2\nname: shop\n',
+    );
+    expect(shop.dartOutput, 'lib/src/generated/shop.g.dart');
+    expect(shop.tsOutput, 'js/src/generated/shop.ts');
+    expect(
+      () => FlaxCodegenBindingConfig.parseStrict(
+        'format: 2\nlibrary: package:shop/api.dart\n',
+      ),
+      throwsA(isA<FlaxCodegenException>()),
+    );
+  });
+
   test('read is strict; fromMap preserves explicit type selection', () {
     final config = FlaxCodegenBindingConfig.read(
       p.join(root, 'packages/flax/bindings/flax_components.yaml'),
@@ -145,8 +170,32 @@ void main() {
     }
   });
 
+  test(
+    'legacy entry annotations are opt-in and cannot select the whole library',
+    () {
+      final config = FlaxCodegenBindingConfig.parseStrict(
+        '${_minimal}annotations: true\n',
+      );
+      expect(config.annotations, isTrue);
+      expect(
+        config.withOverrides(const FlaxCodegenAutoOverrides()).annotations,
+        isTrue,
+      );
+      for (final extra in [
+        'annotations: yes',
+        'annotations: true\nautomatic: true',
+      ]) {
+        expect(
+          () => FlaxCodegenBindingConfig.parseStrict('$_minimal$extra\n'),
+          throwsA(isA<FlaxCodegenException>()),
+        );
+      }
+    },
+  );
+
   test('omitted optional collections default to empty', () {
     final config = FlaxCodegenBindingConfig.parseStrict(_minimal);
+    expect(config.annotations, isFalse);
     expect(config.additionalLibraries, isEmpty);
     expect(config.imports, isEmpty);
     expect(config.types, isEmpty);
@@ -154,6 +203,50 @@ void main() {
     expect(config.functions, isEmpty);
     expect(config.callbackSnapshots, isEmpty);
   });
+
+  test(
+    'source discovery defaults to annotations and validates its boundary',
+    () {
+      final actual = _minimal
+          .split('\n')
+          .where((line) => !line.startsWith('library:'))
+          .join('\n');
+      final config = FlaxCodegenBindingConfig.parseStrict(actual);
+      expect(config.annotations, isTrue);
+      expect(config.sources, ['lib/**.dart']);
+      expect(
+        config.copyWith(library: 'package:example/selected.dart').sources,
+        config.sources,
+      );
+      expect(
+        FlaxCodegenBindingConfig.parseStrict(
+          '${actual}sources: [lib/cart.dart, lib/src/**.dart]\n',
+        ).sources,
+        ['lib/cart.dart', 'lib/src/**.dart'],
+      );
+      for (final invalid in [
+        'sources: []',
+        'sources: [test/api.dart]',
+        'sources: [../lib/api.dart]',
+        'sources: [lib/../outside.dart]',
+        'annotations: false',
+        'automatic: true',
+        'additionalLibraries: [package:example/extra.dart]',
+      ]) {
+        expect(
+          () => FlaxCodegenBindingConfig.parseStrict('$actual$invalid\n'),
+          throwsA(isA<FlaxCodegenException>()),
+          reason: invalid,
+        );
+      }
+      expect(
+        () => FlaxCodegenBindingConfig.parseStrict(
+          '${_minimal}sources: [lib/api.dart]\n',
+        ),
+        throwsA(isA<FlaxCodegenException>()),
+      );
+    },
+  );
 
   test(
     'navigation selection only adds admission and optional UI callbacks',
@@ -440,12 +533,14 @@ callbackSnapshots:
   });
 
   test('independent diagnostics sort by code, pointer, and span', () {
-    expectDiagnostic(_errors('format: 2\n'), [
-      _d(FlaxCodegenDiagnosticCode.missingField, '/dartOutput', 1, 1),
-      _d(FlaxCodegenDiagnosticCode.missingField, '/library', 1, 1),
-      _d(FlaxCodegenDiagnosticCode.missingField, '/name', 1, 1),
-      _d(FlaxCodegenDiagnosticCode.missingField, '/tsOutput', 1, 1),
-    ]);
+    expectDiagnostic(
+      _errors('format: 2\nlibrary: package:example/api.dart\n'),
+      [
+        _d(FlaxCodegenDiagnosticCode.missingField, '/dartOutput', 1, 1),
+        _d(FlaxCodegenDiagnosticCode.missingField, '/name', 1, 1),
+        _d(FlaxCodegenDiagnosticCode.missingField, '/tsOutput', 1, 1),
+      ],
+    );
   });
 
   test('dynamic mapping keys use RFC 6901 pointers', () {

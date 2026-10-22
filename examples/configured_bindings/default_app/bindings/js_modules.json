@@ -1,0 +1,22 @@
+{
+  "formatVersion": 2,
+  "generatedBy": "flax_codegen",
+  "package": "configured_default_app",
+  "version": "0.0.0",
+  "modules": [
+    {
+      "specifier": "@flax/app/app",
+      "source": "js/src/generated/app.ts"
+    }
+  ],
+  "providers": [
+    "@flax/core-runtime"
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@flax/app/app": [
+        "../js/src/generated/app.ts"
+      ]
+    }
+  }
+}

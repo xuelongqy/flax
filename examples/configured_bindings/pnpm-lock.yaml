@@ -26,6 +26,31 @@ importers:
         specifier: 0.28.2
         version: 0.28.2
 
+  default_app/js:
+    dependencies:
+      '@flax/core':
+        specifier: file:../../../../packages/flax/js-types
+        version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
+      '@flax/core-runtime':
+        specifier: file:../../../../packages/flax/js
+        version: file:../../packages/flax/js
+      '@flax/dart':
+        specifier: file:../../../../packages/flax_dart/js
+        version: file:../../packages/flax_dart/js(@flax/flutter@file:../../packages/flax_flutter/js)
+      '@flax/flutter':
+        specifier: file:../../../../packages/flax_flutter/js
+        version: file:../../packages/flax_flutter/js
+    devDependencies:
+      '@flax/build':
+        specifier: file:../../../../packages/flax_build/js
+        version: file:../../packages/flax_build/js
+      esbuild:
+        specifier: 0.28.2
+        version: 0.28.2
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+
   host/js:
     dependencies:
       '@example/prices':
@@ -37,21 +62,21 @@ importers:
       '@example/shop':
         specifier: workspace:*
         version: link:sdk/types
-      '@example/shop-runtime':
-        specifier: workspace:*
-        version: link:sdk/runtime
       '@flax/app':
         specifier: workspace:*
         version: link:internal/types
-      '@flax/app-runtime':
-        specifier: workspace:*
-        version: link:internal/runtime
       '@flax/core':
         specifier: file:../../../../packages/flax/js-types
         version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
       '@flax/core-runtime':
         specifier: file:../../../../packages/flax/js
         version: file:../../packages/flax/js
+      '@flax/material-ui':
+        specifier: file:../../../../packages/flax_material_ui/js-types
+        version: file:../../packages/flax_material_ui/js-types
+      '@flax/material-ui-runtime':
+        specifier: file:../../../../packages/flax_material_ui/js
+        version: file:../../packages/flax_material_ui/js
     devDependencies:
       '@flax/build':
         specifier: file:../../../../packages/flax_build/js

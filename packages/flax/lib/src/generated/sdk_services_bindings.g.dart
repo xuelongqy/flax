@@ -2609,6 +2609,11 @@ final sdk_servicesBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_servicesPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_services",
+  bindingModules: [sdk_servicesBindings],
+  jsModules: {"@flax/flutter/services", "@flax/flutter/widgets"},
+);
 Object? _function_debugAssertAllServicesVarsUnset(Map<String, Object?> values) {
   return api.debugAssertAllServicesVarsUnset(values["reason"] as String);
 }

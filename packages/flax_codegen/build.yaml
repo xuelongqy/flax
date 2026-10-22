@@ -1,0 +1,14 @@
+builders:
+  bindings:
+    import: package:flax_codegen/builder.dart
+    builder_factories: [flaxCodegenBindingsBuilder]
+    build_extensions:
+      '^flax_package.yaml':
+        - bindings/manifest.json
+        - bindings/js_modules.json
+        - lib/src/generated/app.g.dart
+        - lib/flax_bindings/app.dart
+        - js/src/generated/app.ts
+    auto_apply: none
+    build_to: source
+    required_inputs: [.dart]

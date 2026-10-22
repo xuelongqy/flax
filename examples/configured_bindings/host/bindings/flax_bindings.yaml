@@ -1,9 +1,7 @@
 format: 2
 name: shop
-library: package:configured_host/api.dart
 jsPackage: '@example/shop/api'
 dartOutput: lib/src/generated/sdk/bindings.g.dart
 tsOutput: js/sdk/runtime/src/generated/bindings.ts
 imports: [configured_prices]
-classes: [Cart]
-functions: [currentCart]
+sources: [lib/api.dart]

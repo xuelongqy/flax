@@ -44,13 +44,14 @@ class FlaxConfiguredBindingsApp extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: cardWidth,
-                      child: const _BindingCard(
+                      child: _BindingCard(
                         title: 'Shop A · public SDK',
                         application: 'first',
                         plugins: [
-                          FlaxMaterialPlugin(),
-                          FlaxPublicSdkPlugin(),
-                          FlaxPricesPlugin(),
+                          const FlaxMaterialPlugin(),
+                          shopPlugin,
+                          deliveryPlugin,
+                          const FlaxPricesPlugin(),
                         ],
                         api:
                             'currentCart().add(1) → Money\n'
@@ -59,13 +60,14 @@ class FlaxConfiguredBindingsApp extends StatelessWidget {
                     ),
                     SizedBox(
                       width: cardWidth,
-                      child: const _BindingCard(
+                      child: _BindingCard(
                         title: 'Shop B · public SDK',
                         application: 'second',
                         plugins: [
-                          FlaxMaterialPlugin(),
-                          FlaxPublicSdkPlugin(),
-                          FlaxPricesPlugin(),
+                          const FlaxMaterialPlugin(),
+                          shopPlugin,
+                          deliveryPlugin,
+                          const FlaxPricesPlugin(),
                         ],
                         api:
                             'currentCart().add(1) → Money\n'
@@ -74,32 +76,35 @@ class FlaxConfiguredBindingsApp extends StatelessWidget {
                     ),
                     SizedBox(
                       width: cardWidth,
-                      child: const _BindingCard(
+                      child: _BindingCard(
                         title: 'Internal manager',
                         application: 'manager',
                         plugins: [
-                          FlaxMaterialPlugin(),
-                          FlaxInternalPlugin(),
-                          FlaxPricesPlugin(),
+                          const FlaxMaterialPlugin(),
+                          adminPlugin,
+                          appPlugin,
+                          const FlaxPricesPlugin(),
                         ],
                         api:
                             'resetCart() from @flax/app/admin\n'
+                            'hostAppName() from @flax/app/host\n'
                             'Resets the shared Dart cart to quantity 1.',
                       ),
                     ),
                     SizedBox(
                       width: cardWidth,
-                      child: const _BindingCard(
+                      child: _BindingCard(
                         title: 'Missing internal plugin · expected failure',
                         application: 'forbidden',
                         plugins: [
-                          FlaxMaterialPlugin(),
-                          FlaxPublicSdkPlugin(),
-                          FlaxPricesPlugin(),
+                          const FlaxMaterialPlugin(),
+                          shopPlugin,
+                          deliveryPlugin,
+                          const FlaxPricesPlugin(),
                         ],
                         api:
                             'resetCart() from @flax/app/admin\n'
-                            'FlaxInternalPlugin is intentionally absent.',
+                            'adminPlugin and appPlugin are intentionally absent.',
                       ),
                     ),
                   ],
@@ -131,7 +136,6 @@ class _BindingCard extends StatefulWidget {
 }
 
 class _BindingCardState extends State<_BindingCard> {
-  final _bindings = FlaxBindingRegistry([]);
   Object? _error;
 
   void _reportError(Object error, StackTrace stack) {
@@ -169,7 +173,7 @@ class _BindingCardState extends State<_BindingCard> {
                 ),
               ),
               Text(
-                widget.plugins.map((plugin) => plugin.runtimeType).join(' + '),
+                widget.plugins.map((plugin) => plugin.id).join(' + '),
                 style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
               ),
               const SizedBox(height: 8),
@@ -196,7 +200,6 @@ class _BindingCardState extends State<_BindingCard> {
                         key: ValueKey('view-${widget.application}'),
                         prefix: 'applications/${widget.application}',
                         createRuntime: FlaxEngine.createRuntime,
-                        bindings: _bindings,
                         plugins: widget.plugins,
                         loadingBuilder: (_) =>
                             const Center(child: Text('Starting JS session…')),

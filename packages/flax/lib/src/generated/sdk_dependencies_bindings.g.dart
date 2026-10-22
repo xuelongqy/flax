@@ -939,6 +939,19 @@ const sdk_dependenciesBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_dependenciesPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_dependencies",
+  bindingModules: [sdk_dependenciesBindings],
+  jsModules: {
+    "@flax/dart/convert",
+    "@flax/dart/core",
+    "@flax/dart/developer",
+    "@flax/dart/io",
+    "@flax/dart/isolate",
+    "@flax/flutter/foundation",
+    "@flax/flutter/vector_math",
+  },
+);
 bool _isAsciiCodec(Object value) => value is api1.AsciiCodec;
 Object? _AsciiCodec_encode(Object receiver, Map<String, Object?> values) {
   return (receiver as api1.AsciiCodec).encode(values["source"] as String);

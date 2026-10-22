@@ -180,6 +180,15 @@ const sdk_schedulerBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_schedulerPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_scheduler",
+  bindingModules: [sdk_schedulerBindings],
+  jsModules: {
+    "@flax/flutter/animation",
+    "@flax/flutter/scheduler",
+    "@flax/flutter/widgets",
+  },
+);
 Object? _function_debugAssertAllSchedulerVarsUnset(
   Map<String, Object?> values,
 ) {

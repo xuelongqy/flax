@@ -13,8 +13,10 @@ import 'package:analyzer/dart/element/type.dart';
 // ignore: implementation_imports
 import 'package:analyzer/src/dart/element/type_algebra.dart' show Substitution;
 import 'package:path/path.dart' as p;
+import 'package:glob/glob.dart';
 
 import 'bindability.dart';
+import 'diagnostic.dart';
 import 'config.dart';
 import 'identity.dart';
 import 'model.dart';
@@ -22,6 +24,7 @@ import 'manifest_codec.dart';
 
 part 'bindability_impl.dart';
 part 'auto_binding.dart';
+part 'annotation_selection.dart';
 part 'package_scope.dart';
 part 'dependency_scope.dart';
 part 'type_scope.dart';
@@ -556,25 +559,63 @@ FlaxCodegenGenericParameter _dataGeneric(
   genericIdentity: parameter.genericIdentity,
 );
 
+/// Resolves through the caller's tracked analysis environment when supplied.
+typedef FlaxCodegenLibraryResolver = Future<SomeLibraryElementResult> Function(
+  String uri,
+);
+typedef FlaxCodegenPublicLibraries = Future<List<String>> Function(
+  String package,
+);
+
 class FlaxCodegenBindingParser {
   /// A supplied [contexts] must use [root]'s package environment and remains
   /// caller-owned. Only analysis is shared; binding selections stay per parser.
-  FlaxCodegenBindingParser(String root, {AnalysisContextCollection? contexts})
-    // Resolve requested libraries in the root's package environment without
-    // rediscovering every unrelated project in the workspace for each parser.
-    : _ownsContexts = contexts == null,
-      _contexts =
-          contexts ??
-          AnalysisContextCollection(
-            includedPaths: [p.absolute(root, 'pubspec.yaml')],
-          );
-  final AnalysisContextCollection _contexts;
+  FlaxCodegenBindingParser(
+    String root, {
+    AnalysisContextCollection? contexts,
+    FlaxCodegenLibraryResolver? libraryResolver,
+    this.publicLibraries,
+  }) : assert(contexts == null || libraryResolver == null),
+       _ownsContexts = contexts == null && libraryResolver == null,
+       _contexts =
+           contexts ??
+           (libraryResolver == null
+               ? AnalysisContextCollection(
+                   includedPaths: [p.absolute(root, 'pubspec.yaml')],
+                 )
+               : null),
+       _libraryResolver = libraryResolver;
+  final AnalysisContextCollection? _contexts;
   final bool _ownsContexts;
+  final FlaxCodegenLibraryResolver? _libraryResolver;
+  final FlaxCodegenPublicLibraries? publicLibraries;
+
+  Future<SomeLibraryElementResult> _libraryByUri(String uri) =>
+      _libraryResolver?.call(uri) ??
+      _contexts!.contexts.first.currentSession.getLibraryByUri(uri);
+
+  Future<List<String>> _publicLibraryUris(
+    String package,
+    String libPath,
+  ) async {
+    if (publicLibraries case final discover?) return discover(package);
+    final lib = Directory(libPath);
+    if (!lib.existsSync()) return const [];
+    return [
+      for (final file in lib.listSync(recursive: true, followLinks: false))
+        if (file is File && p.extension(file.path) == '.dart')
+          if (p.split(p.relative(file.path, from: lib.path)).first != 'src')
+            'package:$package/${p.posix.joinAll(p.split(p.relative(file.path, from: lib.path)))}',
+    ]..sort();
+  }
+
   final _adaptations = <String, String>{};
   final _argumentsByType = <String, List<String>>{};
   final _selections = <String, FlaxCodegenClassSelection>{};
   final _localSelections = <String>{};
   final _localDeclarationOwners = <FlaxCodegenSourceIdentity, String>{};
+  final _annotationTargets = <String, Map<String, Element>>{};
+  final _sourceInputs = <String, (Map<String, Element>, Map<String, String>)>{};
   final _packagePublicLibraries = <String, FlaxCodegenLibrarySelection>{};
   final _packagePublicCarriers = <FlaxCodegenSourceIdentity, String>{};
   final _snapshots = <String, FlaxCodegenSnapshotModel>{};
@@ -632,8 +673,7 @@ class FlaxCodegenBindingParser {
       if (target == null) {
         final parsed = _literalLibraries.putIfAbsent(
           owner.library,
-          () => _contexts.contexts.first.currentSession
-              .getParsedLibraryByElement(owner.library),
+          () => owner.library.session.getParsedLibraryByElement(owner.library),
         );
         final node = parsed is ParsedLibraryResult
             ? parsed.getFragmentDeclaration(owner.firstFragment)?.node
@@ -679,9 +719,8 @@ class FlaxCodegenBindingParser {
     if (!variable.isConst) return null;
     final parsed = _literalLibraries.putIfAbsent(
       variable.library,
-      () => _contexts.contexts.first.currentSession.getParsedLibraryByElement(
-        variable.library,
-      ),
+      () =>
+          variable.library.session.getParsedLibraryByElement(variable.library),
     );
     if (parsed is! ParsedLibraryResult) return null;
     final node = parsed.getFragmentDeclaration(variable.firstFragment)?.node;
@@ -717,6 +756,7 @@ class FlaxCodegenBindingParser {
   Future<(Map<String, Element>, Map<String, String>)> _publicExports(
     FlaxCodegenBindingConfig config,
   ) async {
+    if (config.sources != null) return _sourceInputs[config.name]!;
     if (_publicInputs[config] case final cached?) return cached;
     final names = <String, Element>{};
     final libraries = <String, String>{};
@@ -725,13 +765,12 @@ class FlaxCodegenBindingParser {
       ...config.additionalLibraries,
       ...config.publicLibraries.keys,
     }) {
-      final result = await _contexts.contexts.first.currentSession
-          .getLibraryByUri(uri);
+      final result = await _libraryByUri(uri);
       if (result is! LibraryElementResult) {
         throw StateError('Cannot resolve $uri');
       }
       if (!uri.startsWith('dart:')) {
-        final errors = await _contexts.contexts.first.currentSession.getErrors(
+        final errors = await result.element.session.getErrors(
           result.element.firstFragment.source.fullName,
         );
         if (errors is ErrorsResult &&
@@ -765,9 +804,8 @@ class FlaxCodegenBindingParser {
         _dependencyTypeCarriers.values.expand((uris) => uris).toSet().toList()
           ..sort();
     final libraries = <String, LibraryElement>{};
-    final session = _contexts.contexts.first.currentSession;
     for (final uri in uris) {
-      final result = await session.getLibraryByUri(uri);
+      final result = await _libraryByUri(uri);
       if (result is! LibraryElementResult) {
         throw StateError('Cannot resolve dependency type library: $uri');
       }
@@ -1087,8 +1125,7 @@ class FlaxCodegenBindingParser {
     InterfaceElement? declaration,
   }) async {
     final (exports, libraries) = await _resolutionExports(config);
-    final result = await _contexts.contexts.first.currentSession
-        .getLibraryByUri(config.library);
+    final result = await _libraryByUri(config.library);
     if (result is! LibraryElementResult) {
       throw StateError('Cannot resolve ${config.library}');
     }
@@ -1477,12 +1514,11 @@ class FlaxCodegenBindingParser {
       };
     }
     await prepare([config]);
-    final session = _contexts.contexts.first.currentSession;
     var typeCarriers = automaticTypeCarriers;
     if (config.classes.values.any(
       (selection) => selection.proxyVariants.isNotEmpty,
     )) {
-      final result = await session.getLibraryByUri(config.library);
+      final result = await _libraryByUri(config.library);
       if (result is! LibraryElementResult) {
         throw StateError('Cannot resolve ${config.library}');
       }
@@ -1719,7 +1755,7 @@ class FlaxCodegenBindingParser {
     ) async {
       final Element? element;
       if (selection.library case final library?) {
-        final result = await session.getLibraryByUri(library);
+        final result = await _libraryByUri(library);
         if (result is! LibraryElementResult) {
           throw StateError('Cannot resolve mixin library: $library');
         }
@@ -2956,9 +2992,7 @@ class FlaxCodegenBindingParser {
         final proxySuperMembers = <String>[];
         var proxySuperBase = element;
         if (widgetInterfaceProxy) {
-          final framework = await session.getLibraryByUri(
-            'package:flutter/widgets.dart',
-          );
+          final framework = await _libraryByUri('package:flutter/widgets.dart');
           proxySuperBase =
               (framework as LibraryElementResult).element.exportNamespace.get2(
                 'StatelessWidget',
@@ -3986,8 +4020,7 @@ class FlaxCodegenBindingParser {
     final identitiesByName = <String, Map<String, String>>{};
     for (final entry in scope.nativeTypes.entries) {
       final name = entry.key;
-      final result = await _contexts.contexts.first.currentSession
-          .getLibraryByUri(entry.value);
+      final result = await _libraryByUri(entry.value);
       final declaration = result is LibraryElementResult
           ? result.element.exportNamespace.get2(name)
           : null;
@@ -4057,8 +4090,7 @@ class FlaxCodegenBindingParser {
     final (declarations, _) = await _publicExports(config);
     final visible = <String>{};
     for (final entry in libraries) {
-      final result = await _contexts.contexts.first.currentSession
-          .getLibraryByUri(entry.key);
+      final result = await _libraryByUri(entry.key);
       if (result is! LibraryElementResult) {
         throw StateError('Cannot resolve public library: ${entry.key}');
       }
@@ -4345,7 +4377,7 @@ class FlaxCodegenBindingParser {
   }
 
   Future<void> dispose() async {
-    if (_ownsContexts) await _contexts.dispose();
+    if (_ownsContexts) await _contexts!.dispose();
   }
 }
 

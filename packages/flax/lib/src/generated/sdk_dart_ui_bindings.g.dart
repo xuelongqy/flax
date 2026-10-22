@@ -1967,6 +1967,22 @@ const sdk_dart_uiBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_dart_uiPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_dart_ui",
+  bindingModules: [sdk_dart_uiBindings],
+  jsModules: {
+    "@flax/dart/ui",
+    "@flax/flutter/animation",
+    "@flax/flutter/foundation",
+    "@flax/flutter/gestures",
+    "@flax/flutter/painting",
+    "@flax/flutter/rendering",
+    "@flax/flutter/scheduler",
+    "@flax/flutter/semantics",
+    "@flax/flutter/services",
+    "@flax/flutter/widgets",
+  },
+);
 Object? _function_clampDouble(Map<String, Object?> values) {
   return api.clampDouble(
     values["x"] as double,

@@ -8266,6 +8266,17 @@ const sdk_renderingBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_renderingPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_rendering",
+  bindingModules: [sdk_renderingBindings],
+  jsModules: {
+    "@flax/flutter/gestures",
+    "@flax/flutter/rendering",
+    "@flax/flutter/semantics",
+    "@flax/flutter/services",
+    "@flax/flutter/widgets",
+  },
+);
 Object? _extension_BaselineOffset_operator_add(Map<String, Object?> values) {
   return (values["receiver"] as api.BaselineOffset) +
       (values["offset"] as double);

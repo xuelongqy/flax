@@ -58,6 +58,12 @@ context-free getter returns the Session's native AssetBundle through the reserve
 private `__flaxAssetBundle` dispatcher. This bundle is independent of the host module
 inventory; see [application resources](applications.md#application-resources).
 
+Generated binding adapters export <name>Plugin, a FlaxBindingPlugin with immutable
+native-module and JS-entry selections and no resource lifecycle. Views choose these
+plugins explicitly; generating a scope never installs it globally. The optional FlaxView
+bindings argument defaults to an empty application registry, with the usual Core
+bindings and selected plugins added during session creation.
+
 Plugins may also contribute `bindingModules`; those merge with the application registry
 before module selection and source execution. Duplicate full module IDs, type IDs,
 function IDs and incompatible protocol versions fail before installation. Declare

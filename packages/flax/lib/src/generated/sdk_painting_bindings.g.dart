@@ -1700,6 +1700,15 @@ const sdk_paintingBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_paintingPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_painting",
+  bindingModules: [sdk_paintingBindings],
+  jsModules: {
+    "@flax/flutter/painting",
+    "@flax/flutter/rendering",
+    "@flax/flutter/widgets",
+  },
+);
 Object? _function_axisDirectionIsReversed(Map<String, Object?> values) {
   return api.axisDirectionIsReversed(
     values["axisDirection"] as api.AxisDirection,

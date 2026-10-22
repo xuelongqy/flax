@@ -107,6 +107,38 @@ classes:
       await FlaxCodegenPackagePipeline.checkConfig(
         package.configPath('flax_b.yaml'),
       );
+      File(package.configPath('flax_app.yaml'))
+          .writeAsStringSync('format: 2\n');
+      await FlaxCodegenPackagePipeline.generateConfig(
+        package.configPath('flax_app.yaml'),
+      );
+      final plan = jsonDecode(
+        File(p.join(package.root.path, 'bindings/js_modules.json'))
+            .readAsStringSync(),
+      ) as Map;
+      expect(
+        (plan['modules'] as List).where(
+          (entry) => entry['specifier'] == '@example/api',
+        ),
+        hasLength(1),
+      );
+      await FlaxCodegenPackagePipeline.checkConfig(
+        package.configPath('flax_app.yaml'),
+      );
+      File(package.configPath('flax_app.yaml'))
+          .writeAsStringSync("format: 2\njsPackage: '@example/api'\n");
+      await expectLater(
+        FlaxCodegenPackagePipeline.generateConfig(
+          package.configPath('flax_app.yaml'),
+        ),
+        throwsA(
+          isA<FlaxCodegenException>().having(
+            (error) => error.toString(),
+            'conflicting entry',
+            contains('Conflicting generated JS entries for @example/api'),
+          ),
+        ),
+      );
     });
 
     test(
@@ -323,6 +355,92 @@ functions: [readCount]
           custom.manifest.bindingNamespace,
           selected.manifest.bindingNamespace,
         );
+      },
+    );
+
+    test(
+      'source-scanned providers expose public carriers and are reused once',
+      () async {
+        for (final configFree in [false, true]) {
+          final workspace = _tempWorkspace();
+          const selection = """
+format: 2
+name: app
+dartOutput: lib/app.g.dart
+tsOutput: js/app.ts
+""";
+          final provider = _writeHostPackage(
+            workspace: workspace,
+            name: 'price_pkg',
+            bindingNamespace: 'example.price',
+            configs: configFree ? {} : {'flax_bindings.yaml': selection},
+            libraries: {
+              'src/money.dart': """
+import 'package:flax_annotations/flax_annotations.dart';
+@FlaxExport()
+class Money { Money(); int get cents => 1200; }
+""",
+            },
+          );
+          final host = _writeHostPackage(
+            workspace: workspace,
+            name: 'shop_pkg',
+            dependencies: ['price_pkg'],
+            configs: configFree
+                ? {}
+                : {'flax_bindings.yaml': '${selection}imports: [price_pkg]\n'},
+            libraries: {
+              'src/shop.dart': """
+import 'package:flax_annotations/flax_annotations.dart';
+import 'package:price_pkg/flax_bindings/app.dart';
+@FlaxExport()
+Money currentPrice() => Money();
+""",
+            },
+          );
+          _writePackageConfig(
+            workspace,
+            {
+              'price_pkg': provider.root,
+              'shop_pkg': host.root,
+              'flax_annotations': Directory(p.absolute('../flax_annotations')),
+            },
+            javascriptDependencies: {
+              'shop_pkg': ['@example/price'],
+            },
+            providerJavascript: {'price_pkg': '@example/price'},
+          );
+          final generated = await FlaxCodegenPackagePipeline.generateConfig(
+            configFree ? null : provider.configPath('flax_bindings.yaml'),
+            packageRoot: provider.root.path,
+          );
+          expect(
+            generated.localModels.single.typeLibraries['Money'],
+            'package:price_pkg/flax_bindings/app.dart',
+          );
+          final consumer = await FlaxCodegenPackagePipeline.generateConfig(
+            configFree ? null : host.configPath('flax_bindings.yaml'),
+            packageRoot: host.root.path,
+          );
+          expect(consumer.localModels.single.classes, isEmpty);
+          expect(
+            consumer.localModels.single.functions.single.call.result.id,
+            generated.localModels.single.classes.single.id,
+          );
+          expect(
+            consumer.localModels.single.typeLibraries['Money'],
+            'package:price_pkg/flax_bindings/app.dart',
+          );
+          expect(
+            File(p.join(host.root.path, 'lib/flax_bindings/app.dart'))
+                .readAsStringSync(),
+            isNot(contains('show Money')),
+          );
+          await FlaxCodegenPackagePipeline.checkConfig(
+            configFree ? null : host.configPath('flax_bindings.yaml'),
+            packageRoot: host.root.path,
+          );
+        }
       },
     );
 

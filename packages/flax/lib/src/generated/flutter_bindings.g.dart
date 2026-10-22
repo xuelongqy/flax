@@ -9516,6 +9516,25 @@ const flutterBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final flutterPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/flutter",
+  bindingModules: [flutterBindings],
+  jsModules: {
+    "@flax/core/navigation",
+    "@flax/dart/async",
+    "@flax/dart/core",
+    "@flax/dart/ui",
+    "@flax/flutter/animation",
+    "@flax/flutter/foundation",
+    "@flax/flutter/gestures",
+    "@flax/flutter/painting",
+    "@flax/flutter/rendering",
+    "@flax/flutter/scheduler",
+    "@flax/flutter/semantics",
+    "@flax/flutter/services",
+    "@flax/flutter/widgets",
+  },
+);
 Object? _extension_EnumByName_method_asNameMap(Map<String, Object?> values) {
   return api5.EnumByName<api5.Enum>(values["receiver"] as Iterable<api5.Enum>)
       .asNameMap();

@@ -77,6 +77,36 @@ abstract class FlaxPlugin {
   FlaxPluginInstance install(FlaxHostContext context);
 }
 
+/// Installs generated bindings and prepared JS modules without host resources.
+final class FlaxBindingPlugin extends FlaxPlugin {
+  FlaxBindingPlugin({
+    required this.id,
+    required List<FlaxBindingModule> bindingModules,
+    required Set<String> jsModules,
+  }) : bindingModules = List.unmodifiable(bindingModules),
+       jsModules = Set.unmodifiable(jsModules);
+
+  @override
+  final String id;
+  @override
+  final List<FlaxBindingModule> bindingModules;
+  @override
+  final Set<String> jsModules;
+  @override
+  Set<String> get globals => const {};
+  @override
+  FlaxPluginInstance install(FlaxHostContext context) =>
+      const _BindingPluginInstance();
+}
+
+final class _BindingPluginInstance implements FlaxPluginInstance {
+  const _BindingPluginInstance();
+  @override
+  void close() {}
+  @override
+  void dispose() {}
+}
+
 /// Resources owned by one plugin installation, never by the global registry.
 abstract class FlaxPluginInstance {
   /// Stop new operations and cancel current work while JS can still settle.

@@ -307,17 +307,20 @@ FlaxCodegenManifestProjection? _build({
     authoritative: authoritative,
     diagnostics: diagnostics,
   );
-  _diagnoseReadonlyReferences(packages, packageSources, diagnostics);
-  _diagnoseSetterReferences(packages, packageSources, diagnostics);
-  _diagnoseExtensionReferences(packages, packageSources, diagnostics);
+  // Reuse private snapshots within this validation pass; public reads stay fresh.
+  final models = {
+    for (final package in packages)
+      for (final module in package.modules) module: module.model.module,
+  };
+  _diagnoseReadonlyReferences(packages, packageSources, models, diagnostics);
+  _diagnoseSetterReferences(packages, packageSources, models, diagnostics);
+  _diagnoseExtensionReferences(packages, packageSources, models, diagnostics);
   if (diagnostics.items.length != start) return null;
 
   final modulesByModuleId = <String, _FrozenModule>{};
   for (final package in packages) {
     for (final module in package.modules) {
-      final semantic = FlaxCodegenManifestCodec.encodeModule(
-        module.model.module,
-      );
+      final semantic = FlaxCodegenManifestCodec.encodeModule(models[module]!);
       modulesByModuleId[module.moduleId.value] = _FrozenModule(
         name: module.name,
         moduleId: module.moduleId.value,
@@ -670,20 +673,21 @@ void _diagnoseReferenceOwners({
 void _diagnoseReadonlyReferences(
   List<FlaxCodegenManifest> packages,
   Map<String, String> sources,
+  Map<FlaxCodegenManifestModule, FlaxCodegenModuleModel> models,
   FlaxCodegenManifestDiagnostics diagnostics,
 ) {
   final providers = <String, FlaxCodegenTopLevelGetterModel>{
     for (final package in packages)
       for (final module in package.modules)
         for (final getter
-            in module.model.module.topLevel?.getters ??
+            in models[module]!.topLevel?.getters ??
                 <FlaxCodegenTopLevelGetterModel>[])
           if (!getter.isReference) getter.id: getter,
   };
   for (final package in packages) {
     for (final (moduleIndex, module) in package.modules.indexed) {
       for (final (getterIndex, getter)
-          in (module.model.module.topLevel?.getters ??
+          in (models[module]!.topLevel?.getters ??
                   <FlaxCodegenTopLevelGetterModel>[])
               .indexed) {
         if (!getter.isReference) continue;
@@ -711,20 +715,21 @@ void _diagnoseReadonlyReferences(
 void _diagnoseSetterReferences(
   List<FlaxCodegenManifest> packages,
   Map<String, String> sources,
+  Map<FlaxCodegenManifestModule, FlaxCodegenModuleModel> models,
   FlaxCodegenManifestDiagnostics diagnostics,
 ) {
   final providers = <String, FlaxCodegenTopLevelSetterModel>{
     for (final package in packages)
       for (final module in package.modules)
         for (final setter
-            in module.model.module.topLevel?.setters ??
+            in models[module]!.topLevel?.setters ??
                 <FlaxCodegenTopLevelSetterModel>[])
           if (!setter.isReference) setter.id: setter,
   };
   for (final package in packages) {
     for (final (moduleIndex, module) in package.modules.indexed) {
       for (final (setterIndex, setter)
-          in (module.model.module.topLevel?.setters ??
+          in (models[module]!.topLevel?.setters ??
                   <FlaxCodegenTopLevelSetterModel>[])
               .indexed) {
         if (!setter.isReference) continue;
@@ -855,13 +860,14 @@ void _addForPackage(
 void _diagnoseExtensionReferences(
   List<FlaxCodegenManifest> packages,
   Map<String, String> sources,
+  Map<FlaxCodegenManifestModule, FlaxCodegenModuleModel> models,
   FlaxCodegenManifestDiagnostics diagnostics,
 ) {
   final providers = <String, FlaxCodegenExtensionModel>{};
   final declarations = <String>{};
   for (final package in packages) {
     for (final module in package.modules) {
-      final model = module.model.module;
+      final model = models[module]!;
       for (final extension in model.extensions) {
         if (!extension.isReference &&
             !declarations.add(
@@ -890,7 +896,7 @@ void _diagnoseExtensionReferences(
   for (final package in packages) {
     for (final (moduleIndex, module) in package.modules.indexed) {
       for (final (extensionIndex, extension)
-          in module.model.module.extensions.indexed) {
+          in models[module]!.extensions.indexed) {
         if (!extension.isReference) continue;
         for (final (memberIndex, member) in extension.members.indexed) {
           final provider = providers[member.id];

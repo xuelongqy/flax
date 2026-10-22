@@ -5,6 +5,7 @@ packages:
   - host/js/sdk/*
   - host/js/internal/*
   - host/modules
+  - default_app/js
   - miniapps/*
 
 linkWorkspacePackages: true

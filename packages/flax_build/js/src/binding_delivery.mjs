@@ -101,24 +101,16 @@ export function publicRequirements(manifest) {
           Number(a.jsPackage === module.model.jsPackage) ||
         a.jsPackage.localeCompare(b.jsPackage),
     );
-    if (libraries.length > 0) {
-      const specifier = libraries[0].jsPackage;
-      let entry = result.get(specifier);
-      if (!entry) {
-        entry = { bindings: new Map(), helperSubpaths: new Set() };
-        result.set(specifier, entry);
-      }
-      if (publicLibraries.length)
-        entry.helperSubpaths.add(`_bindings/${module.name}.__module`);
-    }
-    if (requirement.types.length === 0 && requirement.functions.length === 0) continue;
     for (const library of libraries) {
       let entry = result.get(library.jsPackage);
       if (!entry) {
         entry = { bindings: new Map(), helperSubpaths: new Set() };
         result.set(library.jsPackage, entry);
       }
-      entry.bindings.set(requirement.moduleId, requirement);
+      if (library === libraries[0] && publicLibraries.length)
+        entry.helperSubpaths.add(`_bindings/${module.name}.__module`);
+      if (requirement.types.length > 0 || requirement.functions.length > 0)
+        entry.bindings.set(requirement.moduleId, requirement);
     }
   }
   return new Map(

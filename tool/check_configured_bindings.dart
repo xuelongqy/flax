@@ -20,6 +20,7 @@ Future<void> main() => command(() async {
     copyDartPackages(Directory(root), Directory('$stage/packages'), [
       'flax',
       'flax_codegen',
+      'flax_annotations',
       'flax_material_ui',
     ]);
     copyTree(
@@ -44,6 +45,7 @@ Future<void> main() => command(() async {
             'vendor',
             'host',
             'miniapps',
+            'default_app',
           ].contains(relative.split('/').first) ||
           relative.startsWith('host/macos/')) {
         continue;
@@ -57,16 +59,23 @@ Future<void> main() => command(() async {
       'name': 'configured_delivery',
       'environment': {'sdk': '^3.13.2'},
     });
-    for (final name in ['provider', 'host']) {
+    for (final name in ['provider', 'host', 'default_app']) {
       _json('$stage/$name/pubspec.yaml', {
-        'name': name == 'provider' ? 'configured_prices' : 'configured_host',
+        'name': switch (name) {
+          'provider' => 'configured_prices',
+          'host' => 'configured_host',
+          _ => 'configured_default_app',
+        },
         'version': '0.0.0',
         'publish_to': 'none',
         'environment': {'sdk': '^3.13.2', 'flutter': '>=3.47.2'},
         'dependencies': {
           'flutter': {'sdk': 'flutter'},
           'flax': {'path': '../packages/flax'},
+          if (name == 'default_app')
+            'flax_annotations': {'path': '../packages/flax_annotations'},
           if (name == 'host') ...{
+            'flax_annotations': {'path': '../packages/flax_annotations'},
             'configured_prices': {'path': '../provider'},
             'configured_delivery': {'path': '../vendor'},
             'flax_material_ui': {'path': '../packages/flax_material_ui'},
@@ -75,15 +84,40 @@ Future<void> main() => command(() async {
         },
         'dev_dependencies': {
           'flax_codegen': {'path': '../packages/flax_codegen'},
+          if (name != 'provider') 'build_runner': '2.16.1',
           'flutter_test': {'sdk': 'flutter'},
         },
-        if (name == 'host')
+        if (name == 'host' || name == 'default_app')
           'flutter': {
-            'assets': ['assets/flax_modules/'],
+            'assets': [
+              'assets/flax_modules/',
+              if (name == 'default_app') 'assets/flax/app/',
+            ],
           },
       });
       await run('flutter', ['pub', 'get'], directory: '$stage/$name');
     }
+
+    final defaults = '$stage/default_app';
+    await run('dart', ['run', 'flax_codegen', 'generate'], directory: defaults);
+    const defaultOutputs = [
+      'lib/src/generated/app.g.dart',
+      'lib/flax_bindings/app.dart',
+      'js/src/generated/app.ts',
+      'bindings/manifest.json',
+      'bindings/js_modules.json',
+    ];
+    final defaultBytes = {
+      for (final path in defaultOutputs)
+        path: File('$defaults/$path').readAsStringSync(),
+    };
+    await run('dart', ['run', 'build_runner', 'build'], directory: defaults);
+    for (final entry in defaultBytes.entries) {
+      if (File('$defaults/${entry.key}').readAsStringSync() != entry.value) {
+        throw StateError('CLI/Builder default output differs: ${entry.key}');
+      }
+    }
+    await run('dart', ['run', 'flax_codegen', 'check'], directory: defaults);
 
     final npm = <String, String>{};
     for (final path in [
@@ -111,6 +145,17 @@ Future<void> main() => command(() async {
           '${name.replaceFirst('@', '').replaceAll('/', '-')}-0.0.0.tgz';
     }
 
+    _json('$defaults/js/pnpm-workspace.yaml', {
+      'packages': ['.'],
+      'overrides': npm,
+    });
+    await run('pnpm', [
+      'install',
+      '--ignore-scripts',
+    ], directory: '$defaults/js');
+    await run('pnpm', ['run', 'build'], directory: '$defaults/js');
+    await run('flutter', ['test', '--no-pub'], directory: defaults);
+
     for (final owner in ['provider', 'host']) {
       final directory = '$stage/$owner';
       _json('$directory/js/pnpm-workspace.yaml', {
@@ -122,10 +167,15 @@ Future<void> main() => command(() async {
       });
       await run('dart', [
         'run',
-        'flax_codegen',
-        'generate',
-        '--config',
-        'bindings/flax_bindings.yaml',
+        if (owner == 'host') ...[
+          'build_runner',
+          'build',
+        ] else ...[
+          'flax_codegen',
+          'generate',
+          '--config',
+          'bindings/flax_bindings.yaml',
+        ],
       ], directory: directory);
       await run('dart', [
         'run',
@@ -156,6 +206,15 @@ Future<void> main() => command(() async {
         '--ignore-scripts',
       ], directory: '$directory/js');
       await run('pnpm', ['run', 'build'], directory: '$directory/js');
+      if (owner == 'host') {
+        // Explicit runtime packages are retained only for the legacy delivery check.
+        for (final group in ['sdk', 'internal']) {
+          await run('pnpm', [
+            'run',
+            'build',
+          ], directory: '$directory/js/$group/runtime');
+        }
+      }
       final runtimePath = owner == 'provider'
           ? '$directory/js'
           : '$directory/js/sdk/runtime';
@@ -274,6 +333,12 @@ Future<void> main() => command(() async {
       'flax-modules',
       'flax.modules.json',
     ], directory: '$stage/host/modules');
+    // The old explicit module configuration remains valid; normal builds use the plan.
+    await run('pnpm', [
+      'exec',
+      'flax-modules',
+      '../bindings/js_modules.json',
+    ], directory: '$stage/host/js');
 
     _json('$stage/package.json', {
       'name': 'configured-consumer-build',
@@ -429,6 +494,28 @@ resetCart(); leaked();
         'Host upgrade must change both version and artifact hash',
       );
     }
+    final planPath = '$stage/host/bindings/js_modules.json';
+    final upgradedPlan = _read(planPath)..['version'] = '1.1.0';
+    _json(planPath, upgradedPlan);
+    final generatedSdkSource = (upgradedPlan['modules'] as List)
+        .cast<Map<String, dynamic>>()
+        .singleWhere(
+          (module) => module['specifier'] == '@example/shop/api',
+        )['source'];
+    File('$stage/host/$generatedSdkSource').writeAsStringSync(
+      '\nexport const sdkRevision = 2;\n',
+      mode: FileMode.append,
+    );
+    await run('pnpm', ['exec', 'flax-modules'], directory: '$stage/host/js');
+    final autoUpgrade = (_read(inventoryPath)['modules'] as List)
+        .cast<Map<String, dynamic>>()
+        .singleWhere((module) => module['specifier'] == '@example/shop/api');
+    if (autoUpgrade['version'] != '1.1.0' ||
+        autoUpgrade['artifact'] == originalModule['artifact']) {
+      throw StateError(
+        'Generated bindings must support compatible host upgrades',
+      );
+    }
     for (final entry in applications.entries) {
       final path = '$stage/host/applications/${entry.key}';
       if (File('$path/${_read('$path/flax.json')['entry']}')
@@ -478,10 +565,17 @@ resetCart(); leaked();
         .copySync('${sdkOutput.path}/modules.json');
     _json(receipt.path, {
       'configuredHost': true,
+      'configFreeApp': true,
+      'generatedJsBuildPlan': true,
+      'automaticMultiScopePreparation': true,
+      'legacyModuleConfiguration': true,
+      'defaultCliBuilderBytesIdentical': true,
+      'generatedBindingPlugins': true,
+      'buildRunnerHost': true,
       'providerReused': true,
       'unboundDependencyGenerated': true,
       'independentMiniapps': ['first', 'second', 'manager'],
-      'bindingScopes': ['shop', 'delivery', 'admin'],
+      'bindingScopes': ['shop', 'delivery', 'admin', 'app'],
       'perViewModules': true,
       'publishableNpmSdk': true,
       'typesOnlyNpmSdk': true,

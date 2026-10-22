@@ -8162,6 +8162,19 @@ const sdk_foundationBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_foundationPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_foundation",
+  bindingModules: [sdk_foundationBindings],
+  jsModules: {
+    "@flax/flutter/foundation",
+    "@flax/flutter/gestures",
+    "@flax/flutter/rendering",
+    "@flax/flutter/scheduler",
+    "@flax/flutter/semantics",
+    "@flax/flutter/services",
+    "@flax/flutter/widgets",
+  },
+);
 Object? _function_binarySearch(Map<String, Object?> values) {
   return api.binarySearch<api3.Comparable<Object>>(
     values["sortedList"] as List<api3.Comparable<Object>>,

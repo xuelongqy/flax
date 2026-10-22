@@ -4,7 +4,9 @@ const _configFields = {
   'format',
   'name',
   'library',
+  'sources',
   'automatic',
+  'annotations',
   'jsPackage',
   'dartOutput',
   'tsOutput',
@@ -96,12 +98,74 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
       node: root.node('format'),
     );
   }
-  final name = root.requiredString('name');
-  final library = root.requiredString('library');
+  final library = root.optionalString('library');
+  final name = library == null
+      ? root.optionalString('name') ?? 'app'
+      : root.requiredString('name');
   final automaticLibrary = root.boolean('automatic');
+  final annotations = root.node('annotations') == null
+      ? library == null
+      : root.boolean('annotations');
+  final sources = root.stringList('sources');
+  if (library != null && root.node('sources') != null) {
+    diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.incompatibleFields,
+      pointer: root.child('sources'),
+      message: 'Use sources for annotation discovery or a legacy library entry, not both.',
+      node: root.node('sources'),
+    );
+  }
+  if (library == null && (!annotations || automaticLibrary)) {
+    diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.incompatibleFields,
+      pointer: root.child('library'),
+      message:
+          'Configuration-only and automatic library selection require library.',
+      node: root.node('automatic') ?? root.node('annotations'),
+    );
+  }
+  if (root.node('sources') != null && sources.isEmpty) {
+    diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.invalidValue,
+      pointer: root.child('sources'),
+      message: 'Expected at least one source path or glob under lib/.',
+      node: root.node('sources'),
+    );
+  }
+  for (final (index, pattern) in sources.indexed) {
+    var validGlob = true;
+    try {
+      Glob(pattern);
+    } on FormatException {
+      validGlob = false;
+    }
+    if (!pattern.startsWith('lib/') ||
+        !validGlob ||
+        pattern.contains('\\') ||
+        pattern.split('/').any((part) => part == '..' || part == '.')) {
+      diagnostics.add(
+        code: FlaxCodegenDiagnosticCode.invalidValue,
+        pointer: '${root.child('sources')}/$index',
+        message: 'Sources must be package-relative paths or globs under lib/.',
+        node: root.node('sources'),
+      );
+    }
+  }
+  if (automaticLibrary && annotations) {
+    diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.incompatibleFields,
+      pointer: root.child('annotations'),
+      message: 'Annotation selection cannot also select the entire library.',
+      node: root.node('annotations'),
+    );
+  }
   final jsPackage = root.optionalString('jsPackage') ?? '$jsPackageRoot/$name';
-  final dartOutput = root.requiredString('dartOutput');
-  final tsOutput = root.requiredString('tsOutput');
+  final dartOutput = library == null
+      ? root.optionalString('dartOutput') ?? flaxCodegenDartOutput(name!)
+      : root.requiredString('dartOutput');
+  final tsOutput = library == null
+      ? root.optionalString('tsOutput') ?? flaxCodegenTsOutput(name!)
+      : root.requiredString('tsOutput');
   final additionalLibraries = root.stringList('additionalLibraries');
   final imports = root.stringList('imports');
   final types = root.stringList('types');
@@ -112,12 +176,22 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
   final snapshots = _readSnapshots(root);
   final topLevel = _readTopLevel(root);
   final publicLibraries = _readPublicLibraries(root);
+  if (library == null &&
+      (additionalLibraries.isNotEmpty || publicLibraries.isNotEmpty)) {
+    diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.incompatibleFields,
+      pointer: root.child('library'),
+      message: 'additionalLibraries and publicLibraries require a legacy library entry.',
+      node: root.node('additionalLibraries') ?? root.node('publicLibraries'),
+    );
+  }
   final overrideMap = root.schemaMap('overrides', _autoOverrideFields);
   final overrides = overrideMap == null
       ? const FlaxCodegenAutoOverrides()
       : _readAutoOverrides(overrideMap);
   if (overrideMap != null &&
       !automaticLibrary &&
+      !annotations &&
       ![
         root.node('classes'),
         root.node('functions'),
@@ -133,12 +207,16 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
   diagnostics.throwIfAny();
   return FlaxCodegenBindingConfig(
     name!,
-    library!,
+    library ?? 'dart:core',
     jsPackage,
     dartOutput!,
     tsOutput!,
     classes,
     automaticLibrary: automaticLibrary,
+    annotations: annotations,
+    sources: library == null
+        ? (root.node('sources') == null ? const ['lib/**.dart'] : sources)
+        : null,
     additionalLibraries: additionalLibraries,
     imports: imports,
     types: types,

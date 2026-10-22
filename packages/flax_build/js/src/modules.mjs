@@ -14,6 +14,7 @@ import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { build } from 'esbuild';
 import { load as loadYaml } from 'js-yaml';
 import { moduleRegistrySource } from './registry.mjs';
+import { publicRequirements } from './binding_delivery.mjs';
 
 export { publicRequirements as bindingModuleRequirements } from './binding_delivery.mjs';
 
@@ -362,6 +363,18 @@ class DeliveryPackages {
     this.nearest = new Map();
   }
 
+  addEntry(entry) {
+    const previous = this.entries.get(entry.specifier);
+    if (
+      previous &&
+      (previous.filename !== entry.filename || previous.version !== entry.version)
+    ) {
+      fail(`Multiple owners or versions for Flax module: ${entry.specifier}`);
+    }
+    this.entries.set(entry.specifier, entry);
+    this.files.set(entry.filename, entry);
+  }
+
   async load(directory) {
     directory = await realpath(directory);
     if (this.packages.has(directory)) return this.packages.get(directory);
@@ -438,16 +451,8 @@ class DeliveryPackages {
         text(value.owner, 'module owner');
         if (entries.has(entry.specifier) || this.files.has(source))
           fail(`Duplicate delivery entry: ${entry.specifier}`);
-        const previous = this.entries.get(entry.specifier);
-        if (
-          previous &&
-          (previous.filename !== source || previous.version !== value.version)
-        ) {
-          fail(`Multiple owners or versions for Flax module: ${entry.specifier}`);
-        }
         entries.set(entry.specifier, value);
-        this.entries.set(entry.specifier, value);
-        this.files.set(source, value);
+        this.addEntry(value);
       }
       return entries;
     })();
@@ -524,7 +529,9 @@ class DeliveryPackages {
     const suffix = name.slice(entry.specifier.length + 1);
     const candidate = join(
       entry.subpathRoot,
-      /\.[cm]?js$/.test(suffix) ? suffix : `${suffix}.js`,
+      /\.[cm]?js$/.test(suffix)
+        ? suffix
+        : `${suffix}${entry.typescript ? '.ts' : '.js'}`,
     );
     const resolved = await realpath(candidate);
     if (relative(entry.subpathRoot, resolved).startsWith(`..${sep}`))
@@ -658,7 +665,11 @@ async function publicSubpaths(entry) {
       const path = `${prefix}${file.name}`;
       if (file.isDirectory() && file.name !== '_bindings') {
         await visit(join(directory, file.name), `${path}/`);
-      } else if (file.isFile() && file.name.endsWith('.js')) {
+      } else if (
+        file.isFile() &&
+        file.name.endsWith(entry.typescript ? '.ts' : '.js') &&
+        !file.name.endsWith('.d.ts')
+      ) {
         const subpath = path.slice(0, -3);
         if (!entry.helperSubpaths.includes(subpath))
           paths.push(`${entry.specifier}/${subpath}`);
@@ -669,35 +680,149 @@ async function publicSubpaths(entry) {
   return paths.sort();
 }
 
-/** Resolve installed locked packages into local, factory-only Flutter assets. */
-export async function prepareModules({ configPath, check = false }) {
-  configPath = resolve(configPath);
-  const project = dirname(configPath);
-  const config = await json(configPath);
-  object(
-    config,
-    ['formatVersion', 'modules', 'flutterProject', 'output'],
-    'module configuration',
-  );
-  if (config.formatVersion !== 1) fail('Unsupported Flax module configuration');
-  const selected = array(config.modules, 'modules').map((value) => {
-    if (typeof value === 'string') {
-      const name = specifier(value);
-      return { specifier: name, package: packageName(name) };
+/** Resolve generated scopes or installed locked packages into factory-only assets. */
+export async function prepareModules({ configPath, check = false } = {}) {
+  if (configPath === undefined) {
+    let directory = resolve('.');
+    for (;;) {
+      try {
+        await access(join(directory, 'pubspec.yaml'));
+        configPath = join(directory, 'bindings/js_modules.json');
+        break;
+      } catch (error) {
+        if (error.code !== 'ENOENT') throw error;
+        if (dirname(directory) === directory)
+          fail('Cannot find the owning Dart package; pass a module configuration.');
+        directory = dirname(directory);
+      }
     }
-    object(value, ['specifier', 'package'], 'selected module');
-    return {
-      specifier: specifier(value.specifier),
-      package: implementationPackage(value.package, 'selected module package'),
+  }
+  configPath = resolve(configPath);
+  let project = dirname(configPath);
+  const config = await json(configPath);
+  const generated = config.formatVersion === 2;
+  let flutterRoot;
+  let output;
+  let local = [];
+  let providers = [];
+  if (generated) {
+    object(
+      config,
+      [
+        'formatVersion',
+        'generatedBy',
+        'package',
+        'version',
+        'modules',
+        'providers',
+        'compilerOptions',
+      ],
+      'binding build plan',
+      ['formatVersion', 'generatedBy', 'package', 'version', 'modules', 'providers'],
+    );
+    if (config.generatedBy !== 'flax_codegen')
+      fail('Expected generated binding build plan');
+    implementationPackage(config.package, 'Dart binding package');
+    version(config.version);
+    flutterRoot = await realpath(resolve(project, '..'));
+    project = join(flutterRoot, 'js');
+    await access(join(project, 'package.json'));
+    const manifest = await json(join(flutterRoot, 'bindings', 'manifest.json'));
+    if (manifest.package !== config.package)
+      fail('Binding build plan package mismatch');
+    const requirements = publicRequirements(manifest);
+    const contained = async (path, label) => {
+      const result = await realpath(join(flutterRoot, assetPath(path, label)));
+      if (
+        relative(flutterRoot, result) === '..' ||
+        relative(flutterRoot, result).startsWith(`..${sep}`) ||
+        isAbsolute(relative(flutterRoot, result))
+      )
+        fail(`Generated binding source escapes its package: ${path}`);
+      return result;
     };
-  });
+    local = await Promise.all(
+      array(config.modules, 'binding modules').map(async (entry) => {
+        object(entry, ['specifier', 'source', 'subpathRoot'], 'binding module', [
+          'specifier',
+          'source',
+        ]);
+        specifier(entry.specifier);
+        if (!entry.source?.endsWith('.ts') || entry.source.endsWith('.d.ts'))
+          fail('Expected generated TypeScript binding source');
+        const requirement = requirements.get(entry.specifier);
+        if (!requirement) fail(`Missing binding requirements: ${entry.specifier}`);
+        const subpathRoot =
+          entry.subpathRoot === undefined
+            ? null
+            : await contained(entry.subpathRoot, 'binding subpath root');
+        return {
+          ...entry,
+          filename: await contained(entry.source, 'binding source'),
+          directory: flutterRoot,
+          subpathRoot,
+          helperSubpaths: requirement.helperSubpaths,
+          package: config.package,
+          version: config.version,
+          owner: `dart:${config.package}:${entry.specifier}`,
+          bindings: bindings(
+            requirement.bindings,
+            `bindings for ${entry.specifier}`,
+            true,
+          ),
+          typescript: true,
+        };
+      }),
+    );
+    unique(
+      local.map((entry) => entry.specifier),
+      'generated binding module',
+    );
+    providers = unique(
+      array(config.providers, 'binding providers').map((name) =>
+        implementationPackage(name),
+      ),
+      'binding provider',
+    );
+    // Direct runtime dependencies add UI/host plugins without repeating their entries.
+    const npm = await json(join(project, 'package.json'));
+    providers = [
+      ...new Set([
+        ...providers,
+        ...Object.keys(npm.dependencies ?? {}),
+        ...Object.keys(npm.optionalDependencies ?? {}),
+        ...Object.keys(npm.peerDependencies ?? {}),
+      ]),
+    ];
+    output = 'assets/flax_modules';
+  } else {
+    object(
+      config,
+      ['formatVersion', 'modules', 'flutterProject', 'output'],
+      'module configuration',
+    );
+    if (config.formatVersion !== 1) fail('Unsupported Flax module configuration');
+    flutterRoot = resolve(project, text(config.flutterProject, 'flutterProject'));
+    output = assetPath(config.output, 'output');
+  }
+  const selected = generated
+    ? []
+    : array(config.modules, 'modules').map((value) => {
+        if (typeof value === 'string') {
+          const name = specifier(value);
+          return { specifier: name, package: packageName(name) };
+        }
+        object(value, ['specifier', 'package'], 'selected module');
+        return {
+          specifier: specifier(value.specifier),
+          package: implementationPackage(value.package, 'selected module package'),
+        };
+      });
   unique(
     selected.map((entry) => entry.specifier),
     'selected module',
   );
-  if (selected.length === 0) fail('Select at least one host module');
-  const flutterRoot = resolve(project, text(config.flutterProject, 'flutterProject'));
-  const output = assetPath(config.output, 'output');
+  if (!generated && selected.length === 0) fail('Select at least one host module');
   const lock = await findLock(project);
   const packages = new DeliveryPackages(lock);
   const pending = new Map();
@@ -713,6 +838,18 @@ export async function prepareModules({ configPath, check = false }) {
     }
     pending.set(entry.specifier, entry);
     return entry;
+  }
+  for (const entry of local) {
+    packages.addEntry(entry);
+    enqueue(entry);
+  }
+  for (const provider of providers) {
+    const entries = await packages.loadPackage(
+      provider,
+      project,
+      config.providers.includes(provider),
+    );
+    for (const entry of entries?.values() ?? []) enqueue(entry);
   }
   for (const selectedModule of selected) {
     enqueue(

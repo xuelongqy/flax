@@ -172,6 +172,34 @@ ordinary package manifests, build scripts, archive consumers and real View check
 
 ## Host module preparation
 
+For generated application bindings, the default entry needs no handwritten module
+configuration. Add `flax-modules` to the host js/package.json build script, after Dart
+code generation. It finds the nearest owning pubspec.yaml and reads the generated
+bindings/js_modules.json. The plan supplies all local scope TS sources, public subpaths
+and required provider packages. The tool compiles these sources directly into the
+existing factory format, resolves installed locked providers and prepares the usual
+assets/flax_modules/ inventory. The host declares this Flutter asset directory once.
+Optional host/UI runtime packages declared in js/package.json are discovered through
+their existing delivery metadata. Preparing an entry does not activate it in a View.
+
+Both CLI and build_runner produce the same plan. Source paths are confined to their
+owning Dart package. Local binding versions come from the Dart package; hashes describe
+the compiled factories. Existing providers keep their own owners and lock checks. The
+plan can also be extended by js/tsconfig.json for its generated compilerOptions.paths.
+No scope list or per-scope compiler aliases need to be repeated in the JS project.
+
+```sh
+# From the Flutter package, after generating Dart bindings:
+pnpm --dir js exec flax-modules
+pnpm --dir js exec flax-modules --check
+```
+
+Node runs on the development/CI machine only. The produced Flutter assets execute in
+Flax's engine without Node, npm or a TypeScript compiler on the runtime device. This is
+an ordinary project build step, not a subprocess launched by a Dart Builder.
+
+Existing explicit format-1 module configurations remain supported:
+
 ```json
 {
   "formatVersion": 1,

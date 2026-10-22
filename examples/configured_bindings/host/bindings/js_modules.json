@@ -1,0 +1,45 @@
+{
+  "formatVersion": 2,
+  "generatedBy": "flax_codegen",
+  "package": "configured_host",
+  "version": "0.0.0",
+  "modules": [
+    {
+      "specifier": "@example/shop/api",
+      "source": "js/sdk/runtime/src/generated/bindings.ts"
+    },
+    {
+      "specifier": "@example/shop/delivery",
+      "source": "js/sdk/runtime/src/generated/delivery.ts"
+    },
+    {
+      "specifier": "@flax/app/admin",
+      "source": "js/internal/runtime/src/generated/admin.ts"
+    },
+    {
+      "specifier": "@flax/app/host",
+      "source": "js/internal/runtime/src/generated/app.ts"
+    }
+  ],
+  "providers": [
+    "@example/prices-runtime",
+    "@flax/core-runtime",
+    "@flax/material-ui-runtime"
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@example/shop/api": [
+        "../js/sdk/runtime/src/generated/bindings.ts"
+      ],
+      "@example/shop/delivery": [
+        "../js/sdk/runtime/src/generated/delivery.ts"
+      ],
+      "@flax/app/admin": [
+        "../js/internal/runtime/src/generated/admin.ts"
+      ],
+      "@flax/app/host": [
+        "../js/internal/runtime/src/generated/app.ts"
+      ]
+    }
+  }
+}

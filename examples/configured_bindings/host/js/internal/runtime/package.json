@@ -4,14 +4,16 @@
   "type": "module",
   "exports": {
     "./admin": "./dist/admin.js",
-    "./flax_modules.json": "./flax_modules.json"
+    "./flax_modules.json": "./flax_modules.json",
+    "./host": "./dist/app.js"
   },
   "files": [
     "dist",
     "flax_modules.json"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && node build.mjs"
+    "build": "tsc -p tsconfig.json && node build.mjs",
+    "types": "tsc -p tsconfig.json --emitDeclarationOnly"
   },
   "dependencies": {
     "@flax/core": "0.0.0",

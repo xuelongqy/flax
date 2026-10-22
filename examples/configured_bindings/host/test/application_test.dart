@@ -154,10 +154,11 @@ void main() {
                   child: ConfiguredMiniapp(
                     key: const ValueKey('manager'),
                     directory: Directory('applications/manager'),
-                    plugins: const [
-                      FlaxMaterialPlugin(),
-                      FlaxInternalPlugin(),
-                      FlaxPricesPlugin(),
+                    plugins: [
+                      const FlaxMaterialPlugin(),
+                      adminPlugin,
+                      appPlugin,
+                      const FlaxPricesPlugin(),
                     ],
                     onError: (error, _) => errors.add(error),
                   ),
@@ -215,10 +216,14 @@ void main() {
         home: Scaffold(
           body: ConfiguredMiniapp(
             directory: Directory('applications/first'),
-            plugins: const [
-              FlaxMaterialPlugin(),
-              _DeliveryWithoutBindings(),
-              FlaxPricesPlugin(),
+            plugins: [
+              const FlaxMaterialPlugin(),
+              FlaxBindingPlugin(
+                id: 'example.missing-native',
+                bindingModules: [],
+                jsModules: {'@example/shop/api', '@example/shop/delivery'},
+              ),
+              const FlaxPricesPlugin(),
             ],
             onError: (error, _) => errors.add(error),
           ),
@@ -242,10 +247,4 @@ Future<void> _waitFor(WidgetTester tester, bool Function() ready) async {
     }
   });
   expect(ready(), isTrue);
-}
-
-class _DeliveryWithoutBindings extends FlaxPublicSdkPlugin {
-  const _DeliveryWithoutBindings();
-  @override
-  List<FlaxBindingModule> get bindingModules => const [];
 }

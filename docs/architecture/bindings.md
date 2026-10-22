@@ -1,5 +1,39 @@
 # Binding Generation
 
+With no scope configuration, the CLI and Builder use one app scope and conventional
+output paths. Package metadata still declares the stable binding namespace. Scopes
+without library enable Dart annotations by default and scan this package's lib,
+optionally limited by sources files/globs. FlaxExport defaults to scope app; each scope
+must match a configured name, or the implicit app scope when no configs exist. Discovery
+groups declarations before merging names and emits a public
+lib/flax_bindings/<name>.dart carrier. Legacy library entries retain their original
+defaults and explicit annotations: true behavior. FlaxIgnore filters members before
+conversion. All scopes normalize into the same package-owned selection model before
+inference and ownership resolution. Explicit YAML mappings retain their exact surface,
+while configuration-only and --library modes keep their existing semantics. See
+[ADR 0046](../decisions/0046-scoped-binding-annotations.md) and the
+[host guide](../guides/host-bindings.md). No runtime or Manifest format changes are
+required.
+
+Each generated Dart adapter exports a binding plugin alongside its binding module.
+FlaxBindingPlugin selects the native module and prepared JS entries through the existing
+FlaxPlugin boundary without owning resources. Source-scanned export libraries reexport
+both symbols for canonical adapters under lib; host-only adapters outside lib are
+imported directly. Views still explicitly choose plugins; no plugin is globally
+installed by generation, and custom host lifecycles remain handwritten plugins.
+
+The optional flax_codegen:bindings Builder runs through build_runner with the same
+selection and emission pipeline. A package-wide step tracks YAML/npm/provider inputs,
+uses the build resolver and writes only predeclared outputs; CLI installation retains
+its package transaction. See [ADR 0047](../decisions/0047-build-runner-bindings.md).
+
+Source-scanned packages also emit bindings/js_modules.json. The host's ordinary JS build
+consumes this shared plan to compile all scope sources, reuse installed providers and
+prepare Flutter module assets. TypeScript aliases derive from the same plan. Neither
+generation driver starts Node; runtime devices only execute prepared assets. Legacy
+explicit delivery remains supported. See
+[ADR 0048](../decisions/0048-generated-binding-js-build.md).
+
 Automatic library discovery is available through
 `dart run flax_codegen generate --library package:foo/foo.dart`; see the
 [codegen usage guide](../../packages/flax_codegen/README.md) and

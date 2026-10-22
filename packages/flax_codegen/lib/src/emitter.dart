@@ -144,6 +144,7 @@ class FlaxCodegenBindingEmitter {
     this.modules, {
     this.requireDeferredTargets = false,
     this.bindingEntrypoints = const {},
+    this.dartLibraries = const {},
   }) {
     final extensionOwners = <String>{};
     for (final module in modules) {
@@ -243,6 +244,16 @@ class FlaxCodegenBindingEmitter {
   /// Module IDs mapped to Dart libraries exporting their `<name>Bindings` value.
   /// Unmapped modules (including implicit Core modules) keep ID-only dependencies.
   final Map<String, String> bindingEntrypoints;
+
+  /// Original declaring libraries for local adapters; manifests use public facades.
+  final Map<String, ({String library, Map<String, String> types})>
+  dartLibraries;
+
+  String _dartLibrary(FlaxCodegenModuleModel module) =>
+      dartLibraries[module.moduleId]?.library ?? module.library;
+
+  Map<String, String> _dartTypeLibraries(FlaxCodegenModuleModel module) =>
+      dartLibraries[module.moduleId]?.types ?? module.typeLibraries;
   final _owners = <String, FlaxCodegenModuleModel>{};
   final _classes = <String, FlaxCodegenClassModel>{};
   final _types = <String, FlaxCodegenNamedTypeModel>{};
@@ -853,13 +864,15 @@ class FlaxCodegenBindingEmitter {
   final _dartImports = <String, String>{};
   String _dartName(String name, [String? id]) {
     final library =
-        (id == null ? null : _owners[id]?.typeLibraries[name]) ??
-        _dartModule.typeLibraries[name] ??
+        (id == null || _owners[id] == null
+            ? null
+            : _dartTypeLibraries(_owners[id]!)[name]) ??
+        _dartTypeLibraries(_dartModule)[name] ??
         modules
-            .map((module) => module.typeLibraries[name])
+            .map((module) => _dartTypeLibraries(module)[name])
             .whereType<String>()
             .firstOrNull ??
-        _dartModule.library;
+        _dartLibrary(_dartModule);
     final prefix = _dartImports.putIfAbsent(
       library,
       () => 'api${_dartImports.length}',
@@ -2314,8 +2327,8 @@ class FlaxCodegenBindingEmitter {
     _findSharedAdapters(module);
     _findProxyDispatch(module);
     _dartImports.clear();
-    _dartImports[module.library] = 'api';
-    for (final uri in _sortedStringMap(module.typeLibraries).values) {
+    _dartImports[_dartLibrary(module)] = 'api';
+    for (final uri in _sortedStringMap(_dartTypeLibraries(module)).values) {
       _dartImports.putIfAbsent(uri, () => 'api${_dartImports.length}');
     }
     for (final variant in module.stateVariants) {
@@ -2557,6 +2570,14 @@ class FlaxCodegenBindingEmitter {
       'stateVariants: [${module.stateVariants.map((variant) => '_stateVariant_${variant.name}').join(', ')}]'
       ', dartTypes: [${_vmTypeTemplates(module).join(',')}], dartShapes: _flaxDartShapes);',
     );
+    out.writeln('final ${module.name}Plugin = FlaxBindingPlugin(');
+    out.writeln('id: ${_quote('binding:${_literalModuleId(module)}')},');
+    out.writeln('bindingModules: [${module.name}Bindings],');
+    final pluginModules = module.publicLibraries.isEmpty
+        ? [module.jsPackage]
+        : module.publicLibraries.map((route) => route.jsPackage).toList();
+    out.writeln('jsModules: {${pluginModules.map(_quote).join(', ')}},');
+    out.writeln(');');
     _writeStateVariantsDart(out, module);
     for (final extension in module.extensions.where((e) => !e.isReference)) {
       for (final member in extension.members) {
@@ -3108,12 +3129,12 @@ T _genericCallbackResult<T>(Object? value) {
 // Regenerate with dart run melos run bindings:generate.
 // ignore_for_file: type=lint, unused_import, unnecessary_cast, deprecated_member_use, invalid_use_of_protected_member, invalid_use_of_visible_for_overriding_member, invalid_use_of_visible_for_testing_member
 import 'dart:core';
-import '${module.library}' as api;
+import '${_dartLibrary(module)}' as api;
 import 'package:flax/bindings.dart';
 ''',
     );
     for (final entry in _dartImports.entries.where(
-      (e) => e.key != module.library,
+      (e) => e.key != _dartLibrary(module),
     )) {
       imports.writeln("import '${entry.key}' as ${entry.value};");
     }

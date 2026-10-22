@@ -40,6 +40,10 @@
     {
       "specifier": "@flax/material-ui",
       "package": "@flax/material-ui-runtime"
+    },
+    {
+      "specifier": "@flax/app/host",
+      "package": "@flax/app-runtime"
     }
   ],
   "flutterProject": "..",

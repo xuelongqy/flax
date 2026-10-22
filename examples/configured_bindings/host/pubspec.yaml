@@ -12,12 +12,14 @@ dependencies:
   configured_delivery: 0.0.0
   configured_prices: 0.0.0
   flax: 0.0.0
+  flax_annotations: 0.0.0
   flax_material_ui: 0.0.0
   flutter:
     sdk: flutter
   material_ui: 1.1.1
 
 dev_dependencies:
+  build_runner: 2.16.1
   flax_codegen: 0.0.0
   flutter_test:
     sdk: flutter

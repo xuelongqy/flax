@@ -15,6 +15,7 @@ workspace:
   - examples/configured_bindings/host
   - examples/configured_bindings/provider
   - examples/configured_bindings/vendor
+  - examples/configured_bindings/default_app
 
 dev_dependencies:
   flax:
@@ -59,6 +60,8 @@ melos:
           examples/configured_bindings/host/lib examples/configured_bindings/host/test
           examples/configured_bindings/provider/lib
           examples/configured_bindings/vendor/lib
+          examples/configured_bindings/default_app/lib
+          examples/configured_bindings/default_app/test
         - pnpm --silent run format:check
     js:typecheck:
       description: Type-check all JavaScript workspace packages.

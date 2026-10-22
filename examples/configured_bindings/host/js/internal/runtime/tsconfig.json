@@ -1,4 +1,5 @@
 {
+  "extends": "../../../bindings/js_modules.json",
   "compilerOptions": {
     "target": "ES2022",
     "module": "Node16",
@@ -11,5 +12,6 @@
     "declarationDir": "../types/types",
     "noEmitOnError": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "references": [{ "path": "../../sdk/runtime" }]
 }

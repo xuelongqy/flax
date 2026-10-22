@@ -83,24 +83,18 @@ extension FlaxCodegenDependencyScope on FlaxCodegenBindingParser {
         })
           ?_sourcePackage(library),
     };
-    final session = _contexts.contexts.first.currentSession;
     for (final package in generate) {
       final root = packageRoots[package];
       if (root == null) {
         throw StateError('Cannot resolve dependency package: $package');
       }
-      final lib = Directory(p.join(root, 'lib'));
-      if (!lib.existsSync()) {
+      if (publicLibraries == null &&
+          !Directory(p.join(root, 'lib')).existsSync()) {
         throw StateError('Missing dependency library: $package');
       }
-      final uris = [
-        for (final file in lib.listSync(recursive: true, followLinks: false))
-          if (file is File && p.extension(file.path) == '.dart')
-            if (p.split(p.relative(file.path, from: lib.path)).first != 'src')
-              'package:$package/${p.posix.joinAll(p.split(p.relative(file.path, from: lib.path)))}',
-      ]..sort();
+      final uris = await _publicLibraryUris(package, p.join(root, 'lib'));
       for (final uri in uris) {
-        final result = await session.getLibraryByUri(uri);
+        final result = await _libraryByUri(uri);
         if (result is! LibraryElementResult) continue;
         for (final element
             in result.element.exportNamespace.definedNames2.values) {

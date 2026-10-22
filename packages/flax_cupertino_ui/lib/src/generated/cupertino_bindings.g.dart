@@ -6184,6 +6184,11 @@ const cupertinoBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final cupertinoPlugin = FlaxBindingPlugin(
+  id: "binding:flax.cupertino/cupertino",
+  bindingModules: [cupertinoBindings],
+  jsModules: {"@flax/cupertino-ui"},
+);
 Object? _function_createCupertinoColorProperty(Map<String, Object?> values) {
   if (!values.containsKey("defaultValue")) {
     return api.createCupertinoColorProperty(

@@ -34,8 +34,8 @@ export function bindingModuleRequirements(
 
 export function validateModuleManifest(value: unknown): FlaxModuleManifest;
 export function readModuleManifest(path: string): Promise<FlaxModuleManifest>;
-export function prepareModules(options: {
-  configPath: string;
+export function prepareModules(options?: {
+  configPath?: string;
   check?: boolean;
 }): Promise<{ manifest: FlaxModuleManifest; manifestPath: string }>;
 export function flaxHostModulesPlugin(manifest?: FlaxModuleManifest | null): Plugin;

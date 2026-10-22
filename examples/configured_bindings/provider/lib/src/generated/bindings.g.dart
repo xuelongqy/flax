@@ -33,6 +33,11 @@ const pricesBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final pricesPlugin = FlaxBindingPlugin(
+  id: "binding:example.prices/prices",
+  bindingModules: [pricesBindings],
+  jsModules: {"@example/prices/api"},
+);
 bool _isMoney(Object value) => value is api.Money;
 Object? _Money_cents(Object value) => (value as api.Money).cents;
 Object _createMoney(String ctor, Map<String, Object?> values) {

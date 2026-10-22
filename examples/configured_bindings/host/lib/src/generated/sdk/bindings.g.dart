@@ -5,9 +5,10 @@ import 'dart:core';
 
 import 'package:configured_host/api.dart' as api;
 import 'package:flax/bindings.dart';
-import 'package:configured_prices/api.dart' as api1;
+import 'package:configured_delivery/configured_delivery.dart' as api1;
+import 'package:configured_prices/api.dart' as api2;
 
-import 'dart:async' as api2;
+import 'dart:async' as api3;
 
 import "package:configured_prices/src/generated/bindings.g.dart"
     as _flaxBindings0;
@@ -47,6 +48,11 @@ const shopBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final shopPlugin = FlaxBindingPlugin(
+  id: "binding:example.shop/shop",
+  bindingModules: [shopBindings],
+  jsModules: {"@example/shop/api"},
+);
 Object? _function_currentCart(Map<String, Object?> values) {
   return api.currentCart();
 }
@@ -77,14 +83,14 @@ Object _createCart(String ctor, Map<String, Object?> values) {
 }
 
 const _flaxDartShapes = <FlaxDartShapeTemplate>[];
-bool _stream0Matches(Object value) => value is api2.Stream<int>;
-api2.Stream<Object?> _stream0Adapt(Object value) =>
-    (value is api2.Stream<int>
+bool _stream0Matches(Object value) => value is api3.Stream<int>;
+api3.Stream<Object?> _stream0Adapt(Object value) =>
+    (value is api3.Stream<int>
             ? value
-            : (value as api2.Stream<Object?>).map<int>(
+            : (value as api3.Stream<Object?>).map<int>(
                 (event) => _genericCallbackResult<int>(event),
               ))
-        as api2.Stream<Object?>;
+        as api3.Stream<Object?>;
 T _genericCallbackResult<T>(Object? value) {
   // Test assignability to cover both nullable and non-nullable numeric T.
   // Broad bounds keep their decoded representation; only the Dart use site
@@ -116,7 +122,7 @@ const _flaxBinding2 = FlaxGetter.plain("quantity", flaxIntType, _Cart_quantity);
 const _flaxBinding3 = FlaxTypeRef(
   "stream",
   id: "flax.core/flutter#type:Stream",
-  dartType: FlaxDartTypes.typeOf<api2.Stream<int>>,
+  dartType: FlaxDartTypes.typeOf<api3.Stream<int>>,
   item: flaxIntType,
   stream: FlaxStreamBinding(
     "stream:flax.core/flutter#type:Stream[int:]",

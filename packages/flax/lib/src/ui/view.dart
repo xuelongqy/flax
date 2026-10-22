@@ -125,7 +125,7 @@ class FlaxView extends StatelessWidget {
     super.key,
     required this.createRuntime,
     required this.source,
-    required this.bindings,
+    this.bindings,
     this.sourceUrl = 'flax:app',
     this.namespace,
     this.onError,
@@ -143,7 +143,7 @@ class FlaxView extends StatelessWidget {
   factory FlaxView.bundle({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
-    required FlaxBindingRegistry bindings,
+    FlaxBindingRegistry? bindings,
     AssetBundle? assetBundle,
     String prefix = 'assets/flax',
     String? namespace,
@@ -173,7 +173,7 @@ class FlaxView extends StatelessWidget {
   factory FlaxView.directory({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
-    required FlaxBindingRegistry bindings,
+    FlaxBindingRegistry? bindings,
     required Directory directory,
     String? namespace,
     void Function(Object, StackTrace)? onError,
@@ -198,7 +198,7 @@ class FlaxView extends StatelessWidget {
   factory FlaxView.package({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
-    required FlaxBindingRegistry bindings,
+    FlaxBindingRegistry? bindings,
     required File file,
     Directory? installationDirectory,
     String? namespace,
@@ -227,7 +227,7 @@ class FlaxView extends StatelessWidget {
   factory FlaxView.file({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
-    required FlaxBindingRegistry bindings,
+    FlaxBindingRegistry? bindings,
     required File file,
     AssetBundle? assetBundle,
     String? namespace,
@@ -253,7 +253,7 @@ class FlaxView extends StatelessWidget {
   factory FlaxView.network({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
-    required FlaxBindingRegistry bindings,
+    FlaxBindingRegistry? bindings,
     required Uri uri,
     required FlaxRemoteFormat format,
     Map<String, String> headers = const {},
@@ -297,7 +297,7 @@ class FlaxView extends StatelessWidget {
   const FlaxView._application({
     super.key,
     required this.createRuntime,
-    required this.bindings,
+    this.bindings,
     required this._input,
     this.assetBundle,
     this.namespace,
@@ -368,6 +368,8 @@ class FlaxView extends StatelessWidget {
   final FlaxJsRuntime Function()? createRuntime;
   final String? source;
   final String? sourceUrl;
+
+  /// Optional application bindings; Core and selected plugins are added at startup.
   final FlaxBindingRegistry? bindings;
   final FlaxSession? _session;
   final String? _pageName;
@@ -466,7 +468,7 @@ class _SessionRootState extends State<_SessionRoot> {
           createRuntime: configuration.createRuntime!,
           source: configuration.source!,
           sourceUrl: configuration.sourceUrl!,
-          bindings: configuration.bindings!,
+          bindings: configuration.bindings ?? FlaxBindingRegistry([]),
           plugins: configuration.plugins,
           namespace: configuration.namespace,
           assetBundle: widget.assetBundle,
@@ -647,7 +649,7 @@ class _ApplicationViewState extends State<_ApplicationView> {
     }
     return FlaxView(
       createRuntime: configuration.createRuntime!,
-      bindings: configuration.bindings!,
+      bindings: configuration.bindings,
       source: application.source,
       sourceUrl: application.sourceUrl,
       assetBundle: application.assetBundle,

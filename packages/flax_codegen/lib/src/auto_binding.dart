@@ -12,8 +12,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     bool inferPublicTypeCarriers = true,
   }) async {
     await prepare([seed]);
-    final result = await _contexts.contexts.first.currentSession
-        .getLibraryByUri(seed.library);
+    final result = await _libraryByUri(seed.library);
     if (result is! LibraryElementResult) {
       throw StateError('Cannot resolve ${seed.library}');
     }
@@ -104,7 +103,11 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         seenOverrides.addAll(exclusions);
         excludedNames.add(name);
       }
-      if (scoped && !requested.contains(name)) continue;
+      if (scoped &&
+          !requested.contains(name) &&
+          !(seed.annotations && _flaxIgnored(element))) {
+        continue;
+      }
       if (exclusions.isNotEmpty) {
         final exclusion = exclusions.first;
         skips.add(
@@ -135,7 +138,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         );
         continue;
       }
-      if (_autoHidden(element)) {
+      if (_autoHidden(element, annotations: seed.annotations)) {
         if (element is InterfaceElement) hiddenTypes.add(identity(element));
         skips.add(
           FlaxCodegenSkip(
@@ -613,6 +616,8 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
                 setters: setters.toList()..sort(),
               ),
         publicLibraries: seed.publicLibraries,
+        annotations: seed.annotations,
+        sources: seed.sources,
       ),
       typeCarriers: typeCarriers,
       skips: skips,
@@ -633,25 +638,13 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     for (var i = 1; i < uri.pathSegments.length; i++) {
       libPath = p.dirname(libPath);
     }
-    final lib = Directory(libPath);
-    if (!lib.existsSync()) return const {};
-
     final packageName = uri.pathSegments.first;
-    final publicUris = <String>[];
-    for (final entity in lib.listSync(recursive: true, followLinks: false)) {
-      if (entity is! File || p.extension(entity.path) != '.dart') continue;
-      final relative = p.relative(entity.path, from: lib.path);
-      final segments = p.split(relative);
-      if (segments.isEmpty || segments.first == 'src') continue;
-      publicUris.add('package:$packageName/${p.posix.joinAll(segments)}');
-    }
-    publicUris.sort();
+    final publicUris = await _publicLibraryUris(packageName, libPath);
     final publicUriSet = publicUris.toSet();
     final candidates = <String, List<String>>{};
     final declaredPublicly = <String, String>{};
-    final session = _contexts.contexts.first.currentSession;
     for (final publicUri in publicUris) {
-      final resolved = await session.getLibraryByUri(publicUri);
+      final resolved = await _libraryByUri(publicUri);
       if (resolved is! LibraryElementResult) continue;
       for (final element
           in resolved.element.exportNamespace.definedNames2.values) {
@@ -677,8 +670,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     };
   }
 
-  bool _autoHidden(Element element) =>
-      element.metadata.hasInternal || element.metadata.hasVisibleForTesting;
+  bool _autoHidden(Element element, {bool annotations = false}) =>
+      element.metadata.hasInternal ||
+      element.metadata.hasVisibleForTesting ||
+      annotations && _flaxIgnored(element);
 
   bool _autoUsesUnavailable(DartType type, Set<String> unavailable) =>
       switch (type) {
@@ -840,7 +835,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         final split = entry.key.indexOf(':');
         final kind = entry.key.substring(0, split);
         final name = entry.key.substring(split + 1);
-        if (_autoHidden(entry.value)) continue;
+        if (_autoHidden(entry.value, annotations: seed.annotations)) continue;
         if (entry.value.metadata.hasDeprecated) {
           notices.add(
             FlaxCodegenNotice(
@@ -911,11 +906,12 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     InterfaceElement element,
     FlaxCodegenClassSelection selection,
     List<FlaxCodegenSkip> skips,
-    List<FlaxCodegenNotice> notices,
-  ) {
+    List<FlaxCodegenNotice> notices, {
+    bool annotations = false,
+  }) {
     bool visible(ExecutableElement? member, String target) {
       if (member == null) return true;
-      if (_autoHidden(member)) {
+      if (_autoHidden(member, annotations: annotations)) {
         skips.add(
           FlaxCodegenSkip(
             target: target,
@@ -1134,7 +1130,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     };
 
     bool visible(ExecutableElement member, String target) {
-      if (_autoHidden(member)) {
+      if (_autoHidden(member, annotations: scope.config.annotations)) {
         skips.add(
           FlaxCodegenSkip(
             target: target,

@@ -126,6 +126,15 @@ const sdk_physicsBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_physicsPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_physics",
+  bindingModules: [sdk_physicsBindings],
+  jsModules: {
+    "@flax/flutter/animation",
+    "@flax/flutter/physics",
+    "@flax/flutter/widgets",
+  },
+);
 Object? _function_nearEqual(Map<String, Object?> values) {
   return api.nearEqual(
     values["a"] as double?,

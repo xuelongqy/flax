@@ -82,6 +82,10 @@ void copyDartPackages(
     }
     File(p.join(source.path, 'flax_package.yaml'))
         .copySync(p.join(target.path, 'flax_package.yaml'));
+    final buildConfig = File(p.join(source.path, 'build.yaml'));
+    if (buildConfig.existsSync()) {
+      buildConfig.copySync(p.join(target.path, 'build.yaml'));
+    }
     final manifest = File(p.join(source.path, 'bindings', 'manifest.json'));
     if (manifest.existsSync()) {
       final output = File(p.join(target.path, 'bindings', 'manifest.json'));

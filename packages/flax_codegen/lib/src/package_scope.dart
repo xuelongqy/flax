@@ -37,11 +37,10 @@ extension FlaxCodegenPackageScope on FlaxCodegenBindingParser {
     final explicit = <FlaxCodegenSourceIdentity, List<int>>{};
     final exports = <Map<String, Element>>[];
     final libraries = <LibraryElement>[];
-    final session = _contexts.contexts.first.currentSession;
     for (final (index, config) in configs.indexed) {
       final (namespace, _) = await _publicExports(config);
       exports.add(namespace);
-      final result = await session.getLibraryByUri(config.library);
+      final result = await _libraryByUri(config.library);
       if (result is! LibraryElementResult) {
         throw StateError('Cannot resolve ${config.library}');
       }
@@ -104,7 +103,7 @@ extension FlaxCodegenPackageScope on FlaxCodegenBindingParser {
     for (final uri in {
       for (final config in configs) ...config.publicLibraries.keys,
     }) {
-      final result = await session.getLibraryByUri(uri);
+      final result = await _libraryByUri(uri);
       if (result is LibraryElementResult) routes[uri] = result.element;
     }
     for (final source in {...candidates.keys, ...explicit.keys}) {

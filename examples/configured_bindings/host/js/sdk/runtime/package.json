@@ -13,7 +13,8 @@
     "flax_modules.json"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && node build.mjs"
+    "build": "tsc -b tsconfig.json --force && node build.mjs",
+    "types": "tsc -b tsconfig.json --force --emitDeclarationOnly"
   },
   "dependencies": {
     "@flax/core": "0.0.0",

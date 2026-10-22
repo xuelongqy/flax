@@ -1045,6 +1045,16 @@ const sdk_gesturesBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_gesturesPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_gestures",
+  bindingModules: [sdk_gesturesBindings],
+  jsModules: {
+    "@flax/flutter/gestures",
+    "@flax/flutter/rendering",
+    "@flax/flutter/services",
+    "@flax/flutter/widgets",
+  },
+);
 Object? _function_computeHitSlop(Map<String, Object?> values) {
   return api.computeHitSlop(
     values["kind"] as api4.PointerDeviceKind,

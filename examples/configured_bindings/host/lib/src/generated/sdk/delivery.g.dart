@@ -33,6 +33,11 @@ const deliveryBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final deliveryPlugin = FlaxBindingPlugin(
+  id: "binding:example.shop/delivery",
+  bindingModules: [deliveryBindings],
+  jsModules: {"@example/shop/delivery"},
+);
 bool _isDeliveryEstimate(Object value) => value is api.DeliveryEstimate;
 Object? _DeliveryEstimate_days(Object value) =>
     (value as api.DeliveryEstimate).days;

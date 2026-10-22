@@ -306,6 +306,11 @@ const sdk_semanticsBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_semanticsPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_semantics",
+  bindingModules: [sdk_semanticsBindings],
+  jsModules: {"@flax/flutter/rendering", "@flax/flutter/semantics"},
+);
 Object? _function_debugResetSemanticsIdCounter(Map<String, Object?> values) {
   api.debugResetSemanticsIdCounter();
   return null;

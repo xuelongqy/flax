@@ -1,7 +1,9 @@
 # Author template skeleton
 
-Minimal stub for a third-party Flax binding package. Copy this directory outside the
-Flax checkout, rename placeholders, then follow
+Configured stub for a third-party Flax binding package. For a single annotation scope,
+start with the
+[config-free app example](../../../../examples/configured_bindings/default_app/README.md).
+Copy this directory outside the Flax checkout, rename placeholders, then follow
 [docs/author-template.md](../../docs/author-template.md).
 
 Replace before use:
@@ -22,4 +24,9 @@ registration aligned when renaming the module or public entry.
 After generation, `js/` builds runtime JavaScript and `js-types/` receives declarations
 only. Keep both versions aligned with Dart. Update `js/flax_modules.json` when changing
 the selected surface or module tuple. Business bundles use prepared plugin modules;
-register a Dart plugin that requests the public API module before running the bundle.
+inject the generated examplePlugin before running the bundle. Its public-library routes
+select the prepared JS modules; custom lifecycle resources still need an ordinary
+FlaxPlugin.
+
+Keep `build.yaml` when distributing the Dart package. Its public metadata assets let
+consumers reuse this provider through build_runner without regenerating its bindings.

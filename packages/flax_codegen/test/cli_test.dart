@@ -12,6 +12,14 @@ import 'support/core_package.dart';
 
 void main() {
   group('parseFlaxCodegenCliArgs', () {
+    test('accepts package commands without a config path', () {
+      for (final command in ['validate', 'generate', 'check']) {
+        final args = parseFlaxCodegenCliArgs([command]);
+        expect(args.command, command);
+        expect(args.configPath, isNull);
+        expect(args.automatic, isFalse);
+      }
+    });
     test('accepts validate|check|generate --config <path>', () {
       for (final command in const ['validate', 'check', 'generate']) {
         final parsed = parseFlaxCodegenCliArgs([
@@ -47,7 +55,6 @@ void main() {
         ['--check'],
         ['widgets.yml'],
         ['check', '--check', '--config', 'bindings/flax_widgets.yaml'],
-        ['validate'],
         ['validate', 'bindings/flax_widgets.yaml'],
         ['validate', '--config'],
         ['validate', '--config', '--flag'],

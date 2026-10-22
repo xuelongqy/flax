@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:yaml/yaml.dart';
 import 'package:path/path.dart' as p;
+import 'package:glob/glob.dart';
 
 import 'diagnostic.dart';
 import 'model.dart';
@@ -11,6 +12,19 @@ part 'config_strict.dart';
 
 const flaxCodegenOverridesFilename = 'flax_overrides.yaml';
 const flaxCodegenDefaultJsPackage = '@flax/app';
+const flaxCodegenDefaultBindingConfig = 'format: 2\n';
+const flaxCodegenJsBuildPlan = 'bindings/js_modules.json';
+
+String flaxCodegenDartOutput(String scope) => 'lib/src/generated/$scope.g.dart';
+String flaxCodegenTsOutput(String scope) => 'js/src/generated/$scope.ts';
+String flaxCodegenPublicLibrary(String scope) =>
+    'lib/flax_bindings/$scope.dart';
+
+final flaxCodegenDefaultOutputs = List<String>.unmodifiable([
+  flaxCodegenDartOutput('app'),
+  flaxCodegenTsOutput('app'),
+  flaxCodegenPublicLibrary('app'),
+]);
 
 bool flaxCodegenIsBindingConfigPath(String path) =>
     p.basename(path).startsWith('flax_') &&
@@ -35,6 +49,8 @@ class FlaxCodegenBindingConfig {
     this.topLevel,
     this.publicLibraries = const {},
     this.automaticLibrary = false,
+    this.annotations = false,
+    this.sources,
     this.automaticClasses = const [],
     this.automaticFunctions = const [],
     this.automaticExtensions = const [],
@@ -59,34 +75,48 @@ class FlaxCodegenBindingConfig {
   /// Infer the public library surface, rather than an explicit declaration list.
   final bool automaticLibrary;
 
+  /// Select FlaxExport declarations belonging to this scope.
+  final bool annotations;
+
+  /// Package-relative source globs, or null for the legacy library entry mode.
+  final List<String>? sources;
+
   final List<String> automaticClasses;
   final List<String> automaticFunctions;
   final List<String> automaticExtensions;
   final FlaxCodegenAutoOverrides overrides;
 
   FlaxCodegenBindingConfig withOverrides(FlaxCodegenAutoOverrides value) =>
-      FlaxCodegenBindingConfig(
-        name,
-        library,
-        jsPackage,
-        dartOutput,
-        tsOutput,
-        classes,
-        additionalLibraries: additionalLibraries,
-        functions: functions,
-        extensions: extensions,
-        callbackSnapshots: callbackSnapshots,
-        imports: imports,
-        types: types,
-        typedefs: typedefs,
-        topLevel: topLevel,
-        publicLibraries: publicLibraries,
-        automaticLibrary: automaticLibrary,
-        automaticClasses: automaticClasses,
-        automaticFunctions: automaticFunctions,
-        automaticExtensions: automaticExtensions,
-        overrides: value,
-      );
+      copyWith(overrides: value);
+
+  FlaxCodegenBindingConfig copyWith({
+    String? library,
+    List<String>? additionalLibraries,
+    FlaxCodegenAutoOverrides? overrides,
+  }) => FlaxCodegenBindingConfig(
+    name,
+    library ?? this.library,
+    jsPackage,
+    dartOutput,
+    tsOutput,
+    classes,
+    additionalLibraries: additionalLibraries ?? this.additionalLibraries,
+    functions: functions,
+    extensions: extensions,
+    callbackSnapshots: callbackSnapshots,
+    imports: imports,
+    types: types,
+    typedefs: typedefs,
+    topLevel: topLevel,
+    publicLibraries: publicLibraries,
+    automaticLibrary: automaticLibrary,
+    annotations: annotations,
+    sources: sources,
+    automaticClasses: automaticClasses,
+    automaticFunctions: automaticFunctions,
+    automaticExtensions: automaticExtensions,
+    overrides: overrides ?? this.overrides,
+  );
 
   bool get hasAutomaticSelection =>
       automaticLibrary ||
@@ -123,14 +153,22 @@ class FlaxCodegenBindingConfig {
           },
     };
     final classes = data['classes'] as Map<String, dynamic>? ?? {};
+    final legacy = data.containsKey('library');
+    final name = legacy
+        ? data['name'] as String
+        : data['name'] as String? ?? 'app';
     return FlaxCodegenBindingConfig(
-      data['name'] as String,
-      data['library'] as String,
+      name,
+      data['library'] as String? ?? 'dart:core',
       data.containsKey('jsPackage')
           ? data['jsPackage'] as String
-          : '$jsPackageRoot/${data['name']}',
-      data['dartOutput'] as String,
-      data['tsOutput'] as String,
+          : '$jsPackageRoot/$name',
+      legacy
+          ? data['dartOutput'] as String
+          : data['dartOutput'] as String? ?? flaxCodegenDartOutput(name),
+      legacy
+          ? data['tsOutput'] as String
+          : data['tsOutput'] as String? ?? flaxCodegenTsOutput(name),
       classes.map((name, value) {
         final selection = value as Map<String, dynamic>;
         final constructors =
@@ -250,6 +288,11 @@ class FlaxCodegenBindingConfig {
       ),
       automaticClasses: automaticClasses,
       automaticLibrary: data['automatic'] as bool? ?? false,
+      annotations: data['annotations'] as bool? ?? !data.containsKey('library'),
+      sources: data.containsKey('library')
+          ? null
+          : (data['sources'] as List<dynamic>? ?? const ['lib/**.dart'])
+                .cast<String>(),
       automaticFunctions: automaticFunctions,
       automaticExtensions: automaticExtensions,
       overrides: data['overrides'] == null

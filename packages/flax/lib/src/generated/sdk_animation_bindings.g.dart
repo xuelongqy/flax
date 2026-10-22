@@ -2475,6 +2475,11 @@ const sdk_animationBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final sdk_animationPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/sdk_animation",
+  bindingModules: [sdk_animationBindings],
+  jsModules: {"@flax/flutter/animation", "@flax/flutter/widgets"},
+);
 Object? _read_kAlwaysCompleteAnimation(Map<String, Object?> values) =>
     api.kAlwaysCompleteAnimation;
 Object? _read_kAlwaysDismissedAnimation(Map<String, Object?> values) =>

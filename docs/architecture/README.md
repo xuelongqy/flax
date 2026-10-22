@@ -30,6 +30,7 @@ standalone applications. Flutter owns widgets, layout, painting, and native reso
 | Extension packages     | `packages/flax_*`                 | Material bindings, host plugins, and their package-local tests/examples |
 | Shared native runtime  | `packages/flax/native`            | Canonical ABI and internal GC headers                                   |
 | Engine adaptation      | `flutter/engine/src/flutter/flax` | C++ bridge, V8 CppHeap, Dart patch and engine packaging                 |
+| Binding annotations    | `packages/flax_annotations`       | Pure Dart API scope and exclusion markers                               |
 | Binding generator      | `packages/flax_codegen`           | Public API analysis, manifests, explicit selection, and Dart/TS output  |
 | Aggregate applications | `examples/*`                      | Multi-package integration, outside consumption, and release checks      |
 

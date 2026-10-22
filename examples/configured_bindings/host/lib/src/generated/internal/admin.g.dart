@@ -37,6 +37,11 @@ const adminBindings = FlaxBindingModule(
   dartTypes: [],
   dartShapes: _flaxDartShapes,
 );
+final adminPlugin = FlaxBindingPlugin(
+  id: "binding:example.shop/admin",
+  bindingModules: [adminBindings],
+  jsModules: {"@flax/app/admin"},
+);
 Object? _function_resetCart(Map<String, Object?> values) {
   return api.resetCart();
 }

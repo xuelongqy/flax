@@ -74,6 +74,11 @@ const canvasBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final canvasPlugin = FlaxBindingPlugin(
+  id: "binding:flax.canvas/canvas",
+  bindingModules: [canvasBindings],
+  jsModules: {"@flax/canvas"},
+);
 bool _isFlaxCanvasSurface(Object value) => value is api.FlaxCanvasSurface;
 Object? _FlaxCanvasSurface_hasListeners(Object value) =>
     (value as api.FlaxCanvasSurface).hasListeners;

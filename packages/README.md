@@ -10,6 +10,7 @@ and native code together when those parts exist. An extension depends on `flax` 
 | [flax](flax/README.md)                             | Engine-independent runtime, host environment, Flutter bindings, sessions, and shared native bridge |
 | [flax_material_ui](flax_material_ui/README.md)     | Generated Material bindings and Route/Page adapters                                                |
 | [flax_cupertino_ui](flax_cupertino_ui/README.md)   | Reserved Cupertino binding extension; no runtime implementation yet                                |
+| [flax_annotations](flax_annotations/README.md)     | Pure Dart scope and exclusion annotations for binding selection                                    |
 | [flax_codegen](flax_codegen/README.md)             | Analyzer-based Dart/TypeScript binding generator                                                   |
 | [flax_test](flax_test/README.md)                   | Development-only engine-neutral runtime contracts and shared test harnesses                        |
 | [flax_engine_hermes](flax_engine_hermes/README.md) | Hermes adapter, pinned inputs, assets, and runtime tests                                           |
