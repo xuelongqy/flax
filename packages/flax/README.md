@@ -61,15 +61,21 @@ select a Dart instantiation.
 
 ## Entries
 
-- `package:flax/runtime.dart`: `FlaxJsRuntime`, primitive values, object/function
-  reference interfaces, synchronous host callbacks, and `FlaxJsException`. No Flutter UI
-  type imports.
+- `package:flax/runtime.dart`: `FlaxJsRuntime`, reusable `FlaxJsSource`, primitive
+  values, object/function reference interfaces, synchronous host callbacks, and
+  `FlaxJsException`. No Flutter UI type imports.
 - `package:flax/flax.dart`: exports runtime, FlaxSession, FlaxView, binding extension
   APIs, FlaxDirectoryAssetBundle, and flutterBindings.
 - `package:flax/bindings.dart`: public generator/plugin registration and host extension
   types.
 - `package:flax/native_runtime.dart`: public engine-author extension exposing the shared
   native wrapper and generated ABI table type. Normal applications use `runtime.dart`.
+
+Prepared module assets reuse immutable UTF-8 source across Sessions automatically. Bare
+runtimes and host plugins can reuse a `FlaxJsSource` with `evaluateSource()`; each call
+still executes in its own runtime. This reuses encoding, not module state or compiled
+JavaScript. Binding registries likewise share only immutable declaration indexes, using
+ordered weak module keys so retired plugins remain collectible.
 
 Objects and functions retain their owning runtime and follow their real business
 references through joint GC. `release()` ends an owned reference early; callback

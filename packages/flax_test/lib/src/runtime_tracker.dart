@@ -97,10 +97,17 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   FlaxJsValue unwrap(FlaxJsValue value) =>
       value is _TrackedObject ? value.inner : value;
   @override
-  FlaxJsValue evaluate(String source, {String sourceUrl = 'flax:eval'}) {
+  FlaxJsValue evaluate(String source, {String sourceUrl = 'flax:eval'}) =>
+      _evaluate(sourceUrl, () => inner.evaluate(source, sourceUrl: sourceUrl));
+
+  @override
+  FlaxJsValue evaluateSource(FlaxJsSource source) =>
+      _evaluate(source.sourceUrl, () => inner.evaluateSource(source));
+
+  FlaxJsValue _evaluate(String sourceUrl, FlaxJsValue Function() evaluate) {
     final watch = Stopwatch()..start();
     try {
-      return wrap(inner.evaluate(source, sourceUrl: sourceUrl), sourceUrl);
+      return wrap(evaluate(), sourceUrl);
     } finally {
       evaluationMicroseconds.update(
         sourceUrl,

@@ -1,13 +1,13 @@
 part of '../../bindings.dart';
 
-/// Preloaded, immutable script bytes. Safe to reuse across independent sessions.
-/// Create these before constructing a session; no JS or Dart references are cached.
+/// Preloaded scripts with reusable encoding, independent of any session.
+/// Create these before constructing a session; no runtime references are cached.
 class FlaxModuleAssets {
-  FlaxModuleAssets._(this._bootstrap, this._bootstrapPath, this._modules);
+  FlaxModuleAssets._(this._bootstrap, this._modules);
 
-  final String _bootstrap;
-  final String _bootstrapPath;
+  final FlaxJsSource _bootstrap;
   final List<_PreparedModule> _modules;
+  final _validatedBindings = Expando<Set<_PreparedModule>>();
 
   List<String> get moduleSpecifiers =>
       List.unmodifiable(_modules.map((module) => module.specifier));
@@ -66,12 +66,12 @@ class FlaxModuleAssets {
       }
     }
     final sources = await Future.wait([
-      bundle.loadString(bootstrapPath),
-      for (final module in modules) bundle.loadString(module.asset),
+      bundle.loadString(bootstrapPath, cache: false),
+      for (final module in modules)
+        bundle.loadString(module.asset, cache: false),
     ]);
     return FlaxModuleAssets._(
-      sources.first,
-      bootstrapPath,
+      FlaxJsSource(sources.first, sourceUrl: bootstrapPath),
       List.unmodifiable([
         for (var index = 0; index < modules.length; index++)
           modules[index].withSource(sources[index + 1]),
@@ -121,7 +121,16 @@ extension _SessionModules on _Session {
     final selected = assets._select(requested);
     if (selected.isEmpty) return;
 
-    _validateModuleBindings(selected, registry.modules);
+    final validated =
+        assets._validatedBindings[registry] ?? <_PreparedModule>{};
+    final pending = selected
+        .where((module) => !validated.contains(module))
+        .toList();
+    if (pending.isNotEmpty) {
+      _validateModuleBindings(pending, registry.modules);
+      validated.addAll(pending);
+      assets._validatedBindings[registry] = validated;
+    }
     claimGlobal('__flaxModules');
     final context = _HostContext(this, const {'__flaxModules'});
     final installation = _ModuleInstallation(context);
@@ -210,10 +219,7 @@ class _ModuleInstallation {
   bool _closed = false;
 
   void install(FlaxModuleAssets assets, List<_PreparedModule> modules) {
-    final result = context.evaluate(
-      assets._bootstrap,
-      sourceUrl: assets._bootstrapPath,
-    );
+    final result = context.evaluateSource(assets._bootstrap);
     if (result is! FlaxJsObject) {
       throw StateError('Invalid prepared Flax module registry');
     }
@@ -243,7 +249,7 @@ class _ModuleInstallation {
     }
     _registry = result;
     for (final module in modules) {
-      _releaseJs(context.evaluate(module.source, sourceUrl: module.asset));
+      _releaseJs(context.evaluateSource(module.source!));
     }
     final expected = jsonEncode([
       for (final module in modules) module.expectation,
@@ -339,7 +345,7 @@ class _PreparedModule {
     required this.dependencies,
     required this.bindings,
     this.subpaths = const [],
-    this.source = '',
+    this.source,
   });
 
   final String specifier;
@@ -350,7 +356,7 @@ class _PreparedModule {
   final Map<String, String> dependencies;
   final List<_RequiredModuleBindings> bindings;
   final List<String> subpaths;
-  final String source;
+  final FlaxJsSource? source;
 
   Map<String, Object> get expectation => {
     'specifier': specifier,
@@ -369,7 +375,7 @@ class _PreparedModule {
     dependencies: dependencies,
     bindings: bindings,
     subpaths: subpaths,
-    source: value,
+    source: FlaxJsSource(value, sourceUrl: asset),
   );
 
   factory _PreparedModule.parse(Object? value) {

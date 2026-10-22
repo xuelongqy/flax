@@ -43,6 +43,20 @@ closures, source bundles, deferred callbacks and accessors. They are focused cov
 not complete ECMAScript conformance. The maintained Hermes adapter uses source
 compilation, ES6 block scoping and explicit microtask checkpoints.
 
+`FlaxJsSource` encodes reusable source text and its URL once, at first use, as immutable
+UTF-8 bytes. It then releases its source String rather than retaining both
+representations. `evaluateSource()` executes those bytes independently in each runtime;
+ordinary `evaluate(String)` remains available for one-off scripts and hot reload.
+Prepared module assets and the base host use the reusable path automatically. The source
+object contains no engine, compiled script or JS references and needs no explicit
+disposal. Native evaluation still copies into temporary FFI memory and an owning JSI
+Buffer: the current ABI does not transfer Dart buffer ownership, and engines may retain
+that Buffer for lazy code. A live JS closure can therefore outlast the Dart source
+object. Native ABI 2, UI protocol 24 and the joint collector are unchanged. Runtime and
+host-context decorators implementing these interfaces must also forward
+`evaluateSource()`. See [Session startup reuse](session-startup.md) for measurements and
+validation limits.
+
 ## Values and references
 
 `FlaxJsUndefined`, `FlaxJsNull`, `FlaxJsBoolean`, `FlaxJsNumber`, `FlaxJsString` and

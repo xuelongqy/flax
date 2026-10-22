@@ -1226,6 +1226,9 @@ class _QueueHook implements FlaxHostContext {
   FlaxJsValue evaluate(String source, {String sourceUrl = 'flax:host'}) =>
       inner.evaluate(source, sourceUrl: sourceUrl);
   @override
+  FlaxJsValue evaluateSource(FlaxJsSource source) =>
+      inner.evaluateSource(source);
+  @override
   FlaxJsObject exposeObject(Object value, String typeId) =>
       inner.exposeObject(value, typeId);
   @override

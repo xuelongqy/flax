@@ -811,16 +811,28 @@ class FlaxBindingModule {
 
 /// Registers selected modules and their transitive Dart binding dependencies.
 /// Shared module objects are admitted once. A registry never chooses an engine.
+/// Immutable indexes are reused for the same ordered module identities.
 class FlaxBindingRegistry {
-  FlaxBindingRegistry(List<FlaxBindingModule> modules)
-    : modules = _withDependencies(modules) {
+  factory FlaxBindingRegistry(List<FlaxBindingModule> modules) {
+    final expanded = _withDependencies(modules);
+    var cache = _indexes;
+    for (final module in expanded) {
+      cache = cache.modules[module] ??= _BindingRegistryCache();
+    }
+    return cache.registry ??= FlaxBindingRegistry._(expanded);
+  }
+
+  // Every module is a weak key: retired plugin declarations must remain collectible.
+  static final _indexes = _BindingRegistryCache();
+
+  FlaxBindingRegistry._(this.modules) {
     final moduleIds = <String>{};
     final types = <String, FlaxTypeBinding>{};
     final functions = <String, FlaxFunctionBinding>{};
     final constants = <String, FlaxConstantGroup>{};
     final stateVariants = <String, FlaxStateVariantBinding>{};
     final componentStateTypes = <String>{};
-    for (final module in [componentsBindings, ...this.modules]) {
+    for (final module in [componentsBindings, ...modules]) {
       if (module.uiProtocol != flaxBindingVersion) {
         throw ArgumentError('Incompatible binding module ${module.name}');
       }
@@ -920,6 +932,11 @@ class FlaxBindingRegistry {
       other is FlaxBindingRegistry && listEquals(modules, other.modules);
   @override
   int get hashCode => Object.hashAll(modules);
+}
+
+class _BindingRegistryCache {
+  final modules = Expando<_BindingRegistryCache>();
+  FlaxBindingRegistry? registry;
 }
 
 /// Shared typed factories; conversion policies and ownership stay in the bridge.
