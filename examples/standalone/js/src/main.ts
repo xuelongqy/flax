@@ -37,6 +37,7 @@ import {
 import { Color } from '@flax/flutter/services';
 import { CanvasView } from '@flax/canvas';
 import { AssetsPage } from './assets';
+import { NetworkAssetsPage } from './network_assets';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 const DetailsRoute = MaterialPageRoute.$type(
@@ -179,6 +180,13 @@ class HomeState extends State<HomePage> {
             }),
             Text(this.socketStatus.bind),
             Text('Static application content', { key: StringKey('static') }),
+            TextButton({
+              onPressed: () =>
+                Navigator.of(this.context).push(
+                  MaterialPageRoute({ builder: () => new NetworkAssetsPage() }),
+                ),
+              child: Text('Open network assets'),
+            }),
           ],
         }),
       }),

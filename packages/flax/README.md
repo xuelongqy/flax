@@ -61,15 +61,21 @@ select a Dart instantiation.
 
 ## Entries
 
-- `package:flax/runtime.dart`: `FlaxJsRuntime`, primitive values, object/function
-  reference interfaces, synchronous host callbacks, and `FlaxJsException`. No Flutter UI
-  type imports.
+- `package:flax/runtime.dart`: `FlaxJsRuntime`, reusable `FlaxJsSource`, primitive
+  values, object/function reference interfaces, synchronous host callbacks, and
+  `FlaxJsException`. No Flutter UI type imports.
 - `package:flax/flax.dart`: exports runtime, FlaxSession, FlaxView, binding extension
   APIs, FlaxDirectoryAssetBundle, and flutterBindings.
 - `package:flax/bindings.dart`: public generator/plugin registration and host extension
   types.
 - `package:flax/native_runtime.dart`: public engine-author extension exposing the shared
   native wrapper and generated ABI table type. Normal applications use `runtime.dart`.
+
+Prepared module assets reuse immutable UTF-8 source across Sessions automatically. Bare
+runtimes and host plugins can reuse a `FlaxJsSource` with `evaluateSource()`; each call
+still executes in its own runtime. This reuses encoding, not module state or compiled
+JavaScript. Binding registries likewise share only immutable declaration indexes, using
+ordered weak module keys so retired plugins remain collectible.
 
 Objects and functions retain their owning runtime and follow their real business
 references through joint GC. `release()` ends an owned reference early; callback
@@ -97,11 +103,16 @@ Dart object results, joint-GC callback ownership and UI Future delivery. See the
 lifecycle rules.
 
 `FlaxSession.assetBundle` selects the native resource source for its UI and business
-code. `FlaxView` can capture an inherited bundle; `FlaxDirectoryAssetBundle` supplies
-installed directory resources using the same keys and native Image providers.
-`FlaxPrefixedAssetBundle` scopes built-in assets to `assets/flax/` by default;
-`FlaxManifest.load(bundle)` reads the shared `flax.json` descriptor. JS accesses the
-Session bundle through `getAssetBundle()` from `@flax/core/assets`. See
+code. Source/file/network-JS Views select `assets/flax/` inside the inherited host
+bundle by default. Explicit Sessions and FlaxApplication script loaders use that prefix
+inside rootBundle. An explicit assetBundle is always used unchanged; pass rootBundle to
+retain host-root resource keys, or pass an inherited business bundle explicitly to avoid
+another prefix. Ordinary rebuilds retain the Session and its resource Bundle.
+`FlaxDirectoryAssetBundle` supplies installed directory resources using the same keys
+and native Image providers. `FlaxPrefixedAssetBundle` scopes built-in assets to
+`assets/flax/` by default; `FlaxManifest.load(bundle)` reads the shared `flax.json`
+descriptor. JS accesses the Session bundle through `getAssetBundle()` from
+`@flax/core/assets`. See
 [application resources](../../docs/architecture/applications.md#application-resources).
 
 `FlaxView.page` borrows a session and mounts a registered JS factory without its initial
@@ -223,13 +234,36 @@ Use `FlaxView.bundle(...)` to automatically load `assets/flax/flax.json` and its
 with optional `prefix` or an explicit business-root `assetBundle`. `FlaxView.directory`,
 `.package` and `.file` accept a Directory, local `.flax` File and single JS File,
 respectively. `FlaxView.network(uri: ..., format: FlaxRemoteFormat.package, ...)` loads
-a remote package; `.javascript` selects a remote script with explicit/inherited
-resources. Optional headers, expectedSha256, download callback and cacheDirectory
-configure its download and revalidation cache. Invalid combinations of prefix/Bundle or
-package/Bundle are rejected. All automatic entries provide optional
+a remote package; `.javascript` selects a remote script with the same built-in business
+resource default as source/file. Optional headers, expectedSha256, download callback and
+cacheDirectory configure its download and revalidation cache. Invalid combinations of
+prefix/Bundle or package/Bundle are rejected. All automatic entries provide optional
 loadingBuilder/errorBuilder and preserve the Session across ordinary rebuilds. Package
 installation defaults to ApplicationSupport/flax and accepts an explicit
 installationDirectory.
+
+Built-in business assets load directly from `assets/flax/`. A prepared directory is read
+in place. Local and remote packages share
+`<ApplicationSupport>/flax/installed/<package-sha256>/`; network artifacts are cached
+separately under `<ApplicationSupport>/flax/downloads/`. `installationDirectory`
+replaces the installation root, while `cacheDirectory` replaces the download root.
+Remote JS continues to use the built-in business resources unless given an explicit
+assetBundle; use a remote package to update code and resources together.
+
+Images and JSON inside either built-in resources or an installed package use
+`Image.asset('assets/images/flutter.png')` and
+`getAssetBundle().loadString('assets/data/example.json')`. Independent URLs use
+`Image.network(url)` and `fetch(url)`; they do not use the Flax artifact cache. Business
+Fetch requires the optional FlaxFetchPlugin, independently of the application
+downloader. See the
+[loading examples](../../docs/architecture/applications.md#application-loading-modes),
+[directory and cache reference](../../docs/architecture/applications.md#resource-and-cache-locations),
+and
+[resource API comparison](../../docs/architecture/applications.md#packaged-resources-and-independent-http-resources).
+
+A JSON request's AbortController controls that Fetch request and its response body.
+Image.network follows Flutter's separate request/cache lifetime; page disposal does not
+guarantee that its transfer stops immediately.
 
 For explicit Session ownership, load through `FlaxApplication` and construct
 `FlaxSession.application(application: ..., createRuntime: ..., bindings: ...)`. Resource

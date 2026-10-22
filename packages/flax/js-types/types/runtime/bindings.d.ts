@@ -216,12 +216,12 @@ export declare function construct(kind: 'widget' | 'value' | 'route' | 'page', t
 export declare function defineEnum(type: string, names: readonly string[], members?: object, cached?: readonly string[], parents?: readonly string[]): void;
 export declare function enumValue<T extends DartEnum>(type: string, name: string): T;
 /** Closed generic constants select typed calls while sharing one prototype. */
-export declare function invokeEnum(receiver: object, operations: readonly string[], args: readonly unknown[]): unknown;
+export declare function invokeEnum(receiver: object, operations: readonly string[], args: readonly unknown[], parameters?: readonly Parameter[]): unknown;
 export declare function defineContext(type: string, fields: readonly string[], methods?: Readonly<Record<string, StateMethod>>): void;
 export declare function contextHandle(value: unknown, type: string): number | null | undefined;
-export declare function invokeStatic(type: string, member: string, args: readonly unknown[]): unknown;
+export declare function invokeStatic(type: string, member: string, args: readonly unknown[], parameters?: readonly Parameter[]): unknown;
 /** Generated exports share a typed Dart function registry. */
-export declare function invokeTopLevel(id: string, args: readonly unknown[]): unknown;
+export declare function invokeTopLevel(id: string, args: readonly unknown[], parameters?: readonly Parameter[]): unknown;
 /** Install lazy native reads without repeating a forwarding function in each module. */
 export declare function defineStaticGetters(target: object, prefix: string, names: readonly string[]): void;
 export type NavigationData = null | boolean | number | string | NavigationData[] | {
@@ -234,7 +234,7 @@ type PageFactory = (params: ReadonlySignal<NavigationData>, lifecycle: PageLifec
 export declare function registerPage(name: string, factory: PageFactory): void;
 type StateMethod = (this: object, ...args: never[]) => unknown;
 export declare function defineState(type: string, fields: readonly string[], methods: Readonly<Record<string, StateMethod>>): void;
-export declare function invokeInstance(receiver: object, type: string, method: string, args: readonly unknown[]): unknown;
+export declare function invokeInstance(receiver: object, type: string, method: string, args: readonly unknown[], parameters?: readonly Parameter[]): unknown;
 type ObjectDefinition = {
     parent: string | undefined;
     collectionKind: string | undefined;
@@ -282,7 +282,7 @@ export declare function defineObject(type: string, fields: ObjectDefinition['fie
 export declare function defineStream(type: string, fields: readonly string[], methods: Readonly<Record<string, StateMethod>>): void;
 export declare function constructAsyncIterableStream<T>(type: string, source: AsyncIterable<T>): object;
 export declare function constructStream(_kind: 'stream', type: string, ctor: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): object;
-export declare function invokeStream(receiver: object, type: string, method: string, args: readonly unknown[]): unknown;
+export declare function invokeStream(receiver: object, type: string, method: string, args: readonly unknown[], parameters?: readonly Parameter[]): unknown;
 export declare function constructObject(_kind: 'object', type: string, ctor: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): object;
 /** Records a generic factory call until a concrete Dart parameter supplies T. */
 export declare function constructDeferredObject(type: string, factory: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): object;
@@ -332,7 +332,7 @@ export declare function invokeDartSuper(receiver: object, method: Function, memb
     readonly super: Function;
 }): unknown;
 export declare function invokeProxySuper(receiver: object, type: string, member: string, args: readonly unknown[]): unknown;
-export declare function invokeObject(receiver: object, type: string, method: string, args: readonly unknown[]): unknown;
+export declare function invokeObject(receiver: object, type: string, method: string, args: readonly unknown[], parameters?: readonly Parameter[]): unknown;
 export declare function invokeObjectStatic(type: string, member: string): unknown;
 /** A plain-data snapshot, without invoking getters or serializing through JSON. */
 export declare function copyNavigationData(value: unknown, path?: Set<object>): NavigationData;

@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/dart/io/_bindings/sdk_dependencies_Direct
 import '@flax/dart/io/_bindings/sdk_dependencies_Directory';
 import type * as upstream3 from '@flax/dart/io/_bindings/sdk_dependencies_FileStat';
 import '@flax/dart/io/_bindings/sdk_dependencies_FileStat';
-import { _flaxMemberParameters3, _flaxMemberParameters52, _flaxMemberParameters53, _flaxMemberParameters2 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
+import { _flaxMemberParameters4, _flaxMemberParameters61, _flaxMemberParameters62, _flaxMemberParameters2 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Link extends Omit<upstream0.FileSystemEntity, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:io::Link": readonly [] }>, Readonly<{ "__flaxBound:dart:io::FileSystemEntity": readonly [] }> { readonly __Link: unique symbol;
@@ -37,7 +37,7 @@ update(target: string): Promise<Link>;
 target(): Promise<string>;
 targetSync(): string;
 }
-defineObject("flax.core/sdk_dependencies#type:Link", ["path","uri","isAbsolute","absolute","parent"], [], _flaxBindingMethods("flax.core/sdk_dependencies#type:Link", "object", {"rename":_flaxMemberParameters3,"renameSync":_flaxMemberParameters3,"create":_flaxMemberParameters52,"createSync":_flaxMemberParameters52,"updateSync":_flaxMemberParameters53,"update":_flaxMemberParameters53,"target":_flaxMemberParameters2,"targetSync":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_dependencies#type:FileSystemEntity");
+defineObject("flax.core/sdk_dependencies#type:Link", ["path","uri","isAbsolute","absolute","parent"], [], _flaxBindingMethods("flax.core/sdk_dependencies#type:Link", "object", {"rename":_flaxMemberParameters4,"renameSync":_flaxMemberParameters4,"create":_flaxMemberParameters61,"createSync":_flaxMemberParameters61,"updateSync":_flaxMemberParameters62,"update":_flaxMemberParameters62,"target":_flaxMemberParameters2,"targetSync":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_dependencies#type:FileSystemEntity");
 export function _LinkFactory(path: string): Link {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

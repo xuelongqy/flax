@@ -470,7 +470,7 @@ void main() {
             .length,
         0,
       );
-      expect(emitter.dart(module), contains('Function.apply'));
+      expect(emitter.dart(module), contains('flaxInvokeWithDefaults'));
       await compileFixture(
         repoRoot,
         emitter,
@@ -562,7 +562,7 @@ void main() {
   );
 
   test(
-    'actual emission uses direct calls through five and apply from six',
+    'actual emission uses one fixed call for every omission arity',
     () async {
       final library = config('default_cases.dart');
       final parser = FlaxCodegenBindingParser(repoRoot);
@@ -576,8 +576,9 @@ void main() {
         );
         expect(measured['ok'], isTrue, reason: '$measured');
         expect(measured['estimated'], isFalse);
-        expect(measured['dartBranches'], count <= 5 ? 1 << count : 0);
-        expect(measured['applyCalls'], count >= 6 ? 1 : 0);
+        expect(measured['dartBranches'], 0);
+        expect(measured['applyCalls'], 0);
+        expect(measured['fixedCalls'], 1);
       }
     },
   );

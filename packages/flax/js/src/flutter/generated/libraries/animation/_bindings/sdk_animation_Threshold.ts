@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/animation/_bindings/flutter_Curve
 import '@flax/flutter/animation/_bindings/flutter_Curve';
 import type * as upstream1 from '@flax/flutter/animation/_bindings/sdk_animation_ParametricCurve';
 import '@flax/flutter/animation/_bindings/sdk_animation_ParametricCurve';
-import { _flaxMemberParameters41, _flaxMemberParameters4, _flaxMemberParameters2 } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
+import { _flaxMemberParameters43, _flaxMemberParameters4, _flaxMemberParameters2 } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -24,7 +24,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_animation#type:Threshold", "", [{"name":"threshold","required":true,"positional":true}], [threshold], {}) as Threshold;
 }
-const _ThresholdProxy = {type: "flax.core/sdk_animation#type:Threshold", parameters: _flaxMemberParameters41, constructors: {"": _flaxMemberParameters41}, methods: {"transform":_flaxMemberParameters4,"transformInternal":_flaxMemberParameters4,"toString":_flaxMemberParameters2}, getters: ["threshold","flipped"], setters: [], contextMembers: [], superMembers: ["get:threshold","get:flipped","transform","transformInternal","toString"]} as const;
+const _ThresholdProxy = {type: "flax.core/sdk_animation#type:Threshold", parameters: _flaxMemberParameters43, constructors: {"": _flaxMemberParameters43}, methods: {"transform":_flaxMemberParameters4,"transformInternal":_flaxMemberParameters4,"toString":_flaxMemberParameters2}, getters: ["threshold","flipped"], setters: [], contextMembers: [], superMembers: ["get:threshold","get:flipped","transform","transformInternal","toString"]} as const;
 export interface _ThresholdNative extends Threshold {
 readonly [_flaxDartTypeValue]: _ThresholdNative;
 

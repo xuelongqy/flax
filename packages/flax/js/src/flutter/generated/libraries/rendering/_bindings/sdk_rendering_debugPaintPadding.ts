@@ -5,11 +5,12 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import { _flaxMemberParameters386 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_debugPaintPadding(canvas: Readonly<{ "__flaxBound:dart:ui::Canvas": readonly [] }>, outerRect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, innerRect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> | null, options: { outlineWidth?: number | undefined } = {}): void {
 if (arguments.length > 4) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["outlineWidth"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:debugPaintPadding", [canvas, outerRect, innerRect, options.outlineWidth]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:debugPaintPadding", [canvas, outerRect, innerRect, options.outlineWidth], _flaxMemberParameters386);
 }
 export { _flaxTopLevel_debugPaintPadding as debugPaintPadding };

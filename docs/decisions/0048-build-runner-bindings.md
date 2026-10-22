@@ -1,4 +1,4 @@
-# 0047: Optional build_runner binding generation
+# 0048: Optional build_runner binding generation
 
 Status: accepted.
 
@@ -26,7 +26,7 @@ scope YAML can override only the fields that differ from the defaults.
 Source-scanned packages also emit the shared bindings/js_modules.json build plan. The
 Builder declares it implicitly; pure legacy packages leave that optional output absent.
 The ordinary JS build consumes it as described in
-[ADR 0048](0048-generated-binding-js-build.md), outside the Dart Builder.
+[ADR 0049](0049-generated-binding-js-build.md), outside the Dart Builder.
 
 Custom directories, legacy library configurations and multiple scopes list every Dart/TS
 path in options.outputs, including source-scanned public libraries. The manifest is

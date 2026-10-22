@@ -7,12 +7,13 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBu
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer';
 import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
+import { _flaxMemberParameters194 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_instantiateImageCodecWithSize(buffer: Readonly<{ "__flaxBound:dart:ui::ImmutableBuffer": readonly [] }>, options: { getTargetSize?: ((intrinsicWidth: number, intrinsicHeight: number) => Readonly<{ "__flaxBound:dart:ui::TargetImageSize": readonly [] }>) | null | undefined } = {}): Promise<upstream0.Codec> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["getTargetSize"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dart_ui#function:instantiateImageCodecWithSize", [buffer, options.getTargetSize]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dart_ui#function:instantiateImageCodecWithSize", [buffer, options.getTargetSize], _flaxMemberParameters194);
 return _flaxResult as Promise<upstream0.Codec>;
 }
 export { _flaxTopLevel_instantiateImageCodecWithSize as instantiateImageCodecWithSize };

@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/material-ui/_bindings/material_MergeableM
 import '@flax/material-ui/_bindings/material_MergeableMaterialItem';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
-import { _flaxMemberParameters2, _flaxMemberParameters190 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters4, _flaxMemberParameters210 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,13 +16,13 @@ readonly key: upstream1.LocalKey;
 readonly size: number;
 toString(): string;
 }
-defineObject("flax.material/material#type:MaterialGap", ["key","size"], [], _flaxBindingMethods("flax.material/material#type:MaterialGap", "object", {"toString":_flaxMemberParameters2}, {}), [], undefined, "flax.material/material#type:MergeableMaterialItem");
+defineObject("flax.material/material#type:MaterialGap", ["key","size"], [], _flaxBindingMethods("flax.material/material#type:MaterialGap", "object", {"toString":_flaxMemberParameters4}, {}), [], undefined, "flax.material/material#type:MergeableMaterialItem");
 export function _MaterialGapFactory(options: { key: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::LocalKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }>; size?: number | undefined }): MaterialGap {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:MaterialGap", "", [{"name":"key","required":true},{"name":"size"}], [], options) as MaterialGap;
 }
-const _MaterialGapProxy = {type: "flax.material/material#type:MaterialGap", parameters: _flaxMemberParameters190, constructors: {"": _flaxMemberParameters190}, methods: {"toString":_flaxMemberParameters2}, getters: ["size","key"], setters: [], contextMembers: [], superMembers: ["get:size","get:key","toString"]} as const;
+const _MaterialGapProxy = {type: "flax.material/material#type:MaterialGap", parameters: _flaxMemberParameters210, constructors: {"": _flaxMemberParameters210}, methods: {"toString":_flaxMemberParameters4}, getters: ["size","key"], setters: [], contextMembers: [], superMembers: ["get:size","get:key","toString"]} as const;
 export interface _MaterialGapNative extends MaterialGap {
 readonly [_flaxDartTypeValue]: _MaterialGapNative;
 

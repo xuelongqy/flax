@@ -20,7 +20,7 @@ import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters46 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
+import { _flaxMemberParameters26, _flaxMemberParameters48 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -38,7 +38,7 @@ toStringDeep(options?: {minLevel?: upstream7.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream9.DiagnosticsTreeStyle | null | undefined}): upstream8.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream8.DiagnosticsNode>;
 }
-defineObject("flax.cupertino/cupertino#type:CupertinoUserInterfaceLevel", ["child","key"], [], _flaxBindingMethods("flax.cupertino/cupertino#type:CupertinoUserInterfaceLevel", "object", {"updateShouldNotify":_flaxMemberParameters46}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
+defineObject("flax.cupertino/cupertino#type:CupertinoUserInterfaceLevel", ["child","key"], [], _flaxBindingMethods("flax.cupertino/cupertino#type:CupertinoUserInterfaceLevel", "object", {"updateShouldNotify":_flaxMemberParameters48}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
 export function _CupertinoUserInterfaceLevelFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; data: upstream3.CupertinoUserInterfaceLevelData; child: Widget }): CupertinoUserInterfaceLevel {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -46,12 +46,12 @@ return constructObject("object", "flax.cupertino/cupertino#type:CupertinoUserInt
 }
 export namespace _CupertinoUserInterfaceLevelFactory { export function of(context: upstream4.BuildContext): upstream3.CupertinoUserInterfaceLevelData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoUserInterfaceLevel.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoUserInterfaceLevel.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters26);
 return _flaxResult as upstream3.CupertinoUserInterfaceLevelData;
 } }
 export namespace _CupertinoUserInterfaceLevelFactory { export function maybeOf(context: upstream4.BuildContext): upstream3.CupertinoUserInterfaceLevelData | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoUserInterfaceLevel.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoUserInterfaceLevel.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters26);
 return _flaxResult as upstream3.CupertinoUserInterfaceLevelData | null;
 } }
 export const CupertinoUserInterfaceLevel: typeof _CupertinoUserInterfaceLevelFactory & _FlaxInstanceType<CupertinoUserInterfaceLevel> & _FlaxDartType<CupertinoUserInterfaceLevel, readonly ["class", "flax.cupertino/cupertino#type:CupertinoUserInterfaceLevel", readonly [], false]> = _flaxBindInstanceType<CupertinoUserInterfaceLevel, typeof _CupertinoUserInterfaceLevelFactory>(_CupertinoUserInterfaceLevelFactory, "flax.cupertino/cupertino#type:CupertinoUserInterfaceLevel", ["flax.core/sdk_widgets#type:InheritedWidget","flax.core/sdk_widgets#type:ProxyWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _CupertinoUserInterfaceLevelFactory & _FlaxInstanceType<CupertinoUserInterfaceLevel> & _FlaxDartType<CupertinoUserInterfaceLevel, readonly ["class", "flax.cupertino/cupertino#type:CupertinoUserInterfaceLevel", readonly [], false]>;

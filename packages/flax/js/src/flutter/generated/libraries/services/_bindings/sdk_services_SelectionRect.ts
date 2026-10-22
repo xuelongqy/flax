@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import { _flaxMemberParameters0, _flaxMemberParameters87 } from "@flax/flutter/services/_bindings/sdk_services.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters96 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,7 +23,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_services#type:SelectionRect", "", [{"name":"position","required":true},{"name":"bounds","required":true},{"name":"direction"}], [], options) as SelectionRect;
 }
-const _SelectionRectProxy = {type: "flax.core/sdk_services#type:SelectionRect", parameters: _flaxMemberParameters87, constructors: {"": _flaxMemberParameters87}, methods: {"toString":_flaxMemberParameters0}, getters: ["position","bounds","direction"], setters: [], contextMembers: [], superMembers: ["get:position","get:bounds","get:direction","toString"]} as const;
+const _SelectionRectProxy = {type: "flax.core/sdk_services#type:SelectionRect", parameters: _flaxMemberParameters96, constructors: {"": _flaxMemberParameters96}, methods: {"toString":_flaxMemberParameters0}, getters: ["position","bounds","direction"], setters: [], contextMembers: [], superMembers: ["get:position","get:bounds","get:direction","toString"]} as const;
 export interface _SelectionRectNative extends SelectionRect {
 readonly [_flaxDartTypeValue]: _SelectionRectNative;
 

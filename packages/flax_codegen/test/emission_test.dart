@@ -6,6 +6,60 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 void main() {
+  test('functions retain one shared source parameter layout across generations', () {
+    const parameters = [
+      FlaxCodegenParameterModel(
+        name: 'left',
+        type: FlaxCodegenTypeRef('int'),
+        required: false,
+        positional: false,
+        defaultCode: '1',
+      ),
+      FlaxCodegenParameterModel(
+        name: 'right',
+        type: FlaxCodegenTypeRef('int'),
+        required: false,
+        positional: false,
+        defaultCode: '2',
+      ),
+    ];
+    final module = FlaxCodegenModuleModel(
+      name: 'calls',
+      library: 'package:fixture/api.dart',
+      jsPackage: '@fixture/calls',
+      dartOutput: 'calls.dart',
+      tsOutput: 'calls.ts',
+      moduleId: 'fixture/calls',
+      requiredCapabilities: const [],
+      classes: const [],
+      types: const [],
+      functions: [
+        for (final name in ['sum', 'other'])
+          FlaxCodegenFunctionModel(
+            'fixture/calls#function:$name',
+            FlaxCodegenMethodModel(
+              name,
+              parameters,
+              const FlaxCodegenTypeRef('int'),
+            ),
+          ),
+      ],
+    );
+    final source = FlaxCodegenBindingEmitter([module]).typescript(module);
+    expect(module.requiredCapabilities, contains('call-layouts'));
+    expect(
+      RegExp(r'const _flaxMemberParameters0 =').allMatches(source),
+      hasLength(1),
+    );
+    for (final name in ['sum', 'other']) {
+      expect(
+        source,
+        contains(
+          'invokeTopLevel("fixture/calls#function:$name", [options.left, options.right], _flaxMemberParameters0)',
+        ),
+      );
+    }
+  });
   group('literal module tuple emission', () {
     test(
       'dart pins moduleId, uiProtocol, and requiredCapabilities literals',
@@ -23,7 +77,7 @@ void main() {
         expect(
           dart,
           contains(
-            'requiredCapabilities: const <String>["generic-member-views", "instance-checks", "native-navigation-objects", "native-widget-proxies", "shared-static-readers"]',
+            'requiredCapabilities: const <String>["call-layouts", "generic-member-views", "instance-checks", "native-navigation-objects", "native-widget-proxies", "shared-static-readers"]',
           ),
         );
         expect(dart, isNot(contains('version:')));
@@ -52,7 +106,7 @@ void main() {
         expect(
           typescript,
           contains(
-            '_flaxInstallBindingModule("com.acme.widgets/widgets", 24, Object.freeze(["generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies","shared-static-readers"]) as readonly string[])',
+            '_flaxInstallBindingModule("com.acme.widgets/widgets", 24, Object.freeze(["call-layouts","generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies","shared-static-readers"]) as readonly string[])',
           ),
         );
         expect(typescript, contains('export const widgetsBindingModule'));
@@ -78,7 +132,7 @@ void main() {
       expect(
         dart,
         contains(
-          'requiredCapabilities: const <String>["generic-member-views", "instance-checks", "native-navigation-objects", "native-widget-proxies"]',
+          'requiredCapabilities: const <String>["call-layouts", "generic-member-views", "instance-checks", "native-navigation-objects", "native-widget-proxies"]',
         ),
       );
       expect(dart, isNot(contains('version:')));
@@ -86,7 +140,7 @@ void main() {
       expect(
         typescript,
         contains(
-          '_flaxInstallBindingModule("example.host/host", 24, Object.freeze(["generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies"]) as readonly string[])',
+          '_flaxInstallBindingModule("example.host/host", 24, Object.freeze(["call-layouts","generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies"]) as readonly string[])',
         ),
       );
       expect(typescript, contains('export const hostBindingModule'));
@@ -108,13 +162,15 @@ void main() {
       final dart = FlaxCodegenBindingEmitter([module]).dart(module);
       expect(
         dart,
-        contains('requiredCapabilities: const <String>["alpha", "zeta"]'),
+        contains(
+          'requiredCapabilities: const <String>["alpha", "call-layouts", "zeta"]',
+        ),
       );
       final typescript = FlaxCodegenBindingEmitter([module]).typescript(module);
       expect(
         typescript,
         contains(
-          '_flaxInstallBindingModule("example.host/host", 24, Object.freeze(["alpha","zeta"]) as readonly string[])',
+          '_flaxInstallBindingModule("example.host/host", 24, Object.freeze(["alpha","call-layouts","zeta"]) as readonly string[])',
         ),
       );
     });
@@ -428,6 +484,21 @@ void main() {
 
         final probe = File(p.join(temp.path, 'emit_probe.dart'))
           ..writeAsStringSync(_cwdPathProbeSource);
+        // Compile before removing PATH: SDK build hooks may need xcrun.
+        final kernel = File(p.join(temp.path, 'emit_probe.dill'));
+        final compiled = await Process.run(Platform.resolvedExecutable, [
+          'compile',
+          'kernel',
+          '--packages=${packageConfig.path}',
+          probe.path,
+          '-o',
+          kernel.path,
+        ], workingDirectory: packageRoot);
+        expect(
+          compiled.exitCode,
+          0,
+          reason: '${compiled.stdout}\n${compiled.stderr}',
+        );
         final output = File(p.join(temp.path, 'emitted.ts'));
         final environment = <String, String>{
           for (final entry in Platform.environment.entries)
@@ -437,7 +508,7 @@ void main() {
         };
         final result = await Process.run(
           Platform.resolvedExecutable,
-          ['--packages=${packageConfig.uri}', probe.path, output.path],
+          [kernel.path, output.path],
           workingDirectory: temp.path,
           environment: environment,
         );

@@ -28,6 +28,7 @@ const componentsBindings = FlaxBindingModule(
   dependencyModules: ["flax.core/flutter", "flax.core/sdk_foundation"],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "dart-type-tokens",
     "engine-type-handles",
     "generic-member-views",

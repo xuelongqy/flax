@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/flutter/foundation/_bindings/flutter_List
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
-import { _flaxMemberParameters2, _flaxMemberParameters476, _flaxMemberParameters422, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters2, _flaxMemberParameters536, _flaxMemberParameters476, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -27,13 +27,13 @@ dispose(): void;
 update(state: upstream1.WidgetState, add: boolean): void;
 set value(value: DartSetInput<upstream1.WidgetState, upstream1.WidgetState>);
 }
-defineObject("flax.core/sdk_widgets#type:WidgetStatesController", ["value","hasListeners"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStatesController", "object", {"toString":_flaxMemberParameters2,"update":_flaxMemberParameters476}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+defineObject("flax.core/sdk_widgets#type:WidgetStatesController", ["value","hasListeners"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStatesController", "object", {"toString":_flaxMemberParameters2,"update":_flaxMemberParameters536}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
 export function _WidgetStatesControllerFactory(value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null): WidgetStatesController {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:WidgetStatesController", "", [{"name":"value","positional":true}], [value], {}) as WidgetStatesController;
 }
-const _WidgetStatesControllerProxy = {type: "flax.core/sdk_widgets#type:WidgetStatesController", parameters: _flaxMemberParameters422, constructors: {"": _flaxMemberParameters422}, methods: {"toString":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"update":_flaxMemberParameters476}, getters: ["value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:hasListeners","set:value","toString","addListener","removeListener","dispose","update"]} as const;
+const _WidgetStatesControllerProxy = {type: "flax.core/sdk_widgets#type:WidgetStatesController", parameters: _flaxMemberParameters476, constructors: {"": _flaxMemberParameters476}, methods: {"toString":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"update":_flaxMemberParameters536}, getters: ["value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:hasListeners","set:value","toString","addListener","removeListener","dispose","update"]} as const;
 export interface _WidgetStatesControllerNative extends WidgetStatesController {
 readonly [_flaxDartTypeValue]: _WidgetStatesControllerNative;
 

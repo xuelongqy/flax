@@ -1,4 +1,4 @@
-# 0046: Scoped binding annotations
+# 0047: Scoped binding annotations
 
 Status: accepted.
 
@@ -11,7 +11,7 @@ binding namespace. Optional annotation scope YAML overrides the name, paths, JS 
 and provider imports; omitted name/paths use app and the conventional per-name outputs.
 Explicit scope files define the full scope set: no implicit app is appended, and unknown
 scopes remain errors. Missing app does not implicitly select another configured scope.
-The CLI and optional [build_runner entry](0047-build-runner-bindings.md) share selection
+The CLI and optional [build_runner entry](0048-build-runner-bindings.md) share selection
 and emission.
 
 A format-2 scope without library enables annotations by default and scans its own

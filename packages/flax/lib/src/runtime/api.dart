@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 /// A JS value. Primitive values are independent of any runtime.
@@ -99,6 +100,29 @@ typedef FlaxJsHostFunction = FlaxJsValue Function(
   List<FlaxJsValue> arguments,
 );
 
+/// Immutable UTF-8 source reusable across independent runtimes.
+/// This caches encoding only, never compiled code or JavaScript references.
+final class FlaxJsSource {
+  FlaxJsSource(String source, {this.sourceUrl = 'flax:eval'}) : _text = source;
+
+  String? _text;
+  Uint8List? _bytes;
+
+  Uint8List get bytes {
+    final cached = _bytes;
+    if (cached != null) return cached;
+    final encoded = utf8.encode(_text!).asUnmodifiableView();
+    _bytes = encoded;
+    _text = null;
+    return encoded;
+  }
+
+  final String sourceUrl;
+  late final Uint8List sourceUrlBytes = utf8
+      .encode(sourceUrl)
+      .asUnmodifiableView();
+}
+
 abstract class FlaxJsRuntime {
   /// Internal maintained-engine Type operations. All handles stay in Dart.
   Type dartInstanceType(Object value);
@@ -112,6 +136,10 @@ abstract class FlaxJsRuntime {
   Record newDartRecord(Type? type, List<String> names, List<Object?> fields);
 
   FlaxJsValue evaluate(String source, {String sourceUrl = 'flax:eval'});
+
+  /// Executes independently in this runtime; the source may outlive any Session.
+  FlaxJsValue evaluateSource(FlaxJsSource source) =>
+      evaluate(utf8.decode(source.bytes), sourceUrl: source.sourceUrl);
   FlaxJsValue getGlobal(String name);
 
   /// Copies bytes into an owned JavaScript ArrayBuffer reference.

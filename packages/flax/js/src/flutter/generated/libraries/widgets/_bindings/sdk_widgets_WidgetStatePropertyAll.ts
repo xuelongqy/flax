@@ -6,7 +6,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_WidgetS
 import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
-import { _flaxMemberParameters454, _flaxMemberParameters2, _flaxMemberParameters33 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters514, _flaxMemberParameters2, _flaxMemberParameters38 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,7 +17,7 @@ readonly value: T;
 resolve(states: DartSetInput<upstream1.WidgetState, upstream1.WidgetState>): T;
 toString(): string;
 }
-defineObject("flax.core/sdk_widgets#type:WidgetStatePropertyAll", ["value"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStatePropertyAll", "object", {"resolve":_flaxMemberParameters454,"toString":_flaxMemberParameters2}, {}), []);
+defineObject("flax.core/sdk_widgets#type:WidgetStatePropertyAll", ["value"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStatePropertyAll", "object", {"resolve":_flaxMemberParameters514,"toString":_flaxMemberParameters2}, {}), []);
 export function _WidgetStatePropertyAllFactory<T extends unknown | null = unknown | null>(value: (T | _FlaxDartOutput<T>)): WidgetStatePropertyAll<T>;
 export function _WidgetStatePropertyAllFactory(value: unknown | null): WidgetStatePropertyAll<unknown | null>;
 export function _WidgetStatePropertyAllFactory(value: unknown): unknown {
@@ -25,7 +25,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:WidgetStatePropertyAll", "", [{"name":"value","required":true,"positional":true}], [value], {}) as WidgetStatePropertyAll<unknown | null>;
 }
-const _WidgetStatePropertyAllProxy = {type: "flax.core/sdk_widgets#type:WidgetStatePropertyAll", parameters: _flaxMemberParameters33, constructors: {"": _flaxMemberParameters33}, methods: {"resolve":_flaxMemberParameters454,"toString":_flaxMemberParameters2}, getters: ["value"], setters: [], contextMembers: [], superMembers: ["get:value","resolve","toString"]} as const;
+const _WidgetStatePropertyAllProxy = {type: "flax.core/sdk_widgets#type:WidgetStatePropertyAll", parameters: _flaxMemberParameters38, constructors: {"": _flaxMemberParameters38}, methods: {"resolve":_flaxMemberParameters514,"toString":_flaxMemberParameters2}, getters: ["value"], setters: [], contextMembers: [], superMembers: ["get:value","resolve","toString"]} as const;
 export interface _WidgetStatePropertyAllNative<T extends unknown | null = unknown | null> extends WidgetStatePropertyAll<T> {
 readonly [_flaxDartTypeValue]: _WidgetStatePropertyAllNative<T>;
 

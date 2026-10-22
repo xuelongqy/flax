@@ -1830,6 +1830,7 @@ final sdk_servicesBindings = FlaxBindingModule(
   ],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "dart-type-tokens",
     "engine-type-handles",
     "generic-call-types",
@@ -4020,24 +4021,26 @@ Object? _EventChannel_receiveBroadcastStream(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as api.EventChannel).receiveBroadcastStream();
-  }
-  return (receiver as api.EventChannel).receiveBroadcastStream(
-    values["arguments"],
-  );
+  final _flaxHas0 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as api.EventChannel).receiveBroadcastStream,
+    <Object?>[(_flaxHas0 ? values["arguments"] : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>[""],
+  ) as api7.Stream<Object?>;
 }
 
 Object? _EventChannel_super_receiveBroadcastStream(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as _EventChannelProxy)._flaxSuper_receiveBroadcastStream();
-  }
-  return (receiver as _EventChannelProxy)._flaxSuper_receiveBroadcastStream(
-    values["arguments"],
-  );
+  final _flaxHas0 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as _EventChannelProxy)._flaxSuper_receiveBroadcastStream,
+    <Object?>[(_flaxHas0 ? values["arguments"] : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>[""],
+  ) as api7.Stream<Object?>;
 }
 
 Object? _FlaxProxyDispatch9_super_get_codec(
@@ -4052,45 +4055,41 @@ Object _createEventChannel(String ctor, Map<String, Object?> values) {
         throw ArgumentError(
           'Optional positional arguments must omit a trailing suffix',
         );
-      if (!values.containsKey("codec")) {
-        return api.EventChannel(values["name"] as String);
-      }
-      if (!values.containsKey("binaryMessenger")) {
-        return api.EventChannel(
+      final _flaxHas1 = values.containsKey("codec");
+      final _flaxHas2 = values.containsKey("binaryMessenger");
+      return flaxInvokeWithDefaults(
+        api.EventChannel.new,
+        <Object?>[
           values["name"] as String,
-          values["codec"] as api.MethodCodec,
-        );
-      }
-      return api.EventChannel(
-        values["name"] as String,
-        values["codec"] as api.MethodCodec,
-        values["binaryMessenger"] as api.BinaryMessenger?,
-      );
+          (_flaxHas1 ? values["codec"] as api.MethodCodec : null),
+          (_flaxHas2
+              ? values["binaryMessenger"] as api.BinaryMessenger?
+              : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "", ""],
+      ) as api.EventChannel;
     case '@implementation':
       if (!values.containsKey("codec") &&
           (values.containsKey("binaryMessenger")))
         throw ArgumentError(
           'Optional positional arguments must omit a trailing suffix',
         );
-      if (!values.containsKey("codec")) {
-        return _EventChannelProxy(
+      final _flaxHas2 = values.containsKey("codec");
+      final _flaxHas3 = values.containsKey("binaryMessenger");
+      return flaxInvokeWithDefaults(
+        _EventChannelProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
-        );
-      }
-      if (!values.containsKey("binaryMessenger")) {
-        return _EventChannelProxy(
-          values['@peer'] as FlaxProxyPeer,
-          values["name"] as String,
-          values["codec"] as api.MethodCodec,
-        );
-      }
-      return _EventChannelProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["codec"] as api.MethodCodec,
-        values["binaryMessenger"] as api.BinaryMessenger?,
-      );
+          (_flaxHas2 ? values["codec"] as api.MethodCodec : null),
+          (_flaxHas3
+              ? values["binaryMessenger"] as api.BinaryMessenger?
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | (_flaxHas3 ? 8 : 0)],
+        const <String>["", "", "", ""],
+      ) as api.EventChannel;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -5484,22 +5483,28 @@ Object? _MethodCall_super_get_arguments(
 Object _createMethodCall(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("arguments")) {
-        return api.MethodCall(values["method"] as String);
-      }
-      return api.MethodCall(values["method"] as String, values["arguments"]);
+      final _flaxHas1 = values.containsKey("arguments");
+      return flaxInvokeWithDefaults(
+        api.MethodCall.new,
+        <Object?>[
+          values["method"] as String,
+          (_flaxHas1 ? values["arguments"] : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0)],
+        const <String>["", ""],
+      ) as api.MethodCall;
     case '@implementation':
-      if (!values.containsKey("arguments")) {
-        return _MethodCallProxy(
+      final _flaxHas2 = values.containsKey("arguments");
+      return flaxInvokeWithDefaults(
+        _MethodCallProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["method"] as String,
-        );
-      }
-      return _MethodCallProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["method"] as String,
-        values["arguments"],
-      );
+          (_flaxHas2 ? values["arguments"] : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "", ""],
+      ) as api.MethodCall;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -5515,45 +5520,48 @@ Object? _MethodChannel_invokeMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as api.MethodChannel).invokeMethod<Object?>(
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as api.MethodChannel).invokeMethod<Object?>,
+    <Object?>[
       values["method"] as String,
-    );
-  }
-  return (receiver as api.MethodChannel).invokeMethod<Object?>(
-    values["method"] as String,
-    values["arguments"],
-  );
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<Object?>;
 }
 
 Object? _MethodChannel_invokeListMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as api.MethodChannel).invokeListMethod<Object?>(
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as api.MethodChannel).invokeListMethod<Object?>,
+    <Object?>[
       values["method"] as String,
-    );
-  }
-  return (receiver as api.MethodChannel).invokeListMethod<Object?>(
-    values["method"] as String,
-    values["arguments"],
-  );
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<List<Object?>?>;
 }
 
 Object? _MethodChannel_invokeMapMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as api.MethodChannel).invokeMapMethod<Object?, Object?>(
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as api.MethodChannel).invokeMapMethod<Object?, Object?>,
+    <Object?>[
       values["method"] as String,
-    );
-  }
-  return (receiver as api.MethodChannel).invokeMapMethod<Object?, Object?>(
-    values["method"] as String,
-    values["arguments"],
-  );
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<Map<Object?, Object?>?>;
 }
 
 Object? _MethodChannel_setMethodCallHandler(
@@ -5570,46 +5578,49 @@ Object? _MethodChannel_super_invokeMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as _MethodChannelProxy)._flaxSuper_invokeMethod<Object?>(
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as _MethodChannelProxy)._flaxSuper_invokeMethod<Object?>,
+    <Object?>[
       values["method"] as String,
-    );
-  }
-  return (receiver as _MethodChannelProxy)._flaxSuper_invokeMethod<Object?>(
-    values["method"] as String,
-    values["arguments"],
-  );
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<Object?>;
 }
 
 Object? _MethodChannel_super_invokeListMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as _MethodChannelProxy)
-        ._flaxSuper_invokeListMethod<Object?>(values["method"] as String);
-  }
-  return (receiver as _MethodChannelProxy)._flaxSuper_invokeListMethod<Object?>(
-    values["method"] as String,
-    values["arguments"],
-  );
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as _MethodChannelProxy)._flaxSuper_invokeListMethod<Object?>,
+    <Object?>[
+      values["method"] as String,
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<List<Object?>?>;
 }
 
 Object? _MethodChannel_super_invokeMapMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as _MethodChannelProxy)
-        ._flaxSuper_invokeMapMethod<Object?, Object?>(
-          values["method"] as String,
-        );
-  }
-  return (receiver as _MethodChannelProxy)
-      ._flaxSuper_invokeMapMethod<Object?, Object?>(
-        values["method"] as String,
-        values["arguments"],
-      );
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as _MethodChannelProxy)
+        ._flaxSuper_invokeMapMethod<Object?, Object?>,
+    <Object?>[
+      values["method"] as String,
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<Map<Object?, Object?>?>;
 }
 
 Object? _FlaxProxyDispatch19_super_call_setMethodCallHandler(
@@ -5630,45 +5641,41 @@ Object _createMethodChannel(String ctor, Map<String, Object?> values) {
         throw ArgumentError(
           'Optional positional arguments must omit a trailing suffix',
         );
-      if (!values.containsKey("codec")) {
-        return api.MethodChannel(values["name"] as String);
-      }
-      if (!values.containsKey("binaryMessenger")) {
-        return api.MethodChannel(
+      final _flaxHas1 = values.containsKey("codec");
+      final _flaxHas2 = values.containsKey("binaryMessenger");
+      return flaxInvokeWithDefaults(
+        api.MethodChannel.new,
+        <Object?>[
           values["name"] as String,
-          values["codec"] as api.MethodCodec,
-        );
-      }
-      return api.MethodChannel(
-        values["name"] as String,
-        values["codec"] as api.MethodCodec,
-        values["binaryMessenger"] as api.BinaryMessenger?,
-      );
+          (_flaxHas1 ? values["codec"] as api.MethodCodec : null),
+          (_flaxHas2
+              ? values["binaryMessenger"] as api.BinaryMessenger?
+              : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "", ""],
+      ) as api.MethodChannel;
     case '@implementation':
       if (!values.containsKey("codec") &&
           (values.containsKey("binaryMessenger")))
         throw ArgumentError(
           'Optional positional arguments must omit a trailing suffix',
         );
-      if (!values.containsKey("codec")) {
-        return _MethodChannelProxy(
+      final _flaxHas2 = values.containsKey("codec");
+      final _flaxHas3 = values.containsKey("binaryMessenger");
+      return flaxInvokeWithDefaults(
+        _MethodChannelProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
-        );
-      }
-      if (!values.containsKey("binaryMessenger")) {
-        return _MethodChannelProxy(
-          values['@peer'] as FlaxProxyPeer,
-          values["name"] as String,
-          values["codec"] as api.MethodCodec,
-        );
-      }
-      return _MethodChannelProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["codec"] as api.MethodCodec,
-        values["binaryMessenger"] as api.BinaryMessenger?,
-      );
+          (_flaxHas2 ? values["codec"] as api.MethodCodec : null),
+          (_flaxHas3
+              ? values["binaryMessenger"] as api.BinaryMessenger?
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | (_flaxHas3 ? 8 : 0)],
+        const <String>["", "", "", ""],
+      ) as api.MethodChannel;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -5925,45 +5932,38 @@ Object? _MouseTrackerAnnotation_super_get_validForMouseTracker(
 Object _createMouseTrackerAnnotation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("cursor")) {
-        return api.MouseTrackerAnnotation(
-          onEnter:
-              values["onEnter"]
-                  as void Function(api10.PointerEnterEvent event)?,
-          onExit:
-              values["onExit"] as void Function(api10.PointerExitEvent event)?,
-          validForMouseTracker: values["validForMouseTracker"] as bool,
-        );
-      }
-      return api.MouseTrackerAnnotation(
-        onEnter:
-            values["onEnter"] as void Function(api10.PointerEnterEvent event)?,
-        onExit:
-            values["onExit"] as void Function(api10.PointerExitEvent event)?,
-        cursor: values["cursor"] as api.MouseCursor,
-        validForMouseTracker: values["validForMouseTracker"] as bool,
-      );
+      final _flaxHas2 = values.containsKey("cursor");
+      return flaxInvokeWithDefaults(
+        api.MouseTrackerAnnotation.new,
+        <Object?>[
+          values["onEnter"] as void Function(api10.PointerEnterEvent event)?,
+          values["onExit"] as void Function(api10.PointerExitEvent event)?,
+          (_flaxHas2 ? values["cursor"] as api.MouseCursor : null),
+          values["validForMouseTracker"] as bool,
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8],
+        const <String>["onEnter", "onExit", "cursor", "validForMouseTracker"],
+      ) as api.MouseTrackerAnnotation;
     case '@implementation':
-      if (!values.containsKey("cursor")) {
-        return _MouseTrackerAnnotationProxy(
+      final _flaxHas3 = values.containsKey("cursor");
+      return flaxInvokeWithDefaults(
+        _MouseTrackerAnnotationProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          onEnter:
-              values["onEnter"]
-                  as void Function(api10.PointerEnterEvent event)?,
-          onExit:
-              values["onExit"] as void Function(api10.PointerExitEvent event)?,
-          validForMouseTracker: values["validForMouseTracker"] as bool,
-        );
-      }
-      return _MouseTrackerAnnotationProxy(
-        values['@peer'] as FlaxProxyPeer,
-        onEnter:
-            values["onEnter"] as void Function(api10.PointerEnterEvent event)?,
-        onExit:
-            values["onExit"] as void Function(api10.PointerExitEvent event)?,
-        cursor: values["cursor"] as api.MouseCursor,
-        validForMouseTracker: values["validForMouseTracker"] as bool,
-      );
+          values["onEnter"] as void Function(api10.PointerEnterEvent event)?,
+          values["onExit"] as void Function(api10.PointerExitEvent event)?,
+          (_flaxHas3 ? values["cursor"] as api.MouseCursor : null),
+          values["validForMouseTracker"] as bool,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16],
+        const <String>[
+          "",
+          "onEnter",
+          "onExit",
+          "cursor",
+          "validForMouseTracker",
+        ],
+      ) as api.MouseTrackerAnnotation;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6041,92 +6041,98 @@ Object? _OptionalMethodChannel_invokeMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as api.OptionalMethodChannel).invokeMethod<Object?>(
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as api.OptionalMethodChannel).invokeMethod<Object?>,
+    <Object?>[
       values["method"] as String,
-    );
-  }
-  return (receiver as api.OptionalMethodChannel).invokeMethod<Object?>(
-    values["method"] as String,
-    values["arguments"],
-  );
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<Object?>;
 }
 
 Object? _OptionalMethodChannel_invokeListMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as api.OptionalMethodChannel).invokeListMethod<Object?>(
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as api.OptionalMethodChannel).invokeListMethod<Object?>,
+    <Object?>[
       values["method"] as String,
-    );
-  }
-  return (receiver as api.OptionalMethodChannel).invokeListMethod<Object?>(
-    values["method"] as String,
-    values["arguments"],
-  );
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<List<Object?>?>;
 }
 
 Object? _OptionalMethodChannel_invokeMapMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as api.OptionalMethodChannel)
-        .invokeMapMethod<Object?, Object?>(values["method"] as String);
-  }
-  return (receiver as api.OptionalMethodChannel)
-      .invokeMapMethod<Object?, Object?>(
-        values["method"] as String,
-        values["arguments"],
-      );
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as api.OptionalMethodChannel).invokeMapMethod<Object?, Object?>,
+    <Object?>[
+      values["method"] as String,
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<Map<Object?, Object?>?>;
 }
 
 Object? _OptionalMethodChannel_super_invokeMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as _OptionalMethodChannelProxy)
-        ._flaxSuper_invokeMethod<Object?>(values["method"] as String);
-  }
-  return (receiver as _OptionalMethodChannelProxy)
-      ._flaxSuper_invokeMethod<Object?>(
-        values["method"] as String,
-        values["arguments"],
-      );
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as _OptionalMethodChannelProxy)._flaxSuper_invokeMethod<Object?>,
+    <Object?>[
+      values["method"] as String,
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<Object?>;
 }
 
 Object? _OptionalMethodChannel_super_invokeListMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as _OptionalMethodChannelProxy)
-        ._flaxSuper_invokeListMethod<Object?>(values["method"] as String);
-  }
-  return (receiver as _OptionalMethodChannelProxy)
-      ._flaxSuper_invokeListMethod<Object?>(
-        values["method"] as String,
-        values["arguments"],
-      );
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as _OptionalMethodChannelProxy)
+        ._flaxSuper_invokeListMethod<Object?>,
+    <Object?>[
+      values["method"] as String,
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<List<Object?>?>;
 }
 
 Object? _OptionalMethodChannel_super_invokeMapMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as _OptionalMethodChannelProxy)
-        ._flaxSuper_invokeMapMethod<Object?, Object?>(
-          values["method"] as String,
-        );
-  }
-  return (receiver as _OptionalMethodChannelProxy)
-      ._flaxSuper_invokeMapMethod<Object?, Object?>(
-        values["method"] as String,
-        values["arguments"],
-      );
+  final _flaxHas1 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as _OptionalMethodChannelProxy)
+        ._flaxSuper_invokeMapMethod<Object?, Object?>,
+    <Object?>[
+      values["method"] as String,
+      (_flaxHas1 ? values["arguments"] : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", ""],
+  ) as Future<Map<Object?, Object?>?>;
 }
 
 Object _createOptionalMethodChannel(String ctor, Map<String, Object?> values) {
@@ -6137,45 +6143,41 @@ Object _createOptionalMethodChannel(String ctor, Map<String, Object?> values) {
         throw ArgumentError(
           'Optional positional arguments must omit a trailing suffix',
         );
-      if (!values.containsKey("codec")) {
-        return api.OptionalMethodChannel(values["name"] as String);
-      }
-      if (!values.containsKey("binaryMessenger")) {
-        return api.OptionalMethodChannel(
+      final _flaxHas1 = values.containsKey("codec");
+      final _flaxHas2 = values.containsKey("binaryMessenger");
+      return flaxInvokeWithDefaults(
+        api.OptionalMethodChannel.new,
+        <Object?>[
           values["name"] as String,
-          values["codec"] as api.MethodCodec,
-        );
-      }
-      return api.OptionalMethodChannel(
-        values["name"] as String,
-        values["codec"] as api.MethodCodec,
-        values["binaryMessenger"] as api.BinaryMessenger?,
-      );
+          (_flaxHas1 ? values["codec"] as api.MethodCodec : null),
+          (_flaxHas2
+              ? values["binaryMessenger"] as api.BinaryMessenger?
+              : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "", ""],
+      ) as api.OptionalMethodChannel;
     case '@implementation':
       if (!values.containsKey("codec") &&
           (values.containsKey("binaryMessenger")))
         throw ArgumentError(
           'Optional positional arguments must omit a trailing suffix',
         );
-      if (!values.containsKey("codec")) {
-        return _OptionalMethodChannelProxy(
+      final _flaxHas2 = values.containsKey("codec");
+      final _flaxHas3 = values.containsKey("binaryMessenger");
+      return flaxInvokeWithDefaults(
+        _OptionalMethodChannelProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
-        );
-      }
-      if (!values.containsKey("binaryMessenger")) {
-        return _OptionalMethodChannelProxy(
-          values['@peer'] as FlaxProxyPeer,
-          values["name"] as String,
-          values["codec"] as api.MethodCodec,
-        );
-      }
-      return _OptionalMethodChannelProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["codec"] as api.MethodCodec,
-        values["binaryMessenger"] as api.BinaryMessenger?,
-      );
+          (_flaxHas2 ? values["codec"] as api.MethodCodec : null),
+          (_flaxHas3
+              ? values["binaryMessenger"] as api.BinaryMessenger?
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | (_flaxHas3 ? 8 : 0)],
+        const <String>["", "", "", ""],
+      ) as api.OptionalMethodChannel;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6282,35 +6284,32 @@ Object? _PlatformException_super_get_stacktrace(
 Object _createPlatformException(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("details")) {
-        return api.PlatformException(
-          code: values["code"] as String,
-          message: values["message"] as String?,
-          stacktrace: values["stacktrace"] as String?,
-        );
-      }
-      return api.PlatformException(
-        code: values["code"] as String,
-        message: values["message"] as String?,
-        details: values["details"],
-        stacktrace: values["stacktrace"] as String?,
-      );
+      final _flaxHas2 = values.containsKey("details");
+      return flaxInvokeWithDefaults(
+        api.PlatformException.new,
+        <Object?>[
+          values["code"] as String,
+          values["message"] as String?,
+          (_flaxHas2 ? values["details"] : null),
+          values["stacktrace"] as String?,
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8],
+        const <String>["code", "message", "details", "stacktrace"],
+      ) as api.PlatformException;
     case '@implementation':
-      if (!values.containsKey("details")) {
-        return _PlatformExceptionProxy(
+      final _flaxHas3 = values.containsKey("details");
+      return flaxInvokeWithDefaults(
+        _PlatformExceptionProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          code: values["code"] as String,
-          message: values["message"] as String?,
-          stacktrace: values["stacktrace"] as String?,
-        );
-      }
-      return _PlatformExceptionProxy(
-        values['@peer'] as FlaxProxyPeer,
-        code: values["code"] as String,
-        message: values["message"] as String?,
-        details: values["details"],
-        stacktrace: values["stacktrace"] as String?,
-      );
+          values["code"] as String,
+          values["message"] as String?,
+          (_flaxHas3 ? values["details"] : null),
+          values["stacktrace"] as String?,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16],
+        const <String>["", "code", "message", "details", "stacktrace"],
+      ) as api.PlatformException;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6391,145 +6390,155 @@ Object _createPlatformViewsRegistry(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isPlatformViewsService(Object value) => value is api.PlatformViewsService;
 Object? _PlatformViewsService_initAndroidView(Map<String, Object?> values) {
-  if (!values.containsKey("creationParams")) {
-    return api.PlatformViewsService.initAndroidView(
-      creationParamsCodec:
-          values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-      id: values["id"] as int,
-      layoutDirection: values["layoutDirection"] as api1.TextDirection,
-      onFocus: values["onFocus"] as void Function()?,
-      viewType: values["viewType"] as String,
-    );
-  }
-  return api.PlatformViewsService.initAndroidView(
-    creationParams: values["creationParams"],
-    creationParamsCodec:
-        values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-    id: values["id"] as int,
-    layoutDirection: values["layoutDirection"] as api1.TextDirection,
-    onFocus: values["onFocus"] as void Function()?,
-    viewType: values["viewType"] as String,
-  );
+  final _flaxHas0 = values.containsKey("creationParams");
+  return flaxInvokeWithDefaults(
+    api.PlatformViewsService.initAndroidView,
+    <Object?>[
+      (_flaxHas0 ? values["creationParams"] : null),
+      values["creationParamsCodec"] as api.MessageCodec<Object?>?,
+      values["id"] as int,
+      values["layoutDirection"] as api1.TextDirection,
+      values["onFocus"] as void Function()?,
+      values["viewType"] as String,
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16 | 32],
+    const <String>[
+      "creationParams",
+      "creationParamsCodec",
+      "id",
+      "layoutDirection",
+      "onFocus",
+      "viewType",
+    ],
+  ) as api.AndroidViewController;
 }
 
 Object? _PlatformViewsService_initSurfaceAndroidView(
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("creationParams")) {
-    return api.PlatformViewsService.initSurfaceAndroidView(
-      creationParamsCodec:
-          values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-      id: values["id"] as int,
-      layoutDirection: values["layoutDirection"] as api1.TextDirection,
-      onFocus: values["onFocus"] as void Function()?,
-      viewType: values["viewType"] as String,
-    );
-  }
-  return api.PlatformViewsService.initSurfaceAndroidView(
-    creationParams: values["creationParams"],
-    creationParamsCodec:
-        values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-    id: values["id"] as int,
-    layoutDirection: values["layoutDirection"] as api1.TextDirection,
-    onFocus: values["onFocus"] as void Function()?,
-    viewType: values["viewType"] as String,
-  );
+  final _flaxHas0 = values.containsKey("creationParams");
+  return flaxInvokeWithDefaults(
+    api.PlatformViewsService.initSurfaceAndroidView,
+    <Object?>[
+      (_flaxHas0 ? values["creationParams"] : null),
+      values["creationParamsCodec"] as api.MessageCodec<Object?>?,
+      values["id"] as int,
+      values["layoutDirection"] as api1.TextDirection,
+      values["onFocus"] as void Function()?,
+      values["viewType"] as String,
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16 | 32],
+    const <String>[
+      "creationParams",
+      "creationParamsCodec",
+      "id",
+      "layoutDirection",
+      "onFocus",
+      "viewType",
+    ],
+  ) as api.SurfaceAndroidViewController;
 }
 
 Object? _PlatformViewsService_initExpensiveAndroidView(
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("creationParams")) {
-    return api.PlatformViewsService.initExpensiveAndroidView(
-      creationParamsCodec:
-          values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-      id: values["id"] as int,
-      layoutDirection: values["layoutDirection"] as api1.TextDirection,
-      onFocus: values["onFocus"] as void Function()?,
-      viewType: values["viewType"] as String,
-    );
-  }
-  return api.PlatformViewsService.initExpensiveAndroidView(
-    creationParams: values["creationParams"],
-    creationParamsCodec:
-        values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-    id: values["id"] as int,
-    layoutDirection: values["layoutDirection"] as api1.TextDirection,
-    onFocus: values["onFocus"] as void Function()?,
-    viewType: values["viewType"] as String,
-  );
+  final _flaxHas0 = values.containsKey("creationParams");
+  return flaxInvokeWithDefaults(
+    api.PlatformViewsService.initExpensiveAndroidView,
+    <Object?>[
+      (_flaxHas0 ? values["creationParams"] : null),
+      values["creationParamsCodec"] as api.MessageCodec<Object?>?,
+      values["id"] as int,
+      values["layoutDirection"] as api1.TextDirection,
+      values["onFocus"] as void Function()?,
+      values["viewType"] as String,
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16 | 32],
+    const <String>[
+      "creationParams",
+      "creationParamsCodec",
+      "id",
+      "layoutDirection",
+      "onFocus",
+      "viewType",
+    ],
+  ) as api.ExpensiveAndroidViewController;
 }
 
 Object? _PlatformViewsService_initHybridAndroidView(
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("creationParams")) {
-    return api.PlatformViewsService.initHybridAndroidView(
-      creationParamsCodec:
-          values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-      id: values["id"] as int,
-      layoutDirection: values["layoutDirection"] as api1.TextDirection,
-      onFocus: values["onFocus"] as void Function()?,
-      viewType: values["viewType"] as String,
-    );
-  }
-  return api.PlatformViewsService.initHybridAndroidView(
-    creationParams: values["creationParams"],
-    creationParamsCodec:
-        values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-    id: values["id"] as int,
-    layoutDirection: values["layoutDirection"] as api1.TextDirection,
-    onFocus: values["onFocus"] as void Function()?,
-    viewType: values["viewType"] as String,
-  );
+  final _flaxHas0 = values.containsKey("creationParams");
+  return flaxInvokeWithDefaults(
+    api.PlatformViewsService.initHybridAndroidView,
+    <Object?>[
+      (_flaxHas0 ? values["creationParams"] : null),
+      values["creationParamsCodec"] as api.MessageCodec<Object?>?,
+      values["id"] as int,
+      values["layoutDirection"] as api1.TextDirection,
+      values["onFocus"] as void Function()?,
+      values["viewType"] as String,
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16 | 32],
+    const <String>[
+      "creationParams",
+      "creationParamsCodec",
+      "id",
+      "layoutDirection",
+      "onFocus",
+      "viewType",
+    ],
+  ) as api.HybridAndroidViewController;
 }
 
 Object? _PlatformViewsService_initUiKitView(Map<String, Object?> values) {
-  if (!values.containsKey("creationParams")) {
-    return api.PlatformViewsService.initUiKitView(
-      creationParamsCodec:
-          values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-      gestureBlockingPolicy:
-          values["gestureBlockingPolicy"] as api.UiKitViewGestureBlockingPolicy,
-      id: values["id"] as int,
-      layoutDirection: values["layoutDirection"] as api1.TextDirection,
-      onFocus: values["onFocus"] as void Function()?,
-      viewType: values["viewType"] as String,
-    );
-  }
-  return api.PlatformViewsService.initUiKitView(
-    creationParams: values["creationParams"],
-    creationParamsCodec:
-        values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-    gestureBlockingPolicy:
-        values["gestureBlockingPolicy"] as api.UiKitViewGestureBlockingPolicy,
-    id: values["id"] as int,
-    layoutDirection: values["layoutDirection"] as api1.TextDirection,
-    onFocus: values["onFocus"] as void Function()?,
-    viewType: values["viewType"] as String,
-  );
+  final _flaxHas0 = values.containsKey("creationParams");
+  return flaxInvokeWithDefaults(
+    api.PlatformViewsService.initUiKitView,
+    <Object?>[
+      (_flaxHas0 ? values["creationParams"] : null),
+      values["creationParamsCodec"] as api.MessageCodec<Object?>?,
+      values["gestureBlockingPolicy"] as api.UiKitViewGestureBlockingPolicy,
+      values["id"] as int,
+      values["layoutDirection"] as api1.TextDirection,
+      values["onFocus"] as void Function()?,
+      values["viewType"] as String,
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16 | 32 | 64],
+    const <String>[
+      "creationParams",
+      "creationParamsCodec",
+      "gestureBlockingPolicy",
+      "id",
+      "layoutDirection",
+      "onFocus",
+      "viewType",
+    ],
+  ) as Future<api.UiKitViewController>;
 }
 
 Object? _PlatformViewsService_initAppKitView(Map<String, Object?> values) {
-  if (!values.containsKey("creationParams")) {
-    return api.PlatformViewsService.initAppKitView(
-      creationParamsCodec:
-          values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-      id: values["id"] as int,
-      layoutDirection: values["layoutDirection"] as api1.TextDirection,
-      onFocus: values["onFocus"] as void Function()?,
-      viewType: values["viewType"] as String,
-    );
-  }
-  return api.PlatformViewsService.initAppKitView(
-    creationParams: values["creationParams"],
-    creationParamsCodec:
-        values["creationParamsCodec"] as api.MessageCodec<Object?>?,
-    id: values["id"] as int,
-    layoutDirection: values["layoutDirection"] as api1.TextDirection,
-    onFocus: values["onFocus"] as void Function()?,
-    viewType: values["viewType"] as String,
-  );
+  final _flaxHas0 = values.containsKey("creationParams");
+  return flaxInvokeWithDefaults(
+    api.PlatformViewsService.initAppKitView,
+    <Object?>[
+      (_flaxHas0 ? values["creationParams"] : null),
+      values["creationParamsCodec"] as api.MessageCodec<Object?>?,
+      values["id"] as int,
+      values["layoutDirection"] as api1.TextDirection,
+      values["onFocus"] as void Function()?,
+      values["viewType"] as String,
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16 | 32],
+    const <String>[
+      "creationParams",
+      "creationParamsCodec",
+      "id",
+      "layoutDirection",
+      "onFocus",
+      "viewType",
+    ],
+  ) as Future<api.AppKitViewController>;
 }
 
 Object _createPlatformViewsService(String ctor, Map<String, Object?> values) =>
@@ -8815,20 +8824,30 @@ Object? _StandardMethodCodec_super_get_messageCodec(
 Object _createStandardMethodCodec(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("messageCodec")) {
-        return api.StandardMethodCodec();
-      }
-      return api.StandardMethodCodec(
-        values["messageCodec"] as api.StandardMessageCodec,
-      );
+      final _flaxHas0 = values.containsKey("messageCodec");
+      return flaxInvokeWithDefaults(
+        api.StandardMethodCodec.new,
+        <Object?>[
+          (_flaxHas0
+              ? values["messageCodec"] as api.StandardMessageCodec
+              : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0)],
+        const <String>[""],
+      ) as api.StandardMethodCodec;
     case '@implementation':
-      if (!values.containsKey("messageCodec")) {
-        return _StandardMethodCodecProxy(values['@peer'] as FlaxProxyPeer);
-      }
-      return _StandardMethodCodecProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["messageCodec"] as api.StandardMessageCodec,
-      );
+      final _flaxHas1 = values.containsKey("messageCodec");
+      return flaxInvokeWithDefaults(
+        _StandardMethodCodecProxy.new,
+        <Object?>[
+          values['@peer'] as FlaxProxyPeer,
+          (_flaxHas1
+              ? values["messageCodec"] as api.StandardMessageCodec
+              : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0)],
+        const <String>["", ""],
+      ) as api.StandardMethodCodec;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10039,835 +10058,154 @@ Object? _TextInputConfiguration_super_get_enableDeltaModel(
 Object _createTextInputConfiguration(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("inputType")) {
-        if (!values.containsKey("autofillConfiguration")) {
-          if (!values.containsKey("allowedMimeTypes")) {
-            if (!values.containsKey("hintLocales")) {
-              return api.TextInputConfiguration(
-                viewId: values["viewId"] as int?,
-                readOnly: values["readOnly"] as bool,
-                obscureText: values["obscureText"] as bool,
-                autocorrect: values["autocorrect"] as bool,
-                smartDashesType:
-                    values["smartDashesType"] as api.SmartDashesType?,
-                smartQuotesType:
-                    values["smartQuotesType"] as api.SmartQuotesType?,
-                enableSuggestions: values["enableSuggestions"] as bool,
-                enableInteractiveSelection:
-                    values["enableInteractiveSelection"] as bool,
-                actionLabel: values["actionLabel"] as String?,
-                inputAction: values["inputAction"] as api.TextInputAction,
-                keyboardAppearance:
-                    values["keyboardAppearance"] as api1.Brightness,
-                textCapitalization:
-                    values["textCapitalization"] as api.TextCapitalization,
-                enableIMEPersonalizedLearning:
-                    values["enableIMEPersonalizedLearning"] as bool,
-                enableDeltaModel: values["enableDeltaModel"] as bool,
-                enableInlinePrediction:
-                    values["enableInlinePrediction"] as bool?,
-              );
-            }
-            return api.TextInputConfiguration(
-              viewId: values["viewId"] as int?,
-              readOnly: values["readOnly"] as bool,
-              obscureText: values["obscureText"] as bool,
-              autocorrect: values["autocorrect"] as bool,
-              smartDashesType:
-                  values["smartDashesType"] as api.SmartDashesType?,
-              smartQuotesType:
-                  values["smartQuotesType"] as api.SmartQuotesType?,
-              enableSuggestions: values["enableSuggestions"] as bool,
-              enableInteractiveSelection:
-                  values["enableInteractiveSelection"] as bool,
-              actionLabel: values["actionLabel"] as String?,
-              inputAction: values["inputAction"] as api.TextInputAction,
-              keyboardAppearance:
-                  values["keyboardAppearance"] as api1.Brightness,
-              textCapitalization:
-                  values["textCapitalization"] as api.TextCapitalization,
-              enableIMEPersonalizedLearning:
-                  values["enableIMEPersonalizedLearning"] as bool,
-              enableDeltaModel: values["enableDeltaModel"] as bool,
-              hintLocales: values["hintLocales"] as List<api1.Locale>?,
-              enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-            );
-          }
-          if (!values.containsKey("hintLocales")) {
-            return api.TextInputConfiguration(
-              viewId: values["viewId"] as int?,
-              readOnly: values["readOnly"] as bool,
-              obscureText: values["obscureText"] as bool,
-              autocorrect: values["autocorrect"] as bool,
-              smartDashesType:
-                  values["smartDashesType"] as api.SmartDashesType?,
-              smartQuotesType:
-                  values["smartQuotesType"] as api.SmartQuotesType?,
-              enableSuggestions: values["enableSuggestions"] as bool,
-              enableInteractiveSelection:
-                  values["enableInteractiveSelection"] as bool,
-              actionLabel: values["actionLabel"] as String?,
-              inputAction: values["inputAction"] as api.TextInputAction,
-              keyboardAppearance:
-                  values["keyboardAppearance"] as api1.Brightness,
-              textCapitalization:
-                  values["textCapitalization"] as api.TextCapitalization,
-              enableIMEPersonalizedLearning:
-                  values["enableIMEPersonalizedLearning"] as bool,
-              allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-              enableDeltaModel: values["enableDeltaModel"] as bool,
-              enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-            );
-          }
-          return api.TextInputConfiguration(
-            viewId: values["viewId"] as int?,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            hintLocales: values["hintLocales"] as List<api1.Locale>?,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        if (!values.containsKey("allowedMimeTypes")) {
-          if (!values.containsKey("hintLocales")) {
-            return api.TextInputConfiguration(
-              viewId: values["viewId"] as int?,
-              readOnly: values["readOnly"] as bool,
-              obscureText: values["obscureText"] as bool,
-              autocorrect: values["autocorrect"] as bool,
-              smartDashesType:
-                  values["smartDashesType"] as api.SmartDashesType?,
-              smartQuotesType:
-                  values["smartQuotesType"] as api.SmartQuotesType?,
-              enableSuggestions: values["enableSuggestions"] as bool,
-              enableInteractiveSelection:
-                  values["enableInteractiveSelection"] as bool,
-              actionLabel: values["actionLabel"] as String?,
-              inputAction: values["inputAction"] as api.TextInputAction,
-              keyboardAppearance:
-                  values["keyboardAppearance"] as api1.Brightness,
-              textCapitalization:
-                  values["textCapitalization"] as api.TextCapitalization,
-              autofillConfiguration:
-                  values["autofillConfiguration"] as api.AutofillConfiguration,
-              enableIMEPersonalizedLearning:
-                  values["enableIMEPersonalizedLearning"] as bool,
-              enableDeltaModel: values["enableDeltaModel"] as bool,
-              enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-            );
-          }
-          return api.TextInputConfiguration(
-            viewId: values["viewId"] as int?,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            autofillConfiguration:
-                values["autofillConfiguration"] as api.AutofillConfiguration,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            hintLocales: values["hintLocales"] as List<api1.Locale>?,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        if (!values.containsKey("hintLocales")) {
-          return api.TextInputConfiguration(
-            viewId: values["viewId"] as int?,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            autofillConfiguration:
-                values["autofillConfiguration"] as api.AutofillConfiguration,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        return api.TextInputConfiguration(
-          viewId: values["viewId"] as int?,
-          readOnly: values["readOnly"] as bool,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          actionLabel: values["actionLabel"] as String?,
-          inputAction: values["inputAction"] as api.TextInputAction,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-          textCapitalization:
-              values["textCapitalization"] as api.TextCapitalization,
-          autofillConfiguration:
-              values["autofillConfiguration"] as api.AutofillConfiguration,
-          enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-          enableDeltaModel: values["enableDeltaModel"] as bool,
-          hintLocales: values["hintLocales"] as List<api1.Locale>?,
-          enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-        );
-      }
-      if (!values.containsKey("autofillConfiguration")) {
-        if (!values.containsKey("allowedMimeTypes")) {
-          if (!values.containsKey("hintLocales")) {
-            return api.TextInputConfiguration(
-              viewId: values["viewId"] as int?,
-              inputType: values["inputType"] as api.TextInputType,
-              readOnly: values["readOnly"] as bool,
-              obscureText: values["obscureText"] as bool,
-              autocorrect: values["autocorrect"] as bool,
-              smartDashesType:
-                  values["smartDashesType"] as api.SmartDashesType?,
-              smartQuotesType:
-                  values["smartQuotesType"] as api.SmartQuotesType?,
-              enableSuggestions: values["enableSuggestions"] as bool,
-              enableInteractiveSelection:
-                  values["enableInteractiveSelection"] as bool,
-              actionLabel: values["actionLabel"] as String?,
-              inputAction: values["inputAction"] as api.TextInputAction,
-              keyboardAppearance:
-                  values["keyboardAppearance"] as api1.Brightness,
-              textCapitalization:
-                  values["textCapitalization"] as api.TextCapitalization,
-              enableIMEPersonalizedLearning:
-                  values["enableIMEPersonalizedLearning"] as bool,
-              enableDeltaModel: values["enableDeltaModel"] as bool,
-              enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-            );
-          }
-          return api.TextInputConfiguration(
-            viewId: values["viewId"] as int?,
-            inputType: values["inputType"] as api.TextInputType,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            hintLocales: values["hintLocales"] as List<api1.Locale>?,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        if (!values.containsKey("hintLocales")) {
-          return api.TextInputConfiguration(
-            viewId: values["viewId"] as int?,
-            inputType: values["inputType"] as api.TextInputType,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        return api.TextInputConfiguration(
-          viewId: values["viewId"] as int?,
-          inputType: values["inputType"] as api.TextInputType,
-          readOnly: values["readOnly"] as bool,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          actionLabel: values["actionLabel"] as String?,
-          inputAction: values["inputAction"] as api.TextInputAction,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-          textCapitalization:
-              values["textCapitalization"] as api.TextCapitalization,
-          enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-          enableDeltaModel: values["enableDeltaModel"] as bool,
-          hintLocales: values["hintLocales"] as List<api1.Locale>?,
-          enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-        );
-      }
-      if (!values.containsKey("allowedMimeTypes")) {
-        if (!values.containsKey("hintLocales")) {
-          return api.TextInputConfiguration(
-            viewId: values["viewId"] as int?,
-            inputType: values["inputType"] as api.TextInputType,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            autofillConfiguration:
-                values["autofillConfiguration"] as api.AutofillConfiguration,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        return api.TextInputConfiguration(
-          viewId: values["viewId"] as int?,
-          inputType: values["inputType"] as api.TextInputType,
-          readOnly: values["readOnly"] as bool,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          actionLabel: values["actionLabel"] as String?,
-          inputAction: values["inputAction"] as api.TextInputAction,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-          textCapitalization:
-              values["textCapitalization"] as api.TextCapitalization,
-          autofillConfiguration:
-              values["autofillConfiguration"] as api.AutofillConfiguration,
-          enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          enableDeltaModel: values["enableDeltaModel"] as bool,
-          hintLocales: values["hintLocales"] as List<api1.Locale>?,
-          enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-        );
-      }
-      if (!values.containsKey("hintLocales")) {
-        return api.TextInputConfiguration(
-          viewId: values["viewId"] as int?,
-          inputType: values["inputType"] as api.TextInputType,
-          readOnly: values["readOnly"] as bool,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          actionLabel: values["actionLabel"] as String?,
-          inputAction: values["inputAction"] as api.TextInputAction,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-          textCapitalization:
-              values["textCapitalization"] as api.TextCapitalization,
-          autofillConfiguration:
-              values["autofillConfiguration"] as api.AutofillConfiguration,
-          enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-          enableDeltaModel: values["enableDeltaModel"] as bool,
-          enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-        );
-      }
-      return api.TextInputConfiguration(
-        viewId: values["viewId"] as int?,
-        inputType: values["inputType"] as api.TextInputType,
-        readOnly: values["readOnly"] as bool,
-        obscureText: values["obscureText"] as bool,
-        autocorrect: values["autocorrect"] as bool,
-        smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-        smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-        enableSuggestions: values["enableSuggestions"] as bool,
-        enableInteractiveSelection:
-            values["enableInteractiveSelection"] as bool,
-        actionLabel: values["actionLabel"] as String?,
-        inputAction: values["inputAction"] as api.TextInputAction,
-        keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-        textCapitalization:
-            values["textCapitalization"] as api.TextCapitalization,
-        autofillConfiguration:
-            values["autofillConfiguration"] as api.AutofillConfiguration,
-        enableIMEPersonalizedLearning:
-            values["enableIMEPersonalizedLearning"] as bool,
-        allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-        enableDeltaModel: values["enableDeltaModel"] as bool,
-        hintLocales: values["hintLocales"] as List<api1.Locale>?,
-        enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-      );
+      final _flaxHas1 = values.containsKey("inputType");
+      final _flaxHas13 = values.containsKey("autofillConfiguration");
+      final _flaxHas15 = values.containsKey("allowedMimeTypes");
+      final _flaxHas17 = values.containsKey("hintLocales");
+      return flaxInvokeWithDefaults(
+        api.TextInputConfiguration.new,
+        <Object?>[
+          values["viewId"] as int?,
+          (_flaxHas1 ? values["inputType"] as api.TextInputType : null),
+          values["readOnly"] as bool,
+          values["obscureText"] as bool,
+          values["autocorrect"] as bool,
+          values["smartDashesType"] as api.SmartDashesType?,
+          values["smartQuotesType"] as api.SmartQuotesType?,
+          values["enableSuggestions"] as bool,
+          values["enableInteractiveSelection"] as bool,
+          values["actionLabel"] as String?,
+          values["inputAction"] as api.TextInputAction,
+          values["keyboardAppearance"] as api1.Brightness,
+          values["textCapitalization"] as api.TextCapitalization,
+          (_flaxHas13
+              ? values["autofillConfiguration"] as api.AutofillConfiguration
+              : null),
+          values["enableIMEPersonalizedLearning"] as bool,
+          (_flaxHas15 ? values["allowedMimeTypes"] as List<String> : null),
+          values["enableDeltaModel"] as bool,
+          (_flaxHas17 ? values["hintLocales"] as List<api1.Locale>? : null),
+          values["enableInlinePrediction"] as bool?,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              (_flaxHas13 ? 8192 : 0) |
+              16384 |
+              (_flaxHas15 ? 32768 : 0) |
+              65536 |
+              (_flaxHas17 ? 131072 : 0) |
+              262144,
+        ],
+        const <String>[
+          "viewId",
+          "inputType",
+          "readOnly",
+          "obscureText",
+          "autocorrect",
+          "smartDashesType",
+          "smartQuotesType",
+          "enableSuggestions",
+          "enableInteractiveSelection",
+          "actionLabel",
+          "inputAction",
+          "keyboardAppearance",
+          "textCapitalization",
+          "autofillConfiguration",
+          "enableIMEPersonalizedLearning",
+          "allowedMimeTypes",
+          "enableDeltaModel",
+          "hintLocales",
+          "enableInlinePrediction",
+        ],
+      ) as api.TextInputConfiguration;
     case '@implementation':
-      if (!values.containsKey("inputType")) {
-        if (!values.containsKey("autofillConfiguration")) {
-          if (!values.containsKey("allowedMimeTypes")) {
-            if (!values.containsKey("hintLocales")) {
-              return _TextInputConfigurationProxy(
-                values['@peer'] as FlaxProxyPeer,
-                viewId: values["viewId"] as int?,
-                readOnly: values["readOnly"] as bool,
-                obscureText: values["obscureText"] as bool,
-                autocorrect: values["autocorrect"] as bool,
-                smartDashesType:
-                    values["smartDashesType"] as api.SmartDashesType?,
-                smartQuotesType:
-                    values["smartQuotesType"] as api.SmartQuotesType?,
-                enableSuggestions: values["enableSuggestions"] as bool,
-                enableInteractiveSelection:
-                    values["enableInteractiveSelection"] as bool,
-                actionLabel: values["actionLabel"] as String?,
-                inputAction: values["inputAction"] as api.TextInputAction,
-                keyboardAppearance:
-                    values["keyboardAppearance"] as api1.Brightness,
-                textCapitalization:
-                    values["textCapitalization"] as api.TextCapitalization,
-                enableIMEPersonalizedLearning:
-                    values["enableIMEPersonalizedLearning"] as bool,
-                enableDeltaModel: values["enableDeltaModel"] as bool,
-                enableInlinePrediction:
-                    values["enableInlinePrediction"] as bool?,
-              );
-            }
-            return _TextInputConfigurationProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int?,
-              readOnly: values["readOnly"] as bool,
-              obscureText: values["obscureText"] as bool,
-              autocorrect: values["autocorrect"] as bool,
-              smartDashesType:
-                  values["smartDashesType"] as api.SmartDashesType?,
-              smartQuotesType:
-                  values["smartQuotesType"] as api.SmartQuotesType?,
-              enableSuggestions: values["enableSuggestions"] as bool,
-              enableInteractiveSelection:
-                  values["enableInteractiveSelection"] as bool,
-              actionLabel: values["actionLabel"] as String?,
-              inputAction: values["inputAction"] as api.TextInputAction,
-              keyboardAppearance:
-                  values["keyboardAppearance"] as api1.Brightness,
-              textCapitalization:
-                  values["textCapitalization"] as api.TextCapitalization,
-              enableIMEPersonalizedLearning:
-                  values["enableIMEPersonalizedLearning"] as bool,
-              enableDeltaModel: values["enableDeltaModel"] as bool,
-              hintLocales: values["hintLocales"] as List<api1.Locale>?,
-              enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-            );
-          }
-          if (!values.containsKey("hintLocales")) {
-            return _TextInputConfigurationProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int?,
-              readOnly: values["readOnly"] as bool,
-              obscureText: values["obscureText"] as bool,
-              autocorrect: values["autocorrect"] as bool,
-              smartDashesType:
-                  values["smartDashesType"] as api.SmartDashesType?,
-              smartQuotesType:
-                  values["smartQuotesType"] as api.SmartQuotesType?,
-              enableSuggestions: values["enableSuggestions"] as bool,
-              enableInteractiveSelection:
-                  values["enableInteractiveSelection"] as bool,
-              actionLabel: values["actionLabel"] as String?,
-              inputAction: values["inputAction"] as api.TextInputAction,
-              keyboardAppearance:
-                  values["keyboardAppearance"] as api1.Brightness,
-              textCapitalization:
-                  values["textCapitalization"] as api.TextCapitalization,
-              enableIMEPersonalizedLearning:
-                  values["enableIMEPersonalizedLearning"] as bool,
-              allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-              enableDeltaModel: values["enableDeltaModel"] as bool,
-              enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-            );
-          }
-          return _TextInputConfigurationProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int?,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            hintLocales: values["hintLocales"] as List<api1.Locale>?,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        if (!values.containsKey("allowedMimeTypes")) {
-          if (!values.containsKey("hintLocales")) {
-            return _TextInputConfigurationProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int?,
-              readOnly: values["readOnly"] as bool,
-              obscureText: values["obscureText"] as bool,
-              autocorrect: values["autocorrect"] as bool,
-              smartDashesType:
-                  values["smartDashesType"] as api.SmartDashesType?,
-              smartQuotesType:
-                  values["smartQuotesType"] as api.SmartQuotesType?,
-              enableSuggestions: values["enableSuggestions"] as bool,
-              enableInteractiveSelection:
-                  values["enableInteractiveSelection"] as bool,
-              actionLabel: values["actionLabel"] as String?,
-              inputAction: values["inputAction"] as api.TextInputAction,
-              keyboardAppearance:
-                  values["keyboardAppearance"] as api1.Brightness,
-              textCapitalization:
-                  values["textCapitalization"] as api.TextCapitalization,
-              autofillConfiguration:
-                  values["autofillConfiguration"] as api.AutofillConfiguration,
-              enableIMEPersonalizedLearning:
-                  values["enableIMEPersonalizedLearning"] as bool,
-              enableDeltaModel: values["enableDeltaModel"] as bool,
-              enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-            );
-          }
-          return _TextInputConfigurationProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int?,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            autofillConfiguration:
-                values["autofillConfiguration"] as api.AutofillConfiguration,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            hintLocales: values["hintLocales"] as List<api1.Locale>?,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        if (!values.containsKey("hintLocales")) {
-          return _TextInputConfigurationProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int?,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            autofillConfiguration:
-                values["autofillConfiguration"] as api.AutofillConfiguration,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        return _TextInputConfigurationProxy(
+      final _flaxHas2 = values.containsKey("inputType");
+      final _flaxHas14 = values.containsKey("autofillConfiguration");
+      final _flaxHas16 = values.containsKey("allowedMimeTypes");
+      final _flaxHas18 = values.containsKey("hintLocales");
+      return flaxInvokeWithDefaults(
+        _TextInputConfigurationProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int?,
-          readOnly: values["readOnly"] as bool,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          actionLabel: values["actionLabel"] as String?,
-          inputAction: values["inputAction"] as api.TextInputAction,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-          textCapitalization:
-              values["textCapitalization"] as api.TextCapitalization,
-          autofillConfiguration:
-              values["autofillConfiguration"] as api.AutofillConfiguration,
-          enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-          enableDeltaModel: values["enableDeltaModel"] as bool,
-          hintLocales: values["hintLocales"] as List<api1.Locale>?,
-          enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-        );
-      }
-      if (!values.containsKey("autofillConfiguration")) {
-        if (!values.containsKey("allowedMimeTypes")) {
-          if (!values.containsKey("hintLocales")) {
-            return _TextInputConfigurationProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int?,
-              inputType: values["inputType"] as api.TextInputType,
-              readOnly: values["readOnly"] as bool,
-              obscureText: values["obscureText"] as bool,
-              autocorrect: values["autocorrect"] as bool,
-              smartDashesType:
-                  values["smartDashesType"] as api.SmartDashesType?,
-              smartQuotesType:
-                  values["smartQuotesType"] as api.SmartQuotesType?,
-              enableSuggestions: values["enableSuggestions"] as bool,
-              enableInteractiveSelection:
-                  values["enableInteractiveSelection"] as bool,
-              actionLabel: values["actionLabel"] as String?,
-              inputAction: values["inputAction"] as api.TextInputAction,
-              keyboardAppearance:
-                  values["keyboardAppearance"] as api1.Brightness,
-              textCapitalization:
-                  values["textCapitalization"] as api.TextCapitalization,
-              enableIMEPersonalizedLearning:
-                  values["enableIMEPersonalizedLearning"] as bool,
-              enableDeltaModel: values["enableDeltaModel"] as bool,
-              enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-            );
-          }
-          return _TextInputConfigurationProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int?,
-            inputType: values["inputType"] as api.TextInputType,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            hintLocales: values["hintLocales"] as List<api1.Locale>?,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        if (!values.containsKey("hintLocales")) {
-          return _TextInputConfigurationProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int?,
-            inputType: values["inputType"] as api.TextInputType,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        return _TextInputConfigurationProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int?,
-          inputType: values["inputType"] as api.TextInputType,
-          readOnly: values["readOnly"] as bool,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          actionLabel: values["actionLabel"] as String?,
-          inputAction: values["inputAction"] as api.TextInputAction,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-          textCapitalization:
-              values["textCapitalization"] as api.TextCapitalization,
-          enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-          enableDeltaModel: values["enableDeltaModel"] as bool,
-          hintLocales: values["hintLocales"] as List<api1.Locale>?,
-          enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-        );
-      }
-      if (!values.containsKey("allowedMimeTypes")) {
-        if (!values.containsKey("hintLocales")) {
-          return _TextInputConfigurationProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int?,
-            inputType: values["inputType"] as api.TextInputType,
-            readOnly: values["readOnly"] as bool,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            actionLabel: values["actionLabel"] as String?,
-            inputAction: values["inputAction"] as api.TextInputAction,
-            keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-            textCapitalization:
-                values["textCapitalization"] as api.TextCapitalization,
-            autofillConfiguration:
-                values["autofillConfiguration"] as api.AutofillConfiguration,
-            enableIMEPersonalizedLearning:
-                values["enableIMEPersonalizedLearning"] as bool,
-            enableDeltaModel: values["enableDeltaModel"] as bool,
-            enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          );
-        }
-        return _TextInputConfigurationProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int?,
-          inputType: values["inputType"] as api.TextInputType,
-          readOnly: values["readOnly"] as bool,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          actionLabel: values["actionLabel"] as String?,
-          inputAction: values["inputAction"] as api.TextInputAction,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-          textCapitalization:
-              values["textCapitalization"] as api.TextCapitalization,
-          autofillConfiguration:
-              values["autofillConfiguration"] as api.AutofillConfiguration,
-          enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          enableDeltaModel: values["enableDeltaModel"] as bool,
-          hintLocales: values["hintLocales"] as List<api1.Locale>?,
-          enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-        );
-      }
-      if (!values.containsKey("hintLocales")) {
-        return _TextInputConfigurationProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int?,
-          inputType: values["inputType"] as api.TextInputType,
-          readOnly: values["readOnly"] as bool,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          actionLabel: values["actionLabel"] as String?,
-          inputAction: values["inputAction"] as api.TextInputAction,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-          textCapitalization:
-              values["textCapitalization"] as api.TextCapitalization,
-          autofillConfiguration:
-              values["autofillConfiguration"] as api.AutofillConfiguration,
-          enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-          enableDeltaModel: values["enableDeltaModel"] as bool,
-          enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-        );
-      }
-      return _TextInputConfigurationProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int?,
-        inputType: values["inputType"] as api.TextInputType,
-        readOnly: values["readOnly"] as bool,
-        obscureText: values["obscureText"] as bool,
-        autocorrect: values["autocorrect"] as bool,
-        smartDashesType: values["smartDashesType"] as api.SmartDashesType?,
-        smartQuotesType: values["smartQuotesType"] as api.SmartQuotesType?,
-        enableSuggestions: values["enableSuggestions"] as bool,
-        enableInteractiveSelection:
-            values["enableInteractiveSelection"] as bool,
-        actionLabel: values["actionLabel"] as String?,
-        inputAction: values["inputAction"] as api.TextInputAction,
-        keyboardAppearance: values["keyboardAppearance"] as api1.Brightness,
-        textCapitalization:
-            values["textCapitalization"] as api.TextCapitalization,
-        autofillConfiguration:
-            values["autofillConfiguration"] as api.AutofillConfiguration,
-        enableIMEPersonalizedLearning:
-            values["enableIMEPersonalizedLearning"] as bool,
-        allowedMimeTypes: values["allowedMimeTypes"] as List<String>,
-        enableDeltaModel: values["enableDeltaModel"] as bool,
-        hintLocales: values["hintLocales"] as List<api1.Locale>?,
-        enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-      );
+          values["viewId"] as int?,
+          (_flaxHas2 ? values["inputType"] as api.TextInputType : null),
+          values["readOnly"] as bool,
+          values["obscureText"] as bool,
+          values["autocorrect"] as bool,
+          values["smartDashesType"] as api.SmartDashesType?,
+          values["smartQuotesType"] as api.SmartQuotesType?,
+          values["enableSuggestions"] as bool,
+          values["enableInteractiveSelection"] as bool,
+          values["actionLabel"] as String?,
+          values["inputAction"] as api.TextInputAction,
+          values["keyboardAppearance"] as api1.Brightness,
+          values["textCapitalization"] as api.TextCapitalization,
+          (_flaxHas14
+              ? values["autofillConfiguration"] as api.AutofillConfiguration
+              : null),
+          values["enableIMEPersonalizedLearning"] as bool,
+          (_flaxHas16 ? values["allowedMimeTypes"] as List<String> : null),
+          values["enableDeltaModel"] as bool,
+          (_flaxHas18 ? values["hintLocales"] as List<api1.Locale>? : null),
+          values["enableInlinePrediction"] as bool?,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              (_flaxHas14 ? 16384 : 0) |
+              32768 |
+              (_flaxHas16 ? 65536 : 0) |
+              131072 |
+              (_flaxHas18 ? 262144 : 0) |
+              524288,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "inputType",
+          "readOnly",
+          "obscureText",
+          "autocorrect",
+          "smartDashesType",
+          "smartQuotesType",
+          "enableSuggestions",
+          "enableInteractiveSelection",
+          "actionLabel",
+          "inputAction",
+          "keyboardAppearance",
+          "textCapitalization",
+          "autofillConfiguration",
+          "enableIMEPersonalizedLearning",
+          "allowedMimeTypes",
+          "enableDeltaModel",
+          "hintLocales",
+          "enableInlinePrediction",
+        ],
+      ) as api.TextInputConfiguration;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12816,10 +12154,13 @@ final class _AssetBundleProxy extends api.AssetBundle
     String key, {
     Object? cache = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      return super.loadString(key);
-    }
-    return super.loadString(key, cache: cache as bool);
+    final _flaxHas1 = !identical(cache, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.loadString,
+      <Object?>[key, (_flaxHas1 ? cache as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "cache"],
+    ) as Future<String>);
   }
 
   @override
@@ -13537,10 +12878,13 @@ final class _CachingAssetBundleProxy extends api.CachingAssetBundle
     String key, {
     Object? cache = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      return super.loadString(key);
-    }
-    return super.loadString(key, cache: cache as bool);
+    final _flaxHas1 = !identical(cache, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.loadString,
+      <Object?>[key, (_flaxHas1 ? cache as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "cache"],
+    ) as Future<String>);
   }
 
   @override
@@ -14161,10 +13505,13 @@ final class _EventChannelProxy extends api.EventChannel
   api7.Stream<Object?> _flaxSuper_receiveBroadcastStream([
     Object? arguments = _flaxOmitted,
   ]) {
-    if (identical(arguments, _flaxOmitted)) {
-      return super.receiveBroadcastStream();
-    }
-    return super.receiveBroadcastStream(arguments);
+    final _flaxHas0 = !identical(arguments, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.receiveBroadcastStream,
+      <Object?>[(_flaxHas0 ? arguments : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>[""],
+    ) as api7.Stream<Object?>);
   }
 
   @override
@@ -14275,21 +13622,19 @@ final class _GLFWKeyHelperProxy extends api.GLFWKeyHelper
     required int keyCode,
     required bool isDown,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      return super.isModifierPressed(
+    final _flaxHas2 = !identical(side, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.isModifierPressed,
+      <Object?>[
         key,
         modifiers,
-        keyCode: keyCode,
-        isDown: isDown,
-      );
-    }
-    return super.isModifierPressed(
-      key,
-      modifiers,
-      side: side as api.KeyboardSide,
-      keyCode: keyCode,
-      isDown: isDown,
-    );
+        (_flaxHas2 ? side as api.KeyboardSide : null),
+        keyCode,
+        isDown,
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16],
+      const <String>["", "", "side", "keyCode", "isDown"],
+    ) as bool);
   }
 
   @override
@@ -14362,21 +13707,19 @@ final class _GtkKeyHelperProxy extends api.GtkKeyHelper
     required int keyCode,
     required bool isDown,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      return super.isModifierPressed(
+    final _flaxHas2 = !identical(side, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.isModifierPressed,
+      <Object?>[
         key,
         modifiers,
-        keyCode: keyCode,
-        isDown: isDown,
-      );
-    }
-    return super.isModifierPressed(
-      key,
-      modifiers,
-      side: side as api.KeyboardSide,
-      keyCode: keyCode,
-      isDown: isDown,
-    );
+        (_flaxHas2 ? side as api.KeyboardSide : null),
+        keyCode,
+        isDown,
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16],
+      const <String>["", "", "side", "keyCode", "isDown"],
+    ) as bool);
   }
 
   @override
@@ -14671,20 +14014,18 @@ final class _JSONMethodCodecProxy extends api.JSONMethodCodec
     Object? message = _flaxOmitted,
     Object? details = _flaxOmitted,
   }) {
-    if (identical(message, _flaxOmitted)) {
-      if (identical(details, _flaxOmitted)) {
-        return super.encodeErrorEnvelope(code: code);
-      }
-      return super.encodeErrorEnvelope(code: code, details: details);
-    }
-    if (identical(details, _flaxOmitted)) {
-      return super.encodeErrorEnvelope(code: code, message: message as String?);
-    }
-    return super.encodeErrorEnvelope(
-      code: code,
-      message: message as String?,
-      details: details,
-    );
+    final _flaxHas1 = !identical(message, _flaxOmitted);
+    final _flaxHas2 = !identical(details, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.encodeErrorEnvelope,
+      <Object?>[
+        code,
+        (_flaxHas1 ? message as String? : null),
+        (_flaxHas2 ? details : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["code", "message", "details"],
+    ) as api3.ByteData);
   }
 }
 
@@ -14748,21 +14089,17 @@ final class _KeyDownEventProxy extends api.KeyDownEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -14771,10 +14108,13 @@ final class _KeyDownEventProxy extends api.KeyDownEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -15067,21 +14407,17 @@ final class _KeyRepeatEventProxy extends api.KeyRepeatEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -15090,10 +14426,13 @@ final class _KeyRepeatEventProxy extends api.KeyRepeatEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -15201,21 +14540,17 @@ final class _KeyUpEventProxy extends api.KeyUpEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -15224,10 +14559,13 @@ final class _KeyUpEventProxy extends api.KeyUpEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -15370,10 +14708,13 @@ final class _KeyboardKeyProxy extends api.KeyboardKey
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -15393,21 +14734,17 @@ final class _KeyboardKeyProxy extends api.KeyboardKey
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -15579,10 +14916,13 @@ final class _MethodChannelProxy extends api.MethodChannel
     String method, [
     Object? arguments = _flaxOmitted,
   ]) {
-    if (identical(arguments, _flaxOmitted)) {
-      return super.invokeMethod<T>(method);
-    }
-    return super.invokeMethod<T>(method, arguments);
+    final _flaxHas1 = !identical(arguments, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeMethod<T>,
+      <Object?>[method, (_flaxHas1 ? arguments : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<T?>);
   }
 
   @override
@@ -15621,10 +14961,13 @@ final class _MethodChannelProxy extends api.MethodChannel
     String method, [
     Object? arguments = _flaxOmitted,
   ]) {
-    if (identical(arguments, _flaxOmitted)) {
-      return super.invokeListMethod<T>(method);
-    }
-    return super.invokeListMethod<T>(method, arguments);
+    final _flaxHas1 = !identical(arguments, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeListMethod<T>,
+      <Object?>[method, (_flaxHas1 ? arguments : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<List<T>?>);
   }
 
   @override
@@ -15664,10 +15007,13 @@ final class _MethodChannelProxy extends api.MethodChannel
     K extends Object?,
     V extends Object?
   >(String method, [Object? arguments = _flaxOmitted]) {
-    if (identical(arguments, _flaxOmitted)) {
-      return super.invokeMapMethod<K, V>(method);
-    }
-    return super.invokeMapMethod<K, V>(method, arguments);
+    final _flaxHas1 = !identical(arguments, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeMapMethod<K, V>,
+      <Object?>[method, (_flaxHas1 ? arguments : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<Map<K, V>?>);
   }
 
   @override
@@ -16107,10 +15453,13 @@ final class _MouseTrackerAnnotationProxy extends api.MouseTrackerAnnotation
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -16130,21 +15479,17 @@ final class _MouseTrackerAnnotationProxy extends api.MouseTrackerAnnotation
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -16238,10 +15583,13 @@ final class _NetworkAssetBundleProxy extends api.NetworkAssetBundle
     String key, {
     Object? cache = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      return super.loadString(key);
-    }
-    return super.loadString(key, cache: cache as bool);
+    final _flaxHas1 = !identical(cache, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.loadString,
+      <Object?>[key, (_flaxHas1 ? cache as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "cache"],
+    ) as Future<String>);
   }
 
   @override
@@ -16584,10 +15932,13 @@ final class _OptionalMethodChannelProxy extends api.OptionalMethodChannel
     String method, [
     Object? arguments = _flaxOmitted,
   ]) {
-    if (identical(arguments, _flaxOmitted)) {
-      return super.invokeMethod<T>(method);
-    }
-    return super.invokeMethod<T>(method, arguments);
+    final _flaxHas1 = !identical(arguments, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeMethod<T>,
+      <Object?>[method, (_flaxHas1 ? arguments : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<T?>);
   }
 
   @override
@@ -16626,10 +15977,13 @@ final class _OptionalMethodChannelProxy extends api.OptionalMethodChannel
     String method, [
     Object? arguments = _flaxOmitted,
   ]) {
-    if (identical(arguments, _flaxOmitted)) {
-      return super.invokeListMethod<T>(method);
-    }
-    return super.invokeListMethod<T>(method, arguments);
+    final _flaxHas1 = !identical(arguments, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeListMethod<T>,
+      <Object?>[method, (_flaxHas1 ? arguments : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<List<T>?>);
   }
 
   @override
@@ -16669,10 +16023,13 @@ final class _OptionalMethodChannelProxy extends api.OptionalMethodChannel
     K extends Object?,
     V extends Object?
   >(String method, [Object? arguments = _flaxOmitted]) {
-    if (identical(arguments, _flaxOmitted)) {
-      return super.invokeMapMethod<K, V>(method);
-    }
-    return super.invokeMapMethod<K, V>(method, arguments);
+    final _flaxHas1 = !identical(arguments, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeMapMethod<K, V>,
+      <Object?>[method, (_flaxHas1 ? arguments : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<Map<K, V>?>);
   }
 
   @override
@@ -16928,10 +16285,13 @@ final class _PlatformAssetBundleProxy extends api.PlatformAssetBundle
     String key, {
     Object? cache = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      return super.loadString(key);
-    }
-    return super.loadString(key, cache: cache as bool);
+    final _flaxHas1 = !identical(cache, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.loadString,
+      <Object?>[key, (_flaxHas1 ? cache as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "cache"],
+    ) as Future<String>);
   }
 
   @override
@@ -17349,19 +16709,17 @@ final class _PlatformViewControllerProxy extends api.PlatformViewController {
     Object? size = _flaxOmitted,
     Object? position = _flaxOmitted,
   }) {
-    if (identical(size, _flaxOmitted)) {
-      if (identical(position, _flaxOmitted)) {
-        return super.create();
-      }
-      return super.create(position: position as api1.Offset?);
-    }
-    if (identical(position, _flaxOmitted)) {
-      return super.create(size: size as api1.Size?);
-    }
-    return super.create(
-      size: size as api1.Size?,
-      position: position as api1.Offset?,
-    );
+    final _flaxHas0 = !identical(size, _flaxOmitted);
+    final _flaxHas1 = !identical(position, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.create,
+      <Object?>[
+        (_flaxHas0 ? size as api1.Size? : null),
+        (_flaxHas1 ? position as api1.Offset? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["size", "position"],
+    ) as Future<void>);
   }
 
   @override
@@ -17585,21 +16943,17 @@ final class _RawKeyDownEventProxy extends api.RawKeyDownEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -17608,10 +16962,13 @@ final class _RawKeyDownEventProxy extends api.RawKeyDownEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -17721,10 +17078,13 @@ final class _RawKeyEventProxy extends api.RawKeyEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -17744,21 +17104,17 @@ final class _RawKeyEventProxy extends api.RawKeyEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -17889,10 +17245,13 @@ final class _RawKeyEventDataProxy extends api.RawKeyEventData
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -17912,21 +17271,17 @@ final class _RawKeyEventDataProxy extends api.RawKeyEventData
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -18084,10 +17439,13 @@ final class _RawKeyEventDataAndroidProxy extends api.RawKeyEventDataAndroid
     api.ModifierKey key, {
     Object? side = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      return super.isModifierPressed(key);
-    }
-    return super.isModifierPressed(key, side: side as api.KeyboardSide);
+    final _flaxHas1 = !identical(side, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.isModifierPressed,
+      <Object?>[key, (_flaxHas1 ? side as api.KeyboardSide : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "side"],
+    ) as bool);
   }
 
   @override
@@ -18144,21 +17502,17 @@ final class _RawKeyEventDataAndroidProxy extends api.RawKeyEventDataAndroid
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -18182,10 +17536,13 @@ final class _RawKeyEventDataAndroidProxy extends api.RawKeyEventDataAndroid
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -18419,10 +17776,13 @@ final class _RawKeyEventDataFuchsiaProxy extends api.RawKeyEventDataFuchsia
     api.ModifierKey key, {
     Object? side = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      return super.isModifierPressed(key);
-    }
-    return super.isModifierPressed(key, side: side as api.KeyboardSide);
+    final _flaxHas1 = !identical(side, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.isModifierPressed,
+      <Object?>[key, (_flaxHas1 ? side as api.KeyboardSide : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "side"],
+    ) as bool);
   }
 
   @override
@@ -18479,21 +17839,17 @@ final class _RawKeyEventDataFuchsiaProxy extends api.RawKeyEventDataFuchsia
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -18517,10 +17873,13 @@ final class _RawKeyEventDataFuchsiaProxy extends api.RawKeyEventDataFuchsia
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -18659,10 +18018,13 @@ final class _RawKeyEventDataIosProxy extends api.RawKeyEventDataIos
     api.ModifierKey key, {
     Object? side = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      return super.isModifierPressed(key);
-    }
-    return super.isModifierPressed(key, side: side as api.KeyboardSide);
+    final _flaxHas1 = !identical(side, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.isModifierPressed,
+      <Object?>[key, (_flaxHas1 ? side as api.KeyboardSide : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "side"],
+    ) as bool);
   }
 
   @override
@@ -18719,21 +18081,17 @@ final class _RawKeyEventDataIosProxy extends api.RawKeyEventDataIos
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -18757,10 +18115,13 @@ final class _RawKeyEventDataIosProxy extends api.RawKeyEventDataIos
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -18914,10 +18275,13 @@ final class _RawKeyEventDataLinuxProxy extends api.RawKeyEventDataLinux
     api.ModifierKey key, {
     Object? side = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      return super.isModifierPressed(key);
-    }
-    return super.isModifierPressed(key, side: side as api.KeyboardSide);
+    final _flaxHas1 = !identical(side, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.isModifierPressed,
+      <Object?>[key, (_flaxHas1 ? side as api.KeyboardSide : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "side"],
+    ) as bool);
   }
 
   @override
@@ -18974,21 +18338,17 @@ final class _RawKeyEventDataLinuxProxy extends api.RawKeyEventDataLinux
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -19012,10 +18372,13 @@ final class _RawKeyEventDataLinuxProxy extends api.RawKeyEventDataLinux
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -19203,10 +18566,13 @@ final class _RawKeyEventDataMacOsProxy extends api.RawKeyEventDataMacOs
     api.ModifierKey key, {
     Object? side = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      return super.isModifierPressed(key);
-    }
-    return super.isModifierPressed(key, side: side as api.KeyboardSide);
+    final _flaxHas1 = !identical(side, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.isModifierPressed,
+      <Object?>[key, (_flaxHas1 ? side as api.KeyboardSide : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "side"],
+    ) as bool);
   }
 
   @override
@@ -19263,21 +18629,17 @@ final class _RawKeyEventDataMacOsProxy extends api.RawKeyEventDataMacOs
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -19301,10 +18663,13 @@ final class _RawKeyEventDataMacOsProxy extends api.RawKeyEventDataMacOs
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -19468,10 +18833,13 @@ final class _RawKeyEventDataWebProxy extends api.RawKeyEventDataWeb
     api.ModifierKey key, {
     Object? side = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      return super.isModifierPressed(key);
-    }
-    return super.isModifierPressed(key, side: side as api.KeyboardSide);
+    final _flaxHas1 = !identical(side, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.isModifierPressed,
+      <Object?>[key, (_flaxHas1 ? side as api.KeyboardSide : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "side"],
+    ) as bool);
   }
 
   @override
@@ -19528,21 +18896,17 @@ final class _RawKeyEventDataWebProxy extends api.RawKeyEventDataWeb
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -19566,10 +18930,13 @@ final class _RawKeyEventDataWebProxy extends api.RawKeyEventDataWeb
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -19732,10 +19099,13 @@ final class _RawKeyEventDataWindowsProxy extends api.RawKeyEventDataWindows
     api.ModifierKey key, {
     Object? side = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      return super.isModifierPressed(key);
-    }
-    return super.isModifierPressed(key, side: side as api.KeyboardSide);
+    final _flaxHas1 = !identical(side, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.isModifierPressed,
+      <Object?>[key, (_flaxHas1 ? side as api.KeyboardSide : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "side"],
+    ) as bool);
   }
 
   @override
@@ -19792,21 +19162,17 @@ final class _RawKeyEventDataWindowsProxy extends api.RawKeyEventDataWindows
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -19830,10 +19196,13 @@ final class _RawKeyEventDataWindowsProxy extends api.RawKeyEventDataWindows
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -20019,21 +19388,17 @@ final class _RawKeyUpEventProxy extends api.RawKeyUpEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -20042,10 +19407,13 @@ final class _RawKeyUpEventProxy extends api.RawKeyUpEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -20723,20 +20091,18 @@ final class _StandardMethodCodecProxy extends api.StandardMethodCodec
     Object? message = _flaxOmitted,
     Object? details = _flaxOmitted,
   }) {
-    if (identical(message, _flaxOmitted)) {
-      if (identical(details, _flaxOmitted)) {
-        return super.encodeErrorEnvelope(code: code);
-      }
-      return super.encodeErrorEnvelope(code: code, details: details);
-    }
-    if (identical(details, _flaxOmitted)) {
-      return super.encodeErrorEnvelope(code: code, message: message as String?);
-    }
-    return super.encodeErrorEnvelope(
-      code: code,
-      message: message as String?,
-      details: details,
-    );
+    final _flaxHas1 = !identical(message, _flaxOmitted);
+    final _flaxHas2 = !identical(details, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.encodeErrorEnvelope,
+      <Object?>[
+        code,
+        (_flaxHas1 ? message as String? : null),
+        (_flaxHas2 ? details : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["code", "message", "details"],
+    ) as api3.ByteData);
   }
 
   @override
@@ -20889,10 +20255,13 @@ final class _SystemContextMenuControllerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -20912,21 +20281,17 @@ final class _SystemContextMenuControllerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -21064,10 +20429,13 @@ final class _SystemUiOverlayStyleProxy extends api.SystemUiOverlayStyle
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -21087,21 +20455,17 @@ final class _SystemUiOverlayStyleProxy extends api.SystemUiOverlayStyle
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -21176,28 +20540,55 @@ final class _SystemUiOverlayStyleProxy extends api.SystemUiOverlayStyle
     Object? systemStatusBarContrastEnforced = _flaxOmitted,
     Object? systemNavigationBarIconBrightness = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(systemNavigationBarColor, _flaxOmitted))
-        #systemNavigationBarColor: systemNavigationBarColor as api1.Color?,
-      if (!identical(systemNavigationBarDividerColor, _flaxOmitted))
-        #systemNavigationBarDividerColor:
-            systemNavigationBarDividerColor as api1.Color?,
-      if (!identical(systemNavigationBarContrastEnforced, _flaxOmitted))
-        #systemNavigationBarContrastEnforced:
-            systemNavigationBarContrastEnforced as bool?,
-      if (!identical(statusBarColor, _flaxOmitted))
-        #statusBarColor: statusBarColor as api1.Color?,
-      if (!identical(statusBarBrightness, _flaxOmitted))
-        #statusBarBrightness: statusBarBrightness as api1.Brightness?,
-      if (!identical(statusBarIconBrightness, _flaxOmitted))
-        #statusBarIconBrightness: statusBarIconBrightness as api1.Brightness?,
-      if (!identical(systemStatusBarContrastEnforced, _flaxOmitted))
-        #systemStatusBarContrastEnforced:
-            systemStatusBarContrastEnforced as bool?,
-      if (!identical(systemNavigationBarIconBrightness, _flaxOmitted))
-        #systemNavigationBarIconBrightness:
-            systemNavigationBarIconBrightness as api1.Brightness?,
-    }) as api.SystemUiOverlayStyle);
+    final _flaxHas0 = !identical(systemNavigationBarColor, _flaxOmitted);
+    final _flaxHas1 = !identical(systemNavigationBarDividerColor, _flaxOmitted);
+    final _flaxHas2 = !identical(
+      systemNavigationBarContrastEnforced,
+      _flaxOmitted,
+    );
+    final _flaxHas3 = !identical(statusBarColor, _flaxOmitted);
+    final _flaxHas4 = !identical(statusBarBrightness, _flaxOmitted);
+    final _flaxHas5 = !identical(statusBarIconBrightness, _flaxOmitted);
+    final _flaxHas6 = !identical(systemStatusBarContrastEnforced, _flaxOmitted);
+    final _flaxHas7 = !identical(
+      systemNavigationBarIconBrightness,
+      _flaxOmitted,
+    );
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? systemNavigationBarColor as api1.Color? : null),
+        (_flaxHas1 ? systemNavigationBarDividerColor as api1.Color? : null),
+        (_flaxHas2 ? systemNavigationBarContrastEnforced as bool? : null),
+        (_flaxHas3 ? statusBarColor as api1.Color? : null),
+        (_flaxHas4 ? statusBarBrightness as api1.Brightness? : null),
+        (_flaxHas5 ? statusBarIconBrightness as api1.Brightness? : null),
+        (_flaxHas6 ? systemStatusBarContrastEnforced as bool? : null),
+        (_flaxHas7
+            ? systemNavigationBarIconBrightness as api1.Brightness?
+            : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0),
+      ],
+      const <String>[
+        "systemNavigationBarColor",
+        "systemNavigationBarDividerColor",
+        "systemNavigationBarContrastEnforced",
+        "statusBarColor",
+        "statusBarBrightness",
+        "statusBarIconBrightness",
+        "systemStatusBarContrastEnforced",
+        "systemNavigationBarIconBrightness",
+      ],
+    ) as api.SystemUiOverlayStyle);
   }
 
   @override
@@ -21361,10 +20752,13 @@ final class _TextEditingDeltaProxy extends api.TextEditingDelta
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -21384,21 +20778,17 @@ final class _TextEditingDeltaProxy extends api.TextEditingDelta
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -21500,21 +20890,17 @@ final class _TextEditingDeltaDeletionProxy extends api.TextEditingDeltaDeletion
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -21538,10 +20924,13 @@ final class _TextEditingDeltaDeletionProxy extends api.TextEditingDeltaDeletion
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -21642,21 +21031,17 @@ final class _TextEditingDeltaInsertionProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -21680,10 +21065,13 @@ final class _TextEditingDeltaInsertionProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -21782,21 +21170,17 @@ final class _TextEditingDeltaNonTextUpdateProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -21820,10 +21204,13 @@ final class _TextEditingDeltaNonTextUpdateProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -21900,21 +21287,17 @@ final class _TextEditingDeltaReplacementProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -21938,10 +21321,13 @@ final class _TextEditingDeltaReplacementProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -22127,45 +21513,93 @@ final class _TextInputConfigurationProxy extends api.TextInputConfiguration
     Object? hintLocales = _flaxOmitted,
     Object? enableInlinePrediction = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(inputType, _flaxOmitted))
-        #inputType: inputType as api.TextInputType?,
-      if (!identical(readOnly, _flaxOmitted)) #readOnly: readOnly as bool?,
-      if (!identical(obscureText, _flaxOmitted))
-        #obscureText: obscureText as bool?,
-      if (!identical(autocorrect, _flaxOmitted))
-        #autocorrect: autocorrect as bool?,
-      if (!identical(smartDashesType, _flaxOmitted))
-        #smartDashesType: smartDashesType as api.SmartDashesType?,
-      if (!identical(smartQuotesType, _flaxOmitted))
-        #smartQuotesType: smartQuotesType as api.SmartQuotesType?,
-      if (!identical(enableSuggestions, _flaxOmitted))
-        #enableSuggestions: enableSuggestions as bool?,
-      if (!identical(enableInteractiveSelection, _flaxOmitted))
-        #enableInteractiveSelection: enableInteractiveSelection as bool?,
-      if (!identical(actionLabel, _flaxOmitted))
-        #actionLabel: actionLabel as String?,
-      if (!identical(inputAction, _flaxOmitted))
-        #inputAction: inputAction as api.TextInputAction?,
-      if (!identical(keyboardAppearance, _flaxOmitted))
-        #keyboardAppearance: keyboardAppearance as api1.Brightness?,
-      if (!identical(textCapitalization, _flaxOmitted))
-        #textCapitalization: textCapitalization as api.TextCapitalization?,
-      if (!identical(enableIMEPersonalizedLearning, _flaxOmitted))
-        #enableIMEPersonalizedLearning: enableIMEPersonalizedLearning as bool?,
-      if (!identical(allowedMimeTypes, _flaxOmitted))
-        #allowedMimeTypes: allowedMimeTypes as List<String>?,
-      if (!identical(autofillConfiguration, _flaxOmitted))
-        #autofillConfiguration:
-            autofillConfiguration as api.AutofillConfiguration?,
-      if (!identical(enableDeltaModel, _flaxOmitted))
-        #enableDeltaModel: enableDeltaModel as bool?,
-      if (!identical(hintLocales, _flaxOmitted))
-        #hintLocales: hintLocales as List<api1.Locale>?,
-      if (!identical(enableInlinePrediction, _flaxOmitted))
-        #enableInlinePrediction: enableInlinePrediction as bool?,
-    }) as api.TextInputConfiguration);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(inputType, _flaxOmitted);
+    final _flaxHas2 = !identical(readOnly, _flaxOmitted);
+    final _flaxHas3 = !identical(obscureText, _flaxOmitted);
+    final _flaxHas4 = !identical(autocorrect, _flaxOmitted);
+    final _flaxHas5 = !identical(smartDashesType, _flaxOmitted);
+    final _flaxHas6 = !identical(smartQuotesType, _flaxOmitted);
+    final _flaxHas7 = !identical(enableSuggestions, _flaxOmitted);
+    final _flaxHas8 = !identical(enableInteractiveSelection, _flaxOmitted);
+    final _flaxHas9 = !identical(actionLabel, _flaxOmitted);
+    final _flaxHas10 = !identical(inputAction, _flaxOmitted);
+    final _flaxHas11 = !identical(keyboardAppearance, _flaxOmitted);
+    final _flaxHas12 = !identical(textCapitalization, _flaxOmitted);
+    final _flaxHas13 = !identical(enableIMEPersonalizedLearning, _flaxOmitted);
+    final _flaxHas14 = !identical(allowedMimeTypes, _flaxOmitted);
+    final _flaxHas15 = !identical(autofillConfiguration, _flaxOmitted);
+    final _flaxHas16 = !identical(enableDeltaModel, _flaxOmitted);
+    final _flaxHas17 = !identical(hintLocales, _flaxOmitted);
+    final _flaxHas18 = !identical(enableInlinePrediction, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? inputType as api.TextInputType? : null),
+        (_flaxHas2 ? readOnly as bool? : null),
+        (_flaxHas3 ? obscureText as bool? : null),
+        (_flaxHas4 ? autocorrect as bool? : null),
+        (_flaxHas5 ? smartDashesType as api.SmartDashesType? : null),
+        (_flaxHas6 ? smartQuotesType as api.SmartQuotesType? : null),
+        (_flaxHas7 ? enableSuggestions as bool? : null),
+        (_flaxHas8 ? enableInteractiveSelection as bool? : null),
+        (_flaxHas9 ? actionLabel as String? : null),
+        (_flaxHas10 ? inputAction as api.TextInputAction? : null),
+        (_flaxHas11 ? keyboardAppearance as api1.Brightness? : null),
+        (_flaxHas12 ? textCapitalization as api.TextCapitalization? : null),
+        (_flaxHas13 ? enableIMEPersonalizedLearning as bool? : null),
+        (_flaxHas14 ? allowedMimeTypes as List<String>? : null),
+        (_flaxHas15
+            ? autofillConfiguration as api.AutofillConfiguration?
+            : null),
+        (_flaxHas16 ? enableDeltaModel as bool? : null),
+        (_flaxHas17 ? hintLocales as List<api1.Locale>? : null),
+        (_flaxHas18 ? enableInlinePrediction as bool? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "inputType",
+        "readOnly",
+        "obscureText",
+        "autocorrect",
+        "smartDashesType",
+        "smartQuotesType",
+        "enableSuggestions",
+        "enableInteractiveSelection",
+        "actionLabel",
+        "inputAction",
+        "keyboardAppearance",
+        "textCapitalization",
+        "enableIMEPersonalizedLearning",
+        "allowedMimeTypes",
+        "autofillConfiguration",
+        "enableDeltaModel",
+        "hintLocales",
+        "enableInlinePrediction",
+      ],
+    ) as api.TextInputConfiguration);
   }
 
   @override
@@ -23456,15 +22890,16 @@ Function _flaxClass_MessageCodec<_Owner0 extends Object?>() =>
 Function _flaxGeneric_MethodChannel_invokeMethod<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Object receiver, Map<String, Object?> values) {
-        if (!values.containsKey("arguments")) {
-          return (receiver as api.MethodChannel).invokeMethod<_Method0>(
+        final _flaxHas1 = values.containsKey("arguments");
+        return flaxInvokeWithDefaults(
+          (receiver as api.MethodChannel).invokeMethod<_Method0>,
+          <Object?>[
             values["method"] as String,
-          );
-        }
-        return (receiver as api.MethodChannel).invokeMethod<_Method0>(
-          values["method"] as String,
-          values["arguments"],
-        );
+            (_flaxHas1 ? values["arguments"] : null),
+          ],
+          <int>[1 | (_flaxHas1 ? 2 : 0)],
+          const <String>["", ""],
+        ) as Future<_Method0?>;
       }
 
       return FlaxInstanceMethod.plain(
@@ -23473,39 +22908,42 @@ Function _flaxGeneric_MethodChannel_invokeMethod<_Method0 extends Object?>() =>
         invoke,
       );
     };
-Function _flaxGeneric_MethodChannel_super_invokeMethod<
-  _Method0 extends Object?
->() => (FlaxDartTypes types) {
-  Object? invoke(Object receiver, Map<String, Object?> values) {
-    if (!values.containsKey("arguments")) {
-      return (receiver as _MethodChannelProxy)
-          ._flaxSuper_invokeMethod<_Method0>(values["method"] as String);
-    }
-    return (receiver as _MethodChannelProxy)._flaxSuper_invokeMethod<_Method0>(
-      values["method"] as String,
-      values["arguments"],
-    );
-  }
+Function
+_flaxGeneric_MethodChannel_super_invokeMethod<_Method0 extends Object?>() =>
+    (FlaxDartTypes types) {
+      Object? invoke(Object receiver, Map<String, Object?> values) {
+        final _flaxHas1 = values.containsKey("arguments");
+        return flaxInvokeWithDefaults(
+          (receiver as _MethodChannelProxy)._flaxSuper_invokeMethod<_Method0>,
+          <Object?>[
+            values["method"] as String,
+            (_flaxHas1 ? values["arguments"] : null),
+          ],
+          <int>[1 | (_flaxHas1 ? 2 : 0)],
+          const <String>["", ""],
+        ) as Future<_Method0?>;
+      }
 
-  return FlaxInstanceMethod.plain(
-    _flaxBinding781,
-    types.ref<Future<_Method0?>>(),
-    invoke,
-  );
-};
+      return FlaxInstanceMethod.plain(
+        _flaxBinding781,
+        types.ref<Future<_Method0?>>(),
+        invoke,
+      );
+    };
 Function
 _flaxGeneric_MethodChannel_invokeListMethod<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Object receiver, Map<String, Object?> values) {
-        if (!values.containsKey("arguments")) {
-          return (receiver as api.MethodChannel).invokeListMethod<_Method0>(
+        final _flaxHas1 = values.containsKey("arguments");
+        return flaxInvokeWithDefaults(
+          (receiver as api.MethodChannel).invokeListMethod<_Method0>,
+          <Object?>[
             values["method"] as String,
-          );
-        }
-        return (receiver as api.MethodChannel).invokeListMethod<_Method0>(
-          values["method"] as String,
-          values["arguments"],
-        );
+            (_flaxHas1 ? values["arguments"] : null),
+          ],
+          <int>[1 | (_flaxHas1 ? 2 : 0)],
+          const <String>["", ""],
+        ) as Future<List<_Method0>?>;
       }
 
       return FlaxInstanceMethod.plain(
@@ -23518,15 +22956,16 @@ Function _flaxGeneric_MethodChannel_super_invokeListMethod<
   _Method0 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
-    if (!values.containsKey("arguments")) {
-      return (receiver as _MethodChannelProxy)
-          ._flaxSuper_invokeListMethod<_Method0>(values["method"] as String);
-    }
-    return (receiver as _MethodChannelProxy)
-        ._flaxSuper_invokeListMethod<_Method0>(
-          values["method"] as String,
-          values["arguments"],
-        );
+    final _flaxHas1 = values.containsKey("arguments");
+    return flaxInvokeWithDefaults(
+      (receiver as _MethodChannelProxy)._flaxSuper_invokeListMethod<_Method0>,
+      <Object?>[
+        values["method"] as String,
+        (_flaxHas1 ? values["arguments"] : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<List<_Method0>?>;
   }
 
   return FlaxInstanceMethod.plain(
@@ -23540,14 +22979,16 @@ Function _flaxGeneric_MethodChannel_invokeMapMethod<
   _Method1 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
-    if (!values.containsKey("arguments")) {
-      return (receiver as api.MethodChannel)
-          .invokeMapMethod<_Method0, _Method1>(values["method"] as String);
-    }
-    return (receiver as api.MethodChannel).invokeMapMethod<_Method0, _Method1>(
-      values["method"] as String,
-      values["arguments"],
-    );
+    final _flaxHas1 = values.containsKey("arguments");
+    return flaxInvokeWithDefaults(
+      (receiver as api.MethodChannel).invokeMapMethod<_Method0, _Method1>,
+      <Object?>[
+        values["method"] as String,
+        (_flaxHas1 ? values["arguments"] : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<Map<_Method0, _Method1>?>;
   }
 
   return FlaxInstanceMethod.plain(
@@ -23561,17 +23002,17 @@ Function _flaxGeneric_MethodChannel_super_invokeMapMethod<
   _Method1 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
-    if (!values.containsKey("arguments")) {
-      return (receiver as _MethodChannelProxy)
-          ._flaxSuper_invokeMapMethod<_Method0, _Method1>(
-            values["method"] as String,
-          );
-    }
-    return (receiver as _MethodChannelProxy)
-        ._flaxSuper_invokeMapMethod<_Method0, _Method1>(
-          values["method"] as String,
-          values["arguments"],
-        );
+    final _flaxHas1 = values.containsKey("arguments");
+    return flaxInvokeWithDefaults(
+      (receiver as _MethodChannelProxy)
+          ._flaxSuper_invokeMapMethod<_Method0, _Method1>,
+      <Object?>[
+        values["method"] as String,
+        (_flaxHas1 ? values["arguments"] : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<Map<_Method0, _Method1>?>;
   }
 
   return FlaxInstanceMethod.plain(
@@ -23819,15 +23260,16 @@ Function
 _flaxGeneric_OptionalMethodChannel_invokeMethod<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Object receiver, Map<String, Object?> values) {
-        if (!values.containsKey("arguments")) {
-          return (receiver as api.OptionalMethodChannel).invokeMethod<_Method0>(
+        final _flaxHas1 = values.containsKey("arguments");
+        return flaxInvokeWithDefaults(
+          (receiver as api.OptionalMethodChannel).invokeMethod<_Method0>,
+          <Object?>[
             values["method"] as String,
-          );
-        }
-        return (receiver as api.OptionalMethodChannel).invokeMethod<_Method0>(
-          values["method"] as String,
-          values["arguments"],
-        );
+            (_flaxHas1 ? values["arguments"] : null),
+          ],
+          <int>[1 | (_flaxHas1 ? 2 : 0)],
+          const <String>["", ""],
+        ) as Future<_Method0?>;
       }
 
       return FlaxInstanceMethod.plain(
@@ -23840,15 +23282,17 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeMethod<
   _Method0 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
-    if (!values.containsKey("arguments")) {
-      return (receiver as _OptionalMethodChannelProxy)
-          ._flaxSuper_invokeMethod<_Method0>(values["method"] as String);
-    }
-    return (receiver as _OptionalMethodChannelProxy)
-        ._flaxSuper_invokeMethod<_Method0>(
-          values["method"] as String,
-          values["arguments"],
-        );
+    final _flaxHas1 = values.containsKey("arguments");
+    return flaxInvokeWithDefaults(
+      (receiver as _OptionalMethodChannelProxy)
+          ._flaxSuper_invokeMethod<_Method0>,
+      <Object?>[
+        values["method"] as String,
+        (_flaxHas1 ? values["arguments"] : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<_Method0?>;
   }
 
   return FlaxInstanceMethod.plain(
@@ -23861,15 +23305,16 @@ Function _flaxGeneric_OptionalMethodChannel_invokeListMethod<
   _Method0 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
-    if (!values.containsKey("arguments")) {
-      return (receiver as api.OptionalMethodChannel).invokeListMethod<_Method0>(
+    final _flaxHas1 = values.containsKey("arguments");
+    return flaxInvokeWithDefaults(
+      (receiver as api.OptionalMethodChannel).invokeListMethod<_Method0>,
+      <Object?>[
         values["method"] as String,
-      );
-    }
-    return (receiver as api.OptionalMethodChannel).invokeListMethod<_Method0>(
-      values["method"] as String,
-      values["arguments"],
-    );
+        (_flaxHas1 ? values["arguments"] : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<List<_Method0>?>;
   }
 
   return FlaxInstanceMethod.plain(
@@ -23882,15 +23327,17 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeListMethod<
   _Method0 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
-    if (!values.containsKey("arguments")) {
-      return (receiver as _OptionalMethodChannelProxy)
-          ._flaxSuper_invokeListMethod<_Method0>(values["method"] as String);
-    }
-    return (receiver as _OptionalMethodChannelProxy)
-        ._flaxSuper_invokeListMethod<_Method0>(
-          values["method"] as String,
-          values["arguments"],
-        );
+    final _flaxHas1 = values.containsKey("arguments");
+    return flaxInvokeWithDefaults(
+      (receiver as _OptionalMethodChannelProxy)
+          ._flaxSuper_invokeListMethod<_Method0>,
+      <Object?>[
+        values["method"] as String,
+        (_flaxHas1 ? values["arguments"] : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<List<_Method0>?>;
   }
 
   return FlaxInstanceMethod.plain(
@@ -23904,15 +23351,17 @@ Function _flaxGeneric_OptionalMethodChannel_invokeMapMethod<
   _Method1 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
-    if (!values.containsKey("arguments")) {
-      return (receiver as api.OptionalMethodChannel)
-          .invokeMapMethod<_Method0, _Method1>(values["method"] as String);
-    }
-    return (receiver as api.OptionalMethodChannel)
-        .invokeMapMethod<_Method0, _Method1>(
-          values["method"] as String,
-          values["arguments"],
-        );
+    final _flaxHas1 = values.containsKey("arguments");
+    return flaxInvokeWithDefaults(
+      (receiver as api.OptionalMethodChannel)
+          .invokeMapMethod<_Method0, _Method1>,
+      <Object?>[
+        values["method"] as String,
+        (_flaxHas1 ? values["arguments"] : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<Map<_Method0, _Method1>?>;
   }
 
   return FlaxInstanceMethod.plain(
@@ -23926,17 +23375,17 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeMapMethod<
   _Method1 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
-    if (!values.containsKey("arguments")) {
-      return (receiver as _OptionalMethodChannelProxy)
-          ._flaxSuper_invokeMapMethod<_Method0, _Method1>(
-            values["method"] as String,
-          );
-    }
-    return (receiver as _OptionalMethodChannelProxy)
-        ._flaxSuper_invokeMapMethod<_Method0, _Method1>(
-          values["method"] as String,
-          values["arguments"],
-        );
+    final _flaxHas1 = values.containsKey("arguments");
+    return flaxInvokeWithDefaults(
+      (receiver as _OptionalMethodChannelProxy)
+          ._flaxSuper_invokeMapMethod<_Method0, _Method1>,
+      <Object?>[
+        values["method"] as String,
+        (_flaxHas1 ? values["arguments"] : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as Future<Map<_Method0, _Method1>?>;
   }
 
   return FlaxInstanceMethod.plain(

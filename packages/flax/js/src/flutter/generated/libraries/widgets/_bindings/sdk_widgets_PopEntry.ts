@@ -3,7 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
-import { _flaxMemberParameters209, _flaxMemberParameters210, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters232, _flaxMemberParameters233, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -11,8 +11,8 @@ export interface PopEntry<T extends unknown | null = unknown | null> extends Rea
 readonly [_flaxDartTypeValue]: PopEntry<T>;
 
 }
-defineObject("flax.core/sdk_widgets#type:PopEntry", ["canPopNotifier"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:PopEntry", "object", {"onPopInvoked":_flaxMemberParameters209,"onPopInvokedWithResult":_flaxMemberParameters210,"toString":_flaxMemberParameters2}, {}), []);
-const _PopEntryProxy = {type: "flax.core/sdk_widgets#type:PopEntry", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"onPopInvoked":_flaxMemberParameters209,"onPopInvokedWithResult":_flaxMemberParameters210,"toString":_flaxMemberParameters2}, getters: ["canPopNotifier"], setters: [], contextMembers: [], superMembers: ["onPopInvoked","onPopInvokedWithResult","toString"]} as const;
+defineObject("flax.core/sdk_widgets#type:PopEntry", ["canPopNotifier"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:PopEntry", "object", {"onPopInvoked":_flaxMemberParameters232,"onPopInvokedWithResult":_flaxMemberParameters233,"toString":_flaxMemberParameters2}, {}), []);
+const _PopEntryProxy = {type: "flax.core/sdk_widgets#type:PopEntry", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"onPopInvoked":_flaxMemberParameters232,"onPopInvokedWithResult":_flaxMemberParameters233,"toString":_flaxMemberParameters2}, getters: ["canPopNotifier"], setters: [], contextMembers: [], superMembers: ["onPopInvoked","onPopInvokedWithResult","toString"]} as const;
 export interface PopEntry<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: PopEntry<T>;
 

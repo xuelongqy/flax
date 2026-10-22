@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Rou
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import { _flaxMemberParameters23, _flaxMemberParameters328, _flaxMemberParameters264, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters28, _flaxMemberParameters371, _flaxMemberParameters301, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -13,8 +13,8 @@ export interface RouteInformationParser<T extends unknown | null = unknown | nul
 readonly [_flaxDartTypeValue]: RouteInformationParser<T>;
 
 }
-defineObject("flax.core/sdk_widgets#type:RouteInformationParser", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:RouteInformationParser", "object", {"parseRouteInformation":_flaxMemberParameters23,"parseRouteInformationWithDependencies":_flaxMemberParameters328,"restoreRouteInformation":_flaxMemberParameters264}, {}), []);
-const _RouteInformationParserProxy = {type: "flax.core/sdk_widgets#type:RouteInformationParser", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"parseRouteInformation":_flaxMemberParameters23,"parseRouteInformationWithDependencies":_flaxMemberParameters328,"restoreRouteInformation":_flaxMemberParameters264}, getters: [], setters: [], contextMembers: [], superMembers: ["parseRouteInformation","parseRouteInformationWithDependencies","restoreRouteInformation"]} as const;
+defineObject("flax.core/sdk_widgets#type:RouteInformationParser", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:RouteInformationParser", "object", {"parseRouteInformation":_flaxMemberParameters28,"parseRouteInformationWithDependencies":_flaxMemberParameters371,"restoreRouteInformation":_flaxMemberParameters301}, {}), []);
+const _RouteInformationParserProxy = {type: "flax.core/sdk_widgets#type:RouteInformationParser", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"parseRouteInformation":_flaxMemberParameters28,"parseRouteInformationWithDependencies":_flaxMemberParameters371,"restoreRouteInformation":_flaxMemberParameters301}, getters: [], setters: [], contextMembers: [], superMembers: ["parseRouteInformation","parseRouteInformationWithDependencies","restoreRouteInformation"]} as const;
 export interface RouteInformationParser<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: RouteInformationParser<T>;
 

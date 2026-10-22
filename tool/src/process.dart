@@ -78,6 +78,28 @@ Future<void> run(
   }
 }
 
+/// Build a package's actual dependency closure without racing shared type output.
+Future<void> buildJsDependencies(
+  String root,
+  Directory package, {
+  Future<void> Function(String, List<String>, {String? directory}) runCommand =
+      run,
+}) async {
+  final manifestFile = File('${package.path}/package.json');
+  if (!manifestFile.existsSync()) return;
+  final manifest = jsonDecode(manifestFile.readAsStringSync()) as Map;
+  final name = manifest['name'] as String;
+  await runCommand('pnpm', [
+    '--reporter=append-only',
+    // Public type builds share a staging directory.
+    '--workspace-concurrency=1',
+    '--filter',
+    '$name...',
+    'run',
+    'build',
+  ], directory: root);
+}
+
 Future<void> _captureWindowsCrash(
   ProcessException original,
   String? directory,

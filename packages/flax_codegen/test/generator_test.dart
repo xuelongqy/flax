@@ -7,6 +7,8 @@ import 'fixtures/repeated_selection.dart';
 import 'dart:convert';
 import 'dart:io';
 
+import '../../../tool/src/local_engine.dart';
+
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:flax_codegen/flax_codegen.dart';
 import 'package:flax_codegen/src/manifest_codec.dart';
@@ -2496,13 +2498,17 @@ void main() {
 }
 ''',
       );
-      final executed = await Process.run('flutter', [
-        'test',
-        '--no-pub',
-        '--reporter',
-        'expanded',
-        file.path,
-      ], workingDirectory: Directory.current.path);
+      final executed = await Process.run(
+        p.join(flutterSdkRoot(), 'bin', 'flutter'),
+        localEngineArguments([
+          'test',
+          '--no-pub',
+          '--reporter',
+          'expanded',
+          file.path,
+        ]),
+        workingDirectory: Directory.current.path,
+      );
       expect(
         executed.exitCode,
         0,
@@ -2763,13 +2769,17 @@ void main() {
 }
 ''',
       );
-      final executed = await Process.run('flutter', [
-        'test',
-        '--no-pub',
-        '--reporter',
-        'expanded',
-        file.path,
-      ], workingDirectory: Directory.current.path);
+      final executed = await Process.run(
+        p.join(flutterSdkRoot(), 'bin', 'flutter'),
+        localEngineArguments([
+          'test',
+          '--no-pub',
+          '--reporter',
+          'expanded',
+          file.path,
+        ]),
+        workingDirectory: Directory.current.path,
+      );
       expect(
         executed.exitCode,
         0,
@@ -3921,13 +3931,17 @@ FlaxObjectMemberView typedFixtureMembers(Function factory) {
       reason: '${compiled.stdout}\n${compiled.stderr}',
     );
     if (execution != null) {
-      final executed = await Process.run('flutter', [
-        'test',
-        '--no-pub',
-        '--reporter',
-        'expanded',
-        execution.path,
-      ], workingDirectory: root);
+      final executed = await Process.run(
+        p.join(flutterSdkRoot(), 'bin', 'flutter'),
+        localEngineArguments([
+          'test',
+          '--no-pub',
+          '--reporter',
+          'expanded',
+          execution.path,
+        ]),
+        workingDirectory: root,
+      );
       expect(
         executed.exitCode,
         0,

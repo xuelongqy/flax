@@ -15,7 +15,7 @@ import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream6 from '@flax/flutter/rendering/_bindings/sdk_rendering_ScrollDirection';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_ScrollDirection';
-import { _flaxMemberParameters431, _flaxMemberParameters98, _flaxMemberParameters97, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters488, _flaxMemberParameters110, _flaxMemberParameters109, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -36,7 +36,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:UserScrollNotification", "", [{"name":"metrics","required":true},{"name":"context","required":true},{"name":"direction","required":true}], [], options) as UserScrollNotification;
 }
-const _UserScrollNotificationProxy = {type: "flax.core/sdk_widgets#type:UserScrollNotification", parameters: _flaxMemberParameters431, constructors: {"": _flaxMemberParameters431}, methods: {"debugFillDescription":_flaxMemberParameters98,"dispatch":_flaxMemberParameters97,"toString":_flaxMemberParameters2}, getters: ["direction","metrics","context","depth"], setters: [], contextMembers: [], superMembers: ["get:direction","get:metrics","get:context","get:depth","debugFillDescription","dispatch","toString"]} as const;
+const _UserScrollNotificationProxy = {type: "flax.core/sdk_widgets#type:UserScrollNotification", parameters: _flaxMemberParameters488, constructors: {"": _flaxMemberParameters488}, methods: {"debugFillDescription":_flaxMemberParameters110,"dispatch":_flaxMemberParameters109,"toString":_flaxMemberParameters2}, getters: ["direction","metrics","context","depth"], setters: [], contextMembers: [], superMembers: ["get:direction","get:metrics","get:context","get:depth","debugFillDescription","dispatch","toString"]} as const;
 export interface _UserScrollNotificationNative extends UserScrollNotification {
 readonly [_flaxDartTypeValue]: _UserScrollNotificationNative;
 

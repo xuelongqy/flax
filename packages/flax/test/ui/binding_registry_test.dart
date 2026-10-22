@@ -1,4 +1,5 @@
 import 'package:flax/flax.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 FlaxBindingModule _module(
@@ -20,6 +21,14 @@ FlaxBindingModule _module(
 );
 
 Object? _invoke(Map<String, Object?> values) => null;
+
+@pragma('vm:never-inline')
+(WeakReference<FlaxBindingModule>, WeakReference<FlaxBindingRegistry>)
+_retiredRegistry(FlaxBindingModule permanent) {
+  final module = _module('retired');
+  final registry = FlaxBindingRegistry([permanent, module]);
+  return (WeakReference(module), WeakReference(registry));
+}
 
 void main() {
   test('compact descriptions preserve conversion and invocation policy', () {
@@ -120,6 +129,7 @@ void main() {
     expect(flutterBindings.uiProtocol, 24);
     expect(flutterBindings.requiredCapabilities, [
       'bottom-types',
+      'call-layouts',
       'context-instance-methods',
       'dart-type-tokens',
       'engine-type-handles',
@@ -196,6 +206,41 @@ void main() {
     );
     expect(_module('plain').dependencies, isEmpty);
   });
+
+  test('registry sharing preserves module identity and provider order', () {
+    final left = _module('left');
+    final right = _module('right');
+    final root = _module('root', dependencies: [left, right]);
+    final registry = FlaxBindingRegistry([root]);
+    expect(FlaxBindingRegistry([root, left, right]), same(registry));
+    expect(
+      FlaxBindingRegistry([
+        _module('root', dependencies: [left, right]),
+      ]),
+      isNot(same(registry)),
+    );
+    expect(
+      FlaxBindingRegistry([left, right]),
+      isNot(same(FlaxBindingRegistry([right, left]))),
+    );
+  });
+
+  test(
+    'shared indexes follow declaration reachability, not Session lifetime',
+    () async {
+      final permanent = _module('permanent');
+      final cached = WeakReference(FlaxBindingRegistry([permanent]));
+      final retired = _retiredRegistry(permanent);
+      for (var attempt = 0; attempt < 8; attempt++) {
+        await flaxTestCollectDartGarbage();
+        if (retired.$1.target == null && retired.$2.target == null) break;
+      }
+      expect(retired.$1.target, isNull);
+      expect(retired.$2.target, isNull);
+      expect(cached.target, isNotNull);
+      expect(FlaxBindingRegistry([permanent]), same(cached.target));
+    },
+  );
 
   test('registry rejects transitive module identity conflicts', () {
     final shared = _module('shared');

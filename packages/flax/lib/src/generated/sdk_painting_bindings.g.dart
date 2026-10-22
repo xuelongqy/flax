@@ -1311,6 +1311,7 @@ const sdk_paintingBindings = FlaxBindingModule(
   ],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "dart-type-tokens",
     "engine-type-handles",
     "generic-call-types",
@@ -1766,188 +1767,91 @@ Object? _function_lerpFontVariations(Map<String, Object?> values) {
 }
 
 Object? _function_paintBorder(Map<String, Object?> values) {
-  if (!values.containsKey("bottom")) {
-    if (!values.containsKey("left")) {
-      if (!values.containsKey("right")) {
-        if (!values.containsKey("top")) {
-          api.paintBorder(
-            values["canvas"] as api1.Canvas,
-            values["rect"] as api1.Rect,
-          );
-          return null;
-        }
-        api.paintBorder(
-          values["canvas"] as api1.Canvas,
-          values["rect"] as api1.Rect,
-          top: values["top"] as api.BorderSide,
-        );
-        return null;
-      }
-      if (!values.containsKey("top")) {
-        api.paintBorder(
-          values["canvas"] as api1.Canvas,
-          values["rect"] as api1.Rect,
-          right: values["right"] as api.BorderSide,
-        );
-        return null;
-      }
-      api.paintBorder(
-        values["canvas"] as api1.Canvas,
-        values["rect"] as api1.Rect,
-        right: values["right"] as api.BorderSide,
-        top: values["top"] as api.BorderSide,
-      );
-      return null;
-    }
-    if (!values.containsKey("right")) {
-      if (!values.containsKey("top")) {
-        api.paintBorder(
-          values["canvas"] as api1.Canvas,
-          values["rect"] as api1.Rect,
-          left: values["left"] as api.BorderSide,
-        );
-        return null;
-      }
-      api.paintBorder(
-        values["canvas"] as api1.Canvas,
-        values["rect"] as api1.Rect,
-        left: values["left"] as api.BorderSide,
-        top: values["top"] as api.BorderSide,
-      );
-      return null;
-    }
-    if (!values.containsKey("top")) {
-      api.paintBorder(
-        values["canvas"] as api1.Canvas,
-        values["rect"] as api1.Rect,
-        left: values["left"] as api.BorderSide,
-        right: values["right"] as api.BorderSide,
-      );
-      return null;
-    }
-    api.paintBorder(
+  final _flaxHas2 = values.containsKey("bottom");
+  final _flaxHas3 = values.containsKey("left");
+  final _flaxHas4 = values.containsKey("right");
+  final _flaxHas5 = values.containsKey("top");
+  flaxInvokeWithDefaults(
+    api.paintBorder,
+    <Object?>[
       values["canvas"] as api1.Canvas,
       values["rect"] as api1.Rect,
-      left: values["left"] as api.BorderSide,
-      right: values["right"] as api.BorderSide,
-      top: values["top"] as api.BorderSide,
-    );
-    return null;
-  }
-  if (!values.containsKey("left")) {
-    if (!values.containsKey("right")) {
-      if (!values.containsKey("top")) {
-        api.paintBorder(
-          values["canvas"] as api1.Canvas,
-          values["rect"] as api1.Rect,
-          bottom: values["bottom"] as api.BorderSide,
-        );
-        return null;
-      }
-      api.paintBorder(
-        values["canvas"] as api1.Canvas,
-        values["rect"] as api1.Rect,
-        bottom: values["bottom"] as api.BorderSide,
-        top: values["top"] as api.BorderSide,
-      );
-      return null;
-    }
-    if (!values.containsKey("top")) {
-      api.paintBorder(
-        values["canvas"] as api1.Canvas,
-        values["rect"] as api1.Rect,
-        bottom: values["bottom"] as api.BorderSide,
-        right: values["right"] as api.BorderSide,
-      );
-      return null;
-    }
-    api.paintBorder(
-      values["canvas"] as api1.Canvas,
-      values["rect"] as api1.Rect,
-      bottom: values["bottom"] as api.BorderSide,
-      right: values["right"] as api.BorderSide,
-      top: values["top"] as api.BorderSide,
-    );
-    return null;
-  }
-  if (!values.containsKey("right")) {
-    if (!values.containsKey("top")) {
-      api.paintBorder(
-        values["canvas"] as api1.Canvas,
-        values["rect"] as api1.Rect,
-        bottom: values["bottom"] as api.BorderSide,
-        left: values["left"] as api.BorderSide,
-      );
-      return null;
-    }
-    api.paintBorder(
-      values["canvas"] as api1.Canvas,
-      values["rect"] as api1.Rect,
-      bottom: values["bottom"] as api.BorderSide,
-      left: values["left"] as api.BorderSide,
-      top: values["top"] as api.BorderSide,
-    );
-    return null;
-  }
-  if (!values.containsKey("top")) {
-    api.paintBorder(
-      values["canvas"] as api1.Canvas,
-      values["rect"] as api1.Rect,
-      bottom: values["bottom"] as api.BorderSide,
-      left: values["left"] as api.BorderSide,
-      right: values["right"] as api.BorderSide,
-    );
-    return null;
-  }
-  api.paintBorder(
-    values["canvas"] as api1.Canvas,
-    values["rect"] as api1.Rect,
-    bottom: values["bottom"] as api.BorderSide,
-    left: values["left"] as api.BorderSide,
-    right: values["right"] as api.BorderSide,
-    top: values["top"] as api.BorderSide,
+      (_flaxHas2 ? values["bottom"] as api.BorderSide : null),
+      (_flaxHas3 ? values["left"] as api.BorderSide : null),
+      (_flaxHas4 ? values["right"] as api.BorderSide : null),
+      (_flaxHas5 ? values["top"] as api.BorderSide : null),
+    ],
+    <int>[
+      1 |
+          2 |
+          (_flaxHas2 ? 4 : 0) |
+          (_flaxHas3 ? 8 : 0) |
+          (_flaxHas4 ? 16 : 0) |
+          (_flaxHas5 ? 32 : 0),
+    ],
+    const <String>["", "", "bottom", "left", "right", "top"],
   );
   return null;
 }
 
 Object? _function_paintImage(Map<String, Object?> values) {
-  if (!values.containsKey("alignment")) {
-    api.paintImage(
-      blendMode: values["blendMode"] as api1.BlendMode,
-      canvas: values["canvas"] as api1.Canvas,
-      centerSlice: values["centerSlice"] as api1.Rect?,
-      colorFilter: values["colorFilter"] as api1.ColorFilter?,
-      debugImageLabel: values["debugImageLabel"] as String?,
-      filterQuality: values["filterQuality"] as api1.FilterQuality,
-      fit: values["fit"] as api.BoxFit?,
-      flipHorizontally: values["flipHorizontally"] as bool,
-      image: values["image"] as api1.Image,
-      invertColors: values["invertColors"] as bool,
-      isAntiAlias: values["isAntiAlias"] as bool,
-      opacity: values["opacity"] as double,
-      rect: values["rect"] as api1.Rect,
-      repeat: values["repeat"] as api.ImageRepeat,
-      scale: values["scale"] as double,
-    );
-    return null;
-  }
-  api.paintImage(
-    alignment: values["alignment"] as api.Alignment,
-    blendMode: values["blendMode"] as api1.BlendMode,
-    canvas: values["canvas"] as api1.Canvas,
-    centerSlice: values["centerSlice"] as api1.Rect?,
-    colorFilter: values["colorFilter"] as api1.ColorFilter?,
-    debugImageLabel: values["debugImageLabel"] as String?,
-    filterQuality: values["filterQuality"] as api1.FilterQuality,
-    fit: values["fit"] as api.BoxFit?,
-    flipHorizontally: values["flipHorizontally"] as bool,
-    image: values["image"] as api1.Image,
-    invertColors: values["invertColors"] as bool,
-    isAntiAlias: values["isAntiAlias"] as bool,
-    opacity: values["opacity"] as double,
-    rect: values["rect"] as api1.Rect,
-    repeat: values["repeat"] as api.ImageRepeat,
-    scale: values["scale"] as double,
+  final _flaxHas0 = values.containsKey("alignment");
+  flaxInvokeWithDefaults(
+    api.paintImage,
+    <Object?>[
+      (_flaxHas0 ? values["alignment"] as api.Alignment : null),
+      values["blendMode"] as api1.BlendMode,
+      values["canvas"] as api1.Canvas,
+      values["centerSlice"] as api1.Rect?,
+      values["colorFilter"] as api1.ColorFilter?,
+      values["debugImageLabel"] as String?,
+      values["filterQuality"] as api1.FilterQuality,
+      values["fit"] as api.BoxFit?,
+      values["flipHorizontally"] as bool,
+      values["image"] as api1.Image,
+      values["invertColors"] as bool,
+      values["isAntiAlias"] as bool,
+      values["opacity"] as double,
+      values["rect"] as api1.Rect,
+      values["repeat"] as api.ImageRepeat,
+      values["scale"] as double,
+    ],
+    <int>[
+      (_flaxHas0 ? 1 : 0) |
+          2 |
+          4 |
+          8 |
+          16 |
+          32 |
+          64 |
+          128 |
+          256 |
+          512 |
+          1024 |
+          2048 |
+          4096 |
+          8192 |
+          16384 |
+          32768,
+    ],
+    const <String>[
+      "alignment",
+      "blendMode",
+      "canvas",
+      "centerSlice",
+      "colorFilter",
+      "debugImageLabel",
+      "filterQuality",
+      "fit",
+      "flipHorizontally",
+      "image",
+      "invertColors",
+      "isAntiAlias",
+      "opacity",
+      "rect",
+      "repeat",
+      "scale",
+    ],
   );
   return null;
 }
@@ -2176,15 +2080,16 @@ Object? _AssetBundleImageProvider_evict(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("configuration")) {
-    return (receiver as api.AssetBundleImageProvider).evict(
-      cache: values["cache"] as api.ImageCache?,
-    );
-  }
-  return (receiver as api.AssetBundleImageProvider).evict(
-    cache: values["cache"] as api.ImageCache?,
-    configuration: values["configuration"] as api.ImageConfiguration,
-  );
+  final _flaxHas1 = values.containsKey("configuration");
+  return flaxInvokeWithDefaults(
+    (receiver as api.AssetBundleImageProvider).evict,
+    <Object?>[
+      values["cache"] as api.ImageCache?,
+      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["cache", "configuration"],
+  ) as Future<bool>;
 }
 
 Object? _AssetBundleImageProvider_obtainKey(
@@ -2276,15 +2181,16 @@ Object? _FlaxProxyDispatch3_super_call_evict(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("configuration")) {
-    return (receiver as _FlaxProxyDispatch3)._flaxSuper_evict(
-      cache: values["cache"] as api.ImageCache?,
-    );
-  }
-  return (receiver as _FlaxProxyDispatch3)._flaxSuper_evict(
-    cache: values["cache"] as api.ImageCache?,
-    configuration: values["configuration"] as api.ImageConfiguration,
-  );
+  final _flaxHas1 = values.containsKey("configuration");
+  return flaxInvokeWithDefaults(
+    (receiver as _FlaxProxyDispatch3)._flaxSuper_evict,
+    <Object?>[
+      values["cache"] as api.ImageCache?,
+      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["cache", "configuration"],
+  ) as Future<bool>;
 }
 
 Object? _FlaxProxyDispatch4_super_call_loadBuffer(
@@ -2675,44 +2581,34 @@ Object? _FlaxProxyDispatch8_super_get_preferPaintInterior(
 Object _createBeveledRectangleBorder(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("side")) {
-        if (!values.containsKey("borderRadius")) {
-          return api.BeveledRectangleBorder();
-        }
-        return api.BeveledRectangleBorder(
-          borderRadius: values["borderRadius"] as api.BorderRadiusGeometry,
-        );
-      }
-      if (!values.containsKey("borderRadius")) {
-        return api.BeveledRectangleBorder(
-          side: values["side"] as api.BorderSide,
-        );
-      }
-      return api.BeveledRectangleBorder(
-        side: values["side"] as api.BorderSide,
-        borderRadius: values["borderRadius"] as api.BorderRadiusGeometry,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      final _flaxHas1 = values.containsKey("borderRadius");
+      return flaxInvokeWithDefaults(
+        api.BeveledRectangleBorder.new,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          (_flaxHas1
+              ? values["borderRadius"] as api.BorderRadiusGeometry
+              : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["side", "borderRadius"],
+      ) as api.BeveledRectangleBorder;
     case '@implementation':
-      if (!values.containsKey("side")) {
-        if (!values.containsKey("borderRadius")) {
-          return _BeveledRectangleBorderProxy(values['@peer'] as FlaxProxyPeer);
-        }
-        return _BeveledRectangleBorderProxy(
+      final _flaxHas1 = values.containsKey("side");
+      final _flaxHas2 = values.containsKey("borderRadius");
+      return flaxInvokeWithDefaults(
+        _BeveledRectangleBorderProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          borderRadius: values["borderRadius"] as api.BorderRadiusGeometry,
-        );
-      }
-      if (!values.containsKey("borderRadius")) {
-        return _BeveledRectangleBorderProxy(
-          values['@peer'] as FlaxProxyPeer,
-          side: values["side"] as api.BorderSide,
-        );
-      }
-      return _BeveledRectangleBorderProxy(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        borderRadius: values["borderRadius"] as api.BorderRadiusGeometry,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          (_flaxHas2
+              ? values["borderRadius"] as api.BorderRadiusGeometry
+              : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "side", "borderRadius"],
+      ) as api.BeveledRectangleBorder;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -2858,71 +2754,49 @@ Object? _BoxShadow_super_get_blurSigma(
 Object _createBoxShadow(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("color")) {
-        if (!values.containsKey("offset")) {
-          return api.BoxShadow(
-            blurRadius: values["blurRadius"] as double,
-            spreadRadius: values["spreadRadius"] as double,
-            blurStyle: values["blurStyle"] as api1.BlurStyle,
-          );
-        }
-        return api.BoxShadow(
-          offset: values["offset"] as api1.Offset,
-          blurRadius: values["blurRadius"] as double,
-          spreadRadius: values["spreadRadius"] as double,
-          blurStyle: values["blurStyle"] as api1.BlurStyle,
-        );
-      }
-      if (!values.containsKey("offset")) {
-        return api.BoxShadow(
-          color: values["color"] as api1.Color,
-          blurRadius: values["blurRadius"] as double,
-          spreadRadius: values["spreadRadius"] as double,
-          blurStyle: values["blurStyle"] as api1.BlurStyle,
-        );
-      }
-      return api.BoxShadow(
-        color: values["color"] as api1.Color,
-        offset: values["offset"] as api1.Offset,
-        blurRadius: values["blurRadius"] as double,
-        spreadRadius: values["spreadRadius"] as double,
-        blurStyle: values["blurStyle"] as api1.BlurStyle,
-      );
+      final _flaxHas0 = values.containsKey("color");
+      final _flaxHas1 = values.containsKey("offset");
+      return flaxInvokeWithDefaults(
+        api.BoxShadow.new,
+        <Object?>[
+          (_flaxHas0 ? values["color"] as api1.Color : null),
+          (_flaxHas1 ? values["offset"] as api1.Offset : null),
+          values["blurRadius"] as double,
+          values["spreadRadius"] as double,
+          values["blurStyle"] as api1.BlurStyle,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
+        const <String>[
+          "color",
+          "offset",
+          "blurRadius",
+          "spreadRadius",
+          "blurStyle",
+        ],
+      ) as api.BoxShadow;
     case '@implementation':
-      if (!values.containsKey("color")) {
-        if (!values.containsKey("offset")) {
-          return _BoxShadowProxy(
-            values['@peer'] as FlaxProxyPeer,
-            blurRadius: values["blurRadius"] as double,
-            spreadRadius: values["spreadRadius"] as double,
-            blurStyle: values["blurStyle"] as api1.BlurStyle,
-          );
-        }
-        return _BoxShadowProxy(
+      final _flaxHas1 = values.containsKey("color");
+      final _flaxHas2 = values.containsKey("offset");
+      return flaxInvokeWithDefaults(
+        _BoxShadowProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          offset: values["offset"] as api1.Offset,
-          blurRadius: values["blurRadius"] as double,
-          spreadRadius: values["spreadRadius"] as double,
-          blurStyle: values["blurStyle"] as api1.BlurStyle,
-        );
-      }
-      if (!values.containsKey("offset")) {
-        return _BoxShadowProxy(
-          values['@peer'] as FlaxProxyPeer,
-          color: values["color"] as api1.Color,
-          blurRadius: values["blurRadius"] as double,
-          spreadRadius: values["spreadRadius"] as double,
-          blurStyle: values["blurStyle"] as api1.BlurStyle,
-        );
-      }
-      return _BoxShadowProxy(
-        values['@peer'] as FlaxProxyPeer,
-        color: values["color"] as api1.Color,
-        offset: values["offset"] as api1.Offset,
-        blurRadius: values["blurRadius"] as double,
-        spreadRadius: values["spreadRadius"] as double,
-        blurStyle: values["blurStyle"] as api1.BlurStyle,
-      );
+          (_flaxHas1 ? values["color"] as api1.Color : null),
+          (_flaxHas2 ? values["offset"] as api1.Offset : null),
+          values["blurRadius"] as double,
+          values["spreadRadius"] as double,
+          values["blurStyle"] as api1.BlurStyle,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0) | 8 | 16 | 32],
+        const <String>[
+          "",
+          "color",
+          "offset",
+          "blurRadius",
+          "spreadRadius",
+          "blurStyle",
+        ],
+      ) as api.BoxShadow;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -3387,43 +3261,44 @@ Object? _FlaxProxyDispatch10_super_get_textTreeConfiguration(
 Object _createColorProperty(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("defaultValue")) {
-        return api.ColorProperty(
+      final _flaxHas3 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.ColorProperty.new,
+        <Object?>[
           values["name"] as String,
           values["value"] as api1.Color?,
-          showName: values["showName"] as bool,
-          style: values["style"] as api4.DiagnosticsTreeStyle,
-          level: values["level"] as api4.DiagnosticLevel,
-        );
-      }
-      return api.ColorProperty(
-        values["name"] as String,
-        values["value"] as api1.Color?,
-        showName: values["showName"] as bool,
-        defaultValue: values["defaultValue"],
-        style: values["style"] as api4.DiagnosticsTreeStyle,
-        level: values["level"] as api4.DiagnosticLevel,
-      );
+          values["showName"] as bool,
+          (_flaxHas3 ? values["defaultValue"] : null),
+          values["style"] as api4.DiagnosticsTreeStyle,
+          values["level"] as api4.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32],
+        const <String>["", "", "showName", "defaultValue", "style", "level"],
+      ) as api.ColorProperty;
     case '@implementation':
-      if (!values.containsKey("defaultValue")) {
-        return _ColorPropertyProxy(
+      final _flaxHas4 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _ColorPropertyProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
           values["value"] as api1.Color?,
-          showName: values["showName"] as bool,
-          style: values["style"] as api4.DiagnosticsTreeStyle,
-          level: values["level"] as api4.DiagnosticLevel,
-        );
-      }
-      return _ColorPropertyProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["value"] as api1.Color?,
-        showName: values["showName"] as bool,
-        defaultValue: values["defaultValue"],
-        style: values["style"] as api4.DiagnosticsTreeStyle,
-        level: values["level"] as api4.DiagnosticLevel,
-      );
+          values["showName"] as bool,
+          (_flaxHas4 ? values["defaultValue"] : null),
+          values["style"] as api4.DiagnosticsTreeStyle,
+          values["level"] as api4.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64],
+        const <String>[
+          "",
+          "",
+          "",
+          "showName",
+          "defaultValue",
+          "style",
+          "level",
+        ],
+      ) as api.ColorProperty;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -3792,46 +3667,34 @@ Object _createContinuousRectangleBorder(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("side")) {
-        if (!values.containsKey("borderRadius")) {
-          return api.ContinuousRectangleBorder();
-        }
-        return api.ContinuousRectangleBorder(
-          borderRadius: values["borderRadius"] as api.BorderRadiusGeometry,
-        );
-      }
-      if (!values.containsKey("borderRadius")) {
-        return api.ContinuousRectangleBorder(
-          side: values["side"] as api.BorderSide,
-        );
-      }
-      return api.ContinuousRectangleBorder(
-        side: values["side"] as api.BorderSide,
-        borderRadius: values["borderRadius"] as api.BorderRadiusGeometry,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      final _flaxHas1 = values.containsKey("borderRadius");
+      return flaxInvokeWithDefaults(
+        api.ContinuousRectangleBorder.new,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          (_flaxHas1
+              ? values["borderRadius"] as api.BorderRadiusGeometry
+              : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["side", "borderRadius"],
+      ) as api.ContinuousRectangleBorder;
     case '@implementation':
-      if (!values.containsKey("side")) {
-        if (!values.containsKey("borderRadius")) {
-          return _ContinuousRectangleBorderProxy(
-            values['@peer'] as FlaxProxyPeer,
-          );
-        }
-        return _ContinuousRectangleBorderProxy(
+      final _flaxHas1 = values.containsKey("side");
+      final _flaxHas2 = values.containsKey("borderRadius");
+      return flaxInvokeWithDefaults(
+        _ContinuousRectangleBorderProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          borderRadius: values["borderRadius"] as api.BorderRadiusGeometry,
-        );
-      }
-      if (!values.containsKey("borderRadius")) {
-        return _ContinuousRectangleBorderProxy(
-          values['@peer'] as FlaxProxyPeer,
-          side: values["side"] as api.BorderSide,
-        );
-      }
-      return _ContinuousRectangleBorderProxy(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        borderRadius: values["borderRadius"] as api.BorderRadiusGeometry,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          (_flaxHas2
+              ? values["borderRadius"] as api.BorderRadiusGeometry
+              : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "side", "borderRadius"],
+      ) as api.ContinuousRectangleBorder;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -3944,91 +3807,110 @@ Object? _DecorationImage_super_get_isAntiAlias(
 Object _createDecorationImage(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("alignment")) {
-        return api.DecorationImage(
-          image: values["image"] as api.ImageProvider<Object>,
-          onError:
-              values["onError"]
-                  as void Function(
-                    Object exception,
-                    api5.StackTrace? stackTrace,
-                  )?,
-          colorFilter: values["colorFilter"] as api1.ColorFilter?,
-          fit: values["fit"] as api.BoxFit?,
-          centerSlice: values["centerSlice"] as api1.Rect?,
-          repeat: values["repeat"] as api.ImageRepeat,
-          matchTextDirection: values["matchTextDirection"] as bool,
-          scale: values["scale"] as double,
-          opacity: values["opacity"] as double,
-          filterQuality: values["filterQuality"] as api1.FilterQuality,
-          invertColors: values["invertColors"] as bool,
-          isAntiAlias: values["isAntiAlias"] as bool,
-        );
-      }
-      return api.DecorationImage(
-        image: values["image"] as api.ImageProvider<Object>,
-        onError:
-            values["onError"]
-                as void Function(
-                  Object exception,
-                  api5.StackTrace? stackTrace,
-                )?,
-        colorFilter: values["colorFilter"] as api1.ColorFilter?,
-        fit: values["fit"] as api.BoxFit?,
-        alignment: values["alignment"] as api.AlignmentGeometry,
-        centerSlice: values["centerSlice"] as api1.Rect?,
-        repeat: values["repeat"] as api.ImageRepeat,
-        matchTextDirection: values["matchTextDirection"] as bool,
-        scale: values["scale"] as double,
-        opacity: values["opacity"] as double,
-        filterQuality: values["filterQuality"] as api1.FilterQuality,
-        invertColors: values["invertColors"] as bool,
-        isAntiAlias: values["isAntiAlias"] as bool,
-      );
+      final _flaxHas4 = values.containsKey("alignment");
+      return flaxInvokeWithDefaults(
+        api.DecorationImage.new,
+        <Object?>[
+          values["image"] as api.ImageProvider<Object>,
+          values["onError"]
+              as void Function(Object exception, api5.StackTrace? stackTrace)?,
+          values["colorFilter"] as api1.ColorFilter?,
+          values["fit"] as api.BoxFit?,
+          (_flaxHas4 ? values["alignment"] as api.AlignmentGeometry : null),
+          values["centerSlice"] as api1.Rect?,
+          values["repeat"] as api.ImageRepeat,
+          values["matchTextDirection"] as bool,
+          values["scale"] as double,
+          values["opacity"] as double,
+          values["filterQuality"] as api1.FilterQuality,
+          values["invertColors"] as bool,
+          values["isAntiAlias"] as bool,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096,
+        ],
+        const <String>[
+          "image",
+          "onError",
+          "colorFilter",
+          "fit",
+          "alignment",
+          "centerSlice",
+          "repeat",
+          "matchTextDirection",
+          "scale",
+          "opacity",
+          "filterQuality",
+          "invertColors",
+          "isAntiAlias",
+        ],
+      ) as api.DecorationImage;
     case '@implementation':
-      if (!values.containsKey("alignment")) {
-        return _DecorationImageProxy(
+      final _flaxHas5 = values.containsKey("alignment");
+      return flaxInvokeWithDefaults(
+        _DecorationImageProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          image: values["image"] as api.ImageProvider<Object>,
-          onError:
-              values["onError"]
-                  as void Function(
-                    Object exception,
-                    api5.StackTrace? stackTrace,
-                  )?,
-          colorFilter: values["colorFilter"] as api1.ColorFilter?,
-          fit: values["fit"] as api.BoxFit?,
-          centerSlice: values["centerSlice"] as api1.Rect?,
-          repeat: values["repeat"] as api.ImageRepeat,
-          matchTextDirection: values["matchTextDirection"] as bool,
-          scale: values["scale"] as double,
-          opacity: values["opacity"] as double,
-          filterQuality: values["filterQuality"] as api1.FilterQuality,
-          invertColors: values["invertColors"] as bool,
-          isAntiAlias: values["isAntiAlias"] as bool,
-        );
-      }
-      return _DecorationImageProxy(
-        values['@peer'] as FlaxProxyPeer,
-        image: values["image"] as api.ImageProvider<Object>,
-        onError:
-            values["onError"]
-                as void Function(
-                  Object exception,
-                  api5.StackTrace? stackTrace,
-                )?,
-        colorFilter: values["colorFilter"] as api1.ColorFilter?,
-        fit: values["fit"] as api.BoxFit?,
-        alignment: values["alignment"] as api.AlignmentGeometry,
-        centerSlice: values["centerSlice"] as api1.Rect?,
-        repeat: values["repeat"] as api.ImageRepeat,
-        matchTextDirection: values["matchTextDirection"] as bool,
-        scale: values["scale"] as double,
-        opacity: values["opacity"] as double,
-        filterQuality: values["filterQuality"] as api1.FilterQuality,
-        invertColors: values["invertColors"] as bool,
-        isAntiAlias: values["isAntiAlias"] as bool,
-      );
+          values["image"] as api.ImageProvider<Object>,
+          values["onError"]
+              as void Function(Object exception, api5.StackTrace? stackTrace)?,
+          values["colorFilter"] as api1.ColorFilter?,
+          values["fit"] as api.BoxFit?,
+          (_flaxHas5 ? values["alignment"] as api.AlignmentGeometry : null),
+          values["centerSlice"] as api1.Rect?,
+          values["repeat"] as api.ImageRepeat,
+          values["matchTextDirection"] as bool,
+          values["scale"] as double,
+          values["opacity"] as double,
+          values["filterQuality"] as api1.FilterQuality,
+          values["invertColors"] as bool,
+          values["isAntiAlias"] as bool,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192,
+        ],
+        const <String>[
+          "",
+          "image",
+          "onError",
+          "colorFilter",
+          "fit",
+          "alignment",
+          "centerSlice",
+          "repeat",
+          "matchTextDirection",
+          "scale",
+          "opacity",
+          "filterQuality",
+          "invertColors",
+          "isAntiAlias",
+        ],
+      ) as api.DecorationImage;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -4172,15 +4054,16 @@ Object? _FileImage_resolveStreamForKey(
 }
 
 Object? _FileImage_evict(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("configuration")) {
-    return (receiver as api.FileImage).evict(
-      cache: values["cache"] as api.ImageCache?,
-    );
-  }
-  return (receiver as api.FileImage).evict(
-    cache: values["cache"] as api.ImageCache?,
-    configuration: values["configuration"] as api.ImageConfiguration,
-  );
+  final _flaxHas1 = values.containsKey("configuration");
+  return flaxInvokeWithDefaults(
+    (receiver as api.FileImage).evict,
+    <Object?>[
+      values["cache"] as api.ImageCache?,
+      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["cache", "configuration"],
+  ) as Future<bool>;
 }
 
 Object? _FileImage_obtainKey(Object receiver, Map<String, Object?> values) {
@@ -4530,55 +4413,32 @@ Object? _FlaxProxyDispatch15_super_get_padding(
 Object _createFlutterLogoDecoration(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("textColor")) {
-        if (!values.containsKey("margin")) {
-          return api.FlutterLogoDecoration(
-            style: values["style"] as api.FlutterLogoStyle,
-          );
-        }
-        return api.FlutterLogoDecoration(
-          style: values["style"] as api.FlutterLogoStyle,
-          margin: values["margin"] as api.EdgeInsets,
-        );
-      }
-      if (!values.containsKey("margin")) {
-        return api.FlutterLogoDecoration(
-          textColor: values["textColor"] as api1.Color,
-          style: values["style"] as api.FlutterLogoStyle,
-        );
-      }
-      return api.FlutterLogoDecoration(
-        textColor: values["textColor"] as api1.Color,
-        style: values["style"] as api.FlutterLogoStyle,
-        margin: values["margin"] as api.EdgeInsets,
-      );
+      final _flaxHas0 = values.containsKey("textColor");
+      final _flaxHas2 = values.containsKey("margin");
+      return flaxInvokeWithDefaults(
+        api.FlutterLogoDecoration.new,
+        <Object?>[
+          (_flaxHas0 ? values["textColor"] as api1.Color : null),
+          values["style"] as api.FlutterLogoStyle,
+          (_flaxHas2 ? values["margin"] as api.EdgeInsets : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>["textColor", "style", "margin"],
+      ) as api.FlutterLogoDecoration;
     case '@implementation':
-      if (!values.containsKey("textColor")) {
-        if (!values.containsKey("margin")) {
-          return _FlutterLogoDecorationProxy(
-            values['@peer'] as FlaxProxyPeer,
-            style: values["style"] as api.FlutterLogoStyle,
-          );
-        }
-        return _FlutterLogoDecorationProxy(
+      final _flaxHas1 = values.containsKey("textColor");
+      final _flaxHas3 = values.containsKey("margin");
+      return flaxInvokeWithDefaults(
+        _FlutterLogoDecorationProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          style: values["style"] as api.FlutterLogoStyle,
-          margin: values["margin"] as api.EdgeInsets,
-        );
-      }
-      if (!values.containsKey("margin")) {
-        return _FlutterLogoDecorationProxy(
-          values['@peer'] as FlaxProxyPeer,
-          textColor: values["textColor"] as api1.Color,
-          style: values["style"] as api.FlutterLogoStyle,
-        );
-      }
-      return _FlutterLogoDecorationProxy(
-        values['@peer'] as FlaxProxyPeer,
-        textColor: values["textColor"] as api1.Color,
-        style: values["style"] as api.FlutterLogoStyle,
-        margin: values["margin"] as api.EdgeInsets,
-      );
+          (_flaxHas1 ? values["textColor"] as api1.Color : null),
+          values["style"] as api.FlutterLogoStyle,
+          (_flaxHas3 ? values["margin"] as api.EdgeInsets : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0)],
+        const <String>["", "textColor", "style", "margin"],
+      ) as api.FlutterLogoDecoration;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -5614,15 +5474,16 @@ Object? _ImageProvider_resolveStreamForKey(
 }
 
 Object? _ImageProvider_evict(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("configuration")) {
-    return (receiver as api.ImageProvider<Object>).evict(
-      cache: values["cache"] as api.ImageCache?,
-    );
-  }
-  return (receiver as api.ImageProvider<Object>).evict(
-    cache: values["cache"] as api.ImageCache?,
-    configuration: values["configuration"] as api.ImageConfiguration,
-  );
+  final _flaxHas1 = values.containsKey("configuration");
+  return flaxInvokeWithDefaults(
+    (receiver as api.ImageProvider<Object>).evict,
+    <Object?>[
+      values["cache"] as api.ImageCache?,
+      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["cache", "configuration"],
+  ) as Future<bool>;
 }
 
 Object? _ImageProvider_obtainKey(Object receiver, Map<String, Object?> values) {
@@ -6307,17 +6168,16 @@ Object? _InlineSpan_toString(Object receiver, Map<String, Object?> values) {
 }
 
 Object? _InlineSpan_build(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("textScaler")) {
-    (receiver as api.InlineSpan).build(
+  final _flaxHas2 = values.containsKey("textScaler");
+  flaxInvokeWithDefaults(
+    (receiver as api.InlineSpan).build,
+    <Object?>[
       values["builder"] as api1.ParagraphBuilder,
-      dimensions: values["dimensions"] as List<api.PlaceholderDimensions>?,
-    );
-    return null;
-  }
-  (receiver as api.InlineSpan).build(
-    values["builder"] as api1.ParagraphBuilder,
-    dimensions: values["dimensions"] as List<api.PlaceholderDimensions>?,
-    textScaler: values["textScaler"] as api.TextScaler,
+      values["dimensions"] as List<api.PlaceholderDimensions>?,
+      (_flaxHas2 ? values["textScaler"] as api.TextScaler : null),
+    ],
+    <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+    const <String>["", "dimensions", "textScaler"],
   );
   return null;
 }
@@ -6573,45 +6433,55 @@ Object _createInlineSpanSemanticsInformation(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("stringAttributes")) {
-        return api.InlineSpanSemanticsInformation(
+      final _flaxHas4 = values.containsKey("stringAttributes");
+      return flaxInvokeWithDefaults(
+        api.InlineSpanSemanticsInformation.new,
+        <Object?>[
           values["text"] as String,
-          isPlaceholder: values["isPlaceholder"] as bool,
-          semanticsLabel: values["semanticsLabel"] as String?,
-          semanticsIdentifier: values["semanticsIdentifier"] as String?,
-          recognizer: values["recognizer"] as api9.GestureRecognizer?,
-        );
-      }
-      return api.InlineSpanSemanticsInformation(
-        values["text"] as String,
-        isPlaceholder: values["isPlaceholder"] as bool,
-        semanticsLabel: values["semanticsLabel"] as String?,
-        semanticsIdentifier: values["semanticsIdentifier"] as String?,
-        stringAttributes:
-            values["stringAttributes"] as List<api1.StringAttribute>,
-        recognizer: values["recognizer"] as api9.GestureRecognizer?,
-      );
+          values["isPlaceholder"] as bool,
+          values["semanticsLabel"] as String?,
+          values["semanticsIdentifier"] as String?,
+          (_flaxHas4
+              ? values["stringAttributes"] as List<api1.StringAttribute>
+              : null),
+          values["recognizer"] as api9.GestureRecognizer?,
+        ],
+        <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32],
+        const <String>[
+          "",
+          "isPlaceholder",
+          "semanticsLabel",
+          "semanticsIdentifier",
+          "stringAttributes",
+          "recognizer",
+        ],
+      ) as api.InlineSpanSemanticsInformation;
     case '@implementation':
-      if (!values.containsKey("stringAttributes")) {
-        return _InlineSpanSemanticsInformationProxy(
+      final _flaxHas5 = values.containsKey("stringAttributes");
+      return flaxInvokeWithDefaults(
+        _InlineSpanSemanticsInformationProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["text"] as String,
-          isPlaceholder: values["isPlaceholder"] as bool,
-          semanticsLabel: values["semanticsLabel"] as String?,
-          semanticsIdentifier: values["semanticsIdentifier"] as String?,
-          recognizer: values["recognizer"] as api9.GestureRecognizer?,
-        );
-      }
-      return _InlineSpanSemanticsInformationProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["text"] as String,
-        isPlaceholder: values["isPlaceholder"] as bool,
-        semanticsLabel: values["semanticsLabel"] as String?,
-        semanticsIdentifier: values["semanticsIdentifier"] as String?,
-        stringAttributes:
-            values["stringAttributes"] as List<api1.StringAttribute>,
-        recognizer: values["recognizer"] as api9.GestureRecognizer?,
-      );
+          values["isPlaceholder"] as bool,
+          values["semanticsLabel"] as String?,
+          values["semanticsIdentifier"] as String?,
+          (_flaxHas5
+              ? values["stringAttributes"] as List<api1.StringAttribute>
+              : null),
+          values["recognizer"] as api9.GestureRecognizer?,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64],
+        const <String>[
+          "",
+          "",
+          "isPlaceholder",
+          "semanticsLabel",
+          "semanticsIdentifier",
+          "stringAttributes",
+          "recognizer",
+        ],
+      ) as api.InlineSpanSemanticsInformation;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6757,143 +6627,134 @@ Object? _LinearBorder_super_get_bottom(
 Object _createLinearBorder(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("side")) {
-        return api.LinearBorder(
-          start: values["start"] as api.LinearBorderEdge?,
-          end: values["end"] as api.LinearBorderEdge?,
-          top: values["top"] as api.LinearBorderEdge?,
-          bottom: values["bottom"] as api.LinearBorderEdge?,
-        );
-      }
-      return api.LinearBorder(
-        side: values["side"] as api.BorderSide,
-        start: values["start"] as api.LinearBorderEdge?,
-        end: values["end"] as api.LinearBorderEdge?,
-        top: values["top"] as api.LinearBorderEdge?,
-        bottom: values["bottom"] as api.LinearBorderEdge?,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api.LinearBorder.new,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          values["start"] as api.LinearBorderEdge?,
+          values["end"] as api.LinearBorderEdge?,
+          values["top"] as api.LinearBorderEdge?,
+          values["bottom"] as api.LinearBorderEdge?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16],
+        const <String>["side", "start", "end", "top", "bottom"],
+      ) as api.LinearBorder;
     case "start":
-      if (!values.containsKey("side")) {
-        return api.LinearBorder.start(
-          alignment: values["alignment"] as double,
-          size: values["size"] as double,
-        );
-      }
-      return api.LinearBorder.start(
-        side: values["side"] as api.BorderSide,
-        alignment: values["alignment"] as double,
-        size: values["size"] as double,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api.LinearBorder.start,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          values["alignment"] as double,
+          values["size"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
+        const <String>["side", "alignment", "size"],
+      ) as api.LinearBorder;
     case "end":
-      if (!values.containsKey("side")) {
-        return api.LinearBorder.end(
-          alignment: values["alignment"] as double,
-          size: values["size"] as double,
-        );
-      }
-      return api.LinearBorder.end(
-        side: values["side"] as api.BorderSide,
-        alignment: values["alignment"] as double,
-        size: values["size"] as double,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api.LinearBorder.end,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          values["alignment"] as double,
+          values["size"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
+        const <String>["side", "alignment", "size"],
+      ) as api.LinearBorder;
     case "top":
-      if (!values.containsKey("side")) {
-        return api.LinearBorder.top(
-          alignment: values["alignment"] as double,
-          size: values["size"] as double,
-        );
-      }
-      return api.LinearBorder.top(
-        side: values["side"] as api.BorderSide,
-        alignment: values["alignment"] as double,
-        size: values["size"] as double,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api.LinearBorder.top,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          values["alignment"] as double,
+          values["size"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
+        const <String>["side", "alignment", "size"],
+      ) as api.LinearBorder;
     case "bottom":
-      if (!values.containsKey("side")) {
-        return api.LinearBorder.bottom(
-          alignment: values["alignment"] as double,
-          size: values["size"] as double,
-        );
-      }
-      return api.LinearBorder.bottom(
-        side: values["side"] as api.BorderSide,
-        alignment: values["alignment"] as double,
-        size: values["size"] as double,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api.LinearBorder.bottom,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          values["alignment"] as double,
+          values["size"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
+        const <String>["side", "alignment", "size"],
+      ) as api.LinearBorder;
     case '@implementation':
-      if (!values.containsKey("side")) {
-        return _LinearBorderProxy(
+      final _flaxHas1 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        _LinearBorderProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          start: values["start"] as api.LinearBorderEdge?,
-          end: values["end"] as api.LinearBorderEdge?,
-          top: values["top"] as api.LinearBorderEdge?,
-          bottom: values["bottom"] as api.LinearBorderEdge?,
-        );
-      }
-      return _LinearBorderProxy(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        start: values["start"] as api.LinearBorderEdge?,
-        end: values["end"] as api.LinearBorderEdge?,
-        top: values["top"] as api.LinearBorderEdge?,
-        bottom: values["bottom"] as api.LinearBorderEdge?,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          values["start"] as api.LinearBorderEdge?,
+          values["end"] as api.LinearBorderEdge?,
+          values["top"] as api.LinearBorderEdge?,
+          values["bottom"] as api.LinearBorderEdge?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32],
+        const <String>["", "side", "start", "end", "top", "bottom"],
+      ) as api.LinearBorder;
     case "@implementation:start":
-      if (!values.containsKey("side")) {
-        return _LinearBorderProxy.start(
+      final _flaxHas1 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        _LinearBorderProxy.start,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          alignment: values["alignment"] as double,
-          size: values["size"] as double,
-        );
-      }
-      return _LinearBorderProxy.start(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        alignment: values["alignment"] as double,
-        size: values["size"] as double,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          values["alignment"] as double,
+          values["size"] as double,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
+        const <String>["", "side", "alignment", "size"],
+      ) as api.LinearBorder;
     case "@implementation:end":
-      if (!values.containsKey("side")) {
-        return _LinearBorderProxy.end(
+      final _flaxHas1 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        _LinearBorderProxy.end,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          alignment: values["alignment"] as double,
-          size: values["size"] as double,
-        );
-      }
-      return _LinearBorderProxy.end(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        alignment: values["alignment"] as double,
-        size: values["size"] as double,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          values["alignment"] as double,
+          values["size"] as double,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
+        const <String>["", "side", "alignment", "size"],
+      ) as api.LinearBorder;
     case "@implementation:top":
-      if (!values.containsKey("side")) {
-        return _LinearBorderProxy.top(
+      final _flaxHas1 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        _LinearBorderProxy.top,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          alignment: values["alignment"] as double,
-          size: values["size"] as double,
-        );
-      }
-      return _LinearBorderProxy.top(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        alignment: values["alignment"] as double,
-        size: values["size"] as double,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          values["alignment"] as double,
+          values["size"] as double,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
+        const <String>["", "side", "alignment", "size"],
+      ) as api.LinearBorder;
     case "@implementation:bottom":
-      if (!values.containsKey("side")) {
-        return _LinearBorderProxy.bottom(
+      final _flaxHas1 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        _LinearBorderProxy.bottom,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          alignment: values["alignment"] as double,
-          size: values["size"] as double,
-        );
-      }
-      return _LinearBorderProxy.bottom(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        alignment: values["alignment"] as double,
-        size: values["size"] as double,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          values["alignment"] as double,
+          values["size"] as double,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
+        const <String>["", "side", "alignment", "size"],
+      ) as api.LinearBorder;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -7037,79 +6898,53 @@ Object? _FlaxProxyDispatch28_super_get_tileMode(
 Object _createLinearGradient(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("begin")) {
-        if (!values.containsKey("end")) {
-          return api.LinearGradient(
-            colors: values["colors"] as List<api1.Color>,
-            stops: values["stops"] as List<double>?,
-            tileMode: values["tileMode"] as api1.TileMode,
-            transform: values["transform"] as api.GradientTransform?,
-          );
-        }
-        return api.LinearGradient(
-          end: values["end"] as api.AlignmentGeometry,
-          colors: values["colors"] as List<api1.Color>,
-          stops: values["stops"] as List<double>?,
-          tileMode: values["tileMode"] as api1.TileMode,
-          transform: values["transform"] as api.GradientTransform?,
-        );
-      }
-      if (!values.containsKey("end")) {
-        return api.LinearGradient(
-          begin: values["begin"] as api.AlignmentGeometry,
-          colors: values["colors"] as List<api1.Color>,
-          stops: values["stops"] as List<double>?,
-          tileMode: values["tileMode"] as api1.TileMode,
-          transform: values["transform"] as api.GradientTransform?,
-        );
-      }
-      return api.LinearGradient(
-        begin: values["begin"] as api.AlignmentGeometry,
-        end: values["end"] as api.AlignmentGeometry,
-        colors: values["colors"] as List<api1.Color>,
-        stops: values["stops"] as List<double>?,
-        tileMode: values["tileMode"] as api1.TileMode,
-        transform: values["transform"] as api.GradientTransform?,
-      );
+      final _flaxHas0 = values.containsKey("begin");
+      final _flaxHas1 = values.containsKey("end");
+      return flaxInvokeWithDefaults(
+        api.LinearGradient.new,
+        <Object?>[
+          (_flaxHas0 ? values["begin"] as api.AlignmentGeometry : null),
+          (_flaxHas1 ? values["end"] as api.AlignmentGeometry : null),
+          values["colors"] as List<api1.Color>,
+          values["stops"] as List<double>?,
+          values["tileMode"] as api1.TileMode,
+          values["transform"] as api.GradientTransform?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32],
+        const <String>[
+          "begin",
+          "end",
+          "colors",
+          "stops",
+          "tileMode",
+          "transform",
+        ],
+      ) as api.LinearGradient;
     case '@implementation':
-      if (!values.containsKey("begin")) {
-        if (!values.containsKey("end")) {
-          return _LinearGradientProxy(
-            values['@peer'] as FlaxProxyPeer,
-            colors: values["colors"] as List<api1.Color>,
-            stops: values["stops"] as List<double>?,
-            tileMode: values["tileMode"] as api1.TileMode,
-            transform: values["transform"] as api.GradientTransform?,
-          );
-        }
-        return _LinearGradientProxy(
+      final _flaxHas1 = values.containsKey("begin");
+      final _flaxHas2 = values.containsKey("end");
+      return flaxInvokeWithDefaults(
+        _LinearGradientProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          end: values["end"] as api.AlignmentGeometry,
-          colors: values["colors"] as List<api1.Color>,
-          stops: values["stops"] as List<double>?,
-          tileMode: values["tileMode"] as api1.TileMode,
-          transform: values["transform"] as api.GradientTransform?,
-        );
-      }
-      if (!values.containsKey("end")) {
-        return _LinearGradientProxy(
-          values['@peer'] as FlaxProxyPeer,
-          begin: values["begin"] as api.AlignmentGeometry,
-          colors: values["colors"] as List<api1.Color>,
-          stops: values["stops"] as List<double>?,
-          tileMode: values["tileMode"] as api1.TileMode,
-          transform: values["transform"] as api.GradientTransform?,
-        );
-      }
-      return _LinearGradientProxy(
-        values['@peer'] as FlaxProxyPeer,
-        begin: values["begin"] as api.AlignmentGeometry,
-        end: values["end"] as api.AlignmentGeometry,
-        colors: values["colors"] as List<api1.Color>,
-        stops: values["stops"] as List<double>?,
-        tileMode: values["tileMode"] as api1.TileMode,
-        transform: values["transform"] as api.GradientTransform?,
-      );
+          (_flaxHas1 ? values["begin"] as api.AlignmentGeometry : null),
+          (_flaxHas2 ? values["end"] as api.AlignmentGeometry : null),
+          values["colors"] as List<api1.Color>,
+          values["stops"] as List<double>?,
+          values["tileMode"] as api1.TileMode,
+          values["transform"] as api.GradientTransform?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0) | 8 | 16 | 32 | 64],
+        const <String>[
+          "",
+          "begin",
+          "end",
+          "colors",
+          "stops",
+          "tileMode",
+          "transform",
+        ],
+      ) as api.LinearGradient;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -7226,15 +7061,16 @@ Object? _MemoryImage_resolveStreamForKey(
 }
 
 Object? _MemoryImage_evict(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("configuration")) {
-    return (receiver as api.MemoryImage).evict(
-      cache: values["cache"] as api.ImageCache?,
-    );
-  }
-  return (receiver as api.MemoryImage).evict(
-    cache: values["cache"] as api.ImageCache?,
-    configuration: values["configuration"] as api.ImageConfiguration,
-  );
+  final _flaxHas1 = values.containsKey("configuration");
+  return flaxInvokeWithDefaults(
+    (receiver as api.MemoryImage).evict,
+    <Object?>[
+      values["cache"] as api.ImageCache?,
+      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["cache", "configuration"],
+  ) as Future<bool>;
 }
 
 Object? _MemoryImage_obtainKey(Object receiver, Map<String, Object?> values) {
@@ -7441,15 +7277,16 @@ Object? _NetworkImage_resolveStreamForKey(
 }
 
 Object? _NetworkImage_evict(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("configuration")) {
-    return (receiver as api.NetworkImage).evict(
-      cache: values["cache"] as api.ImageCache?,
-    );
-  }
-  return (receiver as api.NetworkImage).evict(
-    cache: values["cache"] as api.ImageCache?,
-    configuration: values["configuration"] as api.ImageConfiguration,
-  );
+  final _flaxHas1 = values.containsKey("configuration");
+  return flaxInvokeWithDefaults(
+    (receiver as api.NetworkImage).evict,
+    <Object?>[
+      values["cache"] as api.ImageCache?,
+      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["cache", "configuration"],
+  ) as Future<bool>;
 }
 
 Object? _NetworkImage_obtainKey(Object receiver, Map<String, Object?> values) {
@@ -7699,25 +7536,28 @@ Object? _OvalBorder_super_get_eccentricity(
 Object _createOvalBorder(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("side")) {
-        return api.OvalBorder(eccentricity: values["eccentricity"] as double);
-      }
-      return api.OvalBorder(
-        side: values["side"] as api.BorderSide,
-        eccentricity: values["eccentricity"] as double,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api.OvalBorder.new,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          values["eccentricity"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2],
+        const <String>["side", "eccentricity"],
+      ) as api.OvalBorder;
     case '@implementation':
-      if (!values.containsKey("side")) {
-        return _OvalBorderProxy(
+      final _flaxHas1 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        _OvalBorderProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          eccentricity: values["eccentricity"] as double,
-        );
-      }
-      return _OvalBorderProxy(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        eccentricity: values["eccentricity"] as double,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          values["eccentricity"] as double,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+        const <String>["", "side", "eccentricity"],
+      ) as api.OvalBorder;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -8444,51 +8284,59 @@ Object? _RadialGradient_super_get_focalRadius(
 Object _createRadialGradient(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("center")) {
-        return api.RadialGradient(
-          radius: values["radius"] as double,
-          colors: values["colors"] as List<api1.Color>,
-          stops: values["stops"] as List<double>?,
-          tileMode: values["tileMode"] as api1.TileMode,
-          focal: values["focal"] as api.AlignmentGeometry?,
-          focalRadius: values["focalRadius"] as double,
-          transform: values["transform"] as api.GradientTransform?,
-        );
-      }
-      return api.RadialGradient(
-        center: values["center"] as api.AlignmentGeometry,
-        radius: values["radius"] as double,
-        colors: values["colors"] as List<api1.Color>,
-        stops: values["stops"] as List<double>?,
-        tileMode: values["tileMode"] as api1.TileMode,
-        focal: values["focal"] as api.AlignmentGeometry?,
-        focalRadius: values["focalRadius"] as double,
-        transform: values["transform"] as api.GradientTransform?,
-      );
+      final _flaxHas0 = values.containsKey("center");
+      return flaxInvokeWithDefaults(
+        api.RadialGradient.new,
+        <Object?>[
+          (_flaxHas0 ? values["center"] as api.AlignmentGeometry : null),
+          values["radius"] as double,
+          values["colors"] as List<api1.Color>,
+          values["stops"] as List<double>?,
+          values["tileMode"] as api1.TileMode,
+          values["focal"] as api.AlignmentGeometry?,
+          values["focalRadius"] as double,
+          values["transform"] as api.GradientTransform?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16 | 32 | 64 | 128],
+        const <String>[
+          "center",
+          "radius",
+          "colors",
+          "stops",
+          "tileMode",
+          "focal",
+          "focalRadius",
+          "transform",
+        ],
+      ) as api.RadialGradient;
     case '@implementation':
-      if (!values.containsKey("center")) {
-        return _RadialGradientProxy(
+      final _flaxHas1 = values.containsKey("center");
+      return flaxInvokeWithDefaults(
+        _RadialGradientProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          radius: values["radius"] as double,
-          colors: values["colors"] as List<api1.Color>,
-          stops: values["stops"] as List<double>?,
-          tileMode: values["tileMode"] as api1.TileMode,
-          focal: values["focal"] as api.AlignmentGeometry?,
-          focalRadius: values["focalRadius"] as double,
-          transform: values["transform"] as api.GradientTransform?,
-        );
-      }
-      return _RadialGradientProxy(
-        values['@peer'] as FlaxProxyPeer,
-        center: values["center"] as api.AlignmentGeometry,
-        radius: values["radius"] as double,
-        colors: values["colors"] as List<api1.Color>,
-        stops: values["stops"] as List<double>?,
-        tileMode: values["tileMode"] as api1.TileMode,
-        focal: values["focal"] as api.AlignmentGeometry?,
-        focalRadius: values["focalRadius"] as double,
-        transform: values["transform"] as api.GradientTransform?,
-      );
+          (_flaxHas1 ? values["center"] as api.AlignmentGeometry : null),
+          values["radius"] as double,
+          values["colors"] as List<api1.Color>,
+          values["stops"] as List<double>?,
+          values["tileMode"] as api1.TileMode,
+          values["focal"] as api.AlignmentGeometry?,
+          values["focalRadius"] as double,
+          values["transform"] as api.GradientTransform?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32 | 64 | 128 | 256],
+        const <String>[
+          "",
+          "center",
+          "radius",
+          "colors",
+          "stops",
+          "tileMode",
+          "focal",
+          "focalRadius",
+          "transform",
+        ],
+      ) as api.RadialGradient;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -8552,15 +8400,16 @@ Object? _ResizeImage_resolveStreamForKey(
 }
 
 Object? _ResizeImage_evict(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("configuration")) {
-    return (receiver as api.ResizeImage).evict(
-      cache: values["cache"] as api.ImageCache?,
-    );
-  }
-  return (receiver as api.ResizeImage).evict(
-    cache: values["cache"] as api.ImageCache?,
-    configuration: values["configuration"] as api.ImageConfiguration,
-  );
+  final _flaxHas1 = values.containsKey("configuration");
+  return flaxInvokeWithDefaults(
+    (receiver as api.ResizeImage).evict,
+    <Object?>[
+      values["cache"] as api.ImageCache?,
+      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["cache", "configuration"],
+  ) as Future<bool>;
 }
 
 Object? _ResizeImage_obtainKey(Object receiver, Map<String, Object?> values) {
@@ -8844,27 +8693,28 @@ Object _createRoundedSuperellipseBorder(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("side")) {
-        return api.RoundedSuperellipseBorder(
-          borderRadius: values["borderRadius"] as api.BorderRadiusGeometry?,
-        );
-      }
-      return api.RoundedSuperellipseBorder(
-        side: values["side"] as api.BorderSide,
-        borderRadius: values["borderRadius"] as api.BorderRadiusGeometry?,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api.RoundedSuperellipseBorder.new,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          values["borderRadius"] as api.BorderRadiusGeometry?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2],
+        const <String>["side", "borderRadius"],
+      ) as api.RoundedSuperellipseBorder;
     case '@implementation':
-      if (!values.containsKey("side")) {
-        return _RoundedSuperellipseBorderProxy(
+      final _flaxHas1 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        _RoundedSuperellipseBorderProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          borderRadius: values["borderRadius"] as api.BorderRadiusGeometry?,
-        );
-      }
-      return _RoundedSuperellipseBorderProxy(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        borderRadius: values["borderRadius"] as api.BorderRadiusGeometry?,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          values["borderRadius"] as api.BorderRadiusGeometry?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+        const <String>["", "side", "borderRadius"],
+      ) as api.RoundedSuperellipseBorder;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -9225,81 +9075,91 @@ Object? _StarBorder_super_get_squash(
 Object _createStarBorder(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("side")) {
-        return api.StarBorder(
-          points: values["points"] as double,
-          innerRadiusRatio: values["innerRadiusRatio"] as double,
-          pointRounding: values["pointRounding"] as double,
-          valleyRounding: values["valleyRounding"] as double,
-          rotation: values["rotation"] as double,
-          squash: values["squash"] as double,
-        );
-      }
-      return api.StarBorder(
-        side: values["side"] as api.BorderSide,
-        points: values["points"] as double,
-        innerRadiusRatio: values["innerRadiusRatio"] as double,
-        pointRounding: values["pointRounding"] as double,
-        valleyRounding: values["valleyRounding"] as double,
-        rotation: values["rotation"] as double,
-        squash: values["squash"] as double,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api.StarBorder.new,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          values["points"] as double,
+          values["innerRadiusRatio"] as double,
+          values["pointRounding"] as double,
+          values["valleyRounding"] as double,
+          values["rotation"] as double,
+          values["squash"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16 | 32 | 64],
+        const <String>[
+          "side",
+          "points",
+          "innerRadiusRatio",
+          "pointRounding",
+          "valleyRounding",
+          "rotation",
+          "squash",
+        ],
+      ) as api.StarBorder;
     case "polygon":
-      if (!values.containsKey("side")) {
-        return api.StarBorder.polygon(
-          sides: values["sides"] as double,
-          pointRounding: values["pointRounding"] as double,
-          rotation: values["rotation"] as double,
-          squash: values["squash"] as double,
-        );
-      }
-      return api.StarBorder.polygon(
-        side: values["side"] as api.BorderSide,
-        sides: values["sides"] as double,
-        pointRounding: values["pointRounding"] as double,
-        rotation: values["rotation"] as double,
-        squash: values["squash"] as double,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api.StarBorder.polygon,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api.BorderSide : null),
+          values["sides"] as double,
+          values["pointRounding"] as double,
+          values["rotation"] as double,
+          values["squash"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16],
+        const <String>["side", "sides", "pointRounding", "rotation", "squash"],
+      ) as api.StarBorder;
     case '@implementation':
-      if (!values.containsKey("side")) {
-        return _StarBorderProxy(
+      final _flaxHas1 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        _StarBorderProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          points: values["points"] as double,
-          innerRadiusRatio: values["innerRadiusRatio"] as double,
-          pointRounding: values["pointRounding"] as double,
-          valleyRounding: values["valleyRounding"] as double,
-          rotation: values["rotation"] as double,
-          squash: values["squash"] as double,
-        );
-      }
-      return _StarBorderProxy(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        points: values["points"] as double,
-        innerRadiusRatio: values["innerRadiusRatio"] as double,
-        pointRounding: values["pointRounding"] as double,
-        valleyRounding: values["valleyRounding"] as double,
-        rotation: values["rotation"] as double,
-        squash: values["squash"] as double,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          values["points"] as double,
+          values["innerRadiusRatio"] as double,
+          values["pointRounding"] as double,
+          values["valleyRounding"] as double,
+          values["rotation"] as double,
+          values["squash"] as double,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32 | 64 | 128],
+        const <String>[
+          "",
+          "side",
+          "points",
+          "innerRadiusRatio",
+          "pointRounding",
+          "valleyRounding",
+          "rotation",
+          "squash",
+        ],
+      ) as api.StarBorder;
     case "@implementation:polygon":
-      if (!values.containsKey("side")) {
-        return _StarBorderProxy.polygon(
+      final _flaxHas1 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        _StarBorderProxy.polygon,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          sides: values["sides"] as double,
-          pointRounding: values["pointRounding"] as double,
-          rotation: values["rotation"] as double,
-          squash: values["squash"] as double,
-        );
-      }
-      return _StarBorderProxy.polygon(
-        values['@peer'] as FlaxProxyPeer,
-        side: values["side"] as api.BorderSide,
-        sides: values["sides"] as double,
-        pointRounding: values["pointRounding"] as double,
-        rotation: values["rotation"] as double,
-        squash: values["squash"] as double,
-      );
+          (_flaxHas1 ? values["side"] as api.BorderSide : null),
+          values["sides"] as double,
+          values["pointRounding"] as double,
+          values["rotation"] as double,
+          values["squash"] as double,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32],
+        const <String>[
+          "",
+          "side",
+          "sides",
+          "pointRounding",
+          "rotation",
+          "squash",
+        ],
+      ) as api.StarBorder;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -9601,47 +9461,55 @@ Object? _SweepGradient_super_get_endAngle(
 Object _createSweepGradient(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("center")) {
-        return api.SweepGradient(
-          startAngle: values["startAngle"] as double,
-          endAngle: values["endAngle"] as double,
-          colors: values["colors"] as List<api1.Color>,
-          stops: values["stops"] as List<double>?,
-          tileMode: values["tileMode"] as api1.TileMode,
-          transform: values["transform"] as api.GradientTransform?,
-        );
-      }
-      return api.SweepGradient(
-        center: values["center"] as api.AlignmentGeometry,
-        startAngle: values["startAngle"] as double,
-        endAngle: values["endAngle"] as double,
-        colors: values["colors"] as List<api1.Color>,
-        stops: values["stops"] as List<double>?,
-        tileMode: values["tileMode"] as api1.TileMode,
-        transform: values["transform"] as api.GradientTransform?,
-      );
+      final _flaxHas0 = values.containsKey("center");
+      return flaxInvokeWithDefaults(
+        api.SweepGradient.new,
+        <Object?>[
+          (_flaxHas0 ? values["center"] as api.AlignmentGeometry : null),
+          values["startAngle"] as double,
+          values["endAngle"] as double,
+          values["colors"] as List<api1.Color>,
+          values["stops"] as List<double>?,
+          values["tileMode"] as api1.TileMode,
+          values["transform"] as api.GradientTransform?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16 | 32 | 64],
+        const <String>[
+          "center",
+          "startAngle",
+          "endAngle",
+          "colors",
+          "stops",
+          "tileMode",
+          "transform",
+        ],
+      ) as api.SweepGradient;
     case '@implementation':
-      if (!values.containsKey("center")) {
-        return _SweepGradientProxy(
+      final _flaxHas1 = values.containsKey("center");
+      return flaxInvokeWithDefaults(
+        _SweepGradientProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          startAngle: values["startAngle"] as double,
-          endAngle: values["endAngle"] as double,
-          colors: values["colors"] as List<api1.Color>,
-          stops: values["stops"] as List<double>?,
-          tileMode: values["tileMode"] as api1.TileMode,
-          transform: values["transform"] as api.GradientTransform?,
-        );
-      }
-      return _SweepGradientProxy(
-        values['@peer'] as FlaxProxyPeer,
-        center: values["center"] as api.AlignmentGeometry,
-        startAngle: values["startAngle"] as double,
-        endAngle: values["endAngle"] as double,
-        colors: values["colors"] as List<api1.Color>,
-        stops: values["stops"] as List<double>?,
-        tileMode: values["tileMode"] as api1.TileMode,
-        transform: values["transform"] as api.GradientTransform?,
-      );
+          (_flaxHas1 ? values["center"] as api.AlignmentGeometry : null),
+          values["startAngle"] as double,
+          values["endAngle"] as double,
+          values["colors"] as List<api1.Color>,
+          values["stops"] as List<double>?,
+          values["tileMode"] as api1.TileMode,
+          values["transform"] as api.GradientTransform?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32 | 64 | 128],
+        const <String>[
+          "",
+          "center",
+          "startAngle",
+          "endAngle",
+          "colors",
+          "stops",
+          "tileMode",
+          "transform",
+        ],
+      ) as api.SweepGradient;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -9770,75 +9638,107 @@ void _TextPainter_set_debugPaintTextLayoutBoxes(
 }
 
 Object? _TextPainter_computeWidth(Map<String, Object?> values) {
-  if (!values.containsKey("textScaler")) {
-    return api.TextPainter.computeWidth(
-      ellipsis: values["ellipsis"] as String?,
-      locale: values["locale"] as api1.Locale?,
-      maxLines: values["maxLines"] as int?,
-      maxWidth: values["maxWidth"] as double,
-      minWidth: values["minWidth"] as double,
-      strutStyle: values["strutStyle"] as api.StrutStyle?,
-      text: values["text"] as api.InlineSpan,
-      textAlign: values["textAlign"] as api1.TextAlign,
-      textDirection: values["textDirection"] as api1.TextDirection,
-      textHeightBehavior:
-          values["textHeightBehavior"] as api1.TextHeightBehavior?,
-      textScaleFactor: values["textScaleFactor"] as double,
-      textWidthBasis: values["textWidthBasis"] as api.TextWidthBasis,
-    );
-  }
-  return api.TextPainter.computeWidth(
-    ellipsis: values["ellipsis"] as String?,
-    locale: values["locale"] as api1.Locale?,
-    maxLines: values["maxLines"] as int?,
-    maxWidth: values["maxWidth"] as double,
-    minWidth: values["minWidth"] as double,
-    strutStyle: values["strutStyle"] as api.StrutStyle?,
-    text: values["text"] as api.InlineSpan,
-    textAlign: values["textAlign"] as api1.TextAlign,
-    textDirection: values["textDirection"] as api1.TextDirection,
-    textHeightBehavior:
-        values["textHeightBehavior"] as api1.TextHeightBehavior?,
-    textScaleFactor: values["textScaleFactor"] as double,
-    textScaler: values["textScaler"] as api.TextScaler,
-    textWidthBasis: values["textWidthBasis"] as api.TextWidthBasis,
-  );
+  final _flaxHas11 = values.containsKey("textScaler");
+  return flaxInvokeWithDefaults(
+    api.TextPainter.computeWidth,
+    <Object?>[
+      values["ellipsis"] as String?,
+      values["locale"] as api1.Locale?,
+      values["maxLines"] as int?,
+      values["maxWidth"] as double,
+      values["minWidth"] as double,
+      values["strutStyle"] as api.StrutStyle?,
+      values["text"] as api.InlineSpan,
+      values["textAlign"] as api1.TextAlign,
+      values["textDirection"] as api1.TextDirection,
+      values["textHeightBehavior"] as api1.TextHeightBehavior?,
+      values["textScaleFactor"] as double,
+      (_flaxHas11 ? values["textScaler"] as api.TextScaler : null),
+      values["textWidthBasis"] as api.TextWidthBasis,
+    ],
+    <int>[
+      1 |
+          2 |
+          4 |
+          8 |
+          16 |
+          32 |
+          64 |
+          128 |
+          256 |
+          512 |
+          1024 |
+          (_flaxHas11 ? 2048 : 0) |
+          4096,
+    ],
+    const <String>[
+      "ellipsis",
+      "locale",
+      "maxLines",
+      "maxWidth",
+      "minWidth",
+      "strutStyle",
+      "text",
+      "textAlign",
+      "textDirection",
+      "textHeightBehavior",
+      "textScaleFactor",
+      "textScaler",
+      "textWidthBasis",
+    ],
+  ) as double;
 }
 
 Object? _TextPainter_computeMaxIntrinsicWidth(Map<String, Object?> values) {
-  if (!values.containsKey("textScaler")) {
-    return api.TextPainter.computeMaxIntrinsicWidth(
-      ellipsis: values["ellipsis"] as String?,
-      locale: values["locale"] as api1.Locale?,
-      maxLines: values["maxLines"] as int?,
-      maxWidth: values["maxWidth"] as double,
-      minWidth: values["minWidth"] as double,
-      strutStyle: values["strutStyle"] as api.StrutStyle?,
-      text: values["text"] as api.InlineSpan,
-      textAlign: values["textAlign"] as api1.TextAlign,
-      textDirection: values["textDirection"] as api1.TextDirection,
-      textHeightBehavior:
-          values["textHeightBehavior"] as api1.TextHeightBehavior?,
-      textScaleFactor: values["textScaleFactor"] as double,
-      textWidthBasis: values["textWidthBasis"] as api.TextWidthBasis,
-    );
-  }
-  return api.TextPainter.computeMaxIntrinsicWidth(
-    ellipsis: values["ellipsis"] as String?,
-    locale: values["locale"] as api1.Locale?,
-    maxLines: values["maxLines"] as int?,
-    maxWidth: values["maxWidth"] as double,
-    minWidth: values["minWidth"] as double,
-    strutStyle: values["strutStyle"] as api.StrutStyle?,
-    text: values["text"] as api.InlineSpan,
-    textAlign: values["textAlign"] as api1.TextAlign,
-    textDirection: values["textDirection"] as api1.TextDirection,
-    textHeightBehavior:
-        values["textHeightBehavior"] as api1.TextHeightBehavior?,
-    textScaleFactor: values["textScaleFactor"] as double,
-    textScaler: values["textScaler"] as api.TextScaler,
-    textWidthBasis: values["textWidthBasis"] as api.TextWidthBasis,
-  );
+  final _flaxHas11 = values.containsKey("textScaler");
+  return flaxInvokeWithDefaults(
+    api.TextPainter.computeMaxIntrinsicWidth,
+    <Object?>[
+      values["ellipsis"] as String?,
+      values["locale"] as api1.Locale?,
+      values["maxLines"] as int?,
+      values["maxWidth"] as double,
+      values["minWidth"] as double,
+      values["strutStyle"] as api.StrutStyle?,
+      values["text"] as api.InlineSpan,
+      values["textAlign"] as api1.TextAlign,
+      values["textDirection"] as api1.TextDirection,
+      values["textHeightBehavior"] as api1.TextHeightBehavior?,
+      values["textScaleFactor"] as double,
+      (_flaxHas11 ? values["textScaler"] as api.TextScaler : null),
+      values["textWidthBasis"] as api.TextWidthBasis,
+    ],
+    <int>[
+      1 |
+          2 |
+          4 |
+          8 |
+          16 |
+          32 |
+          64 |
+          128 |
+          256 |
+          512 |
+          1024 |
+          (_flaxHas11 ? 2048 : 0) |
+          4096,
+    ],
+    const <String>[
+      "ellipsis",
+      "locale",
+      "maxLines",
+      "maxWidth",
+      "minWidth",
+      "strutStyle",
+      "text",
+      "textAlign",
+      "textDirection",
+      "textHeightBehavior",
+      "textScaleFactor",
+      "textScaler",
+      "textWidthBasis",
+    ],
+  ) as double;
 }
 
 Object? _TextPainter_isHighSurrogate(Map<String, Object?> values) {
@@ -10335,67 +10235,96 @@ Object? _TextPainter_super_set_debugPaintTextLayoutBoxes(
 Object _createTextPainter(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("textScaler")) {
-        return api.TextPainter(
-          text: values["text"] as api.InlineSpan?,
-          textAlign: values["textAlign"] as api1.TextAlign,
-          textDirection: values["textDirection"] as api1.TextDirection?,
-          textScaleFactor: values["textScaleFactor"] as double,
-          maxLines: values["maxLines"] as int?,
-          ellipsis: values["ellipsis"] as String?,
-          locale: values["locale"] as api1.Locale?,
-          strutStyle: values["strutStyle"] as api.StrutStyle?,
-          textWidthBasis: values["textWidthBasis"] as api.TextWidthBasis,
-          textHeightBehavior:
-              values["textHeightBehavior"] as api1.TextHeightBehavior?,
-        );
-      }
-      return api.TextPainter(
-        text: values["text"] as api.InlineSpan?,
-        textAlign: values["textAlign"] as api1.TextAlign,
-        textDirection: values["textDirection"] as api1.TextDirection?,
-        textScaleFactor: values["textScaleFactor"] as double,
-        textScaler: values["textScaler"] as api.TextScaler,
-        maxLines: values["maxLines"] as int?,
-        ellipsis: values["ellipsis"] as String?,
-        locale: values["locale"] as api1.Locale?,
-        strutStyle: values["strutStyle"] as api.StrutStyle?,
-        textWidthBasis: values["textWidthBasis"] as api.TextWidthBasis,
-        textHeightBehavior:
-            values["textHeightBehavior"] as api1.TextHeightBehavior?,
-      );
+      final _flaxHas4 = values.containsKey("textScaler");
+      return flaxInvokeWithDefaults(
+        api.TextPainter.new,
+        <Object?>[
+          values["text"] as api.InlineSpan?,
+          values["textAlign"] as api1.TextAlign,
+          values["textDirection"] as api1.TextDirection?,
+          values["textScaleFactor"] as double,
+          (_flaxHas4 ? values["textScaler"] as api.TextScaler : null),
+          values["maxLines"] as int?,
+          values["ellipsis"] as String?,
+          values["locale"] as api1.Locale?,
+          values["strutStyle"] as api.StrutStyle?,
+          values["textWidthBasis"] as api.TextWidthBasis,
+          values["textHeightBehavior"] as api1.TextHeightBehavior?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024,
+        ],
+        const <String>[
+          "text",
+          "textAlign",
+          "textDirection",
+          "textScaleFactor",
+          "textScaler",
+          "maxLines",
+          "ellipsis",
+          "locale",
+          "strutStyle",
+          "textWidthBasis",
+          "textHeightBehavior",
+        ],
+      ) as api.TextPainter;
     case '@implementation':
-      if (!values.containsKey("textScaler")) {
-        return _TextPainterProxy(
+      final _flaxHas5 = values.containsKey("textScaler");
+      return flaxInvokeWithDefaults(
+        _TextPainterProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          text: values["text"] as api.InlineSpan?,
-          textAlign: values["textAlign"] as api1.TextAlign,
-          textDirection: values["textDirection"] as api1.TextDirection?,
-          textScaleFactor: values["textScaleFactor"] as double,
-          maxLines: values["maxLines"] as int?,
-          ellipsis: values["ellipsis"] as String?,
-          locale: values["locale"] as api1.Locale?,
-          strutStyle: values["strutStyle"] as api.StrutStyle?,
-          textWidthBasis: values["textWidthBasis"] as api.TextWidthBasis,
-          textHeightBehavior:
-              values["textHeightBehavior"] as api1.TextHeightBehavior?,
-        );
-      }
-      return _TextPainterProxy(
-        values['@peer'] as FlaxProxyPeer,
-        text: values["text"] as api.InlineSpan?,
-        textAlign: values["textAlign"] as api1.TextAlign,
-        textDirection: values["textDirection"] as api1.TextDirection?,
-        textScaleFactor: values["textScaleFactor"] as double,
-        textScaler: values["textScaler"] as api.TextScaler,
-        maxLines: values["maxLines"] as int?,
-        ellipsis: values["ellipsis"] as String?,
-        locale: values["locale"] as api1.Locale?,
-        strutStyle: values["strutStyle"] as api.StrutStyle?,
-        textWidthBasis: values["textWidthBasis"] as api.TextWidthBasis,
-        textHeightBehavior:
-            values["textHeightBehavior"] as api1.TextHeightBehavior?,
-      );
+          values["text"] as api.InlineSpan?,
+          values["textAlign"] as api1.TextAlign,
+          values["textDirection"] as api1.TextDirection?,
+          values["textScaleFactor"] as double,
+          (_flaxHas5 ? values["textScaler"] as api.TextScaler : null),
+          values["maxLines"] as int?,
+          values["ellipsis"] as String?,
+          values["locale"] as api1.Locale?,
+          values["strutStyle"] as api.StrutStyle?,
+          values["textWidthBasis"] as api.TextWidthBasis,
+          values["textHeightBehavior"] as api1.TextHeightBehavior?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048,
+        ],
+        const <String>[
+          "",
+          "text",
+          "textAlign",
+          "textDirection",
+          "textScaleFactor",
+          "textScaler",
+          "maxLines",
+          "ellipsis",
+          "locale",
+          "strutStyle",
+          "textWidthBasis",
+          "textHeightBehavior",
+        ],
+      ) as api.TextPainter;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10472,17 +10401,16 @@ Object? _TextSpan_handleEvent(Object receiver, Map<String, Object?> values) {
 }
 
 Object? _TextSpan_super_build(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("textScaler")) {
-    (receiver as _TextSpanProxy)._flaxSuper_build(
+  final _flaxHas2 = values.containsKey("textScaler");
+  flaxInvokeWithDefaults(
+    (receiver as _TextSpanProxy)._flaxSuper_build,
+    <Object?>[
       values["builder"] as api1.ParagraphBuilder,
-      dimensions: values["dimensions"] as List<api.PlaceholderDimensions>?,
-    );
-    return null;
-  }
-  (receiver as _TextSpanProxy)._flaxSuper_build(
-    values["builder"] as api1.ParagraphBuilder,
-    dimensions: values["dimensions"] as List<api.PlaceholderDimensions>?,
-    textScaler: values["textScaler"] as api.TextScaler,
+      values["dimensions"] as List<api.PlaceholderDimensions>?,
+      (_flaxHas2 ? values["textScaler"] as api.TextScaler : null),
+    ],
+    <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+    const <String>["", "dimensions", "textScaler"],
   );
   return null;
 }
@@ -10805,39 +10733,34 @@ Object? _TransformProperty_super_get_value(
 Object _createTransformProperty(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("defaultValue")) {
-        return api.TransformProperty(
+      final _flaxHas3 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.TransformProperty.new,
+        <Object?>[
           values["name"] as String,
           values["value"] as api13.Matrix4?,
-          showName: values["showName"] as bool,
-          level: values["level"] as api4.DiagnosticLevel,
-        );
-      }
-      return api.TransformProperty(
-        values["name"] as String,
-        values["value"] as api13.Matrix4?,
-        showName: values["showName"] as bool,
-        defaultValue: values["defaultValue"],
-        level: values["level"] as api4.DiagnosticLevel,
-      );
+          values["showName"] as bool,
+          (_flaxHas3 ? values["defaultValue"] : null),
+          values["level"] as api4.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16],
+        const <String>["", "", "showName", "defaultValue", "level"],
+      ) as api.TransformProperty;
     case '@implementation':
-      if (!values.containsKey("defaultValue")) {
-        return _TransformPropertyProxy(
+      final _flaxHas4 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _TransformPropertyProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
           values["value"] as api13.Matrix4?,
-          showName: values["showName"] as bool,
-          level: values["level"] as api4.DiagnosticLevel,
-        );
-      }
-      return _TransformPropertyProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["value"] as api13.Matrix4?,
-        showName: values["showName"] as bool,
-        defaultValue: values["defaultValue"],
-        level: values["level"] as api4.DiagnosticLevel,
-      );
+          values["showName"] as bool,
+          (_flaxHas4 ? values["defaultValue"] : null),
+          values["level"] as api4.DiagnosticLevel,
+        ],
+        <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32],
+        const <String>["", "", "", "showName", "defaultValue", "level"],
+      ) as api.TransformProperty;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12974,15 +12897,22 @@ final class _AssetBundleImageProviderProxy extends api.AssetBundleImageProvider
     required api.ImageConfiguration configuration,
     Object? handleError = _flaxOmitted,
   }) {
-    if (identical(handleError, _flaxOmitted)) {
-      return super.obtainCacheStatus(configuration: configuration);
-    }
-    return super.obtainCacheStatus(
-      configuration: configuration,
-      handleError:
-          handleError
-              as void Function(Object exception, api5.StackTrace? stackTrace)?,
-    );
+    final _flaxHas1 = !identical(handleError, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.obtainCacheStatus,
+      <Object?>[
+        configuration,
+        (_flaxHas1
+            ? handleError
+                  as void Function(
+                    Object exception,
+                    api5.StackTrace? stackTrace,
+                  )?
+            : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["configuration", "handleError"],
+    ) as Future<api.ImageCacheStatus?>);
   }
 
   @override
@@ -13029,21 +12959,17 @@ final class _AssetBundleImageProviderProxy extends api.AssetBundleImageProvider
     Object? cache = _flaxOmitted,
     Object? configuration = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      if (identical(configuration, _flaxOmitted)) {
-        return super.evict();
-      }
-      return super.evict(
-        configuration: configuration as api.ImageConfiguration,
-      );
-    }
-    if (identical(configuration, _flaxOmitted)) {
-      return super.evict(cache: cache as api.ImageCache?);
-    }
-    return super.evict(
-      cache: cache as api.ImageCache?,
-      configuration: configuration as api.ImageConfiguration,
-    );
+    final _flaxHas0 = !identical(cache, _flaxOmitted);
+    final _flaxHas1 = !identical(configuration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.evict,
+      <Object?>[
+        (_flaxHas0 ? cache as api.ImageCache? : null),
+        (_flaxHas1 ? configuration as api.ImageConfiguration : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["cache", "configuration"],
+    ) as Future<bool>);
   }
 
   @override
@@ -13214,15 +13140,22 @@ final class _AssetImageProxy extends api.AssetImage
     required api.ImageConfiguration configuration,
     Object? handleError = _flaxOmitted,
   }) {
-    if (identical(handleError, _flaxOmitted)) {
-      return super.obtainCacheStatus(configuration: configuration);
-    }
-    return super.obtainCacheStatus(
-      configuration: configuration,
-      handleError:
-          handleError
-              as void Function(Object exception, api5.StackTrace? stackTrace)?,
-    );
+    final _flaxHas1 = !identical(handleError, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.obtainCacheStatus,
+      <Object?>[
+        configuration,
+        (_flaxHas1
+            ? handleError
+                  as void Function(
+                    Object exception,
+                    api5.StackTrace? stackTrace,
+                  )?
+            : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["configuration", "handleError"],
+    ) as Future<api.ImageCacheStatus?>);
   }
 
   @override
@@ -13269,21 +13202,17 @@ final class _AssetImageProxy extends api.AssetImage
     Object? cache = _flaxOmitted,
     Object? configuration = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      if (identical(configuration, _flaxOmitted)) {
-        return super.evict();
-      }
-      return super.evict(
-        configuration: configuration as api.ImageConfiguration,
-      );
-    }
-    if (identical(configuration, _flaxOmitted)) {
-      return super.evict(cache: cache as api.ImageCache?);
-    }
-    return super.evict(
-      cache: cache as api.ImageCache?,
-      configuration: configuration as api.ImageConfiguration,
-    );
+    final _flaxHas0 = !identical(cache, _flaxOmitted);
+    final _flaxHas1 = !identical(configuration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.evict,
+      <Object?>[
+        (_flaxHas0 ? cache as api.ImageCache? : null),
+        (_flaxHas1 ? configuration as api.ImageConfiguration : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["cache", "configuration"],
+    ) as Future<bool>);
   }
 
   @override
@@ -13444,21 +13373,17 @@ final class _BeveledRectangleBorderProxy extends api.BeveledRectangleBorder
     Object? side = _flaxOmitted,
     Object? borderRadius = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      if (identical(borderRadius, _flaxOmitted)) {
-        return super.copyWith();
-      }
-      return super.copyWith(
-        borderRadius: borderRadius as api.BorderRadiusGeometry?,
-      );
-    }
-    if (identical(borderRadius, _flaxOmitted)) {
-      return super.copyWith(side: side as api.BorderSide?);
-    }
-    return super.copyWith(
-      side: side as api.BorderSide?,
-      borderRadius: borderRadius as api.BorderRadiusGeometry?,
-    );
+    final _flaxHas0 = !identical(side, _flaxOmitted);
+    final _flaxHas1 = !identical(borderRadius, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? side as api.BorderSide? : null),
+        (_flaxHas1 ? borderRadius as api.BorderRadiusGeometry? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["side", "borderRadius"],
+    ) as api.BeveledRectangleBorder);
   }
 
   @override
@@ -13500,10 +13425,13 @@ final class _BeveledRectangleBorderProxy extends api.BeveledRectangleBorder
     api.ShapeBorder other, {
     Object? reversed = _flaxOmitted,
   }) {
-    if (identical(reversed, _flaxOmitted)) {
-      return super.add(other);
-    }
-    return super.add(other, reversed: reversed as bool);
+    final _flaxHas1 = !identical(reversed, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.add,
+      <Object?>[other, (_flaxHas1 ? reversed as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "reversed"],
+    ) as api.ShapeBorder?);
   }
 
   @override
@@ -13523,13 +13451,16 @@ final class _BeveledRectangleBorderProxy extends api.BeveledRectangleBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getOuterPath(rect);
-    }
-    return super.getOuterPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getOuterPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -13549,13 +13480,16 @@ final class _BeveledRectangleBorderProxy extends api.BeveledRectangleBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getInnerPath(rect);
-    }
-    return super.getInnerPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getInnerPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -13581,15 +13515,17 @@ final class _BeveledRectangleBorderProxy extends api.BeveledRectangleBorder
     api1.Paint paint, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paintInterior(canvas, rect, paint);
-      return;
-    }
-    super.paintInterior(
-      canvas,
-      rect,
-      paint,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas3 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paintInterior,
+      <Object?>[
+        canvas,
+        rect,
+        paint,
+        (_flaxHas3 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+      const <String>["", "", "", "textDirection"],
     );
     return;
   }
@@ -13614,14 +13550,16 @@ final class _BeveledRectangleBorderProxy extends api.BeveledRectangleBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paint(canvas, rect);
-      return;
-    }
-    super.paint(
-      canvas,
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas2 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paint,
+      <Object?>[
+        canvas,
+        rect,
+        (_flaxHas2 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "textDirection"],
     );
     return;
   }
@@ -13828,201 +13766,35 @@ final class _BoxShadowProxy extends api.BoxShadow
     Object? spreadRadius = _flaxOmitted,
     Object? blurStyle = _flaxOmitted,
   }) {
-    if (identical(color, _flaxOmitted)) {
-      if (identical(offset, _flaxOmitted)) {
-        if (identical(blurRadius, _flaxOmitted)) {
-          if (identical(spreadRadius, _flaxOmitted)) {
-            if (identical(blurStyle, _flaxOmitted)) {
-              return super.copyWith();
-            }
-            return super.copyWith(blurStyle: blurStyle as api1.BlurStyle?);
-          }
-          if (identical(blurStyle, _flaxOmitted)) {
-            return super.copyWith(spreadRadius: spreadRadius as double?);
-          }
-          return super.copyWith(
-            spreadRadius: spreadRadius as double?,
-            blurStyle: blurStyle as api1.BlurStyle?,
-          );
-        }
-        if (identical(spreadRadius, _flaxOmitted)) {
-          if (identical(blurStyle, _flaxOmitted)) {
-            return super.copyWith(blurRadius: blurRadius as double?);
-          }
-          return super.copyWith(
-            blurRadius: blurRadius as double?,
-            blurStyle: blurStyle as api1.BlurStyle?,
-          );
-        }
-        if (identical(blurStyle, _flaxOmitted)) {
-          return super.copyWith(
-            blurRadius: blurRadius as double?,
-            spreadRadius: spreadRadius as double?,
-          );
-        }
-        return super.copyWith(
-          blurRadius: blurRadius as double?,
-          spreadRadius: spreadRadius as double?,
-          blurStyle: blurStyle as api1.BlurStyle?,
-        );
-      }
-      if (identical(blurRadius, _flaxOmitted)) {
-        if (identical(spreadRadius, _flaxOmitted)) {
-          if (identical(blurStyle, _flaxOmitted)) {
-            return super.copyWith(offset: offset as api1.Offset?);
-          }
-          return super.copyWith(
-            offset: offset as api1.Offset?,
-            blurStyle: blurStyle as api1.BlurStyle?,
-          );
-        }
-        if (identical(blurStyle, _flaxOmitted)) {
-          return super.copyWith(
-            offset: offset as api1.Offset?,
-            spreadRadius: spreadRadius as double?,
-          );
-        }
-        return super.copyWith(
-          offset: offset as api1.Offset?,
-          spreadRadius: spreadRadius as double?,
-          blurStyle: blurStyle as api1.BlurStyle?,
-        );
-      }
-      if (identical(spreadRadius, _flaxOmitted)) {
-        if (identical(blurStyle, _flaxOmitted)) {
-          return super.copyWith(
-            offset: offset as api1.Offset?,
-            blurRadius: blurRadius as double?,
-          );
-        }
-        return super.copyWith(
-          offset: offset as api1.Offset?,
-          blurRadius: blurRadius as double?,
-          blurStyle: blurStyle as api1.BlurStyle?,
-        );
-      }
-      if (identical(blurStyle, _flaxOmitted)) {
-        return super.copyWith(
-          offset: offset as api1.Offset?,
-          blurRadius: blurRadius as double?,
-          spreadRadius: spreadRadius as double?,
-        );
-      }
-      return super.copyWith(
-        offset: offset as api1.Offset?,
-        blurRadius: blurRadius as double?,
-        spreadRadius: spreadRadius as double?,
-        blurStyle: blurStyle as api1.BlurStyle?,
-      );
-    }
-    if (identical(offset, _flaxOmitted)) {
-      if (identical(blurRadius, _flaxOmitted)) {
-        if (identical(spreadRadius, _flaxOmitted)) {
-          if (identical(blurStyle, _flaxOmitted)) {
-            return super.copyWith(color: color as api1.Color?);
-          }
-          return super.copyWith(
-            color: color as api1.Color?,
-            blurStyle: blurStyle as api1.BlurStyle?,
-          );
-        }
-        if (identical(blurStyle, _flaxOmitted)) {
-          return super.copyWith(
-            color: color as api1.Color?,
-            spreadRadius: spreadRadius as double?,
-          );
-        }
-        return super.copyWith(
-          color: color as api1.Color?,
-          spreadRadius: spreadRadius as double?,
-          blurStyle: blurStyle as api1.BlurStyle?,
-        );
-      }
-      if (identical(spreadRadius, _flaxOmitted)) {
-        if (identical(blurStyle, _flaxOmitted)) {
-          return super.copyWith(
-            color: color as api1.Color?,
-            blurRadius: blurRadius as double?,
-          );
-        }
-        return super.copyWith(
-          color: color as api1.Color?,
-          blurRadius: blurRadius as double?,
-          blurStyle: blurStyle as api1.BlurStyle?,
-        );
-      }
-      if (identical(blurStyle, _flaxOmitted)) {
-        return super.copyWith(
-          color: color as api1.Color?,
-          blurRadius: blurRadius as double?,
-          spreadRadius: spreadRadius as double?,
-        );
-      }
-      return super.copyWith(
-        color: color as api1.Color?,
-        blurRadius: blurRadius as double?,
-        spreadRadius: spreadRadius as double?,
-        blurStyle: blurStyle as api1.BlurStyle?,
-      );
-    }
-    if (identical(blurRadius, _flaxOmitted)) {
-      if (identical(spreadRadius, _flaxOmitted)) {
-        if (identical(blurStyle, _flaxOmitted)) {
-          return super.copyWith(
-            color: color as api1.Color?,
-            offset: offset as api1.Offset?,
-          );
-        }
-        return super.copyWith(
-          color: color as api1.Color?,
-          offset: offset as api1.Offset?,
-          blurStyle: blurStyle as api1.BlurStyle?,
-        );
-      }
-      if (identical(blurStyle, _flaxOmitted)) {
-        return super.copyWith(
-          color: color as api1.Color?,
-          offset: offset as api1.Offset?,
-          spreadRadius: spreadRadius as double?,
-        );
-      }
-      return super.copyWith(
-        color: color as api1.Color?,
-        offset: offset as api1.Offset?,
-        spreadRadius: spreadRadius as double?,
-        blurStyle: blurStyle as api1.BlurStyle?,
-      );
-    }
-    if (identical(spreadRadius, _flaxOmitted)) {
-      if (identical(blurStyle, _flaxOmitted)) {
-        return super.copyWith(
-          color: color as api1.Color?,
-          offset: offset as api1.Offset?,
-          blurRadius: blurRadius as double?,
-        );
-      }
-      return super.copyWith(
-        color: color as api1.Color?,
-        offset: offset as api1.Offset?,
-        blurRadius: blurRadius as double?,
-        blurStyle: blurStyle as api1.BlurStyle?,
-      );
-    }
-    if (identical(blurStyle, _flaxOmitted)) {
-      return super.copyWith(
-        color: color as api1.Color?,
-        offset: offset as api1.Offset?,
-        blurRadius: blurRadius as double?,
-        spreadRadius: spreadRadius as double?,
-      );
-    }
-    return super.copyWith(
-      color: color as api1.Color?,
-      offset: offset as api1.Offset?,
-      blurRadius: blurRadius as double?,
-      spreadRadius: spreadRadius as double?,
-      blurStyle: blurStyle as api1.BlurStyle?,
-    );
+    final _flaxHas0 = !identical(color, _flaxOmitted);
+    final _flaxHas1 = !identical(offset, _flaxOmitted);
+    final _flaxHas2 = !identical(blurRadius, _flaxOmitted);
+    final _flaxHas3 = !identical(spreadRadius, _flaxOmitted);
+    final _flaxHas4 = !identical(blurStyle, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? color as api1.Color? : null),
+        (_flaxHas1 ? offset as api1.Offset? : null),
+        (_flaxHas2 ? blurRadius as double? : null),
+        (_flaxHas3 ? spreadRadius as double? : null),
+        (_flaxHas4 ? blurStyle as api1.BlurStyle? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "color",
+        "offset",
+        "blurRadius",
+        "spreadRadius",
+        "blurStyle",
+      ],
+    ) as api.BoxShadow);
   }
 
   @override
@@ -14306,12 +14078,15 @@ final class _ColorPropertyProxy extends api.ColorProperty
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api4.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -14326,12 +14101,15 @@ final class _ColorPropertyProxy extends api.ColorProperty
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api4.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -14409,218 +14187,35 @@ final class _ColorPropertyProxy extends api.ColorProperty
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api4.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api4.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api4.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api4.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api4.TextTreeConfiguration?,
-            minLevel: minLevel as api4.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api4.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api4.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api4.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api4.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api4.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-      minLevel: minLevel as api4.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api4.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api4.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -14640,21 +14235,17 @@ final class _ColorPropertyProxy extends api.ColorProperty
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-      minLevel: minLevel as api4.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api4.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api4.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -14852,192 +14443,29 @@ final class _ColorSwatchProxy<_Owner0 extends Object?>
     Object? blue = _flaxOmitted,
     Object? colorSpace = _flaxOmitted,
   }) {
-    if (identical(alpha, _flaxOmitted)) {
-      if (identical(red, _flaxOmitted)) {
-        if (identical(green, _flaxOmitted)) {
-          if (identical(blue, _flaxOmitted)) {
-            if (identical(colorSpace, _flaxOmitted)) {
-              return super.withValues();
-            }
-            return super.withValues(colorSpace: colorSpace as api1.ColorSpace?);
-          }
-          if (identical(colorSpace, _flaxOmitted)) {
-            return super.withValues(blue: blue as double?);
-          }
-          return super.withValues(
-            blue: blue as double?,
-            colorSpace: colorSpace as api1.ColorSpace?,
-          );
-        }
-        if (identical(blue, _flaxOmitted)) {
-          if (identical(colorSpace, _flaxOmitted)) {
-            return super.withValues(green: green as double?);
-          }
-          return super.withValues(
-            green: green as double?,
-            colorSpace: colorSpace as api1.ColorSpace?,
-          );
-        }
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(
-            green: green as double?,
-            blue: blue as double?,
-          );
-        }
-        return super.withValues(
-          green: green as double?,
-          blue: blue as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(green, _flaxOmitted)) {
-        if (identical(blue, _flaxOmitted)) {
-          if (identical(colorSpace, _flaxOmitted)) {
-            return super.withValues(red: red as double?);
-          }
-          return super.withValues(
-            red: red as double?,
-            colorSpace: colorSpace as api1.ColorSpace?,
-          );
-        }
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(red: red as double?, blue: blue as double?);
-        }
-        return super.withValues(
-          red: red as double?,
-          blue: blue as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(blue, _flaxOmitted)) {
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(red: red as double?, green: green as double?);
-        }
-        return super.withValues(
-          red: red as double?,
-          green: green as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(colorSpace, _flaxOmitted)) {
-        return super.withValues(
-          red: red as double?,
-          green: green as double?,
-          blue: blue as double?,
-        );
-      }
-      return super.withValues(
-        red: red as double?,
-        green: green as double?,
-        blue: blue as double?,
-        colorSpace: colorSpace as api1.ColorSpace?,
-      );
-    }
-    if (identical(red, _flaxOmitted)) {
-      if (identical(green, _flaxOmitted)) {
-        if (identical(blue, _flaxOmitted)) {
-          if (identical(colorSpace, _flaxOmitted)) {
-            return super.withValues(alpha: alpha as double?);
-          }
-          return super.withValues(
-            alpha: alpha as double?,
-            colorSpace: colorSpace as api1.ColorSpace?,
-          );
-        }
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(
-            alpha: alpha as double?,
-            blue: blue as double?,
-          );
-        }
-        return super.withValues(
-          alpha: alpha as double?,
-          blue: blue as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(blue, _flaxOmitted)) {
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(
-            alpha: alpha as double?,
-            green: green as double?,
-          );
-        }
-        return super.withValues(
-          alpha: alpha as double?,
-          green: green as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(colorSpace, _flaxOmitted)) {
-        return super.withValues(
-          alpha: alpha as double?,
-          green: green as double?,
-          blue: blue as double?,
-        );
-      }
-      return super.withValues(
-        alpha: alpha as double?,
-        green: green as double?,
-        blue: blue as double?,
-        colorSpace: colorSpace as api1.ColorSpace?,
-      );
-    }
-    if (identical(green, _flaxOmitted)) {
-      if (identical(blue, _flaxOmitted)) {
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(alpha: alpha as double?, red: red as double?);
-        }
-        return super.withValues(
-          alpha: alpha as double?,
-          red: red as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(colorSpace, _flaxOmitted)) {
-        return super.withValues(
-          alpha: alpha as double?,
-          red: red as double?,
-          blue: blue as double?,
-        );
-      }
-      return super.withValues(
-        alpha: alpha as double?,
-        red: red as double?,
-        blue: blue as double?,
-        colorSpace: colorSpace as api1.ColorSpace?,
-      );
-    }
-    if (identical(blue, _flaxOmitted)) {
-      if (identical(colorSpace, _flaxOmitted)) {
-        return super.withValues(
-          alpha: alpha as double?,
-          red: red as double?,
-          green: green as double?,
-        );
-      }
-      return super.withValues(
-        alpha: alpha as double?,
-        red: red as double?,
-        green: green as double?,
-        colorSpace: colorSpace as api1.ColorSpace?,
-      );
-    }
-    if (identical(colorSpace, _flaxOmitted)) {
-      return super.withValues(
-        alpha: alpha as double?,
-        red: red as double?,
-        green: green as double?,
-        blue: blue as double?,
-      );
-    }
-    return super.withValues(
-      alpha: alpha as double?,
-      red: red as double?,
-      green: green as double?,
-      blue: blue as double?,
-      colorSpace: colorSpace as api1.ColorSpace?,
-    );
+    final _flaxHas0 = !identical(alpha, _flaxOmitted);
+    final _flaxHas1 = !identical(red, _flaxOmitted);
+    final _flaxHas2 = !identical(green, _flaxOmitted);
+    final _flaxHas3 = !identical(blue, _flaxOmitted);
+    final _flaxHas4 = !identical(colorSpace, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.withValues,
+      <Object?>[
+        (_flaxHas0 ? alpha as double? : null),
+        (_flaxHas1 ? red as double? : null),
+        (_flaxHas2 ? green as double? : null),
+        (_flaxHas3 ? blue as double? : null),
+        (_flaxHas4 ? colorSpace as api1.ColorSpace? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>["alpha", "red", "green", "blue", "colorSpace"],
+    ) as api1.Color);
   }
 
   @override
@@ -15312,21 +14740,17 @@ final class _ContinuousRectangleBorderProxy
     Object? side = _flaxOmitted,
     Object? borderRadius = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      if (identical(borderRadius, _flaxOmitted)) {
-        return super.copyWith();
-      }
-      return super.copyWith(
-        borderRadius: borderRadius as api.BorderRadiusGeometry?,
-      );
-    }
-    if (identical(borderRadius, _flaxOmitted)) {
-      return super.copyWith(side: side as api.BorderSide?);
-    }
-    return super.copyWith(
-      side: side as api.BorderSide?,
-      borderRadius: borderRadius as api.BorderRadiusGeometry?,
-    );
+    final _flaxHas0 = !identical(side, _flaxOmitted);
+    final _flaxHas1 = !identical(borderRadius, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? side as api.BorderSide? : null),
+        (_flaxHas1 ? borderRadius as api.BorderRadiusGeometry? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["side", "borderRadius"],
+    ) as api.ContinuousRectangleBorder);
   }
 
   @override
@@ -15368,10 +14792,13 @@ final class _ContinuousRectangleBorderProxy
     api.ShapeBorder other, {
     Object? reversed = _flaxOmitted,
   }) {
-    if (identical(reversed, _flaxOmitted)) {
-      return super.add(other);
-    }
-    return super.add(other, reversed: reversed as bool);
+    final _flaxHas1 = !identical(reversed, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.add,
+      <Object?>[other, (_flaxHas1 ? reversed as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "reversed"],
+    ) as api.ShapeBorder?);
   }
 
   @override
@@ -15391,13 +14818,16 @@ final class _ContinuousRectangleBorderProxy
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getOuterPath(rect);
-    }
-    return super.getOuterPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getOuterPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -15417,13 +14847,16 @@ final class _ContinuousRectangleBorderProxy
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getInnerPath(rect);
-    }
-    return super.getInnerPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getInnerPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -15449,15 +14882,17 @@ final class _ContinuousRectangleBorderProxy
     api1.Paint paint, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paintInterior(canvas, rect, paint);
-      return;
-    }
-    super.paintInterior(
-      canvas,
-      rect,
-      paint,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas3 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paintInterior,
+      <Object?>[
+        canvas,
+        rect,
+        paint,
+        (_flaxHas3 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+      const <String>["", "", "", "textDirection"],
     );
     return;
   }
@@ -15482,14 +14917,16 @@ final class _ContinuousRectangleBorderProxy
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paint(canvas, rect);
-      return;
-    }
-    super.paint(
-      canvas,
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas2 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paint,
+      <Object?>[
+        canvas,
+        rect,
+        (_flaxHas2 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "textDirection"],
     );
     return;
   }
@@ -15865,15 +15302,22 @@ final class _ExactAssetImageProxy extends api.ExactAssetImage
     required api.ImageConfiguration configuration,
     Object? handleError = _flaxOmitted,
   }) {
-    if (identical(handleError, _flaxOmitted)) {
-      return super.obtainCacheStatus(configuration: configuration);
-    }
-    return super.obtainCacheStatus(
-      configuration: configuration,
-      handleError:
-          handleError
-              as void Function(Object exception, api5.StackTrace? stackTrace)?,
-    );
+    final _flaxHas1 = !identical(handleError, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.obtainCacheStatus,
+      <Object?>[
+        configuration,
+        (_flaxHas1
+            ? handleError
+                  as void Function(
+                    Object exception,
+                    api5.StackTrace? stackTrace,
+                  )?
+            : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["configuration", "handleError"],
+    ) as Future<api.ImageCacheStatus?>);
   }
 
   @override
@@ -15920,21 +15364,17 @@ final class _ExactAssetImageProxy extends api.ExactAssetImage
     Object? cache = _flaxOmitted,
     Object? configuration = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      if (identical(configuration, _flaxOmitted)) {
-        return super.evict();
-      }
-      return super.evict(
-        configuration: configuration as api.ImageConfiguration,
-      );
-    }
-    if (identical(configuration, _flaxOmitted)) {
-      return super.evict(cache: cache as api.ImageCache?);
-    }
-    return super.evict(
-      cache: cache as api.ImageCache?,
-      configuration: configuration as api.ImageConfiguration,
-    );
+    final _flaxHas0 = !identical(cache, _flaxOmitted);
+    final _flaxHas1 = !identical(configuration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.evict,
+      <Object?>[
+        (_flaxHas0 ? cache as api.ImageCache? : null),
+        (_flaxHas1 ? configuration as api.ImageConfiguration : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["cache", "configuration"],
+    ) as Future<bool>);
   }
 
   @override
@@ -16062,15 +15502,22 @@ final class _FileImageProxy extends api.FileImage
     required api.ImageConfiguration configuration,
     Object? handleError = _flaxOmitted,
   }) {
-    if (identical(handleError, _flaxOmitted)) {
-      return super.obtainCacheStatus(configuration: configuration);
-    }
-    return super.obtainCacheStatus(
-      configuration: configuration,
-      handleError:
-          handleError
-              as void Function(Object exception, api5.StackTrace? stackTrace)?,
-    );
+    final _flaxHas1 = !identical(handleError, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.obtainCacheStatus,
+      <Object?>[
+        configuration,
+        (_flaxHas1
+            ? handleError
+                  as void Function(
+                    Object exception,
+                    api5.StackTrace? stackTrace,
+                  )?
+            : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["configuration", "handleError"],
+    ) as Future<api.ImageCacheStatus?>);
   }
 
   @override
@@ -16120,21 +15567,17 @@ final class _FileImageProxy extends api.FileImage
     Object? cache = _flaxOmitted,
     Object? configuration = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      if (identical(configuration, _flaxOmitted)) {
-        return super.evict();
-      }
-      return super.evict(
-        configuration: configuration as api.ImageConfiguration,
-      );
-    }
-    if (identical(configuration, _flaxOmitted)) {
-      return super.evict(cache: cache as api.ImageCache?);
-    }
-    return super.evict(
-      cache: cache as api.ImageCache?,
-      configuration: configuration as api.ImageConfiguration,
-    );
+    final _flaxHas0 = !identical(cache, _flaxOmitted);
+    final _flaxHas1 = !identical(configuration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.evict,
+      <Object?>[
+        (_flaxHas0 ? cache as api.ImageCache? : null),
+        (_flaxHas1 ? configuration as api.ImageConfiguration : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["cache", "configuration"],
+    ) as Future<bool>);
   }
 
   @override
@@ -16339,14 +15782,17 @@ final class _FlutterLogoDecorationProxy extends api.FlutterLogoDecoration
     api1.Offset position, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.hitTest(size, position);
-    }
-    return super.hitTest(
-      size,
-      position,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas2 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.hitTest,
+      <Object?>[
+        size,
+        position,
+        (_flaxHas2 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "textDirection"],
+    ) as bool);
   }
 
   @override
@@ -16357,10 +15803,13 @@ final class _FlutterLogoDecorationProxy extends api.FlutterLogoDecoration
   api.BoxPainter _flaxSuper_createBoxPainter([
     Object? onChanged = _flaxOmitted,
   ]) {
-    if (identical(onChanged, _flaxOmitted)) {
-      return super.createBoxPainter();
-    }
-    return super.createBoxPainter(onChanged as void Function()?);
+    final _flaxHas0 = !identical(onChanged, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.createBoxPainter,
+      <Object?>[(_flaxHas0 ? onChanged as void Function()? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>[""],
+    ) as api.BoxPainter);
   }
 
   @override
@@ -16392,21 +15841,17 @@ final class _FlutterLogoDecorationProxy extends api.FlutterLogoDecoration
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -16430,10 +15875,13 @@ final class _FlutterLogoDecorationProxy extends api.FlutterLogoDecoration
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -16621,13 +16069,16 @@ final class _GradientRotationProxy extends api.GradientRotation
     api1.Rect bounds, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.transform(bounds);
-    }
-    return super.transform(
-      bounds,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.transform,
+      <Object?>[
+        bounds,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api13.Matrix4);
   }
 
   @override
@@ -16953,10 +16404,13 @@ final class _ImageCacheProxy extends api.ImageCache {
   }
 
   bool _flaxSuper_evict(Object key, {Object? includeLive = _flaxOmitted}) {
-    if (identical(includeLive, _flaxOmitted)) {
-      return super.evict(key);
-    }
-    return super.evict(key, includeLive: includeLive as bool);
+    final _flaxHas1 = !identical(includeLive, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.evict,
+      <Object?>[key, (_flaxHas1 ? includeLive as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "includeLive"],
+    ) as bool);
   }
 
   @override
@@ -16984,16 +16438,23 @@ final class _ImageCacheProxy extends api.ImageCache {
     api.ImageStreamCompleter Function() loader, {
     Object? onError = _flaxOmitted,
   }) {
-    if (identical(onError, _flaxOmitted)) {
-      return super.putIfAbsent(key, loader);
-    }
-    return super.putIfAbsent(
-      key,
-      loader,
-      onError:
-          onError
-              as void Function(Object exception, api5.StackTrace? stackTrace)?,
-    );
+    final _flaxHas2 = !identical(onError, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.putIfAbsent,
+      <Object?>[
+        key,
+        loader,
+        (_flaxHas2
+            ? onError
+                  as void Function(
+                    Object exception,
+                    api5.StackTrace? stackTrace,
+                  )?
+            : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "onError"],
+    ) as api.ImageStreamCompleter?);
   }
 
   @override
@@ -17221,10 +16682,13 @@ final class _ImageChunkEventProxy extends api.ImageChunkEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -17244,21 +16708,17 @@ final class _ImageChunkEventProxy extends api.ImageChunkEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -17354,18 +16814,39 @@ final class _ImageConfigurationProxy extends api.ImageConfiguration
     Object? size = _flaxOmitted,
     Object? platform = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(bundle, _flaxOmitted))
-        #bundle: bundle as api3.AssetBundle?,
-      if (!identical(devicePixelRatio, _flaxOmitted))
-        #devicePixelRatio: devicePixelRatio as double?,
-      if (!identical(locale, _flaxOmitted)) #locale: locale as api1.Locale?,
-      if (!identical(textDirection, _flaxOmitted))
-        #textDirection: textDirection as api1.TextDirection?,
-      if (!identical(size, _flaxOmitted)) #size: size as api1.Size?,
-      if (!identical(platform, _flaxOmitted))
-        #platform: platform as api4.TargetPlatform?,
-    }) as api.ImageConfiguration);
+    final _flaxHas0 = !identical(bundle, _flaxOmitted);
+    final _flaxHas1 = !identical(devicePixelRatio, _flaxOmitted);
+    final _flaxHas2 = !identical(locale, _flaxOmitted);
+    final _flaxHas3 = !identical(textDirection, _flaxOmitted);
+    final _flaxHas4 = !identical(size, _flaxOmitted);
+    final _flaxHas5 = !identical(platform, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? bundle as api3.AssetBundle? : null),
+        (_flaxHas1 ? devicePixelRatio as double? : null),
+        (_flaxHas2 ? locale as api1.Locale? : null),
+        (_flaxHas3 ? textDirection as api1.TextDirection? : null),
+        (_flaxHas4 ? size as api1.Size? : null),
+        (_flaxHas5 ? platform as api4.TargetPlatform? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0),
+      ],
+      const <String>[
+        "bundle",
+        "devicePixelRatio",
+        "locale",
+        "textDirection",
+        "size",
+        "platform",
+      ],
+    ) as api.ImageConfiguration);
   }
 
   @override
@@ -17572,15 +17053,22 @@ final class _ImageProviderProxy<_Owner0 extends Object>
     required api.ImageConfiguration configuration,
     Object? handleError = _flaxOmitted,
   }) {
-    if (identical(handleError, _flaxOmitted)) {
-      return super.obtainCacheStatus(configuration: configuration);
-    }
-    return super.obtainCacheStatus(
-      configuration: configuration,
-      handleError:
-          handleError
-              as void Function(Object exception, api5.StackTrace? stackTrace)?,
-    );
+    final _flaxHas1 = !identical(handleError, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.obtainCacheStatus,
+      <Object?>[
+        configuration,
+        (_flaxHas1
+            ? handleError
+                  as void Function(
+                    Object exception,
+                    api5.StackTrace? stackTrace,
+                  )?
+            : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["configuration", "handleError"],
+    ) as Future<api.ImageCacheStatus?>);
   }
 
   @override
@@ -17630,21 +17118,17 @@ final class _ImageProviderProxy<_Owner0 extends Object>
     Object? cache = _flaxOmitted,
     Object? configuration = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      if (identical(configuration, _flaxOmitted)) {
-        return super.evict();
-      }
-      return super.evict(
-        configuration: configuration as api.ImageConfiguration,
-      );
-    }
-    if (identical(configuration, _flaxOmitted)) {
-      return super.evict(cache: cache as api.ImageCache?);
-    }
-    return super.evict(
-      cache: cache as api.ImageCache?,
-      configuration: configuration as api.ImageConfiguration,
-    );
+    final _flaxHas0 = !identical(cache, _flaxOmitted);
+    final _flaxHas1 = !identical(configuration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.evict,
+      <Object?>[
+        (_flaxHas0 ? cache as api.ImageCache? : null),
+        (_flaxHas1 ? configuration as api.ImageConfiguration : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["cache", "configuration"],
+    ) as Future<bool>);
   }
 
   @override
@@ -17857,10 +17341,13 @@ final class _ImageStreamProxy extends api.ImageStream
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -17880,21 +17367,17 @@ final class _ImageStreamProxy extends api.ImageStream
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -18000,10 +17483,13 @@ final class _ImageStreamCompleterProxy extends api.ImageStreamCompleter
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -18023,21 +17509,17 @@ final class _ImageStreamCompleterProxy extends api.ImageStreamCompleter
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -18180,137 +17662,35 @@ final class _ImageStreamCompleterProxy extends api.ImageStreamCompleter
     Object? informationCollector = _flaxOmitted,
     Object? silent = _flaxOmitted,
   }) {
-    if (identical(context, _flaxOmitted)) {
-      if (identical(stack, _flaxOmitted)) {
-        if (identical(informationCollector, _flaxOmitted)) {
-          if (identical(silent, _flaxOmitted)) {
-            super.reportError(exception: exception);
-            return;
-          }
-          super.reportError(exception: exception, silent: silent as bool);
-          return;
-        }
-        if (identical(silent, _flaxOmitted)) {
-          super.reportError(
-            exception: exception,
-            informationCollector:
-                informationCollector
-                    as Iterable<api4.DiagnosticsNode> Function()?,
-          );
-          return;
-        }
-        super.reportError(
-          exception: exception,
-          informationCollector:
-              informationCollector
-                  as Iterable<api4.DiagnosticsNode> Function()?,
-          silent: silent as bool,
-        );
-        return;
-      }
-      if (identical(informationCollector, _flaxOmitted)) {
-        if (identical(silent, _flaxOmitted)) {
-          super.reportError(
-            exception: exception,
-            stack: stack as api5.StackTrace?,
-          );
-          return;
-        }
-        super.reportError(
-          exception: exception,
-          stack: stack as api5.StackTrace?,
-          silent: silent as bool,
-        );
-        return;
-      }
-      if (identical(silent, _flaxOmitted)) {
-        super.reportError(
-          exception: exception,
-          stack: stack as api5.StackTrace?,
-          informationCollector:
-              informationCollector
-                  as Iterable<api4.DiagnosticsNode> Function()?,
-        );
-        return;
-      }
-      super.reportError(
-        exception: exception,
-        stack: stack as api5.StackTrace?,
-        informationCollector:
-            informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-        silent: silent as bool,
-      );
-      return;
-    }
-    if (identical(stack, _flaxOmitted)) {
-      if (identical(informationCollector, _flaxOmitted)) {
-        if (identical(silent, _flaxOmitted)) {
-          super.reportError(
-            context: context as api4.DiagnosticsNode?,
-            exception: exception,
-          );
-          return;
-        }
-        super.reportError(
-          context: context as api4.DiagnosticsNode?,
-          exception: exception,
-          silent: silent as bool,
-        );
-        return;
-      }
-      if (identical(silent, _flaxOmitted)) {
-        super.reportError(
-          context: context as api4.DiagnosticsNode?,
-          exception: exception,
-          informationCollector:
-              informationCollector
-                  as Iterable<api4.DiagnosticsNode> Function()?,
-        );
-        return;
-      }
-      super.reportError(
-        context: context as api4.DiagnosticsNode?,
-        exception: exception,
-        informationCollector:
-            informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-        silent: silent as bool,
-      );
-      return;
-    }
-    if (identical(informationCollector, _flaxOmitted)) {
-      if (identical(silent, _flaxOmitted)) {
-        super.reportError(
-          context: context as api4.DiagnosticsNode?,
-          exception: exception,
-          stack: stack as api5.StackTrace?,
-        );
-        return;
-      }
-      super.reportError(
-        context: context as api4.DiagnosticsNode?,
-        exception: exception,
-        stack: stack as api5.StackTrace?,
-        silent: silent as bool,
-      );
-      return;
-    }
-    if (identical(silent, _flaxOmitted)) {
-      super.reportError(
-        context: context as api4.DiagnosticsNode?,
-        exception: exception,
-        stack: stack as api5.StackTrace?,
-        informationCollector:
-            informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-      );
-      return;
-    }
-    super.reportError(
-      context: context as api4.DiagnosticsNode?,
-      exception: exception,
-      stack: stack as api5.StackTrace?,
-      informationCollector:
-          informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-      silent: silent as bool,
+    final _flaxHas0 = !identical(context, _flaxOmitted);
+    final _flaxHas2 = !identical(stack, _flaxOmitted);
+    final _flaxHas3 = !identical(informationCollector, _flaxOmitted);
+    final _flaxHas4 = !identical(silent, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.reportError,
+      <Object?>[
+        (_flaxHas0 ? context as api4.DiagnosticsNode? : null),
+        exception,
+        (_flaxHas2 ? stack as api5.StackTrace? : null),
+        (_flaxHas3
+            ? informationCollector as Iterable<api4.DiagnosticsNode> Function()?
+            : null),
+        (_flaxHas4 ? silent as bool : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            2 |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "context",
+        "exception",
+        "stack",
+        "informationCollector",
+        "silent",
+      ],
     );
     return;
   }
@@ -18438,19 +17818,17 @@ final class _InlineSpanProxy extends api.InlineSpan
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api4.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api4.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api4.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -18476,93 +17854,31 @@ final class _InlineSpanProxy extends api.InlineSpan
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api4.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api4.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api4.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api4.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -18591,21 +17907,17 @@ final class _InlineSpanProxy extends api.InlineSpan
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -18638,10 +17950,13 @@ final class _InlineSpanProxy extends api.InlineSpan
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -18730,23 +18045,17 @@ final class _InlineSpanProxy extends api.InlineSpan
     Object? includeSemanticsLabels = _flaxOmitted,
     Object? includePlaceholders = _flaxOmitted,
   }) {
-    if (identical(includeSemanticsLabels, _flaxOmitted)) {
-      if (identical(includePlaceholders, _flaxOmitted)) {
-        return super.toPlainText();
-      }
-      return super.toPlainText(
-        includePlaceholders: includePlaceholders as bool,
-      );
-    }
-    if (identical(includePlaceholders, _flaxOmitted)) {
-      return super.toPlainText(
-        includeSemanticsLabels: includeSemanticsLabels as bool,
-      );
-    }
-    return super.toPlainText(
-      includeSemanticsLabels: includeSemanticsLabels as bool,
-      includePlaceholders: includePlaceholders as bool,
-    );
+    final _flaxHas0 = !identical(includeSemanticsLabels, _flaxOmitted);
+    final _flaxHas1 = !identical(includePlaceholders, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toPlainText,
+      <Object?>[
+        (_flaxHas0 ? includeSemanticsLabels as bool : null),
+        (_flaxHas1 ? includePlaceholders as bool : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["includeSemanticsLabels", "includePlaceholders"],
+    ) as String);
   }
 
   @override
@@ -19026,201 +18335,29 @@ final class _LinearBorderProxy extends api.LinearBorder
     Object? top = _flaxOmitted,
     Object? bottom = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      if (identical(start, _flaxOmitted)) {
-        if (identical(end, _flaxOmitted)) {
-          if (identical(top, _flaxOmitted)) {
-            if (identical(bottom, _flaxOmitted)) {
-              return super.copyWith();
-            }
-            return super.copyWith(bottom: bottom as api.LinearBorderEdge?);
-          }
-          if (identical(bottom, _flaxOmitted)) {
-            return super.copyWith(top: top as api.LinearBorderEdge?);
-          }
-          return super.copyWith(
-            top: top as api.LinearBorderEdge?,
-            bottom: bottom as api.LinearBorderEdge?,
-          );
-        }
-        if (identical(top, _flaxOmitted)) {
-          if (identical(bottom, _flaxOmitted)) {
-            return super.copyWith(end: end as api.LinearBorderEdge?);
-          }
-          return super.copyWith(
-            end: end as api.LinearBorderEdge?,
-            bottom: bottom as api.LinearBorderEdge?,
-          );
-        }
-        if (identical(bottom, _flaxOmitted)) {
-          return super.copyWith(
-            end: end as api.LinearBorderEdge?,
-            top: top as api.LinearBorderEdge?,
-          );
-        }
-        return super.copyWith(
-          end: end as api.LinearBorderEdge?,
-          top: top as api.LinearBorderEdge?,
-          bottom: bottom as api.LinearBorderEdge?,
-        );
-      }
-      if (identical(end, _flaxOmitted)) {
-        if (identical(top, _flaxOmitted)) {
-          if (identical(bottom, _flaxOmitted)) {
-            return super.copyWith(start: start as api.LinearBorderEdge?);
-          }
-          return super.copyWith(
-            start: start as api.LinearBorderEdge?,
-            bottom: bottom as api.LinearBorderEdge?,
-          );
-        }
-        if (identical(bottom, _flaxOmitted)) {
-          return super.copyWith(
-            start: start as api.LinearBorderEdge?,
-            top: top as api.LinearBorderEdge?,
-          );
-        }
-        return super.copyWith(
-          start: start as api.LinearBorderEdge?,
-          top: top as api.LinearBorderEdge?,
-          bottom: bottom as api.LinearBorderEdge?,
-        );
-      }
-      if (identical(top, _flaxOmitted)) {
-        if (identical(bottom, _flaxOmitted)) {
-          return super.copyWith(
-            start: start as api.LinearBorderEdge?,
-            end: end as api.LinearBorderEdge?,
-          );
-        }
-        return super.copyWith(
-          start: start as api.LinearBorderEdge?,
-          end: end as api.LinearBorderEdge?,
-          bottom: bottom as api.LinearBorderEdge?,
-        );
-      }
-      if (identical(bottom, _flaxOmitted)) {
-        return super.copyWith(
-          start: start as api.LinearBorderEdge?,
-          end: end as api.LinearBorderEdge?,
-          top: top as api.LinearBorderEdge?,
-        );
-      }
-      return super.copyWith(
-        start: start as api.LinearBorderEdge?,
-        end: end as api.LinearBorderEdge?,
-        top: top as api.LinearBorderEdge?,
-        bottom: bottom as api.LinearBorderEdge?,
-      );
-    }
-    if (identical(start, _flaxOmitted)) {
-      if (identical(end, _flaxOmitted)) {
-        if (identical(top, _flaxOmitted)) {
-          if (identical(bottom, _flaxOmitted)) {
-            return super.copyWith(side: side as api.BorderSide?);
-          }
-          return super.copyWith(
-            side: side as api.BorderSide?,
-            bottom: bottom as api.LinearBorderEdge?,
-          );
-        }
-        if (identical(bottom, _flaxOmitted)) {
-          return super.copyWith(
-            side: side as api.BorderSide?,
-            top: top as api.LinearBorderEdge?,
-          );
-        }
-        return super.copyWith(
-          side: side as api.BorderSide?,
-          top: top as api.LinearBorderEdge?,
-          bottom: bottom as api.LinearBorderEdge?,
-        );
-      }
-      if (identical(top, _flaxOmitted)) {
-        if (identical(bottom, _flaxOmitted)) {
-          return super.copyWith(
-            side: side as api.BorderSide?,
-            end: end as api.LinearBorderEdge?,
-          );
-        }
-        return super.copyWith(
-          side: side as api.BorderSide?,
-          end: end as api.LinearBorderEdge?,
-          bottom: bottom as api.LinearBorderEdge?,
-        );
-      }
-      if (identical(bottom, _flaxOmitted)) {
-        return super.copyWith(
-          side: side as api.BorderSide?,
-          end: end as api.LinearBorderEdge?,
-          top: top as api.LinearBorderEdge?,
-        );
-      }
-      return super.copyWith(
-        side: side as api.BorderSide?,
-        end: end as api.LinearBorderEdge?,
-        top: top as api.LinearBorderEdge?,
-        bottom: bottom as api.LinearBorderEdge?,
-      );
-    }
-    if (identical(end, _flaxOmitted)) {
-      if (identical(top, _flaxOmitted)) {
-        if (identical(bottom, _flaxOmitted)) {
-          return super.copyWith(
-            side: side as api.BorderSide?,
-            start: start as api.LinearBorderEdge?,
-          );
-        }
-        return super.copyWith(
-          side: side as api.BorderSide?,
-          start: start as api.LinearBorderEdge?,
-          bottom: bottom as api.LinearBorderEdge?,
-        );
-      }
-      if (identical(bottom, _flaxOmitted)) {
-        return super.copyWith(
-          side: side as api.BorderSide?,
-          start: start as api.LinearBorderEdge?,
-          top: top as api.LinearBorderEdge?,
-        );
-      }
-      return super.copyWith(
-        side: side as api.BorderSide?,
-        start: start as api.LinearBorderEdge?,
-        top: top as api.LinearBorderEdge?,
-        bottom: bottom as api.LinearBorderEdge?,
-      );
-    }
-    if (identical(top, _flaxOmitted)) {
-      if (identical(bottom, _flaxOmitted)) {
-        return super.copyWith(
-          side: side as api.BorderSide?,
-          start: start as api.LinearBorderEdge?,
-          end: end as api.LinearBorderEdge?,
-        );
-      }
-      return super.copyWith(
-        side: side as api.BorderSide?,
-        start: start as api.LinearBorderEdge?,
-        end: end as api.LinearBorderEdge?,
-        bottom: bottom as api.LinearBorderEdge?,
-      );
-    }
-    if (identical(bottom, _flaxOmitted)) {
-      return super.copyWith(
-        side: side as api.BorderSide?,
-        start: start as api.LinearBorderEdge?,
-        end: end as api.LinearBorderEdge?,
-        top: top as api.LinearBorderEdge?,
-      );
-    }
-    return super.copyWith(
-      side: side as api.BorderSide?,
-      start: start as api.LinearBorderEdge?,
-      end: end as api.LinearBorderEdge?,
-      top: top as api.LinearBorderEdge?,
-      bottom: bottom as api.LinearBorderEdge?,
-    );
+    final _flaxHas0 = !identical(side, _flaxOmitted);
+    final _flaxHas1 = !identical(start, _flaxOmitted);
+    final _flaxHas2 = !identical(end, _flaxOmitted);
+    final _flaxHas3 = !identical(top, _flaxOmitted);
+    final _flaxHas4 = !identical(bottom, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? side as api.BorderSide? : null),
+        (_flaxHas1 ? start as api.LinearBorderEdge? : null),
+        (_flaxHas2 ? end as api.LinearBorderEdge? : null),
+        (_flaxHas3 ? top as api.LinearBorderEdge? : null),
+        (_flaxHas4 ? bottom as api.LinearBorderEdge? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>["side", "start", "end", "top", "bottom"],
+    ) as api.LinearBorder);
   }
 
   @override
@@ -19267,10 +18404,13 @@ final class _LinearBorderProxy extends api.LinearBorder
     api.ShapeBorder other, {
     Object? reversed = _flaxOmitted,
   }) {
-    if (identical(reversed, _flaxOmitted)) {
-      return super.add(other);
-    }
-    return super.add(other, reversed: reversed as bool);
+    final _flaxHas1 = !identical(reversed, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.add,
+      <Object?>[other, (_flaxHas1 ? reversed as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "reversed"],
+    ) as api.ShapeBorder?);
   }
 
   @override
@@ -19290,13 +18430,16 @@ final class _LinearBorderProxy extends api.LinearBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getOuterPath(rect);
-    }
-    return super.getOuterPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getOuterPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -19316,13 +18459,16 @@ final class _LinearBorderProxy extends api.LinearBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getInnerPath(rect);
-    }
-    return super.getInnerPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getInnerPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -19348,15 +18494,17 @@ final class _LinearBorderProxy extends api.LinearBorder
     api1.Paint paint, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paintInterior(canvas, rect, paint);
-      return;
-    }
-    super.paintInterior(
-      canvas,
-      rect,
-      paint,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas3 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paintInterior,
+      <Object?>[
+        canvas,
+        rect,
+        paint,
+        (_flaxHas3 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+      const <String>["", "", "", "textDirection"],
     );
     return;
   }
@@ -19381,14 +18529,16 @@ final class _LinearBorderProxy extends api.LinearBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paint(canvas, rect);
-      return;
-    }
-    super.paint(
-      canvas,
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas2 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paint,
+      <Object?>[
+        canvas,
+        rect,
+        (_flaxHas2 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "textDirection"],
     );
     return;
   }
@@ -19551,13 +18701,16 @@ final class _LinearGradientProxy extends api.LinearGradient
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.createShader(rect);
-    }
-    return super.createShader(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.createShader,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Shader);
   }
 
   @override
@@ -19721,15 +18874,22 @@ final class _MemoryImageProxy extends api.MemoryImage
     required api.ImageConfiguration configuration,
     Object? handleError = _flaxOmitted,
   }) {
-    if (identical(handleError, _flaxOmitted)) {
-      return super.obtainCacheStatus(configuration: configuration);
-    }
-    return super.obtainCacheStatus(
-      configuration: configuration,
-      handleError:
-          handleError
-              as void Function(Object exception, api5.StackTrace? stackTrace)?,
-    );
+    final _flaxHas1 = !identical(handleError, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.obtainCacheStatus,
+      <Object?>[
+        configuration,
+        (_flaxHas1
+            ? handleError
+                  as void Function(
+                    Object exception,
+                    api5.StackTrace? stackTrace,
+                  )?
+            : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["configuration", "handleError"],
+    ) as Future<api.ImageCacheStatus?>);
   }
 
   @override
@@ -19779,21 +18939,17 @@ final class _MemoryImageProxy extends api.MemoryImage
     Object? cache = _flaxOmitted,
     Object? configuration = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      if (identical(configuration, _flaxOmitted)) {
-        return super.evict();
-      }
-      return super.evict(
-        configuration: configuration as api.ImageConfiguration,
-      );
-    }
-    if (identical(configuration, _flaxOmitted)) {
-      return super.evict(cache: cache as api.ImageCache?);
-    }
-    return super.evict(
-      cache: cache as api.ImageCache?,
-      configuration: configuration as api.ImageConfiguration,
-    );
+    final _flaxHas0 = !identical(cache, _flaxOmitted);
+    final _flaxHas1 = !identical(configuration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.evict,
+      <Object?>[
+        (_flaxHas0 ? cache as api.ImageCache? : null),
+        (_flaxHas1 ? configuration as api.ImageConfiguration : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["cache", "configuration"],
+    ) as Future<bool>);
   }
 
   @override
@@ -20055,137 +19211,35 @@ final class _MultiFrameImageStreamCompleterProxy
     Object? informationCollector = _flaxOmitted,
     Object? silent = _flaxOmitted,
   }) {
-    if (identical(context, _flaxOmitted)) {
-      if (identical(stack, _flaxOmitted)) {
-        if (identical(informationCollector, _flaxOmitted)) {
-          if (identical(silent, _flaxOmitted)) {
-            super.reportError(exception: exception);
-            return;
-          }
-          super.reportError(exception: exception, silent: silent as bool);
-          return;
-        }
-        if (identical(silent, _flaxOmitted)) {
-          super.reportError(
-            exception: exception,
-            informationCollector:
-                informationCollector
-                    as Iterable<api4.DiagnosticsNode> Function()?,
-          );
-          return;
-        }
-        super.reportError(
-          exception: exception,
-          informationCollector:
-              informationCollector
-                  as Iterable<api4.DiagnosticsNode> Function()?,
-          silent: silent as bool,
-        );
-        return;
-      }
-      if (identical(informationCollector, _flaxOmitted)) {
-        if (identical(silent, _flaxOmitted)) {
-          super.reportError(
-            exception: exception,
-            stack: stack as api5.StackTrace?,
-          );
-          return;
-        }
-        super.reportError(
-          exception: exception,
-          stack: stack as api5.StackTrace?,
-          silent: silent as bool,
-        );
-        return;
-      }
-      if (identical(silent, _flaxOmitted)) {
-        super.reportError(
-          exception: exception,
-          stack: stack as api5.StackTrace?,
-          informationCollector:
-              informationCollector
-                  as Iterable<api4.DiagnosticsNode> Function()?,
-        );
-        return;
-      }
-      super.reportError(
-        exception: exception,
-        stack: stack as api5.StackTrace?,
-        informationCollector:
-            informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-        silent: silent as bool,
-      );
-      return;
-    }
-    if (identical(stack, _flaxOmitted)) {
-      if (identical(informationCollector, _flaxOmitted)) {
-        if (identical(silent, _flaxOmitted)) {
-          super.reportError(
-            context: context as api4.DiagnosticsNode?,
-            exception: exception,
-          );
-          return;
-        }
-        super.reportError(
-          context: context as api4.DiagnosticsNode?,
-          exception: exception,
-          silent: silent as bool,
-        );
-        return;
-      }
-      if (identical(silent, _flaxOmitted)) {
-        super.reportError(
-          context: context as api4.DiagnosticsNode?,
-          exception: exception,
-          informationCollector:
-              informationCollector
-                  as Iterable<api4.DiagnosticsNode> Function()?,
-        );
-        return;
-      }
-      super.reportError(
-        context: context as api4.DiagnosticsNode?,
-        exception: exception,
-        informationCollector:
-            informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-        silent: silent as bool,
-      );
-      return;
-    }
-    if (identical(informationCollector, _flaxOmitted)) {
-      if (identical(silent, _flaxOmitted)) {
-        super.reportError(
-          context: context as api4.DiagnosticsNode?,
-          exception: exception,
-          stack: stack as api5.StackTrace?,
-        );
-        return;
-      }
-      super.reportError(
-        context: context as api4.DiagnosticsNode?,
-        exception: exception,
-        stack: stack as api5.StackTrace?,
-        silent: silent as bool,
-      );
-      return;
-    }
-    if (identical(silent, _flaxOmitted)) {
-      super.reportError(
-        context: context as api4.DiagnosticsNode?,
-        exception: exception,
-        stack: stack as api5.StackTrace?,
-        informationCollector:
-            informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-      );
-      return;
-    }
-    super.reportError(
-      context: context as api4.DiagnosticsNode?,
-      exception: exception,
-      stack: stack as api5.StackTrace?,
-      informationCollector:
-          informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-      silent: silent as bool,
+    final _flaxHas0 = !identical(context, _flaxOmitted);
+    final _flaxHas2 = !identical(stack, _flaxOmitted);
+    final _flaxHas3 = !identical(informationCollector, _flaxOmitted);
+    final _flaxHas4 = !identical(silent, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.reportError,
+      <Object?>[
+        (_flaxHas0 ? context as api4.DiagnosticsNode? : null),
+        exception,
+        (_flaxHas2 ? stack as api5.StackTrace? : null),
+        (_flaxHas3
+            ? informationCollector as Iterable<api4.DiagnosticsNode> Function()?
+            : null),
+        (_flaxHas4 ? silent as bool : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            2 |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "context",
+        "exception",
+        "stack",
+        "informationCollector",
+        "silent",
+      ],
     );
     return;
   }
@@ -20241,21 +19295,17 @@ final class _MultiFrameImageStreamCompleterProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -20264,10 +19314,13 @@ final class _MultiFrameImageStreamCompleterProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -20491,137 +19544,35 @@ final class _OneFrameImageStreamCompleterProxy
     Object? informationCollector = _flaxOmitted,
     Object? silent = _flaxOmitted,
   }) {
-    if (identical(context, _flaxOmitted)) {
-      if (identical(stack, _flaxOmitted)) {
-        if (identical(informationCollector, _flaxOmitted)) {
-          if (identical(silent, _flaxOmitted)) {
-            super.reportError(exception: exception);
-            return;
-          }
-          super.reportError(exception: exception, silent: silent as bool);
-          return;
-        }
-        if (identical(silent, _flaxOmitted)) {
-          super.reportError(
-            exception: exception,
-            informationCollector:
-                informationCollector
-                    as Iterable<api4.DiagnosticsNode> Function()?,
-          );
-          return;
-        }
-        super.reportError(
-          exception: exception,
-          informationCollector:
-              informationCollector
-                  as Iterable<api4.DiagnosticsNode> Function()?,
-          silent: silent as bool,
-        );
-        return;
-      }
-      if (identical(informationCollector, _flaxOmitted)) {
-        if (identical(silent, _flaxOmitted)) {
-          super.reportError(
-            exception: exception,
-            stack: stack as api5.StackTrace?,
-          );
-          return;
-        }
-        super.reportError(
-          exception: exception,
-          stack: stack as api5.StackTrace?,
-          silent: silent as bool,
-        );
-        return;
-      }
-      if (identical(silent, _flaxOmitted)) {
-        super.reportError(
-          exception: exception,
-          stack: stack as api5.StackTrace?,
-          informationCollector:
-              informationCollector
-                  as Iterable<api4.DiagnosticsNode> Function()?,
-        );
-        return;
-      }
-      super.reportError(
-        exception: exception,
-        stack: stack as api5.StackTrace?,
-        informationCollector:
-            informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-        silent: silent as bool,
-      );
-      return;
-    }
-    if (identical(stack, _flaxOmitted)) {
-      if (identical(informationCollector, _flaxOmitted)) {
-        if (identical(silent, _flaxOmitted)) {
-          super.reportError(
-            context: context as api4.DiagnosticsNode?,
-            exception: exception,
-          );
-          return;
-        }
-        super.reportError(
-          context: context as api4.DiagnosticsNode?,
-          exception: exception,
-          silent: silent as bool,
-        );
-        return;
-      }
-      if (identical(silent, _flaxOmitted)) {
-        super.reportError(
-          context: context as api4.DiagnosticsNode?,
-          exception: exception,
-          informationCollector:
-              informationCollector
-                  as Iterable<api4.DiagnosticsNode> Function()?,
-        );
-        return;
-      }
-      super.reportError(
-        context: context as api4.DiagnosticsNode?,
-        exception: exception,
-        informationCollector:
-            informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-        silent: silent as bool,
-      );
-      return;
-    }
-    if (identical(informationCollector, _flaxOmitted)) {
-      if (identical(silent, _flaxOmitted)) {
-        super.reportError(
-          context: context as api4.DiagnosticsNode?,
-          exception: exception,
-          stack: stack as api5.StackTrace?,
-        );
-        return;
-      }
-      super.reportError(
-        context: context as api4.DiagnosticsNode?,
-        exception: exception,
-        stack: stack as api5.StackTrace?,
-        silent: silent as bool,
-      );
-      return;
-    }
-    if (identical(silent, _flaxOmitted)) {
-      super.reportError(
-        context: context as api4.DiagnosticsNode?,
-        exception: exception,
-        stack: stack as api5.StackTrace?,
-        informationCollector:
-            informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-      );
-      return;
-    }
-    super.reportError(
-      context: context as api4.DiagnosticsNode?,
-      exception: exception,
-      stack: stack as api5.StackTrace?,
-      informationCollector:
-          informationCollector as Iterable<api4.DiagnosticsNode> Function()?,
-      silent: silent as bool,
+    final _flaxHas0 = !identical(context, _flaxOmitted);
+    final _flaxHas2 = !identical(stack, _flaxOmitted);
+    final _flaxHas3 = !identical(informationCollector, _flaxOmitted);
+    final _flaxHas4 = !identical(silent, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.reportError,
+      <Object?>[
+        (_flaxHas0 ? context as api4.DiagnosticsNode? : null),
+        exception,
+        (_flaxHas2 ? stack as api5.StackTrace? : null),
+        (_flaxHas3
+            ? informationCollector as Iterable<api4.DiagnosticsNode> Function()?
+            : null),
+        (_flaxHas4 ? silent as bool : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            2 |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "context",
+        "exception",
+        "stack",
+        "informationCollector",
+        "silent",
+      ],
     );
     return;
   }
@@ -20677,21 +19628,17 @@ final class _OneFrameImageStreamCompleterProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -20700,10 +19647,13 @@ final class _OneFrameImageStreamCompleterProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -20778,13 +19728,16 @@ final class _OvalBorderProxy extends api.OvalBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getInnerPath(rect);
-    }
-    return super.getInnerPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getInnerPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -20804,13 +19757,16 @@ final class _OvalBorderProxy extends api.OvalBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getOuterPath(rect);
-    }
-    return super.getOuterPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getOuterPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -20836,15 +19792,17 @@ final class _OvalBorderProxy extends api.OvalBorder
     api1.Paint paint, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paintInterior(canvas, rect, paint);
-      return;
-    }
-    super.paintInterior(
-      canvas,
-      rect,
-      paint,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas3 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paintInterior,
+      <Object?>[
+        canvas,
+        rect,
+        paint,
+        (_flaxHas3 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+      const <String>["", "", "", "textDirection"],
     );
     return;
   }
@@ -20869,19 +19827,17 @@ final class _OvalBorderProxy extends api.OvalBorder
     Object? side = _flaxOmitted,
     Object? eccentricity = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      if (identical(eccentricity, _flaxOmitted)) {
-        return super.copyWith();
-      }
-      return super.copyWith(eccentricity: eccentricity as double?);
-    }
-    if (identical(eccentricity, _flaxOmitted)) {
-      return super.copyWith(side: side as api.BorderSide?);
-    }
-    return super.copyWith(
-      side: side as api.BorderSide?,
-      eccentricity: eccentricity as double?,
-    );
+    final _flaxHas0 = !identical(side, _flaxOmitted);
+    final _flaxHas1 = !identical(eccentricity, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? side as api.BorderSide? : null),
+        (_flaxHas1 ? eccentricity as double? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["side", "eccentricity"],
+    ) as api.OvalBorder);
   }
 
   @override
@@ -20904,14 +19860,16 @@ final class _OvalBorderProxy extends api.OvalBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paint(canvas, rect);
-      return;
-    }
-    super.paint(
-      canvas,
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas2 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paint,
+      <Object?>[
+        canvas,
+        rect,
+        (_flaxHas2 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "textDirection"],
     );
     return;
   }
@@ -20937,10 +19895,13 @@ final class _OvalBorderProxy extends api.OvalBorder
     api.ShapeBorder other, {
     Object? reversed = _flaxOmitted,
   }) {
-    if (identical(reversed, _flaxOmitted)) {
-      return super.add(other);
-    }
-    return super.add(other, reversed: reversed as bool);
+    final _flaxHas1 = !identical(reversed, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.add,
+      <Object?>[other, (_flaxHas1 ? reversed as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "reversed"],
+    ) as api.ShapeBorder?);
   }
 
   @override
@@ -21149,23 +20110,17 @@ final class _PlaceholderSpanProxy extends api.PlaceholderSpan
     Object? includeSemanticsLabels = _flaxOmitted,
     Object? includePlaceholders = _flaxOmitted,
   }) {
-    if (identical(includeSemanticsLabels, _flaxOmitted)) {
-      if (identical(includePlaceholders, _flaxOmitted)) {
-        return super.toPlainText();
-      }
-      return super.toPlainText(
-        includePlaceholders: includePlaceholders as bool,
-      );
-    }
-    if (identical(includePlaceholders, _flaxOmitted)) {
-      return super.toPlainText(
-        includeSemanticsLabels: includeSemanticsLabels as bool,
-      );
-    }
-    return super.toPlainText(
-      includeSemanticsLabels: includeSemanticsLabels as bool,
-      includePlaceholders: includePlaceholders as bool,
-    );
+    final _flaxHas0 = !identical(includeSemanticsLabels, _flaxOmitted);
+    final _flaxHas1 = !identical(includePlaceholders, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toPlainText,
+      <Object?>[
+        (_flaxHas0 ? includeSemanticsLabels as bool : null),
+        (_flaxHas1 ? includePlaceholders as bool : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["includeSemanticsLabels", "includePlaceholders"],
+    ) as String);
   }
 
   @override
@@ -21231,28 +20186,17 @@ final class _PlaceholderSpanProxy extends api.PlaceholderSpan
     Object? includeSemanticsLabels = _flaxOmitted,
     Object? includePlaceholders = _flaxOmitted,
   }) {
-    if (identical(includeSemanticsLabels, _flaxOmitted)) {
-      if (identical(includePlaceholders, _flaxOmitted)) {
-        super.computeToPlainText(buffer);
-        return;
-      }
-      super.computeToPlainText(
+    final _flaxHas1 = !identical(includeSemanticsLabels, _flaxOmitted);
+    final _flaxHas2 = !identical(includePlaceholders, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.computeToPlainText,
+      <Object?>[
         buffer,
-        includePlaceholders: includePlaceholders as bool,
-      );
-      return;
-    }
-    if (identical(includePlaceholders, _flaxOmitted)) {
-      super.computeToPlainText(
-        buffer,
-        includeSemanticsLabels: includeSemanticsLabels as bool,
-      );
-      return;
-    }
-    super.computeToPlainText(
-      buffer,
-      includeSemanticsLabels: includeSemanticsLabels as bool,
-      includePlaceholders: includePlaceholders as bool,
+        (_flaxHas1 ? includeSemanticsLabels as bool : null),
+        (_flaxHas2 ? includePlaceholders as bool : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "includeSemanticsLabels", "includePlaceholders"],
     );
     return;
   }
@@ -21337,19 +20281,17 @@ final class _PlaceholderSpanProxy extends api.PlaceholderSpan
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api4.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api4.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api4.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -21375,93 +20317,31 @@ final class _PlaceholderSpanProxy extends api.PlaceholderSpan
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api4.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api4.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api4.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api4.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -21490,21 +20370,17 @@ final class _PlaceholderSpanProxy extends api.PlaceholderSpan
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -21522,10 +20398,13 @@ final class _PlaceholderSpanProxy extends api.PlaceholderSpan
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -21590,13 +20469,16 @@ final class _RadialGradientProxy extends api.RadialGradient
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.createShader(rect);
-    }
-    return super.createShader(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.createShader,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Shader);
   }
 
   @override
@@ -21787,15 +20669,22 @@ final class _ResizeImageProxy extends api.ResizeImage
     required api.ImageConfiguration configuration,
     Object? handleError = _flaxOmitted,
   }) {
-    if (identical(handleError, _flaxOmitted)) {
-      return super.obtainCacheStatus(configuration: configuration);
-    }
-    return super.obtainCacheStatus(
-      configuration: configuration,
-      handleError:
-          handleError
-              as void Function(Object exception, api5.StackTrace? stackTrace)?,
-    );
+    final _flaxHas1 = !identical(handleError, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.obtainCacheStatus,
+      <Object?>[
+        configuration,
+        (_flaxHas1
+            ? handleError
+                  as void Function(
+                    Object exception,
+                    api5.StackTrace? stackTrace,
+                  )?
+            : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["configuration", "handleError"],
+    ) as Future<api.ImageCacheStatus?>);
   }
 
   @override
@@ -21845,21 +20734,17 @@ final class _ResizeImageProxy extends api.ResizeImage
     Object? cache = _flaxOmitted,
     Object? configuration = _flaxOmitted,
   }) {
-    if (identical(cache, _flaxOmitted)) {
-      if (identical(configuration, _flaxOmitted)) {
-        return super.evict();
-      }
-      return super.evict(
-        configuration: configuration as api.ImageConfiguration,
-      );
-    }
-    if (identical(configuration, _flaxOmitted)) {
-      return super.evict(cache: cache as api.ImageCache?);
-    }
-    return super.evict(
-      cache: cache as api.ImageCache?,
-      configuration: configuration as api.ImageConfiguration,
-    );
+    final _flaxHas0 = !identical(cache, _flaxOmitted);
+    final _flaxHas1 = !identical(configuration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.evict,
+      <Object?>[
+        (_flaxHas0 ? cache as api.ImageCache? : null),
+        (_flaxHas1 ? configuration as api.ImageConfiguration : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["cache", "configuration"],
+    ) as Future<bool>);
   }
 
   @override
@@ -22049,21 +20934,17 @@ final class _RoundedSuperellipseBorderProxy
     Object? side = _flaxOmitted,
     Object? borderRadius = _flaxOmitted,
   }) {
-    if (identical(side, _flaxOmitted)) {
-      if (identical(borderRadius, _flaxOmitted)) {
-        return super.copyWith();
-      }
-      return super.copyWith(
-        borderRadius: borderRadius as api.BorderRadiusGeometry?,
-      );
-    }
-    if (identical(borderRadius, _flaxOmitted)) {
-      return super.copyWith(side: side as api.BorderSide?);
-    }
-    return super.copyWith(
-      side: side as api.BorderSide?,
-      borderRadius: borderRadius as api.BorderRadiusGeometry?,
-    );
+    final _flaxHas0 = !identical(side, _flaxOmitted);
+    final _flaxHas1 = !identical(borderRadius, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? side as api.BorderSide? : null),
+        (_flaxHas1 ? borderRadius as api.BorderRadiusGeometry? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["side", "borderRadius"],
+    ) as api.RoundedSuperellipseBorder);
   }
 
   @override
@@ -22105,10 +20986,13 @@ final class _RoundedSuperellipseBorderProxy
     api.ShapeBorder other, {
     Object? reversed = _flaxOmitted,
   }) {
-    if (identical(reversed, _flaxOmitted)) {
-      return super.add(other);
-    }
-    return super.add(other, reversed: reversed as bool);
+    final _flaxHas1 = !identical(reversed, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.add,
+      <Object?>[other, (_flaxHas1 ? reversed as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "reversed"],
+    ) as api.ShapeBorder?);
   }
 
   @override
@@ -22128,13 +21012,16 @@ final class _RoundedSuperellipseBorderProxy
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getOuterPath(rect);
-    }
-    return super.getOuterPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getOuterPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -22154,13 +21041,16 @@ final class _RoundedSuperellipseBorderProxy
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getInnerPath(rect);
-    }
-    return super.getInnerPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getInnerPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -22186,15 +21076,17 @@ final class _RoundedSuperellipseBorderProxy
     api1.Paint paint, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paintInterior(canvas, rect, paint);
-      return;
-    }
-    super.paintInterior(
-      canvas,
-      rect,
-      paint,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas3 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paintInterior,
+      <Object?>[
+        canvas,
+        rect,
+        paint,
+        (_flaxHas3 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+      const <String>["", "", "", "textDirection"],
     );
     return;
   }
@@ -22219,14 +21111,16 @@ final class _RoundedSuperellipseBorderProxy
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paint(canvas, rect);
-      return;
-    }
-    super.paint(
-      canvas,
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas2 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paint,
+      <Object?>[
+        canvas,
+        rect,
+        (_flaxHas2 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "textDirection"],
     );
     return;
   }
@@ -22412,14 +21306,17 @@ final class _ShapeDecorationProxy extends api.ShapeDecoration
     api1.Offset position, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.hitTest(size, position);
-    }
-    return super.hitTest(
-      size,
-      position,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas2 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.hitTest,
+      <Object?>[
+        size,
+        position,
+        (_flaxHas2 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "textDirection"],
+    ) as bool);
   }
 
   @override
@@ -22430,10 +21327,13 @@ final class _ShapeDecorationProxy extends api.ShapeDecoration
   api.BoxPainter _flaxSuper_createBoxPainter([
     Object? onChanged = _flaxOmitted,
   ]) {
-    if (identical(onChanged, _flaxOmitted)) {
-      return super.createBoxPainter();
-    }
-    return super.createBoxPainter(onChanged as void Function()?);
+    final _flaxHas0 = !identical(onChanged, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.createBoxPainter,
+      <Object?>[(_flaxHas0 ? onChanged as void Function()? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>[""],
+    ) as api.BoxPainter);
   }
 
   @override
@@ -22465,21 +21365,17 @@ final class _ShapeDecorationProxy extends api.ShapeDecoration
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -22503,10 +21399,13 @@ final class _ShapeDecorationProxy extends api.ShapeDecoration
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -22650,18 +21549,43 @@ final class _StarBorderProxy extends api.StarBorder
     Object? rotation = _flaxOmitted,
     Object? squash = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(side, _flaxOmitted)) #side: side as api.BorderSide?,
-      if (!identical(points, _flaxOmitted)) #points: points as double?,
-      if (!identical(innerRadiusRatio, _flaxOmitted))
-        #innerRadiusRatio: innerRadiusRatio as double?,
-      if (!identical(pointRounding, _flaxOmitted))
-        #pointRounding: pointRounding as double?,
-      if (!identical(valleyRounding, _flaxOmitted))
-        #valleyRounding: valleyRounding as double?,
-      if (!identical(rotation, _flaxOmitted)) #rotation: rotation as double?,
-      if (!identical(squash, _flaxOmitted)) #squash: squash as double?,
-    }) as api.StarBorder);
+    final _flaxHas0 = !identical(side, _flaxOmitted);
+    final _flaxHas1 = !identical(points, _flaxOmitted);
+    final _flaxHas2 = !identical(innerRadiusRatio, _flaxOmitted);
+    final _flaxHas3 = !identical(pointRounding, _flaxOmitted);
+    final _flaxHas4 = !identical(valleyRounding, _flaxOmitted);
+    final _flaxHas5 = !identical(rotation, _flaxOmitted);
+    final _flaxHas6 = !identical(squash, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? side as api.BorderSide? : null),
+        (_flaxHas1 ? points as double? : null),
+        (_flaxHas2 ? innerRadiusRatio as double? : null),
+        (_flaxHas3 ? pointRounding as double? : null),
+        (_flaxHas4 ? valleyRounding as double? : null),
+        (_flaxHas5 ? rotation as double? : null),
+        (_flaxHas6 ? squash as double? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0),
+      ],
+      const <String>[
+        "side",
+        "points",
+        "innerRadiusRatio",
+        "pointRounding",
+        "valleyRounding",
+        "rotation",
+        "squash",
+      ],
+    ) as api.StarBorder);
   }
 
   @override
@@ -22703,10 +21627,13 @@ final class _StarBorderProxy extends api.StarBorder
     api.ShapeBorder other, {
     Object? reversed = _flaxOmitted,
   }) {
-    if (identical(reversed, _flaxOmitted)) {
-      return super.add(other);
-    }
-    return super.add(other, reversed: reversed as bool);
+    final _flaxHas1 = !identical(reversed, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.add,
+      <Object?>[other, (_flaxHas1 ? reversed as bool : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "reversed"],
+    ) as api.ShapeBorder?);
   }
 
   @override
@@ -22726,13 +21653,16 @@ final class _StarBorderProxy extends api.StarBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getOuterPath(rect);
-    }
-    return super.getOuterPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getOuterPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -22752,13 +21682,16 @@ final class _StarBorderProxy extends api.StarBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.getInnerPath(rect);
-    }
-    return super.getInnerPath(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getInnerPath,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Path);
   }
 
   @override
@@ -22784,15 +21717,17 @@ final class _StarBorderProxy extends api.StarBorder
     api1.Paint paint, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paintInterior(canvas, rect, paint);
-      return;
-    }
-    super.paintInterior(
-      canvas,
-      rect,
-      paint,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas3 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paintInterior,
+      <Object?>[
+        canvas,
+        rect,
+        paint,
+        (_flaxHas3 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+      const <String>["", "", "", "textDirection"],
     );
     return;
   }
@@ -22817,14 +21752,16 @@ final class _StarBorderProxy extends api.StarBorder
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      super.paint(canvas, rect);
-      return;
-    }
-    super.paint(
-      canvas,
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
+    final _flaxHas2 = !identical(textDirection, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.paint,
+      <Object?>[
+        canvas,
+        rect,
+        (_flaxHas2 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "textDirection"],
     );
     return;
   }
@@ -22991,10 +21928,13 @@ final class _StrutStyleProxy extends api.StrutStyle
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -23014,21 +21954,17 @@ final class _StrutStyleProxy extends api.StrutStyle
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -23071,11 +22007,13 @@ final class _StrutStyleProxy extends api.StrutStyle
   }) {
     if (_flaxActiveSuperMember == "debugFillProperties")
       _flaxCalledSuper = true;
-    if (identical(prefix, _flaxOmitted)) {
-      super.debugFillProperties(properties);
-      return;
-    }
-    super.debugFillProperties(properties, prefix: prefix as String);
+    final _flaxHas1 = !identical(prefix, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.debugFillProperties,
+      <Object?>[properties, (_flaxHas1 ? prefix as String : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "prefix"],
+    );
     return;
   }
 
@@ -23273,13 +22211,16 @@ final class _SweepGradientProxy extends api.SweepGradient
     api1.Rect rect, {
     Object? textDirection = _flaxOmitted,
   }) {
-    if (identical(textDirection, _flaxOmitted)) {
-      return super.createShader(rect);
-    }
-    return super.createShader(
-      rect,
-      textDirection: textDirection as api1.TextDirection?,
-    );
+    final _flaxHas1 = !identical(textDirection, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.createShader,
+      <Object?>[
+        rect,
+        (_flaxHas1 ? textDirection as api1.TextDirection? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "textDirection"],
+    ) as api1.Shader);
   }
 
   @override
@@ -23537,19 +22478,17 @@ final class _TextPainterProxy extends api.TextPainter
     Object? minWidth = _flaxOmitted,
     Object? maxWidth = _flaxOmitted,
   }) {
-    if (identical(minWidth, _flaxOmitted)) {
-      if (identical(maxWidth, _flaxOmitted)) {
-        super.layout();
-        return;
-      }
-      super.layout(maxWidth: maxWidth as double);
-      return;
-    }
-    if (identical(maxWidth, _flaxOmitted)) {
-      super.layout(minWidth: minWidth as double);
-      return;
-    }
-    super.layout(minWidth: minWidth as double, maxWidth: maxWidth as double);
+    final _flaxHas0 = !identical(minWidth, _flaxOmitted);
+    final _flaxHas1 = !identical(maxWidth, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.layout,
+      <Object?>[
+        (_flaxHas0 ? minWidth as double : null),
+        (_flaxHas1 ? maxWidth as double : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["minWidth", "maxWidth"],
+    );
     return;
   }
 
@@ -23681,26 +22620,18 @@ final class _TextPainterProxy extends api.TextPainter
     Object? boxHeightStyle = _flaxOmitted,
     Object? boxWidthStyle = _flaxOmitted,
   }) {
-    if (identical(boxHeightStyle, _flaxOmitted)) {
-      if (identical(boxWidthStyle, _flaxOmitted)) {
-        return super.getBoxesForSelection(selection);
-      }
-      return super.getBoxesForSelection(
+    final _flaxHas1 = !identical(boxHeightStyle, _flaxOmitted);
+    final _flaxHas2 = !identical(boxWidthStyle, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.getBoxesForSelection,
+      <Object?>[
         selection,
-        boxWidthStyle: boxWidthStyle as api1.BoxWidthStyle,
-      );
-    }
-    if (identical(boxWidthStyle, _flaxOmitted)) {
-      return super.getBoxesForSelection(
-        selection,
-        boxHeightStyle: boxHeightStyle as api1.BoxHeightStyle,
-      );
-    }
-    return super.getBoxesForSelection(
-      selection,
-      boxHeightStyle: boxHeightStyle as api1.BoxHeightStyle,
-      boxWidthStyle: boxWidthStyle as api1.BoxWidthStyle,
-    );
+        (_flaxHas1 ? boxHeightStyle as api1.BoxHeightStyle : null),
+        (_flaxHas2 ? boxWidthStyle as api1.BoxWidthStyle : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "boxHeightStyle", "boxWidthStyle"],
+    ) as List<api1.TextBox>);
   }
 
   @override
@@ -24252,19 +23183,17 @@ final class _TextScalerProxy extends api.TextScaler {
     Object? minScaleFactor = _flaxOmitted,
     Object? maxScaleFactor = _flaxOmitted,
   }) {
-    if (identical(minScaleFactor, _flaxOmitted)) {
-      if (identical(maxScaleFactor, _flaxOmitted)) {
-        return super.clamp();
-      }
-      return super.clamp(maxScaleFactor: maxScaleFactor as double);
-    }
-    if (identical(maxScaleFactor, _flaxOmitted)) {
-      return super.clamp(minScaleFactor: minScaleFactor as double);
-    }
-    return super.clamp(
-      minScaleFactor: minScaleFactor as double,
-      maxScaleFactor: maxScaleFactor as double,
-    );
+    final _flaxHas0 = !identical(minScaleFactor, _flaxOmitted);
+    final _flaxHas1 = !identical(maxScaleFactor, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.clamp,
+      <Object?>[
+        (_flaxHas0 ? minScaleFactor as double : null),
+        (_flaxHas1 ? maxScaleFactor as double : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["minScaleFactor", "maxScaleFactor"],
+    ) as api.TextScaler);
   }
 
   @override
@@ -24325,25 +23254,17 @@ final class _TextSpanProxy extends api.TextSpan
     Object? textScaler = _flaxOmitted,
     Object? dimensions = _flaxOmitted,
   }) {
-    if (identical(textScaler, _flaxOmitted)) {
-      if (identical(dimensions, _flaxOmitted)) {
-        super.build(builder);
-        return;
-      }
-      super.build(
+    final _flaxHas1 = !identical(textScaler, _flaxOmitted);
+    final _flaxHas2 = !identical(dimensions, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.build,
+      <Object?>[
         builder,
-        dimensions: dimensions as List<api.PlaceholderDimensions>?,
-      );
-      return;
-    }
-    if (identical(dimensions, _flaxOmitted)) {
-      super.build(builder, textScaler: textScaler as api.TextScaler);
-      return;
-    }
-    super.build(
-      builder,
-      textScaler: textScaler as api.TextScaler,
-      dimensions: dimensions as List<api.PlaceholderDimensions>?,
+        (_flaxHas1 ? textScaler as api.TextScaler : null),
+        (_flaxHas2 ? dimensions as List<api.PlaceholderDimensions>? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "textScaler", "dimensions"],
     );
     return;
   }
@@ -24431,23 +23352,17 @@ final class _TextSpanProxy extends api.TextSpan
     Object? includeSemanticsLabels = _flaxOmitted,
     Object? includePlaceholders = _flaxOmitted,
   }) {
-    if (identical(includeSemanticsLabels, _flaxOmitted)) {
-      if (identical(includePlaceholders, _flaxOmitted)) {
-        return super.toPlainText();
-      }
-      return super.toPlainText(
-        includePlaceholders: includePlaceholders as bool,
-      );
-    }
-    if (identical(includePlaceholders, _flaxOmitted)) {
-      return super.toPlainText(
-        includeSemanticsLabels: includeSemanticsLabels as bool,
-      );
-    }
-    return super.toPlainText(
-      includeSemanticsLabels: includeSemanticsLabels as bool,
-      includePlaceholders: includePlaceholders as bool,
-    );
+    final _flaxHas0 = !identical(includeSemanticsLabels, _flaxOmitted);
+    final _flaxHas1 = !identical(includePlaceholders, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toPlainText,
+      <Object?>[
+        (_flaxHas0 ? includeSemanticsLabels as bool : null),
+        (_flaxHas1 ? includePlaceholders as bool : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["includeSemanticsLabels", "includePlaceholders"],
+    ) as String);
   }
 
   @override
@@ -24492,28 +23407,17 @@ final class _TextSpanProxy extends api.TextSpan
     Object? inheritedLocale = _flaxOmitted,
     Object? inheritedSpellOut = _flaxOmitted,
   }) {
-    if (identical(inheritedLocale, _flaxOmitted)) {
-      if (identical(inheritedSpellOut, _flaxOmitted)) {
-        super.computeSemanticsInformation(collector);
-        return;
-      }
-      super.computeSemanticsInformation(
+    final _flaxHas1 = !identical(inheritedLocale, _flaxOmitted);
+    final _flaxHas2 = !identical(inheritedSpellOut, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.computeSemanticsInformation,
+      <Object?>[
         collector,
-        inheritedSpellOut: inheritedSpellOut as bool,
-      );
-      return;
-    }
-    if (identical(inheritedSpellOut, _flaxOmitted)) {
-      super.computeSemanticsInformation(
-        collector,
-        inheritedLocale: inheritedLocale as api1.Locale?,
-      );
-      return;
-    }
-    super.computeSemanticsInformation(
-      collector,
-      inheritedLocale: inheritedLocale as api1.Locale?,
-      inheritedSpellOut: inheritedSpellOut as bool,
+        (_flaxHas1 ? inheritedLocale as api1.Locale? : null),
+        (_flaxHas2 ? inheritedSpellOut as bool : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "inheritedLocale", "inheritedSpellOut"],
     );
     return;
   }
@@ -24550,28 +23454,17 @@ final class _TextSpanProxy extends api.TextSpan
     Object? includeSemanticsLabels = _flaxOmitted,
     Object? includePlaceholders = _flaxOmitted,
   }) {
-    if (identical(includeSemanticsLabels, _flaxOmitted)) {
-      if (identical(includePlaceholders, _flaxOmitted)) {
-        super.computeToPlainText(buffer);
-        return;
-      }
-      super.computeToPlainText(
+    final _flaxHas1 = !identical(includeSemanticsLabels, _flaxOmitted);
+    final _flaxHas2 = !identical(includePlaceholders, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.computeToPlainText,
+      <Object?>[
         buffer,
-        includePlaceholders: includePlaceholders as bool,
-      );
-      return;
-    }
-    if (identical(includePlaceholders, _flaxOmitted)) {
-      super.computeToPlainText(
-        buffer,
-        includeSemanticsLabels: includeSemanticsLabels as bool,
-      );
-      return;
-    }
-    super.computeToPlainText(
-      buffer,
-      includeSemanticsLabels: includeSemanticsLabels as bool,
-      includePlaceholders: includePlaceholders as bool,
+        (_flaxHas1 ? includeSemanticsLabels as bool : null),
+        (_flaxHas2 ? includePlaceholders as bool : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "includeSemanticsLabels", "includePlaceholders"],
     );
     return;
   }
@@ -24664,19 +23557,17 @@ final class _TextSpanProxy extends api.TextSpan
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api4.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api4.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api4.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -24702,93 +23593,31 @@ final class _TextSpanProxy extends api.TextSpan
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api4.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api4.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api4.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api4.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -24817,21 +23646,17 @@ final class _TextSpanProxy extends api.TextSpan
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api4.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api4.DiagnosticsNode);
   }
 
   @override
@@ -24849,10 +23674,13 @@ final class _TextSpanProxy extends api.TextSpan
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api4.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -25074,12 +23902,15 @@ final class _TransformPropertyProxy extends api.TransformProperty
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api4.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -25094,12 +23925,15 @@ final class _TransformPropertyProxy extends api.TransformProperty
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api4.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -25177,218 +24011,35 @@ final class _TransformPropertyProxy extends api.TransformProperty
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api4.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api4.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api4.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api4.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api4.TextTreeConfiguration?,
-            minLevel: minLevel as api4.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api4.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api4.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api4.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api4.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api4.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api4.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api4.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-        minLevel: minLevel as api4.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-      minLevel: minLevel as api4.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api4.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api4.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -25408,21 +24059,17 @@ final class _TransformPropertyProxy extends api.TransformProperty
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api4.TextTreeConfiguration?,
-      minLevel: minLevel as api4.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api4.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api4.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -26371,15 +25018,16 @@ Function _flaxClass_ImageProvider<
   }
 
   Object? _ImageProvider_evict(Object receiver, Map<String, Object?> values) {
-    if (!values.containsKey("configuration")) {
-      return (receiver as api.ImageProvider<_Owner0>).evict(
-        cache: values["cache"] as api.ImageCache?,
-      );
-    }
-    return (receiver as api.ImageProvider<_Owner0>).evict(
-      cache: values["cache"] as api.ImageCache?,
-      configuration: values["configuration"] as api.ImageConfiguration,
-    );
+    final _flaxHas1 = values.containsKey("configuration");
+    return flaxInvokeWithDefaults(
+      (receiver as api.ImageProvider<_Owner0>).evict,
+      <Object?>[
+        values["cache"] as api.ImageCache?,
+        (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["cache", "configuration"],
+    ) as Future<bool>;
   }
 
   Object? _ImageProvider_obtainKey(

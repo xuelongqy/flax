@@ -9,6 +9,7 @@ import type * as upstream2 from '@flax/flutter/foundation/_bindings/flutter_Targ
 import '@flax/flutter/foundation/_bindings/flutter_TargetPlatform';
 import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import '@flax/flutter/services/_bindings/flutter_TextEditingValue';
+import { _flaxMemberParameters68 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface LengthLimitingTextInputFormatter extends Omit<upstream0.TextInputFormatter, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/services/text_formatter.dart::LengthLimitingTextInputFormatter": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/services/text_formatter.dart::TextInputFormatter": readonly [] }> { readonly __LengthLimitingTextInputFormatter: unique symbol;
@@ -26,7 +27,7 @@ return constructObject("object", "flax.core/flutter#type:LengthLimitingTextInput
 }
 export namespace _LengthLimitingTextInputFormatterFactory { export function getDefaultMaxLengthEnforcement(platform?: upstream2.TargetPlatform | null): upstream1.MaxLengthEnforcement {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement", [platform]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement", [platform], _flaxMemberParameters68);
 return _flaxResult as upstream1.MaxLengthEnforcement;
 } }
 export const LengthLimitingTextInputFormatter: typeof _LengthLimitingTextInputFormatterFactory & _FlaxInstanceType<LengthLimitingTextInputFormatter> & _FlaxDartType<LengthLimitingTextInputFormatter, readonly ["class", "flax.core/flutter#type:LengthLimitingTextInputFormatter", readonly [], false]> = _flaxBindInstanceType<LengthLimitingTextInputFormatter, typeof _LengthLimitingTextInputFormatterFactory>(_LengthLimitingTextInputFormatterFactory, "flax.core/flutter#type:LengthLimitingTextInputFormatter", ["flax.core/flutter#type:TextInputFormatter","dart:core::Object"]) as typeof _LengthLimitingTextInputFormatterFactory & _FlaxInstanceType<LengthLimitingTextInputFormatter> & _FlaxDartType<LengthLimitingTextInputFormatter, readonly ["class", "flax.core/flutter#type:LengthLimitingTextInputFormatter", readonly [], false]>;

@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import { _flaxMemberParameters0, _flaxMemberParameters45, _flaxMemberParameters44, _flaxMemberParameters43 } from "@flax/flutter/services/_bindings/sdk_services.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters52, _flaxMemberParameters51, _flaxMemberParameters50 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,7 +20,7 @@ readonly [_flaxDartTypeValue]: KeyboardKey;
 
 }
 defineObject("flax.core/sdk_services#type:KeyboardKey", [], [], _flaxBindingMethods("flax.core/sdk_services#type:KeyboardKey", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _KeyboardKeyProxy = {type: "flax.core/sdk_services#type:KeyboardKey", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toStringShort":_flaxMemberParameters0,"toString":_flaxMemberParameters45,"toDiagnosticsNode":_flaxMemberParameters44,"debugFillProperties":_flaxMemberParameters43}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
+const _KeyboardKeyProxy = {type: "flax.core/sdk_services#type:KeyboardKey", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toStringShort":_flaxMemberParameters0,"toString":_flaxMemberParameters52,"toDiagnosticsNode":_flaxMemberParameters51,"debugFillProperties":_flaxMemberParameters50}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
 export interface KeyboardKey {
 readonly [_flaxDartTypeValue]: KeyboardKey;
 

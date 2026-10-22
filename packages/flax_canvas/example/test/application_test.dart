@@ -8,6 +8,13 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 20));
     expect(find.text('Canvas ready'), findsOneWidget);
+    await tester.ensureVisible(find.text('Ocean'));
+    await tester.tap(find.text('Ocean'));
+    await tester.pump();
+    expect(find.text('Ocean palette'), findsOneWidget);
+    await tester.tap(find.text('Clear canvas'));
+    await tester.pump();
+    expect(find.text('Canvas cleared'), findsOneWidget);
     await tester.pumpWidget(const SizedBox());
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 20));

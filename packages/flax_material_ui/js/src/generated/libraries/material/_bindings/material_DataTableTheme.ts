@@ -20,7 +20,7 @@ import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters0 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters1 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -39,7 +39,7 @@ toStringDeep(options?: {minLevel?: upstream7.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream9.DiagnosticsTreeStyle | null | undefined}): upstream8.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream8.DiagnosticsNode>;
 }
-defineObject("flax.material/material#type:DataTableTheme", ["data","child","key"], [], _flaxBindingMethods("flax.material/material#type:DataTableTheme", "object", {"updateShouldNotify":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
+defineObject("flax.material/material#type:DataTableTheme", ["data","child","key"], [], _flaxBindingMethods("flax.material/material#type:DataTableTheme", "object", {"updateShouldNotify":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
 export function _DataTableThemeFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; data: Readonly<{ "__flaxBound:package:material_ui/src/data_table_theme.dart::DataTableThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; child: Widget }): DataTableTheme {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -47,7 +47,7 @@ return constructObject("object", "flax.material/material#type:DataTableTheme", "
 }
 export namespace _DataTableThemeFactory { export function of(context: upstream4.BuildContext): upstream3.DataTableThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:DataTableTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:DataTableTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream3.DataTableThemeData;
 } }
 export const DataTableTheme: typeof _DataTableThemeFactory & _FlaxInstanceType<DataTableTheme> & _FlaxDartType<DataTableTheme, readonly ["class", "flax.material/material#type:DataTableTheme", readonly [], false]> = _flaxBindInstanceType<DataTableTheme, typeof _DataTableThemeFactory>(_DataTableThemeFactory, "flax.material/material#type:DataTableTheme", ["flax.core/sdk_widgets#type:InheritedWidget","flax.core/sdk_widgets#type:ProxyWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _DataTableThemeFactory & _FlaxInstanceType<DataTableTheme> & _FlaxDartType<DataTableTheme, readonly ["class", "flax.material/material#type:DataTableTheme", readonly [], false]>;

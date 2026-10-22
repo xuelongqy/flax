@@ -23,6 +23,7 @@ Future<void> main() async {
 }
 
 Future<void> startApplication({
+  String? source,
   String? apiBaseUrl,
   String? storageDirectory,
   AssetBundle? assetBundle,
@@ -43,7 +44,8 @@ Future<void> startApplication({
       'FLAX_ASSET_PREFIX',
       defaultValue: 'assets/flax',
     );
-    if (applicationDirectory == null &&
+    if (source == null &&
+        applicationDirectory == null &&
         packageFile == null &&
         scriptFile == null &&
         networkUri == null &&
@@ -67,19 +69,15 @@ Future<void> startApplication({
               : FlaxRemoteFormat.package;
           const digest = String.fromEnvironment('FLAX_EXPECTED_SHA256');
           expectedSha256 = digest.isEmpty ? null : digest;
-          if (networkFormat == FlaxRemoteFormat.javascript) {
-            assetBundle = builtin;
-          }
         } else if (mode == 'package') {
           await directory.create(recursive: true);
           packageFile = File('${directory.path}/application.flax');
-          final data = await rootBundle.load('$prefix.flax');
+          final data = await rootBundle.load('${builtin.prefix}.flax');
           await packageFile.writeAsBytes(Uint8List.sublistView(data));
         } else if (mode == 'file') {
           await directory.create(recursive: true);
           scriptFile = File('${directory.path}/app.js');
           await scriptFile.writeAsString(await builtin.loadString('app.js'));
-          assetBundle = builtin;
         } else {
           applicationDirectory = (await prepareSandboxAssets(
             directory,
@@ -89,6 +87,7 @@ Future<void> startApplication({
       }
     }
     if ([
+          source,
           applicationDirectory,
           packageFile,
           scriptFile,
@@ -101,6 +100,13 @@ Future<void> startApplication({
       throw ArgumentError(
         'networkUri and networkFormat must be provided together',
       );
+    }
+    if (assetBundle == null &&
+        prefix != 'assets/flax' &&
+        (source != null ||
+            scriptFile != null ||
+            networkFormat == FlaxRemoteFormat.javascript)) {
+      assetBundle = FlaxPrefixedAssetBundle(prefix: prefix);
     }
     if (assetBundle != null &&
         (applicationDirectory != null || packageFile != null)) {
@@ -124,7 +130,15 @@ Future<void> startApplication({
       FlaxFetchPlugin(baseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl),
     ];
     final Widget view;
-    if (networkUri != null) {
+    if (source != null) {
+      view = FlaxView(
+        source: source,
+        assetBundle: assetBundle,
+        createRuntime: createRuntime,
+        bindings: bindings,
+        plugins: plugins,
+      );
+    } else if (networkUri != null) {
       view = FlaxView.network(
         uri: networkUri,
         format: networkFormat!,

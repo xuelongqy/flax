@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/animation/_bindings/flutter_Curve
 import '@flax/flutter/animation/_bindings/flutter_Curve';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
-import { _flaxMemberParameters70 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { _flaxMemberParameters75 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -21,7 +21,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_rendering#type:FloatingHeaderSnapConfiguration", "", [{"name":"curve"},{"name":"duration"}], [], options) as FloatingHeaderSnapConfiguration;
 }
-const _FloatingHeaderSnapConfigurationProxy = {type: "flax.core/sdk_rendering#type:FloatingHeaderSnapConfiguration", parameters: _flaxMemberParameters70, constructors: {"": _flaxMemberParameters70}, methods: {}, getters: ["curve","duration"], setters: [], contextMembers: [], superMembers: ["get:curve","get:duration"]} as const;
+const _FloatingHeaderSnapConfigurationProxy = {type: "flax.core/sdk_rendering#type:FloatingHeaderSnapConfiguration", parameters: _flaxMemberParameters75, constructors: {"": _flaxMemberParameters75}, methods: {}, getters: ["curve","duration"], setters: [], contextMembers: [], superMembers: ["get:curve","get:duration"]} as const;
 export interface _FloatingHeaderSnapConfigurationNative extends FloatingHeaderSnapConfiguration {
 readonly [_flaxDartTypeValue]: _FloatingHeaderSnapConfigurationNative;
 

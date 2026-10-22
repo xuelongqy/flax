@@ -43,12 +43,19 @@ class _Request {
   bool isCancelled = false;
   final _cancelPending = <void Function()>{};
   HttpClientRequest? request;
-  StreamIterator<List<int>>? response;
+  HttpClientResponse? response;
+  StreamIterator<List<int>>? responseIterator;
   void abort() {
     if (isCancelled) return;
     isCancelled = true;
     request?.abort(StateError('Fetch request cancelled'));
-    response?.cancel().ignore();
+    final iterator = responseIterator;
+    if (iterator != null) {
+      iterator.cancel().ignore();
+    } else {
+      // StreamIterator.cancel does not subscribe before its first moveNext.
+      response?.listen((_) {}).cancel().ignore();
+    }
     for (final cancel in _cancelPending.toList()) {
       cancel();
     }
@@ -191,7 +198,7 @@ class _FetchHost implements FlaxPluginInstance {
       await response.listen((_) {}).cancel();
       throw StateError('Fetch request cancelled');
     }
-    record.response = StreamIterator(response);
+    record.response = response;
     final headers = <List<String>>[];
     response.headers.forEach((name, values) {
       for (final value in values) {
@@ -206,8 +213,9 @@ class _FetchHost implements FlaxPluginInstance {
   }
 
   Future<Object?> _read(int id, _Request record) async {
-    final iterator = record.response;
-    if (iterator == null) throw StateError('Response headers have not arrived');
+    final response = record.response;
+    if (response == null) throw StateError('Response headers have not arrived');
+    final iterator = record.responseIterator ??= StreamIterator(response);
     while (await iterator.moveNext()) {
       if (iterator.current.isNotEmpty) {
         return Uint8List.fromList(iterator.current);

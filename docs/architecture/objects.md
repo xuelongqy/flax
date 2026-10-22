@@ -23,6 +23,14 @@ registration metadata. A Session caches provider-filtered candidates for each re
 type and refreshes them when another generic binding is materialized. Closing the
 Session clears its dynamic bindings and candidate cache.
 
+`FlaxBindingRegistry` also reuses its declaration indexes for the same ordered module
+identities, including expanded dependencies. Each module is a weak cache key: a retired
+plugin and its declaration closures can be collected even when a cached index refers
+back to them. Live module combinations can keep their indexes between Sessions. Module
+order and identity remain significant; changed configuration must supply new immutable
+declarations. Dynamic generic bindings, objects, callbacks and handles stay
+Session-local.
+
 The cache stores binding metadata, never returned objects or their wrappers. Actual
 `matches` checks still run for every value, including repeated returns of the same
 object. Candidate order, aliases, provider isolation and generic compatibility keep

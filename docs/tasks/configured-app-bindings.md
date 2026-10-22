@@ -49,7 +49,7 @@ Dart carriers, including selected src declarations. Both preserve original wire
 identities. The Money provider and unbound DeliveryEstimate retain configuration-only
 selection. Selection, Manifest and packaging formats stay unchanged. Generated plugins
 reuse FlaxPlugin and remain explicit per View. See
-[ADR 0046](../decisions/0046-scoped-binding-annotations.md).
+[ADR 0047](../decisions/0047-scoped-binding-annotations.md).
 
 The host now enables flax_codegen:bindings with declared Dart/TS outputs in build.yaml.
 It includes YAML/npm inputs in its target and uses the build resolver instead of a new
@@ -58,7 +58,7 @@ share model validation and emission; installation belongs to the selected driver
 existing Money provider and all built-in binding providers expose their manifests as
 public build assets. The example's generate:host/watch:host scripts run build_runner;
 generate:host:cli keeps the original entry. See
-[ADR 0047](../decisions/0047-build-runner-bindings.md).
+[ADR 0048](../decisions/0048-build-runner-bindings.md).
 
 The runnable source example is `examples/configured_bindings/`; the verifier is
 `tool/check_configured_bindings.dart`. SDK outputs go to `js/sdk/` and
@@ -169,7 +169,7 @@ runtime delivery projects remain under host/modules/legacy_sdk and legacy_intern
 compatibility verification. The isolated gate checks annotation generation/watch without
 setup, preserves source during Flax CLI init, hides host module assets during business
 builds and repeats View tests after a compatible host upgrade. See
-[ADR 0049](../decisions/0049-independent-binding-sdks-and-project-setup.md).
+[ADR 0050](../decisions/0050-independent-binding-sdks-and-project-setup.md).
 
 Optional typesSdk metadata selects the public npm name and scopes. Normal JS builds
 prepare ordinary SDK package/TS configuration, preserve existing npm policy and JSONC
@@ -186,7 +186,7 @@ the old host/modules project remains a separately checked compatibility fixture.
 default_app package has permanent JS/application sources and an engine-backed click
 test. Node is required only while building on a development/CI machine. Public SDK
 packing policy, per-View activation and legacy library generation retain their existing
-contracts. See [ADR 0048](../decisions/0048-generated-binding-js-build.md).
+contracts. See [ADR 0049](../decisions/0049-generated-binding-js-build.md).
 
 Run `dart run tool/check_configured_bindings.dart` after dependency setup and JS build,
 with the maintained Flutter fork on PATH and repository-local TMPDIR/TMP/TEMP. See the

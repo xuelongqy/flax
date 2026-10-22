@@ -393,8 +393,17 @@ dependencies, emits Flax-loadable factories into the Flutter assets directory, a
 checks that the asset path is declared. The resulting manifest is an application
 capability inventory, not a per-session injection list. The Flutter application loads it
 once as immutable `FlaxModuleAssets` and assigns it to `Flax.moduleAssets` before
-constructing sessions. Sessions snapshot that value; the preloaded source bytes may be
-reused across sessions without sharing JavaScript module instances or Dart references.
+constructing sessions. Sessions snapshot that value; the prepared source may be reused
+across sessions without sharing JavaScript module instances or Dart references.
+
+Prepared scripts lazily encode immutable UTF-8 source and URL bytes at first use, then
+release their source Strings. Loading still respects custom AssetBundle `loadString`
+overrides; scripts use `cache: false` to avoid retaining a second copy in the bundle's
+String cache. Each Session still executes the scripts in its own runtime. Successful
+Dart requirement checks are memoized weakly by binding-registry identity, separately for
+each selected module; requesting an additional module still checks its requirements.
+This reuses encoding and declaration validation, not compiled JavaScript, module
+exports, callbacks or application state.
 
 Each `FlaxPlugin` declares the public modules it needs through `jsModules`. `FlaxView`
 passes its plugin snapshot to the session, which selects only requested modules present
@@ -594,4 +603,4 @@ scopes; the normal JS build prepares editable npm setup and a declaration-only T
 while preserving custom policy. Flax CLI owns optional project initialization. Default
 annotation scopes use a fixed Builder graph and need neither init nor sync. Builder and
 CLI still share generated binding outputs; setup files remain outside the Builder output
-graph. See [ADR 0049](../decisions/0049-independent-binding-sdks-and-project-setup.md).
+graph. See [ADR 0050](../decisions/0050-independent-binding-sdks-and-project-setup.md).

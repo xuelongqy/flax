@@ -42,6 +42,7 @@ Future<void> main(List<String> arguments) => command(() async {
           'FLAX_SANDBOX_DIRECTORY',
           'FLAX_NETWORK_URL',
           'FLAX_EXPECTED_SHA256',
+          'FLAX_FETCH_BASE_URL',
         ])
           if (Platform.environment[key] case final String value)
             '--dart-define=$key=$value',

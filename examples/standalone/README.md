@@ -86,6 +86,23 @@ execution, not Developer ID distribution signing.
 
 ## Automatic loading examples
 
+| Input                | Example entrance                                           | Default resource source                                    |
+| -------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| JS string            | `startApplication(source: source)`                         | Built-in `assets/flax/`                                    |
+| Built-in application | Default command, `FlaxView.bundle`                         | Built-in `assets/flax/`, including flax.json and its entry |
+| Prepared directory   | `--sandbox-assets`, `FlaxView.directory`                   | The supplied directory                                     |
+| Local package        | `--package-assets`, `FlaxView.package`                     | Its installed directory                                    |
+| Local JS file        | `--script-assets`, `FlaxView.file`                         | Built-in `assets/flax/`                                    |
+| Remote JS            | `--remote-js`, `FlaxView.network` with javascript format   | Built-in `assets/flax/`                                    |
+| Remote package       | `--remote-package`, `FlaxView.network` with package format | Its installed directory                                    |
+
+The
+[Dart constructor examples](../../docs/architecture/applications.md#application-loading-modes)
+show every entrance with the required runtime factory and binding registry. Explicit
+assetBundle arguments on script entries are used unchanged. A script's directory or URL
+does not select companion resources; choose a package when code and resources must be
+updated together.
+
 The default command uses FlaxView.bundle and reads built-in assets without extraction.
 `--sandbox-assets` demonstrates FlaxView.directory with the copied directory. The other
 local sources use the same business code and image/JSON keys:
@@ -97,7 +114,7 @@ dart run tool/standalone_run.dart --script-assets
 
 Package mode copies the bundled `.flax` file to application support storage, then lets
 FlaxView.package install/cache it under `<ApplicationSupport>/flax/installed/<digest>/`.
-Script mode copies app.js and uses FlaxView.file with the built-in resource Bundle; no
+Script mode copies app.js and uses FlaxView.file's default built-in business Bundle; no
 flax.json is required by that entry. The scenario validates built-in, directory, package
 cold/warm cache loads and single-file entrances, including actual decoded image pixels,
 JSON and native image variants. The package cache has no automatic rollback or cleanup.
@@ -111,10 +128,70 @@ FLAX_NETWORK_URL=https://example.com/app.flax dart run tool/standalone_run.dart 
 ```
 
 Optionally set `FLAX_EXPECTED_SHA256` to a trusted artifact digest. Remote JS uses the
-built-in business resource Bundle; a remote package supplies its own PNG/JSON.
-Programmatic startApplication arguments also demonstrate headers, cacheDirectory and
-downloader injection. The scenario serves actual JS/package build outputs over loopback
-HTTP, requires a request header, pins their digests, and checks cold 200/warm 304 loads,
-decoded PNG variants, JSON and unchanged installation receipts. Download cache defaults
-to `<ApplicationSupport>/flax/downloads/`; installation defaults remain unchanged.
-Production URLs, credentials and update selection belong to the host application.
+built-in business resource Bundle without manually supplying it; a remote package
+supplies its own PNG/JSON. Programmatic startApplication arguments also demonstrate
+headers, cacheDirectory and downloader injection. The scenario serves actual JS/package
+build outputs over loopback HTTP, requires a request header, pins their digests, and
+checks cold 200/warm 304 loads, decoded PNG variants, JSON and unchanged installation
+receipts. Download cache defaults to `<ApplicationSupport>/flax/downloads/`;
+installation defaults remain unchanged. Production URLs, credentials and update
+selection belong to the host application.
+
+Programmatic `startApplication(source: jsSource)` demonstrates the source-string entry
+with the same default business Bundle. The scenario verifies source/file/network-JS
+images and JSON without passing an assetBundle. A custom FLAX_ASSET_PREFIX still selects
+an explicit prefixed Bundle in the example. Host-root resources require an explicit
+assetBundle, such as rootBundle; a script's disk location does not select resources.
+
+The sandbox demonstration selects `<ApplicationSupport>/flax/` directly. The directory
+API itself requires a caller-supplied Directory and reads it in place. Package
+installation uses `<ApplicationSupport>/flax/installed/<package-sha256>/`; network
+artifact downloads use `<ApplicationSupport>/flax/downloads/requests/` and `blobs/`.
+`installationDirectory` replaces the installation root and still gets an
+`installed/<sha256>/` child. `cacheDirectory` replaces the downloads root. These
+settings are independent. See the
+[complete location table](../../docs/architecture/applications.md#resource-and-cache-locations).
+
+## Independent network images and JSON
+
+**Open assets** always uses Image.asset and the Session's business Bundle, whether the
+application came from built-in assets, a sandbox directory, or an installed remote
+package. **Open network assets** demonstrates a separate server request through Fetch,
+then displays the response's absolute image URL with Image.network. It does not read the
+business Bundle or use the application artifact cache.
+
+To use the network page manually, run a server that responds to `/assets/config.json`
+with JSON such as:
+
+```json
+{
+  "message": "JSON loaded over HTTP",
+  "imageUrl": "http://127.0.0.1:8080/assets/flutter.png"
+}
+```
+
+Serve a PNG at that image URL, then launch from the repository root:
+
+```sh
+FLAX_FETCH_BASE_URL=http://127.0.0.1:8080/ dart run tool/standalone_run.dart
+```
+
+The existing host registers FlaxFetchPlugin and forwards that base URL to it. The
+relative JSON URL uses the plugin's baseUrl; Image.network uses the absolute URL from
+the JSON response. The page checks HTTP errors and JSON fields, keeps one loading
+Promise in State, and aborts a pending request on disposal. The application scenario
+provides both endpoints on a loopback server and verifies JSON, actual HTTP requests,
+and decoded PNG pixels, without a public network dependency.
+
+HTTP failures abort the unread JSON response immediately, while the error remains
+visible on the page. Leaving the page aborts JSON loading even while waiting for headers
+or reading its body. The scenario exercises these cases along with invalid
+JSON/fields/URLs and a failed image request. Image.network uses Flutter's request and
+cache lifetime independently of that controller; its transfer can continue after leaving
+the page.
+
+FlaxView.network's request headers, SHA256 check, ETag and download cache apply only to
+the JS/.flax artifact. Independent images use Flutter's native image cache, and Fetch
+has no HTTP cache. Configure credentials and any persistent caching for those requests
+separately. See the
+[resource API comparison](../../docs/architecture/applications.md#packaged-resources-and-independent-http-resources).

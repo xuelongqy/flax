@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Loca
 import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import type * as upstream1 from '@flax/flutter/painting/_bindings/flutter_Decoration';
 import '@flax/flutter/painting/_bindings/flutter_Decoration';
-import { _flaxMemberParameters2, _flaxMemberParameters404 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters2, _flaxMemberParameters455 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,7 +23,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:TableRow", "", [{"name":"key"},{"name":"decoration"},{"name":"children"}], [], options) as TableRow;
 }
-const _TableRowProxy = {type: "flax.core/sdk_widgets#type:TableRow", parameters: _flaxMemberParameters404, constructors: {"": _flaxMemberParameters404}, methods: {"toString":_flaxMemberParameters2}, getters: ["key","decoration","children"], setters: [], contextMembers: [], superMembers: ["get:key","get:decoration","get:children","toString"]} as const;
+const _TableRowProxy = {type: "flax.core/sdk_widgets#type:TableRow", parameters: _flaxMemberParameters455, constructors: {"": _flaxMemberParameters455}, methods: {"toString":_flaxMemberParameters2}, getters: ["key","decoration","children"], setters: [], contextMembers: [], superMembers: ["get:key","get:decoration","get:children","toString"]} as const;
 export interface _TableRowNative extends TableRow {
 readonly [_flaxDartTypeValue]: _TableRowNative;
 

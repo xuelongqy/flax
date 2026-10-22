@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_List
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import { _flaxMemberParameters2, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters2, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -54,12 +54,12 @@ return constructProxy(_ExpansibleControllerProxy, args, implementation) as Expan
 const _ExpansibleControllerBinding = _flaxProxyFactory(_ExpansibleControllerFactory, _ExpansibleControllerNative) as unknown as typeof _ExpansibleControllerFactory & (new() => _ExpansibleControllerNative);
 export namespace _ExpansibleControllerFactory { export function of(context: upstream2.BuildContext): ExpansibleController {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ExpansibleController.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ExpansibleController.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as ExpansibleController;
 } }
 export namespace _ExpansibleControllerFactory { export function maybeOf(context: upstream2.BuildContext): ExpansibleController | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ExpansibleController.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ExpansibleController.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as ExpansibleController | null;
 } }
 export const ExpansibleController: typeof _ExpansibleControllerBinding & _FlaxInstanceType<ExpansibleController> & _FlaxDartType<ExpansibleController, readonly ["class", "flax.core/sdk_widgets#type:ExpansibleController", readonly [], false]> = _flaxBindInstanceType<ExpansibleController, typeof _ExpansibleControllerBinding>(_ExpansibleControllerBinding, "flax.core/sdk_widgets#type:ExpansibleController", ["flax.core/sdk_foundation#type:ChangeNotifier","dart:core::Object","flax.core/flutter#type:Listenable"]) as typeof _ExpansibleControllerBinding & _FlaxInstanceType<ExpansibleController> & _FlaxDartType<ExpansibleController, readonly ["class", "flax.core/sdk_widgets#type:ExpansibleController", readonly [], false]>;

@@ -29,7 +29,7 @@ import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream13 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters14, _flaxMemberParameters15, _flaxMemberParameters0, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -57,7 +57,7 @@ return constructObject("object", "flax.core/sdk_widgets#type:Actions", "", [{"na
 }
 export namespace _ActionsFactory { function _flaxDefault_handler<T extends upstream4.Intent = upstream4.Intent>(context: upstream6.BuildContext, intent: (T | DartInput<T>)): (() => void) | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.handler", [contextHandle(context, "flax.core/flutter#type:BuildContext"), intent]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.handler", [contextHandle(context, "flax.core/flutter#type:BuildContext"), intent], _flaxMemberParameters14);
 return _flaxResult as (() => void) | null;
 }
 export const handler = _flaxDefineDartCallTypes(_flaxDefault_handler, {"id":"flax.core/sdk_widgets#function:Actions.handler","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"intent","required":true,"positional":true}]}) as _FlaxDartCallable<typeof _flaxDefault_handler, _FlaxSignature0>;
@@ -65,7 +65,7 @@ export const handler = _flaxDefineDartCallTypes(_flaxDefault_handler, {"id":"fla
 export namespace _ActionsFactory { function _flaxDefault_find<T extends upstream4.Intent = upstream4.Intent>(context: upstream6.BuildContext, options: { intent?: (T | DartInput<T>) | null | undefined } = {}): upstream3.Action<T> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["intent"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.find", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.intent]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.find", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.intent], _flaxMemberParameters15);
 return _flaxResult as upstream3.Action<T>;
 }
 export const find = _flaxDefineDartCallTypes(_flaxDefault_find, {"id":"flax.core/sdk_widgets#function:Actions.find","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"intent"}]}) as _FlaxDartCallable<typeof _flaxDefault_find, _FlaxSignature1>;
@@ -73,26 +73,26 @@ export const find = _flaxDefineDartCallTypes(_flaxDefault_find, {"id":"flax.core
 export namespace _ActionsFactory { function _flaxDefault_maybeFind<T extends upstream4.Intent = upstream4.Intent>(context: upstream6.BuildContext, options: { intent?: (T | DartInput<T>) | null | undefined } = {}): upstream3.Action<T> | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["intent"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.maybeFind", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.intent]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.maybeFind", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.intent], _flaxMemberParameters15);
 return _flaxResult as upstream3.Action<T> | null;
 }
 export const maybeFind = _flaxDefineDartCallTypes(_flaxDefault_maybeFind, {"id":"flax.core/sdk_widgets#function:Actions.maybeFind","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"intent"}]}) as _FlaxDartCallable<typeof _flaxDefault_maybeFind, _FlaxSignature2>;
 }
 export namespace _ActionsFactory { export function of(context: upstream6.BuildContext): upstream2.ActionDispatcher {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream2.ActionDispatcher;
 } }
 export namespace _ActionsFactory { function _flaxDefault_invoke<T extends upstream4.Intent = upstream4.Intent>(context: upstream6.BuildContext, intent: (T | DartInput<T>)): unknown | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.invoke", [contextHandle(context, "flax.core/flutter#type:BuildContext"), intent]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.invoke", [contextHandle(context, "flax.core/flutter#type:BuildContext"), intent], _flaxMemberParameters14);
 return _flaxResult as unknown | null;
 }
 export const invoke = _flaxDefineDartCallTypes(_flaxDefault_invoke, {"id":"flax.core/sdk_widgets#function:Actions.invoke","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"intent","required":true,"positional":true}]}) as _FlaxDartCallable<typeof _flaxDefault_invoke, _FlaxSignature3>;
 }
 export namespace _ActionsFactory { function _flaxDefault_maybeInvoke<T extends upstream4.Intent = upstream4.Intent>(context: upstream6.BuildContext, intent: (T | DartInput<T>)): unknown | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.maybeInvoke", [contextHandle(context, "flax.core/flutter#type:BuildContext"), intent]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.maybeInvoke", [contextHandle(context, "flax.core/flutter#type:BuildContext"), intent], _flaxMemberParameters14);
 return _flaxResult as unknown | null;
 }
 export const maybeInvoke = _flaxDefineDartCallTypes(_flaxDefault_maybeInvoke, {"id":"flax.core/sdk_widgets#function:Actions.maybeInvoke","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"intent","required":true,"positional":true}]}) as _FlaxDartCallable<typeof _flaxDefault_maybeInvoke, _FlaxSignature4>;

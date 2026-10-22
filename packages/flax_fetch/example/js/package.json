@@ -12,6 +12,13 @@
     "@flax/flutter": "workspace:*",
     "@flax/fetch": "workspace:*",
     "@flax/core-runtime": "workspace:*",
-    "@flax/fetch-runtime": "workspace:*"
+    "@flax/fetch-runtime": "workspace:*",
+    "@flax/example-core": "workspace:*"
+  },
+  "exports": {
+    "./showcase": {
+      "types": "./dist/showcase.d.ts",
+      "import": "./src/showcase.ts"
+    }
   }
 }

@@ -13,7 +13,7 @@ import type * as upstream4 from '@flax/flutter/vector_math/_bindings/sdk_depende
 import '@flax/flutter/vector_math/_bindings/sdk_dependencies_Matrix2';
 import type * as upstream5 from '@flax/flutter/vector_math/_bindings/sdk_dependencies_Matrix3';
 import '@flax/flutter/vector_math/_bindings/sdk_dependencies_Matrix3';
-import { _flaxMemberParameters87, _flaxMemberParameters88, _flaxMemberParameters89, _flaxMemberParameters90, _flaxMemberParameters91, _flaxMemberParameters92, _flaxMemberParameters93, _flaxMemberParameters94, _flaxMemberParameters1, _flaxMemberParameters95, _flaxMemberParameters96, _flaxMemberParameters97, _flaxMemberParameters98, _flaxMemberParameters99, _flaxMemberParameters100, _flaxMemberParameters101, _flaxMemberParameters102, _flaxMemberParameters103, _flaxMemberParameters104, _flaxMemberParameters105, _flaxMemberParameters106, _flaxMemberParameters107, _flaxMemberParameters108, _flaxMemberParameters109, _flaxMemberParameters110, _flaxMemberParameters0, _flaxMemberParameters111, _flaxMemberParameters112, _flaxMemberParameters113, _flaxMemberParameters114, _flaxMemberParameters115, _flaxMemberParameters116, _flaxMemberParameters117, _flaxMemberParameters118, _flaxMemberParameters74 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { _flaxMemberParameters92, _flaxMemberParameters93, _flaxMemberParameters94, _flaxMemberParameters95, _flaxMemberParameters96, _flaxMemberParameters97, _flaxMemberParameters98, _flaxMemberParameters99, _flaxMemberParameters100, _flaxMemberParameters101, _flaxMemberParameters1, _flaxMemberParameters102, _flaxMemberParameters103, _flaxMemberParameters104, _flaxMemberParameters105, _flaxMemberParameters106, _flaxMemberParameters107, _flaxMemberParameters108, _flaxMemberParameters109, _flaxMemberParameters110, _flaxMemberParameters111, _flaxMemberParameters112, _flaxMemberParameters113, _flaxMemberParameters114, _flaxMemberParameters115, _flaxMemberParameters116, _flaxMemberParameters117, _flaxMemberParameters0, _flaxMemberParameters118, _flaxMemberParameters119, _flaxMemberParameters120, _flaxMemberParameters121, _flaxMemberParameters122, _flaxMemberParameters123, _flaxMemberParameters124, _flaxMemberParameters125, _flaxMemberParameters79 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Matrix4 extends Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }> { readonly __Matrix4: unique symbol;
@@ -130,11 +130,11 @@ set row1(value: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart:
 set row2(value: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector4": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>);
 set row3(value: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector4": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>);
 }
-defineObject("flax.core/sdk_rendering#type:Matrix4", ["storage","dimension","row0","row1","row2","row3","right","up","forward"], ["row0","row1","row2","row3"], _flaxBindingMethods("flax.core/sdk_rendering#type:Matrix4", "object", {"index":_flaxMemberParameters87,"entry":_flaxMemberParameters87,"setEntry":_flaxMemberParameters88,"splatDiagonal":_flaxMemberParameters89,"setValues":_flaxMemberParameters90,"setColumns":_flaxMemberParameters91,"setFrom":_flaxMemberParameters89,"setFromTranslationRotation":_flaxMemberParameters92,"setFromTranslationRotationScale":_flaxMemberParameters93,"setUpper2x2":_flaxMemberParameters89,"setDiagonal":_flaxMemberParameters89,"setOuter":_flaxMemberParameters94,"toString":_flaxMemberParameters1,"setRow":_flaxMemberParameters95,"getRow":_flaxMemberParameters96,"setColumn":_flaxMemberParameters97,"getColumn":_flaxMemberParameters98,"clone":_flaxMemberParameters1,"copyInto":_flaxMemberParameters89,"translate":_flaxMemberParameters99,"translateByDouble":_flaxMemberParameters100,"translateByVector2":_flaxMemberParameters101,"translateByVector3":_flaxMemberParameters102,"translateByVector4":_flaxMemberParameters103,"leftTranslate":_flaxMemberParameters99,"leftTranslateByDouble":_flaxMemberParameters100,"leftTranslateByVector2":_flaxMemberParameters101,"leftTranslateByVector3":_flaxMemberParameters102,"leftTranslateByVector4":_flaxMemberParameters103,"rotate":_flaxMemberParameters104,"rotateX":_flaxMemberParameters105,"rotateY":_flaxMemberParameters105,"rotateZ":_flaxMemberParameters105,"scale":_flaxMemberParameters99,"scaleByDouble":_flaxMemberParameters106,"scaleByVector3":_flaxMemberParameters102,"scaleByVector4":_flaxMemberParameters103,"scaled":_flaxMemberParameters99,"scaledByDouble":_flaxMemberParameters107,"scaledByVector3":_flaxMemberParameters102,"scaledByVector4":_flaxMemberParameters103,"setZero":_flaxMemberParameters1,"setIdentity":_flaxMemberParameters1,"transposed":_flaxMemberParameters1,"transpose":_flaxMemberParameters1,"absolute":_flaxMemberParameters1,"determinant":_flaxMemberParameters1,"dotRow":_flaxMemberParameters108,"dotColumn":_flaxMemberParameters109,"trace":_flaxMemberParameters1,"infinityNorm":_flaxMemberParameters1,"relativeError":_flaxMemberParameters110,"absoluteError":_flaxMemberParameters110,"getTranslation":_flaxMemberParameters1,"setTranslation":_flaxMemberParameters0,"setTranslationRaw":_flaxMemberParameters111,"getRotation":_flaxMemberParameters1,"copyRotation":_flaxMemberParameters112,"setRotation":_flaxMemberParameters113,"getNormalMatrix":_flaxMemberParameters1,"getMaxScaleOnAxis":_flaxMemberParameters1,"transposeRotation":_flaxMemberParameters1,"invert":_flaxMemberParameters1,"copyInverse":_flaxMemberParameters89,"invertRotation":_flaxMemberParameters1,"setRotationX":_flaxMemberParameters114,"setRotationY":_flaxMemberParameters114,"setRotationZ":_flaxMemberParameters114,"scaleAdjoint":_flaxMemberParameters115,"absoluteRotate":_flaxMemberParameters89,"add":_flaxMemberParameters116,"sub":_flaxMemberParameters116,"negate":_flaxMemberParameters1,"multiply":_flaxMemberParameters89,"leftMultiply":_flaxMemberParameters89,"multiplied":_flaxMemberParameters89,"transposeMultiply":_flaxMemberParameters89,"multiplyTranspose":_flaxMemberParameters89,"decompose":_flaxMemberParameters93,"rotate3":_flaxMemberParameters89,"rotated3":_flaxMemberParameters117,"transform3":_flaxMemberParameters89,"transformed3":_flaxMemberParameters117,"transform":_flaxMemberParameters89,"perspectiveTransform":_flaxMemberParameters89,"transformed":_flaxMemberParameters117,"copyIntoArray":_flaxMemberParameters118,"copyFromArray":_flaxMemberParameters118,"applyToVector3Array":_flaxMemberParameters118,"isIdentity":_flaxMemberParameters1,"isZero":_flaxMemberParameters1,"operatorGetIndex":_flaxMemberParameters74,"operatorSetIndex":_flaxMemberParameters108,"operatorAdd":_flaxMemberParameters89,"operatorSubtract":_flaxMemberParameters89,"operatorMultiply":_flaxMemberParameters89,"operatorNegate":_flaxMemberParameters1}, {}), []);
+defineObject("flax.core/sdk_rendering#type:Matrix4", ["storage","dimension","row0","row1","row2","row3","right","up","forward"], ["row0","row1","row2","row3"], _flaxBindingMethods("flax.core/sdk_rendering#type:Matrix4", "object", {"index":_flaxMemberParameters94,"entry":_flaxMemberParameters94,"setEntry":_flaxMemberParameters95,"splatDiagonal":_flaxMemberParameters96,"setValues":_flaxMemberParameters97,"setColumns":_flaxMemberParameters98,"setFrom":_flaxMemberParameters96,"setFromTranslationRotation":_flaxMemberParameters99,"setFromTranslationRotationScale":_flaxMemberParameters100,"setUpper2x2":_flaxMemberParameters96,"setDiagonal":_flaxMemberParameters96,"setOuter":_flaxMemberParameters101,"toString":_flaxMemberParameters1,"setRow":_flaxMemberParameters102,"getRow":_flaxMemberParameters103,"setColumn":_flaxMemberParameters104,"getColumn":_flaxMemberParameters105,"clone":_flaxMemberParameters1,"copyInto":_flaxMemberParameters96,"translate":_flaxMemberParameters106,"translateByDouble":_flaxMemberParameters107,"translateByVector2":_flaxMemberParameters108,"translateByVector3":_flaxMemberParameters109,"translateByVector4":_flaxMemberParameters110,"leftTranslate":_flaxMemberParameters106,"leftTranslateByDouble":_flaxMemberParameters107,"leftTranslateByVector2":_flaxMemberParameters108,"leftTranslateByVector3":_flaxMemberParameters109,"leftTranslateByVector4":_flaxMemberParameters110,"rotate":_flaxMemberParameters111,"rotateX":_flaxMemberParameters112,"rotateY":_flaxMemberParameters112,"rotateZ":_flaxMemberParameters112,"scale":_flaxMemberParameters106,"scaleByDouble":_flaxMemberParameters113,"scaleByVector3":_flaxMemberParameters109,"scaleByVector4":_flaxMemberParameters110,"scaled":_flaxMemberParameters106,"scaledByDouble":_flaxMemberParameters114,"scaledByVector3":_flaxMemberParameters109,"scaledByVector4":_flaxMemberParameters110,"setZero":_flaxMemberParameters1,"setIdentity":_flaxMemberParameters1,"transposed":_flaxMemberParameters1,"transpose":_flaxMemberParameters1,"absolute":_flaxMemberParameters1,"determinant":_flaxMemberParameters1,"dotRow":_flaxMemberParameters115,"dotColumn":_flaxMemberParameters116,"trace":_flaxMemberParameters1,"infinityNorm":_flaxMemberParameters1,"relativeError":_flaxMemberParameters117,"absoluteError":_flaxMemberParameters117,"getTranslation":_flaxMemberParameters1,"setTranslation":_flaxMemberParameters0,"setTranslationRaw":_flaxMemberParameters118,"getRotation":_flaxMemberParameters1,"copyRotation":_flaxMemberParameters119,"setRotation":_flaxMemberParameters120,"getNormalMatrix":_flaxMemberParameters1,"getMaxScaleOnAxis":_flaxMemberParameters1,"transposeRotation":_flaxMemberParameters1,"invert":_flaxMemberParameters1,"copyInverse":_flaxMemberParameters96,"invertRotation":_flaxMemberParameters1,"setRotationX":_flaxMemberParameters121,"setRotationY":_flaxMemberParameters121,"setRotationZ":_flaxMemberParameters121,"scaleAdjoint":_flaxMemberParameters122,"absoluteRotate":_flaxMemberParameters96,"add":_flaxMemberParameters123,"sub":_flaxMemberParameters123,"negate":_flaxMemberParameters1,"multiply":_flaxMemberParameters96,"leftMultiply":_flaxMemberParameters96,"multiplied":_flaxMemberParameters96,"transposeMultiply":_flaxMemberParameters96,"multiplyTranspose":_flaxMemberParameters96,"decompose":_flaxMemberParameters100,"rotate3":_flaxMemberParameters96,"rotated3":_flaxMemberParameters124,"transform3":_flaxMemberParameters96,"transformed3":_flaxMemberParameters124,"transform":_flaxMemberParameters96,"perspectiveTransform":_flaxMemberParameters96,"transformed":_flaxMemberParameters124,"copyIntoArray":_flaxMemberParameters125,"copyFromArray":_flaxMemberParameters125,"applyToVector3Array":_flaxMemberParameters125,"isIdentity":_flaxMemberParameters1,"isZero":_flaxMemberParameters1,"operatorGetIndex":_flaxMemberParameters79,"operatorSetIndex":_flaxMemberParameters115,"operatorAdd":_flaxMemberParameters96,"operatorSubtract":_flaxMemberParameters96,"operatorMultiply":_flaxMemberParameters96,"operatorNegate":_flaxMemberParameters1}, {}), []);
 export function _Matrix4Factory(arg0: number, arg1: number, arg2: number, arg3: number, arg4: number, arg5: number, arg6: number, arg7: number, arg8: number, arg9: number, arg10: number, arg11: number, arg12: number, arg13: number, arg14: number, arg15: number): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 16) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "", _flaxMemberParameters90, [arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "", _flaxMemberParameters97, [arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15], {}) as Matrix4;
 }
 export namespace _Matrix4Factory {
 export function fromList(values: DartListInput<number, number>): Matrix4 {
@@ -161,49 +161,49 @@ export namespace _Matrix4Factory {
 export function copy(other: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }>): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "copy", [{"name":"other","required":true,"positional":true}], [other], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "copy", _flaxMemberParameters93, [other], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory {
 export function inverted(other: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }>): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "inverted", [{"name":"other","required":true,"positional":true}], [other], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "inverted", _flaxMemberParameters93, [other], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory {
 export function columns(arg0: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector4": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>, arg1: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector4": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>, arg2: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector4": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>, arg3: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector4": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 4) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "columns", _flaxMemberParameters91, [arg0, arg1, arg2, arg3], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "columns", _flaxMemberParameters98, [arg0, arg1, arg2, arg3], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory {
 export function outer(u: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector4": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>, v: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector4": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "outer", _flaxMemberParameters94, [u, v], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "outer", _flaxMemberParameters101, [u, v], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory {
 export function rotationX(radians: number): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "rotationX", _flaxMemberParameters114, [radians], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "rotationX", _flaxMemberParameters121, [radians], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory {
 export function rotationY(radians: number): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "rotationY", _flaxMemberParameters114, [radians], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "rotationY", _flaxMemberParameters121, [radians], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory {
 export function rotationZ(radians: number): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "rotationZ", _flaxMemberParameters114, [radians], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "rotationZ", _flaxMemberParameters121, [radians], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory {
@@ -217,21 +217,21 @@ export namespace _Matrix4Factory {
 export function translationValues(x: number, y: number, z: number): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "translationValues", _flaxMemberParameters111, [x, y, z], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "translationValues", _flaxMemberParameters118, [x, y, z], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory {
 export function diagonal3(scale: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "diagonal3", _flaxMemberParameters115, [scale], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "diagonal3", _flaxMemberParameters122, [scale], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory {
 export function diagonal3Values(x: number, y: number, z: number): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "diagonal3Values", _flaxMemberParameters111, [x, y, z], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "diagonal3Values", _flaxMemberParameters118, [x, y, z], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory {
@@ -273,24 +273,24 @@ export namespace _Matrix4Factory {
 export function compose(translation: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>, rotation: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Quaternion": readonly [] }>, scale: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>): Matrix4 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "compose", _flaxMemberParameters93, [translation, rotation, scale], {}) as Matrix4;
+return constructObject("object", "flax.core/sdk_rendering#type:Matrix4", "compose", _flaxMemberParameters100, [translation, rotation, scale], {}) as Matrix4;
 }
 }
 export namespace _Matrix4Factory { export function solve2(A: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }>, x: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>, b: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>): void {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:Matrix4.solve2", [A, x, b]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:Matrix4.solve2", [A, x, b], _flaxMemberParameters92);
 } }
 export namespace _Matrix4Factory { export function solve3(A: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }>, x: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>, b: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>): void {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:Matrix4.solve3", [A, x, b]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:Matrix4.solve3", [A, x, b], _flaxMemberParameters92);
 } }
 export namespace _Matrix4Factory { export function solve(A: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }>, x: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector4": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>, b: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector4": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>): void {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:Matrix4.solve", [A, x, b]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:Matrix4.solve", [A, x, b], _flaxMemberParameters92);
 } }
 export namespace _Matrix4Factory { export function tryInvert(other: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }>): Matrix4 | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:Matrix4.tryInvert", [other]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_rendering#function:Matrix4.tryInvert", [other], _flaxMemberParameters93);
 return _flaxResult as Matrix4 | null;
 } }
 export const Matrix4: typeof _Matrix4Factory & _FlaxInstanceType<Matrix4> & _FlaxDartType<Matrix4, readonly ["class", "flax.core/sdk_rendering#type:Matrix4", readonly [], false]> = _flaxBindInstanceType<Matrix4, typeof _Matrix4Factory>(_Matrix4Factory, "flax.core/sdk_rendering#type:Matrix4", ["dart:core::Object"]) as typeof _Matrix4Factory & _FlaxInstanceType<Matrix4> & _FlaxDartType<Matrix4, readonly ["class", "flax.core/sdk_rendering#type:Matrix4", readonly [], false]>;

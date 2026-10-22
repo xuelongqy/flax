@@ -550,6 +550,7 @@ const sdk_gesturesBindings = FlaxBindingModule(
   ],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "dart-type-tokens",
     "engine-type-handles",
     "generic-call-types",
@@ -1798,26 +1799,29 @@ Object _createBaseTapGestureRecognizer(
 ) {
   switch (ctor) {
     case '@implementation':
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return _BaseTapGestureRecognizerProxy(
+      final _flaxHas3 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        _BaseTapGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          preAcceptSlopTolerance: values["preAcceptSlopTolerance"] as double?,
-          postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
-        );
-      }
-      return _BaseTapGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-        preAcceptSlopTolerance: values["preAcceptSlopTolerance"] as double?,
-        postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
-      );
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas3
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+          values["preAcceptSlopTolerance"] as double?,
+          values["postAcceptSlopTolerance"] as double?,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32],
+        const <String>[
+          "",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+          "preAcceptSlopTolerance",
+          "postAcceptSlopTolerance",
+        ],
+      ) as api.BaseTapGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -1921,43 +1925,43 @@ Object _createDelayedMultiDragGestureRecognizer(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("delay")) {
-        return api.DelayedMultiDragGestureRecognizer(
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          allowedButtonsFilter:
-              values["allowedButtonsFilter"] as bool Function(int buttons)?,
-        );
-      }
-      return api.DelayedMultiDragGestureRecognizer(
-        delay: values["delay"] as api2.Duration,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons)?,
-      );
+      final _flaxHas0 = values.containsKey("delay");
+      return flaxInvokeWithDefaults(
+        api.DelayedMultiDragGestureRecognizer.new,
+        <Object?>[
+          (_flaxHas0 ? values["delay"] as api2.Duration : null),
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["allowedButtonsFilter"] as bool Function(int buttons)?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
+        const <String>[
+          "delay",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.DelayedMultiDragGestureRecognizer;
     case '@implementation':
-      if (!values.containsKey("delay")) {
-        return _DelayedMultiDragGestureRecognizerProxy(
+      final _flaxHas1 = values.containsKey("delay");
+      return flaxInvokeWithDefaults(
+        _DelayedMultiDragGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          allowedButtonsFilter:
-              values["allowedButtonsFilter"] as bool Function(int buttons)?,
-        );
-      }
-      return _DelayedMultiDragGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        delay: values["delay"] as api2.Duration,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons)?,
-      );
+          (_flaxHas1 ? values["delay"] as api2.Duration : null),
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["allowedButtonsFilter"] as bool Function(int buttons)?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
+        const <String>[
+          "",
+          "delay",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.DelayedMultiDragGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -2140,37 +2144,43 @@ Object _createDoubleTapGestureRecognizer(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return api.DoubleTapGestureRecognizer(
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return api.DoubleTapGestureRecognizer(
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+      final _flaxHas2 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        api.DoubleTapGestureRecognizer.new,
+        <Object?>[
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas2
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>[
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.DoubleTapGestureRecognizer;
     case '@implementation':
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return _DoubleTapGestureRecognizerProxy(
+      final _flaxHas3 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        _DoubleTapGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return _DoubleTapGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas3
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+        const <String>[
+          "",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.DoubleTapGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -2278,27 +2288,28 @@ Object? _FlaxProxyDispatch16_super_get_localPosition(
 Object _createDragDownDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        return api.DragDownDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-        );
-      }
-      return api.DragDownDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        api.DragDownDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2],
+        const <String>["globalPosition", "localPosition"],
+      ) as api.DragDownDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        return _DragDownDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        _DragDownDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-        );
-      }
-      return _DragDownDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+        const <String>["", "globalPosition", "localPosition"],
+      ) as api.DragDownDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -2357,63 +2368,45 @@ Object? _DragEndDetails_super_get_primaryVelocity(
 Object _createDragEndDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        if (!values.containsKey("velocity")) {
-          return api.DragEndDetails(
-            localPosition: values["localPosition"] as api4.Offset?,
-            primaryVelocity: values["primaryVelocity"] as double?,
-          );
-        }
-        return api.DragEndDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-          velocity: values["velocity"] as api.Velocity,
-          primaryVelocity: values["primaryVelocity"] as double?,
-        );
-      }
-      if (!values.containsKey("velocity")) {
-        return api.DragEndDetails(
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-          primaryVelocity: values["primaryVelocity"] as double?,
-        );
-      }
-      return api.DragEndDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        velocity: values["velocity"] as api.Velocity,
-        primaryVelocity: values["primaryVelocity"] as double?,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      final _flaxHas2 = values.containsKey("velocity");
+      return flaxInvokeWithDefaults(
+        api.DragEndDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          (_flaxHas2 ? values["velocity"] as api.Velocity : null),
+          values["primaryVelocity"] as double?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | (_flaxHas2 ? 4 : 0) | 8],
+        const <String>[
+          "globalPosition",
+          "localPosition",
+          "velocity",
+          "primaryVelocity",
+        ],
+      ) as api.DragEndDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        if (!values.containsKey("velocity")) {
-          return _DragEndDetailsProxy(
-            values['@peer'] as FlaxProxyPeer,
-            localPosition: values["localPosition"] as api4.Offset?,
-            primaryVelocity: values["primaryVelocity"] as double?,
-          );
-        }
-        return _DragEndDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      final _flaxHas3 = values.containsKey("velocity");
+      return flaxInvokeWithDefaults(
+        _DragEndDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-          velocity: values["velocity"] as api.Velocity,
-          primaryVelocity: values["primaryVelocity"] as double?,
-        );
-      }
-      if (!values.containsKey("velocity")) {
-        return _DragEndDetailsProxy(
-          values['@peer'] as FlaxProxyPeer,
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-          primaryVelocity: values["primaryVelocity"] as double?,
-        );
-      }
-      return _DragEndDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        velocity: values["velocity"] as api.Velocity,
-        primaryVelocity: values["primaryVelocity"] as double?,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          (_flaxHas3 ? values["velocity"] as api.Velocity : null),
+          values["primaryVelocity"] as double?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0) | 16],
+        const <String>[
+          "",
+          "globalPosition",
+          "localPosition",
+          "velocity",
+          "primaryVelocity",
+        ],
+      ) as api.DragEndDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -2635,35 +2628,43 @@ Object? _DragStartDetails_super_get_kind(
 Object _createDragStartDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        return api.DragStartDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-        );
-      }
-      return api.DragStartDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        api.DragStartDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["sourceTimeStamp"] as api2.Duration?,
+          values["kind"] as api4.PointerDeviceKind?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
+        const <String>[
+          "globalPosition",
+          "localPosition",
+          "sourceTimeStamp",
+          "kind",
+        ],
+      ) as api.DragStartDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        return _DragStartDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        _DragStartDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-        );
-      }
-      return _DragStartDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["sourceTimeStamp"] as api2.Duration?,
+          values["kind"] as api4.PointerDeviceKind?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
+        const <String>[
+          "",
+          "globalPosition",
+          "localPosition",
+          "sourceTimeStamp",
+          "kind",
+        ],
+      ) as api.DragStartDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -2737,43 +2738,51 @@ Object? _DragUpdateDetails_super_get_kind(
 Object _createDragUpdateDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("delta")) {
-        return api.DragUpdateDetails(
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-          primaryDelta: values["primaryDelta"] as double?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-        );
-      }
-      return api.DragUpdateDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        delta: values["delta"] as api4.Offset,
-        primaryDelta: values["primaryDelta"] as double?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-      );
+      final _flaxHas3 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        api.DragUpdateDetails.new,
+        <Object?>[
+          values["globalPosition"] as api4.Offset,
+          values["localPosition"] as api4.Offset?,
+          values["sourceTimeStamp"] as api2.Duration?,
+          (_flaxHas3 ? values["delta"] as api4.Offset : null),
+          values["primaryDelta"] as double?,
+          values["kind"] as api4.PointerDeviceKind?,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32],
+        const <String>[
+          "globalPosition",
+          "localPosition",
+          "sourceTimeStamp",
+          "delta",
+          "primaryDelta",
+          "kind",
+        ],
+      ) as api.DragUpdateDetails;
     case '@implementation':
-      if (!values.containsKey("delta")) {
-        return _DragUpdateDetailsProxy(
+      final _flaxHas4 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        _DragUpdateDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-          primaryDelta: values["primaryDelta"] as double?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-        );
-      }
-      return _DragUpdateDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        delta: values["delta"] as api4.Offset,
-        primaryDelta: values["primaryDelta"] as double?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-      );
+          values["globalPosition"] as api4.Offset,
+          values["localPosition"] as api4.Offset?,
+          values["sourceTimeStamp"] as api2.Duration?,
+          (_flaxHas4 ? values["delta"] as api4.Offset : null),
+          values["primaryDelta"] as double?,
+          values["kind"] as api4.PointerDeviceKind?,
+        ],
+        <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64],
+        const <String>[
+          "",
+          "globalPosition",
+          "localPosition",
+          "sourceTimeStamp",
+          "delta",
+          "primaryDelta",
+          "kind",
+        ],
+      ) as api.DragUpdateDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -2872,33 +2881,32 @@ Object? _EagerGestureRecognizer_super_get_gestureSettings(
 Object _createEagerGestureRecognizer(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return api.EagerGestureRecognizer(
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return api.EagerGestureRecognizer(
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+      final _flaxHas1 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        api.EagerGestureRecognizer.new,
+        <Object?>[
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas1
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0)],
+        const <String>["supportedDevices", "allowedButtonsFilter"],
+      ) as api.EagerGestureRecognizer;
     case '@implementation':
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return _EagerGestureRecognizerProxy(
+      final _flaxHas2 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        _EagerGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return _EagerGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas2
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "supportedDevices", "allowedButtonsFilter"],
+      ) as api.EagerGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -3383,115 +3391,71 @@ Object _createForcePressGestureRecognizer(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("interpolation")) {
-        if (!values.containsKey("allowedButtonsFilter")) {
-          return api.ForcePressGestureRecognizer(
-            startPressure: values["startPressure"] as double,
-            peakPressure: values["peakPressure"] as double,
-            debugOwner: values["debugOwner"],
-            supportedDevices:
-                values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          );
-        }
-        return api.ForcePressGestureRecognizer(
-          startPressure: values["startPressure"] as double,
-          peakPressure: values["peakPressure"] as double,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          allowedButtonsFilter:
-              values["allowedButtonsFilter"] as bool Function(int buttons),
-        );
-      }
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return api.ForcePressGestureRecognizer(
-          startPressure: values["startPressure"] as double,
-          peakPressure: values["peakPressure"] as double,
-          interpolation:
-              values["interpolation"]
-                  as double Function(
-                    double pressureMin,
-                    double pressureMax,
-                    double pressure,
-                  ),
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return api.ForcePressGestureRecognizer(
-        startPressure: values["startPressure"] as double,
-        peakPressure: values["peakPressure"] as double,
-        interpolation:
-            values["interpolation"]
-                as double Function(
-                  double pressureMin,
-                  double pressureMax,
-                  double pressure,
-                ),
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+      final _flaxHas2 = values.containsKey("interpolation");
+      final _flaxHas5 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        api.ForcePressGestureRecognizer.new,
+        <Object?>[
+          values["startPressure"] as double,
+          values["peakPressure"] as double,
+          (_flaxHas2
+              ? values["interpolation"]
+                    as double Function(
+                      double pressureMin,
+                      double pressureMax,
+                      double pressure,
+                    )
+              : null),
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas5
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | (_flaxHas5 ? 32 : 0)],
+        const <String>[
+          "startPressure",
+          "peakPressure",
+          "interpolation",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.ForcePressGestureRecognizer;
     case '@implementation':
-      if (!values.containsKey("interpolation")) {
-        if (!values.containsKey("allowedButtonsFilter")) {
-          return _ForcePressGestureRecognizerProxy(
-            values['@peer'] as FlaxProxyPeer,
-            startPressure: values["startPressure"] as double,
-            peakPressure: values["peakPressure"] as double,
-            debugOwner: values["debugOwner"],
-            supportedDevices:
-                values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          );
-        }
-        return _ForcePressGestureRecognizerProxy(
+      final _flaxHas3 = values.containsKey("interpolation");
+      final _flaxHas6 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        _ForcePressGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          startPressure: values["startPressure"] as double,
-          peakPressure: values["peakPressure"] as double,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          allowedButtonsFilter:
-              values["allowedButtonsFilter"] as bool Function(int buttons),
-        );
-      }
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return _ForcePressGestureRecognizerProxy(
-          values['@peer'] as FlaxProxyPeer,
-          startPressure: values["startPressure"] as double,
-          peakPressure: values["peakPressure"] as double,
-          interpolation:
-              values["interpolation"]
-                  as double Function(
-                    double pressureMin,
-                    double pressureMax,
-                    double pressure,
-                  ),
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return _ForcePressGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        startPressure: values["startPressure"] as double,
-        peakPressure: values["peakPressure"] as double,
-        interpolation:
-            values["interpolation"]
-                as double Function(
-                  double pressureMin,
-                  double pressureMax,
-                  double pressure,
-                ),
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+          values["startPressure"] as double,
+          values["peakPressure"] as double,
+          (_flaxHas3
+              ? values["interpolation"]
+                    as double Function(
+                      double pressureMin,
+                      double pressureMax,
+                      double pressure,
+                    )
+              : null),
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas6
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32 | (_flaxHas6 ? 64 : 0)],
+        const <String>[
+          "",
+          "startPressure",
+          "peakPressure",
+          "interpolation",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.ForcePressGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -4092,22 +4056,25 @@ Object? _GestureRecognizer_super_invokeCallback(
 Object _createGestureRecognizer(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case '@implementation':
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return _GestureRecognizerProxy(
+      final _flaxHas3 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        _GestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return _GestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas3
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+        const <String>[
+          "",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.GestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -4335,20 +4302,23 @@ Object _createHorizontalDragGestureRecognizer(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return api.HorizontalDragGestureRecognizer(
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return api.HorizontalDragGestureRecognizer(
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+      final _flaxHas2 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        api.HorizontalDragGestureRecognizer.new,
+        <Object?>[
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas2
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>[
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.HorizontalDragGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -4720,31 +4690,30 @@ Object? _LongPressDownDetails_super_get_kind(
 Object _createLongPressDownDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        return api.LongPressDownDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-        );
-      }
-      return api.LongPressDownDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        api.LongPressDownDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["kind"] as api4.PointerDeviceKind?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
+        const <String>["globalPosition", "localPosition", "kind"],
+      ) as api.LongPressDownDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        return _LongPressDownDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        _LongPressDownDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-        );
-      }
-      return _LongPressDownDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["kind"] as api4.PointerDeviceKind?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
+        const <String>["", "globalPosition", "localPosition", "kind"],
+      ) as api.LongPressDownDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -4800,55 +4769,32 @@ Object? _LongPressEndDetails_super_get_velocity(
 Object _createLongPressEndDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        if (!values.containsKey("velocity")) {
-          return api.LongPressEndDetails(
-            localPosition: values["localPosition"] as api4.Offset?,
-          );
-        }
-        return api.LongPressEndDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-          velocity: values["velocity"] as api.Velocity,
-        );
-      }
-      if (!values.containsKey("velocity")) {
-        return api.LongPressEndDetails(
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-        );
-      }
-      return api.LongPressEndDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        velocity: values["velocity"] as api.Velocity,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      final _flaxHas2 = values.containsKey("velocity");
+      return flaxInvokeWithDefaults(
+        api.LongPressEndDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          (_flaxHas2 ? values["velocity"] as api.Velocity : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>["globalPosition", "localPosition", "velocity"],
+      ) as api.LongPressEndDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        if (!values.containsKey("velocity")) {
-          return _LongPressEndDetailsProxy(
-            values['@peer'] as FlaxProxyPeer,
-            localPosition: values["localPosition"] as api4.Offset?,
-          );
-        }
-        return _LongPressEndDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      final _flaxHas3 = values.containsKey("velocity");
+      return flaxInvokeWithDefaults(
+        _LongPressEndDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-          velocity: values["velocity"] as api.Velocity,
-        );
-      }
-      if (!values.containsKey("velocity")) {
-        return _LongPressEndDetailsProxy(
-          values['@peer'] as FlaxProxyPeer,
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-        );
-      }
-      return _LongPressEndDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        velocity: values["velocity"] as api.Velocity,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          (_flaxHas3 ? values["velocity"] as api.Velocity : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0)],
+        const <String>["", "globalPosition", "localPosition", "velocity"],
+      ) as api.LongPressEndDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -5632,69 +5578,45 @@ Object _createLongPressMoveUpdateDetails(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        if (!values.containsKey("offsetFromOrigin")) {
-          return api.LongPressMoveUpdateDetails(
-            localPosition: values["localPosition"] as api4.Offset?,
-            localOffsetFromOrigin:
-                values["localOffsetFromOrigin"] as api4.Offset?,
-          );
-        }
-        return api.LongPressMoveUpdateDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-          offsetFromOrigin: values["offsetFromOrigin"] as api4.Offset,
-          localOffsetFromOrigin:
-              values["localOffsetFromOrigin"] as api4.Offset?,
-        );
-      }
-      if (!values.containsKey("offsetFromOrigin")) {
-        return api.LongPressMoveUpdateDetails(
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-          localOffsetFromOrigin:
-              values["localOffsetFromOrigin"] as api4.Offset?,
-        );
-      }
-      return api.LongPressMoveUpdateDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        offsetFromOrigin: values["offsetFromOrigin"] as api4.Offset,
-        localOffsetFromOrigin: values["localOffsetFromOrigin"] as api4.Offset?,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      final _flaxHas2 = values.containsKey("offsetFromOrigin");
+      return flaxInvokeWithDefaults(
+        api.LongPressMoveUpdateDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          (_flaxHas2 ? values["offsetFromOrigin"] as api4.Offset : null),
+          values["localOffsetFromOrigin"] as api4.Offset?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | (_flaxHas2 ? 4 : 0) | 8],
+        const <String>[
+          "globalPosition",
+          "localPosition",
+          "offsetFromOrigin",
+          "localOffsetFromOrigin",
+        ],
+      ) as api.LongPressMoveUpdateDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        if (!values.containsKey("offsetFromOrigin")) {
-          return _LongPressMoveUpdateDetailsProxy(
-            values['@peer'] as FlaxProxyPeer,
-            localPosition: values["localPosition"] as api4.Offset?,
-            localOffsetFromOrigin:
-                values["localOffsetFromOrigin"] as api4.Offset?,
-          );
-        }
-        return _LongPressMoveUpdateDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      final _flaxHas3 = values.containsKey("offsetFromOrigin");
+      return flaxInvokeWithDefaults(
+        _LongPressMoveUpdateDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-          offsetFromOrigin: values["offsetFromOrigin"] as api4.Offset,
-          localOffsetFromOrigin:
-              values["localOffsetFromOrigin"] as api4.Offset?,
-        );
-      }
-      if (!values.containsKey("offsetFromOrigin")) {
-        return _LongPressMoveUpdateDetailsProxy(
-          values['@peer'] as FlaxProxyPeer,
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-          localOffsetFromOrigin:
-              values["localOffsetFromOrigin"] as api4.Offset?,
-        );
-      }
-      return _LongPressMoveUpdateDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        offsetFromOrigin: values["offsetFromOrigin"] as api4.Offset,
-        localOffsetFromOrigin: values["localOffsetFromOrigin"] as api4.Offset?,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          (_flaxHas3 ? values["offsetFromOrigin"] as api4.Offset : null),
+          values["localOffsetFromOrigin"] as api4.Offset?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0) | 16],
+        const <String>[
+          "",
+          "globalPosition",
+          "localPosition",
+          "offsetFromOrigin",
+          "localOffsetFromOrigin",
+        ],
+      ) as api.LongPressMoveUpdateDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -5745,27 +5667,28 @@ Object? _LongPressStartDetails_super_get_globalPosition(
 Object _createLongPressStartDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        return api.LongPressStartDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-        );
-      }
-      return api.LongPressStartDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        api.LongPressStartDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2],
+        const <String>["globalPosition", "localPosition"],
+      ) as api.LongPressStartDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        return _LongPressStartDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        _LongPressStartDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-        );
-      }
-      return _LongPressStartDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+        const <String>["", "globalPosition", "localPosition"],
+      ) as api.LongPressStartDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6180,75 +6103,49 @@ Object _createMultiTapGestureRecognizer(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("longTapDelay")) {
-        if (!values.containsKey("allowedButtonsFilter")) {
-          return api.MultiTapGestureRecognizer(
-            debugOwner: values["debugOwner"],
-            supportedDevices:
-                values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          );
-        }
-        return api.MultiTapGestureRecognizer(
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          allowedButtonsFilter:
-              values["allowedButtonsFilter"] as bool Function(int buttons),
-        );
-      }
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return api.MultiTapGestureRecognizer(
-          longTapDelay: values["longTapDelay"] as api2.Duration,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return api.MultiTapGestureRecognizer(
-        longTapDelay: values["longTapDelay"] as api2.Duration,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+      final _flaxHas0 = values.containsKey("longTapDelay");
+      final _flaxHas3 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        api.MultiTapGestureRecognizer.new,
+        <Object?>[
+          (_flaxHas0 ? values["longTapDelay"] as api2.Duration : null),
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas3
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+        const <String>[
+          "longTapDelay",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.MultiTapGestureRecognizer;
     case '@implementation':
-      if (!values.containsKey("longTapDelay")) {
-        if (!values.containsKey("allowedButtonsFilter")) {
-          return _MultiTapGestureRecognizerProxy(
-            values['@peer'] as FlaxProxyPeer,
-            debugOwner: values["debugOwner"],
-            supportedDevices:
-                values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          );
-        }
-        return _MultiTapGestureRecognizerProxy(
+      final _flaxHas1 = values.containsKey("longTapDelay");
+      final _flaxHas4 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        _MultiTapGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          allowedButtonsFilter:
-              values["allowedButtonsFilter"] as bool Function(int buttons),
-        );
-      }
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return _MultiTapGestureRecognizerProxy(
-          values['@peer'] as FlaxProxyPeer,
-          longTapDelay: values["longTapDelay"] as api2.Duration,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return _MultiTapGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        longTapDelay: values["longTapDelay"] as api2.Duration,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+          (_flaxHas1 ? values["longTapDelay"] as api2.Duration : null),
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas4
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | (_flaxHas4 ? 16 : 0)],
+        const <String>[
+          "",
+          "longTapDelay",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.MultiTapGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6487,22 +6384,25 @@ Object _createOneSequenceGestureRecognizer(
 ) {
   switch (ctor) {
     case '@implementation':
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return _OneSequenceGestureRecognizerProxy(
+      final _flaxHas3 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        _OneSequenceGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return _OneSequenceGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas3
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+        const <String>[
+          "",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.OneSequenceGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6523,20 +6423,23 @@ Object? _PanGestureRecognizer_invokeCallback(
 Object _createPanGestureRecognizer(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return api.PanGestureRecognizer(
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return api.PanGestureRecognizer(
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+      final _flaxHas2 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        api.PanGestureRecognizer.new,
+        <Object?>[
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas2
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>[
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.PanGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6856,159 +6759,128 @@ Object? _FlaxProxyDispatch32_super_get_original(
 Object _createPointerAddedEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return api.PointerAddedEvent(
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerAddedEvent(
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return api.PointerAddedEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return api.PointerAddedEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        embedderId: values["embedderId"] as int,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        api.PointerAddedEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "embedderId",
+        ],
+      ) as api.PointerAddedEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return _PointerAddedEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerAddedEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas6 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        _PointerAddedEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return _PointerAddedEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerAddedEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "embedderId",
+        ],
+      ) as api.PointerAddedEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -7232,191 +7104,152 @@ Object? _PointerCancelEvent_super_get_transform(
 Object _createPointerCancelEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return api.PointerCancelEvent(
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerCancelEvent(
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return api.PointerCancelEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return api.PointerCancelEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        embedderId: values["embedderId"] as int,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        api.PointerCancelEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "buttons",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "embedderId",
+        ],
+      ) as api.PointerCancelEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return _PointerCancelEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerCancelEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas6 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        _PointerCancelEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return _PointerCancelEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerCancelEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "buttons",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "embedderId",
+        ],
+      ) as api.PointerCancelEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -7640,191 +7473,152 @@ Object? _PointerDownEvent_super_get_transform(
 Object _createPointerDownEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return api.PointerDownEvent(
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressure: values["pressure"] as double,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerDownEvent(
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return api.PointerDownEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return api.PointerDownEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressure: values["pressure"] as double,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        embedderId: values["embedderId"] as int,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        api.PointerDownEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressure"] as double,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "buttons",
+          "obscured",
+          "pressure",
+          "pressureMin",
+          "pressureMax",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "embedderId",
+        ],
+      ) as api.PointerDownEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return _PointerDownEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressure: values["pressure"] as double,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerDownEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas6 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        _PointerDownEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return _PointerDownEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerDownEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressure: values["pressure"] as double,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressure"] as double,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "buttons",
+          "obscured",
+          "pressure",
+          "pressureMin",
+          "pressureMax",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "embedderId",
+        ],
+      ) as api.PointerDownEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -8048,423 +7842,176 @@ Object? _PointerEnterEvent_super_get_transform(
 Object _createPointerEnterEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("delta")) {
-            return api.PointerEnterEvent(
-              viewId: values["viewId"] as int,
-              pointer: values["pointer"] as int,
-              kind: values["kind"] as api4.PointerDeviceKind,
-              device: values["device"] as int,
-              buttons: values["buttons"] as int,
-              obscured: values["obscured"] as bool,
-              pressureMin: values["pressureMin"] as double,
-              pressureMax: values["pressureMax"] as double,
-              distance: values["distance"] as double,
-              distanceMax: values["distanceMax"] as double,
-              size: values["size"] as double,
-              radiusMajor: values["radiusMajor"] as double,
-              radiusMinor: values["radiusMinor"] as double,
-              radiusMin: values["radiusMin"] as double,
-              radiusMax: values["radiusMax"] as double,
-              orientation: values["orientation"] as double,
-              tilt: values["tilt"] as double,
-              down: values["down"] as bool,
-              synthesized: values["synthesized"] as bool,
-              embedderId: values["embedderId"] as int,
-            );
-          }
-          return api.PointerEnterEvent(
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            delta: values["delta"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        if (!values.containsKey("delta")) {
-          return api.PointerEnterEvent(
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            position: values["position"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerEnterEvent(
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("delta")) {
-          return api.PointerEnterEvent(
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerEnterEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("delta")) {
-        return api.PointerEnterEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return api.PointerEnterEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        delta: values["delta"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        down: values["down"] as bool,
-        synthesized: values["synthesized"] as bool,
-        embedderId: values["embedderId"] as int,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      final _flaxHas6 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        api.PointerEnterEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["down"] as bool,
+          values["synthesized"] as bool,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "delta",
+          "buttons",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "down",
+          "synthesized",
+          "embedderId",
+        ],
+      ) as api.PointerEnterEvent;
     case "fromMouseEvent":
       return api.PointerEnterEvent.fromMouseEvent(
         values["event"] as api.PointerEvent,
       );
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("delta")) {
-            return _PointerEnterEventProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int,
-              pointer: values["pointer"] as int,
-              kind: values["kind"] as api4.PointerDeviceKind,
-              device: values["device"] as int,
-              buttons: values["buttons"] as int,
-              obscured: values["obscured"] as bool,
-              pressureMin: values["pressureMin"] as double,
-              pressureMax: values["pressureMax"] as double,
-              distance: values["distance"] as double,
-              distanceMax: values["distanceMax"] as double,
-              size: values["size"] as double,
-              radiusMajor: values["radiusMajor"] as double,
-              radiusMinor: values["radiusMinor"] as double,
-              radiusMin: values["radiusMin"] as double,
-              radiusMax: values["radiusMax"] as double,
-              orientation: values["orientation"] as double,
-              tilt: values["tilt"] as double,
-              down: values["down"] as bool,
-              synthesized: values["synthesized"] as bool,
-              embedderId: values["embedderId"] as int,
-            );
-          }
-          return _PointerEnterEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            delta: values["delta"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        if (!values.containsKey("delta")) {
-          return _PointerEnterEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            position: values["position"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerEnterEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas6 = values.containsKey("position");
+      final _flaxHas7 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        _PointerEnterEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("delta")) {
-          return _PointerEnterEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerEnterEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("delta")) {
-        return _PointerEnterEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerEnterEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        delta: values["delta"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        down: values["down"] as bool,
-        synthesized: values["synthesized"] as bool,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["down"] as bool,
+          values["synthesized"] as bool,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "delta",
+          "buttons",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "down",
+          "synthesized",
+          "embedderId",
+        ],
+      ) as api.PointerEnterEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -8794,423 +8341,176 @@ Object? _PointerExitEvent_super_get_transform(
 Object _createPointerExitEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("delta")) {
-            return api.PointerExitEvent(
-              viewId: values["viewId"] as int,
-              kind: values["kind"] as api4.PointerDeviceKind,
-              pointer: values["pointer"] as int,
-              device: values["device"] as int,
-              buttons: values["buttons"] as int,
-              obscured: values["obscured"] as bool,
-              pressureMin: values["pressureMin"] as double,
-              pressureMax: values["pressureMax"] as double,
-              distance: values["distance"] as double,
-              distanceMax: values["distanceMax"] as double,
-              size: values["size"] as double,
-              radiusMajor: values["radiusMajor"] as double,
-              radiusMinor: values["radiusMinor"] as double,
-              radiusMin: values["radiusMin"] as double,
-              radiusMax: values["radiusMax"] as double,
-              orientation: values["orientation"] as double,
-              tilt: values["tilt"] as double,
-              down: values["down"] as bool,
-              synthesized: values["synthesized"] as bool,
-              embedderId: values["embedderId"] as int,
-            );
-          }
-          return api.PointerExitEvent(
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            delta: values["delta"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        if (!values.containsKey("delta")) {
-          return api.PointerExitEvent(
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            position: values["position"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerExitEvent(
-          viewId: values["viewId"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("delta")) {
-          return api.PointerExitEvent(
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerExitEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("delta")) {
-        return api.PointerExitEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return api.PointerExitEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        pointer: values["pointer"] as int,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        delta: values["delta"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        down: values["down"] as bool,
-        synthesized: values["synthesized"] as bool,
-        embedderId: values["embedderId"] as int,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      final _flaxHas6 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        api.PointerExitEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["kind"] as api4.PointerDeviceKind,
+          values["pointer"] as int,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["down"] as bool,
+          values["synthesized"] as bool,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "kind",
+          "pointer",
+          "device",
+          "position",
+          "delta",
+          "buttons",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "down",
+          "synthesized",
+          "embedderId",
+        ],
+      ) as api.PointerExitEvent;
     case "fromMouseEvent":
       return api.PointerExitEvent.fromMouseEvent(
         values["event"] as api.PointerEvent,
       );
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("delta")) {
-            return _PointerExitEventProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int,
-              kind: values["kind"] as api4.PointerDeviceKind,
-              pointer: values["pointer"] as int,
-              device: values["device"] as int,
-              buttons: values["buttons"] as int,
-              obscured: values["obscured"] as bool,
-              pressureMin: values["pressureMin"] as double,
-              pressureMax: values["pressureMax"] as double,
-              distance: values["distance"] as double,
-              distanceMax: values["distanceMax"] as double,
-              size: values["size"] as double,
-              radiusMajor: values["radiusMajor"] as double,
-              radiusMinor: values["radiusMinor"] as double,
-              radiusMin: values["radiusMin"] as double,
-              radiusMax: values["radiusMax"] as double,
-              orientation: values["orientation"] as double,
-              tilt: values["tilt"] as double,
-              down: values["down"] as bool,
-              synthesized: values["synthesized"] as bool,
-              embedderId: values["embedderId"] as int,
-            );
-          }
-          return _PointerExitEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            delta: values["delta"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        if (!values.containsKey("delta")) {
-          return _PointerExitEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            position: values["position"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerExitEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas6 = values.containsKey("position");
+      final _flaxHas7 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        _PointerExitEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("delta")) {
-          return _PointerExitEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            down: values["down"] as bool,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerExitEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("delta")) {
-        return _PointerExitEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          down: values["down"] as bool,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerExitEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        pointer: values["pointer"] as int,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        delta: values["delta"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        down: values["down"] as bool,
-        synthesized: values["synthesized"] as bool,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["kind"] as api4.PointerDeviceKind,
+          values["pointer"] as int,
+          values["device"] as int,
+          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["down"] as bool,
+          values["synthesized"] as bool,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "kind",
+          "pointer",
+          "device",
+          "position",
+          "delta",
+          "buttons",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "down",
+          "synthesized",
+          "embedderId",
+        ],
+      ) as api.PointerExitEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -9434,403 +8734,166 @@ Object? _PointerHoverEvent_super_get_transform(
 Object _createPointerHoverEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("delta")) {
-            return api.PointerHoverEvent(
-              viewId: values["viewId"] as int,
-              kind: values["kind"] as api4.PointerDeviceKind,
-              pointer: values["pointer"] as int,
-              device: values["device"] as int,
-              buttons: values["buttons"] as int,
-              obscured: values["obscured"] as bool,
-              pressureMin: values["pressureMin"] as double,
-              pressureMax: values["pressureMax"] as double,
-              distance: values["distance"] as double,
-              distanceMax: values["distanceMax"] as double,
-              size: values["size"] as double,
-              radiusMajor: values["radiusMajor"] as double,
-              radiusMinor: values["radiusMinor"] as double,
-              radiusMin: values["radiusMin"] as double,
-              radiusMax: values["radiusMax"] as double,
-              orientation: values["orientation"] as double,
-              tilt: values["tilt"] as double,
-              synthesized: values["synthesized"] as bool,
-              embedderId: values["embedderId"] as int,
-            );
-          }
-          return api.PointerHoverEvent(
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            delta: values["delta"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        if (!values.containsKey("delta")) {
-          return api.PointerHoverEvent(
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            position: values["position"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerHoverEvent(
-          viewId: values["viewId"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("delta")) {
-          return api.PointerHoverEvent(
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerHoverEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("delta")) {
-        return api.PointerHoverEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return api.PointerHoverEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        pointer: values["pointer"] as int,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        delta: values["delta"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        synthesized: values["synthesized"] as bool,
-        embedderId: values["embedderId"] as int,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      final _flaxHas6 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        api.PointerHoverEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["kind"] as api4.PointerDeviceKind,
+          values["pointer"] as int,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["synthesized"] as bool,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "kind",
+          "pointer",
+          "device",
+          "position",
+          "delta",
+          "buttons",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "synthesized",
+          "embedderId",
+        ],
+      ) as api.PointerHoverEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("delta")) {
-            return _PointerHoverEventProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int,
-              kind: values["kind"] as api4.PointerDeviceKind,
-              pointer: values["pointer"] as int,
-              device: values["device"] as int,
-              buttons: values["buttons"] as int,
-              obscured: values["obscured"] as bool,
-              pressureMin: values["pressureMin"] as double,
-              pressureMax: values["pressureMax"] as double,
-              distance: values["distance"] as double,
-              distanceMax: values["distanceMax"] as double,
-              size: values["size"] as double,
-              radiusMajor: values["radiusMajor"] as double,
-              radiusMinor: values["radiusMinor"] as double,
-              radiusMin: values["radiusMin"] as double,
-              radiusMax: values["radiusMax"] as double,
-              orientation: values["orientation"] as double,
-              tilt: values["tilt"] as double,
-              synthesized: values["synthesized"] as bool,
-              embedderId: values["embedderId"] as int,
-            );
-          }
-          return _PointerHoverEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            delta: values["delta"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        if (!values.containsKey("delta")) {
-          return _PointerHoverEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            position: values["position"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerHoverEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas6 = values.containsKey("position");
+      final _flaxHas7 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        _PointerHoverEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("delta")) {
-          return _PointerHoverEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            pointer: values["pointer"] as int,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerHoverEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("delta")) {
-        return _PointerHoverEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          pointer: values["pointer"] as int,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerHoverEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        pointer: values["pointer"] as int,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        delta: values["delta"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        synthesized: values["synthesized"] as bool,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["kind"] as api4.PointerDeviceKind,
+          values["pointer"] as int,
+          values["device"] as int,
+          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["synthesized"] as bool,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "kind",
+          "pointer",
+          "device",
+          "position",
+          "delta",
+          "buttons",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "synthesized",
+          "embedderId",
+        ],
+      ) as api.PointerHoverEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10054,419 +9117,172 @@ Object? _PointerMoveEvent_super_get_transform(
 Object _createPointerMoveEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("delta")) {
-            return api.PointerMoveEvent(
-              viewId: values["viewId"] as int,
-              pointer: values["pointer"] as int,
-              kind: values["kind"] as api4.PointerDeviceKind,
-              device: values["device"] as int,
-              buttons: values["buttons"] as int,
-              obscured: values["obscured"] as bool,
-              pressure: values["pressure"] as double,
-              pressureMin: values["pressureMin"] as double,
-              pressureMax: values["pressureMax"] as double,
-              distanceMax: values["distanceMax"] as double,
-              size: values["size"] as double,
-              radiusMajor: values["radiusMajor"] as double,
-              radiusMinor: values["radiusMinor"] as double,
-              radiusMin: values["radiusMin"] as double,
-              radiusMax: values["radiusMax"] as double,
-              orientation: values["orientation"] as double,
-              tilt: values["tilt"] as double,
-              platformData: values["platformData"] as int,
-              synthesized: values["synthesized"] as bool,
-              embedderId: values["embedderId"] as int,
-            );
-          }
-          return api.PointerMoveEvent(
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            delta: values["delta"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressure: values["pressure"] as double,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            platformData: values["platformData"] as int,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        if (!values.containsKey("delta")) {
-          return api.PointerMoveEvent(
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            position: values["position"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressure: values["pressure"] as double,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            platformData: values["platformData"] as int,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerMoveEvent(
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          platformData: values["platformData"] as int,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("delta")) {
-          return api.PointerMoveEvent(
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressure: values["pressure"] as double,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            platformData: values["platformData"] as int,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerMoveEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          platformData: values["platformData"] as int,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("delta")) {
-        return api.PointerMoveEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          platformData: values["platformData"] as int,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return api.PointerMoveEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        delta: values["delta"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressure: values["pressure"] as double,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        platformData: values["platformData"] as int,
-        synthesized: values["synthesized"] as bool,
-        embedderId: values["embedderId"] as int,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      final _flaxHas6 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        api.PointerMoveEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressure"] as double,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["platformData"] as int,
+          values["synthesized"] as bool,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "delta",
+          "buttons",
+          "obscured",
+          "pressure",
+          "pressureMin",
+          "pressureMax",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "platformData",
+          "synthesized",
+          "embedderId",
+        ],
+      ) as api.PointerMoveEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("delta")) {
-            return _PointerMoveEventProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int,
-              pointer: values["pointer"] as int,
-              kind: values["kind"] as api4.PointerDeviceKind,
-              device: values["device"] as int,
-              buttons: values["buttons"] as int,
-              obscured: values["obscured"] as bool,
-              pressure: values["pressure"] as double,
-              pressureMin: values["pressureMin"] as double,
-              pressureMax: values["pressureMax"] as double,
-              distanceMax: values["distanceMax"] as double,
-              size: values["size"] as double,
-              radiusMajor: values["radiusMajor"] as double,
-              radiusMinor: values["radiusMinor"] as double,
-              radiusMin: values["radiusMin"] as double,
-              radiusMax: values["radiusMax"] as double,
-              orientation: values["orientation"] as double,
-              tilt: values["tilt"] as double,
-              platformData: values["platformData"] as int,
-              synthesized: values["synthesized"] as bool,
-              embedderId: values["embedderId"] as int,
-            );
-          }
-          return _PointerMoveEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            delta: values["delta"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressure: values["pressure"] as double,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            platformData: values["platformData"] as int,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        if (!values.containsKey("delta")) {
-          return _PointerMoveEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            position: values["position"] as api4.Offset,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressure: values["pressure"] as double,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            platformData: values["platformData"] as int,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerMoveEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas6 = values.containsKey("position");
+      final _flaxHas7 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        _PointerMoveEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          platformData: values["platformData"] as int,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("delta")) {
-          return _PointerMoveEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressure: values["pressure"] as double,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            platformData: values["platformData"] as int,
-            synthesized: values["synthesized"] as bool,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerMoveEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          delta: values["delta"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          platformData: values["platformData"] as int,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("delta")) {
-        return _PointerMoveEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          platformData: values["platformData"] as int,
-          synthesized: values["synthesized"] as bool,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerMoveEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        delta: values["delta"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressure: values["pressure"] as double,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        platformData: values["platformData"] as int,
-        synthesized: values["synthesized"] as bool,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressure"] as double,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["platformData"] as int,
+          values["synthesized"] as bool,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "delta",
+          "buttons",
+          "obscured",
+          "pressure",
+          "pressureMin",
+          "pressureMax",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "platformData",
+          "synthesized",
+          "embedderId",
+        ],
+      ) as api.PointerMoveEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10691,87 +9507,66 @@ Object? _PointerPanZoomEndEvent_super_get_transform(
 Object _createPointerPanZoomEndEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return api.PointerPanZoomEndEvent(
-            viewId: values["viewId"] as int,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            embedderId: values["embedderId"] as int,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        return api.PointerPanZoomEndEvent(
-          viewId: values["viewId"] as int,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return api.PointerPanZoomEndEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          embedderId: values["embedderId"] as int,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      return api.PointerPanZoomEndEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        device: values["device"] as int,
-        pointer: values["pointer"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-        synthesized: values["synthesized"] as bool,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas4 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        api.PointerPanZoomEndEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["device"] as int,
+          values["pointer"] as int,
+          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+          values["synthesized"] as bool,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "device",
+          "pointer",
+          "position",
+          "embedderId",
+          "synthesized",
+        ],
+      ) as api.PointerPanZoomEndEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return _PointerPanZoomEndEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            embedderId: values["embedderId"] as int,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        return _PointerPanZoomEndEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        _PointerPanZoomEndEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return _PointerPanZoomEndEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          embedderId: values["embedderId"] as int,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      return _PointerPanZoomEndEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        device: values["device"] as int,
-        pointer: values["pointer"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-        synthesized: values["synthesized"] as bool,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["device"] as int,
+          values["pointer"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+          values["synthesized"] as bool,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "device",
+          "pointer",
+          "position",
+          "embedderId",
+          "synthesized",
+        ],
+      ) as api.PointerPanZoomEndEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10999,87 +9794,66 @@ Object _createPointerPanZoomStartEvent(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return api.PointerPanZoomStartEvent(
-            viewId: values["viewId"] as int,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            embedderId: values["embedderId"] as int,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        return api.PointerPanZoomStartEvent(
-          viewId: values["viewId"] as int,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return api.PointerPanZoomStartEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          embedderId: values["embedderId"] as int,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      return api.PointerPanZoomStartEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        device: values["device"] as int,
-        pointer: values["pointer"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-        synthesized: values["synthesized"] as bool,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas4 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        api.PointerPanZoomStartEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["device"] as int,
+          values["pointer"] as int,
+          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+          values["synthesized"] as bool,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "device",
+          "pointer",
+          "position",
+          "embedderId",
+          "synthesized",
+        ],
+      ) as api.PointerPanZoomStartEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return _PointerPanZoomStartEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            embedderId: values["embedderId"] as int,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        return _PointerPanZoomStartEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        _PointerPanZoomStartEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return _PointerPanZoomStartEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          embedderId: values["embedderId"] as int,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      return _PointerPanZoomStartEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        device: values["device"] as int,
-        pointer: values["pointer"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-        synthesized: values["synthesized"] as bool,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["device"] as int,
+          values["pointer"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+          values["synthesized"] as bool,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "device",
+          "pointer",
+          "position",
+          "embedderId",
+          "synthesized",
+        ],
+      ) as api.PointerPanZoomStartEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -11356,435 +10130,102 @@ Object _createPointerPanZoomUpdateEvent(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("pan")) {
-            if (!values.containsKey("panDelta")) {
-              return api.PointerPanZoomUpdateEvent(
-                viewId: values["viewId"] as int,
-                device: values["device"] as int,
-                pointer: values["pointer"] as int,
-                embedderId: values["embedderId"] as int,
-                scale: values["scale"] as double,
-                rotation: values["rotation"] as double,
-                synthesized: values["synthesized"] as bool,
-              );
-            }
-            return api.PointerPanZoomUpdateEvent(
-              viewId: values["viewId"] as int,
-              device: values["device"] as int,
-              pointer: values["pointer"] as int,
-              embedderId: values["embedderId"] as int,
-              panDelta: values["panDelta"] as api4.Offset,
-              scale: values["scale"] as double,
-              rotation: values["rotation"] as double,
-              synthesized: values["synthesized"] as bool,
-            );
-          }
-          if (!values.containsKey("panDelta")) {
-            return api.PointerPanZoomUpdateEvent(
-              viewId: values["viewId"] as int,
-              device: values["device"] as int,
-              pointer: values["pointer"] as int,
-              embedderId: values["embedderId"] as int,
-              pan: values["pan"] as api4.Offset,
-              scale: values["scale"] as double,
-              rotation: values["rotation"] as double,
-              synthesized: values["synthesized"] as bool,
-            );
-          }
-          return api.PointerPanZoomUpdateEvent(
-            viewId: values["viewId"] as int,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            embedderId: values["embedderId"] as int,
-            pan: values["pan"] as api4.Offset,
-            panDelta: values["panDelta"] as api4.Offset,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        if (!values.containsKey("pan")) {
-          if (!values.containsKey("panDelta")) {
-            return api.PointerPanZoomUpdateEvent(
-              viewId: values["viewId"] as int,
-              device: values["device"] as int,
-              pointer: values["pointer"] as int,
-              position: values["position"] as api4.Offset,
-              embedderId: values["embedderId"] as int,
-              scale: values["scale"] as double,
-              rotation: values["rotation"] as double,
-              synthesized: values["synthesized"] as bool,
-            );
-          }
-          return api.PointerPanZoomUpdateEvent(
-            viewId: values["viewId"] as int,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            position: values["position"] as api4.Offset,
-            embedderId: values["embedderId"] as int,
-            panDelta: values["panDelta"] as api4.Offset,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        if (!values.containsKey("panDelta")) {
-          return api.PointerPanZoomUpdateEvent(
-            viewId: values["viewId"] as int,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            position: values["position"] as api4.Offset,
-            embedderId: values["embedderId"] as int,
-            pan: values["pan"] as api4.Offset,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        return api.PointerPanZoomUpdateEvent(
-          viewId: values["viewId"] as int,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          pan: values["pan"] as api4.Offset,
-          panDelta: values["panDelta"] as api4.Offset,
-          scale: values["scale"] as double,
-          rotation: values["rotation"] as double,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("pan")) {
-          if (!values.containsKey("panDelta")) {
-            return api.PointerPanZoomUpdateEvent(
-              viewId: values["viewId"] as int,
-              timeStamp: values["timeStamp"] as api2.Duration,
-              device: values["device"] as int,
-              pointer: values["pointer"] as int,
-              embedderId: values["embedderId"] as int,
-              scale: values["scale"] as double,
-              rotation: values["rotation"] as double,
-              synthesized: values["synthesized"] as bool,
-            );
-          }
-          return api.PointerPanZoomUpdateEvent(
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            embedderId: values["embedderId"] as int,
-            panDelta: values["panDelta"] as api4.Offset,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        if (!values.containsKey("panDelta")) {
-          return api.PointerPanZoomUpdateEvent(
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            embedderId: values["embedderId"] as int,
-            pan: values["pan"] as api4.Offset,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        return api.PointerPanZoomUpdateEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          embedderId: values["embedderId"] as int,
-          pan: values["pan"] as api4.Offset,
-          panDelta: values["panDelta"] as api4.Offset,
-          scale: values["scale"] as double,
-          rotation: values["rotation"] as double,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      if (!values.containsKey("pan")) {
-        if (!values.containsKey("panDelta")) {
-          return api.PointerPanZoomUpdateEvent(
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            position: values["position"] as api4.Offset,
-            embedderId: values["embedderId"] as int,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        return api.PointerPanZoomUpdateEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          panDelta: values["panDelta"] as api4.Offset,
-          scale: values["scale"] as double,
-          rotation: values["rotation"] as double,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      if (!values.containsKey("panDelta")) {
-        return api.PointerPanZoomUpdateEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          pan: values["pan"] as api4.Offset,
-          scale: values["scale"] as double,
-          rotation: values["rotation"] as double,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      return api.PointerPanZoomUpdateEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        device: values["device"] as int,
-        pointer: values["pointer"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-        pan: values["pan"] as api4.Offset,
-        panDelta: values["panDelta"] as api4.Offset,
-        scale: values["scale"] as double,
-        rotation: values["rotation"] as double,
-        synthesized: values["synthesized"] as bool,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas4 = values.containsKey("position");
+      final _flaxHas6 = values.containsKey("pan");
+      final _flaxHas7 = values.containsKey("panDelta");
+      return flaxInvokeWithDefaults(
+        api.PointerPanZoomUpdateEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["device"] as int,
+          values["pointer"] as int,
+          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+          (_flaxHas6 ? values["pan"] as api4.Offset : null),
+          (_flaxHas7 ? values["panDelta"] as api4.Offset : null),
+          values["scale"] as double,
+          values["rotation"] as double,
+          values["synthesized"] as bool,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              1024,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "device",
+          "pointer",
+          "position",
+          "embedderId",
+          "pan",
+          "panDelta",
+          "scale",
+          "rotation",
+          "synthesized",
+        ],
+      ) as api.PointerPanZoomUpdateEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("pan")) {
-            if (!values.containsKey("panDelta")) {
-              return _PointerPanZoomUpdateEventProxy(
-                values['@peer'] as FlaxProxyPeer,
-                viewId: values["viewId"] as int,
-                device: values["device"] as int,
-                pointer: values["pointer"] as int,
-                embedderId: values["embedderId"] as int,
-                scale: values["scale"] as double,
-                rotation: values["rotation"] as double,
-                synthesized: values["synthesized"] as bool,
-              );
-            }
-            return _PointerPanZoomUpdateEventProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int,
-              device: values["device"] as int,
-              pointer: values["pointer"] as int,
-              embedderId: values["embedderId"] as int,
-              panDelta: values["panDelta"] as api4.Offset,
-              scale: values["scale"] as double,
-              rotation: values["rotation"] as double,
-              synthesized: values["synthesized"] as bool,
-            );
-          }
-          if (!values.containsKey("panDelta")) {
-            return _PointerPanZoomUpdateEventProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int,
-              device: values["device"] as int,
-              pointer: values["pointer"] as int,
-              embedderId: values["embedderId"] as int,
-              pan: values["pan"] as api4.Offset,
-              scale: values["scale"] as double,
-              rotation: values["rotation"] as double,
-              synthesized: values["synthesized"] as bool,
-            );
-          }
-          return _PointerPanZoomUpdateEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            embedderId: values["embedderId"] as int,
-            pan: values["pan"] as api4.Offset,
-            panDelta: values["panDelta"] as api4.Offset,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        if (!values.containsKey("pan")) {
-          if (!values.containsKey("panDelta")) {
-            return _PointerPanZoomUpdateEventProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int,
-              device: values["device"] as int,
-              pointer: values["pointer"] as int,
-              position: values["position"] as api4.Offset,
-              embedderId: values["embedderId"] as int,
-              scale: values["scale"] as double,
-              rotation: values["rotation"] as double,
-              synthesized: values["synthesized"] as bool,
-            );
-          }
-          return _PointerPanZoomUpdateEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            position: values["position"] as api4.Offset,
-            embedderId: values["embedderId"] as int,
-            panDelta: values["panDelta"] as api4.Offset,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        if (!values.containsKey("panDelta")) {
-          return _PointerPanZoomUpdateEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            position: values["position"] as api4.Offset,
-            embedderId: values["embedderId"] as int,
-            pan: values["pan"] as api4.Offset,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        return _PointerPanZoomUpdateEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      final _flaxHas7 = values.containsKey("pan");
+      final _flaxHas8 = values.containsKey("panDelta");
+      return flaxInvokeWithDefaults(
+        _PointerPanZoomUpdateEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          pan: values["pan"] as api4.Offset,
-          panDelta: values["panDelta"] as api4.Offset,
-          scale: values["scale"] as double,
-          rotation: values["rotation"] as double,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("pan")) {
-          if (!values.containsKey("panDelta")) {
-            return _PointerPanZoomUpdateEventProxy(
-              values['@peer'] as FlaxProxyPeer,
-              viewId: values["viewId"] as int,
-              timeStamp: values["timeStamp"] as api2.Duration,
-              device: values["device"] as int,
-              pointer: values["pointer"] as int,
-              embedderId: values["embedderId"] as int,
-              scale: values["scale"] as double,
-              rotation: values["rotation"] as double,
-              synthesized: values["synthesized"] as bool,
-            );
-          }
-          return _PointerPanZoomUpdateEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            embedderId: values["embedderId"] as int,
-            panDelta: values["panDelta"] as api4.Offset,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        if (!values.containsKey("panDelta")) {
-          return _PointerPanZoomUpdateEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            embedderId: values["embedderId"] as int,
-            pan: values["pan"] as api4.Offset,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        return _PointerPanZoomUpdateEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          embedderId: values["embedderId"] as int,
-          pan: values["pan"] as api4.Offset,
-          panDelta: values["panDelta"] as api4.Offset,
-          scale: values["scale"] as double,
-          rotation: values["rotation"] as double,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      if (!values.containsKey("pan")) {
-        if (!values.containsKey("panDelta")) {
-          return _PointerPanZoomUpdateEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api2.Duration,
-            device: values["device"] as int,
-            pointer: values["pointer"] as int,
-            position: values["position"] as api4.Offset,
-            embedderId: values["embedderId"] as int,
-            scale: values["scale"] as double,
-            rotation: values["rotation"] as double,
-            synthesized: values["synthesized"] as bool,
-          );
-        }
-        return _PointerPanZoomUpdateEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          panDelta: values["panDelta"] as api4.Offset,
-          scale: values["scale"] as double,
-          rotation: values["rotation"] as double,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      if (!values.containsKey("panDelta")) {
-        return _PointerPanZoomUpdateEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          device: values["device"] as int,
-          pointer: values["pointer"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          pan: values["pan"] as api4.Offset,
-          scale: values["scale"] as double,
-          rotation: values["rotation"] as double,
-          synthesized: values["synthesized"] as bool,
-        );
-      }
-      return _PointerPanZoomUpdateEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        device: values["device"] as int,
-        pointer: values["pointer"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-        pan: values["pan"] as api4.Offset,
-        panDelta: values["panDelta"] as api4.Offset,
-        scale: values["scale"] as double,
-        rotation: values["rotation"] as double,
-        synthesized: values["synthesized"] as bool,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["device"] as int,
+          values["pointer"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+          (_flaxHas7 ? values["pan"] as api4.Offset : null),
+          (_flaxHas8 ? values["panDelta"] as api4.Offset : null),
+          values["scale"] as double,
+          values["rotation"] as double,
+          values["synthesized"] as bool,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              (_flaxHas7 ? 128 : 0) |
+              (_flaxHas8 ? 256 : 0) |
+              512 |
+              1024 |
+              2048,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "device",
+          "pointer",
+          "position",
+          "embedderId",
+          "pan",
+          "panDelta",
+          "scale",
+          "rotation",
+          "synthesized",
+        ],
+      ) as api.PointerPanZoomUpdateEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12008,143 +10449,116 @@ Object? _PointerRemovedEvent_super_get_transform(
 Object _createPointerRemovedEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return api.PointerRemovedEvent(
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distanceMax: values["distanceMax"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            original: values["original"] as api.PointerRemovedEvent?,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerRemovedEvent(
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          original: values["original"] as api.PointerRemovedEvent?,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return api.PointerRemovedEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          original: values["original"] as api.PointerRemovedEvent?,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return api.PointerRemovedEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distanceMax: values["distanceMax"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        original: values["original"] as api.PointerRemovedEvent?,
-        embedderId: values["embedderId"] as int,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        api.PointerRemovedEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distanceMax"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["original"] as api.PointerRemovedEvent?,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distanceMax",
+          "radiusMin",
+          "radiusMax",
+          "original",
+          "embedderId",
+        ],
+      ) as api.PointerRemovedEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return _PointerRemovedEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            obscured: values["obscured"] as bool,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distanceMax: values["distanceMax"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            original: values["original"] as api.PointerRemovedEvent?,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerRemovedEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas6 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        _PointerRemovedEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          original: values["original"] as api.PointerRemovedEvent?,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return _PointerRemovedEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          obscured: values["obscured"] as bool,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distanceMax: values["distanceMax"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          original: values["original"] as api.PointerRemovedEvent?,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerRemovedEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        obscured: values["obscured"] as bool,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distanceMax: values["distanceMax"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        original: values["original"] as api.PointerRemovedEvent?,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          values["obscured"] as bool,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distanceMax"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["original"] as api.PointerRemovedEvent?,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "obscured",
+          "pressureMin",
+          "pressureMax",
+          "distanceMax",
+          "radiusMin",
+          "radiusMax",
+          "original",
+          "embedderId",
+        ],
+      ) as api.PointerRemovedEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12408,87 +10822,66 @@ Object? _PointerScaleEvent_super_get_transform(
 Object _createPointerScaleEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return api.PointerScaleEvent(
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            embedderId: values["embedderId"] as int,
-            scale: values["scale"] as double,
-          );
-        }
-        return api.PointerScaleEvent(
-          viewId: values["viewId"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          scale: values["scale"] as double,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return api.PointerScaleEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          embedderId: values["embedderId"] as int,
-          scale: values["scale"] as double,
-        );
-      }
-      return api.PointerScaleEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-        scale: values["scale"] as double,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas4 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        api.PointerScaleEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+          values["scale"] as double,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "kind",
+          "device",
+          "position",
+          "embedderId",
+          "scale",
+        ],
+      ) as api.PointerScaleEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return _PointerScaleEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            embedderId: values["embedderId"] as int,
-            scale: values["scale"] as double,
-          );
-        }
-        return _PointerScaleEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        _PointerScaleEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-          scale: values["scale"] as double,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return _PointerScaleEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          embedderId: values["embedderId"] as int,
-          scale: values["scale"] as double,
-        );
-      }
-      return _PointerScaleEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-        scale: values["scale"] as double,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+          values["scale"] as double,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "kind",
+          "device",
+          "position",
+          "embedderId",
+          "scale",
+        ],
+      ) as api.PointerScaleEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12633,79 +11026,53 @@ Object _createPointerScrollInertiaCancelEvent(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return api.PointerScrollInertiaCancelEvent(
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerScrollInertiaCancelEvent(
-          viewId: values["viewId"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return api.PointerScrollInertiaCancelEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return api.PointerScrollInertiaCancelEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas4 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        api.PointerScrollInertiaCancelEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "kind",
+          "device",
+          "position",
+          "embedderId",
+        ],
+      ) as api.PointerScrollInertiaCancelEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return _PointerScrollInertiaCancelEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerScrollInertiaCancelEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        _PointerScrollInertiaCancelEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return _PointerScrollInertiaCancelEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerScrollInertiaCancelEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "kind",
+          "device",
+          "position",
+          "embedderId",
+        ],
+      ) as api.PointerScrollInertiaCancelEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12895,48 +11262,41 @@ Object? _PointerSignalEvent_super_get_transform(
 Object _createPointerSignalEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return _PointerSignalEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerSignalEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas6 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        _PointerSignalEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return _PointerSignalEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerSignalEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "embedderId",
+        ],
+      ) as api.PointerSignalEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -13211,199 +11571,158 @@ Object? _PointerUpEvent_super_get_transform(
 Object _createPointerUpEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return api.PointerUpEvent(
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressure: values["pressure"] as double,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return api.PointerUpEvent(
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return api.PointerUpEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return api.PointerUpEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressure: values["pressure"] as double,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        embedderId: values["embedderId"] as int,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas5 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        api.PointerUpEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressure"] as double,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "buttons",
+          "obscured",
+          "pressure",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "embedderId",
+        ],
+      ) as api.PointerUpEvent;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          return _PointerUpEventProxy(
-            values['@peer'] as FlaxProxyPeer,
-            viewId: values["viewId"] as int,
-            pointer: values["pointer"] as int,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            device: values["device"] as int,
-            buttons: values["buttons"] as int,
-            obscured: values["obscured"] as bool,
-            pressure: values["pressure"] as double,
-            pressureMin: values["pressureMin"] as double,
-            pressureMax: values["pressureMax"] as double,
-            distance: values["distance"] as double,
-            distanceMax: values["distanceMax"] as double,
-            size: values["size"] as double,
-            radiusMajor: values["radiusMajor"] as double,
-            radiusMinor: values["radiusMinor"] as double,
-            radiusMin: values["radiusMin"] as double,
-            radiusMax: values["radiusMax"] as double,
-            orientation: values["orientation"] as double,
-            tilt: values["tilt"] as double,
-            embedderId: values["embedderId"] as int,
-          );
-        }
-        return _PointerUpEventProxy(
+      final _flaxHas2 = values.containsKey("timeStamp");
+      final _flaxHas6 = values.containsKey("position");
+      return flaxInvokeWithDefaults(
+        _PointerUpEventProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api4.Offset,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      if (!values.containsKey("position")) {
-        return _PointerUpEventProxy(
-          values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api2.Duration,
-          pointer: values["pointer"] as int,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          device: values["device"] as int,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          embedderId: values["embedderId"] as int,
-        );
-      }
-      return _PointerUpEventProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        pointer: values["pointer"] as int,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api4.Offset,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        pressure: values["pressure"] as double,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        embedderId: values["embedderId"] as int,
-      );
+          values["viewId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["pointer"] as int,
+          values["kind"] as api4.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["pressure"] as double,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["embedderId"] as int,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "timeStamp",
+          "pointer",
+          "kind",
+          "device",
+          "position",
+          "buttons",
+          "obscured",
+          "pressure",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "embedderId",
+        ],
+      ) as api.PointerUpEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -13655,28 +11974,31 @@ Object _createPrimaryPointerGestureRecognizer(
 ) {
   switch (ctor) {
     case '@implementation':
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return _PrimaryPointerGestureRecognizerProxy(
+      final _flaxHas6 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        _PrimaryPointerGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          deadline: values["deadline"] as api2.Duration?,
-          preAcceptSlopTolerance: values["preAcceptSlopTolerance"] as double?,
-          postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return _PrimaryPointerGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        deadline: values["deadline"] as api2.Duration?,
-        preAcceptSlopTolerance: values["preAcceptSlopTolerance"] as double?,
-        postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+          values["deadline"] as api2.Duration?,
+          values["preAcceptSlopTolerance"] as double?,
+          values["postAcceptSlopTolerance"] as double?,
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas6
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | 32 | (_flaxHas6 ? 64 : 0)],
+        const <String>[
+          "",
+          "deadline",
+          "preAcceptSlopTolerance",
+          "postAcceptSlopTolerance",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.PrimaryPointerGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -13771,31 +12093,30 @@ Object? _ScaleEndDetails_super_get_pointerCount(
 Object _createScaleEndDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("velocity")) {
-        return api.ScaleEndDetails(
-          scaleVelocity: values["scaleVelocity"] as double,
-          pointerCount: values["pointerCount"] as int,
-        );
-      }
-      return api.ScaleEndDetails(
-        velocity: values["velocity"] as api.Velocity,
-        scaleVelocity: values["scaleVelocity"] as double,
-        pointerCount: values["pointerCount"] as int,
-      );
+      final _flaxHas0 = values.containsKey("velocity");
+      return flaxInvokeWithDefaults(
+        api.ScaleEndDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["velocity"] as api.Velocity : null),
+          values["scaleVelocity"] as double,
+          values["pointerCount"] as int,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
+        const <String>["velocity", "scaleVelocity", "pointerCount"],
+      ) as api.ScaleEndDetails;
     case '@implementation':
-      if (!values.containsKey("velocity")) {
-        return _ScaleEndDetailsProxy(
+      final _flaxHas1 = values.containsKey("velocity");
+      return flaxInvokeWithDefaults(
+        _ScaleEndDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          scaleVelocity: values["scaleVelocity"] as double,
-          pointerCount: values["pointerCount"] as int,
-        );
-      }
-      return _ScaleEndDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        velocity: values["velocity"] as api.Velocity,
-        scaleVelocity: values["scaleVelocity"] as double,
-        pointerCount: values["pointerCount"] as int,
-      );
+          (_flaxHas1 ? values["velocity"] as api.Velocity : null),
+          values["scaleVelocity"] as double,
+          values["pointerCount"] as int,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
+        const <String>["", "velocity", "scaleVelocity", "pointerCount"],
+      ) as api.ScaleEndDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14037,107 +12358,61 @@ Object? _ScaleGestureRecognizer_super_set_trackpadScrollToScaleFactor(
 Object _createScaleGestureRecognizer(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("allowedButtonsFilter")) {
-        if (!values.containsKey("trackpadScrollToScaleFactor")) {
-          return api.ScaleGestureRecognizer(
-            debugOwner: values["debugOwner"],
-            supportedDevices:
-                values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-            dragStartBehavior:
-                values["dragStartBehavior"] as api.DragStartBehavior,
-            trackpadScrollCausesScale:
-                values["trackpadScrollCausesScale"] as bool,
-          );
-        }
-        return api.ScaleGestureRecognizer(
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          dragStartBehavior:
-              values["dragStartBehavior"] as api.DragStartBehavior,
-          trackpadScrollCausesScale:
-              values["trackpadScrollCausesScale"] as bool,
-          trackpadScrollToScaleFactor:
-              values["trackpadScrollToScaleFactor"] as api4.Offset,
-        );
-      }
-      if (!values.containsKey("trackpadScrollToScaleFactor")) {
-        return api.ScaleGestureRecognizer(
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          allowedButtonsFilter:
-              values["allowedButtonsFilter"] as bool Function(int buttons),
-          dragStartBehavior:
-              values["dragStartBehavior"] as api.DragStartBehavior,
-          trackpadScrollCausesScale:
-              values["trackpadScrollCausesScale"] as bool,
-        );
-      }
-      return api.ScaleGestureRecognizer(
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-        dragStartBehavior: values["dragStartBehavior"] as api.DragStartBehavior,
-        trackpadScrollCausesScale: values["trackpadScrollCausesScale"] as bool,
-        trackpadScrollToScaleFactor:
-            values["trackpadScrollToScaleFactor"] as api4.Offset,
-      );
+      final _flaxHas2 = values.containsKey("allowedButtonsFilter");
+      final _flaxHas5 = values.containsKey("trackpadScrollToScaleFactor");
+      return flaxInvokeWithDefaults(
+        api.ScaleGestureRecognizer.new,
+        <Object?>[
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas2
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+          values["dragStartBehavior"] as api.DragStartBehavior,
+          values["trackpadScrollCausesScale"] as bool,
+          (_flaxHas5
+              ? values["trackpadScrollToScaleFactor"] as api4.Offset
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | (_flaxHas5 ? 32 : 0)],
+        const <String>[
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+          "dragStartBehavior",
+          "trackpadScrollCausesScale",
+          "trackpadScrollToScaleFactor",
+        ],
+      ) as api.ScaleGestureRecognizer;
     case '@implementation':
-      if (!values.containsKey("allowedButtonsFilter")) {
-        if (!values.containsKey("trackpadScrollToScaleFactor")) {
-          return _ScaleGestureRecognizerProxy(
-            values['@peer'] as FlaxProxyPeer,
-            debugOwner: values["debugOwner"],
-            supportedDevices:
-                values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-            dragStartBehavior:
-                values["dragStartBehavior"] as api.DragStartBehavior,
-            trackpadScrollCausesScale:
-                values["trackpadScrollCausesScale"] as bool,
-          );
-        }
-        return _ScaleGestureRecognizerProxy(
+      final _flaxHas3 = values.containsKey("allowedButtonsFilter");
+      final _flaxHas6 = values.containsKey("trackpadScrollToScaleFactor");
+      return flaxInvokeWithDefaults(
+        _ScaleGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          dragStartBehavior:
-              values["dragStartBehavior"] as api.DragStartBehavior,
-          trackpadScrollCausesScale:
-              values["trackpadScrollCausesScale"] as bool,
-          trackpadScrollToScaleFactor:
-              values["trackpadScrollToScaleFactor"] as api4.Offset,
-        );
-      }
-      if (!values.containsKey("trackpadScrollToScaleFactor")) {
-        return _ScaleGestureRecognizerProxy(
-          values['@peer'] as FlaxProxyPeer,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          allowedButtonsFilter:
-              values["allowedButtonsFilter"] as bool Function(int buttons),
-          dragStartBehavior:
-              values["dragStartBehavior"] as api.DragStartBehavior,
-          trackpadScrollCausesScale:
-              values["trackpadScrollCausesScale"] as bool,
-        );
-      }
-      return _ScaleGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-        dragStartBehavior: values["dragStartBehavior"] as api.DragStartBehavior,
-        trackpadScrollCausesScale: values["trackpadScrollCausesScale"] as bool,
-        trackpadScrollToScaleFactor:
-            values["trackpadScrollToScaleFactor"] as api4.Offset,
-      );
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas3
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+          values["dragStartBehavior"] as api.DragStartBehavior,
+          values["trackpadScrollCausesScale"] as bool,
+          (_flaxHas6
+              ? values["trackpadScrollToScaleFactor"] as api4.Offset
+              : null),
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32 | (_flaxHas6 ? 64 : 0)],
+        const <String>[
+          "",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+          "dragStartBehavior",
+          "trackpadScrollCausesScale",
+          "trackpadScrollToScaleFactor",
+        ],
+      ) as api.ScaleGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14213,39 +12488,47 @@ Object? _ScaleStartDetails_super_get_kind(
 Object _createScaleStartDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("focalPoint")) {
-        return api.ScaleStartDetails(
-          localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-          pointerCount: values["pointerCount"] as int,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-        );
-      }
-      return api.ScaleStartDetails(
-        focalPoint: values["focalPoint"] as api4.Offset,
-        localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-        pointerCount: values["pointerCount"] as int,
-        sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-      );
+      final _flaxHas0 = values.containsKey("focalPoint");
+      return flaxInvokeWithDefaults(
+        api.ScaleStartDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["focalPoint"] as api4.Offset : null),
+          values["localFocalPoint"] as api4.Offset?,
+          values["pointerCount"] as int,
+          values["sourceTimeStamp"] as api2.Duration?,
+          values["kind"] as api4.PointerDeviceKind?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16],
+        const <String>[
+          "focalPoint",
+          "localFocalPoint",
+          "pointerCount",
+          "sourceTimeStamp",
+          "kind",
+        ],
+      ) as api.ScaleStartDetails;
     case '@implementation':
-      if (!values.containsKey("focalPoint")) {
-        return _ScaleStartDetailsProxy(
+      final _flaxHas1 = values.containsKey("focalPoint");
+      return flaxInvokeWithDefaults(
+        _ScaleStartDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-          pointerCount: values["pointerCount"] as int,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-        );
-      }
-      return _ScaleStartDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        focalPoint: values["focalPoint"] as api4.Offset,
-        localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-        pointerCount: values["pointerCount"] as int,
-        sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-      );
+          (_flaxHas1 ? values["focalPoint"] as api4.Offset : null),
+          values["localFocalPoint"] as api4.Offset?,
+          values["pointerCount"] as int,
+          values["sourceTimeStamp"] as api2.Duration?,
+          values["kind"] as api4.PointerDeviceKind?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32],
+        const <String>[
+          "",
+          "focalPoint",
+          "localFocalPoint",
+          "pointerCount",
+          "sourceTimeStamp",
+          "kind",
+        ],
+      ) as api.ScaleStartDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14341,103 +12624,86 @@ Object? _ScaleUpdateDetails_super_get_pointerCount(
 Object _createScaleUpdateDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("focalPoint")) {
-        if (!values.containsKey("focalPointDelta")) {
-          return api.ScaleUpdateDetails(
-            localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-            scale: values["scale"] as double,
-            horizontalScale: values["horizontalScale"] as double,
-            verticalScale: values["verticalScale"] as double,
-            rotation: values["rotation"] as double,
-            pointerCount: values["pointerCount"] as int,
-            sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-          );
-        }
-        return api.ScaleUpdateDetails(
-          localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-          scale: values["scale"] as double,
-          horizontalScale: values["horizontalScale"] as double,
-          verticalScale: values["verticalScale"] as double,
-          rotation: values["rotation"] as double,
-          pointerCount: values["pointerCount"] as int,
-          focalPointDelta: values["focalPointDelta"] as api4.Offset,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        );
-      }
-      if (!values.containsKey("focalPointDelta")) {
-        return api.ScaleUpdateDetails(
-          focalPoint: values["focalPoint"] as api4.Offset,
-          localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-          scale: values["scale"] as double,
-          horizontalScale: values["horizontalScale"] as double,
-          verticalScale: values["verticalScale"] as double,
-          rotation: values["rotation"] as double,
-          pointerCount: values["pointerCount"] as int,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        );
-      }
-      return api.ScaleUpdateDetails(
-        focalPoint: values["focalPoint"] as api4.Offset,
-        localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-        scale: values["scale"] as double,
-        horizontalScale: values["horizontalScale"] as double,
-        verticalScale: values["verticalScale"] as double,
-        rotation: values["rotation"] as double,
-        pointerCount: values["pointerCount"] as int,
-        focalPointDelta: values["focalPointDelta"] as api4.Offset,
-        sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-      );
+      final _flaxHas0 = values.containsKey("focalPoint");
+      final _flaxHas7 = values.containsKey("focalPointDelta");
+      return flaxInvokeWithDefaults(
+        api.ScaleUpdateDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["focalPoint"] as api4.Offset : null),
+          values["localFocalPoint"] as api4.Offset?,
+          values["scale"] as double,
+          values["horizontalScale"] as double,
+          values["verticalScale"] as double,
+          values["rotation"] as double,
+          values["pointerCount"] as int,
+          (_flaxHas7 ? values["focalPointDelta"] as api4.Offset : null),
+          values["sourceTimeStamp"] as api2.Duration?,
+        ],
+        <int>[
+          (_flaxHas0 ? 1 : 0) |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              (_flaxHas7 ? 128 : 0) |
+              256,
+        ],
+        const <String>[
+          "focalPoint",
+          "localFocalPoint",
+          "scale",
+          "horizontalScale",
+          "verticalScale",
+          "rotation",
+          "pointerCount",
+          "focalPointDelta",
+          "sourceTimeStamp",
+        ],
+      ) as api.ScaleUpdateDetails;
     case '@implementation':
-      if (!values.containsKey("focalPoint")) {
-        if (!values.containsKey("focalPointDelta")) {
-          return _ScaleUpdateDetailsProxy(
-            values['@peer'] as FlaxProxyPeer,
-            localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-            scale: values["scale"] as double,
-            horizontalScale: values["horizontalScale"] as double,
-            verticalScale: values["verticalScale"] as double,
-            rotation: values["rotation"] as double,
-            pointerCount: values["pointerCount"] as int,
-            sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-          );
-        }
-        return _ScaleUpdateDetailsProxy(
+      final _flaxHas1 = values.containsKey("focalPoint");
+      final _flaxHas8 = values.containsKey("focalPointDelta");
+      return flaxInvokeWithDefaults(
+        _ScaleUpdateDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-          scale: values["scale"] as double,
-          horizontalScale: values["horizontalScale"] as double,
-          verticalScale: values["verticalScale"] as double,
-          rotation: values["rotation"] as double,
-          pointerCount: values["pointerCount"] as int,
-          focalPointDelta: values["focalPointDelta"] as api4.Offset,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        );
-      }
-      if (!values.containsKey("focalPointDelta")) {
-        return _ScaleUpdateDetailsProxy(
-          values['@peer'] as FlaxProxyPeer,
-          focalPoint: values["focalPoint"] as api4.Offset,
-          localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-          scale: values["scale"] as double,
-          horizontalScale: values["horizontalScale"] as double,
-          verticalScale: values["verticalScale"] as double,
-          rotation: values["rotation"] as double,
-          pointerCount: values["pointerCount"] as int,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        );
-      }
-      return _ScaleUpdateDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        focalPoint: values["focalPoint"] as api4.Offset,
-        localFocalPoint: values["localFocalPoint"] as api4.Offset?,
-        scale: values["scale"] as double,
-        horizontalScale: values["horizontalScale"] as double,
-        verticalScale: values["verticalScale"] as double,
-        rotation: values["rotation"] as double,
-        pointerCount: values["pointerCount"] as int,
-        focalPointDelta: values["focalPointDelta"] as api4.Offset,
-        sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-      );
+          (_flaxHas1 ? values["focalPoint"] as api4.Offset : null),
+          values["localFocalPoint"] as api4.Offset?,
+          values["scale"] as double,
+          values["horizontalScale"] as double,
+          values["verticalScale"] as double,
+          values["rotation"] as double,
+          values["pointerCount"] as int,
+          (_flaxHas8 ? values["focalPointDelta"] as api4.Offset : null),
+          values["sourceTimeStamp"] as api2.Duration?,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              (_flaxHas8 ? 256 : 0) |
+              512,
+        ],
+        const <String>[
+          "",
+          "focalPoint",
+          "localFocalPoint",
+          "scale",
+          "horizontalScale",
+          "verticalScale",
+          "rotation",
+          "pointerCount",
+          "focalPointDelta",
+          "sourceTimeStamp",
+        ],
+      ) as api.ScaleUpdateDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14563,39 +12829,47 @@ Object? _SerialTapDownDetails_super_get_count(
 Object _createSerialTapDownDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        return api.SerialTapDownDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          buttons: values["buttons"] as int,
-          count: values["count"] as int,
-        );
-      }
-      return api.SerialTapDownDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        buttons: values["buttons"] as int,
-        count: values["count"] as int,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        api.SerialTapDownDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["kind"] as api4.PointerDeviceKind,
+          values["buttons"] as int,
+          values["count"] as int,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16],
+        const <String>[
+          "globalPosition",
+          "localPosition",
+          "kind",
+          "buttons",
+          "count",
+        ],
+      ) as api.SerialTapDownDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        return _SerialTapDownDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        _SerialTapDownDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          buttons: values["buttons"] as int,
-          count: values["count"] as int,
-        );
-      }
-      return _SerialTapDownDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        buttons: values["buttons"] as int,
-        count: values["count"] as int,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["kind"] as api4.PointerDeviceKind,
+          values["buttons"] as int,
+          values["count"] as int,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32],
+        const <String>[
+          "",
+          "globalPosition",
+          "localPosition",
+          "kind",
+          "buttons",
+          "count",
+        ],
+      ) as api.SerialTapDownDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14739,37 +13013,43 @@ Object _createSerialTapGestureRecognizer(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return api.SerialTapGestureRecognizer(
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return api.SerialTapGestureRecognizer(
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+      final _flaxHas2 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        api.SerialTapGestureRecognizer.new,
+        <Object?>[
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas2
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>[
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.SerialTapGestureRecognizer;
     case '@implementation':
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return _SerialTapGestureRecognizerProxy(
+      final _flaxHas3 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        _SerialTapGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return _SerialTapGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas3
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+        const <String>[
+          "",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.SerialTapGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14831,35 +13111,32 @@ Object? _SerialTapUpDetails_super_get_count(
 Object _createSerialTapUpDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        return api.SerialTapUpDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-          count: values["count"] as int,
-        );
-      }
-      return api.SerialTapUpDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-        count: values["count"] as int,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        api.SerialTapUpDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["kind"] as api4.PointerDeviceKind?,
+          values["count"] as int,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
+        const <String>["globalPosition", "localPosition", "kind", "count"],
+      ) as api.SerialTapUpDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        return _SerialTapUpDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        _SerialTapUpDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-          count: values["count"] as int,
-        );
-      }
-      return _SerialTapUpDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-        count: values["count"] as int,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["kind"] as api4.PointerDeviceKind?,
+          values["count"] as int,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
+        const <String>["", "globalPosition", "localPosition", "kind", "count"],
+      ) as api.SerialTapUpDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -15000,31 +13277,30 @@ Object? _TapDownDetails_super_get_kind(
 Object _createTapDownDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        return api.TapDownDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-        );
-      }
-      return api.TapDownDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        api.TapDownDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["kind"] as api4.PointerDeviceKind?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
+        const <String>["globalPosition", "localPosition", "kind"],
+      ) as api.TapDownDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        return _TapDownDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        _TapDownDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-        );
-      }
-      return _TapDownDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["kind"] as api4.PointerDeviceKind?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
+        const <String>["", "globalPosition", "localPosition", "kind"],
+      ) as api.TapDownDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -15167,71 +13443,49 @@ Object? _TapDragEndDetails_super_get_consecutiveTapCount(
 Object _createTapDragEndDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        if (!values.containsKey("velocity")) {
-          return api.TapDragEndDetails(
-            localPosition: values["localPosition"] as api4.Offset?,
-            primaryVelocity: values["primaryVelocity"] as double?,
-            consecutiveTapCount: values["consecutiveTapCount"] as int,
-          );
-        }
-        return api.TapDragEndDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-          velocity: values["velocity"] as api.Velocity,
-          primaryVelocity: values["primaryVelocity"] as double?,
-          consecutiveTapCount: values["consecutiveTapCount"] as int,
-        );
-      }
-      if (!values.containsKey("velocity")) {
-        return api.TapDragEndDetails(
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-          primaryVelocity: values["primaryVelocity"] as double?,
-          consecutiveTapCount: values["consecutiveTapCount"] as int,
-        );
-      }
-      return api.TapDragEndDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        velocity: values["velocity"] as api.Velocity,
-        primaryVelocity: values["primaryVelocity"] as double?,
-        consecutiveTapCount: values["consecutiveTapCount"] as int,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      final _flaxHas2 = values.containsKey("velocity");
+      return flaxInvokeWithDefaults(
+        api.TapDragEndDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          (_flaxHas2 ? values["velocity"] as api.Velocity : null),
+          values["primaryVelocity"] as double?,
+          values["consecutiveTapCount"] as int,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16],
+        const <String>[
+          "globalPosition",
+          "localPosition",
+          "velocity",
+          "primaryVelocity",
+          "consecutiveTapCount",
+        ],
+      ) as api.TapDragEndDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        if (!values.containsKey("velocity")) {
-          return _TapDragEndDetailsProxy(
-            values['@peer'] as FlaxProxyPeer,
-            localPosition: values["localPosition"] as api4.Offset?,
-            primaryVelocity: values["primaryVelocity"] as double?,
-            consecutiveTapCount: values["consecutiveTapCount"] as int,
-          );
-        }
-        return _TapDragEndDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      final _flaxHas3 = values.containsKey("velocity");
+      return flaxInvokeWithDefaults(
+        _TapDragEndDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-          velocity: values["velocity"] as api.Velocity,
-          primaryVelocity: values["primaryVelocity"] as double?,
-          consecutiveTapCount: values["consecutiveTapCount"] as int,
-        );
-      }
-      if (!values.containsKey("velocity")) {
-        return _TapDragEndDetailsProxy(
-          values['@peer'] as FlaxProxyPeer,
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-          primaryVelocity: values["primaryVelocity"] as double?,
-          consecutiveTapCount: values["consecutiveTapCount"] as int,
-        );
-      }
-      return _TapDragEndDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        velocity: values["velocity"] as api.Velocity,
-        primaryVelocity: values["primaryVelocity"] as double?,
-        consecutiveTapCount: values["consecutiveTapCount"] as int,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          (_flaxHas3 ? values["velocity"] as api.Velocity : null),
+          values["primaryVelocity"] as double?,
+          values["consecutiveTapCount"] as int,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32],
+        const <String>[
+          "",
+          "globalPosition",
+          "localPosition",
+          "velocity",
+          "primaryVelocity",
+          "consecutiveTapCount",
+        ],
+      ) as api.TapDragEndDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -15482,55 +13736,63 @@ Object? _TapDragUpdateDetails_super_get_consecutiveTapCount(
 Object _createTapDragUpdateDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("delta")) {
-        return api.TapDragUpdateDetails(
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-          primaryDelta: values["primaryDelta"] as double?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-          offsetFromOrigin: values["offsetFromOrigin"] as api4.Offset,
-          localOffsetFromOrigin: values["localOffsetFromOrigin"] as api4.Offset,
-          consecutiveTapCount: values["consecutiveTapCount"] as int,
-        );
-      }
-      return api.TapDragUpdateDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
-        sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        delta: values["delta"] as api4.Offset,
-        primaryDelta: values["primaryDelta"] as double?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-        offsetFromOrigin: values["offsetFromOrigin"] as api4.Offset,
-        localOffsetFromOrigin: values["localOffsetFromOrigin"] as api4.Offset,
-        consecutiveTapCount: values["consecutiveTapCount"] as int,
-      );
+      final _flaxHas3 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        api.TapDragUpdateDetails.new,
+        <Object?>[
+          values["globalPosition"] as api4.Offset,
+          values["localPosition"] as api4.Offset,
+          values["sourceTimeStamp"] as api2.Duration?,
+          (_flaxHas3 ? values["delta"] as api4.Offset : null),
+          values["primaryDelta"] as double?,
+          values["kind"] as api4.PointerDeviceKind?,
+          values["offsetFromOrigin"] as api4.Offset,
+          values["localOffsetFromOrigin"] as api4.Offset,
+          values["consecutiveTapCount"] as int,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32 | 64 | 128 | 256],
+        const <String>[
+          "globalPosition",
+          "localPosition",
+          "sourceTimeStamp",
+          "delta",
+          "primaryDelta",
+          "kind",
+          "offsetFromOrigin",
+          "localOffsetFromOrigin",
+          "consecutiveTapCount",
+        ],
+      ) as api.TapDragUpdateDetails;
     case '@implementation':
-      if (!values.containsKey("delta")) {
-        return _TapDragUpdateDetailsProxy(
+      final _flaxHas4 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        _TapDragUpdateDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset,
-          sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-          primaryDelta: values["primaryDelta"] as double?,
-          kind: values["kind"] as api4.PointerDeviceKind?,
-          offsetFromOrigin: values["offsetFromOrigin"] as api4.Offset,
-          localOffsetFromOrigin: values["localOffsetFromOrigin"] as api4.Offset,
-          consecutiveTapCount: values["consecutiveTapCount"] as int,
-        );
-      }
-      return _TapDragUpdateDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
-        sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        delta: values["delta"] as api4.Offset,
-        primaryDelta: values["primaryDelta"] as double?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
-        offsetFromOrigin: values["offsetFromOrigin"] as api4.Offset,
-        localOffsetFromOrigin: values["localOffsetFromOrigin"] as api4.Offset,
-        consecutiveTapCount: values["consecutiveTapCount"] as int,
-      );
+          values["globalPosition"] as api4.Offset,
+          values["localPosition"] as api4.Offset,
+          values["sourceTimeStamp"] as api2.Duration?,
+          (_flaxHas4 ? values["delta"] as api4.Offset : null),
+          values["primaryDelta"] as double?,
+          values["kind"] as api4.PointerDeviceKind?,
+          values["offsetFromOrigin"] as api4.Offset,
+          values["localOffsetFromOrigin"] as api4.Offset,
+          values["consecutiveTapCount"] as int,
+        ],
+        <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64 | 128 | 256 | 512],
+        const <String>[
+          "",
+          "globalPosition",
+          "localPosition",
+          "sourceTimeStamp",
+          "delta",
+          "primaryDelta",
+          "kind",
+          "offsetFromOrigin",
+          "localOffsetFromOrigin",
+          "consecutiveTapCount",
+        ],
+      ) as api.TapDragUpdateDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -15993,45 +14255,51 @@ Object? _TapGestureRecognizer_super_set_onTertiaryTapCancel(
 Object _createTapGestureRecognizer(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return api.TapGestureRecognizer(
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          preAcceptSlopTolerance: values["preAcceptSlopTolerance"] as double?,
-          postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
-        );
-      }
-      return api.TapGestureRecognizer(
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-        preAcceptSlopTolerance: values["preAcceptSlopTolerance"] as double?,
-        postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
-      );
+      final _flaxHas2 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        api.TapGestureRecognizer.new,
+        <Object?>[
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas2
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+          values["preAcceptSlopTolerance"] as double?,
+          values["postAcceptSlopTolerance"] as double?,
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16],
+        const <String>[
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+          "preAcceptSlopTolerance",
+          "postAcceptSlopTolerance",
+        ],
+      ) as api.TapGestureRecognizer;
     case '@implementation':
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return _TapGestureRecognizerProxy(
+      final _flaxHas3 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        _TapGestureRecognizerProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-          preAcceptSlopTolerance: values["preAcceptSlopTolerance"] as double?,
-          postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
-        );
-      }
-      return _TapGestureRecognizerProxy(
-        values['@peer'] as FlaxProxyPeer,
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-        preAcceptSlopTolerance: values["preAcceptSlopTolerance"] as double?,
-        postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
-      );
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas3
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+          values["preAcceptSlopTolerance"] as double?,
+          values["postAcceptSlopTolerance"] as double?,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32],
+        const <String>[
+          "",
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+          "preAcceptSlopTolerance",
+          "postAcceptSlopTolerance",
+        ],
+      ) as api.TapGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -16057,63 +14325,34 @@ Object? _TapMoveDetails_super_get_delta(
 Object _createTapMoveDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        if (!values.containsKey("delta")) {
-          return api.TapMoveDetails(
-            kind: values["kind"] as api4.PointerDeviceKind,
-            localPosition: values["localPosition"] as api4.Offset?,
-          );
-        }
-        return api.TapMoveDetails(
-          kind: values["kind"] as api4.PointerDeviceKind,
-          delta: values["delta"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-        );
-      }
-      if (!values.containsKey("delta")) {
-        return api.TapMoveDetails(
-          kind: values["kind"] as api4.PointerDeviceKind,
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-        );
-      }
-      return api.TapMoveDetails(
-        kind: values["kind"] as api4.PointerDeviceKind,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        delta: values["delta"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-      );
+      final _flaxHas1 = values.containsKey("globalPosition");
+      final _flaxHas2 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        api.TapMoveDetails.new,
+        <Object?>[
+          values["kind"] as api4.PointerDeviceKind,
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          (_flaxHas2 ? values["delta"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0) | 8],
+        const <String>["kind", "globalPosition", "delta", "localPosition"],
+      ) as api.TapMoveDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        if (!values.containsKey("delta")) {
-          return _TapMoveDetailsProxy(
-            values['@peer'] as FlaxProxyPeer,
-            kind: values["kind"] as api4.PointerDeviceKind,
-            localPosition: values["localPosition"] as api4.Offset?,
-          );
-        }
-        return _TapMoveDetailsProxy(
+      final _flaxHas2 = values.containsKey("globalPosition");
+      final _flaxHas3 = values.containsKey("delta");
+      return flaxInvokeWithDefaults(
+        _TapMoveDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          delta: values["delta"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-        );
-      }
-      if (!values.containsKey("delta")) {
-        return _TapMoveDetailsProxy(
-          values['@peer'] as FlaxProxyPeer,
-          kind: values["kind"] as api4.PointerDeviceKind,
-          globalPosition: values["globalPosition"] as api4.Offset,
-          localPosition: values["localPosition"] as api4.Offset?,
-        );
-      }
-      return _TapMoveDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        kind: values["kind"] as api4.PointerDeviceKind,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        delta: values["delta"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-      );
+          values["kind"] as api4.PointerDeviceKind,
+          (_flaxHas2 ? values["globalPosition"] as api4.Offset : null),
+          (_flaxHas3 ? values["delta"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | (_flaxHas3 ? 8 : 0) | 16],
+        const <String>["", "kind", "globalPosition", "delta", "localPosition"],
+      ) as api.TapMoveDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -16165,31 +14404,30 @@ Object? _TapUpDetails_super_get_kind(
 Object _createTapUpDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("globalPosition")) {
-        return api.TapUpDetails(
-          localPosition: values["localPosition"] as api4.Offset?,
-          kind: values["kind"] as api4.PointerDeviceKind,
-        );
-      }
-      return api.TapUpDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        kind: values["kind"] as api4.PointerDeviceKind,
-      );
+      final _flaxHas0 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        api.TapUpDetails.new,
+        <Object?>[
+          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["kind"] as api4.PointerDeviceKind,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
+        const <String>["globalPosition", "localPosition", "kind"],
+      ) as api.TapUpDetails;
     case '@implementation':
-      if (!values.containsKey("globalPosition")) {
-        return _TapUpDetailsProxy(
+      final _flaxHas1 = values.containsKey("globalPosition");
+      return flaxInvokeWithDefaults(
+        _TapUpDetailsProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          localPosition: values["localPosition"] as api4.Offset?,
-          kind: values["kind"] as api4.PointerDeviceKind,
-        );
-      }
-      return _TapUpDetailsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
-        kind: values["kind"] as api4.PointerDeviceKind,
-      );
+          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
+          values["localPosition"] as api4.Offset?,
+          values["kind"] as api4.PointerDeviceKind,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
+        const <String>["", "globalPosition", "localPosition", "kind"],
+      ) as api.TapUpDetails;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -16401,20 +14639,23 @@ Object _createVerticalDragGestureRecognizer(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("allowedButtonsFilter")) {
-        return api.VerticalDragGestureRecognizer(
-          debugOwner: values["debugOwner"],
-          supportedDevices:
-              values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        );
-      }
-      return api.VerticalDragGestureRecognizer(
-        debugOwner: values["debugOwner"],
-        supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
-        allowedButtonsFilter:
-            values["allowedButtonsFilter"] as bool Function(int buttons),
-      );
+      final _flaxHas2 = values.containsKey("allowedButtonsFilter");
+      return flaxInvokeWithDefaults(
+        api.VerticalDragGestureRecognizer.new,
+        <Object?>[
+          values["debugOwner"],
+          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          (_flaxHas2
+              ? values["allowedButtonsFilter"] as bool Function(int buttons)
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>[
+          "debugOwner",
+          "supportedDevices",
+          "allowedButtonsFilter",
+        ],
+      ) as api.VerticalDragGestureRecognizer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -17965,11 +16206,13 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
     int pointer, [
     Object? transform = _flaxOmitted,
   ]) {
-    if (identical(transform, _flaxOmitted)) {
-      super.startTrackingPointer(pointer);
-      return;
-    }
-    super.startTrackingPointer(pointer, transform as api5.Matrix4?);
+    final _flaxHas1 = !identical(transform, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.startTrackingPointer,
+      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    );
     return;
   }
 
@@ -18127,14 +16370,17 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -18154,19 +16400,17 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -18192,93 +16436,31 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -18307,21 +16489,17 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -18339,10 +16517,13 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -18883,14 +17064,17 @@ final class _DelayedMultiDragGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -18922,19 +17106,17 @@ final class _DelayedMultiDragGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -18960,93 +17142,31 @@ final class _DelayedMultiDragGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -19075,21 +17195,17 @@ final class _DelayedMultiDragGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -19107,10 +17223,13 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -19521,14 +17640,17 @@ final class _DoubleTapGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -19594,19 +17716,17 @@ final class _DoubleTapGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -19632,93 +17752,31 @@ final class _DoubleTapGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -19747,21 +17805,17 @@ final class _DoubleTapGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -19779,10 +17833,13 @@ final class _DoubleTapGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -20099,10 +18156,13 @@ final class _DragDownDetailsProxy extends api.DragDownDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -20122,21 +18182,17 @@ final class _DragDownDetailsProxy extends api.DragDownDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -20203,10 +18259,13 @@ final class _DragEndDetailsProxy extends api.DragEndDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -20226,21 +18285,17 @@ final class _DragEndDetailsProxy extends api.DragEndDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -20331,10 +18386,13 @@ final class _DragStartDetailsProxy extends api.DragStartDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -20354,21 +18412,17 @@ final class _DragStartDetailsProxy extends api.DragStartDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -20461,10 +18515,13 @@ final class _DragUpdateDetailsProxy extends api.DragUpdateDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -20484,21 +18541,17 @@ final class _DragUpdateDetailsProxy extends api.DragUpdateDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -20778,11 +18831,13 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
     int pointer, [
     Object? transform = _flaxOmitted,
   ]) {
-    if (identical(transform, _flaxOmitted)) {
-      super.startTrackingPointer(pointer);
-      return;
-    }
-    super.startTrackingPointer(pointer, transform as api5.Matrix4?);
+    final _flaxHas1 = !identical(transform, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.startTrackingPointer,
+      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    );
     return;
   }
 
@@ -20940,14 +18995,17 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -20979,19 +19037,17 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -21017,93 +19073,31 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -21132,21 +19126,17 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -21164,10 +19154,13 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -21406,20 +19399,47 @@ final class _FlutterErrorDetailsForPointerEventDispatcherProxy
     Object? stack = _flaxOmitted,
     Object? stackFilter = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(context, _flaxOmitted))
-        #context: context as api1.DiagnosticsNode?,
-      if (!identical(exception, _flaxOmitted)) #exception: exception,
-      if (!identical(informationCollector, _flaxOmitted))
-        #informationCollector:
-            informationCollector as Iterable<api1.DiagnosticsNode> Function()?,
-      if (!identical(library, _flaxOmitted)) #library: library as String?,
-      if (!identical(silent, _flaxOmitted)) #silent: silent as bool?,
-      if (!identical(stack, _flaxOmitted)) #stack: stack as api2.StackTrace?,
-      if (!identical(stackFilter, _flaxOmitted))
-        #stackFilter:
-            stackFilter as Iterable<String> Function(Iterable<String> input)?,
-    }) as api1.FlutterErrorDetails);
+    final _flaxHas0 = !identical(context, _flaxOmitted);
+    final _flaxHas1 = !identical(exception, _flaxOmitted);
+    final _flaxHas2 = !identical(informationCollector, _flaxOmitted);
+    final _flaxHas3 = !identical(library, _flaxOmitted);
+    final _flaxHas4 = !identical(silent, _flaxOmitted);
+    final _flaxHas5 = !identical(stack, _flaxOmitted);
+    final _flaxHas6 = !identical(stackFilter, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? context as api1.DiagnosticsNode? : null),
+        (_flaxHas1 ? exception : null),
+        (_flaxHas2
+            ? informationCollector as Iterable<api1.DiagnosticsNode> Function()?
+            : null),
+        (_flaxHas3 ? library as String? : null),
+        (_flaxHas4 ? silent as bool? : null),
+        (_flaxHas5 ? stack as api2.StackTrace? : null),
+        (_flaxHas6
+            ? stackFilter as Iterable<String> Function(Iterable<String> input)?
+            : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0),
+      ],
+      const <String>[
+        "context",
+        "exception",
+        "informationCollector",
+        "library",
+        "silent",
+        "stack",
+        "stackFilter",
+      ],
+    ) as api1.FlutterErrorDetails);
   }
 
   @override
@@ -21466,10 +19486,13 @@ final class _FlutterErrorDetailsForPointerEventDispatcherProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -21489,21 +19512,17 @@ final class _FlutterErrorDetailsForPointerEventDispatcherProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -21660,10 +19679,13 @@ final class _ForcePressDetailsProxy extends api.ForcePressDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -21683,21 +19705,17 @@ final class _ForcePressDetailsProxy extends api.ForcePressDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -21947,11 +19965,13 @@ final class _ForcePressGestureRecognizerProxy
     int pointer, [
     Object? transform = _flaxOmitted,
   ]) {
-    if (identical(transform, _flaxOmitted)) {
-      super.startTrackingPointer(pointer);
-      return;
-    }
-    super.startTrackingPointer(pointer, transform as api5.Matrix4?);
+    final _flaxHas1 = !identical(transform, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.startTrackingPointer,
+      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    );
     return;
   }
 
@@ -22109,14 +20129,17 @@ final class _ForcePressGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -22148,19 +20171,17 @@ final class _ForcePressGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -22186,93 +20207,31 @@ final class _ForcePressGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -22301,21 +20260,17 @@ final class _ForcePressGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -22333,10 +20288,13 @@ final class _ForcePressGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -22863,10 +20821,13 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -22886,19 +20847,17 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -22924,93 +20883,31 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -23039,21 +20936,17 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -23239,14 +21132,17 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -23833,14 +21729,17 @@ final class _HorizontalMultiDragGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -23872,19 +21771,17 @@ final class _HorizontalMultiDragGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -23910,93 +21807,31 @@ final class _HorizontalMultiDragGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -24025,21 +21860,17 @@ final class _HorizontalMultiDragGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -24057,10 +21888,13 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -24523,14 +22357,17 @@ final class _ImmediateMultiDragGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -24562,19 +22399,17 @@ final class _ImmediateMultiDragGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -24600,93 +22435,31 @@ final class _ImmediateMultiDragGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -24715,21 +22488,17 @@ final class _ImmediateMultiDragGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -24747,10 +22516,13 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -25024,10 +22796,13 @@ final class _LongPressDownDetailsProxy extends api.LongPressDownDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -25047,21 +22822,17 @@ final class _LongPressDownDetailsProxy extends api.LongPressDownDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -25139,10 +22910,13 @@ final class _LongPressEndDetailsProxy extends api.LongPressEndDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -25162,21 +22936,17 @@ final class _LongPressEndDetailsProxy extends api.LongPressEndDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -25485,11 +23255,13 @@ final class _LongPressGestureRecognizerProxy
     int pointer, [
     Object? transform = _flaxOmitted,
   ]) {
-    if (identical(transform, _flaxOmitted)) {
-      super.startTrackingPointer(pointer);
-      return;
-    }
-    super.startTrackingPointer(pointer, transform as api5.Matrix4?);
+    final _flaxHas1 = !identical(transform, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.startTrackingPointer,
+      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    );
     return;
   }
 
@@ -25647,14 +23419,17 @@ final class _LongPressGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -25674,19 +23449,17 @@ final class _LongPressGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -25712,93 +23485,31 @@ final class _LongPressGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -25827,21 +23538,17 @@ final class _LongPressGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -25859,10 +23566,13 @@ final class _LongPressGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -26743,10 +24453,13 @@ final class _LongPressMoveUpdateDetailsProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -26766,21 +24479,17 @@ final class _LongPressMoveUpdateDetailsProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -26869,10 +24578,13 @@ final class _LongPressStartDetailsProxy extends api.LongPressStartDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -26892,21 +24604,17 @@ final class _LongPressStartDetailsProxy extends api.LongPressStartDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -27166,14 +24874,17 @@ final class _MultiDragGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -27239,19 +24950,17 @@ final class _MultiDragGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -27277,93 +24986,31 @@ final class _MultiDragGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -27392,21 +25039,17 @@ final class _MultiDragGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -27424,10 +25067,13 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -27945,14 +25591,17 @@ final class _MultiTapGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -28018,19 +25667,17 @@ final class _MultiTapGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -28056,93 +25703,31 @@ final class _MultiTapGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -28171,21 +25756,17 @@ final class _MultiTapGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -28203,10 +25784,13 @@ final class _MultiTapGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -28804,14 +26388,17 @@ final class _OneSequenceGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -28877,19 +26464,17 @@ final class _OneSequenceGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -28915,93 +26500,31 @@ final class _OneSequenceGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -29030,21 +26553,17 @@ final class _OneSequenceGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -29062,10 +26581,13 @@ final class _OneSequenceGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -29155,11 +26677,13 @@ final class _OneSequenceGestureRecognizerProxy
     int pointer, [
     Object? transform = _flaxOmitted,
   ]) {
-    if (identical(transform, _flaxOmitted)) {
-      super.startTrackingPointer(pointer);
-      return;
-    }
-    super.startTrackingPointer(pointer, transform as api5.Matrix4?);
+    final _flaxHas1 = !identical(transform, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.startTrackingPointer,
+      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    );
     return;
   }
 
@@ -29505,41 +27029,107 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerAddedEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerAddedEvent);
   }
 
   @override
@@ -29568,21 +27158,17 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -29606,10 +27192,13 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -29996,41 +27585,107 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerCancelEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerCancelEvent);
   }
 
   @override
@@ -30059,21 +27714,17 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -30097,10 +27748,13 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -30487,41 +28141,107 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerDownEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerDownEvent);
   }
 
   @override
@@ -30550,21 +28270,17 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -30588,10 +28304,13 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -30981,41 +28700,107 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerEnterEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerEnterEvent);
   }
 
   @override
@@ -31044,21 +28829,17 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -31082,10 +28863,13 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -31576,41 +29360,107 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerExitEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerExitEvent);
   }
 
   @override
@@ -31639,21 +29489,17 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -31677,10 +29523,13 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -32069,41 +29918,107 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerHoverEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerHoverEvent);
   }
 
   @override
@@ -32132,21 +30047,17 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -32170,10 +30081,13 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -32563,41 +30477,107 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerMoveEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerMoveEvent);
   }
 
   @override
@@ -32626,21 +30606,17 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -32664,10 +30640,13 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -33041,41 +31020,107 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerPanZoomEndEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerPanZoomEndEvent);
   }
 
   @override
@@ -33104,21 +31149,17 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -33142,10 +31183,13 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -33519,41 +31563,107 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerPanZoomStartEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerPanZoomStartEvent);
   }
 
   @override
@@ -33582,21 +31692,17 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -33620,10 +31726,13 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -34031,50 +32140,131 @@ final class _PointerPanZoomUpdateEventProxy
     Object? scale = _flaxOmitted,
     Object? rotation = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-      if (!identical(pan, _flaxOmitted)) #pan: pan as api4.Offset?,
-      if (!identical(localPan, _flaxOmitted))
-        #localPan: localPan as api4.Offset?,
-      if (!identical(panDelta, _flaxOmitted))
-        #panDelta: panDelta as api4.Offset?,
-      if (!identical(localPanDelta, _flaxOmitted))
-        #localPanDelta: localPanDelta as api4.Offset?,
-      if (!identical(scale, _flaxOmitted)) #scale: scale as double?,
-      if (!identical(rotation, _flaxOmitted)) #rotation: rotation as double?,
-    }) as api.PointerPanZoomUpdateEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    final _flaxHas23 = !identical(pan, _flaxOmitted);
+    final _flaxHas24 = !identical(localPan, _flaxOmitted);
+    final _flaxHas25 = !identical(panDelta, _flaxOmitted);
+    final _flaxHas26 = !identical(localPanDelta, _flaxOmitted);
+    final _flaxHas27 = !identical(scale, _flaxOmitted);
+    final _flaxHas28 = !identical(rotation, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+        (_flaxHas23 ? pan as api4.Offset? : null),
+        (_flaxHas24 ? localPan as api4.Offset? : null),
+        (_flaxHas25 ? panDelta as api4.Offset? : null),
+        (_flaxHas26 ? localPanDelta as api4.Offset? : null),
+        (_flaxHas27 ? scale as double? : null),
+        (_flaxHas28 ? rotation as double? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0) |
+            (_flaxHas23 ? 8388608 : 0) |
+            (_flaxHas24 ? 16777216 : 0) |
+            (_flaxHas25 ? 33554432 : 0) |
+            (_flaxHas26 ? 67108864 : 0) |
+            (_flaxHas27 ? 134217728 : 0) |
+            (_flaxHas28 ? 268435456 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+        "pan",
+        "localPan",
+        "panDelta",
+        "localPanDelta",
+        "scale",
+        "rotation",
+      ],
+    ) as api.PointerPanZoomUpdateEvent);
   }
 
   @override
@@ -34103,21 +32293,17 @@ final class _PointerPanZoomUpdateEventProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -34141,10 +32327,13 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -34597,41 +32786,107 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerRemovedEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerRemovedEvent);
   }
 
   @override
@@ -34660,21 +32915,17 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -34698,10 +32949,13 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -34961,11 +33215,17 @@ final class _PointerRouterProxy extends api.PointerRouter {
     void Function(api.PointerEvent event) route, [
     Object? transform = _flaxOmitted,
   ]) {
-    if (identical(transform, _flaxOmitted)) {
-      super.addRoute(pointer, route);
-      return;
-    }
-    super.addRoute(pointer, route, transform as api5.Matrix4?);
+    final _flaxHas2 = !identical(transform, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.addRoute,
+      <Object?>[
+        pointer,
+        route,
+        (_flaxHas2 ? transform as api5.Matrix4? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", ""],
+    );
     return;
   }
 
@@ -35010,11 +33270,13 @@ final class _PointerRouterProxy extends api.PointerRouter {
     void Function(api.PointerEvent event) route, [
     Object? transform = _flaxOmitted,
   ]) {
-    if (identical(transform, _flaxOmitted)) {
-      super.addGlobalRoute(route);
-      return;
-    }
-    super.addGlobalRoute(route, transform as api5.Matrix4?);
+    final _flaxHas1 = !identical(transform, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.addGlobalRoute,
+      <Object?>[route, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    );
     return;
   }
 
@@ -35211,42 +33473,111 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
     Object? embedderId = _flaxOmitted,
     Object? scale = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-      if (!identical(scale, _flaxOmitted)) #scale: scale as double?,
-    }) as api.PointerScaleEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    final _flaxHas23 = !identical(scale, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+        (_flaxHas23 ? scale as double? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0) |
+            (_flaxHas23 ? 8388608 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+        "scale",
+      ],
+    ) as api.PointerScaleEvent);
   }
 
   @override
@@ -35275,21 +33606,17 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -35330,10 +33657,13 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -35723,41 +34053,107 @@ final class _PointerScrollInertiaCancelEventProxy
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerScrollInertiaCancelEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(delta, _flaxOmitted);
+    final _flaxHas7 = !identical(buttons, _flaxOmitted);
+    final _flaxHas8 = !identical(obscured, _flaxOmitted);
+    final _flaxHas9 = !identical(pressure, _flaxOmitted);
+    final _flaxHas10 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas12 = !identical(distance, _flaxOmitted);
+    final _flaxHas13 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas14 = !identical(size, _flaxOmitted);
+    final _flaxHas15 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas19 = !identical(orientation, _flaxOmitted);
+    final _flaxHas20 = !identical(tilt, _flaxOmitted);
+    final _flaxHas21 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas22 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas7 ? buttons as int? : null),
+        (_flaxHas8 ? obscured as bool? : null),
+        (_flaxHas9 ? pressure as double? : null),
+        (_flaxHas10 ? pressureMin as double? : null),
+        (_flaxHas11 ? pressureMax as double? : null),
+        (_flaxHas12 ? distance as double? : null),
+        (_flaxHas13 ? distanceMax as double? : null),
+        (_flaxHas14 ? size as double? : null),
+        (_flaxHas15 ? radiusMajor as double? : null),
+        (_flaxHas16 ? radiusMinor as double? : null),
+        (_flaxHas17 ? radiusMin as double? : null),
+        (_flaxHas18 ? radiusMax as double? : null),
+        (_flaxHas19 ? orientation as double? : null),
+        (_flaxHas20 ? tilt as double? : null),
+        (_flaxHas21 ? synthesized as bool? : null),
+        (_flaxHas22 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerScrollInertiaCancelEvent);
   }
 
   @override
@@ -35786,21 +34182,17 @@ final class _PointerScrollInertiaCancelEventProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -35841,10 +34233,13 @@ final class _PointerScrollInertiaCancelEventProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -36191,21 +34586,17 @@ final class _PointerSignalEventProxy extends api.PointerSignalEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -36229,10 +34620,13 @@ final class _PointerSignalEventProxy extends api.PointerSignalEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -36673,43 +35067,111 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
     Object? synthesized = _flaxOmitted,
     Object? embedderId = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(viewId, _flaxOmitted)) #viewId: viewId as int?,
-      if (!identical(timeStamp, _flaxOmitted))
-        #timeStamp: timeStamp as api2.Duration?,
-      if (!identical(pointer, _flaxOmitted)) #pointer: pointer as int?,
-      if (!identical(kind, _flaxOmitted))
-        #kind: kind as api4.PointerDeviceKind?,
-      if (!identical(device, _flaxOmitted)) #device: device as int?,
-      if (!identical(position, _flaxOmitted))
-        #position: position as api4.Offset?,
-      if (!identical(localPosition, _flaxOmitted))
-        #localPosition: localPosition as api4.Offset?,
-      if (!identical(delta, _flaxOmitted)) #delta: delta as api4.Offset?,
-      if (!identical(buttons, _flaxOmitted)) #buttons: buttons as int?,
-      if (!identical(obscured, _flaxOmitted)) #obscured: obscured as bool?,
-      if (!identical(pressure, _flaxOmitted)) #pressure: pressure as double?,
-      if (!identical(pressureMin, _flaxOmitted))
-        #pressureMin: pressureMin as double?,
-      if (!identical(pressureMax, _flaxOmitted))
-        #pressureMax: pressureMax as double?,
-      if (!identical(distance, _flaxOmitted)) #distance: distance as double?,
-      if (!identical(distanceMax, _flaxOmitted))
-        #distanceMax: distanceMax as double?,
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(radiusMajor, _flaxOmitted))
-        #radiusMajor: radiusMajor as double?,
-      if (!identical(radiusMinor, _flaxOmitted))
-        #radiusMinor: radiusMinor as double?,
-      if (!identical(radiusMin, _flaxOmitted)) #radiusMin: radiusMin as double?,
-      if (!identical(radiusMax, _flaxOmitted)) #radiusMax: radiusMax as double?,
-      if (!identical(orientation, _flaxOmitted))
-        #orientation: orientation as double?,
-      if (!identical(tilt, _flaxOmitted)) #tilt: tilt as double?,
-      if (!identical(synthesized, _flaxOmitted))
-        #synthesized: synthesized as bool?,
-      if (!identical(embedderId, _flaxOmitted)) #embedderId: embedderId as int?,
-    }) as api.PointerUpEvent);
+    final _flaxHas0 = !identical(viewId, _flaxOmitted);
+    final _flaxHas1 = !identical(timeStamp, _flaxOmitted);
+    final _flaxHas2 = !identical(pointer, _flaxOmitted);
+    final _flaxHas3 = !identical(kind, _flaxOmitted);
+    final _flaxHas4 = !identical(device, _flaxOmitted);
+    final _flaxHas5 = !identical(position, _flaxOmitted);
+    final _flaxHas6 = !identical(localPosition, _flaxOmitted);
+    final _flaxHas7 = !identical(delta, _flaxOmitted);
+    final _flaxHas8 = !identical(buttons, _flaxOmitted);
+    final _flaxHas9 = !identical(obscured, _flaxOmitted);
+    final _flaxHas10 = !identical(pressure, _flaxOmitted);
+    final _flaxHas11 = !identical(pressureMin, _flaxOmitted);
+    final _flaxHas12 = !identical(pressureMax, _flaxOmitted);
+    final _flaxHas13 = !identical(distance, _flaxOmitted);
+    final _flaxHas14 = !identical(distanceMax, _flaxOmitted);
+    final _flaxHas15 = !identical(size, _flaxOmitted);
+    final _flaxHas16 = !identical(radiusMajor, _flaxOmitted);
+    final _flaxHas17 = !identical(radiusMinor, _flaxOmitted);
+    final _flaxHas18 = !identical(radiusMin, _flaxOmitted);
+    final _flaxHas19 = !identical(radiusMax, _flaxOmitted);
+    final _flaxHas20 = !identical(orientation, _flaxOmitted);
+    final _flaxHas21 = !identical(tilt, _flaxOmitted);
+    final _flaxHas22 = !identical(synthesized, _flaxOmitted);
+    final _flaxHas23 = !identical(embedderId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? viewId as int? : null),
+        (_flaxHas1 ? timeStamp as api2.Duration? : null),
+        (_flaxHas2 ? pointer as int? : null),
+        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas4 ? device as int? : null),
+        (_flaxHas5 ? position as api4.Offset? : null),
+        (_flaxHas6 ? localPosition as api4.Offset? : null),
+        (_flaxHas7 ? delta as api4.Offset? : null),
+        (_flaxHas8 ? buttons as int? : null),
+        (_flaxHas9 ? obscured as bool? : null),
+        (_flaxHas10 ? pressure as double? : null),
+        (_flaxHas11 ? pressureMin as double? : null),
+        (_flaxHas12 ? pressureMax as double? : null),
+        (_flaxHas13 ? distance as double? : null),
+        (_flaxHas14 ? distanceMax as double? : null),
+        (_flaxHas15 ? size as double? : null),
+        (_flaxHas16 ? radiusMajor as double? : null),
+        (_flaxHas17 ? radiusMinor as double? : null),
+        (_flaxHas18 ? radiusMin as double? : null),
+        (_flaxHas19 ? radiusMax as double? : null),
+        (_flaxHas20 ? orientation as double? : null),
+        (_flaxHas21 ? tilt as double? : null),
+        (_flaxHas22 ? synthesized as bool? : null),
+        (_flaxHas23 ? embedderId as int? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0) |
+            (_flaxHas23 ? 8388608 : 0),
+      ],
+      const <String>[
+        "viewId",
+        "timeStamp",
+        "pointer",
+        "kind",
+        "device",
+        "position",
+        "localPosition",
+        "delta",
+        "buttons",
+        "obscured",
+        "pressure",
+        "pressureMin",
+        "pressureMax",
+        "distance",
+        "distanceMax",
+        "size",
+        "radiusMajor",
+        "radiusMinor",
+        "radiusMin",
+        "radiusMax",
+        "orientation",
+        "tilt",
+        "synthesized",
+        "embedderId",
+      ],
+    ) as api.PointerUpEvent);
   }
 
   @override
@@ -36738,21 +35200,17 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -36776,10 +35234,13 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -37276,11 +35737,13 @@ final class _PrimaryPointerGestureRecognizerProxy
     int pointer, [
     Object? transform = _flaxOmitted,
   ]) {
-    if (identical(transform, _flaxOmitted)) {
-      super.startTrackingPointer(pointer);
-      return;
-    }
-    super.startTrackingPointer(pointer, transform as api5.Matrix4?);
+    final _flaxHas1 = !identical(transform, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.startTrackingPointer,
+      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    );
     return;
   }
 
@@ -37442,14 +35905,17 @@ final class _PrimaryPointerGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -37481,19 +35947,17 @@ final class _PrimaryPointerGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -37519,93 +35983,31 @@ final class _PrimaryPointerGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -37634,21 +36036,17 @@ final class _PrimaryPointerGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -37666,10 +36064,13 @@ final class _PrimaryPointerGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -38016,10 +36417,13 @@ final class _ScaleEndDetailsProxy extends api.ScaleEndDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -38039,21 +36443,17 @@ final class _ScaleEndDetailsProxy extends api.ScaleEndDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -38306,11 +36706,13 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
     int pointer, [
     Object? transform = _flaxOmitted,
   ]) {
-    if (identical(transform, _flaxOmitted)) {
-      super.startTrackingPointer(pointer);
-      return;
-    }
-    super.startTrackingPointer(pointer, transform as api5.Matrix4?);
+    final _flaxHas1 = !identical(transform, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.startTrackingPointer,
+      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    );
     return;
   }
 
@@ -38468,14 +36870,17 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -38507,19 +36912,17 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -38545,93 +36948,31 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -38660,21 +37001,17 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -38692,10 +37029,13 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -39070,10 +37410,13 @@ final class _ScaleStartDetailsProxy extends api.ScaleStartDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -39093,21 +37436,17 @@ final class _ScaleStartDetailsProxy extends api.ScaleStartDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -39215,10 +37554,13 @@ final class _ScaleUpdateDetailsProxy extends api.ScaleUpdateDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -39238,21 +37580,17 @@ final class _ScaleUpdateDetailsProxy extends api.ScaleUpdateDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -39397,10 +37735,13 @@ final class _SerialTapCancelDetailsProxy extends api.SerialTapCancelDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -39420,21 +37761,17 @@ final class _SerialTapCancelDetailsProxy extends api.SerialTapCancelDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -39495,10 +37832,13 @@ final class _SerialTapDownDetailsProxy extends api.SerialTapDownDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -39518,21 +37858,17 @@ final class _SerialTapDownDetailsProxy extends api.SerialTapDownDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -39782,14 +38118,17 @@ final class _SerialTapGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -39855,19 +38194,17 @@ final class _SerialTapGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -39893,93 +38230,31 @@ final class _SerialTapGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -40008,21 +38283,17 @@ final class _SerialTapGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -40040,10 +38311,13 @@ final class _SerialTapGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -40332,10 +38606,13 @@ final class _SerialTapUpDetailsProxy extends api.SerialTapUpDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -40355,21 +38632,17 @@ final class _SerialTapUpDetailsProxy extends api.SerialTapUpDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -40459,10 +38732,13 @@ final class _TapDownDetailsProxy extends api.TapDownDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -40482,21 +38758,17 @@ final class _TapDownDetailsProxy extends api.TapDownDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -40575,10 +38847,13 @@ final class _TapDragDownDetailsProxy extends api.TapDragDownDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -40598,21 +38873,17 @@ final class _TapDragDownDetailsProxy extends api.TapDragDownDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -40704,10 +38975,13 @@ final class _TapDragEndDetailsProxy extends api.TapDragEndDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -40727,21 +39001,17 @@ final class _TapDragEndDetailsProxy extends api.TapDragEndDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -40845,10 +39115,13 @@ final class _TapDragStartDetailsProxy extends api.TapDragStartDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -40868,21 +39141,17 @@ final class _TapDragStartDetailsProxy extends api.TapDragStartDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -40985,10 +39254,13 @@ final class _TapDragUpDetailsProxy extends api.TapDragUpDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -41008,21 +39280,17 @@ final class _TapDragUpDetailsProxy extends api.TapDragUpDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -41118,10 +39386,13 @@ final class _TapDragUpdateDetailsProxy extends api.TapDragUpdateDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -41141,21 +39412,17 @@ final class _TapDragUpdateDetailsProxy extends api.TapDragUpdateDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -41373,14 +39640,16 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
     Object? cancel = _flaxOmitted,
     required String reason,
   }) {
-    if (identical(cancel, _flaxOmitted)) {
-      super.handleTapCancel(down: down, reason: reason);
-      return;
-    }
-    super.handleTapCancel(
-      down: down,
-      cancel: cancel as api.PointerCancelEvent?,
-      reason: reason,
+    final _flaxHas1 = !identical(cancel, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.handleTapCancel,
+      <Object?>[
+        down,
+        (_flaxHas1 ? cancel as api.PointerCancelEvent? : null),
+        reason,
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+      const <String>["down", "cancel", "reason"],
     );
     return;
   }
@@ -41409,11 +39678,13 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
     int pointer, [
     Object? transform = _flaxOmitted,
   ]) {
-    if (identical(transform, _flaxOmitted)) {
-      super.startTrackingPointer(pointer);
-      return;
-    }
-    super.startTrackingPointer(pointer, transform as api5.Matrix4?);
+    final _flaxHas1 = !identical(transform, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.startTrackingPointer,
+      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    );
     return;
   }
 
@@ -41790,14 +40061,17 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -41817,19 +40091,17 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -41855,93 +40127,31 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -41970,21 +40180,17 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -42002,10 +40208,13 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -42650,10 +40859,13 @@ final class _TapUpDetailsProxy extends api.TapUpDetails
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -42673,21 +40885,17 @@ final class _TapUpDetailsProxy extends api.TapUpDetails
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -43160,14 +41368,17 @@ final class _VerticalMultiDragGestureRecognizerProxy
     T Function() callback, {
     Object? debugReport = _flaxOmitted,
   }) {
-    if (identical(debugReport, _flaxOmitted)) {
-      return super.invokeCallback<T>(name, callback);
-    }
-    return super.invokeCallback<T>(
-      name,
-      callback,
-      debugReport: debugReport as String Function()?,
-    );
+    final _flaxHas2 = !identical(debugReport, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.invokeCallback<T>,
+      <Object?>[
+        name,
+        callback,
+        (_flaxHas2 ? debugReport as String Function()? : null),
+      ],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", "debugReport"],
+    ) as T?);
   }
 
   @override
@@ -43199,19 +41410,17 @@ final class _VerticalMultiDragGestureRecognizerProxy
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api1.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api1.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api1.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -43237,93 +41446,31 @@ final class _VerticalMultiDragGestureRecognizerProxy
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api1.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api1.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api1.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api1.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api1.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api1.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api1.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -43352,21 +41499,17 @@ final class _VerticalMultiDragGestureRecognizerProxy
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api1.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api1.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api1.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api1.DiagnosticsNode);
   }
 
   @override
@@ -43384,10 +41527,13 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api1.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api1.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override

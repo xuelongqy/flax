@@ -3,7 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Comparable';
 import '@flax/dart/core/_bindings/flutter_Comparable';
-import { _flaxMemberParameters56, _flaxMemberParameters2, _flaxMemberParameters57 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters61, _flaxMemberParameters2, _flaxMemberParameters62 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,13 +15,13 @@ readonly yIndex: number;
 compareTo(other: Readonly<{ "__flaxBound:package:flutter/src/widgets/two_dimensional_viewport.dart::ChildVicinity": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [ChildVicinity] }>): number;
 toString(): string;
 }
-defineObject("flax.core/sdk_widgets#type:ChildVicinity", ["xIndex","yIndex"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ChildVicinity", "object", {"compareTo":_flaxMemberParameters56,"toString":_flaxMemberParameters2}, {}), []);
+defineObject("flax.core/sdk_widgets#type:ChildVicinity", ["xIndex","yIndex"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ChildVicinity", "object", {"compareTo":_flaxMemberParameters61,"toString":_flaxMemberParameters2}, {}), []);
 export function _ChildVicinityFactory(options: { xIndex: number; yIndex: number }): ChildVicinity {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:ChildVicinity", "", [{"name":"xIndex","required":true},{"name":"yIndex","required":true}], [], options) as ChildVicinity;
 }
-const _ChildVicinityProxy = {type: "flax.core/sdk_widgets#type:ChildVicinity", parameters: _flaxMemberParameters57, constructors: {"": _flaxMemberParameters57}, methods: {"compareTo":_flaxMemberParameters56,"toString":_flaxMemberParameters2}, getters: ["xIndex","yIndex"], setters: [], contextMembers: [], superMembers: ["get:xIndex","get:yIndex","compareTo","toString"]} as const;
+const _ChildVicinityProxy = {type: "flax.core/sdk_widgets#type:ChildVicinity", parameters: _flaxMemberParameters62, constructors: {"": _flaxMemberParameters62}, methods: {"compareTo":_flaxMemberParameters61,"toString":_flaxMemberParameters2}, getters: ["xIndex","yIndex"], setters: [], contextMembers: [], superMembers: ["get:xIndex","get:yIndex","compareTo","toString"]} as const;
 export interface _ChildVicinityNative extends ChildVicinity {
 readonly [_flaxDartTypeValue]: _ChildVicinityNative;
 

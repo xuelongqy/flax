@@ -21,6 +21,7 @@ import type * as upstream8 from '@flax/material-ui/_bindings/material_MaterialIn
 import '@flax/material-ui/_bindings/material_MaterialInkController';
 import type * as upstream9 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import { _flaxMemberParameters0 } from "@flax/material-ui/_bindings/material.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Material extends WidgetDescription, Omit<Readonly<{ "__flaxBound:package:material_ui/src/material.dart::Material": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, 'type'> { readonly type: "flax.material/material#type:Material";  }
@@ -33,12 +34,12 @@ export namespace _MaterialFactory { export declare const defaultSplashRadius: nu
 _flaxDefineStaticGetters(_MaterialFactory, "flax.material/material#read:Material.", ["defaultSplashRadius"]);
 export namespace _MaterialFactory { export function maybeOf(context: upstream9.BuildContext): upstream8.MaterialInkController | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:Material.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:Material.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream8.MaterialInkController | null;
 } }
 export namespace _MaterialFactory { export function of(context: upstream9.BuildContext): upstream8.MaterialInkController {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:Material.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:Material.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream8.MaterialInkController;
 } }
 export const Material: typeof _MaterialFactory & _FlaxInstanceType<Material> & _FlaxDartType<Material, readonly ["class", "flax.material/material#type:Material", readonly [], false]> = _flaxBindInstanceType<Material, typeof _MaterialFactory>(_MaterialFactory, "flax.material/material#type:Material", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _MaterialFactory & _FlaxInstanceType<Material> & _FlaxDartType<Material, readonly ["class", "flax.material/material#type:Material", readonly [], false]>;

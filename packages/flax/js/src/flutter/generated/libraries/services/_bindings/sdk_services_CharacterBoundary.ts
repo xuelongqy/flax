@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/sdk_services_T
 import '@flax/flutter/services/_bindings/sdk_services_TextBoundary';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_TextRange';
 import '@flax/dart/ui/_bindings/flutter_TextRange';
-import { _flaxMemberParameters24, _flaxMemberParameters25 } from "@flax/flutter/services/_bindings/sdk_services.__module";
+import { _flaxMemberParameters27, _flaxMemberParameters28 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,7 +22,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_services#type:CharacterBoundary", "", [{"name":"_text","required":true,"positional":true}], [_text], {}) as CharacterBoundary;
 }
-const _CharacterBoundaryProxy = {type: "flax.core/sdk_services#type:CharacterBoundary", parameters: _flaxMemberParameters24, constructors: {"": _flaxMemberParameters24}, methods: {"getLeadingTextBoundaryAt":_flaxMemberParameters25,"getTrailingTextBoundaryAt":_flaxMemberParameters25,"getTextBoundaryAt":_flaxMemberParameters25}, getters: [], setters: [], contextMembers: [], superMembers: ["getLeadingTextBoundaryAt","getTrailingTextBoundaryAt","getTextBoundaryAt"]} as const;
+const _CharacterBoundaryProxy = {type: "flax.core/sdk_services#type:CharacterBoundary", parameters: _flaxMemberParameters27, constructors: {"": _flaxMemberParameters27}, methods: {"getLeadingTextBoundaryAt":_flaxMemberParameters28,"getTrailingTextBoundaryAt":_flaxMemberParameters28,"getTextBoundaryAt":_flaxMemberParameters28}, getters: [], setters: [], contextMembers: [], superMembers: ["getLeadingTextBoundaryAt","getTrailingTextBoundaryAt","getTextBoundaryAt"]} as const;
 export interface _CharacterBoundaryNative extends CharacterBoundary {
 readonly [_flaxDartTypeValue]: _CharacterBoundaryNative;
 

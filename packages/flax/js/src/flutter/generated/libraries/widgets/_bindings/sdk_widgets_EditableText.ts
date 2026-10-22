@@ -107,7 +107,7 @@ import type * as upstream51 from '@flax/flutter/widgets/_bindings/sdk_widgets_Wi
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import type * as upstream52 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import type * as upstream53 from '@flax/flutter/widgets/_bindings/sdk_widgets_UndoHistoryValue';
-import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters38, _flaxMemberParameters115, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -209,7 +209,7 @@ return constructObject("object", "flax.core/sdk_widgets#type:EditableText", "", 
 }
 export namespace _EditableTextFactory { export function setDebugDeterministicCursor(value: boolean): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:EditableText.debugDeterministicCursor%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:EditableText.debugDeterministicCursor%3D", [value], _flaxMemberParameters38);
 } }
 export namespace _EditableTextFactory { export declare const debugDeterministicCursor: boolean; }
 export namespace _EditableTextFactory { export declare const defaultSelectionHeightStyle: upstream27.BoxHeightStyle; }
@@ -219,7 +219,7 @@ _flaxDefineStaticGetters(_EditableTextFactory, "flax.core/sdk_widgets#read:Edita
 export namespace _EditableTextFactory { export function getEditableButtonItems(options: { clipboardStatus: upstream45.ClipboardStatus | null; onCopy: (() => void) | null; onCut: (() => void) | null; onLiveTextInput: (() => void) | null; onLookUp: (() => void) | null; onPaste: (() => void) | null; onSearchWeb: (() => void) | null; onSelectAll: (() => void) | null; onShare: (() => void) | null }): DartList<upstream44.ContextMenuButtonItem> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["clipboardStatus","onCopy","onCut","onLiveTextInput","onLookUp","onPaste","onSearchWeb","onSelectAll","onShare"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:EditableText.getEditableButtonItems", [options.clipboardStatus, options.onCopy, options.onCut, options.onLiveTextInput, options.onLookUp, options.onPaste, options.onSearchWeb, options.onSelectAll, options.onShare]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:EditableText.getEditableButtonItems", [options.clipboardStatus, options.onCopy, options.onCut, options.onLiveTextInput, options.onLookUp, options.onPaste, options.onSearchWeb, options.onSelectAll, options.onShare], _flaxMemberParameters115);
 return _flaxResult as DartList<upstream44.ContextMenuButtonItem>;
 } }
 export const EditableText: typeof _EditableTextFactory & _FlaxInstanceType<EditableText> & _FlaxDartType<EditableText, readonly ["class", "flax.core/sdk_widgets#type:EditableText", readonly [], false]> = _flaxBindInstanceType<EditableText, typeof _EditableTextFactory>(_EditableTextFactory, "flax.core/sdk_widgets#type:EditableText", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _EditableTextFactory & _FlaxInstanceType<EditableText> & _FlaxDartType<EditableText, readonly ["class", "flax.core/sdk_widgets#type:EditableText", readonly [], false]>;

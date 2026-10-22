@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_BlurStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_BlurStyle';
 import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
-import { _flaxMemberParameters24, _flaxMemberParameters25, _flaxMemberParameters26, _flaxMemberParameters2 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
+import { _flaxMemberParameters24, _flaxMemberParameters25, _flaxMemberParameters26, _flaxMemberParameters27, _flaxMemberParameters2 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -29,13 +29,13 @@ scale(factor: number): BoxShadow;
 toString(): string;
 copyWith(options?: {blurRadius?: number | null | undefined; blurStyle?: upstream3.BlurStyle | null | undefined; color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; offset?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; spreadRadius?: number | null | undefined}): BoxShadow;
 }
-defineObject("flax.core/sdk_painting#type:BoxShadow", ["color","offset","blurRadius","blurSigma","spreadRadius","blurStyle"], [], _flaxBindingMethods("flax.core/sdk_painting#type:BoxShadow", "object", {"scale":_flaxMemberParameters24,"copyWith":_flaxMemberParameters25}, {}), [], undefined, "flax.core/sdk_dart_ui#type:Shadow");
+defineObject("flax.core/sdk_painting#type:BoxShadow", ["color","offset","blurRadius","blurSigma","spreadRadius","blurStyle"], [], _flaxBindingMethods("flax.core/sdk_painting#type:BoxShadow", "object", {"scale":_flaxMemberParameters25,"copyWith":_flaxMemberParameters26}, {}), [], undefined, "flax.core/sdk_dart_ui#type:Shadow");
 export function _BoxShadowFactory(options: { color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | undefined; offset?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; blurRadius?: number | undefined; spreadRadius?: number | undefined; blurStyle?: upstream3.BlurStyle | undefined } = {}): BoxShadow {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_painting#type:BoxShadow", "", [{"name":"color"},{"name":"offset"},{"name":"blurRadius"},{"name":"spreadRadius"},{"name":"blurStyle"}], [], options) as BoxShadow;
 }
-const _BoxShadowProxy = {type: "flax.core/sdk_painting#type:BoxShadow", parameters: _flaxMemberParameters26, constructors: {"": _flaxMemberParameters26}, methods: {"toPaint":_flaxMemberParameters2,"scale":_flaxMemberParameters24,"toString":_flaxMemberParameters2,"copyWith":_flaxMemberParameters25}, getters: ["spreadRadius","blurStyle","color","offset","blurRadius","blurSigma"], setters: [], contextMembers: [], superMembers: ["get:spreadRadius","get:blurStyle","get:color","get:offset","get:blurRadius","get:blurSigma","toPaint","scale","toString","copyWith"]} as const;
+const _BoxShadowProxy = {type: "flax.core/sdk_painting#type:BoxShadow", parameters: _flaxMemberParameters27, constructors: {"": _flaxMemberParameters27}, methods: {"toPaint":_flaxMemberParameters2,"scale":_flaxMemberParameters25,"toString":_flaxMemberParameters2,"copyWith":_flaxMemberParameters26}, getters: ["spreadRadius","blurStyle","color","offset","blurRadius","blurSigma"], setters: [], contextMembers: [], superMembers: ["get:spreadRadius","get:blurStyle","get:color","get:offset","get:blurRadius","get:blurSigma","toPaint","scale","toString","copyWith"]} as const;
 export interface _BoxShadowNative extends BoxShadow {
 readonly [_flaxDartTypeValue]: _BoxShadowNative;
 
@@ -62,12 +62,12 @@ return constructProxy(_BoxShadowProxy, args, implementation) as BoxShadow; } }
 const _BoxShadowBinding = _flaxProxyFactory(_BoxShadowFactory, _BoxShadowNative) as unknown as typeof _BoxShadowFactory & (new(options?: {color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | undefined; offset?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; blurRadius?: number | undefined; spreadRadius?: number | undefined; blurStyle?: upstream3.BlurStyle | undefined}) => _BoxShadowNative);
 export namespace _BoxShadowFactory { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/painting/box_shadow.dart::BoxShadow": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::Shadow": readonly [] }> | null, b: Readonly<{ "__flaxBound:package:flutter/src/painting/box_shadow.dart::BoxShadow": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::Shadow": readonly [] }> | null, t: number): BoxShadow | null {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:BoxShadow.lerp", [a, b, t]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:BoxShadow.lerp", [a, b, t], _flaxMemberParameters24);
 return _flaxResult as BoxShadow | null;
 } }
 export namespace _BoxShadowFactory { export function lerpList(a: DartListInput<BoxShadow, Readonly<{ "__flaxBound:package:flutter/src/painting/box_shadow.dart::BoxShadow": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::Shadow": readonly [] }>> | null, b: DartListInput<BoxShadow, Readonly<{ "__flaxBound:package:flutter/src/painting/box_shadow.dart::BoxShadow": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::Shadow": readonly [] }>> | null, t: number): DartList<BoxShadow> | null {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:BoxShadow.lerpList", [a, b, t]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:BoxShadow.lerpList", [a, b, t], _flaxMemberParameters24);
 return _flaxResult as DartList<BoxShadow> | null;
 } }
 export const BoxShadow: typeof _BoxShadowBinding & _FlaxInstanceType<BoxShadow> & _FlaxDartType<BoxShadow, readonly ["class", "flax.core/sdk_painting#type:BoxShadow", readonly [], false]> = _flaxBindInstanceType<BoxShadow, typeof _BoxShadowBinding>(_BoxShadowBinding, "flax.core/sdk_painting#type:BoxShadow", ["flax.core/sdk_dart_ui#type:Shadow","dart:core::Object"]) as typeof _BoxShadowBinding & _FlaxInstanceType<BoxShadow> & _FlaxDartType<BoxShadow, readonly ["class", "flax.core/sdk_painting#type:BoxShadow", readonly [], false]>;

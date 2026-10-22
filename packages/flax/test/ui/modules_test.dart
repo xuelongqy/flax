@@ -71,6 +71,28 @@ void main() {
     await expectLater(fixture.load(), throwsStateError);
   });
 
+  test(
+    'module assets preserve text overrides without caching source Strings',
+    () async {
+      final fixture = _Fixture();
+      final bundle = _TextBundle(fixture.bundle().sources);
+      final assets = await FlaxModuleAssets.load(
+        bundle: bundle,
+        manifest: _Fixture.manifestPath,
+      );
+      expect(
+        assets.moduleSpecifiers.length,
+        fixture.manifest['modules'].length,
+      );
+      expect(bundle.stringCache, {
+        _Fixture.manifestPath: true,
+        fixture.manifest['bootstrap'] as String: false,
+        for (final module in fixture.manifest['modules'] as List)
+          module['asset'] as String: false,
+      });
+    },
+  );
+
   test('module assets accept recorded public subpaths without additional factories', () async {
     final fixture = _Fixture();
     fixture.module('@fixture/a')['subpaths'] = ['@fixture/a/public'];
@@ -303,6 +325,50 @@ $source
     });
   }
 
+  testWidgets('cached binding checks still validate newly selected modules', (
+    tester,
+  ) async {
+    final fixture = _Fixture();
+    fixture.module('@fixture/a')['bindings'] = [
+      {
+        'moduleId': 'fixture.missing',
+        'uiProtocol': flaxBindingVersion,
+        'types': <String>[],
+        'functions': <String>[],
+      },
+    ];
+    Flax.moduleAssets = await fixture.load();
+    for (var step = 0; step < 2; step++) {
+      final runtime = RuntimeTracker();
+      final errors = <Object>[];
+      await tester.pumpWidget(
+        MaterialApp(
+          home: FlaxView(
+            createRuntime: () => runtime,
+            source: step == 0 ? source : 'throw Error("Business must not run")',
+            bindings: registry,
+            plugins: step == 0
+                ? const []
+                : const [
+                    _ModulePlugin('fixture.a', {'@fixture/a'}),
+                  ],
+            onError: (error, _) => errors.add(error),
+          ),
+        ),
+      );
+      expect(errors, hasLength(step));
+      if (step == 1) {
+        expect(
+          errors.single.toString(),
+          contains('Missing or incompatible Dart bindings'),
+        );
+      }
+      await flaxTestUnmount(tester);
+      await flaxTestWaitForRuntimeDisposal(tester, runtime);
+      expect(runtime.handlesAtDispose, 0);
+    }
+  });
+
   testWidgets('missing host request fails before business source executes', (
     tester,
   ) async {
@@ -462,10 +528,12 @@ class _Bundle extends CachingAssetBundle {
   _Bundle(this.sources);
   final Map<String, String> sources;
   final reads = <String>[];
+  final stringCache = <String, bool>{};
 
   @override
   Future<String> loadString(String key, {bool cache = true}) async {
     reads.add(key);
+    stringCache[key] = cache;
     return sources[key] ?? (throw StateError('Missing module asset: $key'));
   }
 
@@ -476,6 +544,14 @@ class _Bundle extends CachingAssetBundle {
     if (source == null) throw StateError('Missing module asset: $key');
     return ByteData.sublistView(Uint8List.fromList(utf8.encode(source)));
   }
+}
+
+class _TextBundle extends _Bundle {
+  _TextBundle(super.sources);
+
+  @override
+  Future<ByteData> load(String key) async =>
+      throw StateError('Scripts must use the custom loadString implementation');
 }
 
 class _ModulePlugin extends FlaxPlugin {

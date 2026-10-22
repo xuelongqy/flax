@@ -31,7 +31,7 @@ import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream14 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
+import { _flaxMemberParameters26, _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -71,7 +71,7 @@ return constructObject("object", "flax.cupertino/cupertino#type:CupertinoMenuAnc
 }
 export namespace _CupertinoMenuAnchorFactory { export function maybeHasLeadingOf(context: upstream6.BuildContext): boolean | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoMenuAnchor.maybeHasLeadingOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoMenuAnchor.maybeHasLeadingOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters26);
 return _flaxResult as boolean | null;
 } }
 export const CupertinoMenuAnchor: typeof _CupertinoMenuAnchorFactory & _FlaxInstanceType<CupertinoMenuAnchor> & _FlaxDartType<CupertinoMenuAnchor, readonly ["class", "flax.cupertino/cupertino#type:CupertinoMenuAnchor", readonly [], false]> = _flaxBindInstanceType<CupertinoMenuAnchor, typeof _CupertinoMenuAnchorFactory>(_CupertinoMenuAnchorFactory, "flax.cupertino/cupertino#type:CupertinoMenuAnchor", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _CupertinoMenuAnchorFactory & _FlaxInstanceType<CupertinoMenuAnchor> & _FlaxDartType<CupertinoMenuAnchor, readonly ["class", "flax.cupertino/cupertino#type:CupertinoMenuAnchor", readonly [], false]>;

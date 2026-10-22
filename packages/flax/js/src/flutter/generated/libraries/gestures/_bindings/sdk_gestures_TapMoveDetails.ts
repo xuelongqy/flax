@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDevi
 import '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import { _flaxMemberParameters98 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
+import { _flaxMemberParameters99 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,7 +23,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_gestures#type:TapMoveDetails", "", [{"name":"kind","required":true},{"name":"globalPosition"},{"name":"delta"},{"name":"localPosition"}], [], options) as TapMoveDetails;
 }
-const _TapMoveDetailsProxy = {type: "flax.core/sdk_gestures#type:TapMoveDetails", parameters: _flaxMemberParameters98, constructors: {"": _flaxMemberParameters98}, methods: {}, getters: ["globalPosition","localPosition","kind","delta"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","get:kind","get:delta"]} as const;
+const _TapMoveDetailsProxy = {type: "flax.core/sdk_gestures#type:TapMoveDetails", parameters: _flaxMemberParameters99, constructors: {"": _flaxMemberParameters99}, methods: {}, getters: ["globalPosition","localPosition","kind","delta"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:localPosition","get:kind","get:delta"]} as const;
 export interface _TapMoveDetailsNative extends TapMoveDetails {
 readonly [_flaxDartTypeValue]: _TapMoveDetailsNative;
 

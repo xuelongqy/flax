@@ -19,7 +19,7 @@ import type * as upstream7 from '@flax/material-ui/_bindings/material_SliderThem
 import '@flax/material-ui/_bindings/material_SliderThemeData';
 import type * as upstream8 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import { _flaxMemberParameters2, _flaxMemberParameters147, _flaxMemberParameters127 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters4, _flaxMemberParameters163, _flaxMemberParameters137 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -35,7 +35,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:HandleThumbShape", "", [], [], {}) as HandleThumbShape;
 }
-const _HandleThumbShapeProxy = {type: "flax.material/material#type:HandleThumbShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredSize":_flaxMemberParameters147,"paint":_flaxMemberParameters127}, getters: [], setters: [], contextMembers: [], superMembers: ["getPreferredSize","paint"]} as const;
+const _HandleThumbShapeProxy = {type: "flax.material/material#type:HandleThumbShape", parameters: _flaxMemberParameters4, constructors: {"": _flaxMemberParameters4}, methods: {"getPreferredSize":_flaxMemberParameters163,"paint":_flaxMemberParameters137}, getters: [], setters: [], contextMembers: [], superMembers: ["getPreferredSize","paint"]} as const;
 export interface _HandleThumbShapeNative extends HandleThumbShape {
 readonly [_flaxDartTypeValue]: _HandleThumbShapeNative;
 

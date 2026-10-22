@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Lis
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ListWheelChildDelegate';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import { _flaxMemberParameters38, _flaxMemberParameters200, _flaxMemberParameters201, _flaxMemberParameters202 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters43, _flaxMemberParameters223, _flaxMemberParameters224, _flaxMemberParameters225 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -19,13 +19,13 @@ build(context: upstream1.BuildContext, index: number): Widget | null;
 trueIndexOf(index: number): number;
 shouldRebuild(oldDelegate: Readonly<{ "__flaxBound:package:flutter/src/widgets/list_wheel_scroll_view.dart::ListWheelChildBuilderDelegate": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/list_wheel_scroll_view.dart::ListWheelChildDelegate": readonly [] }>): boolean;
 }
-defineObject("flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", ["estimatedChildCount","builder","childCount"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", "object", {"shouldRebuild":_flaxMemberParameters38}, {}), [], undefined, "flax.core/sdk_widgets#type:ListWheelChildDelegate");
+defineObject("flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", ["estimatedChildCount","builder","childCount"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", "object", {"shouldRebuild":_flaxMemberParameters43}, {}), [], undefined, "flax.core/sdk_widgets#type:ListWheelChildDelegate");
 export function _ListWheelChildBuilderDelegateFactory(options: { builder: ((context: upstream1.BuildContext, index: number) => Widget | null); childCount?: number | null | undefined }): ListWheelChildBuilderDelegate {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", "", [{"name":"builder","required":true},{"name":"childCount"}], [], options) as ListWheelChildBuilderDelegate;
 }
-const _ListWheelChildBuilderDelegateProxy = {type: "flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", parameters: _flaxMemberParameters200, constructors: {"": _flaxMemberParameters200}, methods: {"build":_flaxMemberParameters201,"trueIndexOf":_flaxMemberParameters202,"shouldRebuild":_flaxMemberParameters38}, getters: ["builder","childCount","estimatedChildCount"], setters: [], contextMembers: [], superMembers: ["get:builder","get:childCount","get:estimatedChildCount","build","trueIndexOf","shouldRebuild"]} as const;
+const _ListWheelChildBuilderDelegateProxy = {type: "flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", parameters: _flaxMemberParameters223, constructors: {"": _flaxMemberParameters223}, methods: {"build":_flaxMemberParameters224,"trueIndexOf":_flaxMemberParameters225,"shouldRebuild":_flaxMemberParameters43}, getters: ["builder","childCount","estimatedChildCount"], setters: [], contextMembers: [], superMembers: ["get:builder","get:childCount","get:estimatedChildCount","build","trueIndexOf","shouldRebuild"]} as const;
 export interface _ListWheelChildBuilderDelegateNative extends ListWheelChildBuilderDelegate {
 readonly [_flaxDartTypeValue]: _ListWheelChildBuilderDelegateNative;
 

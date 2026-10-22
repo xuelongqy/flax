@@ -1,4 +1,4 @@
-# 0048: Generated binding JS build configuration
+# 0049: Generated binding JS build configuration
 
 Status: accepted.
 

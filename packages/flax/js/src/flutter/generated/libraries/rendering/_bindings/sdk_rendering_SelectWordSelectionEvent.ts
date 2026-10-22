@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream2 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionEventType';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionEventType';
-import { _flaxMemberParameters322 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { _flaxMemberParameters336 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,7 +23,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_rendering#type:SelectWordSelectionEvent", "", [{"name":"globalPosition","required":true}], [], options) as SelectWordSelectionEvent;
 }
-const _SelectWordSelectionEventProxy = {type: "flax.core/sdk_rendering#type:SelectWordSelectionEvent", parameters: _flaxMemberParameters322, constructors: {"": _flaxMemberParameters322}, methods: {}, getters: ["globalPosition","type"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:type"]} as const;
+const _SelectWordSelectionEventProxy = {type: "flax.core/sdk_rendering#type:SelectWordSelectionEvent", parameters: _flaxMemberParameters336, constructors: {"": _flaxMemberParameters336}, methods: {}, getters: ["globalPosition","type"], setters: [], contextMembers: [], superMembers: ["get:globalPosition","get:type"]} as const;
 export interface _SelectWordSelectionEventNative extends SelectWordSelectionEvent {
 readonly [_flaxDartTypeValue]: _SelectWordSelectionEventNative;
 

@@ -13,7 +13,7 @@ import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_Valu
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import { _flaxMemberParameters2, _flaxMemberParameters421, _flaxMemberParameters422, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters2, _flaxMemberParameters475, _flaxMemberParameters476, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -29,13 +29,13 @@ dispose(): void;
 toScene(viewportPoint: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): upstream5.Offset;
 set value(value: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }>);
 }
-defineObject("flax.core/sdk_widgets#type:TransformationController", ["value","hasListeners"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:TransformationController", "object", {"toString":_flaxMemberParameters2,"toScene":_flaxMemberParameters421}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+defineObject("flax.core/sdk_widgets#type:TransformationController", ["value","hasListeners"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:TransformationController", "object", {"toString":_flaxMemberParameters2,"toScene":_flaxMemberParameters475}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
 export function _TransformationControllerFactory(value?: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [] }> | null): TransformationController {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:TransformationController", "", [{"name":"value","positional":true}], [value], {}) as TransformationController;
 }
-const _TransformationControllerProxy = {type: "flax.core/sdk_widgets#type:TransformationController", parameters: _flaxMemberParameters422, constructors: {"": _flaxMemberParameters422}, methods: {"toString":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"toScene":_flaxMemberParameters421}, getters: ["value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:hasListeners","set:value","toString","addListener","removeListener","dispose","toScene"]} as const;
+const _TransformationControllerProxy = {type: "flax.core/sdk_widgets#type:TransformationController", parameters: _flaxMemberParameters476, constructors: {"": _flaxMemberParameters476}, methods: {"toString":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"toScene":_flaxMemberParameters475}, getters: ["value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:hasListeners","set:value","toString","addListener","removeListener","dispose","toScene"]} as const;
 export interface _TransformationControllerNative extends TransformationController {
 readonly [_flaxDartTypeValue]: _TransformationControllerNative;
 

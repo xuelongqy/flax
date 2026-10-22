@@ -17,8 +17,10 @@ extension _SessionAssets on _Session {
   Widget scopeAssets(Widget child) =>
       _SessionAssetScope(session: this, child: child);
 
-  bool needsAssetScope(BuildContext context) => !identical(
-    context.getInheritedWidgetOfExactType<_SessionAssetScope>()?.session,
-    this,
-  );
+  bool needsAssetScope(BuildContext context) =>
+      context.mounted &&
+      !identical(
+        context.getInheritedWidgetOfExactType<_SessionAssetScope>()?.session,
+        this,
+      );
 }

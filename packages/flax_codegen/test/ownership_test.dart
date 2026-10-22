@@ -47,6 +47,7 @@ void main() {
       );
       for (final module in package.modules) {
         expect(module.requiredCapabilities, [
+          'call-layouts',
           'generic-member-views',
           'instance-checks',
           'native-navigation-objects',
@@ -386,6 +387,7 @@ void main() {
     expect(package.modules.single.owners, isEmpty);
     expect(package.modules.single.references, isEmpty);
     expect(package.modules.single.requiredCapabilities, [
+      'call-layouts',
       'generic-member-views',
       'instance-checks',
       'native-navigation-objects',
@@ -491,6 +493,7 @@ bindingNamespace: flax.core
       [show, offset, state, widget],
     );
     expect(package.modules.single.requiredCapabilities, [
+      'call-layouts',
       'generic-member-views',
       'instance-checks',
       'native-navigation-objects',

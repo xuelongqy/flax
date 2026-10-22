@@ -4,6 +4,7 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 
+import '../example_run.dart' as example_run;
 import '../src/package_discovery.dart';
 import '../src/ui_testing.dart';
 import '../src/platform_selection.dart';
@@ -100,6 +101,77 @@ capabilities: [codegen]
         .createSync(recursive: true);
     return FlaxWorkspacePackage(name, directory);
   }
+
+  test('launch preparation builds only the selected package example', () async {
+    final material = package('flax_material_ui');
+    _write(material.example, 'pubspec.yaml', _flutterPubspec('v8'));
+    _write(material.example, 'js/package.json', '''
+{"name":"@flax/example-material-ui"}
+''');
+    package('flax_cupertino_ui');
+    final selected = await example_run.prepareExample(
+      temporary.path,
+      packageName: material.name,
+      runCommand: record,
+    );
+    expect(selected!.directory.path, material.directory.path);
+    expect(commands.map((c) => [c.$1, ...c.$2]), [
+      [
+        'pnpm',
+        '--reporter=append-only',
+        '--workspace-concurrency=1',
+        '--filter',
+        '@flax/example-material-ui...',
+        'run',
+        'build',
+      ],
+      ['node', 'tool/example_bundle.mjs', '--package', 'flax_material_ui'],
+    ]);
+    expect(commands.every((c) => c.$3 == temporary.path), isTrue);
+  });
+
+  test(
+    'gallery launch prepares the aggregate without other entrypoints',
+    () async {
+      _write(temporary, 'examples/embedded/js/package.json', '''
+{"name":"@flax/example-embedded"}
+''');
+      expect(
+        await example_run.prepareExample(temporary.path, runCommand: record),
+        isNull,
+      );
+      expect(commands.map((c) => [c.$1, ...c.$2]), [
+        [
+          'pnpm',
+          '--reporter=append-only',
+          '--workspace-concurrency=1',
+          '--filter',
+          '@flax/example-embedded...',
+          'run',
+          'build',
+        ],
+        ['node', 'tool/example_bundle.mjs', '--aggregate'],
+      ]);
+    },
+  );
+
+  test('invalid example selections fail before building anything', () async {
+    package('no_example');
+    for (final entry in {
+      'no_example': throwsArgumentError,
+      'unknown': throwsStateError,
+    }.entries) {
+      await expectLater(
+        example_run.prepareExample(
+          temporary.path,
+          packageName: entry.key,
+          runCommand: record,
+        ),
+        entry.value,
+      );
+    }
+    expect(commands, isEmpty);
+  });
 
   test(
     'binding owners follow Pub dependencies rather than discovery order',

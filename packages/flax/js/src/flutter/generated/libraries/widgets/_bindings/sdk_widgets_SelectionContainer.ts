@@ -26,7 +26,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream11 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import type * as upstream12 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionGeometry';
-import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -61,7 +61,7 @@ return constructObject("object", "flax.core/sdk_widgets#type:SelectionContainer"
 }
 export namespace _SelectionContainerFactory { export function maybeOf(context: upstream4.BuildContext): upstream2.SelectionRegistrar | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:SelectionContainer.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:SelectionContainer.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream2.SelectionRegistrar | null;
 } }
 export const SelectionContainer: typeof _SelectionContainerFactory & _FlaxInstanceType<SelectionContainer> & _FlaxDartType<SelectionContainer, readonly ["class", "flax.core/sdk_widgets#type:SelectionContainer", readonly [], false]> = _flaxBindInstanceType<SelectionContainer, typeof _SelectionContainerFactory>(_SelectionContainerFactory, "flax.core/sdk_widgets#type:SelectionContainer", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SelectionContainerFactory & _FlaxInstanceType<SelectionContainer> & _FlaxDartType<SelectionContainer, readonly ["class", "flax.core/sdk_widgets#type:SelectionContainer", readonly [], false]>;

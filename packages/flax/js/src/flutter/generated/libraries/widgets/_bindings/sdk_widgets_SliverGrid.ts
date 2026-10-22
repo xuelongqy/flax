@@ -31,7 +31,7 @@ import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream15 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
 import type * as upstream16 from '@flax/flutter/rendering/_bindings/sdk_rendering_SliverMultiBoxAdaptorParentData';
-import { _flaxMemberParameters0, _flaxMemberParameters1, _flaxMemberParameters389 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters1, _flaxMemberParameters439 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -53,7 +53,7 @@ toStringDeep(options?: {minLevel?: upstream12.DiagnosticLevel | undefined; prefi
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream14.DiagnosticsTreeStyle | null | undefined}): upstream13.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream13.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:SliverGrid", ["gridDelegate","delegate","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverGrid", "object", {"createRenderObject":_flaxMemberParameters0,"updateRenderObject":_flaxMemberParameters1,"estimateMaxScrollOffset":_flaxMemberParameters389}, {}), [], undefined, "flax.core/sdk_widgets#type:SliverMultiBoxAdaptorWidget");
+defineObject("flax.core/sdk_widgets#type:SliverGrid", ["gridDelegate","delegate","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverGrid", "object", {"createRenderObject":_flaxMemberParameters0,"updateRenderObject":_flaxMemberParameters1,"estimateMaxScrollOffset":_flaxMemberParameters439}, {}), [], undefined, "flax.core/sdk_widgets#type:SliverMultiBoxAdaptorWidget");
 export function _SliverGridFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; delegate: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::SliverChildDelegate": readonly [] }>; gridDelegate: Readonly<{ "__flaxBound:package:flutter/src/rendering/sliver_grid.dart::SliverGridDelegate": readonly [] }> }): SliverGrid {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

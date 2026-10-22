@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/services/_bindings/sdk_services_I
 import '@flax/flutter/services/_bindings/sdk_services_IOSSystemContextMenuItemDataPaste';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_WidgetsLocalizations';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_WidgetsLocalizations';
-import { _flaxMemberParameters182 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters199 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface IOSSystemContextMenuItemPaste extends Omit<upstream0.IOSSystemContextMenuItem, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/widgets/system_context_menu.dart::IOSSystemContextMenuItemPaste": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/system_context_menu.dart::IOSSystemContextMenuItem": readonly [] }> { readonly __IOSSystemContextMenuItemPaste: unique symbol;
@@ -16,7 +16,7 @@ readonly [_flaxDartTypeValue]: IOSSystemContextMenuItemPaste;
 readonly title: string | null;
 getData(localizations: Readonly<{ "__flaxBound:package:flutter/src/widgets/localizations.dart::WidgetsLocalizations": readonly [] }>): upstream1.IOSSystemContextMenuItemDataPaste;
 }
-defineObject("flax.core/sdk_widgets#type:IOSSystemContextMenuItemPaste", ["title"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:IOSSystemContextMenuItemPaste", "object", {"getData":_flaxMemberParameters182}, {}), [], undefined, "flax.core/sdk_widgets#type:IOSSystemContextMenuItem");
+defineObject("flax.core/sdk_widgets#type:IOSSystemContextMenuItemPaste", ["title"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:IOSSystemContextMenuItemPaste", "object", {"getData":_flaxMemberParameters199}, {}), [], undefined, "flax.core/sdk_widgets#type:IOSSystemContextMenuItem");
 export function _IOSSystemContextMenuItemPasteFactory(): IOSSystemContextMenuItemPaste {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');

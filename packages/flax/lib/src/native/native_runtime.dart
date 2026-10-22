@@ -345,7 +345,10 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
   }
 
   static (Pointer<Uint8>, int) _bytes(Arena arena, String string) {
-    final data = utf8.encode(string);
+    return _encodedBytes(arena, utf8.encode(string));
+  }
+
+  static (Pointer<Uint8>, int) _encodedBytes(Arena arena, Uint8List data) {
     final pointer = arena<Uint8>(data.length + 1);
     pointer.asTypedList(data.length).setAll(0, data);
     return (pointer, data.length);
@@ -452,21 +455,31 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
       _entry((arena) {
         final (text, length) = _bytes(arena, source);
         final (url, urlLength) = _bytes(arena, sourceUrl);
-        final result = arena<Uint64>();
-        _checked(
-          arena,
-          (error) => _calls.evaluate(
-            _handle,
-            text,
-            length,
-            url,
-            urlLength,
-            result,
-            error,
-          ),
-        );
-        return _read(arena, result.value);
+        return _evaluate(arena, text, length, url, urlLength);
       });
+
+  @override
+  FlaxJsValue evaluateSource(FlaxJsSource source) => _entry((arena) {
+    final (text, length) = _encodedBytes(arena, source.bytes);
+    final (url, urlLength) = _encodedBytes(arena, source.sourceUrlBytes);
+    return _evaluate(arena, text, length, url, urlLength);
+  });
+
+  FlaxJsValue _evaluate(
+    Arena arena,
+    Pointer<Uint8> text,
+    int length,
+    Pointer<Uint8> url,
+    int urlLength,
+  ) {
+    final result = arena<Uint64>();
+    _checked(
+      arena,
+      (error) =>
+          _calls.evaluate(_handle, text, length, url, urlLength, result, error),
+    );
+    return _read(arena, result.value);
+  }
 
   @override
   FlaxJsValue getGlobal(String name) => _entry((arena) {

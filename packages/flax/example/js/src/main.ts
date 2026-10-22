@@ -1,3 +1,4 @@
-import { runApp, Text } from '@flax/flutter/widgets';
+import { runExample } from './ui';
+import { createCoreExample } from './showcase';
 
-runApp(Text('Flax core ready'));
+runExample(createCoreExample());

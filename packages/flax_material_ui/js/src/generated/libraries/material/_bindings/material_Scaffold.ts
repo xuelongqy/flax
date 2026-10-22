@@ -27,6 +27,7 @@ import type * as upstream11 from '@flax/flutter/foundation/_bindings/flutter_Val
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import type * as upstream12 from '@flax/material-ui/_bindings/material_ScaffoldGeometry';
 import '@flax/material-ui/_bindings/material_ScaffoldGeometry';
+import { _flaxMemberParameters0, _flaxMemberParameters276 } from "@flax/material-ui/_bindings/material.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Scaffold extends WidgetDescription, Omit<Readonly<{ "__flaxBound:package:material_ui/src/scaffold.dart::Scaffold": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, 'type'> { readonly type: "flax.material/material#type:Scaffold";  }
@@ -37,23 +38,23 @@ return construct("widget", "flax.material/material#type:Scaffold", "", [{"name":
 }
 export namespace _ScaffoldFactory { export function of(context: upstream8.BuildContext): upstream10.ScaffoldState {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:Scaffold.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:Scaffold.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream10.ScaffoldState;
 } }
 export namespace _ScaffoldFactory { export function maybeOf(context: upstream8.BuildContext): upstream10.ScaffoldState | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:Scaffold.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:Scaffold.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream10.ScaffoldState | null;
 } }
 export namespace _ScaffoldFactory { export function geometryOf(context: upstream8.BuildContext): upstream11.ValueListenable<upstream12.ScaffoldGeometry> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:Scaffold.geometryOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:Scaffold.geometryOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream11.ValueListenable<upstream12.ScaffoldGeometry>;
 } }
 export namespace _ScaffoldFactory { export function hasDrawer(context: upstream8.BuildContext, options: { registerForUpdates?: boolean | undefined } = {}): boolean {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["registerForUpdates"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:Scaffold.hasDrawer", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.registerForUpdates]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:Scaffold.hasDrawer", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.registerForUpdates], _flaxMemberParameters276);
 return _flaxResult as boolean;
 } }
 export const Scaffold: typeof _ScaffoldFactory & _FlaxInstanceType<Scaffold> & _FlaxDartType<Scaffold, readonly ["class", "flax.material/material#type:Scaffold", readonly [], false]> = _flaxBindInstanceType<Scaffold, typeof _ScaffoldFactory>(_ScaffoldFactory, "flax.material/material#type:Scaffold", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ScaffoldFactory & _FlaxInstanceType<Scaffold> & _FlaxDartType<Scaffold, readonly ["class", "flax.material/material#type:Scaffold", readonly [], false]>;

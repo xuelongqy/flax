@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_TileMode';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TileMode';
 import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_FilterQuality';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_FilterQuality';
-import { _flaxMemberParameters63, _flaxMemberParameters0 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
+import { _flaxMemberParameters67, _flaxMemberParameters0 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -25,7 +25,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 5) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_dart_ui#type:ImageShader", "", [{"name":"image","required":true,"positional":true},{"name":"tmx","required":true,"positional":true},{"name":"tmy","required":true,"positional":true},{"name":"matrix4","required":true,"positional":true},{"name":"filterQuality"}], [image, tmx, tmy, matrix4], options) as ImageShader;
 }
-const _ImageShaderProxy = {type: "flax.core/sdk_dart_ui#type:ImageShader", parameters: _flaxMemberParameters63, constructors: {"": _flaxMemberParameters63}, methods: {"dispose":_flaxMemberParameters0}, getters: ["debugDisposed"], setters: [], contextMembers: [], superMembers: ["get:debugDisposed","dispose"]} as const;
+const _ImageShaderProxy = {type: "flax.core/sdk_dart_ui#type:ImageShader", parameters: _flaxMemberParameters67, constructors: {"": _flaxMemberParameters67}, methods: {"dispose":_flaxMemberParameters0}, getters: ["debugDisposed"], setters: [], contextMembers: [], superMembers: ["get:debugDisposed","dispose"]} as const;
 export interface _ImageShaderNative extends ImageShader {
 readonly [_flaxDartTypeValue]: _ImageShaderNative;
 

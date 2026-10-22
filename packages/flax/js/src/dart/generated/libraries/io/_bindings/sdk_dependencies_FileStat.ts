@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/core/_bindings/flutter_DateTime';
 import '@flax/dart/core/_bindings/flutter_DateTime';
 import type * as upstream1 from '@flax/dart/io/_bindings/sdk_dependencies_FileSystemEntityType';
 import '@flax/dart/io/_bindings/sdk_dependencies_FileSystemEntityType';
-import { _flaxMemberParameters2 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
+import { _flaxMemberParameters19, _flaxMemberParameters2 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface FileStat extends Readonly<{ "__flaxBound:dart:io::FileStat": readonly [] }> { readonly __FileStat: unique symbol;
@@ -23,12 +23,12 @@ modeString(): string;
 defineObject("flax.core/sdk_dependencies#type:FileStat", ["changed","modified","accessed","type","mode","size"], [], _flaxBindingMethods("flax.core/sdk_dependencies#type:FileStat", "object", {"toString":_flaxMemberParameters2,"modeString":_flaxMemberParameters2}, {}), []);
 export namespace _FileStatFactory { export function statSync(path: string): FileStat {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:FileStat.statSync", [path]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:FileStat.statSync", [path], _flaxMemberParameters19);
 return _flaxResult as FileStat;
 } }
 export namespace _FileStatFactory { export function stat(path: string): Promise<FileStat> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:FileStat.stat", [path]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_dependencies#function:FileStat.stat", [path], _flaxMemberParameters19);
 return _flaxResult as Promise<FileStat>;
 } }
 export const FileStat: typeof _FileStatFactory & _FlaxInstanceType<FileStat> & _FlaxDartType<FileStat, readonly ["class", "flax.core/sdk_dependencies#type:FileStat", readonly [], false]> = _flaxBindInstanceType<FileStat, typeof _FileStatFactory>(_FileStatFactory, "flax.core/sdk_dependencies#type:FileStat", ["dart:core::Object"]) as typeof _FileStatFactory & _FlaxInstanceType<FileStat> & _FlaxDartType<FileStat, readonly ["class", "flax.core/sdk_dependencies#type:FileStat", readonly [], false]>;

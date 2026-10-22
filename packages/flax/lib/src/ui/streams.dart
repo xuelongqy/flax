@@ -562,6 +562,7 @@ extension _StreamCalls on _Session {
     String type,
     String operation,
     String name,
+    _CallLayout? layout,
   ) {
     final binding = _typeBinding(type);
     if (binding is! FlaxStreamTypeBinding) {
@@ -573,76 +574,86 @@ extension _StreamCalls on _Session {
                 binding.instanceMethods.containsKey(name)))) {
       throw ArgumentError('Unknown Stream operation');
     }
-    return (id, args) {
-      final reference = _streamReferences[id];
-      if (reference == null ||
-          reference.binding.id != type &&
-              (_specializedOwners[reference.binding.id] ??
-                      reference.binding.id) !=
-                  type ||
-          reference.value == null) {
-        throw ArgumentError('Foreign or released Dart Stream');
-      }
-      final actual =
-          dartTypes.bindingFor(
-            _specializedOwners[type] ?? type,
-            reference.value!,
-          ) as FlaxStreamTypeBinding? ??
-          binding;
-      if (operation == 'get') {
-        if (args.isNotEmpty) throw ArgumentError('Invalid Stream getter');
-        final getter = actual.getters.singleWhere((g) => g.name == name);
-        return holdHostResult(
-          memberResult(getter.read(reference.value!), getter.type),
-        );
-      }
-      final selected =
-          _genericMethod(type, name) ?? actual.instanceMethods[name]!;
-      final input = _callArguments(
-        args,
-        selected.parameters,
-        0,
-        argumentKind: 'object',
-      );
-      try {
-        input.escape(this);
-        var result = selected.invoke(reference.value!, input.values);
-        if (result is StreamSubscription<Object?>) {
-          final template = dartTypes._template(
-            dartTypes.parts(Stream<Object?>),
-            Stream<Object?>,
-          )!;
-          final eventType = dartTypes
-              .arguments(
-                dartTypes._projection(
-                  template.id,
-                  dartTypes.instanceType(reference.value!),
-                )!,
-              )
-              .single;
-          final tracked = dartTypes.instantiate(
-            <E>() => _TrackedStreamSubscription<E>(
-              this,
-              result as StreamSubscription<E>,
-              onData: input.original('onData') as void Function(E)?,
-              onError: input.original(
-                'onError',
-              ) as void Function(Object, StackTrace)?,
-              onDone: input.original('onDone') as void Function()?,
-              cancelOnError: input.original('cancelOnError') == true,
-            ),
-            [eventType],
-            const [],
-          ) as _TrackedStreamSubscription<Object?>;
-          _streamSubscriptions.add(tracked);
-          result = tracked;
+    final method = operation == 'call'
+        ? _genericMethod(type, name) ?? binding.instanceMethods[name]
+        : null;
+    return _withCallLayout(
+      layout,
+      method?.parameters ?? const [],
+      (id, args) {
+        final reference = _streamReferences[id];
+        if (reference == null ||
+            reference.binding.id != type &&
+                (_specializedOwners[reference.binding.id] ??
+                        reference.binding.id) !=
+                    type ||
+            reference.value == null) {
+          throw ArgumentError('Foreign or released Dart Stream');
         }
-        return holdHostResult(memberResult(result, selected.result));
-      } finally {
-        input.release();
-        checkpoint();
-      }
-    };
+        final actual =
+            dartTypes.bindingFor(
+              _specializedOwners[type] ?? type,
+              reference.value!,
+            ) as FlaxStreamTypeBinding? ??
+            binding;
+        if (operation == 'get') {
+          if (args.isNotEmpty) throw ArgumentError('Invalid Stream getter');
+          final getter = actual.getters.singleWhere((g) => g.name == name);
+          return holdHostResult(
+            memberResult(getter.read(reference.value!), getter.type),
+          );
+        }
+        final selected =
+            _genericMethod(type, name) ?? actual.instanceMethods[name]!;
+        final input = _callArguments(
+          args,
+          selected.parameters,
+          0,
+          argumentKind: 'object',
+        );
+        try {
+          input.escape(this);
+          var result = selected.invoke(reference.value!, input.values);
+          if (result is StreamSubscription<Object?>) {
+            final template = dartTypes._template(
+              dartTypes.parts(Stream<Object?>),
+              Stream<Object?>,
+            )!;
+            final eventType = dartTypes
+                .arguments(
+                  dartTypes._projection(
+                    template.id,
+                    dartTypes.instanceType(reference.value!),
+                  )!,
+                )
+                .single;
+            final tracked = dartTypes.instantiate(
+              <E>() => _TrackedStreamSubscription<E>(
+                this,
+                result as StreamSubscription<E>,
+                onData: input.original('onData') as void Function(E)?,
+                onError: input.original(
+                  'onError',
+                ) as void Function(Object, StackTrace)?,
+                onDone: input.original('onDone') as void Function()?,
+                cancelOnError: input.original('cancelOnError') == true,
+              ),
+              [eventType],
+              const [],
+            ) as _TrackedStreamSubscription<Object?>;
+            _streamSubscriptions.add(tracked);
+            result = tracked;
+          }
+          return holdHostResult(memberResult(result, selected.result));
+        } finally {
+          input.release();
+          checkpoint();
+        }
+      },
+      requireLayout:
+          _bindingOwner(type)?.requiredCapabilities.contains('call-layouts') ==
+          true,
+    );
   }
 
   void registerStreams() {

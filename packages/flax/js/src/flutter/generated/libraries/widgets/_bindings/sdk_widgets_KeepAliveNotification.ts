@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_List
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import { _flaxMemberParameters195, _flaxMemberParameters97, _flaxMemberParameters2, _flaxMemberParameters98 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters217, _flaxMemberParameters109, _flaxMemberParameters2, _flaxMemberParameters110 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -25,7 +25,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:KeepAliveNotification", "", [{"name":"handle","required":true,"positional":true}], [handle], {}) as KeepAliveNotification;
 }
-const _KeepAliveNotificationProxy = {type: "flax.core/sdk_widgets#type:KeepAliveNotification", parameters: _flaxMemberParameters195, constructors: {"": _flaxMemberParameters195}, methods: {"dispatch":_flaxMemberParameters97,"toString":_flaxMemberParameters2,"debugFillDescription":_flaxMemberParameters98}, getters: ["handle"], setters: [], contextMembers: [], superMembers: ["get:handle","dispatch","toString","debugFillDescription"]} as const;
+const _KeepAliveNotificationProxy = {type: "flax.core/sdk_widgets#type:KeepAliveNotification", parameters: _flaxMemberParameters217, constructors: {"": _flaxMemberParameters217}, methods: {"dispatch":_flaxMemberParameters109,"toString":_flaxMemberParameters2,"debugFillDescription":_flaxMemberParameters110}, getters: ["handle"], setters: [], contextMembers: [], superMembers: ["get:handle","dispatch","toString","debugFillDescription"]} as const;
 export interface _KeepAliveNotificationNative extends KeepAliveNotification {
 readonly [_flaxDartTypeValue]: _KeepAliveNotificationNative;
 

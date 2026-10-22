@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/painting/_bindings/sdk_painting_B
 import '@flax/flutter/painting/_bindings/sdk_painting_BoxShadow';
 import type * as upstream1 from '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
 import '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
-import { _flaxMemberParameters222 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters247 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,7 +22,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:MagnifierDecoration", "", [{"name":"opacity"},{"name":"shadows"},{"name":"shape"}], [], options) as MagnifierDecoration;
 }
-const _MagnifierDecorationProxy = {type: "flax.core/sdk_widgets#type:MagnifierDecoration", parameters: _flaxMemberParameters222, constructors: {"": _flaxMemberParameters222}, methods: {}, getters: ["opacity","shadows","shape"], setters: [], contextMembers: [], superMembers: ["get:opacity","get:shadows","get:shape"]} as const;
+const _MagnifierDecorationProxy = {type: "flax.core/sdk_widgets#type:MagnifierDecoration", parameters: _flaxMemberParameters247, constructors: {"": _flaxMemberParameters247}, methods: {}, getters: ["opacity","shadows","shape"], setters: [], contextMembers: [], superMembers: ["get:opacity","get:shadows","get:shape"]} as const;
 export interface _MagnifierDecorationNative extends MagnifierDecoration {
 readonly [_flaxDartTypeValue]: _MagnifierDecorationNative;
 

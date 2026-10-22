@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/vector_math/_bindings/sdk_depende
 import '@flax/flutter/vector_math/_bindings/sdk_dependencies_Matrix3';
 import type * as upstream1 from '@flax/flutter/vector_math/_bindings/sdk_dependencies_Vector3';
 import '@flax/flutter/vector_math/_bindings/sdk_dependencies_Vector3';
-import { _flaxMemberParameters2, _flaxMemberParameters0, _flaxMemberParameters79, _flaxMemberParameters80, _flaxMemberParameters81, _flaxMemberParameters82, _flaxMemberParameters83, _flaxMemberParameters84, _flaxMemberParameters85, _flaxMemberParameters58, _flaxMemberParameters68, _flaxMemberParameters66, _flaxMemberParameters72, _flaxMemberParameters86, _flaxMemberParameters75 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
+import { _flaxMemberParameters2, _flaxMemberParameters0, _flaxMemberParameters89, _flaxMemberParameters90, _flaxMemberParameters91, _flaxMemberParameters92, _flaxMemberParameters93, _flaxMemberParameters94, _flaxMemberParameters95, _flaxMemberParameters68, _flaxMemberParameters78, _flaxMemberParameters76, _flaxMemberParameters82, _flaxMemberParameters96, _flaxMemberParameters85 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Quaternion extends Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Quaternion": readonly [] }> { readonly __Quaternion: unique symbol;
@@ -58,17 +58,17 @@ set y(value: number);
 set z(value: number);
 set w(value: number);
 }
-defineObject("flax.core/sdk_dependencies#type:Quaternion", ["storage","x","y","z","w","radians","axis","length2","length"], ["x","y","z","w"], _flaxBindingMethods("flax.core/sdk_dependencies#type:Quaternion", "object", {"clone":_flaxMemberParameters2,"setFrom":_flaxMemberParameters0,"setValues":_flaxMemberParameters79,"setAxisAngle":_flaxMemberParameters80,"setFromRotation":_flaxMemberParameters81,"setFromTwoVectors":_flaxMemberParameters82,"setDQ":_flaxMemberParameters83,"setEuler":_flaxMemberParameters84,"normalize":_flaxMemberParameters2,"negate":_flaxMemberParameters2,"conjugate":_flaxMemberParameters2,"inverse":_flaxMemberParameters2,"normalized":_flaxMemberParameters2,"negated":_flaxMemberParameters2,"conjugated":_flaxMemberParameters2,"inverted":_flaxMemberParameters2,"rotated":_flaxMemberParameters85,"rotate":_flaxMemberParameters85,"add":_flaxMemberParameters58,"sub":_flaxMemberParameters58,"scale":_flaxMemberParameters68,"scaled":_flaxMemberParameters68,"asRotationMatrix":_flaxMemberParameters2,"copyRotationInto":_flaxMemberParameters81,"toString":_flaxMemberParameters2,"relativeError":_flaxMemberParameters66,"absoluteError":_flaxMemberParameters66,"operatorGetIndex":_flaxMemberParameters72,"operatorSetIndex":_flaxMemberParameters86,"operatorAdd":_flaxMemberParameters75,"operatorSubtract":_flaxMemberParameters75,"operatorMultiply":_flaxMemberParameters75,"operatorNegate":_flaxMemberParameters2}, {}), []);
+defineObject("flax.core/sdk_dependencies#type:Quaternion", ["storage","x","y","z","w","radians","axis","length2","length"], ["x","y","z","w"], _flaxBindingMethods("flax.core/sdk_dependencies#type:Quaternion", "object", {"clone":_flaxMemberParameters2,"setFrom":_flaxMemberParameters0,"setValues":_flaxMemberParameters89,"setAxisAngle":_flaxMemberParameters90,"setFromRotation":_flaxMemberParameters91,"setFromTwoVectors":_flaxMemberParameters92,"setDQ":_flaxMemberParameters93,"setEuler":_flaxMemberParameters94,"normalize":_flaxMemberParameters2,"negate":_flaxMemberParameters2,"conjugate":_flaxMemberParameters2,"inverse":_flaxMemberParameters2,"normalized":_flaxMemberParameters2,"negated":_flaxMemberParameters2,"conjugated":_flaxMemberParameters2,"inverted":_flaxMemberParameters2,"rotated":_flaxMemberParameters95,"rotate":_flaxMemberParameters95,"add":_flaxMemberParameters68,"sub":_flaxMemberParameters68,"scale":_flaxMemberParameters78,"scaled":_flaxMemberParameters78,"asRotationMatrix":_flaxMemberParameters2,"copyRotationInto":_flaxMemberParameters91,"toString":_flaxMemberParameters2,"relativeError":_flaxMemberParameters76,"absoluteError":_flaxMemberParameters76,"operatorGetIndex":_flaxMemberParameters82,"operatorSetIndex":_flaxMemberParameters96,"operatorAdd":_flaxMemberParameters85,"operatorSubtract":_flaxMemberParameters85,"operatorMultiply":_flaxMemberParameters85,"operatorNegate":_flaxMemberParameters2}, {}), []);
 export function _QuaternionFactory(x: number, y: number, z: number, w: number): Quaternion {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 4) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dependencies#type:Quaternion", "", _flaxMemberParameters79, [x, y, z, w], {}) as Quaternion;
+return constructObject("object", "flax.core/sdk_dependencies#type:Quaternion", "", _flaxMemberParameters89, [x, y, z, w], {}) as Quaternion;
 }
 export namespace _QuaternionFactory {
 export function fromRotation(rotationMatrix: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Matrix3": readonly [] }>): Quaternion {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dependencies#type:Quaternion", "fromRotation", _flaxMemberParameters81, [rotationMatrix], {}) as Quaternion;
+return constructObject("object", "flax.core/sdk_dependencies#type:Quaternion", "fromRotation", _flaxMemberParameters91, [rotationMatrix], {}) as Quaternion;
 }
 }
 export namespace _QuaternionFactory {
@@ -82,7 +82,7 @@ export namespace _QuaternionFactory {
 export function fromTwoVectors(a: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>, b: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>): Quaternion {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dependencies#type:Quaternion", "fromTwoVectors", _flaxMemberParameters82, [a, b], {}) as Quaternion;
+return constructObject("object", "flax.core/sdk_dependencies#type:Quaternion", "fromTwoVectors", _flaxMemberParameters92, [a, b], {}) as Quaternion;
 }
 }
 export namespace _QuaternionFactory {
@@ -103,14 +103,14 @@ export namespace _QuaternionFactory {
 export function dq(q: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Quaternion": readonly [] }>, omega: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>): Quaternion {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dependencies#type:Quaternion", "dq", _flaxMemberParameters83, [q, omega], {}) as Quaternion;
+return constructObject("object", "flax.core/sdk_dependencies#type:Quaternion", "dq", _flaxMemberParameters93, [q, omega], {}) as Quaternion;
 }
 }
 export namespace _QuaternionFactory {
 export function euler(yaw: number, pitch: number, roll: number): Quaternion {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dependencies#type:Quaternion", "euler", _flaxMemberParameters84, [yaw, pitch, roll], {}) as Quaternion;
+return constructObject("object", "flax.core/sdk_dependencies#type:Quaternion", "euler", _flaxMemberParameters94, [yaw, pitch, roll], {}) as Quaternion;
 }
 }
 export namespace _QuaternionFactory {

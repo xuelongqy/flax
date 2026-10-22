@@ -5,11 +5,12 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDevi
 import '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
 import type * as upstream1 from '@flax/flutter/gestures/_bindings/sdk_gestures_DeviceGestureSettings';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_DeviceGestureSettings';
+import { _flaxMemberParameters104 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_computeHitSlop(kind: upstream0.PointerDeviceKind, settings: Readonly<{ "__flaxBound:package:flutter/src/gestures/gesture_settings.dart::DeviceGestureSettings": readonly [] }> | null): number {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_gestures#function:computeHitSlop", [kind, settings]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_gestures#function:computeHitSlop", [kind, settings], _flaxMemberParameters104);
 return _flaxResult as number;
 }
 export { _flaxTopLevel_computeHitSlop as computeHitSlop };

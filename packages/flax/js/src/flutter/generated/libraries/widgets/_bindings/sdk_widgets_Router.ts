@@ -31,7 +31,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream14 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation';
-import { _flaxMemberParameters2, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters375, _flaxMemberParameters2, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -72,25 +72,25 @@ return constructObject("object", "flax.core/sdk_widgets#type:Router", "withConfi
 }
 export namespace _RouterFactory { function _flaxDefault_of<T extends unknown | null = unknown | null>(context: upstream7.BuildContext): Router<_FlaxDartOutput<T>> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Router.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Router.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as Router<_FlaxDartOutput<T>>;
 }
 export const of = _flaxDefineDartCallTypes(_flaxDefault_of, {"id":"flax.core/sdk_widgets#function:Router.of","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}]}) as _FlaxDartCallable<typeof _flaxDefault_of, _FlaxSignature1>;
 }
 export namespace _RouterFactory { function _flaxDefault_maybeOf<T extends unknown | null = unknown | null>(context: upstream7.BuildContext): Router<_FlaxDartOutput<T>> | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Router.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Router.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as Router<_FlaxDartOutput<T>> | null;
 }
 export const maybeOf = _flaxDefineDartCallTypes(_flaxDefault_maybeOf, {"id":"flax.core/sdk_widgets#function:Router.maybeOf","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}]}) as _FlaxDartCallable<typeof _flaxDefault_maybeOf, _FlaxSignature2>;
 }
 export namespace _RouterFactory { export function navigate(context: upstream7.BuildContext, callback: (() => void)): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Router.navigate", [contextHandle(context, "flax.core/flutter#type:BuildContext"), callback]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Router.navigate", [contextHandle(context, "flax.core/flutter#type:BuildContext"), callback], _flaxMemberParameters375);
 } }
 export namespace _RouterFactory { export function neglect(context: upstream7.BuildContext, callback: (() => void)): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Router.neglect", [contextHandle(context, "flax.core/flutter#type:BuildContext"), callback]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Router.neglect", [contextHandle(context, "flax.core/flutter#type:BuildContext"), callback], _flaxMemberParameters375);
 } }
 export const Router: typeof _RouterFactory & _FlaxInstanceType<Router<unknown | null>> & _FlaxDartType<Router<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:Router", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<Router<unknown | null>, typeof _RouterFactory>(_RouterFactory, "flax.core/sdk_widgets#type:Router", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _RouterFactory & _FlaxInstanceType<Router<unknown | null>> & _FlaxDartType<Router<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:Router", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 _flaxDefineDartTypes(Router, "flax.core/sdk_widgets#type:Router", {"category":"object","constructors":{"":[{"name":"key","required":false,"positional":false},{"name":"routeInformationProvider","required":false,"positional":false},{"name":"routeInformationParser","required":false,"positional":false},{"name":"routerDelegate","required":true,"positional":false},{"name":"backButtonDispatcher","required":false,"positional":false},{"name":"restorationScopeId","required":false,"positional":false}],"withConfig":[{"name":"key","required":false,"positional":false},{"name":"config","required":true,"positional":false},{"name":"restorationScopeId","required":false,"positional":false}]}});

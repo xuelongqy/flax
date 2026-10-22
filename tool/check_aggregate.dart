@@ -13,13 +13,7 @@ Future<void> main(List<String> arguments) => command(() async {
   requireUiAssets(root, engine: engine);
 
   if (Platform.environment['FLAX_CHECK_PREPARED'] != '1') {
-    await run('pnpm', [
-      '--silent',
-      '--filter',
-      '@flax/example-embedded...',
-      'run',
-      'build',
-    ], directory: root);
+    await buildJsDependencies(root, Directory('$root/examples/embedded/js'));
     await run('node', [
       'tool/example_bundle.mjs',
       '--aggregate',
@@ -32,7 +26,7 @@ Future<void> main(List<String> arguments) => command(() async {
       '--no-pub',
       '--reporter',
       'expanded',
-      'test/aggregate_test.dart',
+      'test',
     ], directory: example);
 
     final result = File('$example/build/ui-integration.json');

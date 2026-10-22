@@ -8636,6 +8636,7 @@ const flutterBindings = FlaxBindingModule(
   uiProtocol: 24,
   requiredCapabilities: const <String>[
     "bottom-types",
+    "call-layouts",
     "context-instance-methods",
     "dart-type-tokens",
     "engine-type-handles",
@@ -9576,21 +9577,25 @@ class _AlignHost extends FlaxWidgetHost {
 api.Widget _createAlign(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("alignment")) {
-        return api.Align(
-          key: values["key"] as api3.Key?,
-          widthFactor: values["widthFactor"] as double?,
-          heightFactor: values["heightFactor"] as double?,
-          child: values["child"] as api.Widget?,
-        );
-      }
-      return api.Align(
-        key: values["key"] as api3.Key?,
-        alignment: values["alignment"] as api1.AlignmentGeometry,
-        widthFactor: values["widthFactor"] as double?,
-        heightFactor: values["heightFactor"] as double?,
-        child: values["child"] as api.Widget?,
-      );
+      final _flaxHas1 = values.containsKey("alignment");
+      return flaxInvokeWithDefaults(
+        api.Align.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1 ? values["alignment"] as api1.AlignmentGeometry : null),
+          values["widthFactor"] as double?,
+          values["heightFactor"] as double?,
+          values["child"] as api.Widget?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
+        const <String>[
+          "key",
+          "alignment",
+          "widthFactor",
+          "heightFactor",
+          "child",
+        ],
+      ) as api.Align;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -9927,17 +9932,17 @@ Object _createAsyncSnapshot(String ctor, Map<String, Object?> values) {
         values["data"],
       );
     case "withError":
-      if (!values.containsKey("stackTrace")) {
-        return api.AsyncSnapshot<Object?>.withError(
+      final _flaxHas2 = values.containsKey("stackTrace");
+      return flaxInvokeWithDefaults(
+        api.AsyncSnapshot<Object?>.withError,
+        <Object?>[
           values["state"] as api.ConnectionState,
           values["error"] as Object,
-        );
-      }
-      return api.AsyncSnapshot<Object?>.withError(
-        values["state"] as api.ConnectionState,
-        values["error"] as Object,
-        values["stackTrace"] as api5.StackTrace,
-      );
+          (_flaxHas2 ? values["stackTrace"] as api5.StackTrace : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "", ""],
+      ) as api.AsyncSnapshot<Object?>;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -9979,125 +9984,53 @@ Object? _Border_operatorAdd(Object receiver, Map<String, Object?> values) {
 Object _createBorder(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("top")) {
-        if (!values.containsKey("right")) {
-          if (!values.containsKey("bottom")) {
-            if (!values.containsKey("left")) {
-              return api1.Border();
-            }
-            return api1.Border(left: values["left"] as api1.BorderSide);
-          }
-          if (!values.containsKey("left")) {
-            return api1.Border(bottom: values["bottom"] as api1.BorderSide);
-          }
-          return api1.Border(
-            bottom: values["bottom"] as api1.BorderSide,
-            left: values["left"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("bottom")) {
-          if (!values.containsKey("left")) {
-            return api1.Border(right: values["right"] as api1.BorderSide);
-          }
-          return api1.Border(
-            right: values["right"] as api1.BorderSide,
-            left: values["left"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("left")) {
-          return api1.Border(
-            right: values["right"] as api1.BorderSide,
-            bottom: values["bottom"] as api1.BorderSide,
-          );
-        }
-        return api1.Border(
-          right: values["right"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-          left: values["left"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("right")) {
-        if (!values.containsKey("bottom")) {
-          if (!values.containsKey("left")) {
-            return api1.Border(top: values["top"] as api1.BorderSide);
-          }
-          return api1.Border(
-            top: values["top"] as api1.BorderSide,
-            left: values["left"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("left")) {
-          return api1.Border(
-            top: values["top"] as api1.BorderSide,
-            bottom: values["bottom"] as api1.BorderSide,
-          );
-        }
-        return api1.Border(
-          top: values["top"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-          left: values["left"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("bottom")) {
-        if (!values.containsKey("left")) {
-          return api1.Border(
-            top: values["top"] as api1.BorderSide,
-            right: values["right"] as api1.BorderSide,
-          );
-        }
-        return api1.Border(
-          top: values["top"] as api1.BorderSide,
-          right: values["right"] as api1.BorderSide,
-          left: values["left"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("left")) {
-        return api1.Border(
-          top: values["top"] as api1.BorderSide,
-          right: values["right"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-        );
-      }
-      return api1.Border(
-        top: values["top"] as api1.BorderSide,
-        right: values["right"] as api1.BorderSide,
-        bottom: values["bottom"] as api1.BorderSide,
-        left: values["left"] as api1.BorderSide,
-      );
+      final _flaxHas0 = values.containsKey("top");
+      final _flaxHas1 = values.containsKey("right");
+      final _flaxHas2 = values.containsKey("bottom");
+      final _flaxHas3 = values.containsKey("left");
+      return flaxInvokeWithDefaults(
+        api1.Border.new,
+        <Object?>[
+          (_flaxHas0 ? values["top"] as api1.BorderSide : null),
+          (_flaxHas1 ? values["right"] as api1.BorderSide : null),
+          (_flaxHas2 ? values["bottom"] as api1.BorderSide : null),
+          (_flaxHas3 ? values["left"] as api1.BorderSide : null),
+        ],
+        <int>[
+          (_flaxHas0 ? 1 : 0) |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0),
+        ],
+        const <String>["top", "right", "bottom", "left"],
+      ) as api1.Border;
     case "fromBorderSide":
       return api1.Border.fromBorderSide(values["side"] as api1.BorderSide);
     case "symmetric":
-      if (!values.containsKey("vertical")) {
-        if (!values.containsKey("horizontal")) {
-          return api1.Border.symmetric();
-        }
-        return api1.Border.symmetric(
-          horizontal: values["horizontal"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("horizontal")) {
-        return api1.Border.symmetric(
-          vertical: values["vertical"] as api1.BorderSide,
-        );
-      }
-      return api1.Border.symmetric(
-        vertical: values["vertical"] as api1.BorderSide,
-        horizontal: values["horizontal"] as api1.BorderSide,
-      );
+      final _flaxHas0 = values.containsKey("vertical");
+      final _flaxHas1 = values.containsKey("horizontal");
+      return flaxInvokeWithDefaults(
+        api1.Border.symmetric,
+        <Object?>[
+          (_flaxHas0 ? values["vertical"] as api1.BorderSide : null),
+          (_flaxHas1 ? values["horizontal"] as api1.BorderSide : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["vertical", "horizontal"],
+      ) as api1.Border;
     case "all":
-      if (!values.containsKey("color")) {
-        return api1.Border.all(
-          width: values["width"] as double,
-          style: values["style"] as api1.BorderStyle,
-          strokeAlign: values["strokeAlign"] as double,
-        );
-      }
-      return api1.Border.all(
-        color: values["color"] as api2.Color,
-        width: values["width"] as double,
-        style: values["style"] as api1.BorderStyle,
-        strokeAlign: values["strokeAlign"] as double,
-      );
+      final _flaxHas0 = values.containsKey("color");
+      return flaxInvokeWithDefaults(
+        api1.Border.all,
+        <Object?>[
+          (_flaxHas0 ? values["color"] as api2.Color : null),
+          values["width"] as double,
+          values["style"] as api1.BorderStyle,
+          values["strokeAlign"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
+        const <String>["color", "width", "style", "strokeAlign"],
+      ) as api1.Border;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10138,99 +10071,26 @@ Object? _BorderDirectional_operatorAdd(
 Object _createBorderDirectional(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("top")) {
-        if (!values.containsKey("start")) {
-          if (!values.containsKey("end")) {
-            if (!values.containsKey("bottom")) {
-              return api1.BorderDirectional();
-            }
-            return api1.BorderDirectional(
-              bottom: values["bottom"] as api1.BorderSide,
-            );
-          }
-          if (!values.containsKey("bottom")) {
-            return api1.BorderDirectional(
-              end: values["end"] as api1.BorderSide,
-            );
-          }
-          return api1.BorderDirectional(
-            end: values["end"] as api1.BorderSide,
-            bottom: values["bottom"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("end")) {
-          if (!values.containsKey("bottom")) {
-            return api1.BorderDirectional(
-              start: values["start"] as api1.BorderSide,
-            );
-          }
-          return api1.BorderDirectional(
-            start: values["start"] as api1.BorderSide,
-            bottom: values["bottom"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("bottom")) {
-          return api1.BorderDirectional(
-            start: values["start"] as api1.BorderSide,
-            end: values["end"] as api1.BorderSide,
-          );
-        }
-        return api1.BorderDirectional(
-          start: values["start"] as api1.BorderSide,
-          end: values["end"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("start")) {
-        if (!values.containsKey("end")) {
-          if (!values.containsKey("bottom")) {
-            return api1.BorderDirectional(
-              top: values["top"] as api1.BorderSide,
-            );
-          }
-          return api1.BorderDirectional(
-            top: values["top"] as api1.BorderSide,
-            bottom: values["bottom"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("bottom")) {
-          return api1.BorderDirectional(
-            top: values["top"] as api1.BorderSide,
-            end: values["end"] as api1.BorderSide,
-          );
-        }
-        return api1.BorderDirectional(
-          top: values["top"] as api1.BorderSide,
-          end: values["end"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("end")) {
-        if (!values.containsKey("bottom")) {
-          return api1.BorderDirectional(
-            top: values["top"] as api1.BorderSide,
-            start: values["start"] as api1.BorderSide,
-          );
-        }
-        return api1.BorderDirectional(
-          top: values["top"] as api1.BorderSide,
-          start: values["start"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("bottom")) {
-        return api1.BorderDirectional(
-          top: values["top"] as api1.BorderSide,
-          start: values["start"] as api1.BorderSide,
-          end: values["end"] as api1.BorderSide,
-        );
-      }
-      return api1.BorderDirectional(
-        top: values["top"] as api1.BorderSide,
-        start: values["start"] as api1.BorderSide,
-        end: values["end"] as api1.BorderSide,
-        bottom: values["bottom"] as api1.BorderSide,
-      );
+      final _flaxHas0 = values.containsKey("top");
+      final _flaxHas1 = values.containsKey("start");
+      final _flaxHas2 = values.containsKey("end");
+      final _flaxHas3 = values.containsKey("bottom");
+      return flaxInvokeWithDefaults(
+        api1.BorderDirectional.new,
+        <Object?>[
+          (_flaxHas0 ? values["top"] as api1.BorderSide : null),
+          (_flaxHas1 ? values["start"] as api1.BorderSide : null),
+          (_flaxHas2 ? values["end"] as api1.BorderSide : null),
+          (_flaxHas3 ? values["bottom"] as api1.BorderSide : null),
+        ],
+        <int>[
+          (_flaxHas0 ? 1 : 0) |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0),
+        ],
+        const <String>["top", "start", "end", "bottom"],
+      ) as api1.BorderDirectional;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10333,133 +10193,50 @@ Object _createBorderRadius(String ctor, Map<String, Object?> values) {
     case "circular":
       return api1.BorderRadius.circular(values["radius"] as double);
     case "vertical":
-      if (!values.containsKey("top")) {
-        if (!values.containsKey("bottom")) {
-          return api1.BorderRadius.vertical();
-        }
-        return api1.BorderRadius.vertical(
-          bottom: values["bottom"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottom")) {
-        return api1.BorderRadius.vertical(top: values["top"] as api2.Radius);
-      }
-      return api1.BorderRadius.vertical(
-        top: values["top"] as api2.Radius,
-        bottom: values["bottom"] as api2.Radius,
-      );
+      final _flaxHas0 = values.containsKey("top");
+      final _flaxHas1 = values.containsKey("bottom");
+      return flaxInvokeWithDefaults(
+        api1.BorderRadius.vertical,
+        <Object?>[
+          (_flaxHas0 ? values["top"] as api2.Radius : null),
+          (_flaxHas1 ? values["bottom"] as api2.Radius : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["top", "bottom"],
+      ) as api1.BorderRadius;
     case "horizontal":
-      if (!values.containsKey("left")) {
-        if (!values.containsKey("right")) {
-          return api1.BorderRadius.horizontal();
-        }
-        return api1.BorderRadius.horizontal(
-          right: values["right"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("right")) {
-        return api1.BorderRadius.horizontal(
-          left: values["left"] as api2.Radius,
-        );
-      }
-      return api1.BorderRadius.horizontal(
-        left: values["left"] as api2.Radius,
-        right: values["right"] as api2.Radius,
-      );
+      final _flaxHas0 = values.containsKey("left");
+      final _flaxHas1 = values.containsKey("right");
+      return flaxInvokeWithDefaults(
+        api1.BorderRadius.horizontal,
+        <Object?>[
+          (_flaxHas0 ? values["left"] as api2.Radius : null),
+          (_flaxHas1 ? values["right"] as api2.Radius : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["left", "right"],
+      ) as api1.BorderRadius;
     case "only":
-      if (!values.containsKey("topLeft")) {
-        if (!values.containsKey("topRight")) {
-          if (!values.containsKey("bottomLeft")) {
-            if (!values.containsKey("bottomRight")) {
-              return api1.BorderRadius.only();
-            }
-            return api1.BorderRadius.only(
-              bottomRight: values["bottomRight"] as api2.Radius,
-            );
-          }
-          if (!values.containsKey("bottomRight")) {
-            return api1.BorderRadius.only(
-              bottomLeft: values["bottomLeft"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadius.only(
-            bottomLeft: values["bottomLeft"] as api2.Radius,
-            bottomRight: values["bottomRight"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomLeft")) {
-          if (!values.containsKey("bottomRight")) {
-            return api1.BorderRadius.only(
-              topRight: values["topRight"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadius.only(
-            topRight: values["topRight"] as api2.Radius,
-            bottomRight: values["bottomRight"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomRight")) {
-          return api1.BorderRadius.only(
-            topRight: values["topRight"] as api2.Radius,
-            bottomLeft: values["bottomLeft"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadius.only(
-          topRight: values["topRight"] as api2.Radius,
-          bottomLeft: values["bottomLeft"] as api2.Radius,
-          bottomRight: values["bottomRight"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("topRight")) {
-        if (!values.containsKey("bottomLeft")) {
-          if (!values.containsKey("bottomRight")) {
-            return api1.BorderRadius.only(
-              topLeft: values["topLeft"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadius.only(
-            topLeft: values["topLeft"] as api2.Radius,
-            bottomRight: values["bottomRight"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomRight")) {
-          return api1.BorderRadius.only(
-            topLeft: values["topLeft"] as api2.Radius,
-            bottomLeft: values["bottomLeft"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadius.only(
-          topLeft: values["topLeft"] as api2.Radius,
-          bottomLeft: values["bottomLeft"] as api2.Radius,
-          bottomRight: values["bottomRight"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottomLeft")) {
-        if (!values.containsKey("bottomRight")) {
-          return api1.BorderRadius.only(
-            topLeft: values["topLeft"] as api2.Radius,
-            topRight: values["topRight"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadius.only(
-          topLeft: values["topLeft"] as api2.Radius,
-          topRight: values["topRight"] as api2.Radius,
-          bottomRight: values["bottomRight"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottomRight")) {
-        return api1.BorderRadius.only(
-          topLeft: values["topLeft"] as api2.Radius,
-          topRight: values["topRight"] as api2.Radius,
-          bottomLeft: values["bottomLeft"] as api2.Radius,
-        );
-      }
-      return api1.BorderRadius.only(
-        topLeft: values["topLeft"] as api2.Radius,
-        topRight: values["topRight"] as api2.Radius,
-        bottomLeft: values["bottomLeft"] as api2.Radius,
-        bottomRight: values["bottomRight"] as api2.Radius,
-      );
+      final _flaxHas0 = values.containsKey("topLeft");
+      final _flaxHas1 = values.containsKey("topRight");
+      final _flaxHas2 = values.containsKey("bottomLeft");
+      final _flaxHas3 = values.containsKey("bottomRight");
+      return flaxInvokeWithDefaults(
+        api1.BorderRadius.only,
+        <Object?>[
+          (_flaxHas0 ? values["topLeft"] as api2.Radius : null),
+          (_flaxHas1 ? values["topRight"] as api2.Radius : null),
+          (_flaxHas2 ? values["bottomLeft"] as api2.Radius : null),
+          (_flaxHas3 ? values["bottomRight"] as api2.Radius : null),
+        ],
+        <int>[
+          (_flaxHas0 ? 1 : 0) |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0),
+        ],
+        const <String>["topLeft", "topRight", "bottomLeft", "bottomRight"],
+      ) as api1.BorderRadius;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10548,135 +10325,50 @@ Object _createBorderRadiusDirectional(
     case "circular":
       return api1.BorderRadiusDirectional.circular(values["radius"] as double);
     case "vertical":
-      if (!values.containsKey("top")) {
-        if (!values.containsKey("bottom")) {
-          return api1.BorderRadiusDirectional.vertical();
-        }
-        return api1.BorderRadiusDirectional.vertical(
-          bottom: values["bottom"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottom")) {
-        return api1.BorderRadiusDirectional.vertical(
-          top: values["top"] as api2.Radius,
-        );
-      }
-      return api1.BorderRadiusDirectional.vertical(
-        top: values["top"] as api2.Radius,
-        bottom: values["bottom"] as api2.Radius,
-      );
+      final _flaxHas0 = values.containsKey("top");
+      final _flaxHas1 = values.containsKey("bottom");
+      return flaxInvokeWithDefaults(
+        api1.BorderRadiusDirectional.vertical,
+        <Object?>[
+          (_flaxHas0 ? values["top"] as api2.Radius : null),
+          (_flaxHas1 ? values["bottom"] as api2.Radius : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["top", "bottom"],
+      ) as api1.BorderRadiusDirectional;
     case "horizontal":
-      if (!values.containsKey("start")) {
-        if (!values.containsKey("end")) {
-          return api1.BorderRadiusDirectional.horizontal();
-        }
-        return api1.BorderRadiusDirectional.horizontal(
-          end: values["end"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("end")) {
-        return api1.BorderRadiusDirectional.horizontal(
-          start: values["start"] as api2.Radius,
-        );
-      }
-      return api1.BorderRadiusDirectional.horizontal(
-        start: values["start"] as api2.Radius,
-        end: values["end"] as api2.Radius,
-      );
+      final _flaxHas0 = values.containsKey("start");
+      final _flaxHas1 = values.containsKey("end");
+      return flaxInvokeWithDefaults(
+        api1.BorderRadiusDirectional.horizontal,
+        <Object?>[
+          (_flaxHas0 ? values["start"] as api2.Radius : null),
+          (_flaxHas1 ? values["end"] as api2.Radius : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["start", "end"],
+      ) as api1.BorderRadiusDirectional;
     case "only":
-      if (!values.containsKey("topStart")) {
-        if (!values.containsKey("topEnd")) {
-          if (!values.containsKey("bottomStart")) {
-            if (!values.containsKey("bottomEnd")) {
-              return api1.BorderRadiusDirectional.only();
-            }
-            return api1.BorderRadiusDirectional.only(
-              bottomEnd: values["bottomEnd"] as api2.Radius,
-            );
-          }
-          if (!values.containsKey("bottomEnd")) {
-            return api1.BorderRadiusDirectional.only(
-              bottomStart: values["bottomStart"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadiusDirectional.only(
-            bottomStart: values["bottomStart"] as api2.Radius,
-            bottomEnd: values["bottomEnd"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomStart")) {
-          if (!values.containsKey("bottomEnd")) {
-            return api1.BorderRadiusDirectional.only(
-              topEnd: values["topEnd"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadiusDirectional.only(
-            topEnd: values["topEnd"] as api2.Radius,
-            bottomEnd: values["bottomEnd"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomEnd")) {
-          return api1.BorderRadiusDirectional.only(
-            topEnd: values["topEnd"] as api2.Radius,
-            bottomStart: values["bottomStart"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadiusDirectional.only(
-          topEnd: values["topEnd"] as api2.Radius,
-          bottomStart: values["bottomStart"] as api2.Radius,
-          bottomEnd: values["bottomEnd"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("topEnd")) {
-        if (!values.containsKey("bottomStart")) {
-          if (!values.containsKey("bottomEnd")) {
-            return api1.BorderRadiusDirectional.only(
-              topStart: values["topStart"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadiusDirectional.only(
-            topStart: values["topStart"] as api2.Radius,
-            bottomEnd: values["bottomEnd"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomEnd")) {
-          return api1.BorderRadiusDirectional.only(
-            topStart: values["topStart"] as api2.Radius,
-            bottomStart: values["bottomStart"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadiusDirectional.only(
-          topStart: values["topStart"] as api2.Radius,
-          bottomStart: values["bottomStart"] as api2.Radius,
-          bottomEnd: values["bottomEnd"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottomStart")) {
-        if (!values.containsKey("bottomEnd")) {
-          return api1.BorderRadiusDirectional.only(
-            topStart: values["topStart"] as api2.Radius,
-            topEnd: values["topEnd"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadiusDirectional.only(
-          topStart: values["topStart"] as api2.Radius,
-          topEnd: values["topEnd"] as api2.Radius,
-          bottomEnd: values["bottomEnd"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottomEnd")) {
-        return api1.BorderRadiusDirectional.only(
-          topStart: values["topStart"] as api2.Radius,
-          topEnd: values["topEnd"] as api2.Radius,
-          bottomStart: values["bottomStart"] as api2.Radius,
-        );
-      }
-      return api1.BorderRadiusDirectional.only(
-        topStart: values["topStart"] as api2.Radius,
-        topEnd: values["topEnd"] as api2.Radius,
-        bottomStart: values["bottomStart"] as api2.Radius,
-        bottomEnd: values["bottomEnd"] as api2.Radius,
-      );
+      final _flaxHas0 = values.containsKey("topStart");
+      final _flaxHas1 = values.containsKey("topEnd");
+      final _flaxHas2 = values.containsKey("bottomStart");
+      final _flaxHas3 = values.containsKey("bottomEnd");
+      return flaxInvokeWithDefaults(
+        api1.BorderRadiusDirectional.only,
+        <Object?>[
+          (_flaxHas0 ? values["topStart"] as api2.Radius : null),
+          (_flaxHas1 ? values["topEnd"] as api2.Radius : null),
+          (_flaxHas2 ? values["bottomStart"] as api2.Radius : null),
+          (_flaxHas3 ? values["bottomEnd"] as api2.Radius : null),
+        ],
+        <int>[
+          (_flaxHas0 ? 1 : 0) |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0),
+        ],
+        const <String>["topStart", "topEnd", "bottomStart", "bottomEnd"],
+      ) as api1.BorderRadiusDirectional;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10775,211 +10467,59 @@ Object _createBorderRadiusGeometry(String ctor, Map<String, Object?> values) {
         end: values["end"] as api2.Radius?,
       );
     case "only":
-      if (!values.containsKey("topLeft")) {
-        if (!values.containsKey("topRight")) {
-          if (!values.containsKey("bottomLeft")) {
-            if (!values.containsKey("bottomRight")) {
-              return api1.BorderRadiusGeometry.only();
-            }
-            return api1.BorderRadiusGeometry.only(
-              bottomRight: values["bottomRight"] as api2.Radius,
-            );
-          }
-          if (!values.containsKey("bottomRight")) {
-            return api1.BorderRadiusGeometry.only(
-              bottomLeft: values["bottomLeft"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadiusGeometry.only(
-            bottomLeft: values["bottomLeft"] as api2.Radius,
-            bottomRight: values["bottomRight"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomLeft")) {
-          if (!values.containsKey("bottomRight")) {
-            return api1.BorderRadiusGeometry.only(
-              topRight: values["topRight"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadiusGeometry.only(
-            topRight: values["topRight"] as api2.Radius,
-            bottomRight: values["bottomRight"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomRight")) {
-          return api1.BorderRadiusGeometry.only(
-            topRight: values["topRight"] as api2.Radius,
-            bottomLeft: values["bottomLeft"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadiusGeometry.only(
-          topRight: values["topRight"] as api2.Radius,
-          bottomLeft: values["bottomLeft"] as api2.Radius,
-          bottomRight: values["bottomRight"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("topRight")) {
-        if (!values.containsKey("bottomLeft")) {
-          if (!values.containsKey("bottomRight")) {
-            return api1.BorderRadiusGeometry.only(
-              topLeft: values["topLeft"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadiusGeometry.only(
-            topLeft: values["topLeft"] as api2.Radius,
-            bottomRight: values["bottomRight"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomRight")) {
-          return api1.BorderRadiusGeometry.only(
-            topLeft: values["topLeft"] as api2.Radius,
-            bottomLeft: values["bottomLeft"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadiusGeometry.only(
-          topLeft: values["topLeft"] as api2.Radius,
-          bottomLeft: values["bottomLeft"] as api2.Radius,
-          bottomRight: values["bottomRight"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottomLeft")) {
-        if (!values.containsKey("bottomRight")) {
-          return api1.BorderRadiusGeometry.only(
-            topLeft: values["topLeft"] as api2.Radius,
-            topRight: values["topRight"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadiusGeometry.only(
-          topLeft: values["topLeft"] as api2.Radius,
-          topRight: values["topRight"] as api2.Radius,
-          bottomRight: values["bottomRight"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottomRight")) {
-        return api1.BorderRadiusGeometry.only(
-          topLeft: values["topLeft"] as api2.Radius,
-          topRight: values["topRight"] as api2.Radius,
-          bottomLeft: values["bottomLeft"] as api2.Radius,
-        );
-      }
-      return api1.BorderRadiusGeometry.only(
-        topLeft: values["topLeft"] as api2.Radius,
-        topRight: values["topRight"] as api2.Radius,
-        bottomLeft: values["bottomLeft"] as api2.Radius,
-        bottomRight: values["bottomRight"] as api2.Radius,
-      );
+      final _flaxHas0 = values.containsKey("topLeft");
+      final _flaxHas1 = values.containsKey("topRight");
+      final _flaxHas2 = values.containsKey("bottomLeft");
+      final _flaxHas3 = values.containsKey("bottomRight");
+      return flaxInvokeWithDefaults(
+        api1.BorderRadiusGeometry.only,
+        <Object?>[
+          (_flaxHas0 ? values["topLeft"] as api2.Radius : null),
+          (_flaxHas1 ? values["topRight"] as api2.Radius : null),
+          (_flaxHas2 ? values["bottomLeft"] as api2.Radius : null),
+          (_flaxHas3 ? values["bottomRight"] as api2.Radius : null),
+        ],
+        <int>[
+          (_flaxHas0 ? 1 : 0) |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0),
+        ],
+        const <String>["topLeft", "topRight", "bottomLeft", "bottomRight"],
+      ) as api1.BorderRadiusGeometry;
     case "directional":
-      if (!values.containsKey("topStart")) {
-        if (!values.containsKey("topEnd")) {
-          if (!values.containsKey("bottomStart")) {
-            if (!values.containsKey("bottomEnd")) {
-              return api1.BorderRadiusGeometry.directional();
-            }
-            return api1.BorderRadiusGeometry.directional(
-              bottomEnd: values["bottomEnd"] as api2.Radius,
-            );
-          }
-          if (!values.containsKey("bottomEnd")) {
-            return api1.BorderRadiusGeometry.directional(
-              bottomStart: values["bottomStart"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadiusGeometry.directional(
-            bottomStart: values["bottomStart"] as api2.Radius,
-            bottomEnd: values["bottomEnd"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomStart")) {
-          if (!values.containsKey("bottomEnd")) {
-            return api1.BorderRadiusGeometry.directional(
-              topEnd: values["topEnd"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadiusGeometry.directional(
-            topEnd: values["topEnd"] as api2.Radius,
-            bottomEnd: values["bottomEnd"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomEnd")) {
-          return api1.BorderRadiusGeometry.directional(
-            topEnd: values["topEnd"] as api2.Radius,
-            bottomStart: values["bottomStart"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadiusGeometry.directional(
-          topEnd: values["topEnd"] as api2.Radius,
-          bottomStart: values["bottomStart"] as api2.Radius,
-          bottomEnd: values["bottomEnd"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("topEnd")) {
-        if (!values.containsKey("bottomStart")) {
-          if (!values.containsKey("bottomEnd")) {
-            return api1.BorderRadiusGeometry.directional(
-              topStart: values["topStart"] as api2.Radius,
-            );
-          }
-          return api1.BorderRadiusGeometry.directional(
-            topStart: values["topStart"] as api2.Radius,
-            bottomEnd: values["bottomEnd"] as api2.Radius,
-          );
-        }
-        if (!values.containsKey("bottomEnd")) {
-          return api1.BorderRadiusGeometry.directional(
-            topStart: values["topStart"] as api2.Radius,
-            bottomStart: values["bottomStart"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadiusGeometry.directional(
-          topStart: values["topStart"] as api2.Radius,
-          bottomStart: values["bottomStart"] as api2.Radius,
-          bottomEnd: values["bottomEnd"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottomStart")) {
-        if (!values.containsKey("bottomEnd")) {
-          return api1.BorderRadiusGeometry.directional(
-            topStart: values["topStart"] as api2.Radius,
-            topEnd: values["topEnd"] as api2.Radius,
-          );
-        }
-        return api1.BorderRadiusGeometry.directional(
-          topStart: values["topStart"] as api2.Radius,
-          topEnd: values["topEnd"] as api2.Radius,
-          bottomEnd: values["bottomEnd"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottomEnd")) {
-        return api1.BorderRadiusGeometry.directional(
-          topStart: values["topStart"] as api2.Radius,
-          topEnd: values["topEnd"] as api2.Radius,
-          bottomStart: values["bottomStart"] as api2.Radius,
-        );
-      }
-      return api1.BorderRadiusGeometry.directional(
-        topStart: values["topStart"] as api2.Radius,
-        topEnd: values["topEnd"] as api2.Radius,
-        bottomStart: values["bottomStart"] as api2.Radius,
-        bottomEnd: values["bottomEnd"] as api2.Radius,
-      );
+      final _flaxHas0 = values.containsKey("topStart");
+      final _flaxHas1 = values.containsKey("topEnd");
+      final _flaxHas2 = values.containsKey("bottomStart");
+      final _flaxHas3 = values.containsKey("bottomEnd");
+      return flaxInvokeWithDefaults(
+        api1.BorderRadiusGeometry.directional,
+        <Object?>[
+          (_flaxHas0 ? values["topStart"] as api2.Radius : null),
+          (_flaxHas1 ? values["topEnd"] as api2.Radius : null),
+          (_flaxHas2 ? values["bottomStart"] as api2.Radius : null),
+          (_flaxHas3 ? values["bottomEnd"] as api2.Radius : null),
+        ],
+        <int>[
+          (_flaxHas0 ? 1 : 0) |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0),
+        ],
+        const <String>["topStart", "topEnd", "bottomStart", "bottomEnd"],
+      ) as api1.BorderRadiusGeometry;
     case "vertical":
-      if (!values.containsKey("top")) {
-        if (!values.containsKey("bottom")) {
-          return api1.BorderRadiusGeometry.vertical();
-        }
-        return api1.BorderRadiusGeometry.vertical(
-          bottom: values["bottom"] as api2.Radius,
-        );
-      }
-      if (!values.containsKey("bottom")) {
-        return api1.BorderRadiusGeometry.vertical(
-          top: values["top"] as api2.Radius,
-        );
-      }
-      return api1.BorderRadiusGeometry.vertical(
-        top: values["top"] as api2.Radius,
-        bottom: values["bottom"] as api2.Radius,
-      );
+      final _flaxHas0 = values.containsKey("top");
+      final _flaxHas1 = values.containsKey("bottom");
+      return flaxInvokeWithDefaults(
+        api1.BorderRadiusGeometry.vertical,
+        <Object?>[
+          (_flaxHas0 ? values["top"] as api2.Radius : null),
+          (_flaxHas1 ? values["bottom"] as api2.Radius : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["top", "bottom"],
+      ) as api1.BorderRadiusGeometry;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -11072,19 +10612,18 @@ Object? _BorderSide_toPaint(Object receiver, Map<String, Object?> values) {
 Object _createBorderSide(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("color")) {
-        return api1.BorderSide(
-          width: values["width"] as double,
-          style: values["style"] as api1.BorderStyle,
-          strokeAlign: values["strokeAlign"] as double,
-        );
-      }
-      return api1.BorderSide(
-        color: values["color"] as api2.Color,
-        width: values["width"] as double,
-        style: values["style"] as api1.BorderStyle,
-        strokeAlign: values["strokeAlign"] as double,
-      );
+      final _flaxHas0 = values.containsKey("color");
+      return flaxInvokeWithDefaults(
+        api1.BorderSide.new,
+        <Object?>[
+          (_flaxHas0 ? values["color"] as api2.Color : null),
+          values["width"] as double,
+          values["style"] as api1.BorderStyle,
+          values["strokeAlign"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
+        const <String>["color", "width", "style", "strokeAlign"],
+      ) as api1.BorderSide;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -11141,210 +10680,48 @@ Object? _BoxBorder_lerp(Map<String, Object?> values) {
 }
 
 Object? _BoxBorder_paintNonUniformBorder(Map<String, Object?> values) {
-  if (!values.containsKey("bottom")) {
-    if (!values.containsKey("left")) {
-      if (!values.containsKey("right")) {
-        if (!values.containsKey("top")) {
-          api1.BoxBorder.paintNonUniformBorder(
-            values["canvas"] as api2.Canvas,
-            values["rect"] as api2.Rect,
-            borderRadius: values["borderRadius"] as api1.BorderRadius?,
-            color: values["color"] as api2.Color,
-            shape: values["shape"] as api1.BoxShape,
-            textDirection: values["textDirection"] as api2.TextDirection?,
-          );
-          return null;
-        }
-        api1.BoxBorder.paintNonUniformBorder(
-          values["canvas"] as api2.Canvas,
-          values["rect"] as api2.Rect,
-          borderRadius: values["borderRadius"] as api1.BorderRadius?,
-          color: values["color"] as api2.Color,
-          shape: values["shape"] as api1.BoxShape,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-          top: values["top"] as api1.BorderSide,
-        );
-        return null;
-      }
-      if (!values.containsKey("top")) {
-        api1.BoxBorder.paintNonUniformBorder(
-          values["canvas"] as api2.Canvas,
-          values["rect"] as api2.Rect,
-          borderRadius: values["borderRadius"] as api1.BorderRadius?,
-          color: values["color"] as api2.Color,
-          right: values["right"] as api1.BorderSide,
-          shape: values["shape"] as api1.BoxShape,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-        );
-        return null;
-      }
-      api1.BoxBorder.paintNonUniformBorder(
-        values["canvas"] as api2.Canvas,
-        values["rect"] as api2.Rect,
-        borderRadius: values["borderRadius"] as api1.BorderRadius?,
-        color: values["color"] as api2.Color,
-        right: values["right"] as api1.BorderSide,
-        shape: values["shape"] as api1.BoxShape,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-        top: values["top"] as api1.BorderSide,
-      );
-      return null;
-    }
-    if (!values.containsKey("right")) {
-      if (!values.containsKey("top")) {
-        api1.BoxBorder.paintNonUniformBorder(
-          values["canvas"] as api2.Canvas,
-          values["rect"] as api2.Rect,
-          borderRadius: values["borderRadius"] as api1.BorderRadius?,
-          color: values["color"] as api2.Color,
-          left: values["left"] as api1.BorderSide,
-          shape: values["shape"] as api1.BoxShape,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-        );
-        return null;
-      }
-      api1.BoxBorder.paintNonUniformBorder(
-        values["canvas"] as api2.Canvas,
-        values["rect"] as api2.Rect,
-        borderRadius: values["borderRadius"] as api1.BorderRadius?,
-        color: values["color"] as api2.Color,
-        left: values["left"] as api1.BorderSide,
-        shape: values["shape"] as api1.BoxShape,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-        top: values["top"] as api1.BorderSide,
-      );
-      return null;
-    }
-    if (!values.containsKey("top")) {
-      api1.BoxBorder.paintNonUniformBorder(
-        values["canvas"] as api2.Canvas,
-        values["rect"] as api2.Rect,
-        borderRadius: values["borderRadius"] as api1.BorderRadius?,
-        color: values["color"] as api2.Color,
-        left: values["left"] as api1.BorderSide,
-        right: values["right"] as api1.BorderSide,
-        shape: values["shape"] as api1.BoxShape,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-      );
-      return null;
-    }
-    api1.BoxBorder.paintNonUniformBorder(
+  final _flaxHas3 = values.containsKey("bottom");
+  final _flaxHas5 = values.containsKey("left");
+  final _flaxHas6 = values.containsKey("right");
+  final _flaxHas9 = values.containsKey("top");
+  flaxInvokeWithDefaults(
+    api1.BoxBorder.paintNonUniformBorder,
+    <Object?>[
       values["canvas"] as api2.Canvas,
       values["rect"] as api2.Rect,
-      borderRadius: values["borderRadius"] as api1.BorderRadius?,
-      color: values["color"] as api2.Color,
-      left: values["left"] as api1.BorderSide,
-      right: values["right"] as api1.BorderSide,
-      shape: values["shape"] as api1.BoxShape,
-      textDirection: values["textDirection"] as api2.TextDirection?,
-      top: values["top"] as api1.BorderSide,
-    );
-    return null;
-  }
-  if (!values.containsKey("left")) {
-    if (!values.containsKey("right")) {
-      if (!values.containsKey("top")) {
-        api1.BoxBorder.paintNonUniformBorder(
-          values["canvas"] as api2.Canvas,
-          values["rect"] as api2.Rect,
-          borderRadius: values["borderRadius"] as api1.BorderRadius?,
-          bottom: values["bottom"] as api1.BorderSide,
-          color: values["color"] as api2.Color,
-          shape: values["shape"] as api1.BoxShape,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-        );
-        return null;
-      }
-      api1.BoxBorder.paintNonUniformBorder(
-        values["canvas"] as api2.Canvas,
-        values["rect"] as api2.Rect,
-        borderRadius: values["borderRadius"] as api1.BorderRadius?,
-        bottom: values["bottom"] as api1.BorderSide,
-        color: values["color"] as api2.Color,
-        shape: values["shape"] as api1.BoxShape,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-        top: values["top"] as api1.BorderSide,
-      );
-      return null;
-    }
-    if (!values.containsKey("top")) {
-      api1.BoxBorder.paintNonUniformBorder(
-        values["canvas"] as api2.Canvas,
-        values["rect"] as api2.Rect,
-        borderRadius: values["borderRadius"] as api1.BorderRadius?,
-        bottom: values["bottom"] as api1.BorderSide,
-        color: values["color"] as api2.Color,
-        right: values["right"] as api1.BorderSide,
-        shape: values["shape"] as api1.BoxShape,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-      );
-      return null;
-    }
-    api1.BoxBorder.paintNonUniformBorder(
-      values["canvas"] as api2.Canvas,
-      values["rect"] as api2.Rect,
-      borderRadius: values["borderRadius"] as api1.BorderRadius?,
-      bottom: values["bottom"] as api1.BorderSide,
-      color: values["color"] as api2.Color,
-      right: values["right"] as api1.BorderSide,
-      shape: values["shape"] as api1.BoxShape,
-      textDirection: values["textDirection"] as api2.TextDirection?,
-      top: values["top"] as api1.BorderSide,
-    );
-    return null;
-  }
-  if (!values.containsKey("right")) {
-    if (!values.containsKey("top")) {
-      api1.BoxBorder.paintNonUniformBorder(
-        values["canvas"] as api2.Canvas,
-        values["rect"] as api2.Rect,
-        borderRadius: values["borderRadius"] as api1.BorderRadius?,
-        bottom: values["bottom"] as api1.BorderSide,
-        color: values["color"] as api2.Color,
-        left: values["left"] as api1.BorderSide,
-        shape: values["shape"] as api1.BoxShape,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-      );
-      return null;
-    }
-    api1.BoxBorder.paintNonUniformBorder(
-      values["canvas"] as api2.Canvas,
-      values["rect"] as api2.Rect,
-      borderRadius: values["borderRadius"] as api1.BorderRadius?,
-      bottom: values["bottom"] as api1.BorderSide,
-      color: values["color"] as api2.Color,
-      left: values["left"] as api1.BorderSide,
-      shape: values["shape"] as api1.BoxShape,
-      textDirection: values["textDirection"] as api2.TextDirection?,
-      top: values["top"] as api1.BorderSide,
-    );
-    return null;
-  }
-  if (!values.containsKey("top")) {
-    api1.BoxBorder.paintNonUniformBorder(
-      values["canvas"] as api2.Canvas,
-      values["rect"] as api2.Rect,
-      borderRadius: values["borderRadius"] as api1.BorderRadius?,
-      bottom: values["bottom"] as api1.BorderSide,
-      color: values["color"] as api2.Color,
-      left: values["left"] as api1.BorderSide,
-      right: values["right"] as api1.BorderSide,
-      shape: values["shape"] as api1.BoxShape,
-      textDirection: values["textDirection"] as api2.TextDirection?,
-    );
-    return null;
-  }
-  api1.BoxBorder.paintNonUniformBorder(
-    values["canvas"] as api2.Canvas,
-    values["rect"] as api2.Rect,
-    borderRadius: values["borderRadius"] as api1.BorderRadius?,
-    bottom: values["bottom"] as api1.BorderSide,
-    color: values["color"] as api2.Color,
-    left: values["left"] as api1.BorderSide,
-    right: values["right"] as api1.BorderSide,
-    shape: values["shape"] as api1.BoxShape,
-    textDirection: values["textDirection"] as api2.TextDirection?,
-    top: values["top"] as api1.BorderSide,
+      values["borderRadius"] as api1.BorderRadius?,
+      (_flaxHas3 ? values["bottom"] as api1.BorderSide : null),
+      values["color"] as api2.Color,
+      (_flaxHas5 ? values["left"] as api1.BorderSide : null),
+      (_flaxHas6 ? values["right"] as api1.BorderSide : null),
+      values["shape"] as api1.BoxShape,
+      values["textDirection"] as api2.TextDirection?,
+      (_flaxHas9 ? values["top"] as api1.BorderSide : null),
+    ],
+    <int>[
+      1 |
+          2 |
+          4 |
+          (_flaxHas3 ? 8 : 0) |
+          16 |
+          (_flaxHas5 ? 32 : 0) |
+          (_flaxHas6 ? 64 : 0) |
+          128 |
+          256 |
+          (_flaxHas9 ? 512 : 0),
+    ],
+    const <String>[
+      "",
+      "",
+      "borderRadius",
+      "bottom",
+      "color",
+      "left",
+      "right",
+      "shape",
+      "textDirection",
+      "top",
+    ],
   );
   return null;
 }
@@ -11374,227 +10751,74 @@ Object? _BoxBorder_operatorAdd(Object receiver, Map<String, Object?> values) {
 Object _createBoxBorder(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "fromLTRB":
-      if (!values.containsKey("top")) {
-        if (!values.containsKey("right")) {
-          if (!values.containsKey("bottom")) {
-            if (!values.containsKey("left")) {
-              return api1.BoxBorder.fromLTRB();
-            }
-            return api1.BoxBorder.fromLTRB(
-              left: values["left"] as api1.BorderSide,
-            );
-          }
-          if (!values.containsKey("left")) {
-            return api1.BoxBorder.fromLTRB(
-              bottom: values["bottom"] as api1.BorderSide,
-            );
-          }
-          return api1.BoxBorder.fromLTRB(
-            bottom: values["bottom"] as api1.BorderSide,
-            left: values["left"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("bottom")) {
-          if (!values.containsKey("left")) {
-            return api1.BoxBorder.fromLTRB(
-              right: values["right"] as api1.BorderSide,
-            );
-          }
-          return api1.BoxBorder.fromLTRB(
-            right: values["right"] as api1.BorderSide,
-            left: values["left"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("left")) {
-          return api1.BoxBorder.fromLTRB(
-            right: values["right"] as api1.BorderSide,
-            bottom: values["bottom"] as api1.BorderSide,
-          );
-        }
-        return api1.BoxBorder.fromLTRB(
-          right: values["right"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-          left: values["left"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("right")) {
-        if (!values.containsKey("bottom")) {
-          if (!values.containsKey("left")) {
-            return api1.BoxBorder.fromLTRB(
-              top: values["top"] as api1.BorderSide,
-            );
-          }
-          return api1.BoxBorder.fromLTRB(
-            top: values["top"] as api1.BorderSide,
-            left: values["left"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("left")) {
-          return api1.BoxBorder.fromLTRB(
-            top: values["top"] as api1.BorderSide,
-            bottom: values["bottom"] as api1.BorderSide,
-          );
-        }
-        return api1.BoxBorder.fromLTRB(
-          top: values["top"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-          left: values["left"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("bottom")) {
-        if (!values.containsKey("left")) {
-          return api1.BoxBorder.fromLTRB(
-            top: values["top"] as api1.BorderSide,
-            right: values["right"] as api1.BorderSide,
-          );
-        }
-        return api1.BoxBorder.fromLTRB(
-          top: values["top"] as api1.BorderSide,
-          right: values["right"] as api1.BorderSide,
-          left: values["left"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("left")) {
-        return api1.BoxBorder.fromLTRB(
-          top: values["top"] as api1.BorderSide,
-          right: values["right"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-        );
-      }
-      return api1.BoxBorder.fromLTRB(
-        top: values["top"] as api1.BorderSide,
-        right: values["right"] as api1.BorderSide,
-        bottom: values["bottom"] as api1.BorderSide,
-        left: values["left"] as api1.BorderSide,
-      );
+      final _flaxHas0 = values.containsKey("top");
+      final _flaxHas1 = values.containsKey("right");
+      final _flaxHas2 = values.containsKey("bottom");
+      final _flaxHas3 = values.containsKey("left");
+      return flaxInvokeWithDefaults(
+        api1.BoxBorder.fromLTRB,
+        <Object?>[
+          (_flaxHas0 ? values["top"] as api1.BorderSide : null),
+          (_flaxHas1 ? values["right"] as api1.BorderSide : null),
+          (_flaxHas2 ? values["bottom"] as api1.BorderSide : null),
+          (_flaxHas3 ? values["left"] as api1.BorderSide : null),
+        ],
+        <int>[
+          (_flaxHas0 ? 1 : 0) |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0),
+        ],
+        const <String>["top", "right", "bottom", "left"],
+      ) as api1.BoxBorder;
     case "all":
-      if (!values.containsKey("color")) {
-        return api1.BoxBorder.all(
-          width: values["width"] as double,
-          style: values["style"] as api1.BorderStyle,
-          strokeAlign: values["strokeAlign"] as double,
-        );
-      }
-      return api1.BoxBorder.all(
-        color: values["color"] as api2.Color,
-        width: values["width"] as double,
-        style: values["style"] as api1.BorderStyle,
-        strokeAlign: values["strokeAlign"] as double,
-      );
+      final _flaxHas0 = values.containsKey("color");
+      return flaxInvokeWithDefaults(
+        api1.BoxBorder.all,
+        <Object?>[
+          (_flaxHas0 ? values["color"] as api2.Color : null),
+          values["width"] as double,
+          values["style"] as api1.BorderStyle,
+          values["strokeAlign"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
+        const <String>["color", "width", "style", "strokeAlign"],
+      ) as api1.BoxBorder;
     case "fromBorderSide":
       return api1.BoxBorder.fromBorderSide(values["side"] as api1.BorderSide);
     case "symmetric":
-      if (!values.containsKey("vertical")) {
-        if (!values.containsKey("horizontal")) {
-          return api1.BoxBorder.symmetric();
-        }
-        return api1.BoxBorder.symmetric(
-          horizontal: values["horizontal"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("horizontal")) {
-        return api1.BoxBorder.symmetric(
-          vertical: values["vertical"] as api1.BorderSide,
-        );
-      }
-      return api1.BoxBorder.symmetric(
-        vertical: values["vertical"] as api1.BorderSide,
-        horizontal: values["horizontal"] as api1.BorderSide,
-      );
+      final _flaxHas0 = values.containsKey("vertical");
+      final _flaxHas1 = values.containsKey("horizontal");
+      return flaxInvokeWithDefaults(
+        api1.BoxBorder.symmetric,
+        <Object?>[
+          (_flaxHas0 ? values["vertical"] as api1.BorderSide : null),
+          (_flaxHas1 ? values["horizontal"] as api1.BorderSide : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["vertical", "horizontal"],
+      ) as api1.BoxBorder;
     case "fromSTEB":
-      if (!values.containsKey("top")) {
-        if (!values.containsKey("start")) {
-          if (!values.containsKey("end")) {
-            if (!values.containsKey("bottom")) {
-              return api1.BoxBorder.fromSTEB();
-            }
-            return api1.BoxBorder.fromSTEB(
-              bottom: values["bottom"] as api1.BorderSide,
-            );
-          }
-          if (!values.containsKey("bottom")) {
-            return api1.BoxBorder.fromSTEB(
-              end: values["end"] as api1.BorderSide,
-            );
-          }
-          return api1.BoxBorder.fromSTEB(
-            end: values["end"] as api1.BorderSide,
-            bottom: values["bottom"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("end")) {
-          if (!values.containsKey("bottom")) {
-            return api1.BoxBorder.fromSTEB(
-              start: values["start"] as api1.BorderSide,
-            );
-          }
-          return api1.BoxBorder.fromSTEB(
-            start: values["start"] as api1.BorderSide,
-            bottom: values["bottom"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("bottom")) {
-          return api1.BoxBorder.fromSTEB(
-            start: values["start"] as api1.BorderSide,
-            end: values["end"] as api1.BorderSide,
-          );
-        }
-        return api1.BoxBorder.fromSTEB(
-          start: values["start"] as api1.BorderSide,
-          end: values["end"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("start")) {
-        if (!values.containsKey("end")) {
-          if (!values.containsKey("bottom")) {
-            return api1.BoxBorder.fromSTEB(
-              top: values["top"] as api1.BorderSide,
-            );
-          }
-          return api1.BoxBorder.fromSTEB(
-            top: values["top"] as api1.BorderSide,
-            bottom: values["bottom"] as api1.BorderSide,
-          );
-        }
-        if (!values.containsKey("bottom")) {
-          return api1.BoxBorder.fromSTEB(
-            top: values["top"] as api1.BorderSide,
-            end: values["end"] as api1.BorderSide,
-          );
-        }
-        return api1.BoxBorder.fromSTEB(
-          top: values["top"] as api1.BorderSide,
-          end: values["end"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("end")) {
-        if (!values.containsKey("bottom")) {
-          return api1.BoxBorder.fromSTEB(
-            top: values["top"] as api1.BorderSide,
-            start: values["start"] as api1.BorderSide,
-          );
-        }
-        return api1.BoxBorder.fromSTEB(
-          top: values["top"] as api1.BorderSide,
-          start: values["start"] as api1.BorderSide,
-          bottom: values["bottom"] as api1.BorderSide,
-        );
-      }
-      if (!values.containsKey("bottom")) {
-        return api1.BoxBorder.fromSTEB(
-          top: values["top"] as api1.BorderSide,
-          start: values["start"] as api1.BorderSide,
-          end: values["end"] as api1.BorderSide,
-        );
-      }
-      return api1.BoxBorder.fromSTEB(
-        top: values["top"] as api1.BorderSide,
-        start: values["start"] as api1.BorderSide,
-        end: values["end"] as api1.BorderSide,
-        bottom: values["bottom"] as api1.BorderSide,
-      );
+      final _flaxHas0 = values.containsKey("top");
+      final _flaxHas1 = values.containsKey("start");
+      final _flaxHas2 = values.containsKey("end");
+      final _flaxHas3 = values.containsKey("bottom");
+      return flaxInvokeWithDefaults(
+        api1.BoxBorder.fromSTEB,
+        <Object?>[
+          (_flaxHas0 ? values["top"] as api1.BorderSide : null),
+          (_flaxHas1 ? values["start"] as api1.BorderSide : null),
+          (_flaxHas2 ? values["end"] as api1.BorderSide : null),
+          (_flaxHas3 ? values["bottom"] as api1.BorderSide : null),
+        ],
+        <int>[
+          (_flaxHas0 ? 1 : 0) |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0),
+        ],
+        const <String>["top", "start", "end", "bottom"],
+      ) as api1.BoxBorder;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12130,15 +11354,16 @@ Object? _CircleBorder_operatorAdd(
 Object _createCircleBorder(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("side")) {
-        return api1.CircleBorder(
-          eccentricity: values["eccentricity"] as double,
-        );
-      }
-      return api1.CircleBorder(
-        side: values["side"] as api1.BorderSide,
-        eccentricity: values["eccentricity"] as double,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api1.CircleBorder.new,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api1.BorderSide : null),
+          values["eccentricity"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2],
+        const <String>["side", "eccentricity"],
+      ) as api1.CircleBorder;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12178,21 +11403,27 @@ class _ClipRRectHost extends FlaxWidgetHost {
 api.Widget _createClipRRect(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("borderRadius")) {
-        return api.ClipRRect(
-          key: values["key"] as api3.Key?,
-          clipper: values["clipper"] as api4.CustomClipper<api2.RRect>?,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-          child: values["child"] as api.Widget?,
-        );
-      }
-      return api.ClipRRect(
-        key: values["key"] as api3.Key?,
-        borderRadius: values["borderRadius"] as api1.BorderRadiusGeometry,
-        clipper: values["clipper"] as api4.CustomClipper<api2.RRect>?,
-        clipBehavior: values["clipBehavior"] as api2.Clip,
-        child: values["child"] as api.Widget?,
-      );
+      final _flaxHas1 = values.containsKey("borderRadius");
+      return flaxInvokeWithDefaults(
+        api.ClipRRect.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1
+              ? values["borderRadius"] as api1.BorderRadiusGeometry
+              : null),
+          values["clipper"] as api4.CustomClipper<api2.RRect>?,
+          values["clipBehavior"] as api2.Clip,
+          values["child"] as api.Widget?,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
+        const <String>[
+          "key",
+          "borderRadius",
+          "clipper",
+          "clipBehavior",
+          "child",
+        ],
+      ) as api.ClipRRect;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12337,35 +11568,33 @@ class _ColumnHost extends FlaxWidgetHost {
 api.Widget _createColumn(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("children")) {
-        return api.Column(
-          key: values["key"] as api3.Key?,
-          mainAxisAlignment:
-              values["mainAxisAlignment"] as api4.MainAxisAlignment,
-          mainAxisSize: values["mainAxisSize"] as api4.MainAxisSize,
-          crossAxisAlignment:
-              values["crossAxisAlignment"] as api4.CrossAxisAlignment,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-          verticalDirection:
-              values["verticalDirection"] as api1.VerticalDirection,
-          textBaseline: values["textBaseline"] as api2.TextBaseline?,
-          spacing: values["spacing"] as double,
-        );
-      }
-      return api.Column(
-        key: values["key"] as api3.Key?,
-        mainAxisAlignment:
-            values["mainAxisAlignment"] as api4.MainAxisAlignment,
-        mainAxisSize: values["mainAxisSize"] as api4.MainAxisSize,
-        crossAxisAlignment:
-            values["crossAxisAlignment"] as api4.CrossAxisAlignment,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-        verticalDirection:
-            values["verticalDirection"] as api1.VerticalDirection,
-        textBaseline: values["textBaseline"] as api2.TextBaseline?,
-        spacing: values["spacing"] as double,
-        children: values["children"] as List<api.Widget>,
-      );
+      final _flaxHas8 = values.containsKey("children");
+      return flaxInvokeWithDefaults(
+        api.Column.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["mainAxisAlignment"] as api4.MainAxisAlignment,
+          values["mainAxisSize"] as api4.MainAxisSize,
+          values["crossAxisAlignment"] as api4.CrossAxisAlignment,
+          values["textDirection"] as api2.TextDirection?,
+          values["verticalDirection"] as api1.VerticalDirection,
+          values["textBaseline"] as api2.TextBaseline?,
+          values["spacing"] as double,
+          (_flaxHas8 ? values["children"] as List<api.Widget> : null),
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | (_flaxHas8 ? 256 : 0)],
+        const <String>[
+          "key",
+          "mainAxisAlignment",
+          "mainAxisSize",
+          "crossAxisAlignment",
+          "textDirection",
+          "verticalDirection",
+          "textBaseline",
+          "spacing",
+          "children",
+        ],
+      ) as api.Column;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12712,12 +11941,13 @@ Object? _Decoration_createBoxPainter(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("onChanged")) {
-    return (receiver as api1.Decoration).createBoxPainter();
-  }
-  return (receiver as api1.Decoration).createBoxPainter(
-    values["onChanged"] as void Function(),
-  );
+  final _flaxHas0 = values.containsKey("onChanged");
+  return flaxInvokeWithDefaults(
+    (receiver as api1.Decoration).createBoxPainter,
+    <Object?>[(_flaxHas0 ? values["onChanged"] as void Function() : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>[""],
+  ) as api1.BoxPainter;
 }
 
 Object? _Decoration_getClipPath(Object receiver, Map<String, Object?> values) {
@@ -13444,21 +12674,19 @@ class _FittedBoxHost extends FlaxWidgetHost {
 api.Widget _createFittedBox(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("alignment")) {
-        return api.FittedBox(
-          key: values["key"] as api3.Key?,
-          fit: values["fit"] as api1.BoxFit,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-          child: values["child"] as api.Widget?,
-        );
-      }
-      return api.FittedBox(
-        key: values["key"] as api3.Key?,
-        fit: values["fit"] as api1.BoxFit,
-        alignment: values["alignment"] as api1.AlignmentGeometry,
-        clipBehavior: values["clipBehavior"] as api2.Clip,
-        child: values["child"] as api.Widget?,
-      );
+      final _flaxHas2 = values.containsKey("alignment");
+      return flaxInvokeWithDefaults(
+        api.FittedBox.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["fit"] as api1.BoxFit,
+          (_flaxHas2 ? values["alignment"] as api1.AlignmentGeometry : null),
+          values["clipBehavior"] as api2.Clip,
+          values["child"] as api.Widget?,
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16],
+        const <String>["key", "fit", "alignment", "clipBehavior", "child"],
+      ) as api.FittedBox;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -13877,315 +13105,247 @@ class _GestureDetectorHost extends FlaxWidgetHost {
 api.Widget _createGestureDetector(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("trackpadScrollToScaleFactor")) {
-        return api.GestureDetector(
-          key: values["key"] as api3.Key?,
-          child: values["child"] as api.Widget?,
-          onTapDown:
-              values["onTapDown"]
-                  as void Function(api7.TapDownDetails details)?,
-          onTapUp:
-              values["onTapUp"] as void Function(api7.TapUpDetails details)?,
-          onTap: values["onTap"] as void Function()?,
-          onTapMove:
-              values["onTapMove"]
-                  as void Function(api7.TapMoveDetails details)?,
-          onTapCancel: values["onTapCancel"] as void Function()?,
-          onSecondaryTap: values["onSecondaryTap"] as void Function()?,
-          onSecondaryTapDown:
-              values["onSecondaryTapDown"]
-                  as void Function(api7.TapDownDetails details)?,
-          onSecondaryTapUp:
-              values["onSecondaryTapUp"]
-                  as void Function(api7.TapUpDetails details)?,
-          onSecondaryTapCancel:
-              values["onSecondaryTapCancel"] as void Function()?,
-          onTertiaryTapDown:
-              values["onTertiaryTapDown"]
-                  as void Function(api7.TapDownDetails details)?,
-          onTertiaryTapUp:
-              values["onTertiaryTapUp"]
-                  as void Function(api7.TapUpDetails details)?,
-          onTertiaryTapCancel:
-              values["onTertiaryTapCancel"] as void Function()?,
-          onDoubleTapDown:
-              values["onDoubleTapDown"]
-                  as void Function(api7.TapDownDetails details)?,
-          onDoubleTap: values["onDoubleTap"] as void Function()?,
-          onDoubleTapCancel: values["onDoubleTapCancel"] as void Function()?,
-          onLongPressDown:
-              values["onLongPressDown"]
-                  as void Function(api7.LongPressDownDetails details)?,
-          onLongPressCancel: values["onLongPressCancel"] as void Function()?,
-          onLongPress: values["onLongPress"] as void Function()?,
-          onLongPressStart:
-              values["onLongPressStart"]
-                  as void Function(api7.LongPressStartDetails details)?,
-          onLongPressMoveUpdate:
-              values["onLongPressMoveUpdate"]
-                  as void Function(api7.LongPressMoveUpdateDetails details)?,
-          onLongPressUp: values["onLongPressUp"] as void Function()?,
-          onLongPressEnd:
-              values["onLongPressEnd"]
-                  as void Function(api7.LongPressEndDetails details)?,
-          onSecondaryLongPressDown:
-              values["onSecondaryLongPressDown"]
-                  as void Function(api7.LongPressDownDetails details)?,
-          onSecondaryLongPressCancel:
-              values["onSecondaryLongPressCancel"] as void Function()?,
-          onSecondaryLongPress:
-              values["onSecondaryLongPress"] as void Function()?,
-          onSecondaryLongPressStart:
-              values["onSecondaryLongPressStart"]
-                  as void Function(api7.LongPressStartDetails details)?,
-          onSecondaryLongPressMoveUpdate:
-              values["onSecondaryLongPressMoveUpdate"]
-                  as void Function(api7.LongPressMoveUpdateDetails details)?,
-          onSecondaryLongPressUp:
-              values["onSecondaryLongPressUp"] as void Function()?,
-          onSecondaryLongPressEnd:
-              values["onSecondaryLongPressEnd"]
-                  as void Function(api7.LongPressEndDetails details)?,
-          onTertiaryLongPressDown:
-              values["onTertiaryLongPressDown"]
-                  as void Function(api7.LongPressDownDetails details)?,
-          onTertiaryLongPressCancel:
-              values["onTertiaryLongPressCancel"] as void Function()?,
-          onTertiaryLongPress:
-              values["onTertiaryLongPress"] as void Function()?,
-          onTertiaryLongPressStart:
-              values["onTertiaryLongPressStart"]
-                  as void Function(api7.LongPressStartDetails details)?,
-          onTertiaryLongPressMoveUpdate:
-              values["onTertiaryLongPressMoveUpdate"]
-                  as void Function(api7.LongPressMoveUpdateDetails details)?,
-          onTertiaryLongPressUp:
-              values["onTertiaryLongPressUp"] as void Function()?,
-          onTertiaryLongPressEnd:
-              values["onTertiaryLongPressEnd"]
-                  as void Function(api7.LongPressEndDetails details)?,
-          onVerticalDragDown:
-              values["onVerticalDragDown"]
-                  as void Function(api7.DragDownDetails details)?,
-          onVerticalDragStart:
-              values["onVerticalDragStart"]
-                  as void Function(api7.DragStartDetails details)?,
-          onVerticalDragUpdate:
-              values["onVerticalDragUpdate"]
-                  as void Function(api7.DragUpdateDetails details)?,
-          onVerticalDragEnd:
-              values["onVerticalDragEnd"]
-                  as void Function(api7.DragEndDetails details)?,
-          onVerticalDragCancel:
-              values["onVerticalDragCancel"] as void Function()?,
-          onHorizontalDragDown:
-              values["onHorizontalDragDown"]
-                  as void Function(api7.DragDownDetails details)?,
-          onHorizontalDragStart:
-              values["onHorizontalDragStart"]
-                  as void Function(api7.DragStartDetails details)?,
-          onHorizontalDragUpdate:
-              values["onHorizontalDragUpdate"]
-                  as void Function(api7.DragUpdateDetails details)?,
-          onHorizontalDragEnd:
-              values["onHorizontalDragEnd"]
-                  as void Function(api7.DragEndDetails details)?,
-          onHorizontalDragCancel:
-              values["onHorizontalDragCancel"] as void Function()?,
-          onForcePressStart:
-              values["onForcePressStart"]
-                  as void Function(api7.ForcePressDetails details)?,
-          onForcePressPeak:
-              values["onForcePressPeak"]
-                  as void Function(api7.ForcePressDetails details)?,
-          onForcePressUpdate:
-              values["onForcePressUpdate"]
-                  as void Function(api7.ForcePressDetails details)?,
-          onForcePressEnd:
-              values["onForcePressEnd"]
-                  as void Function(api7.ForcePressDetails details)?,
-          onPanDown:
-              values["onPanDown"]
-                  as void Function(api7.DragDownDetails details)?,
-          onPanStart:
-              values["onPanStart"]
-                  as void Function(api7.DragStartDetails details)?,
-          onPanUpdate:
-              values["onPanUpdate"]
-                  as void Function(api7.DragUpdateDetails details)?,
-          onPanEnd:
-              values["onPanEnd"] as void Function(api7.DragEndDetails details)?,
-          onPanCancel: values["onPanCancel"] as void Function()?,
-          onScaleStart:
-              values["onScaleStart"]
-                  as void Function(api7.ScaleStartDetails details)?,
-          onScaleUpdate:
-              values["onScaleUpdate"]
-                  as void Function(api7.ScaleUpdateDetails details)?,
-          onScaleEnd:
-              values["onScaleEnd"]
-                  as void Function(api7.ScaleEndDetails details)?,
-          behavior: values["behavior"] as api4.HitTestBehavior?,
-          excludeFromSemantics: values["excludeFromSemantics"] as bool,
-          dragStartBehavior:
-              values["dragStartBehavior"] as api7.DragStartBehavior,
-          trackpadScrollCausesScale:
-              values["trackpadScrollCausesScale"] as bool,
-          supportedDevices:
-              values["supportedDevices"] as Set<api2.PointerDeviceKind>?,
-        );
-      }
-      return api.GestureDetector(
-        key: values["key"] as api3.Key?,
-        child: values["child"] as api.Widget?,
-        onTapDown:
-            values["onTapDown"] as void Function(api7.TapDownDetails details)?,
-        onTapUp: values["onTapUp"] as void Function(api7.TapUpDetails details)?,
-        onTap: values["onTap"] as void Function()?,
-        onTapMove:
-            values["onTapMove"] as void Function(api7.TapMoveDetails details)?,
-        onTapCancel: values["onTapCancel"] as void Function()?,
-        onSecondaryTap: values["onSecondaryTap"] as void Function()?,
-        onSecondaryTapDown:
-            values["onSecondaryTapDown"]
-                as void Function(api7.TapDownDetails details)?,
-        onSecondaryTapUp:
-            values["onSecondaryTapUp"]
-                as void Function(api7.TapUpDetails details)?,
-        onSecondaryTapCancel:
-            values["onSecondaryTapCancel"] as void Function()?,
-        onTertiaryTapDown:
-            values["onTertiaryTapDown"]
-                as void Function(api7.TapDownDetails details)?,
-        onTertiaryTapUp:
-            values["onTertiaryTapUp"]
-                as void Function(api7.TapUpDetails details)?,
-        onTertiaryTapCancel: values["onTertiaryTapCancel"] as void Function()?,
-        onDoubleTapDown:
-            values["onDoubleTapDown"]
-                as void Function(api7.TapDownDetails details)?,
-        onDoubleTap: values["onDoubleTap"] as void Function()?,
-        onDoubleTapCancel: values["onDoubleTapCancel"] as void Function()?,
-        onLongPressDown:
-            values["onLongPressDown"]
-                as void Function(api7.LongPressDownDetails details)?,
-        onLongPressCancel: values["onLongPressCancel"] as void Function()?,
-        onLongPress: values["onLongPress"] as void Function()?,
-        onLongPressStart:
-            values["onLongPressStart"]
-                as void Function(api7.LongPressStartDetails details)?,
-        onLongPressMoveUpdate:
-            values["onLongPressMoveUpdate"]
-                as void Function(api7.LongPressMoveUpdateDetails details)?,
-        onLongPressUp: values["onLongPressUp"] as void Function()?,
-        onLongPressEnd:
-            values["onLongPressEnd"]
-                as void Function(api7.LongPressEndDetails details)?,
-        onSecondaryLongPressDown:
-            values["onSecondaryLongPressDown"]
-                as void Function(api7.LongPressDownDetails details)?,
-        onSecondaryLongPressCancel:
-            values["onSecondaryLongPressCancel"] as void Function()?,
-        onSecondaryLongPress:
-            values["onSecondaryLongPress"] as void Function()?,
-        onSecondaryLongPressStart:
-            values["onSecondaryLongPressStart"]
-                as void Function(api7.LongPressStartDetails details)?,
-        onSecondaryLongPressMoveUpdate:
-            values["onSecondaryLongPressMoveUpdate"]
-                as void Function(api7.LongPressMoveUpdateDetails details)?,
-        onSecondaryLongPressUp:
-            values["onSecondaryLongPressUp"] as void Function()?,
-        onSecondaryLongPressEnd:
-            values["onSecondaryLongPressEnd"]
-                as void Function(api7.LongPressEndDetails details)?,
-        onTertiaryLongPressDown:
-            values["onTertiaryLongPressDown"]
-                as void Function(api7.LongPressDownDetails details)?,
-        onTertiaryLongPressCancel:
-            values["onTertiaryLongPressCancel"] as void Function()?,
-        onTertiaryLongPress: values["onTertiaryLongPress"] as void Function()?,
-        onTertiaryLongPressStart:
-            values["onTertiaryLongPressStart"]
-                as void Function(api7.LongPressStartDetails details)?,
-        onTertiaryLongPressMoveUpdate:
-            values["onTertiaryLongPressMoveUpdate"]
-                as void Function(api7.LongPressMoveUpdateDetails details)?,
-        onTertiaryLongPressUp:
-            values["onTertiaryLongPressUp"] as void Function()?,
-        onTertiaryLongPressEnd:
-            values["onTertiaryLongPressEnd"]
-                as void Function(api7.LongPressEndDetails details)?,
-        onVerticalDragDown:
-            values["onVerticalDragDown"]
-                as void Function(api7.DragDownDetails details)?,
-        onVerticalDragStart:
-            values["onVerticalDragStart"]
-                as void Function(api7.DragStartDetails details)?,
-        onVerticalDragUpdate:
-            values["onVerticalDragUpdate"]
-                as void Function(api7.DragUpdateDetails details)?,
-        onVerticalDragEnd:
-            values["onVerticalDragEnd"]
-                as void Function(api7.DragEndDetails details)?,
-        onVerticalDragCancel:
-            values["onVerticalDragCancel"] as void Function()?,
-        onHorizontalDragDown:
-            values["onHorizontalDragDown"]
-                as void Function(api7.DragDownDetails details)?,
-        onHorizontalDragStart:
-            values["onHorizontalDragStart"]
-                as void Function(api7.DragStartDetails details)?,
-        onHorizontalDragUpdate:
-            values["onHorizontalDragUpdate"]
-                as void Function(api7.DragUpdateDetails details)?,
-        onHorizontalDragEnd:
-            values["onHorizontalDragEnd"]
-                as void Function(api7.DragEndDetails details)?,
-        onHorizontalDragCancel:
-            values["onHorizontalDragCancel"] as void Function()?,
-        onForcePressStart:
-            values["onForcePressStart"]
-                as void Function(api7.ForcePressDetails details)?,
-        onForcePressPeak:
-            values["onForcePressPeak"]
-                as void Function(api7.ForcePressDetails details)?,
-        onForcePressUpdate:
-            values["onForcePressUpdate"]
-                as void Function(api7.ForcePressDetails details)?,
-        onForcePressEnd:
-            values["onForcePressEnd"]
-                as void Function(api7.ForcePressDetails details)?,
-        onPanDown:
-            values["onPanDown"] as void Function(api7.DragDownDetails details)?,
-        onPanStart:
-            values["onPanStart"]
-                as void Function(api7.DragStartDetails details)?,
-        onPanUpdate:
-            values["onPanUpdate"]
-                as void Function(api7.DragUpdateDetails details)?,
-        onPanEnd:
-            values["onPanEnd"] as void Function(api7.DragEndDetails details)?,
-        onPanCancel: values["onPanCancel"] as void Function()?,
-        onScaleStart:
-            values["onScaleStart"]
-                as void Function(api7.ScaleStartDetails details)?,
-        onScaleUpdate:
-            values["onScaleUpdate"]
-                as void Function(api7.ScaleUpdateDetails details)?,
-        onScaleEnd:
-            values["onScaleEnd"]
-                as void Function(api7.ScaleEndDetails details)?,
-        behavior: values["behavior"] as api4.HitTestBehavior?,
-        excludeFromSemantics: values["excludeFromSemantics"] as bool,
-        dragStartBehavior:
-            values["dragStartBehavior"] as api7.DragStartBehavior,
-        trackpadScrollCausesScale: values["trackpadScrollCausesScale"] as bool,
-        trackpadScrollToScaleFactor:
-            values["trackpadScrollToScaleFactor"] as api2.Offset,
-        supportedDevices:
-            values["supportedDevices"] as Set<api2.PointerDeviceKind>?,
-      );
+      final _flaxHas64 = values.containsKey("trackpadScrollToScaleFactor");
+      return flaxInvokeWithDefaults(
+        api.GestureDetector.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["child"] as api.Widget?,
+          values["onTapDown"] as void Function(api7.TapDownDetails details)?,
+          values["onTapUp"] as void Function(api7.TapUpDetails details)?,
+          values["onTap"] as void Function()?,
+          values["onTapMove"] as void Function(api7.TapMoveDetails details)?,
+          values["onTapCancel"] as void Function()?,
+          values["onSecondaryTap"] as void Function()?,
+          values["onSecondaryTapDown"]
+              as void Function(api7.TapDownDetails details)?,
+          values["onSecondaryTapUp"]
+              as void Function(api7.TapUpDetails details)?,
+          values["onSecondaryTapCancel"] as void Function()?,
+          values["onTertiaryTapDown"]
+              as void Function(api7.TapDownDetails details)?,
+          values["onTertiaryTapUp"]
+              as void Function(api7.TapUpDetails details)?,
+          values["onTertiaryTapCancel"] as void Function()?,
+          values["onDoubleTapDown"]
+              as void Function(api7.TapDownDetails details)?,
+          values["onDoubleTap"] as void Function()?,
+          values["onDoubleTapCancel"] as void Function()?,
+          values["onLongPressDown"]
+              as void Function(api7.LongPressDownDetails details)?,
+          values["onLongPressCancel"] as void Function()?,
+          values["onLongPress"] as void Function()?,
+          values["onLongPressStart"]
+              as void Function(api7.LongPressStartDetails details)?,
+          values["onLongPressMoveUpdate"]
+              as void Function(api7.LongPressMoveUpdateDetails details)?,
+          values["onLongPressUp"] as void Function()?,
+          values["onLongPressEnd"]
+              as void Function(api7.LongPressEndDetails details)?,
+          values["onSecondaryLongPressDown"]
+              as void Function(api7.LongPressDownDetails details)?,
+          values["onSecondaryLongPressCancel"] as void Function()?,
+          values["onSecondaryLongPress"] as void Function()?,
+          values["onSecondaryLongPressStart"]
+              as void Function(api7.LongPressStartDetails details)?,
+          values["onSecondaryLongPressMoveUpdate"]
+              as void Function(api7.LongPressMoveUpdateDetails details)?,
+          values["onSecondaryLongPressUp"] as void Function()?,
+          values["onSecondaryLongPressEnd"]
+              as void Function(api7.LongPressEndDetails details)?,
+          values["onTertiaryLongPressDown"]
+              as void Function(api7.LongPressDownDetails details)?,
+          values["onTertiaryLongPressCancel"] as void Function()?,
+          values["onTertiaryLongPress"] as void Function()?,
+          values["onTertiaryLongPressStart"]
+              as void Function(api7.LongPressStartDetails details)?,
+          values["onTertiaryLongPressMoveUpdate"]
+              as void Function(api7.LongPressMoveUpdateDetails details)?,
+          values["onTertiaryLongPressUp"] as void Function()?,
+          values["onTertiaryLongPressEnd"]
+              as void Function(api7.LongPressEndDetails details)?,
+          values["onVerticalDragDown"]
+              as void Function(api7.DragDownDetails details)?,
+          values["onVerticalDragStart"]
+              as void Function(api7.DragStartDetails details)?,
+          values["onVerticalDragUpdate"]
+              as void Function(api7.DragUpdateDetails details)?,
+          values["onVerticalDragEnd"]
+              as void Function(api7.DragEndDetails details)?,
+          values["onVerticalDragCancel"] as void Function()?,
+          values["onHorizontalDragDown"]
+              as void Function(api7.DragDownDetails details)?,
+          values["onHorizontalDragStart"]
+              as void Function(api7.DragStartDetails details)?,
+          values["onHorizontalDragUpdate"]
+              as void Function(api7.DragUpdateDetails details)?,
+          values["onHorizontalDragEnd"]
+              as void Function(api7.DragEndDetails details)?,
+          values["onHorizontalDragCancel"] as void Function()?,
+          values["onForcePressStart"]
+              as void Function(api7.ForcePressDetails details)?,
+          values["onForcePressPeak"]
+              as void Function(api7.ForcePressDetails details)?,
+          values["onForcePressUpdate"]
+              as void Function(api7.ForcePressDetails details)?,
+          values["onForcePressEnd"]
+              as void Function(api7.ForcePressDetails details)?,
+          values["onPanDown"] as void Function(api7.DragDownDetails details)?,
+          values["onPanStart"] as void Function(api7.DragStartDetails details)?,
+          values["onPanUpdate"]
+              as void Function(api7.DragUpdateDetails details)?,
+          values["onPanEnd"] as void Function(api7.DragEndDetails details)?,
+          values["onPanCancel"] as void Function()?,
+          values["onScaleStart"]
+              as void Function(api7.ScaleStartDetails details)?,
+          values["onScaleUpdate"]
+              as void Function(api7.ScaleUpdateDetails details)?,
+          values["onScaleEnd"] as void Function(api7.ScaleEndDetails details)?,
+          values["behavior"] as api4.HitTestBehavior?,
+          values["excludeFromSemantics"] as bool,
+          values["dragStartBehavior"] as api7.DragStartBehavior,
+          values["trackpadScrollCausesScale"] as bool,
+          (_flaxHas64
+              ? values["trackpadScrollToScaleFactor"] as api2.Offset
+              : null),
+          values["supportedDevices"] as Set<api2.PointerDeviceKind>?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912 |
+              1073741824 |
+              2147483648,
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912 |
+              1073741824 |
+              2147483648,
+          (_flaxHas64 ? 1 : 0) | 2,
+        ],
+        const <String>[
+          "key",
+          "child",
+          "onTapDown",
+          "onTapUp",
+          "onTap",
+          "onTapMove",
+          "onTapCancel",
+          "onSecondaryTap",
+          "onSecondaryTapDown",
+          "onSecondaryTapUp",
+          "onSecondaryTapCancel",
+          "onTertiaryTapDown",
+          "onTertiaryTapUp",
+          "onTertiaryTapCancel",
+          "onDoubleTapDown",
+          "onDoubleTap",
+          "onDoubleTapCancel",
+          "onLongPressDown",
+          "onLongPressCancel",
+          "onLongPress",
+          "onLongPressStart",
+          "onLongPressMoveUpdate",
+          "onLongPressUp",
+          "onLongPressEnd",
+          "onSecondaryLongPressDown",
+          "onSecondaryLongPressCancel",
+          "onSecondaryLongPress",
+          "onSecondaryLongPressStart",
+          "onSecondaryLongPressMoveUpdate",
+          "onSecondaryLongPressUp",
+          "onSecondaryLongPressEnd",
+          "onTertiaryLongPressDown",
+          "onTertiaryLongPressCancel",
+          "onTertiaryLongPress",
+          "onTertiaryLongPressStart",
+          "onTertiaryLongPressMoveUpdate",
+          "onTertiaryLongPressUp",
+          "onTertiaryLongPressEnd",
+          "onVerticalDragDown",
+          "onVerticalDragStart",
+          "onVerticalDragUpdate",
+          "onVerticalDragEnd",
+          "onVerticalDragCancel",
+          "onHorizontalDragDown",
+          "onHorizontalDragStart",
+          "onHorizontalDragUpdate",
+          "onHorizontalDragEnd",
+          "onHorizontalDragCancel",
+          "onForcePressStart",
+          "onForcePressPeak",
+          "onForcePressUpdate",
+          "onForcePressEnd",
+          "onPanDown",
+          "onPanStart",
+          "onPanUpdate",
+          "onPanEnd",
+          "onPanCancel",
+          "onScaleStart",
+          "onScaleUpdate",
+          "onScaleEnd",
+          "behavior",
+          "excludeFromSemantics",
+          "dragStartBehavior",
+          "trackpadScrollCausesScale",
+          "trackpadScrollToScaleFactor",
+          "supportedDevices",
+        ],
+      ) as api.GestureDetector;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14268,44 +13428,30 @@ class _IndexedStackHost extends FlaxWidgetHost {
 api.Widget _createIndexedStack(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("alignment")) {
-        if (!values.containsKey("children")) {
-          return api.IndexedStack(
-            key: values["key"] as api3.Key?,
-            textDirection: values["textDirection"] as api2.TextDirection?,
-            clipBehavior: values["clipBehavior"] as api2.Clip,
-            sizing: values["sizing"] as api4.StackFit,
-            index: values["index"] as int?,
-          );
-        }
-        return api.IndexedStack(
-          key: values["key"] as api3.Key?,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-          sizing: values["sizing"] as api4.StackFit,
-          index: values["index"] as int?,
-          children: values["children"] as List<api.Widget>,
-        );
-      }
-      if (!values.containsKey("children")) {
-        return api.IndexedStack(
-          key: values["key"] as api3.Key?,
-          alignment: values["alignment"] as api1.AlignmentGeometry,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-          sizing: values["sizing"] as api4.StackFit,
-          index: values["index"] as int?,
-        );
-      }
-      return api.IndexedStack(
-        key: values["key"] as api3.Key?,
-        alignment: values["alignment"] as api1.AlignmentGeometry,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-        clipBehavior: values["clipBehavior"] as api2.Clip,
-        sizing: values["sizing"] as api4.StackFit,
-        index: values["index"] as int?,
-        children: values["children"] as List<api.Widget>,
-      );
+      final _flaxHas1 = values.containsKey("alignment");
+      final _flaxHas6 = values.containsKey("children");
+      return flaxInvokeWithDefaults(
+        api.IndexedStack.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1 ? values["alignment"] as api1.AlignmentGeometry : null),
+          values["textDirection"] as api2.TextDirection?,
+          values["clipBehavior"] as api2.Clip,
+          values["sizing"] as api4.StackFit,
+          values["index"] as int?,
+          (_flaxHas6 ? values["children"] as List<api.Widget> : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32 | (_flaxHas6 ? 64 : 0)],
+        const <String>[
+          "key",
+          "alignment",
+          "textDirection",
+          "clipBehavior",
+          "sizing",
+          "index",
+          "children",
+        ],
+      ) as api.IndexedStack;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14513,75 +13659,90 @@ class _ListViewHost extends FlaxWidgetHost {
 api.Widget _createListView(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("children")) {
-        return api.ListView(
-          key: values["key"] as api3.Key?,
-          scrollDirection: values["scrollDirection"] as api1.Axis,
-          reverse: values["reverse"] as bool,
-          controller: values["controller"] as api.ScrollController?,
-          primary: values["primary"] as bool?,
-          physics: values["physics"] as api.ScrollPhysics?,
-          shrinkWrap: values["shrinkWrap"] as bool,
-          padding: values["padding"] as api1.EdgeInsetsGeometry?,
-          itemExtent: values["itemExtent"] as double?,
-          itemExtentBuilder:
-              values["itemExtentBuilder"]
-                  as double? Function(
-                    int index,
-                    api4.SliverLayoutDimensions dimensions,
-                  )?,
-          prototypeItem: values["prototypeItem"] as api.Widget?,
-          addAutomaticKeepAlives: values["addAutomaticKeepAlives"] as bool,
-          addRepaintBoundaries: values["addRepaintBoundaries"] as bool,
-          addSemanticIndexes: values["addSemanticIndexes"] as bool,
-          cacheExtent: values["cacheExtent"] as double?,
-          scrollCacheExtent:
-              values["scrollCacheExtent"] as api4.ScrollCacheExtent?,
-          semanticChildCount: values["semanticChildCount"] as int?,
-          dragStartBehavior:
-              values["dragStartBehavior"] as api7.DragStartBehavior,
-          keyboardDismissBehavior:
-              values["keyboardDismissBehavior"]
-                  as api.ScrollViewKeyboardDismissBehavior?,
-          restorationId: values["restorationId"] as String?,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-          hitTestBehavior: values["hitTestBehavior"] as api4.HitTestBehavior,
-        );
-      }
-      return api.ListView(
-        key: values["key"] as api3.Key?,
-        scrollDirection: values["scrollDirection"] as api1.Axis,
-        reverse: values["reverse"] as bool,
-        controller: values["controller"] as api.ScrollController?,
-        primary: values["primary"] as bool?,
-        physics: values["physics"] as api.ScrollPhysics?,
-        shrinkWrap: values["shrinkWrap"] as bool,
-        padding: values["padding"] as api1.EdgeInsetsGeometry?,
-        itemExtent: values["itemExtent"] as double?,
-        itemExtentBuilder:
-            values["itemExtentBuilder"]
-                as double? Function(
-                  int index,
-                  api4.SliverLayoutDimensions dimensions,
-                )?,
-        prototypeItem: values["prototypeItem"] as api.Widget?,
-        addAutomaticKeepAlives: values["addAutomaticKeepAlives"] as bool,
-        addRepaintBoundaries: values["addRepaintBoundaries"] as bool,
-        addSemanticIndexes: values["addSemanticIndexes"] as bool,
-        cacheExtent: values["cacheExtent"] as double?,
-        scrollCacheExtent:
-            values["scrollCacheExtent"] as api4.ScrollCacheExtent?,
-        children: values["children"] as List<api.Widget>,
-        semanticChildCount: values["semanticChildCount"] as int?,
-        dragStartBehavior:
-            values["dragStartBehavior"] as api7.DragStartBehavior,
-        keyboardDismissBehavior:
-            values["keyboardDismissBehavior"]
-                as api.ScrollViewKeyboardDismissBehavior?,
-        restorationId: values["restorationId"] as String?,
-        clipBehavior: values["clipBehavior"] as api2.Clip,
-        hitTestBehavior: values["hitTestBehavior"] as api4.HitTestBehavior,
-      );
+      final _flaxHas16 = values.containsKey("children");
+      return flaxInvokeWithDefaults(
+        api.ListView.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["scrollDirection"] as api1.Axis,
+          values["reverse"] as bool,
+          values["controller"] as api.ScrollController?,
+          values["primary"] as bool?,
+          values["physics"] as api.ScrollPhysics?,
+          values["shrinkWrap"] as bool,
+          values["padding"] as api1.EdgeInsetsGeometry?,
+          values["itemExtent"] as double?,
+          values["itemExtentBuilder"]
+              as double? Function(
+                int index,
+                api4.SliverLayoutDimensions dimensions,
+              )?,
+          values["prototypeItem"] as api.Widget?,
+          values["addAutomaticKeepAlives"] as bool,
+          values["addRepaintBoundaries"] as bool,
+          values["addSemanticIndexes"] as bool,
+          values["cacheExtent"] as double?,
+          values["scrollCacheExtent"] as api4.ScrollCacheExtent?,
+          (_flaxHas16 ? values["children"] as List<api.Widget> : null),
+          values["semanticChildCount"] as int?,
+          values["dragStartBehavior"] as api7.DragStartBehavior,
+          values["keyboardDismissBehavior"]
+              as api.ScrollViewKeyboardDismissBehavior?,
+          values["restorationId"] as String?,
+          values["clipBehavior"] as api2.Clip,
+          values["hitTestBehavior"] as api4.HitTestBehavior,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              (_flaxHas16 ? 65536 : 0) |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304,
+        ],
+        const <String>[
+          "key",
+          "scrollDirection",
+          "reverse",
+          "controller",
+          "primary",
+          "physics",
+          "shrinkWrap",
+          "padding",
+          "itemExtent",
+          "itemExtentBuilder",
+          "prototypeItem",
+          "addAutomaticKeepAlives",
+          "addRepaintBoundaries",
+          "addSemanticIndexes",
+          "cacheExtent",
+          "scrollCacheExtent",
+          "children",
+          "semanticChildCount",
+          "dragStartBehavior",
+          "keyboardDismissBehavior",
+          "restorationId",
+          "clipBehavior",
+          "hitTestBehavior",
+        ],
+      ) as api.ListView;
     case "builder":
       return api.ListView.builder(
         key: values["key"] as api3.Key?,
@@ -14977,32 +14138,31 @@ class _MouseRegionHost extends FlaxWidgetHost {
 api.Widget _createMouseRegion(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("cursor")) {
-        return api.MouseRegion(
-          key: values["key"] as api3.Key?,
-          onEnter:
-              values["onEnter"] as void Function(api7.PointerEnterEvent event)?,
-          onExit:
-              values["onExit"] as void Function(api7.PointerExitEvent event)?,
-          onHover:
-              values["onHover"] as void Function(api7.PointerHoverEvent event)?,
-          opaque: values["opaque"] as bool,
-          hitTestBehavior: values["hitTestBehavior"] as api4.HitTestBehavior?,
-          child: values["child"] as api.Widget?,
-        );
-      }
-      return api.MouseRegion(
-        key: values["key"] as api3.Key?,
-        onEnter:
-            values["onEnter"] as void Function(api7.PointerEnterEvent event)?,
-        onExit: values["onExit"] as void Function(api7.PointerExitEvent event)?,
-        onHover:
-            values["onHover"] as void Function(api7.PointerHoverEvent event)?,
-        cursor: values["cursor"] as api10.MouseCursor,
-        opaque: values["opaque"] as bool,
-        hitTestBehavior: values["hitTestBehavior"] as api4.HitTestBehavior?,
-        child: values["child"] as api.Widget?,
-      );
+      final _flaxHas4 = values.containsKey("cursor");
+      return flaxInvokeWithDefaults(
+        api.MouseRegion.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["onEnter"] as void Function(api7.PointerEnterEvent event)?,
+          values["onExit"] as void Function(api7.PointerExitEvent event)?,
+          values["onHover"] as void Function(api7.PointerHoverEvent event)?,
+          (_flaxHas4 ? values["cursor"] as api10.MouseCursor : null),
+          values["opaque"] as bool,
+          values["hitTestBehavior"] as api4.HitTestBehavior?,
+          values["child"] as api.Widget?,
+        ],
+        <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64 | 128],
+        const <String>[
+          "key",
+          "onEnter",
+          "onExit",
+          "onHover",
+          "cursor",
+          "opaque",
+          "hitTestBehavior",
+          "child",
+        ],
+      ) as api.MouseRegion;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -15380,602 +14540,81 @@ class _NavigatorHost extends FlaxWidgetHost {
 api.Widget _createNavigator(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("pages")) {
-        if (!values.containsKey("onGenerateInitialRoutes")) {
-          if (!values.containsKey("transitionDelegate")) {
-            if (!values.containsKey("observers")) {
-              return api.Navigator(
-                key: values["key"] as api3.Key?,
-                onPopPage:
-                    values["onPopPage"]
-                        as bool Function(
-                          api.Route<Object?> route,
-                          Object? result,
-                        )?,
-                initialRoute: values["initialRoute"] as String?,
-                onGenerateRoute:
-                    values["onGenerateRoute"]
-                        as api.Route<Object?>? Function(
-                          api.RouteSettings settings,
-                        )?,
-                onUnknownRoute:
-                    values["onUnknownRoute"]
-                        as api.Route<Object?>? Function(
-                          api.RouteSettings settings,
-                        )?,
-                reportsRouteUpdateToEngine:
-                    values["reportsRouteUpdateToEngine"] as bool,
-                clipBehavior: values["clipBehavior"] as api2.Clip,
-                requestFocus: values["requestFocus"] as bool,
-                restorationScopeId: values["restorationScopeId"] as String?,
-                routeTraversalEdgeBehavior:
-                    values["routeTraversalEdgeBehavior"]
-                        as api.TraversalEdgeBehavior,
-                routeDirectionalTraversalEdgeBehavior:
-                    values["routeDirectionalTraversalEdgeBehavior"]
-                        as api.TraversalEdgeBehavior,
-                onDidRemovePage:
-                    values["onDidRemovePage"]
-                        as void Function(api.Page<Object?> page)?,
-              );
-            }
-            return api.Navigator(
-              key: values["key"] as api3.Key?,
-              onPopPage:
-                  values["onPopPage"]
-                      as bool Function(
-                        api.Route<Object?> route,
-                        Object? result,
-                      )?,
-              initialRoute: values["initialRoute"] as String?,
-              onGenerateRoute:
-                  values["onGenerateRoute"]
-                      as api.Route<Object?>? Function(
-                        api.RouteSettings settings,
-                      )?,
-              onUnknownRoute:
-                  values["onUnknownRoute"]
-                      as api.Route<Object?>? Function(
-                        api.RouteSettings settings,
-                      )?,
-              reportsRouteUpdateToEngine:
-                  values["reportsRouteUpdateToEngine"] as bool,
-              clipBehavior: values["clipBehavior"] as api2.Clip,
-              observers: values["observers"] as List<api.NavigatorObserver>,
-              requestFocus: values["requestFocus"] as bool,
-              restorationScopeId: values["restorationScopeId"] as String?,
-              routeTraversalEdgeBehavior:
-                  values["routeTraversalEdgeBehavior"]
-                      as api.TraversalEdgeBehavior,
-              routeDirectionalTraversalEdgeBehavior:
-                  values["routeDirectionalTraversalEdgeBehavior"]
-                      as api.TraversalEdgeBehavior,
-              onDidRemovePage:
-                  values["onDidRemovePage"]
-                      as void Function(api.Page<Object?> page)?,
-            );
-          }
-          if (!values.containsKey("observers")) {
-            return api.Navigator(
-              key: values["key"] as api3.Key?,
-              onPopPage:
-                  values["onPopPage"]
-                      as bool Function(
-                        api.Route<Object?> route,
-                        Object? result,
-                      )?,
-              initialRoute: values["initialRoute"] as String?,
-              onGenerateRoute:
-                  values["onGenerateRoute"]
-                      as api.Route<Object?>? Function(
-                        api.RouteSettings settings,
-                      )?,
-              onUnknownRoute:
-                  values["onUnknownRoute"]
-                      as api.Route<Object?>? Function(
-                        api.RouteSettings settings,
-                      )?,
-              transitionDelegate:
-                  values["transitionDelegate"]
-                      as api.TransitionDelegate<Object?>,
-              reportsRouteUpdateToEngine:
-                  values["reportsRouteUpdateToEngine"] as bool,
-              clipBehavior: values["clipBehavior"] as api2.Clip,
-              requestFocus: values["requestFocus"] as bool,
-              restorationScopeId: values["restorationScopeId"] as String?,
-              routeTraversalEdgeBehavior:
-                  values["routeTraversalEdgeBehavior"]
-                      as api.TraversalEdgeBehavior,
-              routeDirectionalTraversalEdgeBehavior:
-                  values["routeDirectionalTraversalEdgeBehavior"]
-                      as api.TraversalEdgeBehavior,
-              onDidRemovePage:
-                  values["onDidRemovePage"]
-                      as void Function(api.Page<Object?> page)?,
-            );
-          }
-          return api.Navigator(
-            key: values["key"] as api3.Key?,
-            onPopPage:
-                values["onPopPage"]
-                    as bool Function(api.Route<Object?> route, Object? result)?,
-            initialRoute: values["initialRoute"] as String?,
-            onGenerateRoute:
-                values["onGenerateRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            onUnknownRoute:
-                values["onUnknownRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            transitionDelegate:
-                values["transitionDelegate"] as api.TransitionDelegate<Object?>,
-            reportsRouteUpdateToEngine:
-                values["reportsRouteUpdateToEngine"] as bool,
-            clipBehavior: values["clipBehavior"] as api2.Clip,
-            observers: values["observers"] as List<api.NavigatorObserver>,
-            requestFocus: values["requestFocus"] as bool,
-            restorationScopeId: values["restorationScopeId"] as String?,
-            routeTraversalEdgeBehavior:
-                values["routeTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            routeDirectionalTraversalEdgeBehavior:
-                values["routeDirectionalTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            onDidRemovePage:
-                values["onDidRemovePage"]
-                    as void Function(api.Page<Object?> page)?,
-          );
-        }
-        if (!values.containsKey("transitionDelegate")) {
-          if (!values.containsKey("observers")) {
-            return api.Navigator(
-              key: values["key"] as api3.Key?,
-              onPopPage:
-                  values["onPopPage"]
-                      as bool Function(
-                        api.Route<Object?> route,
-                        Object? result,
-                      )?,
-              initialRoute: values["initialRoute"] as String?,
-              onGenerateInitialRoutes:
-                  values["onGenerateInitialRoutes"]
-                      as List<api.Route<Object?>> Function(
-                        api.NavigatorState navigator,
-                        String initialRoute,
-                      ),
-              onGenerateRoute:
-                  values["onGenerateRoute"]
-                      as api.Route<Object?>? Function(
-                        api.RouteSettings settings,
-                      )?,
-              onUnknownRoute:
-                  values["onUnknownRoute"]
-                      as api.Route<Object?>? Function(
-                        api.RouteSettings settings,
-                      )?,
-              reportsRouteUpdateToEngine:
-                  values["reportsRouteUpdateToEngine"] as bool,
-              clipBehavior: values["clipBehavior"] as api2.Clip,
-              requestFocus: values["requestFocus"] as bool,
-              restorationScopeId: values["restorationScopeId"] as String?,
-              routeTraversalEdgeBehavior:
-                  values["routeTraversalEdgeBehavior"]
-                      as api.TraversalEdgeBehavior,
-              routeDirectionalTraversalEdgeBehavior:
-                  values["routeDirectionalTraversalEdgeBehavior"]
-                      as api.TraversalEdgeBehavior,
-              onDidRemovePage:
-                  values["onDidRemovePage"]
-                      as void Function(api.Page<Object?> page)?,
-            );
-          }
-          return api.Navigator(
-            key: values["key"] as api3.Key?,
-            onPopPage:
-                values["onPopPage"]
-                    as bool Function(api.Route<Object?> route, Object? result)?,
-            initialRoute: values["initialRoute"] as String?,
-            onGenerateInitialRoutes:
-                values["onGenerateInitialRoutes"]
+      final _flaxHas1 = values.containsKey("pages");
+      final _flaxHas4 = values.containsKey("onGenerateInitialRoutes");
+      final _flaxHas7 = values.containsKey("transitionDelegate");
+      final _flaxHas10 = values.containsKey("observers");
+      return flaxInvokeWithDefaults(
+        api.Navigator.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1 ? values["pages"] as List<api.Page<Object?>> : null),
+          values["onPopPage"]
+              as bool Function(api.Route<Object?> route, Object? result)?,
+          values["initialRoute"] as String?,
+          (_flaxHas4
+              ? values["onGenerateInitialRoutes"]
                     as List<api.Route<Object?>> Function(
                       api.NavigatorState navigator,
                       String initialRoute,
-                    ),
-            onGenerateRoute:
-                values["onGenerateRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            onUnknownRoute:
-                values["onUnknownRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            reportsRouteUpdateToEngine:
-                values["reportsRouteUpdateToEngine"] as bool,
-            clipBehavior: values["clipBehavior"] as api2.Clip,
-            observers: values["observers"] as List<api.NavigatorObserver>,
-            requestFocus: values["requestFocus"] as bool,
-            restorationScopeId: values["restorationScopeId"] as String?,
-            routeTraversalEdgeBehavior:
-                values["routeTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            routeDirectionalTraversalEdgeBehavior:
-                values["routeDirectionalTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            onDidRemovePage:
-                values["onDidRemovePage"]
-                    as void Function(api.Page<Object?> page)?,
-          );
-        }
-        if (!values.containsKey("observers")) {
-          return api.Navigator(
-            key: values["key"] as api3.Key?,
-            onPopPage:
-                values["onPopPage"]
-                    as bool Function(api.Route<Object?> route, Object? result)?,
-            initialRoute: values["initialRoute"] as String?,
-            onGenerateInitialRoutes:
-                values["onGenerateInitialRoutes"]
-                    as List<api.Route<Object?>> Function(
-                      api.NavigatorState navigator,
-                      String initialRoute,
-                    ),
-            onGenerateRoute:
-                values["onGenerateRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            onUnknownRoute:
-                values["onUnknownRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            transitionDelegate:
-                values["transitionDelegate"] as api.TransitionDelegate<Object?>,
-            reportsRouteUpdateToEngine:
-                values["reportsRouteUpdateToEngine"] as bool,
-            clipBehavior: values["clipBehavior"] as api2.Clip,
-            requestFocus: values["requestFocus"] as bool,
-            restorationScopeId: values["restorationScopeId"] as String?,
-            routeTraversalEdgeBehavior:
-                values["routeTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            routeDirectionalTraversalEdgeBehavior:
-                values["routeDirectionalTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            onDidRemovePage:
-                values["onDidRemovePage"]
-                    as void Function(api.Page<Object?> page)?,
-          );
-        }
-        return api.Navigator(
-          key: values["key"] as api3.Key?,
-          onPopPage:
-              values["onPopPage"]
-                  as bool Function(api.Route<Object?> route, Object? result)?,
-          initialRoute: values["initialRoute"] as String?,
-          onGenerateInitialRoutes:
-              values["onGenerateInitialRoutes"]
-                  as List<api.Route<Object?>> Function(
-                    api.NavigatorState navigator,
-                    String initialRoute,
-                  ),
-          onGenerateRoute:
-              values["onGenerateRoute"]
-                  as api.Route<Object?>? Function(api.RouteSettings settings)?,
-          onUnknownRoute:
-              values["onUnknownRoute"]
-                  as api.Route<Object?>? Function(api.RouteSettings settings)?,
-          transitionDelegate:
-              values["transitionDelegate"] as api.TransitionDelegate<Object?>,
-          reportsRouteUpdateToEngine:
-              values["reportsRouteUpdateToEngine"] as bool,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-          observers: values["observers"] as List<api.NavigatorObserver>,
-          requestFocus: values["requestFocus"] as bool,
-          restorationScopeId: values["restorationScopeId"] as String?,
-          routeTraversalEdgeBehavior:
-              values["routeTraversalEdgeBehavior"] as api.TraversalEdgeBehavior,
-          routeDirectionalTraversalEdgeBehavior:
-              values["routeDirectionalTraversalEdgeBehavior"]
-                  as api.TraversalEdgeBehavior,
-          onDidRemovePage:
-              values["onDidRemovePage"]
-                  as void Function(api.Page<Object?> page)?,
-        );
-      }
-      if (!values.containsKey("onGenerateInitialRoutes")) {
-        if (!values.containsKey("transitionDelegate")) {
-          if (!values.containsKey("observers")) {
-            return api.Navigator(
-              key: values["key"] as api3.Key?,
-              pages: values["pages"] as List<api.Page<Object?>>,
-              onPopPage:
-                  values["onPopPage"]
-                      as bool Function(
-                        api.Route<Object?> route,
-                        Object? result,
-                      )?,
-              initialRoute: values["initialRoute"] as String?,
-              onGenerateRoute:
-                  values["onGenerateRoute"]
-                      as api.Route<Object?>? Function(
-                        api.RouteSettings settings,
-                      )?,
-              onUnknownRoute:
-                  values["onUnknownRoute"]
-                      as api.Route<Object?>? Function(
-                        api.RouteSettings settings,
-                      )?,
-              reportsRouteUpdateToEngine:
-                  values["reportsRouteUpdateToEngine"] as bool,
-              clipBehavior: values["clipBehavior"] as api2.Clip,
-              requestFocus: values["requestFocus"] as bool,
-              restorationScopeId: values["restorationScopeId"] as String?,
-              routeTraversalEdgeBehavior:
-                  values["routeTraversalEdgeBehavior"]
-                      as api.TraversalEdgeBehavior,
-              routeDirectionalTraversalEdgeBehavior:
-                  values["routeDirectionalTraversalEdgeBehavior"]
-                      as api.TraversalEdgeBehavior,
-              onDidRemovePage:
-                  values["onDidRemovePage"]
-                      as void Function(api.Page<Object?> page)?,
-            );
-          }
-          return api.Navigator(
-            key: values["key"] as api3.Key?,
-            pages: values["pages"] as List<api.Page<Object?>>,
-            onPopPage:
-                values["onPopPage"]
-                    as bool Function(api.Route<Object?> route, Object? result)?,
-            initialRoute: values["initialRoute"] as String?,
-            onGenerateRoute:
-                values["onGenerateRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            onUnknownRoute:
-                values["onUnknownRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            reportsRouteUpdateToEngine:
-                values["reportsRouteUpdateToEngine"] as bool,
-            clipBehavior: values["clipBehavior"] as api2.Clip,
-            observers: values["observers"] as List<api.NavigatorObserver>,
-            requestFocus: values["requestFocus"] as bool,
-            restorationScopeId: values["restorationScopeId"] as String?,
-            routeTraversalEdgeBehavior:
-                values["routeTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            routeDirectionalTraversalEdgeBehavior:
-                values["routeDirectionalTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            onDidRemovePage:
-                values["onDidRemovePage"]
-                    as void Function(api.Page<Object?> page)?,
-          );
-        }
-        if (!values.containsKey("observers")) {
-          return api.Navigator(
-            key: values["key"] as api3.Key?,
-            pages: values["pages"] as List<api.Page<Object?>>,
-            onPopPage:
-                values["onPopPage"]
-                    as bool Function(api.Route<Object?> route, Object? result)?,
-            initialRoute: values["initialRoute"] as String?,
-            onGenerateRoute:
-                values["onGenerateRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            onUnknownRoute:
-                values["onUnknownRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            transitionDelegate:
-                values["transitionDelegate"] as api.TransitionDelegate<Object?>,
-            reportsRouteUpdateToEngine:
-                values["reportsRouteUpdateToEngine"] as bool,
-            clipBehavior: values["clipBehavior"] as api2.Clip,
-            requestFocus: values["requestFocus"] as bool,
-            restorationScopeId: values["restorationScopeId"] as String?,
-            routeTraversalEdgeBehavior:
-                values["routeTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            routeDirectionalTraversalEdgeBehavior:
-                values["routeDirectionalTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            onDidRemovePage:
-                values["onDidRemovePage"]
-                    as void Function(api.Page<Object?> page)?,
-          );
-        }
-        return api.Navigator(
-          key: values["key"] as api3.Key?,
-          pages: values["pages"] as List<api.Page<Object?>>,
-          onPopPage:
-              values["onPopPage"]
-                  as bool Function(api.Route<Object?> route, Object? result)?,
-          initialRoute: values["initialRoute"] as String?,
-          onGenerateRoute:
-              values["onGenerateRoute"]
-                  as api.Route<Object?>? Function(api.RouteSettings settings)?,
-          onUnknownRoute:
-              values["onUnknownRoute"]
-                  as api.Route<Object?>? Function(api.RouteSettings settings)?,
-          transitionDelegate:
-              values["transitionDelegate"] as api.TransitionDelegate<Object?>,
-          reportsRouteUpdateToEngine:
-              values["reportsRouteUpdateToEngine"] as bool,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-          observers: values["observers"] as List<api.NavigatorObserver>,
-          requestFocus: values["requestFocus"] as bool,
-          restorationScopeId: values["restorationScopeId"] as String?,
-          routeTraversalEdgeBehavior:
-              values["routeTraversalEdgeBehavior"] as api.TraversalEdgeBehavior,
-          routeDirectionalTraversalEdgeBehavior:
-              values["routeDirectionalTraversalEdgeBehavior"]
-                  as api.TraversalEdgeBehavior,
-          onDidRemovePage:
-              values["onDidRemovePage"]
-                  as void Function(api.Page<Object?> page)?,
-        );
-      }
-      if (!values.containsKey("transitionDelegate")) {
-        if (!values.containsKey("observers")) {
-          return api.Navigator(
-            key: values["key"] as api3.Key?,
-            pages: values["pages"] as List<api.Page<Object?>>,
-            onPopPage:
-                values["onPopPage"]
-                    as bool Function(api.Route<Object?> route, Object? result)?,
-            initialRoute: values["initialRoute"] as String?,
-            onGenerateInitialRoutes:
-                values["onGenerateInitialRoutes"]
-                    as List<api.Route<Object?>> Function(
-                      api.NavigatorState navigator,
-                      String initialRoute,
-                    ),
-            onGenerateRoute:
-                values["onGenerateRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            onUnknownRoute:
-                values["onUnknownRoute"]
-                    as api.Route<Object?>? Function(
-                      api.RouteSettings settings,
-                    )?,
-            reportsRouteUpdateToEngine:
-                values["reportsRouteUpdateToEngine"] as bool,
-            clipBehavior: values["clipBehavior"] as api2.Clip,
-            requestFocus: values["requestFocus"] as bool,
-            restorationScopeId: values["restorationScopeId"] as String?,
-            routeTraversalEdgeBehavior:
-                values["routeTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            routeDirectionalTraversalEdgeBehavior:
-                values["routeDirectionalTraversalEdgeBehavior"]
-                    as api.TraversalEdgeBehavior,
-            onDidRemovePage:
-                values["onDidRemovePage"]
-                    as void Function(api.Page<Object?> page)?,
-          );
-        }
-        return api.Navigator(
-          key: values["key"] as api3.Key?,
-          pages: values["pages"] as List<api.Page<Object?>>,
-          onPopPage:
-              values["onPopPage"]
-                  as bool Function(api.Route<Object?> route, Object? result)?,
-          initialRoute: values["initialRoute"] as String?,
-          onGenerateInitialRoutes:
-              values["onGenerateInitialRoutes"]
-                  as List<api.Route<Object?>> Function(
-                    api.NavigatorState navigator,
-                    String initialRoute,
-                  ),
-          onGenerateRoute:
-              values["onGenerateRoute"]
-                  as api.Route<Object?>? Function(api.RouteSettings settings)?,
-          onUnknownRoute:
-              values["onUnknownRoute"]
-                  as api.Route<Object?>? Function(api.RouteSettings settings)?,
-          reportsRouteUpdateToEngine:
-              values["reportsRouteUpdateToEngine"] as bool,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-          observers: values["observers"] as List<api.NavigatorObserver>,
-          requestFocus: values["requestFocus"] as bool,
-          restorationScopeId: values["restorationScopeId"] as String?,
-          routeTraversalEdgeBehavior:
-              values["routeTraversalEdgeBehavior"] as api.TraversalEdgeBehavior,
-          routeDirectionalTraversalEdgeBehavior:
-              values["routeDirectionalTraversalEdgeBehavior"]
-                  as api.TraversalEdgeBehavior,
-          onDidRemovePage:
-              values["onDidRemovePage"]
-                  as void Function(api.Page<Object?> page)?,
-        );
-      }
-      if (!values.containsKey("observers")) {
-        return api.Navigator(
-          key: values["key"] as api3.Key?,
-          pages: values["pages"] as List<api.Page<Object?>>,
-          onPopPage:
-              values["onPopPage"]
-                  as bool Function(api.Route<Object?> route, Object? result)?,
-          initialRoute: values["initialRoute"] as String?,
-          onGenerateInitialRoutes:
-              values["onGenerateInitialRoutes"]
-                  as List<api.Route<Object?>> Function(
-                    api.NavigatorState navigator,
-                    String initialRoute,
-                  ),
-          onGenerateRoute:
-              values["onGenerateRoute"]
-                  as api.Route<Object?>? Function(api.RouteSettings settings)?,
-          onUnknownRoute:
-              values["onUnknownRoute"]
-                  as api.Route<Object?>? Function(api.RouteSettings settings)?,
-          transitionDelegate:
-              values["transitionDelegate"] as api.TransitionDelegate<Object?>,
-          reportsRouteUpdateToEngine:
-              values["reportsRouteUpdateToEngine"] as bool,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-          requestFocus: values["requestFocus"] as bool,
-          restorationScopeId: values["restorationScopeId"] as String?,
-          routeTraversalEdgeBehavior:
-              values["routeTraversalEdgeBehavior"] as api.TraversalEdgeBehavior,
-          routeDirectionalTraversalEdgeBehavior:
-              values["routeDirectionalTraversalEdgeBehavior"]
-                  as api.TraversalEdgeBehavior,
-          onDidRemovePage:
-              values["onDidRemovePage"]
-                  as void Function(api.Page<Object?> page)?,
-        );
-      }
-      return api.Navigator(
-        key: values["key"] as api3.Key?,
-        pages: values["pages"] as List<api.Page<Object?>>,
-        onPopPage:
-            values["onPopPage"]
-                as bool Function(api.Route<Object?> route, Object? result)?,
-        initialRoute: values["initialRoute"] as String?,
-        onGenerateInitialRoutes:
-            values["onGenerateInitialRoutes"]
-                as List<api.Route<Object?>> Function(
-                  api.NavigatorState navigator,
-                  String initialRoute,
-                ),
-        onGenerateRoute:
-            values["onGenerateRoute"]
-                as api.Route<Object?>? Function(api.RouteSettings settings)?,
-        onUnknownRoute:
-            values["onUnknownRoute"]
-                as api.Route<Object?>? Function(api.RouteSettings settings)?,
-        transitionDelegate:
-            values["transitionDelegate"] as api.TransitionDelegate<Object?>,
-        reportsRouteUpdateToEngine:
-            values["reportsRouteUpdateToEngine"] as bool,
-        clipBehavior: values["clipBehavior"] as api2.Clip,
-        observers: values["observers"] as List<api.NavigatorObserver>,
-        requestFocus: values["requestFocus"] as bool,
-        restorationScopeId: values["restorationScopeId"] as String?,
-        routeTraversalEdgeBehavior:
-            values["routeTraversalEdgeBehavior"] as api.TraversalEdgeBehavior,
-        routeDirectionalTraversalEdgeBehavior:
-            values["routeDirectionalTraversalEdgeBehavior"]
-                as api.TraversalEdgeBehavior,
-        onDidRemovePage:
-            values["onDidRemovePage"] as void Function(api.Page<Object?> page)?,
-      );
+                    )
+              : null),
+          values["onGenerateRoute"]
+              as api.Route<Object?>? Function(api.RouteSettings settings)?,
+          values["onUnknownRoute"]
+              as api.Route<Object?>? Function(api.RouteSettings settings)?,
+          (_flaxHas7
+              ? values["transitionDelegate"] as api.TransitionDelegate<Object?>
+              : null),
+          values["reportsRouteUpdateToEngine"] as bool,
+          values["clipBehavior"] as api2.Clip,
+          (_flaxHas10
+              ? values["observers"] as List<api.NavigatorObserver>
+              : null),
+          values["requestFocus"] as bool,
+          values["restorationScopeId"] as String?,
+          values["routeTraversalEdgeBehavior"] as api.TraversalEdgeBehavior,
+          values["routeDirectionalTraversalEdgeBehavior"]
+              as api.TraversalEdgeBehavior,
+          values["onDidRemovePage"] as void Function(api.Page<Object?> page)?,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              32 |
+              64 |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              (_flaxHas10 ? 1024 : 0) |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768,
+        ],
+        const <String>[
+          "key",
+          "pages",
+          "onPopPage",
+          "initialRoute",
+          "onGenerateInitialRoutes",
+          "onGenerateRoute",
+          "onUnknownRoute",
+          "transitionDelegate",
+          "reportsRouteUpdateToEngine",
+          "clipBehavior",
+          "observers",
+          "requestFocus",
+          "restorationScopeId",
+          "routeTraversalEdgeBehavior",
+          "routeDirectionalTraversalEdgeBehavior",
+          "onDidRemovePage",
+        ],
+      ) as api.Navigator;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -17079,104 +15718,43 @@ Object? _PointerScrollEvent_toStringFull(
 Object _createPointerScrollEvent(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        if (!values.containsKey("position")) {
-          if (!values.containsKey("scrollDelta")) {
-            return api7.PointerScrollEvent(
-              viewId: values["viewId"] as int,
-              kind: values["kind"] as api2.PointerDeviceKind,
-              device: values["device"] as int,
-              embedderId: values["embedderId"] as int,
-              onRespond:
-                  values["onRespond"]
-                      as void Function({required bool allowPlatformDefault})?,
-            );
-          }
-          return api7.PointerScrollEvent(
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api2.PointerDeviceKind,
-            device: values["device"] as int,
-            scrollDelta: values["scrollDelta"] as api2.Offset,
-            embedderId: values["embedderId"] as int,
-            onRespond:
-                values["onRespond"]
-                    as void Function({required bool allowPlatformDefault})?,
-          );
-        }
-        if (!values.containsKey("scrollDelta")) {
-          return api7.PointerScrollEvent(
-            viewId: values["viewId"] as int,
-            kind: values["kind"] as api2.PointerDeviceKind,
-            device: values["device"] as int,
-            position: values["position"] as api2.Offset,
-            embedderId: values["embedderId"] as int,
-            onRespond:
-                values["onRespond"]
-                    as void Function({required bool allowPlatformDefault})?,
-          );
-        }
-        return api7.PointerScrollEvent(
-          viewId: values["viewId"] as int,
-          kind: values["kind"] as api2.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api2.Offset,
-          scrollDelta: values["scrollDelta"] as api2.Offset,
-          embedderId: values["embedderId"] as int,
-          onRespond:
-              values["onRespond"]
-                  as void Function({required bool allowPlatformDefault})?,
-        );
-      }
-      if (!values.containsKey("position")) {
-        if (!values.containsKey("scrollDelta")) {
-          return api7.PointerScrollEvent(
-            viewId: values["viewId"] as int,
-            timeStamp: values["timeStamp"] as api5.Duration,
-            kind: values["kind"] as api2.PointerDeviceKind,
-            device: values["device"] as int,
-            embedderId: values["embedderId"] as int,
-            onRespond:
-                values["onRespond"]
-                    as void Function({required bool allowPlatformDefault})?,
-          );
-        }
-        return api7.PointerScrollEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api5.Duration,
-          kind: values["kind"] as api2.PointerDeviceKind,
-          device: values["device"] as int,
-          scrollDelta: values["scrollDelta"] as api2.Offset,
-          embedderId: values["embedderId"] as int,
-          onRespond:
-              values["onRespond"]
-                  as void Function({required bool allowPlatformDefault})?,
-        );
-      }
-      if (!values.containsKey("scrollDelta")) {
-        return api7.PointerScrollEvent(
-          viewId: values["viewId"] as int,
-          timeStamp: values["timeStamp"] as api5.Duration,
-          kind: values["kind"] as api2.PointerDeviceKind,
-          device: values["device"] as int,
-          position: values["position"] as api2.Offset,
-          embedderId: values["embedderId"] as int,
-          onRespond:
-              values["onRespond"]
-                  as void Function({required bool allowPlatformDefault})?,
-        );
-      }
-      return api7.PointerScrollEvent(
-        viewId: values["viewId"] as int,
-        timeStamp: values["timeStamp"] as api5.Duration,
-        kind: values["kind"] as api2.PointerDeviceKind,
-        device: values["device"] as int,
-        position: values["position"] as api2.Offset,
-        scrollDelta: values["scrollDelta"] as api2.Offset,
-        embedderId: values["embedderId"] as int,
-        onRespond:
-            values["onRespond"]
-                as void Function({required bool allowPlatformDefault})?,
-      );
+      final _flaxHas1 = values.containsKey("timeStamp");
+      final _flaxHas4 = values.containsKey("position");
+      final _flaxHas5 = values.containsKey("scrollDelta");
+      return flaxInvokeWithDefaults(
+        api7.PointerScrollEvent.new,
+        <Object?>[
+          values["viewId"] as int,
+          (_flaxHas1 ? values["timeStamp"] as api5.Duration : null),
+          values["kind"] as api2.PointerDeviceKind,
+          values["device"] as int,
+          (_flaxHas4 ? values["position"] as api2.Offset : null),
+          (_flaxHas5 ? values["scrollDelta"] as api2.Offset : null),
+          values["embedderId"] as int,
+          values["onRespond"]
+              as void Function({required bool allowPlatformDefault})?,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128,
+        ],
+        const <String>[
+          "viewId",
+          "timeStamp",
+          "kind",
+          "device",
+          "position",
+          "scrollDelta",
+          "embedderId",
+          "onRespond",
+        ],
+      ) as api7.PointerScrollEvent;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -17617,23 +16195,19 @@ Object? _RoundedRectangleBorder_operatorAdd(
 Object _createRoundedRectangleBorder(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("side")) {
-        if (!values.containsKey("borderRadius")) {
-          return api1.RoundedRectangleBorder();
-        }
-        return api1.RoundedRectangleBorder(
-          borderRadius: values["borderRadius"] as api1.BorderRadiusGeometry,
-        );
-      }
-      if (!values.containsKey("borderRadius")) {
-        return api1.RoundedRectangleBorder(
-          side: values["side"] as api1.BorderSide,
-        );
-      }
-      return api1.RoundedRectangleBorder(
-        side: values["side"] as api1.BorderSide,
-        borderRadius: values["borderRadius"] as api1.BorderRadiusGeometry,
-      );
+      final _flaxHas0 = values.containsKey("side");
+      final _flaxHas1 = values.containsKey("borderRadius");
+      return flaxInvokeWithDefaults(
+        api1.RoundedRectangleBorder.new,
+        <Object?>[
+          (_flaxHas0 ? values["side"] as api1.BorderSide : null),
+          (_flaxHas1
+              ? values["borderRadius"] as api1.BorderRadiusGeometry
+              : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["side", "borderRadius"],
+      ) as api1.RoundedRectangleBorder;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -17788,35 +16362,33 @@ class _RowHost extends FlaxWidgetHost {
 api.Widget _createRow(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("children")) {
-        return api.Row(
-          key: values["key"] as api3.Key?,
-          mainAxisAlignment:
-              values["mainAxisAlignment"] as api4.MainAxisAlignment,
-          mainAxisSize: values["mainAxisSize"] as api4.MainAxisSize,
-          crossAxisAlignment:
-              values["crossAxisAlignment"] as api4.CrossAxisAlignment,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-          verticalDirection:
-              values["verticalDirection"] as api1.VerticalDirection,
-          textBaseline: values["textBaseline"] as api2.TextBaseline?,
-          spacing: values["spacing"] as double,
-        );
-      }
-      return api.Row(
-        key: values["key"] as api3.Key?,
-        mainAxisAlignment:
-            values["mainAxisAlignment"] as api4.MainAxisAlignment,
-        mainAxisSize: values["mainAxisSize"] as api4.MainAxisSize,
-        crossAxisAlignment:
-            values["crossAxisAlignment"] as api4.CrossAxisAlignment,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-        verticalDirection:
-            values["verticalDirection"] as api1.VerticalDirection,
-        textBaseline: values["textBaseline"] as api2.TextBaseline?,
-        spacing: values["spacing"] as double,
-        children: values["children"] as List<api.Widget>,
-      );
+      final _flaxHas8 = values.containsKey("children");
+      return flaxInvokeWithDefaults(
+        api.Row.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["mainAxisAlignment"] as api4.MainAxisAlignment,
+          values["mainAxisSize"] as api4.MainAxisSize,
+          values["crossAxisAlignment"] as api4.CrossAxisAlignment,
+          values["textDirection"] as api2.TextDirection?,
+          values["verticalDirection"] as api1.VerticalDirection,
+          values["textBaseline"] as api2.TextBaseline?,
+          values["spacing"] as double,
+          (_flaxHas8 ? values["children"] as List<api.Widget> : null),
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | (_flaxHas8 ? 256 : 0)],
+        const <String>[
+          "key",
+          "mainAxisAlignment",
+          "mainAxisSize",
+          "crossAxisAlignment",
+          "textDirection",
+          "verticalDirection",
+          "textBaseline",
+          "spacing",
+          "children",
+        ],
+      ) as api.Row;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -18020,28 +16592,31 @@ class _SafeAreaHost extends FlaxWidgetHost {
 api.Widget _createSafeArea(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("minimum")) {
-        return api.SafeArea(
-          key: values["key"] as api3.Key?,
-          left: values["left"] as bool,
-          top: values["top"] as bool,
-          right: values["right"] as bool,
-          bottom: values["bottom"] as bool,
-          maintainBottomViewPadding:
-              values["maintainBottomViewPadding"] as bool,
-          child: values["child"] as api.Widget,
-        );
-      }
-      return api.SafeArea(
-        key: values["key"] as api3.Key?,
-        left: values["left"] as bool,
-        top: values["top"] as bool,
-        right: values["right"] as bool,
-        bottom: values["bottom"] as bool,
-        minimum: values["minimum"] as api1.EdgeInsets,
-        maintainBottomViewPadding: values["maintainBottomViewPadding"] as bool,
-        child: values["child"] as api.Widget,
-      );
+      final _flaxHas5 = values.containsKey("minimum");
+      return flaxInvokeWithDefaults(
+        api.SafeArea.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["left"] as bool,
+          values["top"] as bool,
+          values["right"] as bool,
+          values["bottom"] as bool,
+          (_flaxHas5 ? values["minimum"] as api1.EdgeInsets : null),
+          values["maintainBottomViewPadding"] as bool,
+          values["child"] as api.Widget,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64 | 128],
+        const <String>[
+          "key",
+          "left",
+          "top",
+          "right",
+          "bottom",
+          "minimum",
+          "maintainBottomViewPadding",
+          "child",
+        ],
+      ) as api.SafeArea;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -19005,40 +17580,28 @@ class _StackHost extends FlaxWidgetHost {
 api.Widget _createStack(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("alignment")) {
-        if (!values.containsKey("children")) {
-          return api.Stack(
-            key: values["key"] as api3.Key?,
-            textDirection: values["textDirection"] as api2.TextDirection?,
-            fit: values["fit"] as api4.StackFit,
-            clipBehavior: values["clipBehavior"] as api2.Clip,
-          );
-        }
-        return api.Stack(
-          key: values["key"] as api3.Key?,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-          fit: values["fit"] as api4.StackFit,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-          children: values["children"] as List<api.Widget>,
-        );
-      }
-      if (!values.containsKey("children")) {
-        return api.Stack(
-          key: values["key"] as api3.Key?,
-          alignment: values["alignment"] as api1.AlignmentGeometry,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-          fit: values["fit"] as api4.StackFit,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-        );
-      }
-      return api.Stack(
-        key: values["key"] as api3.Key?,
-        alignment: values["alignment"] as api1.AlignmentGeometry,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-        fit: values["fit"] as api4.StackFit,
-        clipBehavior: values["clipBehavior"] as api2.Clip,
-        children: values["children"] as List<api.Widget>,
-      );
+      final _flaxHas1 = values.containsKey("alignment");
+      final _flaxHas5 = values.containsKey("children");
+      return flaxInvokeWithDefaults(
+        api.Stack.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1 ? values["alignment"] as api1.AlignmentGeometry : null),
+          values["textDirection"] as api2.TextDirection?,
+          values["fit"] as api4.StackFit,
+          values["clipBehavior"] as api2.Clip,
+          (_flaxHas5 ? values["children"] as List<api.Widget> : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0)],
+        const <String>[
+          "key",
+          "alignment",
+          "textDirection",
+          "fit",
+          "clipBehavior",
+          "children",
+        ],
+      ) as api.Stack;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -19078,10 +17641,13 @@ Object? _StadiumBorder_operatorAdd(
 Object _createStadiumBorder(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("side")) {
-        return api1.StadiumBorder();
-      }
-      return api1.StadiumBorder(side: values["side"] as api1.BorderSide);
+      final _flaxHas0 = values.containsKey("side");
+      return flaxInvokeWithDefaults(
+        api1.StadiumBorder.new,
+        <Object?>[(_flaxHas0 ? values["side"] as api1.BorderSide : null)],
+        <int>[(_flaxHas0 ? 1 : 0)],
+        const <String>["side"],
+      ) as api1.StadiumBorder;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -19969,11 +18535,13 @@ Object? _StringBuffer_writeAll(Object receiver, Map<String, Object?> values) {
 }
 
 Object? _StringBuffer_writeln(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("obj")) {
-    (receiver as api5.StringBuffer).writeln();
-    return null;
-  }
-  (receiver as api5.StringBuffer).writeln(values["obj"]);
+  final _flaxHas0 = values.containsKey("obj");
+  flaxInvokeWithDefaults(
+    (receiver as api5.StringBuffer).writeln,
+    <Object?>[(_flaxHas0 ? values["obj"] : null)],
+    <int>[(_flaxHas0 ? 1 : 0)],
+    const <String>[""],
+  );
   return null;
 }
 
@@ -19989,10 +18557,13 @@ Object? _StringBuffer_toString(Object receiver, Map<String, Object?> values) {
 Object _createStringBuffer(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("content")) {
-        return api5.StringBuffer();
-      }
-      return api5.StringBuffer(values["content"] as Object);
+      final _flaxHas0 = values.containsKey("content");
+      return flaxInvokeWithDefaults(
+        api5.StringBuffer.new,
+        <Object?>[(_flaxHas0 ? values["content"] as Object : null)],
+        <int>[(_flaxHas0 ? 1 : 0)],
+        const <String>[""],
+      ) as api5.StringBuffer;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -20533,26 +19104,18 @@ Object? _TextEditingValue_toString(
 Object _createTextEditingValue(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("selection")) {
-        if (!values.containsKey("composing")) {
-          return api10.TextEditingValue(text: values["text"] as String);
-        }
-        return api10.TextEditingValue(
-          text: values["text"] as String,
-          composing: values["composing"] as api2.TextRange,
-        );
-      }
-      if (!values.containsKey("composing")) {
-        return api10.TextEditingValue(
-          text: values["text"] as String,
-          selection: values["selection"] as api10.TextSelection,
-        );
-      }
-      return api10.TextEditingValue(
-        text: values["text"] as String,
-        selection: values["selection"] as api10.TextSelection,
-        composing: values["composing"] as api2.TextRange,
-      );
+      final _flaxHas1 = values.containsKey("selection");
+      final _flaxHas2 = values.containsKey("composing");
+      return flaxInvokeWithDefaults(
+        api10.TextEditingValue.new,
+        <Object?>[
+          values["text"] as String,
+          (_flaxHas1 ? values["selection"] as api10.TextSelection : null),
+          (_flaxHas2 ? values["composing"] as api2.TextRange : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+        const <String>["text", "selection", "composing"],
+      ) as api10.TextEditingValue;
     case "fromJSON":
       return api10.TextEditingValue.fromJSON(
         values["encoded"] as Map<String, Object?>,
@@ -20837,54 +19400,71 @@ Object? _TextStyle_merge(Object receiver, Map<String, Object?> values) {
 }
 
 Object? _TextStyle_getTextStyle(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("textScaler")) {
-    return (receiver as api1.TextStyle).getTextStyle(
-      textScaleFactor: values["textScaleFactor"] as double,
-    );
-  }
-  return (receiver as api1.TextStyle).getTextStyle(
-    textScaleFactor: values["textScaleFactor"] as double,
-    textScaler: values["textScaler"] as api1.TextScaler,
-  );
+  final _flaxHas1 = values.containsKey("textScaler");
+  return flaxInvokeWithDefaults(
+    (receiver as api1.TextStyle).getTextStyle,
+    <Object?>[
+      values["textScaleFactor"] as double,
+      (_flaxHas1 ? values["textScaler"] as api1.TextScaler : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["textScaleFactor", "textScaler"],
+  ) as api2.TextStyle;
 }
 
 Object? _TextStyle_getParagraphStyle(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("textScaler")) {
-    return (receiver as api1.TextStyle).getParagraphStyle(
-      ellipsis: values["ellipsis"] as String?,
-      fontFamily: values["fontFamily"] as String?,
-      fontSize: values["fontSize"] as double?,
-      fontStyle: values["fontStyle"] as api2.FontStyle?,
-      fontWeight: values["fontWeight"] as api2.FontWeight?,
-      height: values["height"] as double?,
-      locale: values["locale"] as api2.Locale?,
-      maxLines: values["maxLines"] as int?,
-      strutStyle: values["strutStyle"] as api1.StrutStyle?,
-      textAlign: values["textAlign"] as api2.TextAlign?,
-      textDirection: values["textDirection"] as api2.TextDirection?,
-      textHeightBehavior:
-          values["textHeightBehavior"] as api2.TextHeightBehavior?,
-    );
-  }
-  return (receiver as api1.TextStyle).getParagraphStyle(
-    ellipsis: values["ellipsis"] as String?,
-    fontFamily: values["fontFamily"] as String?,
-    fontSize: values["fontSize"] as double?,
-    fontStyle: values["fontStyle"] as api2.FontStyle?,
-    fontWeight: values["fontWeight"] as api2.FontWeight?,
-    height: values["height"] as double?,
-    locale: values["locale"] as api2.Locale?,
-    maxLines: values["maxLines"] as int?,
-    strutStyle: values["strutStyle"] as api1.StrutStyle?,
-    textAlign: values["textAlign"] as api2.TextAlign?,
-    textDirection: values["textDirection"] as api2.TextDirection?,
-    textHeightBehavior:
-        values["textHeightBehavior"] as api2.TextHeightBehavior?,
-    textScaler: values["textScaler"] as api1.TextScaler,
-  );
+  final _flaxHas12 = values.containsKey("textScaler");
+  return flaxInvokeWithDefaults(
+    (receiver as api1.TextStyle).getParagraphStyle,
+    <Object?>[
+      values["ellipsis"] as String?,
+      values["fontFamily"] as String?,
+      values["fontSize"] as double?,
+      values["fontStyle"] as api2.FontStyle?,
+      values["fontWeight"] as api2.FontWeight?,
+      values["height"] as double?,
+      values["locale"] as api2.Locale?,
+      values["maxLines"] as int?,
+      values["strutStyle"] as api1.StrutStyle?,
+      values["textAlign"] as api2.TextAlign?,
+      values["textDirection"] as api2.TextDirection?,
+      values["textHeightBehavior"] as api2.TextHeightBehavior?,
+      (_flaxHas12 ? values["textScaler"] as api1.TextScaler : null),
+    ],
+    <int>[
+      1 |
+          2 |
+          4 |
+          8 |
+          16 |
+          32 |
+          64 |
+          128 |
+          256 |
+          512 |
+          1024 |
+          2048 |
+          (_flaxHas12 ? 4096 : 0),
+    ],
+    const <String>[
+      "ellipsis",
+      "fontFamily",
+      "fontSize",
+      "fontStyle",
+      "fontWeight",
+      "height",
+      "locale",
+      "maxLines",
+      "strutStyle",
+      "textAlign",
+      "textDirection",
+      "textHeightBehavior",
+      "textScaler",
+    ],
+  ) as api2.ParagraphStyle;
 }
 
 Object? _TextStyle_compareTo(Object receiver, Map<String, Object?> values) {
@@ -20996,13 +19576,16 @@ Object? _Uri_encodeComponent(Map<String, Object?> values) {
 }
 
 Object? _Uri_encodeQueryComponent(Map<String, Object?> values) {
-  if (!values.containsKey("encoding")) {
-    return api5.Uri.encodeQueryComponent(values["component"] as String);
-  }
-  return api5.Uri.encodeQueryComponent(
-    values["component"] as String,
-    encoding: values["encoding"] as api8.Encoding,
-  );
+  final _flaxHas1 = values.containsKey("encoding");
+  return flaxInvokeWithDefaults(
+    api5.Uri.encodeQueryComponent,
+    <Object?>[
+      values["component"] as String,
+      (_flaxHas1 ? values["encoding"] as api8.Encoding : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", "encoding"],
+  ) as String;
 }
 
 Object? _Uri_decodeComponent(Map<String, Object?> values) {
@@ -21010,13 +19593,16 @@ Object? _Uri_decodeComponent(Map<String, Object?> values) {
 }
 
 Object? _Uri_decodeQueryComponent(Map<String, Object?> values) {
-  if (!values.containsKey("encoding")) {
-    return api5.Uri.decodeQueryComponent(values["encodedComponent"] as String);
-  }
-  return api5.Uri.decodeQueryComponent(
-    values["encodedComponent"] as String,
-    encoding: values["encoding"] as api8.Encoding,
-  );
+  final _flaxHas1 = values.containsKey("encoding");
+  return flaxInvokeWithDefaults(
+    api5.Uri.decodeQueryComponent,
+    <Object?>[
+      values["encodedComponent"] as String,
+      (_flaxHas1 ? values["encoding"] as api8.Encoding : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", "encoding"],
+  ) as String;
 }
 
 Object? _Uri_encodeFull(Map<String, Object?> values) {
@@ -21028,13 +19614,16 @@ Object? _Uri_decodeFull(Map<String, Object?> values) {
 }
 
 Object? _Uri_splitQueryString(Map<String, Object?> values) {
-  if (!values.containsKey("encoding")) {
-    return api5.Uri.splitQueryString(values["query"] as String);
-  }
-  return api5.Uri.splitQueryString(
-    values["query"] as String,
-    encoding: values["encoding"] as api8.Encoding,
-  );
+  final _flaxHas1 = values.containsKey("encoding");
+  return flaxInvokeWithDefaults(
+    api5.Uri.splitQueryString,
+    <Object?>[
+      values["query"] as String,
+      (_flaxHas1 ? values["encoding"] as api8.Encoding : null),
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0)],
+    const <String>["", "encoding"],
+  ) as Map<String, String>;
 }
 
 Object? _Uri_parseIPv4Address(Map<String, Object?> values) {
@@ -21314,31 +19903,35 @@ class _VisibilityHost extends FlaxWidgetHost {
 api.Widget _createVisibility(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("replacement")) {
-        return api.Visibility(
-          key: values["key"] as api3.Key?,
-          child: values["child"] as api.Widget,
-          visible: values["visible"] as bool,
-          maintainState: values["maintainState"] as bool,
-          maintainAnimation: values["maintainAnimation"] as bool,
-          maintainSize: values["maintainSize"] as bool,
-          maintainSemantics: values["maintainSemantics"] as bool,
-          maintainInteractivity: values["maintainInteractivity"] as bool,
-          maintainFocusability: values["maintainFocusability"] as bool,
-        );
-      }
-      return api.Visibility(
-        key: values["key"] as api3.Key?,
-        child: values["child"] as api.Widget,
-        replacement: values["replacement"] as api.Widget,
-        visible: values["visible"] as bool,
-        maintainState: values["maintainState"] as bool,
-        maintainAnimation: values["maintainAnimation"] as bool,
-        maintainSize: values["maintainSize"] as bool,
-        maintainSemantics: values["maintainSemantics"] as bool,
-        maintainInteractivity: values["maintainInteractivity"] as bool,
-        maintainFocusability: values["maintainFocusability"] as bool,
-      );
+      final _flaxHas2 = values.containsKey("replacement");
+      return flaxInvokeWithDefaults(
+        api.Visibility.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["child"] as api.Widget,
+          (_flaxHas2 ? values["replacement"] as api.Widget : null),
+          values["visible"] as bool,
+          values["maintainState"] as bool,
+          values["maintainAnimation"] as bool,
+          values["maintainSize"] as bool,
+          values["maintainSemantics"] as bool,
+          values["maintainInteractivity"] as bool,
+          values["maintainFocusability"] as bool,
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | 32 | 64 | 128 | 256 | 512],
+        const <String>[
+          "key",
+          "child",
+          "replacement",
+          "visible",
+          "maintainState",
+          "maintainAnimation",
+          "maintainSize",
+          "maintainSemantics",
+          "maintainInteractivity",
+          "maintainFocusability",
+        ],
+      ) as api.Visibility;
     case "maintain":
       return api.Visibility.maintain(
         key: values["key"] as api3.Key?,
@@ -21405,37 +19998,49 @@ class _WrapHost extends FlaxWidgetHost {
 api.Widget _createWrap(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("children")) {
-        return api.Wrap(
-          key: values["key"] as api3.Key?,
-          direction: values["direction"] as api1.Axis,
-          alignment: values["alignment"] as api4.WrapAlignment,
-          spacing: values["spacing"] as double,
-          runAlignment: values["runAlignment"] as api4.WrapAlignment,
-          runSpacing: values["runSpacing"] as double,
-          crossAxisAlignment:
-              values["crossAxisAlignment"] as api4.WrapCrossAlignment,
-          textDirection: values["textDirection"] as api2.TextDirection?,
-          verticalDirection:
-              values["verticalDirection"] as api1.VerticalDirection,
-          clipBehavior: values["clipBehavior"] as api2.Clip,
-        );
-      }
-      return api.Wrap(
-        key: values["key"] as api3.Key?,
-        direction: values["direction"] as api1.Axis,
-        alignment: values["alignment"] as api4.WrapAlignment,
-        spacing: values["spacing"] as double,
-        runAlignment: values["runAlignment"] as api4.WrapAlignment,
-        runSpacing: values["runSpacing"] as double,
-        crossAxisAlignment:
-            values["crossAxisAlignment"] as api4.WrapCrossAlignment,
-        textDirection: values["textDirection"] as api2.TextDirection?,
-        verticalDirection:
-            values["verticalDirection"] as api1.VerticalDirection,
-        clipBehavior: values["clipBehavior"] as api2.Clip,
-        children: values["children"] as List<api.Widget>,
-      );
+      final _flaxHas10 = values.containsKey("children");
+      return flaxInvokeWithDefaults(
+        api.Wrap.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["direction"] as api1.Axis,
+          values["alignment"] as api4.WrapAlignment,
+          values["spacing"] as double,
+          values["runAlignment"] as api4.WrapAlignment,
+          values["runSpacing"] as double,
+          values["crossAxisAlignment"] as api4.WrapCrossAlignment,
+          values["textDirection"] as api2.TextDirection?,
+          values["verticalDirection"] as api1.VerticalDirection,
+          values["clipBehavior"] as api2.Clip,
+          (_flaxHas10 ? values["children"] as List<api.Widget> : null),
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              (_flaxHas10 ? 1024 : 0),
+        ],
+        const <String>[
+          "key",
+          "direction",
+          "alignment",
+          "spacing",
+          "runAlignment",
+          "runSpacing",
+          "crossAxisAlignment",
+          "textDirection",
+          "verticalDirection",
+          "clipBehavior",
+          "children",
+        ],
+      ) as api.Wrap;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -21507,19 +20112,17 @@ final class _PreferredSizeWidgetProxy extends api.StatelessWidget
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api3.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api3.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api3.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -21555,93 +20158,31 @@ final class _PreferredSizeWidgetProxy extends api.StatelessWidget
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api3.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api3.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api3.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api3.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api3.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api3.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api3.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api3.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api3.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -21678,21 +20219,17 @@ final class _PreferredSizeWidgetProxy extends api.StatelessWidget
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api3.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api3.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api3.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api3.DiagnosticsNode);
   }
 
   @override
@@ -21758,10 +20295,13 @@ final class _PreferredSizeWidgetProxy extends api.StatelessWidget
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api3.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -22099,19 +20639,17 @@ final class _TextProxy extends api.Text with FlaxWidgetProxy {
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api3.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api3.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api3.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -22147,93 +20685,31 @@ final class _TextProxy extends api.Text with FlaxWidgetProxy {
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api3.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api3.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api3.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api3.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api3.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api3.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api3.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api3.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api3.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -22256,21 +20732,17 @@ final class _TextProxy extends api.Text with FlaxWidgetProxy {
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api3.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api3.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api3.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api3.DiagnosticsNode);
   }
 
   @override
@@ -23669,17 +22141,17 @@ Function _flaxClass_AsyncSnapshot<_Owner0 extends Object?>() =>
               values["data"] as _Owner0,
             );
           case "withError":
-            if (!values.containsKey("stackTrace")) {
-              return api.AsyncSnapshot<_Owner0>.withError(
+            final _flaxHas2 = values.containsKey("stackTrace");
+            return flaxInvokeWithDefaults(
+              api.AsyncSnapshot<_Owner0>.withError,
+              <Object?>[
                 values["state"] as api.ConnectionState,
                 values["error"] as Object,
-              );
-            }
-            return api.AsyncSnapshot<_Owner0>.withError(
-              values["state"] as api.ConnectionState,
-              values["error"] as Object,
-              values["stackTrace"] as api5.StackTrace,
-            );
+                (_flaxHas2 ? values["stackTrace"] as api5.StackTrace : null),
+              ],
+              <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+              const <String>["", "", ""],
+            ) as api.AsyncSnapshot<_Owner0>;
           default:
             throw ArgumentError("Unknown constructor");
         }

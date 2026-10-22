@@ -3,11 +3,12 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
+import { _flaxMemberParameters68 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export function getDebugCaptureShaderWarmUpImage(): ((image: Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>) => boolean) { return invokeTopLevel("flax.core/sdk_painting#read:debugCaptureShaderWarmUpImage", []) as ((image: Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>) => boolean); }
 function _flaxTopLevel_setDebugCaptureShaderWarmUpImage(value: ((image: upstream0.Image) => boolean)): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:debugCaptureShaderWarmUpImage%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:debugCaptureShaderWarmUpImage%3D", [value], _flaxMemberParameters68);
 }
 export { _flaxTopLevel_setDebugCaptureShaderWarmUpImage as setDebugCaptureShaderWarmUpImage };

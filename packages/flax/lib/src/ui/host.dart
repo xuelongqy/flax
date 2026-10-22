@@ -1,5 +1,7 @@
 part of '../../bindings.dart';
 
+final _baseHostSource = FlaxJsSource(flaxBaseBootstrap, sourceUrl: 'flax:base');
+
 /// Defaults used by subsequently created sessions in this Dart isolate.
 abstract final class Flax {
   static List<FlaxPlugin> _plugins = const [];
@@ -132,6 +134,10 @@ abstract class FlaxHostContext {
   });
   FlaxJsValue evaluate(String source, {String sourceUrl = 'flax:host'});
 
+  /// Reuses immutable source encoding without sharing runtime state.
+  FlaxJsValue evaluateSource(FlaxJsSource source) =>
+      evaluate(utf8.decode(source.bytes), sourceUrl: source.sourceUrl);
+
   /// Executes at a safe session checkpoint; discarded after this installation retires.
   /// Keep owned JS handles on the instance and release them in dispose, not here.
   void enqueue(void Function() action);
@@ -188,6 +194,16 @@ class _HostContext implements FlaxHostContext {
     if (!isActive) throw StateError('FlaxSessionClosed');
     try {
       return runtime.evaluate(source, sourceUrl: sourceUrl);
+    } finally {
+      requestCheckpoint();
+    }
+  }
+
+  @override
+  FlaxJsValue evaluateSource(FlaxJsSource source) {
+    if (!isActive) throw StateError('FlaxSessionClosed');
+    try {
+      return runtime.evaluateSource(source);
     } finally {
       requestCheckpoint();
     }
@@ -436,10 +452,7 @@ class _BaseHost implements FlaxPluginInstance {
       }
       return const FlaxJsUndefined();
     }, allowClosing: true);
-    _state = context.evaluate(
-      flaxBaseBootstrap,
-      sourceUrl: 'flax:base',
-    ) as FlaxJsObject;
+    _state = context.evaluateSource(_baseHostSource) as FlaxJsObject;
   }
 
   void _scheduleRaf() {

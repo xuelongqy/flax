@@ -48,6 +48,7 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_RouterConfig';
 import type * as upstream22 from '@flax/flutter/widgets/_bindings/sdk_widgets_HeroController';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_HeroController';
 import type * as upstream23 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation';
+import { _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface CupertinoApp extends WidgetDescription, Omit<Readonly<{ "__flaxBound:package:cupertino_ui/src/app.dart::CupertinoApp": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, 'type'> { readonly type: "flax.cupertino/cupertino#type:CupertinoApp";  }
@@ -65,7 +66,7 @@ return construct("widget", "flax.cupertino/cupertino#type:CupertinoApp", "router
 }
 export namespace _CupertinoAppFactory { export function createCupertinoHeroController(): upstream22.HeroController {
 if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoApp.createCupertinoHeroController", []);
+const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoApp.createCupertinoHeroController", [], _flaxMemberParameters0);
 return _flaxResult as upstream22.HeroController;
 } }
 export const CupertinoApp: typeof _CupertinoAppFactory & _FlaxInstanceType<CupertinoApp> & _FlaxDartType<CupertinoApp, readonly ["class", "flax.cupertino/cupertino#type:CupertinoApp", readonly [], false]> = _flaxBindInstanceType<CupertinoApp, typeof _CupertinoAppFactory>(_CupertinoAppFactory, "flax.cupertino/cupertino#type:CupertinoApp", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _CupertinoAppFactory & _FlaxInstanceType<CupertinoApp> & _FlaxDartType<CupertinoApp, readonly ["class", "flax.cupertino/cupertino#type:CupertinoApp", readonly [], false]>;

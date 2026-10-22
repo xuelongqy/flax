@@ -129,6 +129,7 @@ const sdk_schedulerBindings = FlaxBindingModule(
   dependencyModules: ["flax.core/flutter", "flax.core/sdk_foundation"],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "engine-type-handles",
     "generic-call-types",
     "generic-member-views",
@@ -665,11 +666,13 @@ final class _TickerProxy extends api.Ticker {
   }
 
   void _flaxSuper_stop({Object? canceled = _flaxOmitted}) {
-    if (identical(canceled, _flaxOmitted)) {
-      super.stop();
-      return;
-    }
-    super.stop(canceled: canceled as bool);
+    final _flaxHas0 = !identical(canceled, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.stop,
+      <Object?>[(_flaxHas0 ? canceled as bool : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["canceled"],
+    );
     return;
   }
 
@@ -686,11 +689,13 @@ final class _TickerProxy extends api.Ticker {
   }
 
   void _flaxSuper_scheduleTick({Object? rescheduling = _flaxOmitted}) {
-    if (identical(rescheduling, _flaxOmitted)) {
-      super.scheduleTick();
-      return;
-    }
-    super.scheduleTick(rescheduling: rescheduling as bool);
+    final _flaxHas0 = !identical(rescheduling, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.scheduleTick,
+      <Object?>[(_flaxHas0 ? rescheduling as bool : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["rescheduling"],
+    );
     return;
   }
 
@@ -769,10 +774,13 @@ final class _TickerProxy extends api.Ticker {
   }
 
   String _flaxSuper_toString({Object? debugIncludeStack = _flaxOmitted}) {
-    if (identical(debugIncludeStack, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(debugIncludeStack: debugIncludeStack as bool);
+    final _flaxHas0 = !identical(debugIncludeStack, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? debugIncludeStack as bool : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["debugIncludeStack"],
+    ) as String);
   }
 
   @override
@@ -967,10 +975,16 @@ final class _TickerFutureProxy extends api.TickerFuture
     Function onError, {
     Object? test = _flaxOmitted,
   }) {
-    if (identical(test, _flaxOmitted)) {
-      return super.catchError(onError);
-    }
-    return super.catchError(onError, test: test as bool Function(Object p0)?);
+    final _flaxHas1 = !identical(test, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.catchError,
+      <Object?>[
+        onError,
+        (_flaxHas1 ? test as bool Function(Object p0)? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "test"],
+    ) as Future<void>);
   }
 
   @override
@@ -1012,10 +1026,13 @@ final class _TickerFutureProxy extends api.TickerFuture
     api3.FutureOr<R> Function(void value) onValue, {
     Object? onError = _flaxOmitted,
   }) {
-    if (identical(onError, _flaxOmitted)) {
-      return super.then<R>(onValue);
-    }
-    return super.then<R>(onValue, onError: onError as Function?);
+    final _flaxHas1 = !identical(onError, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.then<R>,
+      <Object?>[onValue, (_flaxHas1 ? onError as Function? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "onError"],
+    ) as Future<R>);
   }
 
   @override
@@ -1043,13 +1060,16 @@ final class _TickerFutureProxy extends api.TickerFuture
     api2.Duration timeLimit, {
     Object? onTimeout = _flaxOmitted,
   }) {
-    if (identical(onTimeout, _flaxOmitted)) {
-      return super.timeout(timeLimit);
-    }
-    return super.timeout(
-      timeLimit,
-      onTimeout: onTimeout as api3.FutureOr<void> Function()?,
-    );
+    final _flaxHas1 = !identical(onTimeout, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.timeout,
+      <Object?>[
+        timeLimit,
+        (_flaxHas1 ? onTimeout as api3.FutureOr<void> Function()? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", "onTimeout"],
+    ) as Future<void>);
   }
 
   @override

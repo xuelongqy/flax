@@ -16,7 +16,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters0 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters1 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -40,7 +40,7 @@ toStringDeep(options?: {minLevel?: upstream5.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream7.DiagnosticsTreeStyle | null | undefined}): upstream6.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream6.DiagnosticsNode>;
 }
-defineObject("flax.material/material#type:FlexibleSpaceBarSettings", ["toolbarOpacity","minExtent","maxExtent","currentExtent","isScrolledUnder","hasLeading","child","key"], [], _flaxBindingMethods("flax.material/material#type:FlexibleSpaceBarSettings", "object", {"updateShouldNotify":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
+defineObject("flax.material/material#type:FlexibleSpaceBarSettings", ["toolbarOpacity","minExtent","maxExtent","currentExtent","isScrolledUnder","hasLeading","child","key"], [], _flaxBindingMethods("flax.material/material#type:FlexibleSpaceBarSettings", "object", {"updateShouldNotify":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
 export function _FlexibleSpaceBarSettingsFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; toolbarOpacity: number; minExtent: number; maxExtent: number; currentExtent: number; child: Widget; isScrolledUnder?: boolean | null | undefined; hasLeading?: boolean | null | undefined }): FlexibleSpaceBarSettings {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

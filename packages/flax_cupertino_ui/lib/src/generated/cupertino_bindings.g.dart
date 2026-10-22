@@ -5666,6 +5666,7 @@ const cupertinoBindings = FlaxBindingModule(
   ],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "dart-type-tokens",
     "engine-type-handles",
     "explicit-generic-types",
@@ -6190,23 +6191,20 @@ final cupertinoPlugin = FlaxBindingPlugin(
   jsModules: {"@flax/cupertino-ui"},
 );
 Object? _function_createCupertinoColorProperty(Map<String, Object?> values) {
-  if (!values.containsKey("defaultValue")) {
-    return api.createCupertinoColorProperty(
+  final _flaxHas2 = values.containsKey("defaultValue");
+  return flaxInvokeWithDefaults(
+    api.createCupertinoColorProperty,
+    <Object?>[
       values["name"] as String,
       values["value"] as api1.Color?,
-      level: values["level"] as api3.DiagnosticLevel,
-      showName: values["showName"] as bool,
-      style: values["style"] as api3.DiagnosticsTreeStyle,
-    );
-  }
-  return api.createCupertinoColorProperty(
-    values["name"] as String,
-    values["value"] as api1.Color?,
-    defaultValue: values["defaultValue"],
-    level: values["level"] as api3.DiagnosticLevel,
-    showName: values["showName"] as bool,
-    style: values["style"] as api3.DiagnosticsTreeStyle,
-  );
+      (_flaxHas2 ? values["defaultValue"] : null),
+      values["level"] as api3.DiagnosticLevel,
+      values["showName"] as bool,
+      values["style"] as api3.DiagnosticsTreeStyle,
+    ],
+    <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | 32],
+    const <String>["", "", "defaultValue", "level", "showName", "style"],
+  ) as api3.DiagnosticsProperty<api1.Color>;
 }
 
 Object? _function_debugCheckHasCupertinoLocalizations(
@@ -6233,33 +6231,35 @@ Object? _function_showCupertinoDialog(Map<String, Object?> values) {
 }
 
 Object? _function_showCupertinoModalPopup(Map<String, Object?> values) {
-  if (!values.containsKey("barrierColor")) {
-    return api.showCupertinoModalPopup<Object?>(
-      anchorPoint: values["anchorPoint"] as api1.Offset?,
-      barrierDismissible: values["barrierDismissible"] as bool,
-      builder:
-          values["builder"] as api.Widget Function(api10.BuildContext context),
-      context: values["context"] as api10.BuildContext,
-      filter: values["filter"] as api1.ImageFilter?,
-      requestFocus: values["requestFocus"] as bool?,
-      routeSettings: values["routeSettings"] as api10.RouteSettings?,
-      semanticsDismissible: values["semanticsDismissible"] as bool,
-      useRootNavigator: values["useRootNavigator"] as bool,
-    );
-  }
-  return api.showCupertinoModalPopup<Object?>(
-    anchorPoint: values["anchorPoint"] as api1.Offset?,
-    barrierColor: values["barrierColor"] as api1.Color,
-    barrierDismissible: values["barrierDismissible"] as bool,
-    builder:
-        values["builder"] as api.Widget Function(api10.BuildContext context),
-    context: values["context"] as api10.BuildContext,
-    filter: values["filter"] as api1.ImageFilter?,
-    requestFocus: values["requestFocus"] as bool?,
-    routeSettings: values["routeSettings"] as api10.RouteSettings?,
-    semanticsDismissible: values["semanticsDismissible"] as bool,
-    useRootNavigator: values["useRootNavigator"] as bool,
-  );
+  final _flaxHas1 = values.containsKey("barrierColor");
+  return flaxInvokeWithDefaults(
+    api.showCupertinoModalPopup<Object?>,
+    <Object?>[
+      values["anchorPoint"] as api1.Offset?,
+      (_flaxHas1 ? values["barrierColor"] as api1.Color : null),
+      values["barrierDismissible"] as bool,
+      values["builder"] as api.Widget Function(api10.BuildContext context),
+      values["context"] as api10.BuildContext,
+      values["filter"] as api1.ImageFilter?,
+      values["requestFocus"] as bool?,
+      values["routeSettings"] as api10.RouteSettings?,
+      values["semanticsDismissible"] as bool,
+      values["useRootNavigator"] as bool,
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 512],
+    const <String>[
+      "anchorPoint",
+      "barrierColor",
+      "barrierDismissible",
+      "builder",
+      "context",
+      "filter",
+      "requestFocus",
+      "routeSettings",
+      "semanticsDismissible",
+      "useRootNavigator",
+    ],
+  ) as Future<Object?>;
 }
 
 Object? _function_showCupertinoSheet(Map<String, Object?> values) {
@@ -6882,107 +6882,44 @@ api.Widget _createCupertinoAlertDialog(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("actions")) {
-        if (!values.containsKey("insetAnimationDuration")) {
-          if (!values.containsKey("insetAnimationCurve")) {
-            return api.CupertinoAlertDialog(
-              key: values["key"] as api3.Key?,
-              title: values["title"] as api.Widget?,
-              content: values["content"] as api.Widget?,
-              scrollController:
-                  values["scrollController"] as api10.ScrollController?,
-              actionScrollController:
-                  values["actionScrollController"] as api10.ScrollController?,
-            );
-          }
-          return api.CupertinoAlertDialog(
-            key: values["key"] as api3.Key?,
-            title: values["title"] as api.Widget?,
-            content: values["content"] as api.Widget?,
-            scrollController:
-                values["scrollController"] as api10.ScrollController?,
-            actionScrollController:
-                values["actionScrollController"] as api10.ScrollController?,
-            insetAnimationCurve: values["insetAnimationCurve"] as api11.Curve,
-          );
-        }
-        if (!values.containsKey("insetAnimationCurve")) {
-          return api.CupertinoAlertDialog(
-            key: values["key"] as api3.Key?,
-            title: values["title"] as api.Widget?,
-            content: values["content"] as api.Widget?,
-            scrollController:
-                values["scrollController"] as api10.ScrollController?,
-            actionScrollController:
-                values["actionScrollController"] as api10.ScrollController?,
-            insetAnimationDuration:
-                values["insetAnimationDuration"] as api2.Duration,
-          );
-        }
-        return api.CupertinoAlertDialog(
-          key: values["key"] as api3.Key?,
-          title: values["title"] as api.Widget?,
-          content: values["content"] as api.Widget?,
-          scrollController:
-              values["scrollController"] as api10.ScrollController?,
-          actionScrollController:
-              values["actionScrollController"] as api10.ScrollController?,
-          insetAnimationDuration:
-              values["insetAnimationDuration"] as api2.Duration,
-          insetAnimationCurve: values["insetAnimationCurve"] as api11.Curve,
-        );
-      }
-      if (!values.containsKey("insetAnimationDuration")) {
-        if (!values.containsKey("insetAnimationCurve")) {
-          return api.CupertinoAlertDialog(
-            key: values["key"] as api3.Key?,
-            title: values["title"] as api.Widget?,
-            content: values["content"] as api.Widget?,
-            actions: values["actions"] as List<api.Widget>,
-            scrollController:
-                values["scrollController"] as api10.ScrollController?,
-            actionScrollController:
-                values["actionScrollController"] as api10.ScrollController?,
-          );
-        }
-        return api.CupertinoAlertDialog(
-          key: values["key"] as api3.Key?,
-          title: values["title"] as api.Widget?,
-          content: values["content"] as api.Widget?,
-          actions: values["actions"] as List<api.Widget>,
-          scrollController:
-              values["scrollController"] as api10.ScrollController?,
-          actionScrollController:
-              values["actionScrollController"] as api10.ScrollController?,
-          insetAnimationCurve: values["insetAnimationCurve"] as api11.Curve,
-        );
-      }
-      if (!values.containsKey("insetAnimationCurve")) {
-        return api.CupertinoAlertDialog(
-          key: values["key"] as api3.Key?,
-          title: values["title"] as api.Widget?,
-          content: values["content"] as api.Widget?,
-          actions: values["actions"] as List<api.Widget>,
-          scrollController:
-              values["scrollController"] as api10.ScrollController?,
-          actionScrollController:
-              values["actionScrollController"] as api10.ScrollController?,
-          insetAnimationDuration:
-              values["insetAnimationDuration"] as api2.Duration,
-        );
-      }
-      return api.CupertinoAlertDialog(
-        key: values["key"] as api3.Key?,
-        title: values["title"] as api.Widget?,
-        content: values["content"] as api.Widget?,
-        actions: values["actions"] as List<api.Widget>,
-        scrollController: values["scrollController"] as api10.ScrollController?,
-        actionScrollController:
-            values["actionScrollController"] as api10.ScrollController?,
-        insetAnimationDuration:
-            values["insetAnimationDuration"] as api2.Duration,
-        insetAnimationCurve: values["insetAnimationCurve"] as api11.Curve,
-      );
+      final _flaxHas3 = values.containsKey("actions");
+      final _flaxHas6 = values.containsKey("insetAnimationDuration");
+      final _flaxHas7 = values.containsKey("insetAnimationCurve");
+      return flaxInvokeWithDefaults(
+        api.CupertinoAlertDialog.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["title"] as api.Widget?,
+          values["content"] as api.Widget?,
+          (_flaxHas3 ? values["actions"] as List<api.Widget> : null),
+          values["scrollController"] as api10.ScrollController?,
+          values["actionScrollController"] as api10.ScrollController?,
+          (_flaxHas6
+              ? values["insetAnimationDuration"] as api2.Duration
+              : null),
+          (_flaxHas7 ? values["insetAnimationCurve"] as api11.Curve : null),
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              (_flaxHas3 ? 8 : 0) |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              (_flaxHas7 ? 128 : 0),
+        ],
+        const <String>[
+          "key",
+          "title",
+          "content",
+          "actions",
+          "scrollController",
+          "actionScrollController",
+          "insetAnimationDuration",
+          "insetAnimationCurve",
+        ],
+      ) as api.CupertinoAlertDialog;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -7005,729 +6942,243 @@ class _CupertinoAppHost extends FlaxWidgetHost {
 api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("routes")) {
-        if (!values.containsKey("navigatorObservers")) {
-          if (!values.containsKey("supportedLocales")) {
-            return api.CupertinoApp(
-              key: values["key"] as api3.Key?,
-              navigatorKey:
-                  values["navigatorKey"]
-                      as api10.GlobalKey<api10.NavigatorState>?,
-              home: values["home"] as api.Widget?,
-              theme: values["theme"] as api.CupertinoThemeData?,
-              initialRoute: values["initialRoute"] as String?,
-              onGenerateRoute:
-                  values["onGenerateRoute"]
-                      as api10.Route<Object?>? Function(
-                        api10.RouteSettings settings,
-                      )?,
-              onGenerateInitialRoutes:
-                  values["onGenerateInitialRoutes"]
-                      as List<api10.Route<Object?>> Function(
-                        String initialRoute,
-                      )?,
-              onUnknownRoute:
-                  values["onUnknownRoute"]
-                      as api10.Route<Object?>? Function(
-                        api10.RouteSettings settings,
-                      )?,
-              onNavigationNotification:
-                  values["onNavigationNotification"]
-                      as bool Function(
-                        api10.NavigationNotification notification,
-                      )?,
-              builder:
-                  values["builder"]
-                      as api.Widget Function(
-                        api10.BuildContext context,
-                        api.Widget? child,
-                      )?,
-              title: values["title"] as String?,
-              onGenerateTitle:
-                  values["onGenerateTitle"]
-                      as String Function(api10.BuildContext context)?,
-              color: values["color"] as api1.Color?,
-              locale: values["locale"] as api1.Locale?,
-              localizationsDelegates:
-                  values["localizationsDelegates"]
-                      as Iterable<api10.LocalizationsDelegate<Object?>>?,
-              localeListResolutionCallback:
-                  values["localeListResolutionCallback"]
-                      as api1.Locale? Function(
-                        List<api1.Locale>? locales,
-                        Iterable<api1.Locale> supportedLocales,
-                      )?,
-              localeResolutionCallback:
-                  values["localeResolutionCallback"]
-                      as api1.Locale? Function(
-                        api1.Locale? locale,
-                        Iterable<api1.Locale> supportedLocales,
-                      )?,
-              showPerformanceOverlay: values["showPerformanceOverlay"] as bool,
-              checkerboardRasterCacheImages:
-                  values["checkerboardRasterCacheImages"] as bool,
-              checkerboardOffscreenLayers:
-                  values["checkerboardOffscreenLayers"] as bool,
-              showSemanticsDebugger: values["showSemanticsDebugger"] as bool,
-              debugShowCheckedModeBanner:
-                  values["debugShowCheckedModeBanner"] as bool,
-              shortcuts:
-                  values["shortcuts"]
-                      as Map<api10.ShortcutActivator, api10.Intent>?,
-              actions:
-                  values["actions"]
-                      as Map<api2.Type, api10.Action<api10.Intent>>?,
-              restorationScopeId: values["restorationScopeId"] as String?,
-              scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
-              useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
-            );
-          }
-          return api.CupertinoApp(
-            key: values["key"] as api3.Key?,
-            navigatorKey:
-                values["navigatorKey"]
-                    as api10.GlobalKey<api10.NavigatorState>?,
-            home: values["home"] as api.Widget?,
-            theme: values["theme"] as api.CupertinoThemeData?,
-            initialRoute: values["initialRoute"] as String?,
-            onGenerateRoute:
-                values["onGenerateRoute"]
-                    as api10.Route<Object?>? Function(
-                      api10.RouteSettings settings,
-                    )?,
-            onGenerateInitialRoutes:
-                values["onGenerateInitialRoutes"]
-                    as List<api10.Route<Object?>> Function(
-                      String initialRoute,
-                    )?,
-            onUnknownRoute:
-                values["onUnknownRoute"]
-                    as api10.Route<Object?>? Function(
-                      api10.RouteSettings settings,
-                    )?,
-            onNavigationNotification:
-                values["onNavigationNotification"]
-                    as bool Function(
-                      api10.NavigationNotification notification,
-                    )?,
-            builder:
-                values["builder"]
-                    as api.Widget Function(
-                      api10.BuildContext context,
-                      api.Widget? child,
-                    )?,
-            title: values["title"] as String?,
-            onGenerateTitle:
-                values["onGenerateTitle"]
-                    as String Function(api10.BuildContext context)?,
-            color: values["color"] as api1.Color?,
-            locale: values["locale"] as api1.Locale?,
-            localizationsDelegates:
-                values["localizationsDelegates"]
-                    as Iterable<api10.LocalizationsDelegate<Object?>>?,
-            localeListResolutionCallback:
-                values["localeListResolutionCallback"]
-                    as api1.Locale? Function(
-                      List<api1.Locale>? locales,
-                      Iterable<api1.Locale> supportedLocales,
-                    )?,
-            localeResolutionCallback:
-                values["localeResolutionCallback"]
-                    as api1.Locale? Function(
-                      api1.Locale? locale,
-                      Iterable<api1.Locale> supportedLocales,
-                    )?,
-            supportedLocales:
-                values["supportedLocales"] as Iterable<api1.Locale>,
-            showPerformanceOverlay: values["showPerformanceOverlay"] as bool,
-            checkerboardRasterCacheImages:
-                values["checkerboardRasterCacheImages"] as bool,
-            checkerboardOffscreenLayers:
-                values["checkerboardOffscreenLayers"] as bool,
-            showSemanticsDebugger: values["showSemanticsDebugger"] as bool,
-            debugShowCheckedModeBanner:
-                values["debugShowCheckedModeBanner"] as bool,
-            shortcuts:
-                values["shortcuts"]
-                    as Map<api10.ShortcutActivator, api10.Intent>?,
-            actions:
-                values["actions"]
-                    as Map<api2.Type, api10.Action<api10.Intent>>?,
-            restorationScopeId: values["restorationScopeId"] as String?,
-            scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
-            useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
-          );
-        }
-        if (!values.containsKey("supportedLocales")) {
-          return api.CupertinoApp(
-            key: values["key"] as api3.Key?,
-            navigatorKey:
-                values["navigatorKey"]
-                    as api10.GlobalKey<api10.NavigatorState>?,
-            home: values["home"] as api.Widget?,
-            theme: values["theme"] as api.CupertinoThemeData?,
-            initialRoute: values["initialRoute"] as String?,
-            onGenerateRoute:
-                values["onGenerateRoute"]
-                    as api10.Route<Object?>? Function(
-                      api10.RouteSettings settings,
-                    )?,
-            onGenerateInitialRoutes:
-                values["onGenerateInitialRoutes"]
-                    as List<api10.Route<Object?>> Function(
-                      String initialRoute,
-                    )?,
-            onUnknownRoute:
-                values["onUnknownRoute"]
-                    as api10.Route<Object?>? Function(
-                      api10.RouteSettings settings,
-                    )?,
-            onNavigationNotification:
-                values["onNavigationNotification"]
-                    as bool Function(
-                      api10.NavigationNotification notification,
-                    )?,
-            navigatorObservers:
-                values["navigatorObservers"] as List<api10.NavigatorObserver>,
-            builder:
-                values["builder"]
-                    as api.Widget Function(
-                      api10.BuildContext context,
-                      api.Widget? child,
-                    )?,
-            title: values["title"] as String?,
-            onGenerateTitle:
-                values["onGenerateTitle"]
-                    as String Function(api10.BuildContext context)?,
-            color: values["color"] as api1.Color?,
-            locale: values["locale"] as api1.Locale?,
-            localizationsDelegates:
-                values["localizationsDelegates"]
-                    as Iterable<api10.LocalizationsDelegate<Object?>>?,
-            localeListResolutionCallback:
-                values["localeListResolutionCallback"]
-                    as api1.Locale? Function(
-                      List<api1.Locale>? locales,
-                      Iterable<api1.Locale> supportedLocales,
-                    )?,
-            localeResolutionCallback:
-                values["localeResolutionCallback"]
-                    as api1.Locale? Function(
-                      api1.Locale? locale,
-                      Iterable<api1.Locale> supportedLocales,
-                    )?,
-            showPerformanceOverlay: values["showPerformanceOverlay"] as bool,
-            checkerboardRasterCacheImages:
-                values["checkerboardRasterCacheImages"] as bool,
-            checkerboardOffscreenLayers:
-                values["checkerboardOffscreenLayers"] as bool,
-            showSemanticsDebugger: values["showSemanticsDebugger"] as bool,
-            debugShowCheckedModeBanner:
-                values["debugShowCheckedModeBanner"] as bool,
-            shortcuts:
-                values["shortcuts"]
-                    as Map<api10.ShortcutActivator, api10.Intent>?,
-            actions:
-                values["actions"]
-                    as Map<api2.Type, api10.Action<api10.Intent>>?,
-            restorationScopeId: values["restorationScopeId"] as String?,
-            scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
-            useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
-          );
-        }
-        return api.CupertinoApp(
-          key: values["key"] as api3.Key?,
-          navigatorKey:
-              values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
-          home: values["home"] as api.Widget?,
-          theme: values["theme"] as api.CupertinoThemeData?,
-          initialRoute: values["initialRoute"] as String?,
-          onGenerateRoute:
-              values["onGenerateRoute"]
-                  as api10.Route<Object?>? Function(
-                    api10.RouteSettings settings,
-                  )?,
-          onGenerateInitialRoutes:
-              values["onGenerateInitialRoutes"]
-                  as List<api10.Route<Object?>> Function(String initialRoute)?,
-          onUnknownRoute:
-              values["onUnknownRoute"]
-                  as api10.Route<Object?>? Function(
-                    api10.RouteSettings settings,
-                  )?,
-          onNavigationNotification:
-              values["onNavigationNotification"]
-                  as bool Function(api10.NavigationNotification notification)?,
-          navigatorObservers:
-              values["navigatorObservers"] as List<api10.NavigatorObserver>,
-          builder:
-              values["builder"]
-                  as api.Widget Function(
-                    api10.BuildContext context,
-                    api.Widget? child,
-                  )?,
-          title: values["title"] as String?,
-          onGenerateTitle:
-              values["onGenerateTitle"]
-                  as String Function(api10.BuildContext context)?,
-          color: values["color"] as api1.Color?,
-          locale: values["locale"] as api1.Locale?,
-          localizationsDelegates:
-              values["localizationsDelegates"]
-                  as Iterable<api10.LocalizationsDelegate<Object?>>?,
-          localeListResolutionCallback:
-              values["localeListResolutionCallback"]
-                  as api1.Locale? Function(
-                    List<api1.Locale>? locales,
-                    Iterable<api1.Locale> supportedLocales,
-                  )?,
-          localeResolutionCallback:
-              values["localeResolutionCallback"]
-                  as api1.Locale? Function(
-                    api1.Locale? locale,
-                    Iterable<api1.Locale> supportedLocales,
-                  )?,
-          supportedLocales: values["supportedLocales"] as Iterable<api1.Locale>,
-          showPerformanceOverlay: values["showPerformanceOverlay"] as bool,
-          checkerboardRasterCacheImages:
-              values["checkerboardRasterCacheImages"] as bool,
-          checkerboardOffscreenLayers:
-              values["checkerboardOffscreenLayers"] as bool,
-          showSemanticsDebugger: values["showSemanticsDebugger"] as bool,
-          debugShowCheckedModeBanner:
-              values["debugShowCheckedModeBanner"] as bool,
-          shortcuts:
-              values["shortcuts"]
-                  as Map<api10.ShortcutActivator, api10.Intent>?,
-          actions:
-              values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
-          restorationScopeId: values["restorationScopeId"] as String?,
-          scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
-          useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
-        );
-      }
-      if (!values.containsKey("navigatorObservers")) {
-        if (!values.containsKey("supportedLocales")) {
-          return api.CupertinoApp(
-            key: values["key"] as api3.Key?,
-            navigatorKey:
-                values["navigatorKey"]
-                    as api10.GlobalKey<api10.NavigatorState>?,
-            home: values["home"] as api.Widget?,
-            theme: values["theme"] as api.CupertinoThemeData?,
-            routes:
-                values["routes"]
-                    as Map<String, api.Widget Function(api10.BuildContext p0)>,
-            initialRoute: values["initialRoute"] as String?,
-            onGenerateRoute:
-                values["onGenerateRoute"]
-                    as api10.Route<Object?>? Function(
-                      api10.RouteSettings settings,
-                    )?,
-            onGenerateInitialRoutes:
-                values["onGenerateInitialRoutes"]
-                    as List<api10.Route<Object?>> Function(
-                      String initialRoute,
-                    )?,
-            onUnknownRoute:
-                values["onUnknownRoute"]
-                    as api10.Route<Object?>? Function(
-                      api10.RouteSettings settings,
-                    )?,
-            onNavigationNotification:
-                values["onNavigationNotification"]
-                    as bool Function(
-                      api10.NavigationNotification notification,
-                    )?,
-            builder:
-                values["builder"]
-                    as api.Widget Function(
-                      api10.BuildContext context,
-                      api.Widget? child,
-                    )?,
-            title: values["title"] as String?,
-            onGenerateTitle:
-                values["onGenerateTitle"]
-                    as String Function(api10.BuildContext context)?,
-            color: values["color"] as api1.Color?,
-            locale: values["locale"] as api1.Locale?,
-            localizationsDelegates:
-                values["localizationsDelegates"]
-                    as Iterable<api10.LocalizationsDelegate<Object?>>?,
-            localeListResolutionCallback:
-                values["localeListResolutionCallback"]
-                    as api1.Locale? Function(
-                      List<api1.Locale>? locales,
-                      Iterable<api1.Locale> supportedLocales,
-                    )?,
-            localeResolutionCallback:
-                values["localeResolutionCallback"]
-                    as api1.Locale? Function(
-                      api1.Locale? locale,
-                      Iterable<api1.Locale> supportedLocales,
-                    )?,
-            showPerformanceOverlay: values["showPerformanceOverlay"] as bool,
-            checkerboardRasterCacheImages:
-                values["checkerboardRasterCacheImages"] as bool,
-            checkerboardOffscreenLayers:
-                values["checkerboardOffscreenLayers"] as bool,
-            showSemanticsDebugger: values["showSemanticsDebugger"] as bool,
-            debugShowCheckedModeBanner:
-                values["debugShowCheckedModeBanner"] as bool,
-            shortcuts:
-                values["shortcuts"]
-                    as Map<api10.ShortcutActivator, api10.Intent>?,
-            actions:
-                values["actions"]
-                    as Map<api2.Type, api10.Action<api10.Intent>>?,
-            restorationScopeId: values["restorationScopeId"] as String?,
-            scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
-            useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
-          );
-        }
-        return api.CupertinoApp(
-          key: values["key"] as api3.Key?,
-          navigatorKey:
-              values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
-          home: values["home"] as api.Widget?,
-          theme: values["theme"] as api.CupertinoThemeData?,
-          routes:
-              values["routes"]
-                  as Map<String, api.Widget Function(api10.BuildContext p0)>,
-          initialRoute: values["initialRoute"] as String?,
-          onGenerateRoute:
-              values["onGenerateRoute"]
-                  as api10.Route<Object?>? Function(
-                    api10.RouteSettings settings,
-                  )?,
-          onGenerateInitialRoutes:
-              values["onGenerateInitialRoutes"]
-                  as List<api10.Route<Object?>> Function(String initialRoute)?,
-          onUnknownRoute:
-              values["onUnknownRoute"]
-                  as api10.Route<Object?>? Function(
-                    api10.RouteSettings settings,
-                  )?,
-          onNavigationNotification:
-              values["onNavigationNotification"]
-                  as bool Function(api10.NavigationNotification notification)?,
-          builder:
-              values["builder"]
-                  as api.Widget Function(
-                    api10.BuildContext context,
-                    api.Widget? child,
-                  )?,
-          title: values["title"] as String?,
-          onGenerateTitle:
-              values["onGenerateTitle"]
-                  as String Function(api10.BuildContext context)?,
-          color: values["color"] as api1.Color?,
-          locale: values["locale"] as api1.Locale?,
-          localizationsDelegates:
-              values["localizationsDelegates"]
-                  as Iterable<api10.LocalizationsDelegate<Object?>>?,
-          localeListResolutionCallback:
-              values["localeListResolutionCallback"]
-                  as api1.Locale? Function(
-                    List<api1.Locale>? locales,
-                    Iterable<api1.Locale> supportedLocales,
-                  )?,
-          localeResolutionCallback:
-              values["localeResolutionCallback"]
-                  as api1.Locale? Function(
-                    api1.Locale? locale,
-                    Iterable<api1.Locale> supportedLocales,
-                  )?,
-          supportedLocales: values["supportedLocales"] as Iterable<api1.Locale>,
-          showPerformanceOverlay: values["showPerformanceOverlay"] as bool,
-          checkerboardRasterCacheImages:
-              values["checkerboardRasterCacheImages"] as bool,
-          checkerboardOffscreenLayers:
-              values["checkerboardOffscreenLayers"] as bool,
-          showSemanticsDebugger: values["showSemanticsDebugger"] as bool,
-          debugShowCheckedModeBanner:
-              values["debugShowCheckedModeBanner"] as bool,
-          shortcuts:
-              values["shortcuts"]
-                  as Map<api10.ShortcutActivator, api10.Intent>?,
-          actions:
-              values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
-          restorationScopeId: values["restorationScopeId"] as String?,
-          scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
-          useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
-        );
-      }
-      if (!values.containsKey("supportedLocales")) {
-        return api.CupertinoApp(
-          key: values["key"] as api3.Key?,
-          navigatorKey:
-              values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
-          home: values["home"] as api.Widget?,
-          theme: values["theme"] as api.CupertinoThemeData?,
-          routes:
-              values["routes"]
-                  as Map<String, api.Widget Function(api10.BuildContext p0)>,
-          initialRoute: values["initialRoute"] as String?,
-          onGenerateRoute:
-              values["onGenerateRoute"]
-                  as api10.Route<Object?>? Function(
-                    api10.RouteSettings settings,
-                  )?,
-          onGenerateInitialRoutes:
-              values["onGenerateInitialRoutes"]
-                  as List<api10.Route<Object?>> Function(String initialRoute)?,
-          onUnknownRoute:
-              values["onUnknownRoute"]
-                  as api10.Route<Object?>? Function(
-                    api10.RouteSettings settings,
-                  )?,
-          onNavigationNotification:
-              values["onNavigationNotification"]
-                  as bool Function(api10.NavigationNotification notification)?,
-          navigatorObservers:
-              values["navigatorObservers"] as List<api10.NavigatorObserver>,
-          builder:
-              values["builder"]
-                  as api.Widget Function(
-                    api10.BuildContext context,
-                    api.Widget? child,
-                  )?,
-          title: values["title"] as String?,
-          onGenerateTitle:
-              values["onGenerateTitle"]
-                  as String Function(api10.BuildContext context)?,
-          color: values["color"] as api1.Color?,
-          locale: values["locale"] as api1.Locale?,
-          localizationsDelegates:
-              values["localizationsDelegates"]
-                  as Iterable<api10.LocalizationsDelegate<Object?>>?,
-          localeListResolutionCallback:
-              values["localeListResolutionCallback"]
-                  as api1.Locale? Function(
-                    List<api1.Locale>? locales,
-                    Iterable<api1.Locale> supportedLocales,
-                  )?,
-          localeResolutionCallback:
-              values["localeResolutionCallback"]
-                  as api1.Locale? Function(
-                    api1.Locale? locale,
-                    Iterable<api1.Locale> supportedLocales,
-                  )?,
-          showPerformanceOverlay: values["showPerformanceOverlay"] as bool,
-          checkerboardRasterCacheImages:
-              values["checkerboardRasterCacheImages"] as bool,
-          checkerboardOffscreenLayers:
-              values["checkerboardOffscreenLayers"] as bool,
-          showSemanticsDebugger: values["showSemanticsDebugger"] as bool,
-          debugShowCheckedModeBanner:
-              values["debugShowCheckedModeBanner"] as bool,
-          shortcuts:
-              values["shortcuts"]
-                  as Map<api10.ShortcutActivator, api10.Intent>?,
-          actions:
-              values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
-          restorationScopeId: values["restorationScopeId"] as String?,
-          scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
-          useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
-        );
-      }
-      return api.CupertinoApp(
-        key: values["key"] as api3.Key?,
-        navigatorKey:
-            values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
-        home: values["home"] as api.Widget?,
-        theme: values["theme"] as api.CupertinoThemeData?,
-        routes:
-            values["routes"]
-                as Map<String, api.Widget Function(api10.BuildContext p0)>,
-        initialRoute: values["initialRoute"] as String?,
-        onGenerateRoute:
-            values["onGenerateRoute"]
-                as api10.Route<Object?>? Function(
-                  api10.RouteSettings settings,
-                )?,
-        onGenerateInitialRoutes:
-            values["onGenerateInitialRoutes"]
-                as List<api10.Route<Object?>> Function(String initialRoute)?,
-        onUnknownRoute:
-            values["onUnknownRoute"]
-                as api10.Route<Object?>? Function(
-                  api10.RouteSettings settings,
-                )?,
-        onNavigationNotification:
-            values["onNavigationNotification"]
-                as bool Function(api10.NavigationNotification notification)?,
-        navigatorObservers:
-            values["navigatorObservers"] as List<api10.NavigatorObserver>,
-        builder:
-            values["builder"]
-                as api.Widget Function(
-                  api10.BuildContext context,
-                  api.Widget? child,
-                )?,
-        title: values["title"] as String?,
-        onGenerateTitle:
-            values["onGenerateTitle"]
-                as String Function(api10.BuildContext context)?,
-        color: values["color"] as api1.Color?,
-        locale: values["locale"] as api1.Locale?,
-        localizationsDelegates:
-            values["localizationsDelegates"]
-                as Iterable<api10.LocalizationsDelegate<Object?>>?,
-        localeListResolutionCallback:
-            values["localeListResolutionCallback"]
-                as api1.Locale? Function(
-                  List<api1.Locale>? locales,
-                  Iterable<api1.Locale> supportedLocales,
-                )?,
-        localeResolutionCallback:
-            values["localeResolutionCallback"]
-                as api1.Locale? Function(
-                  api1.Locale? locale,
-                  Iterable<api1.Locale> supportedLocales,
-                )?,
-        supportedLocales: values["supportedLocales"] as Iterable<api1.Locale>,
-        showPerformanceOverlay: values["showPerformanceOverlay"] as bool,
-        checkerboardRasterCacheImages:
-            values["checkerboardRasterCacheImages"] as bool,
-        checkerboardOffscreenLayers:
-            values["checkerboardOffscreenLayers"] as bool,
-        showSemanticsDebugger: values["showSemanticsDebugger"] as bool,
-        debugShowCheckedModeBanner:
-            values["debugShowCheckedModeBanner"] as bool,
-        shortcuts:
-            values["shortcuts"] as Map<api10.ShortcutActivator, api10.Intent>?,
-        actions:
-            values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
-        restorationScopeId: values["restorationScopeId"] as String?,
-        scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
-        useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
-      );
+      final _flaxHas4 = values.containsKey("routes");
+      final _flaxHas10 = values.containsKey("navigatorObservers");
+      final _flaxHas19 = values.containsKey("supportedLocales");
+      return flaxInvokeWithDefaults(
+        api.CupertinoApp.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
+          values["home"] as api.Widget?,
+          values["theme"] as api.CupertinoThemeData?,
+          (_flaxHas4
+              ? values["routes"]
+                    as Map<String, api.Widget Function(api10.BuildContext p0)>
+              : null),
+          values["initialRoute"] as String?,
+          values["onGenerateRoute"]
+              as api10.Route<Object?>? Function(api10.RouteSettings settings)?,
+          values["onGenerateInitialRoutes"]
+              as List<api10.Route<Object?>> Function(String initialRoute)?,
+          values["onUnknownRoute"]
+              as api10.Route<Object?>? Function(api10.RouteSettings settings)?,
+          values["onNavigationNotification"]
+              as bool Function(api10.NavigationNotification notification)?,
+          (_flaxHas10
+              ? values["navigatorObservers"] as List<api10.NavigatorObserver>
+              : null),
+          values["builder"]
+              as api.Widget Function(
+                api10.BuildContext context,
+                api.Widget? child,
+              )?,
+          values["title"] as String?,
+          values["onGenerateTitle"]
+              as String Function(api10.BuildContext context)?,
+          values["color"] as api1.Color?,
+          values["locale"] as api1.Locale?,
+          values["localizationsDelegates"]
+              as Iterable<api10.LocalizationsDelegate<Object?>>?,
+          values["localeListResolutionCallback"]
+              as api1.Locale? Function(
+                List<api1.Locale>? locales,
+                Iterable<api1.Locale> supportedLocales,
+              )?,
+          values["localeResolutionCallback"]
+              as api1.Locale? Function(
+                api1.Locale? locale,
+                Iterable<api1.Locale> supportedLocales,
+              )?,
+          (_flaxHas19
+              ? values["supportedLocales"] as Iterable<api1.Locale>
+              : null),
+          values["showPerformanceOverlay"] as bool,
+          values["checkerboardRasterCacheImages"] as bool,
+          values["checkerboardOffscreenLayers"] as bool,
+          values["showSemanticsDebugger"] as bool,
+          values["debugShowCheckedModeBanner"] as bool,
+          values["shortcuts"] as Map<api10.ShortcutActivator, api10.Intent>?,
+          values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
+          values["restorationScopeId"] as String?,
+          values["scrollBehavior"] as api10.ScrollBehavior?,
+          values["useInheritedMediaQuery"] as bool,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              (_flaxHas10 ? 1024 : 0) |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              (_flaxHas19 ? 524288 : 0) |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912,
+        ],
+        const <String>[
+          "key",
+          "navigatorKey",
+          "home",
+          "theme",
+          "routes",
+          "initialRoute",
+          "onGenerateRoute",
+          "onGenerateInitialRoutes",
+          "onUnknownRoute",
+          "onNavigationNotification",
+          "navigatorObservers",
+          "builder",
+          "title",
+          "onGenerateTitle",
+          "color",
+          "locale",
+          "localizationsDelegates",
+          "localeListResolutionCallback",
+          "localeResolutionCallback",
+          "supportedLocales",
+          "showPerformanceOverlay",
+          "checkerboardRasterCacheImages",
+          "checkerboardOffscreenLayers",
+          "showSemanticsDebugger",
+          "debugShowCheckedModeBanner",
+          "shortcuts",
+          "actions",
+          "restorationScopeId",
+          "scrollBehavior",
+          "useInheritedMediaQuery",
+        ],
+      ) as api.CupertinoApp;
     case "router":
-      if (!values.containsKey("supportedLocales")) {
-        return api.CupertinoApp.router(
-          key: values["key"] as api3.Key?,
-          routeInformationProvider:
-              values["routeInformationProvider"]
-                  as api10.RouteInformationProvider?,
-          routeInformationParser:
-              values["routeInformationParser"]
-                  as api10.RouteInformationParser<Object>?,
-          routerDelegate:
-              values["routerDelegate"] as api10.RouterDelegate<Object>?,
-          backButtonDispatcher:
-              values["backButtonDispatcher"] as api10.BackButtonDispatcher?,
-          routerConfig: values["routerConfig"] as api10.RouterConfig<Object>?,
-          theme: values["theme"] as api.CupertinoThemeData?,
-          builder:
-              values["builder"]
-                  as api.Widget Function(
-                    api10.BuildContext context,
-                    api.Widget? child,
-                  )?,
-          title: values["title"] as String?,
-          onGenerateTitle:
-              values["onGenerateTitle"]
-                  as String Function(api10.BuildContext context)?,
-          onNavigationNotification:
-              values["onNavigationNotification"]
-                  as bool Function(api10.NavigationNotification notification)?,
-          color: values["color"] as api1.Color?,
-          locale: values["locale"] as api1.Locale?,
-          localizationsDelegates:
-              values["localizationsDelegates"]
-                  as Iterable<api10.LocalizationsDelegate<Object?>>?,
-          localeListResolutionCallback:
-              values["localeListResolutionCallback"]
-                  as api1.Locale? Function(
-                    List<api1.Locale>? locales,
-                    Iterable<api1.Locale> supportedLocales,
-                  )?,
-          localeResolutionCallback:
-              values["localeResolutionCallback"]
-                  as api1.Locale? Function(
-                    api1.Locale? locale,
-                    Iterable<api1.Locale> supportedLocales,
-                  )?,
-          showPerformanceOverlay: values["showPerformanceOverlay"] as bool,
-          checkerboardRasterCacheImages:
-              values["checkerboardRasterCacheImages"] as bool,
-          checkerboardOffscreenLayers:
-              values["checkerboardOffscreenLayers"] as bool,
-          showSemanticsDebugger: values["showSemanticsDebugger"] as bool,
-          debugShowCheckedModeBanner:
-              values["debugShowCheckedModeBanner"] as bool,
-          shortcuts:
-              values["shortcuts"]
-                  as Map<api10.ShortcutActivator, api10.Intent>?,
-          actions:
-              values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
-          restorationScopeId: values["restorationScopeId"] as String?,
-          scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
-          useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
-        );
-      }
-      return api.CupertinoApp.router(
-        key: values["key"] as api3.Key?,
-        routeInformationProvider:
-            values["routeInformationProvider"]
-                as api10.RouteInformationProvider?,
-        routeInformationParser:
-            values["routeInformationParser"]
-                as api10.RouteInformationParser<Object>?,
-        routerDelegate:
-            values["routerDelegate"] as api10.RouterDelegate<Object>?,
-        backButtonDispatcher:
-            values["backButtonDispatcher"] as api10.BackButtonDispatcher?,
-        routerConfig: values["routerConfig"] as api10.RouterConfig<Object>?,
-        theme: values["theme"] as api.CupertinoThemeData?,
-        builder:
-            values["builder"]
-                as api.Widget Function(
-                  api10.BuildContext context,
-                  api.Widget? child,
-                )?,
-        title: values["title"] as String?,
-        onGenerateTitle:
-            values["onGenerateTitle"]
-                as String Function(api10.BuildContext context)?,
-        onNavigationNotification:
-            values["onNavigationNotification"]
-                as bool Function(api10.NavigationNotification notification)?,
-        color: values["color"] as api1.Color?,
-        locale: values["locale"] as api1.Locale?,
-        localizationsDelegates:
-            values["localizationsDelegates"]
-                as Iterable<api10.LocalizationsDelegate<Object?>>?,
-        localeListResolutionCallback:
-            values["localeListResolutionCallback"]
-                as api1.Locale? Function(
-                  List<api1.Locale>? locales,
-                  Iterable<api1.Locale> supportedLocales,
-                )?,
-        localeResolutionCallback:
-            values["localeResolutionCallback"]
-                as api1.Locale? Function(
-                  api1.Locale? locale,
-                  Iterable<api1.Locale> supportedLocales,
-                )?,
-        supportedLocales: values["supportedLocales"] as Iterable<api1.Locale>,
-        showPerformanceOverlay: values["showPerformanceOverlay"] as bool,
-        checkerboardRasterCacheImages:
-            values["checkerboardRasterCacheImages"] as bool,
-        checkerboardOffscreenLayers:
-            values["checkerboardOffscreenLayers"] as bool,
-        showSemanticsDebugger: values["showSemanticsDebugger"] as bool,
-        debugShowCheckedModeBanner:
-            values["debugShowCheckedModeBanner"] as bool,
-        shortcuts:
-            values["shortcuts"] as Map<api10.ShortcutActivator, api10.Intent>?,
-        actions:
-            values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
-        restorationScopeId: values["restorationScopeId"] as String?,
-        scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
-        useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
-      );
+      final _flaxHas16 = values.containsKey("supportedLocales");
+      return flaxInvokeWithDefaults(
+        api.CupertinoApp.router,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["routeInformationProvider"] as api10.RouteInformationProvider?,
+          values["routeInformationParser"]
+              as api10.RouteInformationParser<Object>?,
+          values["routerDelegate"] as api10.RouterDelegate<Object>?,
+          values["backButtonDispatcher"] as api10.BackButtonDispatcher?,
+          values["routerConfig"] as api10.RouterConfig<Object>?,
+          values["theme"] as api.CupertinoThemeData?,
+          values["builder"]
+              as api.Widget Function(
+                api10.BuildContext context,
+                api.Widget? child,
+              )?,
+          values["title"] as String?,
+          values["onGenerateTitle"]
+              as String Function(api10.BuildContext context)?,
+          values["onNavigationNotification"]
+              as bool Function(api10.NavigationNotification notification)?,
+          values["color"] as api1.Color?,
+          values["locale"] as api1.Locale?,
+          values["localizationsDelegates"]
+              as Iterable<api10.LocalizationsDelegate<Object?>>?,
+          values["localeListResolutionCallback"]
+              as api1.Locale? Function(
+                List<api1.Locale>? locales,
+                Iterable<api1.Locale> supportedLocales,
+              )?,
+          values["localeResolutionCallback"]
+              as api1.Locale? Function(
+                api1.Locale? locale,
+                Iterable<api1.Locale> supportedLocales,
+              )?,
+          (_flaxHas16
+              ? values["supportedLocales"] as Iterable<api1.Locale>
+              : null),
+          values["showPerformanceOverlay"] as bool,
+          values["checkerboardRasterCacheImages"] as bool,
+          values["checkerboardOffscreenLayers"] as bool,
+          values["showSemanticsDebugger"] as bool,
+          values["debugShowCheckedModeBanner"] as bool,
+          values["shortcuts"] as Map<api10.ShortcutActivator, api10.Intent>?,
+          values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
+          values["restorationScopeId"] as String?,
+          values["scrollBehavior"] as api10.ScrollBehavior?,
+          values["useInheritedMediaQuery"] as bool,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              (_flaxHas16 ? 65536 : 0) |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864,
+        ],
+        const <String>[
+          "key",
+          "routeInformationProvider",
+          "routeInformationParser",
+          "routerDelegate",
+          "backButtonDispatcher",
+          "routerConfig",
+          "theme",
+          "builder",
+          "title",
+          "onGenerateTitle",
+          "onNavigationNotification",
+          "color",
+          "locale",
+          "localizationsDelegates",
+          "localeListResolutionCallback",
+          "localeResolutionCallback",
+          "supportedLocales",
+          "showPerformanceOverlay",
+          "checkerboardRasterCacheImages",
+          "checkerboardOffscreenLayers",
+          "showSemanticsDebugger",
+          "debugShowCheckedModeBanner",
+          "shortcuts",
+          "actions",
+          "restorationScopeId",
+          "scrollBehavior",
+          "useInheritedMediaQuery",
+        ],
+      ) as api.CupertinoApp;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -7748,269 +7199,212 @@ class _CupertinoButtonHost extends FlaxWidgetHost {
 api.Widget _createCupertinoButton(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("disabledColor")) {
-        if (!values.containsKey("alignment")) {
-          return api.CupertinoButton(
-            key: values["key"] as api3.Key?,
-            child: values["child"] as api.Widget,
-            sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-            padding: values["padding"] as api12.EdgeInsetsGeometry?,
-            color: values["color"] as api1.Color?,
-            foregroundColor: values["foregroundColor"] as api1.Color?,
-            minSize: values["minSize"] as double?,
-            minimumSize: values["minimumSize"] as api1.Size?,
-            pressedOpacity: values["pressedOpacity"] as double?,
-            borderRadius: values["borderRadius"] as api12.BorderRadius?,
-            focusColor: values["focusColor"] as api1.Color?,
-            focusNode: values["focusNode"] as api10.FocusNode?,
-            onFocusChange:
-                values["onFocusChange"] as void Function(bool value)?,
-            autofocus: values["autofocus"] as bool,
-            mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-            onLongPress: values["onLongPress"] as void Function()?,
-            onPressed: values["onPressed"] as void Function()?,
-          );
-        }
-        return api.CupertinoButton(
-          key: values["key"] as api3.Key?,
-          child: values["child"] as api.Widget,
-          sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          color: values["color"] as api1.Color?,
-          foregroundColor: values["foregroundColor"] as api1.Color?,
-          minSize: values["minSize"] as double?,
-          minimumSize: values["minimumSize"] as api1.Size?,
-          pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api12.BorderRadius?,
-          alignment: values["alignment"] as api12.AlignmentGeometry,
-          focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api10.FocusNode?,
-          onFocusChange: values["onFocusChange"] as void Function(bool value)?,
-          autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-          onLongPress: values["onLongPress"] as void Function()?,
-          onPressed: values["onPressed"] as void Function()?,
-        );
-      }
-      if (!values.containsKey("alignment")) {
-        return api.CupertinoButton(
-          key: values["key"] as api3.Key?,
-          child: values["child"] as api.Widget,
-          sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          color: values["color"] as api1.Color?,
-          foregroundColor: values["foregroundColor"] as api1.Color?,
-          disabledColor: values["disabledColor"] as api1.Color,
-          minSize: values["minSize"] as double?,
-          minimumSize: values["minimumSize"] as api1.Size?,
-          pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api12.BorderRadius?,
-          focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api10.FocusNode?,
-          onFocusChange: values["onFocusChange"] as void Function(bool value)?,
-          autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-          onLongPress: values["onLongPress"] as void Function()?,
-          onPressed: values["onPressed"] as void Function()?,
-        );
-      }
-      return api.CupertinoButton(
-        key: values["key"] as api3.Key?,
-        child: values["child"] as api.Widget,
-        sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-        padding: values["padding"] as api12.EdgeInsetsGeometry?,
-        color: values["color"] as api1.Color?,
-        foregroundColor: values["foregroundColor"] as api1.Color?,
-        disabledColor: values["disabledColor"] as api1.Color,
-        minSize: values["minSize"] as double?,
-        minimumSize: values["minimumSize"] as api1.Size?,
-        pressedOpacity: values["pressedOpacity"] as double?,
-        borderRadius: values["borderRadius"] as api12.BorderRadius?,
-        alignment: values["alignment"] as api12.AlignmentGeometry,
-        focusColor: values["focusColor"] as api1.Color?,
-        focusNode: values["focusNode"] as api10.FocusNode?,
-        onFocusChange: values["onFocusChange"] as void Function(bool value)?,
-        autofocus: values["autofocus"] as bool,
-        mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-        onLongPress: values["onLongPress"] as void Function()?,
-        onPressed: values["onPressed"] as void Function()?,
-      );
+      final _flaxHas6 = values.containsKey("disabledColor");
+      final _flaxHas11 = values.containsKey("alignment");
+      return flaxInvokeWithDefaults(
+        api.CupertinoButton.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["child"] as api.Widget,
+          values["sizeStyle"] as api.CupertinoButtonSize,
+          values["padding"] as api12.EdgeInsetsGeometry?,
+          values["color"] as api1.Color?,
+          values["foregroundColor"] as api1.Color?,
+          (_flaxHas6 ? values["disabledColor"] as api1.Color : null),
+          values["minSize"] as double?,
+          values["minimumSize"] as api1.Size?,
+          values["pressedOpacity"] as double?,
+          values["borderRadius"] as api12.BorderRadius?,
+          (_flaxHas11 ? values["alignment"] as api12.AlignmentGeometry : null),
+          values["focusColor"] as api1.Color?,
+          values["focusNode"] as api10.FocusNode?,
+          values["onFocusChange"] as void Function(bool value)?,
+          values["autofocus"] as bool,
+          values["mouseCursor"] as api7.MouseCursor?,
+          values["onLongPress"] as void Function()?,
+          values["onPressed"] as void Function()?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              (_flaxHas11 ? 2048 : 0) |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144,
+        ],
+        const <String>[
+          "key",
+          "child",
+          "sizeStyle",
+          "padding",
+          "color",
+          "foregroundColor",
+          "disabledColor",
+          "minSize",
+          "minimumSize",
+          "pressedOpacity",
+          "borderRadius",
+          "alignment",
+          "focusColor",
+          "focusNode",
+          "onFocusChange",
+          "autofocus",
+          "mouseCursor",
+          "onLongPress",
+          "onPressed",
+        ],
+      ) as api.CupertinoButton;
     case "tinted":
-      if (!values.containsKey("disabledColor")) {
-        if (!values.containsKey("alignment")) {
-          return api.CupertinoButton.tinted(
-            key: values["key"] as api3.Key?,
-            child: values["child"] as api.Widget,
-            sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-            padding: values["padding"] as api12.EdgeInsetsGeometry?,
-            color: values["color"] as api1.Color?,
-            foregroundColor: values["foregroundColor"] as api1.Color?,
-            minSize: values["minSize"] as double?,
-            minimumSize: values["minimumSize"] as api1.Size?,
-            pressedOpacity: values["pressedOpacity"] as double?,
-            borderRadius: values["borderRadius"] as api12.BorderRadius?,
-            focusColor: values["focusColor"] as api1.Color?,
-            focusNode: values["focusNode"] as api10.FocusNode?,
-            onFocusChange:
-                values["onFocusChange"] as void Function(bool value)?,
-            autofocus: values["autofocus"] as bool,
-            mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-            onLongPress: values["onLongPress"] as void Function()?,
-            onPressed: values["onPressed"] as void Function()?,
-          );
-        }
-        return api.CupertinoButton.tinted(
-          key: values["key"] as api3.Key?,
-          child: values["child"] as api.Widget,
-          sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          color: values["color"] as api1.Color?,
-          foregroundColor: values["foregroundColor"] as api1.Color?,
-          minSize: values["minSize"] as double?,
-          minimumSize: values["minimumSize"] as api1.Size?,
-          pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api12.BorderRadius?,
-          alignment: values["alignment"] as api12.AlignmentGeometry,
-          focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api10.FocusNode?,
-          onFocusChange: values["onFocusChange"] as void Function(bool value)?,
-          autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-          onLongPress: values["onLongPress"] as void Function()?,
-          onPressed: values["onPressed"] as void Function()?,
-        );
-      }
-      if (!values.containsKey("alignment")) {
-        return api.CupertinoButton.tinted(
-          key: values["key"] as api3.Key?,
-          child: values["child"] as api.Widget,
-          sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          color: values["color"] as api1.Color?,
-          foregroundColor: values["foregroundColor"] as api1.Color?,
-          disabledColor: values["disabledColor"] as api1.Color,
-          minSize: values["minSize"] as double?,
-          minimumSize: values["minimumSize"] as api1.Size?,
-          pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api12.BorderRadius?,
-          focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api10.FocusNode?,
-          onFocusChange: values["onFocusChange"] as void Function(bool value)?,
-          autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-          onLongPress: values["onLongPress"] as void Function()?,
-          onPressed: values["onPressed"] as void Function()?,
-        );
-      }
-      return api.CupertinoButton.tinted(
-        key: values["key"] as api3.Key?,
-        child: values["child"] as api.Widget,
-        sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-        padding: values["padding"] as api12.EdgeInsetsGeometry?,
-        color: values["color"] as api1.Color?,
-        foregroundColor: values["foregroundColor"] as api1.Color?,
-        disabledColor: values["disabledColor"] as api1.Color,
-        minSize: values["minSize"] as double?,
-        minimumSize: values["minimumSize"] as api1.Size?,
-        pressedOpacity: values["pressedOpacity"] as double?,
-        borderRadius: values["borderRadius"] as api12.BorderRadius?,
-        alignment: values["alignment"] as api12.AlignmentGeometry,
-        focusColor: values["focusColor"] as api1.Color?,
-        focusNode: values["focusNode"] as api10.FocusNode?,
-        onFocusChange: values["onFocusChange"] as void Function(bool value)?,
-        autofocus: values["autofocus"] as bool,
-        mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-        onLongPress: values["onLongPress"] as void Function()?,
-        onPressed: values["onPressed"] as void Function()?,
-      );
+      final _flaxHas6 = values.containsKey("disabledColor");
+      final _flaxHas11 = values.containsKey("alignment");
+      return flaxInvokeWithDefaults(
+        api.CupertinoButton.tinted,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["child"] as api.Widget,
+          values["sizeStyle"] as api.CupertinoButtonSize,
+          values["padding"] as api12.EdgeInsetsGeometry?,
+          values["color"] as api1.Color?,
+          values["foregroundColor"] as api1.Color?,
+          (_flaxHas6 ? values["disabledColor"] as api1.Color : null),
+          values["minSize"] as double?,
+          values["minimumSize"] as api1.Size?,
+          values["pressedOpacity"] as double?,
+          values["borderRadius"] as api12.BorderRadius?,
+          (_flaxHas11 ? values["alignment"] as api12.AlignmentGeometry : null),
+          values["focusColor"] as api1.Color?,
+          values["focusNode"] as api10.FocusNode?,
+          values["onFocusChange"] as void Function(bool value)?,
+          values["autofocus"] as bool,
+          values["mouseCursor"] as api7.MouseCursor?,
+          values["onLongPress"] as void Function()?,
+          values["onPressed"] as void Function()?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024 |
+              (_flaxHas11 ? 2048 : 0) |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144,
+        ],
+        const <String>[
+          "key",
+          "child",
+          "sizeStyle",
+          "padding",
+          "color",
+          "foregroundColor",
+          "disabledColor",
+          "minSize",
+          "minimumSize",
+          "pressedOpacity",
+          "borderRadius",
+          "alignment",
+          "focusColor",
+          "focusNode",
+          "onFocusChange",
+          "autofocus",
+          "mouseCursor",
+          "onLongPress",
+          "onPressed",
+        ],
+      ) as api.CupertinoButton;
     case "filled":
-      if (!values.containsKey("disabledColor")) {
-        if (!values.containsKey("alignment")) {
-          return api.CupertinoButton.filled(
-            key: values["key"] as api3.Key?,
-            child: values["child"] as api.Widget,
-            sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-            padding: values["padding"] as api12.EdgeInsetsGeometry?,
-            color: values["color"] as api1.Color?,
-            foregroundColor: values["foregroundColor"] as api1.Color?,
-            minSize: values["minSize"] as double?,
-            minimumSize: values["minimumSize"] as api1.Size?,
-            pressedOpacity: values["pressedOpacity"] as double?,
-            borderRadius: values["borderRadius"] as api12.BorderRadius?,
-            focusColor: values["focusColor"] as api1.Color?,
-            focusNode: values["focusNode"] as api10.FocusNode?,
-            onFocusChange:
-                values["onFocusChange"] as void Function(bool value)?,
-            autofocus: values["autofocus"] as bool,
-            mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-            onLongPress: values["onLongPress"] as void Function()?,
-            onPressed: values["onPressed"] as void Function()?,
-          );
-        }
-        return api.CupertinoButton.filled(
-          key: values["key"] as api3.Key?,
-          child: values["child"] as api.Widget,
-          sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          color: values["color"] as api1.Color?,
-          foregroundColor: values["foregroundColor"] as api1.Color?,
-          minSize: values["minSize"] as double?,
-          minimumSize: values["minimumSize"] as api1.Size?,
-          pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api12.BorderRadius?,
-          alignment: values["alignment"] as api12.AlignmentGeometry,
-          focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api10.FocusNode?,
-          onFocusChange: values["onFocusChange"] as void Function(bool value)?,
-          autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-          onLongPress: values["onLongPress"] as void Function()?,
-          onPressed: values["onPressed"] as void Function()?,
-        );
-      }
-      if (!values.containsKey("alignment")) {
-        return api.CupertinoButton.filled(
-          key: values["key"] as api3.Key?,
-          child: values["child"] as api.Widget,
-          sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          color: values["color"] as api1.Color?,
-          disabledColor: values["disabledColor"] as api1.Color,
-          foregroundColor: values["foregroundColor"] as api1.Color?,
-          minSize: values["minSize"] as double?,
-          minimumSize: values["minimumSize"] as api1.Size?,
-          pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api12.BorderRadius?,
-          focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api10.FocusNode?,
-          onFocusChange: values["onFocusChange"] as void Function(bool value)?,
-          autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-          onLongPress: values["onLongPress"] as void Function()?,
-          onPressed: values["onPressed"] as void Function()?,
-        );
-      }
-      return api.CupertinoButton.filled(
-        key: values["key"] as api3.Key?,
-        child: values["child"] as api.Widget,
-        sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-        padding: values["padding"] as api12.EdgeInsetsGeometry?,
-        color: values["color"] as api1.Color?,
-        disabledColor: values["disabledColor"] as api1.Color,
-        foregroundColor: values["foregroundColor"] as api1.Color?,
-        minSize: values["minSize"] as double?,
-        minimumSize: values["minimumSize"] as api1.Size?,
-        pressedOpacity: values["pressedOpacity"] as double?,
-        borderRadius: values["borderRadius"] as api12.BorderRadius?,
-        alignment: values["alignment"] as api12.AlignmentGeometry,
-        focusColor: values["focusColor"] as api1.Color?,
-        focusNode: values["focusNode"] as api10.FocusNode?,
-        onFocusChange: values["onFocusChange"] as void Function(bool value)?,
-        autofocus: values["autofocus"] as bool,
-        mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
-        onLongPress: values["onLongPress"] as void Function()?,
-        onPressed: values["onPressed"] as void Function()?,
-      );
+      final _flaxHas5 = values.containsKey("disabledColor");
+      final _flaxHas11 = values.containsKey("alignment");
+      return flaxInvokeWithDefaults(
+        api.CupertinoButton.filled,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["child"] as api.Widget,
+          values["sizeStyle"] as api.CupertinoButtonSize,
+          values["padding"] as api12.EdgeInsetsGeometry?,
+          values["color"] as api1.Color?,
+          (_flaxHas5 ? values["disabledColor"] as api1.Color : null),
+          values["foregroundColor"] as api1.Color?,
+          values["minSize"] as double?,
+          values["minimumSize"] as api1.Size?,
+          values["pressedOpacity"] as double?,
+          values["borderRadius"] as api12.BorderRadius?,
+          (_flaxHas11 ? values["alignment"] as api12.AlignmentGeometry : null),
+          values["focusColor"] as api1.Color?,
+          values["focusNode"] as api10.FocusNode?,
+          values["onFocusChange"] as void Function(bool value)?,
+          values["autofocus"] as bool,
+          values["mouseCursor"] as api7.MouseCursor?,
+          values["onLongPress"] as void Function()?,
+          values["onPressed"] as void Function()?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              (_flaxHas11 ? 2048 : 0) |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144,
+        ],
+        const <String>[
+          "key",
+          "child",
+          "sizeStyle",
+          "padding",
+          "color",
+          "disabledColor",
+          "foregroundColor",
+          "minSize",
+          "minimumSize",
+          "pressedOpacity",
+          "borderRadius",
+          "alignment",
+          "focusColor",
+          "focusNode",
+          "onFocusChange",
+          "autofocus",
+          "mouseCursor",
+          "onLongPress",
+          "onPressed",
+        ],
+      ) as api.CupertinoButton;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -9566,49 +8960,41 @@ Object? _CupertinoDialogRoute_toString(
 Object _createCupertinoDialogRoute(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("transitionDuration")) {
-        return api.CupertinoDialogRoute<Object?>(
-          builder:
-              values["builder"]
-                  as api.Widget Function(api10.BuildContext context),
-          context: values["context"] as api10.BuildContext,
-          barrierDismissible: values["barrierDismissible"] as bool,
-          barrierColor: values["barrierColor"] as api1.Color?,
-          barrierLabel: values["barrierLabel"] as String?,
-          transitionBuilder:
-              values["transitionBuilder"]
-                  as api.Widget Function(
-                    api10.BuildContext context,
-                    api11.Animation<double> animation,
-                    api11.Animation<double> secondaryAnimation,
-                    api.Widget child,
-                  )?,
-          settings: values["settings"] as api10.RouteSettings?,
-          requestFocus: values["requestFocus"] as bool?,
-          anchorPoint: values["anchorPoint"] as api1.Offset?,
-        );
-      }
-      return api.CupertinoDialogRoute<Object?>(
-        builder:
-            values["builder"]
-                as api.Widget Function(api10.BuildContext context),
-        context: values["context"] as api10.BuildContext,
-        barrierDismissible: values["barrierDismissible"] as bool,
-        barrierColor: values["barrierColor"] as api1.Color?,
-        barrierLabel: values["barrierLabel"] as String?,
-        transitionDuration: values["transitionDuration"] as api2.Duration,
-        transitionBuilder:
-            values["transitionBuilder"]
-                as api.Widget Function(
-                  api10.BuildContext context,
-                  api11.Animation<double> animation,
-                  api11.Animation<double> secondaryAnimation,
-                  api.Widget child,
-                )?,
-        settings: values["settings"] as api10.RouteSettings?,
-        requestFocus: values["requestFocus"] as bool?,
-        anchorPoint: values["anchorPoint"] as api1.Offset?,
-      );
+      final _flaxHas5 = values.containsKey("transitionDuration");
+      return flaxInvokeWithDefaults(
+        api.CupertinoDialogRoute<Object?>.new,
+        <Object?>[
+          values["builder"] as api.Widget Function(api10.BuildContext context),
+          values["context"] as api10.BuildContext,
+          values["barrierDismissible"] as bool,
+          values["barrierColor"] as api1.Color?,
+          values["barrierLabel"] as String?,
+          (_flaxHas5 ? values["transitionDuration"] as api2.Duration : null),
+          values["transitionBuilder"]
+              as api.Widget Function(
+                api10.BuildContext context,
+                api11.Animation<double> animation,
+                api11.Animation<double> secondaryAnimation,
+                api.Widget child,
+              )?,
+          values["settings"] as api10.RouteSettings?,
+          values["requestFocus"] as bool?,
+          values["anchorPoint"] as api1.Offset?,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64 | 128 | 256 | 512],
+        const <String>[
+          "builder",
+          "context",
+          "barrierDismissible",
+          "barrierColor",
+          "barrierLabel",
+          "transitionDuration",
+          "transitionBuilder",
+          "settings",
+          "requestFocus",
+          "anchorPoint",
+        ],
+      ) as api.CupertinoDialogRoute<Object?>;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10433,91 +9819,77 @@ api.Widget _createCupertinoFormSection(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("margin")) {
-        if (!values.containsKey("backgroundColor")) {
-          return api.CupertinoFormSection(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as List<api.Widget>,
-            header: values["header"] as api.Widget?,
-            footer: values["footer"] as api.Widget?,
-            decoration: values["decoration"] as api12.BoxDecoration?,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-          );
-        }
-        return api.CupertinoFormSection(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as List<api.Widget>,
-          header: values["header"] as api.Widget?,
-          footer: values["footer"] as api.Widget?,
-          backgroundColor: values["backgroundColor"] as api1.Color,
-          decoration: values["decoration"] as api12.BoxDecoration?,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-        );
-      }
-      if (!values.containsKey("backgroundColor")) {
-        return api.CupertinoFormSection(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as List<api.Widget>,
-          header: values["header"] as api.Widget?,
-          footer: values["footer"] as api.Widget?,
-          margin: values["margin"] as api12.EdgeInsetsGeometry,
-          decoration: values["decoration"] as api12.BoxDecoration?,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-        );
-      }
-      return api.CupertinoFormSection(
-        key: values["key"] as api3.Key?,
-        children: values["children"] as List<api.Widget>,
-        header: values["header"] as api.Widget?,
-        footer: values["footer"] as api.Widget?,
-        margin: values["margin"] as api12.EdgeInsetsGeometry,
-        backgroundColor: values["backgroundColor"] as api1.Color,
-        decoration: values["decoration"] as api12.BoxDecoration?,
-        clipBehavior: values["clipBehavior"] as api1.Clip,
-      );
+      final _flaxHas4 = values.containsKey("margin");
+      final _flaxHas5 = values.containsKey("backgroundColor");
+      return flaxInvokeWithDefaults(
+        api.CupertinoFormSection.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["children"] as List<api.Widget>,
+          values["header"] as api.Widget?,
+          values["footer"] as api.Widget?,
+          (_flaxHas4 ? values["margin"] as api12.EdgeInsetsGeometry : null),
+          (_flaxHas5 ? values["backgroundColor"] as api1.Color : null),
+          values["decoration"] as api12.BoxDecoration?,
+          values["clipBehavior"] as api1.Clip,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128,
+        ],
+        const <String>[
+          "key",
+          "children",
+          "header",
+          "footer",
+          "margin",
+          "backgroundColor",
+          "decoration",
+          "clipBehavior",
+        ],
+      ) as api.CupertinoFormSection;
     case "insetGrouped":
-      if (!values.containsKey("margin")) {
-        if (!values.containsKey("backgroundColor")) {
-          return api.CupertinoFormSection.insetGrouped(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as List<api.Widget>,
-            header: values["header"] as api.Widget?,
-            footer: values["footer"] as api.Widget?,
-            decoration: values["decoration"] as api12.BoxDecoration?,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-          );
-        }
-        return api.CupertinoFormSection.insetGrouped(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as List<api.Widget>,
-          header: values["header"] as api.Widget?,
-          footer: values["footer"] as api.Widget?,
-          backgroundColor: values["backgroundColor"] as api1.Color,
-          decoration: values["decoration"] as api12.BoxDecoration?,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-        );
-      }
-      if (!values.containsKey("backgroundColor")) {
-        return api.CupertinoFormSection.insetGrouped(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as List<api.Widget>,
-          header: values["header"] as api.Widget?,
-          footer: values["footer"] as api.Widget?,
-          margin: values["margin"] as api12.EdgeInsetsGeometry,
-          decoration: values["decoration"] as api12.BoxDecoration?,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-        );
-      }
-      return api.CupertinoFormSection.insetGrouped(
-        key: values["key"] as api3.Key?,
-        children: values["children"] as List<api.Widget>,
-        header: values["header"] as api.Widget?,
-        footer: values["footer"] as api.Widget?,
-        margin: values["margin"] as api12.EdgeInsetsGeometry,
-        backgroundColor: values["backgroundColor"] as api1.Color,
-        decoration: values["decoration"] as api12.BoxDecoration?,
-        clipBehavior: values["clipBehavior"] as api1.Clip,
-      );
+      final _flaxHas4 = values.containsKey("margin");
+      final _flaxHas5 = values.containsKey("backgroundColor");
+      return flaxInvokeWithDefaults(
+        api.CupertinoFormSection.insetGrouped,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["children"] as List<api.Widget>,
+          values["header"] as api.Widget?,
+          values["footer"] as api.Widget?,
+          (_flaxHas4 ? values["margin"] as api12.EdgeInsetsGeometry : null),
+          (_flaxHas5 ? values["backgroundColor"] as api1.Color : null),
+          values["decoration"] as api12.BoxDecoration?,
+          values["clipBehavior"] as api1.Clip,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128,
+        ],
+        const <String>[
+          "key",
+          "children",
+          "header",
+          "footer",
+          "margin",
+          "backgroundColor",
+          "decoration",
+          "clipBehavior",
+        ],
+      ) as api.CupertinoFormSection;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -11037,101 +10409,106 @@ api.Widget _createCupertinoListSection(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("margin")) {
-        if (!values.containsKey("backgroundColor")) {
-          return api.CupertinoListSection(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as List<api.Widget>?,
-            header: values["header"] as api.Widget?,
-            footer: values["footer"] as api.Widget?,
-            decoration: values["decoration"] as api12.BoxDecoration?,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            dividerMargin: values["dividerMargin"] as double,
-            additionalDividerMargin:
-                values["additionalDividerMargin"] as double?,
-            topMargin: values["topMargin"] as double?,
-            hasLeading: values["hasLeading"] as bool,
-            separatorColor: values["separatorColor"] as api1.Color?,
-          );
-        }
-        return api.CupertinoListSection(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as List<api.Widget>?,
-          header: values["header"] as api.Widget?,
-          footer: values["footer"] as api.Widget?,
-          backgroundColor: values["backgroundColor"] as api1.Color,
-          decoration: values["decoration"] as api12.BoxDecoration?,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-          dividerMargin: values["dividerMargin"] as double,
-          additionalDividerMargin: values["additionalDividerMargin"] as double?,
-          topMargin: values["topMargin"] as double?,
-          hasLeading: values["hasLeading"] as bool,
-          separatorColor: values["separatorColor"] as api1.Color?,
-        );
-      }
-      if (!values.containsKey("backgroundColor")) {
-        return api.CupertinoListSection(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as List<api.Widget>?,
-          header: values["header"] as api.Widget?,
-          footer: values["footer"] as api.Widget?,
-          margin: values["margin"] as api12.EdgeInsetsGeometry,
-          decoration: values["decoration"] as api12.BoxDecoration?,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-          dividerMargin: values["dividerMargin"] as double,
-          additionalDividerMargin: values["additionalDividerMargin"] as double?,
-          topMargin: values["topMargin"] as double?,
-          hasLeading: values["hasLeading"] as bool,
-          separatorColor: values["separatorColor"] as api1.Color?,
-        );
-      }
-      return api.CupertinoListSection(
-        key: values["key"] as api3.Key?,
-        children: values["children"] as List<api.Widget>?,
-        header: values["header"] as api.Widget?,
-        footer: values["footer"] as api.Widget?,
-        margin: values["margin"] as api12.EdgeInsetsGeometry,
-        backgroundColor: values["backgroundColor"] as api1.Color,
-        decoration: values["decoration"] as api12.BoxDecoration?,
-        clipBehavior: values["clipBehavior"] as api1.Clip,
-        dividerMargin: values["dividerMargin"] as double,
-        additionalDividerMargin: values["additionalDividerMargin"] as double?,
-        topMargin: values["topMargin"] as double?,
-        hasLeading: values["hasLeading"] as bool,
-        separatorColor: values["separatorColor"] as api1.Color?,
-      );
+      final _flaxHas4 = values.containsKey("margin");
+      final _flaxHas5 = values.containsKey("backgroundColor");
+      return flaxInvokeWithDefaults(
+        api.CupertinoListSection.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["children"] as List<api.Widget>?,
+          values["header"] as api.Widget?,
+          values["footer"] as api.Widget?,
+          (_flaxHas4 ? values["margin"] as api12.EdgeInsetsGeometry : null),
+          (_flaxHas5 ? values["backgroundColor"] as api1.Color : null),
+          values["decoration"] as api12.BoxDecoration?,
+          values["clipBehavior"] as api1.Clip,
+          values["dividerMargin"] as double,
+          values["additionalDividerMargin"] as double?,
+          values["topMargin"] as double?,
+          values["hasLeading"] as bool,
+          values["separatorColor"] as api1.Color?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096,
+        ],
+        const <String>[
+          "key",
+          "children",
+          "header",
+          "footer",
+          "margin",
+          "backgroundColor",
+          "decoration",
+          "clipBehavior",
+          "dividerMargin",
+          "additionalDividerMargin",
+          "topMargin",
+          "hasLeading",
+          "separatorColor",
+        ],
+      ) as api.CupertinoListSection;
     case "insetGrouped":
-      if (!values.containsKey("backgroundColor")) {
-        return api.CupertinoListSection.insetGrouped(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as List<api.Widget>?,
-          header: values["header"] as api.Widget?,
-          footer: values["footer"] as api.Widget?,
-          margin: values["margin"] as api12.EdgeInsetsGeometry?,
-          decoration: values["decoration"] as api12.BoxDecoration?,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-          dividerMargin: values["dividerMargin"] as double,
-          additionalDividerMargin: values["additionalDividerMargin"] as double?,
-          topMargin: values["topMargin"] as double?,
-          hasLeading: values["hasLeading"] as bool,
-          separatorColor: values["separatorColor"] as api1.Color?,
-        );
-      }
-      return api.CupertinoListSection.insetGrouped(
-        key: values["key"] as api3.Key?,
-        children: values["children"] as List<api.Widget>?,
-        header: values["header"] as api.Widget?,
-        footer: values["footer"] as api.Widget?,
-        margin: values["margin"] as api12.EdgeInsetsGeometry?,
-        backgroundColor: values["backgroundColor"] as api1.Color,
-        decoration: values["decoration"] as api12.BoxDecoration?,
-        clipBehavior: values["clipBehavior"] as api1.Clip,
-        dividerMargin: values["dividerMargin"] as double,
-        additionalDividerMargin: values["additionalDividerMargin"] as double?,
-        topMargin: values["topMargin"] as double?,
-        hasLeading: values["hasLeading"] as bool,
-        separatorColor: values["separatorColor"] as api1.Color?,
-      );
+      final _flaxHas5 = values.containsKey("backgroundColor");
+      return flaxInvokeWithDefaults(
+        api.CupertinoListSection.insetGrouped,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["children"] as List<api.Widget>?,
+          values["header"] as api.Widget?,
+          values["footer"] as api.Widget?,
+          values["margin"] as api12.EdgeInsetsGeometry?,
+          (_flaxHas5 ? values["backgroundColor"] as api1.Color : null),
+          values["decoration"] as api12.BoxDecoration?,
+          values["clipBehavior"] as api1.Clip,
+          values["dividerMargin"] as double,
+          values["additionalDividerMargin"] as double?,
+          values["topMargin"] as double?,
+          values["hasLeading"] as bool,
+          values["separatorColor"] as api1.Color?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096,
+        ],
+        const <String>[
+          "key",
+          "children",
+          "header",
+          "footer",
+          "margin",
+          "backgroundColor",
+          "decoration",
+          "clipBehavior",
+          "dividerMargin",
+          "additionalDividerMargin",
+          "topMargin",
+          "hasLeading",
+          "separatorColor",
+        ],
+      ) as api.CupertinoListSection;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -11697,382 +11074,49 @@ Object? _CupertinoMagnifier_debugDescribeChildren(
 api.Widget _createCupertinoMagnifier(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("size")) {
-        if (!values.containsKey("borderRadius")) {
-          if (!values.containsKey("additionalFocalPointOffset")) {
-            if (!values.containsKey("shadows")) {
-              if (!values.containsKey("borderSide")) {
-                return api.CupertinoMagnifier(
-                  key: values["key"] as api3.Key?,
-                  clipBehavior: values["clipBehavior"] as api1.Clip,
-                  inOutAnimation:
-                      values["inOutAnimation"] as api11.Animation<double>?,
-                  magnificationScale: values["magnificationScale"] as double,
-                );
-              }
-              return api.CupertinoMagnifier(
-                key: values["key"] as api3.Key?,
-                clipBehavior: values["clipBehavior"] as api1.Clip,
-                borderSide: values["borderSide"] as api12.BorderSide,
-                inOutAnimation:
-                    values["inOutAnimation"] as api11.Animation<double>?,
-                magnificationScale: values["magnificationScale"] as double,
-              );
-            }
-            if (!values.containsKey("borderSide")) {
-              return api.CupertinoMagnifier(
-                key: values["key"] as api3.Key?,
-                shadows: values["shadows"] as List<api12.BoxShadow>,
-                clipBehavior: values["clipBehavior"] as api1.Clip,
-                inOutAnimation:
-                    values["inOutAnimation"] as api11.Animation<double>?,
-                magnificationScale: values["magnificationScale"] as double,
-              );
-            }
-            return api.CupertinoMagnifier(
-              key: values["key"] as api3.Key?,
-              shadows: values["shadows"] as List<api12.BoxShadow>,
-              clipBehavior: values["clipBehavior"] as api1.Clip,
-              borderSide: values["borderSide"] as api12.BorderSide,
-              inOutAnimation:
-                  values["inOutAnimation"] as api11.Animation<double>?,
-              magnificationScale: values["magnificationScale"] as double,
-            );
-          }
-          if (!values.containsKey("shadows")) {
-            if (!values.containsKey("borderSide")) {
-              return api.CupertinoMagnifier(
-                key: values["key"] as api3.Key?,
-                additionalFocalPointOffset:
-                    values["additionalFocalPointOffset"] as api1.Offset,
-                clipBehavior: values["clipBehavior"] as api1.Clip,
-                inOutAnimation:
-                    values["inOutAnimation"] as api11.Animation<double>?,
-                magnificationScale: values["magnificationScale"] as double,
-              );
-            }
-            return api.CupertinoMagnifier(
-              key: values["key"] as api3.Key?,
-              additionalFocalPointOffset:
-                  values["additionalFocalPointOffset"] as api1.Offset,
-              clipBehavior: values["clipBehavior"] as api1.Clip,
-              borderSide: values["borderSide"] as api12.BorderSide,
-              inOutAnimation:
-                  values["inOutAnimation"] as api11.Animation<double>?,
-              magnificationScale: values["magnificationScale"] as double,
-            );
-          }
-          if (!values.containsKey("borderSide")) {
-            return api.CupertinoMagnifier(
-              key: values["key"] as api3.Key?,
-              additionalFocalPointOffset:
-                  values["additionalFocalPointOffset"] as api1.Offset,
-              shadows: values["shadows"] as List<api12.BoxShadow>,
-              clipBehavior: values["clipBehavior"] as api1.Clip,
-              inOutAnimation:
-                  values["inOutAnimation"] as api11.Animation<double>?,
-              magnificationScale: values["magnificationScale"] as double,
-            );
-          }
-          return api.CupertinoMagnifier(
-            key: values["key"] as api3.Key?,
-            additionalFocalPointOffset:
-                values["additionalFocalPointOffset"] as api1.Offset,
-            shadows: values["shadows"] as List<api12.BoxShadow>,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api12.BorderSide,
-            inOutAnimation:
-                values["inOutAnimation"] as api11.Animation<double>?,
-            magnificationScale: values["magnificationScale"] as double,
-          );
-        }
-        if (!values.containsKey("additionalFocalPointOffset")) {
-          if (!values.containsKey("shadows")) {
-            if (!values.containsKey("borderSide")) {
-              return api.CupertinoMagnifier(
-                key: values["key"] as api3.Key?,
-                borderRadius: values["borderRadius"] as api12.BorderRadius,
-                clipBehavior: values["clipBehavior"] as api1.Clip,
-                inOutAnimation:
-                    values["inOutAnimation"] as api11.Animation<double>?,
-                magnificationScale: values["magnificationScale"] as double,
-              );
-            }
-            return api.CupertinoMagnifier(
-              key: values["key"] as api3.Key?,
-              borderRadius: values["borderRadius"] as api12.BorderRadius,
-              clipBehavior: values["clipBehavior"] as api1.Clip,
-              borderSide: values["borderSide"] as api12.BorderSide,
-              inOutAnimation:
-                  values["inOutAnimation"] as api11.Animation<double>?,
-              magnificationScale: values["magnificationScale"] as double,
-            );
-          }
-          if (!values.containsKey("borderSide")) {
-            return api.CupertinoMagnifier(
-              key: values["key"] as api3.Key?,
-              borderRadius: values["borderRadius"] as api12.BorderRadius,
-              shadows: values["shadows"] as List<api12.BoxShadow>,
-              clipBehavior: values["clipBehavior"] as api1.Clip,
-              inOutAnimation:
-                  values["inOutAnimation"] as api11.Animation<double>?,
-              magnificationScale: values["magnificationScale"] as double,
-            );
-          }
-          return api.CupertinoMagnifier(
-            key: values["key"] as api3.Key?,
-            borderRadius: values["borderRadius"] as api12.BorderRadius,
-            shadows: values["shadows"] as List<api12.BoxShadow>,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api12.BorderSide,
-            inOutAnimation:
-                values["inOutAnimation"] as api11.Animation<double>?,
-            magnificationScale: values["magnificationScale"] as double,
-          );
-        }
-        if (!values.containsKey("shadows")) {
-          if (!values.containsKey("borderSide")) {
-            return api.CupertinoMagnifier(
-              key: values["key"] as api3.Key?,
-              borderRadius: values["borderRadius"] as api12.BorderRadius,
-              additionalFocalPointOffset:
-                  values["additionalFocalPointOffset"] as api1.Offset,
-              clipBehavior: values["clipBehavior"] as api1.Clip,
-              inOutAnimation:
-                  values["inOutAnimation"] as api11.Animation<double>?,
-              magnificationScale: values["magnificationScale"] as double,
-            );
-          }
-          return api.CupertinoMagnifier(
-            key: values["key"] as api3.Key?,
-            borderRadius: values["borderRadius"] as api12.BorderRadius,
-            additionalFocalPointOffset:
-                values["additionalFocalPointOffset"] as api1.Offset,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api12.BorderSide,
-            inOutAnimation:
-                values["inOutAnimation"] as api11.Animation<double>?,
-            magnificationScale: values["magnificationScale"] as double,
-          );
-        }
-        if (!values.containsKey("borderSide")) {
-          return api.CupertinoMagnifier(
-            key: values["key"] as api3.Key?,
-            borderRadius: values["borderRadius"] as api12.BorderRadius,
-            additionalFocalPointOffset:
-                values["additionalFocalPointOffset"] as api1.Offset,
-            shadows: values["shadows"] as List<api12.BoxShadow>,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            inOutAnimation:
-                values["inOutAnimation"] as api11.Animation<double>?,
-            magnificationScale: values["magnificationScale"] as double,
-          );
-        }
-        return api.CupertinoMagnifier(
-          key: values["key"] as api3.Key?,
-          borderRadius: values["borderRadius"] as api12.BorderRadius,
-          additionalFocalPointOffset:
-              values["additionalFocalPointOffset"] as api1.Offset,
-          shadows: values["shadows"] as List<api12.BoxShadow>,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-          borderSide: values["borderSide"] as api12.BorderSide,
-          inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
-          magnificationScale: values["magnificationScale"] as double,
-        );
-      }
-      if (!values.containsKey("borderRadius")) {
-        if (!values.containsKey("additionalFocalPointOffset")) {
-          if (!values.containsKey("shadows")) {
-            if (!values.containsKey("borderSide")) {
-              return api.CupertinoMagnifier(
-                key: values["key"] as api3.Key?,
-                size: values["size"] as api1.Size,
-                clipBehavior: values["clipBehavior"] as api1.Clip,
-                inOutAnimation:
-                    values["inOutAnimation"] as api11.Animation<double>?,
-                magnificationScale: values["magnificationScale"] as double,
-              );
-            }
-            return api.CupertinoMagnifier(
-              key: values["key"] as api3.Key?,
-              size: values["size"] as api1.Size,
-              clipBehavior: values["clipBehavior"] as api1.Clip,
-              borderSide: values["borderSide"] as api12.BorderSide,
-              inOutAnimation:
-                  values["inOutAnimation"] as api11.Animation<double>?,
-              magnificationScale: values["magnificationScale"] as double,
-            );
-          }
-          if (!values.containsKey("borderSide")) {
-            return api.CupertinoMagnifier(
-              key: values["key"] as api3.Key?,
-              size: values["size"] as api1.Size,
-              shadows: values["shadows"] as List<api12.BoxShadow>,
-              clipBehavior: values["clipBehavior"] as api1.Clip,
-              inOutAnimation:
-                  values["inOutAnimation"] as api11.Animation<double>?,
-              magnificationScale: values["magnificationScale"] as double,
-            );
-          }
-          return api.CupertinoMagnifier(
-            key: values["key"] as api3.Key?,
-            size: values["size"] as api1.Size,
-            shadows: values["shadows"] as List<api12.BoxShadow>,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api12.BorderSide,
-            inOutAnimation:
-                values["inOutAnimation"] as api11.Animation<double>?,
-            magnificationScale: values["magnificationScale"] as double,
-          );
-        }
-        if (!values.containsKey("shadows")) {
-          if (!values.containsKey("borderSide")) {
-            return api.CupertinoMagnifier(
-              key: values["key"] as api3.Key?,
-              size: values["size"] as api1.Size,
-              additionalFocalPointOffset:
-                  values["additionalFocalPointOffset"] as api1.Offset,
-              clipBehavior: values["clipBehavior"] as api1.Clip,
-              inOutAnimation:
-                  values["inOutAnimation"] as api11.Animation<double>?,
-              magnificationScale: values["magnificationScale"] as double,
-            );
-          }
-          return api.CupertinoMagnifier(
-            key: values["key"] as api3.Key?,
-            size: values["size"] as api1.Size,
-            additionalFocalPointOffset:
-                values["additionalFocalPointOffset"] as api1.Offset,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api12.BorderSide,
-            inOutAnimation:
-                values["inOutAnimation"] as api11.Animation<double>?,
-            magnificationScale: values["magnificationScale"] as double,
-          );
-        }
-        if (!values.containsKey("borderSide")) {
-          return api.CupertinoMagnifier(
-            key: values["key"] as api3.Key?,
-            size: values["size"] as api1.Size,
-            additionalFocalPointOffset:
-                values["additionalFocalPointOffset"] as api1.Offset,
-            shadows: values["shadows"] as List<api12.BoxShadow>,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            inOutAnimation:
-                values["inOutAnimation"] as api11.Animation<double>?,
-            magnificationScale: values["magnificationScale"] as double,
-          );
-        }
-        return api.CupertinoMagnifier(
-          key: values["key"] as api3.Key?,
-          size: values["size"] as api1.Size,
-          additionalFocalPointOffset:
-              values["additionalFocalPointOffset"] as api1.Offset,
-          shadows: values["shadows"] as List<api12.BoxShadow>,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-          borderSide: values["borderSide"] as api12.BorderSide,
-          inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
-          magnificationScale: values["magnificationScale"] as double,
-        );
-      }
-      if (!values.containsKey("additionalFocalPointOffset")) {
-        if (!values.containsKey("shadows")) {
-          if (!values.containsKey("borderSide")) {
-            return api.CupertinoMagnifier(
-              key: values["key"] as api3.Key?,
-              size: values["size"] as api1.Size,
-              borderRadius: values["borderRadius"] as api12.BorderRadius,
-              clipBehavior: values["clipBehavior"] as api1.Clip,
-              inOutAnimation:
-                  values["inOutAnimation"] as api11.Animation<double>?,
-              magnificationScale: values["magnificationScale"] as double,
-            );
-          }
-          return api.CupertinoMagnifier(
-            key: values["key"] as api3.Key?,
-            size: values["size"] as api1.Size,
-            borderRadius: values["borderRadius"] as api12.BorderRadius,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api12.BorderSide,
-            inOutAnimation:
-                values["inOutAnimation"] as api11.Animation<double>?,
-            magnificationScale: values["magnificationScale"] as double,
-          );
-        }
-        if (!values.containsKey("borderSide")) {
-          return api.CupertinoMagnifier(
-            key: values["key"] as api3.Key?,
-            size: values["size"] as api1.Size,
-            borderRadius: values["borderRadius"] as api12.BorderRadius,
-            shadows: values["shadows"] as List<api12.BoxShadow>,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            inOutAnimation:
-                values["inOutAnimation"] as api11.Animation<double>?,
-            magnificationScale: values["magnificationScale"] as double,
-          );
-        }
-        return api.CupertinoMagnifier(
-          key: values["key"] as api3.Key?,
-          size: values["size"] as api1.Size,
-          borderRadius: values["borderRadius"] as api12.BorderRadius,
-          shadows: values["shadows"] as List<api12.BoxShadow>,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-          borderSide: values["borderSide"] as api12.BorderSide,
-          inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
-          magnificationScale: values["magnificationScale"] as double,
-        );
-      }
-      if (!values.containsKey("shadows")) {
-        if (!values.containsKey("borderSide")) {
-          return api.CupertinoMagnifier(
-            key: values["key"] as api3.Key?,
-            size: values["size"] as api1.Size,
-            borderRadius: values["borderRadius"] as api12.BorderRadius,
-            additionalFocalPointOffset:
-                values["additionalFocalPointOffset"] as api1.Offset,
-            clipBehavior: values["clipBehavior"] as api1.Clip,
-            inOutAnimation:
-                values["inOutAnimation"] as api11.Animation<double>?,
-            magnificationScale: values["magnificationScale"] as double,
-          );
-        }
-        return api.CupertinoMagnifier(
-          key: values["key"] as api3.Key?,
-          size: values["size"] as api1.Size,
-          borderRadius: values["borderRadius"] as api12.BorderRadius,
-          additionalFocalPointOffset:
-              values["additionalFocalPointOffset"] as api1.Offset,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-          borderSide: values["borderSide"] as api12.BorderSide,
-          inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
-          magnificationScale: values["magnificationScale"] as double,
-        );
-      }
-      if (!values.containsKey("borderSide")) {
-        return api.CupertinoMagnifier(
-          key: values["key"] as api3.Key?,
-          size: values["size"] as api1.Size,
-          borderRadius: values["borderRadius"] as api12.BorderRadius,
-          additionalFocalPointOffset:
-              values["additionalFocalPointOffset"] as api1.Offset,
-          shadows: values["shadows"] as List<api12.BoxShadow>,
-          clipBehavior: values["clipBehavior"] as api1.Clip,
-          inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
-          magnificationScale: values["magnificationScale"] as double,
-        );
-      }
-      return api.CupertinoMagnifier(
-        key: values["key"] as api3.Key?,
-        size: values["size"] as api1.Size,
-        borderRadius: values["borderRadius"] as api12.BorderRadius,
-        additionalFocalPointOffset:
-            values["additionalFocalPointOffset"] as api1.Offset,
-        shadows: values["shadows"] as List<api12.BoxShadow>,
-        clipBehavior: values["clipBehavior"] as api1.Clip,
-        borderSide: values["borderSide"] as api12.BorderSide,
-        inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
-        magnificationScale: values["magnificationScale"] as double,
-      );
+      final _flaxHas1 = values.containsKey("size");
+      final _flaxHas2 = values.containsKey("borderRadius");
+      final _flaxHas3 = values.containsKey("additionalFocalPointOffset");
+      final _flaxHas4 = values.containsKey("shadows");
+      final _flaxHas6 = values.containsKey("borderSide");
+      return flaxInvokeWithDefaults(
+        api.CupertinoMagnifier.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1 ? values["size"] as api1.Size : null),
+          (_flaxHas2 ? values["borderRadius"] as api12.BorderRadius : null),
+          (_flaxHas3
+              ? values["additionalFocalPointOffset"] as api1.Offset
+              : null),
+          (_flaxHas4 ? values["shadows"] as List<api12.BoxShadow> : null),
+          values["clipBehavior"] as api1.Clip,
+          (_flaxHas6 ? values["borderSide"] as api12.BorderSide : null),
+          values["inOutAnimation"] as api11.Animation<double>?,
+          values["magnificationScale"] as double,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0) |
+              (_flaxHas4 ? 16 : 0) |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256,
+        ],
+        const <String>[
+          "key",
+          "size",
+          "borderRadius",
+          "additionalFocalPointOffset",
+          "shadows",
+          "clipBehavior",
+          "borderSide",
+          "inOutAnimation",
+          "magnificationScale",
+        ],
+      ) as api.CupertinoMagnifier;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12193,59 +11237,72 @@ api.Widget _createCupertinoMenuAnchor(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("overlayPadding")) {
-        return api.CupertinoMenuAnchor(
-          key: values["key"] as api3.Key?,
-          controller: values["controller"] as api10.MenuController?,
-          onOpen: values["onOpen"] as void Function()?,
-          onClose: values["onClose"] as void Function()?,
-          onAnimationStatusChanged:
-              values["onAnimationStatusChanged"]
-                  as void Function(api11.AnimationStatus status)?,
-          constraints: values["constraints"] as api9.BoxConstraints?,
-          constrainCrossAxis: values["constrainCrossAxis"] as bool,
-          consumeOutsideTaps: values["consumeOutsideTaps"] as bool,
-          enableSwipe: values["enableSwipe"] as bool,
-          enableLongPressToOpen: values["enableLongPressToOpen"] as bool,
-          useRootOverlay: values["useRootOverlay"] as bool,
-          menuChildren: values["menuChildren"] as List<api.Widget>,
-          builder:
-              values["builder"]
-                  as api.Widget Function(
-                    api10.BuildContext context,
-                    api10.MenuController controller,
-                    api.Widget? child,
-                  )?,
-          child: values["child"] as api.Widget?,
-          childFocusNode: values["childFocusNode"] as api10.FocusNode?,
-        );
-      }
-      return api.CupertinoMenuAnchor(
-        key: values["key"] as api3.Key?,
-        controller: values["controller"] as api10.MenuController?,
-        onOpen: values["onOpen"] as void Function()?,
-        onClose: values["onClose"] as void Function()?,
-        onAnimationStatusChanged:
-            values["onAnimationStatusChanged"]
-                as void Function(api11.AnimationStatus status)?,
-        constraints: values["constraints"] as api9.BoxConstraints?,
-        constrainCrossAxis: values["constrainCrossAxis"] as bool,
-        consumeOutsideTaps: values["consumeOutsideTaps"] as bool,
-        enableSwipe: values["enableSwipe"] as bool,
-        enableLongPressToOpen: values["enableLongPressToOpen"] as bool,
-        useRootOverlay: values["useRootOverlay"] as bool,
-        overlayPadding: values["overlayPadding"] as api12.EdgeInsetsGeometry,
-        menuChildren: values["menuChildren"] as List<api.Widget>,
-        builder:
-            values["builder"]
-                as api.Widget Function(
-                  api10.BuildContext context,
-                  api10.MenuController controller,
-                  api.Widget? child,
-                )?,
-        child: values["child"] as api.Widget?,
-        childFocusNode: values["childFocusNode"] as api10.FocusNode?,
-      );
+      final _flaxHas11 = values.containsKey("overlayPadding");
+      return flaxInvokeWithDefaults(
+        api.CupertinoMenuAnchor.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["controller"] as api10.MenuController?,
+          values["onOpen"] as void Function()?,
+          values["onClose"] as void Function()?,
+          values["onAnimationStatusChanged"]
+              as void Function(api11.AnimationStatus status)?,
+          values["constraints"] as api9.BoxConstraints?,
+          values["constrainCrossAxis"] as bool,
+          values["consumeOutsideTaps"] as bool,
+          values["enableSwipe"] as bool,
+          values["enableLongPressToOpen"] as bool,
+          values["useRootOverlay"] as bool,
+          (_flaxHas11
+              ? values["overlayPadding"] as api12.EdgeInsetsGeometry
+              : null),
+          values["menuChildren"] as List<api.Widget>,
+          values["builder"]
+              as api.Widget Function(
+                api10.BuildContext context,
+                api10.MenuController controller,
+                api.Widget? child,
+              )?,
+          values["child"] as api.Widget?,
+          values["childFocusNode"] as api10.FocusNode?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              (_flaxHas11 ? 2048 : 0) |
+              4096 |
+              8192 |
+              16384 |
+              32768,
+        ],
+        const <String>[
+          "key",
+          "controller",
+          "onOpen",
+          "onClose",
+          "onAnimationStatusChanged",
+          "constraints",
+          "constrainCrossAxis",
+          "consumeOutsideTaps",
+          "enableSwipe",
+          "enableLongPressToOpen",
+          "useRootOverlay",
+          "overlayPadding",
+          "menuChildren",
+          "builder",
+          "child",
+          "childFocusNode",
+        ],
+      ) as api.CupertinoMenuAnchor;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12334,13 +11391,16 @@ api.Widget _createCupertinoMenuDivider(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("color")) {
-        return api.CupertinoMenuDivider(key: values["key"] as api3.Key?);
-      }
-      return api.CupertinoMenuDivider(
-        key: values["key"] as api3.Key?,
-        color: values["color"] as api1.Color,
-      );
+      final _flaxHas1 = values.containsKey("color");
+      return flaxInvokeWithDefaults(
+        api.CupertinoMenuDivider.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1 ? values["color"] as api1.Color : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0)],
+        const <String>["key", "color"],
+      ) as api.CupertinoMenuDivider;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -12985,33 +12045,33 @@ Object _createCupertinoModalPopupRoute(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("barrierColor")) {
-        return api.CupertinoModalPopupRoute<Object?>(
-          builder:
-              values["builder"]
-                  as api.Widget Function(api10.BuildContext context),
-          barrierLabel: values["barrierLabel"] as String,
-          barrierDismissible: values["barrierDismissible"] as bool,
-          semanticsDismissible: values["semanticsDismissible"] as bool,
-          filter: values["filter"] as api1.ImageFilter?,
-          settings: values["settings"] as api10.RouteSettings?,
-          requestFocus: values["requestFocus"] as bool?,
-          anchorPoint: values["anchorPoint"] as api1.Offset?,
-        );
-      }
-      return api.CupertinoModalPopupRoute<Object?>(
-        builder:
-            values["builder"]
-                as api.Widget Function(api10.BuildContext context),
-        barrierLabel: values["barrierLabel"] as String,
-        barrierColor: values["barrierColor"] as api1.Color?,
-        barrierDismissible: values["barrierDismissible"] as bool,
-        semanticsDismissible: values["semanticsDismissible"] as bool,
-        filter: values["filter"] as api1.ImageFilter?,
-        settings: values["settings"] as api10.RouteSettings?,
-        requestFocus: values["requestFocus"] as bool?,
-        anchorPoint: values["anchorPoint"] as api1.Offset?,
-      );
+      final _flaxHas2 = values.containsKey("barrierColor");
+      return flaxInvokeWithDefaults(
+        api.CupertinoModalPopupRoute<Object?>.new,
+        <Object?>[
+          values["builder"] as api.Widget Function(api10.BuildContext context),
+          values["barrierLabel"] as String,
+          (_flaxHas2 ? values["barrierColor"] as api1.Color? : null),
+          values["barrierDismissible"] as bool,
+          values["semanticsDismissible"] as bool,
+          values["filter"] as api1.ImageFilter?,
+          values["settings"] as api10.RouteSettings?,
+          values["requestFocus"] as bool?,
+          values["anchorPoint"] as api1.Offset?,
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | 32 | 64 | 128 | 256],
+        const <String>[
+          "builder",
+          "barrierLabel",
+          "barrierColor",
+          "barrierDismissible",
+          "semanticsDismissible",
+          "filter",
+          "settings",
+          "requestFocus",
+          "anchorPoint",
+        ],
+      ) as api.CupertinoModalPopupRoute<Object?>;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -13073,178 +12133,125 @@ api.Widget _createCupertinoNavigationBar(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("border")) {
-        if (!values.containsKey("heroTag")) {
-          return api.CupertinoNavigationBar(
-            key: values["key"] as api3.Key?,
-            leading: values["leading"] as api.Widget?,
-            automaticallyImplyLeading:
-                values["automaticallyImplyLeading"] as bool,
-            automaticallyImplyMiddle:
-                values["automaticallyImplyMiddle"] as bool,
-            previousPageTitle: values["previousPageTitle"] as String?,
-            middle: values["middle"] as api.Widget?,
-            trailing: values["trailing"] as api.Widget?,
-            backgroundColor: values["backgroundColor"] as api1.Color?,
-            automaticBackgroundVisibility:
-                values["automaticBackgroundVisibility"] as bool,
-            enableBackgroundFilterBlur:
-                values["enableBackgroundFilterBlur"] as bool,
-            brightness: values["brightness"] as api1.Brightness?,
-            padding: values["padding"] as api12.EdgeInsetsDirectional?,
-            transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-            bottom: values["bottom"] as api10.PreferredSizeWidget?,
-          );
-        }
-        return api.CupertinoNavigationBar(
-          key: values["key"] as api3.Key?,
-          leading: values["leading"] as api.Widget?,
-          automaticallyImplyLeading:
-              values["automaticallyImplyLeading"] as bool,
-          automaticallyImplyMiddle: values["automaticallyImplyMiddle"] as bool,
-          previousPageTitle: values["previousPageTitle"] as String?,
-          middle: values["middle"] as api.Widget?,
-          trailing: values["trailing"] as api.Widget?,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          automaticBackgroundVisibility:
-              values["automaticBackgroundVisibility"] as bool,
-          enableBackgroundFilterBlur:
-              values["enableBackgroundFilterBlur"] as bool,
-          brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api12.EdgeInsetsDirectional?,
-          transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-          heroTag: values["heroTag"] as Object,
-          bottom: values["bottom"] as api10.PreferredSizeWidget?,
-        );
-      }
-      if (!values.containsKey("heroTag")) {
-        return api.CupertinoNavigationBar(
-          key: values["key"] as api3.Key?,
-          leading: values["leading"] as api.Widget?,
-          automaticallyImplyLeading:
-              values["automaticallyImplyLeading"] as bool,
-          automaticallyImplyMiddle: values["automaticallyImplyMiddle"] as bool,
-          previousPageTitle: values["previousPageTitle"] as String?,
-          middle: values["middle"] as api.Widget?,
-          trailing: values["trailing"] as api.Widget?,
-          border: values["border"] as api12.Border?,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          automaticBackgroundVisibility:
-              values["automaticBackgroundVisibility"] as bool,
-          enableBackgroundFilterBlur:
-              values["enableBackgroundFilterBlur"] as bool,
-          brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api12.EdgeInsetsDirectional?,
-          transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-          bottom: values["bottom"] as api10.PreferredSizeWidget?,
-        );
-      }
-      return api.CupertinoNavigationBar(
-        key: values["key"] as api3.Key?,
-        leading: values["leading"] as api.Widget?,
-        automaticallyImplyLeading: values["automaticallyImplyLeading"] as bool,
-        automaticallyImplyMiddle: values["automaticallyImplyMiddle"] as bool,
-        previousPageTitle: values["previousPageTitle"] as String?,
-        middle: values["middle"] as api.Widget?,
-        trailing: values["trailing"] as api.Widget?,
-        border: values["border"] as api12.Border?,
-        backgroundColor: values["backgroundColor"] as api1.Color?,
-        automaticBackgroundVisibility:
-            values["automaticBackgroundVisibility"] as bool,
-        enableBackgroundFilterBlur:
-            values["enableBackgroundFilterBlur"] as bool,
-        brightness: values["brightness"] as api1.Brightness?,
-        padding: values["padding"] as api12.EdgeInsetsDirectional?,
-        transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-        heroTag: values["heroTag"] as Object,
-        bottom: values["bottom"] as api10.PreferredSizeWidget?,
-      );
+      final _flaxHas7 = values.containsKey("border");
+      final _flaxHas14 = values.containsKey("heroTag");
+      return flaxInvokeWithDefaults(
+        api.CupertinoNavigationBar.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["leading"] as api.Widget?,
+          values["automaticallyImplyLeading"] as bool,
+          values["automaticallyImplyMiddle"] as bool,
+          values["previousPageTitle"] as String?,
+          values["middle"] as api.Widget?,
+          values["trailing"] as api.Widget?,
+          (_flaxHas7 ? values["border"] as api12.Border? : null),
+          values["backgroundColor"] as api1.Color?,
+          values["automaticBackgroundVisibility"] as bool,
+          values["enableBackgroundFilterBlur"] as bool,
+          values["brightness"] as api1.Brightness?,
+          values["padding"] as api12.EdgeInsetsDirectional?,
+          values["transitionBetweenRoutes"] as bool,
+          (_flaxHas14 ? values["heroTag"] as Object : null),
+          values["bottom"] as api10.PreferredSizeWidget?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              (_flaxHas14 ? 16384 : 0) |
+              32768,
+        ],
+        const <String>[
+          "key",
+          "leading",
+          "automaticallyImplyLeading",
+          "automaticallyImplyMiddle",
+          "previousPageTitle",
+          "middle",
+          "trailing",
+          "border",
+          "backgroundColor",
+          "automaticBackgroundVisibility",
+          "enableBackgroundFilterBlur",
+          "brightness",
+          "padding",
+          "transitionBetweenRoutes",
+          "heroTag",
+          "bottom",
+        ],
+      ) as api.CupertinoNavigationBar;
     case "large":
-      if (!values.containsKey("border")) {
-        if (!values.containsKey("heroTag")) {
-          return api.CupertinoNavigationBar.large(
-            key: values["key"] as api3.Key?,
-            largeTitle: values["largeTitle"] as api.Widget?,
-            leading: values["leading"] as api.Widget?,
-            automaticallyImplyLeading:
-                values["automaticallyImplyLeading"] as bool,
-            automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-            previousPageTitle: values["previousPageTitle"] as String?,
-            trailing: values["trailing"] as api.Widget?,
-            backgroundColor: values["backgroundColor"] as api1.Color?,
-            automaticBackgroundVisibility:
-                values["automaticBackgroundVisibility"] as bool,
-            enableBackgroundFilterBlur:
-                values["enableBackgroundFilterBlur"] as bool,
-            brightness: values["brightness"] as api1.Brightness?,
-            padding: values["padding"] as api12.EdgeInsetsDirectional?,
-            transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-            bottom: values["bottom"] as api10.PreferredSizeWidget?,
-          );
-        }
-        return api.CupertinoNavigationBar.large(
-          key: values["key"] as api3.Key?,
-          largeTitle: values["largeTitle"] as api.Widget?,
-          leading: values["leading"] as api.Widget?,
-          automaticallyImplyLeading:
-              values["automaticallyImplyLeading"] as bool,
-          automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-          previousPageTitle: values["previousPageTitle"] as String?,
-          trailing: values["trailing"] as api.Widget?,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          automaticBackgroundVisibility:
-              values["automaticBackgroundVisibility"] as bool,
-          enableBackgroundFilterBlur:
-              values["enableBackgroundFilterBlur"] as bool,
-          brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api12.EdgeInsetsDirectional?,
-          transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-          heroTag: values["heroTag"] as Object,
-          bottom: values["bottom"] as api10.PreferredSizeWidget?,
-        );
-      }
-      if (!values.containsKey("heroTag")) {
-        return api.CupertinoNavigationBar.large(
-          key: values["key"] as api3.Key?,
-          largeTitle: values["largeTitle"] as api.Widget?,
-          leading: values["leading"] as api.Widget?,
-          automaticallyImplyLeading:
-              values["automaticallyImplyLeading"] as bool,
-          automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-          previousPageTitle: values["previousPageTitle"] as String?,
-          trailing: values["trailing"] as api.Widget?,
-          border: values["border"] as api12.Border?,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          automaticBackgroundVisibility:
-              values["automaticBackgroundVisibility"] as bool,
-          enableBackgroundFilterBlur:
-              values["enableBackgroundFilterBlur"] as bool,
-          brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api12.EdgeInsetsDirectional?,
-          transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-          bottom: values["bottom"] as api10.PreferredSizeWidget?,
-        );
-      }
-      return api.CupertinoNavigationBar.large(
-        key: values["key"] as api3.Key?,
-        largeTitle: values["largeTitle"] as api.Widget?,
-        leading: values["leading"] as api.Widget?,
-        automaticallyImplyLeading: values["automaticallyImplyLeading"] as bool,
-        automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-        previousPageTitle: values["previousPageTitle"] as String?,
-        trailing: values["trailing"] as api.Widget?,
-        border: values["border"] as api12.Border?,
-        backgroundColor: values["backgroundColor"] as api1.Color?,
-        automaticBackgroundVisibility:
-            values["automaticBackgroundVisibility"] as bool,
-        enableBackgroundFilterBlur:
-            values["enableBackgroundFilterBlur"] as bool,
-        brightness: values["brightness"] as api1.Brightness?,
-        padding: values["padding"] as api12.EdgeInsetsDirectional?,
-        transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-        heroTag: values["heroTag"] as Object,
-        bottom: values["bottom"] as api10.PreferredSizeWidget?,
-      );
+      final _flaxHas7 = values.containsKey("border");
+      final _flaxHas14 = values.containsKey("heroTag");
+      return flaxInvokeWithDefaults(
+        api.CupertinoNavigationBar.large,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["largeTitle"] as api.Widget?,
+          values["leading"] as api.Widget?,
+          values["automaticallyImplyLeading"] as bool,
+          values["automaticallyImplyTitle"] as bool,
+          values["previousPageTitle"] as String?,
+          values["trailing"] as api.Widget?,
+          (_flaxHas7 ? values["border"] as api12.Border? : null),
+          values["backgroundColor"] as api1.Color?,
+          values["automaticBackgroundVisibility"] as bool,
+          values["enableBackgroundFilterBlur"] as bool,
+          values["brightness"] as api1.Brightness?,
+          values["padding"] as api12.EdgeInsetsDirectional?,
+          values["transitionBetweenRoutes"] as bool,
+          (_flaxHas14 ? values["heroTag"] as Object : null),
+          values["bottom"] as api10.PreferredSizeWidget?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              (_flaxHas14 ? 16384 : 0) |
+              32768,
+        ],
+        const <String>[
+          "key",
+          "largeTitle",
+          "leading",
+          "automaticallyImplyLeading",
+          "automaticallyImplyTitle",
+          "previousPageTitle",
+          "trailing",
+          "border",
+          "backgroundColor",
+          "automaticBackgroundVisibility",
+          "enableBackgroundFilterBlur",
+          "brightness",
+          "padding",
+          "transitionBetweenRoutes",
+          "heroTag",
+          "bottom",
+        ],
+      ) as api.CupertinoNavigationBar;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -13395,35 +12402,52 @@ Object? _CupertinoPage_createRoute(
 Object _createCupertinoPage(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("onPopInvoked")) {
-        return api.CupertinoPage<Object?>(
-          child: values["child"] as api.Widget,
-          maintainState: values["maintainState"] as bool,
-          title: values["title"] as String?,
-          fullscreenDialog: values["fullscreenDialog"] as bool,
-          allowSnapshotting: values["allowSnapshotting"] as bool,
-          canPop: values["canPop"] as bool,
-          key: values["key"] as api3.LocalKey?,
-          name: values["name"] as String?,
-          arguments: values["arguments"],
-          restorationId: values["restorationId"] as String?,
-        );
-      }
-      return api.CupertinoPage<Object?>(
-        child: values["child"] as api.Widget,
-        maintainState: values["maintainState"] as bool,
-        title: values["title"] as String?,
-        fullscreenDialog: values["fullscreenDialog"] as bool,
-        allowSnapshotting: values["allowSnapshotting"] as bool,
-        canPop: values["canPop"] as bool,
-        onPopInvoked:
-            values["onPopInvoked"]
-                as void Function(bool didPop, Object? result),
-        key: values["key"] as api3.LocalKey?,
-        name: values["name"] as String?,
-        arguments: values["arguments"],
-        restorationId: values["restorationId"] as String?,
-      );
+      final _flaxHas6 = values.containsKey("onPopInvoked");
+      return flaxInvokeWithDefaults(
+        api.CupertinoPage<Object?>.new,
+        <Object?>[
+          values["child"] as api.Widget,
+          values["maintainState"] as bool,
+          values["title"] as String?,
+          values["fullscreenDialog"] as bool,
+          values["allowSnapshotting"] as bool,
+          values["canPop"] as bool,
+          (_flaxHas6
+              ? values["onPopInvoked"]
+                    as void Function(bool didPop, Object? result)
+              : null),
+          values["key"] as api3.LocalKey?,
+          values["name"] as String?,
+          values["arguments"],
+          values["restorationId"] as String?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              512 |
+              1024,
+        ],
+        const <String>[
+          "child",
+          "maintainState",
+          "title",
+          "fullscreenDialog",
+          "allowSnapshotting",
+          "canPop",
+          "onPopInvoked",
+          "key",
+          "name",
+          "arguments",
+          "restorationId",
+        ],
+      ) as api.CupertinoPage<Object?>;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14327,94 +13351,112 @@ Object? _CupertinoPicker_debugDescribeChildren(
 api.Widget _createCupertinoPicker(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("selectionOverlay")) {
-        return api.CupertinoPicker(
-          key: values["key"] as api3.Key?,
-          diameterRatio: values["diameterRatio"] as double,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          offAxisFraction: values["offAxisFraction"] as double,
-          useMagnifier: values["useMagnifier"] as bool,
-          magnification: values["magnification"] as double,
-          scrollController:
-              values["scrollController"] as api10.FixedExtentScrollController?,
-          squeeze: values["squeeze"] as double,
-          changeReportingBehavior:
-              values["changeReportingBehavior"]
-                  as api10.ChangeReportingBehavior,
-          itemExtent: values["itemExtent"] as double,
-          onSelectedItemChanged:
-              values["onSelectedItemChanged"] as void Function(int value)?,
-          children: values["children"] as List<api.Widget>,
-          looping: values["looping"] as bool,
-        );
-      }
-      return api.CupertinoPicker(
-        key: values["key"] as api3.Key?,
-        diameterRatio: values["diameterRatio"] as double,
-        backgroundColor: values["backgroundColor"] as api1.Color?,
-        offAxisFraction: values["offAxisFraction"] as double,
-        useMagnifier: values["useMagnifier"] as bool,
-        magnification: values["magnification"] as double,
-        scrollController:
-            values["scrollController"] as api10.FixedExtentScrollController?,
-        squeeze: values["squeeze"] as double,
-        changeReportingBehavior:
-            values["changeReportingBehavior"] as api10.ChangeReportingBehavior,
-        itemExtent: values["itemExtent"] as double,
-        onSelectedItemChanged:
-            values["onSelectedItemChanged"] as void Function(int value)?,
-        children: values["children"] as List<api.Widget>,
-        selectionOverlay: values["selectionOverlay"] as api.Widget?,
-        looping: values["looping"] as bool,
-      );
+      final _flaxHas12 = values.containsKey("selectionOverlay");
+      return flaxInvokeWithDefaults(
+        api.CupertinoPicker.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["diameterRatio"] as double,
+          values["backgroundColor"] as api1.Color?,
+          values["offAxisFraction"] as double,
+          values["useMagnifier"] as bool,
+          values["magnification"] as double,
+          values["scrollController"] as api10.FixedExtentScrollController?,
+          values["squeeze"] as double,
+          values["changeReportingBehavior"] as api10.ChangeReportingBehavior,
+          values["itemExtent"] as double,
+          values["onSelectedItemChanged"] as void Function(int value)?,
+          values["children"] as List<api.Widget>,
+          (_flaxHas12 ? values["selectionOverlay"] as api.Widget? : null),
+          values["looping"] as bool,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              (_flaxHas12 ? 4096 : 0) |
+              8192,
+        ],
+        const <String>[
+          "key",
+          "diameterRatio",
+          "backgroundColor",
+          "offAxisFraction",
+          "useMagnifier",
+          "magnification",
+          "scrollController",
+          "squeeze",
+          "changeReportingBehavior",
+          "itemExtent",
+          "onSelectedItemChanged",
+          "children",
+          "selectionOverlay",
+          "looping",
+        ],
+      ) as api.CupertinoPicker;
     case "builder":
-      if (!values.containsKey("selectionOverlay")) {
-        return api.CupertinoPicker.builder(
-          key: values["key"] as api3.Key?,
-          diameterRatio: values["diameterRatio"] as double,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          offAxisFraction: values["offAxisFraction"] as double,
-          useMagnifier: values["useMagnifier"] as bool,
-          magnification: values["magnification"] as double,
-          scrollController:
-              values["scrollController"] as api10.FixedExtentScrollController?,
-          squeeze: values["squeeze"] as double,
-          changeReportingBehavior:
-              values["changeReportingBehavior"]
-                  as api10.ChangeReportingBehavior,
-          itemExtent: values["itemExtent"] as double,
-          onSelectedItemChanged:
-              values["onSelectedItemChanged"] as void Function(int value)?,
-          itemBuilder:
-              values["itemBuilder"]
-                  as api.Widget? Function(
-                    api10.BuildContext context,
-                    int index,
-                  ),
-          childCount: values["childCount"] as int?,
-        );
-      }
-      return api.CupertinoPicker.builder(
-        key: values["key"] as api3.Key?,
-        diameterRatio: values["diameterRatio"] as double,
-        backgroundColor: values["backgroundColor"] as api1.Color?,
-        offAxisFraction: values["offAxisFraction"] as double,
-        useMagnifier: values["useMagnifier"] as bool,
-        magnification: values["magnification"] as double,
-        scrollController:
-            values["scrollController"] as api10.FixedExtentScrollController?,
-        squeeze: values["squeeze"] as double,
-        changeReportingBehavior:
-            values["changeReportingBehavior"] as api10.ChangeReportingBehavior,
-        itemExtent: values["itemExtent"] as double,
-        onSelectedItemChanged:
-            values["onSelectedItemChanged"] as void Function(int value)?,
-        itemBuilder:
-            values["itemBuilder"]
-                as api.Widget? Function(api10.BuildContext context, int index),
-        childCount: values["childCount"] as int?,
-        selectionOverlay: values["selectionOverlay"] as api.Widget?,
-      );
+      final _flaxHas13 = values.containsKey("selectionOverlay");
+      return flaxInvokeWithDefaults(
+        api.CupertinoPicker.builder,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["diameterRatio"] as double,
+          values["backgroundColor"] as api1.Color?,
+          values["offAxisFraction"] as double,
+          values["useMagnifier"] as bool,
+          values["magnification"] as double,
+          values["scrollController"] as api10.FixedExtentScrollController?,
+          values["squeeze"] as double,
+          values["changeReportingBehavior"] as api10.ChangeReportingBehavior,
+          values["itemExtent"] as double,
+          values["onSelectedItemChanged"] as void Function(int value)?,
+          values["itemBuilder"]
+              as api.Widget? Function(api10.BuildContext context, int index),
+          values["childCount"] as int?,
+          (_flaxHas13 ? values["selectionOverlay"] as api.Widget? : null),
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              (_flaxHas13 ? 8192 : 0),
+        ],
+        const <String>[
+          "key",
+          "diameterRatio",
+          "backgroundColor",
+          "offAxisFraction",
+          "useMagnifier",
+          "magnification",
+          "scrollController",
+          "squeeze",
+          "changeReportingBehavior",
+          "itemExtent",
+          "onSelectedItemChanged",
+          "itemBuilder",
+          "childCount",
+          "selectionOverlay",
+        ],
+      ) as api.CupertinoPicker;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14513,19 +13555,18 @@ api.Widget _createCupertinoPickerDefaultSelectionOverlay(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("background")) {
-        return api.CupertinoPickerDefaultSelectionOverlay(
-          key: values["key"] as api3.Key?,
-          capStartEdge: values["capStartEdge"] as bool,
-          capEndEdge: values["capEndEdge"] as bool,
-        );
-      }
-      return api.CupertinoPickerDefaultSelectionOverlay(
-        key: values["key"] as api3.Key?,
-        background: values["background"] as api1.Color,
-        capStartEdge: values["capStartEdge"] as bool,
-        capEndEdge: values["capEndEdge"] as bool,
-      );
+      final _flaxHas1 = values.containsKey("background");
+      return flaxInvokeWithDefaults(
+        api.CupertinoPickerDefaultSelectionOverlay.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1 ? values["background"] as api1.Color : null),
+          values["capStartEdge"] as bool,
+          values["capEndEdge"] as bool,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
+        const <String>["key", "background", "capStartEdge", "capEndEdge"],
+      ) as api.CupertinoPickerDefaultSelectionOverlay;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -15623,72 +14664,51 @@ Object? _CupertinoScrollbar_debugDescribeChildren(
 api.Widget _createCupertinoScrollbar(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("radius")) {
-        if (!values.containsKey("radiusWhileDragging")) {
-          return api.CupertinoScrollbar(
-            key: values["key"] as api3.Key?,
-            child: values["child"] as api.Widget,
-            controller: values["controller"] as api10.ScrollController?,
-            thumbVisibility: values["thumbVisibility"] as bool?,
-            thickness: values["thickness"] as double,
-            thicknessWhileDragging: values["thicknessWhileDragging"] as double,
-            notificationPredicate:
-                values["notificationPredicate"]
-                    as bool Function(api10.ScrollNotification notification)?,
-            scrollbarOrientation:
-                values["scrollbarOrientation"] as api10.ScrollbarOrientation?,
-            mainAxisMargin: values["mainAxisMargin"] as double,
-          );
-        }
-        return api.CupertinoScrollbar(
-          key: values["key"] as api3.Key?,
-          child: values["child"] as api.Widget,
-          controller: values["controller"] as api10.ScrollController?,
-          thumbVisibility: values["thumbVisibility"] as bool?,
-          thickness: values["thickness"] as double,
-          thicknessWhileDragging: values["thicknessWhileDragging"] as double,
-          radiusWhileDragging: values["radiusWhileDragging"] as api1.Radius,
-          notificationPredicate:
-              values["notificationPredicate"]
-                  as bool Function(api10.ScrollNotification notification)?,
-          scrollbarOrientation:
-              values["scrollbarOrientation"] as api10.ScrollbarOrientation?,
-          mainAxisMargin: values["mainAxisMargin"] as double,
-        );
-      }
-      if (!values.containsKey("radiusWhileDragging")) {
-        return api.CupertinoScrollbar(
-          key: values["key"] as api3.Key?,
-          child: values["child"] as api.Widget,
-          controller: values["controller"] as api10.ScrollController?,
-          thumbVisibility: values["thumbVisibility"] as bool?,
-          thickness: values["thickness"] as double,
-          thicknessWhileDragging: values["thicknessWhileDragging"] as double,
-          radius: values["radius"] as api1.Radius,
-          notificationPredicate:
-              values["notificationPredicate"]
-                  as bool Function(api10.ScrollNotification notification)?,
-          scrollbarOrientation:
-              values["scrollbarOrientation"] as api10.ScrollbarOrientation?,
-          mainAxisMargin: values["mainAxisMargin"] as double,
-        );
-      }
-      return api.CupertinoScrollbar(
-        key: values["key"] as api3.Key?,
-        child: values["child"] as api.Widget,
-        controller: values["controller"] as api10.ScrollController?,
-        thumbVisibility: values["thumbVisibility"] as bool?,
-        thickness: values["thickness"] as double,
-        thicknessWhileDragging: values["thicknessWhileDragging"] as double,
-        radius: values["radius"] as api1.Radius,
-        radiusWhileDragging: values["radiusWhileDragging"] as api1.Radius,
-        notificationPredicate:
-            values["notificationPredicate"]
-                as bool Function(api10.ScrollNotification notification)?,
-        scrollbarOrientation:
-            values["scrollbarOrientation"] as api10.ScrollbarOrientation?,
-        mainAxisMargin: values["mainAxisMargin"] as double,
-      );
+      final _flaxHas6 = values.containsKey("radius");
+      final _flaxHas7 = values.containsKey("radiusWhileDragging");
+      return flaxInvokeWithDefaults(
+        api.CupertinoScrollbar.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["child"] as api.Widget,
+          values["controller"] as api10.ScrollController?,
+          values["thumbVisibility"] as bool?,
+          values["thickness"] as double,
+          values["thicknessWhileDragging"] as double,
+          (_flaxHas6 ? values["radius"] as api1.Radius : null),
+          (_flaxHas7 ? values["radiusWhileDragging"] as api1.Radius : null),
+          values["notificationPredicate"]
+              as bool Function(api10.ScrollNotification notification)?,
+          values["scrollbarOrientation"] as api10.ScrollbarOrientation?,
+          values["mainAxisMargin"] as double,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512 |
+              1024,
+        ],
+        const <String>[
+          "key",
+          "child",
+          "controller",
+          "thumbVisibility",
+          "thickness",
+          "thicknessWhileDragging",
+          "radius",
+          "radiusWhileDragging",
+          "notificationPredicate",
+          "scrollbarOrientation",
+          "mainAxisMargin",
+        ],
+      ) as api.CupertinoScrollbar;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -15840,54 +14860,127 @@ api.Widget _createCupertinoSearchTextField(
 ) {
   switch (ctor) {
     case "":
-      return Function.apply(
+      final _flaxHas10 = values.containsKey("keyboardType");
+      final _flaxHas11 = values.containsKey("padding");
+      final _flaxHas12 = values.containsKey("itemColor");
+      final _flaxHas14 = values.containsKey("prefixInsets");
+      final _flaxHas15 = values.containsKey("prefixIcon");
+      final _flaxHas16 = values.containsKey("suffixInsets");
+      final _flaxHas17 = values.containsKey("suffixIcon");
+      final _flaxHas31 = values.containsKey("cursorRadius");
+      return flaxInvokeWithDefaults(
         api.CupertinoSearchTextField.new,
-        <Object?>[],
-        <Symbol, Object?>{
-          #key: values["key"] as api3.Key?,
-          #controller: values["controller"] as api10.TextEditingController?,
-          #onChanged: values["onChanged"] as void Function(String value)?,
-          #onSubmitted: values["onSubmitted"] as void Function(String value)?,
-          #style: values["style"] as api12.TextStyle?,
-          #placeholder: values["placeholder"] as String?,
-          #placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
-          #decoration: values["decoration"] as api12.BoxDecoration?,
-          #backgroundColor: values["backgroundColor"] as api1.Color?,
-          #borderRadius: values["borderRadius"] as api12.BorderRadius?,
-          if (values.containsKey("keyboardType"))
-            #keyboardType: values["keyboardType"] as api7.TextInputType?,
-          if (values.containsKey("padding"))
-            #padding: values["padding"] as api12.EdgeInsetsGeometry,
-          if (values.containsKey("itemColor"))
-            #itemColor: values["itemColor"] as api1.Color,
-          #itemSize: values["itemSize"] as double,
-          if (values.containsKey("prefixInsets"))
-            #prefixInsets: values["prefixInsets"] as api12.EdgeInsetsGeometry,
-          if (values.containsKey("prefixIcon"))
-            #prefixIcon: values["prefixIcon"] as api.Widget,
-          if (values.containsKey("suffixInsets"))
-            #suffixInsets: values["suffixInsets"] as api12.EdgeInsetsGeometry,
-          if (values.containsKey("suffixIcon"))
-            #suffixIcon: values["suffixIcon"] as api10.Icon,
-          #suffixMode: values["suffixMode"] as api.OverlayVisibilityMode,
-          #onSuffixTap: values["onSuffixTap"] as void Function()?,
-          #restorationId: values["restorationId"] as String?,
-          #focusNode: values["focusNode"] as api10.FocusNode?,
-          #smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
-          #smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
-          #enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          #autofocus: values["autofocus"] as bool,
-          #onTap: values["onTap"] as void Function()?,
-          #autocorrect: values["autocorrect"] as bool,
-          #enabled: values["enabled"] as bool?,
-          #cursorWidth: values["cursorWidth"] as double,
-          #cursorHeight: values["cursorHeight"] as double?,
-          if (values.containsKey("cursorRadius"))
-            #cursorRadius: values["cursorRadius"] as api1.Radius,
-          #cursorOpacityAnimates: values["cursorOpacityAnimates"] as bool,
-          #cursorColor: values["cursorColor"] as api1.Color?,
-        },
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["controller"] as api10.TextEditingController?,
+          values["onChanged"] as void Function(String value)?,
+          values["onSubmitted"] as void Function(String value)?,
+          values["style"] as api12.TextStyle?,
+          values["placeholder"] as String?,
+          values["placeholderStyle"] as api12.TextStyle?,
+          values["decoration"] as api12.BoxDecoration?,
+          values["backgroundColor"] as api1.Color?,
+          values["borderRadius"] as api12.BorderRadius?,
+          (_flaxHas10 ? values["keyboardType"] as api7.TextInputType? : null),
+          (_flaxHas11 ? values["padding"] as api12.EdgeInsetsGeometry : null),
+          (_flaxHas12 ? values["itemColor"] as api1.Color : null),
+          values["itemSize"] as double,
+          (_flaxHas14
+              ? values["prefixInsets"] as api12.EdgeInsetsGeometry
+              : null),
+          (_flaxHas15 ? values["prefixIcon"] as api.Widget : null),
+          (_flaxHas16
+              ? values["suffixInsets"] as api12.EdgeInsetsGeometry
+              : null),
+          (_flaxHas17 ? values["suffixIcon"] as api10.Icon : null),
+          values["suffixMode"] as api.OverlayVisibilityMode,
+          values["onSuffixTap"] as void Function()?,
+          values["restorationId"] as String?,
+          values["focusNode"] as api10.FocusNode?,
+          values["smartQuotesType"] as api7.SmartQuotesType?,
+          values["smartDashesType"] as api7.SmartDashesType?,
+          values["enableIMEPersonalizedLearning"] as bool,
+          values["autofocus"] as bool,
+          values["onTap"] as void Function()?,
+          values["autocorrect"] as bool,
+          values["enabled"] as bool?,
+          values["cursorWidth"] as double,
+          values["cursorHeight"] as double?,
+          (_flaxHas31 ? values["cursorRadius"] as api1.Radius : null),
+          values["cursorOpacityAnimates"] as bool,
+          values["cursorColor"] as api1.Color?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              (_flaxHas10 ? 1024 : 0) |
+              (_flaxHas11 ? 2048 : 0) |
+              (_flaxHas12 ? 4096 : 0) |
+              8192 |
+              (_flaxHas14 ? 16384 : 0) |
+              (_flaxHas15 ? 32768 : 0) |
+              (_flaxHas16 ? 65536 : 0) |
+              (_flaxHas17 ? 131072 : 0) |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912 |
+              1073741824 |
+              (_flaxHas31 ? 2147483648 : 0),
+          1 | 2,
+        ],
+        const <String>[
+          "key",
+          "controller",
+          "onChanged",
+          "onSubmitted",
+          "style",
+          "placeholder",
+          "placeholderStyle",
+          "decoration",
+          "backgroundColor",
+          "borderRadius",
+          "keyboardType",
+          "padding",
+          "itemColor",
+          "itemSize",
+          "prefixInsets",
+          "prefixIcon",
+          "suffixInsets",
+          "suffixIcon",
+          "suffixMode",
+          "onSuffixTap",
+          "restorationId",
+          "focusNode",
+          "smartQuotesType",
+          "smartDashesType",
+          "enableIMEPersonalizedLearning",
+          "autofocus",
+          "onTap",
+          "autocorrect",
+          "enabled",
+          "cursorWidth",
+          "cursorHeight",
+          "cursorRadius",
+          "cursorOpacityAnimates",
+          "cursorColor",
+        ],
       ) as api.CupertinoSearchTextField;
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -15997,36 +15090,52 @@ api.Widget _createCupertinoSegmentedControl(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("disabledChildren")) {
-        return api.CupertinoSegmentedControl<Object>(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as Map<Object, api.Widget>,
-          onValueChanged:
-              values["onValueChanged"] as void Function(Object value),
-          groupValue: values["groupValue"],
-          unselectedColor: values["unselectedColor"] as api1.Color?,
-          selectedColor: values["selectedColor"] as api1.Color?,
-          borderColor: values["borderColor"] as api1.Color?,
-          pressedColor: values["pressedColor"] as api1.Color?,
-          disabledColor: values["disabledColor"] as api1.Color?,
-          disabledTextColor: values["disabledTextColor"] as api1.Color?,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-        );
-      }
-      return api.CupertinoSegmentedControl<Object>(
-        key: values["key"] as api3.Key?,
-        children: values["children"] as Map<Object, api.Widget>,
-        onValueChanged: values["onValueChanged"] as void Function(Object value),
-        groupValue: values["groupValue"],
-        unselectedColor: values["unselectedColor"] as api1.Color?,
-        selectedColor: values["selectedColor"] as api1.Color?,
-        borderColor: values["borderColor"] as api1.Color?,
-        pressedColor: values["pressedColor"] as api1.Color?,
-        disabledColor: values["disabledColor"] as api1.Color?,
-        disabledTextColor: values["disabledTextColor"] as api1.Color?,
-        padding: values["padding"] as api12.EdgeInsetsGeometry?,
-        disabledChildren: values["disabledChildren"] as Set<Object>,
-      );
+      final _flaxHas11 = values.containsKey("disabledChildren");
+      return flaxInvokeWithDefaults(
+        api.CupertinoSegmentedControl<Object>.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["children"] as Map<Object, api.Widget>,
+          values["onValueChanged"] as void Function(Object value),
+          values["groupValue"],
+          values["unselectedColor"] as api1.Color?,
+          values["selectedColor"] as api1.Color?,
+          values["borderColor"] as api1.Color?,
+          values["pressedColor"] as api1.Color?,
+          values["disabledColor"] as api1.Color?,
+          values["disabledTextColor"] as api1.Color?,
+          values["padding"] as api12.EdgeInsetsGeometry?,
+          (_flaxHas11 ? values["disabledChildren"] as Set<Object> : null),
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              (_flaxHas11 ? 2048 : 0),
+        ],
+        const <String>[
+          "key",
+          "children",
+          "onValueChanged",
+          "groupValue",
+          "unselectedColor",
+          "selectedColor",
+          "borderColor",
+          "pressedColor",
+          "disabledColor",
+          "disabledTextColor",
+          "padding",
+          "disabledChildren",
+        ],
+      ) as api.CupertinoSegmentedControl<Object>;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -16744,32 +15853,35 @@ Object? _CupertinoSlider_debugDescribeChildren(
 api.Widget _createCupertinoSlider(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("thumbColor")) {
-        return api.CupertinoSlider(
-          key: values["key"] as api3.Key?,
-          value: values["value"] as double,
-          onChanged: values["onChanged"] as void Function(double value)?,
-          onChangeStart:
-              values["onChangeStart"] as void Function(double value)?,
-          onChangeEnd: values["onChangeEnd"] as void Function(double value)?,
-          min: values["min"] as double,
-          max: values["max"] as double,
-          divisions: values["divisions"] as int?,
-          activeColor: values["activeColor"] as api1.Color?,
-        );
-      }
-      return api.CupertinoSlider(
-        key: values["key"] as api3.Key?,
-        value: values["value"] as double,
-        onChanged: values["onChanged"] as void Function(double value)?,
-        onChangeStart: values["onChangeStart"] as void Function(double value)?,
-        onChangeEnd: values["onChangeEnd"] as void Function(double value)?,
-        min: values["min"] as double,
-        max: values["max"] as double,
-        divisions: values["divisions"] as int?,
-        activeColor: values["activeColor"] as api1.Color?,
-        thumbColor: values["thumbColor"] as api1.Color,
-      );
+      final _flaxHas9 = values.containsKey("thumbColor");
+      return flaxInvokeWithDefaults(
+        api.CupertinoSlider.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["value"] as double,
+          values["onChanged"] as void Function(double value)?,
+          values["onChangeStart"] as void Function(double value)?,
+          values["onChangeEnd"] as void Function(double value)?,
+          values["min"] as double,
+          values["max"] as double,
+          values["divisions"] as int?,
+          values["activeColor"] as api1.Color?,
+          (_flaxHas9 ? values["thumbColor"] as api1.Color : null),
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | (_flaxHas9 ? 512 : 0)],
+        const <String>[
+          "key",
+          "value",
+          "onChanged",
+          "onChangeStart",
+          "onChangeEnd",
+          "min",
+          "max",
+          "divisions",
+          "activeColor",
+          "thumbColor",
+        ],
+      ) as api.CupertinoSlider;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -16881,212 +15993,49 @@ api.Widget _createCupertinoSlidingSegmentedControl(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("disabledChildren")) {
-        if (!values.containsKey("thumbColor")) {
-          if (!values.containsKey("padding")) {
-            if (!values.containsKey("backgroundColor")) {
-              return api.CupertinoSlidingSegmentedControl<Object>(
-                key: values["key"] as api3.Key?,
-                children: values["children"] as Map<Object, api.Widget>,
-                onValueChanged:
-                    values["onValueChanged"] as void Function(Object? value),
-                groupValue: values["groupValue"],
-                proportionalWidth: values["proportionalWidth"] as bool,
-                isMomentary: values["isMomentary"] as bool,
-              );
-            }
-            return api.CupertinoSlidingSegmentedControl<Object>(
-              key: values["key"] as api3.Key?,
-              children: values["children"] as Map<Object, api.Widget>,
-              onValueChanged:
-                  values["onValueChanged"] as void Function(Object? value),
-              groupValue: values["groupValue"],
-              backgroundColor: values["backgroundColor"] as api1.Color,
-              proportionalWidth: values["proportionalWidth"] as bool,
-              isMomentary: values["isMomentary"] as bool,
-            );
-          }
-          if (!values.containsKey("backgroundColor")) {
-            return api.CupertinoSlidingSegmentedControl<Object>(
-              key: values["key"] as api3.Key?,
-              children: values["children"] as Map<Object, api.Widget>,
-              onValueChanged:
-                  values["onValueChanged"] as void Function(Object? value),
-              groupValue: values["groupValue"],
-              padding: values["padding"] as api12.EdgeInsetsGeometry,
-              proportionalWidth: values["proportionalWidth"] as bool,
-              isMomentary: values["isMomentary"] as bool,
-            );
-          }
-          return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<Object, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(Object? value),
-            groupValue: values["groupValue"],
-            padding: values["padding"] as api12.EdgeInsetsGeometry,
-            backgroundColor: values["backgroundColor"] as api1.Color,
-            proportionalWidth: values["proportionalWidth"] as bool,
-            isMomentary: values["isMomentary"] as bool,
-          );
-        }
-        if (!values.containsKey("padding")) {
-          if (!values.containsKey("backgroundColor")) {
-            return api.CupertinoSlidingSegmentedControl<Object>(
-              key: values["key"] as api3.Key?,
-              children: values["children"] as Map<Object, api.Widget>,
-              onValueChanged:
-                  values["onValueChanged"] as void Function(Object? value),
-              groupValue: values["groupValue"],
-              thumbColor: values["thumbColor"] as api1.Color,
-              proportionalWidth: values["proportionalWidth"] as bool,
-              isMomentary: values["isMomentary"] as bool,
-            );
-          }
-          return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<Object, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(Object? value),
-            groupValue: values["groupValue"],
-            thumbColor: values["thumbColor"] as api1.Color,
-            backgroundColor: values["backgroundColor"] as api1.Color,
-            proportionalWidth: values["proportionalWidth"] as bool,
-            isMomentary: values["isMomentary"] as bool,
-          );
-        }
-        if (!values.containsKey("backgroundColor")) {
-          return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<Object, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(Object? value),
-            groupValue: values["groupValue"],
-            thumbColor: values["thumbColor"] as api1.Color,
-            padding: values["padding"] as api12.EdgeInsetsGeometry,
-            proportionalWidth: values["proportionalWidth"] as bool,
-            isMomentary: values["isMomentary"] as bool,
-          );
-        }
-        return api.CupertinoSlidingSegmentedControl<Object>(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as Map<Object, api.Widget>,
-          onValueChanged:
-              values["onValueChanged"] as void Function(Object? value),
-          groupValue: values["groupValue"],
-          thumbColor: values["thumbColor"] as api1.Color,
-          padding: values["padding"] as api12.EdgeInsetsGeometry,
-          backgroundColor: values["backgroundColor"] as api1.Color,
-          proportionalWidth: values["proportionalWidth"] as bool,
-          isMomentary: values["isMomentary"] as bool,
-        );
-      }
-      if (!values.containsKey("thumbColor")) {
-        if (!values.containsKey("padding")) {
-          if (!values.containsKey("backgroundColor")) {
-            return api.CupertinoSlidingSegmentedControl<Object>(
-              key: values["key"] as api3.Key?,
-              children: values["children"] as Map<Object, api.Widget>,
-              onValueChanged:
-                  values["onValueChanged"] as void Function(Object? value),
-              disabledChildren: values["disabledChildren"] as Set<Object>,
-              groupValue: values["groupValue"],
-              proportionalWidth: values["proportionalWidth"] as bool,
-              isMomentary: values["isMomentary"] as bool,
-            );
-          }
-          return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<Object, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(Object? value),
-            disabledChildren: values["disabledChildren"] as Set<Object>,
-            groupValue: values["groupValue"],
-            backgroundColor: values["backgroundColor"] as api1.Color,
-            proportionalWidth: values["proportionalWidth"] as bool,
-            isMomentary: values["isMomentary"] as bool,
-          );
-        }
-        if (!values.containsKey("backgroundColor")) {
-          return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<Object, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(Object? value),
-            disabledChildren: values["disabledChildren"] as Set<Object>,
-            groupValue: values["groupValue"],
-            padding: values["padding"] as api12.EdgeInsetsGeometry,
-            proportionalWidth: values["proportionalWidth"] as bool,
-            isMomentary: values["isMomentary"] as bool,
-          );
-        }
-        return api.CupertinoSlidingSegmentedControl<Object>(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as Map<Object, api.Widget>,
-          onValueChanged:
-              values["onValueChanged"] as void Function(Object? value),
-          disabledChildren: values["disabledChildren"] as Set<Object>,
-          groupValue: values["groupValue"],
-          padding: values["padding"] as api12.EdgeInsetsGeometry,
-          backgroundColor: values["backgroundColor"] as api1.Color,
-          proportionalWidth: values["proportionalWidth"] as bool,
-          isMomentary: values["isMomentary"] as bool,
-        );
-      }
-      if (!values.containsKey("padding")) {
-        if (!values.containsKey("backgroundColor")) {
-          return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<Object, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(Object? value),
-            disabledChildren: values["disabledChildren"] as Set<Object>,
-            groupValue: values["groupValue"],
-            thumbColor: values["thumbColor"] as api1.Color,
-            proportionalWidth: values["proportionalWidth"] as bool,
-            isMomentary: values["isMomentary"] as bool,
-          );
-        }
-        return api.CupertinoSlidingSegmentedControl<Object>(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as Map<Object, api.Widget>,
-          onValueChanged:
-              values["onValueChanged"] as void Function(Object? value),
-          disabledChildren: values["disabledChildren"] as Set<Object>,
-          groupValue: values["groupValue"],
-          thumbColor: values["thumbColor"] as api1.Color,
-          backgroundColor: values["backgroundColor"] as api1.Color,
-          proportionalWidth: values["proportionalWidth"] as bool,
-          isMomentary: values["isMomentary"] as bool,
-        );
-      }
-      if (!values.containsKey("backgroundColor")) {
-        return api.CupertinoSlidingSegmentedControl<Object>(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as Map<Object, api.Widget>,
-          onValueChanged:
-              values["onValueChanged"] as void Function(Object? value),
-          disabledChildren: values["disabledChildren"] as Set<Object>,
-          groupValue: values["groupValue"],
-          thumbColor: values["thumbColor"] as api1.Color,
-          padding: values["padding"] as api12.EdgeInsetsGeometry,
-          proportionalWidth: values["proportionalWidth"] as bool,
-          isMomentary: values["isMomentary"] as bool,
-        );
-      }
-      return api.CupertinoSlidingSegmentedControl<Object>(
-        key: values["key"] as api3.Key?,
-        children: values["children"] as Map<Object, api.Widget>,
-        onValueChanged:
-            values["onValueChanged"] as void Function(Object? value),
-        disabledChildren: values["disabledChildren"] as Set<Object>,
-        groupValue: values["groupValue"],
-        thumbColor: values["thumbColor"] as api1.Color,
-        padding: values["padding"] as api12.EdgeInsetsGeometry,
-        backgroundColor: values["backgroundColor"] as api1.Color,
-        proportionalWidth: values["proportionalWidth"] as bool,
-        isMomentary: values["isMomentary"] as bool,
-      );
+      final _flaxHas3 = values.containsKey("disabledChildren");
+      final _flaxHas5 = values.containsKey("thumbColor");
+      final _flaxHas6 = values.containsKey("padding");
+      final _flaxHas7 = values.containsKey("backgroundColor");
+      return flaxInvokeWithDefaults(
+        api.CupertinoSlidingSegmentedControl<Object>.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["children"] as Map<Object, api.Widget>,
+          values["onValueChanged"] as void Function(Object? value),
+          (_flaxHas3 ? values["disabledChildren"] as Set<Object> : null),
+          values["groupValue"],
+          (_flaxHas5 ? values["thumbColor"] as api1.Color : null),
+          (_flaxHas6 ? values["padding"] as api12.EdgeInsetsGeometry : null),
+          (_flaxHas7 ? values["backgroundColor"] as api1.Color : null),
+          values["proportionalWidth"] as bool,
+          values["isMomentary"] as bool,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              (_flaxHas3 ? 8 : 0) |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              (_flaxHas6 ? 64 : 0) |
+              (_flaxHas7 ? 128 : 0) |
+              256 |
+              512,
+        ],
+        const <String>[
+          "key",
+          "children",
+          "onValueChanged",
+          "disabledChildren",
+          "groupValue",
+          "thumbColor",
+          "padding",
+          "backgroundColor",
+          "proportionalWidth",
+          "isMomentary",
+        ],
+      ) as api.CupertinoSlidingSegmentedControl<Object>;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -17218,217 +16167,152 @@ api.Widget _createCupertinoSliverNavigationBar(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("border")) {
-        if (!values.containsKey("heroTag")) {
-          return api.CupertinoSliverNavigationBar(
-            key: values["key"] as api3.Key?,
-            largeTitle: values["largeTitle"] as api.Widget?,
-            leading: values["leading"] as api.Widget?,
-            automaticallyImplyLeading:
-                values["automaticallyImplyLeading"] as bool,
-            automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-            alwaysShowMiddle: values["alwaysShowMiddle"] as bool,
-            previousPageTitle: values["previousPageTitle"] as String?,
-            middle: values["middle"] as api.Widget?,
-            trailing: values["trailing"] as api.Widget?,
-            backgroundColor: values["backgroundColor"] as api1.Color?,
-            automaticBackgroundVisibility:
-                values["automaticBackgroundVisibility"] as bool,
-            enableBackgroundFilterBlur:
-                values["enableBackgroundFilterBlur"] as bool,
-            brightness: values["brightness"] as api1.Brightness?,
-            padding: values["padding"] as api12.EdgeInsetsDirectional?,
-            transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-            stretch: values["stretch"] as bool,
-            bottom: values["bottom"] as api10.PreferredSizeWidget?,
-            bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
-          );
-        }
-        return api.CupertinoSliverNavigationBar(
-          key: values["key"] as api3.Key?,
-          largeTitle: values["largeTitle"] as api.Widget?,
-          leading: values["leading"] as api.Widget?,
-          automaticallyImplyLeading:
-              values["automaticallyImplyLeading"] as bool,
-          automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-          alwaysShowMiddle: values["alwaysShowMiddle"] as bool,
-          previousPageTitle: values["previousPageTitle"] as String?,
-          middle: values["middle"] as api.Widget?,
-          trailing: values["trailing"] as api.Widget?,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          automaticBackgroundVisibility:
-              values["automaticBackgroundVisibility"] as bool,
-          enableBackgroundFilterBlur:
-              values["enableBackgroundFilterBlur"] as bool,
-          brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api12.EdgeInsetsDirectional?,
-          transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-          heroTag: values["heroTag"] as Object,
-          stretch: values["stretch"] as bool,
-          bottom: values["bottom"] as api10.PreferredSizeWidget?,
-          bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
-        );
-      }
-      if (!values.containsKey("heroTag")) {
-        return api.CupertinoSliverNavigationBar(
-          key: values["key"] as api3.Key?,
-          largeTitle: values["largeTitle"] as api.Widget?,
-          leading: values["leading"] as api.Widget?,
-          automaticallyImplyLeading:
-              values["automaticallyImplyLeading"] as bool,
-          automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-          alwaysShowMiddle: values["alwaysShowMiddle"] as bool,
-          previousPageTitle: values["previousPageTitle"] as String?,
-          middle: values["middle"] as api.Widget?,
-          trailing: values["trailing"] as api.Widget?,
-          border: values["border"] as api12.Border?,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          automaticBackgroundVisibility:
-              values["automaticBackgroundVisibility"] as bool,
-          enableBackgroundFilterBlur:
-              values["enableBackgroundFilterBlur"] as bool,
-          brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api12.EdgeInsetsDirectional?,
-          transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-          stretch: values["stretch"] as bool,
-          bottom: values["bottom"] as api10.PreferredSizeWidget?,
-          bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
-        );
-      }
-      return api.CupertinoSliverNavigationBar(
-        key: values["key"] as api3.Key?,
-        largeTitle: values["largeTitle"] as api.Widget?,
-        leading: values["leading"] as api.Widget?,
-        automaticallyImplyLeading: values["automaticallyImplyLeading"] as bool,
-        automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-        alwaysShowMiddle: values["alwaysShowMiddle"] as bool,
-        previousPageTitle: values["previousPageTitle"] as String?,
-        middle: values["middle"] as api.Widget?,
-        trailing: values["trailing"] as api.Widget?,
-        border: values["border"] as api12.Border?,
-        backgroundColor: values["backgroundColor"] as api1.Color?,
-        automaticBackgroundVisibility:
-            values["automaticBackgroundVisibility"] as bool,
-        enableBackgroundFilterBlur:
-            values["enableBackgroundFilterBlur"] as bool,
-        brightness: values["brightness"] as api1.Brightness?,
-        padding: values["padding"] as api12.EdgeInsetsDirectional?,
-        transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-        heroTag: values["heroTag"] as Object,
-        stretch: values["stretch"] as bool,
-        bottom: values["bottom"] as api10.PreferredSizeWidget?,
-        bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
-      );
+      final _flaxHas9 = values.containsKey("border");
+      final _flaxHas16 = values.containsKey("heroTag");
+      return flaxInvokeWithDefaults(
+        api.CupertinoSliverNavigationBar.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["largeTitle"] as api.Widget?,
+          values["leading"] as api.Widget?,
+          values["automaticallyImplyLeading"] as bool,
+          values["automaticallyImplyTitle"] as bool,
+          values["alwaysShowMiddle"] as bool,
+          values["previousPageTitle"] as String?,
+          values["middle"] as api.Widget?,
+          values["trailing"] as api.Widget?,
+          (_flaxHas9 ? values["border"] as api12.Border? : null),
+          values["backgroundColor"] as api1.Color?,
+          values["automaticBackgroundVisibility"] as bool,
+          values["enableBackgroundFilterBlur"] as bool,
+          values["brightness"] as api1.Brightness?,
+          values["padding"] as api12.EdgeInsetsDirectional?,
+          values["transitionBetweenRoutes"] as bool,
+          (_flaxHas16 ? values["heroTag"] as Object : null),
+          values["stretch"] as bool,
+          values["bottom"] as api10.PreferredSizeWidget?,
+          values["bottomMode"] as api.NavigationBarBottomMode?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              (_flaxHas9 ? 512 : 0) |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              (_flaxHas16 ? 65536 : 0) |
+              131072 |
+              262144 |
+              524288,
+        ],
+        const <String>[
+          "key",
+          "largeTitle",
+          "leading",
+          "automaticallyImplyLeading",
+          "automaticallyImplyTitle",
+          "alwaysShowMiddle",
+          "previousPageTitle",
+          "middle",
+          "trailing",
+          "border",
+          "backgroundColor",
+          "automaticBackgroundVisibility",
+          "enableBackgroundFilterBlur",
+          "brightness",
+          "padding",
+          "transitionBetweenRoutes",
+          "heroTag",
+          "stretch",
+          "bottom",
+          "bottomMode",
+        ],
+      ) as api.CupertinoSliverNavigationBar;
     case "search":
-      if (!values.containsKey("border")) {
-        if (!values.containsKey("heroTag")) {
-          return api.CupertinoSliverNavigationBar.search(
-            key: values["key"] as api3.Key?,
-            searchField: values["searchField"] as api.Widget,
-            largeTitle: values["largeTitle"] as api.Widget?,
-            leading: values["leading"] as api.Widget?,
-            automaticallyImplyLeading:
-                values["automaticallyImplyLeading"] as bool,
-            automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-            alwaysShowMiddle: values["alwaysShowMiddle"] as bool,
-            previousPageTitle: values["previousPageTitle"] as String?,
-            middle: values["middle"] as api.Widget?,
-            trailing: values["trailing"] as api.Widget?,
-            backgroundColor: values["backgroundColor"] as api1.Color?,
-            automaticBackgroundVisibility:
-                values["automaticBackgroundVisibility"] as bool,
-            enableBackgroundFilterBlur:
-                values["enableBackgroundFilterBlur"] as bool,
-            brightness: values["brightness"] as api1.Brightness?,
-            padding: values["padding"] as api12.EdgeInsetsDirectional?,
-            transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-            stretch: values["stretch"] as bool,
-            bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
-            onSearchableBottomTap:
-                values["onSearchableBottomTap"] as void Function(bool value)?,
-          );
-        }
-        return api.CupertinoSliverNavigationBar.search(
-          key: values["key"] as api3.Key?,
-          searchField: values["searchField"] as api.Widget,
-          largeTitle: values["largeTitle"] as api.Widget?,
-          leading: values["leading"] as api.Widget?,
-          automaticallyImplyLeading:
-              values["automaticallyImplyLeading"] as bool,
-          automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-          alwaysShowMiddle: values["alwaysShowMiddle"] as bool,
-          previousPageTitle: values["previousPageTitle"] as String?,
-          middle: values["middle"] as api.Widget?,
-          trailing: values["trailing"] as api.Widget?,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          automaticBackgroundVisibility:
-              values["automaticBackgroundVisibility"] as bool,
-          enableBackgroundFilterBlur:
-              values["enableBackgroundFilterBlur"] as bool,
-          brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api12.EdgeInsetsDirectional?,
-          transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-          heroTag: values["heroTag"] as Object,
-          stretch: values["stretch"] as bool,
-          bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
-          onSearchableBottomTap:
-              values["onSearchableBottomTap"] as void Function(bool value)?,
-        );
-      }
-      if (!values.containsKey("heroTag")) {
-        return api.CupertinoSliverNavigationBar.search(
-          key: values["key"] as api3.Key?,
-          searchField: values["searchField"] as api.Widget,
-          largeTitle: values["largeTitle"] as api.Widget?,
-          leading: values["leading"] as api.Widget?,
-          automaticallyImplyLeading:
-              values["automaticallyImplyLeading"] as bool,
-          automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-          alwaysShowMiddle: values["alwaysShowMiddle"] as bool,
-          previousPageTitle: values["previousPageTitle"] as String?,
-          middle: values["middle"] as api.Widget?,
-          trailing: values["trailing"] as api.Widget?,
-          border: values["border"] as api12.Border?,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          automaticBackgroundVisibility:
-              values["automaticBackgroundVisibility"] as bool,
-          enableBackgroundFilterBlur:
-              values["enableBackgroundFilterBlur"] as bool,
-          brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api12.EdgeInsetsDirectional?,
-          transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-          stretch: values["stretch"] as bool,
-          bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
-          onSearchableBottomTap:
-              values["onSearchableBottomTap"] as void Function(bool value)?,
-        );
-      }
-      return api.CupertinoSliverNavigationBar.search(
-        key: values["key"] as api3.Key?,
-        searchField: values["searchField"] as api.Widget,
-        largeTitle: values["largeTitle"] as api.Widget?,
-        leading: values["leading"] as api.Widget?,
-        automaticallyImplyLeading: values["automaticallyImplyLeading"] as bool,
-        automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
-        alwaysShowMiddle: values["alwaysShowMiddle"] as bool,
-        previousPageTitle: values["previousPageTitle"] as String?,
-        middle: values["middle"] as api.Widget?,
-        trailing: values["trailing"] as api.Widget?,
-        border: values["border"] as api12.Border?,
-        backgroundColor: values["backgroundColor"] as api1.Color?,
-        automaticBackgroundVisibility:
-            values["automaticBackgroundVisibility"] as bool,
-        enableBackgroundFilterBlur:
-            values["enableBackgroundFilterBlur"] as bool,
-        brightness: values["brightness"] as api1.Brightness?,
-        padding: values["padding"] as api12.EdgeInsetsDirectional?,
-        transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-        heroTag: values["heroTag"] as Object,
-        stretch: values["stretch"] as bool,
-        bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
-        onSearchableBottomTap:
-            values["onSearchableBottomTap"] as void Function(bool value)?,
-      );
+      final _flaxHas10 = values.containsKey("border");
+      final _flaxHas17 = values.containsKey("heroTag");
+      return flaxInvokeWithDefaults(
+        api.CupertinoSliverNavigationBar.search,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["searchField"] as api.Widget,
+          values["largeTitle"] as api.Widget?,
+          values["leading"] as api.Widget?,
+          values["automaticallyImplyLeading"] as bool,
+          values["automaticallyImplyTitle"] as bool,
+          values["alwaysShowMiddle"] as bool,
+          values["previousPageTitle"] as String?,
+          values["middle"] as api.Widget?,
+          values["trailing"] as api.Widget?,
+          (_flaxHas10 ? values["border"] as api12.Border? : null),
+          values["backgroundColor"] as api1.Color?,
+          values["automaticBackgroundVisibility"] as bool,
+          values["enableBackgroundFilterBlur"] as bool,
+          values["brightness"] as api1.Brightness?,
+          values["padding"] as api12.EdgeInsetsDirectional?,
+          values["transitionBetweenRoutes"] as bool,
+          (_flaxHas17 ? values["heroTag"] as Object : null),
+          values["stretch"] as bool,
+          values["bottomMode"] as api.NavigationBarBottomMode?,
+          values["onSearchableBottomTap"] as void Function(bool value)?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              (_flaxHas10 ? 1024 : 0) |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              (_flaxHas17 ? 131072 : 0) |
+              262144 |
+              524288 |
+              1048576,
+        ],
+        const <String>[
+          "key",
+          "searchField",
+          "largeTitle",
+          "leading",
+          "automaticallyImplyLeading",
+          "automaticallyImplyTitle",
+          "alwaysShowMiddle",
+          "previousPageTitle",
+          "middle",
+          "trailing",
+          "border",
+          "backgroundColor",
+          "automaticBackgroundVisibility",
+          "enableBackgroundFilterBlur",
+          "brightness",
+          "padding",
+          "transitionBetweenRoutes",
+          "heroTag",
+          "stretch",
+          "bottomMode",
+          "onSearchableBottomTap",
+        ],
+      ) as api.CupertinoSliverNavigationBar;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -17536,31 +16420,34 @@ api.Widget _createCupertinoSliverRefreshControl(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("builder")) {
-        return api.CupertinoSliverRefreshControl(
-          key: values["key"] as api3.Key?,
-          refreshTriggerPullDistance:
-              values["refreshTriggerPullDistance"] as double,
-          refreshIndicatorExtent: values["refreshIndicatorExtent"] as double,
-          onRefresh: values["onRefresh"] as Future<void> Function()?,
-        );
-      }
-      return api.CupertinoSliverRefreshControl(
-        key: values["key"] as api3.Key?,
-        refreshTriggerPullDistance:
-            values["refreshTriggerPullDistance"] as double,
-        refreshIndicatorExtent: values["refreshIndicatorExtent"] as double,
-        builder:
-            values["builder"]
-                as api.Widget Function(
-                  api10.BuildContext context,
-                  api.RefreshIndicatorMode refreshState,
-                  double pulledExtent,
-                  double refreshTriggerPullDistance,
-                  double refreshIndicatorExtent,
-                )?,
-        onRefresh: values["onRefresh"] as Future<void> Function()?,
-      );
+      final _flaxHas3 = values.containsKey("builder");
+      return flaxInvokeWithDefaults(
+        api.CupertinoSliverRefreshControl.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["refreshTriggerPullDistance"] as double,
+          values["refreshIndicatorExtent"] as double,
+          (_flaxHas3
+              ? values["builder"]
+                    as api.Widget Function(
+                      api10.BuildContext context,
+                      api.RefreshIndicatorMode refreshState,
+                      double pulledExtent,
+                      double refreshTriggerPullDistance,
+                      double refreshIndicatorExtent,
+                    )?
+              : null),
+          values["onRefresh"] as Future<void> Function()?,
+        ],
+        <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16],
+        const <String>[
+          "key",
+          "refreshTriggerPullDistance",
+          "refreshIndicatorExtent",
+          "builder",
+          "onRefresh",
+        ],
+      ) as api.CupertinoSliverRefreshControl;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -17984,56 +16871,47 @@ Object? _CupertinoTabBar_createElement(
 api.Widget _createCupertinoTabBar(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("inactiveColor")) {
-        if (!values.containsKey("border")) {
-          return api.CupertinoTabBar(
-            key: values["key"] as api3.Key?,
-            items: values["items"] as List<api10.BottomNavigationBarItem>,
-            onTap: values["onTap"] as void Function(int value)?,
-            currentIndex: values["currentIndex"] as int,
-            backgroundColor: values["backgroundColor"] as api1.Color?,
-            activeColor: values["activeColor"] as api1.Color?,
-            iconSize: values["iconSize"] as double,
-            height: values["height"] as double,
-          );
-        }
-        return api.CupertinoTabBar(
-          key: values["key"] as api3.Key?,
-          items: values["items"] as List<api10.BottomNavigationBarItem>,
-          onTap: values["onTap"] as void Function(int value)?,
-          currentIndex: values["currentIndex"] as int,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          activeColor: values["activeColor"] as api1.Color?,
-          iconSize: values["iconSize"] as double,
-          height: values["height"] as double,
-          border: values["border"] as api12.Border?,
-        );
-      }
-      if (!values.containsKey("border")) {
-        return api.CupertinoTabBar(
-          key: values["key"] as api3.Key?,
-          items: values["items"] as List<api10.BottomNavigationBarItem>,
-          onTap: values["onTap"] as void Function(int value)?,
-          currentIndex: values["currentIndex"] as int,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          activeColor: values["activeColor"] as api1.Color?,
-          inactiveColor: values["inactiveColor"] as api1.Color,
-          iconSize: values["iconSize"] as double,
-          height: values["height"] as double,
-        );
-      }
-      return api.CupertinoTabBar(
-        key: values["key"] as api3.Key?,
-        items: values["items"] as List<api10.BottomNavigationBarItem>,
-        onTap: values["onTap"] as void Function(int value)?,
-        currentIndex: values["currentIndex"] as int,
-        backgroundColor: values["backgroundColor"] as api1.Color?,
-        activeColor: values["activeColor"] as api1.Color?,
-        inactiveColor: values["inactiveColor"] as api1.Color,
-        iconSize: values["iconSize"] as double,
-        height: values["height"] as double,
-        border: values["border"] as api12.Border?,
-      );
+      final _flaxHas6 = values.containsKey("inactiveColor");
+      final _flaxHas9 = values.containsKey("border");
+      return flaxInvokeWithDefaults(
+        api.CupertinoTabBar.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["items"] as List<api10.BottomNavigationBarItem>,
+          values["onTap"] as void Function(int value)?,
+          values["currentIndex"] as int,
+          values["backgroundColor"] as api1.Color?,
+          values["activeColor"] as api1.Color?,
+          (_flaxHas6 ? values["inactiveColor"] as api1.Color : null),
+          values["iconSize"] as double,
+          values["height"] as double,
+          (_flaxHas9 ? values["border"] as api12.Border? : null),
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              256 |
+              (_flaxHas9 ? 512 : 0),
+        ],
+        const <String>[
+          "key",
+          "items",
+          "onTap",
+          "currentIndex",
+          "backgroundColor",
+          "activeColor",
+          "inactiveColor",
+          "iconSize",
+          "height",
+          "border",
+        ],
+      ) as api.CupertinoTabBar;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -18338,62 +17216,38 @@ Object? _CupertinoTabView_debugDescribeChildren(
 api.Widget _createCupertinoTabView(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("navigatorObservers")) {
-        return api.CupertinoTabView(
-          key: values["key"] as api3.Key?,
-          builder:
-              values["builder"]
-                  as api.Widget Function(api10.BuildContext context)?,
-          navigatorKey:
-              values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
-          defaultTitle: values["defaultTitle"] as String?,
-          routes:
-              values["routes"]
-                  as Map<
-                    String,
-                    api.Widget Function(api10.BuildContext context)
-                  >?,
-          onGenerateRoute:
-              values["onGenerateRoute"]
-                  as api10.Route<Object?>? Function(
-                    api10.RouteSettings settings,
-                  )?,
-          onUnknownRoute:
-              values["onUnknownRoute"]
-                  as api10.Route<Object?>? Function(
-                    api10.RouteSettings settings,
-                  )?,
-          restorationScopeId: values["restorationScopeId"] as String?,
-        );
-      }
-      return api.CupertinoTabView(
-        key: values["key"] as api3.Key?,
-        builder:
-            values["builder"]
-                as api.Widget Function(api10.BuildContext context)?,
-        navigatorKey:
-            values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
-        defaultTitle: values["defaultTitle"] as String?,
-        routes:
-            values["routes"]
-                as Map<
-                  String,
-                  api.Widget Function(api10.BuildContext context)
-                >?,
-        onGenerateRoute:
-            values["onGenerateRoute"]
-                as api10.Route<Object?>? Function(
-                  api10.RouteSettings settings,
-                )?,
-        onUnknownRoute:
-            values["onUnknownRoute"]
-                as api10.Route<Object?>? Function(
-                  api10.RouteSettings settings,
-                )?,
-        navigatorObservers:
-            values["navigatorObservers"] as List<api10.NavigatorObserver>,
-        restorationScopeId: values["restorationScopeId"] as String?,
-      );
+      final _flaxHas7 = values.containsKey("navigatorObservers");
+      return flaxInvokeWithDefaults(
+        api.CupertinoTabView.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["builder"] as api.Widget Function(api10.BuildContext context)?,
+          values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
+          values["defaultTitle"] as String?,
+          values["routes"]
+              as Map<String, api.Widget Function(api10.BuildContext context)>?,
+          values["onGenerateRoute"]
+              as api10.Route<Object?>? Function(api10.RouteSettings settings)?,
+          values["onUnknownRoute"]
+              as api10.Route<Object?>? Function(api10.RouteSettings settings)?,
+          (_flaxHas7
+              ? values["navigatorObservers"] as List<api10.NavigatorObserver>
+              : null),
+          values["restorationScopeId"] as String?,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | 32 | 64 | (_flaxHas7 ? 128 : 0) | 256],
+        const <String>[
+          "key",
+          "builder",
+          "navigatorKey",
+          "defaultTitle",
+          "routes",
+          "onGenerateRoute",
+          "onUnknownRoute",
+          "navigatorObservers",
+          "restorationScopeId",
+        ],
+      ) as api.CupertinoTabView;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -18629,239 +17483,477 @@ Object? _CupertinoTextField_debugDescribeChildren(
 api.Widget _createCupertinoTextField(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      return Function.apply(
+      final _flaxHas1 = values.containsKey("groupId");
+      final _flaxHas5 = values.containsKey("decoration");
+      final _flaxHas6 = values.containsKey("padding");
+      final _flaxHas8 = values.containsKey("placeholderStyle");
+      final _flaxHas48 = values.containsKey("cursorRadius");
+      final _flaxHas54 = values.containsKey("scrollPadding");
+      final _flaxHas62 = values.containsKey("autofillHints");
+      final _flaxHas70 = values.containsKey("contextMenuBuilder");
+      return flaxInvokeWithDefaults(
         api.CupertinoTextField.new,
-        <Object?>[],
-        <Symbol, Object?>{
-          #key: values["key"] as api3.Key?,
-          if (values.containsKey("groupId"))
-            #groupId: values["groupId"] as Object,
-          #controller: values["controller"] as api10.TextEditingController?,
-          #focusNode: values["focusNode"] as api10.FocusNode?,
-          #undoController:
-              values["undoController"] as api10.UndoHistoryController?,
-          if (values.containsKey("decoration"))
-            #decoration: values["decoration"] as api12.BoxDecoration?,
-          if (values.containsKey("padding"))
-            #padding: values["padding"] as api12.EdgeInsetsGeometry,
-          #placeholder: values["placeholder"] as String?,
-          if (values.containsKey("placeholderStyle"))
-            #placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
-          #prefix: values["prefix"] as api.Widget?,
-          #prefixMode: values["prefixMode"] as api.OverlayVisibilityMode,
-          #suffix: values["suffix"] as api.Widget?,
-          #suffixMode: values["suffixMode"] as api.OverlayVisibilityMode,
-          #crossAxisAlignment:
-              values["crossAxisAlignment"] as api9.CrossAxisAlignment,
-          #clearButtonMode:
-              values["clearButtonMode"] as api.OverlayVisibilityMode,
-          #clearButtonSemanticLabel:
-              values["clearButtonSemanticLabel"] as String?,
-          #keyboardType: values["keyboardType"] as api7.TextInputType?,
-          #textInputAction: values["textInputAction"] as api7.TextInputAction?,
-          #textCapitalization:
-              values["textCapitalization"] as api7.TextCapitalization,
-          #style: values["style"] as api12.TextStyle?,
-          #strutStyle: values["strutStyle"] as api12.StrutStyle?,
-          #textAlign: values["textAlign"] as api1.TextAlign,
-          #textAlignVertical:
-              values["textAlignVertical"] as api12.TextAlignVertical?,
-          #textDirection: values["textDirection"] as api1.TextDirection?,
-          #readOnly: values["readOnly"] as bool,
-          #toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
-          #showCursor: values["showCursor"] as bool?,
-          #autofocus: values["autofocus"] as bool,
-          #obscuringCharacter: values["obscuringCharacter"] as String,
-          #obscureText: values["obscureText"] as bool,
-          #autocorrect: values["autocorrect"] as bool?,
-          #smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
-          #smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
-          #enableSuggestions: values["enableSuggestions"] as bool,
-          #maxLines: values["maxLines"] as int?,
-          #minLines: values["minLines"] as int?,
-          #expands: values["expands"] as bool,
-          #maxLength: values["maxLength"] as int?,
-          #maxLengthEnforcement:
-              values["maxLengthEnforcement"] as api7.MaxLengthEnforcement?,
-          #onChanged: values["onChanged"] as void Function(String value)?,
-          #onEditingComplete: values["onEditingComplete"] as void Function()?,
-          #onSubmitted: values["onSubmitted"] as void Function(String value)?,
-          #onTapOutside:
-              values["onTapOutside"]
-                  as void Function(api4.PointerDownEvent event)?,
-          #onTapUpOutside:
-              values["onTapUpOutside"]
-                  as void Function(api4.PointerDownEvent event)?,
-          #inputFormatters:
-              values["inputFormatters"] as List<api7.TextInputFormatter>?,
-          #enabled: values["enabled"] as bool,
-          #cursorWidth: values["cursorWidth"] as double,
-          #cursorHeight: values["cursorHeight"] as double?,
-          if (values.containsKey("cursorRadius"))
-            #cursorRadius: values["cursorRadius"] as api1.Radius,
-          #cursorOpacityAnimates: values["cursorOpacityAnimates"] as bool,
-          #cursorColor: values["cursorColor"] as api1.Color?,
-          #selectionHeightStyle:
-              values["selectionHeightStyle"] as api1.BoxHeightStyle?,
-          #selectionWidthStyle:
-              values["selectionWidthStyle"] as api1.BoxWidthStyle?,
-          #keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
-          if (values.containsKey("scrollPadding"))
-            #scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
-          #dragStartBehavior:
-              values["dragStartBehavior"] as api4.DragStartBehavior,
-          #enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool?,
-          #selectAllOnFocus: values["selectAllOnFocus"] as bool?,
-          #selectionControls:
-              values["selectionControls"] as api10.TextSelectionControls?,
-          #onTap: values["onTap"] as void Function()?,
-          #scrollController:
-              values["scrollController"] as api10.ScrollController?,
-          #scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
-          if (values.containsKey("autofillHints"))
-            #autofillHints: values["autofillHints"] as Iterable<String>?,
-          #contentInsertionConfiguration:
-              values["contentInsertionConfiguration"]
-                  as api10.ContentInsertionConfiguration?,
-          #clipBehavior: values["clipBehavior"] as api1.Clip,
-          #restorationId: values["restorationId"] as String?,
-          #scribbleEnabled: values["scribbleEnabled"] as bool,
-          #stylusHandwritingEnabled: values["stylusHandwritingEnabled"] as bool,
-          #enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          #enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          if (values.containsKey("contextMenuBuilder"))
-            #contextMenuBuilder:
-                values["contextMenuBuilder"]
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1 ? values["groupId"] as Object : null),
+          values["controller"] as api10.TextEditingController?,
+          values["focusNode"] as api10.FocusNode?,
+          values["undoController"] as api10.UndoHistoryController?,
+          (_flaxHas5 ? values["decoration"] as api12.BoxDecoration? : null),
+          (_flaxHas6 ? values["padding"] as api12.EdgeInsetsGeometry : null),
+          values["placeholder"] as String?,
+          (_flaxHas8 ? values["placeholderStyle"] as api12.TextStyle? : null),
+          values["prefix"] as api.Widget?,
+          values["prefixMode"] as api.OverlayVisibilityMode,
+          values["suffix"] as api.Widget?,
+          values["suffixMode"] as api.OverlayVisibilityMode,
+          values["crossAxisAlignment"] as api9.CrossAxisAlignment,
+          values["clearButtonMode"] as api.OverlayVisibilityMode,
+          values["clearButtonSemanticLabel"] as String?,
+          values["keyboardType"] as api7.TextInputType?,
+          values["textInputAction"] as api7.TextInputAction?,
+          values["textCapitalization"] as api7.TextCapitalization,
+          values["style"] as api12.TextStyle?,
+          values["strutStyle"] as api12.StrutStyle?,
+          values["textAlign"] as api1.TextAlign,
+          values["textAlignVertical"] as api12.TextAlignVertical?,
+          values["textDirection"] as api1.TextDirection?,
+          values["readOnly"] as bool,
+          values["toolbarOptions"] as api10.ToolbarOptions?,
+          values["showCursor"] as bool?,
+          values["autofocus"] as bool,
+          values["obscuringCharacter"] as String,
+          values["obscureText"] as bool,
+          values["autocorrect"] as bool?,
+          values["smartDashesType"] as api7.SmartDashesType?,
+          values["smartQuotesType"] as api7.SmartQuotesType?,
+          values["enableSuggestions"] as bool,
+          values["maxLines"] as int?,
+          values["minLines"] as int?,
+          values["expands"] as bool,
+          values["maxLength"] as int?,
+          values["maxLengthEnforcement"] as api7.MaxLengthEnforcement?,
+          values["onChanged"] as void Function(String value)?,
+          values["onEditingComplete"] as void Function()?,
+          values["onSubmitted"] as void Function(String value)?,
+          values["onTapOutside"] as void Function(api4.PointerDownEvent event)?,
+          values["onTapUpOutside"]
+              as void Function(api4.PointerDownEvent event)?,
+          values["inputFormatters"] as List<api7.TextInputFormatter>?,
+          values["enabled"] as bool,
+          values["cursorWidth"] as double,
+          values["cursorHeight"] as double?,
+          (_flaxHas48 ? values["cursorRadius"] as api1.Radius : null),
+          values["cursorOpacityAnimates"] as bool,
+          values["cursorColor"] as api1.Color?,
+          values["selectionHeightStyle"] as api1.BoxHeightStyle?,
+          values["selectionWidthStyle"] as api1.BoxWidthStyle?,
+          values["keyboardAppearance"] as api1.Brightness?,
+          (_flaxHas54 ? values["scrollPadding"] as api12.EdgeInsets : null),
+          values["dragStartBehavior"] as api4.DragStartBehavior,
+          values["enableInteractiveSelection"] as bool?,
+          values["selectAllOnFocus"] as bool?,
+          values["selectionControls"] as api10.TextSelectionControls?,
+          values["onTap"] as void Function()?,
+          values["scrollController"] as api10.ScrollController?,
+          values["scrollPhysics"] as api10.ScrollPhysics?,
+          (_flaxHas62 ? values["autofillHints"] as Iterable<String>? : null),
+          values["contentInsertionConfiguration"]
+              as api10.ContentInsertionConfiguration?,
+          values["clipBehavior"] as api1.Clip,
+          values["restorationId"] as String?,
+          values["scribbleEnabled"] as bool,
+          values["stylusHandwritingEnabled"] as bool,
+          values["enableIMEPersonalizedLearning"] as bool,
+          values["enableInlinePrediction"] as bool?,
+          (_flaxHas70
+              ? values["contextMenuBuilder"]
                     as api.Widget Function(
                       api10.BuildContext context,
                       api10.EditableTextState editableTextState,
-                    )?,
-          #spellCheckConfiguration:
-              values["spellCheckConfiguration"]
-                  as api10.SpellCheckConfiguration?,
-          #magnifierConfiguration:
-              values["magnifierConfiguration"]
-                  as api10.TextMagnifierConfiguration?,
-        },
+                    )?
+              : null),
+          values["spellCheckConfiguration"] as api10.SpellCheckConfiguration?,
+          values["magnifierConfiguration"] as api10.TextMagnifierConfiguration?,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              (_flaxHas8 ? 256 : 0) |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912 |
+              1073741824 |
+              2147483648,
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              (_flaxHas48 ? 65536 : 0) |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              (_flaxHas54 ? 4194304 : 0) |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912 |
+              (_flaxHas62 ? 1073741824 : 0) |
+              2147483648,
+          1 | 2 | 4 | 8 | 16 | 32 | (_flaxHas70 ? 64 : 0) | 128 | 256,
+        ],
+        const <String>[
+          "key",
+          "groupId",
+          "controller",
+          "focusNode",
+          "undoController",
+          "decoration",
+          "padding",
+          "placeholder",
+          "placeholderStyle",
+          "prefix",
+          "prefixMode",
+          "suffix",
+          "suffixMode",
+          "crossAxisAlignment",
+          "clearButtonMode",
+          "clearButtonSemanticLabel",
+          "keyboardType",
+          "textInputAction",
+          "textCapitalization",
+          "style",
+          "strutStyle",
+          "textAlign",
+          "textAlignVertical",
+          "textDirection",
+          "readOnly",
+          "toolbarOptions",
+          "showCursor",
+          "autofocus",
+          "obscuringCharacter",
+          "obscureText",
+          "autocorrect",
+          "smartDashesType",
+          "smartQuotesType",
+          "enableSuggestions",
+          "maxLines",
+          "minLines",
+          "expands",
+          "maxLength",
+          "maxLengthEnforcement",
+          "onChanged",
+          "onEditingComplete",
+          "onSubmitted",
+          "onTapOutside",
+          "onTapUpOutside",
+          "inputFormatters",
+          "enabled",
+          "cursorWidth",
+          "cursorHeight",
+          "cursorRadius",
+          "cursorOpacityAnimates",
+          "cursorColor",
+          "selectionHeightStyle",
+          "selectionWidthStyle",
+          "keyboardAppearance",
+          "scrollPadding",
+          "dragStartBehavior",
+          "enableInteractiveSelection",
+          "selectAllOnFocus",
+          "selectionControls",
+          "onTap",
+          "scrollController",
+          "scrollPhysics",
+          "autofillHints",
+          "contentInsertionConfiguration",
+          "clipBehavior",
+          "restorationId",
+          "scribbleEnabled",
+          "stylusHandwritingEnabled",
+          "enableIMEPersonalizedLearning",
+          "enableInlinePrediction",
+          "contextMenuBuilder",
+          "spellCheckConfiguration",
+          "magnifierConfiguration",
+        ],
       ) as api.CupertinoTextField;
     case "borderless":
-      return Function.apply(
+      final _flaxHas1 = values.containsKey("groupId");
+      final _flaxHas6 = values.containsKey("padding");
+      final _flaxHas8 = values.containsKey("placeholderStyle");
+      final _flaxHas48 = values.containsKey("cursorRadius");
+      final _flaxHas54 = values.containsKey("scrollPadding");
+      final _flaxHas62 = values.containsKey("autofillHints");
+      final _flaxHas70 = values.containsKey("contextMenuBuilder");
+      return flaxInvokeWithDefaults(
         api.CupertinoTextField.borderless,
-        <Object?>[],
-        <Symbol, Object?>{
-          #key: values["key"] as api3.Key?,
-          if (values.containsKey("groupId"))
-            #groupId: values["groupId"] as Object,
-          #controller: values["controller"] as api10.TextEditingController?,
-          #focusNode: values["focusNode"] as api10.FocusNode?,
-          #undoController:
-              values["undoController"] as api10.UndoHistoryController?,
-          #decoration: values["decoration"] as api12.BoxDecoration?,
-          if (values.containsKey("padding"))
-            #padding: values["padding"] as api12.EdgeInsetsGeometry,
-          #placeholder: values["placeholder"] as String?,
-          if (values.containsKey("placeholderStyle"))
-            #placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
-          #prefix: values["prefix"] as api.Widget?,
-          #prefixMode: values["prefixMode"] as api.OverlayVisibilityMode,
-          #suffix: values["suffix"] as api.Widget?,
-          #suffixMode: values["suffixMode"] as api.OverlayVisibilityMode,
-          #crossAxisAlignment:
-              values["crossAxisAlignment"] as api9.CrossAxisAlignment,
-          #clearButtonMode:
-              values["clearButtonMode"] as api.OverlayVisibilityMode,
-          #clearButtonSemanticLabel:
-              values["clearButtonSemanticLabel"] as String?,
-          #keyboardType: values["keyboardType"] as api7.TextInputType?,
-          #textInputAction: values["textInputAction"] as api7.TextInputAction?,
-          #textCapitalization:
-              values["textCapitalization"] as api7.TextCapitalization,
-          #style: values["style"] as api12.TextStyle?,
-          #strutStyle: values["strutStyle"] as api12.StrutStyle?,
-          #textAlign: values["textAlign"] as api1.TextAlign,
-          #textAlignVertical:
-              values["textAlignVertical"] as api12.TextAlignVertical?,
-          #textDirection: values["textDirection"] as api1.TextDirection?,
-          #readOnly: values["readOnly"] as bool,
-          #toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
-          #showCursor: values["showCursor"] as bool?,
-          #autofocus: values["autofocus"] as bool,
-          #obscuringCharacter: values["obscuringCharacter"] as String,
-          #obscureText: values["obscureText"] as bool,
-          #autocorrect: values["autocorrect"] as bool?,
-          #smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
-          #smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
-          #enableSuggestions: values["enableSuggestions"] as bool,
-          #maxLines: values["maxLines"] as int?,
-          #minLines: values["minLines"] as int?,
-          #expands: values["expands"] as bool,
-          #maxLength: values["maxLength"] as int?,
-          #maxLengthEnforcement:
-              values["maxLengthEnforcement"] as api7.MaxLengthEnforcement?,
-          #onChanged: values["onChanged"] as void Function(String value)?,
-          #onEditingComplete: values["onEditingComplete"] as void Function()?,
-          #onSubmitted: values["onSubmitted"] as void Function(String value)?,
-          #onTapOutside:
-              values["onTapOutside"]
-                  as void Function(api4.PointerDownEvent event)?,
-          #onTapUpOutside:
-              values["onTapUpOutside"]
-                  as void Function(api4.PointerDownEvent event)?,
-          #inputFormatters:
-              values["inputFormatters"] as List<api7.TextInputFormatter>?,
-          #enabled: values["enabled"] as bool,
-          #cursorWidth: values["cursorWidth"] as double,
-          #cursorHeight: values["cursorHeight"] as double?,
-          if (values.containsKey("cursorRadius"))
-            #cursorRadius: values["cursorRadius"] as api1.Radius,
-          #cursorOpacityAnimates: values["cursorOpacityAnimates"] as bool,
-          #cursorColor: values["cursorColor"] as api1.Color?,
-          #selectionHeightStyle:
-              values["selectionHeightStyle"] as api1.BoxHeightStyle?,
-          #selectionWidthStyle:
-              values["selectionWidthStyle"] as api1.BoxWidthStyle?,
-          #keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
-          if (values.containsKey("scrollPadding"))
-            #scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
-          #dragStartBehavior:
-              values["dragStartBehavior"] as api4.DragStartBehavior,
-          #enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool?,
-          #selectAllOnFocus: values["selectAllOnFocus"] as bool?,
-          #selectionControls:
-              values["selectionControls"] as api10.TextSelectionControls?,
-          #onTap: values["onTap"] as void Function()?,
-          #scrollController:
-              values["scrollController"] as api10.ScrollController?,
-          #scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
-          if (values.containsKey("autofillHints"))
-            #autofillHints: values["autofillHints"] as Iterable<String>?,
-          #contentInsertionConfiguration:
-              values["contentInsertionConfiguration"]
-                  as api10.ContentInsertionConfiguration?,
-          #clipBehavior: values["clipBehavior"] as api1.Clip,
-          #restorationId: values["restorationId"] as String?,
-          #scribbleEnabled: values["scribbleEnabled"] as bool,
-          #stylusHandwritingEnabled: values["stylusHandwritingEnabled"] as bool,
-          #enableIMEPersonalizedLearning:
-              values["enableIMEPersonalizedLearning"] as bool,
-          #enableInlinePrediction: values["enableInlinePrediction"] as bool?,
-          if (values.containsKey("contextMenuBuilder"))
-            #contextMenuBuilder:
-                values["contextMenuBuilder"]
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1 ? values["groupId"] as Object : null),
+          values["controller"] as api10.TextEditingController?,
+          values["focusNode"] as api10.FocusNode?,
+          values["undoController"] as api10.UndoHistoryController?,
+          values["decoration"] as api12.BoxDecoration?,
+          (_flaxHas6 ? values["padding"] as api12.EdgeInsetsGeometry : null),
+          values["placeholder"] as String?,
+          (_flaxHas8 ? values["placeholderStyle"] as api12.TextStyle? : null),
+          values["prefix"] as api.Widget?,
+          values["prefixMode"] as api.OverlayVisibilityMode,
+          values["suffix"] as api.Widget?,
+          values["suffixMode"] as api.OverlayVisibilityMode,
+          values["crossAxisAlignment"] as api9.CrossAxisAlignment,
+          values["clearButtonMode"] as api.OverlayVisibilityMode,
+          values["clearButtonSemanticLabel"] as String?,
+          values["keyboardType"] as api7.TextInputType?,
+          values["textInputAction"] as api7.TextInputAction?,
+          values["textCapitalization"] as api7.TextCapitalization,
+          values["style"] as api12.TextStyle?,
+          values["strutStyle"] as api12.StrutStyle?,
+          values["textAlign"] as api1.TextAlign,
+          values["textAlignVertical"] as api12.TextAlignVertical?,
+          values["textDirection"] as api1.TextDirection?,
+          values["readOnly"] as bool,
+          values["toolbarOptions"] as api10.ToolbarOptions?,
+          values["showCursor"] as bool?,
+          values["autofocus"] as bool,
+          values["obscuringCharacter"] as String,
+          values["obscureText"] as bool,
+          values["autocorrect"] as bool?,
+          values["smartDashesType"] as api7.SmartDashesType?,
+          values["smartQuotesType"] as api7.SmartQuotesType?,
+          values["enableSuggestions"] as bool,
+          values["maxLines"] as int?,
+          values["minLines"] as int?,
+          values["expands"] as bool,
+          values["maxLength"] as int?,
+          values["maxLengthEnforcement"] as api7.MaxLengthEnforcement?,
+          values["onChanged"] as void Function(String value)?,
+          values["onEditingComplete"] as void Function()?,
+          values["onSubmitted"] as void Function(String value)?,
+          values["onTapOutside"] as void Function(api4.PointerDownEvent event)?,
+          values["onTapUpOutside"]
+              as void Function(api4.PointerDownEvent event)?,
+          values["inputFormatters"] as List<api7.TextInputFormatter>?,
+          values["enabled"] as bool,
+          values["cursorWidth"] as double,
+          values["cursorHeight"] as double?,
+          (_flaxHas48 ? values["cursorRadius"] as api1.Radius : null),
+          values["cursorOpacityAnimates"] as bool,
+          values["cursorColor"] as api1.Color?,
+          values["selectionHeightStyle"] as api1.BoxHeightStyle?,
+          values["selectionWidthStyle"] as api1.BoxWidthStyle?,
+          values["keyboardAppearance"] as api1.Brightness?,
+          (_flaxHas54 ? values["scrollPadding"] as api12.EdgeInsets : null),
+          values["dragStartBehavior"] as api4.DragStartBehavior,
+          values["enableInteractiveSelection"] as bool?,
+          values["selectAllOnFocus"] as bool?,
+          values["selectionControls"] as api10.TextSelectionControls?,
+          values["onTap"] as void Function()?,
+          values["scrollController"] as api10.ScrollController?,
+          values["scrollPhysics"] as api10.ScrollPhysics?,
+          (_flaxHas62 ? values["autofillHints"] as Iterable<String>? : null),
+          values["contentInsertionConfiguration"]
+              as api10.ContentInsertionConfiguration?,
+          values["clipBehavior"] as api1.Clip,
+          values["restorationId"] as String?,
+          values["scribbleEnabled"] as bool,
+          values["stylusHandwritingEnabled"] as bool,
+          values["enableIMEPersonalizedLearning"] as bool,
+          values["enableInlinePrediction"] as bool?,
+          (_flaxHas70
+              ? values["contextMenuBuilder"]
                     as api.Widget Function(
                       api10.BuildContext context,
                       api10.EditableTextState editableTextState,
-                    )?,
-          #spellCheckConfiguration:
-              values["spellCheckConfiguration"]
-                  as api10.SpellCheckConfiguration?,
-          #magnifierConfiguration:
-              values["magnifierConfiguration"]
-                  as api10.TextMagnifierConfiguration?,
-        },
+                    )?
+              : null),
+          values["spellCheckConfiguration"] as api10.SpellCheckConfiguration?,
+          values["magnifierConfiguration"] as api10.TextMagnifierConfiguration?,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              32 |
+              (_flaxHas6 ? 64 : 0) |
+              128 |
+              (_flaxHas8 ? 256 : 0) |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912 |
+              1073741824 |
+              2147483648,
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              (_flaxHas48 ? 65536 : 0) |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              (_flaxHas54 ? 4194304 : 0) |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912 |
+              (_flaxHas62 ? 1073741824 : 0) |
+              2147483648,
+          1 | 2 | 4 | 8 | 16 | 32 | (_flaxHas70 ? 64 : 0) | 128 | 256,
+        ],
+        const <String>[
+          "key",
+          "groupId",
+          "controller",
+          "focusNode",
+          "undoController",
+          "decoration",
+          "padding",
+          "placeholder",
+          "placeholderStyle",
+          "prefix",
+          "prefixMode",
+          "suffix",
+          "suffixMode",
+          "crossAxisAlignment",
+          "clearButtonMode",
+          "clearButtonSemanticLabel",
+          "keyboardType",
+          "textInputAction",
+          "textCapitalization",
+          "style",
+          "strutStyle",
+          "textAlign",
+          "textAlignVertical",
+          "textDirection",
+          "readOnly",
+          "toolbarOptions",
+          "showCursor",
+          "autofocus",
+          "obscuringCharacter",
+          "obscureText",
+          "autocorrect",
+          "smartDashesType",
+          "smartQuotesType",
+          "enableSuggestions",
+          "maxLines",
+          "minLines",
+          "expands",
+          "maxLength",
+          "maxLengthEnforcement",
+          "onChanged",
+          "onEditingComplete",
+          "onSubmitted",
+          "onTapOutside",
+          "onTapUpOutside",
+          "inputFormatters",
+          "enabled",
+          "cursorWidth",
+          "cursorHeight",
+          "cursorRadius",
+          "cursorOpacityAnimates",
+          "cursorColor",
+          "selectionHeightStyle",
+          "selectionWidthStyle",
+          "keyboardAppearance",
+          "scrollPadding",
+          "dragStartBehavior",
+          "enableInteractiveSelection",
+          "selectAllOnFocus",
+          "selectionControls",
+          "onTap",
+          "scrollController",
+          "scrollPhysics",
+          "autofillHints",
+          "contentInsertionConfiguration",
+          "clipBehavior",
+          "restorationId",
+          "scribbleEnabled",
+          "stylusHandwritingEnabled",
+          "enableIMEPersonalizedLearning",
+          "enableInlinePrediction",
+          "contextMenuBuilder",
+          "spellCheckConfiguration",
+          "magnifierConfiguration",
+        ],
       ) as api.CupertinoTextField;
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -18976,571 +18068,186 @@ api.Widget _createCupertinoTextFormFieldRow(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("scrollPadding")) {
-        if (!values.containsKey("placeholderStyle")) {
-          if (!values.containsKey("contextMenuBuilder")) {
-            return api.CupertinoTextFormFieldRow(
-              key: values["key"] as api3.Key?,
-              prefix: values["prefix"] as api.Widget?,
-              padding: values["padding"] as api12.EdgeInsetsGeometry?,
-              controller: values["controller"] as api10.TextEditingController?,
-              initialValue: values["initialValue"] as String?,
-              focusNode: values["focusNode"] as api10.FocusNode?,
-              decoration: values["decoration"] as api12.BoxDecoration?,
-              keyboardType: values["keyboardType"] as api7.TextInputType?,
-              textCapitalization:
-                  values["textCapitalization"] as api7.TextCapitalization,
-              textInputAction:
-                  values["textInputAction"] as api7.TextInputAction?,
-              style: values["style"] as api12.TextStyle?,
-              strutStyle: values["strutStyle"] as api12.StrutStyle?,
-              textDirection: values["textDirection"] as api1.TextDirection?,
-              textAlign: values["textAlign"] as api1.TextAlign,
-              textAlignVertical:
-                  values["textAlignVertical"] as api12.TextAlignVertical?,
-              autofocus: values["autofocus"] as bool,
-              readOnly: values["readOnly"] as bool,
-              toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
-              showCursor: values["showCursor"] as bool?,
-              obscuringCharacter: values["obscuringCharacter"] as String,
-              obscureText: values["obscureText"] as bool,
-              autocorrect: values["autocorrect"] as bool,
-              smartDashesType:
-                  values["smartDashesType"] as api7.SmartDashesType?,
-              smartQuotesType:
-                  values["smartQuotesType"] as api7.SmartQuotesType?,
-              enableSuggestions: values["enableSuggestions"] as bool,
-              maxLines: values["maxLines"] as int?,
-              minLines: values["minLines"] as int?,
-              expands: values["expands"] as bool,
-              maxLength: values["maxLength"] as int?,
-              onChanged: values["onChanged"] as void Function(String value)?,
-              onTap: values["onTap"] as void Function()?,
-              onEditingComplete:
-                  values["onEditingComplete"] as void Function()?,
-              onFieldSubmitted:
-                  values["onFieldSubmitted"] as void Function(String value)?,
-              onSaved: values["onSaved"] as void Function(String? newValue)?,
-              validator:
-                  values["validator"] as String? Function(String? value)?,
-              inputFormatters:
-                  values["inputFormatters"] as List<api7.TextInputFormatter>?,
-              enabled: values["enabled"] as bool?,
-              cursorWidth: values["cursorWidth"] as double,
-              cursorHeight: values["cursorHeight"] as double?,
-              cursorColor: values["cursorColor"] as api1.Color?,
-              keyboardAppearance:
-                  values["keyboardAppearance"] as api1.Brightness?,
-              enableInteractiveSelection:
-                  values["enableInteractiveSelection"] as bool,
-              selectionControls:
-                  values["selectionControls"] as api10.TextSelectionControls?,
-              scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
-              autofillHints: values["autofillHints"] as Iterable<String>?,
-              autovalidateMode:
-                  values["autovalidateMode"] as api10.AutovalidateMode,
-              placeholder: values["placeholder"] as String?,
-              spellCheckConfiguration:
-                  values["spellCheckConfiguration"]
-                      as api10.SpellCheckConfiguration?,
-              selectionHeightStyle:
-                  values["selectionHeightStyle"] as api1.BoxHeightStyle?,
-              selectionWidthStyle:
-                  values["selectionWidthStyle"] as api1.BoxWidthStyle?,
-              restorationId: values["restorationId"] as String?,
-            );
-          }
-          return api.CupertinoTextFormFieldRow(
-            key: values["key"] as api3.Key?,
-            prefix: values["prefix"] as api.Widget?,
-            padding: values["padding"] as api12.EdgeInsetsGeometry?,
-            controller: values["controller"] as api10.TextEditingController?,
-            initialValue: values["initialValue"] as String?,
-            focusNode: values["focusNode"] as api10.FocusNode?,
-            decoration: values["decoration"] as api12.BoxDecoration?,
-            keyboardType: values["keyboardType"] as api7.TextInputType?,
-            textCapitalization:
-                values["textCapitalization"] as api7.TextCapitalization,
-            textInputAction: values["textInputAction"] as api7.TextInputAction?,
-            style: values["style"] as api12.TextStyle?,
-            strutStyle: values["strutStyle"] as api12.StrutStyle?,
-            textDirection: values["textDirection"] as api1.TextDirection?,
-            textAlign: values["textAlign"] as api1.TextAlign,
-            textAlignVertical:
-                values["textAlignVertical"] as api12.TextAlignVertical?,
-            autofocus: values["autofocus"] as bool,
-            readOnly: values["readOnly"] as bool,
-            toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
-            showCursor: values["showCursor"] as bool?,
-            obscuringCharacter: values["obscuringCharacter"] as String,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            maxLines: values["maxLines"] as int?,
-            minLines: values["minLines"] as int?,
-            expands: values["expands"] as bool,
-            maxLength: values["maxLength"] as int?,
-            onChanged: values["onChanged"] as void Function(String value)?,
-            onTap: values["onTap"] as void Function()?,
-            onEditingComplete: values["onEditingComplete"] as void Function()?,
-            onFieldSubmitted:
-                values["onFieldSubmitted"] as void Function(String value)?,
-            onSaved: values["onSaved"] as void Function(String? newValue)?,
-            validator: values["validator"] as String? Function(String? value)?,
-            inputFormatters:
-                values["inputFormatters"] as List<api7.TextInputFormatter>?,
-            enabled: values["enabled"] as bool?,
-            cursorWidth: values["cursorWidth"] as double,
-            cursorHeight: values["cursorHeight"] as double?,
-            cursorColor: values["cursorColor"] as api1.Color?,
-            keyboardAppearance:
-                values["keyboardAppearance"] as api1.Brightness?,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            selectionControls:
-                values["selectionControls"] as api10.TextSelectionControls?,
-            scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
-            autofillHints: values["autofillHints"] as Iterable<String>?,
-            autovalidateMode:
-                values["autovalidateMode"] as api10.AutovalidateMode,
-            placeholder: values["placeholder"] as String?,
-            contextMenuBuilder:
-                values["contextMenuBuilder"]
+      final _flaxHas41 = values.containsKey("scrollPadding");
+      final _flaxHas48 = values.containsKey("placeholderStyle");
+      final _flaxHas49 = values.containsKey("contextMenuBuilder");
+      return flaxInvokeWithDefaults(
+        api.CupertinoTextFormFieldRow.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["prefix"] as api.Widget?,
+          values["padding"] as api12.EdgeInsetsGeometry?,
+          values["controller"] as api10.TextEditingController?,
+          values["initialValue"] as String?,
+          values["focusNode"] as api10.FocusNode?,
+          values["decoration"] as api12.BoxDecoration?,
+          values["keyboardType"] as api7.TextInputType?,
+          values["textCapitalization"] as api7.TextCapitalization,
+          values["textInputAction"] as api7.TextInputAction?,
+          values["style"] as api12.TextStyle?,
+          values["strutStyle"] as api12.StrutStyle?,
+          values["textDirection"] as api1.TextDirection?,
+          values["textAlign"] as api1.TextAlign,
+          values["textAlignVertical"] as api12.TextAlignVertical?,
+          values["autofocus"] as bool,
+          values["readOnly"] as bool,
+          values["toolbarOptions"] as api10.ToolbarOptions?,
+          values["showCursor"] as bool?,
+          values["obscuringCharacter"] as String,
+          values["obscureText"] as bool,
+          values["autocorrect"] as bool,
+          values["smartDashesType"] as api7.SmartDashesType?,
+          values["smartQuotesType"] as api7.SmartQuotesType?,
+          values["enableSuggestions"] as bool,
+          values["maxLines"] as int?,
+          values["minLines"] as int?,
+          values["expands"] as bool,
+          values["maxLength"] as int?,
+          values["onChanged"] as void Function(String value)?,
+          values["onTap"] as void Function()?,
+          values["onEditingComplete"] as void Function()?,
+          values["onFieldSubmitted"] as void Function(String value)?,
+          values["onSaved"] as void Function(String? newValue)?,
+          values["validator"] as String? Function(String? value)?,
+          values["inputFormatters"] as List<api7.TextInputFormatter>?,
+          values["enabled"] as bool?,
+          values["cursorWidth"] as double,
+          values["cursorHeight"] as double?,
+          values["cursorColor"] as api1.Color?,
+          values["keyboardAppearance"] as api1.Brightness?,
+          (_flaxHas41 ? values["scrollPadding"] as api12.EdgeInsets : null),
+          values["enableInteractiveSelection"] as bool,
+          values["selectionControls"] as api10.TextSelectionControls?,
+          values["scrollPhysics"] as api10.ScrollPhysics?,
+          values["autofillHints"] as Iterable<String>?,
+          values["autovalidateMode"] as api10.AutovalidateMode,
+          values["placeholder"] as String?,
+          (_flaxHas48 ? values["placeholderStyle"] as api12.TextStyle? : null),
+          (_flaxHas49
+              ? values["contextMenuBuilder"]
                     as api.Widget Function(
                       api10.BuildContext context,
                       api10.EditableTextState editableTextState,
-                    )?,
-            spellCheckConfiguration:
-                values["spellCheckConfiguration"]
-                    as api10.SpellCheckConfiguration?,
-            selectionHeightStyle:
-                values["selectionHeightStyle"] as api1.BoxHeightStyle?,
-            selectionWidthStyle:
-                values["selectionWidthStyle"] as api1.BoxWidthStyle?,
-            restorationId: values["restorationId"] as String?,
-          );
-        }
-        if (!values.containsKey("contextMenuBuilder")) {
-          return api.CupertinoTextFormFieldRow(
-            key: values["key"] as api3.Key?,
-            prefix: values["prefix"] as api.Widget?,
-            padding: values["padding"] as api12.EdgeInsetsGeometry?,
-            controller: values["controller"] as api10.TextEditingController?,
-            initialValue: values["initialValue"] as String?,
-            focusNode: values["focusNode"] as api10.FocusNode?,
-            decoration: values["decoration"] as api12.BoxDecoration?,
-            keyboardType: values["keyboardType"] as api7.TextInputType?,
-            textCapitalization:
-                values["textCapitalization"] as api7.TextCapitalization,
-            textInputAction: values["textInputAction"] as api7.TextInputAction?,
-            style: values["style"] as api12.TextStyle?,
-            strutStyle: values["strutStyle"] as api12.StrutStyle?,
-            textDirection: values["textDirection"] as api1.TextDirection?,
-            textAlign: values["textAlign"] as api1.TextAlign,
-            textAlignVertical:
-                values["textAlignVertical"] as api12.TextAlignVertical?,
-            autofocus: values["autofocus"] as bool,
-            readOnly: values["readOnly"] as bool,
-            toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
-            showCursor: values["showCursor"] as bool?,
-            obscuringCharacter: values["obscuringCharacter"] as String,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            maxLines: values["maxLines"] as int?,
-            minLines: values["minLines"] as int?,
-            expands: values["expands"] as bool,
-            maxLength: values["maxLength"] as int?,
-            onChanged: values["onChanged"] as void Function(String value)?,
-            onTap: values["onTap"] as void Function()?,
-            onEditingComplete: values["onEditingComplete"] as void Function()?,
-            onFieldSubmitted:
-                values["onFieldSubmitted"] as void Function(String value)?,
-            onSaved: values["onSaved"] as void Function(String? newValue)?,
-            validator: values["validator"] as String? Function(String? value)?,
-            inputFormatters:
-                values["inputFormatters"] as List<api7.TextInputFormatter>?,
-            enabled: values["enabled"] as bool?,
-            cursorWidth: values["cursorWidth"] as double,
-            cursorHeight: values["cursorHeight"] as double?,
-            cursorColor: values["cursorColor"] as api1.Color?,
-            keyboardAppearance:
-                values["keyboardAppearance"] as api1.Brightness?,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            selectionControls:
-                values["selectionControls"] as api10.TextSelectionControls?,
-            scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
-            autofillHints: values["autofillHints"] as Iterable<String>?,
-            autovalidateMode:
-                values["autovalidateMode"] as api10.AutovalidateMode,
-            placeholder: values["placeholder"] as String?,
-            placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
-            spellCheckConfiguration:
-                values["spellCheckConfiguration"]
-                    as api10.SpellCheckConfiguration?,
-            selectionHeightStyle:
-                values["selectionHeightStyle"] as api1.BoxHeightStyle?,
-            selectionWidthStyle:
-                values["selectionWidthStyle"] as api1.BoxWidthStyle?,
-            restorationId: values["restorationId"] as String?,
-          );
-        }
-        return api.CupertinoTextFormFieldRow(
-          key: values["key"] as api3.Key?,
-          prefix: values["prefix"] as api.Widget?,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          controller: values["controller"] as api10.TextEditingController?,
-          initialValue: values["initialValue"] as String?,
-          focusNode: values["focusNode"] as api10.FocusNode?,
-          decoration: values["decoration"] as api12.BoxDecoration?,
-          keyboardType: values["keyboardType"] as api7.TextInputType?,
-          textCapitalization:
-              values["textCapitalization"] as api7.TextCapitalization,
-          textInputAction: values["textInputAction"] as api7.TextInputAction?,
-          style: values["style"] as api12.TextStyle?,
-          strutStyle: values["strutStyle"] as api12.StrutStyle?,
-          textDirection: values["textDirection"] as api1.TextDirection?,
-          textAlign: values["textAlign"] as api1.TextAlign,
-          textAlignVertical:
-              values["textAlignVertical"] as api12.TextAlignVertical?,
-          autofocus: values["autofocus"] as bool,
-          readOnly: values["readOnly"] as bool,
-          toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
-          showCursor: values["showCursor"] as bool?,
-          obscuringCharacter: values["obscuringCharacter"] as String,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          maxLines: values["maxLines"] as int?,
-          minLines: values["minLines"] as int?,
-          expands: values["expands"] as bool,
-          maxLength: values["maxLength"] as int?,
-          onChanged: values["onChanged"] as void Function(String value)?,
-          onTap: values["onTap"] as void Function()?,
-          onEditingComplete: values["onEditingComplete"] as void Function()?,
-          onFieldSubmitted:
-              values["onFieldSubmitted"] as void Function(String value)?,
-          onSaved: values["onSaved"] as void Function(String? newValue)?,
-          validator: values["validator"] as String? Function(String? value)?,
-          inputFormatters:
-              values["inputFormatters"] as List<api7.TextInputFormatter>?,
-          enabled: values["enabled"] as bool?,
-          cursorWidth: values["cursorWidth"] as double,
-          cursorHeight: values["cursorHeight"] as double?,
-          cursorColor: values["cursorColor"] as api1.Color?,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          selectionControls:
-              values["selectionControls"] as api10.TextSelectionControls?,
-          scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
-          autofillHints: values["autofillHints"] as Iterable<String>?,
-          autovalidateMode:
-              values["autovalidateMode"] as api10.AutovalidateMode,
-          placeholder: values["placeholder"] as String?,
-          placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
-          contextMenuBuilder:
-              values["contextMenuBuilder"]
-                  as api.Widget Function(
-                    api10.BuildContext context,
-                    api10.EditableTextState editableTextState,
-                  )?,
-          spellCheckConfiguration:
-              values["spellCheckConfiguration"]
-                  as api10.SpellCheckConfiguration?,
-          selectionHeightStyle:
-              values["selectionHeightStyle"] as api1.BoxHeightStyle?,
-          selectionWidthStyle:
-              values["selectionWidthStyle"] as api1.BoxWidthStyle?,
-          restorationId: values["restorationId"] as String?,
-        );
-      }
-      if (!values.containsKey("placeholderStyle")) {
-        if (!values.containsKey("contextMenuBuilder")) {
-          return api.CupertinoTextFormFieldRow(
-            key: values["key"] as api3.Key?,
-            prefix: values["prefix"] as api.Widget?,
-            padding: values["padding"] as api12.EdgeInsetsGeometry?,
-            controller: values["controller"] as api10.TextEditingController?,
-            initialValue: values["initialValue"] as String?,
-            focusNode: values["focusNode"] as api10.FocusNode?,
-            decoration: values["decoration"] as api12.BoxDecoration?,
-            keyboardType: values["keyboardType"] as api7.TextInputType?,
-            textCapitalization:
-                values["textCapitalization"] as api7.TextCapitalization,
-            textInputAction: values["textInputAction"] as api7.TextInputAction?,
-            style: values["style"] as api12.TextStyle?,
-            strutStyle: values["strutStyle"] as api12.StrutStyle?,
-            textDirection: values["textDirection"] as api1.TextDirection?,
-            textAlign: values["textAlign"] as api1.TextAlign,
-            textAlignVertical:
-                values["textAlignVertical"] as api12.TextAlignVertical?,
-            autofocus: values["autofocus"] as bool,
-            readOnly: values["readOnly"] as bool,
-            toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
-            showCursor: values["showCursor"] as bool?,
-            obscuringCharacter: values["obscuringCharacter"] as String,
-            obscureText: values["obscureText"] as bool,
-            autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
-            enableSuggestions: values["enableSuggestions"] as bool,
-            maxLines: values["maxLines"] as int?,
-            minLines: values["minLines"] as int?,
-            expands: values["expands"] as bool,
-            maxLength: values["maxLength"] as int?,
-            onChanged: values["onChanged"] as void Function(String value)?,
-            onTap: values["onTap"] as void Function()?,
-            onEditingComplete: values["onEditingComplete"] as void Function()?,
-            onFieldSubmitted:
-                values["onFieldSubmitted"] as void Function(String value)?,
-            onSaved: values["onSaved"] as void Function(String? newValue)?,
-            validator: values["validator"] as String? Function(String? value)?,
-            inputFormatters:
-                values["inputFormatters"] as List<api7.TextInputFormatter>?,
-            enabled: values["enabled"] as bool?,
-            cursorWidth: values["cursorWidth"] as double,
-            cursorHeight: values["cursorHeight"] as double?,
-            cursorColor: values["cursorColor"] as api1.Color?,
-            keyboardAppearance:
-                values["keyboardAppearance"] as api1.Brightness?,
-            scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
-            enableInteractiveSelection:
-                values["enableInteractiveSelection"] as bool,
-            selectionControls:
-                values["selectionControls"] as api10.TextSelectionControls?,
-            scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
-            autofillHints: values["autofillHints"] as Iterable<String>?,
-            autovalidateMode:
-                values["autovalidateMode"] as api10.AutovalidateMode,
-            placeholder: values["placeholder"] as String?,
-            spellCheckConfiguration:
-                values["spellCheckConfiguration"]
-                    as api10.SpellCheckConfiguration?,
-            selectionHeightStyle:
-                values["selectionHeightStyle"] as api1.BoxHeightStyle?,
-            selectionWidthStyle:
-                values["selectionWidthStyle"] as api1.BoxWidthStyle?,
-            restorationId: values["restorationId"] as String?,
-          );
-        }
-        return api.CupertinoTextFormFieldRow(
-          key: values["key"] as api3.Key?,
-          prefix: values["prefix"] as api.Widget?,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          controller: values["controller"] as api10.TextEditingController?,
-          initialValue: values["initialValue"] as String?,
-          focusNode: values["focusNode"] as api10.FocusNode?,
-          decoration: values["decoration"] as api12.BoxDecoration?,
-          keyboardType: values["keyboardType"] as api7.TextInputType?,
-          textCapitalization:
-              values["textCapitalization"] as api7.TextCapitalization,
-          textInputAction: values["textInputAction"] as api7.TextInputAction?,
-          style: values["style"] as api12.TextStyle?,
-          strutStyle: values["strutStyle"] as api12.StrutStyle?,
-          textDirection: values["textDirection"] as api1.TextDirection?,
-          textAlign: values["textAlign"] as api1.TextAlign,
-          textAlignVertical:
-              values["textAlignVertical"] as api12.TextAlignVertical?,
-          autofocus: values["autofocus"] as bool,
-          readOnly: values["readOnly"] as bool,
-          toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
-          showCursor: values["showCursor"] as bool?,
-          obscuringCharacter: values["obscuringCharacter"] as String,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          maxLines: values["maxLines"] as int?,
-          minLines: values["minLines"] as int?,
-          expands: values["expands"] as bool,
-          maxLength: values["maxLength"] as int?,
-          onChanged: values["onChanged"] as void Function(String value)?,
-          onTap: values["onTap"] as void Function()?,
-          onEditingComplete: values["onEditingComplete"] as void Function()?,
-          onFieldSubmitted:
-              values["onFieldSubmitted"] as void Function(String value)?,
-          onSaved: values["onSaved"] as void Function(String? newValue)?,
-          validator: values["validator"] as String? Function(String? value)?,
-          inputFormatters:
-              values["inputFormatters"] as List<api7.TextInputFormatter>?,
-          enabled: values["enabled"] as bool?,
-          cursorWidth: values["cursorWidth"] as double,
-          cursorHeight: values["cursorHeight"] as double?,
-          cursorColor: values["cursorColor"] as api1.Color?,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
-          scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          selectionControls:
-              values["selectionControls"] as api10.TextSelectionControls?,
-          scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
-          autofillHints: values["autofillHints"] as Iterable<String>?,
-          autovalidateMode:
-              values["autovalidateMode"] as api10.AutovalidateMode,
-          placeholder: values["placeholder"] as String?,
-          contextMenuBuilder:
-              values["contextMenuBuilder"]
-                  as api.Widget Function(
-                    api10.BuildContext context,
-                    api10.EditableTextState editableTextState,
-                  )?,
-          spellCheckConfiguration:
-              values["spellCheckConfiguration"]
-                  as api10.SpellCheckConfiguration?,
-          selectionHeightStyle:
-              values["selectionHeightStyle"] as api1.BoxHeightStyle?,
-          selectionWidthStyle:
-              values["selectionWidthStyle"] as api1.BoxWidthStyle?,
-          restorationId: values["restorationId"] as String?,
-        );
-      }
-      if (!values.containsKey("contextMenuBuilder")) {
-        return api.CupertinoTextFormFieldRow(
-          key: values["key"] as api3.Key?,
-          prefix: values["prefix"] as api.Widget?,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          controller: values["controller"] as api10.TextEditingController?,
-          initialValue: values["initialValue"] as String?,
-          focusNode: values["focusNode"] as api10.FocusNode?,
-          decoration: values["decoration"] as api12.BoxDecoration?,
-          keyboardType: values["keyboardType"] as api7.TextInputType?,
-          textCapitalization:
-              values["textCapitalization"] as api7.TextCapitalization,
-          textInputAction: values["textInputAction"] as api7.TextInputAction?,
-          style: values["style"] as api12.TextStyle?,
-          strutStyle: values["strutStyle"] as api12.StrutStyle?,
-          textDirection: values["textDirection"] as api1.TextDirection?,
-          textAlign: values["textAlign"] as api1.TextAlign,
-          textAlignVertical:
-              values["textAlignVertical"] as api12.TextAlignVertical?,
-          autofocus: values["autofocus"] as bool,
-          readOnly: values["readOnly"] as bool,
-          toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
-          showCursor: values["showCursor"] as bool?,
-          obscuringCharacter: values["obscuringCharacter"] as String,
-          obscureText: values["obscureText"] as bool,
-          autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
-          enableSuggestions: values["enableSuggestions"] as bool,
-          maxLines: values["maxLines"] as int?,
-          minLines: values["minLines"] as int?,
-          expands: values["expands"] as bool,
-          maxLength: values["maxLength"] as int?,
-          onChanged: values["onChanged"] as void Function(String value)?,
-          onTap: values["onTap"] as void Function()?,
-          onEditingComplete: values["onEditingComplete"] as void Function()?,
-          onFieldSubmitted:
-              values["onFieldSubmitted"] as void Function(String value)?,
-          onSaved: values["onSaved"] as void Function(String? newValue)?,
-          validator: values["validator"] as String? Function(String? value)?,
-          inputFormatters:
-              values["inputFormatters"] as List<api7.TextInputFormatter>?,
-          enabled: values["enabled"] as bool?,
-          cursorWidth: values["cursorWidth"] as double,
-          cursorHeight: values["cursorHeight"] as double?,
-          cursorColor: values["cursorColor"] as api1.Color?,
-          keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
-          scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
-          enableInteractiveSelection:
-              values["enableInteractiveSelection"] as bool,
-          selectionControls:
-              values["selectionControls"] as api10.TextSelectionControls?,
-          scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
-          autofillHints: values["autofillHints"] as Iterable<String>?,
-          autovalidateMode:
-              values["autovalidateMode"] as api10.AutovalidateMode,
-          placeholder: values["placeholder"] as String?,
-          placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
-          spellCheckConfiguration:
-              values["spellCheckConfiguration"]
-                  as api10.SpellCheckConfiguration?,
-          selectionHeightStyle:
-              values["selectionHeightStyle"] as api1.BoxHeightStyle?,
-          selectionWidthStyle:
-              values["selectionWidthStyle"] as api1.BoxWidthStyle?,
-          restorationId: values["restorationId"] as String?,
-        );
-      }
-      return api.CupertinoTextFormFieldRow(
-        key: values["key"] as api3.Key?,
-        prefix: values["prefix"] as api.Widget?,
-        padding: values["padding"] as api12.EdgeInsetsGeometry?,
-        controller: values["controller"] as api10.TextEditingController?,
-        initialValue: values["initialValue"] as String?,
-        focusNode: values["focusNode"] as api10.FocusNode?,
-        decoration: values["decoration"] as api12.BoxDecoration?,
-        keyboardType: values["keyboardType"] as api7.TextInputType?,
-        textCapitalization:
-            values["textCapitalization"] as api7.TextCapitalization,
-        textInputAction: values["textInputAction"] as api7.TextInputAction?,
-        style: values["style"] as api12.TextStyle?,
-        strutStyle: values["strutStyle"] as api12.StrutStyle?,
-        textDirection: values["textDirection"] as api1.TextDirection?,
-        textAlign: values["textAlign"] as api1.TextAlign,
-        textAlignVertical:
-            values["textAlignVertical"] as api12.TextAlignVertical?,
-        autofocus: values["autofocus"] as bool,
-        readOnly: values["readOnly"] as bool,
-        toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
-        showCursor: values["showCursor"] as bool?,
-        obscuringCharacter: values["obscuringCharacter"] as String,
-        obscureText: values["obscureText"] as bool,
-        autocorrect: values["autocorrect"] as bool,
-        smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
-        smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
-        enableSuggestions: values["enableSuggestions"] as bool,
-        maxLines: values["maxLines"] as int?,
-        minLines: values["minLines"] as int?,
-        expands: values["expands"] as bool,
-        maxLength: values["maxLength"] as int?,
-        onChanged: values["onChanged"] as void Function(String value)?,
-        onTap: values["onTap"] as void Function()?,
-        onEditingComplete: values["onEditingComplete"] as void Function()?,
-        onFieldSubmitted:
-            values["onFieldSubmitted"] as void Function(String value)?,
-        onSaved: values["onSaved"] as void Function(String? newValue)?,
-        validator: values["validator"] as String? Function(String? value)?,
-        inputFormatters:
-            values["inputFormatters"] as List<api7.TextInputFormatter>?,
-        enabled: values["enabled"] as bool?,
-        cursorWidth: values["cursorWidth"] as double,
-        cursorHeight: values["cursorHeight"] as double?,
-        cursorColor: values["cursorColor"] as api1.Color?,
-        keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
-        scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
-        enableInteractiveSelection:
-            values["enableInteractiveSelection"] as bool,
-        selectionControls:
-            values["selectionControls"] as api10.TextSelectionControls?,
-        scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
-        autofillHints: values["autofillHints"] as Iterable<String>?,
-        autovalidateMode: values["autovalidateMode"] as api10.AutovalidateMode,
-        placeholder: values["placeholder"] as String?,
-        placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
-        contextMenuBuilder:
-            values["contextMenuBuilder"]
-                as api.Widget Function(
-                  api10.BuildContext context,
-                  api10.EditableTextState editableTextState,
-                )?,
-        spellCheckConfiguration:
-            values["spellCheckConfiguration"] as api10.SpellCheckConfiguration?,
-        selectionHeightStyle:
-            values["selectionHeightStyle"] as api1.BoxHeightStyle?,
-        selectionWidthStyle:
-            values["selectionWidthStyle"] as api1.BoxWidthStyle?,
-        restorationId: values["restorationId"] as String?,
-      );
+                    )?
+              : null),
+          values["spellCheckConfiguration"] as api10.SpellCheckConfiguration?,
+          values["selectionHeightStyle"] as api1.BoxHeightStyle?,
+          values["selectionWidthStyle"] as api1.BoxWidthStyle?,
+          values["restorationId"] as String?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912 |
+              1073741824 |
+              2147483648,
+          1 |
+              2 |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              (_flaxHas41 ? 512 : 0) |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              (_flaxHas48 ? 65536 : 0) |
+              (_flaxHas49 ? 131072 : 0) |
+              262144 |
+              524288 |
+              1048576 |
+              2097152,
+        ],
+        const <String>[
+          "key",
+          "prefix",
+          "padding",
+          "controller",
+          "initialValue",
+          "focusNode",
+          "decoration",
+          "keyboardType",
+          "textCapitalization",
+          "textInputAction",
+          "style",
+          "strutStyle",
+          "textDirection",
+          "textAlign",
+          "textAlignVertical",
+          "autofocus",
+          "readOnly",
+          "toolbarOptions",
+          "showCursor",
+          "obscuringCharacter",
+          "obscureText",
+          "autocorrect",
+          "smartDashesType",
+          "smartQuotesType",
+          "enableSuggestions",
+          "maxLines",
+          "minLines",
+          "expands",
+          "maxLength",
+          "onChanged",
+          "onTap",
+          "onEditingComplete",
+          "onFieldSubmitted",
+          "onSaved",
+          "validator",
+          "inputFormatters",
+          "enabled",
+          "cursorWidth",
+          "cursorHeight",
+          "cursorColor",
+          "keyboardAppearance",
+          "scrollPadding",
+          "enableInteractiveSelection",
+          "selectionControls",
+          "scrollPhysics",
+          "autofillHints",
+          "autovalidateMode",
+          "placeholder",
+          "placeholderStyle",
+          "contextMenuBuilder",
+          "spellCheckConfiguration",
+          "selectionHeightStyle",
+          "selectionWidthStyle",
+          "restorationId",
+        ],
+      ) as api.CupertinoTextFormFieldRow;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -19638,30 +18345,29 @@ api.Widget _createCupertinoTextMagnifier(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("animationCurve")) {
-        return api.CupertinoTextMagnifier(
-          key: values["key"] as api3.Key?,
-          controller: values["controller"] as api10.MagnifierController,
-          dragResistance: values["dragResistance"] as double,
-          hideBelowThreshold: values["hideBelowThreshold"] as double,
-          horizontalScreenEdgePadding:
-              values["horizontalScreenEdgePadding"] as double,
-          magnifierInfo:
-              values["magnifierInfo"]
-                  as api3.ValueNotifier<api10.MagnifierInfo>,
-        );
-      }
-      return api.CupertinoTextMagnifier(
-        key: values["key"] as api3.Key?,
-        animationCurve: values["animationCurve"] as api11.Curve,
-        controller: values["controller"] as api10.MagnifierController,
-        dragResistance: values["dragResistance"] as double,
-        hideBelowThreshold: values["hideBelowThreshold"] as double,
-        horizontalScreenEdgePadding:
-            values["horizontalScreenEdgePadding"] as double,
-        magnifierInfo:
-            values["magnifierInfo"] as api3.ValueNotifier<api10.MagnifierInfo>,
-      );
+      final _flaxHas1 = values.containsKey("animationCurve");
+      return flaxInvokeWithDefaults(
+        api.CupertinoTextMagnifier.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          (_flaxHas1 ? values["animationCurve"] as api11.Curve : null),
+          values["controller"] as api10.MagnifierController,
+          values["dragResistance"] as double,
+          values["hideBelowThreshold"] as double,
+          values["horizontalScreenEdgePadding"] as double,
+          values["magnifierInfo"] as api3.ValueNotifier<api10.MagnifierInfo>,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32 | 64],
+        const <String>[
+          "key",
+          "animationCurve",
+          "controller",
+          "dragResistance",
+          "hideBelowThreshold",
+          "horizontalScreenEdgePadding",
+          "magnifierInfo",
+        ],
+      ) as api.CupertinoTextMagnifier;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -19961,28 +18667,33 @@ api.Widget _createCupertinoTextSelectionToolbar(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("toolbarBuilder")) {
-        return api.CupertinoTextSelectionToolbar(
-          key: values["key"] as api3.Key?,
-          anchorAbove: values["anchorAbove"] as api1.Offset,
-          anchorBelow: values["anchorBelow"] as api1.Offset,
-          children: values["children"] as List<api.Widget>,
-        );
-      }
-      return api.CupertinoTextSelectionToolbar(
-        key: values["key"] as api3.Key?,
-        anchorAbove: values["anchorAbove"] as api1.Offset,
-        anchorBelow: values["anchorBelow"] as api1.Offset,
-        children: values["children"] as List<api.Widget>,
-        toolbarBuilder:
-            values["toolbarBuilder"]
-                as api.Widget Function(
-                  api10.BuildContext context,
-                  api1.Offset anchorAbove,
-                  api1.Offset anchorBelow,
-                  api.Widget child,
-                ),
-      );
+      final _flaxHas4 = values.containsKey("toolbarBuilder");
+      return flaxInvokeWithDefaults(
+        api.CupertinoTextSelectionToolbar.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["anchorAbove"] as api1.Offset,
+          values["anchorBelow"] as api1.Offset,
+          values["children"] as List<api.Widget>,
+          (_flaxHas4
+              ? values["toolbarBuilder"]
+                    as api.Widget Function(
+                      api10.BuildContext context,
+                      api1.Offset anchorAbove,
+                      api1.Offset anchorBelow,
+                      api.Widget child,
+                    )
+              : null),
+        ],
+        <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0)],
+        const <String>[
+          "key",
+          "anchorAbove",
+          "anchorBelow",
+          "children",
+          "toolbarBuilder",
+        ],
+      ) as api.CupertinoTextSelectionToolbar;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -20265,71 +18976,79 @@ Object? _CupertinoTextThemeData_super_get_dateTimePickerTextStyle(
 Object _createCupertinoTextThemeData(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("primaryColor")) {
-        return api.CupertinoTextThemeData(
-          textStyle: values["textStyle"] as api12.TextStyle?,
-          actionTextStyle: values["actionTextStyle"] as api12.TextStyle?,
-          actionSmallTextStyle:
-              values["actionSmallTextStyle"] as api12.TextStyle?,
-          tabLabelTextStyle: values["tabLabelTextStyle"] as api12.TextStyle?,
-          navTitleTextStyle: values["navTitleTextStyle"] as api12.TextStyle?,
-          navLargeTitleTextStyle:
-              values["navLargeTitleTextStyle"] as api12.TextStyle?,
-          navActionTextStyle: values["navActionTextStyle"] as api12.TextStyle?,
-          pickerTextStyle: values["pickerTextStyle"] as api12.TextStyle?,
-          dateTimePickerTextStyle:
-              values["dateTimePickerTextStyle"] as api12.TextStyle?,
-        );
-      }
-      return api.CupertinoTextThemeData(
-        primaryColor: values["primaryColor"] as api1.Color,
-        textStyle: values["textStyle"] as api12.TextStyle?,
-        actionTextStyle: values["actionTextStyle"] as api12.TextStyle?,
-        actionSmallTextStyle:
-            values["actionSmallTextStyle"] as api12.TextStyle?,
-        tabLabelTextStyle: values["tabLabelTextStyle"] as api12.TextStyle?,
-        navTitleTextStyle: values["navTitleTextStyle"] as api12.TextStyle?,
-        navLargeTitleTextStyle:
-            values["navLargeTitleTextStyle"] as api12.TextStyle?,
-        navActionTextStyle: values["navActionTextStyle"] as api12.TextStyle?,
-        pickerTextStyle: values["pickerTextStyle"] as api12.TextStyle?,
-        dateTimePickerTextStyle:
-            values["dateTimePickerTextStyle"] as api12.TextStyle?,
-      );
+      final _flaxHas0 = values.containsKey("primaryColor");
+      return flaxInvokeWithDefaults(
+        api.CupertinoTextThemeData.new,
+        <Object?>[
+          (_flaxHas0 ? values["primaryColor"] as api1.Color : null),
+          values["textStyle"] as api12.TextStyle?,
+          values["actionTextStyle"] as api12.TextStyle?,
+          values["actionSmallTextStyle"] as api12.TextStyle?,
+          values["tabLabelTextStyle"] as api12.TextStyle?,
+          values["navTitleTextStyle"] as api12.TextStyle?,
+          values["navLargeTitleTextStyle"] as api12.TextStyle?,
+          values["navActionTextStyle"] as api12.TextStyle?,
+          values["pickerTextStyle"] as api12.TextStyle?,
+          values["dateTimePickerTextStyle"] as api12.TextStyle?,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 512],
+        const <String>[
+          "primaryColor",
+          "textStyle",
+          "actionTextStyle",
+          "actionSmallTextStyle",
+          "tabLabelTextStyle",
+          "navTitleTextStyle",
+          "navLargeTitleTextStyle",
+          "navActionTextStyle",
+          "pickerTextStyle",
+          "dateTimePickerTextStyle",
+        ],
+      ) as api.CupertinoTextThemeData;
     case '@implementation':
-      if (!values.containsKey("primaryColor")) {
-        return _CupertinoTextThemeDataProxy(
+      final _flaxHas1 = values.containsKey("primaryColor");
+      return flaxInvokeWithDefaults(
+        _CupertinoTextThemeDataProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          textStyle: values["textStyle"] as api12.TextStyle?,
-          actionTextStyle: values["actionTextStyle"] as api12.TextStyle?,
-          actionSmallTextStyle:
-              values["actionSmallTextStyle"] as api12.TextStyle?,
-          tabLabelTextStyle: values["tabLabelTextStyle"] as api12.TextStyle?,
-          navTitleTextStyle: values["navTitleTextStyle"] as api12.TextStyle?,
-          navLargeTitleTextStyle:
-              values["navLargeTitleTextStyle"] as api12.TextStyle?,
-          navActionTextStyle: values["navActionTextStyle"] as api12.TextStyle?,
-          pickerTextStyle: values["pickerTextStyle"] as api12.TextStyle?,
-          dateTimePickerTextStyle:
-              values["dateTimePickerTextStyle"] as api12.TextStyle?,
-        );
-      }
-      return _CupertinoTextThemeDataProxy(
-        values['@peer'] as FlaxProxyPeer,
-        primaryColor: values["primaryColor"] as api1.Color,
-        textStyle: values["textStyle"] as api12.TextStyle?,
-        actionTextStyle: values["actionTextStyle"] as api12.TextStyle?,
-        actionSmallTextStyle:
-            values["actionSmallTextStyle"] as api12.TextStyle?,
-        tabLabelTextStyle: values["tabLabelTextStyle"] as api12.TextStyle?,
-        navTitleTextStyle: values["navTitleTextStyle"] as api12.TextStyle?,
-        navLargeTitleTextStyle:
-            values["navLargeTitleTextStyle"] as api12.TextStyle?,
-        navActionTextStyle: values["navActionTextStyle"] as api12.TextStyle?,
-        pickerTextStyle: values["pickerTextStyle"] as api12.TextStyle?,
-        dateTimePickerTextStyle:
-            values["dateTimePickerTextStyle"] as api12.TextStyle?,
-      );
+          (_flaxHas1 ? values["primaryColor"] as api1.Color : null),
+          values["textStyle"] as api12.TextStyle?,
+          values["actionTextStyle"] as api12.TextStyle?,
+          values["actionSmallTextStyle"] as api12.TextStyle?,
+          values["tabLabelTextStyle"] as api12.TextStyle?,
+          values["navTitleTextStyle"] as api12.TextStyle?,
+          values["navLargeTitleTextStyle"] as api12.TextStyle?,
+          values["navActionTextStyle"] as api12.TextStyle?,
+          values["pickerTextStyle"] as api12.TextStyle?,
+          values["dateTimePickerTextStyle"] as api12.TextStyle?,
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              4 |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024,
+        ],
+        const <String>[
+          "",
+          "primaryColor",
+          "textStyle",
+          "actionTextStyle",
+          "actionSmallTextStyle",
+          "tabLabelTextStyle",
+          "navTitleTextStyle",
+          "navLargeTitleTextStyle",
+          "navActionTextStyle",
+          "pickerTextStyle",
+          "dateTimePickerTextStyle",
+        ],
+      ) as api.CupertinoTextThemeData;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -20673,83 +19392,55 @@ Object? _CupertinoThumbPainter_super_get_shadows(
 Object _createCupertinoThumbPainter(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("color")) {
-        if (!values.containsKey("shadows")) {
-          return api.CupertinoThumbPainter();
-        }
-        return api.CupertinoThumbPainter(
-          shadows: values["shadows"] as List<api12.BoxShadow>,
-        );
-      }
-      if (!values.containsKey("shadows")) {
-        return api.CupertinoThumbPainter(color: values["color"] as api1.Color);
-      }
-      return api.CupertinoThumbPainter(
-        color: values["color"] as api1.Color,
-        shadows: values["shadows"] as List<api12.BoxShadow>,
-      );
+      final _flaxHas0 = values.containsKey("color");
+      final _flaxHas1 = values.containsKey("shadows");
+      return flaxInvokeWithDefaults(
+        api.CupertinoThumbPainter.new,
+        <Object?>[
+          (_flaxHas0 ? values["color"] as api1.Color : null),
+          (_flaxHas1 ? values["shadows"] as List<api12.BoxShadow> : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["color", "shadows"],
+      ) as api.CupertinoThumbPainter;
     case "switchThumb":
-      if (!values.containsKey("color")) {
-        if (!values.containsKey("shadows")) {
-          return api.CupertinoThumbPainter.switchThumb();
-        }
-        return api.CupertinoThumbPainter.switchThumb(
-          shadows: values["shadows"] as List<api12.BoxShadow>,
-        );
-      }
-      if (!values.containsKey("shadows")) {
-        return api.CupertinoThumbPainter.switchThumb(
-          color: values["color"] as api1.Color,
-        );
-      }
-      return api.CupertinoThumbPainter.switchThumb(
-        color: values["color"] as api1.Color,
-        shadows: values["shadows"] as List<api12.BoxShadow>,
-      );
+      final _flaxHas0 = values.containsKey("color");
+      final _flaxHas1 = values.containsKey("shadows");
+      return flaxInvokeWithDefaults(
+        api.CupertinoThumbPainter.switchThumb,
+        <Object?>[
+          (_flaxHas0 ? values["color"] as api1.Color : null),
+          (_flaxHas1 ? values["shadows"] as List<api12.BoxShadow> : null),
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+        const <String>["color", "shadows"],
+      ) as api.CupertinoThumbPainter;
     case '@implementation':
-      if (!values.containsKey("color")) {
-        if (!values.containsKey("shadows")) {
-          return _CupertinoThumbPainterProxy(values['@peer'] as FlaxProxyPeer);
-        }
-        return _CupertinoThumbPainterProxy(
+      final _flaxHas1 = values.containsKey("color");
+      final _flaxHas2 = values.containsKey("shadows");
+      return flaxInvokeWithDefaults(
+        _CupertinoThumbPainterProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          shadows: values["shadows"] as List<api12.BoxShadow>,
-        );
-      }
-      if (!values.containsKey("shadows")) {
-        return _CupertinoThumbPainterProxy(
-          values['@peer'] as FlaxProxyPeer,
-          color: values["color"] as api1.Color,
-        );
-      }
-      return _CupertinoThumbPainterProxy(
-        values['@peer'] as FlaxProxyPeer,
-        color: values["color"] as api1.Color,
-        shadows: values["shadows"] as List<api12.BoxShadow>,
-      );
+          (_flaxHas1 ? values["color"] as api1.Color : null),
+          (_flaxHas2 ? values["shadows"] as List<api12.BoxShadow> : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "color", "shadows"],
+      ) as api.CupertinoThumbPainter;
     case "@implementation:switchThumb":
-      if (!values.containsKey("color")) {
-        if (!values.containsKey("shadows")) {
-          return _CupertinoThumbPainterProxy.switchThumb(
-            values['@peer'] as FlaxProxyPeer,
-          );
-        }
-        return _CupertinoThumbPainterProxy.switchThumb(
+      final _flaxHas1 = values.containsKey("color");
+      final _flaxHas2 = values.containsKey("shadows");
+      return flaxInvokeWithDefaults(
+        _CupertinoThumbPainterProxy.switchThumb,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          shadows: values["shadows"] as List<api12.BoxShadow>,
-        );
-      }
-      if (!values.containsKey("shadows")) {
-        return _CupertinoThumbPainterProxy.switchThumb(
-          values['@peer'] as FlaxProxyPeer,
-          color: values["color"] as api1.Color,
-        );
-      }
-      return _CupertinoThumbPainterProxy.switchThumb(
-        values['@peer'] as FlaxProxyPeer,
-        color: values["color"] as api1.Color,
-        shadows: values["shadows"] as List<api12.BoxShadow>,
-      );
+          (_flaxHas1 ? values["color"] as api1.Color : null),
+          (_flaxHas2 ? values["shadows"] as List<api12.BoxShadow> : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "color", "shadows"],
+      ) as api.CupertinoThumbPainter;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -20854,99 +19545,56 @@ api.Widget _createCupertinoTimerPicker(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("initialTimerDuration")) {
-        if (!values.containsKey("alignment")) {
-          return api.CupertinoTimerPicker(
-            key: values["key"] as api3.Key?,
-            mode: values["mode"] as api.CupertinoTimerPickerMode,
-            minuteInterval: values["minuteInterval"] as int,
-            secondInterval: values["secondInterval"] as int,
-            backgroundColor: values["backgroundColor"] as api1.Color?,
-            itemExtent: values["itemExtent"] as double,
-            onTimerDurationChanged:
-                values["onTimerDurationChanged"]
-                    as void Function(api2.Duration value),
-            changeReportingBehavior:
-                values["changeReportingBehavior"]
-                    as api10.ChangeReportingBehavior,
-            selectionOverlayBuilder:
-                values["selectionOverlayBuilder"]
-                    as api.Widget? Function(
-                      api10.BuildContext context, {
-                      required int columnCount,
-                      required int selectedIndex,
-                    })?,
-          );
-        }
-        return api.CupertinoTimerPicker(
-          key: values["key"] as api3.Key?,
-          mode: values["mode"] as api.CupertinoTimerPickerMode,
-          minuteInterval: values["minuteInterval"] as int,
-          secondInterval: values["secondInterval"] as int,
-          alignment: values["alignment"] as api12.AlignmentGeometry,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          itemExtent: values["itemExtent"] as double,
-          onTimerDurationChanged:
-              values["onTimerDurationChanged"]
-                  as void Function(api2.Duration value),
-          changeReportingBehavior:
-              values["changeReportingBehavior"]
-                  as api10.ChangeReportingBehavior,
-          selectionOverlayBuilder:
-              values["selectionOverlayBuilder"]
-                  as api.Widget? Function(
-                    api10.BuildContext context, {
-                    required int columnCount,
-                    required int selectedIndex,
-                  })?,
-        );
-      }
-      if (!values.containsKey("alignment")) {
-        return api.CupertinoTimerPicker(
-          key: values["key"] as api3.Key?,
-          mode: values["mode"] as api.CupertinoTimerPickerMode,
-          initialTimerDuration: values["initialTimerDuration"] as api2.Duration,
-          minuteInterval: values["minuteInterval"] as int,
-          secondInterval: values["secondInterval"] as int,
-          backgroundColor: values["backgroundColor"] as api1.Color?,
-          itemExtent: values["itemExtent"] as double,
-          onTimerDurationChanged:
-              values["onTimerDurationChanged"]
-                  as void Function(api2.Duration value),
-          changeReportingBehavior:
-              values["changeReportingBehavior"]
-                  as api10.ChangeReportingBehavior,
-          selectionOverlayBuilder:
-              values["selectionOverlayBuilder"]
-                  as api.Widget? Function(
-                    api10.BuildContext context, {
-                    required int columnCount,
-                    required int selectedIndex,
-                  })?,
-        );
-      }
-      return api.CupertinoTimerPicker(
-        key: values["key"] as api3.Key?,
-        mode: values["mode"] as api.CupertinoTimerPickerMode,
-        initialTimerDuration: values["initialTimerDuration"] as api2.Duration,
-        minuteInterval: values["minuteInterval"] as int,
-        secondInterval: values["secondInterval"] as int,
-        alignment: values["alignment"] as api12.AlignmentGeometry,
-        backgroundColor: values["backgroundColor"] as api1.Color?,
-        itemExtent: values["itemExtent"] as double,
-        onTimerDurationChanged:
-            values["onTimerDurationChanged"]
-                as void Function(api2.Duration value),
-        changeReportingBehavior:
-            values["changeReportingBehavior"] as api10.ChangeReportingBehavior,
-        selectionOverlayBuilder:
-            values["selectionOverlayBuilder"]
-                as api.Widget? Function(
-                  api10.BuildContext context, {
-                  required int columnCount,
-                  required int selectedIndex,
-                })?,
-      );
+      final _flaxHas2 = values.containsKey("initialTimerDuration");
+      final _flaxHas5 = values.containsKey("alignment");
+      return flaxInvokeWithDefaults(
+        api.CupertinoTimerPicker.new,
+        <Object?>[
+          values["key"] as api3.Key?,
+          values["mode"] as api.CupertinoTimerPickerMode,
+          (_flaxHas2 ? values["initialTimerDuration"] as api2.Duration : null),
+          values["minuteInterval"] as int,
+          values["secondInterval"] as int,
+          (_flaxHas5 ? values["alignment"] as api12.AlignmentGeometry : null),
+          values["backgroundColor"] as api1.Color?,
+          values["itemExtent"] as double,
+          values["onTimerDurationChanged"]
+              as void Function(api2.Duration value),
+          values["changeReportingBehavior"] as api10.ChangeReportingBehavior,
+          values["selectionOverlayBuilder"]
+              as api.Widget? Function(
+                api10.BuildContext context, {
+                required int columnCount,
+                required int selectedIndex,
+              })?,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              (_flaxHas5 ? 32 : 0) |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024,
+        ],
+        const <String>[
+          "key",
+          "mode",
+          "initialTimerDuration",
+          "minuteInterval",
+          "secondInterval",
+          "alignment",
+          "backgroundColor",
+          "itemExtent",
+          "onTimerDurationChanged",
+          "changeReportingBehavior",
+          "selectionOverlayBuilder",
+        ],
+      ) as api.CupertinoTimerPicker;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -22760,15 +21408,18 @@ final class _CupertinoDesktopTextSelectionControlsProxy
     double textLineHeight, [
     Object? onTap = _flaxOmitted,
   ]) {
-    if (identical(onTap, _flaxOmitted)) {
-      return super.buildHandle(context, type, textLineHeight);
-    }
-    return super.buildHandle(
-      context,
-      type,
-      textLineHeight,
-      onTap as void Function()?,
-    );
+    final _flaxHas3 = !identical(onTap, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.buildHandle,
+      <Object?>[
+        context,
+        type,
+        textLineHeight,
+        (_flaxHas3 ? onTap as void Function()? : null),
+      ],
+      <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+      const <String>["", "", "", ""],
+    ) as api.Widget);
   }
 
   @override
@@ -23005,192 +21656,29 @@ final class _CupertinoDynamicColorProxy extends api.CupertinoDynamicColor
     Object? blue = _flaxOmitted,
     Object? colorSpace = _flaxOmitted,
   }) {
-    if (identical(alpha, _flaxOmitted)) {
-      if (identical(red, _flaxOmitted)) {
-        if (identical(green, _flaxOmitted)) {
-          if (identical(blue, _flaxOmitted)) {
-            if (identical(colorSpace, _flaxOmitted)) {
-              return super.withValues();
-            }
-            return super.withValues(colorSpace: colorSpace as api1.ColorSpace?);
-          }
-          if (identical(colorSpace, _flaxOmitted)) {
-            return super.withValues(blue: blue as double?);
-          }
-          return super.withValues(
-            blue: blue as double?,
-            colorSpace: colorSpace as api1.ColorSpace?,
-          );
-        }
-        if (identical(blue, _flaxOmitted)) {
-          if (identical(colorSpace, _flaxOmitted)) {
-            return super.withValues(green: green as double?);
-          }
-          return super.withValues(
-            green: green as double?,
-            colorSpace: colorSpace as api1.ColorSpace?,
-          );
-        }
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(
-            green: green as double?,
-            blue: blue as double?,
-          );
-        }
-        return super.withValues(
-          green: green as double?,
-          blue: blue as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(green, _flaxOmitted)) {
-        if (identical(blue, _flaxOmitted)) {
-          if (identical(colorSpace, _flaxOmitted)) {
-            return super.withValues(red: red as double?);
-          }
-          return super.withValues(
-            red: red as double?,
-            colorSpace: colorSpace as api1.ColorSpace?,
-          );
-        }
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(red: red as double?, blue: blue as double?);
-        }
-        return super.withValues(
-          red: red as double?,
-          blue: blue as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(blue, _flaxOmitted)) {
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(red: red as double?, green: green as double?);
-        }
-        return super.withValues(
-          red: red as double?,
-          green: green as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(colorSpace, _flaxOmitted)) {
-        return super.withValues(
-          red: red as double?,
-          green: green as double?,
-          blue: blue as double?,
-        );
-      }
-      return super.withValues(
-        red: red as double?,
-        green: green as double?,
-        blue: blue as double?,
-        colorSpace: colorSpace as api1.ColorSpace?,
-      );
-    }
-    if (identical(red, _flaxOmitted)) {
-      if (identical(green, _flaxOmitted)) {
-        if (identical(blue, _flaxOmitted)) {
-          if (identical(colorSpace, _flaxOmitted)) {
-            return super.withValues(alpha: alpha as double?);
-          }
-          return super.withValues(
-            alpha: alpha as double?,
-            colorSpace: colorSpace as api1.ColorSpace?,
-          );
-        }
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(
-            alpha: alpha as double?,
-            blue: blue as double?,
-          );
-        }
-        return super.withValues(
-          alpha: alpha as double?,
-          blue: blue as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(blue, _flaxOmitted)) {
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(
-            alpha: alpha as double?,
-            green: green as double?,
-          );
-        }
-        return super.withValues(
-          alpha: alpha as double?,
-          green: green as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(colorSpace, _flaxOmitted)) {
-        return super.withValues(
-          alpha: alpha as double?,
-          green: green as double?,
-          blue: blue as double?,
-        );
-      }
-      return super.withValues(
-        alpha: alpha as double?,
-        green: green as double?,
-        blue: blue as double?,
-        colorSpace: colorSpace as api1.ColorSpace?,
-      );
-    }
-    if (identical(green, _flaxOmitted)) {
-      if (identical(blue, _flaxOmitted)) {
-        if (identical(colorSpace, _flaxOmitted)) {
-          return super.withValues(alpha: alpha as double?, red: red as double?);
-        }
-        return super.withValues(
-          alpha: alpha as double?,
-          red: red as double?,
-          colorSpace: colorSpace as api1.ColorSpace?,
-        );
-      }
-      if (identical(colorSpace, _flaxOmitted)) {
-        return super.withValues(
-          alpha: alpha as double?,
-          red: red as double?,
-          blue: blue as double?,
-        );
-      }
-      return super.withValues(
-        alpha: alpha as double?,
-        red: red as double?,
-        blue: blue as double?,
-        colorSpace: colorSpace as api1.ColorSpace?,
-      );
-    }
-    if (identical(blue, _flaxOmitted)) {
-      if (identical(colorSpace, _flaxOmitted)) {
-        return super.withValues(
-          alpha: alpha as double?,
-          red: red as double?,
-          green: green as double?,
-        );
-      }
-      return super.withValues(
-        alpha: alpha as double?,
-        red: red as double?,
-        green: green as double?,
-        colorSpace: colorSpace as api1.ColorSpace?,
-      );
-    }
-    if (identical(colorSpace, _flaxOmitted)) {
-      return super.withValues(
-        alpha: alpha as double?,
-        red: red as double?,
-        green: green as double?,
-        blue: blue as double?,
-      );
-    }
-    return super.withValues(
-      alpha: alpha as double?,
-      red: red as double?,
-      green: green as double?,
-      blue: blue as double?,
-      colorSpace: colorSpace as api1.ColorSpace?,
-    );
+    final _flaxHas0 = !identical(alpha, _flaxOmitted);
+    final _flaxHas1 = !identical(red, _flaxOmitted);
+    final _flaxHas2 = !identical(green, _flaxOmitted);
+    final _flaxHas3 = !identical(blue, _flaxOmitted);
+    final _flaxHas4 = !identical(colorSpace, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.withValues,
+      <Object?>[
+        (_flaxHas0 ? alpha as double? : null),
+        (_flaxHas1 ? red as double? : null),
+        (_flaxHas2 ? green as double? : null),
+        (_flaxHas3 ? blue as double? : null),
+        (_flaxHas4 ? colorSpace as api1.ColorSpace? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>["alpha", "red", "green", "blue", "colorSpace"],
+    ) as api1.Color);
   }
 
   @override
@@ -23285,10 +21773,13 @@ final class _CupertinoDynamicColorProxy extends api.CupertinoDynamicColor
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api3.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -23317,21 +21808,17 @@ final class _CupertinoDynamicColorProxy extends api.CupertinoDynamicColor
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api3.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api3.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api3.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api3.DiagnosticsNode);
   }
 
   @override
@@ -23622,10 +22109,13 @@ final class _CupertinoIconThemeDataProxy extends api.CupertinoIconThemeData
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api3.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -23645,21 +22135,17 @@ final class _CupertinoIconThemeDataProxy extends api.CupertinoIconThemeData
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api3.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api3.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api3.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api3.DiagnosticsNode);
   }
 
   @override
@@ -23729,20 +22215,51 @@ final class _CupertinoIconThemeDataProxy extends api.CupertinoIconThemeData
     Object? shadows = _flaxOmitted,
     Object? applyTextScaling = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(size, _flaxOmitted)) #size: size as double?,
-      if (!identical(fill, _flaxOmitted)) #fill: fill as double?,
-      if (!identical(weight, _flaxOmitted)) #weight: weight as double?,
-      if (!identical(grade, _flaxOmitted)) #grade: grade as double?,
-      if (!identical(opticalSize, _flaxOmitted))
-        #opticalSize: opticalSize as double?,
-      if (!identical(color, _flaxOmitted)) #color: color as api1.Color?,
-      if (!identical(opacity, _flaxOmitted)) #opacity: opacity as double?,
-      if (!identical(shadows, _flaxOmitted))
-        #shadows: shadows as List<api1.Shadow>?,
-      if (!identical(applyTextScaling, _flaxOmitted))
-        #applyTextScaling: applyTextScaling as bool?,
-    }) as api.CupertinoIconThemeData);
+    final _flaxHas0 = !identical(size, _flaxOmitted);
+    final _flaxHas1 = !identical(fill, _flaxOmitted);
+    final _flaxHas2 = !identical(weight, _flaxOmitted);
+    final _flaxHas3 = !identical(grade, _flaxOmitted);
+    final _flaxHas4 = !identical(opticalSize, _flaxOmitted);
+    final _flaxHas5 = !identical(color, _flaxOmitted);
+    final _flaxHas6 = !identical(opacity, _flaxOmitted);
+    final _flaxHas7 = !identical(shadows, _flaxOmitted);
+    final _flaxHas8 = !identical(applyTextScaling, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? size as double? : null),
+        (_flaxHas1 ? fill as double? : null),
+        (_flaxHas2 ? weight as double? : null),
+        (_flaxHas3 ? grade as double? : null),
+        (_flaxHas4 ? opticalSize as double? : null),
+        (_flaxHas5 ? color as api1.Color? : null),
+        (_flaxHas6 ? opacity as double? : null),
+        (_flaxHas7 ? shadows as List<api1.Shadow>? : null),
+        (_flaxHas8 ? applyTextScaling as bool? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0),
+      ],
+      const <String>[
+        "size",
+        "fill",
+        "weight",
+        "grade",
+        "opticalSize",
+        "color",
+        "opacity",
+        "shadows",
+        "applyTextScaling",
+      ],
+    ) as api.CupertinoIconThemeData);
   }
 
   @override
@@ -24583,27 +23100,54 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
     Object? platform = _flaxOmitted,
     Object? keyboardDismissBehavior = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(scrollbars, _flaxOmitted))
-        #scrollbars: scrollbars as bool?,
-      if (!identical(overscroll, _flaxOmitted))
-        #overscroll: overscroll as bool?,
-      if (!identical(dragDevices, _flaxOmitted))
-        #dragDevices: dragDevices as Set<api1.PointerDeviceKind>?,
-      if (!identical(multitouchDragStrategy, _flaxOmitted))
-        #multitouchDragStrategy:
-            multitouchDragStrategy as api4.MultitouchDragStrategy?,
-      if (!identical(pointerAxisModifiers, _flaxOmitted))
-        #pointerAxisModifiers:
-            pointerAxisModifiers as Set<api7.LogicalKeyboardKey>?,
-      if (!identical(physics, _flaxOmitted))
-        #physics: physics as api10.ScrollPhysics?,
-      if (!identical(platform, _flaxOmitted))
-        #platform: platform as api3.TargetPlatform?,
-      if (!identical(keyboardDismissBehavior, _flaxOmitted))
-        #keyboardDismissBehavior:
-            keyboardDismissBehavior as api10.ScrollViewKeyboardDismissBehavior?,
-    }) as api10.ScrollBehavior);
+    final _flaxHas0 = !identical(scrollbars, _flaxOmitted);
+    final _flaxHas1 = !identical(overscroll, _flaxOmitted);
+    final _flaxHas2 = !identical(dragDevices, _flaxOmitted);
+    final _flaxHas3 = !identical(multitouchDragStrategy, _flaxOmitted);
+    final _flaxHas4 = !identical(pointerAxisModifiers, _flaxOmitted);
+    final _flaxHas5 = !identical(physics, _flaxOmitted);
+    final _flaxHas6 = !identical(platform, _flaxOmitted);
+    final _flaxHas7 = !identical(keyboardDismissBehavior, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? scrollbars as bool? : null),
+        (_flaxHas1 ? overscroll as bool? : null),
+        (_flaxHas2 ? dragDevices as Set<api1.PointerDeviceKind>? : null),
+        (_flaxHas3
+            ? multitouchDragStrategy as api4.MultitouchDragStrategy?
+            : null),
+        (_flaxHas4
+            ? pointerAxisModifiers as Set<api7.LogicalKeyboardKey>?
+            : null),
+        (_flaxHas5 ? physics as api10.ScrollPhysics? : null),
+        (_flaxHas6 ? platform as api3.TargetPlatform? : null),
+        (_flaxHas7
+            ? keyboardDismissBehavior
+                  as api10.ScrollViewKeyboardDismissBehavior?
+            : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0),
+      ],
+      const <String>[
+        "scrollbars",
+        "overscroll",
+        "dragDevices",
+        "multitouchDragStrategy",
+        "pointerAxisModifiers",
+        "physics",
+        "platform",
+        "keyboardDismissBehavior",
+      ],
+    ) as api10.ScrollBehavior);
   }
 
   @override
@@ -24907,15 +23451,18 @@ final class _CupertinoTextSelectionControlsProxy
     double textLineHeight, [
     Object? onTap = _flaxOmitted,
   ]) {
-    if (identical(onTap, _flaxOmitted)) {
-      return super.buildHandle(context, type, textLineHeight);
-    }
-    return super.buildHandle(
-      context,
-      type,
-      textLineHeight,
-      onTap as void Function()?,
-    );
+    final _flaxHas3 = !identical(onTap, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.buildHandle,
+      <Object?>[
+        context,
+        type,
+        textLineHeight,
+        (_flaxHas3 ? onTap as void Function()? : null),
+      ],
+      <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+      const <String>["", "", "", ""],
+    ) as api.Widget);
   }
 
   @override
@@ -25154,15 +23701,18 @@ final class _CupertinoTextSelectionHandleControlsProxy
     double textLineHeight, [
     Object? onTap = _flaxOmitted,
   ]) {
-    if (identical(onTap, _flaxOmitted)) {
-      return super.buildHandle(context, type, textLineHeight);
-    }
-    return super.buildHandle(
-      context,
-      type,
-      textLineHeight,
-      onTap as void Function()?,
-    );
+    final _flaxHas3 = !identical(onTap, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.buildHandle,
+      <Object?>[
+        context,
+        type,
+        textLineHeight,
+        (_flaxHas3 ? onTap as void Function()? : null),
+      ],
+      <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0)],
+      const <String>["", "", "", ""],
+    ) as api.Widget);
   }
 
   @override
@@ -25241,13 +23791,15 @@ final class _CupertinoTextSelectionHandleControlsProxy
     api7.TextSelectionDelegate delegate, [
     Object? clipboardStatus = _flaxOmitted,
   ]) {
-    if (identical(clipboardStatus, _flaxOmitted)) {
-      super.handleCut(delegate);
-      return;
-    }
-    super.handleCut(
-      delegate,
-      clipboardStatus as api10.ClipboardStatusNotifier?,
+    final _flaxHas1 = !identical(clipboardStatus, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.handleCut,
+      <Object?>[
+        delegate,
+        (_flaxHas1 ? clipboardStatus as api10.ClipboardStatusNotifier? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
     );
     return;
   }
@@ -25272,13 +23824,15 @@ final class _CupertinoTextSelectionHandleControlsProxy
     api7.TextSelectionDelegate delegate, [
     Object? clipboardStatus = _flaxOmitted,
   ]) {
-    if (identical(clipboardStatus, _flaxOmitted)) {
-      super.handleCopy(delegate);
-      return;
-    }
-    super.handleCopy(
-      delegate,
-      clipboardStatus as api10.ClipboardStatusNotifier?,
+    final _flaxHas1 = !identical(clipboardStatus, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.handleCopy,
+      <Object?>[
+        delegate,
+        (_flaxHas1 ? clipboardStatus as api10.ClipboardStatusNotifier? : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
     );
     return;
   }
@@ -25338,10 +23892,13 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api3.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -25361,21 +23918,17 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api3.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api3.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api3.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api3.DiagnosticsNode);
   }
 
   @override
@@ -25474,28 +24027,55 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
     Object? pickerTextStyle = _flaxOmitted,
     Object? dateTimePickerTextStyle = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(primaryColor, _flaxOmitted))
-        #primaryColor: primaryColor as api1.Color?,
-      if (!identical(textStyle, _flaxOmitted))
-        #textStyle: textStyle as api12.TextStyle?,
-      if (!identical(actionTextStyle, _flaxOmitted))
-        #actionTextStyle: actionTextStyle as api12.TextStyle?,
-      if (!identical(actionSmallTextStyle, _flaxOmitted))
-        #actionSmallTextStyle: actionSmallTextStyle as api12.TextStyle?,
-      if (!identical(tabLabelTextStyle, _flaxOmitted))
-        #tabLabelTextStyle: tabLabelTextStyle as api12.TextStyle?,
-      if (!identical(navTitleTextStyle, _flaxOmitted))
-        #navTitleTextStyle: navTitleTextStyle as api12.TextStyle?,
-      if (!identical(navLargeTitleTextStyle, _flaxOmitted))
-        #navLargeTitleTextStyle: navLargeTitleTextStyle as api12.TextStyle?,
-      if (!identical(navActionTextStyle, _flaxOmitted))
-        #navActionTextStyle: navActionTextStyle as api12.TextStyle?,
-      if (!identical(pickerTextStyle, _flaxOmitted))
-        #pickerTextStyle: pickerTextStyle as api12.TextStyle?,
-      if (!identical(dateTimePickerTextStyle, _flaxOmitted))
-        #dateTimePickerTextStyle: dateTimePickerTextStyle as api12.TextStyle?,
-    }) as api.CupertinoTextThemeData);
+    final _flaxHas0 = !identical(primaryColor, _flaxOmitted);
+    final _flaxHas1 = !identical(textStyle, _flaxOmitted);
+    final _flaxHas2 = !identical(actionTextStyle, _flaxOmitted);
+    final _flaxHas3 = !identical(actionSmallTextStyle, _flaxOmitted);
+    final _flaxHas4 = !identical(tabLabelTextStyle, _flaxOmitted);
+    final _flaxHas5 = !identical(navTitleTextStyle, _flaxOmitted);
+    final _flaxHas6 = !identical(navLargeTitleTextStyle, _flaxOmitted);
+    final _flaxHas7 = !identical(navActionTextStyle, _flaxOmitted);
+    final _flaxHas8 = !identical(pickerTextStyle, _flaxOmitted);
+    final _flaxHas9 = !identical(dateTimePickerTextStyle, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? primaryColor as api1.Color? : null),
+        (_flaxHas1 ? textStyle as api12.TextStyle? : null),
+        (_flaxHas2 ? actionTextStyle as api12.TextStyle? : null),
+        (_flaxHas3 ? actionSmallTextStyle as api12.TextStyle? : null),
+        (_flaxHas4 ? tabLabelTextStyle as api12.TextStyle? : null),
+        (_flaxHas5 ? navTitleTextStyle as api12.TextStyle? : null),
+        (_flaxHas6 ? navLargeTitleTextStyle as api12.TextStyle? : null),
+        (_flaxHas7 ? navActionTextStyle as api12.TextStyle? : null),
+        (_flaxHas8 ? pickerTextStyle as api12.TextStyle? : null),
+        (_flaxHas9 ? dateTimePickerTextStyle as api12.TextStyle? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0),
+      ],
+      const <String>[
+        "primaryColor",
+        "textStyle",
+        "actionTextStyle",
+        "actionSmallTextStyle",
+        "tabLabelTextStyle",
+        "navTitleTextStyle",
+        "navLargeTitleTextStyle",
+        "navActionTextStyle",
+        "pickerTextStyle",
+        "dateTimePickerTextStyle",
+      ],
+    ) as api.CupertinoTextThemeData);
   }
 
   @override
@@ -25713,24 +24293,47 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
     Object? selectionHandleColor = _flaxOmitted,
     Object? applyThemeToAll = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(brightness, _flaxOmitted))
-        #brightness: brightness as api1.Brightness?,
-      if (!identical(primaryColor, _flaxOmitted))
-        #primaryColor: primaryColor as api1.Color?,
-      if (!identical(primaryContrastingColor, _flaxOmitted))
-        #primaryContrastingColor: primaryContrastingColor as api1.Color?,
-      if (!identical(textTheme, _flaxOmitted))
-        #textTheme: textTheme as api.CupertinoTextThemeData?,
-      if (!identical(barBackgroundColor, _flaxOmitted))
-        #barBackgroundColor: barBackgroundColor as api1.Color?,
-      if (!identical(scaffoldBackgroundColor, _flaxOmitted))
-        #scaffoldBackgroundColor: scaffoldBackgroundColor as api1.Color?,
-      if (!identical(selectionHandleColor, _flaxOmitted))
-        #selectionHandleColor: selectionHandleColor as api1.Color?,
-      if (!identical(applyThemeToAll, _flaxOmitted))
-        #applyThemeToAll: applyThemeToAll as bool?,
-    }) as api.CupertinoThemeData);
+    final _flaxHas0 = !identical(brightness, _flaxOmitted);
+    final _flaxHas1 = !identical(primaryColor, _flaxOmitted);
+    final _flaxHas2 = !identical(primaryContrastingColor, _flaxOmitted);
+    final _flaxHas3 = !identical(textTheme, _flaxOmitted);
+    final _flaxHas4 = !identical(barBackgroundColor, _flaxOmitted);
+    final _flaxHas5 = !identical(scaffoldBackgroundColor, _flaxOmitted);
+    final _flaxHas6 = !identical(selectionHandleColor, _flaxOmitted);
+    final _flaxHas7 = !identical(applyThemeToAll, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? brightness as api1.Brightness? : null),
+        (_flaxHas1 ? primaryColor as api1.Color? : null),
+        (_flaxHas2 ? primaryContrastingColor as api1.Color? : null),
+        (_flaxHas3 ? textTheme as api.CupertinoTextThemeData? : null),
+        (_flaxHas4 ? barBackgroundColor as api1.Color? : null),
+        (_flaxHas5 ? scaffoldBackgroundColor as api1.Color? : null),
+        (_flaxHas6 ? selectionHandleColor as api1.Color? : null),
+        (_flaxHas7 ? applyThemeToAll as bool? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0),
+      ],
+      const <String>[
+        "brightness",
+        "primaryColor",
+        "primaryContrastingColor",
+        "textTheme",
+        "barBackgroundColor",
+        "scaffoldBackgroundColor",
+        "selectionHandleColor",
+        "applyThemeToAll",
+      ],
+    ) as api.CupertinoThemeData);
   }
 
   @override
@@ -25748,10 +24351,13 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api3.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -25771,21 +24377,17 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api3.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api3.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api3.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api3.DiagnosticsNode);
   }
 
   @override
@@ -26015,10 +24617,13 @@ final class _DefaultCupertinoLocalizationsProxy
     int dayIndex, [
     Object? weekDay = _flaxOmitted,
   ]) {
-    if (identical(weekDay, _flaxOmitted)) {
-      return super.datePickerDayOfMonth(dayIndex);
-    }
-    return super.datePickerDayOfMonth(dayIndex, weekDay as int?);
+    final _flaxHas1 = !identical(weekDay, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.datePickerDayOfMonth,
+      <Object?>[dayIndex, (_flaxHas1 ? weekDay as int? : null)],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["", ""],
+    ) as String);
   }
 
   @override
@@ -26627,24 +25232,47 @@ final class _NoDefaultCupertinoThemeDataProxy
     Object? selectionHandleColor = _flaxOmitted,
     Object? applyThemeToAll = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(brightness, _flaxOmitted))
-        #brightness: brightness as api1.Brightness?,
-      if (!identical(primaryColor, _flaxOmitted))
-        #primaryColor: primaryColor as api1.Color?,
-      if (!identical(primaryContrastingColor, _flaxOmitted))
-        #primaryContrastingColor: primaryContrastingColor as api1.Color?,
-      if (!identical(textTheme, _flaxOmitted))
-        #textTheme: textTheme as api.CupertinoTextThemeData?,
-      if (!identical(barBackgroundColor, _flaxOmitted))
-        #barBackgroundColor: barBackgroundColor as api1.Color?,
-      if (!identical(scaffoldBackgroundColor, _flaxOmitted))
-        #scaffoldBackgroundColor: scaffoldBackgroundColor as api1.Color?,
-      if (!identical(selectionHandleColor, _flaxOmitted))
-        #selectionHandleColor: selectionHandleColor as api1.Color?,
-      if (!identical(applyThemeToAll, _flaxOmitted))
-        #applyThemeToAll: applyThemeToAll as bool?,
-    }) as api.NoDefaultCupertinoThemeData);
+    final _flaxHas0 = !identical(brightness, _flaxOmitted);
+    final _flaxHas1 = !identical(primaryColor, _flaxOmitted);
+    final _flaxHas2 = !identical(primaryContrastingColor, _flaxOmitted);
+    final _flaxHas3 = !identical(textTheme, _flaxOmitted);
+    final _flaxHas4 = !identical(barBackgroundColor, _flaxOmitted);
+    final _flaxHas5 = !identical(scaffoldBackgroundColor, _flaxOmitted);
+    final _flaxHas6 = !identical(selectionHandleColor, _flaxOmitted);
+    final _flaxHas7 = !identical(applyThemeToAll, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? brightness as api1.Brightness? : null),
+        (_flaxHas1 ? primaryColor as api1.Color? : null),
+        (_flaxHas2 ? primaryContrastingColor as api1.Color? : null),
+        (_flaxHas3 ? textTheme as api.CupertinoTextThemeData? : null),
+        (_flaxHas4 ? barBackgroundColor as api1.Color? : null),
+        (_flaxHas5 ? scaffoldBackgroundColor as api1.Color? : null),
+        (_flaxHas6 ? selectionHandleColor as api1.Color? : null),
+        (_flaxHas7 ? applyThemeToAll as bool? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0),
+      ],
+      const <String>[
+        "brightness",
+        "primaryColor",
+        "primaryContrastingColor",
+        "textTheme",
+        "barBackgroundColor",
+        "scaffoldBackgroundColor",
+        "selectionHandleColor",
+        "applyThemeToAll",
+      ],
+    ) as api.NoDefaultCupertinoThemeData);
   }
 
   @override
@@ -26768,19 +25396,17 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api3.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api3.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api3.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -26816,93 +25442,31 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api3.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api3.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api3.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api3.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api3.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api3.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api3.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api3.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api3.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -26939,21 +25503,17 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api3.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api3.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api3.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api3.DiagnosticsNode);
   }
 
   @override
@@ -27019,10 +25579,13 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api3.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -27310,34 +25873,35 @@ _flaxGenericFunction2<_Method0 extends Object?>() => (FlaxDartTypes types) {
 Function
 _flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
   Object? invoke(Map<String, Object?> values) {
-    if (!values.containsKey("barrierColor")) {
-      return api.showCupertinoModalPopup<_Method0>(
-        anchorPoint: values["anchorPoint"] as api1.Offset?,
-        barrierDismissible: values["barrierDismissible"] as bool,
-        builder:
-            values["builder"]
-                as api.Widget Function(api10.BuildContext context),
-        context: values["context"] as api10.BuildContext,
-        filter: values["filter"] as api1.ImageFilter?,
-        requestFocus: values["requestFocus"] as bool?,
-        routeSettings: values["routeSettings"] as api10.RouteSettings?,
-        semanticsDismissible: values["semanticsDismissible"] as bool,
-        useRootNavigator: values["useRootNavigator"] as bool,
-      );
-    }
-    return api.showCupertinoModalPopup<_Method0>(
-      anchorPoint: values["anchorPoint"] as api1.Offset?,
-      barrierColor: values["barrierColor"] as api1.Color,
-      barrierDismissible: values["barrierDismissible"] as bool,
-      builder:
-          values["builder"] as api.Widget Function(api10.BuildContext context),
-      context: values["context"] as api10.BuildContext,
-      filter: values["filter"] as api1.ImageFilter?,
-      requestFocus: values["requestFocus"] as bool?,
-      routeSettings: values["routeSettings"] as api10.RouteSettings?,
-      semanticsDismissible: values["semanticsDismissible"] as bool,
-      useRootNavigator: values["useRootNavigator"] as bool,
-    );
+    final _flaxHas1 = values.containsKey("barrierColor");
+    return flaxInvokeWithDefaults(
+      api.showCupertinoModalPopup<_Method0>,
+      <Object?>[
+        values["anchorPoint"] as api1.Offset?,
+        (_flaxHas1 ? values["barrierColor"] as api1.Color : null),
+        values["barrierDismissible"] as bool,
+        values["builder"] as api.Widget Function(api10.BuildContext context),
+        values["context"] as api10.BuildContext,
+        values["filter"] as api1.ImageFilter?,
+        values["requestFocus"] as bool?,
+        values["routeSettings"] as api10.RouteSettings?,
+        values["semanticsDismissible"] as bool,
+        values["useRootNavigator"] as bool,
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 512],
+      const <String>[
+        "anchorPoint",
+        "barrierColor",
+        "barrierDismissible",
+        "builder",
+        "context",
+        "filter",
+        "requestFocus",
+        "routeSettings",
+        "semanticsDismissible",
+        "useRootNavigator",
+      ],
+    ) as Future<_Method0?>;
   }
 
   return FlaxFunctionBinding(
@@ -28076,49 +26640,44 @@ Function _flaxClass_CupertinoDialogRoute<
   Object _createCupertinoDialogRoute(String ctor, Map<String, Object?> values) {
     switch (ctor) {
       case "":
-        if (!values.containsKey("transitionDuration")) {
-          return api.CupertinoDialogRoute<_Owner0>(
-            builder:
-                values["builder"]
-                    as api.Widget Function(api10.BuildContext context),
-            context: values["context"] as api10.BuildContext,
-            barrierDismissible: values["barrierDismissible"] as bool,
-            barrierColor: values["barrierColor"] as api1.Color?,
-            barrierLabel: values["barrierLabel"] as String?,
-            transitionBuilder:
-                values["transitionBuilder"]
-                    as api.Widget Function(
-                      api10.BuildContext context,
-                      api11.Animation<double> animation,
-                      api11.Animation<double> secondaryAnimation,
-                      api.Widget child,
-                    )?,
-            settings: values["settings"] as api10.RouteSettings?,
-            requestFocus: values["requestFocus"] as bool?,
-            anchorPoint: values["anchorPoint"] as api1.Offset?,
-          );
-        }
-        return api.CupertinoDialogRoute<_Owner0>(
-          builder:
-              values["builder"]
-                  as api.Widget Function(api10.BuildContext context),
-          context: values["context"] as api10.BuildContext,
-          barrierDismissible: values["barrierDismissible"] as bool,
-          barrierColor: values["barrierColor"] as api1.Color?,
-          barrierLabel: values["barrierLabel"] as String?,
-          transitionDuration: values["transitionDuration"] as api2.Duration,
-          transitionBuilder:
-              values["transitionBuilder"]
-                  as api.Widget Function(
-                    api10.BuildContext context,
-                    api11.Animation<double> animation,
-                    api11.Animation<double> secondaryAnimation,
-                    api.Widget child,
-                  )?,
-          settings: values["settings"] as api10.RouteSettings?,
-          requestFocus: values["requestFocus"] as bool?,
-          anchorPoint: values["anchorPoint"] as api1.Offset?,
-        );
+        final _flaxHas5 = values.containsKey("transitionDuration");
+        return flaxInvokeWithDefaults(
+          api.CupertinoDialogRoute<_Owner0>.new,
+          <Object?>[
+            values["builder"]
+                as api.Widget Function(api10.BuildContext context),
+            values["context"] as api10.BuildContext,
+            values["barrierDismissible"] as bool,
+            values["barrierColor"] as api1.Color?,
+            values["barrierLabel"] as String?,
+            (_flaxHas5 ? values["transitionDuration"] as api2.Duration : null),
+            values["transitionBuilder"]
+                as api.Widget Function(
+                  api10.BuildContext context,
+                  api11.Animation<double> animation,
+                  api11.Animation<double> secondaryAnimation,
+                  api.Widget child,
+                )?,
+            values["settings"] as api10.RouteSettings?,
+            values["requestFocus"] as bool?,
+            values["anchorPoint"] as api1.Offset?,
+          ],
+          <int>[
+            1 | 2 | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64 | 128 | 256 | 512,
+          ],
+          const <String>[
+            "builder",
+            "context",
+            "barrierDismissible",
+            "barrierColor",
+            "barrierLabel",
+            "transitionDuration",
+            "transitionBuilder",
+            "settings",
+            "requestFocus",
+            "anchorPoint",
+          ],
+        ) as api.CupertinoDialogRoute<_Owner0>;
       default:
         throw ArgumentError("Unknown constructor");
     }
@@ -29689,33 +28248,34 @@ Function _flaxClass_CupertinoModalPopupRoute<
   ) {
     switch (ctor) {
       case "":
-        if (!values.containsKey("barrierColor")) {
-          return api.CupertinoModalPopupRoute<_Owner0>(
-            builder:
-                values["builder"]
-                    as api.Widget Function(api10.BuildContext context),
-            barrierLabel: values["barrierLabel"] as String,
-            barrierDismissible: values["barrierDismissible"] as bool,
-            semanticsDismissible: values["semanticsDismissible"] as bool,
-            filter: values["filter"] as api1.ImageFilter?,
-            settings: values["settings"] as api10.RouteSettings?,
-            requestFocus: values["requestFocus"] as bool?,
-            anchorPoint: values["anchorPoint"] as api1.Offset?,
-          );
-        }
-        return api.CupertinoModalPopupRoute<_Owner0>(
-          builder:
-              values["builder"]
-                  as api.Widget Function(api10.BuildContext context),
-          barrierLabel: values["barrierLabel"] as String,
-          barrierColor: values["barrierColor"] as api1.Color?,
-          barrierDismissible: values["barrierDismissible"] as bool,
-          semanticsDismissible: values["semanticsDismissible"] as bool,
-          filter: values["filter"] as api1.ImageFilter?,
-          settings: values["settings"] as api10.RouteSettings?,
-          requestFocus: values["requestFocus"] as bool?,
-          anchorPoint: values["anchorPoint"] as api1.Offset?,
-        );
+        final _flaxHas2 = values.containsKey("barrierColor");
+        return flaxInvokeWithDefaults(
+          api.CupertinoModalPopupRoute<_Owner0>.new,
+          <Object?>[
+            values["builder"]
+                as api.Widget Function(api10.BuildContext context),
+            values["barrierLabel"] as String,
+            (_flaxHas2 ? values["barrierColor"] as api1.Color? : null),
+            values["barrierDismissible"] as bool,
+            values["semanticsDismissible"] as bool,
+            values["filter"] as api1.ImageFilter?,
+            values["settings"] as api10.RouteSettings?,
+            values["requestFocus"] as bool?,
+            values["anchorPoint"] as api1.Offset?,
+          ],
+          <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | 32 | 64 | 128 | 256],
+          const <String>[
+            "builder",
+            "barrierLabel",
+            "barrierColor",
+            "barrierDismissible",
+            "semanticsDismissible",
+            "filter",
+            "settings",
+            "requestFocus",
+            "anchorPoint",
+          ],
+        ) as api.CupertinoModalPopupRoute<_Owner0>;
       default:
         throw ArgumentError("Unknown constructor");
     }
@@ -30631,35 +29191,52 @@ Function _flaxClass_CupertinoPage<
   Object _createCupertinoPage(String ctor, Map<String, Object?> values) {
     switch (ctor) {
       case "":
-        if (!values.containsKey("onPopInvoked")) {
-          return api.CupertinoPage<_Owner0>(
-            child: values["child"] as api.Widget,
-            maintainState: values["maintainState"] as bool,
-            title: values["title"] as String?,
-            fullscreenDialog: values["fullscreenDialog"] as bool,
-            allowSnapshotting: values["allowSnapshotting"] as bool,
-            canPop: values["canPop"] as bool,
-            key: values["key"] as api3.LocalKey?,
-            name: values["name"] as String?,
-            arguments: values["arguments"],
-            restorationId: values["restorationId"] as String?,
-          );
-        }
-        return api.CupertinoPage<_Owner0>(
-          child: values["child"] as api.Widget,
-          maintainState: values["maintainState"] as bool,
-          title: values["title"] as String?,
-          fullscreenDialog: values["fullscreenDialog"] as bool,
-          allowSnapshotting: values["allowSnapshotting"] as bool,
-          canPop: values["canPop"] as bool,
-          onPopInvoked:
-              values["onPopInvoked"]
-                  as void Function(bool didPop, _Owner0? result),
-          key: values["key"] as api3.LocalKey?,
-          name: values["name"] as String?,
-          arguments: values["arguments"],
-          restorationId: values["restorationId"] as String?,
-        );
+        final _flaxHas6 = values.containsKey("onPopInvoked");
+        return flaxInvokeWithDefaults(
+          api.CupertinoPage<_Owner0>.new,
+          <Object?>[
+            values["child"] as api.Widget,
+            values["maintainState"] as bool,
+            values["title"] as String?,
+            values["fullscreenDialog"] as bool,
+            values["allowSnapshotting"] as bool,
+            values["canPop"] as bool,
+            (_flaxHas6
+                ? values["onPopInvoked"]
+                      as void Function(bool didPop, _Owner0? result)
+                : null),
+            values["key"] as api3.LocalKey?,
+            values["name"] as String?,
+            values["arguments"],
+            values["restorationId"] as String?,
+          ],
+          <int>[
+            1 |
+                2 |
+                4 |
+                8 |
+                16 |
+                32 |
+                (_flaxHas6 ? 64 : 0) |
+                128 |
+                256 |
+                512 |
+                1024,
+          ],
+          const <String>[
+            "child",
+            "maintainState",
+            "title",
+            "fullscreenDialog",
+            "allowSnapshotting",
+            "canPop",
+            "onPopInvoked",
+            "key",
+            "name",
+            "arguments",
+            "restorationId",
+          ],
+        ) as api.CupertinoPage<_Owner0>;
       default:
         throw ArgumentError("Unknown constructor");
     }
@@ -34053,37 +32630,52 @@ Function _flaxClass_CupertinoSegmentedControl<
   ) {
     switch (ctor) {
       case "":
-        if (!values.containsKey("disabledChildren")) {
-          return api.CupertinoSegmentedControl<_Owner0>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<_Owner0, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(_Owner0 value),
-            groupValue: values["groupValue"] as _Owner0?,
-            unselectedColor: values["unselectedColor"] as api1.Color?,
-            selectedColor: values["selectedColor"] as api1.Color?,
-            borderColor: values["borderColor"] as api1.Color?,
-            pressedColor: values["pressedColor"] as api1.Color?,
-            disabledColor: values["disabledColor"] as api1.Color?,
-            disabledTextColor: values["disabledTextColor"] as api1.Color?,
-            padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          );
-        }
-        return api.CupertinoSegmentedControl<_Owner0>(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as Map<_Owner0, api.Widget>,
-          onValueChanged:
-              values["onValueChanged"] as void Function(_Owner0 value),
-          groupValue: values["groupValue"] as _Owner0?,
-          unselectedColor: values["unselectedColor"] as api1.Color?,
-          selectedColor: values["selectedColor"] as api1.Color?,
-          borderColor: values["borderColor"] as api1.Color?,
-          pressedColor: values["pressedColor"] as api1.Color?,
-          disabledColor: values["disabledColor"] as api1.Color?,
-          disabledTextColor: values["disabledTextColor"] as api1.Color?,
-          padding: values["padding"] as api12.EdgeInsetsGeometry?,
-          disabledChildren: values["disabledChildren"] as Set<_Owner0>,
-        );
+        final _flaxHas11 = values.containsKey("disabledChildren");
+        return flaxInvokeWithDefaults(
+          api.CupertinoSegmentedControl<_Owner0>.new,
+          <Object?>[
+            values["key"] as api3.Key?,
+            values["children"] as Map<_Owner0, api.Widget>,
+            values["onValueChanged"] as void Function(_Owner0 value),
+            values["groupValue"] as _Owner0?,
+            values["unselectedColor"] as api1.Color?,
+            values["selectedColor"] as api1.Color?,
+            values["borderColor"] as api1.Color?,
+            values["pressedColor"] as api1.Color?,
+            values["disabledColor"] as api1.Color?,
+            values["disabledTextColor"] as api1.Color?,
+            values["padding"] as api12.EdgeInsetsGeometry?,
+            (_flaxHas11 ? values["disabledChildren"] as Set<_Owner0> : null),
+          ],
+          <int>[
+            1 |
+                2 |
+                4 |
+                8 |
+                16 |
+                32 |
+                64 |
+                128 |
+                256 |
+                512 |
+                1024 |
+                (_flaxHas11 ? 2048 : 0),
+          ],
+          const <String>[
+            "key",
+            "children",
+            "onValueChanged",
+            "groupValue",
+            "unselectedColor",
+            "selectedColor",
+            "borderColor",
+            "pressedColor",
+            "disabledColor",
+            "disabledTextColor",
+            "padding",
+            "disabledChildren",
+          ],
+        ) as api.CupertinoSegmentedControl<_Owner0>;
       default:
         throw ArgumentError("Unknown constructor");
     }
@@ -35872,212 +34464,49 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
   ) {
     switch (ctor) {
       case "":
-        if (!values.containsKey("disabledChildren")) {
-          if (!values.containsKey("thumbColor")) {
-            if (!values.containsKey("padding")) {
-              if (!values.containsKey("backgroundColor")) {
-                return api.CupertinoSlidingSegmentedControl<_Owner0>(
-                  key: values["key"] as api3.Key?,
-                  children: values["children"] as Map<_Owner0, api.Widget>,
-                  onValueChanged:
-                      values["onValueChanged"] as void Function(_Owner0? value),
-                  groupValue: values["groupValue"] as _Owner0?,
-                  proportionalWidth: values["proportionalWidth"] as bool,
-                  isMomentary: values["isMomentary"] as bool,
-                );
-              }
-              return api.CupertinoSlidingSegmentedControl<_Owner0>(
-                key: values["key"] as api3.Key?,
-                children: values["children"] as Map<_Owner0, api.Widget>,
-                onValueChanged:
-                    values["onValueChanged"] as void Function(_Owner0? value),
-                groupValue: values["groupValue"] as _Owner0?,
-                backgroundColor: values["backgroundColor"] as api1.Color,
-                proportionalWidth: values["proportionalWidth"] as bool,
-                isMomentary: values["isMomentary"] as bool,
-              );
-            }
-            if (!values.containsKey("backgroundColor")) {
-              return api.CupertinoSlidingSegmentedControl<_Owner0>(
-                key: values["key"] as api3.Key?,
-                children: values["children"] as Map<_Owner0, api.Widget>,
-                onValueChanged:
-                    values["onValueChanged"] as void Function(_Owner0? value),
-                groupValue: values["groupValue"] as _Owner0?,
-                padding: values["padding"] as api12.EdgeInsetsGeometry,
-                proportionalWidth: values["proportionalWidth"] as bool,
-                isMomentary: values["isMomentary"] as bool,
-              );
-            }
-            return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api3.Key?,
-              children: values["children"] as Map<_Owner0, api.Widget>,
-              onValueChanged:
-                  values["onValueChanged"] as void Function(_Owner0? value),
-              groupValue: values["groupValue"] as _Owner0?,
-              padding: values["padding"] as api12.EdgeInsetsGeometry,
-              backgroundColor: values["backgroundColor"] as api1.Color,
-              proportionalWidth: values["proportionalWidth"] as bool,
-              isMomentary: values["isMomentary"] as bool,
-            );
-          }
-          if (!values.containsKey("padding")) {
-            if (!values.containsKey("backgroundColor")) {
-              return api.CupertinoSlidingSegmentedControl<_Owner0>(
-                key: values["key"] as api3.Key?,
-                children: values["children"] as Map<_Owner0, api.Widget>,
-                onValueChanged:
-                    values["onValueChanged"] as void Function(_Owner0? value),
-                groupValue: values["groupValue"] as _Owner0?,
-                thumbColor: values["thumbColor"] as api1.Color,
-                proportionalWidth: values["proportionalWidth"] as bool,
-                isMomentary: values["isMomentary"] as bool,
-              );
-            }
-            return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api3.Key?,
-              children: values["children"] as Map<_Owner0, api.Widget>,
-              onValueChanged:
-                  values["onValueChanged"] as void Function(_Owner0? value),
-              groupValue: values["groupValue"] as _Owner0?,
-              thumbColor: values["thumbColor"] as api1.Color,
-              backgroundColor: values["backgroundColor"] as api1.Color,
-              proportionalWidth: values["proportionalWidth"] as bool,
-              isMomentary: values["isMomentary"] as bool,
-            );
-          }
-          if (!values.containsKey("backgroundColor")) {
-            return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api3.Key?,
-              children: values["children"] as Map<_Owner0, api.Widget>,
-              onValueChanged:
-                  values["onValueChanged"] as void Function(_Owner0? value),
-              groupValue: values["groupValue"] as _Owner0?,
-              thumbColor: values["thumbColor"] as api1.Color,
-              padding: values["padding"] as api12.EdgeInsetsGeometry,
-              proportionalWidth: values["proportionalWidth"] as bool,
-              isMomentary: values["isMomentary"] as bool,
-            );
-          }
-          return api.CupertinoSlidingSegmentedControl<_Owner0>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<_Owner0, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(_Owner0? value),
-            groupValue: values["groupValue"] as _Owner0?,
-            thumbColor: values["thumbColor"] as api1.Color,
-            padding: values["padding"] as api12.EdgeInsetsGeometry,
-            backgroundColor: values["backgroundColor"] as api1.Color,
-            proportionalWidth: values["proportionalWidth"] as bool,
-            isMomentary: values["isMomentary"] as bool,
-          );
-        }
-        if (!values.containsKey("thumbColor")) {
-          if (!values.containsKey("padding")) {
-            if (!values.containsKey("backgroundColor")) {
-              return api.CupertinoSlidingSegmentedControl<_Owner0>(
-                key: values["key"] as api3.Key?,
-                children: values["children"] as Map<_Owner0, api.Widget>,
-                onValueChanged:
-                    values["onValueChanged"] as void Function(_Owner0? value),
-                disabledChildren: values["disabledChildren"] as Set<_Owner0>,
-                groupValue: values["groupValue"] as _Owner0?,
-                proportionalWidth: values["proportionalWidth"] as bool,
-                isMomentary: values["isMomentary"] as bool,
-              );
-            }
-            return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api3.Key?,
-              children: values["children"] as Map<_Owner0, api.Widget>,
-              onValueChanged:
-                  values["onValueChanged"] as void Function(_Owner0? value),
-              disabledChildren: values["disabledChildren"] as Set<_Owner0>,
-              groupValue: values["groupValue"] as _Owner0?,
-              backgroundColor: values["backgroundColor"] as api1.Color,
-              proportionalWidth: values["proportionalWidth"] as bool,
-              isMomentary: values["isMomentary"] as bool,
-            );
-          }
-          if (!values.containsKey("backgroundColor")) {
-            return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api3.Key?,
-              children: values["children"] as Map<_Owner0, api.Widget>,
-              onValueChanged:
-                  values["onValueChanged"] as void Function(_Owner0? value),
-              disabledChildren: values["disabledChildren"] as Set<_Owner0>,
-              groupValue: values["groupValue"] as _Owner0?,
-              padding: values["padding"] as api12.EdgeInsetsGeometry,
-              proportionalWidth: values["proportionalWidth"] as bool,
-              isMomentary: values["isMomentary"] as bool,
-            );
-          }
-          return api.CupertinoSlidingSegmentedControl<_Owner0>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<_Owner0, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(_Owner0? value),
-            disabledChildren: values["disabledChildren"] as Set<_Owner0>,
-            groupValue: values["groupValue"] as _Owner0?,
-            padding: values["padding"] as api12.EdgeInsetsGeometry,
-            backgroundColor: values["backgroundColor"] as api1.Color,
-            proportionalWidth: values["proportionalWidth"] as bool,
-            isMomentary: values["isMomentary"] as bool,
-          );
-        }
-        if (!values.containsKey("padding")) {
-          if (!values.containsKey("backgroundColor")) {
-            return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api3.Key?,
-              children: values["children"] as Map<_Owner0, api.Widget>,
-              onValueChanged:
-                  values["onValueChanged"] as void Function(_Owner0? value),
-              disabledChildren: values["disabledChildren"] as Set<_Owner0>,
-              groupValue: values["groupValue"] as _Owner0?,
-              thumbColor: values["thumbColor"] as api1.Color,
-              proportionalWidth: values["proportionalWidth"] as bool,
-              isMomentary: values["isMomentary"] as bool,
-            );
-          }
-          return api.CupertinoSlidingSegmentedControl<_Owner0>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<_Owner0, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(_Owner0? value),
-            disabledChildren: values["disabledChildren"] as Set<_Owner0>,
-            groupValue: values["groupValue"] as _Owner0?,
-            thumbColor: values["thumbColor"] as api1.Color,
-            backgroundColor: values["backgroundColor"] as api1.Color,
-            proportionalWidth: values["proportionalWidth"] as bool,
-            isMomentary: values["isMomentary"] as bool,
-          );
-        }
-        if (!values.containsKey("backgroundColor")) {
-          return api.CupertinoSlidingSegmentedControl<_Owner0>(
-            key: values["key"] as api3.Key?,
-            children: values["children"] as Map<_Owner0, api.Widget>,
-            onValueChanged:
-                values["onValueChanged"] as void Function(_Owner0? value),
-            disabledChildren: values["disabledChildren"] as Set<_Owner0>,
-            groupValue: values["groupValue"] as _Owner0?,
-            thumbColor: values["thumbColor"] as api1.Color,
-            padding: values["padding"] as api12.EdgeInsetsGeometry,
-            proportionalWidth: values["proportionalWidth"] as bool,
-            isMomentary: values["isMomentary"] as bool,
-          );
-        }
-        return api.CupertinoSlidingSegmentedControl<_Owner0>(
-          key: values["key"] as api3.Key?,
-          children: values["children"] as Map<_Owner0, api.Widget>,
-          onValueChanged:
-              values["onValueChanged"] as void Function(_Owner0? value),
-          disabledChildren: values["disabledChildren"] as Set<_Owner0>,
-          groupValue: values["groupValue"] as _Owner0?,
-          thumbColor: values["thumbColor"] as api1.Color,
-          padding: values["padding"] as api12.EdgeInsetsGeometry,
-          backgroundColor: values["backgroundColor"] as api1.Color,
-          proportionalWidth: values["proportionalWidth"] as bool,
-          isMomentary: values["isMomentary"] as bool,
-        );
+        final _flaxHas3 = values.containsKey("disabledChildren");
+        final _flaxHas5 = values.containsKey("thumbColor");
+        final _flaxHas6 = values.containsKey("padding");
+        final _flaxHas7 = values.containsKey("backgroundColor");
+        return flaxInvokeWithDefaults(
+          api.CupertinoSlidingSegmentedControl<_Owner0>.new,
+          <Object?>[
+            values["key"] as api3.Key?,
+            values["children"] as Map<_Owner0, api.Widget>,
+            values["onValueChanged"] as void Function(_Owner0? value),
+            (_flaxHas3 ? values["disabledChildren"] as Set<_Owner0> : null),
+            values["groupValue"] as _Owner0?,
+            (_flaxHas5 ? values["thumbColor"] as api1.Color : null),
+            (_flaxHas6 ? values["padding"] as api12.EdgeInsetsGeometry : null),
+            (_flaxHas7 ? values["backgroundColor"] as api1.Color : null),
+            values["proportionalWidth"] as bool,
+            values["isMomentary"] as bool,
+          ],
+          <int>[
+            1 |
+                2 |
+                4 |
+                (_flaxHas3 ? 8 : 0) |
+                16 |
+                (_flaxHas5 ? 32 : 0) |
+                (_flaxHas6 ? 64 : 0) |
+                (_flaxHas7 ? 128 : 0) |
+                256 |
+                512,
+          ],
+          const <String>[
+            "key",
+            "children",
+            "onValueChanged",
+            "disabledChildren",
+            "groupValue",
+            "thumbColor",
+            "padding",
+            "backgroundColor",
+            "proportionalWidth",
+            "isMomentary",
+          ],
+        ) as api.CupertinoSlidingSegmentedControl<_Owner0>;
       default:
         throw ArgumentError("Unknown constructor");
     }

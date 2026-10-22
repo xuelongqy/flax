@@ -1,4 +1,4 @@
-# ADR 0049: Independent binding SDK builds and host setup
+# ADR 0050: Independent binding SDK builds and host setup
 
 Status: accepted.
 

@@ -7,11 +7,12 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream2 from '@flax/flutter/painting/_bindings/flutter_Axis';
 import '@flax/flutter/painting/_bindings/flutter_Axis';
+import { _flaxMemberParameters574 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_getAxisDirectionFromAxisReverseAndDirectionality(context: upstream1.BuildContext, axis: upstream2.Axis, reverse: boolean): upstream0.AxisDirection {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:getAxisDirectionFromAxisReverseAndDirectionality", [contextHandle(context, "flax.core/flutter#type:BuildContext"), axis, reverse]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:getAxisDirectionFromAxisReverseAndDirectionality", [contextHandle(context, "flax.core/flutter#type:BuildContext"), axis, reverse], _flaxMemberParameters574);
 return _flaxResult as upstream0.AxisDirection;
 }
 export { _flaxTopLevel_getAxisDirectionFromAxisReverseAndDirectionality as getAxisDirectionFromAxisReverseAndDirectionality };

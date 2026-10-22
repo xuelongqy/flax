@@ -238,7 +238,7 @@ void main() {
   );
 
   testWidgets(
-    'owning views capture an inherited bundle and replace it with the session',
+    'explicit business bundles retain identity across Session replacement',
     (t) async {
       final errors = <Object>[];
       for (final (name, explicit) in [
@@ -247,12 +247,14 @@ void main() {
         ('first', true),
         ('second', true),
       ]) {
+        final inherited = _NamedBundle(name);
         await t.pumpWidget(
           DefaultAssetBundle(
-            bundle: _NamedBundle(name),
+            bundle: inherited,
             child: MaterialApp(
               home: FlaxView(
-                assetBundle: explicit ? _EqualBundle(name) : null,
+                // This inherited bundle already represents the business root.
+                assetBundle: explicit ? _EqualBundle(name) : inherited,
                 createRuntime: createTestRuntime,
                 source: """
 const {runApp, Text} = __flaxModules.require('@flax/flutter/widgets');

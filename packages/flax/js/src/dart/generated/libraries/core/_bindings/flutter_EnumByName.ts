@@ -3,6 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Enum';
 import '@flax/dart/core/_bindings/flutter_Enum';
+import { _flaxMemberParameters57, _flaxMemberParameters58 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 import type { flaxDartExtensionTypes as _flaxDartExtensionTypes } from '@flax/core/bindings';
@@ -16,13 +17,13 @@ const _flaxExtension_EnumByName_prototype = {
 asNameMap(this: EnumByName<upstream0.Enum>): DartMap<string, upstream0.Enum> {
 if (arguments.length > 0) throw new TypeError('Too many method arguments');
 const receiver = _flaxExtensionReceiver(this, "flax.core/flutter#function:EnumByName.method.asNameMap");
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:EnumByName.method.asNameMap", [receiver]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:EnumByName.method.asNameMap", [receiver], _flaxMemberParameters57);
 return _flaxResult as DartMap<string, upstream0.Enum>;
 },
 byName(this: EnumByName<upstream0.Enum>, name: string): upstream0.Enum {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const receiver = _flaxExtensionReceiver(this, "flax.core/flutter#function:EnumByName.method.asNameMap");
-const _flaxResult = invokeTopLevel("flax.core/flutter#function:EnumByName.method.byName", [receiver, name]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:EnumByName.method.byName", [receiver, name], _flaxMemberParameters58);
 return _flaxResult as upstream0.Enum;
 },
 };

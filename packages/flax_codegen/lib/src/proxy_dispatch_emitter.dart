@@ -424,8 +424,7 @@ extension _ProxyEmission on FlaxCodegenBindingEmitter {
         var call = directSuper && method.operatorName != null
             ? _operatorExpression('super', method.operatorName!, arguments)
             : '$superTarget(${arguments.join(', ')})';
-        if (namedParameters.where((p) => !p.required).length >=
-            _applyOmissionThreshold) {
+        if (method.parameters.any((p) => !p.required)) {
           final parameters = [
             for (final p in method.parameters)
               FlaxCodegenParameterModel(
@@ -437,7 +436,8 @@ extension _ProxyEmission on FlaxCodegenBindingEmitter {
                 defaultCode: p.defaultCode,
               ),
           ];
-          call = _applyCall(
+          call = _fixedCall(
+            out,
             superTarget,
             parameters,
             superArgument,
@@ -453,7 +453,6 @@ extension _ProxyEmission on FlaxCodegenBindingEmitter {
         );
       }
 
-      final requiredCount = positional.where((p) => p.required).length;
       void emitDispatch({required bool directSuper}) {
         if (!directSuper) {
           final arguments = method.parameters
@@ -466,45 +465,7 @@ extension _ProxyEmission on FlaxCodegenBindingEmitter {
           );
           return;
         }
-        if (optional.isNotEmpty) {
-          void emitPosition(int count) {
-            if (count == positional.length) {
-              writeCall(count, const {}, directSuper: directSuper);
-              return;
-            }
-            out.writeln(
-              'if (identical(${positional[count].name}, _flaxOmitted)) {',
-            );
-            writeCall(count, const {}, directSuper: directSuper);
-            out.writeln('}');
-            emitPosition(count + 1);
-          }
-
-          emitPosition(requiredCount);
-          return;
-        }
-        if (namedParameters.where((p) => !p.required).length >=
-            _applyOmissionThreshold) {
-          writeCall(positional.length, const {}, directSuper: directSuper);
-          return;
-        }
-        void emitNamed(int index, Set<String> omitted) {
-          if (index == namedParameters.length) {
-            writeCall(positional.length, omitted, directSuper: directSuper);
-            return;
-          }
-          final parameter = namedParameters[index];
-          if (parameter.required) {
-            emitNamed(index + 1, omitted);
-            return;
-          }
-          out.writeln('if (identical(${parameter.name}, _flaxOmitted)) {');
-          emitNamed(index + 1, {...omitted, parameter.name});
-          out.writeln('}');
-          emitNamed(index + 1, omitted);
-        }
-
-        emitNamed(0, const {});
+        writeCall(positional.length, const {}, directSuper: true);
       }
 
       void emitPeerCall({bool checkRequiredSuper = false}) {

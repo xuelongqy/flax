@@ -6,6 +6,7 @@ import 'directory_asset_bundle.dart';
 import 'manifest.dart';
 import 'network.dart';
 import 'package.dart';
+import 'prefixed_asset_bundle.dart';
 
 /// A loaded application, reusable by an owning View or an explicit Session.
 class FlaxApplication {
@@ -47,12 +48,13 @@ class FlaxApplication {
   );
 
   /// Script-only mode does not discover a neighboring manifest or resource folder.
+  /// Resources default to assets/flax inside Flutter's rootBundle.
   static Future<FlaxApplication> file(
     File file, {
     AssetBundle? assetBundle,
   }) async => FlaxApplication._(
     await file.readAsString(),
-    assetBundle ?? rootBundle,
+    assetBundle ?? FlaxPrefixedAssetBundle(),
     file.absolute.uri.toString(),
     null,
   );

@@ -102,19 +102,23 @@ current language support is in the
   Session close drains mounted JS content without retaining native Routes or
   transitions.
 
-- [0046: Scoped binding annotations](0046-scoped-binding-annotations.md) is accepted.
+- [0046: Compiler entries for native default arguments](0046-compiler-default-entries.md)
+  is an experimental integration. Known targets use fixed entries; dynamic callback
+  values retain their shared invocation path. Platform acceptance remains separate.
+
+- [0047: Scoped binding annotations](0047-scoped-binding-annotations.md) is accepted.
   Explicit annotation scopes normalize into the existing package selection pipeline,
   preserving configuration-only generation and provider identities.
 
-- [0047: Optional build_runner binding generation](0047-build-runner-bindings.md) is
+- [0048: Optional build_runner binding generation](0048-build-runner-bindings.md) is
   accepted. A tracked package-wide Builder shares CLI selection and emission while
   build_runner owns declared assets and incremental rebuilds.
 
-- [0048: Generated binding JS build configuration](0048-generated-binding-js-build.md)
+- [0049: Generated binding JS build configuration](0049-generated-binding-js-build.md)
   is accepted. A shared generated plan drives host JS compilation and preparation
   without repeated scope lists; Node remains a build-time dependency.
 
-- [0049: Independent binding SDK builds and host setup](0049-independent-binding-sdks-and-project-setup.md)
+- [0050: Independent binding SDK builds and host setup](0050-independent-binding-sdks-and-project-setup.md)
   is accepted. Marked types packages build independently of host artifacts; init and
   sync prepare host configuration while preserving Builder asset ownership.
 

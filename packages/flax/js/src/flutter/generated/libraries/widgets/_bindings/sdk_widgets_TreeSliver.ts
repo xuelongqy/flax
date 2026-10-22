@@ -34,7 +34,7 @@ import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream15 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters2, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters38, _flaxMemberParameters478, _flaxMemberParameters479, _flaxMemberParameters480, _flaxMemberParameters2, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -74,7 +74,7 @@ return constructObject("object", "flax.core/sdk_widgets#type:TreeSliver", "", [{
 }
 export namespace _TreeSliverFactory { export function setDefaultToggleAnimationStyle(value: Readonly<{ "__flaxBound:package:flutter/src/animation/animation_style.dart::AnimationStyle": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TreeSliver.defaultToggleAnimationStyle%3D", [value]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TreeSliver.defaultToggleAnimationStyle%3D", [value], _flaxMemberParameters38);
 } }
 export namespace _TreeSliverFactory { export declare const defaultToggleAnimationStyle: upstream4.AnimationStyle; }
 export namespace _TreeSliverFactory { export declare const defaultAnimationCurve: upstream8.Curve; }
@@ -83,17 +83,17 @@ _flaxDefineStaticGetters(_TreeSliverFactory, "flax.core/sdk_widgets#read:TreeSli
 export namespace _TreeSliverFactory { export function wrapChildToToggleNode(options: { child: Widget; node: Readonly<{ "__flaxBound:package:flutter/src/widgets/sliver_tree.dart::TreeSliverNode": readonly [unknown | null] }> }): Widget {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["child","node"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TreeSliver.wrapChildToToggleNode", [options.child, options.node]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TreeSliver.wrapChildToToggleNode", [options.child, options.node], _flaxMemberParameters478);
 return _flaxResult as Widget;
 } }
 export namespace _TreeSliverFactory { export function defaultTreeRowExtentBuilder(node: Readonly<{ "__flaxBound:package:flutter/src/widgets/sliver_tree.dart::TreeSliverNode": readonly [unknown | null] }>, dimensions: Readonly<{ "__flaxBound:package:flutter/src/rendering/sliver.dart::SliverLayoutDimensions": readonly [] }>): number {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TreeSliver.defaultTreeRowExtentBuilder", [node, dimensions]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TreeSliver.defaultTreeRowExtentBuilder", [node, dimensions], _flaxMemberParameters479);
 return _flaxResult as number;
 } }
 export namespace _TreeSliverFactory { export function defaultTreeNodeBuilder(context: upstream3.BuildContext, node: Readonly<{ "__flaxBound:package:flutter/src/widgets/sliver_tree.dart::TreeSliverNode": readonly [unknown | null] }>, toggleAnimationStyle: Readonly<{ "__flaxBound:package:flutter/src/animation/animation_style.dart::AnimationStyle": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): Widget {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TreeSliver.defaultTreeNodeBuilder", [contextHandle(context, "flax.core/flutter#type:BuildContext"), node, toggleAnimationStyle]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TreeSliver.defaultTreeNodeBuilder", [contextHandle(context, "flax.core/flutter#type:BuildContext"), node, toggleAnimationStyle], _flaxMemberParameters480);
 return _flaxResult as Widget;
 } }
 export const TreeSliver: typeof _TreeSliverFactory & _FlaxInstanceType<TreeSliver<unknown | null>> & _FlaxDartType<TreeSliver<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:TreeSliver", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<TreeSliver<unknown | null>, typeof _TreeSliverFactory>(_TreeSliverFactory, "flax.core/sdk_widgets#type:TreeSliver", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _TreeSliverFactory & _FlaxInstanceType<TreeSliver<unknown | null>> & _FlaxDartType<TreeSliver<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:TreeSliver", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;

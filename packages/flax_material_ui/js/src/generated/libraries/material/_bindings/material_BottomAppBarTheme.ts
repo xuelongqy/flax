@@ -27,7 +27,7 @@ import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters15, _flaxMemberParameters0 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters2, _flaxMemberParameters19, _flaxMemberParameters1 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -55,7 +55,7 @@ toStringDeep(options?: {minLevel?: upstream11.DiagnosticLevel | undefined; prefi
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream13.DiagnosticsTreeStyle | null | undefined}): upstream12.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream12.DiagnosticsNode>;
 }
-defineObject("flax.material/material#type:BottomAppBarTheme", ["color","elevation","shape","height","surfaceTintColor","shadowColor","padding","data","child","key"], [], _flaxBindingMethods("flax.material/material#type:BottomAppBarTheme", "object", {"copyWith":_flaxMemberParameters15,"updateShouldNotify":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedTheme");
+defineObject("flax.material/material#type:BottomAppBarTheme", ["color","elevation","shape","height","surfaceTintColor","shadowColor","padding","data","child","key"], [], _flaxBindingMethods("flax.material/material#type:BottomAppBarTheme", "object", {"copyWith":_flaxMemberParameters19,"updateShouldNotify":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedTheme");
 export function _BottomAppBarThemeFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; elevation?: number | null | undefined; shape?: Readonly<{ "__flaxBound:package:flutter/src/painting/notched_shapes.dart::NotchedShape": readonly [] }> | null | undefined; height?: number | null | undefined; surfaceTintColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; shadowColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; padding?: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> | null | undefined; data?: Readonly<{ "__flaxBound:package:material_ui/src/bottom_app_bar_theme.dart::BottomAppBarThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; child?: Widget | null | undefined } = {}): BottomAppBarTheme {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -63,12 +63,12 @@ return constructObject("object", "flax.material/material#type:BottomAppBarTheme"
 }
 export namespace _BottomAppBarThemeFactory { export function of(context: upstream8.BuildContext): upstream7.BottomAppBarThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:BottomAppBarTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:BottomAppBarTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream7.BottomAppBarThemeData;
 } }
 export namespace _BottomAppBarThemeFactory { export function lerp(a: BottomAppBarTheme | null, b: BottomAppBarTheme | null, t: number): BottomAppBarTheme {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:BottomAppBarTheme.lerp", [a, b, t]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:BottomAppBarTheme.lerp", [a, b, t], _flaxMemberParameters2);
 return _flaxResult as BottomAppBarTheme;
 } }
 export const BottomAppBarTheme: typeof _BottomAppBarThemeFactory & _FlaxInstanceType<BottomAppBarTheme> & _FlaxDartType<BottomAppBarTheme, readonly ["class", "flax.material/material#type:BottomAppBarTheme", readonly [], false]> = _flaxBindInstanceType<BottomAppBarTheme, typeof _BottomAppBarThemeFactory>(_BottomAppBarThemeFactory, "flax.material/material#type:BottomAppBarTheme", ["flax.core/sdk_widgets#type:InheritedTheme","flax.core/sdk_widgets#type:InheritedWidget","flax.core/sdk_widgets#type:ProxyWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _BottomAppBarThemeFactory & _FlaxInstanceType<BottomAppBarTheme> & _FlaxDartType<BottomAppBarTheme, readonly ["class", "flax.material/material#type:BottomAppBarTheme", readonly [], false]>;

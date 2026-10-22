@@ -50,8 +50,8 @@ class _Session {
     this.registry,
     this.onError, {
     this.namespace,
-    AssetBundle? assetBundle,
-  }) : assetBundle = assetBundle ?? rootBundle;
+    required this.assetBundle,
+  });
   final String? namespace;
   final AssetBundle assetBundle;
   _BindingContext? _contextForBinding(String id) {
@@ -113,24 +113,25 @@ class _Session {
     registerDartTypes();
     _registerBindingHostFunction('__flaxResolveOperation', (_, args) {
       _checkCall(args, 5);
-      if (args.length != 5 ||
-          args.skip(2).any((value) => value is! FlaxJsString)) {
+      if (args.length != 5 && args.length != 6 ||
+          args.skip(2).take(3).any((value) => value is! FlaxJsString)) {
         throw ArgumentError('Invalid binding operation');
       }
       final type = (args[1] as FlaxJsString).value;
       final category = (args[2] as FlaxJsString).value;
       final operation = (args[3] as FlaxJsString).value;
       final name = (args[4] as FlaxJsString).value;
-      final key = (category, type, operation, name);
+      final layout = args.length == 6 ? _CallLayout.read(args[5]) : null;
+      final key = (category, type, operation, name, layout?.key);
       final id = _operationIds.putIfAbsent(key, () {
         final invoke = switch (category) {
-          'top' => _topLevelOperation(type, operation, name),
-          'static' => _staticOperation(type, operation, name),
-          'object' => _objectOperation(type, operation, name),
+          'top' => _topLevelOperation(type, operation, name, layout),
+          'static' => _staticOperation(type, operation, name, layout),
+          'object' => _objectOperation(type, operation, name, layout),
           'reference' => _dartReferenceOperation(type, operation, name),
-          'stream' => _streamOperation(type, operation, name),
-          'state' => _stateOperation(type, operation, name),
-          'context' => _contextOperation(type, operation, name),
+          'stream' => _streamOperation(type, operation, name, layout),
+          'state' => _stateOperation(type, operation, name, layout),
+          'context' => _contextOperation(type, operation, name, layout),
           _ => throw ArgumentError('Unknown binding category'),
         };
         final id = _operations.length;
@@ -287,11 +288,11 @@ class _Session {
   final _nativeStateFactories = <Set<int>>[];
   final _stateIds = Expando<Map<String, int>>();
   final _operations = <(String, _BindingContext?, _BindingOperation)>[];
-  final _operationIds = <(String, String, String, String), int>{};
+  final _operationIds = <(String, String, String, String, String?), int>{};
   final _collectionBindings = <String, FlaxObjectBinding>{};
   final _genericObjectBindings =
       <String, ({FlaxObjectBinding binding, _BindingContext? context})>{};
-  final _proxyLayouts = <(FlaxObjectBinding, int)>[];
+  final _proxyLayouts = <(FlaxObjectBinding, int, List<(_CallLayout?, int)>)>[];
   final _objects = <int, _ObjectReference>{};
   final _objectIds = _IdentityIndex<_ObjectReference>();
   final _streamReferences = <int, _StreamReference>{};

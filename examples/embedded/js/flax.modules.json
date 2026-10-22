@@ -20,6 +20,26 @@
     {
       "specifier": "@flax/material-ui",
       "package": "@flax/material-ui-runtime"
+    },
+    {
+      "specifier": "@flax/cupertino-ui",
+      "package": "@flax/cupertino-ui-runtime"
+    },
+    {
+      "specifier": "@flax/fetch",
+      "package": "@flax/fetch-runtime"
+    },
+    {
+      "specifier": "@flax/websocket",
+      "package": "@flax/websocket-runtime"
+    },
+    {
+      "specifier": "@flax/canvas",
+      "package": "@flax/canvas-runtime"
+    },
+    {
+      "specifier": "@flax/local-storage",
+      "package": "@flax/local-storage-runtime"
     }
   ],
   "flutterProject": "..",

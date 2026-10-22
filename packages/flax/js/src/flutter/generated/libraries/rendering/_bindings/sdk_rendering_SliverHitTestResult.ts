@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import { _flaxMemberParameters345, _flaxMemberParameters1, _flaxMemberParameters25, _flaxMemberParameters19, _flaxMemberParameters26, _flaxMemberParameters27 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { _flaxMemberParameters361, _flaxMemberParameters1, _flaxMemberParameters28, _flaxMemberParameters19, _flaxMemberParameters29, _flaxMemberParameters30 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -26,7 +26,7 @@ popTransform(): void;
 toString(): string;
 addWithAxisOffset(options: {crossAxisOffset: number; crossAxisPosition: number; hitTest: ((result: SliverHitTestResult, options: { crossAxisPosition: number; mainAxisPosition: number }) => boolean); mainAxisOffset: number; mainAxisPosition: number; paintOffset: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null}): boolean;
 }
-defineObject("flax.core/sdk_rendering#type:SliverHitTestResult", ["path"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SliverHitTestResult", "object", {"addWithAxisOffset":_flaxMemberParameters345}, {}), [], undefined, "flax.core/sdk_gestures#type:HitTestResult");
+defineObject("flax.core/sdk_rendering#type:SliverHitTestResult", ["path"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SliverHitTestResult", "object", {"addWithAxisOffset":_flaxMemberParameters361}, {}), [], undefined, "flax.core/sdk_gestures#type:HitTestResult");
 export function _SliverHitTestResultFactory(): SliverHitTestResult {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
@@ -39,7 +39,7 @@ if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_rendering#type:SliverHitTestResult", "wrap", [{"name":"result","required":true,"positional":true}], [result], {}) as SliverHitTestResult;
 }
 }
-const _SliverHitTestResultProxy = {type: "flax.core/sdk_rendering#type:SliverHitTestResult", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1,"wrap": _flaxMemberParameters25}, methods: {"add":_flaxMemberParameters19,"pushTransform":_flaxMemberParameters26,"pushOffset":_flaxMemberParameters27,"popTransform":_flaxMemberParameters1,"toString":_flaxMemberParameters1,"addWithAxisOffset":_flaxMemberParameters345}, getters: ["path"], setters: [], contextMembers: [], superMembers: ["get:path","add","pushTransform","pushOffset","popTransform","toString","addWithAxisOffset"]} as const;
+const _SliverHitTestResultProxy = {type: "flax.core/sdk_rendering#type:SliverHitTestResult", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1,"wrap": _flaxMemberParameters28}, methods: {"add":_flaxMemberParameters19,"pushTransform":_flaxMemberParameters29,"pushOffset":_flaxMemberParameters30,"popTransform":_flaxMemberParameters1,"toString":_flaxMemberParameters1,"addWithAxisOffset":_flaxMemberParameters361}, getters: ["path"], setters: [], contextMembers: [], superMembers: ["get:path","add","pushTransform","pushOffset","popTransform","toString","addWithAxisOffset"]} as const;
 export interface _SliverHitTestResultNative extends SliverHitTestResult {
 readonly [_flaxDartTypeValue]: _SliverHitTestResultNative;
 readonly [_flaxDartConstructors]?: {"": () => void;"wrap": (result: Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestResult": readonly [] }>) => void;};

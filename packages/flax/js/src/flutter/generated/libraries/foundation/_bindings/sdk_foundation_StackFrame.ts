@@ -3,7 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
-import { _flaxMemberParameters1, _flaxMemberParameters83 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
+import { _flaxMemberParameters96, _flaxMemberParameters97, _flaxMemberParameters1, _flaxMemberParameters98 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -28,7 +28,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_foundation#type:StackFrame", "", [{"name":"number","required":true},{"name":"column","required":true},{"name":"line","required":true},{"name":"packageScheme","required":true},{"name":"package","required":true},{"name":"packagePath","required":true},{"name":"className"},{"name":"method","required":true},{"name":"isConstructor"},{"name":"source","required":true}], [], options) as StackFrame;
 }
-const _StackFrameProxy = {type: "flax.core/sdk_foundation#type:StackFrame", parameters: _flaxMemberParameters83, constructors: {"": _flaxMemberParameters83}, methods: {"toString":_flaxMemberParameters1}, getters: ["source","number","packageScheme","package","packagePath","line","column","className","method","isConstructor"], setters: [], contextMembers: [], superMembers: ["get:source","get:number","get:packageScheme","get:package","get:packagePath","get:line","get:column","get:className","get:method","get:isConstructor","toString"]} as const;
+const _StackFrameProxy = {type: "flax.core/sdk_foundation#type:StackFrame", parameters: _flaxMemberParameters98, constructors: {"": _flaxMemberParameters98}, methods: {"toString":_flaxMemberParameters1}, getters: ["source","number","packageScheme","package","packagePath","line","column","className","method","isConstructor"], setters: [], contextMembers: [], superMembers: ["get:source","get:number","get:packageScheme","get:package","get:packagePath","get:line","get:column","get:className","get:method","get:isConstructor","toString"]} as const;
 export interface _StackFrameNative extends StackFrame {
 readonly [_flaxDartTypeValue]: _StackFrameNative;
 
@@ -59,17 +59,17 @@ export namespace _StackFrameFactory { export declare const stackOverFlowElision:
 _flaxDefineStaticGetters(_StackFrameFactory, "flax.core/sdk_foundation#read:StackFrame.", ["asynchronousSuspension","stackOverFlowElision"]);
 export namespace _StackFrameFactory { export function fromStackTrace(stack: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>): DartList<StackFrame> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:StackFrame.fromStackTrace", [stack]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:StackFrame.fromStackTrace", [stack], _flaxMemberParameters96);
 return _flaxResult as DartList<StackFrame>;
 } }
 export namespace _StackFrameFactory { export function fromStackString(stack: string): DartList<StackFrame> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:StackFrame.fromStackString", [stack]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:StackFrame.fromStackString", [stack], _flaxMemberParameters96);
 return _flaxResult as DartList<StackFrame>;
 } }
 export namespace _StackFrameFactory { export function fromStackTraceLine(line: string): StackFrame | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:StackFrame.fromStackTraceLine", [line]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:StackFrame.fromStackTraceLine", [line], _flaxMemberParameters97);
 return _flaxResult as StackFrame | null;
 } }
 export const StackFrame: typeof _StackFrameBinding & _FlaxInstanceType<StackFrame> & _FlaxDartType<StackFrame, readonly ["class", "flax.core/sdk_foundation#type:StackFrame", readonly [], false]> = _flaxBindInstanceType<StackFrame, typeof _StackFrameBinding>(_StackFrameBinding, "flax.core/sdk_foundation#type:StackFrame", ["dart:core::Object"]) as typeof _StackFrameBinding & _FlaxInstanceType<StackFrame> & _FlaxDartType<StackFrame, readonly ["class", "flax.core/sdk_foundation#type:StackFrame", readonly [], false]>;

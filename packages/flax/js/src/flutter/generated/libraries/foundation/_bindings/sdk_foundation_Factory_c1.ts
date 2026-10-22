@@ -4,7 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Type';
 import '@flax/dart/core/_bindings/flutter_Type';
-import { _flaxMemberParameters1, _flaxMemberParameters55 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
+import { _flaxMemberParameters1, _flaxMemberParameters60 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,7 +23,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_foundation#type:Factory", "", [{"name":"constructor","required":true,"positional":true}], [constructor], {}) as Factory<unknown | null>;
 }
-const _FactoryProxy = {type: "flax.core/sdk_foundation#type:Factory", parameters: _flaxMemberParameters55, constructors: {"": _flaxMemberParameters55}, methods: {"toString":_flaxMemberParameters1}, getters: ["constructor","type"], setters: [], contextMembers: [], superMembers: ["get:constructor","get:type","toString"]} as const;
+const _FactoryProxy = {type: "flax.core/sdk_foundation#type:Factory", parameters: _flaxMemberParameters60, constructors: {"": _flaxMemberParameters60}, methods: {"toString":_flaxMemberParameters1}, getters: ["constructor","type"], setters: [], contextMembers: [], superMembers: ["get:constructor","get:type","toString"]} as const;
 export interface _FactoryNative<T extends unknown | null = unknown | null> extends Factory<T> {
 readonly [_flaxDartTypeValue]: _FactoryNative<T>;
 

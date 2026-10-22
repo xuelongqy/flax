@@ -267,6 +267,7 @@ final class FlaxCodegenImportedPackage {
 /// Generated views require authenticated instances and native UI object lifetimes.
 List<String> flaxCodegenProtocol21RequiredCapabilities() =>
     List<String>.unmodifiable(const <String>[
+      'call-layouts',
       'generic-member-views',
       'instance-checks',
       'native-navigation-objects',

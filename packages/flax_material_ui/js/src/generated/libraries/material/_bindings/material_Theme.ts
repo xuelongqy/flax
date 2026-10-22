@@ -9,6 +9,7 @@ import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_Brightness';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Brightness';
+import { _flaxMemberParameters0 } from "@flax/material-ui/_bindings/material.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Theme extends WidgetDescription, Omit<Readonly<{ "__flaxBound:package:material_ui/src/theme.dart::Theme": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, 'type'> { readonly type: "flax.material/material#type:Theme";  }
@@ -19,17 +20,17 @@ return construct("widget", "flax.material/material#type:Theme", "", [{"name":"ke
 }
 export namespace _ThemeFactory { export function of(context: upstream2.BuildContext): upstream1.ThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:Theme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:Theme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream1.ThemeData;
 } }
 export namespace _ThemeFactory { export function brightnessOf(context: upstream2.BuildContext): upstream3.Brightness {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:Theme.brightnessOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:Theme.brightnessOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream3.Brightness;
 } }
 export namespace _ThemeFactory { export function maybeBrightnessOf(context: upstream2.BuildContext): upstream3.Brightness | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:Theme.maybeBrightnessOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:Theme.maybeBrightnessOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream3.Brightness | null;
 } }
 export const Theme: typeof _ThemeFactory & _FlaxInstanceType<Theme> & _FlaxDartType<Theme, readonly ["class", "flax.material/material#type:Theme", readonly [], false]> = _flaxBindInstanceType<Theme, typeof _ThemeFactory>(_ThemeFactory, "flax.material/material#type:Theme", ["flax.core/sdk_widgets#type:StatelessWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ThemeFactory & _FlaxInstanceType<Theme> & _FlaxDartType<Theme, readonly ["class", "flax.material/material#type:Theme", readonly [], false]>;

@@ -172,6 +172,9 @@ Future<Map<String, Object?>> measureOmitEmission({
     final applyCalls = RegExp('Function.apply\\(api\\.$name\\.new')
         .allMatches(dart)
         .length;
+    final fixedCalls = RegExp('flaxInvokeWithDefaults\\(api\\.$name\\.new')
+        .allMatches(dart)
+        .length;
     return {
       'name': name,
       'requested': parameters.length,
@@ -193,8 +196,13 @@ Future<Map<String, Object?>> measureOmitEmission({
       'tsBytes': utf8.encode(typescript).length,
       'dartBranches': branches,
       'applyCalls': applyCalls,
-      'strategy': applyCalls == 0 ? 'direct' : 'apply',
-      'expectedBranches': parameters.length <= 5 ? 1 << parameters.length : 0,
+      'fixedCalls': fixedCalls,
+      'strategy': fixedCalls > 0
+          ? 'fixed'
+          : applyCalls > 0
+          ? 'apply'
+          : 'direct',
+      'expectedBranches': 0,
       'emitMilliseconds': elapsed,
     };
   } on Object catch (error) {

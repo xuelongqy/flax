@@ -156,6 +156,7 @@ const sdk_semanticsBindings = FlaxBindingModule(
   ],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "generic-member-views",
     "inherited-binding-members",
     "instance-checks",
@@ -438,25 +439,32 @@ Object? _AttributedString_super_get_attributes(
 Object _createAttributedString(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("attributes")) {
-        return api.AttributedString(values["string"] as String);
-      }
-      return api.AttributedString(
-        values["string"] as String,
-        attributes: values["attributes"] as List<api1.StringAttribute>,
-      );
+      final _flaxHas1 = values.containsKey("attributes");
+      return flaxInvokeWithDefaults(
+        api.AttributedString.new,
+        <Object?>[
+          values["string"] as String,
+          (_flaxHas1
+              ? values["attributes"] as List<api1.StringAttribute>
+              : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0)],
+        const <String>["", "attributes"],
+      ) as api.AttributedString;
     case '@implementation':
-      if (!values.containsKey("attributes")) {
-        return _AttributedStringProxy(
+      final _flaxHas2 = values.containsKey("attributes");
+      return flaxInvokeWithDefaults(
+        _AttributedStringProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["string"] as String,
-        );
-      }
-      return _AttributedStringProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["string"] as String,
-        attributes: values["attributes"] as List<api1.StringAttribute>,
-      );
+          (_flaxHas2
+              ? values["attributes"] as List<api1.StringAttribute>
+              : null),
+        ],
+        <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+        const <String>["", "", "attributes"],
+      ) as api.AttributedString;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -793,47 +801,55 @@ Object _createAttributedStringProperty(
 ) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("defaultValue")) {
-        return api.AttributedStringProperty(
+      final _flaxHas4 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        api.AttributedStringProperty.new,
+        <Object?>[
           values["name"] as String,
           values["value"] as api.AttributedString?,
-          showName: values["showName"] as bool,
-          showWhenEmpty: values["showWhenEmpty"] as bool,
-          level: values["level"] as api2.DiagnosticLevel,
-          description: values["description"] as String?,
-        );
-      }
-      return api.AttributedStringProperty(
-        values["name"] as String,
-        values["value"] as api.AttributedString?,
-        showName: values["showName"] as bool,
-        showWhenEmpty: values["showWhenEmpty"] as bool,
-        defaultValue: values["defaultValue"],
-        level: values["level"] as api2.DiagnosticLevel,
-        description: values["description"] as String?,
-      );
+          values["showName"] as bool,
+          values["showWhenEmpty"] as bool,
+          (_flaxHas4 ? values["defaultValue"] : null),
+          values["level"] as api2.DiagnosticLevel,
+          values["description"] as String?,
+        ],
+        <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64],
+        const <String>[
+          "",
+          "",
+          "showName",
+          "showWhenEmpty",
+          "defaultValue",
+          "level",
+          "description",
+        ],
+      ) as api.AttributedStringProperty;
     case '@implementation':
-      if (!values.containsKey("defaultValue")) {
-        return _AttributedStringPropertyProxy(
+      final _flaxHas5 = values.containsKey("defaultValue");
+      return flaxInvokeWithDefaults(
+        _AttributedStringPropertyProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["name"] as String,
           values["value"] as api.AttributedString?,
-          showName: values["showName"] as bool,
-          showWhenEmpty: values["showWhenEmpty"] as bool,
-          level: values["level"] as api2.DiagnosticLevel,
-          description: values["description"] as String?,
-        );
-      }
-      return _AttributedStringPropertyProxy(
-        values['@peer'] as FlaxProxyPeer,
-        values["name"] as String,
-        values["value"] as api.AttributedString?,
-        showName: values["showName"] as bool,
-        showWhenEmpty: values["showWhenEmpty"] as bool,
-        defaultValue: values["defaultValue"],
-        level: values["level"] as api2.DiagnosticLevel,
-        description: values["description"] as String?,
-      );
+          values["showName"] as bool,
+          values["showWhenEmpty"] as bool,
+          (_flaxHas5 ? values["defaultValue"] : null),
+          values["level"] as api2.DiagnosticLevel,
+          values["description"] as String?,
+        ],
+        <int>[1 | 2 | 4 | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64 | 128],
+        const <String>[
+          "",
+          "",
+          "",
+          "showName",
+          "showWhenEmpty",
+          "defaultValue",
+          "level",
+          "description",
+        ],
+      ) as api.AttributedStringProperty;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6828,10 +6844,13 @@ final class _AnnounceSemanticsEventProxy extends api.AnnounceSemanticsEvent
   }
 
   Map<String, Object?> _flaxSuper_toMap({Object? nodeId = _flaxOmitted}) {
-    if (identical(nodeId, _flaxOmitted)) {
-      return super.toMap();
-    }
-    return super.toMap(nodeId: nodeId as int?);
+    final _flaxHas0 = !identical(nodeId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toMap,
+      <Object?>[(_flaxHas0 ? nodeId as int? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["nodeId"],
+    ) as Map<String, Object?>);
   }
 
   @override
@@ -7031,12 +7050,15 @@ final class _AttributedStringPropertyProxy extends api.AttributedStringProperty
   String _flaxSuper_valueToString({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.valueToString();
-    }
-    return super.valueToString(
-      parentConfiguration: parentConfiguration as api2.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.valueToString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api2.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -7055,12 +7077,15 @@ final class _AttributedStringPropertyProxy extends api.AttributedStringProperty
   String _flaxSuper_toDescription({
     Object? parentConfiguration = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      return super.toDescription();
-    }
-    return super.toDescription(
-      parentConfiguration: parentConfiguration as api2.TextTreeConfiguration?,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDescription,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api2.TextTreeConfiguration? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["parentConfiguration"],
+    ) as String);
   }
 
   @override
@@ -7179,218 +7204,35 @@ final class _AttributedStringPropertyProxy extends api.AttributedStringProperty
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(parentConfiguration, _flaxOmitted)) {
-          if (identical(minLevel, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api2.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api2.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              parentConfiguration:
-                  parentConfiguration as api2.TextTreeConfiguration?,
-            );
-          }
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api2.TextTreeConfiguration?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            parentConfiguration:
-                parentConfiguration as api2.TextTreeConfiguration?,
-            minLevel: minLevel as api2.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          parentConfiguration:
-              parentConfiguration as api2.TextTreeConfiguration?,
-          minLevel: minLevel as api2.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api2.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api2.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            parentConfiguration:
-                parentConfiguration as api2.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api2.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api2.TextTreeConfiguration?,
-          minLevel: minLevel as api2.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api2.TextTreeConfiguration?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(parentConfiguration, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api2.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api2.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            parentConfiguration:
-                parentConfiguration as api2.TextTreeConfiguration?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api2.TextTreeConfiguration?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          parentConfiguration:
-              parentConfiguration as api2.TextTreeConfiguration?,
-          minLevel: minLevel as api2.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        parentConfiguration: parentConfiguration as api2.TextTreeConfiguration?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api2.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          parentConfiguration:
-              parentConfiguration as api2.TextTreeConfiguration?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api2.TextTreeConfiguration?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        parentConfiguration: parentConfiguration as api2.TextTreeConfiguration?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      parentConfiguration: parentConfiguration as api2.TextTreeConfiguration?,
-      minLevel: minLevel as api2.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas3 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? parentConfiguration as api2.TextTreeConfiguration? : null),
+        (_flaxHas3 ? minLevel as api2.DiagnosticLevel : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "parentConfiguration",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -7417,21 +7259,17 @@ final class _AttributedStringPropertyProxy extends api.AttributedStringProperty
     Object? parentConfiguration = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(parentConfiguration, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toString();
-      }
-      return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString(
-        parentConfiguration: parentConfiguration as api2.TextTreeConfiguration?,
-      );
-    }
-    return super.toString(
-      parentConfiguration: parentConfiguration as api2.TextTreeConfiguration?,
-      minLevel: minLevel as api2.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(parentConfiguration, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[
+        (_flaxHas0 ? parentConfiguration as api2.TextTreeConfiguration? : null),
+        (_flaxHas1 ? minLevel as api2.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["parentConfiguration", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -7835,10 +7673,13 @@ final class _FocusSemanticEventProxy extends api.FocusSemanticEvent
   }
 
   Map<String, Object?> _flaxSuper_toMap({Object? nodeId = _flaxOmitted}) {
-    if (identical(nodeId, _flaxOmitted)) {
-      return super.toMap();
-    }
-    return super.toMap(nodeId: nodeId as int?);
+    final _flaxHas0 = !identical(nodeId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toMap,
+      <Object?>[(_flaxHas0 ? nodeId as int? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["nodeId"],
+    ) as Map<String, Object?>);
   }
 
   @override
@@ -7876,10 +7717,13 @@ final class _LongPressSemanticsEventProxy extends api.LongPressSemanticsEvent
   }
 
   Map<String, Object?> _flaxSuper_toMap({Object? nodeId = _flaxOmitted}) {
-    if (identical(nodeId, _flaxOmitted)) {
-      return super.toMap();
-    }
-    return super.toMap(nodeId: nodeId as int?);
+    final _flaxHas0 = !identical(nodeId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toMap,
+      <Object?>[(_flaxHas0 ? nodeId as int? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["nodeId"],
+    ) as Map<String, Object?>);
   }
 
   @override
@@ -7992,21 +7836,17 @@ final class _OrdinalSortKeyProxy extends api.OrdinalSortKey
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -8015,10 +7855,13 @@ final class _OrdinalSortKeyProxy extends api.OrdinalSortKey
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -10374,10 +10217,13 @@ final class _SemanticsDataProxy extends api.SemanticsData
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -10400,21 +10246,17 @@ final class _SemanticsDataProxy extends api.SemanticsData
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -10808,10 +10650,13 @@ final class _SemanticsEventProxy extends api.SemanticsEvent
   }
 
   Map<String, Object?> _flaxSuper_toMap({Object? nodeId = _flaxOmitted}) {
-    if (identical(nodeId, _flaxOmitted)) {
-      return super.toMap();
-    }
-    return super.toMap(nodeId: nodeId as int?);
+    final _flaxHas0 = !identical(nodeId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toMap,
+      <Object?>[(_flaxHas0 ? nodeId as int? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["nodeId"],
+    ) as Map<String, Object?>);
   }
 
   @override
@@ -10872,19 +10717,17 @@ final class _SemanticsHintOverridesProxy extends api.SemanticsHintOverrides
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api2.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api2.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api2.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -10920,93 +10763,31 @@ final class _SemanticsHintOverridesProxy extends api.SemanticsHintOverrides
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api2.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api2.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api2.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api2.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api2.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api2.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -11035,21 +10816,17 @@ final class _SemanticsHintOverridesProxy extends api.SemanticsHintOverrides
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -11087,10 +10864,13 @@ final class _SemanticsHintOverridesProxy extends api.SemanticsHintOverrides
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -11150,10 +10930,13 @@ final class _SemanticsNodeProxy extends api.SemanticsNode
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -11176,19 +10959,17 @@ final class _SemanticsNodeProxy extends api.SemanticsNode
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api2.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api2.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api2.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -11228,207 +11009,35 @@ final class _SemanticsNodeProxy extends api.SemanticsNode
     Object? childOrder = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(childOrder, _flaxOmitted)) {
-            if (identical(wrapWidth, _flaxOmitted)) {
-              return super.toStringDeep();
-            }
-            return super.toStringDeep(wrapWidth: wrapWidth as int);
-          }
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              childOrder: childOrder as api.DebugSemanticsDumpOrder,
-            );
-          }
-          return super.toStringDeep(
-            childOrder: childOrder as api.DebugSemanticsDumpOrder,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(childOrder, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              minLevel: minLevel as api2.DiagnosticLevel,
-            );
-          }
-          return super.toStringDeep(
-            minLevel: minLevel as api2.DiagnosticLevel,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            minLevel: minLevel as api2.DiagnosticLevel,
-            childOrder: childOrder as api.DebugSemanticsDumpOrder,
-          );
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api2.DiagnosticLevel,
-          childOrder: childOrder as api.DebugSemanticsDumpOrder,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(childOrder, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(
-              prefixOtherLines: prefixOtherLines as String?,
-            );
-          }
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            childOrder: childOrder as api.DebugSemanticsDumpOrder,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          childOrder: childOrder as api.DebugSemanticsDumpOrder,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(childOrder, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-            minLevel: minLevel as api2.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api2.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api2.DiagnosticLevel,
-          childOrder: childOrder as api.DebugSemanticsDumpOrder,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        childOrder: childOrder as api.DebugSemanticsDumpOrder,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(childOrder, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-          }
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            wrapWidth: wrapWidth as int,
-          );
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            childOrder: childOrder as api.DebugSemanticsDumpOrder,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          childOrder: childOrder as api.DebugSemanticsDumpOrder,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(childOrder, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            minLevel: minLevel as api2.DiagnosticLevel,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api2.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api2.DiagnosticLevel,
-          childOrder: childOrder as api.DebugSemanticsDumpOrder,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        childOrder: childOrder as api.DebugSemanticsDumpOrder,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(childOrder, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixLineOne: prefixLineOne as String,
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          childOrder: childOrder as api.DebugSemanticsDumpOrder,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        childOrder: childOrder as api.DebugSemanticsDumpOrder,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(childOrder, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api2.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        childOrder: childOrder as api.DebugSemanticsDumpOrder,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api2.DiagnosticLevel,
-      childOrder: childOrder as api.DebugSemanticsDumpOrder,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(childOrder, _flaxOmitted);
+    final _flaxHas4 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api2.DiagnosticLevel : null),
+        (_flaxHas3 ? childOrder as api.DebugSemanticsDumpOrder : null),
+        (_flaxHas4 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "childOrder",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -11467,45 +11076,19 @@ final class _SemanticsNodeProxy extends api.SemanticsNode
     Object? style = _flaxOmitted,
     Object? childOrder = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        if (identical(childOrder, _flaxOmitted)) {
-          return super.toDiagnosticsNode();
-        }
-        return super.toDiagnosticsNode(
-          childOrder: childOrder as api.DebugSemanticsDumpOrder,
-        );
-      }
-      if (identical(childOrder, _flaxOmitted)) {
-        return super.toDiagnosticsNode(
-          style: style as api2.DiagnosticsTreeStyle?,
-        );
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-        childOrder: childOrder as api.DebugSemanticsDumpOrder,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      if (identical(childOrder, _flaxOmitted)) {
-        return super.toDiagnosticsNode(name: name as String?);
-      }
-      return super.toDiagnosticsNode(
-        name: name as String?,
-        childOrder: childOrder as api.DebugSemanticsDumpOrder,
-      );
-    }
-    if (identical(childOrder, _flaxOmitted)) {
-      return super.toDiagnosticsNode(
-        name: name as String?,
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-      childOrder: childOrder as api.DebugSemanticsDumpOrder,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    final _flaxHas2 = !identical(childOrder, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+        (_flaxHas2 ? childOrder as api.DebugSemanticsDumpOrder : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
+      const <String>["name", "style", "childOrder"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -11525,12 +11108,13 @@ final class _SemanticsNodeProxy extends api.SemanticsNode
   List<api2.DiagnosticsNode> _flaxSuper_debugDescribeChildren({
     Object? childOrder = _flaxOmitted,
   }) {
-    if (identical(childOrder, _flaxOmitted)) {
-      return super.debugDescribeChildren();
-    }
-    return super.debugDescribeChildren(
-      childOrder: childOrder as api.DebugSemanticsDumpOrder,
-    );
+    final _flaxHas0 = !identical(childOrder, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.debugDescribeChildren,
+      <Object?>[(_flaxHas0 ? childOrder as api.DebugSemanticsDumpOrder : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["childOrder"],
+    ) as List<api2.DiagnosticsNode>);
   }
 
   @override
@@ -11621,14 +11205,17 @@ final class _SemanticsNodeProxy extends api.SemanticsNode
     required api.SemanticsConfiguration? config,
     Object? childrenInInversePaintOrder = _flaxOmitted,
   }) {
-    if (identical(childrenInInversePaintOrder, _flaxOmitted)) {
-      super.updateWith(config: config);
-      return;
-    }
-    super.updateWith(
-      config: config,
-      childrenInInversePaintOrder:
-          childrenInInversePaintOrder as List<api.SemanticsNode>?,
+    final _flaxHas1 = !identical(childrenInInversePaintOrder, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.updateWith,
+      <Object?>[
+        config,
+        (_flaxHas1
+            ? childrenInInversePaintOrder as List<api.SemanticsNode>?
+            : null),
+      ],
+      <int>[1 | (_flaxHas1 ? 2 : 0)],
+      const <String>["config", "childrenInInversePaintOrder"],
     );
     return;
   }
@@ -12446,11 +12033,13 @@ final class _SemanticsOwnerProxy extends api.SemanticsOwner
     api1.SemanticsAction action, [
     Object? args = _flaxOmitted,
   ]) {
-    if (identical(args, _flaxOmitted)) {
-      super.performAction(id, action);
-      return;
-    }
-    super.performAction(id, action, args);
+    final _flaxHas2 = !identical(args, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.performAction,
+      <Object?>[id, action, (_flaxHas2 ? args : null)],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", ""],
+    );
     return;
   }
 
@@ -12477,11 +12066,13 @@ final class _SemanticsOwnerProxy extends api.SemanticsOwner
     api1.SemanticsAction action, [
     Object? args = _flaxOmitted,
   ]) {
-    if (identical(args, _flaxOmitted)) {
-      super.performActionAt(position, action);
-      return;
-    }
-    super.performActionAt(position, action, args);
+    final _flaxHas2 = !identical(args, _flaxOmitted);
+    flaxInvokeWithDefaults(
+      super.performActionAt,
+      <Object?>[position, action, (_flaxHas2 ? args : null)],
+      <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
+      const <String>["", "", ""],
+    );
     return;
   }
 
@@ -12642,19 +12233,17 @@ final class _SemanticsPropertiesProxy extends api.SemanticsProperties
     Object? joiner = _flaxOmitted,
     Object? minLevel = _flaxOmitted,
   }) {
-    if (identical(joiner, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        return super.toStringShallow();
-      }
-      return super.toStringShallow(minLevel: minLevel as api2.DiagnosticLevel);
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toStringShallow(joiner: joiner as String);
-    }
-    return super.toStringShallow(
-      joiner: joiner as String,
-      minLevel: minLevel as api2.DiagnosticLevel,
-    );
+    final _flaxHas0 = !identical(joiner, _flaxOmitted);
+    final _flaxHas1 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringShallow,
+      <Object?>[
+        (_flaxHas0 ? joiner as String : null),
+        (_flaxHas1 ? minLevel as api2.DiagnosticLevel : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["joiner", "minLevel"],
+    ) as String);
   }
 
   @override
@@ -12690,93 +12279,31 @@ final class _SemanticsPropertiesProxy extends api.SemanticsProperties
     Object? minLevel = _flaxOmitted,
     Object? wrapWidth = _flaxOmitted,
   }) {
-    if (identical(prefixLineOne, _flaxOmitted)) {
-      if (identical(prefixOtherLines, _flaxOmitted)) {
-        if (identical(minLevel, _flaxOmitted)) {
-          if (identical(wrapWidth, _flaxOmitted)) {
-            return super.toStringDeep();
-          }
-          return super.toStringDeep(wrapWidth: wrapWidth as int);
-        }
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api2.DiagnosticLevel);
-        }
-        return super.toStringDeep(
-          minLevel: minLevel as api2.DiagnosticLevel,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(
-            prefixOtherLines: prefixOtherLines as String?,
-          );
-        }
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api2.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(prefixOtherLines, _flaxOmitted)) {
-      if (identical(minLevel, _flaxOmitted)) {
-        if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(prefixLineOne: prefixLineOne as String);
-        }
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          wrapWidth: wrapWidth as int,
-        );
-      }
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api2.DiagnosticLevel,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api2.DiagnosticLevel,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(minLevel, _flaxOmitted)) {
-      if (identical(wrapWidth, _flaxOmitted)) {
-        return super.toStringDeep(
-          prefixLineOne: prefixLineOne as String,
-          prefixOtherLines: prefixOtherLines as String?,
-        );
-      }
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        wrapWidth: wrapWidth as int,
-      );
-    }
-    if (identical(wrapWidth, _flaxOmitted)) {
-      return super.toStringDeep(
-        prefixLineOne: prefixLineOne as String,
-        prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api2.DiagnosticLevel,
-      );
-    }
-    return super.toStringDeep(
-      prefixLineOne: prefixLineOne as String,
-      prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api2.DiagnosticLevel,
-      wrapWidth: wrapWidth as int,
-    );
+    final _flaxHas0 = !identical(prefixLineOne, _flaxOmitted);
+    final _flaxHas1 = !identical(prefixOtherLines, _flaxOmitted);
+    final _flaxHas2 = !identical(minLevel, _flaxOmitted);
+    final _flaxHas3 = !identical(wrapWidth, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toStringDeep,
+      <Object?>[
+        (_flaxHas0 ? prefixLineOne as String : null),
+        (_flaxHas1 ? prefixOtherLines as String? : null),
+        (_flaxHas2 ? minLevel as api2.DiagnosticLevel : null),
+        (_flaxHas3 ? wrapWidth as int : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>[
+        "prefixLineOne",
+        "prefixOtherLines",
+        "minLevel",
+        "wrapWidth",
+      ],
+    ) as String);
   }
 
   @override
@@ -12808,21 +12335,17 @@ final class _SemanticsPropertiesProxy extends api.SemanticsProperties
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -12881,10 +12404,13 @@ final class _SemanticsPropertiesProxy extends api.SemanticsProperties
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -13692,10 +13218,13 @@ final class _SemanticsSortKeyProxy extends api.SemanticsSortKey
   }
 
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted}) {
-    if (identical(minLevel, _flaxOmitted)) {
-      return super.toString();
-    }
-    return super.toString(minLevel: minLevel as api2.DiagnosticLevel);
+    final _flaxHas0 = !identical(minLevel, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toString,
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["minLevel"],
+    ) as String);
   }
 
   @override
@@ -13715,21 +13244,17 @@ final class _SemanticsSortKeyProxy extends api.SemanticsSortKey
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
-    if (identical(name, _flaxOmitted)) {
-      if (identical(style, _flaxOmitted)) {
-        return super.toDiagnosticsNode();
-      }
-      return super.toDiagnosticsNode(
-        style: style as api2.DiagnosticsTreeStyle?,
-      );
-    }
-    if (identical(style, _flaxOmitted)) {
-      return super.toDiagnosticsNode(name: name as String?);
-    }
-    return super.toDiagnosticsNode(
-      name: name as String?,
-      style: style as api2.DiagnosticsTreeStyle?,
-    );
+    final _flaxHas0 = !identical(name, _flaxOmitted);
+    final _flaxHas1 = !identical(style, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toDiagnosticsNode,
+      <Object?>[
+        (_flaxHas0 ? name as String? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["name", "style"],
+    ) as api2.DiagnosticsNode);
   }
 
   @override
@@ -13802,10 +13327,13 @@ final class _TapSemanticEventProxy extends api.TapSemanticEvent
   }
 
   Map<String, Object?> _flaxSuper_toMap({Object? nodeId = _flaxOmitted}) {
-    if (identical(nodeId, _flaxOmitted)) {
-      return super.toMap();
-    }
-    return super.toMap(nodeId: nodeId as int?);
+    final _flaxHas0 = !identical(nodeId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toMap,
+      <Object?>[(_flaxHas0 ? nodeId as int? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["nodeId"],
+    ) as Map<String, Object?>);
   }
 
   @override
@@ -13843,10 +13371,13 @@ final class _TooltipSemanticsEventProxy extends api.TooltipSemanticsEvent
   }
 
   Map<String, Object?> _flaxSuper_toMap({Object? nodeId = _flaxOmitted}) {
-    if (identical(nodeId, _flaxOmitted)) {
-      return super.toMap();
-    }
-    return super.toMap(nodeId: nodeId as int?);
+    final _flaxHas0 = !identical(nodeId, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.toMap,
+      <Object?>[(_flaxHas0 ? nodeId as int? : null)],
+      <int>[(_flaxHas0 ? 1 : 0)],
+      const <String>["nodeId"],
+    ) as Map<String, Object?>);
   }
 
   @override

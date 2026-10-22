@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Placeholder
 import '@flax/dart/ui/_bindings/sdk_dart_ui_PlaceholderAlignment';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_TextBaseline';
 import '@flax/dart/ui/_bindings/flutter_TextBaseline';
-import { _flaxMemberParameters2, _flaxMemberParameters112 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
+import { _flaxMemberParameters2, _flaxMemberParameters119 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -26,7 +26,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_painting#type:PlaceholderDimensions", "", [{"name":"size","required":true},{"name":"alignment","required":true},{"name":"baseline"},{"name":"baselineOffset"}], [], options) as PlaceholderDimensions;
 }
-const _PlaceholderDimensionsProxy = {type: "flax.core/sdk_painting#type:PlaceholderDimensions", parameters: _flaxMemberParameters112, constructors: {"": _flaxMemberParameters112}, methods: {"toString":_flaxMemberParameters2}, getters: ["size","alignment","baselineOffset","baseline"], setters: [], contextMembers: [], superMembers: ["get:size","get:alignment","get:baselineOffset","get:baseline","toString"]} as const;
+const _PlaceholderDimensionsProxy = {type: "flax.core/sdk_painting#type:PlaceholderDimensions", parameters: _flaxMemberParameters119, constructors: {"": _flaxMemberParameters119}, methods: {"toString":_flaxMemberParameters2}, getters: ["size","alignment","baselineOffset","baseline"], setters: [], contextMembers: [], superMembers: ["get:size","get:alignment","get:baselineOffset","get:baseline","toString"]} as const;
 export interface _PlaceholderDimensionsNative extends PlaceholderDimensions {
 readonly [_flaxDartTypeValue]: _PlaceholderDimensionsNative;
 

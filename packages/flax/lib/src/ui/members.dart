@@ -1,5 +1,127 @@
 part of '../../bindings.dart';
 
+// A layout belongs to an operation, never to a business object or callback.
+class _CallLayout {
+  _CallLayout(this.parameters);
+  factory _CallLayout.read(FlaxJsValue value) {
+    if (value is! FlaxJsObject) throw ArgumentError('Invalid call layout');
+    final length = value.getProperty('length');
+    late final int count;
+    try {
+      if (length is! FlaxJsNumber ||
+          !length.value.isFinite ||
+          length.value < 0 ||
+          length.value != length.value.truncateToDouble()) {
+        throw ArgumentError('Invalid call layout length');
+      }
+      count = length.value.toInt();
+    } finally {
+      _releaseJs(length);
+    }
+    final parameters = <({String name, bool required, bool positional})>[];
+    final names = <String>{};
+    for (var i = 0; i < count; i++) {
+      final row = value.getProperty('$i');
+      if (row is! FlaxJsObject) throw ArgumentError('Invalid call parameter');
+      final fields = <FlaxJsValue>[];
+      try {
+        for (final name in const ['name', 'required', 'positional']) {
+          fields.add(row.getProperty(name));
+        }
+        final [name, required, positional] = fields;
+        if (name is! FlaxJsString ||
+            name.value.isEmpty ||
+            !names.add(name.value) ||
+            required is! FlaxJsUndefined && required is! FlaxJsBoolean ||
+            positional is! FlaxJsUndefined && positional is! FlaxJsBoolean) {
+          throw ArgumentError('Invalid call parameter');
+        }
+        parameters.add((
+          name: name.value,
+          required: required is FlaxJsBoolean && required.value,
+          positional: positional is FlaxJsBoolean && positional.value,
+        ));
+      } finally {
+        for (final field in fields) {
+          _releaseJs(field);
+        }
+        row.release();
+      }
+    }
+    return _CallLayout(parameters);
+  }
+  final List<({String name, bool required, bool positional})> parameters;
+  String get key => jsonEncode(
+    parameters.map((p) => [p.name, p.required, p.positional]).toList(),
+  );
+
+  List<int> indices(List<FlaxParameter> target) {
+    final result = List<int>.filled(target.length, -1);
+    final positional = parameters.where((p) => p.positional).length;
+    var position = 0;
+    for (final (index, source) in parameters.indexed) {
+      final slot = source.positional
+          ? position++
+          : target.indexWhere((p) => p.name == source.name, positional);
+      if (slot < 0 ||
+          slot >= target.length ||
+          result[slot] >= 0 ||
+          target[slot].required && !source.required) {
+        throw ArgumentError(
+          'Incompatible binding parameter layout; regenerate the JS binding',
+        );
+      }
+      result[slot] = index;
+    }
+    if (target.indexed.any(
+      (entry) => entry.$2.required && result[entry.$1] < 0,
+    )) {
+      throw ArgumentError(
+        'Incompatible binding parameter layout; regenerate the JS binding',
+      );
+    }
+    return result;
+  }
+}
+
+_BindingOperation _withCallLayout(
+  _CallLayout? layout,
+  List<FlaxParameter> parameters,
+  _BindingOperation invoke, {
+  bool requireLayout = false,
+}) {
+  if (layout == null) {
+    if (requireLayout && parameters.any((p) => !p.required)) {
+      throw ArgumentError(
+        'Missing binding parameter layout; regenerate the JS binding once',
+      );
+    }
+    return invoke;
+  }
+  final indices = layout.indices(parameters);
+  // Identical layouts and appended optional parameters need no argument copy.
+  final unchanged = indices.indexed.every(
+    (entry) =>
+        entry.$2 == entry.$1 ||
+        entry.$1 >= layout.parameters.length && entry.$2 == -1,
+  );
+  if (unchanged && indices.length == layout.parameters.length) return invoke;
+  return (id, args) {
+    if (args.length > layout.parameters.length) {
+      throw ArgumentError('Too many call arguments');
+    }
+    return invoke(
+      id,
+      unchanged
+          ? args
+          : [
+              for (final i in indices)
+                i >= 0 && i < args.length ? args[i] : const FlaxJsUndefined(),
+            ],
+    );
+  };
+}
+
 /// Borrow the actual Element without keeping it mounted or manufacturing a host.
 class _ContextReference extends _BridgeReference {
   _ContextReference(
@@ -173,12 +295,16 @@ extension _MemberCalls on _Session {
     String type,
     String operation,
     String name,
+    _CallLayout? layout,
   ) {
+    final requireLayout =
+        _bindingOwner(type)?.requiredCapabilities.contains('call-layouts') ==
+        true;
     final definition = _functionBinding(type);
     if (definition == null || operation != 'call' || name.isNotEmpty) {
       throw ArgumentError('Unknown top-level function');
     }
-    return (id, args) {
+    return _withCallLayout(layout, definition.parameters, (id, args) {
       if (id != 0) throw ArgumentError('Top-level functions have no receiver');
       if (definition.requiresTypeArguments) FlaxDartTypes.requireArguments();
       final route = definition.route;
@@ -197,19 +323,23 @@ extension _MemberCalls on _Session {
         input.release();
         checkpoint();
       }
-    };
+    }, requireLayout: requireLayout);
   }
 
   _BindingOperation _staticOperation(
     String type,
     String operation,
     String name,
+    _CallLayout? layout,
   ) {
+    final requireLayout =
+        _bindingOwner(type)?.requiredCapabilities.contains('call-layouts') ==
+        true;
     final method = _typeBinding(type)?.methods[name];
     if (method == null || operation != 'call') {
       throw ArgumentError('Unknown static method');
     }
-    return (id, args) {
+    return _withCallLayout(layout, method.parameters, (id, args) {
       if (id != 0) throw ArgumentError('Static methods have no receiver');
       if (args.length > method.parameters.length) {
         throw ArgumentError('Too many method arguments');
@@ -223,7 +353,7 @@ extension _MemberCalls on _Session {
         checkpoint();
         input.release();
       }
-    };
+    }, requireLayout: requireLayout);
   }
 
   _CallArguments _callArguments(
@@ -404,7 +534,11 @@ extension _MemberCalls on _Session {
     String type,
     String operation,
     String name,
+    _CallLayout? layout,
   ) {
+    final requireLayout =
+        _bindingOwner(type)?.requiredCapabilities.contains('call-layouts') ==
+        true;
     final binding = _typeBinding(type);
     if (binding is! FlaxContextBinding) {
       throw ArgumentError('Unknown context operation');
@@ -413,10 +547,15 @@ extension _MemberCalls on _Session {
       final method =
           _genericMethod(type, name) ?? binding.instanceMethods[name];
       if (method == null) throw ArgumentError('Unknown Context method');
-      return (id, args) => _invokeInstanceMethod(
-        _context(FlaxJsNumber(id.toDouble()), type).requireActive(),
-        method,
-        args,
+      return _withCallLayout(
+        layout,
+        method.parameters,
+        (id, args) => _invokeInstanceMethod(
+          _context(FlaxJsNumber(id.toDouble()), type).requireActive(),
+          method,
+          args,
+        ),
+        requireLayout: requireLayout,
       );
     }
     if (operation != 'get') throw ArgumentError('Unknown context operation');
@@ -438,7 +577,11 @@ extension _MemberCalls on _Session {
     String type,
     String operation,
     String name,
+    _CallLayout? layout,
   ) {
+    final requireLayout =
+        _bindingOwner(type)?.requiredCapabilities.contains('call-layouts') ==
+        true;
     final binding = _typeBinding(type);
     if (binding is! FlaxStateBinding) throw ArgumentError('Unknown State type');
     if (operation == 'get') {
@@ -466,7 +609,7 @@ extension _MemberCalls on _Session {
     if (operation != 'call' || method == null) {
       throw ArgumentError('Unknown State method');
     }
-    return (id, args) {
+    return _withCallLayout(layout, method.parameters, (id, args) {
       final ref = _states[id];
       final state = ref?.mounted;
       if (state == null ||
@@ -477,7 +620,7 @@ extension _MemberCalls on _Session {
       final selected =
           _genericMethod(type, name) ?? actual.instanceMethods[name]!;
       return _invokeInstanceMethod(state, selected, args);
-    };
+    }, requireLayout: requireLayout);
   }
 
   FlaxJsValue _invokeInstanceMethod(

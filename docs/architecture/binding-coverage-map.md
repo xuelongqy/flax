@@ -407,10 +407,11 @@ Evidence:
 | Provider-owned nominal type           | Supported | A dependency Manifest owner is a recursion boundary. The consumer preserves identity, nullability, and type arguments without expanding provider inheritance.                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Public carrier and dependency closure | Supported | Declaration identity chooses a same-package public carrier. Same-name different identities fail closed. Dependency-only types stay internal in automatic mode.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
-Default omission preserves missing/`undefined` separately from explicit `null`. Up to
-five independently omitted parameters use direct calls; six or more use `Function.apply`
-without trimming the selected surface. Optional positional parameters keep linear tail
-dispatch and reject holes.
+Default omission preserves missing/`undefined` separately from explicit `null`. Known
+declarations use compiler-generated fixed entries without omission combinations or
+`Function.apply`. Dynamic callback values retain their direct/apply threshold and linear
+positional dispatch. The selected surface is not trimmed; positional holes remain
+rejected. See [ADR 0046](../decisions/0046-compiler-default-entries.md).
 
 `Bag<T>(List<T> items)` constructs its legal bound default when no type is supplied.
 `Bag.$type(dartTypes.string)` (equivalently `dartType(Bag, dartTypes.string)`)

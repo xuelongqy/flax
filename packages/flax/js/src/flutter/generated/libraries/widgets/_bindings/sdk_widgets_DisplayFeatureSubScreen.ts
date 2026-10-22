@@ -23,6 +23,7 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import { _flaxMemberParameters95, _flaxMemberParameters96 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -49,12 +50,12 @@ return constructObject("object", "flax.core/sdk_widgets#type:DisplayFeatureSubSc
 }
 export namespace _DisplayFeatureSubScreenFactory { export function avoidBounds(mediaQuery: Readonly<{ "__flaxBound:package:flutter/src/widgets/media_query.dart::MediaQueryData": readonly [] }>): DartIterable<upstream3.Rect> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:DisplayFeatureSubScreen.avoidBounds", [mediaQuery]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:DisplayFeatureSubScreen.avoidBounds", [mediaQuery], _flaxMemberParameters95);
 return _flaxResult as DartIterable<upstream3.Rect>;
 } }
 export namespace _DisplayFeatureSubScreenFactory { export function subScreensInBounds(wantedBounds: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, avoidBounds: DartIterableInput<upstream3.Rect, Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>>): DartIterable<upstream3.Rect> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:DisplayFeatureSubScreen.subScreensInBounds", [wantedBounds, avoidBounds]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:DisplayFeatureSubScreen.subScreensInBounds", [wantedBounds, avoidBounds], _flaxMemberParameters96);
 return _flaxResult as DartIterable<upstream3.Rect>;
 } }
 export const DisplayFeatureSubScreen: typeof _DisplayFeatureSubScreenFactory & _FlaxInstanceType<DisplayFeatureSubScreen> & _FlaxDartType<DisplayFeatureSubScreen, readonly ["class", "flax.core/sdk_widgets#type:DisplayFeatureSubScreen", readonly [], false]> = _flaxBindInstanceType<DisplayFeatureSubScreen, typeof _DisplayFeatureSubScreenFactory>(_DisplayFeatureSubScreenFactory, "flax.core/sdk_widgets#type:DisplayFeatureSubScreen", ["flax.core/sdk_widgets#type:StatelessWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _DisplayFeatureSubScreenFactory & _FlaxInstanceType<DisplayFeatureSubScreen> & _FlaxDartType<DisplayFeatureSubScreen, readonly ["class", "flax.core/sdk_widgets#type:DisplayFeatureSubScreen", readonly [], false]>;

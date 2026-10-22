@@ -1215,6 +1215,7 @@ const sdk_dart_uiBindings = FlaxBindingModule(
   dependencyModules: ["flax.core/flutter", "flax.core/sdk_dependencies"],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "dart-type-tokens",
     "engine-type-handles",
     "generic-call-types",
@@ -4693,41 +4694,35 @@ Object? _Path_arcTo(Object receiver, Map<String, Object?> values) {
 }
 
 Object? _Path_arcToPoint(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("radius")) {
-    (receiver as api.Path).arcToPoint(
+  final _flaxHas3 = values.containsKey("radius");
+  flaxInvokeWithDefaults(
+    (receiver as api.Path).arcToPoint,
+    <Object?>[
       values["arcEnd"] as api.Offset,
-      clockwise: values["clockwise"] as bool,
-      largeArc: values["largeArc"] as bool,
-      rotation: values["rotation"] as double,
-    );
-    return null;
-  }
-  (receiver as api.Path).arcToPoint(
-    values["arcEnd"] as api.Offset,
-    clockwise: values["clockwise"] as bool,
-    largeArc: values["largeArc"] as bool,
-    radius: values["radius"] as api.Radius,
-    rotation: values["rotation"] as double,
+      values["clockwise"] as bool,
+      values["largeArc"] as bool,
+      (_flaxHas3 ? values["radius"] as api.Radius : null),
+      values["rotation"] as double,
+    ],
+    <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16],
+    const <String>["", "clockwise", "largeArc", "radius", "rotation"],
   );
   return null;
 }
 
 Object? _Path_relativeArcToPoint(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("radius")) {
-    (receiver as api.Path).relativeArcToPoint(
+  final _flaxHas3 = values.containsKey("radius");
+  flaxInvokeWithDefaults(
+    (receiver as api.Path).relativeArcToPoint,
+    <Object?>[
       values["arcEndDelta"] as api.Offset,
-      clockwise: values["clockwise"] as bool,
-      largeArc: values["largeArc"] as bool,
-      rotation: values["rotation"] as double,
-    );
-    return null;
-  }
-  (receiver as api.Path).relativeArcToPoint(
-    values["arcEndDelta"] as api.Offset,
-    clockwise: values["clockwise"] as bool,
-    largeArc: values["largeArc"] as bool,
-    radius: values["radius"] as api.Radius,
-    rotation: values["rotation"] as double,
+      values["clockwise"] as bool,
+      values["largeArc"] as bool,
+      (_flaxHas3 ? values["radius"] as api.Radius : null),
+      values["rotation"] as double,
+    ],
+    <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16],
+    const <String>["", "clockwise", "largeArc", "radius", "rotation"],
   );
   return null;
 }
@@ -5715,173 +5710,243 @@ Object? _PointerData_super_get_rotation(
 Object _createPointerData(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("timeStamp")) {
-        return api.PointerData(
-          viewId: values["viewId"] as int,
-          embedderId: values["embedderId"] as int,
-          change: values["change"] as api.PointerChange,
-          kind: values["kind"] as api.PointerDeviceKind,
-          signalKind: values["signalKind"] as api.PointerSignalKind?,
-          device: values["device"] as int,
-          pointerIdentifier: values["pointerIdentifier"] as int,
-          physicalX: values["physicalX"] as double,
-          physicalY: values["physicalY"] as double,
-          physicalDeltaX: values["physicalDeltaX"] as double,
-          physicalDeltaY: values["physicalDeltaY"] as double,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          synthesized: values["synthesized"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          platformData: values["platformData"] as int,
-          scrollDeltaX: values["scrollDeltaX"] as double,
-          scrollDeltaY: values["scrollDeltaY"] as double,
-          panX: values["panX"] as double,
-          panY: values["panY"] as double,
-          panDeltaX: values["panDeltaX"] as double,
-          panDeltaY: values["panDeltaY"] as double,
-          scale: values["scale"] as double,
-          rotation: values["rotation"] as double,
-          onRespond:
-              values["onRespond"]
-                  as void Function({bool allowPlatformDefault})?,
-        );
-      }
-      return api.PointerData(
-        viewId: values["viewId"] as int,
-        embedderId: values["embedderId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        change: values["change"] as api.PointerChange,
-        kind: values["kind"] as api.PointerDeviceKind,
-        signalKind: values["signalKind"] as api.PointerSignalKind?,
-        device: values["device"] as int,
-        pointerIdentifier: values["pointerIdentifier"] as int,
-        physicalX: values["physicalX"] as double,
-        physicalY: values["physicalY"] as double,
-        physicalDeltaX: values["physicalDeltaX"] as double,
-        physicalDeltaY: values["physicalDeltaY"] as double,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        synthesized: values["synthesized"] as bool,
-        pressure: values["pressure"] as double,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        platformData: values["platformData"] as int,
-        scrollDeltaX: values["scrollDeltaX"] as double,
-        scrollDeltaY: values["scrollDeltaY"] as double,
-        panX: values["panX"] as double,
-        panY: values["panY"] as double,
-        panDeltaX: values["panDeltaX"] as double,
-        panDeltaY: values["panDeltaY"] as double,
-        scale: values["scale"] as double,
-        rotation: values["rotation"] as double,
-        onRespond:
-            values["onRespond"] as void Function({bool allowPlatformDefault})?,
-      );
+      final _flaxHas2 = values.containsKey("timeStamp");
+      return flaxInvokeWithDefaults(
+        api.PointerData.new,
+        <Object?>[
+          values["viewId"] as int,
+          values["embedderId"] as int,
+          (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
+          values["change"] as api.PointerChange,
+          values["kind"] as api.PointerDeviceKind,
+          values["signalKind"] as api.PointerSignalKind?,
+          values["device"] as int,
+          values["pointerIdentifier"] as int,
+          values["physicalX"] as double,
+          values["physicalY"] as double,
+          values["physicalDeltaX"] as double,
+          values["physicalDeltaY"] as double,
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["synthesized"] as bool,
+          values["pressure"] as double,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["platformData"] as int,
+          values["scrollDeltaX"] as double,
+          values["scrollDeltaY"] as double,
+          values["panX"] as double,
+          values["panY"] as double,
+          values["panDeltaX"] as double,
+          values["panDeltaY"] as double,
+          values["scale"] as double,
+          values["rotation"] as double,
+          values["onRespond"] as void Function({bool allowPlatformDefault})?,
+        ],
+        <int>[
+          1 |
+              2 |
+              (_flaxHas2 ? 4 : 0) |
+              8 |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912 |
+              1073741824 |
+              2147483648,
+          1 | 2 | 4 | 8 | 16,
+        ],
+        const <String>[
+          "viewId",
+          "embedderId",
+          "timeStamp",
+          "change",
+          "kind",
+          "signalKind",
+          "device",
+          "pointerIdentifier",
+          "physicalX",
+          "physicalY",
+          "physicalDeltaX",
+          "physicalDeltaY",
+          "buttons",
+          "obscured",
+          "synthesized",
+          "pressure",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "platformData",
+          "scrollDeltaX",
+          "scrollDeltaY",
+          "panX",
+          "panY",
+          "panDeltaX",
+          "panDeltaY",
+          "scale",
+          "rotation",
+          "onRespond",
+        ],
+      ) as api.PointerData;
     case '@implementation':
-      if (!values.containsKey("timeStamp")) {
-        return _PointerDataProxy(
+      final _flaxHas3 = values.containsKey("timeStamp");
+      return flaxInvokeWithDefaults(
+        _PointerDataProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          viewId: values["viewId"] as int,
-          embedderId: values["embedderId"] as int,
-          change: values["change"] as api.PointerChange,
-          kind: values["kind"] as api.PointerDeviceKind,
-          signalKind: values["signalKind"] as api.PointerSignalKind?,
-          device: values["device"] as int,
-          pointerIdentifier: values["pointerIdentifier"] as int,
-          physicalX: values["physicalX"] as double,
-          physicalY: values["physicalY"] as double,
-          physicalDeltaX: values["physicalDeltaX"] as double,
-          physicalDeltaY: values["physicalDeltaY"] as double,
-          buttons: values["buttons"] as int,
-          obscured: values["obscured"] as bool,
-          synthesized: values["synthesized"] as bool,
-          pressure: values["pressure"] as double,
-          pressureMin: values["pressureMin"] as double,
-          pressureMax: values["pressureMax"] as double,
-          distance: values["distance"] as double,
-          distanceMax: values["distanceMax"] as double,
-          size: values["size"] as double,
-          radiusMajor: values["radiusMajor"] as double,
-          radiusMinor: values["radiusMinor"] as double,
-          radiusMin: values["radiusMin"] as double,
-          radiusMax: values["radiusMax"] as double,
-          orientation: values["orientation"] as double,
-          tilt: values["tilt"] as double,
-          platformData: values["platformData"] as int,
-          scrollDeltaX: values["scrollDeltaX"] as double,
-          scrollDeltaY: values["scrollDeltaY"] as double,
-          panX: values["panX"] as double,
-          panY: values["panY"] as double,
-          panDeltaX: values["panDeltaX"] as double,
-          panDeltaY: values["panDeltaY"] as double,
-          scale: values["scale"] as double,
-          rotation: values["rotation"] as double,
-          onRespond:
-              values["onRespond"]
-                  as void Function({bool allowPlatformDefault})?,
-        );
-      }
-      return _PointerDataProxy(
-        values['@peer'] as FlaxProxyPeer,
-        viewId: values["viewId"] as int,
-        embedderId: values["embedderId"] as int,
-        timeStamp: values["timeStamp"] as api2.Duration,
-        change: values["change"] as api.PointerChange,
-        kind: values["kind"] as api.PointerDeviceKind,
-        signalKind: values["signalKind"] as api.PointerSignalKind?,
-        device: values["device"] as int,
-        pointerIdentifier: values["pointerIdentifier"] as int,
-        physicalX: values["physicalX"] as double,
-        physicalY: values["physicalY"] as double,
-        physicalDeltaX: values["physicalDeltaX"] as double,
-        physicalDeltaY: values["physicalDeltaY"] as double,
-        buttons: values["buttons"] as int,
-        obscured: values["obscured"] as bool,
-        synthesized: values["synthesized"] as bool,
-        pressure: values["pressure"] as double,
-        pressureMin: values["pressureMin"] as double,
-        pressureMax: values["pressureMax"] as double,
-        distance: values["distance"] as double,
-        distanceMax: values["distanceMax"] as double,
-        size: values["size"] as double,
-        radiusMajor: values["radiusMajor"] as double,
-        radiusMinor: values["radiusMinor"] as double,
-        radiusMin: values["radiusMin"] as double,
-        radiusMax: values["radiusMax"] as double,
-        orientation: values["orientation"] as double,
-        tilt: values["tilt"] as double,
-        platformData: values["platformData"] as int,
-        scrollDeltaX: values["scrollDeltaX"] as double,
-        scrollDeltaY: values["scrollDeltaY"] as double,
-        panX: values["panX"] as double,
-        panY: values["panY"] as double,
-        panDeltaX: values["panDeltaX"] as double,
-        panDeltaY: values["panDeltaY"] as double,
-        scale: values["scale"] as double,
-        rotation: values["rotation"] as double,
-        onRespond:
-            values["onRespond"] as void Function({bool allowPlatformDefault})?,
-      );
+          values["viewId"] as int,
+          values["embedderId"] as int,
+          (_flaxHas3 ? values["timeStamp"] as api2.Duration : null),
+          values["change"] as api.PointerChange,
+          values["kind"] as api.PointerDeviceKind,
+          values["signalKind"] as api.PointerSignalKind?,
+          values["device"] as int,
+          values["pointerIdentifier"] as int,
+          values["physicalX"] as double,
+          values["physicalY"] as double,
+          values["physicalDeltaX"] as double,
+          values["physicalDeltaY"] as double,
+          values["buttons"] as int,
+          values["obscured"] as bool,
+          values["synthesized"] as bool,
+          values["pressure"] as double,
+          values["pressureMin"] as double,
+          values["pressureMax"] as double,
+          values["distance"] as double,
+          values["distanceMax"] as double,
+          values["size"] as double,
+          values["radiusMajor"] as double,
+          values["radiusMinor"] as double,
+          values["radiusMin"] as double,
+          values["radiusMax"] as double,
+          values["orientation"] as double,
+          values["tilt"] as double,
+          values["platformData"] as int,
+          values["scrollDeltaX"] as double,
+          values["scrollDeltaY"] as double,
+          values["panX"] as double,
+          values["panY"] as double,
+          values["panDeltaX"] as double,
+          values["panDeltaY"] as double,
+          values["scale"] as double,
+          values["rotation"] as double,
+          values["onRespond"] as void Function({bool allowPlatformDefault})?,
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              (_flaxHas3 ? 8 : 0) |
+              16 |
+              32 |
+              64 |
+              128 |
+              256 |
+              512 |
+              1024 |
+              2048 |
+              4096 |
+              8192 |
+              16384 |
+              32768 |
+              65536 |
+              131072 |
+              262144 |
+              524288 |
+              1048576 |
+              2097152 |
+              4194304 |
+              8388608 |
+              16777216 |
+              33554432 |
+              67108864 |
+              134217728 |
+              268435456 |
+              536870912 |
+              1073741824 |
+              2147483648,
+          1 | 2 | 4 | 8 | 16 | 32,
+        ],
+        const <String>[
+          "",
+          "viewId",
+          "embedderId",
+          "timeStamp",
+          "change",
+          "kind",
+          "signalKind",
+          "device",
+          "pointerIdentifier",
+          "physicalX",
+          "physicalY",
+          "physicalDeltaX",
+          "physicalDeltaY",
+          "buttons",
+          "obscured",
+          "synthesized",
+          "pressure",
+          "pressureMin",
+          "pressureMax",
+          "distance",
+          "distanceMax",
+          "size",
+          "radiusMajor",
+          "radiusMinor",
+          "radiusMin",
+          "radiusMax",
+          "orientation",
+          "tilt",
+          "platformData",
+          "scrollDeltaX",
+          "scrollDeltaY",
+          "panX",
+          "panY",
+          "panDeltaX",
+          "panDeltaY",
+          "scale",
+          "rotation",
+          "onRespond",
+        ],
+      ) as api.PointerData;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -5897,20 +5962,24 @@ Object? _PointerDataPacket_super_get_data(
 Object _createPointerDataPacket(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("data")) {
-        return api.PointerDataPacket();
-      }
-      return api.PointerDataPacket(
-        data: values["data"] as List<api.PointerData>,
-      );
+      final _flaxHas0 = values.containsKey("data");
+      return flaxInvokeWithDefaults(
+        api.PointerDataPacket.new,
+        <Object?>[(_flaxHas0 ? values["data"] as List<api.PointerData> : null)],
+        <int>[(_flaxHas0 ? 1 : 0)],
+        const <String>["data"],
+      ) as api.PointerDataPacket;
     case '@implementation':
-      if (!values.containsKey("data")) {
-        return _PointerDataPacketProxy(values['@peer'] as FlaxProxyPeer);
-      }
-      return _PointerDataPacketProxy(
-        values['@peer'] as FlaxProxyPeer,
-        data: values["data"] as List<api.PointerData>,
-      );
+      final _flaxHas1 = values.containsKey("data");
+      return flaxInvokeWithDefaults(
+        _PointerDataPacketProxy.new,
+        <Object?>[
+          values['@peer'] as FlaxProxyPeer,
+          (_flaxHas1 ? values["data"] as List<api.PointerData> : null),
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0)],
+        const <String>["", "data"],
+      ) as api.PointerDataPacket;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6016,273 +6085,66 @@ Object _createRRect(String ctor, Map<String, Object?> values) {
         values["radius"] as api.Radius,
       );
     case "fromLTRBAndCorners":
-      if (!values.containsKey("topLeft")) {
-        if (!values.containsKey("topRight")) {
-          if (!values.containsKey("bottomRight")) {
-            if (!values.containsKey("bottomLeft")) {
-              return api.RRect.fromLTRBAndCorners(
-                values["left"] as double,
-                values["top"] as double,
-                values["right"] as double,
-                values["bottom"] as double,
-              );
-            }
-            return api.RRect.fromLTRBAndCorners(
-              values["left"] as double,
-              values["top"] as double,
-              values["right"] as double,
-              values["bottom"] as double,
-              bottomLeft: values["bottomLeft"] as api.Radius,
-            );
-          }
-          if (!values.containsKey("bottomLeft")) {
-            return api.RRect.fromLTRBAndCorners(
-              values["left"] as double,
-              values["top"] as double,
-              values["right"] as double,
-              values["bottom"] as double,
-              bottomRight: values["bottomRight"] as api.Radius,
-            );
-          }
-          return api.RRect.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            bottomRight: values["bottomRight"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomRight")) {
-          if (!values.containsKey("bottomLeft")) {
-            return api.RRect.fromLTRBAndCorners(
-              values["left"] as double,
-              values["top"] as double,
-              values["right"] as double,
-              values["bottom"] as double,
-              topRight: values["topRight"] as api.Radius,
-            );
-          }
-          return api.RRect.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            topRight: values["topRight"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomLeft")) {
-          return api.RRect.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            topRight: values["topRight"] as api.Radius,
-            bottomRight: values["bottomRight"] as api.Radius,
-          );
-        }
-        return api.RRect.fromLTRBAndCorners(
+      final _flaxHas4 = values.containsKey("topLeft");
+      final _flaxHas5 = values.containsKey("topRight");
+      final _flaxHas6 = values.containsKey("bottomRight");
+      final _flaxHas7 = values.containsKey("bottomLeft");
+      return flaxInvokeWithDefaults(
+        api.RRect.fromLTRBAndCorners,
+        <Object?>[
           values["left"] as double,
           values["top"] as double,
           values["right"] as double,
           values["bottom"] as double,
-          topRight: values["topRight"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("topRight")) {
-        if (!values.containsKey("bottomRight")) {
-          if (!values.containsKey("bottomLeft")) {
-            return api.RRect.fromLTRBAndCorners(
-              values["left"] as double,
-              values["top"] as double,
-              values["right"] as double,
-              values["bottom"] as double,
-              topLeft: values["topLeft"] as api.Radius,
-            );
-          }
-          return api.RRect.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            topLeft: values["topLeft"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomLeft")) {
-          return api.RRect.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            topLeft: values["topLeft"] as api.Radius,
-            bottomRight: values["bottomRight"] as api.Radius,
-          );
-        }
-        return api.RRect.fromLTRBAndCorners(
-          values["left"] as double,
-          values["top"] as double,
-          values["right"] as double,
-          values["bottom"] as double,
-          topLeft: values["topLeft"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("bottomRight")) {
-        if (!values.containsKey("bottomLeft")) {
-          return api.RRect.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            topLeft: values["topLeft"] as api.Radius,
-            topRight: values["topRight"] as api.Radius,
-          );
-        }
-        return api.RRect.fromLTRBAndCorners(
-          values["left"] as double,
-          values["top"] as double,
-          values["right"] as double,
-          values["bottom"] as double,
-          topLeft: values["topLeft"] as api.Radius,
-          topRight: values["topRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("bottomLeft")) {
-        return api.RRect.fromLTRBAndCorners(
-          values["left"] as double,
-          values["top"] as double,
-          values["right"] as double,
-          values["bottom"] as double,
-          topLeft: values["topLeft"] as api.Radius,
-          topRight: values["topRight"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-        );
-      }
-      return api.RRect.fromLTRBAndCorners(
-        values["left"] as double,
-        values["top"] as double,
-        values["right"] as double,
-        values["bottom"] as double,
-        topLeft: values["topLeft"] as api.Radius,
-        topRight: values["topRight"] as api.Radius,
-        bottomRight: values["bottomRight"] as api.Radius,
-        bottomLeft: values["bottomLeft"] as api.Radius,
-      );
+          (_flaxHas4 ? values["topLeft"] as api.Radius : null),
+          (_flaxHas5 ? values["topRight"] as api.Radius : null),
+          (_flaxHas6 ? values["bottomRight"] as api.Radius : null),
+          (_flaxHas7 ? values["bottomLeft"] as api.Radius : null),
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              (_flaxHas5 ? 32 : 0) |
+              (_flaxHas6 ? 64 : 0) |
+              (_flaxHas7 ? 128 : 0),
+        ],
+        const <String>[
+          "",
+          "",
+          "",
+          "",
+          "topLeft",
+          "topRight",
+          "bottomRight",
+          "bottomLeft",
+        ],
+      ) as api.RRect;
     case "fromRectAndCorners":
-      if (!values.containsKey("topLeft")) {
-        if (!values.containsKey("topRight")) {
-          if (!values.containsKey("bottomRight")) {
-            if (!values.containsKey("bottomLeft")) {
-              return api.RRect.fromRectAndCorners(values["rect"] as api.Rect);
-            }
-            return api.RRect.fromRectAndCorners(
-              values["rect"] as api.Rect,
-              bottomLeft: values["bottomLeft"] as api.Radius,
-            );
-          }
-          if (!values.containsKey("bottomLeft")) {
-            return api.RRect.fromRectAndCorners(
-              values["rect"] as api.Rect,
-              bottomRight: values["bottomRight"] as api.Radius,
-            );
-          }
-          return api.RRect.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            bottomRight: values["bottomRight"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomRight")) {
-          if (!values.containsKey("bottomLeft")) {
-            return api.RRect.fromRectAndCorners(
-              values["rect"] as api.Rect,
-              topRight: values["topRight"] as api.Radius,
-            );
-          }
-          return api.RRect.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            topRight: values["topRight"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomLeft")) {
-          return api.RRect.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            topRight: values["topRight"] as api.Radius,
-            bottomRight: values["bottomRight"] as api.Radius,
-          );
-        }
-        return api.RRect.fromRectAndCorners(
+      final _flaxHas1 = values.containsKey("topLeft");
+      final _flaxHas2 = values.containsKey("topRight");
+      final _flaxHas3 = values.containsKey("bottomRight");
+      final _flaxHas4 = values.containsKey("bottomLeft");
+      return flaxInvokeWithDefaults(
+        api.RRect.fromRectAndCorners,
+        <Object?>[
           values["rect"] as api.Rect,
-          topRight: values["topRight"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("topRight")) {
-        if (!values.containsKey("bottomRight")) {
-          if (!values.containsKey("bottomLeft")) {
-            return api.RRect.fromRectAndCorners(
-              values["rect"] as api.Rect,
-              topLeft: values["topLeft"] as api.Radius,
-            );
-          }
-          return api.RRect.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            topLeft: values["topLeft"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomLeft")) {
-          return api.RRect.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            topLeft: values["topLeft"] as api.Radius,
-            bottomRight: values["bottomRight"] as api.Radius,
-          );
-        }
-        return api.RRect.fromRectAndCorners(
-          values["rect"] as api.Rect,
-          topLeft: values["topLeft"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("bottomRight")) {
-        if (!values.containsKey("bottomLeft")) {
-          return api.RRect.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            topLeft: values["topLeft"] as api.Radius,
-            topRight: values["topRight"] as api.Radius,
-          );
-        }
-        return api.RRect.fromRectAndCorners(
-          values["rect"] as api.Rect,
-          topLeft: values["topLeft"] as api.Radius,
-          topRight: values["topRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("bottomLeft")) {
-        return api.RRect.fromRectAndCorners(
-          values["rect"] as api.Rect,
-          topLeft: values["topLeft"] as api.Radius,
-          topRight: values["topRight"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-        );
-      }
-      return api.RRect.fromRectAndCorners(
-        values["rect"] as api.Rect,
-        topLeft: values["topLeft"] as api.Radius,
-        topRight: values["topRight"] as api.Radius,
-        bottomRight: values["bottomRight"] as api.Radius,
-        bottomLeft: values["bottomLeft"] as api.Radius,
-      );
+          (_flaxHas1 ? values["topLeft"] as api.Radius : null),
+          (_flaxHas2 ? values["topRight"] as api.Radius : null),
+          (_flaxHas3 ? values["bottomRight"] as api.Radius : null),
+          (_flaxHas4 ? values["bottomLeft"] as api.Radius : null),
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0) |
+              (_flaxHas4 ? 16 : 0),
+        ],
+        const <String>["", "topLeft", "topRight", "bottomRight", "bottomLeft"],
+      ) as api.RRect;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6473,275 +6335,66 @@ Object _createRSuperellipse(String ctor, Map<String, Object?> values) {
         values["radius"] as api.Radius,
       );
     case "fromLTRBAndCorners":
-      if (!values.containsKey("topLeft")) {
-        if (!values.containsKey("topRight")) {
-          if (!values.containsKey("bottomRight")) {
-            if (!values.containsKey("bottomLeft")) {
-              return api.RSuperellipse.fromLTRBAndCorners(
-                values["left"] as double,
-                values["top"] as double,
-                values["right"] as double,
-                values["bottom"] as double,
-              );
-            }
-            return api.RSuperellipse.fromLTRBAndCorners(
-              values["left"] as double,
-              values["top"] as double,
-              values["right"] as double,
-              values["bottom"] as double,
-              bottomLeft: values["bottomLeft"] as api.Radius,
-            );
-          }
-          if (!values.containsKey("bottomLeft")) {
-            return api.RSuperellipse.fromLTRBAndCorners(
-              values["left"] as double,
-              values["top"] as double,
-              values["right"] as double,
-              values["bottom"] as double,
-              bottomRight: values["bottomRight"] as api.Radius,
-            );
-          }
-          return api.RSuperellipse.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            bottomRight: values["bottomRight"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomRight")) {
-          if (!values.containsKey("bottomLeft")) {
-            return api.RSuperellipse.fromLTRBAndCorners(
-              values["left"] as double,
-              values["top"] as double,
-              values["right"] as double,
-              values["bottom"] as double,
-              topRight: values["topRight"] as api.Radius,
-            );
-          }
-          return api.RSuperellipse.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            topRight: values["topRight"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomLeft")) {
-          return api.RSuperellipse.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            topRight: values["topRight"] as api.Radius,
-            bottomRight: values["bottomRight"] as api.Radius,
-          );
-        }
-        return api.RSuperellipse.fromLTRBAndCorners(
+      final _flaxHas4 = values.containsKey("topLeft");
+      final _flaxHas5 = values.containsKey("topRight");
+      final _flaxHas6 = values.containsKey("bottomRight");
+      final _flaxHas7 = values.containsKey("bottomLeft");
+      return flaxInvokeWithDefaults(
+        api.RSuperellipse.fromLTRBAndCorners,
+        <Object?>[
           values["left"] as double,
           values["top"] as double,
           values["right"] as double,
           values["bottom"] as double,
-          topRight: values["topRight"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("topRight")) {
-        if (!values.containsKey("bottomRight")) {
-          if (!values.containsKey("bottomLeft")) {
-            return api.RSuperellipse.fromLTRBAndCorners(
-              values["left"] as double,
-              values["top"] as double,
-              values["right"] as double,
-              values["bottom"] as double,
-              topLeft: values["topLeft"] as api.Radius,
-            );
-          }
-          return api.RSuperellipse.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            topLeft: values["topLeft"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomLeft")) {
-          return api.RSuperellipse.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            topLeft: values["topLeft"] as api.Radius,
-            bottomRight: values["bottomRight"] as api.Radius,
-          );
-        }
-        return api.RSuperellipse.fromLTRBAndCorners(
-          values["left"] as double,
-          values["top"] as double,
-          values["right"] as double,
-          values["bottom"] as double,
-          topLeft: values["topLeft"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("bottomRight")) {
-        if (!values.containsKey("bottomLeft")) {
-          return api.RSuperellipse.fromLTRBAndCorners(
-            values["left"] as double,
-            values["top"] as double,
-            values["right"] as double,
-            values["bottom"] as double,
-            topLeft: values["topLeft"] as api.Radius,
-            topRight: values["topRight"] as api.Radius,
-          );
-        }
-        return api.RSuperellipse.fromLTRBAndCorners(
-          values["left"] as double,
-          values["top"] as double,
-          values["right"] as double,
-          values["bottom"] as double,
-          topLeft: values["topLeft"] as api.Radius,
-          topRight: values["topRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("bottomLeft")) {
-        return api.RSuperellipse.fromLTRBAndCorners(
-          values["left"] as double,
-          values["top"] as double,
-          values["right"] as double,
-          values["bottom"] as double,
-          topLeft: values["topLeft"] as api.Radius,
-          topRight: values["topRight"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-        );
-      }
-      return api.RSuperellipse.fromLTRBAndCorners(
-        values["left"] as double,
-        values["top"] as double,
-        values["right"] as double,
-        values["bottom"] as double,
-        topLeft: values["topLeft"] as api.Radius,
-        topRight: values["topRight"] as api.Radius,
-        bottomRight: values["bottomRight"] as api.Radius,
-        bottomLeft: values["bottomLeft"] as api.Radius,
-      );
+          (_flaxHas4 ? values["topLeft"] as api.Radius : null),
+          (_flaxHas5 ? values["topRight"] as api.Radius : null),
+          (_flaxHas6 ? values["bottomRight"] as api.Radius : null),
+          (_flaxHas7 ? values["bottomLeft"] as api.Radius : null),
+        ],
+        <int>[
+          1 |
+              2 |
+              4 |
+              8 |
+              (_flaxHas4 ? 16 : 0) |
+              (_flaxHas5 ? 32 : 0) |
+              (_flaxHas6 ? 64 : 0) |
+              (_flaxHas7 ? 128 : 0),
+        ],
+        const <String>[
+          "",
+          "",
+          "",
+          "",
+          "topLeft",
+          "topRight",
+          "bottomRight",
+          "bottomLeft",
+        ],
+      ) as api.RSuperellipse;
     case "fromRectAndCorners":
-      if (!values.containsKey("topLeft")) {
-        if (!values.containsKey("topRight")) {
-          if (!values.containsKey("bottomRight")) {
-            if (!values.containsKey("bottomLeft")) {
-              return api.RSuperellipse.fromRectAndCorners(
-                values["rect"] as api.Rect,
-              );
-            }
-            return api.RSuperellipse.fromRectAndCorners(
-              values["rect"] as api.Rect,
-              bottomLeft: values["bottomLeft"] as api.Radius,
-            );
-          }
-          if (!values.containsKey("bottomLeft")) {
-            return api.RSuperellipse.fromRectAndCorners(
-              values["rect"] as api.Rect,
-              bottomRight: values["bottomRight"] as api.Radius,
-            );
-          }
-          return api.RSuperellipse.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            bottomRight: values["bottomRight"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomRight")) {
-          if (!values.containsKey("bottomLeft")) {
-            return api.RSuperellipse.fromRectAndCorners(
-              values["rect"] as api.Rect,
-              topRight: values["topRight"] as api.Radius,
-            );
-          }
-          return api.RSuperellipse.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            topRight: values["topRight"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomLeft")) {
-          return api.RSuperellipse.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            topRight: values["topRight"] as api.Radius,
-            bottomRight: values["bottomRight"] as api.Radius,
-          );
-        }
-        return api.RSuperellipse.fromRectAndCorners(
+      final _flaxHas1 = values.containsKey("topLeft");
+      final _flaxHas2 = values.containsKey("topRight");
+      final _flaxHas3 = values.containsKey("bottomRight");
+      final _flaxHas4 = values.containsKey("bottomLeft");
+      return flaxInvokeWithDefaults(
+        api.RSuperellipse.fromRectAndCorners,
+        <Object?>[
           values["rect"] as api.Rect,
-          topRight: values["topRight"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("topRight")) {
-        if (!values.containsKey("bottomRight")) {
-          if (!values.containsKey("bottomLeft")) {
-            return api.RSuperellipse.fromRectAndCorners(
-              values["rect"] as api.Rect,
-              topLeft: values["topLeft"] as api.Radius,
-            );
-          }
-          return api.RSuperellipse.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            topLeft: values["topLeft"] as api.Radius,
-            bottomLeft: values["bottomLeft"] as api.Radius,
-          );
-        }
-        if (!values.containsKey("bottomLeft")) {
-          return api.RSuperellipse.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            topLeft: values["topLeft"] as api.Radius,
-            bottomRight: values["bottomRight"] as api.Radius,
-          );
-        }
-        return api.RSuperellipse.fromRectAndCorners(
-          values["rect"] as api.Rect,
-          topLeft: values["topLeft"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("bottomRight")) {
-        if (!values.containsKey("bottomLeft")) {
-          return api.RSuperellipse.fromRectAndCorners(
-            values["rect"] as api.Rect,
-            topLeft: values["topLeft"] as api.Radius,
-            topRight: values["topRight"] as api.Radius,
-          );
-        }
-        return api.RSuperellipse.fromRectAndCorners(
-          values["rect"] as api.Rect,
-          topLeft: values["topLeft"] as api.Radius,
-          topRight: values["topRight"] as api.Radius,
-          bottomLeft: values["bottomLeft"] as api.Radius,
-        );
-      }
-      if (!values.containsKey("bottomLeft")) {
-        return api.RSuperellipse.fromRectAndCorners(
-          values["rect"] as api.Rect,
-          topLeft: values["topLeft"] as api.Radius,
-          topRight: values["topRight"] as api.Radius,
-          bottomRight: values["bottomRight"] as api.Radius,
-        );
-      }
-      return api.RSuperellipse.fromRectAndCorners(
-        values["rect"] as api.Rect,
-        topLeft: values["topLeft"] as api.Radius,
-        topRight: values["topRight"] as api.Radius,
-        bottomRight: values["bottomRight"] as api.Radius,
-        bottomLeft: values["bottomLeft"] as api.Radius,
-      );
+          (_flaxHas1 ? values["topLeft"] as api.Radius : null),
+          (_flaxHas2 ? values["topRight"] as api.Radius : null),
+          (_flaxHas3 ? values["bottomRight"] as api.Radius : null),
+          (_flaxHas4 ? values["bottomLeft"] as api.Radius : null),
+        ],
+        <int>[
+          1 |
+              (_flaxHas1 ? 2 : 0) |
+              (_flaxHas2 ? 4 : 0) |
+              (_flaxHas3 ? 8 : 0) |
+              (_flaxHas4 ? 16 : 0),
+        ],
+        const <String>["", "topLeft", "topRight", "bottomRight", "bottomLeft"],
+      ) as api.RSuperellipse;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -6955,17 +6608,17 @@ Object? _SceneBuilder_pushOpacity(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("offset")) {
-    return (receiver as api.SceneBuilder).pushOpacity(
+  final _flaxHas1 = values.containsKey("offset");
+  return flaxInvokeWithDefaults(
+    (receiver as api.SceneBuilder).pushOpacity,
+    <Object?>[
       values["alpha"] as int,
-      oldLayer: values["oldLayer"] as api.OpacityEngineLayer?,
-    );
-  }
-  return (receiver as api.SceneBuilder).pushOpacity(
-    values["alpha"] as int,
-    offset: values["offset"] as api.Offset?,
-    oldLayer: values["oldLayer"] as api.OpacityEngineLayer?,
-  );
+      (_flaxHas1 ? values["offset"] as api.Offset? : null),
+      values["oldLayer"] as api.OpacityEngineLayer?,
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+    const <String>["", "offset", "oldLayer"],
+  ) as api.OpacityEngineLayer;
 }
 
 Object? _SceneBuilder_pushColorFilter(
@@ -6982,17 +6635,17 @@ Object? _SceneBuilder_pushImageFilter(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("offset")) {
-    return (receiver as api.SceneBuilder).pushImageFilter(
+  final _flaxHas1 = values.containsKey("offset");
+  return flaxInvokeWithDefaults(
+    (receiver as api.SceneBuilder).pushImageFilter,
+    <Object?>[
       values["filter"] as api.ImageFilter,
-      oldLayer: values["oldLayer"] as api.ImageFilterEngineLayer?,
-    );
-  }
-  return (receiver as api.SceneBuilder).pushImageFilter(
-    values["filter"] as api.ImageFilter,
-    offset: values["offset"] as api.Offset,
-    oldLayer: values["oldLayer"] as api.ImageFilterEngineLayer?,
-  );
+      (_flaxHas1 ? values["offset"] as api.Offset : null),
+      values["oldLayer"] as api.ImageFilterEngineLayer?,
+    ],
+    <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
+    const <String>["", "offset", "oldLayer"],
+  ) as api.ImageFilterEngineLayer;
 }
 
 Object? _SceneBuilder_pushBackdropFilter(
@@ -7057,23 +6710,19 @@ Object? _SceneBuilder_addPicture(Object receiver, Map<String, Object?> values) {
 }
 
 Object? _SceneBuilder_addTexture(Object receiver, Map<String, Object?> values) {
-  if (!values.containsKey("offset")) {
-    (receiver as api.SceneBuilder).addTexture(
+  final _flaxHas4 = values.containsKey("offset");
+  flaxInvokeWithDefaults(
+    (receiver as api.SceneBuilder).addTexture,
+    <Object?>[
       values["textureId"] as int,
-      filterQuality: values["filterQuality"] as api.FilterQuality,
-      freeze: values["freeze"] as bool,
-      height: values["height"] as double,
-      width: values["width"] as double,
-    );
-    return null;
-  }
-  (receiver as api.SceneBuilder).addTexture(
-    values["textureId"] as int,
-    filterQuality: values["filterQuality"] as api.FilterQuality,
-    freeze: values["freeze"] as bool,
-    height: values["height"] as double,
-    offset: values["offset"] as api.Offset,
-    width: values["width"] as double,
+      values["filterQuality"] as api.FilterQuality,
+      values["freeze"] as bool,
+      values["height"] as double,
+      (_flaxHas4 ? values["offset"] as api.Offset : null),
+      values["width"] as double,
+    ],
+    <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32],
+    const <String>["", "filterQuality", "freeze", "height", "offset", "width"],
   );
   return null;
 }
@@ -7082,19 +6731,17 @@ Object? _SceneBuilder_addPlatformView(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("offset")) {
-    (receiver as api.SceneBuilder).addPlatformView(
+  final _flaxHas2 = values.containsKey("offset");
+  flaxInvokeWithDefaults(
+    (receiver as api.SceneBuilder).addPlatformView,
+    <Object?>[
       values["viewId"] as int,
-      height: values["height"] as double,
-      width: values["width"] as double,
-    );
-    return null;
-  }
-  (receiver as api.SceneBuilder).addPlatformView(
-    values["viewId"] as int,
-    height: values["height"] as double,
-    offset: values["offset"] as api.Offset,
-    width: values["width"] as double,
+      values["height"] as double,
+      (_flaxHas2 ? values["offset"] as api.Offset : null),
+      values["width"] as double,
+    ],
+    <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8],
+    const <String>["", "height", "offset", "width"],
   );
   return null;
 }
@@ -7154,38 +6801,36 @@ Object? _SemanticsActionEvent_copyWith(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as api.SemanticsActionEvent).copyWith(
-      nodeId: values["nodeId"] as int?,
-      type: values["type"] as api.SemanticsAction?,
-      viewId: values["viewId"] as int?,
-    );
-  }
-  return (receiver as api.SemanticsActionEvent).copyWith(
-    arguments: values["arguments"],
-    nodeId: values["nodeId"] as int?,
-    type: values["type"] as api.SemanticsAction?,
-    viewId: values["viewId"] as int?,
-  );
+  final _flaxHas0 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as api.SemanticsActionEvent).copyWith,
+    <Object?>[
+      (_flaxHas0 ? values["arguments"] : null),
+      values["nodeId"] as int?,
+      values["type"] as api.SemanticsAction?,
+      values["viewId"] as int?,
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
+    const <String>["arguments", "nodeId", "type", "viewId"],
+  ) as api.SemanticsActionEvent;
 }
 
 Object? _SemanticsActionEvent_super_copyWith(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  if (!values.containsKey("arguments")) {
-    return (receiver as _SemanticsActionEventProxy)._flaxSuper_copyWith(
-      nodeId: values["nodeId"] as int?,
-      type: values["type"] as api.SemanticsAction?,
-      viewId: values["viewId"] as int?,
-    );
-  }
-  return (receiver as _SemanticsActionEventProxy)._flaxSuper_copyWith(
-    arguments: values["arguments"],
-    nodeId: values["nodeId"] as int?,
-    type: values["type"] as api.SemanticsAction?,
-    viewId: values["viewId"] as int?,
-  );
+  final _flaxHas0 = values.containsKey("arguments");
+  return flaxInvokeWithDefaults(
+    (receiver as _SemanticsActionEventProxy)._flaxSuper_copyWith,
+    <Object?>[
+      (_flaxHas0 ? values["arguments"] : null),
+      values["nodeId"] as int?,
+      values["type"] as api.SemanticsAction?,
+      values["viewId"] as int?,
+    ],
+    <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
+    const <String>["arguments", "nodeId", "type", "viewId"],
+  ) as api.SemanticsActionEvent;
 }
 
 Object? _SemanticsActionEvent_super_get_type(
@@ -7769,53 +7414,32 @@ Object? _Shadow_super_get_blurSigma(
 Object _createShadow(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (!values.containsKey("color")) {
-        if (!values.containsKey("offset")) {
-          return api.Shadow(blurRadius: values["blurRadius"] as double);
-        }
-        return api.Shadow(
-          offset: values["offset"] as api.Offset,
-          blurRadius: values["blurRadius"] as double,
-        );
-      }
-      if (!values.containsKey("offset")) {
-        return api.Shadow(
-          color: values["color"] as api.Color,
-          blurRadius: values["blurRadius"] as double,
-        );
-      }
-      return api.Shadow(
-        color: values["color"] as api.Color,
-        offset: values["offset"] as api.Offset,
-        blurRadius: values["blurRadius"] as double,
-      );
+      final _flaxHas0 = values.containsKey("color");
+      final _flaxHas1 = values.containsKey("offset");
+      return flaxInvokeWithDefaults(
+        api.Shadow.new,
+        <Object?>[
+          (_flaxHas0 ? values["color"] as api.Color : null),
+          (_flaxHas1 ? values["offset"] as api.Offset : null),
+          values["blurRadius"] as double,
+        ],
+        <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | 4],
+        const <String>["color", "offset", "blurRadius"],
+      ) as api.Shadow;
     case '@implementation':
-      if (!values.containsKey("color")) {
-        if (!values.containsKey("offset")) {
-          return _ShadowProxy(
-            values['@peer'] as FlaxProxyPeer,
-            blurRadius: values["blurRadius"] as double,
-          );
-        }
-        return _ShadowProxy(
+      final _flaxHas1 = values.containsKey("color");
+      final _flaxHas2 = values.containsKey("offset");
+      return flaxInvokeWithDefaults(
+        _ShadowProxy.new,
+        <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          offset: values["offset"] as api.Offset,
-          blurRadius: values["blurRadius"] as double,
-        );
-      }
-      if (!values.containsKey("offset")) {
-        return _ShadowProxy(
-          values['@peer'] as FlaxProxyPeer,
-          color: values["color"] as api.Color,
-          blurRadius: values["blurRadius"] as double,
-        );
-      }
-      return _ShadowProxy(
-        values['@peer'] as FlaxProxyPeer,
-        color: values["color"] as api.Color,
-        offset: values["offset"] as api.Offset,
-        blurRadius: values["blurRadius"] as double,
-      );
+          (_flaxHas1 ? values["color"] as api.Color : null),
+          (_flaxHas2 ? values["offset"] as api.Offset : null),
+          values["blurRadius"] as double,
+        ],
+        <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0) | 8],
+        const <String>["", "color", "offset", "blurRadius"],
+      ) as api.Shadow;
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -10184,21 +9808,17 @@ final class _GestureSettingsProxy extends api.GestureSettings
     Object? physicalTouchSlop = _flaxOmitted,
     Object? physicalDoubleTapSlop = _flaxOmitted,
   }) {
-    if (identical(physicalTouchSlop, _flaxOmitted)) {
-      if (identical(physicalDoubleTapSlop, _flaxOmitted)) {
-        return super.copyWith();
-      }
-      return super.copyWith(
-        physicalDoubleTapSlop: physicalDoubleTapSlop as double?,
-      );
-    }
-    if (identical(physicalDoubleTapSlop, _flaxOmitted)) {
-      return super.copyWith(physicalTouchSlop: physicalTouchSlop as double?);
-    }
-    return super.copyWith(
-      physicalTouchSlop: physicalTouchSlop as double?,
-      physicalDoubleTapSlop: physicalDoubleTapSlop as double?,
-    );
+    final _flaxHas0 = !identical(physicalTouchSlop, _flaxOmitted);
+    final _flaxHas1 = !identical(physicalDoubleTapSlop, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? physicalTouchSlop as double? : null),
+        (_flaxHas1 ? physicalDoubleTapSlop as double? : null),
+      ],
+      <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
+      const <String>["physicalTouchSlop", "physicalDoubleTapSlop"],
+    ) as api.GestureSettings);
   }
 
   @override
@@ -12729,82 +12349,26 @@ final class _SemanticsActionEventProxy extends api.SemanticsActionEvent
     Object? nodeId = _flaxOmitted,
     Object? arguments = _flaxOmitted,
   }) {
-    if (identical(type, _flaxOmitted)) {
-      if (identical(viewId, _flaxOmitted)) {
-        if (identical(nodeId, _flaxOmitted)) {
-          if (identical(arguments, _flaxOmitted)) {
-            return super.copyWith();
-          }
-          return super.copyWith(arguments: arguments);
-        }
-        if (identical(arguments, _flaxOmitted)) {
-          return super.copyWith(nodeId: nodeId as int?);
-        }
-        return super.copyWith(nodeId: nodeId as int?, arguments: arguments);
-      }
-      if (identical(nodeId, _flaxOmitted)) {
-        if (identical(arguments, _flaxOmitted)) {
-          return super.copyWith(viewId: viewId as int?);
-        }
-        return super.copyWith(viewId: viewId as int?, arguments: arguments);
-      }
-      if (identical(arguments, _flaxOmitted)) {
-        return super.copyWith(viewId: viewId as int?, nodeId: nodeId as int?);
-      }
-      return super.copyWith(
-        viewId: viewId as int?,
-        nodeId: nodeId as int?,
-        arguments: arguments,
-      );
-    }
-    if (identical(viewId, _flaxOmitted)) {
-      if (identical(nodeId, _flaxOmitted)) {
-        if (identical(arguments, _flaxOmitted)) {
-          return super.copyWith(type: type as api.SemanticsAction?);
-        }
-        return super.copyWith(
-          type: type as api.SemanticsAction?,
-          arguments: arguments,
-        );
-      }
-      if (identical(arguments, _flaxOmitted)) {
-        return super.copyWith(
-          type: type as api.SemanticsAction?,
-          nodeId: nodeId as int?,
-        );
-      }
-      return super.copyWith(
-        type: type as api.SemanticsAction?,
-        nodeId: nodeId as int?,
-        arguments: arguments,
-      );
-    }
-    if (identical(nodeId, _flaxOmitted)) {
-      if (identical(arguments, _flaxOmitted)) {
-        return super.copyWith(
-          type: type as api.SemanticsAction?,
-          viewId: viewId as int?,
-        );
-      }
-      return super.copyWith(
-        type: type as api.SemanticsAction?,
-        viewId: viewId as int?,
-        arguments: arguments,
-      );
-    }
-    if (identical(arguments, _flaxOmitted)) {
-      return super.copyWith(
-        type: type as api.SemanticsAction?,
-        viewId: viewId as int?,
-        nodeId: nodeId as int?,
-      );
-    }
-    return super.copyWith(
-      type: type as api.SemanticsAction?,
-      viewId: viewId as int?,
-      nodeId: nodeId as int?,
-      arguments: arguments,
-    );
+    final _flaxHas0 = !identical(type, _flaxOmitted);
+    final _flaxHas1 = !identical(viewId, _flaxOmitted);
+    final _flaxHas2 = !identical(nodeId, _flaxOmitted);
+    final _flaxHas3 = !identical(arguments, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? type as api.SemanticsAction? : null),
+        (_flaxHas1 ? viewId as int? : null),
+        (_flaxHas2 ? nodeId as int? : null),
+        (_flaxHas3 ? arguments : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0),
+      ],
+      const <String>["type", "viewId", "nodeId", "arguments"],
+    ) as api.SemanticsActionEvent);
   }
 
   @override
@@ -13038,50 +12602,111 @@ final class _SemanticsFlagsProxy extends api.SemanticsFlags {
     Object? isKeyboardKey = _flaxOmitted,
     Object? isAccessibilityFocusBlocked = _flaxOmitted,
   }) {
-    return (Function.apply(super.copyWith, <Object?>[], <Symbol, Object?>{
-      if (!identical(isChecked, _flaxOmitted))
-        #isChecked: isChecked as api.CheckedState?,
-      if (!identical(isSelected, _flaxOmitted))
-        #isSelected: isSelected as api.Tristate?,
-      if (!identical(isEnabled, _flaxOmitted))
-        #isEnabled: isEnabled as api.Tristate?,
-      if (!identical(isToggled, _flaxOmitted))
-        #isToggled: isToggled as api.Tristate?,
-      if (!identical(isExpanded, _flaxOmitted))
-        #isExpanded: isExpanded as api.Tristate?,
-      if (!identical(isRequired, _flaxOmitted))
-        #isRequired: isRequired as api.Tristate?,
-      if (!identical(isFocused, _flaxOmitted))
-        #isFocused: isFocused as api.Tristate?,
-      if (!identical(isButton, _flaxOmitted)) #isButton: isButton as bool?,
-      if (!identical(isTextField, _flaxOmitted))
-        #isTextField: isTextField as bool?,
-      if (!identical(isInMutuallyExclusiveGroup, _flaxOmitted))
-        #isInMutuallyExclusiveGroup: isInMutuallyExclusiveGroup as bool?,
-      if (!identical(isHeader, _flaxOmitted)) #isHeader: isHeader as bool?,
-      if (!identical(isObscured, _flaxOmitted))
-        #isObscured: isObscured as bool?,
-      if (!identical(scopesRoute, _flaxOmitted))
-        #scopesRoute: scopesRoute as bool?,
-      if (!identical(namesRoute, _flaxOmitted))
-        #namesRoute: namesRoute as bool?,
-      if (!identical(isHidden, _flaxOmitted)) #isHidden: isHidden as bool?,
-      if (!identical(isImage, _flaxOmitted)) #isImage: isImage as bool?,
-      if (!identical(isLiveRegion, _flaxOmitted))
-        #isLiveRegion: isLiveRegion as bool?,
-      if (!identical(hasImplicitScrolling, _flaxOmitted))
-        #hasImplicitScrolling: hasImplicitScrolling as bool?,
-      if (!identical(isMultiline, _flaxOmitted))
-        #isMultiline: isMultiline as bool?,
-      if (!identical(isReadOnly, _flaxOmitted))
-        #isReadOnly: isReadOnly as bool?,
-      if (!identical(isLink, _flaxOmitted)) #isLink: isLink as bool?,
-      if (!identical(isSlider, _flaxOmitted)) #isSlider: isSlider as bool?,
-      if (!identical(isKeyboardKey, _flaxOmitted))
-        #isKeyboardKey: isKeyboardKey as bool?,
-      if (!identical(isAccessibilityFocusBlocked, _flaxOmitted))
-        #isAccessibilityFocusBlocked: isAccessibilityFocusBlocked as bool?,
-    }) as api.SemanticsFlags);
+    final _flaxHas0 = !identical(isChecked, _flaxOmitted);
+    final _flaxHas1 = !identical(isSelected, _flaxOmitted);
+    final _flaxHas2 = !identical(isEnabled, _flaxOmitted);
+    final _flaxHas3 = !identical(isToggled, _flaxOmitted);
+    final _flaxHas4 = !identical(isExpanded, _flaxOmitted);
+    final _flaxHas5 = !identical(isRequired, _flaxOmitted);
+    final _flaxHas6 = !identical(isFocused, _flaxOmitted);
+    final _flaxHas7 = !identical(isButton, _flaxOmitted);
+    final _flaxHas8 = !identical(isTextField, _flaxOmitted);
+    final _flaxHas9 = !identical(isInMutuallyExclusiveGroup, _flaxOmitted);
+    final _flaxHas10 = !identical(isHeader, _flaxOmitted);
+    final _flaxHas11 = !identical(isObscured, _flaxOmitted);
+    final _flaxHas12 = !identical(scopesRoute, _flaxOmitted);
+    final _flaxHas13 = !identical(namesRoute, _flaxOmitted);
+    final _flaxHas14 = !identical(isHidden, _flaxOmitted);
+    final _flaxHas15 = !identical(isImage, _flaxOmitted);
+    final _flaxHas16 = !identical(isLiveRegion, _flaxOmitted);
+    final _flaxHas17 = !identical(hasImplicitScrolling, _flaxOmitted);
+    final _flaxHas18 = !identical(isMultiline, _flaxOmitted);
+    final _flaxHas19 = !identical(isReadOnly, _flaxOmitted);
+    final _flaxHas20 = !identical(isLink, _flaxOmitted);
+    final _flaxHas21 = !identical(isSlider, _flaxOmitted);
+    final _flaxHas22 = !identical(isKeyboardKey, _flaxOmitted);
+    final _flaxHas23 = !identical(isAccessibilityFocusBlocked, _flaxOmitted);
+    return (flaxInvokeWithDefaults(
+      super.copyWith,
+      <Object?>[
+        (_flaxHas0 ? isChecked as api.CheckedState? : null),
+        (_flaxHas1 ? isSelected as api.Tristate? : null),
+        (_flaxHas2 ? isEnabled as api.Tristate? : null),
+        (_flaxHas3 ? isToggled as api.Tristate? : null),
+        (_flaxHas4 ? isExpanded as api.Tristate? : null),
+        (_flaxHas5 ? isRequired as api.Tristate? : null),
+        (_flaxHas6 ? isFocused as api.Tristate? : null),
+        (_flaxHas7 ? isButton as bool? : null),
+        (_flaxHas8 ? isTextField as bool? : null),
+        (_flaxHas9 ? isInMutuallyExclusiveGroup as bool? : null),
+        (_flaxHas10 ? isHeader as bool? : null),
+        (_flaxHas11 ? isObscured as bool? : null),
+        (_flaxHas12 ? scopesRoute as bool? : null),
+        (_flaxHas13 ? namesRoute as bool? : null),
+        (_flaxHas14 ? isHidden as bool? : null),
+        (_flaxHas15 ? isImage as bool? : null),
+        (_flaxHas16 ? isLiveRegion as bool? : null),
+        (_flaxHas17 ? hasImplicitScrolling as bool? : null),
+        (_flaxHas18 ? isMultiline as bool? : null),
+        (_flaxHas19 ? isReadOnly as bool? : null),
+        (_flaxHas20 ? isLink as bool? : null),
+        (_flaxHas21 ? isSlider as bool? : null),
+        (_flaxHas22 ? isKeyboardKey as bool? : null),
+        (_flaxHas23 ? isAccessibilityFocusBlocked as bool? : null),
+      ],
+      <int>[
+        (_flaxHas0 ? 1 : 0) |
+            (_flaxHas1 ? 2 : 0) |
+            (_flaxHas2 ? 4 : 0) |
+            (_flaxHas3 ? 8 : 0) |
+            (_flaxHas4 ? 16 : 0) |
+            (_flaxHas5 ? 32 : 0) |
+            (_flaxHas6 ? 64 : 0) |
+            (_flaxHas7 ? 128 : 0) |
+            (_flaxHas8 ? 256 : 0) |
+            (_flaxHas9 ? 512 : 0) |
+            (_flaxHas10 ? 1024 : 0) |
+            (_flaxHas11 ? 2048 : 0) |
+            (_flaxHas12 ? 4096 : 0) |
+            (_flaxHas13 ? 8192 : 0) |
+            (_flaxHas14 ? 16384 : 0) |
+            (_flaxHas15 ? 32768 : 0) |
+            (_flaxHas16 ? 65536 : 0) |
+            (_flaxHas17 ? 131072 : 0) |
+            (_flaxHas18 ? 262144 : 0) |
+            (_flaxHas19 ? 524288 : 0) |
+            (_flaxHas20 ? 1048576 : 0) |
+            (_flaxHas21 ? 2097152 : 0) |
+            (_flaxHas22 ? 4194304 : 0) |
+            (_flaxHas23 ? 8388608 : 0),
+      ],
+      const <String>[
+        "isChecked",
+        "isSelected",
+        "isEnabled",
+        "isToggled",
+        "isExpanded",
+        "isRequired",
+        "isFocused",
+        "isButton",
+        "isTextField",
+        "isInMutuallyExclusiveGroup",
+        "isHeader",
+        "isObscured",
+        "scopesRoute",
+        "namesRoute",
+        "isHidden",
+        "isImage",
+        "isLiveRegion",
+        "hasImplicitScrolling",
+        "isMultiline",
+        "isReadOnly",
+        "isLink",
+        "isSlider",
+        "isKeyboardKey",
+        "isAccessibilityFocusBlocked",
+      ],
+    ) as api.SemanticsFlags);
   }
 
   @override

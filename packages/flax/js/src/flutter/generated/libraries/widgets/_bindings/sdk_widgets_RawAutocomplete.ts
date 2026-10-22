@@ -30,7 +30,7 @@ import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters2, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters305, _flaxMemberParameters306, _flaxMemberParameters2, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -66,13 +66,13 @@ return constructObject("object", "flax.core/sdk_widgets#type:RawAutocomplete", "
 }
 export namespace _RawAutocompleteFactory { function _flaxDefault_onFieldSubmitted<T extends {} = {}>(key: Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::GlobalKey": readonly [upstream8.State<upstream0.StatefulWidget>] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }>): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:RawAutocomplete.onFieldSubmitted", [key]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:RawAutocomplete.onFieldSubmitted", [key], _flaxMemberParameters305);
 }
 export const onFieldSubmitted = _flaxDefineDartCallTypes(_flaxDefault_onFieldSubmitted, {"id":"flax.core/sdk_widgets#function:RawAutocomplete.onFieldSubmitted","parameters":[{"name":"key","required":true,"positional":true}]}) as _FlaxDartCallable<typeof _flaxDefault_onFieldSubmitted, _FlaxSignature1>;
 }
 export namespace _RawAutocompleteFactory { export function defaultStringForOption(option: unknown | null): string {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:RawAutocomplete.defaultStringForOption", [option]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:RawAutocomplete.defaultStringForOption", [option], _flaxMemberParameters306);
 return _flaxResult as string;
 } }
 export const RawAutocomplete: typeof _RawAutocompleteFactory & _FlaxInstanceType<RawAutocomplete<{}>> & _FlaxDartType<RawAutocomplete<{}>, readonly ["class", "flax.core/sdk_widgets#type:RawAutocomplete", readonly [readonly ["any", null, readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<RawAutocomplete<{}>, typeof _RawAutocompleteFactory>(_RawAutocompleteFactory, "flax.core/sdk_widgets#type:RawAutocomplete", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _RawAutocompleteFactory & _FlaxInstanceType<RawAutocomplete<{}>> & _FlaxDartType<RawAutocomplete<{}>, readonly ["class", "flax.core/sdk_widgets#type:RawAutocomplete", readonly [readonly ["any", null, readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;

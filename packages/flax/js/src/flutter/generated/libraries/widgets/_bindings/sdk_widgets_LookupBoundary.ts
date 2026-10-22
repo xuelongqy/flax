@@ -26,6 +26,7 @@ import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import { _flaxMemberParameters211, _flaxMemberParameters0, _flaxMemberParameters242 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -52,7 +53,7 @@ return constructObject("object", "flax.core/sdk_widgets#type:LookupBoundary", ""
 export namespace _LookupBoundaryFactory { function _flaxDefault_dependOnInheritedWidgetOfExactType<T extends upstream0.InheritedWidget = upstream0.InheritedWidget>(context: upstream3.BuildContext, options: { aspect?: unknown | null | undefined } = {}): T | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["aspect"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.dependOnInheritedWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.aspect]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.dependOnInheritedWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.aspect], _flaxMemberParameters211);
 return _flaxResult as T | null;
 }
 export const dependOnInheritedWidgetOfExactType = _flaxDefineDartCallTypes(_flaxDefault_dependOnInheritedWidgetOfExactType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.dependOnInheritedWidgetOfExactType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"aspect"}]}) as _FlaxDartCallable<typeof _flaxDefault_dependOnInheritedWidgetOfExactType, _FlaxSignature0>;
@@ -60,71 +61,71 @@ export const dependOnInheritedWidgetOfExactType = _flaxDefineDartCallTypes(_flax
 export namespace _LookupBoundaryFactory { function _flaxDefault_getInheritedWidgetOfExactType<T extends upstream0.InheritedWidget = upstream0.InheritedWidget>(context: upstream3.BuildContext, options: { aspect?: unknown | null | undefined } = {}): T | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["aspect"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.getInheritedWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.aspect]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.getInheritedWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.aspect], _flaxMemberParameters211);
 return _flaxResult as T | null;
 }
 export const getInheritedWidgetOfExactType = _flaxDefineDartCallTypes(_flaxDefault_getInheritedWidgetOfExactType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.getInheritedWidgetOfExactType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"aspect"}]}) as _FlaxDartCallable<typeof _flaxDefault_getInheritedWidgetOfExactType, _FlaxSignature1>;
 }
 export namespace _LookupBoundaryFactory { function _flaxDefault_getElementForInheritedWidgetOfExactType<T extends upstream0.InheritedWidget = upstream0.InheritedWidget>(context: upstream3.BuildContext): upstream4.InheritedElement | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.getElementForInheritedWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.getElementForInheritedWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream4.InheritedElement | null;
 }
 export const getElementForInheritedWidgetOfExactType = _flaxDefineDartCallTypes(_flaxDefault_getElementForInheritedWidgetOfExactType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.getElementForInheritedWidgetOfExactType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}]}) as _FlaxDartCallable<typeof _flaxDefault_getElementForInheritedWidgetOfExactType, _FlaxSignature2>;
 }
 export namespace _LookupBoundaryFactory { function _flaxDefault_findAncestorWidgetOfExactType<T extends Widget = Widget>(context: upstream3.BuildContext): T | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.findAncestorWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.findAncestorWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as T | null;
 }
 export const findAncestorWidgetOfExactType = _flaxDefineDartCallTypes(_flaxDefault_findAncestorWidgetOfExactType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.findAncestorWidgetOfExactType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}]}) as _FlaxDartCallable<typeof _flaxDefault_findAncestorWidgetOfExactType, _FlaxSignature3>;
 }
 export namespace _LookupBoundaryFactory { function _flaxDefault_findAncestorStateOfType<T extends upstream5.State<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>> = upstream5.State<upstream6.StatefulWidget>>(context: upstream3.BuildContext): T | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.findAncestorStateOfType", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.findAncestorStateOfType", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as T | null;
 }
 export const findAncestorStateOfType = _flaxDefineDartCallTypes(_flaxDefault_findAncestorStateOfType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.findAncestorStateOfType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}]}) as _FlaxDartCallable<typeof _flaxDefault_findAncestorStateOfType, _FlaxSignature4>;
 }
 export namespace _LookupBoundaryFactory { function _flaxDefault_findRootAncestorStateOfType<T extends upstream5.State<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>> = upstream5.State<upstream6.StatefulWidget>>(context: upstream3.BuildContext): T | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.findRootAncestorStateOfType", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.findRootAncestorStateOfType", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as T | null;
 }
 export const findRootAncestorStateOfType = _flaxDefineDartCallTypes(_flaxDefault_findRootAncestorStateOfType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.findRootAncestorStateOfType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}]}) as _FlaxDartCallable<typeof _flaxDefault_findRootAncestorStateOfType, _FlaxSignature5>;
 }
 export namespace _LookupBoundaryFactory { function _flaxDefault_findAncestorRenderObjectOfType<T extends upstream7.RenderObject = upstream7.RenderObject>(context: upstream3.BuildContext): T | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.findAncestorRenderObjectOfType", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.findAncestorRenderObjectOfType", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as T | null;
 }
 export const findAncestorRenderObjectOfType = _flaxDefineDartCallTypes(_flaxDefault_findAncestorRenderObjectOfType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.findAncestorRenderObjectOfType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}]}) as _FlaxDartCallable<typeof _flaxDefault_findAncestorRenderObjectOfType, _FlaxSignature6>;
 }
 export namespace _LookupBoundaryFactory { export function visitAncestorElements(context: upstream3.BuildContext, visitor: ((element: upstream8.Element) => boolean)): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.visitAncestorElements", [contextHandle(context, "flax.core/flutter#type:BuildContext"), visitor]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.visitAncestorElements", [contextHandle(context, "flax.core/flutter#type:BuildContext"), visitor], _flaxMemberParameters242);
 } }
 export namespace _LookupBoundaryFactory { export function visitChildElements(context: upstream3.BuildContext, visitor: ((element: upstream8.Element) => void)): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.visitChildElements", [contextHandle(context, "flax.core/flutter#type:BuildContext"), visitor]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.visitChildElements", [contextHandle(context, "flax.core/flutter#type:BuildContext"), visitor], _flaxMemberParameters242);
 } }
 export namespace _LookupBoundaryFactory { function _flaxDefault_debugIsHidingAncestorWidgetOfExactType<T extends Widget = Widget>(context: upstream3.BuildContext): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.debugIsHidingAncestorWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.debugIsHidingAncestorWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as boolean;
 }
 export const debugIsHidingAncestorWidgetOfExactType = _flaxDefineDartCallTypes(_flaxDefault_debugIsHidingAncestorWidgetOfExactType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.debugIsHidingAncestorWidgetOfExactType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}]}) as _FlaxDartCallable<typeof _flaxDefault_debugIsHidingAncestorWidgetOfExactType, _FlaxSignature7>;
 }
 export namespace _LookupBoundaryFactory { function _flaxDefault_debugIsHidingAncestorStateOfType<T extends upstream5.State<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>> = upstream5.State<upstream6.StatefulWidget>>(context: upstream3.BuildContext): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.debugIsHidingAncestorStateOfType", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.debugIsHidingAncestorStateOfType", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as boolean;
 }
 export const debugIsHidingAncestorStateOfType = _flaxDefineDartCallTypes(_flaxDefault_debugIsHidingAncestorStateOfType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.debugIsHidingAncestorStateOfType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}]}) as _FlaxDartCallable<typeof _flaxDefault_debugIsHidingAncestorStateOfType, _FlaxSignature8>;
 }
 export namespace _LookupBoundaryFactory { function _flaxDefault_debugIsHidingAncestorRenderObjectOfType<T extends upstream7.RenderObject = upstream7.RenderObject>(context: upstream3.BuildContext): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.debugIsHidingAncestorRenderObjectOfType", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.debugIsHidingAncestorRenderObjectOfType", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as boolean;
 }
 export const debugIsHidingAncestorRenderObjectOfType = _flaxDefineDartCallTypes(_flaxDefault_debugIsHidingAncestorRenderObjectOfType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.debugIsHidingAncestorRenderObjectOfType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}]}) as _FlaxDartCallable<typeof _flaxDefault_debugIsHidingAncestorRenderObjectOfType, _FlaxSignature9>;

@@ -13,7 +13,7 @@ import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_RRect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_RRect';
 import type * as upstream5 from '@flax/dart/ui/_bindings/sdk_dart_ui_RSuperellipse';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_RSuperellipse';
-import { _flaxMemberParameters29, _flaxMemberParameters30, _flaxMemberParameters31, _flaxMemberParameters32, _flaxMemberParameters2 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
+import { _flaxMemberParameters30, _flaxMemberParameters31, _flaxMemberParameters32, _flaxMemberParameters33, _flaxMemberParameters2 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -21,8 +21,8 @@ export interface ClipContext extends Readonly<{ "__flaxBound:package:flutter/src
 readonly [_flaxDartTypeValue]: ClipContext;
 
 }
-defineObject("flax.core/sdk_painting#type:ClipContext", ["canvas"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ClipContext", "object", {"clipPathAndPaint":_flaxMemberParameters29,"clipRRectAndPaint":_flaxMemberParameters30,"clipRSuperellipseAndPaint":_flaxMemberParameters31,"clipRectAndPaint":_flaxMemberParameters32}, {}), []);
-const _ClipContextProxy = {type: "flax.core/sdk_painting#type:ClipContext", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"clipPathAndPaint":_flaxMemberParameters29,"clipRRectAndPaint":_flaxMemberParameters30,"clipRSuperellipseAndPaint":_flaxMemberParameters31,"clipRectAndPaint":_flaxMemberParameters32}, getters: ["canvas"], setters: [], contextMembers: [], superMembers: ["clipPathAndPaint","clipRRectAndPaint","clipRSuperellipseAndPaint","clipRectAndPaint"]} as const;
+defineObject("flax.core/sdk_painting#type:ClipContext", ["canvas"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ClipContext", "object", {"clipPathAndPaint":_flaxMemberParameters30,"clipRRectAndPaint":_flaxMemberParameters31,"clipRSuperellipseAndPaint":_flaxMemberParameters32,"clipRectAndPaint":_flaxMemberParameters33}, {}), []);
+const _ClipContextProxy = {type: "flax.core/sdk_painting#type:ClipContext", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"clipPathAndPaint":_flaxMemberParameters30,"clipRRectAndPaint":_flaxMemberParameters31,"clipRSuperellipseAndPaint":_flaxMemberParameters32,"clipRectAndPaint":_flaxMemberParameters33}, getters: ["canvas"], setters: [], contextMembers: [], superMembers: ["clipPathAndPaint","clipRRectAndPaint","clipRSuperellipseAndPaint","clipRectAndPaint"]} as const;
 export interface ClipContext {
 readonly [_flaxDartTypeValue]: ClipContext;
 

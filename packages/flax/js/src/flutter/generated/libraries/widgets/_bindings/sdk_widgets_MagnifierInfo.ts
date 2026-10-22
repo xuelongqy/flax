@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-import { _flaxMemberParameters2, _flaxMemberParameters223 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters2, _flaxMemberParameters248 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -24,7 +24,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:MagnifierInfo", "", [{"name":"globalGesturePosition","required":true},{"name":"caretRect","required":true},{"name":"fieldBounds","required":true},{"name":"currentLineBoundaries","required":true}], [], options) as MagnifierInfo;
 }
-const _MagnifierInfoProxy = {type: "flax.core/sdk_widgets#type:MagnifierInfo", parameters: _flaxMemberParameters223, constructors: {"": _flaxMemberParameters223}, methods: {"toString":_flaxMemberParameters2}, getters: ["globalGesturePosition","currentLineBoundaries","caretRect","fieldBounds"], setters: [], contextMembers: [], superMembers: ["get:globalGesturePosition","get:currentLineBoundaries","get:caretRect","get:fieldBounds","toString"]} as const;
+const _MagnifierInfoProxy = {type: "flax.core/sdk_widgets#type:MagnifierInfo", parameters: _flaxMemberParameters248, constructors: {"": _flaxMemberParameters248}, methods: {"toString":_flaxMemberParameters2}, getters: ["globalGesturePosition","currentLineBoundaries","caretRect","fieldBounds"], setters: [], contextMembers: [], superMembers: ["get:globalGesturePosition","get:currentLineBoundaries","get:caretRect","get:fieldBounds","toString"]} as const;
 export interface _MagnifierInfoNative extends MagnifierInfo {
 readonly [_flaxDartTypeValue]: _MagnifierInfoNative;
 

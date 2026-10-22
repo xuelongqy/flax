@@ -17,7 +17,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream7 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import '@flax/flutter/services/_bindings/flutter_TextEditingValue';
-import { _flaxMemberParameters107, _flaxMemberParameters108, _flaxMemberParameters0, _flaxMemberParameters45, _flaxMemberParameters44, _flaxMemberParameters43 } from "@flax/flutter/services/_bindings/sdk_services.__module";
+import { _flaxMemberParameters98, _flaxMemberParameters126, _flaxMemberParameters0, _flaxMemberParameters52, _flaxMemberParameters51, _flaxMemberParameters50 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -33,7 +33,7 @@ toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream5
 debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 apply(value: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>): upstream7.TextEditingValue;
 }
-defineObject("flax.core/sdk_services#type:TextEditingDelta", ["oldText","selection","composing"], [], _flaxBindingMethods("flax.core/sdk_services#type:TextEditingDelta", "object", {"apply":_flaxMemberParameters107}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+defineObject("flax.core/sdk_services#type:TextEditingDelta", ["oldText","selection","composing"], [], _flaxBindingMethods("flax.core/sdk_services#type:TextEditingDelta", "object", {"apply":_flaxMemberParameters98}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
 export namespace _TextEditingDeltaFactory {
 export function fromJSON(encoded: DartMapInput<string, unknown | null, string, unknown | null>): TextEditingDelta {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
@@ -41,7 +41,7 @@ if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_services#type:TextEditingDelta", "fromJSON", [{"name":"encoded","required":true,"positional":true}], [encoded], {}) as TextEditingDelta;
 }
 }
-const _TextEditingDeltaProxy = {type: "flax.core/sdk_services#type:TextEditingDelta", parameters: _flaxMemberParameters108, constructors: {"": _flaxMemberParameters108}, methods: {"toStringShort":_flaxMemberParameters0,"toString":_flaxMemberParameters45,"toDiagnosticsNode":_flaxMemberParameters44,"debugFillProperties":_flaxMemberParameters43,"apply":_flaxMemberParameters107}, getters: ["oldText","selection","composing"], setters: [], contextMembers: [], superMembers: ["get:oldText","get:selection","get:composing","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
+const _TextEditingDeltaProxy = {type: "flax.core/sdk_services#type:TextEditingDelta", parameters: _flaxMemberParameters126, constructors: {"": _flaxMemberParameters126}, methods: {"toStringShort":_flaxMemberParameters0,"toString":_flaxMemberParameters52,"toDiagnosticsNode":_flaxMemberParameters51,"debugFillProperties":_flaxMemberParameters50,"apply":_flaxMemberParameters98}, getters: ["oldText","selection","composing"], setters: [], contextMembers: [], superMembers: ["get:oldText","get:selection","get:composing","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
 export interface _TextEditingDeltaNative extends TextEditingDelta {
 readonly [_flaxDartTypeValue]: _TextEditingDeltaNative;
 
