@@ -116,8 +116,15 @@ final class FlaxCodegenFixtureEmitter {
       final emitter = FlaxCodegenBindingEmitter([..._modules, module]);
       File('${output.path}/${config.name}_bindings.dart')
           .writeAsStringSync(emitter.dart(module));
-      File('${output.path}/${config.name}_bindings.ts')
-          .writeAsStringSync(emitter.typescript(module));
+      // Local UI fixtures bundle their own adapters instead of a public host SDK.
+      File('${output.path}/${config.name}_bindings.ts').writeAsStringSync(
+        emitter
+            .typescript(module)
+            .replaceFirst(
+              '// GENERATED CODE. Selected public API subset; do not edit.',
+              '// GENERATED TEST BINDINGS. Not a public host SDK.',
+            ),
+      );
     } finally {
       await parser.dispose();
     }

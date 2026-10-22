@@ -43,7 +43,7 @@ not embedded in packaged apps. Public endpoint URLs can still be entered manuall
 When opening multiple examples from one checkout, let one finish preparation before
 starting the next command: their JS dependency build outputs are shared.
 
-All examples require Flutter 3.47.6 from `flax/main` and its matching local engine.
-Only macOS platform projects are implemented here. The standalone engine GC target
-reuses package-owned assertions; see
+All examples require Flutter 3.47.6 from `flax/main` and its matching local engine. Only
+macOS platform projects are implemented here. The standalone engine GC target reuses
+package-owned assertions; see
 [runtime verification](../docs/architecture/runtime.md#verification).

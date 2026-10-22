@@ -28,6 +28,7 @@ const adminBindings = FlaxBindingModule(
   dependencies: [_flaxBindings0.pricesBindings],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "generic-member-views",
     "instance-checks",
     "native-navigation-objects",

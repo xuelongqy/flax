@@ -402,14 +402,13 @@ In explicit YAML layouts, each source-scanned scope also generates
 lib/flax_bindings/<name>.dart, a public Dart export library for its owned declarations.
 The default layout keeps only the app compatibility facade and records actual import
 carriers for other scopes; this supports distinct same-named types without additional
-Builder outputs. Native adapters import the
-actual declarations; wire identities still use the original declaring library. Include
-these export libraries in a Dart provider archive alongside its adapters and manifest.
-Configured typedefs are exported too, without creating runtime binding owners. Existing
-non-generated files at these fixed output paths are never overwritten. Canonical
-adapters under lib are reexported with their binding/plugin symbols. A custom Dart
-adapter outside lib remains host-only: import that generated file directly; the public
-carrier keeps only its API exports.
+Builder outputs. Native adapters import the actual declarations; wire identities still
+use the original declaring library. Include these export libraries in a Dart provider
+archive alongside its adapters and manifest. Configured typedefs are exported too,
+without creating runtime binding owners. Existing non-generated files at these fixed
+output paths are never overwritten. Canonical adapters under lib are reexported with
+their binding/plugin symbols. A custom Dart adapter outside lib remains host-only:
+import that generated file directly; the public carrier keeps only its API exports.
 
 Legacy configurations containing library retain their existing behavior: annotations
 defaults to false; annotations: true scans that entry's public exports, including its

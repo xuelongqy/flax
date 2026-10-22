@@ -14,12 +14,12 @@ Status: implemented and verified on the maintained macOS arm64 engine
 
 Support configuration-owned application bindings, separate public SDK and internal
 output directories, per-View plugin injection and ordinary npm package builds. Verify
-outside the repository workspace on the maintained macOS arm64 V8 engine. The baseline
-is main at `a7b1e8a3c`; work remains on `feat/configured-app-bindings`.
+outside the repository workspace on the maintained macOS arm64 V8 engine. The initial
+implementation started from main at `a7b1e8a3c`.
 
 Scoped annotations and optional build_runner generation now supplement
-configuration-owned selection. Implicit global plugin installation, registry publication
-and push remain outside scope.
+configuration-owned selection. Implicit global plugin installation and registry
+publication remain outside scope.
 
 ## Acceptance criteria
 
@@ -195,4 +195,4 @@ with the maintained Flutter fork on PATH and repository-local TMPDIR/TMP/TEMP. S
 
 The example names and version 0.0.0 are local fixture values. Registry ownership,
 dependency availability, mobile/release/AOT and a production hotfix lifecycle are not
-certified. No packages are published or pushed.
+certified. No registry publication is performed.

@@ -8,7 +8,7 @@ import type * as upstream2 from '@example/shop/delivery';
 import '@example/shop/delivery';
 const _flaxMemberParameters0 = [{"name":"count","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [] as const;
-export const shopBindingModule = _flaxInstallBindingModule("example.shop/shop", 24, Object.freeze(["generic-member-views","inherited-binding-members","instance-checks","native-navigation-objects","native-widget-proxies"]) as readonly string[]);
+export const shopBindingModule = _flaxInstallBindingModule("example.shop/shop", 24, Object.freeze(["call-layouts","generic-member-views","inherited-binding-members","instance-checks","native-navigation-objects","native-widget-proxies"]) as readonly string[]);
 const { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineDartTypes: _flaxDefineDartTypes, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = shopBindingModule;
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Cart extends Readonly<{ "__flaxBound:package:configured_host/api.dart::Cart": readonly [] }> { readonly __Cart: unique symbol;
@@ -30,7 +30,7 @@ return constructObject("object", "example.shop/shop#type:Cart", "", _flaxMemberP
 export const Cart: typeof _CartFactory & _FlaxInstanceType<Cart> & _FlaxDartType<Cart, readonly ["class", "example.shop/shop#type:Cart", readonly [], false]> = _flaxBindInstanceType<Cart, typeof _CartFactory>(_CartFactory, "example.shop/shop#type:Cart", ["dart:core::Object"]) as typeof _CartFactory & _FlaxInstanceType<Cart> & _FlaxDartType<Cart, readonly ["class", "example.shop/shop#type:Cart", readonly [], false]>;
 function _flaxTopLevel_currentCart(): Cart {
 if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("example.shop/shop#function:currentCart", []);
+const _flaxResult = invokeTopLevel("example.shop/shop#function:currentCart", [], _flaxMemberParameters1);
 return _flaxResult as Cart;
 }
 export { _flaxTopLevel_currentCart as currentCart };

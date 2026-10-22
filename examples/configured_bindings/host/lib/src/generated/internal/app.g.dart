@@ -24,6 +24,7 @@ const appBindings = FlaxBindingModule(
   dependencyModules: [],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "generic-member-views",
     "instance-checks",
     "native-navigation-objects",

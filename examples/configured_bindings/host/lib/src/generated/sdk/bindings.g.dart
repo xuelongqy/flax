@@ -36,6 +36,7 @@ const shopBindings = FlaxBindingModule(
   dependencies: [_flaxBindings0.pricesBindings],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "call-layouts",
     "generic-member-views",
     "inherited-binding-members",
     "instance-checks",

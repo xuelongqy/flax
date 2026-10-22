@@ -52,6 +52,8 @@ examples/configured_bindings/**/bindings/manifest.json
 examples/configured_bindings/**/src/generated/
 examples/configured_bindings/**/flax_modules.json
 examples/configured_bindings/**/types/types/
+examples/configured_bindings/host/js/*/types/
 examples/configured_bindings/provider/js-types/types/
 examples/configured_bindings/host/applications/
-examples/configured_bindings/host/assets/flax_modules/
+examples/configured_bindings/**/assets/flax_modules/
+examples/configured_bindings/**/assets/flax/

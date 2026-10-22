@@ -3541,6 +3541,7 @@ classes:
         expect(viaWidgets.localModels[0].classes, isEmpty);
         expect(viaWidgets.localModels[0].moduleId, 'example.host/host');
         expect(viaWidgets.localModels[0].requiredCapabilities, [
+          'call-layouts',
           'generic-member-views',
           'instance-checks',
           'native-navigation-objects',

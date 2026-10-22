@@ -68,11 +68,11 @@ dart run melos run check
 ```
 
 Keep test workspaces, compiler temporaries and experimental copies on the workspace
-volume. Set the absolute repository-local temporary directory above before running
-Dart, Flutter, Node or Python tests; do not use the macOS system temporary directory.
-Remove completed test scratch directories and application copies after recording the
-results. Preserve source changes, concise receipts and the maintained engine/SDK builds.
-For temporary Xcode projects, use a workspace-volume `-derivedDataPath` with direct
+volume. Set the absolute repository-local temporary directory above before running Dart,
+Flutter, Node or Python tests; do not use the macOS system temporary directory. Remove
+completed test scratch directories and application copies after recording the results.
+Preserve source changes, concise receipts and the maintained engine/SDK builds. For
+temporary Xcode projects, use a workspace-volume `-derivedDataPath` with direct
 `xcodebuild` calls and clean only their own DerivedData after Flutter-driven checks.
 
 Use the [scoped command table](CONTRIBUTING.md#checks) for smaller changes. Resolve

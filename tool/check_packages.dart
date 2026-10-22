@@ -322,7 +322,12 @@ Future<_NpmArchive> _checkNpmPackage(
   final manifest = File(p.join(copy.path, 'package.json'));
   final data = jsonDecode(manifest.readAsStringSync()) as Map<String, dynamic>;
   data.remove('private');
-  for (final field in ['dependencies', 'devDependencies']) {
+  for (final field in [
+    'dependencies',
+    'devDependencies',
+    'peerDependencies',
+    'optionalDependencies',
+  ]) {
     final dependencies = data[field] as Map<String, dynamic>?;
     if (dependencies == null) continue;
     for (final entry in dependencies.entries.toList()) {
@@ -346,7 +351,9 @@ Future<_NpmArchive> _checkNpmPackage(
     artifacts.path,
   ], workingDirectory: copy.path);
   if (result.exitCode != 0) {
-    throw StateError('npm pack failed for ${package.name}: ${result.stderr}');
+    throw StateError(
+      'npm pack failed for ${package.name}: ${result.stdout}\n${result.stderr}',
+    );
   }
   final packed = jsonDecode(result.stdout as String) as Map<String, dynamic>;
   final files = (packed['files'] as List<dynamic>)

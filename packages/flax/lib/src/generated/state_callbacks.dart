@@ -60,6 +60,11 @@ const componentsBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+final componentsPlugin = FlaxBindingPlugin(
+  id: "binding:flax.core/components",
+  bindingModules: [componentsBindings],
+  jsModules: {"@flax/flutter/widgets"},
+);
 const _stateVariant_KeepAliveState = FlaxStateVariantBinding(
   "flax.core/components#stateVariant:KeepAliveState",
   _KeepAliveStateStateHost.new,

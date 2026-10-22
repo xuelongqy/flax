@@ -737,13 +737,13 @@ generator snapshot support remains available for explicit projections.
 
 The Manifest keeps the original declaration and its delivery paths separate:
 
-| Existing field                | Purpose                    | ValueKey example                                              |
-| ----------------------------- | -------------------------- | ------------------------------------------------------------- |
-| `identities[].sourceIdentity` | Actual Dart declaration    | `package:flutter/src/foundation/key.dart`, `ValueKey`, `type` |
-| `identities[].wireId`         | Owning runtime binding     | `flax.core/flutter#type:ValueKey`                             |
-| `model.typeLibraries`         | Dart import carrier        | `package:flutter/foundation.dart`                             |
-| `model.publicLibraries`       | Public JavaScript entry    | `@flax/flutter/foundation`                                    |
-| `modules[].dartLibrary`       | Generated Dart bridge      | `package:flax/src/generated/flutter_bindings.g.dart`          |
+| Existing field                | Purpose                 | ValueKey example                                              |
+| ----------------------------- | ----------------------- | ------------------------------------------------------------- |
+| `identities[].sourceIdentity` | Actual Dart declaration | `package:flutter/src/foundation/key.dart`, `ValueKey`, `type` |
+| `identities[].wireId`         | Owning runtime binding  | `flax.core/flutter#type:ValueKey`                             |
+| `model.typeLibraries`         | Dart import carrier     | `package:flutter/foundation.dart`                             |
+| `model.publicLibraries`       | Public JavaScript entry | `@flax/flutter/foundation`                                    |
+| `modules[].dartLibrary`       | Generated Dart bridge   | `package:flax/src/generated/flutter_bindings.g.dart`          |
 
 Selected annotation types may use their original package src library as a Dart import
 carrier. This does not select additional APIs or change their wire identities; public
