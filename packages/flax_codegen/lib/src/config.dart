@@ -14,6 +14,7 @@ const flaxCodegenOverridesFilename = 'flax_overrides.yaml';
 const flaxCodegenDefaultJsPackage = '@flax/app';
 const flaxCodegenDefaultBindingConfig = 'format: 2\n';
 const flaxCodegenJsBuildPlan = 'bindings/js_modules.json';
+const flaxCodegenAggregateDart = 'lib/flax_bindings.dart';
 
 String flaxCodegenDartOutput(String scope) => 'lib/src/generated/$scope.g.dart';
 String flaxCodegenTsOutput(String scope) => 'js/src/generated/$scope.ts';
@@ -21,6 +22,7 @@ String flaxCodegenPublicLibrary(String scope) =>
     'lib/flax_bindings/$scope.dart';
 
 final flaxCodegenDefaultOutputs = List<String>.unmodifiable([
+  flaxCodegenAggregateDart,
   flaxCodegenDartOutput('app'),
   flaxCodegenTsOutput('app'),
   flaxCodegenPublicLibrary('app'),
@@ -91,13 +93,14 @@ class FlaxCodegenBindingConfig {
 
   FlaxCodegenBindingConfig copyWith({
     String? library,
+    String? dartOutput,
     List<String>? additionalLibraries,
     FlaxCodegenAutoOverrides? overrides,
   }) => FlaxCodegenBindingConfig(
     name,
     library ?? this.library,
     jsPackage,
-    dartOutput,
+    dartOutput ?? this.dartOutput,
     tsOutput,
     classes,
     additionalLibraries: additionalLibraries ?? this.additionalLibraries,
@@ -347,7 +350,13 @@ class FlaxCodegenBindingConfig {
     String contents, {
     String source = 'flax_bindings.yaml',
     String jsPackageRoot = flaxCodegenDefaultJsPackage,
-  }) => _parseBindingConfigStrict(contents, source, jsPackageRoot);
+    Map<String, String> scopeJsPackages = const {},
+  }) => _parseBindingConfigStrict(
+    contents,
+    source,
+    jsPackageRoot,
+    scopeJsPackages,
+  );
 
   factory FlaxCodegenBindingConfig.readStrict(
     String filename, {

@@ -5,9 +5,7 @@ import { flaxEsbuildPlugin } from '@flax/build/esbuild';
 
 const { manifest } = await prepareModules();
 const application = await prepareApplication({
-  projectDirectory: process.cwd(),
   outputDirectory: '../assets/flax/app',
-  id: 'example.defaults',
 });
 await build({
   entryPoints: ['src/main.ts'],

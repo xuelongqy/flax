@@ -59,18 +59,15 @@ importers:
       '@example/prices-runtime':
         specifier: 0.0.0
         version: link:../../provider/js
-      '@example/shop':
-        specifier: workspace:*
-        version: link:sdk/types
-      '@flax/app':
-        specifier: workspace:*
-        version: link:internal/types
       '@flax/core':
         specifier: file:../../../../packages/flax/js-types
         version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
       '@flax/core-runtime':
         specifier: file:../../../../packages/flax/js
         version: file:../../packages/flax/js
+      '@flax/dart':
+        specifier: file:../../../../packages/flax_dart/js
+        version: file:../../packages/flax_dart/js(@flax/flutter@file:../../packages/flax_flutter/js)
       '@flax/material-ui':
         specifier: file:../../../../packages/flax_material_ui/js-types
         version: file:../../packages/flax_material_ui/js-types
@@ -85,73 +82,34 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
 
-  host/js/internal/runtime:
+  host/js/internal:
     dependencies:
       '@example/prices':
         specifier: 0.0.0
-        version: link:../../../../provider/js-types
-      '@example/prices-runtime':
-        specifier: 0.0.0
-        version: link:../../../../provider/js
+        version: link:../../../provider/js-types
       '@flax/core':
-        specifier: file:../../../../../../packages/flax/js-types
+        specifier: file:../../../../../packages/flax/js-types
         version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
-      '@flax/core-runtime':
-        specifier: file:../../../../../../packages/flax/js
-        version: file:../../packages/flax/js
     devDependencies:
-      '@flax/build':
-        specifier: file:../../../../../../packages/flax_build/js
-        version: file:../../packages/flax_build/js
       typescript:
         specifier: 7.0.2
         version: 7.0.2
 
-  host/js/internal/types:
+  host/js/sdk:
     dependencies:
       '@example/prices':
         specifier: 0.0.0
-        version: link:../../../../provider/js-types
+        version: link:../../../provider/js-types
       '@flax/core':
-        specifier: file:../../../../../../packages/flax/js-types
+        specifier: file:../../../../../packages/flax/js-types
         version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
-
-  host/js/sdk/runtime:
-    dependencies:
-      '@example/prices':
-        specifier: 0.0.0
-        version: link:../../../../provider/js-types
-      '@example/prices-runtime':
-        specifier: 0.0.0
-        version: link:../../../../provider/js
-      '@flax/core':
-        specifier: file:../../../../../../packages/flax/js-types
-        version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
-      '@flax/core-runtime':
-        specifier: file:../../../../../../packages/flax/js
-        version: file:../../packages/flax/js
       '@flax/dart':
-        specifier: file:../../../../../../packages/flax_dart/js
+        specifier: file:../../../../../packages/flax_dart/js
         version: file:../../packages/flax_dart/js(@flax/flutter@file:../../packages/flax_flutter/js)
     devDependencies:
-      '@flax/build':
-        specifier: file:../../../../../../packages/flax_build/js
-        version: file:../../packages/flax_build/js
       typescript:
         specifier: 7.0.2
         version: 7.0.2
-
-  host/js/sdk/types:
-    dependencies:
-      '@example/prices':
-        specifier: 0.0.0
-        version: link:../../../../provider/js-types
-      '@flax/core':
-        specifier: file:../../../../../../packages/flax/js-types
-        version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
-      '@flax/dart':
-        specifier: file:../../../../../../packages/flax_dart/js
-        version: file:../../packages/flax_dart/js(@flax/flutter@file:../../packages/flax_flutter/js)
 
   host/modules:
     dependencies:
@@ -163,16 +121,16 @@ importers:
         version: link:../../provider/js
       '@example/shop':
         specifier: workspace:*
-        version: link:../js/sdk/types
+        version: link:../js/sdk
       '@example/shop-runtime':
         specifier: workspace:*
-        version: link:../js/sdk/runtime
+        version: link:legacy_sdk
       '@flax/app':
         specifier: workspace:*
-        version: link:../js/internal/types
+        version: link:../js/internal
       '@flax/app-runtime':
         specifier: workspace:*
-        version: link:../js/internal/runtime
+        version: link:legacy_internal
       '@flax/core':
         specifier: file:../../../../packages/flax/js-types
         version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
@@ -190,6 +148,53 @@ importers:
         specifier: file:../../../../packages/flax_build/js
         version: file:../../packages/flax_build/js
 
+  host/modules/legacy_internal:
+    dependencies:
+      '@example/prices':
+        specifier: 0.0.0
+        version: link:../../../provider/js-types
+      '@example/prices-runtime':
+        specifier: 0.0.0
+        version: link:../../../provider/js
+      '@flax/core':
+        specifier: file:../../../../../packages/flax/js-types
+        version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
+      '@flax/core-runtime':
+        specifier: file:../../../../../packages/flax/js
+        version: file:../../packages/flax/js
+    devDependencies:
+      '@flax/build':
+        specifier: file:../../../../../packages/flax_build/js
+        version: file:../../packages/flax_build/js
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+
+  host/modules/legacy_sdk:
+    dependencies:
+      '@example/prices':
+        specifier: 0.0.0
+        version: link:../../../provider/js-types
+      '@example/prices-runtime':
+        specifier: 0.0.0
+        version: link:../../../provider/js
+      '@flax/core':
+        specifier: file:../../../../../packages/flax/js-types
+        version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
+      '@flax/core-runtime':
+        specifier: file:../../../../../packages/flax/js
+        version: file:../../packages/flax/js
+      '@flax/dart':
+        specifier: file:../../../../../packages/flax_dart/js
+        version: file:../../packages/flax_dart/js(@flax/flutter@file:../../packages/flax_flutter/js)
+    devDependencies:
+      '@flax/build':
+        specifier: file:../../../../../packages/flax_build/js
+        version: file:../../packages/flax_build/js
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+
   miniapps/first:
     dependencies:
       '@example/prices':
@@ -197,7 +202,7 @@ importers:
         version: link:../../provider/js-types
       '@example/shop':
         specifier: workspace:*
-        version: link:../../host/js/sdk/types
+        version: link:../../host/js/sdk
       '@flax/core':
         specifier: file:../../../../packages/flax/js-types
         version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
@@ -228,10 +233,10 @@ importers:
         version: link:../../provider/js-types
       '@example/shop':
         specifier: workspace:*
-        version: link:../../host/js/sdk/types
+        version: link:../../host/js/sdk
       '@flax/app':
         specifier: workspace:*
-        version: link:../../host/js/internal/types
+        version: link:../../host/js/internal
       '@flax/core':
         specifier: file:../../../../packages/flax/js-types
         version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
@@ -262,10 +267,10 @@ importers:
         version: link:../../provider/js-types
       '@example/shop':
         specifier: workspace:*
-        version: link:../../host/js/sdk/types
+        version: link:../../host/js/sdk
       '@flax/app':
         specifier: workspace:*
-        version: link:../../host/js/internal/types
+        version: link:../../host/js/internal
       '@flax/core':
         specifier: file:../../../../packages/flax/js-types
         version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)
@@ -296,7 +301,7 @@ importers:
         version: link:../../provider/js-types
       '@example/shop':
         specifier: workspace:*
-        version: link:../../host/js/sdk/types
+        version: link:../../host/js/sdk
       '@flax/core':
         specifier: file:../../../../packages/flax/js-types
         version: file:../../packages/flax/js-types(@flax/flutter@file:../../packages/flax_flutter/js)

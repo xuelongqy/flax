@@ -31,5 +31,8 @@
     "@flax/cupertino-ui": "workspace:*",
     "@flax/flutter": "workspace:*",
     "@flax/dart": "workspace:*"
+  },
+  "flax": {
+    "hostBindings": true
   }
 }

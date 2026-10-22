@@ -9,7 +9,8 @@ import 'package_pipeline.dart';
 
 /// One build step owns all binding scopes and their shared manifest.
 final class FlaxCodegenBindingsBuilder implements Builder {
-  FlaxCodegenBindingsBuilder(BuilderOptions options) {
+  FlaxCodegenBindingsBuilder(BuilderOptions options)
+    : _usesDefaultOutputs = options.config['outputs'] == null {
     final unknown = options.config.keys.where((key) => key != 'outputs');
     if (unknown.isNotEmpty) {
       throw ArgumentError(
@@ -36,8 +37,10 @@ final class FlaxCodegenBindingsBuilder implements Builder {
         throw ArgumentError('Duplicate Flax builder output: $path');
       }
     }
-    buildExtensions = {'^flax_package.yaml': paths.toList()..sort()};
+    buildExtensions = {r'$package$': paths.toList()..sort()};
   }
+
+  final bool _usesDefaultOutputs;
 
   @override
   late final Map<String, List<String>> buildExtensions;
@@ -65,8 +68,8 @@ final class FlaxCodegenBindingsBuilder implements Builder {
       }
     }
 
-    await read(step.inputId);
     await read(AssetId(package, 'pubspec.yaml'));
+    await readOptional(AssetId(package, 'flax_package.yaml'));
     for (final path in ['js/package.json', 'js-types/package.json']) {
       await readOptional(AssetId(package, path));
     }
@@ -94,6 +97,7 @@ final class FlaxCodegenBindingsBuilder implements Builder {
     }
 
     for (final dependency in roots.keys.where((name) => name != package)) {
+      await readOptional(AssetId(dependency, 'pubspec.yaml'));
       await readOptional(AssetId(dependency, 'flax_package.yaml'));
       await readOptional(AssetId(dependency, 'bindings/manifest.json'));
     }
@@ -137,6 +141,8 @@ final class FlaxCodegenBindingsBuilder implements Builder {
     final planned = validation.outputInventory.toSet();
     final missing = planned.difference(allowed).toList()..sort();
     final stale = allowed.difference(planned)..remove(flaxCodegenJsBuildPlan);
+    // Legacy single-app configs still own only the original default paths.
+    if (_usesDefaultOutputs) stale.remove(flaxCodegenAggregateDart);
     if (missing.isNotEmpty || stale.isNotEmpty) {
       throw StateError(
         'Update flax_codegen:bindings options.outputs in build.yaml. '

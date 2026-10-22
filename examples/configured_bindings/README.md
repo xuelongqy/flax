@@ -118,15 +118,16 @@ short; narrow host windows also stack the cards vertically.
 | Independent business projects                   | [Shop A](miniapps/first/package.json), [Shop B](miniapps/second/package.json), [manager](miniapps/manager/package.json), [shared bundler](miniapps/build.mjs)                 |
 
 Public native/TS outputs live in `host/lib/src/generated/sdk/` and
-`host/js/sdk/runtime/src/generated/`. Internal outputs use sibling `internal/`
-directories. Each generation command processes all sibling YAML scopes. Source-scanned
-scopes also generate public Dart exports under host/lib/flax_bindings/. These carriers
-are for Dart/provider references; npm consumers still receive only public declarations.
+`host/js/sdk/src/generated/`. Internal outputs use sibling `internal/` directories. Each
+generation command processes all sibling YAML scopes. Source-scanned scopes also
+generate public Dart exports under host/lib/flax_bindings/. These carriers are for
+Dart/provider references; npm consumers still receive only public declarations.
 
 The host uses the optional build_runner entry configured in
 [build.yaml](host/build.yaml). Its inputs include the binding YAML/npm files; its
-outputs list declares every public/internal generated path. The provider keeps its CLI
-configuration and exposes its existing metadata through
+outputs list declares every public/internal generated path. Run dart run flax_cli:flax
+sync after scope/path changes to update that Flax-owned list automatically. The provider
+keeps its CLI configuration and exposes its existing metadata through
 [additional_public_assets](provider/build.yaml). No duplicate Money binding is
 generated.
 
@@ -147,10 +148,20 @@ It updates binding sources; run the normal host/miniapp builds when their artifa
 needed. `pnpm run generate:host:cli` retains the original CLI entry. Stop watch before
 using the CLI writer; CLI check can verify build_runner's output without writing.
 
-Only `provider/js-types` and `host/js/sdk/types` are packed. The two runtime packages
-and both internal packages stay private. Archives are written beside their package.json:
-`provider/js-types/example-prices-0.0.0.tgz` and
-`host/js/sdk/types/example-shop-0.0.0.tgz`. This command never publishes.
+Only `provider/js-types` and `host/js/sdk` are packed. Their hostBindings marker and
+exports let miniapps build without reading host/assets/flax_modules. Legacy runtime
+packages and the internal project stay private. Archives are written beside their
+package.json: `provider/js-types/example-prices-0.0.0.tgz` and
+`host/js/sdk/example-shop-0.0.0.tgz`. This command never publishes.
+
+The host declares typesSdk: {name: '@example/shop', scopes: [shop, delivery]} in
+flax_package.yaml. Run generation and the normal host JS build after changing the public
+selection or paths. It fills ordinary npm exports, a declaration allowlist and a
+declaration-only tsconfig.flax.json, preserving the existing SDK version, scripts,
+publishConfig and tsconfig.json. A new SDK would receive a small tsconfig.json extending
+that generated base. The default directory is js/sdk; no per-scope SDK source list or
+special publication command is needed. Generated prepack uses the ordinary types script;
+an existing prepack is kept.
 
 The normal application bundles are generated in `host/applications/`; host factory
 assets live in `host/assets/flax_modules/`. These are build outputs, not source inputs.

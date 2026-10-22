@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
 
 import 'diagnostic.dart';
@@ -14,6 +15,7 @@ final class FlaxCodegenPackageMetadataProjection {
     this.javascriptPackage,
     this.javascriptRuntimePackage,
     List<String> generateDependencies,
+    this.typesSdk,
   ) : capabilities = List.unmodifiable(capabilities),
       generateDependencies = List.unmodifiable(generateDependencies);
 
@@ -25,11 +27,21 @@ final class FlaxCodegenPackageMetadataProjection {
   /// Public types package, falling back to `javascript.package` when omitted.
   final String? javascriptPackage;
 
+  /// Published declarations, including a convention-based SDK when configured.
+  String? get javascriptTypesPackage => typesSdk?.name ?? javascriptPackage;
+
   /// Source delivery package declared by `javascript.package`.
   final String? javascriptRuntimePackage;
 
   /// External Dart packages approved for owner-local binding generation.
   final List<String> generateDependencies;
+
+  /// Optional ordinary npm declaration package prepared by init/sync.
+  final FlaxCodegenTypesSdkConfig? typesSdk;
+
+  Map<String, String> get scopeJsPackages => {
+    for (final scope in typesSdk?.scopes ?? <String>[]) scope: typesSdk!.name,
+  };
 
   factory FlaxCodegenPackageMetadataProjection.parseStrict(
     String contents, {
@@ -65,6 +77,7 @@ final class FlaxCodegenPackageMetadataProjection {
       dartEntrypoint == other.dartEntrypoint &&
       javascriptPackage == other.javascriptPackage &&
       javascriptRuntimePackage == other.javascriptRuntimePackage &&
+      typesSdk == other.typesSdk &&
       _sameStrings(capabilities, other.capabilities) &&
       _sameStrings(generateDependencies, other.generateDependencies);
 
@@ -75,9 +88,30 @@ final class FlaxCodegenPackageMetadataProjection {
     dartEntrypoint,
     javascriptPackage,
     javascriptRuntimePackage,
+    typesSdk,
     Object.hashAll(capabilities),
     Object.hashAll(generateDependencies),
   );
+}
+
+/// Publication selection; generated binding implementations remain in the host.
+final class FlaxCodegenTypesSdkConfig {
+  FlaxCodegenTypesSdkConfig(this.name, List<String> scopes, this.directory)
+    : scopes = List.unmodifiable(scopes);
+
+  final String name;
+  final List<String> scopes;
+  final String directory;
+
+  @override
+  bool operator ==(Object other) =>
+      other is FlaxCodegenTypesSdkConfig &&
+      name == other.name &&
+      directory == other.directory &&
+      _sameStrings(scopes, other.scopes);
+
+  @override
+  int get hashCode => Object.hash(name, directory, Object.hashAll(scopes));
 }
 
 bool _sameStrings(List<String> left, List<String> right) {
@@ -135,6 +169,7 @@ FlaxCodegenPackageMetadataProjection _parsePackageMetadata(
   );
   final javascriptPackage = javascriptTypes ?? javascriptRuntimePackage;
   final generateDependencies = root.optionalGenerateDependencies();
+  final typesSdk = root.optionalTypesSdk();
   if (capabilities != null &&
       (namespace.omitted || namespace.value != null) &&
       capabilities.contains('bindings') != (namespace.value != null)) {
@@ -154,6 +189,7 @@ FlaxCodegenPackageMetadataProjection _parsePackageMetadata(
     javascriptPackage,
     javascriptRuntimePackage,
     generateDependencies,
+    typesSdk,
   );
 }
 
@@ -229,6 +265,74 @@ final class _MetadataMap {
   final String pointer;
 
   YamlNode? node(String key) => map.nodes[key];
+
+  FlaxCodegenTypesSdkConfig? optionalTypesSdk() {
+    final value = node('typesSdk');
+    if (value == null) return null;
+    void invalid(String field, String message, [YamlNode? node]) {
+      diagnostics.add(
+        code: FlaxCodegenDiagnosticCode.invalidValue,
+        pointer: '/typesSdk${field.isEmpty ? '' : '/$field'}',
+        message: message,
+        node: node ?? value,
+      );
+    }
+
+    if (value is! YamlMap) {
+      invalid('', 'Expected a mapping.');
+      return null;
+    }
+    for (final key in value.keys) {
+      if (!{'name', 'scopes', 'directory'}.contains(key)) {
+        invalid('$key', 'Unknown field.');
+      }
+    }
+    final name = value['name'];
+    final scopes = value['scopes'];
+    final directory = value['directory'] ?? 'js/sdk';
+    if (name is! String ||
+        name.length > 214 ||
+        !RegExp(r'^(?:@[a-z0-9][a-z0-9._-]*/)?[a-z0-9][a-z0-9._-]*$')
+            .hasMatch(name)) {
+      invalid('name', 'Expected a lowercase npm package name.');
+    }
+    if (scopes is! List ||
+        scopes.isEmpty ||
+        scopes.any(
+          (scope) =>
+              scope is! String ||
+              !RegExp(r'^[a-z][a-z0-9_]{0,63}$').hasMatch(scope),
+        ) ||
+        scopes.toSet().length != scopes.length) {
+      invalid('scopes', 'Expected a nonempty list of unique scope names.');
+    }
+    if (directory is! String ||
+        directory.contains('\\') ||
+        p.posix.isAbsolute(directory) ||
+        p.posix.normalize(directory) != directory ||
+        directory
+            .split('/')
+            .any(
+              (part) =>
+                  part.isEmpty ||
+                  part.startsWith('.') ||
+                  part == 'node_modules',
+            ) ||
+        directory == 'js') {
+      invalid(
+        'directory',
+        'Expected a package-relative SDK directory separate from js/.',
+      );
+    }
+    if (diagnostics.items.any((item) => item.pointer.startsWith('/typesSdk'))) {
+      return null;
+    }
+    return FlaxCodegenTypesSdkConfig(
+      name as String,
+      (scopes as List).cast<String>().toList()..sort(),
+      directory as String,
+    );
+  }
 
   int? requiredInt(String key) {
     final value = node(key);

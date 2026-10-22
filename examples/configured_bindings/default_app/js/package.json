@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc -p . && node build.mjs"
+    "build": "node build.mjs && tsc -p ."
   },
   "dependencies": {
     "@flax/core": "0.0.0",
@@ -16,5 +16,8 @@
     "@flax/build": "0.0.0",
     "esbuild": "0.28.2",
     "typescript": "7.0.2"
+  },
+  "flax": {
+    "id": "example.defaults"
   }
 }

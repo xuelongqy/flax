@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/package_pipeline.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 

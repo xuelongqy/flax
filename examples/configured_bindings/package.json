@@ -14,7 +14,7 @@
     "build:default": "pnpm --filter configured-default-js run build",
     "build:apps": "pnpm --filter @example/first --filter @example/second --filter @example/manager --filter @example/forbidden run build",
     "build": "pnpm run build:host && pnpm run build:apps",
-    "pack:sdk": "pnpm --dir provider/js-types pack && pnpm --dir host/js/sdk/types pack"
+    "pack:sdk": "pnpm --dir provider/js-types pack && pnpm --dir host/js/sdk pack"
   },
   "devDependencies": {
     "@flax/build": "0.0.0",

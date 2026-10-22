@@ -1430,12 +1430,13 @@ void main() {
   });
 
   group('Manifest 28 typeLibraries URI semantics', () {
-    test('accepts public package URIs, cross-package names, and dart:core', () {
+    test('accepts package import carriers, including selected src types, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
         'Cross': 'package:flutter/widgets.dart',
         'NestedSrc': 'package:foo/public/src/model.dart',
         'Public': 'package:any/public.dart',
+        'SelectedSrc': 'package:foo/src/model.dart',
         'UnderscoreDir': 'package:foo/public/_model.dart',
         'UnderscoreFile': 'package:foo/_internal.dart',
       });
@@ -1448,6 +1449,7 @@ void main() {
         'Cross': 'package:flutter/widgets.dart',
         'NestedSrc': 'package:foo/public/src/model.dart',
         'Public': 'package:any/public.dart',
+        'SelectedSrc': 'package:foo/src/model.dart',
         'UnderscoreDir': 'package:foo/public/_model.dart',
         'UnderscoreFile': 'package:foo/_internal.dart',
       });
@@ -1470,7 +1472,6 @@ void main() {
         'privateDart': 'dart:_internal',
         'query': 'package:any/public.dart?x=1',
         'relative': './public.dart',
-        'src': 'package:foo/src/model.dart',
         'userinfo': 'package://user@host/any/public.dart',
       };
       expect(cases.keys.toList(), List.of(cases.keys)..sort());

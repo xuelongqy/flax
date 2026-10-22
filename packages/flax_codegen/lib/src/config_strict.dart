@@ -75,6 +75,7 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
   String contents,
   String source,
   String jsPackageRoot,
+  Map<String, String> scopeJsPackages,
 ) {
   final diagnostics = _StrictDiagnostics(source);
   final rootNode = _loadYamlNode(contents, diagnostics);
@@ -159,7 +160,9 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
       node: root.node('annotations'),
     );
   }
-  final jsPackage = root.optionalString('jsPackage') ?? '$jsPackageRoot/$name';
+  final jsPackage =
+      root.optionalString('jsPackage') ??
+      '${scopeJsPackages[name] ?? jsPackageRoot}/$name';
   final dartOutput = library == null
       ? root.optionalString('dartOutput') ?? flaxCodegenDartOutput(name!)
       : root.requiredString('dartOutput');

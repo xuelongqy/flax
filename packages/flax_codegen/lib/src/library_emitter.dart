@@ -42,6 +42,14 @@ Map<String, String> flaxCodegenTypescriptOutputSpecifiers(
   };
 }
 
+/// The public provider entry used when importing a referenced declaration.
+String flaxCodegenTypescriptTypeSpecifier(
+  FlaxCodegenModuleModel module,
+  String name,
+) => module.publicLibraries.isEmpty
+    ? module.jsPackage
+    : _LibraryLayout(module).route(name).jsPackage;
+
 class _LibraryLayout {
   _LibraryLayout(this.module)
     : routes = [...module.publicLibraries]

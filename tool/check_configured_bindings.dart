@@ -20,12 +20,17 @@ Future<void> main() => command(() async {
     copyDartPackages(Directory(root), Directory('$stage/packages'), [
       'flax',
       'flax_codegen',
+      'flax_cli',
       'flax_annotations',
       'flax_material_ui',
     ]);
     copyTree(
       Directory('$root/packages/flax_codegen/bin'),
       Directory('$stage/packages/flax_codegen/bin'),
+    );
+    copyTree(
+      Directory('$root/packages/flax_cli/bin'),
+      Directory('$stage/packages/flax_cli/bin'),
     );
     const source = 'examples/configured_bindings/';
     final inputs = await Process.run('git', [
@@ -39,6 +44,7 @@ Future<void> main() => command(() async {
     if (inputs.exitCode != 0) throw StateError('Cannot list example sources');
     for (final path in (inputs.stdout as String).split('\u0000')) {
       if (path.isEmpty) continue;
+      if (!File('$root/$path').existsSync()) continue;
       final relative = path.substring(source.length);
       if (![
             'provider',
@@ -84,6 +90,8 @@ Future<void> main() => command(() async {
         },
         'dev_dependencies': {
           'flax_codegen': {'path': '../packages/flax_codegen'},
+          if (name == 'default_app')
+            'flax_cli': {'path': '../packages/flax_cli'},
           if (name != 'provider') 'build_runner': '2.16.1',
           'flutter_test': {'sdk': 'flutter'},
         },
@@ -99,8 +107,10 @@ Future<void> main() => command(() async {
     }
 
     final defaults = '$stage/default_app';
+    // Annotation generation needs neither project setup nor an output list.
     await run('dart', ['run', 'flax_codegen', 'generate'], directory: defaults);
     const defaultOutputs = [
+      'lib/flax_bindings.dart',
       'lib/src/generated/app.g.dart',
       'lib/flax_bindings/app.dart',
       'js/src/generated/app.ts',
@@ -118,6 +128,20 @@ Future<void> main() => command(() async {
       }
     }
     await run('dart', ['run', 'flax_codegen', 'check'], directory: defaults);
+
+    for (final path in ['flax_package.yaml', 'build.yaml']) {
+      if (File('$defaults/$path').existsSync()) {
+        throw StateError('Annotation generation unexpectedly created $path');
+      }
+    }
+    await _checkScopeWatch(defaults);
+    await run('dart', ['run', 'flax_codegen', 'check'], directory: defaults);
+    // Setup is independent and preserves the working project.
+    final page = File('$defaults/js/src/main.ts').readAsStringSync();
+    await run('dart', ['run', 'flax_cli:flax', 'init'], directory: defaults);
+    if (File('$defaults/js/src/main.ts').readAsStringSync() != page) {
+      throw StateError('Flax CLI init replaced the existing page');
+    }
 
     final npm = <String, String>{};
     for (final path in [
@@ -154,17 +178,45 @@ Future<void> main() => command(() async {
       '--ignore-scripts',
     ], directory: '$defaults/js');
     await run('pnpm', ['run', 'build'], directory: '$defaults/js');
+    await run('dart', ['run', 'flax_codegen', 'check'], directory: defaults);
     await run('flutter', ['test', '--no-pub'], directory: defaults);
 
     for (final owner in ['provider', 'host']) {
       final directory = '$stage/$owner';
-      _json('$directory/js/pnpm-workspace.yaml', {
-        'packages': [
-          '.',
-          if (owner == 'host') ...['sdk/*', 'internal/*'],
-        ],
-        'overrides': npm,
-      });
+      _json(
+        owner == 'host'
+            ? '$directory/pnpm-workspace.yaml'
+            : '$directory/js/pnpm-workspace.yaml',
+        {
+          'packages': owner == 'host'
+              ? [
+                  'js',
+                  'js/sdk',
+                  'js/internal',
+                  'modules/legacy_sdk',
+                  'modules/legacy_internal',
+                ]
+              : ['.'],
+          'overrides': npm,
+          if (owner == 'host') 'allowBuilds': {'esbuild': true},
+        },
+      );
+      if (owner == 'host') {
+        // Exercise SDK conventions from scratch; the maintained example also covers preservation.
+        for (final name in [
+          'package.json',
+          'tsconfig.json',
+          'tsconfig.flax.json',
+        ]) {
+          final file = File('$directory/js/sdk/$name');
+          if (file.existsSync()) file.deleteSync();
+        }
+        _json('$directory/package.json', {
+          'name': 'configured-host-workspace',
+          'private': true,
+          'packageManager': packageManager,
+        });
+      }
       await run('dart', [
         'run',
         if (owner == 'host') ...[
@@ -212,23 +264,27 @@ Future<void> main() => command(() async {
           await run('pnpm', [
             'run',
             'build',
-          ], directory: '$directory/js/$group/runtime');
+          ], directory: '$directory/modules/legacy_$group');
         }
       }
       final runtimePath = owner == 'provider'
           ? '$directory/js'
-          : '$directory/js/sdk/runtime';
+          : '$directory/modules/legacy_sdk';
       final runtimeMetadata = _read('$runtimePath/package.json');
       if (runtimeMetadata['private'] != true) {
         throw StateError('Binding runtime must stay local to the host');
       }
       npm[runtimeMetadata['name'] as String] = 'file:$runtimePath';
-      final folders = owner == 'provider' ? ['js-types'] : ['js/sdk/types'];
+      final folders = owner == 'provider' ? ['js-types'] : ['js/sdk'];
       for (final folder in folders) {
         final packageDirectory = '$directory/$folder';
         final metadata = _read('$packageDirectory/package.json');
         if (metadata['private'] == true) {
           throw StateError('Public SDK must use a publishable npm manifest');
+        }
+        if (owner == 'host') {
+          // A normal prepack must rebuild declarations even with build-info present.
+          Directory('$packageDirectory/types').deleteSync(recursive: true);
         }
         await run('pnpm', [
           '--silent',
@@ -246,7 +302,17 @@ Future<void> main() => command(() async {
         }
         final files = (listing.stdout as String)
             .split('\n')
-            .where((name) => name.isNotEmpty);
+            .where((name) => name.isNotEmpty)
+            .toSet();
+        if (owner == 'host' &&
+            !files.containsAll({
+              'package/types/bindings.d.ts',
+              'package/types/delivery.d.ts',
+            })) {
+          throw StateError(
+            'SDK prepack did not rebuild public declarations: ${listing.stdout}',
+          );
+        }
         if (files.any(
           (name) =>
               name.contains('internal') ||
@@ -264,15 +330,17 @@ Future<void> main() => command(() async {
         }
       }
       if (owner == 'host') {
-        for (final folder in ['runtime', 'types']) {
-          final path = '$directory/js/internal/$folder';
+        for (final path in [
+          '$directory/js/internal',
+          '$directory/modules/legacy_internal',
+        ]) {
           final metadata = _read('$path/package.json');
           if (metadata['private'] != true) {
             throw StateError('Internal binding package must stay private');
           }
           npm[metadata['name'] as String] = 'file:$path';
         }
-        final sdk = _read('$directory/js/sdk/runtime/flax_modules.json');
+        final sdk = _read('$directory/modules/legacy_sdk/flax_modules.json');
         if ((sdk['modules'] as List).any(
           (m) => m['specifier'] == '@flax/app/admin',
         )) {
@@ -351,6 +419,8 @@ Future<void> main() => command(() async {
     });
     await run('pnpm', ['install', '--ignore-scripts'], directory: stage);
 
+    final hiddenModules = Directory('$stage/host/assets/flax_modules')
+        .renameSync('$stage/host/assets/hidden_modules');
     for (final name in ['first', 'second', 'manager', 'forbidden']) {
       final app = '$stage/miniapps/$name';
 
@@ -406,6 +476,7 @@ resetCart(); leaked();
       }
       await run('node', ['../build.mjs', name], directory: app);
     }
+    hiddenModules.renameSync('$stage/host/assets/flax_modules');
     await run('flutter', [
       'test',
       '--no-pub',
@@ -448,7 +519,7 @@ resetCart(); leaked();
 
     // Upgrade only host delivery; old packed declarations and application bytes remain.
     final upgradedRuntime = '$artifacts/shop-runtime-v2';
-    final originalRuntime = '$stage/host/js/sdk/runtime';
+    final originalRuntime = '$stage/host/modules/legacy_sdk';
     copyTree(
       Directory('$originalRuntime/dist'),
       Directory('$upgradedRuntime/dist'),
@@ -534,7 +605,7 @@ resetCart(); leaked();
     final sdkOutput = Directory('$root/build/configured-sdk');
     if (sdkOutput.existsSync()) sdkOutput.deleteSync(recursive: true);
     for (final (target, runtime, types) in [
-      ('shop', upgradedRuntime, '$stage/host/js/sdk/types'),
+      ('shop', upgradedRuntime, '$stage/host/js/sdk'),
       ('prices', '$stage/provider/js', '$stage/provider/js-types'),
     ]) {
       for (final (folder, source) in [('runtime', runtime), ('types', types)]) {
@@ -567,6 +638,12 @@ resetCart(); leaked();
       'configuredHost': true,
       'configFreeApp': true,
       'generatedJsBuildPlan': true,
+      'flaxCliPreservesDefaultHost': true,
+      'annotationBuilderWithoutSetup': true,
+      'watchDiscoversScopeChanges': true,
+      'typesSdkSetupFromConventions': true,
+      'sdkPrepackRebuildsDeclarations': true,
+      'miniappsBuiltWithoutHostInventory': true,
       'automaticMultiScopePreparation': true,
       'legacyModuleConfiguration': true,
       'defaultCliBuilderBytesIdentical': true,
@@ -608,4 +685,62 @@ void _json(String path, Object value) {
   file.writeAsStringSync(
     '${const JsonEncoder.withIndent('  ').convert(value)}\n',
   );
+}
+
+Future<void> _checkScopeWatch(String root) async {
+  final api = File('$root/lib/cart.dart');
+  final original = api.readAsStringSync();
+  final output = File('$root/lib/flax_bindings.dart');
+  final process = await Process.start('dart', [
+    'run',
+    'build_runner',
+    'watch',
+  ], workingDirectory: root);
+  final log = StringBuffer();
+  final out = process.stdout.transform(utf8.decoder).listen(log.write);
+  final err = process.stderr.transform(utf8.decoder).listen(log.write);
+  var exited = false;
+  final exit = process.exitCode.then((code) {
+    exited = true;
+    return code;
+  });
+  Future<void> until(bool Function() done) async {
+    final deadline = DateTime.now().add(const Duration(minutes: 2));
+    while (!done()) {
+      if (exited || DateTime.now().isAfter(deadline)) {
+        throw StateError('Scope watch failed: $log');
+      }
+      await Future<void>.delayed(const Duration(milliseconds: 200));
+    }
+  }
+
+  try {
+    await until(() => log.toString().contains('Built with build_runner'));
+    api.writeAsStringSync("""$original
+@FlaxExport(scope: 'watch')
+class Watched<T> { Watched(this.value); final T value; }
+@FlaxExport()
+Watched<int> watched() => Watched(3);
+""");
+    await until(
+      () =>
+          output.existsSync() &&
+          output.readAsStringSync().contains('watchPlugin'),
+    );
+    await run('dart', ['analyze', 'lib/flax_bindings.dart'], directory: root);
+    api.writeAsStringSync(original);
+    await until(() => !output.readAsStringSync().contains('watchPlugin'));
+  } finally {
+    api.writeAsStringSync(original);
+    process.kill(ProcessSignal.sigint);
+    await exit.timeout(
+      const Duration(seconds: 10),
+      onTimeout: () {
+        process.kill(ProcessSignal.sigkill);
+        return -1;
+      },
+    );
+    await out.cancel();
+    await err.cancel();
+  }
 }

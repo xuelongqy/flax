@@ -13,7 +13,7 @@ const flaxCodegenCliUsage =
     '  dart run flax_codegen check --library <package:...dart>\n'
     '  dart run flax_codegen generate --library <package:...dart>';
 
-/// Parsed CLI invocation for the three package-pipeline commands.
+/// Parsed CLI invocation for binding generation.
 final class FlaxCodegenCliArgs {
   const FlaxCodegenCliArgs({
     required this.command,
@@ -21,7 +21,7 @@ final class FlaxCodegenCliArgs {
     this.library,
   });
 
-  /// One of `validate`, `check`, or `generate`.
+  /// A binding validation, generation or reproducibility command.
   final String command;
 
   /// Explicit direct bindings YAML path.

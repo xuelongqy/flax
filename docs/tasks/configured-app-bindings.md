@@ -1,12 +1,12 @@
 # Task: Configured host bindings and independent miniapps
 
 The default app path needs no scope YAML. CLI package commands discover existing configs
-or synthesize one app selection, and the Builder shares those defaults and predeclares
-conventional outputs when options.outputs is omitted. Explicit legacy configs retain
-their required fields and module identities. Every adapter exports a binding plugin
-through FlaxBindingPlugin; source carriers reexport it. FlaxView callers may omit an
-empty application registry. The permanent default_app example and the shopping host
-cover simple and advanced layouts respectively.
+or discover app and named annotation scopes. The Builder shares those defaults and
+predeclares a fixed aggregate output graph when options.outputs is omitted. Explicit
+legacy configs retain their required fields and module identities. Every adapter exports
+a binding plugin through FlaxBindingPlugin; source carriers reexport it. FlaxView
+callers may omit an empty application registry. The permanent default_app example and
+the shopping host cover simple and advanced layouts respectively.
 
 Status: implemented and verified on the maintained macOS arm64 engine
 
@@ -43,11 +43,12 @@ annotation selections are grouped before name merging, inference and package own
 Explicit YAML mappings keep their exact member allowlists, while configuration-only mode
 remains unchanged. Source locations identify annotation conflicts. Cart/currentCart and
 resetCart are annotated; Cart.debugLabel is ignored. An unexported src/app_api.dart
-declares hostAppName with the default app scope. Source-scanned scopes generate public
-Dart carriers under lib/flax_bindings, preserving original wire identities and private
-carrier validation. The Money provider and unbound DeliveryEstimate retain
-configuration-only selection. Selection, Manifest and packaging formats stay unchanged.
-Generated plugins reuse FlaxPlugin and remain explicit per View. See
+declares hostAppName with the default app scope. Explicit source-scanned scopes generate
+public Dart carriers under lib/flax_bindings; default named scopes record their original
+Dart carriers, including selected src declarations. Both preserve original wire
+identities. The Money provider and unbound DeliveryEstimate retain configuration-only
+selection. Selection, Manifest and packaging formats stay unchanged. Generated plugins
+reuse FlaxPlugin and remain explicit per View. See
 [ADR 0046](../decisions/0046-scoped-binding-annotations.md).
 
 The host now enables flax_codegen:bindings with declared Dart/TS outputs in build.yaml.
@@ -110,50 +111,73 @@ matching names. No npm publication metadata is inferred from Dart package names.
 
 ## Verification
 
-The permanent default_app example has no scope YAML and no Builder output list. CLI and
-build_runner produce identical adapter, public Dart entry, TS module and manifest bytes.
-Its test invokes the generated Dart functions through appPlugin/appBindings. Watch
-acceptance adds an unexported source, restricts it through optional sources YAML,
-returns to implicit app and removes the source; restored inputs must retain the original
-output bytes. The five-step full-SDK watch check passes; builds take 40–66 seconds, so
-dependency-model processing remains a separate performance concern.
+The permanent default_app has no scope YAML, build.yaml or flax_package.yaml. CLI and
+build_runner produce identical binding bytes without init/sync. The isolated watch check
+adds a named scope and a cross-scope generic reference, analyzes the aggregate Dart
+output, removes the scope and checks reproducibility. JS preparation materializes extra
+scope sources without making the CLI treat them as orphans.
 
-Generator regressions cover default names/paths, source and part discovery, scope
-isolation, legacy configuration, ownership and provider references. CLI and tracked
-Builder tests both reuse config-free providers, alongside existing configured providers.
-Source-generated entries reserve their binding/plugin names and preserve non-generated
-files at annotation output paths.
+Focused validation covers 193 codegen cases, 8 Flax CLI setup cases and 76 JS build
+cases. This includes legacy default-output configurations, source/part discovery,
+multiple scopes, selected src type carriers, provider reuse, unbound dependency
+generation, SDK public selection, configuration preservation and source ownership after
+cache cleanup or a switch to legacy output ownership. Default output paths preserve
+hand-written files, and raw dependency opt-in cannot replace an invalid provider. These
+counts exclude retries; native compilation uses the matching maintained engine in the
+isolated consumer gate.
 
-Generated JS plans merge shared legacy facades into one public entry and reject
-conflicting source paths for the same specifier. Preparation retains every public route
-even when it only exports types. Split SDK/internal declaration projects use TypeScript
-project references; forced composite builds restore outputs after a declaration cleanup.
+The maintained default and shopping projects generate and build in place. The isolated
+consumer gate also packs their dependencies, recreates SDK npm setup through the normal
+JS build, builds independent miniapps with the host inventory hidden and inspects the
+actual SDK archive. Public archives contain declarations and package metadata only;
+internal APIs and runtime sources stay in the host.
 
-The shopping host passes ordinary generation and host/miniapp builds and four real
-FlaxView tests. Buttons update per-View results, shared cart subscriptions update other
-Views, missing internal/native plugins are rejected and resize retains call results. The
-maintained macOS arm64 V8 runtime and GC suite passes 45 tests.
+The macOS arm64 engine gate runs two default-app tests and three View contracts before
+and after a compatible host upgrade. Buttons, shared-cart subscriptions, missing
+internal/native providers and session cleanup are covered. SDK types remain at 0.0.0;
+the host runtime moves to 1.1.0 while old application bytes stay unchanged, including
+legacy version/hash import arguments. No registry publication is performed.
 
-The isolated-consumer gate builds the existing Money provider once, generates
-DeliveryEstimate, consumes packed declaration packages and repeats the three directory
-View contracts after a compatible host upgrade. Types stay at 0.0.0, the host runtime
-moves to 1.1.0 and old application bytes remain unchanged, including legacy version/hash
-import arguments. Public archives contain declarations and package metadata; internal
-APIs and runtime packages remain private. There is no registry publication.
+The [minimal integration guide](../guides/host-binding-quickstart.md) is also verified
+from a fresh flutter create --empty host using local Pub/npm overrides, Flax CLI init,
+build_runner and the generated JS build script. Both that host and the permanent macOS
+default_app runner start and update Quantity: 1 to 2 to 3 through actual button clicks.
+Two default-app tests and the same two contracts after enabling the fresh host's
+app/admin scopes and public SDK pass on the maintained engine. Ordinary pnpm pack yields
+only package.json and types/app.d.ts; the admin API stays private. The focused receipt
+is build/binding-quickstart.json. Temporary hosts are removed after validation.
 
-The concise receipts are build/default-app-bindings.json, build/default-app-watch.json
-and build/configured-bindings.json. Public archives and host runtime inspection outputs
-remain under build/configured-sdk. Source analysis, formatting and documentation checks
-cover the changed areas. Test scratch projects are removed after recording results.
+The current concise receipt is build/configured-bindings.json. Public archives and
+host-runtime inspection outputs remain under build/configured-sdk. Dart analysis, JS
+typechecking, formatting and documentation checks cover the changed areas. Completed
+test scratch projects are removed after recording results.
 
 Full SDK regeneration requires a Flutter source surface matching the frozen SDK
-manifest. The local checkout currently contains additional font APIs; this task keeps
-the original SDK manifests/JS tables and adds generated plugins to the canonical Dart
-adapters. Full repository SDK regeneration and unprepared global UI fixtures are not
-claimed as passing acceptance. Flutter execution tests use the matching local engine;
-subprocess compilation is serialized to avoid shared build-directory races.
+manifest. The local checkout contains additional font APIs; full repository SDK
+regeneration and unprepared global UI fixtures are outside this validation. Runtime
+checks use the maintained macOS engine; mobile and release/AOT are not certified.
 
 ## Handoff
+
+Flax CLI owns optional host setup and a legacy output-list helper. flax_codegen owns
+binding generation only. Annotation users run build_runner directly without init/sync;
+app and named scopes share a fixed aggregate Dart output graph. Independent miniapp
+builds use flaxEsbuildPlugin() with marked types packages and no host inventory. Public
+SDK/internal sources now live in one npm project per package group under host/js/sdk and
+host/js/internal; their files/exports retain only the intended declarations. Explicit
+runtime delivery projects remain under host/modules/legacy_sdk and legacy_internal for
+compatibility verification. The isolated gate checks annotation generation/watch without
+setup, preserves source during Flax CLI init, hides host module assets during business
+builds and repeats View tests after a compatible host upgrade. See
+[ADR 0049](../decisions/0049-independent-binding-sdks-and-project-setup.md).
+
+Optional typesSdk metadata selects the public npm name and scopes. Normal JS builds
+prepare ordinary SDK package/TS configuration, preserve existing npm policy and JSONC
+tsconfig, and maintain only generated declaration entries. The shopping example keeps
+its custom composite TS project; the isolated gate recreates the SDK setup from
+conventions before building and packing. Public signatures cannot reference an
+unselected local scope. Native identities, internal module roots and provider reuse
+remain unchanged.
 
 Source-scanned packages now generate bindings/js_modules.json alongside their binding
 manifest. The shared plan contains all local scopes, provider runtime dependencies and

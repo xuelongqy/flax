@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:path/path.dart' as p;
+import 'package:analyzer/dart/analysis/utilities.dart';
 
 import 'identity.dart';
 import 'manifest_codec.dart';
@@ -875,7 +876,7 @@ class FlaxCodegenBindingEmitter {
         _dartLibrary(_dartModule);
     final prefix = _dartImports.putIfAbsent(
       library,
-      () => 'api${_dartImports.length}',
+      () => '$_dartApiPrefix${_dartImports.length}',
     );
     return '$prefix.$name';
   }
@@ -969,7 +970,10 @@ class FlaxCodegenBindingEmitter {
     final uri = type.originatingUri;
     final prefix = uri == null
         ? null
-        : _dartImports.putIfAbsent(uri, () => 'api${_dartImports.length}');
+        : _dartImports.putIfAbsent(
+            uri,
+            () => '$_dartApiPrefix${_dartImports.length}',
+          );
     final name = prefix == null
         ? _dartName(type.name!)
         : '$prefix.${type.originatingName ?? type.name}';
@@ -2306,7 +2310,42 @@ class FlaxCodegenBindingEmitter {
     }
   }
 
-  String dart(FlaxCodegenModuleModel module) {
+  String _dartApiPrefix = 'api';
+
+  /// Keep package output paths stable as annotation scopes are added or removed.
+  String dartAggregate(List<FlaxCodegenModuleModel> selected) {
+    if (selected.length == 1) return dart(selected.single);
+    final imports = <String>{};
+    final bodies = <String>[];
+    for (final (index, module) in selected.indexed) {
+      final source = dart(module, privateImports: true);
+      final unit = parseString(content: source).unit;
+      final edits = <(int, int, String)>[];
+      for (var token = unit.beginToken; !token.isEof; token = token.next!) {
+        if (token.isIdentifier &&
+            token.lexeme.startsWith('_') &&
+            token.lexeme != '_') {
+          edits.add((token.offset, token.end, '_scope$index${token.lexeme}'));
+        }
+      }
+      var rewritten = source;
+      for (final (start, end, value) in edits.reversed) {
+        rewritten = rewritten.replaceRange(start, end, value);
+      }
+      final parsed = parseString(content: rewritten).unit;
+      for (final directive in parsed.directives) {
+        imports.add(directive.toSource());
+      }
+      bodies.add(rewritten.substring(parsed.directives.last.end));
+    }
+    return '// GENERATED CODE. Selected public API subset; do not edit.\n'
+        '// Regenerate with dart run melos run bindings:generate.\n'
+        '// ignore_for_file: type=lint, unused_import, unnecessary_cast, deprecated_member_use, invalid_use_of_protected_member, invalid_use_of_visible_for_overriding_member, invalid_use_of_visible_for_testing_member\n'
+        '${imports.join('\n')}\n${bodies.join('\n')}';
+  }
+
+  String dart(FlaxCodegenModuleModel module, {bool privateImports = false}) {
+    _dartApiPrefix = privateImports ? '_api' : 'api';
     _vmShapes.clear();
     _vmFactory = false;
     _usesVmCallbackResult = false;
@@ -2327,15 +2366,18 @@ class FlaxCodegenBindingEmitter {
     _findSharedAdapters(module);
     _findProxyDispatch(module);
     _dartImports.clear();
-    _dartImports[_dartLibrary(module)] = 'api';
+    _dartImports[_dartLibrary(module)] = _dartApiPrefix;
     for (final uri in _sortedStringMap(_dartTypeLibraries(module)).values) {
-      _dartImports.putIfAbsent(uri, () => 'api${_dartImports.length}');
+      _dartImports.putIfAbsent(
+        uri,
+        () => '$_dartApiPrefix${_dartImports.length}',
+      );
     }
     for (final variant in module.stateVariants) {
       for (final mixin in variant.mixins) {
         _dartImports.putIfAbsent(
           mixin.library,
-          () => 'api${_dartImports.length}',
+          () => '$_dartApiPrefix${_dartImports.length}',
         );
       }
     }
@@ -3129,7 +3171,7 @@ T _genericCallbackResult<T>(Object? value) {
 // Regenerate with dart run melos run bindings:generate.
 // ignore_for_file: type=lint, unused_import, unnecessary_cast, deprecated_member_use, invalid_use_of_protected_member, invalid_use_of_visible_for_overriding_member, invalid_use_of_visible_for_testing_member
 import 'dart:core';
-import '${_dartLibrary(module)}' as api;
+import '${_dartLibrary(module)}' as $_dartApiPrefix;
 import 'package:flax/bindings.dart';
 ''',
     );

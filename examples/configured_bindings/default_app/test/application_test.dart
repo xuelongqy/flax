@@ -19,9 +19,14 @@ void main() {
         );
       }
       expect(find.text('Quantity: 1'), findsOneWidget);
+      final view = tester.element(find.byType(FlaxView).last);
       await tester.tap(find.text('Add item'));
       await tester.pump();
       expect(find.text('Quantity: 2'), findsOneWidget);
+      await tester.tap(find.text('Add item'));
+      await tester.pump();
+      expect(find.text('Quantity: 3'), findsOneWidget);
+      expect(tester.element(find.byType(FlaxView).last), same(view));
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);

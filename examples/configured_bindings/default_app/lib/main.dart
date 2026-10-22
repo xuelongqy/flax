@@ -2,7 +2,7 @@ import 'package:flax/flax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'flax_bindings/app.dart';
+import 'flax_bindings.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

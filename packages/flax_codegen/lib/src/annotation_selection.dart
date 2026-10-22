@@ -83,6 +83,7 @@ extension FlaxCodegenAnnotationSelection on FlaxCodegenBindingParser {
     List<FlaxCodegenBindingConfig> configs, {
     required String package,
     required Map<String, String> sources,
+    FlaxCodegenBindingConfig Function(String)? createScope,
   }) async {
     final scopes = {for (final config in configs) config.name: config};
     final sourceConfigs = configs
@@ -190,6 +191,18 @@ extension FlaxCodegenAnnotationSelection on FlaxCodegenBindingParser {
         _checkAnnotationTargets(element);
         final marker = _flaxAnnotation(element, 'FlaxExport');
         final scope = marker?.getField('scope')?.toStringValue();
+        if (scope != null &&
+            !scopes.containsKey(scope) &&
+            createScope != null) {
+          final config = createScope(scope);
+          configs.add(config);
+          scopes[scope] = config;
+          sourceConfigs.add(config);
+          patterns[scope] = config.sources!.map(Glob.new).toList();
+          names[scope] = <String, Element>{};
+          libraries[scope] = <String, String>{};
+          active.add(config);
+        }
         if (marker != null && (scope == null || !scopes.containsKey(scope))) {
           _annotationError(
             element,

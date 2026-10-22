@@ -43,6 +43,7 @@ melos:
       - packages/flax_engine_hermes
       - packages/flax_engine_v8
     tools:
+      - packages/flax_cli
       - packages/flax_codegen
   scripts:
     analyze:
@@ -146,6 +147,7 @@ melos:
       description: Verify reproducible bindings and generator behavior.
       steps:
         - dart run tool/package.dart bindings --check
+        - cd packages/flax_cli && dart test --reporter expanded
         - cd packages/flax_codegen && dart test --reporter expanded
     js:test:
       description: Test real signals and generated descriptor construction.

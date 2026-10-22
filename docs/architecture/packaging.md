@@ -34,6 +34,7 @@ package has no concrete engine dependency.
 | `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                                  |
 | `flax_annotations`                                   | Pure Dart FlaxExport scope and FlaxIgnore markers; no Flutter or analyzer dependency                                  |
 | `flax_codegen`                                       | Analyzer model, manifest format, and Dart/TypeScript emitters                                                         |
+| `flax_cli`                                           | Optional host project initialization and legacy Builder configuration helper                                          |
 | `flax_test`                                          | Development-only engine-neutral runtime contracts and shared test harnesses                                           |
 
 `flax_test` is not a published product API. `@flax/build` is a developer-facing Node
@@ -46,9 +47,11 @@ development dependency; no compiler/Vite code is delivered to the device. See it
 
 ## Ecosystem metadata
 
-Every package commits `flax_package.yaml`. Format 2 describes the Dart entry point, an
-optional npm peer, capabilities, and public registration symbols. Packages whose
-`capabilities` include `bindings` also carry a top-level `bindingNamespace` (see
+Published Flax capability packages commit `flax_package.yaml`. Annotation-only hosts may
+omit it and use pubspec.flax for optional settings; an existing metadata file takes
+precedence. Format 2 describes the Dart entry point, an optional npm peer, capabilities,
+and public registration symbols. Packages whose `capabilities` include `bindings` also
+carry a top-level `bindingNamespace` (see
 [ADR 0022](../decisions/0022-stable-binding-identity.md)). The file is tool metadata
 only: it does not import code, instantiate plugins, or participate in session startup.
 
@@ -580,3 +583,15 @@ For daily package work, use `dart run tool/package.dart check NAME` and add
 UI owner's original assertions in one entry, examples and the aggregate once each.
 Ordinary `check` never fetches or builds an engine; UI commands use the locked macOS
 arm64 SDK and run serially because they drive desktop apps.
+
+Types-only SDK packages mark package.json with flax.hostBindings: true. Business esbuild
+builds derive public host module names from the installed npm exports without a host
+inventory. Runtime assets and native binding admission stay in the host and selected
+View plugins. Host-owned SDKs may keep generated source and declarations in one npm
+project with a declarations-only files allowlist. Existing provider runtime delivery
+remains supported. Optional typesSdk package metadata selects the npm name and public
+scopes; the normal JS build prepares editable npm setup and a declaration-only TS base
+while preserving custom policy. Flax CLI owns optional project initialization. Default
+annotation scopes use a fixed Builder graph and need neither init nor sync. Builder and
+CLI still share generated binding outputs; setup files remain outside the Builder output
+graph. See [ADR 0049](../decisions/0049-independent-binding-sdks-and-project-setup.md).

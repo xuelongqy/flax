@@ -17,14 +17,14 @@ targets:
         enabled: true
         options:
           outputs:
-            - lib/src/generated/sdk/bindings.g.dart
-            - lib/src/generated/sdk/delivery.g.dart
-            - lib/src/generated/internal/admin.g.dart
-            - lib/src/generated/internal/app.g.dart
-            - lib/flax_bindings/shop.dart
+            - js/internal/src/generated/admin.ts
+            - js/internal/src/generated/app.ts
+            - js/sdk/src/generated/bindings.ts
+            - js/sdk/src/generated/delivery.ts
             - lib/flax_bindings/admin.dart
             - lib/flax_bindings/app.dart
-            - js/sdk/runtime/src/generated/bindings.ts
-            - js/sdk/runtime/src/generated/delivery.ts
-            - js/internal/runtime/src/generated/admin.ts
-            - js/internal/runtime/src/generated/app.ts
+            - lib/flax_bindings/shop.dart
+            - lib/src/generated/internal/admin.g.dart
+            - lib/src/generated/internal/app.g.dart
+            - lib/src/generated/sdk/bindings.g.dart
+            - lib/src/generated/sdk/delivery.g.dart

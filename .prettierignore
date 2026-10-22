@@ -11,6 +11,7 @@ dist/
 coverage/
 packages/*/bindings/manifest.json
 **/bindings/js_modules.json
+**/tsconfig.flax.json
 pubspec.lock
 pnpm-lock.yaml
 packages/flax_engine_hermes/native/generated/

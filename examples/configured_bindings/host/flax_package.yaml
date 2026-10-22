@@ -5,3 +5,6 @@ dart:
   entrypoint: package:configured_host/configured_host.dart
 registration:
   bindings: [shopBindings, deliveryBindings, adminBindings, appBindings]
+typesSdk:
+  name: '@example/shop'
+  scopes: [shop, delivery]

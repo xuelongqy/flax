@@ -57,5 +57,8 @@
   },
   "dependencies": {
     "@flax/core": "workspace:*"
+  },
+  "flax": {
+    "hostBindings": true
   }
 }

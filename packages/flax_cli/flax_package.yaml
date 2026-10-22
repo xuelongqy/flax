@@ -1,0 +1,4 @@
+format: 2
+dart:
+  entrypoint: package:flax_cli/flax_cli.dart
+capabilities: []

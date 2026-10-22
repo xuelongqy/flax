@@ -43,5 +43,8 @@
     "@flax/flutter": {
       "optional": true
     }
+  },
+  "flax": {
+    "hostBindings": true
   }
 }

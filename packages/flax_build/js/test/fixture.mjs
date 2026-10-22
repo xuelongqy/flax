@@ -128,6 +128,7 @@ export function getBindingState(): { readonly shared: Shared; reads: number };
     {
       name: '@fixture/a',
       version: '1.0.0',
+      flax: { hostBindings: true },
       types: './index.d.ts',
       exports: { '.': { types: './index.d.ts' } },
       files: ['index.d.ts'],

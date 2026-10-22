@@ -6,19 +6,19 @@
   "modules": [
     {
       "specifier": "@example/shop/api",
-      "source": "js/sdk/runtime/src/generated/bindings.ts"
+      "source": "js/sdk/src/generated/bindings.ts"
     },
     {
       "specifier": "@example/shop/delivery",
-      "source": "js/sdk/runtime/src/generated/delivery.ts"
+      "source": "js/sdk/src/generated/delivery.ts"
     },
     {
       "specifier": "@flax/app/admin",
-      "source": "js/internal/runtime/src/generated/admin.ts"
+      "source": "js/internal/src/generated/admin.ts"
     },
     {
       "specifier": "@flax/app/host",
-      "source": "js/internal/runtime/src/generated/app.ts"
+      "source": "js/internal/src/generated/app.ts"
     }
   ],
   "providers": [
@@ -26,19 +26,63 @@
     "@flax/core-runtime",
     "@flax/material-ui-runtime"
   ],
+  "typesSdk": {
+    "name": "@example/shop",
+    "directory": "js/sdk",
+    "exports": {
+      "./api": {
+        "types": "./types/bindings.d.ts"
+      },
+      "./delivery": {
+        "types": "./types/delivery.d.ts"
+      }
+    },
+    "files": [
+      "types/bindings.d.ts",
+      "types/delivery.d.ts"
+    ],
+    "dependencies": [
+      "@example/prices",
+      "@flax/core",
+      "@flax/dart"
+    ],
+    "compilerConfig": {
+      "flaxGenerated": true,
+      "extends": "../../bindings/js_modules.json",
+      "compilerOptions": {
+        "target": "ES2022",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "strict": true,
+        "skipLibCheck": true,
+        "declaration": true,
+        "composite": true,
+        "emitDeclarationOnly": true,
+        "noEmitOnError": true,
+        "rootDir": "src/generated",
+        "outDir": ".build",
+        "tsBuildInfoFile": ".build/tsconfig.tsbuildinfo",
+        "declarationDir": "types"
+      },
+      "files": [
+        "src/generated/bindings.ts",
+        "src/generated/delivery.ts"
+      ]
+    }
+  },
   "compilerOptions": {
     "paths": {
       "@example/shop/api": [
-        "../js/sdk/runtime/src/generated/bindings.ts"
+        "../js/sdk/src/generated/bindings.ts"
       ],
       "@example/shop/delivery": [
-        "../js/sdk/runtime/src/generated/delivery.ts"
+        "../js/sdk/src/generated/delivery.ts"
       ],
       "@flax/app/admin": [
-        "../js/internal/runtime/src/generated/admin.ts"
+        "../js/internal/src/generated/admin.ts"
       ],
       "@flax/app/host": [
-        "../js/internal/runtime/src/generated/app.ts"
+        "../js/internal/src/generated/app.ts"
       ]
     }
   }

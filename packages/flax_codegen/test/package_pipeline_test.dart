@@ -17,6 +17,93 @@ import 'support/core_package.dart';
 
 void main() {
   group('FlaxCodegenPackagePipeline.validateConfig', () {
+    test('SDK build plan uses the canonical provider route instead of unrelated reexports', () async {
+      final workspace = _tempWorkspace();
+      final provider = _writeHostPackage(
+        workspace: workspace,
+        name: 'base_pkg',
+        bindingNamespace: 'example.base',
+        libraries: {
+          'api.dart': 'class Money { Money(); }',
+          'alias.dart': "export 'api.dart';",
+        },
+        configs: {
+          'flax_base.yaml': '''
+format: 2
+name: base
+library: package:base_pkg/api.dart
+jsPackage: '@base/values'
+dartOutput: lib/base.g.dart
+tsOutput: js/aggregate.ts
+publicLibraries:
+  package:base_pkg/api.dart:
+    jsPackage: '@base/values'
+    tsOutput: js/api/index.ts
+  package:base_pkg/alias.dart:
+    jsPackage: '@unused/reexport'
+    tsOutput: js/alias/index.ts
+classes:
+  Money:
+    kind: object
+    constructors: {'': []}
+''',
+        },
+      );
+      final host = _writeHostPackage(
+        workspace: workspace,
+        name: 'host_pkg',
+        dependencies: ['base_pkg'],
+        libraries: {
+          'api.dart': "import 'package:base_pkg/api.dart';\nMoney current() => Money();",
+        },
+        configs: {
+          'flax_api.yaml': '''
+format: 2
+name: api
+library: package:host_pkg/api.dart
+dartOutput: lib/api.g.dart
+tsOutput: js/api.ts
+functions: [current]
+''',
+        },
+      );
+      final metadata = File(p.join(host.root.path, 'flax_package.yaml'));
+      metadata.writeAsStringSync(
+        '${metadata.readAsStringSync()}typesSdk: {name: "@host/sdk", scopes: [api]}\n',
+      );
+      _writePackageConfig(
+        workspace,
+        {'base_pkg': provider.root, 'host_pkg': host.root},
+        javascriptDependencies: {
+          'host_pkg': ['@flax/core', '@base/values'],
+        },
+        providerJavascript: {'base_pkg': '@base/values'},
+      );
+      final base = await FlaxCodegenPackagePipeline.generateConfig(
+        provider.configPath('flax_base.yaml'),
+      );
+      File(p.join(provider.root.path, 'bindings/manifest.json'))
+          .writeAsStringSync(base.manifest.encode());
+      final validation = await FlaxCodegenPackagePipeline.validateConfig(
+        host.configPath('flax_api.yaml'),
+      );
+      final outputs = FlaxCodegenBindingEmitter([
+        ...validation.directDependencies.values.expand(
+          (projection) => projection.modulesByModuleId.values,
+        ),
+        ...validation.localModels,
+      ]).typescriptOutputs(validation.localModels.single);
+      expect(outputs['js/api.ts'], contains("from '@base/values'"));
+      await FlaxCodegenPackagePipeline.generateConfig(
+        host.configPath('flax_api.yaml'),
+      );
+      final plan = jsonDecode(
+        File(p.join(host.root.path, 'bindings/js_modules.json'))
+            .readAsStringSync(),
+      );
+      expect(plan['typesSdk']['dependencies'], ['@base/values', '@flax/core']);
+    });
+
     test(
       'shared public facades reject nonadjacent export collisions',
       () async {

@@ -3,5 +3,5 @@ name: delivery
 library: package:configured_delivery/configured_delivery.dart
 jsPackage: '@example/shop/delivery'
 dartOutput: lib/src/generated/sdk/delivery.g.dart
-tsOutput: js/sdk/runtime/src/generated/delivery.ts
+tsOutput: js/sdk/src/generated/delivery.ts
 classes: [DeliveryEstimate]

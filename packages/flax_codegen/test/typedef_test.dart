@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/identity.dart';
 import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:flax_codegen/src/manifest_projection.dart';
 import 'package:path/path.dart' as p;

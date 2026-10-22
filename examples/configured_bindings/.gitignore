@@ -1,5 +1,11 @@
 # Compiled declarations and prepared host assets are built from checked-in sources.
 /provider/js-types/types/
-/host/js/sdk/types/types/
-/host/js/internal/types/types/
+/host/js/sdk/types/
+/host/js/internal/types/
 /host/assets/flax_modules/
+
+/host/js/sdk/.build/
+/host/js/internal/.build/
+
+# Extra default scopes are materialized from the checked-in binding plan.
+/default_app/js/src/generated/

@@ -10,6 +10,146 @@ import 'package:test/test.dart';
 import 'support/core_package.dart';
 
 void main() {
+  test('SDK plans follow public scopes without exposing internal bindings', () async {
+    final root = _package('''
+import 'package:flax_annotations/flax_annotations.dart';
+@FlaxExport(scope: 'shop') int quantity() => 1;
+@FlaxExport(scope: 'admin') int reset() => 1;
+''');
+    Directory(p.join(root.path, 'bindings')).deleteSync(recursive: true);
+    final metadata = File(p.join(root.path, 'flax_package.yaml'));
+    metadata.writeAsStringSync(
+      '${metadata.readAsStringSync()}typesSdk: {name: "@acme/shop", scopes: [shop]}\n',
+    );
+    for (final scopes in ['[shop]', '[shop, admin]', '[shop]']) {
+      metadata.writeAsStringSync(
+        metadata.readAsStringSync().replaceFirst(
+          RegExp(r'scopes: \[[^\]]+\]'),
+          'scopes: $scopes',
+        ),
+      );
+      final result = await FlaxCodegenPackagePipeline.generateConfig(
+        null,
+        packageRoot: root.path,
+      );
+      final plan = jsonDecode(
+        File(p.join(root.path, 'bindings/js_modules.json')).readAsStringSync(),
+      );
+      final publicAdmin = scopes.contains('admin');
+      expect(
+        (plan['typesSdk']['exports'] as Map).containsKey('./admin'),
+        publicAdmin,
+      );
+      expect(plan['typesSdk']['exports']['./shop'], {
+        'types': './types/shop.d.ts',
+      });
+      expect(
+        (plan['typesSdk']['files'] as List).contains('types/admin.d.ts'),
+        publicAdmin,
+      );
+      expect(
+        result.localModels.firstWhere((m) => m.name == 'admin').jsPackage,
+        publicAdmin ? '@acme/shop/admin' : '@flax/app/admin',
+      );
+      expect(
+        File(p.join(root.path, 'js/sdk/package.json')).existsSync(),
+        isFalse,
+      );
+      await FlaxCodegenPackagePipeline.checkConfig(
+        null,
+        packageRoot: root.path,
+      );
+    }
+  });
+
+  test('public SDK signatures cannot depend on an unselected local scope', () async {
+    final root = _package('''
+import 'package:flax_annotations/flax_annotations.dart';
+@FlaxExport(scope: 'admin') class Secret { Secret(); }
+@FlaxExport(scope: 'shop') Secret current() => Secret();
+''');
+    for (final scope in ['shop', 'admin']) {
+      _writeSourceConfig(root, scope);
+    }
+    final metadata = File(p.join(root.path, 'flax_package.yaml'));
+    metadata.writeAsStringSync(
+      '${metadata.readAsStringSync()}typesSdk: {name: "@acme/shop", scopes: [shop]}\n',
+    );
+    await expectLater(
+      FlaxCodegenPackagePipeline.validateConfig(null, packageRoot: root.path),
+      throwsA(
+        predicate((e) => e.toString().contains('references unselected scope')),
+      ),
+    );
+  });
+
+  test('discovered scopes keep a fixed Builder output inventory', () async {
+    final root = _package('''
+import 'package:flax_annotations/flax_annotations.dart';
+@FlaxExport() int quantity() => 1;
+''');
+    Directory(p.join(root.path, 'bindings')).deleteSync(recursive: true);
+    final before = await FlaxCodegenPackagePipeline.generateConfig(
+      null,
+      packageRoot: root.path,
+    );
+    final api = File(p.join(root.path, 'lib/api.dart'));
+    final original = api.readAsStringSync();
+    api.writeAsStringSync(
+      "$original\n@FlaxExport(scope: 'admin') int reset() => 0;\n",
+    );
+    final after = await FlaxCodegenPackagePipeline.generateConfig(
+      null,
+      packageRoot: root.path,
+    );
+    expect(after.outputInventory, before.outputInventory);
+    expect(after.localModels.map((m) => m.name), ['app', 'admin']);
+    expect(
+      File(p.join(root.path, 'lib/flax_bindings.dart')).readAsStringSync(),
+      contains('adminPlugin'),
+    );
+    api.writeAsStringSync(original);
+    await FlaxCodegenPackagePipeline.generateConfig(
+      null,
+      packageRoot: root.path,
+    );
+    expect(
+      File(p.join(root.path, 'lib/flax_bindings.dart')).readAsStringSync(),
+      isNot(contains('adminPlugin')),
+    );
+    expect(File(p.join(root.path, 'build.yaml')).existsSync(), isFalse);
+  });
+
+  test(
+    'binding checks do not depend on the JS materialization cache',
+    () async {
+      final root = _package('''
+import 'package:flax_annotations/flax_annotations.dart';
+@FlaxExport(scope: 'admin') int reset() => 0;
+''');
+      Directory(p.join(root.path, 'bindings')).deleteSync(recursive: true);
+      await FlaxCodegenPackagePipeline.generateConfig(
+        null,
+        packageRoot: root.path,
+      );
+      final plan = jsonDecode(
+        File(p.join(root.path, 'bindings/js_modules.json')).readAsStringSync(),
+      );
+      final source = File(p.join(root.path, 'js/src/generated/admin.ts'));
+      source.writeAsStringSync(
+        plan['sources']['js/src/generated/admin.ts'] as String,
+      );
+      await FlaxCodegenPackagePipeline.checkConfig(
+        null,
+        packageRoot: root.path,
+      );
+      await FlaxCodegenPackagePipeline.generateConfig(
+        null,
+        packageRoot: root.path,
+      );
+      expect(source.existsSync(), isTrue);
+    },
+  );
   test('generated JS plans protect user files and retire when returning to legacy config', () async {
     final root = _package('''
 import 'package:flax_annotations/flax_annotations.dart';
@@ -112,7 +252,7 @@ import 'package:flax_annotations/flax_annotations.dart';
       ),
     );
   });
-  test('config-free CLI defaults match an explicit app scope and reject unknown scopes', () async {
+  test('config-free CLI discovers scopes while explicit configuration remains strict', () async {
     final root = _package('''
 import 'package:flax_annotations/flax_annotations.dart';
 @FlaxExport()
@@ -141,7 +281,7 @@ int cartQuantity() => 1;
         path: File(p.join(root.path, path)).readAsStringSync(),
     };
     expect(
-      snapshot['lib/src/generated/app.g.dart'],
+      snapshot['lib/flax_bindings.dart'],
       contains('final appPlugin = FlaxBindingPlugin('),
     );
     expect(
@@ -154,13 +294,21 @@ int cartQuantity() => 1;
     );
     File(p.join(root.path, 'bindings/flax_bindings.yaml'))
         .writeAsStringSync('format: 2\n');
-    await FlaxCodegenPackagePipeline.checkConfig(null, packageRoot: root.path);
-    for (final entry in snapshot.entries) {
-      expect(
-        File(p.join(root.path, entry.key)).readAsStringSync(),
-        entry.value,
-      );
-    }
+    await FlaxCodegenPackagePipeline.generateConfig(
+      null,
+      packageRoot: root.path,
+    );
+    expect(
+      File(p.join(root.path, 'js/src/generated/app.ts')).readAsStringSync(),
+      snapshot['js/src/generated/app.ts'],
+    );
+    expect(
+      File(p.join(root.path, 'bindings/manifest.json')).readAsStringSync(),
+      snapshot['bindings/manifest.json']!.replaceFirst(
+        'package:annotation_example/flax_bindings.dart',
+        'package:annotation_example/src/generated/app.g.dart',
+      ),
+    );
     File(p.join(root.path, 'lib/api.dart')).writeAsStringSync('''
 import 'package:flax_annotations/flax_annotations.dart';
 @FlaxExport(scope: 'typo') int cartQuantity() => 1;
@@ -429,6 +577,37 @@ shop.Cart appCart() => shop.Cart();
         ),
       );
       expect(output.readAsStringSync(), 'class Existing {}\n');
+    },
+  );
+
+  test(
+    'default generation preserves hand-written adapter and TS paths',
+    () async {
+      final root = _package('');
+      Directory(p.join(root.path, 'bindings')).deleteSync(recursive: true);
+      for (final path in [
+        'lib/flax_bindings.dart',
+        'js/src/generated/app.ts',
+      ]) {
+        final output = File(p.join(root.path, path));
+        output.parent.createSync(recursive: true);
+        output.writeAsStringSync('// Existing application code.\n');
+        await expectLater(
+          FlaxCodegenPackagePipeline.generateConfig(
+            null,
+            packageRoot: root.path,
+          ),
+          throwsA(
+            predicate(
+              (e) => e.toString().contains(
+                'non-generated annotation binding output',
+              ),
+            ),
+          ),
+        );
+        expect(output.readAsStringSync(), '// Existing application code.\n');
+        output.deleteSync();
+      }
     },
   );
 

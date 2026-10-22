@@ -122,15 +122,50 @@ must supply that native manifest separately. See the
 Binding libraries use ordinary npm packages. Keep `name`, `version`, `exports`, `files`,
 dependencies and publication settings in each project's `package.json`. Compile
 generated TypeScript with the project's `tsconfig.json` and normal build script, then
-inspect `npm pack --dry-run` or pack with the package manager. Flax does not rewrite
-package manifests, choose publication policy or publish packages.
+inspect `npm pack --dry-run` or pack with the package manager. Flax does not rewrite SDK
+publication policy or publish packages. Flax CLI can scaffold missing host setup. Normal
+@flax/build preparation materializes extra scope sources and maintains the SDK npm setup
+specified in the generated binding plan. Only owned entries are updated; custom scripts,
+versions, publication settings and TS configuration are preserved.
 
-Public declarations and host implementations remain separate packages. Publish only the
-`.d.ts` package for an SDK whose implementation comes from the host. Its runtime
-counterpart exports compiled JS and `flax_modules.json`, stays private, and is prepared
-through a local dependency in the host. Business projects depend on declarations, with
-no runtime package in their bundle. A package providing additional JavaScript wrappers
-can publish those as ordinary JS. These bindings execute inside a compatible Flax host.
+Public declarations and host implementations remain separate delivery artifacts. One SDK
+npm project may own src/generated and types directories while its files allowlist
+publishes declarations only. The host compiles the source directly through its generated
+plan, so a separate runtime npm package is unnecessary for host-owned bindings. Existing
+providers can still deliver private runtime packages with flax_modules.json. Business
+projects depend on declarations, with no runtime package in their bundle. A package
+providing additional JavaScript wrappers can publish those as ordinary JS. These
+bindings execute inside a compatible Flax host.
+
+A types package opts into independent host binding builds with ordinary npm metadata:
+
+```json
+{
+  "name": "@acme/app-sdk",
+  "flax": { "hostBindings": true },
+  "exports": { "./cart": { "types": "./types/cart.d.ts" } },
+  "files": ["types"]
+}
+```
+
+Use flaxEsbuildPlugin() without a manifest. The plugin derives the exact public module
+names from exports, verifies declaration files remain inside their package, and emits
+host imports without SDK version/hash pinning. Wildcard subpaths require an explicitly
+exported types-only static parent module and existing declarations. Private _bindings
+paths and relative imports of generated binding implementation source are rejected,
+including host sources outside a marked SDK package. Exports that also provide normal JS
+stay bundled, allowing convenience wrappers in the same SDK. No runtime JS or second
+module list is required in a pure types SDK. Installing types never installs a Dart
+plugin or makes a missing runtime module available.
+
+Standard root export shorthand is also supported: exports may be a declaration path or a
+root conditions object such as {"types":"./types/index.d.ts"}.
+
+Incremental builds reread package metadata and watch the selected declarations and npm
+manifest, so changing exports also updates host imports and normal JS wrappers.
+
+The following delivery-metadata helper remains available for existing provider runtime
+packages and legacy delivery projects.
 
 Use `bindingModuleRequirements(bindingManifest)` from `@flax/build` in a normal build
 script to read generated binding requirements. It accepts the current Binding Manifest
@@ -221,7 +256,14 @@ their lock record, local `file:` directories by checking the declared source pac
 name/version, and root projects using the `.` importer. A local directory whose source
 name or version changed after installation is rejected.
 
-Business esbuild configurations use the same prepared manifest:
+Independent business builds use marked declaration packages without a host inventory:
+
+```javascript
+import { flaxEsbuildPlugin } from '@flax/build/esbuild';
+const plugins = [flaxEsbuildPlugin()];
+```
+
+Existing projects may continue passing an explicit prepared manifest:
 
 ```javascript
 import { readModuleManifest } from '@flax/build';
@@ -233,10 +275,11 @@ const plugins = [flaxEsbuildPlugin(manifest)];
 
 The plugin compiles TS and intercepts direct imports, transitive imports and re-exports.
 Host-provided implementation packages are not needed in the business project; their
-declaration packages still participate in ordinary TypeScript value imports. Missing
-prepared Flax imports fail during bundling even when their source package is installed.
-Register the corresponding Dart plugin and prepare its source package. Already-inlined
-third-party implementations need a composable entry or rebuilding.
+declaration packages still participate in ordinary TypeScript value imports. The no-arg
+mode uses the explicit hostBindings contract, never guesses from declaration contents.
+Missing prepared Flax imports fail during bundling even when their source package is
+installed. Register the corresponding Dart plugin and prepare its source package.
+Already-inlined third-party implementations need a composable entry or rebuilding.
 
 Preparation accepts public entries from a package's exported `flax_modules.json`.
 Delivery format 2 contains `package`, exact `version`, and `modules`, where each entry

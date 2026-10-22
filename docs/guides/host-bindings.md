@@ -4,20 +4,16 @@ A host-provided SDK has two delivery paths: Dart and JS binding implementations 
 inside the Flutter host, while npm consumers receive the public TypeScript declarations.
 Each FlaxView chooses its native and prepared JS modules through explicit plugins.
 
-For one app scope, start with the
-[config-free example](../../examples/configured_bindings/default_app/README.md): add
-flax_annotations, keep a stable bindingNamespace in flax_package.yaml, mark APIs with
-@FlaxExport(), then run dart run flax_codegen generate. No scope YAML or output paths
-are needed. The generated lib/flax_bindings/app.dart exports appPlugin for a FlaxView's
-plugins list. build_runner uses the same defaults without options.outputs. The default
-module specifier is @flax/app/app. The generated bindings/js_modules.json also describes
-the complete JS build. The host's normal js build runs flax-modules, which compiles the
-generated TS entries and prepares all scopes without a second module list. The default
-example includes that permanent build script, TS alias configuration and a clickable
-page test. Node is required on the development/CI machine only.
+Start with the [minimal integration flow](host-binding-quickstart.md) for
+initialization, annotations, build_runner, JS building and FlaxView injection. It
+includes exact local dependency setup for this unpublished checkout and a clickable cart
+example. Default annotation scopes need no binding YAML or init/sync generation
+prerequisite. Node is required on the development/CI machine only.
 
-The remaining sections cover separate public/internal scopes, custom directories,
-provider reuse and optional SDK packaging.
+This advanced guide covers separate public/internal scopes, custom directories, provider
+reuse and optional SDK packaging. The
+[default example](../../examples/configured_bindings/default_app/README.md) runs the
+minimal flow in place.
 
 The [runnable shopping example](../../examples/configured_bindings/README.md) contains
 all Pub/pnpm manifests, a macOS project, startup code and miniapp projects. It can be
@@ -74,13 +70,13 @@ Money resetCart() {
 
 This fragment illustrates the annotations on the existing declarations; the complete
 implementation is [api.dart](../../examples/configured_bindings/host/lib/api.dart). The
-scope matches a configured name; without any scope YAML, app exists by default. Without
-library, annotations are enabled automatically and discovery scans this package's lib
-recursively. There is no need to maintain an export barrel. sources optionally restricts
-discovery to package-relative files or globs under lib; a match selects the owning
-library, including its parts. Generated Flax files and dependency packages are excluded.
-The provider retains its own configured selection, and DeliveryEstimate remains an
-explicit YAML selection.
+scope matches a configured name when scope YAML exists; otherwise app and all named
+annotation scopes are discovered automatically. Without library, annotations are enabled
+automatically and discovery scans this package's lib recursively. There is no need to
+maintain an export barrel. sources optionally restricts discovery to package-relative
+files or globs under lib; a match selects the owning library, including its parts.
+Generated Flax files and dependency packages are excluded. The provider retains its own
+configured selection, and DeliveryEstimate remains an explicit YAML selection.
 
 Create four sibling files under host/bindings. The public shop selection limits its
 source boundary to api.dart:
@@ -91,7 +87,7 @@ name: shop
 sources: [lib/api.dart]
 jsPackage: '@example/shop/api'
 dartOutput: lib/src/generated/sdk/bindings.g.dart
-tsOutput: js/sdk/runtime/src/generated/bindings.ts
+tsOutput: js/sdk/src/generated/bindings.ts
 imports: [configured_prices]
 ```
 
@@ -103,7 +99,7 @@ name: delivery
 library: package:configured_delivery/configured_delivery.dart
 jsPackage: '@example/shop/delivery'
 dartOutput: lib/src/generated/sdk/delivery.g.dart
-tsOutput: js/sdk/runtime/src/generated/delivery.ts
+tsOutput: js/sdk/src/generated/delivery.ts
 classes: [DeliveryEstimate]
 ```
 
@@ -113,7 +109,7 @@ The internal selection has its own output directories:
 format: 2
 name: admin
 dartOutput: lib/src/generated/internal/admin.g.dart
-tsOutput: js/internal/runtime/src/generated/admin.ts
+tsOutput: js/internal/src/generated/admin.ts
 imports: [configured_prices]
 ```
 
@@ -132,7 +128,7 @@ format: 2
 name: app
 jsPackage: '@flax/app/host'
 dartOutput: lib/src/generated/internal/app.g.dart
-tsOutput: js/internal/runtime/src/generated/app.ts
+tsOutput: js/internal/src/generated/app.ts
 ```
 
 This requires a scope named app; the generator never assigns an unscoped annotation to
@@ -144,13 +140,13 @@ Only annotated roots and explicit YAML selections enter each surface.
 With annotations enabled, only matching FlaxExport declarations are added. Class and
 enum annotations infer supported public members; FlaxIgnore excludes constructors,
 fields/accessors and methods before type conversion. The debug getter above is absent
-from both generated binding implementations and the public types. Unknown scopes,
-multiple exports on one declaration, unsupported annotation targets, and conflicts with
-an explicit YAML selection report the declaring Dart source location. Source-scanned
-private declarations cannot be exported. Explicit getter and setter selections are
-checked independently, so ignoring an unselected accessor does not block the other.
-Inferred unsupported members retain visible skip reasons; an annotated root cannot
-silently vanish.
+from both generated binding implementations and the public types. Unknown scopes in
+explicit configuration, multiple exports on one declaration, unsupported annotation
+targets, and conflicts with an explicit YAML selection report the declaring Dart source
+location. Source-scanned private declarations cannot be exported. Explicit getter and
+setter selections are checked independently, so ignoring an unselected accessor does not
+block the other. Inferred unsupported members retain visible skip reasons; an annotated
+root cannot silently vanish.
 
 Automatic annotation selections also use `bindings/flax_overrides.yaml` when present.
 Scope-local `overrides` take precedence over shared fields for the same declaration;
@@ -188,6 +184,25 @@ implement a native type.
 
 ## 2. Generate and build the host bindings
 
+Annotation generation works directly with flax_annotations, flax_codegen and
+build_runner installed: run `dart run build_runner build` or
+`dart run flax_codegen generate`. No initialization or synchronization command is
+required. The default app and named annotation scopes share a fixed generated Dart
+entry, lib/flax_bindings.dart.
+
+For optional project scaffolding, add flax_cli as a dev dependency and run once:
+
+```sh
+dart run flax_cli:flax init
+flutter pub get
+pnpm --dir js install
+```
+
+Flax CLI adds missing dependencies/assets and JS build/page templates. Existing host
+source, pages, selectors and custom JS configuration remain unchanged. A custom build
+must call prepareModules() or flax-modules. Codegen owns only bindings and their build
+plan; the normal JS build owns compilation and SDK npm setup.
+
 After the repository and example dependency setup in the
 [quick start](../../examples/configured_bindings/README.md#run-from-this-checkout), run
 from the example root:
@@ -210,8 +225,12 @@ flax_codegen:bindings Builder in
 [build.yaml](../../examples/configured_bindings/host/build.yaml). Its target includes
 flax_package.yaml, binding YAML and npm manifests as inputs. The outputs list declares
 all eleven Dart/TS paths in the following tree; the manifest and JS build plan are
-included automatically. Paths still come from the binding YAML. If scopes or paths
-change, update the list too; mismatches report missing/unused entries.
+included automatically. Only this legacy explicit-output layout needs its build.yaml
+output list updated when paths change. The optional `dart run flax_cli:flax sync` helper
+uses the shared validated inventory to update only Flax settings in build.yaml,
+preserving other builders and source exclusions. Stop watch before syncing, then restart
+it with the new output graph. Default annotation scopes need no explicit outputs list,
+even when scopes are added or removed during watch.
 
 For continuous generation alongside other Dart builders, run from host/:
 
@@ -254,15 +273,15 @@ host/
     internal/admin.g.dart
     internal/app.g.dart
   js/
-    sdk/runtime/src/generated/bindings.ts
-    sdk/runtime/src/generated/delivery.ts
-    internal/runtime/src/generated/admin.ts
-    internal/runtime/src/generated/app.ts
+    sdk/src/generated/bindings.ts
+    sdk/src/generated/delivery.ts
+    internal/src/generated/admin.ts
+    internal/src/generated/app.ts
   bindings/manifest.json
 ```
 
 Each source-scanned scope also generates a public lib/flax_bindings/<name>.dart export
-library. Its exports are selected automatically, including APIs declared in lib/src. The
+library. Its exports are selected automatically, including APIs declared in lib/src.
 Configured typedefs also appear in the export library without creating runtime owners.
 The manifest uses that public carrier; native adapters and wire identities retain the
 original declarations. Include these files when distributing a Dart binding provider.
@@ -381,6 +400,59 @@ own; this is not an untrusted-code sandbox.
 
 ## 4. Build miniapps and pack only SDK types
 
+For a new SDK, add only its npm name and public scopes to pubspec.yaml:
+
+```yaml
+flax:
+  typesSdk:
+    name: '@acme/app-sdk'
+    scopes: [app]
+```
+
+No scope YAML is needed. @FlaxExport() uses app; @FlaxExport(scope: 'admin') discovers
+admin. Public app imports become @acme/app-sdk/app; internal admin stays
+@flax/app/admin. Existing flax_package.yaml takes precedence over pubspec.flax, so keep
+SDK settings there for existing packages such as the shopping host.
+
+```sh
+dart run build_runner build
+# Alternatively: dart run flax_codegen generate
+pnpm --dir js run build
+pnpm --dir js/sdk install
+pnpm --dir js/sdk pack
+```
+
+The normal JS build creates missing SDK package.json/tsconfig.json and updates owned
+exports/files and tsconfig.flax.json from the generated plan. Repeat generation and the
+JS build after changing public scopes; neither init nor sync is needed. Set
+typesSdk.directory only to override js/sdk. The SDK version starts from pubspec and is
+then independent of host releases.
+
+Existing scripts, versions, selectors, private flags, publishConfig and JSONC tsconfig
+are preserved. Custom TS projects can extend the generated base for automatic source
+selection. Only unchanged generated entries follow scope changes; existing matching
+entries stay project-owned. A pre-existing exports map without a files allowlist needs
+an explicit publication policy. Required provider types become consumer dependencies,
+and copied file/link selectors are rebased to the SDK directory.
+
+The shopping host selects scopes [shop, delivery] with npm name @example/shop. Its
+explicit @example/shop/api and @example/shop/delivery entries and SDK/internal output
+directories remain unchanged. Its existing npm policy and TS configuration demonstrate
+preservation. Public signatures must not depend on an unselected local scope: select
+that scope explicitly or remove the reference. External providers retain their original
+binding identities and declaration packages. New npm setup also adds prepack: npm run
+types, so ordinary npm/pnpm pack updates declarations automatically. Existing prepack
+scripts are preserved. No flax-sdk command is required.
+
+The generated TS base supports project references from internal bindings. Its ordinary
+types script forces declaration rebuilding, so removing types while retaining the build
+cache cannot produce an empty SDK archive. The generated JS plan carries the complete
+SDK declaration inventory, including split helpers. A selected scope cannot share a JS
+entry or generated source with an unselected scope, because that would publish both
+surfaces. Legacy split-library SDKs also expose their declaration helper paths for
+TypeScript resolution. These remain types-only; application JS cannot import private
+_bindings modules directly.
+
 Each project under `miniapps/` has its own package.json, tsconfig and entry point. The
 example uses workspace selectors for public SDK declarations so it runs without npm
 publication. An external consumer can use a compatible published version or local
@@ -460,9 +532,12 @@ price is fixed at 1200 cents, so each shop reads it once and derives its live to
 streamed quantities; a changing price would need to be part of the updates too.
 
 currentCart is a value import even though the npm package contains only declarations.
-The shared [miniapp bundler](../../examples/configured_bindings/miniapps/build.mjs)
-passes the prepared host inventory to `flaxEsbuildPlugin`. Binding imports resolve to
-the View's host modules; ordinary JS dependencies remain normal bundled dependencies.
+The shared [miniapp bundler](../../examples/configured_bindings/miniapps/build.mjs) uses
+`flaxEsbuildPlugin()` without a host inventory. Declaration packages opt in with
+`"flax": {"hostBindings": true}`; the installed npm exports provide the public module
+names, so the miniapp needs no second module list or direct access to the host's module
+inventory. Binding imports resolve to the View's host modules at runtime; ordinary JS
+dependencies and executable SDK wrapper exports remain normal bundled dependencies.
 `prepareApplication` writes the business manifest and entry layout into
 `host/applications/<name>/`.
 
@@ -477,19 +552,23 @@ The pack script uses ordinary pnpm pack in these two directories:
 
 | npm package       | Source directory  | Packed contents                       |
 | ----------------- | ----------------- | ------------------------------------- |
-| `@example/shop`   | host/js/sdk/types | package.json and public .d.ts entries |
+| `@example/shop`   | host/js/sdk       | package.json and public .d.ts entries |
 | `@example/prices` | provider/js-types | package.json and Money declarations   |
 
 The shop package exports `./api` and `./delivery`. Its files allowlist names
 `types/bindings.d.ts` and `types/delivery.d.ts`; its dependencies include the provider's
-public types and @flax/dart for the generated Stream declaration. The private runtime
-package also declares those type dependencies for compilation. There is no internal
-entry or executable JS in the public package.
+public types and @flax/dart for the generated Stream declaration. The SDK project also
+owns its generated TS source and declaration build. Its files allowlist excludes source
+and build scripts from the npm archive. There is no internal entry or executable JS in
+the public package.
 
-`@example/shop-runtime` and `@example/prices-runtime` stay private in the host. The
-internal types/runtime packages are also private. Only the manager adds the local
-`@flax/app` declaration dependency and calls `resetCart()` from `@flax/app/admin`. Its
-View must still select adminPlugin and appPlugin.
+The public SDK is one ordinary npm project at host/js/sdk, with src/generated and types
+directories. The host compiles its source through the generated plan. The internal
+project at host/js/internal is private. The existing prices provider runtime remains a
+host dependency. host/modules/legacy_sdk and legacy_internal retain private runtime npm
+packages only for explicit legacy delivery tests; normal builds do not use them. Only
+the manager adds the local `@flax/app` declaration dependency and calls `resetCart()`
+from `@flax/app/admin`. Its View must still select adminPlugin and appPlugin.
 
 SDK packing does not activate a plugin and never publishes. An SDK that also provides
 handwritten JS convenience functions can package those as ordinary JS; pure host

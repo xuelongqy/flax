@@ -1,39 +1,42 @@
 # Configured host JavaScript
 
-`pnpm run build` emits declarations for two package groups, then compiles the binding
-sources directly through the generated plan:
+The normal build uses two ordinary npm projects:
 
-- `sdk/runtime`: public binding TS sources and the private legacy runtime package.
-- `sdk/types`: publishable `@example/shop` declarations for `/api` and `/delivery`.
-- `internal/runtime` and `internal/types`: private `@flax/app-runtime` / `@flax/app`.
-  `/admin` is local to this host's own JS projects.
+- `sdk`: publishable `@example/shop`, generated source under src/generated and public
+  declarations under types. Its files allowlist contains only the two public .d.ts
+  files.
+- `internal`: private `@flax/app`, with separate generated source and declarations for
+  /admin and /host.
 
-Each package owns its exports, files, dependencies and version. The normal host build
-uses flax-modules with the generated bindings/js_modules.json. All local scope TS
-entries and provider requirements come from code generation; no per-scope preparation
-list is maintained here. The package builds also retain explicit runtime delivery
-metadata for the legacy configuration/upgrade example. They do not rewrite npm manifests
-or publish packages.
+`pnpm run build` emits SDK declarations first, then internal declarations, then runs
+flax-modules against the generated bindings/js_modules.json. Scope entries, source paths
+and TypeScript aliases come from code generation. Each npm project owns exports, files,
+dependencies and version; adding a scope does not add a preparation mapping.
 
-The host's root JavaScript project is a private pnpm workspace and declares provider
-dependencies used by binding generation. Its public API reuses Money from
-`@example/prices/api`; internal bindings reuse the same provider without duplication.
-The public SDK has no dependency on the private packages.
+The public name and scopes are also declared once through typesSdk in the host's
+flax_package.yaml. The normal flax-modules build fills missing npm setup and maintains
+generated declaration entries. Existing policy and the composite tsconfig remain intact.
+New SDK projects extend tsconfig.flax.json instead of maintaining a source list;
+existing custom projects can choose to extend it. SDK selection/path changes require
+generation and the normal JS build before packing, with either CLI or build_runner
+generation.
 
-The internal declaration project references the public SDK's composite TypeScript
-project. This lets internal scopes use public SDK types through the generated aliases
-without compiling public sources into the internal output directory. The normal build
-emits the public declarations first. These references connect package groups; adding a
-scope within either group does not add another reference or alias. The composite project
-uses `tsc -b --force` so cleaning declarations also rebuilds them when an incremental
-build receipt remains.
+Internal declarations reference the public SDK's composite TypeScript project. SDK
+builds use tsc -b --force so deleting declarations rebuilds them even when a build-info
+file remains. Neither project publishes its binding source or runtime JS.
 
-Build both groups, but pack only `sdk/types`. Miniapps install the declarations; the
-host prepares the local runtime. Their npm versions need not match when the host
-preserves the used APIs. Old application imports also tolerate host version/hash
-changes; strict factory checks remain within the host inventory.
+Both declaration projects mark package.json with `"flax": {"hostBindings": true}`.
+Independent miniapps use flaxEsbuildPlugin() and the installed npm exports; they need no
+host module inventory or source checkout. Existing provider types remain dependencies,
+and the host installs the provider's runtime and native plugin. Ordinary SDK JS wrapper
+exports, if added, are bundled normally.
 
-Use generated shopPlugin/deliveryPlugin for public consumers and adminPlugin/appPlugin
-for internal calls. A View may select both sets. These plugins supply Dart modules and
-select prepared JS entries; installing an npm package alone does not activate either
-plugin.
+Use appPlugin/adminPlugin for internal calls and shopPlugin/deliveryPlugin for public
+calls. Each View selects the plugins it needs. Declaring a dependency or preparing
+assets does not inject a plugin into a View. SDK and host versions need not match when
+the used public entries and APIs remain compatible.
+
+The private runtime npm packages used by the explicit legacy delivery test live at
+host/modules/legacy_sdk and legacy_internal. They are compatibility fixtures and do not
+participate in the normal host build. The prices provider retains its existing runtime
+delivery contract. Packing SDK types is ordinary pnpm pack; nothing publishes packages.

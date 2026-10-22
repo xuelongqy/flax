@@ -59,10 +59,34 @@ final class _PackageInputFiles {
             FileSystemEntityType.file
       : contents!.containsKey(p.normalize(path));
 
-  FlaxCodegenPackageMetadataProjection metadata(String path) => contents == null
-      ? FlaxCodegenPackageMetadataProjection.readStrict(path)
-      : FlaxCodegenPackageMetadataProjection.parseStrict(
-          read(path),
-          source: path,
-        );
+  FlaxCodegenPackageMetadataProjection metadata(String path) {
+    if (isFile(path)) {
+      return FlaxCodegenPackageMetadataProjection.parseStrict(
+        read(path),
+        source: path,
+      );
+    }
+    final pubspecPath = p.join(p.dirname(path), 'pubspec.yaml');
+    final pubspec = loadYaml(read(pubspecPath));
+    if (pubspec is! Map || pubspec['name'] is! String) {
+      throw FormatException('Expected a named Dart package', pubspecPath);
+    }
+    final settings = pubspec['flax'] ?? <String, Object?>{};
+    if (settings is! Map) {
+      throw FormatException('Expected a flax mapping', pubspecPath);
+    }
+    final labels = (pubspec['name'] as String)
+        .split('_')
+        .where((s) => s.isNotEmpty)
+        .map((s) => RegExp(r'^[a-z]').hasMatch(s) ? s : 'p$s');
+    return FlaxCodegenPackageMetadataProjection.parseStrict(
+      jsonEncode({
+        'format': 2,
+        'bindingNamespace': 'app.${labels.join('.')}',
+        'capabilities': ['bindings'],
+        ...settings,
+      }),
+      source: pubspecPath,
+    );
+  }
 }

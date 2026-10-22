@@ -2857,7 +2857,7 @@ FlaxCodegenModuleModel? _decodeModule(
   final typeLibrariesPointer = object.child('typeLibraries');
   var typeLibrariesOk = true;
   for (final entry in typeLibraries.entries) {
-    if (!_isPublicTypeLibraryUri(entry.value)) {
+    if (!_isTypeLibraryUri(entry.value)) {
       diagnostics.add(
         pointer: flaxCodegenManifestPointer(typeLibrariesPointer, entry.key),
         message: 'Invalid type library URI.',
@@ -2895,11 +2895,9 @@ FlaxCodegenModuleModel? _decodeModule(
   }
 }
 
-/// Canonical public `package:` / `dart:` URI for Manifest `typeLibraries`.
-/// Cross-package package URIs are allowed. Only `package:<name>/src/...`
-/// (`pathSegments[1] == src`) is treated as a private package library path;
-/// underscore path segments remain public. Private dart libraries are not.
-bool _isPublicTypeLibraryUri(String uri) {
+/// Canonical Dart import for an already selected type, including annotated src types.
+/// Selection controls API visibility; package src paths are a Dart lint convention.
+bool _isTypeLibraryUri(String uri) {
   final parsed = Uri.tryParse(uri);
   if (parsed == null) return false;
   if (uri != parsed.toString()) return false;
@@ -2908,7 +2906,7 @@ bool _isPublicTypeLibraryUri(String uri) {
     return false;
   }
   if (parsed.scheme == 'package' && uri.startsWith('package:')) {
-    return _isPublicPackageTypeLibraryUri(parsed);
+    return _isPackageTypeLibraryUri(parsed);
   }
   if (parsed.scheme == 'dart' && uri.startsWith('dart:')) {
     return _isPublicDartTypeLibraryUri(parsed.path);
@@ -2919,11 +2917,10 @@ bool _isPublicTypeLibraryUri(String uri) {
 final _publicPackageNamePattern = RegExp(r'^[a-z][a-z0-9_]*$');
 final _publicDartLibraryPattern = RegExp(r'^[a-z][a-z0-9_]*$');
 
-bool _isPublicPackageTypeLibraryUri(Uri parsed) {
+bool _isPackageTypeLibraryUri(Uri parsed) {
   final segments = parsed.pathSegments;
   if (segments.length < 2) return false;
   if (!_publicPackageNamePattern.hasMatch(segments.first)) return false;
-  if (segments[1] == 'src') return false;
   for (final segment in segments) {
     if (segment.isEmpty || segment == '.' || segment == '..') return false;
     if (segment.contains('/') || segment.contains(r'\')) return false;

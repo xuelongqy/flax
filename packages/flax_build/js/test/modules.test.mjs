@@ -16,7 +16,7 @@ import { dirname, join, relative, sep } from 'node:path';
 import { after, before, test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { createContext, runInContext } from 'node:vm';
-import { build } from 'esbuild';
+import { build, context as buildContext } from 'esbuild';
 import {
   bindingModuleRequirements,
   createModuleDeliveryResolver,
@@ -88,6 +88,220 @@ function runtime() {
   context.__flaxModules.seal(fixture.manifest.modules);
   return context;
 }
+
+test('types-only SDKs build without host inventory and retain runtime admission checks', async () => {
+  const compile = (contents) =>
+    build({
+      stdin: { contents, resolveDir: fixture.business },
+      bundle: true,
+      write: false,
+      format: 'iife',
+      metafile: true,
+      plugins: [flaxHostModulesPlugin()],
+    });
+  const result = await compile(
+    "import { getValue } from '@fixture/a'; globalThis.read = getValue();",
+  );
+  const context = runtime();
+  runInContext(result.outputFiles[0].text, context);
+  assert.equal(context.read, 7);
+  assert.ok(
+    !Object.keys(result.metafile?.inputs ?? {}).some((path) => path.includes('a-impl')),
+  );
+  assert.throws(
+    () => runInContext(result.outputFiles[0].text, createContext({})),
+    /Missing or incompatible Flax module host/,
+  );
+  const absent = createContext({
+    __flaxModules: {
+      format: 'flax-cjs-1',
+      require(name) {
+        throw new Error(`Missing Flax module: ${name}`);
+      },
+    },
+  });
+  assert.throws(
+    () => runInContext(result.outputFiles[0].text, absent),
+    /Missing Flax module: @fixture\/a/,
+  );
+  await assert.rejects(
+    compile("import '@fixture/a/private';"),
+    /Not a public Flax host types export/,
+  );
+});
+
+test('host types honor public wildcard exports, JS wrappers and package confinement', async () => {
+  const directory = join(fixture.business, 'node_modules/@fixture/sdk');
+  await mkdir(join(directory, 'types'), { recursive: true });
+  const metadata = {
+    name: '@fixture/sdk',
+    type: 'module',
+    flax: { hostBindings: true },
+    exports: {
+      './api': { types: './types/index.d.ts' },
+      './api/*': { types: './types/*.d.ts' },
+      './wrapper': { types: './types/wrapper.d.ts', default: './wrapper.js' },
+      './private': null,
+    },
+  };
+  const writeMetadata = () =>
+    writeFile(join(directory, 'package.json'), JSON.stringify(metadata));
+  await writeMetadata();
+  for (const file of ['index', 'read', 'wrapper'])
+    await writeFile(
+      join(directory, `types/${file}.d.ts`),
+      'export function read(): number;\n',
+    );
+  await writeFile(
+    join(directory, 'wrapper.js'),
+    "import { read } from '@fixture/sdk/api'; export const wrapped = () => read() + 1;",
+  );
+  const compile = (path) =>
+    build({
+      stdin: {
+        contents: `import * as sdk from '${path}'; globalThis.sdk = sdk;`,
+        resolveDir: fixture.business,
+      },
+      bundle: true,
+      write: false,
+      format: 'iife',
+      plugins: [flaxHostModulesPlugin()],
+    });
+  const context = createContext({
+    __flaxModules: {
+      format: 'flax-cjs-1',
+      require(name) {
+        assert.equal(name, '@fixture/sdk/api');
+        return { read: () => 3 };
+      },
+    },
+  });
+  runInContext((await compile('@fixture/sdk/api/read')).outputFiles[0].text, context);
+  assert.equal(context.sdk.read(), 3);
+  runInContext((await compile('@fixture/sdk/wrapper')).outputFiles[0].text, context);
+  assert.equal(context.sdk.wrapped(), 4);
+  metadata.exports['./api'] = null;
+  await writeMetadata();
+  await assert.rejects(
+    compile('@fixture/sdk/api/read'),
+    /public Flax|public module entry/,
+  );
+  metadata.exports['./api'] = metadata.exports['./wrapper'];
+  await writeMetadata();
+  await assert.rejects(compile('@fixture/sdk/api/read'), /public module entry/);
+  metadata.exports['./api'] = { types: './types/index.d.ts' };
+  await writeMetadata();
+  await writeFile(
+    join(directory, 'implementation.ts'),
+    '// GENERATED CODE. Selected public API subset; do not edit.\nexport const privateBinding = 1;\n',
+  );
+  await assert.rejects(
+    compile('./node_modules/@fixture/sdk/implementation.ts'),
+    /implementation cannot be bundled/,
+  );
+  await writeFile(
+    join(root, 'host-only.ts'),
+    '// GENERATED CODE. Selected public API subset; do not edit.\nexport const hostValue = 1;\n',
+  );
+  await assert.rejects(compile('../host-only.ts'), /implementation cannot be bundled/);
+  await assert.rejects(compile('@fixture/sdk/private'), /Not a public Flax/);
+  await assert.rejects(
+    compile('@fixture/sdk/api/_bindings/secret'),
+    /Not a public Flax/,
+  );
+  await assert.rejects(compile('@fixture/sdk/api/missing'), /ENOENT/);
+  metadata.flax.hostBindings = 'yes';
+  await writeMetadata();
+  await assert.rejects(compile('@fixture/sdk/api'), /Invalid Flax host types/);
+  metadata.flax.hostBindings = true;
+  metadata.exports['./api'] = { types: '../outside.d.ts' };
+  await writeMetadata();
+  await assert.rejects(compile('@fixture/sdk/api'), /Missing declarations/);
+});
+
+test('independent rebuilds observe changed SDK exports and JS wrappers', async () => {
+  const directory = join(fixture.business, 'node_modules/@fixture/rebuild-sdk');
+  await mkdir(directory, { recursive: true });
+  const npm = {
+    name: '@fixture/rebuild-sdk',
+    type: 'module',
+    flax: { hostBindings: true },
+    exports: { './api': { types: './api.d.ts' } },
+  };
+  const writeMetadata = () =>
+    writeFile(join(directory, 'package.json'), JSON.stringify(npm));
+  await writeMetadata();
+  await writeFile(join(directory, 'api.d.ts'), 'export function read(): number;\n');
+  await writeFile(join(directory, 'wrapper.js'), 'export const read = () => 9;\n');
+  const compiler = await buildContext({
+    stdin: {
+      contents:
+        "import { read } from '@fixture/rebuild-sdk/api'; globalThis.read = read();",
+      resolveDir: fixture.business,
+    },
+    bundle: true,
+    write: false,
+    format: 'iife',
+    logLevel: 'silent',
+    plugins: [flaxHostModulesPlugin()],
+  });
+  try {
+    const host = createContext({
+      __flaxModules: { format: 'flax-cjs-1', require: () => ({ read: () => 3 }) },
+    });
+    runInContext((await compiler.rebuild()).outputFiles[0].text, host);
+    assert.equal(host.read, 3);
+    npm.exports['./api'].default = './wrapper.js';
+    await writeMetadata();
+    runInContext((await compiler.rebuild()).outputFiles[0].text, host);
+    assert.equal(host.read, 9);
+    npm.exports['./api'] = null;
+    await writeMetadata();
+    await assert.rejects(compiler.rebuild(), /Not a public Flax/);
+  } finally {
+    await compiler.dispose();
+  }
+});
+
+test('host SDKs accept standard npm root export shorthand', async () => {
+  const directory = join(fixture.business, 'node_modules/@fixture/root-sdk');
+  await mkdir(directory, { recursive: true });
+  await writeFile(join(directory, 'api.d.ts'), 'export function read(): number;\n');
+  await writeFile(join(directory, 'wrapper.js'), 'export const read = () => 9;\n');
+  for (const exports of [
+    './api.d.ts',
+    ['./api.d.ts'],
+    { types: './api.d.ts' },
+    { '.': { types: './api.d.ts' } },
+    { types: './api.d.ts', default: './wrapper.js' },
+  ]) {
+    await writeFile(
+      join(directory, 'package.json'),
+      JSON.stringify({
+        name: '@fixture/root-sdk',
+        type: 'module',
+        flax: { hostBindings: true },
+        exports,
+      }),
+    );
+    const result = await build({
+      stdin: {
+        contents: "import { read } from '@fixture/root-sdk'; globalThis.read = read();",
+        resolveDir: fixture.business,
+      },
+      bundle: true,
+      write: false,
+      format: 'iife',
+      plugins: [flaxHostModulesPlugin()],
+      logLevel: 'silent',
+    });
+    const host = createContext({
+      __flaxModules: { format: 'flax-cjs-1', require: () => ({ read: () => 3 }) },
+    });
+    runInContext(result.outputFiles[0].text, host);
+    assert.equal(host.read, exports.default ? 9 : 3);
+  }
+});
 
 test('packed declarations-only consumer typechecks ordinary values without the implementation', async () => {
   await assert.rejects(
@@ -620,6 +834,29 @@ test('business bundles reject absolute, relative and package private source impo
       /Flax implementation cannot be bundled into application code/,
     );
   }
+  const owner = dirname(source);
+  const entry = join(owner, 'app/deep/main.js');
+  const hidden = join(owner, 'app/other/hidden.js');
+  const wrapper = join(owner, 'node_modules/plain-wrapper');
+  for (const directory of [dirname(entry), dirname(hidden), wrapper])
+    await mkdir(directory, { recursive: true });
+  await writeFile(entry, "import 'plain-wrapper';\n");
+  await writeFile(hidden, 'export const privateValue = 2;\n');
+  await writeFile(
+    join(wrapper, 'package.json'),
+    JSON.stringify({ name: 'plain-wrapper', type: 'module', main: './index.js' }),
+  );
+  await writeFile(join(wrapper, 'index.js'), `import ${JSON.stringify(hidden)};\n`);
+  await assert.rejects(
+    build({
+      entryPoints: [entry],
+      bundle: true,
+      write: false,
+      plugins: [flaxHostModulesPlugin(prepared.manifest)],
+      logLevel: 'silent',
+    }),
+    /Flax implementation cannot be bundled into application code/,
+  );
 });
 
 test('real delivery metadata preserves public library binding topology', async () => {

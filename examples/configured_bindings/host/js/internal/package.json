@@ -1,0 +1,30 @@
+{
+  "name": "@flax/app",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    "./admin": {
+      "types": "./types/admin.d.ts"
+    },
+    "./host": {
+      "types": "./types/app.d.ts"
+    }
+  },
+  "files": [
+    "types"
+  ],
+  "dependencies": {
+    "@flax/core": "0.0.0",
+    "@example/prices": "0.0.0"
+  },
+  "private": true,
+  "flax": {
+    "hostBindings": true
+  },
+  "scripts": {
+    "types": "tsc -p tsconfig.json --emitDeclarationOnly"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

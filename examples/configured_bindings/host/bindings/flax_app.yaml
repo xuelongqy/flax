@@ -2,4 +2,4 @@ format: 2
 name: app
 jsPackage: '@flax/app/host'
 dartOutput: lib/src/generated/internal/app.g.dart
-tsOutput: js/internal/runtime/src/generated/app.ts
+tsOutput: js/internal/src/generated/app.ts

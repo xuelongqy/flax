@@ -741,9 +741,13 @@ The Manifest keeps the original declaration and its delivery paths separate:
 | ----------------------------- | -------------------------- | ------------------------------------------------------------- |
 | `identities[].sourceIdentity` | Actual Dart declaration    | `package:flutter/src/foundation/key.dart`, `ValueKey`, `type` |
 | `identities[].wireId`         | Owning runtime binding     | `flax.core/flutter#type:ValueKey`                             |
-| `model.typeLibraries`         | Public Dart import carrier | `package:flutter/foundation.dart`                             |
+| `model.typeLibraries`         | Dart import carrier        | `package:flutter/foundation.dart`                             |
 | `model.publicLibraries`       | Public JavaScript entry    | `@flax/flutter/foundation`                                    |
 | `modules[].dartLibrary`       | Generated Dart bridge      | `package:flax/src/generated/flutter_bindings.g.dart`          |
+
+Selected annotation types may use their original package src library as a Dart import
+carrier. This does not select additional APIs or change their wire identities; public
+library scanning still excludes unselected dependency implementation libraries.
 
 References resolve through these existing records; no second persisted source index is
 created. The source URI and declaration kind disambiguate equal short names. Library

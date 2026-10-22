@@ -1,0 +1,50 @@
+{
+  "name": "@example/shop",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    "./api": {
+      "types": "./types/bindings.d.ts"
+    },
+    "./delivery": {
+      "types": "./types/delivery.d.ts"
+    }
+  },
+  "files": [
+    "types/bindings.d.ts",
+    "types/delivery.d.ts"
+  ],
+  "dependencies": {
+    "@flax/core": "0.0.0",
+    "@example/prices": "0.0.0",
+    "@flax/dart": "0.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "flax": {
+    "hostBindings": true,
+    "generatedTypesSdk": {
+      "name": "@example/shop",
+      "exports": {
+        "./api": {
+          "types": "./types/bindings.d.ts"
+        },
+        "./delivery": {
+          "types": "./types/delivery.d.ts"
+        }
+      },
+      "files": [
+        "types/bindings.d.ts",
+        "types/delivery.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "types": "tsc -b tsconfig.json --force --emitDeclarationOnly",
+    "prepack": "npm run types"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

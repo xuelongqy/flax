@@ -10,7 +10,6 @@ import 'dart:io';
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:flax_codegen/flax_codegen.dart';
 import 'package:flax_codegen/src/manifest_codec.dart';
-import 'package:flax_codegen/src/package_pipeline.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -486,6 +485,43 @@ copyData(token);
     'unused.ts',
     classes,
   );
+
+  test('aggregate scopes compile independent object adapters without private collisions', () async {
+    final directory = Directory.systemTemp.createTempSync('flax-aggregate-');
+    addTearDown(() => directory.deleteSync(recursive: true));
+    final fixtureFile = File(
+      p.join(Directory.current.path, 'test/fixtures/plugin/numbers.dart'),
+    );
+    final modules = <FlaxCodegenModuleModel>[];
+    for (final name in ['app', 'admin']) {
+      modules.add(
+        await parser.parse(
+          FlaxCodegenBindingConfig(
+            name,
+            fixtureFile
+                .copySync(p.join(directory.path, '$name.dart'))
+                .uri
+                .toString(),
+            '@example/$name',
+            'lib/flax_bindings.dart',
+            'js/$name.ts',
+            const {
+              'NumericDefaults': FlaxCodegenClassSelection(
+                {
+                  '': ['upper', 'lower', 'invalid', 'finite'],
+                },
+                kind: 'object',
+                getters: ['upper', 'lower', 'invalid', 'finite'],
+              ),
+            },
+          ),
+        ),
+      );
+    }
+    final emitter = FlaxCodegenBindingEmitter(modules);
+    final source = emitter.dartAggregate(modules);
+    await compileFixture(root, emitter, modules.first, dartSource: source);
+  });
 
   test(
     'Widget interfaces generate fixed native configuration and typed inputs',
@@ -3725,6 +3761,7 @@ Future<void> compileFixture(
   FlaxCodegenBindingEmitter emitter,
   FlaxCodegenModuleModel module, {
   String? consumerSource,
+  String? dartSource,
   String? dartTestSource,
   bool emitDeclarations = false,
 }) async {
@@ -3733,7 +3770,7 @@ Future<void> compileFixture(
   final directory = parent.createTempSync('navigation-plugin-');
   try {
     File(p.join(directory.path, 'plugin.dart'))
-        .writeAsStringSync(emitter.dart(module));
+        .writeAsStringSync(dartSource ?? emitter.dart(module));
     final execution = dartTestSource == null
         ? null
         : (File(p.join(directory.path, 'execution_test.dart'))

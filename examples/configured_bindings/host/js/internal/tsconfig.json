@@ -1,0 +1,21 @@
+{
+  "extends": "../../bindings/js_modules.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "strict": true,
+    "skipLibCheck": true,
+    "rootDir": "src/generated",
+    "outDir": ".build",
+    "declaration": true,
+    "declarationDir": "types",
+    "noEmitOnError": true
+  },
+  "include": ["src/**/*.ts"],
+  "references": [
+    {
+      "path": "../sdk"
+    }
+  ]
+}

@@ -4,7 +4,6 @@ import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/identity.dart';
 import 'package:flax_codegen/src/manifest_codec.dart';
 
 /// Shared preparation for local file-based fixtures, not published packages.

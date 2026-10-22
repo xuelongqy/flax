@@ -2,10 +2,12 @@ packages:
   - provider/js
   - provider/js-types
   - host/js
-  - host/js/sdk/*
-  - host/js/internal/*
+  - host/js/sdk
+  - host/js/internal
   - host/modules
+  - host/modules/legacy_*
   - default_app/js
+  - default_app/js/sdk
   - miniapps/*
 
 linkWorkspacePackages: true

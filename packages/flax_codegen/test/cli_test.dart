@@ -60,6 +60,10 @@ void main() {
         ['validate', '--config', '--flag'],
         ['check', '--config', 'a.yaml', 'extra'],
         ['generate', '-c', 'bindings/flax_widgets.yaml'],
+        ['init', '--config', 'bindings/flax_app.yaml'],
+        ['sync', '--library', 'package:sample/api.dart'],
+        ['sync', '--config', 'bindings/custom.yaml'],
+        ['sync', '--config', 'bindings/flax_overrides.yaml'],
       ]) {
         expect(
           () => parseFlaxCodegenCliArgs(arguments),

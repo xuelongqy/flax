@@ -38,6 +38,7 @@ export function prepareModules(options?: {
   configPath?: string;
   check?: boolean;
 }): Promise<{ manifest: FlaxModuleManifest; manifestPath: string }>;
+/** With no inventory, resolve marked hostBindings types packages through npm exports. */
 export function flaxHostModulesPlugin(manifest?: FlaxModuleManifest | null): Plugin;
 export function createModuleDeliveryResolver(): (
   name: string,

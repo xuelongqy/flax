@@ -114,6 +114,10 @@ current language support is in the
   is accepted. A shared generated plan drives host JS compilation and preparation
   without repeated scope lists; Node remains a build-time dependency.
 
+- [0049: Independent binding SDK builds and host setup](0049-independent-binding-sdks-and-project-setup.md)
+  is accepted. Marked types packages build independently of host artifacts; init and
+  sync prepare host configuration while preserving Builder asset ownership.
+
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,
 its reason and practical consequences, and update this index.

@@ -3,7 +3,7 @@
 For application bindings, start with the
 [default app example](../../examples/configured_bindings/default_app/README.md): mark
 APIs with FlaxExport(), run dart run flax_codegen generate, and inject appPlugin. Scope
-YAML and output paths are optional for one app scope. The
+YAML and output paths are optional for annotation scopes. The
 [host guide](../../docs/guides/host-bindings.md) covers separate scopes and SDKs.
 
 Uses pinned analyzer 13.3.0 to generate selected public Dart APIs, TypeScript wrappers,
@@ -211,37 +211,128 @@ hand-written plugin `jsModules` too. Package names do not change Dart wire IDs. 
 are module naming defaults, not an instruction to install or publish an npm package
 named `@flax/app`.
 
-For the common single-scope case, no binding YAML is needed. Keep package-level
-flax_package.yaml metadata with format: 2, capabilities: [bindings] and a stable
-bindingNamespace. Add flax_annotations as a normal dependency and use FlaxExport(). From
-the package root, run:
+For annotation-based generation, add flax_annotations as a dependency and
+flax_codegen/build_runner as dev dependencies. Annotate declarations under lib:
 
-```sh
-dart run flax_codegen generate
-dart run flax_codegen check
+```dart
+@FlaxExport()
+int cartQuantity() => 1;
+
+@FlaxExport(scope: 'admin')
+void resetCart() {}
 ```
 
-When no scope configs exist, both the CLI and Builder use one app scope with annotation
-discovery over this package's lib. Outputs are lib/src/generated/app.g.dart,
-js/src/generated/app.ts, lib/flax_bindings/app.dart, bindings/manifest.json and
-bindings/js_modules.json. The public specifier keeps the existing <package>/<scope>
-rule: @flax/app/app by default. No config file is created. An explicit --config must
-still exist; a missing file is an error.
+Run either generator from the package root:
 
-Each generated Dart adapter exports <name>Plugin alongside <name>Bindings. This is a
-FlaxBindingPlugin that selects its prepared JS entry points and native binding module.
-The source-scanned public export library reexports both symbols. Pass appPlugin to a
-FlaxView's plugins; an empty bindings registry may be omitted. The host must still build
-and prepare its JS modules. Custom resource-owning plugins continue to use FlaxPlugin.
-See the [config-free example](../../examples/configured_bindings/default_app/README.md).
+```sh
+dart run build_runner build
+# Or: dart run flax_codegen generate
+```
+
+No init, sync, build.yaml, flax_package.yaml or scope YAML is required. With no explicit
+scope configs, annotations discover app and every named scope. CLI and Builder share
+this discovery. Omitted scope means app; default imports are @flax/app/<scope>. The
+binding namespace defaults to app.<Dart package name with underscores changed to dots>.
+Keep a stable explicit bindingNamespace for a published provider or a renamed host.
+
+The default output graph stays fixed when scopes change, including during watch:
+
+```text
+lib/flax_bindings.dart
+lib/src/generated/app.g.dart
+lib/flax_bindings/app.dart
+js/src/generated/app.ts
+bindings/manifest.json
+bindings/js_modules.json
+```
+
+Import lib/flax_bindings.dart for appPlugin, adminPlugin and their binding modules. The
+two older Dart entry paths remain compatibility exports. Additional scope TS sources are
+carried in the generated JS plan and materialized by the normal @flax/build step. Each
+plugin selects only its own module; sharing one Dart file does not activate other
+scopes. Scope plugins retain the ordinary FlaxBindingPlugin lifecycle.
+
+The JS build also removes retired generated scope sources after cache cleanup. Binding
+generation/checking does not depend on the JS build cache or modify those materialized
+sources. Named scopes record their actual Dart import carriers, including lib/src;
+annotations still control the selected API and wire identities.
+
+Explicit bindings/flax_*.yaml files preserve the old output and selection rules. Their
+scope names must cover the annotations they select; sources limits the scan and library
+retains export-based selection. Custom Builder output paths still require the matching
+options.outputs list. An explicit --config path must exist. The optional compatibility
+helper `dart run flax_cli:flax sync` updates that old list; default annotation
+generation never needs it.
+
+Default annotation generation discovers existing providers through direct Dart
+dependencies and their binding manifests, even before a JS project exists. It preserves
+the provider's identities and never regenerates its owned types. Install the provider's
+runtime/types dependencies in the host JS project before building; JS delivery checks
+belong to that build. Existing explicit configuration retains its earlier dependency
+validation rules and provider metadata contract.
+
+Project initialization belongs to [Flax CLI](../flax_cli/README.md), separately from
+binding generation. `dart run flax_cli:flax init` prepares missing dependencies/assets
+and JS templates while preserving host source and custom configuration. Existing
+projects can configure their normal JS build themselves. Neither binding driver runs
+Node or edits project setup files.
+
+## Optional types SDK conventions
+
+Add the npm name and public scope selection to pubspec.yaml:
+
+```yaml
+flax:
+  typesSdk:
+    name: '@acme/app-sdk'
+    scopes: [app]
+```
+
+Existing flax_package.yaml remains supported and takes precedence over pubspec.flax. Put
+settings in that file when maintaining an existing metadata-based package.
+
+```sh
+dart run build_runner build
+pnpm --dir js run build
+pnpm --dir js/sdk install
+pnpm --dir js/sdk pack
+```
+
+The normal JS build calls prepareModules()/flax-modules. It creates missing
+js/sdk/package.json and tsconfig.json and updates owned exports/files and the generated
+declaration-only tsconfig.flax.json. Changing public scopes uses this same
+generate/build sequence. No separate sync or SDK command is required. Ordinary pack runs
+prepack to refresh declarations; an existing custom prepack is preserved.
+
+The default public module becomes @acme/app-sdk/app. Unselected scopes remain
+@flax/app/<scope>. Explicit jsPackage/output paths remain authoritative and public paths
+must belong to the SDK npm name. Public signatures cannot reference unselected local
+scopes. Set typesSdk.directory only when a custom SDK directory is needed.
+
+Existing versions, scripts, dependency selectors, private flags, publishConfig, wrappers
+and JSONC tsconfig.json are preserved. Only unchanged entries previously generated by
+the build follow scope changes; pre-existing matching entries remain project-owned. A
+package with exports but no files allowlist must specify its publication policy.
+Required provider types are consumer dependencies; copied local file/link selectors are
+rebased to the SDK directory. The initial SDK version comes from pubspec but never
+tracks later host versions automatically.
+
+New TS projects extend the generated base and force declaration rebuilding before pack.
+Custom TS projects may opt into that base. Split-library helpers remain types-only;
+application JS cannot import private _bindings modules. The npm allowlist includes only
+public declarations. Runtime implementations stay in host assets and native plugins. See
+the [runnable example](../../examples/configured_bindings/default_app/README.md) and
+[host guide](../../docs/guides/host-bindings.md).
+
+## Host JS build
 
 The generated bindings/js_modules.json is also the default host JS build configuration.
 It records every local scope's TS entry, public subpaths and existing provider runtime
 packages. It is generated once per Dart package, including all scopes with custom output
 paths. Do not maintain a second scope list in a host module config. A package containing
 source-scanned scopes includes its legacy sibling scopes and generated dependency
-modules in this plan. Pure legacy library packages retain their existing output set and
-explicit module delivery workflow.
+modules in this plan. Pure legacy library packages without typesSdk retain their
+existing output set and explicit module delivery workflow.
 
 In the host's ordinary js/package.json build script, run flax-modules from @flax/build.
 It finds the owning Dart package, reads the generated plan, compiles binding TS directly
@@ -249,7 +340,9 @@ and prepares assets/flax_modules/. Install the usual framework/provider runtime
 dependencies in that JS project and declare this asset directory in the Flutter pubspec
 once. Installed runtime dependencies also make optional UI/host plugins available
 without listing their individual entries. Each View still activates only its chosen
-plugins. Existing npm package manifests are never rewritten.
+plugins. Binding generation writes only binding artifacts and the build plan. Normal JS
+preparation materializes additional scope sources and updates owned SDK npm entries;
+Flax CLI separately provides optional host setup.
 
 The same plan supplies compilerOptions.paths. Host-owned JS projects can extend
 ../bindings/js_modules.json from js/tsconfig.json to resolve all generated scopes during
@@ -300,14 +393,16 @@ or globs under lib; a match selects the owning Dart library, including its parts
 URIs follow Dart resolution, including package URIs and escaped file names. Only
 annotated roots and explicit YAML selections are bound. Generated Flax outputs and
 dependency packages are excluded from discovery. The scope must have a matching
-configured name (or the implicit app scope when there are no configs): an omitted
+configured name (or is discovered automatically when there are no configs): an omitted
 annotation scope means app, and never falls into another scope. Use
 `@FlaxExport(scope: 'shop')` for a separately configured shop scope. Names are merged
 only after grouping by scope, so separate scopes may own distinct same-named classes.
 
-Each source-scanned scope also generates lib/flax_bindings/<name>.dart, a public Dart
-export library for its owned declarations. This keeps private src files out of manifest
-type-carrier paths without requiring hand-written exports. Native adapters import the
+In explicit YAML layouts, each source-scanned scope also generates
+lib/flax_bindings/<name>.dart, a public Dart export library for its owned declarations.
+The default layout keeps only the app compatibility facade and records actual import
+carriers for other scopes; this supports distinct same-named types without additional
+Builder outputs. Native adapters import the
 actual declarations; wire identities still use the original declaring library. Include
 these export libraries in a Dart provider archive alongside its adapters and manifest.
 Configured typedefs are exported too, without creating runtime binding owners. Existing
@@ -353,10 +448,10 @@ Add build_runner 2.16.1 to the consuming package's dev dependencies alongside
 flax_codegen. It is compatible with this checkout's analyzer 13.3.0. The annotation
 package remains a normal, pure Dart dependency; it does not depend on build_runner.
 
-Enable flax_codegen:bindings in build.yaml. For the default app outputs, omit
-options.outputs; the Builder declares those paths before constructing the graph. Include
-the nonstandard YAML/npm inputs in the target's sources, preserving any sources already
-needed by other builders. For a single shop scope:
+Default annotation generation is enabled automatically and needs no build.yaml. If a
+project restricts its target sources, include the binding inputs without removing inputs
+needed by other builders. Explicit legacy output layouts still use options.outputs. For
+an explicitly configured shop scope:
 
 ```yaml
 targets:
@@ -381,15 +476,16 @@ targets:
             - js/src/generated/shop.ts
 ```
 
-For custom paths, legacy library configs or multiple scopes, outputs must list every
-generated Dart/TS path from all sibling scopes, including lib/flax_bindings/<name>.dart
-for each source-scanned scope. The shared bindings/manifest.json and optional generated
+For custom paths or legacy library configs, outputs must list every generated Dart/TS
+path from all sibling scopes, including lib/flax_bindings/<name>.dart for each
+source-scanned scope. The shared bindings/manifest.json and optional generated
 bindings/js_modules.json are included automatically. Paths remain owned by the binding
 YAML; the list declares their ownership to build_runner before analysis starts. A
 mismatch fails with the missing/unused paths. Update both places whenever a selection
-adds/removes output files or changes their paths. The
-[shopping build.yaml](../../examples/configured_bindings/host/build.yaml) shows separate
-public SDK and internal directories.
+adds/removes output files or changes their paths. Use dart run flax_cli:flax sync to
+maintain this Flax-owned list from the same validated inventory instead of copying paths
+by hand. The [shopping build.yaml](../../examples/configured_bindings/host/build.yaml)
+shows separate public SDK and internal directories.
 
 ```sh
 dart run build_runner build

@@ -1,3 +1,4 @@
+import { prepareBindingSetup } from './binding_setup.mjs';
 import { createHash, randomUUID } from 'node:crypto';
 import {
   access,
@@ -7,6 +8,7 @@ import {
   realpath,
   rename,
   rm,
+  stat,
   writeFile,
 } from 'node:fs/promises';
 import { createRequire } from 'node:module';
@@ -361,6 +363,7 @@ class DeliveryPackages {
     this.files = new Map();
     this.entries = new Map();
     this.nearest = new Map();
+    this.hostTypes = new Map();
   }
 
   addEntry(entry) {
@@ -476,6 +479,110 @@ class DeliveryPackages {
     return this.load(dirname(metadata));
   }
 
+  async resolveHostType(name, from) {
+    const owner = packageName(name);
+    const key = `${from}\0${owner}`;
+    if (!this.hostTypes.has(key)) {
+      this.hostTypes.set(
+        key,
+        (async () => {
+          const paths =
+            createRequire(join(resolve(from || '.'), 'package.json')).resolve.paths(
+              owner,
+            ) ?? [];
+          for (const path of paths) {
+            try {
+              const filename = await realpath(join(path, owner, 'package.json'));
+              return { directory: dirname(filename), npm: await json(filename) };
+            } catch (error) {
+              if (error.code !== 'ENOENT') throw error;
+            }
+          }
+          return null;
+        })(),
+      );
+    }
+    const found = await this.hostTypes.get(key);
+    if (!found || found.npm.flax?.hostBindings === undefined) return null;
+    const { npm, directory } = found;
+    if (npm.flax.hostBindings !== true || npm.name !== owner)
+      fail(`Invalid Flax host types package: ${owner}`);
+    let exports = npm.exports;
+    if (
+      typeof exports === 'string' ||
+      Array.isArray(exports) ||
+      (exports &&
+        typeof exports === 'object' &&
+        Object.keys(exports).every((key) => !key.startsWith('.')))
+    )
+      exports = { '.': exports };
+    if (!exports || typeof exports !== 'object' || Array.isArray(exports))
+      fail(`Flax host types require explicit npm exports: ${owner}`);
+    const subpath = name === owner ? '.' : `.${name.slice(owner.length)}`;
+    let selected = subpath;
+    let wildcard;
+    if (!Object.hasOwn(exports, selected)) {
+      selected = Object.keys(exports)
+        .filter((path) => {
+          const [prefix, suffix, extra] = path.split('*');
+          return (
+            suffix !== undefined &&
+            extra === undefined &&
+            subpath.startsWith(prefix) &&
+            subpath.endsWith(suffix) &&
+            subpath.length >= prefix.length + suffix.length
+          );
+        })
+        .sort((a, b) => b.indexOf('*') - a.indexOf('*') || b.length - a.length)[0];
+      if (selected) {
+        const [prefix, suffix] = selected.split('*');
+        wildcard = subpath.slice(prefix.length, subpath.length - suffix.length);
+      }
+    }
+    const target = selected && exports[selected];
+    if (!target || name.split('/').includes('_bindings'))
+      fail(`Not a public Flax host types export: ${name}`);
+    const leaves = (value) =>
+      typeof value === 'string'
+        ? [value]
+        : value && typeof value === 'object'
+          ? Object.values(value).flatMap(leaves)
+          : [];
+    const sources = leaves(target);
+    // A mixed SDK may also ship ordinary JS wrappers; those stay in the bundle.
+    if (sources.some((path) => !/\.d\.[cm]?ts$/.test(path))) return null;
+    let source = sources[0];
+    if (!source?.startsWith('./')) fail(`Missing declarations for ${name}`);
+    if (wildcard !== undefined) source = source.replaceAll('*', wildcard);
+    const filename = await realpath(
+      join(directory, assetPath(source.slice(2), 'host types')),
+    );
+    const relativePath = relative(directory, filename);
+    if (
+      relativePath === '..' ||
+      relativePath.startsWith(`..${sep}`) ||
+      isAbsolute(relativePath) ||
+      !(await stat(filename)).isFile()
+    )
+      fail(`Host declarations escape their package: ${name}`);
+    let module = selected;
+    if (wildcard !== undefined) {
+      module = selected.slice(0, selected.indexOf('*')).replace(/\/$/, '') || '.';
+      if (!Object.hasOwn(exports, module))
+        fail(`Flax host subpaths require a public module entry: ${name}`);
+      const parent = await this.resolveHostType(
+        owner + (module === '.' ? '' : module.slice(1)),
+        from,
+      );
+      if (!parent) fail(`Flax host subpaths require a public module entry: ${name}`);
+      return { ...parent, watchFiles: [...parent.watchFiles, filename] };
+    }
+    return {
+      specifier: owner + (module === '.' ? '' : module.slice(1)),
+      watchFiles: [join(directory, 'package.json'), filename],
+    };
+  }
+
   async dependencyProvider(name, from) {
     let directory = await realpath(from);
     for (;;) {
@@ -548,10 +655,12 @@ class DeliveryPackages {
   async isImplementationFile(filename) {
     await this.atFile(filename);
     const directory = this.nearest.get(dirname(await realpath(filename)));
-    if (!directory) return false;
     const entries = await this.packages.get(directory);
-    const local = relative(directory, filename).split(sep).join('/');
-    return entries?.size > 0 && /\.(?:[cm]?js|tsx?)$/.test(local);
+    if (!/\.(?:[cm]?js|tsx?)$/.test(filename)) return false;
+    if (entries?.size > 0) return true;
+    return (await readFile(filename, 'utf8')).startsWith(
+      '// GENERATED CODE. Selected public API subset; do not edit.',
+    );
   }
 
   async atFile(filename) {
@@ -571,6 +680,7 @@ class DeliveryPackages {
       if (dirname(directory) === directory) break;
       directory = dirname(directory);
     }
+    directory = this.nearest.get(directory) ?? directory;
     for (const item of visited) this.nearest.set(item, directory);
     return this.files.get(filename) ?? null;
   }
@@ -716,6 +826,8 @@ export async function prepareModules({ configPath, check = false } = {}) {
         'modules',
         'providers',
         'compilerOptions',
+        'sources',
+        'typesSdk',
       ],
       'binding build plan',
       ['formatVersion', 'generatedBy', 'package', 'version', 'modules', 'providers'],
@@ -730,6 +842,7 @@ export async function prepareModules({ configPath, check = false } = {}) {
     const manifest = await json(join(flutterRoot, 'bindings', 'manifest.json'));
     if (manifest.package !== config.package)
       fail('Binding build plan package mismatch');
+    await prepareBindingSetup(flutterRoot, config, { check });
     const requirements = publicRequirements(manifest);
     const contained = async (path, label) => {
       const result = await realpath(join(flutterRoot, assetPath(path, label)));
@@ -976,7 +1089,12 @@ export function flaxHostModulesPlugin(manifest = null) {
   return {
     name: 'flax-host-modules',
     setup(builder) {
-      const packages = new DeliveryPackages();
+      let packages;
+      const resolvedEntries = new Map();
+      builder.onStart(() => {
+        packages = new DeliveryPackages();
+        resolvedEntries.clear();
+      });
       builder.onResolve({ filter: /.*/ }, async (args) => {
         if (
           args.pluginData?.flaxResolving ||
@@ -984,9 +1102,18 @@ export function flaxHostModulesPlugin(manifest = null) {
           args.kind === 'entry-point'
         )
           return;
-        const entry = provided.get(args.path);
+        let entry = provided.get(args.path);
         if (!entry && owningEntry(provided, args.path))
           fail(`Missing prepared Flax module or public subpath: ${args.path}`);
+        if (
+          !entry &&
+          manifest === null &&
+          !args.path.startsWith('.') &&
+          !isAbsolute(args.path) &&
+          !args.path.includes(':')
+        ) {
+          entry = await packages.resolveHostType(args.path, args.resolveDir);
+        }
         if (
           !entry &&
           !args.path.startsWith('.') &&
@@ -1019,10 +1146,17 @@ export function flaxHostModulesPlugin(manifest = null) {
             }
           }
         }
-        if (entry) return { path: entry.specifier, namespace: 'flax-host-module' };
+        if (entry) {
+          resolvedEntries.set(entry.specifier, entry);
+          return {
+            path: entry.specifier,
+            namespace: 'flax-host-module',
+            watchFiles: entry.watchFiles,
+          };
+        }
       });
       builder.onLoad({ filter: /.*/, namespace: 'flax-host-module' }, (args) => {
-        const entry = provided.get(args.path);
+        const entry = provided.get(args.path) ?? resolvedEntries.get(args.path);
         return {
           loader: 'js',
           contents: `if (!globalThis.__flaxModules || globalThis.__flaxModules.format !== ${JSON.stringify(runtimeFormat)}) throw new Error('Missing or incompatible Flax module host');\nmodule.exports = globalThis.__flaxModules.require(${JSON.stringify(entry.specifier)});`,

@@ -10,7 +10,7 @@ Start with the [project README](../README.md) for supported scope and setup, the
 | Layers and package ownership              | [Architecture](architecture/README.md), [packaging](architecture/packaging.md)                                                                             |
 | Runtime and engines                       | [Runtime](architecture/runtime.md)                                                                                                                         |
 | Generation and authoring                  | [Binding Generation](architecture/bindings.md), [author template](../packages/flax_codegen/docs/author-template.md)                                        |
-| Host application bindings and SDKs        | [Integration guide](guides/host-bindings.md), [runnable example](../examples/configured_bindings/README.md)                                                |
+| Host application bindings and SDKs        | [Quick start](guides/host-binding-quickstart.md), [advanced guide](guides/host-bindings.md), [runnable example](../examples/configured_bindings/README.md) |
 | Capability status and remaining gaps      | [Binding Coverage Map](architecture/binding-coverage-map.md)                                                                                               |
 | External binding verification             | [Verification scope](architecture/external-binding-verification.md)                                                                                        |
 | Flutter lifecycle and application startup | [UI](architecture/ui.md), [applications](architecture/applications.md)                                                                                     |
