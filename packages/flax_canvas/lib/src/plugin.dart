@@ -1,16 +1,40 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:isolate';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flax/flax.dart';
-import 'package:flutter/painting.dart';
 
-import 'commands.dart';
+import 'decoder.dart';
 import 'generated/canvas_bindings.g.dart';
 import 'generated/host_bootstrap.g.dart';
 import 'surface.dart';
 
 const flaxCanvasSurfaceType = 'flax.canvas/canvas#type:FlaxCanvasSurface';
+
+// Keep the worker closure separate from the UI image and host's native handles.
+Future<Uint8List> _encodeBitmap(
+  Uint8List pixels,
+  int width,
+  int height,
+  String format,
+  int quality,
+) => Isolate.run(
+  () => CanvasDecoder.encode(pixels, width, height, format, quality),
+);
+
+Future<List<Object>> _decodeBitmap(
+  Uint8List encoded,
+  bool convert,
+  bool premultiplied,
+  bool orient,
+) => Isolate.run(
+  () => CanvasDecoder.decodeBitmap(encoded, convert, premultiplied, orient),
+);
+
+Future<Uint8List> _transformBitmap(Uint8List pixels, List<int> options) =>
+    Isolate.run(() => CanvasDecoder.transformBitmap(pixels, options));
 
 final class FlaxCanvasPlugin implements FlaxPlugin {
   const FlaxCanvasPlugin();
@@ -45,15 +69,19 @@ final class FlaxCanvasPlugin implements FlaxPlugin {
 }
 
 class _HeldImage {
-  _HeldImage(this.image);
+  _HeldImage(this.image, this.straightPixels);
   final ui.Image image;
+  // Preserve unpremultiplied bitmap data; upload a separate premultiplied copy.
+  final Uint8List? straightPixels;
   var refs = 1;
 }
 
 class _CanvasHost implements FlaxPluginInstance {
-  _CanvasHost(this.context);
+  _CanvasHost(this.context)
+    : decoder = CanvasDecoder(fontCollection: context.fontCollection);
   final FlaxHostContext context;
-  final surfaces = <FlaxCanvasSurface, CanvasDrawState>{};
+  final CanvasDecoder decoder;
+  final surfaces = <FlaxCanvasSurface, int>{};
   final images = <int, _HeldImage>{};
   var nextImage = 1;
   FlaxJsObject? state;
@@ -69,23 +97,13 @@ class _CanvasHost implements FlaxPluginInstance {
             (args[2] as FlaxJsNumber).value.toInt(),
           );
           surface.onError = context.report;
-          surfaces[surface] = CanvasDrawState();
+          surfaces[surface] = decoder.createSurface();
           return context.exposeObject(surface, flaxCanvasSurfaceType);
         case 'commit':
           final surface = _surface(args[1]);
-          final bytes = context.runtime.readBytes(args[2] as FlaxJsObject);
-          final previous = surfaces[surface]!.clone();
-          try {
-            decodeCanvasCommands(
-              surface,
-              bytes,
-              lookupImage: (id) => images[id]?.image,
-              state: surfaces[surface]!,
-            );
-          } catch (_) {
-            surfaces[surface] = previous;
-            rethrow;
-          }
+          // Decoding finishes before JavaScript can reuse the command buffer.
+          final bytes = context.runtime.readUint8Array(args[2] as FlaxJsObject);
+          decoder.commit(surfaces[surface]!, surface, bytes);
         case 'resize':
           final surface = _surface(args[1]);
           surface.resize(
@@ -93,22 +111,40 @@ class _CanvasHost implements FlaxPluginInstance {
             (args[3] as FlaxJsNumber).value.toInt(),
             reset: true,
           );
-          surfaces[surface] = CanvasDrawState();
+          decoder.reset(surfaces[surface]!);
         case 'measureText':
           return _measure(args);
-        case 'isPointInPath':
-          final path = decodeCanvasPath(
-            context.runtime.readBytes(args[1] as FlaxJsObject),
-          );
-          if ((args[4] as FlaxJsString).value == 'evenodd') {
-            path.fillType = ui.PathFillType.evenOdd;
-          }
+        case 'fontDefaults':
+          return context.runtime.evaluate(jsonEncode(decoder.fontDefaults()));
+        case 'isContextLost':
+          return FlaxJsBoolean(closed || _surface(args[1]).closed);
+        case 'isPointInStroke':
           return FlaxJsBoolean(
-            path.contains(
-              Offset(
-                (args[2] as FlaxJsNumber).value,
-                (args[3] as FlaxJsNumber).value,
-              ),
+            decoder.containsStroke(
+              surfaces[_surface(args[1])]!,
+              context.runtime.readUint8Array(args[2] as FlaxJsObject),
+              (args[3] as FlaxJsNumber).value,
+              (args[4] as FlaxJsNumber).value,
+              (args[5] as FlaxJsBoolean).value,
+            ),
+          );
+        case 'getImageDataSync':
+          return context.runtime.createArrayBuffer(
+            decoder.readPixels(
+              _surface(args[1]),
+              (args[2] as FlaxJsNumber).value.toInt(),
+              (args[3] as FlaxJsNumber).value.toInt(),
+              (args[4] as FlaxJsNumber).value.toInt(),
+              (args[5] as FlaxJsNumber).value.toInt(),
+            ),
+          );
+        case 'isPointInPath':
+          return FlaxJsBoolean(
+            decoder.contains(
+              context.runtime.readUint8Array(args[1] as FlaxJsObject),
+              (args[2] as FlaxJsNumber).value,
+              (args[3] as FlaxJsNumber).value,
+              (args[4] as FlaxJsString).value == 'evenodd',
             ),
           );
         case 'convertToBlob':
@@ -119,6 +155,8 @@ class _CanvasHost implements FlaxPluginInstance {
           return _start(args, _createImageBitmap);
         case 'createImageBitmapPixels':
           return _start(args, _createImageBitmapPixels);
+        case 'transformImageBitmap':
+          return _start(args, _transformImageBitmap);
         case 'snapshotImage':
           return _start(args, _snapshotImage);
         case 'snapshotImageSync':
@@ -135,13 +173,18 @@ class _CanvasHost implements FlaxPluginInstance {
           _release((args[1] as FlaxJsNumber).value.toInt());
         case 'disposeSurface':
           final surface = _surface(args[1]);
-          surfaces.remove(surface);
+          decoder.disposeSurface(surfaces.remove(surface)!);
           surface.abandon();
         default:
           throw ArgumentError('Unknown canvas operation: $operation');
       }
       return const FlaxJsUndefined();
     }, allowClosing: true);
+    // Global-only Canvas users can create hidden surfaces before importing CanvasView.
+    context.evaluate(
+      'globalThis.__flaxModules.require("@flax/canvas"); undefined;',
+      sourceUrl: 'flax:canvas-bindings',
+    );
     state = context.evaluate(
       flaxCanvasBootstrap,
       sourceUrl: 'flax:canvas',
@@ -152,18 +195,21 @@ class _CanvasHost implements FlaxPluginInstance {
       context.requireObject<FlaxCanvasSurface>(value, flaxCanvasSurfaceType);
 
   FlaxJsValue _measure(List<FlaxJsValue> args) {
-    final metrics = measureCanvasText(
+    final metrics = decoder.measure(
       surfaces[_surface(args[1])]!,
       (args[2] as FlaxJsString).value,
     );
     return context.runtime.evaluate(
-      '({width:${metrics.width},'
-      'actualBoundingBoxLeft:${metrics.actualBoundingBoxLeft},'
-      'actualBoundingBoxRight:${metrics.actualBoundingBoxRight},'
-      'actualBoundingBoxAscent:${metrics.actualBoundingBoxAscent},'
-      'actualBoundingBoxDescent:${metrics.actualBoundingBoxDescent},'
-      'fontBoundingBoxAscent:${metrics.fontBoundingBoxAscent},'
-      'fontBoundingBoxDescent:${metrics.fontBoundingBoxDescent}})',
+      '({width:${metrics[0]},'
+      'actualBoundingBoxLeft:${metrics[1]},'
+      'actualBoundingBoxRight:${metrics[2]},'
+      'actualBoundingBoxAscent:${metrics[3]},'
+      'actualBoundingBoxDescent:${metrics[4]},'
+      'fontBoundingBoxAscent:${metrics[5]},'
+      'fontBoundingBoxDescent:${metrics[6]},'
+      'emHeightAscent:${metrics[7]},emHeightDescent:${metrics[8]},'
+      'hangingBaseline:${metrics[9]},alphabeticBaseline:${metrics[10]},'
+      'ideographicBaseline:${metrics[11]}})',
     );
   }
 
@@ -181,14 +227,24 @@ class _CanvasHost implements FlaxPluginInstance {
   }
 
   Future<Object?> _convertToBlob(List<FlaxJsValue> args) async {
-    if ((args[3] as FlaxJsString).value != 'image/png') {
-      throw ArgumentError('convertToBlob only supports image/png');
-    }
+    final format = (args[3] as FlaxJsString).value;
     final image = await _surface(args[2]).rasterize();
     if (image == null) return Uint8List(0);
     try {
-      final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-      return bytes?.buffer.asUint8List() ?? Uint8List(0);
+      final bytes = await image.toByteData(
+        format: format == 'image/png'
+            ? ui.ImageByteFormat.png
+            : ui.ImageByteFormat.rawStraightRgba,
+      );
+      if (bytes == null) throw StateError('Canvas serialization failed');
+      final pixels = bytes.buffer.asUint8List(
+        bytes.offsetInBytes,
+        bytes.lengthInBytes,
+      );
+      if (format == 'image/png') return pixels;
+      final width = image.width, height = image.height;
+      final quality = ((args[4] as FlaxJsNumber).value * 100).round();
+      return await _encodeBitmap(pixels, width, height, format, quality);
     } finally {
       image.dispose();
     }
@@ -203,7 +259,9 @@ class _CanvasHost implements FlaxPluginInstance {
     final out = Uint8List(sw * sh * 4);
     if (image == null) return out;
     try {
-      final data = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+      final data = await image.toByteData(
+        format: ui.ImageByteFormat.rawStraightRgba,
+      );
       final src = data!.buffer.asUint8List();
       for (var y = 0; y < sh; y++) {
         for (var x = 0; x < sw; x++) {
@@ -224,35 +282,61 @@ class _CanvasHost implements FlaxPluginInstance {
   }
 
   Future<Object?> _createImageBitmap(List<FlaxJsValue> args) async {
-    final codec = await ui.instantiateImageCodec(
+    final straight = (args[4] as FlaxJsBoolean).value;
+    final result = await _decodeBitmap(
       context.runtime.readBytes(args[2] as FlaxJsObject),
+      (args[3] as FlaxJsBoolean).value,
+      !straight,
+      (args[5] as FlaxJsBoolean).value,
     );
-    final frame = await codec.getNextFrame();
-    codec.dispose();
-    final image = frame.image;
-    if (closed) {
-      image.dispose();
-      return 0;
+    if (closed) return [0, 0, 0];
+    final width = result[1] as int, height = result[2] as int;
+    final id = await _uploadBitmap(
+      result[0] as Uint8List,
+      width,
+      height,
+      straight,
+    );
+    return [id, width, height];
+  }
+
+  Future<int> _uploadBitmap(
+    Uint8List pixels,
+    int width,
+    int height,
+    bool straight,
+  ) {
+    final upload = straight ? Uint8List.fromList(pixels) : pixels;
+    if (straight) {
+      for (var i = 0; i < upload.length; i += 4) {
+        for (var channel = 0; channel < 3; channel++) {
+          upload[i + channel] =
+              (upload[i + channel] * upload[i + 3] + 127) ~/ 255;
+        }
+      }
     }
-    return [_retain(image), image.width, image.height];
+    final done = Completer<int>();
+    ui.decodeImageFromPixels(upload, width, height, ui.PixelFormat.rgba8888, (
+      image,
+    ) {
+      done.complete(_retain(image, straightPixels: straight ? pixels : null));
+    });
+    return done.future;
   }
 
   Future<Object?> _createImageBitmapPixels(List<FlaxJsValue> args) {
     final width = (args[2] as FlaxJsNumber).value.toInt();
     final height = (args[3] as FlaxJsNumber).value.toInt();
     final pixels = context.runtime.readBytes(args[4] as FlaxJsObject);
-    final done = Completer<int>();
-    ui.decodeImageFromPixels(pixels, width, height, ui.PixelFormat.rgba8888, (
-      image,
-    ) {
-      if (closed) {
-        image.dispose();
-        done.complete(0);
-        return;
+    final preserve = (args[5] as FlaxJsBoolean).value;
+    if (!preserve) {
+      for (var i = 0; i < pixels.length; i += 4) {
+        for (var c = 0; c < 3; ++c) {
+          pixels[i + c] = (pixels[i + c] * pixels[i + 3] + 127) ~/ 255;
+        }
       }
-      done.complete(_retain(image));
-    });
-    return done.future;
+    }
+    return _uploadBitmap(pixels, width, height, preserve);
   }
 
   Future<Object?> _snapshotImage(List<FlaxJsValue> args) async {
@@ -265,6 +349,76 @@ class _CanvasHost implements FlaxPluginInstance {
     return _retain(image);
   }
 
+  Future<Object?> _transformImageBitmap(List<FlaxJsValue> args) async {
+    final held = images[(args[2] as FlaxJsNumber).value.toInt()];
+    if (held == null) throw ArgumentError('Unknown canvas image');
+    final source = held.image;
+    double number(int index) => (args[index] as FlaxJsNumber).value;
+    final sx = number(3), sy = number(4), sw = number(5), sh = number(6);
+    final width = number(7).toInt(), height = number(8).toInt();
+    final straight = (args[11] as FlaxJsBoolean).value;
+    final quality = (args[10] as FlaxJsString).value;
+    if (straight || held.straightPixels != null || quality == 'pixelated') {
+      // Read back only when explicitly converting a GPU bitmap, never in drawImage.
+      final retained = source.clone();
+      try {
+        final pixels =
+            held.straightPixels ??
+            (await retained.toByteData(format: ui.ImageByteFormat.rawRgba))!
+                .buffer
+                .asUint8List();
+        if (closed) return 0;
+        final transformed = await _transformBitmap(pixels, [
+          retained.width,
+          retained.height,
+          sx.toInt(),
+          sy.toInt(),
+          sw.toInt(),
+          sh.toInt(),
+          width,
+          height,
+          (args[9] as FlaxJsBoolean).value ? 1 : 0,
+          ['pixelated', 'low', 'medium', 'high'].indexOf(quality),
+          held.straightPixels == null ? 1 : 0,
+          straight ? 0 : 1,
+        ]);
+        if (closed) return 0;
+        return await _uploadBitmap(transformed, width, height, straight);
+      } finally {
+        retained.dispose();
+      }
+    }
+    final recorder = ui.PictureRecorder();
+    final canvas = ui.Canvas(recorder);
+    canvas.clipRect(
+      ui.Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble()),
+    );
+    if ((args[9] as FlaxJsBoolean).value) {
+      canvas.translate(0, height.toDouble());
+      canvas.scale(1, -1);
+    }
+    canvas.scale(width / sw, height / sh);
+    canvas.translate(-sx, -sy);
+    canvas.drawImage(
+      source,
+      ui.Offset.zero,
+      ui.Paint()
+        ..filterQuality = switch (quality) {
+          'pixelated' => ui.FilterQuality.none,
+          'medium' => ui.FilterQuality.medium,
+          'high' => ui.FilterQuality.high,
+          _ => ui.FilterQuality.low,
+        },
+    );
+    final picture = recorder.endRecording();
+    try {
+      final image = decoder.snapshot(picture, width, height);
+      return _retain(image);
+    } finally {
+      picture.dispose();
+    }
+  }
+
   FlaxJsValue _snapshotSync(List<FlaxJsValue> args) {
     final image = _surface(args[1]).rasterizeSync();
     if (image == null) return const FlaxJsNumber(0);
@@ -274,16 +428,22 @@ class _CanvasHost implements FlaxPluginInstance {
   Future<Object?> _cloneImage(List<FlaxJsValue> args) async {
     final held = images[(args[2] as FlaxJsNumber).value.toInt()];
     if (held == null) throw ArgumentError('Unknown canvas image');
-    return _retain(held.image.clone());
+    return _retain(held.image.clone(), straightPixels: held.straightPixels);
   }
 
-  int _retain(ui.Image image) {
+  int _retain(ui.Image image, {Uint8List? straightPixels}) {
     if (closed) {
       image.dispose();
       return 0;
     }
     final id = nextImage++;
-    images[id] = _HeldImage(image);
+    try {
+      decoder.retainImage(id, image);
+    } catch (_) {
+      image.dispose();
+      rethrow;
+    }
+    images[id] = _HeldImage(image, straightPixels);
     return id;
   }
 
@@ -299,6 +459,7 @@ class _CanvasHost implements FlaxPluginInstance {
     held.refs--;
     if (held.refs > 0) return;
     images.remove(id);
+    decoder.releaseImage(id);
     held.image.dispose();
   }
 
@@ -317,7 +478,6 @@ class _CanvasHost implements FlaxPluginInstance {
     final image = surface.rasterizeSync();
     final id = image == null ? 0 : _retain(image);
     surface.replaceWithClear();
-    surfaces[surface] = CanvasDrawState();
     return FlaxJsNumber(id.toDouble());
   }
 
@@ -385,6 +545,7 @@ class _CanvasHost implements FlaxPluginInstance {
       held.image.dispose();
     }
     images.clear();
+    decoder.dispose();
     state?.release();
     state = null;
   }

@@ -47,6 +47,8 @@ export declare const OP: {
     readonly setWordSpacing: 44;
     readonly setFillPattern: 45;
     readonly setStrokePattern: 46;
+    readonly setTextOptions: 47;
+    readonly drawImagePixels: 48;
 };
 export declare const PATH: {
     readonly move: 1;

@@ -5,10 +5,13 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui' as ui;
 
+import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart' show RenderParagraph, RenderEditable;
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart' show AssetBundle, rootBundle;
+import 'package:flutter/services.dart' show AssetBundle, FontLoader, rootBundle;
 import 'package:flutter/widgets.dart';
 
 import 'runtime.dart';
@@ -48,6 +51,7 @@ part 'src/ui/node.dart';
 part 'src/ui/components.dart';
 part 'src/ui/view.dart';
 part 'src/ui/assets.dart';
+part 'src/ui/fonts.dart';
 part 'src/ui/navigation.dart';
 part 'src/ui/async.dart';
 part 'src/ui/data.dart';

@@ -81,6 +81,8 @@ functions:
   - identical
   - applyBoxFit
 classes:
+  - FlaxFont
+  - FlaxFontScope
   - Offset
   - PhysicalKeyboardKey
   - LogicalKeyboardKey

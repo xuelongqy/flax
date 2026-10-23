@@ -855,7 +855,7 @@ extension _ObjectCalls on _Session {
           escapeWidget(source.initial.data, source.type);
         }
         return bindingCall(() {
-          final value = binding.create(ctor, {
+          final value = createFontAwareObject(binding, ctor, {
             ...sources.map((k, v) => MapEntry(k, v.initial.data)),
             '@peer': ?peer,
           });

@@ -7,7 +7,10 @@ export type AffineLike = {
     e: number;
     f: number;
 };
+export declare function finite(...values: number[]): boolean;
+export declare function matrix2D(value?: import('./types.js').CanvasMatrix2DInit): AffineLike;
 export declare function indexSizeError(message: string): Error;
+export declare function canvasException(name: string, message: string): Error;
 export declare function ellipsePoint(x: number, y: number, rx: number, ry: number, rotation: number, angle: number): [number, number];
 export declare function arcToGeometry(current: [number, number] | null, x1: number, y1: number, x2: number, y2: number, radius: number): {
     kind: 'move';
@@ -36,13 +39,13 @@ export declare class Path2D {
     current: [number, number] | null;
     subpathStart: [number, number] | null;
     constructor(path?: Path2D | string);
-    addPath(path: Path2D, transform?: AffineLike): void;
+    addPath(path: Path2D, value?: import('./types.js').CanvasMatrix2DInit): void;
     extendPath(path: Path2D, transform: AffineLike): void;
     closePath(): void;
     moveTo(x: number, y: number): void;
     lineTo(x: number, y: number): void;
     rect(x: number, y: number, w: number, h: number): void;
-    roundRect(x: number, y: number, w: number, h: number, radii?: number | number[]): void;
+    roundRect(x: number, y: number, w: number, h: number, radii?: import('./types.js').CanvasRadius | Iterable<import('./types.js').CanvasRadius>): void;
     arc(x: number, y: number, r: number, start: number, end: number, ccw?: boolean): void;
     arcTo(x1: number, y1: number, x2: number, y2: number, r: number): void;
     ellipse(x: number, y: number, rx: number, ry: number, rotation: number, start: number, end: number, ccw?: boolean): void;

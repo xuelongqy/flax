@@ -24,6 +24,13 @@ last Flutter frame. It uses Hades's existing mark state, with no additional heap
 scanner. Ordinary Hades marking remains concurrent. Collection requests during active JS
 jobs defer to a safe owner-thread checkpoint.
 
+Hermes requests a pressure-driven joint pass only after a completed old-generation
+collection. Young collections and delayed statistics from a Flax joint collection do
+not request another full Dart collection. The one-second idle check waits while Flutter
+has delivered a frame in the preceding 100 ms; it resumes after animation stops.
+Ordinary Dart and Hermes old-generation pressure requests bypass this idle deferral.
+Conditional tracing, active-job protection and session cleanup remain unchanged.
+
 ## Retention directions
 
 | Reference                    | What stays alive                               | Release condition                                                             |

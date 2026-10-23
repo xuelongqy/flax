@@ -1,0 +1,11 @@
+name: FlaxCanvasBindings
+description: Private Canvas engine API. Regenerate with dart run melos run ffi:generate.
+output: ../lib/src/canvas_bindings.g.dart
+headers:
+  entry-points:
+    - ./include/flax/canvas.h
+  include-directives:
+    - '**/flax/canvas.h'
+preamble: |
+  // Generated from the canonical Canvas C header. Do not edit by hand.
+  // ignore_for_file: type=lint

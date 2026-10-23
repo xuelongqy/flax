@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:flax/flax.dart';
 import 'package:flax_fetch/flax_fetch.dart';
@@ -1196,6 +1197,8 @@ class _QueuedFetch extends FlaxPlugin {
 }
 
 class _QueueHook implements FlaxHostContext {
+  @override
+  ui.FlaxFontCollection? get fontCollection => inner.fontCollection;
   @override
   String? get namespace => inner.namespace;
   _QueueHook(this.inner, this.closeSession);

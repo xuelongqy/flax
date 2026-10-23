@@ -317,7 +317,11 @@ extension _MemberCalls on _Session {
       );
       try {
         input.escape(this);
-        final result = definition.invoke(input.values);
+        final result = callFontAwareFunction(
+          definition.id,
+          input.values,
+          () => definition.invoke(input.values),
+        );
         return holdHostResult(memberResult(result, definition.result));
       } finally {
         input.release();

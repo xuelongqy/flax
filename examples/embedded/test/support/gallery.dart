@@ -18,7 +18,7 @@ Future<void> exerciseGallery(WidgetTester tester) async {
     ('core', 'Small pieces. Real Flutter.'),
     ('material', 'Material, in full color.'),
     ('cupertino', 'Quiet details. Native feel.'),
-    ('canvas', 'Make something a little different.'),
+    ('canvas', 'Make light linger.'),
     ('fetch', 'Ask. Receive. Explore.'),
     ('websocket', 'A conversation, in real time.'),
     ('storage', 'A little memory goes a long way.'),
@@ -63,8 +63,8 @@ Future<void> exerciseGallery(WidgetTester tester) async {
         await tapGallery(tester, find.text('Filled button'));
         expect(find.text('Button presses: 1'), findsOneWidget);
       case 'canvas':
-        await tapGallery(tester, find.text('Ocean'));
-        expect(find.text('Ocean palette'), findsOneWidget);
+        await tapGallery(tester, find.byKey(const ValueKey('palette-1')));
+        expect(find.text('Bloom · Ember · crisp light'), findsOneWidget);
       case 'fetch':
         expect(find.text('Fetch ready'), findsOneWidget);
       case 'websocket':

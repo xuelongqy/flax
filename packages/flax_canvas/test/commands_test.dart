@@ -1,14 +1,152 @@
+import 'dart:convert';
+import 'dart:ffi' show DynamicLibrary;
 import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:flax_canvas/src/commands.dart';
+import 'package:flax_canvas/src/decoder.dart';
+import 'package:flax_canvas/src/canvas_bindings.g.dart';
 import 'package:flax_canvas/src/surface.dart';
 import 'package:flax_canvas/src/view.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter_test/flutter_test.dart';
 
+import 'support/dart_decoder.dart' hide decodeCanvasCommands;
+import 'support/dart_decoder.dart' as dart_decoder;
+
 void main() {
+  final engine = FlaxCanvasBindings(DynamicLibrary.process());
+  test('Bitmap conversion preserves straight pixels until explicit premultiplication', () {
+    final pixels = Uint8List.fromList([255, 128, 64, 1, 25, 50, 100, 0]);
+    final original = Uint8List.fromList(pixels);
+    Uint8List convert(bool premultiplied) => CanvasDecoder.transformBitmap(
+      pixels,
+      [2, 1, 0, 0, 2, 1, 2, 1, 0, 1, 0, premultiplied ? 1 : 0],
+    );
+    expect(convert(false), orderedEquals(original));
+    expect(convert(true), orderedEquals([1, 1, 0, 1, 0, 0, 0, 0]));
+    expect(pixels, orderedEquals(original));
+    expect(
+      CanvasDecoder.transformBitmap(pixels, [
+        2,
+        1,
+        0,
+        0,
+        2,
+        1,
+        4,
+        1,
+        0,
+        0,
+        0,
+        0,
+      ]),
+      orderedEquals([
+        ...original.take(4),
+        ...original.take(4),
+        ...original.skip(4),
+        ...original.skip(4),
+      ]),
+    );
+    expect(
+      () => CanvasDecoder.transformBitmap(pixels, [
+        0x100000002,
+        1,
+        0,
+        0,
+        2,
+        1,
+        2,
+        1,
+        0,
+        1,
+        0,
+        0,
+      ]),
+      throwsFormatException,
+    );
+    expect(
+      CanvasDecoder.transformBitmap(pixels, [
+        2,
+        1,
+        -1,
+        0,
+        3,
+        1,
+        3,
+        1,
+        0,
+        1,
+        0,
+        0,
+      ]),
+      orderedEquals([0, 0, 0, 0, ...original]),
+    );
+    expect(
+      () => CanvasDecoder.transformBitmap(pixels, [
+        3,
+        1,
+        0,
+        0,
+        3,
+        1,
+        3,
+        1,
+        0,
+        1,
+        0,
+        0,
+      ]),
+      throwsFormatException,
+    );
+  });
+
+  for (final native in [false, true]) {
+    group(native ? 'C++ decoder' : 'Dart reference', () {
+      late int resources;
+      setUp(() {
+        resources = engine.flax_canvas_dispatch(0, 10, 0, 0, 0) as int;
+        _decoder = native ? CanvasDecoder() : null;
+        _states.clear();
+      });
+      tearDown(() {
+        _decoder?.dispose();
+        _decoder = null;
+        expect(engine.flax_canvas_dispatch(0, 10, 0, 0, 0), resources);
+      });
+      _tests(native);
+    });
+  }
+}
+
+CanvasDecoder? _decoder;
+final _states = <CanvasDrawState, int>{};
+
+void decodeCanvasCommands(
+  FlaxCanvasSurface surface,
+  Uint8List bytes, {
+  ui.Image? Function(int id)? lookupImage,
+  required CanvasDrawState state,
+}) {
+  final decoder = _decoder;
+  if (decoder == null) {
+    dart_decoder.decodeCanvasCommands(
+      surface,
+      bytes,
+      lookupImage: lookupImage,
+      state: state,
+    );
+    return;
+  }
+  // Test fixtures use image id 1. Production registers resources when created.
+  final image = lookupImage?.call(1);
+  if (image != null) decoder.retainImage(1, image);
+  final id = _states.putIfAbsent(state, decoder.createSurface);
+  decoder.commit(id, surface, bytes);
+}
+
+void _tests(bool native) {
   testWidgets(
     'command decode matches dart:ui fill, clip, transform and isolation',
     (tester) async {
@@ -522,15 +660,16 @@ void main() {
     });
   });
 
-  test('text paint uses global alpha', () {
-    final painter = textPainter(
-      CanvasDrawState()..globalAlpha = 0.5,
-      'A',
-      true,
-    );
-    expect(painter.text!.style!.foreground!.color.a, closeTo(0.5, 0.01));
-  });
-
+  if (!native) {
+    test('text paint uses global alpha', () {
+      final painter = textPainter(
+        CanvasDrawState()..globalAlpha = 0.5,
+        'A',
+        true,
+      );
+      expect(painter.text!.style!.foreground!.color.a, closeTo(0.5, 0.01));
+    });
+  }
   testWidgets('shared views layout independently', (tester) async {
     final surface = FlaxCanvasSurface(8, 8);
     decodeCanvasCommands(
@@ -904,11 +1043,11 @@ void main() {
       find.byType(FlaxCanvasView),
     );
     expect(render.size, const Size(8, 8));
-    expect(render.debugNeedsLayout, isFalse);
+    if (kDebugMode) expect(render.debugNeedsLayout, isFalse);
     surface.resize(16, 16);
-    expect(render.debugNeedsLayout, isTrue);
+    if (kDebugMode) expect(render.debugNeedsLayout, isTrue);
     await tester.pump();
-    expect(render.debugNeedsLayout, isFalse);
+    if (kDebugMode) expect(render.debugNeedsLayout, isFalse);
     expect(render.size, const Size(16, 16));
     decodeCanvasCommands(
       surface,
@@ -918,115 +1057,483 @@ void main() {
       }),
       state: CanvasDrawState(),
     );
-    expect(render.debugNeedsLayout, isFalse);
-    expect(render.debugNeedsPaint, isTrue);
+    if (kDebugMode) {
+      expect(render.debugNeedsLayout, isFalse);
+      expect(render.debugNeedsPaint, isTrue);
+    }
     surface.dispose();
   });
 
-  test('pathExtend shears arcs and rotates ellipses like Path.transform', () {
-    ui.Path decodeRaw(void Function(_Buf buf) write) {
-      return decodeCanvasPath(_pathOnly(write));
-    }
+  if (!native) {
+    test('pathExtend shears arcs and rotates ellipses like Path.transform', () {
+      ui.Path decodeRaw(void Function(_Buf buf) write) {
+        return decodeCanvasPath(_pathOnly(write));
+      }
 
-    void writeArc(_Buf buf) {
-      buf.u16(pathArc);
-      buf.f64(10);
-      buf.f64(10);
-      buf.f64(5);
-      buf.f64(0);
-      buf.f64(math.pi * 2);
-      buf.f64(0);
-      buf.u16(pathClose);
-    }
+      void writeArc(_Buf buf) {
+        buf.u16(pathArc);
+        buf.f64(10);
+        buf.f64(10);
+        buf.f64(5);
+        buf.f64(0);
+        buf.f64(math.pi * 2);
+        buf.f64(0);
+        buf.u16(pathClose);
+      }
 
-    final arc = decodeRaw((buf) {
-      buf.u32(2);
-      writeArc(buf);
-    });
-    final shear = Affine(1, 0, 0.5, 1);
-    final shearedExpected = arc.transform(shear.storage);
-    final sheared = decodeRaw((buf) {
-      buf.u32(1);
-      buf.u16(pathExtend);
-      buf.f64(shear.a);
-      buf.f64(shear.b);
-      buf.f64(shear.c);
-      buf.f64(shear.d);
-      buf.f64(shear.e);
-      buf.f64(shear.f);
-      buf.u32(2);
-      writeArc(buf);
-    });
-    for (final point in const [
-      Offset(15, 10),
-      Offset(12, 12),
-      Offset(0, 0),
-      Offset(20, 10),
-    ]) {
+      final arc = decodeRaw((buf) {
+        buf.u32(2);
+        writeArc(buf);
+      });
+      final shear = Affine(1, 0, 0.5, 1);
+      final shearedExpected = arc.transform(shear.storage);
+      final sheared = decodeRaw((buf) {
+        buf.u32(1);
+        buf.u16(pathExtend);
+        buf.f64(shear.a);
+        buf.f64(shear.b);
+        buf.f64(shear.c);
+        buf.f64(shear.d);
+        buf.f64(shear.e);
+        buf.f64(shear.f);
+        buf.u32(2);
+        writeArc(buf);
+      });
+      for (final point in const [
+        Offset(15, 10),
+        Offset(12, 12),
+        Offset(0, 0),
+        Offset(20, 10),
+      ]) {
+        expect(
+          sheared.contains(point),
+          shearedExpected.contains(point),
+          reason: '$point',
+        );
+      }
+
+      void writeEllipse(_Buf buf) {
+        buf.u16(pathEllipse);
+        buf.f64(0);
+        buf.f64(0);
+        buf.f64(20);
+        buf.f64(5);
+        buf.f64(0);
+        buf.f64(0);
+        buf.f64(math.pi * 2);
+        buf.f64(0);
+        buf.u16(pathClose);
+      }
+
+      final ellipse = decodeRaw((buf) {
+        buf.u32(2);
+        writeEllipse(buf);
+      });
+      final rotate = Affine(0, 1, -1, 0);
+      final rotatedExpected = ellipse.transform(rotate.storage);
+      final rotated = decodeRaw((buf) {
+        buf.u32(1);
+        buf.u16(pathExtend);
+        buf.f64(rotate.a);
+        buf.f64(rotate.b);
+        buf.f64(rotate.c);
+        buf.f64(rotate.d);
+        buf.f64(rotate.e);
+        buf.f64(rotate.f);
+        buf.u32(2);
+        writeEllipse(buf);
+      });
+      expect(rotated.contains(const Offset(0, 10)), isTrue);
+      expect(rotated.contains(const Offset(10, 0)), isFalse);
       expect(
-        sheared.contains(point),
-        shearedExpected.contains(point),
-        reason: '$point',
+        rotated.contains(const Offset(0, 10)),
+        rotatedExpected.contains(const Offset(0, 10)),
       );
-    }
+      expect(
+        rotated.contains(const Offset(10, 0)),
+        rotatedExpected.contains(const Offset(10, 0)),
+      );
 
-    void writeEllipse(_Buf buf) {
-      buf.u16(pathEllipse);
-      buf.f64(0);
-      buf.f64(0);
-      buf.f64(20);
-      buf.f64(5);
-      buf.f64(0);
-      buf.f64(0);
-      buf.f64(math.pi * 2);
-      buf.f64(0);
-      buf.u16(pathClose);
-    }
-
-    final ellipse = decodeRaw((buf) {
-      buf.u32(2);
-      writeEllipse(buf);
+      final svgThenLine = decodeRaw((buf) {
+        buf.u32(2);
+        buf.u16(pathSvg);
+        buf.text('M0 0 L10 0');
+        buf.u16(pathLine);
+        buf.f64(10);
+        buf.f64(10);
+      });
+      var svgLength = 0.0;
+      for (final metric in svgThenLine.computeMetrics()) {
+        svgLength += metric.length;
+      }
+      expect(svgLength, closeTo(20, 0.05));
     });
-    final rotate = Affine(0, 1, -1, 0);
-    final rotatedExpected = ellipse.transform(rotate.storage);
-    final rotated = decodeRaw((buf) {
-      buf.u32(1);
-      buf.u16(pathExtend);
-      buf.f64(rotate.a);
-      buf.f64(rotate.b);
-      buf.f64(rotate.c);
-      buf.f64(rotate.d);
-      buf.f64(rotate.e);
-      buf.f64(rotate.f);
-      buf.u32(2);
-      writeEllipse(buf);
-    });
-    expect(rotated.contains(const Offset(0, 10)), isTrue);
-    expect(rotated.contains(const Offset(10, 0)), isFalse);
-    expect(
-      rotated.contains(const Offset(0, 10)),
-      rotatedExpected.contains(const Offset(0, 10)),
-    );
-    expect(
-      rotated.contains(const Offset(10, 0)),
-      rotatedExpected.contains(const Offset(10, 0)),
-    );
+  }
+  if (native) {
+    testWidgets('native scenes match the Dart reference', (tester) async {
+      final decoder = _decoder!;
+      await tester.runAsync(() async {
+        final bitmap = await _image(2, 2, const Color(0xff00ff00));
+        decoder.retainImage(1, bitmap);
+        final scenes = <String, void Function(_Buf)>{
+          'path verbs and clipping': (b) {
+            void geometry() {
+              b.u32(15);
+              void verb(int op, List<double> n) {
+                b.u16(op);
+                for (final value in n) {
+                  b.f64(value);
+                }
+              }
 
-    final svgThenLine = decodeRaw((buf) {
-      buf.u32(2);
-      buf.u16(pathSvg);
-      buf.text('M0 0 L10 0');
-      buf.u16(pathLine);
-      buf.f64(10);
-      buf.f64(10);
-    });
-    var svgLength = 0.0;
-    for (final metric in svgThenLine.computeMetrics()) {
-      svgLength += metric.length;
-    }
-    expect(svgLength, closeTo(20, 0.05));
-  });
+              verb(pathMove, [2, 2]);
+              verb(pathLine, [8, 2]);
+              verb(pathCubic, [10, 2, 12, 6, 14, 6]);
+              verb(pathQuad, [16, 8, 18, 6]);
+              verb(pathArc, [18, 10, 4, -math.pi / 2, math.pi / 2, 0]);
+              verb(pathEllipse, [20, 20, 8, 4, 0.4, 0, math.pi * 2, 0]);
+              verb(pathArcTo, [30, 28, 3, 30, 20]);
+              verb(pathRect, [2, 28, 6, 6]);
+              verb(pathRoundRect, [10, 28, 8, 8, 2, 2, 3, 3, 2, 2, 1, 1]);
+              verb(pathClose, []);
+              b.u16(pathSvg);
+              b.text('M24 30 L30 30 L30 36 Z');
+              verb(pathLine, [24, 36]);
+              verb(pathAdd, [1, 0, 0, 1, 34, 2]);
+              b.path([
+                (pathRect, [0.0, 0.0, 8.0, 8.0]),
+              ]);
+              verb(pathExtend, [1, 0.2, 0.3, 1, 32, 20]);
+              b.path([
+                (pathMove, [0.0, 0.0]),
+                (pathArc, [4.0, 4.0, 4.0, 0.0, math.pi, 0.0]),
+              ]);
+              verb(pathClose, []);
+            }
 
+            b.record(opFillPath, () {
+              geometry();
+              b.u32(1);
+            });
+            b.color(opSetStrokeColor, 1, 0, 0, 1);
+            b.record(opStrokePath, geometry);
+            b.record(opClipPath, () {
+              geometry();
+              b.u32(0);
+            });
+            b.color(opSetFillColor, 0, 0, 1, 1);
+            b.rect(opFillRect, 0, 0, 48, 48);
+          },
+          'transforms and strokes': (b) {
+            b.record(opSetTransform, () {
+              for (final n in [1.0, 0.0, 0.0, 1.0, 2.0, 3.0]) {
+                b.f64(n);
+              }
+            });
+            b.record(opSave, () {});
+            b.record(opTransform, () {
+              for (final n in [1.0, 0.0, 0.2, 1.0, 0.0, 0.0]) {
+                b.f64(n);
+              }
+            });
+            b.record(opRotate, () => b.f64(0.2));
+            b.record(opScale, () {
+              b.f64(1.2);
+              b.f64(0.8);
+            });
+            b.record(opSetLineCap, () => b.text('round'));
+            b.record(opSetLineJoin, () => b.text('bevel'));
+            b.record(opSetMiterLimit, () => b.f64(4));
+            b.record(opSetLineWidth, () => b.f64(3));
+            b.record(opSetLineDash, () {
+              b.u32(2);
+              b.f64(4);
+              b.f64(2);
+            });
+            b.record(opSetLineDashOffset, () => b.f64(1));
+            b.rect(opStrokeRect, 3, 3, 20, 15);
+            b.record(opRestore, () {});
+            b.record(opResetTransform, () {});
+            b.color(opSetFillColor, 0, 0, 1, 1);
+            b.record(opSetGlobalAlpha, () => b.f64(0.5));
+            b.rect(opFillRect, 30, 0, 8, 8);
+            b.rect(opClearRect, 32, 0, 2, 2);
+          },
+          'gradients': (b) {
+            for (final op in [
+              opSetFillLinear,
+              opSetFillRadial,
+              opSetFillConic,
+            ]) {
+              void style(int opcode) => b.record(opcode, () {
+                for (final n
+                    in op == opSetFillLinear
+                        ? [0.0, 0.0, 32.0, 0.0]
+                        : op == opSetFillRadial
+                        ? [10.0, 10.0, 2.0, 12.0, 12.0, 18.0]
+                        : [16.0, 16.0, 0.2]) {
+                  b.f64(n);
+                }
+                b.u32(2);
+                for (final stop in [0.0, 1.0]) {
+                  b.f64(stop);
+                  b.f64(stop);
+                  b.f64(0);
+                  b.f64(1 - stop);
+                  b.f64(1);
+                }
+              });
+              style(op);
+              b.rect(opFillRect, 0, 0, 32, 24);
+              style(op + 1);
+              b.rect(opStrokeRect, 2, 2, 28, 20);
+            }
+          },
+          'images and pixels': (b) {
+            b.record(opDrawImage, () {
+              b.u32(1);
+              for (final n in [0.0, 0.0, 2.0, 2.0, 0.0, 0.0, 16.0, 16.0]) {
+                b.f64(n);
+              }
+            });
+            for (final op in [opSetFillPattern, opSetStrokePattern]) {
+              b.record(op, () {
+                b.u32(1);
+                b.text('repeat-x');
+                for (final n in [1.0, 0.0, 0.0, 1.0, 0.0, 20.0]) {
+                  b.f64(n);
+                }
+              });
+            }
+            b.rect(opFillRect, 0, 18, 24, 8);
+            b.rect(opStrokeRect, 0, 18, 24, 8);
+            b.record(opSetSmoothing, () {
+              b.u32(0);
+              b.u32(2);
+            });
+            b.record(opPutImageData, () {
+              b.u32(2);
+              b.u32(1);
+              b.f64(30);
+              b.f64(10);
+              b.blob([255, 0, 0, 128, 0, 255, 0, 255]);
+            });
+          },
+          // Effects intentionally differ from the legacy renderer; WPT owns their oracle.
+          // Text baselines now follow the primary font/BASE; WPT owns that oracle.
+        };
+        final mismatches = <String>[];
+        for (final entry in scenes.entries) {
+          final actual = FlaxCanvasSurface(48, 48);
+          final expected = FlaxCanvasSurface(48, 48);
+          final bytes = _commands(entry.value);
+          final id = decoder.createSurface();
+          try {
+            decoder.commit(id, actual, bytes);
+            dart_decoder.decodeCanvasCommands(
+              expected,
+              bytes,
+              lookupImage: (_) => bitmap,
+              state: CanvasDrawState(),
+            );
+            final a = await _rgba(actual), b = await _rgba(expected);
+            var largest = 0;
+            var changed = 0;
+            final points = <String>[];
+            for (var i = 0; i < a.length; i++) {
+              final difference = (a[i] - b[i]).abs();
+              if (difference > largest) largest = difference;
+              if (difference > 1) {
+                changed++;
+                if (points.length < 8) {
+                  points.add('${(i ~/ 4) % 48},${i ~/ 192}: ${a[i]}/${b[i]}');
+                }
+              }
+            }
+            if (changed > 0) {
+              mismatches.add(
+                '${entry.key}: $changed channels, max difference $largest; $points',
+              );
+            }
+          } finally {
+            decoder.disposeSurface(id);
+            actual.dispose();
+            expected.dispose();
+          }
+        }
+        decoder.releaseImage(1);
+        bitmap.dispose();
+        expect(mismatches, isEmpty);
+      });
+    });
+
+    testWidgets('native rollback, malformed packets and text metrics', (
+      tester,
+    ) async {
+      final decoder = _decoder!;
+      await tester.runAsync(() async {
+        final surface = FlaxCanvasSurface(4, 4);
+        final id = decoder.createSurface();
+        addTearDown(surface.dispose);
+        expect(
+          decoder.measure(id, '').every((value) => value.isFinite),
+          isTrue,
+        );
+        decoder.commit(
+          id,
+          surface,
+          _commands((b) {
+            b.color(opSetFillColor, 1, 0, 0, 1);
+            b.rect(opFillRect, 0, 0, 1, 1);
+          }),
+        );
+        final invalid = <Uint8List>[
+          Uint8List(0),
+          _commands((b) {
+            b.color(opSetFillColor, 0, 0, 1, 1);
+            b.record(999, () {});
+          }),
+          _commands((b) => b.record(opFillRect, () => b.f64(1))),
+          _commands((b) => b.record(opSetLineWidth, () => b.f64(double.nan))),
+          _commands(
+            (b) => b.record(opPutImageData, () {
+              b.u32(0xffffffff);
+              b.u32(0xffffffff);
+              b.f64(0);
+              b.f64(0);
+            }),
+          ),
+          _commands(
+            (b) => b.record(opFillPath, () {
+              b.u32(0xffffffff);
+              b.u32(0);
+            }),
+          ),
+          _commands(
+            (b) => b.record(opSetFont, () {
+              b.u32(1);
+              b.blob([255]);
+            }),
+          ),
+        ];
+        invalid.add(
+          _commands((b) {
+            b.record(opSetLetterSpacing, () {
+              b.f64(0);
+              b.text('1e38em');
+            });
+            b.record(opFillText, () {
+              b.text('A');
+              b.f64(0);
+              b.f64(1);
+            });
+          }),
+        );
+        final badFlags = _commands((b) => b.record(opSave, () {}));
+        badFlags[26] = 1;
+        invalid.add(badFlags);
+        for (final bytes in invalid) {
+          expect(
+            () => decoder.commit(id, surface, bytes),
+            throwsA(isA<FormatException>()),
+          );
+          expect(surface.pictures, hasLength(1));
+        }
+        decoder.commit(
+          id,
+          surface,
+          _commands((b) => b.rect(opFillRect, 1, 0, 1, 1)),
+        );
+        expect(await _pixel(surface, 1, 0), 0xffff0000);
+        decoder.commit(id, surface, _commands((b) => b.record(opReset, () {})));
+        expect(await _pixel(surface, 1, 0), 0x00000000);
+        for (final align in ['left', 'center', 'right', 'start', 'end']) {
+          for (final direction in ['ltr', 'rtl']) {
+            final reference = CanvasDrawState()
+              ..font = 'italic bold 17px sans-serif'
+              ..textAlign = align
+              ..direction = direction
+              ..textBaseline = 'middle'
+              ..letterSpacing = 0.5
+              ..wordSpacing = 1;
+            decoder.commit(
+              id,
+              surface,
+              _commands((b) {
+                b.record(opSetFont, () => b.text(reference.font));
+                b.record(opSetTextAlign, () => b.text(align));
+                b.record(opSetDirection, () => b.text(direction));
+                b.record(
+                  opSetTextBaseline,
+                  () => b.text(reference.textBaseline),
+                );
+                b.record(
+                  opSetLetterSpacing,
+                  () => b.f64(reference.letterSpacing),
+                );
+                b.record(opSetWordSpacing, () => b.f64(reference.wordSpacing));
+              }),
+            );
+            final expected = measureCanvasText(reference, 'Hello 汉字');
+            final actual = decoder.measure(id, 'Hello 汉字');
+            expect(actual, hasLength(12));
+            expect(actual.every((value) => value.isFinite), isTrue);
+            expect(actual[0], closeTo(expected.width, 1e-5));
+            expect(actual[1] + actual[2], greaterThan(0));
+            expect(actual[3] + actual[4], greaterThan(0));
+            expect(actual[7] + actual[8], closeTo(17, 1e-5));
+            expect(actual[9], greaterThan(actual[10]));
+            expect(actual[10], greaterThan(actual[11]));
+          }
+        }
+        final pathBytes = _pathOnly((b) {
+          b.u32(1);
+          b.u16(pathSvg);
+          b.text('M0 0 L3 0 L3 3 Z');
+        });
+        expect(decoder.contains(pathBytes, 2, 1, false), isTrue);
+        expect(decoder.contains(pathBytes, 0, 3, false), isFalse);
+        for (final count in [0, 1]) {
+          decoder.reset(id);
+          surface.replaceWithClear();
+          decoder.commit(
+            id,
+            surface,
+            _commands((b) {
+              b.record(opSetFillLinear, () {
+                b.f64(0);
+                b.f64(0);
+                b.f64(4);
+                b.f64(0);
+                b.u32(count);
+                if (count == 1) {
+                  b.f64(0.5);
+                  b.f64(1);
+                  b.f64(0);
+                  b.f64(0);
+                  b.f64(1);
+                }
+              });
+              b.rect(opFillRect, 0, 0, 4, 4);
+            }),
+          );
+          final color = await _pixel(surface, 1, 1);
+          if (count == 0) {
+            expect(color, 0);
+          } else {
+            expect(color >> 24, 255);
+            expect(color & 0xffff, 0);
+            expect((color >> 16) & 255, closeTo(255, 1));
+          }
+        }
+        decoder.disposeSurface(id);
+        expect(
+          () => decoder.measure(id, 'closed'),
+          throwsA(isA<FormatException>()),
+        );
+      });
+    });
+  }
   testWidgets('1k and 10k command metrics', (tester) async {
     await tester.runAsync(() async {
       for (final count in [1000, 10000]) {
@@ -1045,7 +1552,7 @@ void main() {
         recorder.endRecording().dispose();
         debugPrint(
           'canvas metrics n=$count bytes=${bytes.length} '
-          'abiCopies=${bytes.length * 2} decodeUs=$decodeUs '
+          'decodeUs=$decodeUs '
           'paintUs=${paint.elapsedMicroseconds} pictures=${surface.pictures.length}',
         );
         expect(surface.pictures, hasLength(1));
@@ -1089,7 +1596,7 @@ class _Buf {
   }
 
   void text(String value) {
-    final encoded = Uint8List.fromList(value.codeUnits);
+    final encoded = utf8.encode(value);
     u32(encoded.length);
     grow(encoded.length);
     data.buffer.asUint8List().setRange(used, used + encoded.length, encoded);

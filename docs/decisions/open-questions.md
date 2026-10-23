@@ -71,8 +71,6 @@ integrations, broader Canvas coverage and other platforms remain separate work.
 
 ## Known implementation gaps outside binding expansion
 
-Canvas still needs pixel-clearing semantics for `reset()`, drawing-state preservation
-after `transferToImageBitmap()` and per-operation handling of non-finite numeric input.
-The [Canvas contract](../architecture/canvas.md#known-limitations-and-verification)
-records the observed behavior and required regressions. Existing aggregate acceptance
-must not be interpreted as closing those gaps.
+The paired Canvas experiment corrects reset, transfer and non-finite input semantics.
+The [coverage audit](../architecture/canvas-api-coverage.md) records remaining color,
+font, image and platform gaps; selected WPT acceptance is not full browser conformance.

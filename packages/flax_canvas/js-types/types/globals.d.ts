@@ -1,3 +1,4 @@
+import type { ImageBitmapOptions, ImageDataSettings } from './types.js';
 declare global {
     var OffscreenCanvas: {
         new (width: number, height: number): OffscreenCanvas;
@@ -9,8 +10,8 @@ declare global {
         new (path?: Path2D | string): Path2D;
     };
     var ImageData: {
-        new (width: number, height: number): ImageData;
-        new (data: Uint8ClampedArray, width: number, height?: number): ImageData;
+        new (width: number, height: number, settings?: ImageDataSettings): ImageData;
+        new (data: Uint8ClampedArray, width: number, height?: number, settings?: ImageDataSettings): ImageData;
     };
     var ImageBitmap: {
         prototype: ImageBitmap;
@@ -23,7 +24,9 @@ declare global {
     };
     function createImageBitmap(source: ImageBitmap | ImageData | OffscreenCanvas | {
         arrayBuffer(): Promise<ArrayBuffer>;
-    }): Promise<ImageBitmap>;
+    }, ...args: [
+        ImageBitmapOptions?
+    ] | [number, number, number, number, ImageBitmapOptions?]): Promise<ImageBitmap>;
     type OffscreenCanvas = import('./types.js').OffscreenCanvas;
     type OffscreenCanvasRenderingContext2D = import('./types.js').OffscreenCanvasRenderingContext2D;
     type Path2D = import('./types.js').Path2D;

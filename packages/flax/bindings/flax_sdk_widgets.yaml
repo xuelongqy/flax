@@ -11,4 +11,21 @@ publicLibraries:
     tsOutput: js/src/flutter/generated/libraries/widgets/index.ts
 # The host owns runApp; SDK bindings must not replace the embedded root.
 overrides:
-  exclude: [runApp]
+  # The host supplies the private font collection; JS keeps its existing signature.
+  classes:
+    BannerPainter:
+      getters:
+        [
+          semanticsBuilder,
+          message,
+          textDirection,
+          location,
+          layoutDirection,
+          color,
+          textStyle,
+          shadow,
+        ]
+      constructors:
+        '':
+          [message, textDirection, location, layoutDirection, color, textStyle, shadow]
+  exclude: [runApp, DefaultFontCollection, FlaxFontResources, FlaxFontResourceBoundary]

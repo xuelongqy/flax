@@ -96,7 +96,7 @@ const examples = [
     mark: '2D',
     color: 0xffa36a4b,
     tag: 'CREATIVE TOOLS',
-    description: 'A little color, a few shapes and an interactive drawing surface.',
+    description: 'Shape a light sculpture, animate it and capture a PNG postcard.',
     create: createCanvasExample,
   },
   {

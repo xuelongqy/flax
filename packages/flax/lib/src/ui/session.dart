@@ -235,6 +235,7 @@ class _Session {
     '__flaxMount',
     '__flaxInvalidate',
     '__flaxAssetBundle',
+    '__flaxRegisterFont',
   };
   final _hostTasks = ListQueue<(_HostContext, void Function())>();
   bool _hostClosing = false;
@@ -277,6 +278,8 @@ class _Session {
   bool get closing => _status != _SessionStatus.open;
   int _mounts = 0;
   final _closed = Completer<void>();
+  final _fonts = <(String, String), FlaxFont>{};
+  final _fontResources = _FontResources();
   final _componentStates = <int, FlaxComponentStateBase>{};
   final _componentDescriptions = <int, WeakReference<_ComponentDescription>>{};
   final _references = _WeakReferences<_BridgeReference>();
@@ -377,6 +380,29 @@ class _Session {
               'object',
               id: 'flax.core/sdk_services#type:AssetBundle',
             ),
+          ),
+        );
+      });
+      runtime.registerHostFunction('__flaxRegisterFont', (_, args) {
+        if (closing ||
+            args.length != 2 ||
+            args.any((value) => value is! FlaxJsString)) {
+          throw ArgumentError('Invalid module font registration');
+        }
+        final manifest = (args[0] as FlaxJsString).value;
+        final name = (args[1] as FlaxJsString).value;
+        final key = (manifest, name);
+        var font = _fonts[key];
+        if (font == null || font._disposed) {
+          _checkFontAsset(manifest);
+          if (name.isEmpty) throw ArgumentError('Invalid module font name');
+          font = FlaxFont._(assetBundle, manifest, name, _fontResources);
+          _fonts[key] = font;
+        }
+        return holdHostResult(
+          objectResult(
+            font,
+            const FlaxTypeRef('object', id: 'flax.core/flutter#type:FlaxFont'),
           ),
         );
       });
@@ -1140,6 +1166,12 @@ class _Session {
     cancelAsyncIterableSources();
     disposeHost();
     disposeModules();
+    for (final font in _fonts.values) {
+      font.dispose();
+    }
+    if (_fonts.isNotEmpty) SchedulerBinding.instance.scheduleFrame();
+    _fonts.clear();
+    _fontResources.release();
     _status = _SessionStatus.closed;
     if (_frame != null) {
       SchedulerBinding.instance.cancelFrameCallbackWithId(_frame!);

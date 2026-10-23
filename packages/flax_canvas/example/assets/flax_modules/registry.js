@@ -646,7 +646,10 @@
       }
       sealed = true;
     },
-    require: requireModule,
+    require(specifier) {
+      // Older bundles pass version/hash arguments; only the host inventory owns those.
+      return requireModule(specifier);
+    },
     close() {
       closed = true;
     },

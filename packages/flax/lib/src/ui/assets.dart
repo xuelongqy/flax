@@ -3,7 +3,10 @@ part of '../../bindings.dart';
 class _SessionAssetScope extends InheritedWidget {
   _SessionAssetScope({required this.session, required Widget child})
     : super(
-        child: DefaultAssetBundle(bundle: session.assetBundle, child: child),
+        child: _FontResourceScope(
+          resources: session._fontResources,
+          child: DefaultAssetBundle(bundle: session.assetBundle, child: child),
+        ),
       );
 
   final _Session session;

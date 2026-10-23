@@ -6,6 +6,12 @@ import { holdCanvas, surfaceOf } from './canvas.js';
 import type { OffscreenCanvas } from './types.js';
 
 export type {
+  CanvasMatrix2DInit,
+  CanvasTransform,
+  ImageDataSettings,
+  CanvasRadius,
+  TextMetrics,
+  ImageBitmapOptions,
   CanvasGradient,
   CanvasPattern,
   ImageBitmap,

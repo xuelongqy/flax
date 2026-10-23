@@ -9,3 +9,57 @@ publicLibraries:
   package:flutter/painting.dart:
     jsPackage: '@flax/flutter/painting'
     tsOutput: js/src/flutter/generated/libraries/painting/index.ts
+overrides:
+  # The host supplies the private font collection; JS keeps its existing signature.
+  classes:
+    TextPainter:
+      constructors:
+        '':
+          [
+            text,
+            textAlign,
+            textDirection,
+            textScaleFactor,
+            textScaler,
+            maxLines,
+            ellipsis,
+            locale,
+            strutStyle,
+            textWidthBasis,
+            textHeightBehavior,
+          ]
+      methods:
+        computeWidth:
+          [
+            ellipsis,
+            locale,
+            maxLines,
+            maxWidth,
+            minWidth,
+            strutStyle,
+            text,
+            textAlign,
+            textDirection,
+            textHeightBehavior,
+            textScaleFactor,
+            textScaler,
+            textWidthBasis,
+          ]
+        computeMaxIntrinsicWidth:
+          [
+            ellipsis,
+            locale,
+            maxLines,
+            maxWidth,
+            minWidth,
+            strutStyle,
+            text,
+            textAlign,
+            textDirection,
+            textHeightBehavior,
+            textScaleFactor,
+            textScaler,
+            textWidthBasis,
+          ]
+        isHighSurrogate: [value]
+        isLowSurrogate: [value]

@@ -1,5 +1,7 @@
 // Types only: FlaxCanvasPlugin installs the Canvas globals.
 import type {
+  ImageBitmapOptions,
+  ImageDataSettings,
   CanvasGradient,
   CanvasPattern,
   ImageBitmap,
@@ -20,8 +22,13 @@ declare global {
     new (path?: Path2D | string): Path2D;
   };
   var ImageData: {
-    new (width: number, height: number): ImageData;
-    new (data: Uint8ClampedArray, width: number, height?: number): ImageData;
+    new (width: number, height: number, settings?: ImageDataSettings): ImageData;
+    new (
+      data: Uint8ClampedArray,
+      width: number,
+      height?: number,
+      settings?: ImageDataSettings,
+    ): ImageData;
   };
   var ImageBitmap: {
     prototype: ImageBitmap;
@@ -38,6 +45,8 @@ declare global {
       | ImageData
       | OffscreenCanvas
       | { arrayBuffer(): Promise<ArrayBuffer> },
+    ...args:
+      [ImageBitmapOptions?] | [number, number, number, number, ImageBitmapOptions?]
   ): Promise<ImageBitmap>;
   type OffscreenCanvas = import('./types.js').OffscreenCanvas;
   type OffscreenCanvasRenderingContext2D =

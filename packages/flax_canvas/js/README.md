@@ -18,5 +18,9 @@ uses `OffscreenCanvas` and related globals after `FlaxCanvasPlugin` is installed
 TypeScript projects must not enable `lib.dom`. See the
 [Canvas contract](../../../docs/architecture/canvas.md).
 
-Command transport copies bytes twice on ABI 2: a native temporary buffer, then a Dart
-`Uint8List`. Do not treat that path as zero-copy.
+Command commits share the JS buffer during synchronous engine C++ decoding. The decoder
+does not retain the view, so the encoder can reuse or grow its buffer after each commit.
+Image uploads, pixel snapshots and GPU work are separate costs. This experimental branch
+requires the Canvas engine extension, without an exact feature-version gate. Canvas text
+shares the Session's module font collection and public Flutter fonts. Blob export
+supports PNG, JPEG and WebP with quality selection.

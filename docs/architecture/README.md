@@ -116,6 +116,9 @@ editing references and local signal updates. See [text input](text-input.md).
 Generated styling and host/local Material themes reuse the object and Context paths. See
 [styles and themes](styles.md) for API selections and Flutter dependency semantics.
 
+[Module fonts](fonts.md) share Session font ownership with ordinary Flutter text and
+Canvas, while preserving public host font fallback.
+
 Generated ListView.builder and independent callback results are described in
 [lazy lists](lists.md).
 

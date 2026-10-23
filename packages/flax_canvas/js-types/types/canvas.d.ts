@@ -1,6 +1,7 @@
 import { CommandBuffer } from './commands.js';
 import { type Rgba } from './color.js';
 import { Path2D } from './path.js';
+import type { CanvasMatrix2DInit, CanvasRadius, ImageBitmapOptions, ImageDataSettings } from './types.js';
 export type Call = (operation: string, ...args: unknown[]) => unknown;
 declare const surfaceKey: unique symbol;
 export declare const imageIdKey: unique symbol;
@@ -21,10 +22,50 @@ declare class Affine {
     f: number;
     constructor(a?: number, b?: number, c?: number, d?: number, e?: number, f?: number);
     clone(): Affine;
+    get is2D(): boolean;
+    get m11(): number;
+    set m11(value: number);
+    get m12(): number;
+    set m12(value: number);
+    get m21(): number;
+    set m21(value: number);
+    get m22(): number;
+    set m22(value: number);
+    get m41(): number;
+    set m41(value: number);
+    get m42(): number;
+    set m42(value: number);
+    inverse(): Affine;
+    transformPoint(point?: {
+        x?: number;
+        y?: number;
+        z?: number;
+        w?: number;
+    }): {
+        x: number;
+        y: number;
+        z: number;
+        w: number;
+    };
+    translate(x?: number, y?: number): Affine;
+    scale(x?: number, y?: number): Affine;
+    rotate(angle?: number): Affine;
+    toFloat32Array(): Float32Array;
+    toFloat64Array(): Float64Array;
+    toJSON(): {
+        a: number;
+        b: number;
+        c: number;
+        d: number;
+        e: number;
+        f: number;
+        is2D: boolean;
+        isIdentity: boolean;
+    };
     get isIdentity(): boolean;
     get det(): number;
     get isInvertible(): boolean;
-    multiply(o: Affine): Affine;
+    multiply(other?: CanvasMatrix2DInit): Affine;
     invert(): Affine;
     map(x: number, y: number): [number, number];
 }
@@ -45,16 +86,21 @@ export declare class CanvasPattern {
     transform: Affine;
     version: number;
     constructor(image: number, repeat: string, token?: symbol);
-    setTransform(a?: number | Affine, b?: number, c?: number, d?: number, e?: number, f?: number): void;
+    setTransform(a?: number | CanvasMatrix2DInit, b?: number, c?: number, d?: number, e?: number, f?: number): void;
 }
 export declare class ImageData {
-    readonly width: number;
-    readonly height: number;
-    readonly data: Uint8ClampedArray;
-    constructor(dataOrWidth: Uint8ClampedArray | number, widthOrHeight: number, height?: number);
+    private readonly imageWidth;
+    private readonly imageHeight;
+    private readonly pixels;
+    get width(): number;
+    get height(): number;
+    get data(): Uint8ClampedArray;
+    get colorSpace(): 'srgb';
+    get pixelFormat(): 'rgba-unorm8';
+    constructor(dataOrWidth: Uint8ClampedArray | number, widthOrHeight: number, heightOrSettings?: number | ImageDataSettings, settings?: ImageDataSettings);
 }
 export declare class OffscreenCanvasRenderingContext2D {
-    readonly canvas: OffscreenCanvas;
+    private readonly targetCanvas;
     private readonly call;
     private readonly buffer;
     private readonly dirty;
@@ -64,6 +110,7 @@ export declare class OffscreenCanvasRenderingContext2D {
     private fillVersion;
     private strokeVersion;
     constructor(canvas?: OffscreenCanvas, call?: Call, buffer?: CommandBuffer, dirty?: () => void, token?: symbol);
+    get canvas(): OffscreenCanvas;
     get fillStyle(): Style;
     set fillStyle(value: Style);
     get strokeStyle(): Style;
@@ -108,6 +155,18 @@ export declare class OffscreenCanvasRenderingContext2D {
     set letterSpacing(value: string);
     get wordSpacing(): string;
     set wordSpacing(value: string);
+    get lang(): string;
+    set lang(value: string);
+    get fontKerning(): string;
+    set fontKerning(value: string);
+    get fontStretch(): string;
+    set fontStretch(value: string);
+    get fontVariantCaps(): string;
+    set fontVariantCaps(value: string);
+    get textRendering(): string;
+    set textRendering(value: string);
+    isContextLost(): boolean;
+    private writeTextOptions;
     save(): void;
     restore(): void;
     reset(): void;
@@ -116,13 +175,14 @@ export declare class OffscreenCanvasRenderingContext2D {
         desynchronized: boolean;
         willReadFrequently: boolean;
         colorSpace: string;
+        colorType: string;
     };
     beginPath(): void;
     closePath(): void;
     moveTo(x: number, y: number): void;
     lineTo(x: number, y: number): void;
     rect(x: number, y: number, w: number, h: number): void;
-    roundRect(x: number, y: number, w: number, h: number, radii?: number | number[]): void;
+    roundRect(x: number, y: number, w: number, h: number, radii?: CanvasRadius | Iterable<CanvasRadius>): void;
     arc(x: number, y: number, r: number, start: number, end: number, ccw?: boolean): void;
     arcTo(x1: number, y1: number, x2: number, y2: number, r: number): void;
     ellipse(x: number, y: number, rx: number, ry: number, rotation: number, start: number, end: number, ccw?: boolean): void;
@@ -138,13 +198,14 @@ export declare class OffscreenCanvasRenderingContext2D {
     rotate(angle: number): void;
     scale(x: number, y: number): void;
     transform(a: number, b: number, c: number, d: number, e: number, f: number): void;
-    setTransform(a?: number | Affine, b?: number, c?: number, d?: number, e?: number, f?: number): void;
+    setTransform(a?: number | CanvasMatrix2DInit, b?: number, c?: number, d?: number, e?: number, f?: number): void;
     resetTransform(): void;
     getTransform(): Affine;
     setLineDash(segments: number[]): void;
     getLineDash(): number[];
-    fillText(text: string, x: number, y: number): void;
-    strokeText(text: string, x: number, y: number): void;
+    fillText(text: string, x: number, y: number, maxWidth?: number): void;
+    strokeText(text: string, x: number, y: number, maxWidth?: number): void;
+    private writeText;
     measureText(text: string): Record<string, number>;
     drawImage(image: {
         width: number;
@@ -154,11 +215,14 @@ export declare class OffscreenCanvasRenderingContext2D {
     createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number, r1: number): CanvasGradient;
     createConicGradient(angle: number, x: number, y: number): CanvasGradient;
     createPattern(image: OffscreenCanvas | ImageBitmap | object, repeat?: string | null): CanvasPattern | null;
-    createImageData(sw: number, sh: number): ImageData;
-    putImageData(image: ImageData, dx: number, dy: number): void;
+    createImageData(sw: number | ImageData, sh?: number, settings?: ImageDataSettings): ImageData;
+    putImageData(image: ImageData, dx: number, dy: number, dirtyX?: number, dirtyY?: number, dirtyWidth?: number, dirtyHeight?: number): void;
+    getImageData(sx: number, sy: number, sw: number, sh: number, settings?: ImageDataSettings): ImageData;
     getImageDataAsync(sx: number, sy: number, sw: number, sh: number): Promise<ImageData>;
     isPointInPath(pathOrX: Path2D | number, xOrY: number, yOrRule?: number | string, rule?: string): boolean;
+    isPointInStroke(pathOrX: Path2D | number, xOrY: number, y?: number): boolean;
     resyncState(): void;
+    private writeFilter;
     private mapPoint;
     private extendCurrent;
     private aroundCurrentPath;
@@ -175,6 +239,7 @@ export declare class OffscreenCanvas {
     readonly [surfaceKey]: CanvasSurface;
     private readonly call;
     private readonly buffer;
+    private recovering;
     private context;
     private queued;
     private borrowed;
@@ -185,6 +250,7 @@ export declare class OffscreenCanvas {
         desynchronized: boolean;
         willReadFrequently: boolean;
         colorSpace: string;
+        colorType: string;
     };
     constructor(width: number, height: number, call: Call);
     get width(): number;
@@ -196,6 +262,7 @@ export declare class OffscreenCanvas {
         desynchronized?: boolean;
         willReadFrequently?: boolean;
         colorSpace?: string;
+        colorType?: 'unorm8' | 'float16';
     }): OffscreenCanvasRenderingContext2D | null;
     borrowImage(id: number): void;
     flush(): void;
@@ -204,6 +271,7 @@ export declare class OffscreenCanvas {
     resize(width: number, height: number): void;
     convertToBlob(options?: {
         type?: string;
+        quality?: number;
     }): Promise<{
         arrayBuffer(): Promise<ArrayBuffer>;
         type: string;
@@ -215,14 +283,16 @@ export declare function settle(id: number, ok: boolean, value: unknown): void;
 export declare function closePending(): void;
 export declare class ImageBitmap {
     [imageIdKey]: number;
-    readonly width: number;
-    readonly height: number;
+    private readonly bitmapWidth;
+    private readonly bitmapHeight;
+    get width(): number;
+    get height(): number;
     private readonly call;
     private readonly release;
     constructor(id?: number, width?: number, height?: number, call?: Call, token?: symbol);
     close(): void;
 }
-export declare function createImageBitmap(call: Call, source: unknown): Promise<ImageBitmap>;
+export declare function createImageBitmap(call: Call, source: unknown, ...args: [ImageBitmapOptions?] | [number, number, number, number, ImageBitmapOptions?]): Promise<ImageBitmap>;
 export declare function installCanvas(global: typeof globalThis, call: Call): {
     settle(id: number, ok: boolean, value: unknown): void;
     close(): void;

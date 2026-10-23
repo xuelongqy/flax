@@ -47,6 +47,8 @@ export const OP = {
   setWordSpacing: 44,
   setFillPattern: 45,
   setStrokePattern: 46,
+  setTextOptions: 47,
+  drawImagePixels: 48,
 } as const;
 export const PATH = {
   move: 1,

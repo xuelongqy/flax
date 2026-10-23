@@ -12,9 +12,9 @@ dependencies:
   flax: 0.0.0
   flutter:
     sdk: flutter
-  path_drawing: 1.0.1
 
 dev_dependencies:
+  path_drawing: 1.0.1
   flax_test: 0.0.0
   flax_engine_hermes: 0.0.0
   flutter_test:

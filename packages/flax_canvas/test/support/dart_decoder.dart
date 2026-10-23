@@ -6,7 +6,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/painting.dart';
 import 'package:path_drawing/path_drawing.dart';
 
-import 'surface.dart';
+import 'package:flax_canvas/src/surface.dart';
 
 const canvasCommandMagic = 0x31435643;
 const canvasCommandVersion = 1;
@@ -974,9 +974,15 @@ ui.Image _putImageData(
 }
 
 ui.Image _imageFromPixels(Uint8List pixels, int width, int height) {
+  final premultiplied = Uint8List.fromList(pixels);
+  for (var i = 0; i < premultiplied.length; i += 4) {
+    for (var c = 0; c < 3; c++) {
+      premultiplied[i + c] = (pixels[i + c] * pixels[i + 3] + 127) ~/ 255;
+    }
+  }
   try {
     return ui.decodeImageFromPixelsSync(
-      pixels,
+      premultiplied,
       width,
       height,
       ui.PixelFormat.rgba8888,
@@ -1070,6 +1076,7 @@ _DecodedPath _decodePath(_Reader reader) {
     }
     if (child.current != null) {
       current = matrix.map(child.current!.dx, child.current!.dy);
+      if (!extend) moveTo(current!.dx, current!.dy);
     }
   }
 
@@ -1086,6 +1093,7 @@ _DecodedPath _decodePath(_Reader reader) {
         final rect = _rect(reader);
         path.addRect(rect);
         current = subpathStart = rect.topLeft;
+        path.moveTo(rect.left, rect.top);
       case pathCubic:
         final cp1x = reader.f64();
         final cp1y = reader.f64();
@@ -1163,6 +1171,7 @@ _DecodedPath _decodePath(_Reader reader) {
           ),
         );
         current = subpathStart = rect.topLeft;
+        path.moveTo(rect.left, rect.top);
       case pathSvg:
         _addSvgPath(
           path,
@@ -1318,14 +1327,15 @@ void _addSvgPath(
 ) {
   final svg = parseSvgPathData(source);
   path.addPath(svg, Offset.zero);
-  Offset? start;
   Offset? current;
   for (final metric in svg.computeMetrics()) {
-    start = metric.getTangentForOffset(0)?.position ?? start;
     current = metric.getTangentForOffset(metric.length)?.position ?? current;
   }
-  if (start != null) setSubpathStart(start);
-  if (current != null) setCurrent(current);
+  if (current != null) {
+    path.moveTo(current.dx, current.dy);
+    setSubpathStart(current);
+    setCurrent(current);
+  }
 }
 
 ui.Path decodeCanvasPath(Uint8List bytes) {

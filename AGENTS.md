@@ -104,6 +104,8 @@ and `native:configure` never fetch an engine.
 - Run checks proportional to the change. Report failures and untested behavior
   accurately; a scaffolding check is not runtime or platform certification.
 - Commit, push, and publish only when requested.
+- Update working branches from `main` with rebase, preserving uncommitted changes; do
+  not create merge commits when synchronizing branches.
 
 ## Implementation style
 

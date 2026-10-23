@@ -121,6 +121,10 @@ abstract class FlaxPluginInstance {
 /// Public engine-independent extension boundary for host plugins.
 abstract class FlaxHostContext {
   String? get namespace;
+
+  /// Session-private fonts with Flutter public/system fallback.
+  ui.FlaxFontCollection? get fontCollection => null;
+
   FlaxJsRuntime get runtime;
 
   /// The immutable, already-validated registry installed for this session.
@@ -155,6 +159,8 @@ class _HostContext implements FlaxHostContext {
   bool retired = false;
   @override
   String? get namespace => session.namespace;
+  @override
+  ui.FlaxFontCollection get fontCollection => session._fontResources.collection;
   @override
   FlaxJsRuntime get runtime => session.runtime;
   @override

@@ -1,12 +1,27 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
+
+import 'canvas_bindings.g.dart';
 
 /// Canvas pixels, recorded pictures, and repaint notifications. Views borrow it.
 final class FlaxCanvasSurface extends ChangeNotifier {
   FlaxCanvasSurface(int width, int height, {this.alpha = true}) {
     resize(width, height, reset: true);
+  }
+
+  static final _bindings = FlaxCanvasBindings(DynamicLibrary.process());
+
+  static ui.Image _snapshot(ui.Picture picture, int width, int height) {
+    // Canvas unorm8 storage must not inherit the display's HDR pixel format.
+    final result = _bindings.flax_canvas_dispatch(0, 13, picture, [
+      width,
+      height,
+    ], 0);
+    if (result is String) throw FormatException(result);
+    return result as ui.Image;
   }
 
   static const pictureLimit = 32;
@@ -158,7 +173,7 @@ final class FlaxCanvasSurface extends ChangeNotifier {
     if (width <= 0 || height <= 0) return null;
     final picture = _snapshotPicture(base, pictures, width, height, alpha);
     try {
-      return await picture.toImage(width, height);
+      return _snapshot(picture, width, height);
     } finally {
       picture.dispose();
     }
@@ -184,7 +199,7 @@ final class FlaxCanvasSurface extends ChangeNotifier {
     if (width <= 0 || height <= 0) return null;
     final picture = _snapshotPicture(base, pictures, width, height, alpha);
     try {
-      return picture.toImageSync(width, height);
+      return _snapshot(picture, width, height);
     } finally {
       picture.dispose();
     }
