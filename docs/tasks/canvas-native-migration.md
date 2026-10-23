@@ -8,7 +8,7 @@ all three reference grids pass. This is not complete browser conformance.
 Continue Flax `feat/canvas-shared-buffer` and Flutter `feat/canvas-native-prototype`.
 Decode and record in C++, preserve JS call forms, correct reset/transfer/straight
 pixels, and complete the priority composition, shadow, filter and text behavior. Changes
-remain local and uncommitted.
+are committed locally in both experimental branches; neither branch is published.
 
 ## Implementation
 
@@ -38,6 +38,16 @@ boundary precedence and tiled snapshots reusing an entire texture for cropped or
 transformed geometry. Both are corrected in the independent engine worktree. The
 isolated build helper recompiles the affected renderer objects and embedded Metal
 libraries while leaving the maintained base build untouched.
+
+Repeated advanced blends also exposed an Impeller coverage-rounding defect on iOS
+Simulator's non-framebuffer-fetch path. Transform roundoff can turn a 580-pixel height
+into 579.99994. Truncating the allocation and mapping the original UVs onto that smaller
+rectangle repeatedly shrinks the backdrop, making a static Canvas boundary jump during
+animation. Blend targets now round allocations up and retain the original coverage
+geometry, preserving the pixel mapping and existing quantization boundaries. The
+regression compares every backdrop byte after 72 rotated black screen draws at three
+phases: the old engine changes 471,703 channel values in the first phase; the fix changes
+none. Twelve consecutive full-example simulator captures retain identical bounds.
 
 Text normalizes supported absolute and Offscreen-relative font units, preserves relative
 spacing across font changes, selects primary-face metrics and OpenType BASE baselines,
@@ -278,6 +288,15 @@ reproduction and documentation checks pass. Build/source hashes and logs are rec
 and test scratch are removed after recording results; engine builds are retained.
 
 ## Mobile runtime acceptance
+
+After rebasing both experiment branches, the coverage-rounding fix passes 428 ordinary
+test bodies per platform (414 Canvas + 14 joint-GC) on iOS 27.0 Simulator/Hermes/Debug and
+Pixel 4/V8/Release. Widget journals contain 418 and 417 successful entries respectively.
+The 370 workers and 78 reference scenes retain their original assertions; all three
+grids remain at 23,171 differing pixels on iOS and 22,686 on Android, under the unchanged
+33,000-pixel budget and channel limit 4. A background-interrupted iOS attempt is excluded;
+the complete passing rerun uses an isolated simulator. Both installed interactive
+examples are audited against the selected engine. No new frame-rate claim is made.
 
 The iOS frame-pacing follow-up corrects two Hermes scheduling defects: young-generation
 completion no longer escalates to a full Dart collection, and the idle timer waits

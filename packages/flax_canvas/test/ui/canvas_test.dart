@@ -115,6 +115,79 @@ void main() {
     await flaxTestUnmount(tester);
   }, timeout: const Timeout(Duration(seconds: 20)));
 
+  testWidgets('rotated screen draws preserve every backdrop pixel', (
+    tester,
+  ) async {
+    await tester.runAsync(() async {
+      const width = 1062;
+      const height = 580;
+      const bounds = ui.Rect.fromLTWH(0, 0, 1062, 580);
+      Future<Uint8List> render(double? phase) async {
+        final recorder = ui.PictureRecorder();
+        final canvas = ui.Canvas(recorder);
+        canvas.drawRect(bounds, ui.Paint()..color = const ui.Color(0xff00ff00));
+        for (var y = 0; y < height; y += 29) {
+          canvas.drawRect(
+            ui.Rect.fromLTWH(0, y.toDouble(), width.toDouble(), 1),
+            ui.Paint()..color = const ui.Color(0xff0000ff),
+          );
+        }
+        for (var x = 0; x < width; x += 31) {
+          canvas.drawRect(
+            ui.Rect.fromLTWH(x.toDouble(), 0, 1, height.toDouble()),
+            ui.Paint()..color = const ui.Color(0xffff0000),
+          );
+        }
+        if (phase != null) {
+          // Black screen leaves the opaque backdrop unchanged, even after AA.
+          for (var i = 0; i < 72; i++) {
+            canvas.save();
+            canvas.translate(width / 2, height / 2);
+            canvas.rotate(phase + i * 0.173);
+            canvas.drawRect(
+              const ui.Rect.fromLTWH(-80, -40, 160, 80),
+              ui.Paint()
+                ..color = const ui.Color(0xff000000)
+                ..blendMode = ui.BlendMode.screen,
+            );
+            canvas.restore();
+          }
+        }
+        final picture = recorder.endRecording();
+        try {
+          final image = await picture.toImage(width, height);
+          try {
+            return (await image.toByteData(format: ui.ImageByteFormat.rawRgba))!
+                .buffer
+                .asUint8List();
+          } finally {
+            image.dispose();
+          }
+        } finally {
+          picture.dispose();
+        }
+      }
+
+      final expected = await render(null);
+      for (final phase in [0.013, 0.17, 0.73]) {
+        final actual = await render(phase);
+        var differences = 0;
+        var first = -1;
+        for (var i = 0; i < expected.length; i++) {
+          if (actual[i] != expected[i]) {
+            differences++;
+            if (first < 0) first = i;
+          }
+        }
+        expect(
+          differences,
+          0,
+          reason: 'phase $phase changed backdrop at byte $first',
+        );
+      }
+    });
+  });
+
   testWidgets('filtered layers preserve resolved pixels and draw order', (
     tester,
   ) async {

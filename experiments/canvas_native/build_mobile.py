@@ -56,15 +56,15 @@ def main():
     (prototype / package_config).parent.mkdir(parents=True, exist_ok=True)
     (prototype / package_config).write_text(
         (base / package_config).read_text().replace(base.as_uri() + '/', prototype.as_uri() + '/'))
-    # Equal source files keep their original times so Ninja rebuilds actual changes.
-    tracked = run(['git', 'ls-files', '-z', 'engine/src'], cwd=prototype,
-                  capture_output=True).stdout.decode().split('\0')
-    for relative in filter(None, tracked):
-        source, destination = base / relative, prototype / relative
-        if source.is_file() and destination.is_file() and source.read_bytes() == destination.read_bytes():
-            stat = source.stat()
-            os.utime(destination, ns=(stat.st_atime_ns, stat.st_mtime_ns))
     if not output.exists():
+        # Match cloned objects once; later reverts must retain their new timestamps.
+        tracked = run(['git', 'ls-files', '-z', 'engine/src'], cwd=prototype,
+                      capture_output=True).stdout.decode().split('\0')
+        for relative in filter(None, tracked):
+            source, destination = base / relative, prototype / relative
+            if source.is_file() and destination.is_file() and source.read_bytes() == destination.read_bytes():
+                stat = source.stat()
+                os.utime(destination, ns=(stat.st_atime_ns, stat.st_mtime_ns))
         output.parent.mkdir(parents=True, exist_ok=True)
         # APFS clones preserve independent writable files while sharing unchanged blocks.
         run(['cp', '-cRp', str(original), str(output)])
@@ -136,6 +136,7 @@ def main():
         'impeller/entity/contents/content_context.cc',
         'impeller/entity/contents/content_context.h',
         'impeller/entity/contents/contents.cc',
+        'impeller/entity/contents/filters/blend_filter_contents.cc',
         'impeller/entity/contents/filters/gaussian_blur_filter_contents.cc',
         'impeller/entity/contents/tiled_texture_contents.cc',
         'impeller/entity/render_target_cache.cc',

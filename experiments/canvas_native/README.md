@@ -44,6 +44,8 @@ adding scoped filter command-buffer storage; replacing only the method implement
 would leave the old object allocation size in the isolated framework. The Canvas
 allocation site is also rebuilt with InlinePassContext's deferred texture storage.
 Header hashes in each receipt cover both internal layout changes.
+The blend-filter overlay preserves floating-point coverage when mapping input UVs and
+rounds texture allocation up, preventing repeated screen blends from shrinking pixels.
 
 Prepare this Flax worktree's ordinary dependencies and JS output first. Set absolute
 workspace-volume temporary and output paths; the example below assumes this checkout is
@@ -93,6 +95,8 @@ helper clones the maintained output into the paired engine worktree and runs its
 Ninja target, including renderer shaders. Missing third-party checkouts are borrowed
 read-only from the base checkout; writable outputs remain in the paired worktree. This
 also refreshes the XCFramework or Android JAR used by Flutter application packaging.
+Source timestamps are matched to the base only when cloning an output for the first
+time; later source reverts must still invalidate the isolated Ninja objects.
 Android exports the same Canvas dispatch/probe symbols as macOS and iOS. The Hermes
 producer must include this branch's TypedArray index patch; use an isolated cache so the
 maintained SDK remains unchanged. Simulator and device builds may share a prepared
