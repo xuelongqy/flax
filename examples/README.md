@@ -15,6 +15,16 @@ compose them. Framework contracts remain in package-owned tests. The playground'
 presentation helpers live in the private Core example package and do not add a
 production UI dependency.
 
+The seven module examples and Playground share the Dart
+[`FlaxExampleApp`](../packages/flax_example_support/README.md) shell. Its toolbar opens
+one native settings drawer with **System**, **Light**, **Dark** and an **FPS** switch.
+The host theme also supplies MediaQuery brightness to JS pages and native controls. The
+FPS badge floats above the Navigator without reducing the page's layout area. Appearance
+changes preserve module state and navigation; settings survive Flax Session remounts.
+FPS starts disabled and measures completed frames for the entire Flutter application; an
+idle page does not continuously render. Standalone and configured-binding fixtures
+retain their own application entrances.
+
 ## Package development and gallery presentation
 
 Work on a capability in its own `packages/<owner>/example`, including its JavaScript

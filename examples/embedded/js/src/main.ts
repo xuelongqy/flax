@@ -1,6 +1,6 @@
 import { createCanvasExample } from '@flax/example-canvas/showcase';
 import { createCoreExample } from '@flax/example-core/showcase';
-import { exampleColors, exampleKey, text } from '@flax/example-core/ui';
+import { exampleColors, examplePalette, exampleKey, text } from '@flax/example-core/ui';
 import {
   createCupertinoExample,
   cupertinoCollections,
@@ -12,7 +12,7 @@ import {
   materialCollections,
 } from '@flax/example-material-ui/showcase';
 import { createWebSocketExample } from '@flax/example-websocket/showcase';
-import { Color, FontWeight } from '@flax/dart/ui';
+import { Brightness, Color, FontWeight } from '@flax/dart/ui';
 import {
   Alignment,
   BorderRadius,
@@ -130,8 +130,9 @@ const examples = [
 
 class GalleryHome extends StatelessWidget {
   build(context: BuildContext): Widget {
+    const colors = examplePalette(context);
     return Scaffold({
-      backgroundColor: exampleColors.background,
+      backgroundColor: colors.background,
       body: LayoutBuilder({
         builder: (_context, constraints) => {
           const narrow = constraints.maxWidth < 680;
@@ -197,12 +198,12 @@ class GalleryHome extends StatelessWidget {
                         }),
                       }),
                       SizedBox({ height: 36 }),
-                      text('Choose your playground', 26, exampleColors.ink, true),
+                      text('Choose your playground', 26, colors.ink, true),
                       SizedBox({ height: 8 }),
                       text(
                         'Open a module. Try the controls. Make it your own.',
                         15,
-                        exampleColors.muted,
+                        colors.muted,
                       ),
                       SizedBox({ height: 24 }),
                       Wrap({
@@ -210,6 +211,7 @@ class GalleryHome extends StatelessWidget {
                         runSpacing: 20,
                         children: examples.map((entry) => {
                           const open = () => {
+                            const preview = entry.create();
                             void Navigator.of(context).push(
                               MaterialPageRoute({
                                 builder: (routeContext) =>
@@ -221,10 +223,11 @@ class GalleryHome extends StatelessWidget {
                                           Navigator.of(routeContext).pop(),
                                       }),
                                       title: Text(entry.title),
-                                      backgroundColor: exampleColors.background,
+                                      backgroundColor:
+                                        examplePalette(routeContext).background,
                                       scrolledUnderElevation: 0,
                                     }),
-                                    body: entry.create(),
+                                    body: preview,
                                   }),
                               }),
                             );
@@ -239,7 +242,7 @@ class GalleryHome extends StatelessWidget {
                               child: Card({
                                 margin: EdgeInsets.zero,
                                 elevation: 0,
-                                color: exampleColors.surface,
+                                color: colors.surface,
                                 shape: RoundedRectangleBorder({
                                   borderRadius: BorderRadius.circular(20),
                                 }),
@@ -274,26 +277,22 @@ class GalleryHome extends StatelessWidget {
                                               child: text(
                                                 entry.tag,
                                                 10,
-                                                exampleColors.muted,
+                                                colors.muted,
                                                 true,
                                               ),
                                             }),
-                                            text('↗', 23, exampleColors.muted),
+                                            text('↗', 23, colors.muted),
                                           ],
                                         }),
                                         SizedBox({ height: 24 }),
-                                        text(entry.title, 23, exampleColors.ink, true),
+                                        text(entry.title, 23, colors.ink, true),
                                         SizedBox({ height: 8 }),
-                                        text(
-                                          entry.description,
-                                          14,
-                                          exampleColors.muted,
-                                        ),
+                                        text(entry.description, 14, colors.muted),
                                         SizedBox({ height: 18 }),
                                         text(
                                           `Explore ${entry.title}`,
                                           13,
-                                          exampleColors.green,
+                                          colors.green,
                                           true,
                                         ),
                                       ],
@@ -309,7 +308,7 @@ class GalleryHome extends StatelessWidget {
                       text(
                         'One gallery. Independent examples. Built with Flax.',
                         12,
-                        exampleColors.muted,
+                        colors.muted,
                       ),
                     ],
                   }),
@@ -340,6 +339,13 @@ runApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData({
       colorScheme: ColorScheme.fromSeed({ seedColor: exampleColors.green }),
+      useMaterial3: true,
+    }),
+    darkTheme: ThemeData({
+      colorScheme: ColorScheme.fromSeed({
+        seedColor: exampleColors.green,
+        brightness: Brightness.dark,
+      }),
       useMaterial3: true,
     }),
     home: new GalleryHome(),

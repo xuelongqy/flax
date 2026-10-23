@@ -1,6 +1,7 @@
 import 'package:flax_material_ui_example/main.dart' as app;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart' show TextField, Theme;
 
 void main() {
   testWidgets(
@@ -32,6 +33,17 @@ Future<void> exerciseMaterialExample(WidgetTester tester) async {
   );
   await tester.pump();
   expect(find.text('Hello, Flax designer.'), findsOneWidget);
+  final nameField = find.byWidgetPredicate(
+    (widget) =>
+        widget is TextField && widget.key == const ValueKey('material-name'),
+  );
+  final editor = tester.widget<TextField>(nameField).controller;
+  await _tap(tester, find.byKey(const ValueKey('example-settings-toggle')));
+  await _tap(tester, find.byKey(const ValueKey('example-theme-dark')));
+  expect(Theme.of(tester.element(nameField)).brightness, Brightness.dark);
+  expect(tester.widget<TextField>(nameField).controller, same(editor));
+  expect(find.text('Hello, Flax designer.'), findsOneWidget);
+  await _tap(tester, find.byKey(const ValueKey('example-settings-close')));
 
   await _tap(tester, find.byKey(const ValueKey('material-selection')));
   await _tap(tester, find.byKey(const ValueKey('material-switch')));

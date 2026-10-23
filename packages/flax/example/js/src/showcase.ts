@@ -7,7 +7,7 @@ import {
   Wrap,
   type Widget,
 } from '@flax/flutter/widgets';
-import { action, exampleColors, examplePage, section, text } from './ui';
+import { action, examplePage, section, text } from './ui';
 
 export function createCoreExample(): Widget {
   const count = signal(0);
@@ -48,9 +48,9 @@ export function createCoreExample(): Widget {
           spacing: 20,
           runSpacing: 12,
           children: [
-            text('JS', 32, exampleColors.green, true),
-            text('→', 28, exampleColors.muted),
-            text('Flutter', 32, exampleColors.green, true),
+            text('JS', 32, 'green', true),
+            text('→', 28, 'muted'),
+            text('Flutter', 32, 'green', true),
           ],
         }),
       ),

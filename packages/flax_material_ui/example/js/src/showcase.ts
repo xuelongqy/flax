@@ -1,5 +1,5 @@
 import { Duration } from '@flax/dart/core';
-import { Color } from '@flax/dart/ui';
+import { Brightness } from '@flax/dart/ui';
 import {
   exampleColors,
   exampleKey,
@@ -59,6 +59,7 @@ import {
   Switch,
   TextButton,
   TextField,
+  Theme,
   ThemeData,
   showDialog,
 } from '@flax/material-ui';
@@ -78,7 +79,13 @@ export function createMaterialExample(): Widget {
     debugShowCheckedModeBanner: false,
     theme: ThemeData({
       colorScheme: ColorScheme.fromSeed({ seedColor: exampleColors.green }),
-      scaffoldBackgroundColor: exampleColors.background,
+      useMaterial3: true,
+    }),
+    darkTheme: ThemeData({
+      colorScheme: ColorScheme.fromSeed({
+        seedColor: exampleColors.green,
+        brightness: Brightness.dark,
+      }),
       useMaterial3: true,
     }),
     home: new MaterialCollection(),
@@ -167,7 +174,7 @@ class MaterialCollectionState extends State<MaterialCollection> {
             ],
           }),
           SizedBox({ height: 26 }),
-          text(`Button presses: ${this.clicks}`, 17, exampleColors.green, true),
+          text(`Button presses: ${this.clicks}`, 17, 'green', true),
         ],
       }),
     );
@@ -191,7 +198,7 @@ class MaterialCollectionState extends State<MaterialCollection> {
             onChanged: (value) => this.setState(() => (this.name = value)),
           }),
           SizedBox({ height: 18 }),
-          text(`Hello, ${this.name || 'friend'}.`, 18, exampleColors.green, true),
+          text(`Hello, ${this.name || 'friend'}.`, 18, 'green', true),
           SizedBox({ height: 18 }),
           DropdownButton<string>({
             value: this.destination,
@@ -351,7 +358,7 @@ class MaterialCollectionState extends State<MaterialCollection> {
       'Give content a home',
       'Cards, list tiles, avatars and native route transitions.',
       Card({
-        color: Color(0xffeef3ea),
+        color: Theme.of(this.context).colorScheme.surfaceContainerLow,
         elevation: 0,
         child: Padding({
           padding: EdgeInsets.all(16),
@@ -389,11 +396,7 @@ class MaterialCollectionState extends State<MaterialCollection> {
                 },
               }),
               Divider(),
-              text(
-                'A familiar interface, authored in JavaScript.',
-                14,
-                exampleColors.muted,
-              ),
+              text('A familiar interface, authored in JavaScript.', 14, 'muted'),
             ],
           }),
         }),

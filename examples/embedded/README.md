@@ -53,6 +53,15 @@ production Flax UI framework. Package examples remain independently runnable wit
 own plugin requirements. Material and Cupertino keep their native app and theme
 environments inside their selected preview.
 
+The Dart host uses the shared
+[`FlaxExampleApp`](../../packages/flax_example_support/README.md) shell. The toolbar's
+settings button opens a native drawer; **System**, **Light** and **Dark** update both
+the host and JS pages, including Material/Cupertino controls. **Show FPS** displays a
+passive FPS card above all routes and overlays, without a second content row. Closing
+the drawer keeps sampling active. Disabling FPS or disposing the shell removes its timer
+and listener. Settings survive Flax Session unmount/remount; they start with system
+appearance and FPS disabled when the Dart shell is recreated.
+
 ## Verification
 
 `test/aggregate_test.dart` checks missing-plugin rejection, shared module identity, all

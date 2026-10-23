@@ -1,4 +1,5 @@
 import 'package:flax/flax.dart';
+import 'package:flax_example_support/flax_example_support.dart';
 import 'package:flax_engine_hermes/flax_engine_hermes.dart';
 import 'package:flax_websocket/flax_websocket.dart';
 import 'package:flutter/services.dart';
@@ -18,8 +19,8 @@ Future<void> startApplication({String? apiBaseUrl}) async {
 
   final source = await rootBundle.loadString('assets/app.js');
   runApp(
-    Directionality(
-      textDirection: TextDirection.ltr,
+    FlaxExampleApp(
+      title: 'WebSocket',
       child: FlaxView(
         createRuntime: FlaxHermesEngine.createRuntime,
         source: source,

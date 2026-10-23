@@ -4,6 +4,16 @@ import 'package:flutter_test/flutter_test.dart';
 
 /// Follow the same entrances used by people browsing the gallery.
 Future<void> exerciseGallery(WidgetTester tester) async {
+  await tapGallery(
+    tester,
+    find.byKey(const ValueKey('example-settings-toggle')),
+  );
+  await tapGallery(tester, find.byKey(const ValueKey('example-theme-dark')));
+  await tapGallery(tester, find.byKey(const ValueKey('example-fps-toggle')));
+  await tapGallery(
+    tester,
+    find.byKey(const ValueKey('example-settings-close')),
+  );
   const entries = [
     ('core', 'Small pieces. Real Flutter.'),
     ('material', 'Material, in full color.'),
@@ -17,11 +27,38 @@ Future<void> exerciseGallery(WidgetTester tester) async {
   for (final entry in entries) {
     await tapGallery(tester, find.byKey(ValueKey('open-${entry.$1}')));
     expect(find.text(entry.$2), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('example-settings-toggle')),
+      findsOneWidget,
+    );
+    expect(find.byKey(const ValueKey('example-fps')), findsOneWidget);
+    expect(
+      MediaQuery.platformBrightnessOf(tester.element(find.text(entry.$2))),
+      Brightness.dark,
+    );
     switch (entry.$1) {
       case 'core':
         await tapGallery(tester, find.text('Increment JS'));
         expect(find.text('Count: 1'), findsOneWidget);
         expect(find.text('Doubled: 2'), findsOneWidget);
+        await tapGallery(
+          tester,
+          find.byKey(const ValueKey('example-settings-toggle')),
+        );
+        await tapGallery(
+          tester,
+          find.byKey(const ValueKey('example-theme-light')),
+        );
+        expect(find.text('Count: 1'), findsOneWidget);
+        await tapGallery(
+          tester,
+          find.byKey(const ValueKey('example-theme-dark')),
+        );
+        await tapGallery(
+          tester,
+          find.byKey(const ValueKey('example-settings-close')),
+        );
+        expect(find.text('Count: 1'), findsOneWidget);
       case 'material' || 'cupertino':
         await tapGallery(tester, find.text('Filled button'));
         expect(find.text('Button presses: 1'), findsOneWidget);
@@ -43,6 +80,15 @@ Future<void> exerciseGallery(WidgetTester tester) async {
     expect(find.text('Choose your playground'), findsOneWidget);
     expect(tester.takeException(), isNull, reason: '${entry.$1} example');
   }
+  await tapGallery(
+    tester,
+    find.byKey(const ValueKey('example-settings-toggle')),
+  );
+  await tapGallery(tester, find.byKey(const ValueKey('example-fps-toggle')));
+  await tapGallery(
+    tester,
+    find.byKey(const ValueKey('example-settings-close')),
+  );
 }
 
 Future<void> tapGallery(WidgetTester tester, Finder finder) async {

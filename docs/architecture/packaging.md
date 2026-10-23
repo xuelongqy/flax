@@ -513,6 +513,13 @@ that package, core, and the selected engine. The top-level
 [standalone](../../examples/standalone/README.md) applications are aggregate consumers;
 they do not own framework contract tests.
 
+The seven capability examples and embedded Playground reuse the development-only
+[`flax_example_support`](../../packages/flax_example_support/README.md) Dart shell. It
+owns native settings, appearance and an FPS overlay; production runtime packages do not
+depend on it. Only Dart application entrances install it. JS showcases consume the
+inherited MediaQuery brightness, so aggregate navigation does not create duplicate
+panels or listeners. The shell and settings outlive individual Flax Sessions.
+
 The generic package commands are:
 
 ```sh

@@ -1,6 +1,8 @@
 import 'package:flax_cupertino_ui_example/main.dart' as app;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:cupertino_ui/cupertino_ui.dart'
+    show CupertinoTextField, CupertinoTheme;
 
 void main() {
   testWidgets(
@@ -36,6 +38,21 @@ Future<void> exerciseCupertinoExample(WidgetTester tester) async {
   );
   await tester.pump();
   expect(find.text('Hello, Flax designer.'), findsOneWidget);
+  final nameField = find.byWidgetPredicate(
+    (widget) =>
+        widget is CupertinoTextField &&
+        widget.key == const ValueKey('cupertino-name'),
+  );
+  final editor = tester.widget<CupertinoTextField>(nameField).controller;
+  await _tap(tester, find.byKey(const ValueKey('example-settings-toggle')));
+  await _tap(tester, find.byKey(const ValueKey('example-theme-dark')));
+  expect(
+    CupertinoTheme.brightnessOf(tester.element(nameField)),
+    Brightness.dark,
+  );
+  expect(tester.widget<CupertinoTextField>(nameField).controller, same(editor));
+  expect(find.text('Hello, Flax designer.'), findsOneWidget);
+  await _tap(tester, find.byKey(const ValueKey('example-settings-close')));
   await tester.enterText(
     find.byKey(const ValueKey('cupertino-search')).last,
     'Buttons',

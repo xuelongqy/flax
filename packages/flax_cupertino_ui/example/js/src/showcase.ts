@@ -1,6 +1,6 @@
 import { Brightness, Color } from '@flax/dart/ui';
 import {
-  exampleColors,
+  examplePalette,
   exampleKey,
   examplePage,
   section,
@@ -12,6 +12,7 @@ import {
   Column,
   CrossAxisAlignment,
   Navigator,
+  MediaQuery,
   SafeArea,
   SizedBox,
   State,
@@ -55,7 +56,6 @@ export function createCupertinoExample(): Widget {
     debugShowCheckedModeBanner: false,
     theme: CupertinoThemeData({
       primaryColor: Color(0xff2566d8),
-      brightness: Brightness.light,
     }),
     home: new CupertinoCollection(),
   });
@@ -82,7 +82,7 @@ class CupertinoCollectionState extends State<CupertinoCollection> {
     this.editing = TextEditingController({ text: 'Alex Morgan' });
   }
 
-  build(_context: BuildContext): Widget {
+  build(context: BuildContext): Widget {
     const content = {
       Controls: () => this.controls(),
       Forms: () => this.forms(),
@@ -90,7 +90,7 @@ class CupertinoCollectionState extends State<CupertinoCollection> {
       Overlays: () => this.overlays(),
     };
     return CupertinoPageScaffold({
-      backgroundColor: exampleColors.background,
+      backgroundColor: examplePalette(context).background,
       navigationBar: CupertinoNavigationBar({ middle: Text('Cupertino collection') }),
       child: SafeArea({
         child: examplePage(
@@ -250,7 +250,11 @@ class CupertinoCollectionState extends State<CupertinoCollection> {
           }),
           CupertinoListTile({
             title: Text('Appearance'),
-            additionalInfo: Text('Light'),
+            additionalInfo: Text(
+              MediaQuery.platformBrightnessOf(this.context) === Brightness.dark
+                ? 'Dark'
+                : 'Light',
+            ),
           }),
         ],
       }),

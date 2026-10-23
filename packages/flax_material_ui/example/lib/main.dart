@@ -1,4 +1,5 @@
 import 'package:flax/flax.dart';
+import 'package:flax_example_support/flax_example_support.dart';
 import 'package:flax_engine_hermes/flax_engine_hermes.dart';
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flutter/services.dart';
@@ -18,12 +19,15 @@ Future<void> startApplication() async {
 
   final source = await rootBundle.loadString('assets/app.js');
   runApp(
-    FlaxView(
-      createRuntime: FlaxHermesEngine.createRuntime,
-      source: source,
-      sourceUrl: 'flax:flax_material_ui:example',
-      bindings: bindings,
-      plugins: const [FlaxMaterialPlugin()],
+    FlaxExampleApp(
+      title: 'Material UI',
+      child: FlaxView(
+        createRuntime: FlaxHermesEngine.createRuntime,
+        source: source,
+        sourceUrl: 'flax:flax_material_ui:example',
+        bindings: bindings,
+        plugins: const [FlaxMaterialPlugin()],
+      ),
     ),
   );
 }

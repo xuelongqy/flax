@@ -1,5 +1,5 @@
 import { dartTypes } from '@flax/core/bindings';
-import { Color, FontWeight } from '@flax/dart/ui';
+import { Brightness, Color, FontWeight } from '@flax/dart/ui';
 import {
   Border,
   BorderRadius,
@@ -20,6 +20,7 @@ import {
   Focus,
   GestureDetector,
   KeyEventResult,
+  MediaQuery,
   Overlay,
   Padding,
   Semantics,
@@ -29,6 +30,7 @@ import {
   ValueKey,
   WidgetsApp,
   runApp,
+  type BuildContext,
   type FocusNode,
   type TextEditingController,
   type Widget,
@@ -42,7 +44,24 @@ export const exampleColors = {
   muted: Color(0xff66736b),
   green: Color(0xff245c48),
   border: Color(0xffe1e6dd),
+  onGreen: Color(0xffffffff),
 };
+
+const darkColors = {
+  background: Color(0xff151c19),
+  surface: Color(0xff202b25),
+  ink: Color(0xffe4eee7),
+  muted: Color(0xffb1c1b6),
+  green: Color(0xffa2d6b5),
+  border: Color(0xff405249),
+  onGreen: Color(0xff133525),
+};
+
+export function examplePalette(context: BuildContext): typeof exampleColors {
+  return MediaQuery.platformBrightnessOf(context) === Brightness.dark
+    ? darkColors
+    : exampleColors;
+}
 
 const StringKey = ValueKey.$type(dartTypes.string);
 
@@ -50,7 +69,7 @@ export function exampleKey(value: string): ValueKey<string> {
   return StringKey(value);
 }
 
-/** Package-only hosts need Flutter's focus, localization and overlay environment. */
+/** Supply Flutter's focus and overlay environment; settings belong to the Dart host. */
 export function runExample(widget: Widget): void {
   runApp(
     WidgetsApp({
@@ -64,16 +83,19 @@ export function runExample(widget: Widget): void {
 export function text(
   value: string,
   size = 15,
-  color = exampleColors.ink,
+  color: Color | keyof typeof exampleColors = 'ink',
   bold = false,
 ): Widget {
-  return Text(value, {
-    style: TextStyle({
-      fontSize: size,
-      color,
-      height: 1.45,
-      ...(bold ? { fontWeight: FontWeight.w600 } : {}),
-    }),
+  return Builder({
+    builder: (context) =>
+      Text(value, {
+        style: TextStyle({
+          fontSize: size,
+          color: typeof color === 'string' ? examplePalette(context)[color] : color,
+          height: 1.45,
+          ...(bold ? { fontWeight: FontWeight.w600 } : {}),
+        }),
+      }),
   });
 }
 
@@ -84,47 +106,57 @@ export function input(
   id: string,
   onSubmitted?: () => void,
 ): Widget {
-  return Semantics({
-    label,
-    child: Container({
-      padding: EdgeInsets.all(14),
-      decoration: BoxDecoration({
-        color: exampleColors.surface,
-        border: Border.all({ color: exampleColors.border }),
-        borderRadius: BorderRadius.circular(10),
-      }),
-      child: EditableText({
-        key: exampleKey(id),
-        controller,
-        focusNode,
-        style: TextStyle({ color: exampleColors.ink, fontSize: 15 }),
-        cursorColor: exampleColors.green,
-        backgroundCursorColor: exampleColors.border,
-        ...(onSubmitted ? { onSubmitted: () => onSubmitted() } : {}),
-      }),
-    }),
+  return Builder({
+    builder: (context) => {
+      const colors = examplePalette(context);
+      return Semantics({
+        label,
+        child: Container({
+          padding: EdgeInsets.all(14),
+          decoration: BoxDecoration({
+            color: colors.surface,
+            border: Border.all({ color: colors.border }),
+            borderRadius: BorderRadius.circular(10),
+          }),
+          child: EditableText({
+            key: exampleKey(id),
+            controller,
+            focusNode,
+            style: TextStyle({ color: colors.ink, fontSize: 15 }),
+            cursorColor: colors.green,
+            backgroundCursorColor: colors.border,
+            ...(onSubmitted ? { onSubmitted: () => onSubmitted() } : {}),
+          }),
+        }),
+      });
+    },
   });
 }
 
 export function section(title: string, description: string, child: Widget): Widget {
-  return Container({
-    margin: EdgeInsets.only({ bottom: 18 }),
-    padding: EdgeInsets.all(24),
-    decoration: BoxDecoration({
-      color: exampleColors.surface,
-      borderRadius: BorderRadius.circular(20),
-      border: Border.all({ color: exampleColors.border }),
-    }),
-    child: Column({
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Semantics({ header: true, child: text(title, 20, exampleColors.ink, true) }),
-        SizedBox({ height: 6 }),
-        text(description, 14, exampleColors.muted),
-        SizedBox({ height: 22 }),
-        child,
-      ],
-    }),
+  return Builder({
+    builder: (context) => {
+      const colors = examplePalette(context);
+      return Container({
+        margin: EdgeInsets.only({ bottom: 18 }),
+        padding: EdgeInsets.all(24),
+        decoration: BoxDecoration({
+          color: colors.surface,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all({ color: colors.border }),
+        }),
+        child: Column({
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Semantics({ header: true, child: text(title, 20, colors.ink, true) }),
+            SizedBox({ height: 6 }),
+            text(description, 14, colors.muted),
+            SizedBox({ height: 22 }),
+            child,
+          ],
+        }),
+      });
+    },
   });
 }
 
@@ -134,39 +166,44 @@ export function examplePage(
   description: string,
   children: readonly Widget[],
 ): Widget {
-  return DefaultTextStyle({
-    style: TextStyle({ color: exampleColors.ink, fontSize: 15 }),
-    child: Container({
-      color: exampleColors.background,
-      child: SingleChildScrollView({
-        child: Center({
-          child: ConstrainedBox({
-            constraints: BoxConstraints({ maxWidth: 1000 }),
-            child: Padding({
-              padding: EdgeInsets.fromLTRB(24, 32, 24, 32),
-              child: Column({
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  text(eyebrow.toUpperCase(), 12, exampleColors.green, true),
-                  SizedBox({ height: 12 }),
-                  text(title, 36, exampleColors.ink, true),
-                  SizedBox({ height: 8 }),
-                  text(description, 16, exampleColors.muted),
-                  SizedBox({ height: 28 }),
-                  ...children,
-                  SizedBox({ height: 8 }),
-                  text(
-                    'Made with JavaScript. Rendered by Flutter.',
-                    12,
-                    exampleColors.muted,
-                  ),
-                ],
+  return Builder({
+    builder: (context) => {
+      const colors = examplePalette(context);
+      return DefaultTextStyle({
+        style: TextStyle({ color: colors.ink, fontSize: 15 }),
+        child: Container({
+          color: colors.background,
+          child: SingleChildScrollView({
+            child: Center({
+              child: ConstrainedBox({
+                constraints: BoxConstraints({ maxWidth: 1000 }),
+                child: Padding({
+                  padding: EdgeInsets.fromLTRB(24, 32, 24, 32),
+                  child: Column({
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      text(eyebrow.toUpperCase(), 12, colors.green, true),
+                      SizedBox({ height: 12 }),
+                      text(title, 36, colors.ink, true),
+                      SizedBox({ height: 8 }),
+                      text(description, 16, colors.muted),
+                      SizedBox({ height: 28 }),
+                      ...children,
+                      SizedBox({ height: 8 }),
+                      text(
+                        'Made with JavaScript. Rendered by Flutter.',
+                        12,
+                        colors.muted,
+                      ),
+                    ],
+                  }),
+                }),
               }),
             }),
           }),
         }),
-      }),
-    }),
+      });
+    },
   });
 }
 
@@ -187,6 +224,7 @@ export function action(caption: string, onTap: () => void, id?: string): Widget 
     child: Builder({
       builder: (context) => {
         const focused = Focus.of(context).hasFocus;
+        const colors = examplePalette(context);
         return Semantics({
           button: true,
           label: caption,
@@ -200,14 +238,14 @@ export function action(caption: string, onTap: () => void, id?: string): Widget 
             child: Container({
               padding: EdgeInsets.symmetric({ horizontal: 18, vertical: 12 }),
               decoration: BoxDecoration({
-                color: exampleColors.green,
+                color: colors.green,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all({
-                  color: focused ? Color(0xffe7b86b) : exampleColors.green,
+                  color: focused ? Color(0xffe7b86b) : colors.green,
                   width: 2,
                 }),
               }),
-              child: text(caption, 14, exampleColors.surface, true),
+              child: text(caption, 14, colors.onGreen, true),
             }),
           }),
         });

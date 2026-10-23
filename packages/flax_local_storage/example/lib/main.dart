@@ -1,4 +1,5 @@
 import 'package:flax/flax.dart';
+import 'package:flax_example_support/flax_example_support.dart';
 import 'package:flax_engine_hermes/flax_engine_hermes.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flutter/services.dart';
@@ -18,8 +19,8 @@ Future<void> startApplication({String? storageDirectory}) async {
 
   final source = await rootBundle.loadString('assets/app.js');
   runApp(
-    Directionality(
-      textDirection: TextDirection.ltr,
+    FlaxExampleApp(
+      title: 'Local storage',
       child: Row(
         children: [
           for (final entry in const [
