@@ -167,8 +167,8 @@ Future<void> _unitTests(FlaxWorkspacePackage package) async {
     usesFlutter: package.usesFlutter,
     path: 'test',
     exclude: 'test/ui',
-    // Unit tests do not start Flax; runtime and UI gates use the local engine.
-    useLocalEngine: false,
+    // The maintained Flutter framework requires its matching dart:ui library.
+    useLocalEngine: package.usesFlutter,
   );
 }
 
@@ -203,6 +203,8 @@ Future<int> _runTests(
     ],
     directory: root.path,
     useLocalEngine: useLocalEngine,
+    // Serial compilation fixtures keep their own per-test timeout.
+    timeout: const Duration(minutes: 90),
   );
   return tests.length;
 }

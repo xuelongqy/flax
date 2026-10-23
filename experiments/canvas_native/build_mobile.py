@@ -102,8 +102,7 @@ def main():
     nm = ['nm', '-gU', str(product)] if ios else [str(clang / 'llvm-nm'), '-gD', '--defined-only', str(product)]
     symbols = {line.split()[-1].removeprefix('_') for line in
                run(nm, capture_output=True, text=True).stdout.splitlines() if line.split()}
-    required = {'flax_canvas_dispatch', 'flax_canvas_version',
-                'flax_canvas_prototype_draw', 'flax_canvas_prototype_pending'}
+    required = {'flax_canvas_dispatch', 'flax_canvas_version'}
     assert required.issubset(symbols), required - symbols
     selected = args.output.resolve() / 'engine-src/out' / name
     if selected.is_symlink() and selected.resolve() != output:
@@ -118,7 +117,7 @@ def main():
     if not source_link.exists():
         source_link.symlink_to(prototype / 'engine/src/flutter', target_is_directory=True)
     sources = ['engine/src/flutter/flax/native/src/' + file for file in
-               ['runtime.cpp', 'canvas_decoder.inc', 'canvas_prototype.inc']]
+               ['runtime.cpp', 'canvas_decoder.inc']]
     sources += ['engine/src/flutter/' + name for name in [
         'shell/platform/android/android_exports.lst',
         'flax/native/include/flax/canvas.h',
@@ -137,7 +136,9 @@ def main():
         'impeller/entity/contents/content_context.h',
         'impeller/entity/contents/contents.cc',
         'impeller/entity/contents/filters/blend_filter_contents.cc',
+        'impeller/entity/contents/filters/color_matrix_filter_contents.cc',
         'impeller/entity/contents/filters/gaussian_blur_filter_contents.cc',
+        'impeller/entity/shaders/filters/gaussian.frag',
         'impeller/entity/contents/tiled_texture_contents.cc',
         'impeller/entity/render_target_cache.cc',
         'impeller/renderer/render_target.cc',

@@ -5,7 +5,7 @@ context; Flutter displays the result through `CanvasView`. Drawing is encoded as
 private command buffer, decoded in the Flutter engine and recorded into DisplayLists
 wrapped by `dart:ui` pictures. Paint never calls JS.
 
-This experimental branch requires a Flutter engine with the Canvas extension.
+The plugin requires the maintained Flutter engine with the Canvas extension.
 Installation checks the dispatch entry point without an exact feature-version gate;
 engines without the extension cannot run this decoder.
 

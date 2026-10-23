@@ -75,7 +75,7 @@ keep the maintained engine/SDK outputs for subsequent checks.
 | Framework UI with the matching Flax engine             | `dart run melos run ui:test`                              |
 | Cross-module aggregate with the matching Flax engine   | `dart run melos run check:aggregate`                      |
 | All UI-owning packages plus aggregate                  | `dart run melos run check:ui`                             |
-| Launch prepared macOS example                          | `dart run melos run example:run`                          |
+| Launch prepared example for the selected target        | `dart run melos run example:run`                          |
 | Launch one package's example only                      | `dart run tool/example_run.dart --package=NAME`           |
 | Standalone source and release with the matching engine | `dart run melos run check:standalone`                     |
 | Launch standalone macOS app                            | `dart run melos run standalone:run`                       |

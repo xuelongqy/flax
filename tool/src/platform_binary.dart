@@ -65,15 +65,7 @@ Future<Map<String, Object?>> verifyEngineApplication(
       final normalized = <String>[];
       for (final (index, file) in [original, matches.single].indexed) {
         final copy = file.copySync('${temporary.path}/$index-$name');
-        final strip = await Process.run('codesign', [
-          '--remove-signature',
-          copy.path,
-        ]);
-        if (strip.exitCode != 0 && !'${strip.stderr}'.contains('not signed')) {
-          throw StateError(
-            'Cannot inspect signed library $name: ${strip.stderr}',
-          );
-        }
+        await normalizeAppleCodeSignature(copy);
         normalized.add((await sha256.bind(copy.openRead()).first).toString());
       }
       if (normalized[0] != normalized[1]) {
@@ -83,6 +75,7 @@ Future<Map<String, Object?>> verifyEngineApplication(
       hashes[name] = normalized.first;
     }
     final binary = File('$framework/FlutterMacOS');
+    await _verifyEngineExports(target, binary);
     await verifyBinaryArchitectures(target, [binary, ...libraries]);
     await verifyNativeDependencies(target, [binary, ...libraries]);
     await _inspect('codesign', ['--verify', '--deep', '--strict', product]);
@@ -108,6 +101,7 @@ Future<Map<String, Object?>> verifyEngineApplication(
       );
     }
     return {
+      'canvasExtension': true,
       'signatureVerified': true,
       'hardenedRuntime': true,
       'allowJit': true,
@@ -185,12 +179,7 @@ Future<Map<String, Object?>> _verifyIosEngineApplication(
       throw StateError('Unexpected iOS engine dependency: $dependency');
     }
   }
-  final symbols = await _inspect('nm', ['-gU', binary.path]);
-  for (final symbol in ['_flax_engine_get_api', '_flax_engine_get_gc_api']) {
-    if (!RegExp('\\b${RegExp.escape(symbol)}\\b').hasMatch(symbols)) {
-      throw StateError('Missing iOS engine export: $symbol');
-    }
-  }
+  await _verifyEngineExports(target, binary);
   final temporary = Directory.systemTemp.createTempSync(
     'flax-ios-engine-audit-',
   );
@@ -198,25 +187,7 @@ Future<Map<String, Object?>> _verifyIosEngineApplication(
     final hashes = <String>[];
     for (final (index, input) in [original, binary].indexed) {
       final copy = input.copySync('${temporary.path}/$index-Flutter');
-      final strip = await Process.run('codesign', [
-        '--remove-signature',
-        copy.path,
-      ]);
-      if (strip.exitCode != 0 && !'${strip.stderr}'.contains('not signed')) {
-        throw StateError(
-          'Cannot normalize the iOS engine signature: ${strip.stderr}',
-        );
-      }
-      // Removing a signature leaves its old size in unused load-command bytes.
-      await _inspect('codesign', [
-        '--force',
-        '--sign',
-        '-',
-        '--identifier',
-        'org.flax.engine-audit',
-        '--timestamp=none',
-        copy.path,
-      ]);
+      await normalizeAppleCodeSignature(copy);
       hashes.add((await sha256.bind(copy.openRead()).first).toString());
     }
     if (hashes[0] != hashes[1]) {
@@ -262,6 +233,7 @@ Future<Map<String, Object?>> _verifyIosEngineApplication(
     return {
       'signatureVerified': true,
       'adHocSigning': adHoc,
+      'canvasExtension': true,
       'signingTeam': ?team,
       'dartAot': !simulator,
       if (!simulator)
@@ -319,6 +291,10 @@ Future<Map<String, Object?>> _verifyAndroidEngineApplication(
   try {
     await _inspect('unzip', ['-q', product, ...paths, '-d', extracted.path]);
     final files = [for (final path in paths) File('${extracted.path}/$path')];
+    await _verifyEngineExports(
+      target,
+      File('${extracted.path}/lib/arm64-v8a/libflutter.so'),
+    );
     final hashes = <String, String>{};
     for (final entry in expected.entries) {
       final name = p.basename(entry.key);
@@ -366,6 +342,7 @@ Future<Map<String, Object?>> _verifyAndroidEngineApplication(
     await _inspect('$tools/zipalign', ['-c', '-P', '16', '4', product]);
     await _inspect('$tools/apksigner', ['verify', '--verbose', product]);
     return {
+      'canvasExtension': true,
       'signatureVerified': true,
       'singleV8Closure': true,
       'nativeLibraries': paths.map(p.basename).toList()..sort(),
@@ -377,6 +354,50 @@ Future<Map<String, Object?>> _verifyAndroidEngineApplication(
     };
   } finally {
     extracted.deleteSync(recursive: true);
+  }
+}
+
+/// Canonicalize signatures on disposable copies before comparing engine bytes.
+Future<void> normalizeAppleCodeSignature(File binary) async {
+  final strip = await Process.run('codesign', [
+    '--remove-signature',
+    binary.path,
+  ]);
+  if (strip.exitCode != 0 && !'${strip.stderr}'.contains('not signed')) {
+    throw StateError('Cannot normalize ${binary.path}: ${strip.stderr}');
+  }
+  // Removal retains signature allocation sizes and unused load-command bytes.
+  await _inspect('codesign', [
+    '--force',
+    '--sign',
+    '-',
+    '--identifier',
+    'org.flax.engine-audit',
+    '--timestamp=none',
+    binary.path,
+  ]);
+}
+
+Future<void> _verifyEngineExports(FlaxNativeTarget target, File binary) async {
+  final output = await _inspect(target.apple ? 'nm' : 'llvm-nm', [
+    if (target.apple) '-gU' else ...['-gD', '--defined-only'],
+    binary.path,
+  ]);
+  final symbols = output
+      .split('\n')
+      .where((line) => line.trim().isNotEmpty)
+      .map((line) => line.trim().split(RegExp(r'\s+')).last)
+      .toSet();
+  for (final name in [
+    'flax_engine_get_api',
+    'flax_engine_get_gc_api',
+    'flax_canvas_dispatch',
+    'flax_canvas_version',
+  ]) {
+    final symbol = target.apple ? '_$name' : name;
+    if (!symbols.contains(symbol)) {
+      throw StateError('Missing engine export $symbol in ${binary.path}');
+    }
   }
 }
 

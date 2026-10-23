@@ -196,13 +196,15 @@ Future<void> withExample(
   String root,
   String engine,
   String kind,
-  Future<void> Function(String flutter) action,
-) async {
+  Future<void> Function(String flutter) action, {
+  bool forApplication = false,
+}) async {
   final sourcePubspec = readYamlFile(
     File(p.join(root, 'examples', kind, 'pubspec.yaml')),
   );
   final sourceEngines = _engineDependencies(sourcePubspec);
-  if (sourceEngines.length == 1 &&
+  if (!forApplication &&
+      sourceEngines.length == 1 &&
       sourceEngines.single == engine &&
       Directory('$root/examples/$kind/${currentCheckTarget().os}')
           .existsSync()) {
@@ -260,6 +262,9 @@ Future<void> withExample(
     ) as Map<String, dynamic>;
     pubspec.remove('resolution');
     final dependencies = pubspec['dependencies'] as Map<String, dynamic>;
+    if (forApplication) {
+      (pubspec['dev_dependencies'] as Map?)?.remove('integration_test');
+    }
     _replaceEngineDependencies(dependencies, engine);
     for (final name in packages) {
       final dev = pubspec['dev_dependencies'] as Map<String, dynamic>?;
@@ -284,6 +289,7 @@ Future<void> withPackageExample(
   FlaxWorkspacePackage package,
   String engine,
   Future<void> Function(String flutter) action, {
+  bool forApplication = false,
   Future<void> Function(String, List<String>, {String? directory}) runCommand =
       run,
 }) async {
@@ -291,7 +297,8 @@ Future<void> withPackageExample(
     File(p.join(package.example.path, 'pubspec.yaml')),
   );
   final sourceEngines = _engineDependencies(sourcePubspec);
-  if (sourceEngines.length == 1 &&
+  if (!forApplication &&
+      sourceEngines.length == 1 &&
       sourceEngines.single == engine &&
       Directory('${package.example.path}/${currentCheckTarget().os}')
           .existsSync()) {
@@ -324,6 +331,9 @@ Future<void> withPackageExample(
     final manifest = File(p.join(flutter.path, 'pubspec.yaml'));
     final pubspec = readYamlFile(manifest)..remove('resolution');
     final dependencies = pubspec['dependencies'] as Map<String, dynamic>;
+    if (forApplication) {
+      (pubspec['dev_dependencies'] as Map?)?.remove('integration_test');
+    }
     _replaceEngineDependencies(dependencies, engine);
     for (final name in packages) {
       if (dependencies.containsKey(name) || name == 'flax_engine_$engine') {

@@ -1,6 +1,6 @@
 # Canvas API coverage
 
-Audit date: 2026-10-22. Scope: the
+Audit date: 2026-10-24. Scope: the
 [WHATWG OffscreenCanvas 2D context](https://html.spec.whatwg.org/multipage/canvas.html#the-offscreen-2d-rendering-context),
 compared with the [public declarations](../../packages/flax_canvas/js/src/types.ts),
 [encoder](../../packages/flax_canvas/js/src/canvas.ts), and the paired engine decoder.
@@ -16,7 +16,7 @@ mixins plus `canvas`. The previous audit counted 64. The eight additions are
 Flax extension. Name coverage does not establish complete WebIDL, color, text, exception
 or pixel conformance.
 
-| Area                 | Implemented in the paired experiment                                                                                                                                                                  | Remaining limits                                                                                                                                                                                                                                                                               |
+| Area                 | Implemented in the maintained engine                                                                                                                                                                  | Remaining limits                                                                                                                                                                                                                                                                               |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | State and transforms | Pixel-clearing reset, save/restore, context-lifetime query, partial matrix dictionaries and six alias pairs with conflict validation                                                                  | getTransform returns a 2D affine value with matrix aliases and math methods, not a DOMMatrix global; no context-loss events or simulated GPU-loss acceptance                                                                                                                                   |
 | Paths                | Native fill/stroke hit tests, dash/cap/join/miter/CTM-aware stroke hits, iterable elliptical roundRect radii, dash origin and post-shape subpaths, SVG prefix recovery, transformed addPath           | 56 upstream roundRect workers pass; SVG command/error/addPath regressions pass; not the complete SVG geometry suite                                                                                                                                                                            |
@@ -75,8 +75,8 @@ wait. Frequent reads can stall the UI; `getImageDataAsync()` remains available.
 
 ## Selected WPT validation
 
-The [pinned WPT suite](../../packages/flax_canvas/test/wpt/README.md) includes 364
-worker tests and three upstream PNG reference grids with 26 operators each (442
+The [pinned WPT suite](../../packages/flax_canvas/test/wpt/README.md) includes 370
+worker tests and three upstream PNG reference grids with 26 operators each (448
 worker/reference scenes). Worker assertions retain their original tolerances; reference
 grids keep the upstream maximum channel difference of 4 and differing-pixel budget of
 33,000. The adapter preloads the original fonts and nine image assets and runs drawing
@@ -95,22 +95,24 @@ equal pixels before and after bitmap transfer. See the experiment record for
 final-source evidence and platform limits; this selection does not establish full WPT
 conformance.
 
-Installed Debug applications also pass the shared selection on an Android 13 Pixel 4
-with V8 and an iOS 27.0 arm64 simulator with Hermes. Their three grids report 22,686
-and 23,171 differing pixels respectively, with the same original thresholds. The
-mobile gate audits packaged engine content and SDK libraries. Android exports the
-Canvas entry points; the pinned Hermes patch corrects invalid numeric TypedArray
-indices used by ImageData without replacing the native pixel array or changing JS APIs.
+The final installed applications pass the shared selection on an Android 13 Pixel 4 with
+V8/Release and an iOS 27.0 arm64 simulator with Hermes/Debug. Each run completes 428
+ordinary Canvas/GC test bodies plus four lifecycle hooks. Their three grids report
+22,686 and 23,171 differing pixels respectively, with the same original thresholds. The
+mobile gate audits packaged engine content and SDK libraries. Android exports the Canvas
+entry points; the pinned Hermes patch corrects invalid numeric TypedArray indices used
+by ImageData without replacing the native pixel array or changing JS APIs.
 
-## Remaining priority
+## Deferred scope
 
 1. Expand WPT to further SVG curve/arc edges and text cases.
 2. Add remaining CSS font forms and missing small-caps synthesis with font-specific
    cases.
 3. Add wide-gamut storage and float16 when their corresponding Flutter/renderer paths
    can be verified; Lab/LCH/OKLab/color() and relative colors also remain.
-4. Extend mobile acceptance to physical iOS and Release/AOT; verify context-loss recovery
-   and extended stress. The current mobile gate covers installed Debug applications.
+4. Verify GPU-loss recovery, extended thermal stress and additional mobile GPUs. The
+   current final-source gates cover Android Release/AOT and iOS simulator Debug; earlier
+   physical iOS Release evidence is recorded separately.
 5. Treat DOM, Worker/structured-clone, video and GPU APIs as separate integration scope.
 
 See the [Canvas contract](canvas.md) for ownership and the

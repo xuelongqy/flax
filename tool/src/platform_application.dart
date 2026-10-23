@@ -477,6 +477,23 @@ void configurePlatformProject(String app, FlaxNativeTarget target) {
           )
           .replaceAll('minSdk = flutter.minSdkVersion', 'minSdk = 24'),
     );
+    if (!gradle.readAsStringSync().contains(
+      'android.defaultConfig.ndk.abiFilters',
+    )) {
+      gradle.writeAsStringSync(
+        '\nandroid.defaultConfig.ndk.abiFilters.add("${target.androidAbi}")\n'
+        // Preserve the verified SDK closure; Flutter itself may be stripped.
+        'android.packaging.jniLibs.keepDebugSymbols.addAll(listOf("**/libv8.so", "**/libc++_shared.so"))\n',
+        mode: FileMode.append,
+      );
+    }
+    final properties = File('$app/android/gradle.properties');
+    if (!properties.readAsStringSync().contains('disable-abi-filtering=true')) {
+      properties.writeAsStringSync(
+        '\ndisable-abi-filtering=true\n',
+        mode: FileMode.append,
+      );
+    }
     for (final variant in ['main', 'debug', 'profile']) {
       final file = File('$app/android/app/src/$variant/AndroidManifest.xml');
       if (!file.existsSync()) continue;
@@ -506,7 +523,7 @@ void configurePlatformProject(String app, FlaxNativeTarget target) {
         RegExp(
           r'(MACOSX_DEPLOYMENT_TARGET|IPHONEOS_DEPLOYMENT_TARGET) = [^;]+;',
         ),
-        (m) => '${m[1]} = 15.0;',
+        (m) => '${m[1]} = ${target.os == 'ios' ? '16.3' : '15.0'};',
       ),
     );
   }

@@ -94,8 +94,9 @@ The [application experiment](../../../../experiments/canvas_native/README.md) pa
 the same worker/reference suite, ordinary Canvas integration tests, decoder tests and
 benchmark into actual Debug/Metal and Release/AOT/Metal applications using its debug-app
 and release modes. Their gates also verify the packaged and loaded framework. Its mobile
-runner reuses these sources in installed Android/V8 and iOS/Hermes Debug applications
-and audits their packaged engine and SDK libraries.
+runner reuses these sources in installed Android/V8 Debug or Release applications and
+iOS/Hermes simulator Debug or device Release applications, auditing their packaged
+engine and SDK libraries.
 
 ## Current reference-grid results
 
@@ -107,9 +108,11 @@ that located and corrected the source-bitmap quantization boundary. See the
 [experiment record](../../../../docs/tasks/canvas-native-migration.md) for final-source
 evidence and platform limits.
 
-Mobile Debug acceptance passes on a Pixel 4 (Android 13/V8) and an arm64 iPhone 18 Pro
-simulator (iOS 27.0/Hermes). The three grids each report 22,686 and 23,171 differing
-pixels respectively. All workers pass without assertion or threshold changes. Hermes's
-invalid TypedArray index behavior was fixed in its native engine after the original
-`2d.imageData.get.invalid` worker exposed it. This does not certify physical iOS, mobile
-Release/AOT or complete ECMAScript conformance.
+Final-source mobile acceptance passes 428 ordinary test bodies plus four lifecycle hooks
+on a Pixel 4 (Android 13/V8/Release) and an arm64 iPhone 18 Pro simulator (iOS
+27.0/Hermes/Debug). The three grids each report 22,686 and 23,171 differing pixels
+respectively. All workers pass without assertion or threshold changes. Hermes's invalid
+TypedArray index behavior was fixed in its native engine after the original
+`2d.imageData.get.invalid` worker exposed it. This final-source run does not certify
+physical iOS, other mobile GPUs or complete ECMAScript conformance; earlier physical iOS
+evidence is recorded separately.

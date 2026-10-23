@@ -1,27 +1,17 @@
 # Native Canvas batch migration
 
-This macOS arm64 V8 experiment compares four ways to record solid black `fillRect`
-operations and commit a real Flutter Picture:
+This macOS arm64 V8 benchmark compares the production C++ batch decoder with the
+retained test-only Dart decoder. Both use the same installed JS Canvas encoder and wrap
+their result in a Flutter Picture. The plugin enters Dart once per batch and passes the
+shared byte view to one non-leaf engine call. Image registration, retain calls and
+source Canvas snapshots still cross the host boundary. Pixel readback is used only for
+correctness checks outside the timing samples.
 
-| Path                 | Per-rectangle work                       | Commit                                                                  |
-| -------------------- | ---------------------------------------- | ----------------------------------------------------------------------- |
-| Native               | Shared JS Canvas encoder                 | Canvas plugin, one engine call, full C++ decoder and DisplayListBuilder |
-| Dart reference       | Same installed JS Canvas encoder         | Retained test-only Dart decoder                                         |
-| Minimal native batch | Same installed JS Canvas encoder         | Original fillRect-only C++ probe                                        |
-| Native direct        | JSI host function and DisplayListBuilder | Native DisplayList completion                                           |
-
-All four paths wrap their result in an outer Flutter Picture. The complete plugin enters
-Dart once per batch and passes the shared byte view to one non-leaf engine call. Drawing
-opcodes are decoded in the engine; image registration, retain calls and source Canvas
-snapshots still cross the host boundary. The two minimal JSI probes hand off their
-finished DisplayList once. No image readback or texture upload implements the native
-handoff. Pixels are read back only for correctness checks outside the timing samples.
-
-The JS fixture reuses the installed encoder's internal base constructor and `flush()`.
-These are experiment-only accesses, not new public application APIs. The Canvas plugin
-uses the complete engine decoder; its old Dart implementation lives in test/support. The
-native branch retains `__flaxCanvasPrototype` in each runtime and explicitly releases
-pending frames on runtime close.
+The JS fixture accesses the encoder's internal base constructor and `flush()` only for
+this benchmark. These are not public application APIs. The original direct-JSI and
+fillRect-only batch probes have been removed from the maintained runtime; historical
+four-way measurements below and in the task record describe the earlier experiment, not
+the current benchmark.
 
 ## Build and run
 
@@ -43,9 +33,9 @@ site, plus the changed snapshot/blur and inline-pass consumers. This is required
 adding scoped filter command-buffer storage; replacing only the method implementations
 would leave the old object allocation size in the isolated framework. The Canvas
 allocation site is also rebuilt with InlinePassContext's deferred texture storage.
-Header hashes in each receipt cover both internal layout changes.
-The blend-filter overlay preserves floating-point coverage when mapping input UVs and
-rounds texture allocation up, preventing repeated screen blends from shrinking pixels.
+Header hashes in each receipt cover both internal layout changes. The blend-filter
+overlay preserves floating-point coverage when mapping input UVs and rounds texture
+allocation up, preventing repeated screen blends from shrinking pixels.
 
 Prepare this Flax worktree's ordinary dependencies and JS output first. Set absolute
 workspace-volume temporary and output paths; the example below assumes this checkout is
@@ -96,12 +86,12 @@ Ninja target, including renderer shaders. Missing third-party checkouts are borr
 read-only from the base checkout; writable outputs remain in the paired worktree. This
 also refreshes the XCFramework or Android JAR used by Flutter application packaging.
 Source timestamps are matched to the base only when cloning an output for the first
-time; later source reverts must still invalidate the isolated Ninja objects.
-Android exports the same Canvas dispatch/probe symbols as macOS and iOS. The Hermes
-producer must include this branch's TypedArray index patch; use an isolated cache so the
-maintained SDK remains unchanged. Simulator and device builds may share a prepared
-cache with the same locked recipe. Cache validation unwinds overlapping patches in
-reverse order in a disposable copy; changed recipes still require a fresh cache.
+time; later source reverts must still invalidate the isolated Ninja objects. Android
+exports the same Canvas dispatch/probe symbols as macOS and iOS. The Hermes producer
+must include this branch's TypedArray index patch; use an isolated cache so the
+maintained SDK remains unchanged. Simulator and device builds may share a prepared cache
+with the same locked recipe. Cache validation unwinds overlapping patches in reverse
+order in a disposable copy; changed recipes still require a fresh cache.
 
 With the workspace-local temporary environment above:
 
@@ -142,19 +132,16 @@ execution. Source/build receipts, application audits and per-case results remain
 ## Measurement and limits
 
 Each fillRect path warms up for 30 frames, followed by nine samples of ten frames. First
-position rotates through all four paths. Timing includes the JS loop, encoding where
+position rotates through both paths. Timing includes the JS loop, encoding where
 applicable, native/Dart recording, commit, the outer Picture and the microtask
 checkpoint. Final Picture disposal, rasterization, frame scheduling, layout and display
 presentation are excluded. Raw samples are saved as
 `.local/canvas-native/benchmark-{mode}.json`.
 
-The benchmark correctness check compares all RGBA pixels against the Dart reference,
-tests non-finite coordinates, negative sizes, malformed packets and invalid native
-targets, and verifies that runtime close releases an unconsumed probe frame and that
-plugin close releases native host/surface/image registrations. The minimal probes
-require coordinates to be finite with absolute values at most 100,000,000; rectangle
-sizes must be nonnegative. The native probe decoder accepts only command version 1 with
-`fillRect` records.
+The benchmark compares all RGBA pixels against the Dart reference and verifies that
+plugin close releases native host/surface/image registrations. Packet validation and
+Canvas API semantics are exercised by the package's command and UI suites. The runtime
+must not install the retired probe global.
 
 The complete decoder handles all 48 command opcodes and 13 path opcodes, drawing state,
 clipping, text/metrics, filters, gradients, patterns, images and pixel uploads. The

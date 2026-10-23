@@ -1,14 +1,78 @@
 # Task: Engine Canvas batch migration and semantics
 
-Status: implemented in the paired experimental branches; the selected WPT workers and
-all three reference grids pass. This is not complete browser conformance.
+Status: implementation and the selected compatibility gates are complete. The maintained
+engine owns Canvas decoding and drawing; Flax keeps the existing JS API. This is not
+complete browser conformance.
 
 ## Scope and branches
 
-Continue Flax `feat/canvas-shared-buffer` and Flutter `feat/canvas-native-prototype`.
-Decode and record in C++, preserve JS call forms, correct reset/transfer/straight
-pixels, and complete the priority composition, shadow, filter and text behavior. Changes
-are committed locally in both experimental branches; neither branch is published.
+The integration targets are Flax `main` and Flutter `flax/main`, rebased from
+`feat/canvas-shared-buffer` and `feat/canvas-native-prototype` respectively. Scope is
+C++ batch decoding, compatible Canvas semantics and the measured renderer/GC fixes. DOM,
+Worker and GPU API expansion remain outside this change. Integration is local; remote
+publication is a separate action.
+
+## Closeout and reproducibility
+
+The production runtime no longer installs `__flaxCanvasPrototype` or exports its early
+fillRect benchmark entry points. The retained benchmark compares the production native
+batch decoder with the test-only Dart oracle, checks equal pixels and resource cleanup,
+and asserts that the retired global is absent. Picture async/sync experiments remain
+available separately.
+
+`tool/example_run.dart --package=flax_canvas` is the maintained example entry point.
+`FLAX_CHECK_TARGET` and `FLAX_CHECK_DEVICE` select the platform; `--release` selects the
+Android Release build and `--build-only` retains an audited product under
+`build/examples/flax_canvas/<target>/<mode>/`. iOS selects Hermes automatically. The
+staged application excludes the unused integration-test plugin while the source example
+retains its test dependencies. Packaging checks require Canvas dispatch symbols, the
+matching SDK library closure, signatures and target-specific AOT/alignment properties.
+See the [example commands](../../packages/flax_canvas/example/README.md).
+
+Flutter unit tests and generated Flutter execution fixtures select the matching local
+engine because the maintained framework uses its extended `dart:ui` library. Pure Dart
+unit commands do not inherit Flutter's local-engine environment variable.
+
+Apple binary audits reuse the existing iOS signature normalization for engine and SDK
+copies. Removing a signature alone retains its allocation in Mach-O `__LINKEDIT`, so the
+same compiled engine can have different hashes after application signing. Identical
+ad-hoc re-signing makes those copies comparable without stripping code or symbols. A
+control that changes one code byte still fails the digest comparison.
+
+The final Android 13 Pixel 4/V8/Release and iOS 27.0 Simulator/Hermes/Debug acceptance
+runs each pass 428 ordinary test bodies (414 Canvas and 14 GC), plus four lifecycle
+hooks. The 370 upstream workers and 78 reference scenes retain their original sources,
+assertions and thresholds. Each Android grid has 22,686 differing pixels; each iOS
+simulator grid has 23,171, within the original channel limit of 4 and budget of 33,000.
+Both installed applications pass their packaged-engine audit.
+
+The renderer before the final conservative guards passed 348 selected
+Metal/renderer-logic regressions for layers, clipping, blending, gradients, blur and
+render targets. A local validation-only adapter updates obsolete upstream text fixture
+types; that patch is not shipped. The upstream solid text-mask blur case still triggers
+its existing geometry assertion and is excluded from this selection. Its optimization
+and invariant are unchanged from `flax/main`. macOS lacks the test runner's ANGLE
+libraries, so GLES is covered by the real Pixel 4 Canvas acceptance rather than a
+desktop GLES claim. No upstream test assertion is changed in the landed source.
+
+Final Metal/Release acceptance passes all 417 executions, including the exact layer
+regression and unchanged WPT selection. Generator verification passes 749 tests across
+the retained prefix and remaining batch; other package units and tool checks also pass.
+Compilation fixtures run serially because their Flutter subprocesses share a build
+directory. The enclosing suite budget is separate from unchanged per-test timeouts.
+
+Final-source layer validation restricts deferred source copies to identical origins,
+extents and fully covered clips. Metal additionally requires lossless unorm attachments;
+GLES keeps its uncompressed unorm path. A shifted asymmetric source exposed 39 changed
+channel values in the earlier optimization. The exact regression now compares identical
+layer stacks against a materialized-copy reference, preserving both quantization
+boundaries. The same AOT application fails on the earlier engine and passes on the
+conservative renderer. Earlier Metal padding-reuse timing tables describe the withdrawn
+path; final 120 Hz throughput is not remeasured in this closeout.
+
+The sections below preserve earlier diagnostics and measurements. Final gate logs,
+source hashes, protected WPT hashes and integration receipts are retained in ignored
+`.local/canvas-native/closeout-20261024/`.
 
 ## Implementation
 
@@ -17,11 +81,13 @@ picture history, codec scheduling/upload and asynchronous delivery. Commits borr
 shared JS bytes synchronously, validate atomically and retain no command storage. Native
 host/surface/image registrations have explicit isolate ownership and disposal.
 
-Private Canvas API 5 retains the existing filter and spacing payloads with validated
-numeric filter steps and original CSS lengths, and adds an explicit RGBA8 snapshot
-operation. Legacy payloads remain readable. Runtime ABI 2 and the UI protocol are
-unchanged; both header copies and generated FFI match. Published engine pins remain
-unchanged, so this requires the paired local engine.
+The native interface retains existing operation IDs and payloads, including numeric
+filter steps, CSS lengths and explicit RGBA8 snapshots. Legacy payloads remain readable.
+Installation checks the dispatch entry point without enforcing an exact feature version;
+the legacy version query remains for old callers and diagnostics. Runtime ABI 2 and the
+UI protocol are unchanged; both header copies and generated FFI match. Published engine
+pins remain unchanged, so consumers build the maintained local engine before using this
+source revision.
 
 Composition processes transparent source pixels across the final clip. Native drawing
 applies global alpha, ordered filters, shadow creation and separate shadow/source
@@ -46,8 +112,9 @@ rectangle repeatedly shrinks the backdrop, making a static Canvas boundary jump 
 animation. Blend targets now round allocations up and retain the original coverage
 geometry, preserving the pixel mapping and existing quantization boundaries. The
 regression compares every backdrop byte after 72 rotated black screen draws at three
-phases: the old engine changes 471,703 channel values in the first phase; the fix changes
-none. Twelve consecutive full-example simulator captures retain identical bounds.
+phases: the old engine changes 471,703 channel values in the first phase; the fix
+changes none. Twelve consecutive full-example simulator captures retain identical
+bounds.
 
 Text normalizes supported absolute and Offscreen-relative font units, preserves relative
 spacing across font changes, selects primary-face metrics and OpenType BASE baselines,
@@ -290,28 +357,30 @@ and test scratch are removed after recording results; engine builds are retained
 ## Mobile runtime acceptance
 
 After rebasing both experiment branches, the coverage-rounding fix passes 428 ordinary
-test bodies per platform (414 Canvas + 14 joint-GC) on iOS 27.0 Simulator/Hermes/Debug and
-Pixel 4/V8/Release. Widget journals contain 418 and 417 successful entries respectively.
-The 370 workers and 78 reference scenes retain their original assertions; all three
-grids remain at 23,171 differing pixels on iOS and 22,686 on Android, under the unchanged
-33,000-pixel budget and channel limit 4. A background-interrupted iOS attempt is excluded;
-the complete passing rerun uses an isolated simulator. Both installed interactive
-examples are audited against the selected engine. No new frame-rate claim is made.
+test bodies per platform (414 Canvas + 14 joint-GC) on iOS 27.0 Simulator/Hermes/Debug
+and Pixel 4/V8/Release. Widget journals contain 418 and 417 successful entries
+respectively. The 370 workers and 78 reference scenes retain their original assertions;
+all three grids remain at 23,171 differing pixels on iOS and 22,686 on Android, under
+the unchanged 33,000-pixel budget and channel limit 4. A background-interrupted iOS
+attempt is excluded; the complete passing rerun uses an isolated simulator. Both
+installed interactive examples are audited against the selected engine. No new
+frame-rate claim is made.
 
 The iOS frame-pacing follow-up corrects two Hermes scheduling defects: young-generation
-completion no longer escalates to a full Dart collection, and the idle timer waits
-while Flutter frames arrive within 100 ms. Completed old-generation pressure and Dart
-pressure still request joint collection. Delayed statistics from a joint collection
-cannot request another pass. No JS API or tracing/reachability rule changes.
+completion no longer escalates to a full Dart collection, and the idle timer waits while
+Flutter frames arrive within 100 ms. Completed old-generation pressure and Dart pressure
+still request joint collection. Delayed statistics from a joint collection cannot
+request another pass. No JS API or tracing/reachability rule changes.
 
-Three policies with three launches each cover 16,200 measured frames on the 60 Hz
-iOS 27.0 simulator. Lightweight Canvas improves from 55.52 to 60.00 FPS; the allocation
-pressure case improves from 32.43 to 56.54 FPS. Timer-triggered full collections disappear
-from the retained animation traces, while pressure and post-animation idle collection
-remain exercised. The final independent simulator gate passes 427 ordinary bodies
-(413 Canvas + 14 existing GC tests), with all 417 Widget journal entries successful.
-The 370 workers, 78 reference scenes, three grids and six protected hashes are unchanged.
-See the [pacing record](../../experiments/canvas_native/afterglow.md#ios-simulator-frame-pacing-and-joint-gc)
+Three policies with three launches each cover 16,200 measured frames on the 60 Hz iOS
+27.0 simulator. Lightweight Canvas improves from 55.52 to 60.00 FPS; the allocation
+pressure case improves from 32.43 to 56.54 FPS. Timer-triggered full collections
+disappear from the retained animation traces, while pressure and post-animation idle
+collection remain exercised. The final independent simulator gate passes 427 ordinary
+bodies (413 Canvas + 14 existing GC tests), with all 417 Widget journal entries
+successful. The 370 workers, 78 reference scenes, three grids and six protected hashes
+are unchanged. See the
+[pacing record](../../experiments/canvas_native/afterglow.md#ios-simulator-frame-pacing-and-joint-gc)
 for controls, raw evidence and the Debug/physical-device limits. The earlier shared
 simulator run interrupted by another app is excluded from acceptance.
 
@@ -323,8 +392,8 @@ Canvas resource cleanup. Existing JS APIs, worker sources and thresholds stay un
 
 Two mobile compatibility defects were corrected:
 
-- Android's export list hid the Canvas dispatch and probe symbols. The shared engine now
-  exports them, allowing the installed APK to use the existing native interface.
+- Android's export list hid the Canvas dispatch symbols. The shared engine now exports
+  the production interface used by installed APKs; the early probe has been retired.
 - Hermes treated negative canonical numeric TypedArray keys as ordinary properties,
   failing the unchanged `2d.imageData.get.invalid` worker. A pinned native Hermes patch
   rejects invalid numeric indices while preserving value conversion, ordinary named
@@ -353,25 +422,25 @@ source/SDK/build hashes and application audits are recorded in
 .local/canvas-native/verification-canvas-mobile.json. The runner removes its installed
 app and copied project; the dedicated simulator is deleted after acceptance.
 
-The current iPhone 18 Pro / iOS 27.0 simulator Debug gate has also been refreshed
-with the latest renderer and the current 370-worker selection. All 413 ordinary
-test bodies and 403 Widget journal entries pass, with each grid unchanged at
-23,171 / 33,000. Its engine and physical Release build contain the same 23 recorded
-Canvas/renderer source hashes. Three Afterglow launches record 4,320 timed frames;
-all 12 repeated PNG comparisons match exactly. The simulator reports 60 Hz and uses
-an unoptimized Debug engine with framebuffer fetch disabled by the existing
-simulator guard. At 880 × 480, soft Bloom / Weave reach 8.4 / 15.3 FPS, with raster
-p50 114.18 / 61.98 ms. These are simulator diagnostics, not physical Release results.
-The [simulator fixture record](../../experiments/canvas_native/afterglow.md#ios-simulator-measurements)
+The current iPhone 18 Pro / iOS 27.0 simulator Debug gate has also been refreshed with
+the latest renderer and the current 370-worker selection. All 413 ordinary test bodies
+and 403 Widget journal entries pass, with each grid unchanged at 23,171 / 33,000. Its
+engine and physical Release build contain the same 23 recorded Canvas/renderer source
+hashes. Three Afterglow launches record 4,320 timed frames; all 12 repeated PNG
+comparisons match exactly. The simulator reports 60 Hz and uses an unoptimized Debug
+engine with framebuffer fetch disabled by the existing simulator guard. At 880 × 480,
+soft Bloom / Weave reach 8.4 / 15.3 FPS, with raster p50 114.18 / 61.98 ms. These are
+simulator diagnostics, not physical Release results. The
+[simulator fixture record](../../experiments/canvas_native/afterglow.md#ios-simulator-measurements)
 contains the complete table and limits. Raw evidence is retained in
 .local/canvas-native/afterglow/mobile/verification-ios-simulator.json.
 
 The Hermes producer now verifies overlapping patches by unwinding the stack in a
-disposable copy. This fixes reuse of the same correctly patched cache for simulator
-and device builds while preserving source-hash, missing-patch and recipe checks.
-The existing integrity regression covers overlapping patches, reuse without source
-changes and tampered inputs. Temporary simulator apps/projects are removed; the
-pre-existing simulator and maintained engine builds are retained.
+disposable copy. This fixes reuse of the same correctly patched cache for simulator and
+device builds while preserving source-hash, missing-patch and recipe checks. The
+existing integrity regression covers overlapping patches, reuse without source changes
+and tampered inputs. Temporary simulator apps/projects are removed; the pre-existing
+simulator and maintained engine builds are retained.
 
 Physical Release/AOT acceptance now passes on Pixel 4 / Android 13 / V8 / Impeller
 OpenGLES and iPhone 14 Pro / iOS 27.0.1 / Hermes / Metal. Each completes 413 ordinary
@@ -516,9 +585,9 @@ interactive report are in `.local/canvas-native/afterglow/input-reuse-120hz/`.
   require separate renderer/codec acceptance. Display-P3 input conversion to sRGB is
   covered by the current bitmap tests.
 - Mobile acceptance covers the selected Android/iOS devices in Release/AOT, Android
-  Debug and the refreshed iOS simulator Debug gate. Other mobile GPUs, GPU-loss recovery,
-  extended thermal stress and a mobile HTML comparison remain unverified. DOM/video and
-  Worker/structured-clone integration remain outside the Canvas scope.
+  Debug and the refreshed iOS simulator Debug gate. Other mobile GPUs, GPU-loss
+  recovery, extended thermal stress and a mobile HTML comparison remain unverified.
+  DOM/video and Worker/structured-clone integration remain outside the Canvas scope.
 - This maintained macOS engine selects V8; the Hermes runtime check rejects that
   unsupported selection. The mobile Hermes results do not certify a macOS Hermes engine.
 

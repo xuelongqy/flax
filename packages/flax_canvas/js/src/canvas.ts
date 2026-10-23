@@ -1244,8 +1244,10 @@ export class OffscreenCanvasRenderingContext2D {
       throw new TypeError('drawImage requires 3, 5 or 9 arguments.');
     dx = +dx;
     dy = +dy;
-    if (dw !== undefined) dw = +dw;
-    if (dh !== undefined) dh = +dh;
+    if (arguments.length >= 5) {
+      dw = +dw!;
+      dh = +dh!;
+    }
     rest = rest.map((n) => +n);
 
     let sx = 0,
@@ -1841,6 +1843,8 @@ export class OffscreenCanvas {
   }
   transferToImageBitmap(): ImageBitmap {
     if (!this.context) throw invalidState('The canvas needs a context.');
+    if (this.width === 0 || this.height === 0)
+      throw canvasException('UnknownError', 'Cannot allocate an empty ImageBitmap.');
     this.flush();
     const id = this.call('transferToImageBitmap', this[surfaceKey]) as number;
     const width = this.width;

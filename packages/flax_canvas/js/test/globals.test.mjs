@@ -862,6 +862,58 @@ test('Canvas contracts validate pixel types, settings, exceptions and matrix cop
   );
 });
 
+test('transferToImageBitmap rejects empty allocations before calling the host', () => {
+  const global = install((op, ...args) => {
+    if (op === 'create') return { width: args[0], height: args[1] };
+    if (op === 'transferToImageBitmap') assert.fail('empty transfer reached host');
+  });
+  for (const [width, height] of [
+    [0, 1],
+    [1, 0],
+    [0, 0],
+  ]) {
+    const canvas = new global.OffscreenCanvas(width, height);
+    assert.throws(
+      () => canvas.transferToImageBitmap(),
+      (error) => error.name === 'InvalidStateError',
+    );
+    canvas.getContext('2d');
+    assert.throws(
+      () => canvas.transferToImageBitmap(),
+      (error) => error.name === 'UnknownError',
+    );
+  }
+});
+
+test('drawImage converts explicit undefined dimensions without borrowing images', () => {
+  const calls = [];
+  const global = install((op, ...args) => {
+    if (op === 'create') return { width: args[0], height: args[1] };
+    calls.push(op);
+    if (op === 'snapshotImageSync') return 1;
+  });
+  const canvas = new global.OffscreenCanvas(2, 2);
+  const ctx = canvas.getContext('2d');
+  for (const source of [
+    canvas,
+    new global.ImageData(2, 2),
+    { width: 2, height: 2, [imageIdKey]: 1 },
+  ]) {
+    for (const coordinates of [
+      [0, 0, 2, 2],
+      [0, 0, 2, 2, 0, 0, 2, 2],
+    ]) {
+      for (let i = 0; i < coordinates.length; i++) {
+        const values = coordinates.slice();
+        values[i] = undefined;
+        ctx.drawImage(source, ...values);
+      }
+    }
+  }
+  canvas.flush();
+  assert.deepEqual(calls, []);
+});
+
 test('bitmap option ranges reject before decoding and ImageData draw uses image commands', async () => {
   const commits = [];
   const global = install((op, ...args) => {

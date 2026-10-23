@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import '../../../tool/src/local_engine.dart';
+
 import 'package:flax_codegen/flax_codegen.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
@@ -208,13 +210,17 @@ void main() {
   }
 }
 ''');
-      final result = await Process.run('flutter', [
-        'test',
-        '--no-pub',
-        '--reporter',
-        'expanded',
-        execution.path,
-      ], workingDirectory: root.path);
+      final result = await Process.run(
+        'flutter',
+        localEngineArguments([
+          'test',
+          '--no-pub',
+          '--reporter',
+          'expanded',
+          execution.path,
+        ]),
+        workingDirectory: root.path,
+      );
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
     },
   );

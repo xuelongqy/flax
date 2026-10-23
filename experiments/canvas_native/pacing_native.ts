@@ -32,7 +32,9 @@ Object.assign(globalThis, {
       }
       requestAnimationFrame(frame);
     },
-    close() { retained = []; },
+    close() {
+      retained = [];
+    },
   },
 });
 runApp(CanvasView(canvas, { width: 128, height: 128 }));

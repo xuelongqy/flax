@@ -176,8 +176,7 @@ def main():
         original, args.prototype.resolve(), evidence, commands)
     replacements[old_object] = prototype_object
     products, link_commands = {}, {}
-    required_symbols = {'_flax_canvas_dispatch', '_flax_canvas_version',
-                        '_flax_canvas_prototype_draw', '_flax_canvas_prototype_pending'}
+    required_symbols = {'_flax_canvas_dispatch', '_flax_canvas_version'}
     for target in targets:
         tester = target == 'flutter_tester'
         name = 'tester' if tester else 'framework'
@@ -260,7 +259,7 @@ def main():
         'prototypeCommit': run(['git', 'rev-parse', 'HEAD'], cwd=args.prototype,
                                capture_output=True, text=True).stdout.strip(),
         'sources': {name: hashlib.sha256((source / name).read_bytes()).hexdigest()
-                    for name in ['runtime.cpp', 'canvas_prototype.inc', 'canvas_decoder.inc',
+                    for name in ['runtime.cpp', 'canvas_decoder.inc',
                                  '../include/flax/canvas.h']},
         'compile': compile_command, 'rendererCommands': renderer_commands,
         'rendererSources': {name: hashlib.sha256((args.prototype / name).read_bytes()).hexdigest()

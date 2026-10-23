@@ -1206,11 +1206,11 @@ void main() => test('numeric defaults', () {
 });
 ''',
       );
-      final result = await Process.run('flutter', [
-        'test',
-        '--no-pub',
-        file.path,
-      ], workingDirectory: Directory.current.path);
+      final result = await Process.run(
+        'flutter',
+        localEngineArguments(['test', '--no-pub', file.path]),
+        workingDirectory: Directory.current.path,
+      );
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
     } finally {
       directory.deleteSync(recursive: true);

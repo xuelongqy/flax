@@ -131,7 +131,11 @@ the host and each test still owns its server, connections and temporary director
 `ui:test` runs UI only, in one test process per engine. `check_ui.dart` runs that entry,
 each selected package's example once, and `check_aggregate.dart` once. It does not build
 engine source or rerun runtime, standalone, engine-coexistence, archive, or release
-gates. `example_run.dart` bundles and launches the aggregate gallery. With
+gates. `example_run.dart` bundles and launches the aggregate gallery. It follows
+`FLAX_CHECK_TARGET` and `FLAX_CHECK_DEVICE`, selects iOS Hermes or other native V8, and
+accepts `--release` and `--build-only`. Build-only saves an audited product and receipt
+in `build/examples/<package>/<target>/<mode>/`. Applications are staged without
+`integration_test`; integration checks keep their test plugin. With
 `--package=flax_material_ui`, it instead builds only the selected example and its JS
 dependencies, then launches that package's own Flutter host through the existing engine
 staging helper. It never bundles or starts the other example applications. Package

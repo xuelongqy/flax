@@ -8,6 +8,7 @@ import 'dart:ui' as ui;
 
 import 'package:flax/flax.dart';
 import 'package:flax_canvas/flax_canvas.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -106,6 +107,12 @@ void runAfterglow(FlaxJsRuntime Function() createRuntime) {
   runZonedGuarded(
     () async {
       final binding = WidgetsFlutterBinding.ensureInitialized();
+      if (mobile && Platform.isAndroid) {
+        // Keep screen-fit A/B runs at the same size across device rotation.
+        await SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+        ]);
+      }
       Directory(output).createSync(recursive: true);
       Flax.moduleAssets = await FlaxModuleAssets.load(
         bundle: rootBundle,
@@ -123,6 +130,7 @@ void runAfterglow(FlaxJsRuntime Function() createRuntime) {
       final go = Completer<void>();
       final view = ui.PlatformDispatcher.instance.views.first;
       final displayScale = ValueNotifier<double>(1 / view.devicePixelRatio);
+      final canvasKey = GlobalKey();
       runApp(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -155,6 +163,7 @@ void runAfterglow(FlaxJsRuntime Function() createRuntime) {
                   ),
                 ),
                 RepaintBoundary(
+                  key: canvasKey,
                   child: ValueListenableBuilder<double>(
                     valueListenable: displayScale,
                     builder: (_, scale, child) {
@@ -200,6 +209,14 @@ void runAfterglow(FlaxJsRuntime Function() createRuntime) {
           await Future<void>.delayed(const Duration(milliseconds: 50));
         }
         await binding.endOfFrame;
+        if (Platform.isAndroid) {
+          while (view.physicalSize.width > view.physicalSize.height) {
+            if (DateTime.now().isAfter(deadline)) {
+              throw StateError('Portrait viewport did not arrive');
+            }
+            await Future<void>.delayed(const Duration(milliseconds: 50));
+          }
+        }
         go.complete();
       }
       final service = !mobile && !const bool.fromEnvironment('dart.vm.product')
@@ -230,6 +247,17 @@ void runAfterglow(FlaxJsRuntime Function() createRuntime) {
       }
 
       await go.future;
+      final physicalSize = view.physicalSize;
+      final pixelRatio = view.devicePixelRatio;
+      final refreshRate = view.display.refreshRate;
+      if (mobile &&
+          Platform.isAndroid &&
+          physicalSize.width > physicalSize.height) {
+        throw StateError(
+          'Android benchmark requires a portrait viewport: '
+          '$physicalSize at DPR $pixelRatio',
+        );
+      }
       if (service != null) {
         await rpc('setVMTimelineFlags', {
           'recordedStreams': '[Dart,Embedder,GC]',
@@ -287,6 +315,13 @@ void runAfterglow(FlaxJsRuntime Function() createRuntime) {
           if (binding.lifecycleState != AppLifecycleState.resumed) {
             throw StateError('Application became inactive during measurement');
           }
+          if (view.physicalSize != physicalSize ||
+              view.devicePixelRatio != pixelRatio) {
+            throw StateError('Viewport changed during measurement');
+          }
+          if ((view.display.refreshRate - refreshRate).abs() > 0.1) {
+            throw StateError('Display refresh rate changed during measurement');
+          }
           if (samples.length != 120 ||
               !samples.every((s) => probe.timings.containsKey(s.frame))) {
             throw StateError('Incomplete frame timing');
@@ -299,6 +334,7 @@ void runAfterglow(FlaxJsRuntime Function() createRuntime) {
           final result = <String, Object>{
             'name': names[index],
             'raster_scale': scale * view.devicePixelRatio,
+            'display_hz': view.display.refreshRate,
             'frames': samples.length,
             'fps':
                 (samples.length - 1) *
@@ -337,6 +373,23 @@ void runAfterglow(FlaxJsRuntime Function() createRuntime) {
         probe.pixels = Completer<void>();
         snapshot.call([FlaxJsNumber(index.toDouble())]);
         await probe.pixels!.future.timeout(const Duration(seconds: 30));
+        if (mobile) {
+          // Also check the displayed scale, after every timed case has finished.
+          await binding.endOfFrame;
+          final boundary =
+              canvasKey.currentContext!.findRenderObject()!
+                  as RenderRepaintBoundary;
+          final image = await boundary.toImage(pixelRatio: pixelRatio);
+          try {
+            final bytes = await image.toByteData(
+              format: ui.ImageByteFormat.png,
+            );
+            File('$output/$buildMode-screen-${names[index]}.png')
+                .writeAsBytesSync(bytes!.buffer.asUint8List());
+          } finally {
+            image.dispose();
+          }
+        }
       }
       final close = hooks.getProperty('close') as FlaxJsFunction;
       close.call([]);
@@ -355,6 +408,7 @@ void runAfterglow(FlaxJsRuntime Function() createRuntime) {
       exit(0);
     },
     (error, stack) {
+      print('AFTERGLOW_FAILED $error');
       stderr.writeln('$error\n$stack');
       exit(1);
     },

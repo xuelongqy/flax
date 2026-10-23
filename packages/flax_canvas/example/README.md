@@ -27,8 +27,38 @@ dart run tool/example_run.dart --package=flax_canvas --engine=v8
 dart run tool/package.dart integration flax_canvas --engine=v8
 ```
 
-This experimental branch requires the maintained engine with the Canvas extension. Set
-`FLUTTER_ENGINE` to the isolated engine source root before running these commands.
+Use the maintained Flutter engine with the Canvas extension. `FLUTTER_ENGINE` may select
+an isolated engine source root; otherwise the selected Flutter SDK's engine is used. The
+launcher stages an application without the integration-test plugin; the source example
+retains its test dependencies.
+
+For Android, set `ANDROID_HOME`, put LLVM's `llvm-nm` and `llvm-readobj` on `PATH`
+(available in the maintained checkout's
+`engine/src/flutter/buildtools/mac-arm64/clang/bin` on Apple Silicon), then select a
+connected arm64 device:
+
+```sh
+export FLAX_CHECK_TARGET=android-arm64 FLAX_CHECK_DEVICE=<adb-id>
+dart run tool/example_run.dart --package=flax_canvas --release
+```
+
+For a booted iOS arm64 simulator:
+
+```sh
+export FLAX_CHECK_TARGET=ios-simulator-arm64 FLAX_CHECK_DEVICE=<simulator-id>
+dart run tool/example_run.dart --package=flax_canvas
+```
+
+The target selects V8 on Android/macOS and Hermes on iOS. Android supports Debug and
+Release; the iOS simulator uses Debug. Physical iOS uses Release and also requires
+`FLAX_IOS_TEAM`. The matching target engine and macOS host tools must be built first.
+
+Add `--build-only` to build and audit without launching. Products and a verification
+receipt are saved under `build/examples/flax_canvas/<target>/<mode>/`. The audit checks
+signatures, the native library closure, and Canvas exports without an exact Canvas
+feature-version gate. Android also checks 16 KB page alignment. Launch commands use the
+selected device and keep the staged project until Flutter exits or detaches. Animation
+starts paused; tap **Play motion** to animate.
 
 ## Browser comparison
 
@@ -47,5 +77,6 @@ Reset both studios to compare the same paused frame. Both use an 880 × 480 canv
 the same PNG encode/decode/resize path for postcards. The browser keeps that bitmap
 resolution regardless of display pixel ratio; Flax's CanvasView can rasterize at display
 resolution. Fonts, antialiasing, filters and image scaling can therefore differ. This
-page is a visual comparison, not an FPS benchmark. A current browser with OffscreenCanvas,
-`transferControlToOffscreen`, `roundRect` and context `reset` is required.
+page is a visual comparison, not an FPS benchmark. A current browser with
+OffscreenCanvas, `transferControlToOffscreen`, `roundRect` and context `reset` is
+required.

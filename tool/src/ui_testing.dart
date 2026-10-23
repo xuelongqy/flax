@@ -240,15 +240,20 @@ Future<void> _runIsolated(
     entry.writeAsStringSync(uiSuiteSource(tests, importPrefix: '../packages/'));
     results.parent.createSync(recursive: true);
     await run('flutter', ['pub', 'get'], directory: temporary.path);
-    await run('flutter', [
-      'test',
-      '--enable-vmservice',
-      '--no-pub',
-      '--reporter',
-      'expanded',
-      '--file-reporter=json:${results.path}',
-      'test/ui_suite_test.dart',
-    ], directory: temporary.path);
+    await run(
+      'flutter',
+      [
+        'test',
+        '--enable-vmservice',
+        '--no-pub',
+        '--reporter',
+        'expanded',
+        '--file-reporter=json:${results.path}',
+        'test/ui_suite_test.dart',
+      ],
+      directory: temporary.path,
+      timeout: const Duration(hours: 1),
+    );
   } finally {
     try {
       // Keep each invocation's evidence and publish the compatibility copy with

@@ -11,7 +11,7 @@
       "specifier": "@flax/canvas",
       "owner": "@flax/canvas-runtime:dist/index.js",
       "version": "0.0.0",
-      "artifact": "5eb4fb5d252d8b92af940e9d46ea13ca2282962cb2db6acabd840c49456589de",
+      "artifact": "35e2835fa95fa44c7a11e22e6b27afc35a840171cdd5ff2b6c8f6bce29e829e5",
       "asset": "assets/flax_modules/_flax_canvas-b471e7fea32c.js",
       "package": "@flax/canvas-runtime",
       "source": "dist/index.js",

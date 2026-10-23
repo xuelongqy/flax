@@ -201,6 +201,11 @@ void main() {
           ui.Paint()..color = ui.Color.fromARGB(x * 4, 203, 87, 149),
         );
       }
+      // An asymmetric source also catches GLES texture-coordinate inversions.
+      sourceCanvas.drawRect(
+        const ui.Rect.fromLTWH(4, 3, 12, 5),
+        ui.Paint()..color = const ui.Color(0x8016c293),
+      );
       final sourcePicture = sourceRecorder.endRecording();
       final image = await sourcePicture.toImage(64, 32);
       sourcePicture.dispose();
@@ -230,7 +235,7 @@ void main() {
         inner: ui.ImageFilter.blur(sigmaX: 1.8, sigmaY: 1.8),
       );
       Future<Uint8List> pixels(
-        bool nested,
+        bool materializeParent,
         int offset,
         bool trailingDraw,
         bool clipped,
@@ -252,24 +257,31 @@ void main() {
             doAntiAlias: false,
           );
         }
-        if (nested) {
-          canvas.saveLayer(
-            bounds,
-            ui.Paint()
-              ..blendMode = paintedParent
-                  ? ui.BlendMode.srcOver
-                  : ui.BlendMode.src,
+        if (materializeParent && !paintedParent) {
+          // Force the copy path after applying the same clip as the child.
+          canvas.drawRect(
+            const ui.Rect.fromLTWH(24, 10, 1, 1),
+            ui.Paint()..color = const ui.Color(0xffffffff),
           );
+          canvas.drawColor(const ui.Color(0x00000000), ui.BlendMode.src);
         }
+        // Both paths retain the same source and filter quantization boundaries.
+        canvas.saveLayer(
+          bounds,
+          ui.Paint()
+            ..blendMode = paintedParent
+                ? ui.BlendMode.srcOver
+                : ui.BlendMode.src,
+        );
         canvas.drawImage(
           image,
           ui.Offset(offset.toDouble(), 0),
           ui.Paint()
-            ..blendMode = nested && paintedParent
+            ..blendMode = paintedParent
                 ? ui.BlendMode.src
                 : ui.BlendMode.srcOver,
         );
-        if (nested) canvas.restore();
+        canvas.restore();
         if (trailingDraw) {
           canvas.drawRect(
             const ui.Rect.fromLTWH(8, 4, 16, 12),
@@ -317,6 +329,13 @@ void main() {
             fractional: false,
           ),
           (
+            offset: 1,
+            trailing: true,
+            clipped: false,
+            painted: false,
+            fractional: false,
+          ),
+          (
             offset: 0,
             trailing: false,
             clipped: true,
@@ -340,7 +359,7 @@ void main() {
         ]) {
           expect(
             await pixels(
-              true,
+              false,
               variant.offset,
               variant.trailing,
               variant.clipped,
@@ -349,7 +368,7 @@ void main() {
             ),
             orderedEquals(
               await pixels(
-                false,
+                true,
                 variant.offset,
                 variant.trailing,
                 variant.clipped,
@@ -460,6 +479,12 @@ void main() {
     await flaxTestRunHostScript(tester, h, r'''
       function check(condition, message) { if (!condition) throw Error(message); }
       const canvas = new OffscreenCanvas(4, 2);
+      for (const [width,height] of [[0,1],[1,0],[0,0]]) {
+        const empty = new OffscreenCanvas(width,height); empty.getContext('2d');
+        let error;
+        try { empty.transferToImageBitmap(); } catch (e) { error = e; }
+        check(error && error.name === 'UnknownError', 'empty bitmap allocation');
+      }
       const c = canvas.getContext('2d');
       c.fillStyle = 'red'; c.fillRect(0, 0, 4, 2);
       c.measureText(''); // A previous committed batch must also disappear.
@@ -602,6 +627,12 @@ void main() {
       }
       const tile = await createImageBitmap(new ImageData(new Uint8ClampedArray([
         255,0,0,255,0,0,255,255,255,0,0,255,0,0,255,255]),2,2));
+      for (const coordinates of [
+        [0,0,undefined,2], [0,0,2,undefined],
+        [0,0,undefined,2,0,0,2,2], [0,0,2,undefined,0,0,2,2],
+      ]) t.drawImage(tile,...coordinates);
+      check(t.getImageData(0,0,2,2).data.every(v => v === 0),
+        'explicit undefined image dimensions must not draw');
       const pattern = t.createPattern(tile,'repeat'); tile.close();
       for (const style of [linear,radial,conic,pattern]) {
         t.reset(); t.imageSmoothingEnabled=false; t.fillStyle=style; t.fillRect(0,0,100,80);

@@ -182,7 +182,7 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
       );
       if (name == '__flaxResolveOperation' &&
           result is FlaxJsNumber &&
-          args.length == 5 &&
+          (args.length == 5 || args.length == 6) &&
           args[2] is FlaxJsString) {
         _operationCategories[result.value.toInt()] =
             (args[2] as FlaxJsString).value;

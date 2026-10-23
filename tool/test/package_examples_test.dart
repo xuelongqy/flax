@@ -363,6 +363,49 @@ dependencies:
   for (final engine in ['hermes', 'v8']) {
     group('$engine example commands', () {
       test(
+        'application staging excludes the test plugin and preserves source',
+        () async {
+          final runtime = package('flax_engine_$engine');
+          _write(runtime.directory, 'README.md', '# Test runtime');
+          _write(
+            runtime.directory,
+            'lib/flax_engine_$engine.dart',
+            'class Flax${engine == 'hermes' ? 'Hermes' : 'V8'}Engine {}',
+          );
+          final runnable = package('runnable');
+          final original = '''${_flutterPubspec(engine)}
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+''';
+          _write(runnable.example, 'pubspec.yaml', original);
+          await withPackageExample(
+            temporary.path,
+            runnable,
+            engine,
+            (staged) async {
+              expect(staged, isNot(runnable.example.path));
+              final manifest = readYamlFile(File('$staged/pubspec.yaml'));
+              expect(manifest['dev_dependencies'], contains('flutter_test'));
+              expect(
+                manifest['dev_dependencies'],
+                isNot(contains('integration_test')),
+              );
+            },
+            forApplication: true,
+            runCommand: record,
+          );
+          expect(
+            File('${runnable.example.path}/pubspec.yaml').readAsStringSync(),
+            original,
+          );
+          expect(commands.last.$2, ['pub', 'get']);
+        },
+      );
+
+      test(
         'runs sorted widget and current-platform integration tests',
         () async {
           final runnable = package('runnable');

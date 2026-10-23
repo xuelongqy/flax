@@ -2,3 +2,5 @@
 # Use the existing compilation-fixture budget for cold CI hosts, retaining a
 # finite timeout and every assertion. Longer explicit fixture budgets still apply.
 timeout: 3m
+# Generated Flutter execution fixtures share the workspace build directory.
+concurrency: 1

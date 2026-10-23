@@ -9,6 +9,7 @@ import '../../tool/src/package_discovery.dart';
 import '../../tool/src/package_verification.dart';
 import '../../tool/src/process.dart';
 import '../../tool/src/platform_application.dart';
+import '../../tool/src/platform_binary.dart' show normalizeAppleCodeSignature;
 import '../../tool/src/ui_suite.dart';
 
 Future<void> main(List<String> arguments) => command(() async {
@@ -20,7 +21,7 @@ Future<void> main(List<String> arguments) => command(() async {
   }
   if (Platform.environment['FLUTTER_ENGINE'] == null) {
     throw ArgumentError(
-      'FLUTTER_ENGINE must select the isolated prototype engines',
+      'FLUTTER_ENGINE must select the matching maintained engine',
     );
   }
   final mode = arguments.single;
@@ -163,7 +164,7 @@ void main() {
         '$product/Contents/Frameworks/FlutterMacOS.framework/Versions/A/FlutterMacOS';
     final symbols = await Process.run('nm', ['-gU', framework]);
     if (symbols.exitCode != 0 ||
-        !['_flax_canvas_dispatch', '_flax_canvas_prototype_draw'].every(
+        !['_flax_canvas_dispatch', '_flax_canvas_version'].every(
           (symbol) => (symbols.stdout as String)
               .split('\n')
               .any((line) => line.trim().endsWith(' $symbol')),
@@ -181,7 +182,7 @@ void main() {
     try {
       for (final (index, path) in [original, framework].indexed) {
         final copy = File(path).copySync('${audit.path}/$index');
-        await run('codesign', ['--remove-signature', copy.path]);
+        await normalizeAppleCodeSignature(copy);
         hashes.add((await sha256.bind(copy.openRead()).first).toString());
       }
     } finally {

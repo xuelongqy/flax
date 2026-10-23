@@ -43,21 +43,21 @@ FLAX_CHECK_TARGET=ios-simulator-arm64 FLAX_CHECK_DEVICE=<simulator-udid> \
   dart --packages=.dart_tool/package_config.json experiments/canvas_native/run_afterglow_mobile.dart
 ```
 
-The same mobile runner selects Debug for the simulator and Release for physical
-devices. Simulator launches use Hermes, the paired Canvas framework and the same
-three-run, six-scene, two-size workload below. Results use `debug` filenames and are
-copied from the simulator's app data container. Console routing preserves simulator
-Flutter logs; only physical iOS routes prints to CoreDevice stdout. Mobile timing
-does not enable the desktop Debug timeline recorder.
+The same mobile runner selects Debug for the simulator and Release for physical devices.
+Simulator launches use Hermes, the paired Canvas framework and the same three-run,
+six-scene, two-size workload below. Results use `debug` filenames and are copied from
+the simulator's app data container. Console routing preserves simulator Flutter logs;
+only physical iOS routes prints to CoreDevice stdout. Mobile timing does not enable the
+desktop Debug timeline recorder.
 
-The current iPhone 18 Pro / iOS 27.0 simulator runs on an Apple M2 Max host with
-macOS 27.0.1. It reports 60 Hz, DPR 3 and a 1206 × 2622 view. The separate macOS
-Flax example was closed before sampling. All three launches remained resumed and
-produced 36 complete rows / 4,320 measured frames without in-frame pixel readback.
-All 12 repeated phase-zero PNG comparisons are pixel-identical. At 880 × 480,
-medians across the three launches are:
+The current iPhone 18 Pro / iOS 27.0 simulator runs on an Apple M2 Max host with macOS
+27.0.1. It reports 60 Hz, DPR 3 and a 1206 × 2622 view. The separate macOS Flax example
+was closed before sampling. All three launches remained resumed and produced 36 complete
+rows / 4,320 measured frames without in-frame pixel readback. All 12 repeated phase-zero
+PNG comparisons are pixel-identical. At 880 × 480, medians across the three launches
+are:
 
-| Scene       | FPS  | CPU submission p50 | Raster p50 |
+| Scene       |  FPS | CPU submission p50 | Raster p50 |
 | ----------- | ---: | -----------------: | ---------: |
 | Bloom crisp | 18.0 |            7.19 ms |   51.51 ms |
 | Bloom soft  |  8.4 |            8.39 ms |  114.18 ms |
@@ -66,37 +66,36 @@ medians across the three launches are:
 | Weave crisp | 27.1 |            3.29 ms |   33.17 ms |
 | Weave soft  | 15.3 |            5.03 ms |   61.98 ms |
 
-Soft Bloom ranges from 8.05 to 8.45 FPS; soft Weave ranges from 13.01 to 16.15 FPS.
-At screen-fit scale 1.2614, they reach 7.8 / 13.4 FPS with raster p50
-124.34 / 71.15 ms.
+Soft Bloom ranges from 8.05 to 8.45 FPS; soft Weave ranges from 13.01 to 16.15 FPS. At
+screen-fit scale 1.2614, they reach 7.8 / 13.4 FPS with raster p50 124.34 / 71.15 ms.
 
-The engine's actual Impeller compile command uses `-O0` and `IMPELLER_DEBUG=1`.
-Its existing `DeviceSupportsFramebufferFetch` implementation explicitly returns
-false for iOS simulators. Consequently advanced blends, including screen, use
-`FlipBackdrop` and intermediate textures instead of framebuffer-fetch blending.
-The existing guard remains intact. These are confirmed configuration and path
-differences; the measurements do not isolate each one's share of the raster cost.
+The engine's actual Impeller compile command uses `-O0` and `IMPELLER_DEBUG=1`. Its
+existing `DeviceSupportsFramebufferFetch` implementation explicitly returns false for
+iOS simulators. Consequently advanced blends, including screen, use `FlipBackdrop` and
+intermediate textures instead of framebuffer-fetch blending. The existing guard remains
+intact. These are confirmed configuration and path differences; the measurements do not
+isolate each one's share of the raster cost.
 
-The refreshed simulator correctness gate passes 413 ordinary test bodies, including
-370 selected upstream workers and 78 reference scenes; all 403 Widget journal entries
+The refreshed simulator correctness gate passes 413 ordinary test bodies, including 370
+selected upstream workers and 78 reference scenes; all 403 Widget journal entries
 succeed. The three grids each remain 23,171 / 33,000 at channel limit 4. The API,
 upstream WPT, adapter and drawing hashes are unchanged, and the gate and benchmark
 package the same verified engine. Raw samples, PNGs and
-`verification-ios-simulator.json` live in `.local/canvas-native/afterglow/mobile/`.
-The installed test apps and temporary projects are removed; the existing simulator
-and maintained builds are preserved.
+`verification-ios-simulator.json` live in `.local/canvas-native/afterglow/mobile/`. The
+installed test apps and temporary projects are removed; the existing simulator and
+maintained builds are preserved.
 
-Simulator measurements use the Mac's CPU/GPU and Flutter Debug mode. They validate
-the simulator path and help diagnose frame costs; they do not predict physical iPhone
+Simulator measurements use the Mac's CPU/GPU and Flutter Debug mode. They validate the
+simulator path and help diagnose frame costs; they do not predict physical iPhone
 Release performance or establish a mobile browser comparison.
 
 ## iOS simulator frame pacing and joint GC
 
-The pacing fixture isolates scheduling from the expensive Debug renderer. It uses
-128 × 128 backing pixels, 30 warmup and 360 measured frames per case, with pure Dart
-frame callbacks, empty JS rAF, two Canvas fills, Canvas plus 8,192 temporary JS objects
-per frame, and a final Dart control. No timed case reads pixels. All runs enable the
-same Dart/Embedder/GC timeline streams and keep the app resumed on the 60 Hz simulator.
+The pacing fixture isolates scheduling from the expensive Debug renderer. It uses 128 ×
+128 backing pixels, 30 warmup and 360 measured frames per case, with pure Dart frame
+callbacks, empty JS rAF, two Canvas fills, Canvas plus 8,192 temporary JS objects per
+frame, and a final Dart control. No timed case reads pixels. All runs enable the same
+Dart/Embedder/GC timeline streams and keep the app resumed on the 60 Hz simulator.
 
 ```sh
 node experiments/canvas_native/afterglow_bundle.mjs --pacing
@@ -109,48 +108,49 @@ python3 experiments/canvas_native/analyze_pacing.py \
 Three launches per policy, five cases per launch, provide 16,200 measured frames in
 total. Median callback FPS across the three launches:
 
-| Case | Original | Old-generation notifications only | Frame-aware idle collection |
-| --- | ---: | ---: | ---: |
-| Dart frames | 58.69 | 57.29 | 60.00 |
-| Empty JS rAF | 55.09 | 54.26 | 60.00 |
-| Canvas fills | 55.52 | 56.39 | 60.00 |
-| Canvas with allocation pressure | 32.43 | 54.95 | 56.54 |
-| Dart frames after JS | 57.14 | 56.39 | 60.00 |
+| Case                            | Original | Old-generation notifications only | Frame-aware idle collection |
+| ------------------------------- | -------: | --------------------------------: | --------------------------: |
+| Dart frames                     |    58.69 |                             57.29 |                       60.00 |
+| Empty JS rAF                    |    55.09 |                             54.26 |                       60.00 |
+| Canvas fills                    |    55.52 |                             56.39 |                       60.00 |
+| Canvas with allocation pressure |    32.43 |                             54.95 |                       56.54 |
+| Dart frames after JS            |    57.14 |                             56.39 |                       60.00 |
 
 The original callback escalated every Hades young collection to a full Dart/Hermes
-collection. The retained allocation-pressure traces contain 189 full collections;
-the final policy contains 12 necessary old-generation pressure collections. Original
-full collections typically took 50–80 ms in this Debug engine, versus about 0.3 ms for
-the lightweight Canvas callback. Independent one-second idle requests also interrupted
+collection. The retained allocation-pressure traces contain 189 full collections; the
+final policy contains 12 necessary old-generation pressure collections. Original full
+collections typically took 50–80 ms in this Debug engine, versus about 0.3 ms for the
+lightweight Canvas callback. Independent one-second idle requests also interrupted
 animation, even with no JS allocation. Separating completed old-generation events
 removes the pressure amplification; checking recent Flutter frames removes idle timer
 interruptions. Both changes preserve the existing fixed-point collector.
 
-Across 1,080 measured frames per case and policy, callback gaps over 25 ms fall from
-37 to 2 for Canvas fills and from 530 to 30 for allocation pressure. Empty rAF falls
-from 34 to 1. These counts describe the diagnostic workload, not WPT tolerances or a
-promise of zero pauses. Pressure-driven full collections remain synchronous. All
-final animation traces have zero timer-triggered full collections, exercise the frame
-deferral, and record idle collection resuming after animation. The JS-pressure case
-still exercises old-generation collection.
+Across 1,080 measured frames per case and policy, callback gaps over 25 ms fall from 37
+to 2 for Canvas fills and from 530 to 30 for allocation pressure. Empty rAF falls from
+34 to 1. These counts describe the diagnostic workload, not WPT tolerances or a promise
+of zero pauses. Pressure-driven full collections remain synchronous. All final animation
+traces have zero timer-triggered full collections, exercise the frame deferral, and
+record idle collection resuming after animation. The JS-pressure case still exercises
+old-generation collection.
 
 The VM timeline is a bounded ring; some case prefixes are overwritten. Attribution
 counts use only complete intervals in the retained trace window, while FPS and gap
 counts use all 360 samples. The analysis rejects traces covering less than half a case
 and checks the frame/pressure/idle conditions above. Receipts and raw traces are under
-`.local/canvas-native/afterglow/pacing/{baseline,major-only,frame-aware}/`. This diagnoses
-the simulator GC policy; physical iPhone Release and its earlier 120 Hz gaps require
-their own follow-up measurement. It does not remove Bloom/Weave's Debug raster cost.
+`.local/canvas-native/afterglow/pacing/{baseline,major-only,frame-aware}/`. This
+diagnoses the simulator GC policy; physical iPhone Release and its earlier 120 Hz gaps
+require their own follow-up measurement. It does not remove Bloom/Weave's Debug raster
+cost.
 
 The final engine passes 413 Canvas tests plus all 14 existing joint-GC cases in an
 independent iOS 27.0 simulator. The 417 Widget journal entries all succeed; the test
-counter is 431 including setup/teardown. This includes 370 upstream workers, 78 reference
-scenes, live roots, active-job protection, three-session marking, JS/Dart pressure,
-discarded wrappers and 1,000 rootless bridge cycles. All three reference grids remain
-23,171 / 33,000 at channel limit 4. The six protected API/WPT/drawing hashes are
+counter is 431 including setup/teardown. This includes 370 upstream workers, 78
+reference scenes, live roots, active-job protection, three-session marking, JS/Dart
+pressure, discarded wrappers and 1,000 rootless bridge cycles. All three reference grids
+remain 23,171 / 33,000 at channel limit 4. The six protected API/WPT/drawing hashes are
 unchanged. An earlier run interrupted by another app taking the shared simulator's
-foreground is retained separately and excluded from acceptance. The independent app
-has the same audited engine hash as the final pacing runs.
+foreground is retained separately and excluded from acceptance. The independent app has
+the same audited engine hash as the final pacing runs.
 
 ## Physical mobile measurements
 
@@ -576,3 +576,177 @@ reference grids remain 22,642 / 33,000 with channel limit 4. Raw timings, counte
 source/product hashes, pixels and the interactive report are in
 `.local/canvas-native/afterglow/input-reuse-120hz/`. Mobile and other GPUs are not
 remeasured. Changes remain local and uncommitted.
+
+## Pixel 4 GLES input reuse
+
+The Android continuation uses a physical Pixel 4, Android 13, Adreno 640 and Release/AOT
+with V8. The engine selects Impeller OpenGLES. Its GL reactor executes render operations
+in order; the Metal command-buffer batching paths remain unchanged. Temporary counters
+record executed GLES render passes separately from timing. The following medians include
+the final onscreen pass; the removed passes are offscreen source-to-input copies.
+
+| Soft scene | Physical raster scale | Original passes | Retained passes | Copies removed |
+| ---------- | --------------------: | --------------: | --------------: | -------------: |
+| Bloom      |                 1.000 |             442 |             441 |              1 |
+| Weave      |                 1.000 |             340 |             336 |              4 |
+| Bloom      |                 1.127 |             442 |             435 |              7 |
+| Weave      |                 1.127 |             340 |             340 |              0 |
+
+GLES reuses a resolved source only when its extent and origin exactly match the unused
+input target. Existing opacity, format, blend, clipping and target-use checks still
+apply. Ending the source pass retains its MSAA resolve; subsequent drawing materializes
+the deferred copy. Blur, color processing and each screen blend keep their original
+order and quantization boundaries. Target allocations are unchanged.
+
+Allowing differently sized sources to supply transparent padding removed 73/56 passes
+from the 1x Bloom/Weave cases, but changed their filter sampling. Soft-scene PNGs
+differed by up to 3/2/4 channel codes for Bloom/Orbit/Weave, despite passing the
+original WPT suite. This candidate is rejected. Restricting GLES to identical extents
+restores exact PNG equality for all six scenes. Metal retains its previously validated
+padding path.
+
+The Android measurement app locks portrait orientation, waits for portrait metrics and
+rejects viewport changes during sampling. An initial run with a different screen-fit
+size and incomplete output is excluded. The rendering example and its JS drawing code
+are unchanged. The existing layer regression now has an asymmetric image and a shifted
+source followed by another draw, covering texture orientation and copy materialization
+or fallback without introducing a tolerance.
+
+Three crossed, uninstrumented A/B rounds run in order A1, B1, B2, A2, A3, B3. A is the
+original engine and B is the same-extent reuse above; the APKs have identical Dart AOT,
+JS assets and all other payload entries. Each launch measures 12 cases, with 30 warmup
+and 120 measured frames per case, without pixel readback during animation. The portrait
+viewport is 1080 x 2214 at DPR 2.75. The initial display mode and recorded vsync
+intervals are consistent with 60 Hz. The following medians describe these 8,640 measured
+frames; they do not establish a causal speedup:
+
+| Soft scene | Raster scale | Original FPS | Reuse FPS | Original raster p50 | Reuse raster p50 |
+| ---------- | -----------: | -----------: | --------: | ------------------: | ---------------: |
+| Bloom      |        1.000 |        18.63 |     20.10 |           52.110 ms |        48.844 ms |
+| Weave      |        1.000 |        17.49 |     17.58 |           57.217 ms |        57.019 ms |
+| Bloom      |        1.127 |        16.99 |     16.95 |           58.001 ms |        56.970 ms |
+| Weave      |        1.127 |        13.59 |     13.62 |           73.811 ms |        73.715 ms |
+
+Thermal status is normal throughout A1, changes from normal to light throttling during
+B1, and is light before and after A2, A3, B2 and B3. Equal thermal severity does not
+guarantee equal GPU clocks. Bloom at 1x ranges from 18.02 to 23.79 FPS for A and 18.93
+to 23.17 FPS for B; the apparent median improvement is within this variation. Its one
+removed copy covers only 196 source pixels. Weave's timings are nearly unchanged.
+Gaussian filter passes remain 219 per frame for Bloom and 168 for Weave. This limited
+reuse does not remove the remaining per-stroke blur and screen-composition work.
+
+A supplemental B4/A4 pair starts with normal thermal status but both launches finish
+with light throttling. A4 also changes cadence to approximately 90 Hz during screen-fit
+cases, although the receipt's display mode was captured only at startup. These runs are
+retained as evidence and excluded from the timing medians. All 24 fixed-phase PNG pairs
+across the four A/B pairs are byte-identical; this does not compare every animation
+frame. FPS measures callback cadence, and Flutter raster duration includes CPU
+encoding/submission, not isolated GPU time or physical presentation timestamps.
+
+The final uninstrumented engine passes 428 ordinary test executions on the Pixel 4 (432
+including suite hooks; 417 distinct result names), including 370 WPT workers and 78
+reference scenes. All three filter/shadow/composite reference grids remain 22,686 /
+33,000, with the original channel limit 4. The WPT files, JS API implementation and
+example drawing code are byte-identical to the branch baseline. Static analysis and diff
+whitespace checks pass. Both timed APKs and the final acceptance APK pass the signature,
+V8 dependency, Dart AOT and 16 KB alignment audits; the final rebuilt engine matches the
+engine used in B runs and acceptance.
+
+Raw timings, thermal observations, executed-pass counters, PNGs, rejected-candidate
+differences, binary audits and source hashes are retained under
+`.local/canvas-native/afterglow/pixel4-gles-20261023/`; `verification.json`
+distinguishes the primary comparison from the supplemental runs. The safe GLES change
+removes a few copies without changing the checked pixels, but a substantial or stable
+Bloom/Weave speedup is not demonstrated. Other GPUs and iOS are not remeasured. The
+retained change is included in the Canvas closeout; see the task record for current
+integration status.
+
+## Pixel 4 small-kernel Gaussian optimization
+
+The follow-up retains one additional GLES optimization: three- and four-sample Gaussian
+kernels use constant uniform-array indices instead of the dynamic loop. Coefficients,
+sample positions and accumulation order are unchanged. Other kernel sizes retain the
+loop, and Metal/Vulkan retain the original shader path. This reduces work inside the
+existing passes; it does not remove textures, passes or quantization boundaries.
+
+A separate diagnostic build finds 144 directional passes for Bloom and 110 for Weave
+using these small kernels, in addition to the common marker. Their directional target
+areas total 7.42 / 29.84 million pixels at 1x and 9.33 / 37.75 million at screen-fit
+scale. The kernels have three samples at 1x and four at screen-fit scale. This explains
+why Weave benefits more from avoiding dynamic indexing. Counters are removed from the
+timed and acceptance engines.
+
+The other measured candidates are closed without retaining their code:
+
+| Candidate                                              | Result and decision                                                                                                               |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| Skip the GLES blur-input copy                          | About 4–5% faster in the exploratory Weave run, but scene pixels change by up to three channel codes. Rejected.                   |
+| Propagate the color-matrix coverage hint               | Exact checked pixels, but no meaningful reduction in the measured raster cost. Rejected.                                          |
+| Bypass screen arithmetic for transparent source pixels | Exact checked pixels, but less than 1% Weave raster improvement in the exploratory run and no consistent wider benefit. Rejected. |
+
+The first coverage-hint experiment accidentally retained an earlier three-sample shader
+because a restored file had an older timestamp. Its receipt identifies the combined
+variant and excludes it from single-change conclusions. Subsequent restores force
+recompilation. The final engine and APKs have matching source/product hashes.
+
+The final A/B uses the previous section's safe same-extent GLES renderer as A and adds
+only the small-kernel shader for B. Both APKs have identical Dart AOT, JS and resources.
+Six valid launches run in order A1, B1, B2, A2, A3, B3. Every launch starts at normal
+thermal severity and skin temperature at or below 34°C; severity is also normal at
+completion. Refresh rate is fixed at 60 Hz and checked after every case. Viewport, DPR,
+warmup and frame-count guards remain active. No readback occurs during measured frames.
+One incomplete B2 attempt lost foreground state to an unrelated Android HMR test; the
+whole attempt is excluded and rerun. The runner now waits for active device checks.
+
+Medians of the three per-round statistics, across 8,640 measured and 2,160 warmup
+frames:
+
+| Soft scene | Raster scale | Before FPS | After FPS | Before raster p50 | After raster p50 |
+| ---------- | -----------: | ---------: | --------: | ----------------: | ---------------: |
+| Bloom      |        1.000 |      23.02 |     22.95 |         41.231 ms |        41.333 ms |
+| Weave      |        1.000 |      17.58 |     18.40 |         57.011 ms |        54.465 ms |
+| Bloom      |        1.127 |      21.56 |     21.37 |         45.163 ms |        45.274 ms |
+| Weave      |        1.127 |      13.62 |     14.33 |         73.841 ms |        69.871 ms |
+
+Weave raster p50 falls 4.5% / 5.4%, with callback FPS improving 4.7% / 5.2%. Its FPS
+ranges do not overlap between A and B at either scale. Bloom and Orbit show no stable
+benefit; all twelve case results and ranges are retained in the verification receipt.
+The Pixel 4 still does not reach 60 FPS in the heavy soft scenes. GPU clocks are not
+locked, FPS measures callback cadence, and Flutter raster duration includes CPU
+encoding/submission rather than isolated GPU execution.
+
+All 36 fixed-phase A/B PNG pairs are byte-identical: each pair of launches checks six
+880 x 480 logical snapshots and six 992 x 542 repaint-boundary captures at screen-fit
+scale. These captures occur after timing and do not certify every animation frame or
+physical display presentation. The final Release/V8 engine passes 428 ordinary test
+executions, 432 including suite hooks, with 370 WPT workers and 78 reference scenes. The
+three reference grids remain 22,686 / 33,000 with channel limit 4. JS API, drawing, WPT
+worker, adapter and threshold sources are unchanged. Static analysis, whitespace, APK
+signature, V8 closure, AOT and 16 KB alignment checks pass.
+
+Raw results, rejected-candidate evidence, source/build audits and reproduction helpers
+are in `.local/canvas-native/afterglow/pixel4-gles-complete-20261023/`. Temporary APKs
+and binary copies are removed after verification; maintained engine products are
+retained. The phone's original refresh settings and diagnostic property are restored,
+and only the temporary measurement/test apps are removed. Other GPUs and iOS are not
+remeasured. The retained change is included in the Canvas closeout; see the task record
+for current integration status.
+
+## Closeout: conservative source reuse
+
+The final exact layer regression adds an asymmetric translucent image and shifted
+geometry. Omitting a source-to-input copy on Metal changed 39 channel values. A second
+comparison confirmed that flattening the source layer is not a valid exact oracle: that
+removes a quantization boundary even without the optimization.
+
+The retained path now requires identical texture origins/extents and a clip that fully
+contains the source. Metal also requires lossless unorm source and parent attachments;
+GLES retains its uncompressed unorm path. Differently sized padding reuse is removed.
+The exact reference materializes an initially transparent parent before restoring the
+same child, with the same clip and layer stack. The same AOT application fails on the
+earlier renderer and passes with these guards, without changing a tolerance.
+
+Earlier Metal input-reuse FPS tables document that experiment, not the final
+conservative renderer. The small-kernel GLES optimization remains. No new 120 Hz
+performance claim is made in closeout; preserving the drawing result takes priority over
+retaining the omitted copies.
