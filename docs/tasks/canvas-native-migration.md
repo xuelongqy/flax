@@ -61,6 +61,14 @@ the retained prefix and remaining batch; other package units and tool checks als
 Compilation fixtures run serially because their Flutter subprocesses share a build
 directory. The enclosing suite budget is separate from unchanged per-test timeouts.
 
+The full owner UI gate covers 1,058 distinct passing test bodies. Ordinary package units
+pass 824 tests, including the 749 generator tests. JavaScript suites pass 244; tool
+checks pass 115 with one Windows-only CDB check skipped on macOS. Static analysis,
+formatting, types, documentation, package archives and FFI reproduction also pass. The
+public example launcher produces audited macOS Release, Android Release and iOS
+Simulator Debug applications. All six maintained engine products build from the final
+source; physical iPhone runtime acceptance is not repeated in this closeout.
+
 Final-source layer validation restricts deferred source copies to identical origins,
 extents and fully covered clips. Metal additionally requires lossless unorm attachments;
 GLES keeps its uncompressed unorm path. A shifted asymmetric source exposed 39 changed
