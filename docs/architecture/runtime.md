@@ -15,11 +15,16 @@ microtask queue. Dart parallel marking and V8 conditional tracing reclaim rootle
 cross-language cycles. See [bridge references](references.md) and
 [ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md).
 
-Hermes sessions own separate VMs. One coordinator per Dart UI isolate traces them
-together before weak processing, using Hermes's existing Hades marker. Ordinary Hermes
-marking remains concurrent; active JS jobs defer joint collection. Closing one session
-preserves the others. Hermes, JSI and Boost.Context are linked into `Flutter.framework`;
-the application carries no second standalone runtime.
+Hermes sessions own separate VMs. One coordinator per Dart UI isolate traces VMs with
+joint edges together before weak processing, using Hermes's existing Hades marker. The
+FFI engine worktree indexes Dart origins and consumes the Dart marker's newly marked
+origin queue. It computes one shared fixed point while all participating VMs are paused,
+retaining only unresolved Dart targets between rounds; VMs without joint edges do not
+participate. Hermes currently exposes marked bits rather than a newly marked JS-object
+queue, so unresolved targets still require a scan. Ordinary Hermes marking remains
+concurrent; active JS jobs in any registered VM defer joint collection. Closing one
+session preserves the others. Hermes, JSI and Boost.Context are linked into
+`Flutter.framework`; the application carries no second standalone runtime.
 
 Platform policy is iOS Hermes and other native V8 JIT. macOS and Android arm64 are
 implemented; Android debug and release/AOT acceptance covers an arm64 emulator and a

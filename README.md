@@ -42,6 +42,12 @@ controllers, subscriptions, transforms, AsyncIterable conversion and native Flut
 StreamBuilder. They remain separate from Fetch Web Streams. See
 [Dart interop](docs/architecture/interop.md#dart-stream-and-futureor-ui-protocol-24).
 
+Optional [`@flax/ffi`](packages/flax_ffi/README.md) supports direct JavaScript calls to
+C ABI libraries through the shared V8/Hermes backend. Its npm package, Buffer support
+and library assets are selected on demand; Dart installation stays inside Core. See the
+[runnable native-library example](packages/flax_ffi/example/README.md). The package is
+private and unpublished; current acceptance is macOS arm64 and iOS Simulator arm64.
+
 ## Quick start
 
 Use the pinned toolchain below, plus CMake 3.24 or newer and a C/C++ compiler. Run these

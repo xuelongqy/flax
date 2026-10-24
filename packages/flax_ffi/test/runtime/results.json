@@ -1,0 +1,711 @@
+{
+  "date": "2026-10-24",
+  "scope": "Optional @flax/ffi integrated into local main branches; no push or registry publication",
+  "flaxBaseRevision": "7445d569307cb16c51dac01a113847b52c0336a2",
+  "engineBaseRevision": "ff9c455fe4f96d64edc30afdc95d7d6e46c5b21d",
+  "workingTreesContainUncommittedImplementation": false,
+  "buildMode": "Targeted overlay: maintained native sources compiled directly, with test-only collection probes and verified prebuilt engine objects",
+  "checks": {
+    "packageTests": 6,
+    "buildAdapterTests": 79,
+    "workspaceJavascriptTests": 253,
+    "toolTests": 116,
+    "toolTestsSkipped": 1,
+    "coreRuntimeTests": 45,
+    "coreAnalysis": "No issues found",
+    "typechecks": "All workspace packages",
+    "frozenPnpmInstall": true,
+    "frozenFlutterInstall": true,
+    "ffiDeclarationsReproducible": true,
+    "ordinaryExampleBundlesRegenerated": true,
+    "frameworkUiBundlesRegenerated": true,
+    "defaultEngineSelectionVerified": true,
+    "formatting": true,
+    "documentation": true,
+    "fullCheckSingleInvocationPassed": false
+  },
+  "configurations": {
+    "macos-debug": {
+      "engine": "V8",
+      "frameworkRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "engineSha256": "bd6e57f20136e57fa24e20d985f19bee355dc17fe39cc3509dc6a23882ea5bad",
+      "passedCases": [
+        "used",
+        "ffi-only",
+        "ffi-buffer-only",
+        "buffer-only",
+        "unused",
+        "tree-shaken",
+        "absent"
+      ],
+      "selection": {
+        "used": {
+          "enabled": true,
+          "bufferEnabled": true,
+          "retained": [
+            "node_modules/base64-js/index.js",
+            "node_modules/ieee754/index.js",
+            "flax-buffer:/Users/xuelongqy/.codex/worktrees/ffi-design/flax/.local/tmp/ffi-dlopen-6nlbji9u/app/js/node_modules/buffer/index.js",
+            "node_modules/@flax/ffi/buffer-compat.js",
+            "node_modules/@flax/ffi/buffer.js",
+            "node_modules/@flax/ffi/layout.js",
+            "node_modules/@flax/ffi/api.js",
+            "node_modules/@flax/ffi/index.js",
+            "buffer-consumer.cjs",
+            "node_modules/@flax/ffi/index.cjs",
+            "ffi-consumer.cjs",
+            "index.js",
+            "contract-probe.js",
+            "resource-probe.js",
+            "probe.js",
+            "memory-probe.js",
+            "buffer-probe.js",
+            "buffer-memory-probe.js",
+            "complete-probe.js",
+            "counter-probe.js",
+            "counter.js"
+          ]
+        },
+        "ffi-only": {
+          "enabled": true,
+          "bufferEnabled": false,
+          "retained": [
+            "node_modules/@flax/ffi/layout.js",
+            "node_modules/@flax/ffi/api.js",
+            "memory-probe.js",
+            "probe.js",
+            "index.js"
+          ]
+        },
+        "ffi-buffer-only": {
+          "enabled": false,
+          "bufferEnabled": true,
+          "retained": [
+            "node_modules/base64-js/index.js",
+            "node_modules/ieee754/index.js",
+            "flax-buffer:/Users/xuelongqy/.codex/worktrees/ffi-design/flax/.local/tmp/ffi-dlopen-6nlbji9u/app/js/node_modules/buffer/index.js",
+            "buffer-consumer.cjs",
+            "node_modules/@flax/ffi/buffer.js",
+            "node_modules/@flax/ffi/buffer-compat.js",
+            "buffer-probe.js",
+            "index.js"
+          ]
+        },
+        "buffer-only": {
+          "enabled": false,
+          "bufferEnabled": true,
+          "retained": [
+            "node_modules/base64-js/index.js",
+            "node_modules/ieee754/index.js",
+            "flax-buffer:/Users/xuelongqy/.codex/worktrees/ffi-design/flax/.local/tmp/ffi-dlopen-6nlbji9u/app/js/node_modules/buffer/index.js",
+            "buffer-consumer.cjs",
+            "buffer-probe.js",
+            "index.js"
+          ]
+        },
+        "unused": {
+          "enabled": false,
+          "bufferEnabled": false,
+          "retained": ["index.js"]
+        },
+        "tree-shaken": {
+          "enabled": false,
+          "bufferEnabled": false,
+          "retained": ["index.js"]
+        },
+        "absent": {
+          "enabled": false,
+          "bufferEnabled": false,
+          "retained": ["index.js"]
+        }
+      },
+      "checks": {
+        "checks": 117,
+        "memoryChecks": 121,
+        "bufferChecks": 23,
+        "bufferMemoryChecks": 16,
+        "completeChecks": 173,
+        "nodeContractChecks": 57,
+        "resourceContractChecks": 11,
+        "classBindingChecks": 10,
+        "classBindingConstructionChecks": 28,
+        "retirementChecks": 4,
+        "asyncFfiChecks": 2266
+      },
+      "gcContractsPassed": 14,
+      "stress": {
+        "calls": 35840,
+        "milliseconds": 30003
+      },
+      "nativeCountsZero": true,
+      "dartBusinessDispatches": 0,
+      "nativeAssetKinds": [
+        "sources",
+        "static",
+        "dynamic",
+        "framework",
+        "xcframework",
+        "cmake",
+        "dependent"
+      ],
+      "nativeProjectsStable": true,
+      "receiptSha256": "9453843fc533498d5a47ab5db79f1c2e3a2a856e90a0cc711ec076495979ad2b",
+      "testedArchiveSha256": "7c62ed1ba4501e3f99bbcfff3d727668792052d08c4b09028099c63f11b76916",
+      "gcCleanup": {
+        "bulkGcFinalizers": 992,
+        "bulkGcDetached": 32,
+        "bulkRetirementFinalizers": 1024,
+        "queuedGcAtRetirement": 1024,
+        "cleanupWorkerNotifications": 129,
+        "largestCleanupBatch": 128
+      }
+    },
+    "macos-release": {
+      "engine": "V8",
+      "frameworkRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "engineSha256": "24ab85c6da6acbf30094fd0e8a4aa74f6f378c7c1823b9852748f4a688356f50",
+      "passedCases": ["used"],
+      "selection": {
+        "used": {
+          "enabled": true,
+          "bufferEnabled": true,
+          "retained": [
+            "node_modules/base64-js/index.js",
+            "node_modules/ieee754/index.js",
+            "flax-buffer:/Users/xuelongqy/.codex/worktrees/ffi-design/flax/.local/tmp/ffi-dlopen-zfbo_7n8/app/js/node_modules/buffer/index.js",
+            "node_modules/@flax/ffi/buffer-compat.js",
+            "node_modules/@flax/ffi/buffer.js",
+            "node_modules/@flax/ffi/layout.js",
+            "node_modules/@flax/ffi/api.js",
+            "node_modules/@flax/ffi/index.js",
+            "buffer-consumer.cjs",
+            "node_modules/@flax/ffi/index.cjs",
+            "ffi-consumer.cjs",
+            "index.js",
+            "contract-probe.js",
+            "resource-probe.js",
+            "probe.js",
+            "memory-probe.js",
+            "buffer-probe.js",
+            "buffer-memory-probe.js",
+            "complete-probe.js",
+            "counter-probe.js",
+            "counter.js"
+          ]
+        }
+      },
+      "checks": {
+        "checks": 117,
+        "memoryChecks": 121,
+        "bufferChecks": 23,
+        "bufferMemoryChecks": 16,
+        "completeChecks": 173,
+        "nodeContractChecks": 57,
+        "resourceContractChecks": 11,
+        "classBindingChecks": 10,
+        "classBindingConstructionChecks": 28,
+        "retirementChecks": 4,
+        "asyncFfiChecks": 2485
+      },
+      "gcContractsPassed": 14,
+      "stress": {
+        "calls": 39344,
+        "milliseconds": 30009
+      },
+      "nativeCountsZero": true,
+      "dartBusinessDispatches": 0,
+      "nativeAssetKinds": [
+        "sources",
+        "static",
+        "dynamic",
+        "framework",
+        "xcframework",
+        "cmake",
+        "dependent"
+      ],
+      "nativeProjectsStable": true,
+      "receiptSha256": "8b31191f25c49840ecbbb89445af28d63edf6fa36dc3d74557c13bdbf12e1306",
+      "testedArchiveSha256": "7c62ed1ba4501e3f99bbcfff3d727668792052d08c4b09028099c63f11b76916",
+      "gcCleanup": {
+        "bulkGcFinalizers": 992,
+        "bulkGcDetached": 32,
+        "bulkRetirementFinalizers": 1024,
+        "queuedGcAtRetirement": 1024,
+        "cleanupWorkerNotifications": 129,
+        "largestCleanupBatch": 128
+      }
+    },
+    "ios-simulator-debug": {
+      "engine": "Hermes",
+      "frameworkRevision": "56b02f722027fd1b1504e688cdaf58586e47e5bb",
+      "engineSha256": "93b40f95c891dbc93641207bddb273dc69b12322405c518db28405399beabf66",
+      "passedCases": [
+        "used",
+        "ffi-only",
+        "ffi-buffer-only",
+        "buffer-only",
+        "unused",
+        "tree-shaken",
+        "absent"
+      ],
+      "selection": {
+        "used": {
+          "enabled": true,
+          "bufferEnabled": true,
+          "retained": [
+            "node_modules/base64-js/index.js",
+            "node_modules/ieee754/index.js",
+            "flax-buffer:/Users/xuelongqy/.codex/worktrees/ffi-design/flax/.local/tmp/ffi-dlopen-ipvvnqc2/app/js/node_modules/buffer/index.js",
+            "node_modules/@flax/ffi/buffer-compat.js",
+            "node_modules/@flax/ffi/buffer.js",
+            "node_modules/@flax/ffi/layout.js",
+            "node_modules/@flax/ffi/api.js",
+            "node_modules/@flax/ffi/index.js",
+            "buffer-consumer.cjs",
+            "node_modules/@flax/ffi/index.cjs",
+            "ffi-consumer.cjs",
+            "index.js",
+            "contract-probe.js",
+            "resource-probe.js",
+            "probe.js",
+            "memory-probe.js",
+            "buffer-probe.js",
+            "buffer-memory-probe.js",
+            "complete-probe.js",
+            "counter-probe.js",
+            "counter.js"
+          ]
+        },
+        "ffi-only": {
+          "enabled": true,
+          "bufferEnabled": false,
+          "retained": [
+            "node_modules/@flax/ffi/layout.js",
+            "node_modules/@flax/ffi/api.js",
+            "memory-probe.js",
+            "probe.js",
+            "index.js"
+          ]
+        },
+        "ffi-buffer-only": {
+          "enabled": false,
+          "bufferEnabled": true,
+          "retained": [
+            "node_modules/base64-js/index.js",
+            "node_modules/ieee754/index.js",
+            "flax-buffer:/Users/xuelongqy/.codex/worktrees/ffi-design/flax/.local/tmp/ffi-dlopen-ipvvnqc2/app/js/node_modules/buffer/index.js",
+            "buffer-consumer.cjs",
+            "node_modules/@flax/ffi/buffer.js",
+            "node_modules/@flax/ffi/buffer-compat.js",
+            "buffer-probe.js",
+            "index.js"
+          ]
+        },
+        "buffer-only": {
+          "enabled": false,
+          "bufferEnabled": true,
+          "retained": [
+            "node_modules/base64-js/index.js",
+            "node_modules/ieee754/index.js",
+            "flax-buffer:/Users/xuelongqy/.codex/worktrees/ffi-design/flax/.local/tmp/ffi-dlopen-ipvvnqc2/app/js/node_modules/buffer/index.js",
+            "buffer-consumer.cjs",
+            "buffer-probe.js",
+            "index.js"
+          ]
+        },
+        "unused": {
+          "enabled": false,
+          "bufferEnabled": false,
+          "retained": ["index.js"]
+        },
+        "tree-shaken": {
+          "enabled": false,
+          "bufferEnabled": false,
+          "retained": ["index.js"]
+        },
+        "absent": {
+          "enabled": false,
+          "bufferEnabled": false,
+          "retained": ["index.js"]
+        }
+      },
+      "checks": {
+        "checks": 117,
+        "memoryChecks": 117,
+        "bufferChecks": 23,
+        "bufferMemoryChecks": 16,
+        "completeChecks": 173,
+        "nodeContractChecks": 57,
+        "resourceContractChecks": 11,
+        "classBindingChecks": 10,
+        "classBindingConstructionChecks": 28,
+        "retirementChecks": 4,
+        "asyncFfiChecks": 2225
+      },
+      "gcContractsPassed": 14,
+      "stress": {
+        "calls": 35184,
+        "milliseconds": 30009
+      },
+      "nativeCountsZero": true,
+      "dartBusinessDispatches": 0,
+      "nativeAssetKinds": [
+        "sources",
+        "static",
+        "dynamic",
+        "framework",
+        "xcframework",
+        "cmake",
+        "dependent"
+      ],
+      "nativeProjectsStable": true,
+      "receiptSha256": "98f07367c85ccfc10f186cca27e796812c903d2b9b6213b4e491a470eaa48809",
+      "testedArchiveSha256": "7c62ed1ba4501e3f99bbcfff3d727668792052d08c4b09028099c63f11b76916",
+      "gcCleanup": {
+        "bulkGcFinalizers": 992,
+        "bulkGcDetached": 32,
+        "bulkRetirementFinalizers": 1024,
+        "queuedGcAtRetirement": 1024,
+        "cleanupWorkerNotifications": 129,
+        "largestCleanupBatch": 128
+      }
+    }
+  },
+  "totalApplicationCases": 15,
+  "totalGcContractExecutions": 42,
+  "totalStressCalls": 110368,
+  "lifecycle": {
+    "sourceGcVerified": true,
+    "nativeViewGcVerified": true,
+    "manualFreeVerified": true,
+    "callbacksVerified": true,
+    "finalizersVerified": true,
+    "classBindingGcVerified": true,
+    "classBindingRetirementVerified": true,
+    "jointGcChainsVerified": true,
+    "emptySessionActiveJobVerified": true,
+    "crossSessionImageReleaseVerified": true,
+    "asyncSessionCloseVerified": true,
+    "callbackRetirementRacesVerified": true,
+    "completedCallbackRetirementVerified": true,
+    "foreignCallbackErrorDuringRetirementVerified": true,
+    "multipleCallbackErrorsVerified": true,
+    "throwingErrorHandlerCloseVerified": true,
+    "throwingListenerPayloadReleaseOnceVerified": true,
+    "errorRetirementReleaseOnceVerified": true,
+    "cancelledCallbackNeverDeliveredVerified": true,
+    "listenerActivePayloadLifetimeVerified": true,
+    "listenerPayloadReleaseOnceVerified": true,
+    "completedCallbackUnregisterVerified": true,
+    "listenerUnregisterReleasesPayloadVerified": true,
+    "layoutOnlyVerified": true,
+    "sessionLifecycleVerified": true,
+    "classBindingSessionCloseVerified": true,
+    "classBindingSessionGcVerified": true,
+    "asyncForcedShutdownVerified": true,
+    "isolateShutdownVerified": true,
+    "completedCallbackErrorRoutingVerified": true
+  },
+  "gcCleanup": {
+    "bulkGcFinalizers": 992,
+    "bulkGcDetached": 32,
+    "bulkRetirementFinalizers": 1024,
+    "queuedGcAtRetirement": 1024,
+    "cleanupWorkerNotifications": 129,
+    "largestCleanupBatch": 128
+  },
+  "example": {
+    "v8": {
+      "value": 42,
+      "bytes": [11, 21, 31],
+      "message": "flax"
+    },
+    "hermesIosSimulator": {
+      "value": 42,
+      "bytes": [11, 21, 31],
+      "message": "flax"
+    },
+    "iosLogSource": "Simulator unified log",
+    "iosLogSha256": "249de1fbf14640965a2cf17daef0277469603617100b0b7cc6dbc8737ff6ab1e",
+    "macosLogSha256": "7a1b27adf6c58e04a5d44619b4fb5cdab050b890f565d419461af71b12ca7ae5",
+    "iosEngineUuid": {
+      "arm64": "37AFF7C1-7948-36EE-84E5-6464C9FD822E"
+    },
+    "nativeHookSha256": "f64ffde84a770f88c554d72f157dcfad5af30227101549222f54f05da04a355b",
+    "frameworkRevisions": {
+      "v8": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "hermesIosSimulator": "56b02f722027fd1b1504e688cdaf58586e47e5bb"
+    },
+    "uiVisuallyVerifiedThisRun": false,
+    "validationPhase": "Example execution before rebase; JS bundle regenerated during main integration"
+  },
+  "localArchive": {
+    "sha256": "7c62ed1ba4501e3f99bbcfff3d727668792052d08c4b09028099c63f11b76916",
+    "files": [
+      "package/index.cjs",
+      "package/api.js",
+      "package/buffer-compat.js",
+      "package/buffer.js",
+      "package/index.js",
+      "package/layout.js",
+      "package/package.json",
+      "package/README.md",
+      "package/buffer-types.d.ts",
+      "package/index.d.ts",
+      "package/node-buffer.d.ts",
+      "package/node-ffi.d.ts"
+    ],
+    "matchesPackageSources": true,
+    "containsDart": false,
+    "published": false
+  },
+  "packageSources": {
+    "README.md": "a87725dbe8b2c12a80d3d3f94d381c904fc2a53c39e9a2664a62c27af3acfc8f",
+    "api.js": "e00ccffa0dfed383a90b5fee6c8be2b8a3651c22082ebda5c873f1d055632974",
+    "buffer-compat.js": "9eab2a3aad2a171f48bba333c8037d7aa1759f65ad7eef35ebc8ba6089e5216c",
+    "buffer-types.d.ts": "eeaac9ce1d131d2556ab3bfff00706731f348924d8a7513f3b46657f9e4f64b8",
+    "buffer.js": "e5250cf3d93b4e7458be9afc4f6fa0d54126bee55da147a34a5614aab62ea162",
+    "index.cjs": "fcb9485a4a59e028ea3d33d1db514feac169f305a758a34b9d4a2db55b4fface",
+    "index.d.ts": "242b31174144eaa481bddd0bbea293b016dab014ac7848f8cc4ca9df02b523be",
+    "index.js": "ac4536aac0e08ea59b8e6b8e6942eb94204b77ce13f128f95068719d2d46f0f6",
+    "layout.js": "186459a78ddd5ae8107c156be3a512b0aaf9d077a9545d2801ac2f8e328e9f60",
+    "node-buffer.d.ts": "d417f75b5044ed07b1c9add1b51d655994c7a528dbead4735e01ecd0625f88f0",
+    "node-ffi.d.ts": "70fdc69761d365757fbdf4619dead27b4704337d0b2a901fce2abd2a1eafe7be",
+    "package.json": "f921ae3d0982b00e1c0b947fd0483d369e75cd10610730c7ee5e302ed6b2b3aa"
+  },
+  "acceptanceSources": {
+    "packages/flax_ffi/test/runtime/async-probe.js": "9706b847e02e0c105653c42e4352f06887b18921129e9cd9d3da65208810c2ce",
+    "packages/flax_ffi/test/runtime/buffer-consumer.cjs": "f0396e8a6ca4d8d4430e64ff372920d0730b4cd4fe236780c6e5716b8fff6eb2",
+    "packages/flax_ffi/test/runtime/buffer-memory-probe.js": "6ec77dbb096778cc53fc3eab223e8e9e339873c40aa67f2307b9fa4d80202eba",
+    "packages/flax_ffi/test/runtime/buffer-only.js": "1aea3a3a821f5634b9bf48636b4dc3631f392768ea8a194aa81c5f7d3898a33d",
+    "packages/flax_ffi/test/runtime/buffer-probe.js": "529ea39654fb39224ebd7a1ce46c3982bfac1a653033f270e57a4d30fa8e40b6",
+    "packages/flax_ffi/test/runtime/build.py": "f716ba4c9af9032c741815862cdf3e60566c3a420b455f13165c701840661122",
+    "packages/flax_ffi/test/runtime/bundle-native.mjs": "12a1437bc852da732e1bf0931bf0f3e6cef22d02989f4de478accedc8018417d",
+    "packages/flax_ffi/test/runtime/bundle.mjs": "43667828cbb0c1435a06f1f7fbf2d8ef716488a2f2667541d7549bc8a9c33d55",
+    "packages/flax_ffi/test/runtime/complete-probe.js": "3f57a555e6730e64134a840c44ded2d0e43f2ada06abdfdf1f3c69ff0ffdc013",
+    "packages/flax_ffi/test/runtime/contract-probe.js": "3d39c0e78d653f45f2f0ec04016662de708dc96e4848555e42b767bcc36fb618",
+    "packages/flax_ffi/test/runtime/counter-probe.js": "e55a3350fbb85b80407d552012255850a7eab03e9713d909a8b5d01b858f1cfa",
+    "packages/flax_ffi/test/runtime/counter.js": "ffe600ad255abe34b96d6e827f0d4d96eb0163e1ce4e2c4f6dd77584764c5fc2",
+    "packages/flax_ffi/test/runtime/engine_overlay.py": "3833c8ffa494338689c3b4d8fc1bbe1ae21e9e35e97c21dd1fb34325920bad3b",
+    "packages/flax_ffi/test/runtime/ffi-buffer-only.js": "aeccd7b2b5df49baf6f0d5effdbd99e466bd2a7fcb7db1dd647de613685abdb0",
+    "packages/flax_ffi/test/runtime/ffi-consumer.cjs": "92d997304cbfd7401cbe6af7627b21da580c1454fec496d6602190280dd701b5",
+    "packages/flax_ffi/test/runtime/ffi-only.js": "0f99052196479d97ae910ed742acc14ee25c6637dfcfd13213e9cc84ac0f59d7",
+    "packages/flax_ffi/test/runtime/internal/hook/build.dart": "8a3c4368cceace334719cfd1bcd3cce5c495f4d5ce88eb12449c13f750c8d3cc",
+    "packages/flax_ffi/test/runtime/internal/lib/host.dart": "ab6a3d63382a2018babab59806bc2dc33b04c1b8e3793b070fa7545b3ae553b6",
+    "packages/flax_ffi/test/runtime/internal/lib/joint_gc_probe.dart": "ec9c9528ca18914c05e858172cc3ccb3ddf54181cc3e02222a1beff53a2fc7df",
+    "packages/flax_ffi/test/runtime/internal/lib/probe_runtime.dart": "623d5305cc8732f91052d4ba8324fec7caf25f1dbff20ade8757f0925e906eed",
+    "packages/flax_ffi/test/runtime/internal/lib/session_probe.dart": "9a2e3bcc0582cc3ac8c25b04726848ec28288b20cb10400808a5334191b0bd29",
+    "packages/flax_ffi/test/runtime/internal/pubspec.yaml": "d123099947422cfcb9a919c0c54f6ecb47433d1a7bc284d3030a0a7de27b8169",
+    "packages/flax_ffi/test/runtime/ios_platform.py": "2de5d9f71d577eafdb6660c8144f2b7758f3041053a2d32e14f435714116593a",
+    "packages/flax_ffi/test/runtime/matching_sdk.py": "21872a3fa15e2e50751f1175dc3759db0a2c2fc955175abd7f0e4d2c0b710e21",
+    "packages/flax_ffi/test/runtime/memory-probe.js": "e6818233a478cc5a318b1e11e35b3367ffa0ae26ac82a96481af8f2206d23691",
+    "packages/flax_ffi/test/runtime/native/collect_hermes.inc": "889bbc1fbd025d73fee9fecc334452086d8d48daf4233a90ce0f3077e6710536",
+    "packages/flax_ffi/test/runtime/native/collect_v8.inc": "da2fdc4e842edea71d50e8e2c522a3834395e4012d08f9ed615fdac4c3cf44ef",
+    "packages/flax_ffi/test/runtime/native/fixture.c": "2322d8649515117737cbbbd4b49ddacac1de766afdc3be66ac87407ce3c44e17",
+    "packages/flax_ffi/test/runtime/node-contract.mjs": "671b1688765b4d2765997bfc9915845065767a061d4b85855d4069ff5aff8ca2",
+    "packages/flax_ffi/test/runtime/probe.js": "90d70fff5eb3f35b40175c45918acb59b6f1994c603baff3aa62980f7e02cac4",
+    "packages/flax_ffi/test/runtime/resource-probe.js": "f5259df3d28ab901647e0d3ec7b402914ed64d3c626adb919e9c7a58999814d4",
+    "packages/flax_ffi/test/runtime/run.py": "7f3c1e8e72abf28c00e162114b34b5a1e27e72548eef3ac16c09a5c19d027281",
+    "packages/flax_ffi/test/runtime/session-probe.js": "f3cc4164a394fbe910fdee666c6c7882d1fdfb536260334605a0c2c38c72fb65",
+    "packages/flax_ffi/test/runtime/shutdown-probe.js": "22bc37ea5d57f39c4f96c6a7e0e00761fb018fab7b403c45ca5d8fd0f2dbae43",
+    "packages/flax_ffi/test/runtime/stress-config.js": "72d89ba0102ea9174e9710602fa27e99ed4afecd6d75568740c07d3b9cf2ccea",
+    "packages/flax_ffi/test/runtime/support.py": "652edc66e4cfc9c2afd38c61ef1d5340c2b6e59f11bd69d01c37d2fec6421c44",
+    "packages/flax_ffi/test/runtime/typecheck.mts": "ab02193632ce6e2fd910c8dc261c04a5aee25d1ea43dffd817cd06311c5a3b06",
+    "packages/flax_ffi/test/runtime/unused.js": "c381ce2a539553432e7d290510fd57e9483798f0e7b1b440be98005d3b3b14bb",
+    "packages/flax_ffi/test/runtime/used.js": "2b45d844255a95d49fd1980270b6c7825fdaa995fd17938fea84576737e51100"
+  },
+  "coreSources": {
+    "packages/flax/lib/src/native/native_ffi.dart": "cbc5f6c2c23220f06f6551266ff707e63278d7e585c223a0a7b9728a3f4a809d",
+    "packages/flax/lib/src/native/native_runtime.dart": "3e16239e1695578c4e97250c18c7fffa5b6b6e7cb3ecab50e07411c8bdd74eb2",
+    "packages/flax/lib/src/ui/host.dart": "20e7f504c78987d9de4f2fd48d2304e00deccda7d0c7417e3a8bbd4d69c9b058",
+    "packages/flax/lib/src/ui/async.dart": "731742c2da48cb52c9a262445a49f54634c6ac81c8ce646676a560ab7c4b2399",
+    "packages/flax/lib/src/ui/session.dart": "6c35bde2008e0af7d3f96c2e8a57668d532019884621f2bde93a81b375d62210",
+    "packages/flax_build/js/src/native-assets.mjs": "a76a5caf251ed2040a96b14348dfc41799a1d3f7e8c82b3b5c7ec44cfc7988e0",
+    "packages/flax_build/js/src/native-inputs.mjs": "ee6c652b8ab91a38370c35a4284cee1a181650bef57e0f09ceb9fdfd81bd900a",
+    "packages/flax_build/js/src/native/build.dart": "f64ffde84a770f88c554d72f157dcfad5af30227101549222f54f05da04a355b",
+    "packages/flax_build/js/src/esbuild.mjs": "0cd50ec4d6f8c8d4a8d0586e821afe7a375227944a2b0de6f86932655a7c7fd0",
+    "tool/ffi_bundle.mjs": "5bb358ed94610fe49a436d11b01a45be5e1359dc0f9787513a2ea4fce4101a56"
+  },
+  "additionalVerifiedSources": {
+    "packages/flax_build/js/src/ffi.mjs": "544cddc04f3a6003862355641961c0460d7b6f3a0124848a670adf47ae04c65b",
+    "packages/flax_build/js/src/vite.mjs": "a095cde94f6cb80329948b545e6257c18b61cd9fe3f93c1c69c7a1bf5cff2d9b",
+    "packages/flax_build/js/test/native-assets.test.mjs": "911106c6855e9a977466449b3c9d3b2ce3a49727b4978e7fa07822d19362f81e",
+    "packages/flax_ffi/test/package.test.mjs": "722897b1126e35f1a984cc75e042d8d4e588032be9fb1af3a840f83849e5d0fc",
+    "packages/flax_test/lib/src/gc.dart": "74e53cae63ab43b01a6c701602cd13ea943d293461f2a81aaae611704bb6b7f3",
+    "packages/flax_test/lib/src/engine_gc_contract.dart": "4db1f679dea49fe7f14be35a5d270d8d93c5a72625147a86c13532debd9082af",
+    "packages/flax_ffi/example/app/lib/main.dart": "0c767e249933711cd15b1a208e6303a052d03e1dfc3171bc41ee85f5eba5f4b5",
+    "packages/flax_ffi/example/app/pubspec.yaml": "cfa9639091ee91052f78c5ffade00be77916542b8f68bbf792336deb00d6eef5",
+    "packages/flax_ffi/example/js/build.mjs": "9632d183c7726eebd7226323333383023694e9ad8dfebe9b6c47bc95a8607cad",
+    "packages/flax_ffi/example/js/src/counter.ts": "8fa3fc83ccc0eb3a2e318da4ab044677266e68d0174828d2b5a81c45f0130bc5",
+    "packages/flax_ffi/example/js/src/main.ts": "d97a0f26fc8f91b1fa440f64c31b62fe6e1a23bd6358bf6f1ed355b10dafae4b",
+    "packages/flax_ffi/example/js/native/counter.c": "4f03c3e4700ad3131b0e97da55fe80c090b6f07f434c782a7fb5c9cfd5732f0c",
+    "packages/flax_ffi/example/js/native.json": "a66ed69edb0c1fae83412f265dcc4666e4bdbb3228ecd6c8b952b02907ab1a6d",
+    "packages/flax_ffi/example/js/flax.modules.json": "597d14b4a2745e60308222235e0d91e756db223379862928408adc4dbd068d40",
+    "tool/example_bundle.mjs": "ac97a25d7e818d6f789692016493f8ff2e9cd1ee6b87fed03ca29d2269c10a83",
+    "tool/src/bundle.mjs": "f31bcd324e95487b218a8a64ca25b9c1629b7500e99d16aa65def2f6ca1feba9",
+    "tool/ui_bundle.mjs": "dabe2a6fb298ce255fbf283c3ae0d5e2f8272b7c7b6ce536a40e53394d3881a1",
+    "tool/src/archive_packing.dart": "ae999b7b9942d6e6f7a61e457bd051b38ba5dfc7285c05260f2ffc86d28eff1d",
+    "tool/test/archive_packing_test.dart": "b24abd7db3487748f261b30d799bb45743661e2fdb5a9d7eb426b6c5bb9b4867",
+    "tool/test/prepared_checks_test.dart": "0cdb6ee543f35708162648e978c95b2138246641d7d6a16a7f56f6235811848c",
+    "tool/check_packages.dart": "09c43b03d3c8483c40922f6d4a70e80df7ed7e25cbd87c22fbc6e5c4f562f8b0",
+    "analysis_options.yaml": "630cd24a4bcc107549dc6c5d877d2642b028dd53320065ebdd3deba000cfc01e",
+    "packages/flax/lib/bindings.dart": "3572e282c0585624b24e90af31fc7d743aa91e9bbb59b7dc6f9b27610265036f",
+    "tool/src/local_engine.dart": "282ef54891a9584cb45349bfd0f9261f4336d82314ae607063d7fb6060643623",
+    "tool/test/local_engine_test.dart": "cb24f8eb794563b9c60c890aebc9b211d1a7c7ea22d665d5e8cc481b393b3dce"
+  },
+  "engineSources": {
+    "flutter/flax/native/src/ffi/async.inc": "119024d4765e0930502863887036c866212ad970b46a00cb4ed546d188deddec",
+    "flutter/flax/native/src/ffi/callback_hermes.inc": "09b0513ff5545563421e076aed99152afd5642b9a78e49245c30de9bde3daa7b",
+    "flutter/flax/native/src/ffi/callback_v8.inc": "85bbd19da5d56a43e3924332d2ecaba5e37a5d59f0e5f774bc67d5d2f96a91fa",
+    "flutter/flax/native/src/ffi/callbacks.inc": "96613c92944fec12e6cfc1e7f3d73c54286f4f35afd5da7f766138115e0d7347",
+    "flutter/flax/native/src/ffi/memory.inc": "0f835cb508889ffe3e9b5c64c54cc88dc885410b2d0333babcd11270e3d003ee",
+    "flutter/flax/native/src/ffi/runtime.inc": "2f18efa4bb678b23f58a42fc1de0d937dda0850bbdb96e0b75b74c15d28f50ec",
+    "flutter/flax/native/src/ffi/test-controls.inc": "16d2f313aacf40bed05690b4ba57cd5302d18cba74e39f7e88b640bd244c92fa",
+    "flutter/flax/native/src/ffi/types.inc": "55d7806d58fae892fe579dc6a467e0b2551ee13a75e385c36143b51a2fc26788",
+    "flutter/flax/native/hermes_engine.cpp": "9a32acb421443398676a34bc1d9a3c0d5b487612c308d9a0d15a621a183d7465",
+    "flutter/common/exported_symbols_mac.sym": "1aa01d912c73d1a6908768811380a67c1f40cd5c46b7ab0cb641a41dcc407c6d",
+    "flutter/common/exported_test_symbols_mac.sym": "dc3c804ab572535f4ef7c1494f51dab82730536ea197eac5225da0fc144a3aab",
+    "flutter/flax/native/include/flax/engine_ffi.h": "d9a71aa73f15946b1dcbe2392ee351898c06f90143283f198171f608da91fb0b",
+    "flutter/flax/native/hermes/typedarray_indices.js": "ef21c56c896de7c7054dcf908d2b683a19c6280843d94cf44c94039d2a4f51fa",
+    "flutter/flax/native/include/flax/canvas.h": "8715c277244405a1c17e226e3dbe0c2fd4f58ac94226f1e61c4aa2e32a84d048",
+    "flutter/flax/native/include/flax/engine_binding.h": "2c8953404cc0c871fef48ef189eaf9e5c64062044304a23e9cabe651f5f0ff5b",
+    "flutter/flax/native/include/flax/engine_gc.h": "e5d0346d9654eeb794090d9f9e4a1ca654c4ee225309cf17ebfdc66ef2894b60",
+    "flutter/flax/native/include/flax/runtime.h": "e82e82d5c5c63012be46a1f5d29c33f6205be1f225b7e4bc55d6e93c033987a2",
+    "flutter/flax/native/include/flax_v8.h": "5d7b3733066082711d3498b60954c5908f5ff58922905dafc42d01c125ce2849",
+    "flutter/flax/native/jsi/jsi/JSIDynamic.h": "fdc9f35484b06d77e0ac1dbc8a8ffa8c7d73b888897b87ebf68f329b025b6eb5",
+    "flutter/flax/native/jsi/jsi/decorator.h": "5ddabd0cd776afe4a0803d38bc2e2e9f39593e8104b54177c07fd6f59490c5f8",
+    "flutter/flax/native/jsi/jsi/hermes-interfaces.h": "2cd4b50cdcdb9cf61bd5940b257d7878ceb018438cc2ea8b34acdb552d56d56d",
+    "flutter/flax/native/jsi/jsi/instrumentation.h": "1395779ad53ec372518b977d077e65a876215bc31a94cf049ed55d0a3d2426f4",
+    "flutter/flax/native/jsi/jsi/jsi-inl.h": "a6cbf72ee25991a25cd43049e96fb275c900e24da67d5c2b9581faaca11f06a4",
+    "flutter/flax/native/jsi/jsi/jsi.cpp": "cb6274a22abc93ecc970066539815e716d3e47716e8f93a9971cf4eb5918ffc1",
+    "flutter/flax/native/jsi/jsi/jsi.h": "db2f1ee9291340f3d05b11abdcdc3d12ac84c239e58599d4ef2ac06dbaa14d92",
+    "flutter/flax/native/jsi/jsi/jsilib.h": "76d9a7c2725ead3898bf7bee5ce343442ea8b4ad1a74300a2a253bcd428c46f7",
+    "flutter/flax/native/jsi/jsi/threadsafe.h": "c1733397f6af144fa5d2ddd1cf67f97974d2267a934977cc23e8e19d101566ca",
+    "flutter/flax/native/src/canvas_decoder.inc": "11bdcb1470109f5575e465abaafcd673eff813c9f5736708cabd4d87be7c69e0",
+    "flutter/flax/native/src/engine.h": "539320a951973788963e426adf999fb9594e84c56e2005fca70972ef811b143b",
+    "flutter/flax/native/src/ffi/ffi-script.inc": "f8362e62fc0ae6e679b4d3bcfd46f933e43299eeba7b86b5256e43a9e4d9d701",
+    "flutter/flax/native/src/joint_gc.cc": "c6caefcd8c2a6c43accf35f192fe64b15e3aa276d9ee2ba736eacc5fd255ded2",
+    "flutter/flax/native/src/joint_gc.h": "d89b9497aad7f92cf929fb50b0d4c74c1db2606d46f30ad911d27f04080134f6",
+    "flutter/flax/native/src/runtime.cpp": "22206d1219723d3cb238d1008df34c5dc3de0393bf95d1b4a857cf932b4da1e0",
+    "flutter/flax/native/src/value_id.h": "98353e7df7839652e74fd341eb252a3ba07958156088d5f87e674cb4afa5f30a",
+    "flutter/flax/native/v8-jsi/src/MurmurHash.cpp": "681d5e8706809e60b79d3c14ef3b54ec7c6bdf1648f2f42c58aa1fb4b187443f",
+    "flutter/flax/native/v8-jsi/src/MurmurHash.h": "a0879c1d454fa0809d4ff87511aff1d538863ac7510c04bf38e6afdff3fc2570",
+    "flutter/flax/native/v8-jsi/src/jsi_abi/JsiAbiRuntime.cpp": "edfd8bfbe41ac351b47cb255de777af1d5bab9b9b8c797a4d360042a4c5f309f",
+    "flutter/flax/native/v8-jsi/src/jsi_abi/JsiAbiRuntime.h": "53b79edf2e30cb7f39998740b6d5f7593fc363a3413c907de5a4cf8b2573d203",
+    "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi.h": "e0b3829ed190935d10090b31e22c86ec05730403c1d34b5c60e656466b16185e",
+    "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_helpers.h": "daf242a4376c3a829595f28f590bf815135840fe0652c1feb189203a23c6e882",
+    "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "a49f8dce334673f0ccf609e689d05c02a1254e22944e66978fc054d3aede0190",
+    "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8_internal.h": "96290c8a3a27d9ef2d954442dc7ef07ad7c1f8d9ee5ba2137ca8af1c9f97ce0d",
+    "flutter/flax/native/v8-jsi/src/jsi_abi/v8_jsi_config.h": "dde553298852e61608049a3a40f6863a77843202249dafbb6e042ed77d9c0315",
+    "flutter/flax/native/v8-jsi/src/jsi_abi/v8_snapshot_container.h": "57dc67a302c84ae59974f618962b78debfd2edfdfd0618ba785b9a13d58e5574",
+    "flutter/flax/native/v8-jsi/src/v8_core.cpp": "0bdbedb4103bb4318538603501f61772b9378c76adf7e1c3f01c784dc94ba028",
+    "flutter/flax/native/v8-jsi/src/v8_core.h": "09c27f4d8085e34786d9cde65860861bd20b02e301425772728ee574801b1ff4",
+    "flutter/flax/native/v8_engine.cpp": "106f6ccb8b62a4a6bbdc1bb551516e9e22de34f5c2d649c1a9e2a26f22ca6ffc",
+    "flutter/flax/BUILD.gn": "0e39310a71ccbbd747b41a86d8beee0c9b3b576b472f1fa39778e5b26530716c",
+    "flutter/flax/tools/build_engine.py": "7f7dafead916497afb0c7cca099b4be870470ac496f4e94f727d39f51edb98b3",
+    "flutter/flax/patches/dart-ffi.patch": "0d1d47b4b06cecf5dc1d13759d95746420a1ef6b3590d41dea4fc39f1d4c888c",
+    "flutter/flax/third_party/libffi/LICENSE": "67894089811f93fca47a76f85e017da6f8582d4ba0905963c6e0f1ad6df7a195",
+    "flutter/flax/third_party/libffi/include/ffi.h": "0fffdd5254961ef8c03bf1922b3896cf67976a97c46f1a5be8d63c51ce370908",
+    "flutter/flax/third_party/libffi/include/ffi_cfi.h": "13ed26eeafad029ec04b802bea0d86c68a1a09c0a71b90ee69992c4cfbc8d310",
+    "flutter/flax/third_party/libffi/include/ffi_common.h": "1d8090956e934992f1505a21b11de69ff6cc43e0e1e4f31dc2e20b156fc5f297",
+    "flutter/flax/third_party/libffi/include/fficonfig.h": "82dbd5b9e2fc2b577aaca2f052645fd6dd8c8f92a0a913827f1dbae7496b1ea2",
+    "flutter/flax/third_party/libffi/include/tramp.h": "ef20dace99925672167a5f3b3898299d462ace170f0b90ca47fd36b30cfc7fbf",
+    "flutter/flax/third_party/libffi/source.json": "45cdd93b0bdd1dee87465b4f48fab8519a8caba802a261fee28a12d6e4715d90",
+    "flutter/flax/third_party/libffi/src/aarch64/ffi.c": "930140a82ef8ccb109ea7aeeb957601440e9b016df99dd8f877a62f53eb7ed38",
+    "flutter/flax/third_party/libffi/src/aarch64/ffitarget.h": "521c9eda334d6b369d527b684a84d50690c7a785d68b55514b6ead24300a0ebf",
+    "flutter/flax/third_party/libffi/src/aarch64/internal.h": "17729c04bffda34c31b8563fd9f812c6ae1829377212ca33d71581e071d5c4da",
+    "flutter/flax/third_party/libffi/src/aarch64/sysv.S": "95cd923c394ad12769ebc34f3900e2763998cb5e5f8cf0771f6682c48cbc4813",
+    "flutter/flax/third_party/libffi/src/closures.c": "bf5d74f3fd1fc9060f71598c4ca25a84b6d5ea38313fa86e41e3ab743c2abc5f",
+    "flutter/flax/third_party/libffi/src/java_raw_api.c": "5c3886d8c20ba1238135835aa132ad9c017af5f9e5c55e2167d3ad047def1bd6",
+    "flutter/flax/third_party/libffi/src/prep_cif.c": "783a8258b4170d7333d4b1d79cd0618d2bb2272035ae596cb50233acd74a7732",
+    "flutter/flax/third_party/libffi/src/raw_api.c": "d7ea1c81fc13e9fceb0dc431bc865e224d7be1e84483039eb4ad79144ef29c34",
+    "flutter/flax/third_party/libffi/src/tramp.c": "49fed5b711f5cbf3495772654a6fe8e48c65f2671b2b9362fbce0ffa76502011",
+    "flutter/flax/third_party/libffi/src/types.c": "4ac9032fce88023c9f1c4dffe4017e260dc4f75eab778df59ad7d233c735fe4f"
+  },
+  "notVerified": [
+    "Physical iOS",
+    "Distribution signing",
+    "Other-platform ABIs",
+    "Clean full-engine GN build",
+    "Whole-engine sanitizers",
+    "Long-running stability",
+    "New performance baseline"
+  ],
+  "overlayCompiledSources": {
+    "flutter/third_party/dart/runtime/vm/heap/compactor.cc": "15f2be6dcd6b2a255a9b9b3288c75df6d0267dc22a318c0aa98febc20315f7cf",
+    "flutter/flax/native/src/joint_gc.cc": "c6caefcd8c2a6c43accf35f192fe64b15e3aa276d9ee2ba736eacc5fd255ded2"
+  },
+  "mergePreparation": {
+    "flaxBranch": "feat/ffi-design",
+    "engineBranch": "feat/ffi-experiment",
+    "branchesReconciledWithMain": true,
+    "sourceImplementationDuplicatedInAcceptance": false,
+    "deterministicCompletedErrorRouting": true,
+    "workspaceManifestUnchangedByFfiExample": true,
+    "headerAndBindingCodegenDeferred": true,
+    "mergeOrder": ["Maintained Flutter engine", "Flax package and Core integration"],
+    "definitionsCodegenRequiredForMerge": false,
+    "status": "Integrated into local main",
+    "engineCommit": "7073a17018976155fa123c5c9c627776e776dbeb",
+    "fastForward": true,
+    "rebasedOntoCurrentMain": true,
+    "standardFlutterEngineOverridePreserved": true
+  },
+  "preRebaseSourceRevisions": {
+    "flax": "41c9b52d2f50ab876dd2f8fdaa116c361d65dbe0",
+    "engine": "56b02f722027fd1b1504e688cdaf58586e47e5bb"
+  },
+  "preRebaseChecks": {
+    "packageTests": 6,
+    "buildAdapterTests": 79,
+    "typechecks": ["@flax/ffi", "@flax/build", "@flax/example-ffi"],
+    "exampleDartAnalysis": ["macos", "ios-simulator"],
+    "frozenPnpmInstall": true,
+    "toolTests": 113,
+    "toolTestsSkipped": 1,
+    "coreRuntimeTests": 45,
+    "ffiDeclarationsReproducible": true,
+    "workspaceJavascriptTests": 239,
+    "emptyNpmCachePackageInstall": true,
+    "dartPackageTests": {
+      "outsideGeneratorPassed": 64,
+      "generatorBatchPassed": 748,
+      "generatorBatchFailed": 1,
+      "generatorIsolatedRerunPassed": 1,
+      "failure": "Concurrent Flutter fixtures lost build/native_assets/macos/native_assets.json; the exact test passes alone"
+    },
+    "workspaceAnalysis": "No issues found",
+    "hostAndBindingReproducibility": true,
+    "documentationAndArchiveChecks": true,
+    "nativeConfiguration": true,
+    "productionNativeCompilation": {
+      "flax_mac_debug": {
+        "vendoredTranslationUnitsCompiled": 8,
+        "requiredSymbolsVerified": true,
+        "productionRuntimeCompiledWithVendoredHeaders": true,
+        "testControls": false,
+        "trampolineTableEnabled": true,
+        "librarySha256": "efc91bd3c212b55f274edb2024316d9113bd576949c2051c63041daa7393cfa1"
+      },
+      "flax_ios_debug_sim_arm64": {
+        "vendoredTranslationUnitsCompiled": 8,
+        "requiredSymbolsVerified": true,
+        "productionRuntimeCompiledWithVendoredHeaders": true,
+        "testControls": false,
+        "trampolineTableEnabled": true,
+        "librarySha256": "52d732d50deb70260c744ffc165bb6f822b5ddaf528e27b3afb976bddb2d486b"
+      },
+      "flax_mac_release": {
+        "vendoredTranslationUnitsCompiled": 8,
+        "requiredSymbolsVerified": true,
+        "productionRuntimeCompiledWithVendoredHeaders": true,
+        "testControls": false,
+        "trampolineTableEnabled": true,
+        "librarySha256": "2a62e5471fdbed59067090ecee6454c69a9fa4854639a3c9c6399394c3296ada"
+      }
+    },
+    "fullCheckSingleInvocationPassed": false,
+    "formatting": true
+  },
+  "engineImplementationRevision": "7073a17018976155fa123c5c9c627776e776dbeb"
+}

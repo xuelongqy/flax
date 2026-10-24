@@ -16,15 +16,17 @@ abstract final class FlaxEngine {
       );
     }
     try {
-      final bindings = FlaxBindings(
-        Platform.isAndroid
-            ? DynamicLibrary.open('libflutter.so')
-            : DynamicLibrary.process(),
-      );
+      final library = Platform.isAndroid
+          ? DynamicLibrary.open('libflutter.so')
+          : DynamicLibrary.process();
+      final bindings = FlaxBindings(library);
       return FlaxNativeJsRuntime.fromEngine(
         bindings.flax_engine_get_api(FLAX_ABI_VERSION),
         bindings.flax_engine_get_gc_api(FLAX_ENGINE_GC_VERSION),
         bindings.flax_engine_get_binding_api(FLAX_ENGINE_BINDING_VERSION),
+        library.providesSymbol('flax_engine_get_ffi_api')
+            ? bindings.flax_engine_get_ffi_api(FLAX_ENGINE_FFI_VERSION)
+            : nullptr,
       );
     } on ArgumentError catch (error) {
       throw UnsupportedError(

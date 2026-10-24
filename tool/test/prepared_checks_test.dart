@@ -105,7 +105,7 @@ void main() {
       File('${root.path}/.git/info/exclude')
           .writeAsStringSync('build/\ndist/\n.dart_tool/\n');
       Directory('${root.path}/examples').createSync();
-      for (final owner in ['flax_dart', 'flax_flutter']) {
+      for (final owner in ['flax_ffi', 'flax_dart', 'flax_flutter']) {
         final manifest = File('${root.path}/packages/$owner/js/package.json')
           ..parent.createSync(recursive: true)
           ..writeAsStringSync(jsonEncode({'name': '@flax/$owner'}));
@@ -134,6 +134,7 @@ void main() {
       expect(
         outputs.keys,
         containsAll([
+          'packages/flax_ffi/js/dist/index.d.ts',
           'packages/flax_dart/js/dist/index.d.ts',
           'packages/flax_flutter/js/dist/index.d.ts',
           'packages/owner/.dart_tool/flax/ui/bindings.dart',

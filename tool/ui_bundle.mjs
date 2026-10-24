@@ -129,7 +129,7 @@ for (const owner of packages) {
     const projectRoot = resolve(owner.root, 'js');
     const options = {
       ...(await bundleOptionsFor(projectRoot)),
-      plugins: [flaxEsbuildPlugin(inventory.manifest)],
+      plugins: [flaxEsbuildPlugin(inventory.manifest, { nativeAssets: false })],
     };
     await build({
       ...options,

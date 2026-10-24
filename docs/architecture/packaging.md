@@ -17,6 +17,13 @@ Extensions depend on Dart `flax` and JS `@flax/core`. They do not depend on anot
 extension unless that dependency becomes an explicit public product decision. The core
 package has no concrete engine dependency.
 
+The [direct JS FFI capability](ffi.md) is an npm-first exception. `@flax/ffi` is
+standalone JS/TS; Core owns internal Dart bootstrap and retirement. Build tooling
+selects retained npm native inputs and generates the private `flax_ffi_assets` build
+package. It does not add a developer-authored Dart facade or per-library Pub package.
+This private generated package is separate from the existing `flax_native_assets` shared
+C++/CRT owner. See the [package guide](../../packages/flax_ffi/js/README.md).
+
 | Package                                              | Owned capability                                                                                                      |
 | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `flax` / `@flax/core-runtime`                        | Runtime interfaces, host base, supported Flutter SDK binding implementations, signals, sessions, and shared C ABI/JSI |
@@ -24,6 +31,7 @@ package has no concrete engine dependency.
 | `flax_dart` / `@flax/dart`                           | Declaration-only public Dart SDK library surface (`core`, `async`)                                                    |
 | `flax_material_ui` / `@flax/material-ui-runtime`     | Third-party material_ui binding delivery and native Route/Page bindings                                               |
 | `flax_cupertino_ui` / `@flax/cupertino-ui-runtime`   | Third-party cupertino_ui bindings, module plugin, and package-local example                                           |
+| `@flax/ffi`                                          | Optional direct native calls, layouts, callbacks and memory helpers; JS-only public package                           |
 | `flax_fetch` / `@flax/fetch-runtime`                 | Fetch session plugin                                                                                                  |
 | `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                              |
 | `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                                |
@@ -484,6 +492,14 @@ and installs the relocated APK after removing its source. Release adds Dart's AO
 `libapp.so`. The same audited APKs pass on the API 37 emulator with 16 KB pages and a
 Pixel 4 running Android 13 with 4 KB pages. Performance and distribution validation
 remain separate from this correctness acceptance.
+
+The FFI package owns its API guide, engine-free archive tests, real-engine acceptance
+suite and runnable example under `packages/flax_ffi/`. The example's Flutter host has no
+FFI-specific Dart facade. Core owns Session installation/checkpoints/retirement;
+`@flax/build` owns the generated native build package; the maintained engine owns all
+production JSI/libffi code. Historical experiment receipts are retained as evidence, not
+build inputs. ESM tree shaking removes unused JS and native-library selections; the
+shared engine backend remains in the engine binary.
 
 ## Tests and examples
 

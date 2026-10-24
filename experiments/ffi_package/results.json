@@ -1,0 +1,262 @@
+{
+  "scope": "Isolated optional npm FFI package gate; not production Flax integration.",
+  "sourceSha256": {
+    "internal/hook/build.dart": "98577739602540c0a4bce6813b43c7171303cb6c731d8d8a8b3598c42859f362",
+    "internal/lib/host.dart": "0b3abe9e63699768202950f9bbecdf83f19153debfaa4ef61a14e2d8b0ffb97f",
+    "internal/pubspec.yaml": "761c43040cd249d8aac04514e13583849daf5b88ef3f40278a7728bd415f9449",
+    "packages/ffi/index.d.ts": "4d91954828ba6f3f6eaffc44e550bcb04ac19fc23f09f793d96d9c3abb783177",
+    "packages/ffi/index.js": "61faffe4303dc643f5c6b6f5c3ef7a5fbfb68284b1b1dc14d84d50cc44770e29",
+    "packages/ffi/package.json": "c611ac29826d2278b8fa8204d2adef73e18a037ad7cbf6c4d9245211658cd2ba",
+    "packages/fixture/flax.native.json": "bc946b7b26c7f6fb14f74bb046d1d0504c46543bcb3be62e16a6288e880dad95",
+    "packages/fixture/index.d.ts": "a986d9d2541ef57371d3f51a57013c3ebae9cb1b882d72054506fa4073697a74",
+    "packages/fixture/index.js": "dc7d6f34f5bd6c32a0f5cf5ea004e3ddbaa09bc2504d7b4bf9096fe3f76e022f",
+    "packages/fixture/package.json": "2e387d19915a6b5630d13805674ce9d63d4d204d22acba9932a6b9e6fd24b596",
+    "prepare.mjs": "d04148ffc577aa5a53335f3fb50d4ebbfde1e53f3d5c9a9863f7f8f50a320c24",
+    "prepare.test.mjs": "a30717024a1032a7ad06f815c7f9a9d7e956b2c372f61ca1cdc8db41d5daccb7",
+    "run.py": "aa83ba60cb7af2cabfbd3b35565e7f986af26bb9b9767b91c055396a0291ab4f",
+    "unused.js": "ac84e1b7fe5af2218437f6e0995b793c1d8ecbd32f8ca2138951a7245351f8ec",
+    "used.js": "ebab396f54a4f94f844d38efa61a4d94e9603c714aa5130a606a3ea154ae4d26"
+  },
+  "archives": {
+    "flax-ffi-0.0.0-experiment.tgz": {
+      "sha256": "1448c865277ce3d3f23b28007052a4f51ab0c9855d0e80b398842382851c0edb",
+      "files": ["package/index.js", "package/package.json", "package/index.d.ts"]
+    },
+    "flax-ffi-fixture-0.0.0-experiment.tgz": {
+      "sha256": "38cbabc46b734845d41559873f1fbb6389930d825cb737eeb456df451532c522",
+      "files": [
+        "package/native/provider.c",
+        "package/native/ffi_experiment.h",
+        "package/native/provider_api.h",
+        "package/native/include/flax/runtime.h",
+        "package/native/provider.g.inc",
+        "package/index.js",
+        "package/flax.native.json",
+        "package/package.json",
+        "package/index.d.ts"
+      ]
+    }
+  },
+  "configurations": {
+    "android-debug": {
+      "engineRevision": "49e4666a8530bc617a2ff8696f499ea52f53b5cd",
+      "cases": {
+        "used": {
+          "executed": true,
+          "nativeBytes": 7744,
+          "nativeFiles": ["lib/arm64-v8a/libflax_ffi_providers.so"],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "88b5aed73f47529938886eb12646c73462aae14e127eefb746831b0bb5607366",
+          "checks": 6,
+          "answer": 42,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 2,
+          "nativeCountsZero": true
+        },
+        "unused": {
+          "executed": true,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "88b5aed73f47529938886eb12646c73462aae14e127eefb746831b0bb5607366",
+          "checks": 1,
+          "ffiAbsent": true,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 2
+        },
+        "tree-shaken": {
+          "executed": true,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "88b5aed73f47529938886eb12646c73462aae14e127eefb746831b0bb5607366",
+          "checks": 1,
+          "ffiAbsent": true,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 2
+        },
+        "absent": {
+          "executed": true,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "88b5aed73f47529938886eb12646c73462aae14e127eefb746831b0bb5607366",
+          "checks": 1,
+          "ffiAbsent": true,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 2
+        }
+      }
+    },
+    "ios-device-release": {
+      "engineRevision": "baa88711239",
+      "cases": {
+        "used": {
+          "executed": false,
+          "nativeBytes": 66816,
+          "nativeFiles": ["Frameworks/flax_ffi_providers.framework/flax_ffi_providers"],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "71a7b1e73356f9f80ba7ecdeb3d185a7d32b180a8b2af1c163cc3e9633b691e8"
+        },
+        "absent": {
+          "executed": false,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "71a7b1e73356f9f80ba7ecdeb3d185a7d32b180a8b2af1c163cc3e9633b691e8"
+        }
+      }
+    },
+    "ios-simulator-debug": {
+      "engineRevision": "092069ad26e7a1dc2038f81385e524ca4027db98",
+      "cases": {
+        "used": {
+          "executed": true,
+          "nativeBytes": 66768,
+          "nativeFiles": ["Frameworks/flax_ffi_providers.framework/flax_ffi_providers"],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "97da521dee91c301bc89d4b08b19944b6c04da680acd331d3c42a5f7866e9b2b",
+          "checks": 6,
+          "answer": 42,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 1,
+          "nativeCountsZero": true
+        },
+        "unused": {
+          "executed": true,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "97da521dee91c301bc89d4b08b19944b6c04da680acd331d3c42a5f7866e9b2b",
+          "checks": 1,
+          "ffiAbsent": true,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 1
+        },
+        "tree-shaken": {
+          "executed": true,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "97da521dee91c301bc89d4b08b19944b6c04da680acd331d3c42a5f7866e9b2b",
+          "checks": 1,
+          "ffiAbsent": true,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 1
+        },
+        "absent": {
+          "executed": true,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "97da521dee91c301bc89d4b08b19944b6c04da680acd331d3c42a5f7866e9b2b",
+          "checks": 1,
+          "ffiAbsent": true,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 1
+        }
+      }
+    },
+    "macos-debug": {
+      "engineRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "cases": {
+        "used": {
+          "executed": true,
+          "nativeBytes": 66768,
+          "nativeFiles": [
+            "Contents/Frameworks/flax_ffi_providers.framework/Versions/A/flax_ffi_providers"
+          ],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "bcff6d637d32955fbb51f00c8404946582a73bac8404cc58e933c4ae8351b6a2",
+          "checks": 6,
+          "answer": 42,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 2,
+          "nativeCountsZero": true
+        },
+        "unused": {
+          "executed": true,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "bcff6d637d32955fbb51f00c8404946582a73bac8404cc58e933c4ae8351b6a2",
+          "checks": 1,
+          "ffiAbsent": true,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 2
+        },
+        "tree-shaken": {
+          "executed": true,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "bcff6d637d32955fbb51f00c8404946582a73bac8404cc58e933c4ae8351b6a2",
+          "checks": 1,
+          "ffiAbsent": true,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 2
+        },
+        "absent": {
+          "executed": true,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "bcff6d637d32955fbb51f00c8404946582a73bac8404cc58e933c4ae8351b6a2",
+          "checks": 1,
+          "ffiAbsent": true,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 2
+        }
+      }
+    },
+    "macos-release": {
+      "engineRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "cases": {
+        "used": {
+          "executed": true,
+          "nativeBytes": 66528,
+          "nativeFiles": [
+            "Contents/Frameworks/flax_ffi_providers.framework/Versions/A/flax_ffi_providers"
+          ],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "acd23eaa40d5e2b849543485821fae7f9e5bdfde5fe30bad8f084f330e54273d",
+          "checks": 6,
+          "answer": 42,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 2,
+          "nativeCountsZero": true
+        },
+        "absent": {
+          "executed": true,
+          "nativeBytes": 0,
+          "nativeFiles": [],
+          "nativeProjectsUnchanged": true,
+          "engineSha256": "acd23eaa40d5e2b849543485821fae7f9e5bdfde5fe30bad8f084f330e54273d",
+          "checks": 1,
+          "ffiAbsent": true,
+          "dartBusinessDispatches": 0,
+          "dartPositiveControl": 1,
+          "engineNamespace": 2
+        }
+      }
+    }
+  },
+  "limits": [
+    "The fixture admits one provider and uses an internal standalone host adapter.",
+    "The engine still contains experimental FFI frontend/ownership code; provider-byte savings do not establish zero engine overhead.",
+    "iOS device release is unsigned build-only; no physical device execution."
+  ]
+}

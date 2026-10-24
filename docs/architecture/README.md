@@ -151,3 +151,12 @@ native ValueListenable consumers.
 - [Persistent localStorage and namespaces](local-storage.md).
 
 - [Canvas 2D](canvas.md): command buffer, rAF, and native input references.
+
+## Direct JavaScript FFI
+
+[Optional FFI](ffi.md) provides direct shared JSI/libffi calls for V8 and Hermes, raw
+bigint pointers, native layouts, callbacks, explicit memory release and optional Buffer
+compatibility. Developers install `@flax/ffi`; Core owns internal Dart installation,
+checkpoints and retirement. Retained npm native inputs select source/static/prebuilt
+code assets. See the [package guide](../../packages/flax_ffi/js/README.md) and
+[validation receipt](../../packages/flax_ffi/test/runtime/results.json).

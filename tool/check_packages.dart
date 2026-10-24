@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
+import 'src/archive_packing.dart';
 import 'src/package_discovery.dart';
 import 'src/process.dart';
 import 'src/prepared_checks.dart';
@@ -319,26 +320,13 @@ Future<_NpmArchive> _checkNpmPackage(
     ),
   );
   _copySource(package.directory, copy);
+  prepareNpmArchiveManifest(
+    copy,
+    npmVersions: versions,
+    npmOwnerDirectories: const {},
+  );
   final manifest = File(p.join(copy.path, 'package.json'));
   final data = jsonDecode(manifest.readAsStringSync()) as Map<String, dynamic>;
-  data.remove('private');
-  for (final field in [
-    'dependencies',
-    'devDependencies',
-    'peerDependencies',
-    'optionalDependencies',
-  ]) {
-    final dependencies = data[field] as Map<String, dynamic>?;
-    if (dependencies == null) continue;
-    for (final entry in dependencies.entries.toList()) {
-      if (entry.value == 'workspace:*') {
-        dependencies[entry.key] = versions[entry.key] ?? '0.0.0';
-      }
-    }
-  }
-  manifest.writeAsStringSync(
-    '${const JsonEncoder.withIndent('  ').convert(data)}\n',
-  );
   // Single pack: list contents via --json and write the tarball once.
   // Do not use `pnpm pack --dry-run`; some pnpm 11 builds reject that flag
   // even when `pnpm help pack` documents it.

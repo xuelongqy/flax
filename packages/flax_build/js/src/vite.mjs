@@ -1,19 +1,83 @@
+import { createRequire } from 'node:module';
+import { dirname, resolve } from 'node:path';
+import { prepareNativeAssetsForBuild } from './native-assets.mjs';
 import { FlaxCompiler } from './compiler.mjs';
+import { bufferViewCompatibility } from './ffi.mjs';
 
 /** Share semantic lowering and type-dependency invalidation with production builds. */
 export function flaxVitePlugin(options = {}) {
   let compiler;
   let server;
+  let root;
+  let adaptBuffer;
   return {
     name: 'flax-typescript',
     enforce: 'pre',
+    config(config) {
+      const require = createRequire(
+        resolve(config.root ?? process.cwd(), 'package.json'),
+      );
+      let ffi;
+      try {
+        ffi = require.resolve('@flax/ffi');
+      } catch (error) {
+        if (error.code !== 'MODULE_NOT_FOUND') throw error;
+      }
+      try {
+        const buffer = (ffi ? createRequire(ffi) : require).resolve('buffer/');
+        let adaptation = bufferViewCompatibility;
+        if (ffi) {
+          const { installBufferCompatibility } = require(
+            resolve(dirname(ffi), 'buffer-compat.js'),
+          );
+          adaptation = `\n(${installBufferCompatibility.toString()})(Buffer);`;
+        }
+        adaptBuffer = (code, id) =>
+          id.split('?')[0] === buffer
+            ? { code: code + adaptation, map: null }
+            : undefined;
+        return {
+          resolve: {
+            alias: [
+              ...(ffi ? [{ find: /^node:ffi$/, replacement: ffi }] : []),
+              { find: /^(?:buffer\/?|node:buffer)$/, replacement: buffer },
+            ],
+          },
+          optimizeDeps: {
+            rolldownOptions: {
+              plugins: [{ name: 'flax-buffer', transform: adaptBuffer }],
+            },
+          },
+        };
+      } catch (error) {
+        if (error.code !== 'MODULE_NOT_FOUND') throw error;
+      }
+    },
+    async generateBundle(_, bundle) {
+      const outputs = {};
+      for (const [name, chunk] of Object.entries(bundle))
+        if (chunk.type === 'chunk') {
+          outputs[name] = {
+            inputs: Object.fromEntries(
+              Object.entries(chunk.modules).map(([path, value]) => [
+                path,
+                { bytesInOutput: value.renderedLength ?? 0 },
+              ]),
+            ),
+          };
+        }
+      await prepareNativeAssetsForBuild(root, options.nativeAssets, { outputs });
+    },
     configResolved(config) {
-      compiler = new FlaxCompiler({ root: config.root, ...options });
+      root = config.root;
+      compiler = new FlaxCompiler({ root, ...options });
     },
     configureServer(value) {
       server = value;
     },
     transform(code, id) {
+      const buffer = adaptBuffer?.(code, id);
+      if (buffer) return buffer;
       if (id.startsWith('\0') || !/\.[cm]?tsx?(?:[?#]|$)/.test(id)) return;
       const result = compiler.transform(code, id);
       if (server) server.watcher.add(result.dependencies);

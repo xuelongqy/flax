@@ -20,15 +20,18 @@ and native code together when those parts exist. An extension depends on `flax` 
 | [flax_websocket](flax_websocket/README.md)             | Optional WebSocket session plugin                                                                  |
 | [flax_local_storage](flax_local_storage/README.md)     | Optional persistent localStorage session plugin                                                    |
 | [flax_canvas](flax_canvas/README.md)                   | Optional Canvas host plugin and generated CanvasView binding                                       |
+| [flax_ffi](flax_ffi/README.md)                         | Optional JS-only FFI package, native calls, memory and callbacks                                   |
 
 The core JavaScript package is `@flax/core`. Runtime signals use its root entry;
 Flutter, binding types, and host declarations use `/flutter`, `/bindings`, and `/host`.
 Each optional Dart package owns the matching `@flax/*` JS package where one is needed.
 
-Each directory commits `flax_package.yaml`. Package tools use it to discover the public
-Dart entry point, optional npm peer, capabilities, and registration symbols. A paired
-Pub/npm capability uses the same version in both manifests; separate Flax capabilities
-may release independently. The metadata never registers a plugin at runtime.
+Paired Dart/JS directories commit `flax_package.yaml`. Standalone npm packages such as
+`@flax/build` and `@flax/ffi` are discovered separately and have no public Pub package.
+Package tools use it to discover the public Dart entry point, optional npm peer,
+capabilities, and registration symbols. A paired Pub/npm capability uses the same
+version in both manifests; separate Flax capabilities may release independently. The
+metadata never registers a plugin at runtime.
 
 Package-local examples use the package under test, core, a selected engine, and the
 development-only example shell. The top-level examples verify several packages together.

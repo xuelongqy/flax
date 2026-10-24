@@ -9,6 +9,8 @@ import '../runtime/api.dart';
 import 'native_calls.dart';
 import 'runtime_bindings.g.dart';
 
+part 'native_ffi.dart';
+
 final _hostCallbackFinalizer = Finalizer<_HostCallback>(
   (record) => record.close(),
 );
@@ -36,8 +38,10 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
   factory FlaxNativeJsRuntime.fromEngine(
     Pointer<FlaxApi> table,
     Pointer<FlaxEngineGcApi> gc,
-    Pointer<FlaxEngineBindingApi> binding,
-  ) {
+    Pointer<FlaxEngineBindingApi> binding, [
+    Pointer<FlaxEngineFfiApi>? ffi,
+  ]) {
+    ffi ??= nullptr;
     if (table == nullptr ||
         table.ref.version != FLAX_ABI_VERSION ||
         table.ref.struct_size != sizeOf<FlaxApi>()) {
@@ -77,10 +81,23 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         binding.ref.new_record == nullptr) {
       throw UnsupportedError('Incompatible Flax binding engine extension');
     }
-    return FlaxNativeJsRuntime._(NativeCalls(table.ref), gc.ref, binding.ref);
+    if (ffi != nullptr &&
+        (ffi.ref.version != FLAX_ENGINE_FFI_VERSION ||
+            ffi.ref.struct_size != sizeOf<FlaxEngineFfiApi>() ||
+            ffi.ref.install == nullptr ||
+            ffi.ref.checkpoint == nullptr ||
+            ffi.ref.retire == nullptr)) {
+      throw UnsupportedError('Incompatible Flax native FFI extension');
+    }
+    return FlaxNativeJsRuntime._(
+      NativeCalls(table.ref),
+      gc.ref,
+      binding.ref,
+      ffi == nullptr ? null : ffi.ref,
+    );
   }
 
-  FlaxNativeJsRuntime._(this._calls, this._gc, this._binding) {
+  FlaxNativeJsRuntime._(this._calls, this._gc, this._binding, this._ffi) {
     using((arena) {
       final result = arena<Pointer<FlaxRuntime>>();
       _checked(arena, (error) => _calls.create(result, error));
@@ -91,6 +108,8 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
   final NativeCalls _calls;
   final FlaxEngineGcApi _gc;
   final FlaxEngineBindingApi _binding;
+  final FlaxEngineFfiApi? _ffi;
+  ReceivePort? _ffiPort;
   late final _registerMembers = _binding.register_members
       .asFunction<
         int Function(
@@ -815,6 +834,9 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
     if (_disposed) return;
     _ensureAlive();
     if (_depth != 0) throw StateError('Cannot dispose an active runtime');
+    if (!retireNativeFfi()) {
+      throw StateError('Native FFI callbacks are still retiring');
+    }
     _disposing = true;
     try {
       using((arena) {

@@ -64,6 +64,26 @@ declaration or signature in the SDK.
 | Performance budgets and frame scheduling     | Broader device measurements and representative workloads                                                                                     |
 | Additional host and transport APIs           | Explicit contracts and tests; WebSocket `bufferedAmount` needs real transport-buffer accounting, not `flush` or timing estimates             |
 
+[Direct JavaScript FFI](../architecture/ffi.md) now implements the optional npm package,
+shared runtime signatures, native layouts, typed varargs, raw bigint memory access,
+callbacks, optional allocation/finalization, Core Session retirement and native input
+packaging. The [API convergence contract](../architecture/ffi.md#api-convergence) uses
+portable Node API behavior as the base and adds missing Dart native-library capabilities
+through extensions in the same JavaScript style. Portable error/signature handling,
+conversion-aware caching, arena cleanup and finalizer cancellation have shared
+acceptance fixtures. Foreign-thread synchronous closures use owner-thread delivery with
+wait-cycle detection; isolated handlers retain their separate context. Shared VM-heap
+execution remains outside the portable contract. Additional resource helper entry points
+are deferred; Node-specific runtime facilities are excluded.
+
+Remaining FFI acceptance includes physical iOS/distribution builds, other platform ABIs,
+full-engine sanitizer/stress/performance coverage and the size of the shared engine
+backend. Explicit CMake projects, Apple containers and declared dylib dependencies are
+supported; general header generation and unknown native toolchains remain separate
+tooling work. See the
+[acceptance runner](../../packages/flax_ffi/test/runtime/README.md) for the executed
+scope.
+
 The current bridge executes trusted application code; its module compatibility checks
 are not a security sandbox. Initial synchronous execution and local native asset loading
 are accepted in [ADR 0002](0002-experimental-runtime.md). Node, Python and Rust backend

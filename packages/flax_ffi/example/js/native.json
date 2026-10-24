@@ -1,0 +1,12 @@
+{
+  "formatVersion": 1,
+  "libraries": [
+    {
+      "id": "@flax/example-ffi/counter",
+      "kind": "sources",
+      "targets": ["macos", "ios"],
+      "language": "c",
+      "sources": ["native/counter.c"]
+    }
+  ]
+}

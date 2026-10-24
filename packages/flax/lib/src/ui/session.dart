@@ -324,6 +324,7 @@ class _Session {
   int _nextPromise = 1;
   bool _checkpointScheduled = false;
   bool _checkpointRunning = false;
+  bool _checkpointJobsPending = false;
   FlaxJsFunction? _objectKeys;
   FlaxJsFunction? _arrayCheck;
   _Value? _root;
@@ -1152,12 +1153,16 @@ class _Session {
   void _tryClose() {
     if (closing &&
         _mounts == 0 &&
+        _nativeRetirements == 0 &&
         _hostTasks.isEmpty &&
         !_checkpointScheduled &&
-        !_checkpointRunning) {
+        !_checkpointRunning &&
+        !_checkpointJobsPending) {
       _dispose();
     }
   }
+
+  int _nativeRetirements = 0;
 
   void _dispose() {
     if (!active) return;

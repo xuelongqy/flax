@@ -1,0 +1,25 @@
+{
+  "name": "@flax/ffi-fixture",
+  "version": "0.0.0-experiment",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "flax.native.json",
+    "native"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@flax/ffi": "0.0.0-experiment"
+  },
+  "flax": {
+    "native": "flax.native.json"
+  }
+}

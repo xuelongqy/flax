@@ -1,0 +1,12 @@
+name: flax_ffi_host
+description: Internal build and installation adapter for the isolated FFI package gate.
+version: 0.0.0
+publish_to: none
+environment:
+  sdk: ^3.13.5
+dependencies:
+  ffi: 2.2.0
+  code_assets: 1.2.1
+  crypto: 3.0.7
+  hooks: 2.2.0
+  native_toolchain_c: 0.19.2

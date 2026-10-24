@@ -93,6 +93,7 @@ final class FlaxNpmPackage {
 }
 
 const _standaloneNpmDeliverables = {
+  'flax_ffi': 'runtime',
   'flax_dart': 'declarations',
   'flax_flutter': 'declarations',
 };

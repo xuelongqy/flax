@@ -15,6 +15,7 @@ import 'package:flutter/services.dart' show AssetBundle, FontLoader, rootBundle;
 import 'package:flutter/widgets.dart';
 
 import 'runtime.dart';
+import 'src/native/native_runtime.dart';
 import 'src/application.dart';
 import 'src/network.dart';
 import 'src/prefixed_asset_bundle.dart';

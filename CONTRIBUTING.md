@@ -52,39 +52,41 @@ Child Dart, Flutter, Node and Python processes inherit these paths. Remove compl
 scratch directories and temporary application copies after saving the test receipts;
 keep the maintained engine/SDK outputs for subsequent checks.
 
-| Change                                                 | Command                                                   |
-| ------------------------------------------------------ | --------------------------------------------------------- |
-| Dart packages or manifests                             | `dart run melos run analyze`                              |
-| Formatting across the repository                       | `dart run melos run format:check`                         |
-| JS types, exports, or dependencies                     | `dart run melos run js:typecheck`                         |
-| Build tooling, TS generic lowering and Vite HMR        | `pnpm --filter @flax/build test`                          |
-| JS package output                                      | `dart run melos run js:build`                             |
-| Markdown or local documentation links                  | `dart run melos run docs:check`                           |
-| Native CMake configuration                             | `dart run melos run native:configure`                     |
-| C ABI header changes                                   | `dart run melos run ffi:generate`                         |
-| FFI declaration reproducibility                        | `dart run melos run ffi:check`                            |
-| Real macOS engine application                          | `dart run tool/check_engine_application.dart profile`     |
-| Live sessions across three hot restarts                | `dart run tool/check_engine_restart.dart`                 |
-| Development HMR State and real Vite/WebSocket delivery | `dart run tool/check_hot_reload.dart`                     |
-| Runtime, callbacks, or native packaging                | `dart run melos run check:runtime`                        |
-| Binding rules or generator                             | `dart run melos run bindings:check`                       |
-| Regenerate Dart and TS bindings                        | `dart run melos run bindings:generate`                    |
-| JS behavior (after ui:bundle)                          | `dart run melos run js:test`                              |
-| JS example bundle                                      | `dart run melos run example:bundle`                       |
-| JS framework test bundles                              | `dart run melos run ui:bundle`                            |
-| Framework UI with the matching Flax engine             | `dart run melos run ui:test`                              |
-| Cross-module aggregate with the matching Flax engine   | `dart run melos run check:aggregate`                      |
-| All UI-owning packages plus aggregate                  | `dart run melos run check:ui`                             |
-| Launch prepared example for the selected target        | `dart run melos run example:run`                          |
-| Launch one package's example only                      | `dart run tool/example_run.dart --package=NAME`           |
-| Standalone source and release with the matching engine | `dart run melos run check:standalone`                     |
-| Launch standalone macOS app                            | `dart run melos run standalone:run`                       |
-| Workspace-wide or cross-layer changes                  | `dart run melos run check`                                |
-| One package's static checks                            | `dart run tool/package.dart check NAME`                   |
-| One package's real UI checks                           | `dart run tool/package.dart integration NAME --engine=v8` |
-| Temporary Dart/npm archive contents                    | `dart run melos run packages:check`                       |
-| Stage packable archives with receipt (no publish)      | `dart run melos run packages:pack`                        |
-| Pre-release archive dry-run (no engines/publish)       | `dart run melos run release:check`                        |
+| Change                                                 | Command                                                                |
+| ------------------------------------------------------ | ---------------------------------------------------------------------- |
+| Dart packages or manifests                             | `dart run melos run analyze`                                           |
+| Formatting across the repository                       | `dart run melos run format:check`                                      |
+| JS types, exports, or dependencies                     | `dart run melos run js:typecheck`                                      |
+| Build tooling, TS generic lowering and Vite HMR        | `pnpm --filter @flax/build test`                                       |
+| JS package output                                      | `dart run melos run js:build`                                          |
+| Markdown or local documentation links                  | `dart run melos run docs:check`                                        |
+| JS FFI package/archive optionality                     | `pnpm --filter @flax/ffi test`                                         |
+| FFI native calls, callbacks and lifecycle              | [Package runtime acceptance](packages/flax_ffi/test/runtime/README.md) |
+| Native CMake configuration                             | `dart run melos run native:configure`                                  |
+| C ABI header changes                                   | `dart run melos run ffi:generate`                                      |
+| FFI declaration reproducibility                        | `dart run melos run ffi:check`                                         |
+| Real macOS engine application                          | `dart run tool/check_engine_application.dart profile`                  |
+| Live sessions across three hot restarts                | `dart run tool/check_engine_restart.dart`                              |
+| Development HMR State and real Vite/WebSocket delivery | `dart run tool/check_hot_reload.dart`                                  |
+| Runtime, callbacks, or native packaging                | `dart run melos run check:runtime`                                     |
+| Binding rules or generator                             | `dart run melos run bindings:check`                                    |
+| Regenerate Dart and TS bindings                        | `dart run melos run bindings:generate`                                 |
+| JS behavior (after ui:bundle)                          | `dart run melos run js:test`                                           |
+| JS example bundle                                      | `dart run melos run example:bundle`                                    |
+| JS framework test bundles                              | `dart run melos run ui:bundle`                                         |
+| Framework UI with the matching Flax engine             | `dart run melos run ui:test`                                           |
+| Cross-module aggregate with the matching Flax engine   | `dart run melos run check:aggregate`                                   |
+| All UI-owning packages plus aggregate                  | `dart run melos run check:ui`                                          |
+| Launch prepared example for the selected target        | `dart run melos run example:run`                                       |
+| Launch one package's example only                      | `dart run tool/example_run.dart --package=NAME`                        |
+| Standalone source and release with the matching engine | `dart run melos run check:standalone`                                  |
+| Launch standalone macOS app                            | `dart run melos run standalone:run`                                    |
+| Workspace-wide or cross-layer changes                  | `dart run melos run check`                                             |
+| One package's static checks                            | `dart run tool/package.dart check NAME`                                |
+| One package's real UI checks                           | `dart run tool/package.dart integration NAME --engine=v8`              |
+| Temporary Dart/npm archive contents                    | `dart run melos run packages:check`                                    |
+| Stage packable archives with receipt (no publish)      | `dart run melos run packages:pack`                                     |
+| Pre-release archive dry-run (no engines/publish)       | `dart run melos run release:check`                                     |
 
 macOS arm64 selects V8 JIT automatically. `check:runtime:v8`, `ui:test:v8`,
 `check:aggregate:v8` and `check:ui:v8` select the same engine explicitly. Focused UI

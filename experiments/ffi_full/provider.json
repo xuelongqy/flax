@@ -1,0 +1,17 @@
+{
+  "ownership": {
+    "create": "owned:counter",
+    "update": "borrowed:counter",
+    "destroy": "release:counter"
+  },
+  "entries": {
+    "add": ["flax_ffi_fixture_add", "int64_t (int32_t, int32_t)"],
+    "create": ["fixture_create", "void *(int32_t)"],
+    "update": ["fixture_update", "int32_t (void *, int32_t)"],
+    "destroy": ["fixture_destroy", "int32_t (void *)"],
+    "inline_call": ["fixture_inline", "int32_t (FfiInline, void *, int32_t)"],
+    "compare": ["fixture_compare", "int32_t (FfiCompare, int32_t, int32_t)"],
+    "stat": ["fixture_stat", "uint64_t (uint32_t)"],
+    "fault": ["fixture_fault", "void (uint32_t)"]
+  }
+}

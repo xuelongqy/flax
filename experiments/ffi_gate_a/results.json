@@ -1,0 +1,63 @@
+{
+  "scope": "Gate A; ABI 2 only; no production module extension",
+  "results": {
+    "v8": {
+      "passed": true,
+      "engine": "v8",
+      "engineNamespace": 2,
+      "js": {
+        "checks": 14,
+        "iterations": 10000,
+        "checksum": 75005000
+      },
+      "nativeDispatchEntries": 20019,
+      "dartDispatchEntries": 0,
+      "dartPositiveControlEntries": 1,
+      "cIntegerCalls": 10003,
+      "cDoubleCalls": 10003,
+      "countersCreated": 3,
+      "countersDestroyed": 3,
+      "remainingRuntimes": 0,
+      "nativeAbi": 2,
+      "uiProtocolAndBindingExtensionUsed": false,
+      "engineBinarySha256": "6e2da4fce32b667650ed7a7e469855c42e45cf7ed2ca50a74b351a9a994735a6",
+      "engineBinaryUuids": {
+        "arm64": "4D9C0F56-3157-33F0-AEC0-C2B0C2503E1A"
+      },
+      "engineBuildRevision": "ada7158c404f3263c88507f098ab91b1de07995b",
+      "dartRevision": "04bcd1036cdc799ac6564988f159ee454d42c822"
+    },
+    "hermes": {
+      "passed": true,
+      "engine": "hermes",
+      "engineNamespace": 1,
+      "js": {
+        "checks": 14,
+        "iterations": 10000,
+        "checksum": 75005000
+      },
+      "nativeDispatchEntries": 20019,
+      "dartDispatchEntries": 0,
+      "dartPositiveControlEntries": 1,
+      "cIntegerCalls": 10003,
+      "cDoubleCalls": 10003,
+      "countersCreated": 3,
+      "countersDestroyed": 3,
+      "remainingRuntimes": 0,
+      "nativeAbi": 2,
+      "uiProtocolAndBindingExtensionUsed": false,
+      "engineBinarySha256": "ac6323f11fc2e65b3874ef7118d82dc4ae51eaef9a9db86b5df55ac6e80d1974",
+      "engineBinaryUuids": {
+        "arm64": "4BF1A1A3-A890-37C4-96FA-977D21EBBC31"
+      },
+      "engineBuildRevision": "092069ad26e7a1dc2038f81385e524ca4027db98",
+      "dartRevision": "04bcd1036cdc799ac6564988f159ee454d42c822"
+    }
+  },
+  "sourceSha256": {
+    "probe.dart": "47f55280425d2b4e9965b4443c0276a68d54bd68aa65a77fe82886a5e1d3ea09",
+    "native/bridge.cpp": "62341dc829ab87986623ea5afc5e8aed7789005df2d04afbe33a27caabc8a713",
+    "native/provider.c": "a52e3632ce4540ed04e95b748822b3de5abdc7b3186d91152a5deaef608f639b",
+    "native/provider.h": "975429a7b810fa626cc7fe3c204e15a50ab4f92a0d21cee9c2d3e4f021da301a"
+  }
+}

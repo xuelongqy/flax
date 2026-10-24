@@ -205,6 +205,37 @@ accidental package publication; per-View availability comes from `bindingModules
 [configured host walkthrough](../../../examples/configured_bindings/README.md) for
 ordinary package manifests, build scripts, archive consumers and real View checks.
 
+## Optional FFI and native libraries
+
+The normal esbuild and Vite plugins resolve `@flax/ffi`, `node:ffi`, `buffer`, `buffer/`
+and `node:buffer`, including static CommonJS imports. Buffer-only bundles do not install
+native FFI. Unused imports and installed-but-unused packages contribute no native
+library inputs. These aliases do not add other Node runtime APIs.
+
+A retained npm package can declare `"flax": { "native": "native.json" }`. The versioned
+descriptor selects C/C++ sources, static archives, prebuilt dylibs, Apple containers or
+explicit CMake projects. Declared dependency IDs determine build order and loader paths.
+Source paths must remain inside that package; binary slices select macOS arm64, iOS
+arm64 device or simulator explicitly. See the
+[FFI package guide](../../flax_ffi/js/README.md#package-native-inputs) for metadata.
+
+The plugins automatically find the Flutter host in the JS project directory or its
+parent. Override it with `nativeAssets: { hostDirectory }`, or disable this build step
+with `nativeAssets: false`. The selected inputs are staged and hashed under the host's
+private `.flax/ffi_assets` directory. Its generated Pub dependency is added internally;
+the developer writes no Dart package or installation code. Removing imports withdraws
+only this adapter's previously owned native outputs.
+
+On a fresh checkout, install JS dependencies and run the JS build **before** Flutter
+pub/build so the generated path dependency exists. Keep the generated dependency in the
+host pubspec, ignore `.flax/ffi_assets`, and regenerate it during CI setup. Native input
+changes require a Flutter rebuild. JavaScript hot reload cannot embed binaries.
+
+`@flax/build/native-assets` exposes the same preparation functions to custom build
+drivers. It selects XCFramework slices and rewrites declared dylib dependencies, but
+does not parse C headers or infer framework resource/Objective-C/Swift integration.
+Runtime lookup uses `DynamicLibrary.codeAsset(id)` from `@flax/ffi`.
+
 ## Host module preparation
 
 For generated application bindings, the default entry needs no handwritten module

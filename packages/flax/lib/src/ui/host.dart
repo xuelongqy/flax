@@ -336,6 +336,9 @@ class _BaseHostPlugin extends FlaxPlugin {
   };
   @override
   Set<String> get globals => const {
+    '__flaxFfiDlopen',
+    '__flaxFfiMemory',
+    '__flaxFfiPlatform',
     'console',
     'performance',
     'setTimeout',
@@ -408,12 +411,41 @@ class _BaseHost implements FlaxPluginInstance {
   FlaxJsObject? _state;
   bool _closed = false;
   bool _rafScheduled = false;
+  bool _ffiInstalled = false;
+  bool _ffiRetiring = false;
+  bool _ffiQueued = false;
   int? _rafHandle;
 
   void install() {
     context.registerFunction('__flaxBaseCall', (_, args) {
       final operation = (args[0] as FlaxJsString).value;
       switch (operation) {
+        case 'ffiInstall':
+          if (context.isClosing) throw StateError('FlaxSessionClosed');
+          final runtime = context.runtime;
+          if (runtime is! FlaxNativeJsRuntime) {
+            throw UnsupportedError(
+              '@flax/ffi requires the maintained native engine',
+            );
+          }
+          runtime.installNativeFfi(_queueFfi);
+          _ffiInstalled = true;
+        case 'ffiAsset':
+          final id = (args[1] as FlaxJsString).value;
+          if (id.isEmpty || id.contains('\u0000')) {
+            throw ArgumentError('Invalid native code asset id');
+          }
+          final name =
+              'flax_native_${crypto.sha256.convert(utf8.encode(id)).toString().substring(0, 16)}';
+          final executable = File(Platform.resolvedExecutable);
+          final base = Platform.isMacOS
+              ? executable.parent.parent
+              : executable.parent;
+          final path = '${base.path}/Frameworks/$name.framework/$name';
+          if (!File(path).existsSync()) {
+            throw StateError('Native code asset was not bundled: $name');
+          }
+          return FlaxJsString(path);
         case 'timer':
           if (context.isClosing) throw StateError('FlaxSessionClosed');
           final id = (args[1] as FlaxJsNumber).value.toInt();
@@ -477,6 +509,24 @@ class _BaseHost implements FlaxPluginInstance {
     });
   }
 
+  void _queueFfi() {
+    if (_ffiQueued || !context.isActive) return;
+    _ffiQueued = true;
+    context.enqueue(() {
+      _ffiQueued = false;
+      final runtime = context.runtime as FlaxNativeJsRuntime;
+      if (_ffiRetiring) {
+        if (runtime.retireNativeFfi()) {
+          _ffiInstalled = false;
+          _ffiRetiring = false;
+          (context as _HostContext).session._nativeRetirements--;
+        }
+      } else if (_ffiInstalled) {
+        runtime.checkpointNativeFfi();
+      }
+    });
+  }
+
   void _call(String name, List<FlaxJsValue> args) {
     final state = _state;
     if (state == null) return;
@@ -504,6 +554,14 @@ class _BaseHost implements FlaxPluginInstance {
       _rafScheduled = false;
     }
     context.enqueue(() => _call('close', const []));
+    if (_ffiInstalled) {
+      // Prior host settlements and their JS finally jobs run before retirement.
+      (context as _HostContext).session._nativeRetirements++;
+      context.enqueue(() {
+        _ffiRetiring = true;
+        _queueFfi();
+      });
+    }
   }
 
   @override

@@ -1,6 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { FlaxCompiler } from './compiler.mjs';
 import { flaxHostModulesPlugin } from './modules.mjs';
+import { flaxFfiPlugin } from './ffi.mjs';
+import { prepareNativeAssetsForBuild } from './native-assets.mjs';
 
 /** Compile before esbuild erases TS types, then resolve prepared host modules. */
 export function flaxEsbuildPlugin(manifest = null, options = {}) {
@@ -11,7 +13,19 @@ export function flaxEsbuildPlugin(manifest = null, options = {}) {
         root: builder.initialOptions.absWorkingDir,
         ...options,
       });
+      flaxFfiPlugin().setup(builder);
       flaxHostModulesPlugin(manifest).setup(builder);
+      if (options.nativeAssets !== false) {
+        builder.initialOptions.metafile = true;
+        builder.onEnd(async (result) => {
+          if (result.errors.length) return;
+          await prepareNativeAssetsForBuild(
+            builder.initialOptions.absWorkingDir ?? process.cwd(),
+            options.nativeAssets,
+            result.metafile,
+          );
+        });
+      }
       builder.onStart(() => {
         const files = new Set(compiler.openFiles);
         for (const dependencies of compiler.dependencies.values())

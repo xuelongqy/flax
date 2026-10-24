@@ -1,0 +1,338 @@
+{
+  "scope": "Isolated shared JSI/C provider experiment; not a production FFI capability or FlaxSession integration",
+  "flaxBase": "7dabc2edbc52fa76893235c5cb04dd193b375a71",
+  "sharedSourceSha256": "7b0766ba7cb1b5ebec09ceafae2a2fdba3ce30c534a6e92a364735bb3353e040",
+  "sourceSha256": {
+    "build_engine.py": "01ff672702bd32c4b0ba1266a3aa9bc0016b71fe5e422ad56f56750911f8bbf0",
+    "engine.patch": "a93852e0f5fae4960c2f3c2da9e404dfdc445f4722750c0fa2c41986e2f4f571",
+    "generate.py": "b5f026f1b66339da28a7b0699637ce74d962210f1f2f2ef11a2e4bf0ddb37592",
+    "native/collect_hermes.inc": "889bbc1fbd025d73fee9fecc334452086d8d48daf4233a90ce0f3077e6710536",
+    "native/collect_v8.inc": "d4dd38c4c7ed31583494a9a6b3e2ea9ff082f08582b810d8334e70506c513663",
+    "native/ffi_experiment.h": "134cb80892daf780e00b1262503c86a562d0df4782dc323d61a7315fe7b335d9",
+    "native/provider.c": "2d03f0d37d29f2e88258ca68545199976433df1b70d42f8ccc371aec97ec5f32",
+    "native/provider.g.inc": "7d97a229e84811fff7b474c111686271c3ca5fb2c520d583ddf70aa0a715848b",
+    "native/provider_api.h": "819cba95259091d55c565e7e9c3bffdefb69a2b494d5051583ca9cf12bb043bc",
+    "native/runtime.inc": "7b0766ba7cb1b5ebec09ceafae2a2fdba3ce30c534a6e92a364735bb3353e040",
+    "probe.dart": "cf74dcdb8303072b9fca30051c2f75bb9403bb1dd2b8c62b8e1537314e8665bd",
+    "probe.js": "b1e3b3b077dbda8737bde7fe8edcfd95c3329621c6c0a8f04a6a437c9b65f3ea",
+    "provider.json": "7c5ec0ec3dcfb4f5d137e01a0b141256762c7890c553d0b8e9decd5bb8f3a3a0",
+    "run.py": "f0c1e9ff24cea37601da61cfd84d8392771feef14e27ad4f270617d3251d80cf"
+  },
+  "results": {
+    "macos-debug": {
+      "engineRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "engineTarget": "ffi_flax_mac_debug_arm64",
+      "result": {
+        "passed": true,
+        "engine": "v8",
+        "js": {
+          "checks": 38
+        },
+        "wakes": 12,
+        "ignoredWakes": 10,
+        "drainErrors": 0,
+        "benchmarkMilliseconds": {
+          "iterations": 10000,
+          "samples": 5,
+          "nativeC": [0.022959, 0.023625, 0.022834, 0.023125, 0.023333],
+          "direct": [
+            22.838375091552734, 22.920458793640137, 22.94641613960266,
+            22.92704176902771, 22.973333835601807
+          ],
+          "dartFfi": [
+            55.2838339805603, 54.878791093826294, 55.464208126068115, 55.86312484741211,
+            55.22958302497864
+          ]
+        },
+        "dartPositiveControlEntries": 1,
+        "directProbeDartEntries": 0,
+        "benchmarkDartEntries": 60000,
+        "nativeEntries": 60125,
+        "inlineFailures": 2,
+        "wrongThreadsRejected": 1,
+        "remainingInstallations": 0,
+        "remainingOwners": 0,
+        "remainingBlocks": 0,
+        "remainingWorkers": 0,
+        "engineUuids": {
+          "arm64": "229F92B8-17BD-3007-974F-BF341E6B7FB3"
+        }
+      }
+    },
+    "macos-release": {
+      "engineRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "engineTarget": "ffi_flax_mac_release_arm64",
+      "result": {
+        "passed": true,
+        "engine": "v8",
+        "js": {
+          "checks": 38
+        },
+        "wakes": 12,
+        "ignoredWakes": 10,
+        "drainErrors": 0,
+        "benchmarkMilliseconds": {
+          "iterations": 10000,
+          "samples": 5,
+          "nativeC": [0.009375, 0.009333, 0.009333, 0.009333, 0.009291],
+          "direct": [
+            2.608374834060669, 2.6294171810150146, 2.6175830364227295,
+            2.6342501640319824, 2.616374969482422
+          ],
+          "dartFfi": [
+            7.508291006088257, 7.531332969665527, 7.68999981880188, 7.493958950042725,
+            7.771583080291748
+          ]
+        },
+        "dartPositiveControlEntries": 1,
+        "directProbeDartEntries": 0,
+        "benchmarkDartEntries": 60000,
+        "nativeEntries": 60125,
+        "inlineFailures": 2,
+        "wrongThreadsRejected": 1,
+        "remainingInstallations": 0,
+        "remainingOwners": 0,
+        "remainingBlocks": 0,
+        "remainingWorkers": 0,
+        "engineUuids": {
+          "arm64": "C77B7CA1-EE3F-3635-8F56-F9F096480123"
+        }
+      }
+    },
+    "ios-simulator-debug": {
+      "engineRevision": "092069ad26e7a1dc2038f81385e524ca4027db98",
+      "engineTarget": "ffi_flax_ios_debug_sim_arm64",
+      "result": {
+        "passed": true,
+        "engine": "hermes",
+        "js": {
+          "checks": 38
+        },
+        "wakes": 12,
+        "ignoredWakes": 11,
+        "drainErrors": 0,
+        "benchmarkMilliseconds": {
+          "iterations": 10000,
+          "samples": 5,
+          "nativeC": [0.021958, 0.022459, 0.0225, 0.022042, 0.022084],
+          "direct": [
+            4.876208066940308, 4.854042053222656, 4.876999855041504, 4.92633318901062,
+            4.883417129516602
+          ],
+          "dartFfi": [
+            24.468416929244995, 23.860291004180908, 23.90737509727478,
+            23.87029194831848, 24.150207996368408
+          ]
+        },
+        "dartPositiveControlEntries": 1,
+        "directProbeDartEntries": 0,
+        "benchmarkDartEntries": 60000,
+        "nativeEntries": 60125,
+        "inlineFailures": 2,
+        "wrongThreadsRejected": 1,
+        "remainingInstallations": 0,
+        "remainingOwners": 0,
+        "remainingBlocks": 0,
+        "remainingWorkers": 0,
+        "engineUuids": {
+          "arm64": "A006B0E8-A3CF-372B-9DE8-10A9D64D98C1"
+        }
+      }
+    },
+    "android-debug": {
+      "engineRevision": "49e4666a8530bc617a2ff8696f499ea52f53b5cd",
+      "engineTarget": "ffi_flax_android_debug_arm64",
+      "result": {
+        "passed": true,
+        "engine": "v8",
+        "js": {
+          "checks": 38
+        },
+        "wakes": 12,
+        "ignoredWakes": 11,
+        "drainErrors": 0,
+        "benchmarkMilliseconds": {
+          "iterations": 10000,
+          "samples": 5,
+          "nativeC": [0.046145, 0.059584, 0.04599, 0.046458, 0.054323],
+          "direct": [
+            44.08797299861908, 44.29547297954559, 44.08755695819855, 44.204692006111145,
+            52.53745299577713
+          ],
+          "dartFfi": [
+            108.44100004434586, 108.61855202913284, 107.98839700222015,
+            114.55089700222015, 128.0763149857521
+          ]
+        },
+        "dartPositiveControlEntries": 1,
+        "directProbeDartEntries": 0,
+        "benchmarkDartEntries": 60000,
+        "nativeEntries": 60125,
+        "inlineFailures": 2,
+        "wrongThreadsRejected": 1,
+        "remainingInstallations": 0,
+        "remainingOwners": 0,
+        "remainingBlocks": 0,
+        "remainingWorkers": 0,
+        "engineSha256": "88b5aed73f47529938886eb12646c73462aae14e127eefb746831b0bb5607366",
+        "packagedEngineSha256": "88b5aed73f47529938886eb12646c73462aae14e127eefb746831b0bb5607366",
+        "engineBuildId": "8f50cc13dbebc4932bf245d3788869614d4e7165"
+      }
+    },
+    "macos-debug-asan": {
+      "engineRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "engineTarget": "ffi_flax_mac_debug_arm64",
+      "result": {
+        "passed": true,
+        "engine": "v8",
+        "js": {
+          "checks": 38
+        },
+        "wakes": 12,
+        "ignoredWakes": 10,
+        "drainErrors": 0,
+        "benchmarkMilliseconds": {
+          "iterations": 10000,
+          "samples": 5,
+          "nativeC": [0.0485, 0.049125, 0.0485, 0.049292, 0.051167],
+          "direct": [
+            63.46375012397766, 63.14883303642273, 63.10837483406067, 63.80133390426636,
+            63.81733298301697
+          ],
+          "dartFfi": [
+            151.91204190254211, 150.79912495613098, 150.76679182052612,
+            151.7540421485901, 149.57712507247925
+          ]
+        },
+        "dartPositiveControlEntries": 1,
+        "directProbeDartEntries": 0,
+        "benchmarkDartEntries": 60000,
+        "nativeEntries": 60125,
+        "inlineFailures": 2,
+        "wrongThreadsRejected": 1,
+        "remainingInstallations": 0,
+        "remainingOwners": 0,
+        "remainingBlocks": 0,
+        "remainingWorkers": 0,
+        "sanitizers": ["address", "undefined"],
+        "engineUuids": {
+          "arm64": "75133578-33CB-313D-8316-9DFA897D954F"
+        }
+      }
+    },
+    "ios-device-release": {
+      "engineRevision": "baa88711239aa1445d710b8f13e54e95c7adf49a",
+      "engineTarget": "ffi_flax_ios_release_arm64",
+      "result": {
+        "built": true,
+        "executed": false,
+        "engine": "hermes",
+        "providerSymbolsPreserved": true,
+        "relocatedWithoutSources": true,
+        "engineUuids": {
+          "arm64": "913DCE6B-C64E-3DF2-A816-46C2D329E679"
+        }
+      }
+    }
+  },
+  "benchmarkMilliseconds": {
+    "macos-debug": {
+      "nativeC": {
+        "median": 0.023125,
+        "minimum": 0.022834,
+        "maximum": 0.023625
+      },
+      "direct": {
+        "median": 22.92704176902771,
+        "minimum": 22.838375091552734,
+        "maximum": 22.973333835601807
+      },
+      "dartFfi": {
+        "median": 55.2838339805603,
+        "minimum": 54.878791093826294,
+        "maximum": 55.86312484741211
+      }
+    },
+    "macos-release": {
+      "nativeC": {
+        "median": 0.009333,
+        "minimum": 0.009291,
+        "maximum": 0.009375
+      },
+      "direct": {
+        "median": 2.6175830364227295,
+        "minimum": 2.608374834060669,
+        "maximum": 2.6342501640319824
+      },
+      "dartFfi": {
+        "median": 7.531332969665527,
+        "minimum": 7.493958950042725,
+        "maximum": 7.771583080291748
+      }
+    },
+    "ios-simulator-debug": {
+      "nativeC": {
+        "median": 0.022084,
+        "minimum": 0.021958,
+        "maximum": 0.0225
+      },
+      "direct": {
+        "median": 4.876999855041504,
+        "minimum": 4.854042053222656,
+        "maximum": 4.92633318901062
+      },
+      "dartFfi": {
+        "median": 23.90737509727478,
+        "minimum": 23.860291004180908,
+        "maximum": 24.468416929244995
+      }
+    },
+    "android-debug": {
+      "nativeC": {
+        "median": 0.046458,
+        "minimum": 0.04599,
+        "maximum": 0.059584
+      },
+      "direct": {
+        "median": 44.204692006111145,
+        "minimum": 44.08755695819855,
+        "maximum": 52.53745299577713
+      },
+      "dartFfi": {
+        "median": 108.61855202913284,
+        "minimum": 107.98839700222015,
+        "maximum": 128.0763149857521
+      }
+    }
+  },
+  "validation": {
+    "baselineV8RuntimeAndGcTests": 45,
+    "nativeAbiDeclarationsReproducible": true,
+    "strictDartDriverAnalysis": true,
+    "providerCWarningsAsErrors": true,
+    "clangDeclarationAndOwnershipChecks": true,
+    "sanitizers": {
+      "address": true,
+      "undefined": true,
+      "containerChecksEnabled": true,
+      "leakDetection": false,
+      "instrumented": "Experiment runtime, V8 adapter and C fixture; remaining engine objects and V8 library are not instrumented"
+    },
+    "creationThreadCleanup": true,
+    "activeCCallAndNotificationRetirement": true
+  },
+  "gateScope": {
+    "A": "Previously passed direct-entry baseline",
+    "B": "Owned pointer aliases, bounded byte slices, fixed buffer leases, allocation/adoption/destructor failures, GC checkpoint cleanup; cleanup registration precedes allocation, including failure after JS handle creation and owner-thread destruction",
+    "C": "Context and context-free inline callbacks, nesting, error sentinel, Promise rejection and wrong-thread rejection",
+    "D": "Bounded copied notifications, scalar Promise job, overflow, startup failure, cancellation, callback close, unconfirmed stop and forced native-only retirement; close acknowledgement waits for active C calls and callback frames to return",
+    "E": "macOS debug/release, iOS simulator, Android, raw-runtime reinstall and isolate hook pass; iOS device release build only"
+  },
+  "remaining": [
+    "Production FlaxSession close/idle-checkpoint wiring and a public versioned extension",
+    "General provider/TypeScript package generation and broader C types",
+    "Dynamic provider admission, signing and code-image pinning",
+    "Physical iOS runtime, actual Flutter hot restart and current-framework mobile application contracts",
+    "Whole-engine sanitizer/leak/stress coverage and controlled buffer/frame performance measurements"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "@flax/ffi",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.cjs"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.cjs",
+    "api.js",
+    "layout.js",
+    "index.d.ts",
+    "buffer.js",
+    "buffer-compat.js",
+    "node-buffer.d.ts",
+    "node-ffi.d.ts",
+    "buffer-types.d.ts"
+  ],
+  "dependencies": {
+    "buffer": "6.0.3"
+  },
+  "sideEffects": false,
+  "description": "Optional direct C ABI calls for Flax V8 and Hermes.",
+  "scripts": {
+    "build": "node --check index.js && node --check index.cjs && node --check api.js && node --check layout.js && node --check buffer.js && node --check buffer-compat.js",
+    "typecheck": "tsc --strict --noEmit --module NodeNext --moduleResolution NodeNext --target ES2022 index.d.ts",
+    "test": "node --test ../test/package.test.mjs"
+  }
+}

@@ -121,6 +121,7 @@ void prepareNpmArchiveManifest(
   rewrite(data['dependencies'] as Map<String, dynamic>?);
   rewrite(data['devDependencies'] as Map<String, dynamic>?);
   rewrite(data['peerDependencies'] as Map<String, dynamic>?);
+  rewrite(data['optionalDependencies'] as Map<String, dynamic>?);
 
   final dependencies = data['dependencies'] as Map<String, dynamic>?;
   if (dependencies != null) {

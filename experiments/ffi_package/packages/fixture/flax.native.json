@@ -1,0 +1,13 @@
+{
+  "formatVersion": 1,
+  "provider": "@flax/ffi-fixture",
+  "getter": "flax_ffi_fixture_provider",
+  "sources": ["native/provider.c"],
+  "headers": [
+    "native/provider_api.h",
+    "native/provider.g.inc",
+    "native/ffi_experiment.h",
+    "native/include/flax/runtime.h"
+  ],
+  "targets": ["macos", "ios", "android"]
+}

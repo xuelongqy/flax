@@ -256,7 +256,7 @@ extension _AsyncCalls on _Session {
     bool complete = true;
     try {
       // One host task per checkpoint preserves task -> microtasks -> next task.
-      if (_hostTasks.isNotEmpty) {
+      if (_hostTasks.isNotEmpty && !_checkpointJobsPending) {
         final (context, action) = _hostTasks.removeFirst();
         if (context.isActive) {
           try {
@@ -270,40 +270,42 @@ extension _AsyncCalls on _Session {
         result.release();
       }
       _hostResults.clear();
-      final ready = _readyFutures.entries.toList();
-      for (final entry in ready) {
-        _readyFutures.remove(entry.key);
-        _pending.remove(entry.key);
-        final pending = entry.value;
-        FlaxJsValue? result;
-        try {
-          if (pending.error == null) {
-            result = pending.context == null
-                ? memberResult(pending.value, pending.result)
-                : pending.context!.run(
-                    () => memberResult(pending.value, pending.result),
-                  );
+      if (!_checkpointJobsPending) {
+        final ready = _readyFutures.entries.toList();
+        for (final entry in ready) {
+          _readyFutures.remove(entry.key);
+          _pending.remove(entry.key);
+          final pending = entry.value;
+          FlaxJsValue? result;
+          try {
+            if (pending.error == null) {
+              result = pending.context == null
+                  ? memberResult(pending.value, pending.result)
+                  : pending.context!.run(
+                      () => memberResult(pending.value, pending.result),
+                    );
+            }
+          } catch (error, stack) {
+            pending.error = error;
+            pending.stack = stack;
           }
-        } catch (error, stack) {
-          pending.error = error;
-          pending.stack = stack;
-        }
-        if (pending.error != null) {
-          result = exceptionResult(
-            pending.error!,
-            pending.stack ?? StackTrace.current,
-          );
-        }
-        try {
-          _releaseJs(
-            helper('settleFuture').call([
-              FlaxJsNumber(entry.key.toDouble()),
-              FlaxJsBoolean(pending.error == null),
-              result!,
-            ]),
-          );
-        } finally {
-          if (result != null) _releaseJs(result);
+          if (pending.error != null) {
+            result = exceptionResult(
+              pending.error!,
+              pending.stack ?? StackTrace.current,
+            );
+          }
+          try {
+            _releaseJs(
+              helper('settleFuture').call([
+                FlaxJsNumber(entry.key.toDouble()),
+                FlaxJsBoolean(pending.error == null),
+                result!,
+              ]),
+            );
+          } finally {
+            if (result != null) _releaseJs(result);
+          }
         }
       }
       sweepContexts();
@@ -315,6 +317,7 @@ extension _AsyncCalls on _Session {
     } finally {
       _checkpointRunning = false;
     }
+    _checkpointJobsPending = !complete;
     if (!complete || _hostTasks.isNotEmpty || _readyFutures.isNotEmpty) {
       // Yield to Dart events when an engine honors the best-effort job limit.
       _checkpointScheduled = true;

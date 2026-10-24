@@ -46,6 +46,17 @@ class FlaxBindings {
   late final _flax_engine_get_binding_api = _flax_engine_get_binding_apiPtr
       .asFunction<ffi.Pointer<FlaxEngineBindingApi> Function(int)>();
 
+  ffi.Pointer<FlaxEngineFfiApi> flax_engine_get_ffi_api(int version) {
+    return _flax_engine_get_ffi_api(version);
+  }
+
+  late final _flax_engine_get_ffi_apiPtr =
+      _lookup<
+        ffi.NativeFunction<ffi.Pointer<FlaxEngineFfiApi> Function(ffi.Uint32)>
+      >('flax_engine_get_ffi_api');
+  late final _flax_engine_get_ffi_api = _flax_engine_get_ffi_apiPtr
+      .asFunction<ffi.Pointer<FlaxEngineFfiApi> Function(int)>();
+
   ffi.Pointer<FlaxEngineGcApi> flax_engine_get_gc_api(int version) {
     return _flax_engine_get_gc_api(version);
   }
@@ -85,6 +96,8 @@ const int FLAX_ABI_VERSION = 2;
 const int FLAX_CALLBACK_FAILURE = 4;
 
 const int FLAX_ENGINE_BINDING_VERSION = 8;
+
+const int FLAX_ENGINE_FFI_VERSION = 1;
 
 const int FLAX_ENGINE_GC_VERSION = 1;
 
@@ -938,6 +951,80 @@ final class FlaxEngineBindingApi extends ffi.Struct {
     ..ref.instantiate = instantiate
     ..ref.record_fields = record_fields
     ..ref.new_record = new_record;
+}
+
+final class FlaxEngineFfiApi extends ffi.Struct {
+  @ffi.Uint32()
+  external int version;
+
+  @ffi.Size()
+  external int struct_size;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Int64,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  install;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(ffi.Pointer<FlaxRuntime>, ffi.Pointer<FlaxError>)
+    >
+  >
+  checkpoint;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Pointer<ffi.Uint8>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  retire;
+
+  static ffi.Pointer<FlaxEngineFfiApi> $allocate(
+    ffi.Allocator $allocator, {
+    required int version,
+    required int struct_size,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Int64,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    install,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(ffi.Pointer<FlaxRuntime>, ffi.Pointer<FlaxError>)
+      >
+    >
+    checkpoint,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Pointer<ffi.Uint8>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    retire,
+  }) => $allocator<FlaxEngineFfiApi>()
+    ..ref.version = version
+    ..ref.struct_size = struct_size
+    ..ref.install = install
+    ..ref.checkpoint = checkpoint
+    ..ref.retire = retire;
 }
 
 final class FlaxEngineGcApi extends ffi.Struct {

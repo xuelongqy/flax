@@ -30,6 +30,9 @@ export async function prepareBundleModulesFor(projectRoot) {
 
 /** Use the same prepared host-module contract when a JS project declares one. */
 export async function bundleOptionsFor(projectRoot) {
+  const pluginOptions = {
+    nativeAssets: { hostDirectory: resolve(projectRoot, '..') },
+  };
   const configPath = resolve(projectRoot, 'flax.modules.json');
   try {
     await access(configPath);
@@ -37,7 +40,7 @@ export async function bundleOptionsFor(projectRoot) {
     if (error.code === 'ENOENT') {
       return {
         ...bundleOptions,
-        plugins: [flaxEsbuildPlugin()],
+        plugins: [flaxEsbuildPlugin(null, pluginOptions)],
       };
     }
     throw error;
@@ -45,6 +48,6 @@ export async function bundleOptionsFor(projectRoot) {
   const prepared = await prepareModules({ configPath, check: true });
   return {
     ...bundleOptions,
-    plugins: [flaxEsbuildPlugin(prepared.manifest)],
+    plugins: [flaxEsbuildPlugin(prepared.manifest, pluginOptions)],
   };
 }

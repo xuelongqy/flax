@@ -1,0 +1,23 @@
+{
+  "name": "@flax/example-ffi",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "@flax/ffi": "workspace:*",
+    "@flax/core": "workspace:*",
+    "@flax/core-runtime": "workspace:*",
+    "@flax/flutter": "workspace:*"
+  },
+  "devDependencies": {
+    "@flax/build": "workspace:*",
+    "esbuild": "0.28.2"
+  },
+  "flax": {
+    "native": "native.json"
+  }
+}

@@ -61,6 +61,7 @@ if (!aggregateOnly) {
     if (selectedPackage && packageEntry.name !== selectedPackage) continue;
     const entry = resolve(packageRoot, packageEntry.name, 'example/js/src/main.ts');
     try {
+      await access(resolve(packageRoot, packageEntry.name, 'example/pubspec.yaml'));
       await access(entry);
     } catch (error) {
       if (error.code === 'ENOENT') continue;

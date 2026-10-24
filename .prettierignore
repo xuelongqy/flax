@@ -60,3 +60,7 @@ examples/configured_bindings/provider/js-types/types/
 examples/configured_bindings/host/applications/
 examples/configured_bindings/**/assets/flax_modules/
 examples/configured_bindings/**/assets/flax/
+
+packages/flax_ffi/test/runtime/native/*.inc
+packages/flax_ffi/example/app/assets/
+packages/flax_ffi/example/app/.flax/
