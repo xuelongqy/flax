@@ -1,10 +1,10 @@
 {
   "formatVersion": 1,
-  "verifiedAt": "2026-10-25T09:16:42.435038+00:00",
-  "worktreeBase": "74dab9f76c4d370dcbd924e9e8a036825f4e4683",
-  "uncommittedImplementation": true,
+  "verifiedAt": "2026-10-25T12:28:12.098807+00:00",
+  "worktreeBase": "a9c1ae88beac9a72bb70637e923e3382ac82a260",
+  "uncommittedImplementation": false,
   "published": false,
-  "scope": "Follow-up review: legal legacy/multiple/mixed Mach-O platforms and exact-once cleanup for null allocations, thrown calls and errors after release.",
+  "scope": "Clean-checkout closeout: Wallet Core signatures, native dependencies, legal Mach-O platforms, allocation/cleanup failures and exact-once GC in macOS V8 JIT and iOS Simulator V8 jitless.",
   "walletCore": {
     "version": "4.8.4",
     "bindingsRevision": "a4fe993486cae59418970b0da985ba8fbbb3fe8a",
@@ -71,8 +71,8 @@
         "skipped": 0
       },
       "codegen": {
-        "tests": 6,
-        "pass": 6,
+        "tests": 8,
+        "pass": 8,
         "fail": 0,
         "skipped": 0
       },
@@ -109,12 +109,75 @@
     "allocationFailuresPerEngine": 16,
     "cleanupFailuresAfterReleasePerEngine": 7,
     "perPointerReleaseLedger": true,
-    "nullPointersNeverReleased": true
+    "nullPointersNeverReleased": true,
+    "workspaceGate": {
+      "status": "all stages passed after example analysis configuration correction",
+      "cleanCheckout": true,
+      "testRevision": "ad0ec926d777cd4434cc151d0f337e01c9dbd8ad",
+      "staticRevision": "cee5e24b30a77c3a00073feb67b39f8bdd836eba",
+      "initialFullCommand": {
+        "command": "dart run melos run check",
+        "exitCode": 1,
+        "stoppedAt": "analyze",
+        "cause": "Seven generated asset directories in the independent configured-bindings example do not exist before its pnpm build."
+      },
+      "correction": "Added area-local analysis options inheriting root rules and ignoring only asset_directory_does_not_exist. No Dart, JS or native implementation changed; completed test stages were retained.",
+      "resumedStages": [
+        {
+          "name": "analyze",
+          "exitCode": 0
+        },
+        {
+          "name": "format:check",
+          "exitCode": 0
+        },
+        {
+          "name": "js:typecheck",
+          "exitCode": 0
+        },
+        {
+          "name": "docs:check",
+          "exitCode": 0
+        },
+        {
+          "name": "packages:check",
+          "exitCode": 0
+        },
+        {
+          "name": "native:configure",
+          "exitCode": 0
+        }
+      ],
+      "jsWorkspace": {
+        "passed": 261,
+        "failed": 0,
+        "skipped": 0
+      },
+      "dartWorkspace": {
+        "passed": 948,
+        "failed": 0,
+        "skipped": 1,
+        "skip": "Windows-only CDB native-child crash test"
+      },
+      "documentationTooling": {
+        "passed": 4,
+        "failed": 0
+      },
+      "runtimeArchiveInventory": {
+        "dart": 15,
+        "npm": 17
+      },
+      "codegenArchiveInstall": true,
+      "archivePackDryRun": true,
+      "sourceCleanAfterChecks": true,
+      "finishedAt": "2026-10-25T12:26:20.177282+00:00"
+    }
   },
   "runtime": [
     {
       "target": "macos",
       "engine": "V8",
+      "v8Mode": "jit",
       "checks": 230,
       "allocationFailureCases": 16,
       "cleanupFailureCases": 7,
@@ -137,12 +200,13 @@
       "negativeChecks": {
         "wrongNativePlatformRejected": true
       },
-      "frameworkRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "frameworkRevision": "bb7e27654b9090e9f985b730915a6e33c9c60973",
       "engineUuid": {
-        "arm64": "D819B7EB-0995-32AE-AA96-B8CED835FEBF"
+        "arm64": "611D7DB9-04B9-363C-BC17-82E4119AD1CC"
       },
       "binaryInputs": {
         "TrustWalletCore": {
+          "path": "/Volumes/MAC_HOME/Develop/Flutter/wallet_core_bindings/example/libTrustWalletCore.dylib",
           "sha256": "4cc664beb75aee6f24739fc64ed37b4abbd24b0163ff535ecec8f88eeb75bfdc",
           "uuid": {
             "arm64": "26771CA0-6CDD-32EC-A3A4-8C00E182AF2A"
@@ -164,9 +228,9 @@
           ]
         },
         "wallet-core/lifecycle": {
-          "sha256": "b57bdb96296ae76f69a85ed04643c033632076f17f6eb7783aaeca2fb104506d",
+          "sha256": "fbf69a9d25b2855dadfa8f53dfd4c3085f7ed1f4c1bb3cf6697b54426f66c329",
           "uuid": {
-            "arm64": "9208CDFD-F2C6-32C7-ADC7-9758268167D3"
+            "arm64": "FCE443F8-9BB8-3052-80D2-68C7BBFEFC85"
           },
           "platform": "MACOS",
           "declaredPlatforms": ["MACOS"],
@@ -177,9 +241,9 @@
           ]
         },
         "wallet-core/platform-legacy": {
-          "sha256": "7b409084fd4f67e9bca7e6678c5eaa508eb5ed37b287d15acdae3beead706c2e",
+          "sha256": "6fd7737da5653521df97e7309df57febe72c95ffa07efc9fe96b7a53eb1b0b71",
           "uuid": {
-            "arm64": "BCEE3318-7C97-30ED-B064-33044730C64F"
+            "arm64": "D914D031-DA23-3BBF-BF86-BA54EDE86770"
           },
           "platform": "MACOS",
           "declaredPlatforms": ["MACOS"],
@@ -189,9 +253,9 @@
           ]
         },
         "wallet-core/platform-zippered": {
-          "sha256": "e0c3b74e788f51e0e8029d3c687f2078a7a7775bcc77d86adc052aafc65dcb45",
+          "sha256": "f45c50fd95fe4d1399f57908b933c1dc7d2b16c13b6b4eb1aff7d55953c163eb",
           "uuid": {
-            "arm64": "BCEE3318-7C97-30ED-B064-33044730C64F"
+            "arm64": "D914D031-DA23-3BBF-BF86-BA54EDE86770"
           },
           "platform": "MACOS",
           "declaredPlatforms": ["MACCATALYST", "MACOS"],
@@ -201,9 +265,9 @@
           ]
         },
         "wallet-core/platform-mixed": {
-          "sha256": "8a530e1113515c0085a5426905a2649c331c030b3ee24329435c83cd37b09536",
+          "sha256": "f4b5c35178970ccb8b269ad9d73ac6d7bbbf2b5df0f04eb0b8b534b312533d45",
           "uuid": {
-            "arm64": "BCEE3318-7C97-30ED-B064-33044730C64F"
+            "arm64": "D914D031-DA23-3BBF-BF86-BA54EDE86770"
           },
           "platform": "MACOS",
           "declaredPlatforms": ["MACCATALYST", "MACOS"],
@@ -216,7 +280,8 @@
     },
     {
       "target": "ios-simulator",
-      "engine": "Hermes",
+      "engine": "V8",
+      "v8Mode": "jitless",
       "checks": 227,
       "allocationFailureCases": 16,
       "cleanupFailureCases": 7,
@@ -241,12 +306,13 @@
         "undeclaredDependencyRejected": true,
         "unknownSwiftAliasRejected": true
       },
-      "frameworkRevision": "56b02f722027fd1b1504e688cdaf58586e47e5bb",
+      "frameworkRevision": "bb7e27654b9090e9f985b730915a6e33c9c60973",
       "engineUuid": {
-        "arm64": "37AFF7C1-7948-36EE-84E5-6464C9FD822E"
+        "arm64": "21157CD0-B328-3DF9-B251-F22E691DC20D"
       },
       "binaryInputs": {
         "WalletCoreSwiftProtobuf": {
+          "path": "/Volumes/MAC_HOME/Develop/C/wallet-core/build/releases/4.8.4/swiftpm-build/artifacts/wallet_core_bindings_libs/WalletCoreSwiftProtobuf/WalletCoreSwiftProtobuf.xcframework/ios-arm64_x86_64-simulator/WalletCoreSwiftProtobuf.framework/WalletCoreSwiftProtobuf",
           "sha256": "532ae08a67ff9855aa697319313871386ea65cf1ffb12bc4b0d40101ce24374d",
           "uuid": {
             "x86_64": "31490913-5467-3F8A-BE26-0723F139E193",
@@ -254,6 +320,7 @@
           }
         },
         "WalletCore": {
+          "path": "/Volumes/MAC_HOME/Develop/C/wallet-core/build/releases/4.8.4/swiftpm-build/artifacts/wallet_core_bindings_libs/WalletCore/WalletCore.xcframework/ios-arm64_x86_64-simulator/WalletCore.framework/WalletCore",
           "sha256": "e364beaa1c684183686b8871f1327e0fe4e7b70631067d1ddfad949722be47dc",
           "uuid": {
             "x86_64": "1243DEB5-A08E-3067-84AA-06B9D4C4E490",
@@ -327,9 +394,9 @@
           ]
         },
         "wallet-core/lifecycle": {
-          "sha256": "8492b08449623ffa527d01c201647210d29bbe0f848231d401f44aa93bfd415c",
+          "sha256": "b3123117e8a6e2a36420dd87467bf9276b7d792f3cb9ef14edf5887d98f7f8a3",
           "uuid": {
-            "arm64": "05962956-2600-38D9-B2A1-B91CC056A4CC"
+            "arm64": "9F3292AA-5798-3AAD-83B2-D1D11E6DA12E"
           },
           "platform": "IOSSIMULATOR",
           "declaredPlatforms": ["IOSSIMULATOR"],
@@ -344,12 +411,12 @@
   ],
   "packageSha256": {
     "ffi": "7c62ed1ba4501e3f99bbcfff3d727668792052d08c4b09028099c63f11b76916",
-    "ffi-codegen": "8614050026ea440fd9fd7ce31a52446366d072dcec946131c77dceb0691058a9"
+    "ffi-codegen": "f194462c97a2aa4e1e4fbe8d016482d9313a2b6bfda90843ec417a4c3121253b"
   },
-  "buildHookSha256": "91faea128d20c06657b0ecd4e6a50f57e85dd333d2188088bb57757b7839d992",
+  "buildHookSha256": "7090c2eec2b40ae9ad26b63ebb150e70121ad9c990eaf6a917257c35dd27293d",
   "sourceSha256": {
     "probe.mjs": "30461906d3fe6e91ebf2ef98eb1fd0f6fdc8bb24a1c49fee009ac4584fdd7af8",
-    "run.py": "2098e9b76a46572ce12b192b5a85230a51b3e6fe770787ff5e05cff4e4a53e61",
+    "run.py": "8c5cd9e99959e411d1d35b035cf292a8a54f2ff67839e68a1b1fc8c6c7038e48",
     "lifecycle.h": "b35a9f115f3eb879fe50961aada73b45d0d8de76712a30933a488b1f73f44d2a",
     "lifecycle.c": "60f96b85bd7cea103c84becbeef68fcfea9514c3f22a99eaa1c37d97495c6f67",
     "host.dart": "84e7b1abd0789907d396536b3b419f8024eadf557cf123c4ece13413c8175329",
@@ -361,5 +428,6 @@
     "Header-local string constants TWStellarPassphrase_Stellar and TWStellarPassphrase_Kin require explicit C accessors.",
     "Observed exact-once cleanup covers four instrumented real private-key allocations, not an audit of all vendor internal allocations.",
     "No iOS device execution, Android, Windows, WASM, or Node native FFI certification."
-  ]
+  ],
+  "validatedRevision": "ad0ec926d777cd4434cc151d0f337e01c9dbd8ad"
 }
