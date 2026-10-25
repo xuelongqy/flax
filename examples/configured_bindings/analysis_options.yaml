@@ -1,0 +1,6 @@
+include: ../../analysis_options.yaml
+
+analyzer:
+  errors:
+    # The separate pnpm workspace prepares these applications' generated assets.
+    asset_directory_does_not_exist: ignore
