@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -126,16 +127,20 @@ void main() {
         (h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - memberCalls,
         20, // Two controller reads plus the selected real getters during label builds.
       );
-      expect(rebuilt, isNotEmpty);
-      expect(
-        rebuilt.every(
-          (w) => [
-            const ValueKey('editing-text'),
-            const ValueKey('editing-state'),
-          ].contains(w.key),
-        ),
-        isTrue,
-      );
+      if (kDebugMode) {
+        expect(rebuilt, isNotEmpty);
+      }
+      if (kDebugMode) {
+        expect(
+          rebuilt.every(
+            (w) => [
+              const ValueKey('editing-text'),
+              const ValueKey('editing-state'),
+            ].contains(w.key),
+          ),
+          isTrue,
+        );
+      }
       expect(t.element(host('static')), same(staticElement));
       expect(h.number('editing.staticBuilds'), 1);
       debugPrint(
@@ -204,8 +209,8 @@ void main() {
         "editing.TextEditingValue({text: null})",
         "editing.TextEditingValue({selection: editing.TextRange.empty})",
         "editing.TextEditingValue({composing: {start: 0, end: 1}})",
-        "editing.controller.value = editing.TextEditingValue({text:'x', composing:editing.TextRange({start:0,end:2})})",
-        "editing.TextEditingController.fromValue(editing.TextEditingValue({text:'x',composing:editing.TextRange({start:0,end:2})}))",
+        if (kDebugMode) "editing.controller.value = editing.TextEditingValue({text:'x', composing:editing.TextRange({start:0,end:2})})",
+        if (kDebugMode) "editing.TextEditingController.fromValue(editing.TextEditingValue({text:'x',composing:editing.TextRange({start:0,end:2})}))",
         "editing.controller.selection = editing.TextSelection.collapsed({offset: 20})",
         "editing.controller.value = 'wrong'",
         "editing.controller.value.copyWith({selection: editing.TextRange.empty})",

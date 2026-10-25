@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -48,7 +49,9 @@ void main() {
         for (var i = 0; i < values.length; i++) {
           expect(find.text('Counter ${i + 1}: ${values[i]}'), findsOneWidget);
         }
-        expect(rebuilt, [ValueKey('loop-label-$index')]);
+        if (kDebugMode) {
+          expect(rebuilt, [ValueKey('loop-label-$index')]);
+        }
         expect(runtime.hostCalls['__flaxInvalidate'], invalidations + 1);
         expect(runtime.activeSubscriptions, 3);
         expect(runtime.handles, handles + 1);

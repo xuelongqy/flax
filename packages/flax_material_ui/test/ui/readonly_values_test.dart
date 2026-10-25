@@ -49,8 +49,11 @@ void main() {
         h.number('readonlyValues.getKTabScrollDuration().inMilliseconds'),
         kTabScrollDuration.inMilliseconds,
       );
-      for (final platform in [TargetPlatform.android, TargetPlatform.iOS]) {
-        debugDefaultTargetPlatformOverride = platform;
+      for (final platform
+          in kDebugMode
+              ? [TargetPlatform.android, TargetPlatform.iOS]
+              : [defaultTargetPlatform]) {
+        if (kDebugMode) debugDefaultTargetPlatformOverride = platform;
         expect(
           h.boolean(
             'readonlyValues.getDefaultTargetPlatform() === readonlyValues.platform.${platform.name}',
@@ -60,7 +63,7 @@ void main() {
       }
       expect(h.errors, isEmpty);
     } finally {
-      debugDefaultTargetPlatformOverride = previous;
+      if (kDebugMode) debugDefaultTargetPlatformOverride = previous;
       await h.finish(t);
     }
   });

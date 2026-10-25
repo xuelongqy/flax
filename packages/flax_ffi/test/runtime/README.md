@@ -1,8 +1,8 @@
 # FFI runtime acceptance
 
 This suite installs the actual `@flax/ffi` npm archive into disposable consumers. It
-validates macOS arm64 V8 Debug/Release and iOS arm64 Simulator Hermes Debug through the
-same JSI/libffi implementation. It uses the public build adapter and internal Core
+validates macOS arm64 V8 Debug/Release and iOS arm64 Simulator V8 jitless Debug through
+the same JSI/libffi implementation. It uses the public build adapter and internal Core
 Session integration. No `experiments/` source is required.
 
 ## Coverage
@@ -27,10 +27,11 @@ the runtime implementation comes from the maintained engine's `flax/native/src/f
 Test-only native controls are enabled in the acceptance overlay and excluded from normal
 engine builds.
 
-## Run both engines
+## Run macOS and the iOS simulator
 
 Set absolute paths to an already-built maintained Flutter checkout and its FFI engine
-source. The archive is libffi 3.4.8; its SHA-256 is verified by `build.py`.
+source. The engine already contains the pinned libffi 3.4.8 objects and Dart patch. The
+overlay reuses those objects; it does not substitute another libffi build.
 
 ```sh
 mkdir -p "$PWD/.local/tmp"
@@ -39,7 +40,6 @@ export PYTHONDONTWRITEBYTECODE=1
 python3 packages/flax_ffi/test/runtime/build.py \
   --flutter-root "$FLUTTER_ROOT" --engine-source "$FLAX_ENGINE_SOURCE" \
   --output "$PWD/.local/ffi-dlopen-engine" \
-  --source-archive /absolute/path/libffi-3.4.8.tar.gz \
   flax_mac_debug flax_ios_debug_sim_arm64 flax_mac_release
 python3 packages/flax_ffi/test/runtime/run.py \
   --flutter-root "$FLUTTER_ROOT" --engine-output "$PWD/.local/ffi-dlopen-engine" \
@@ -56,9 +56,9 @@ runner verifies engine UUIDs, static exports, native asset selection and archive
 contents, writes logs/receipts under `.local/ffi-dlopen/`, then removes disposable apps.
 It uninstalls its simulator test app. It never publishes an archive.
 
-The overlay reuses pinned compiled engine objects and recompiles the FFI runtime,
-adapters and required Dart compactor input. It is a targeted acceptance build, not a
-clean full-engine GN build. `build.json` records the selected native source and hashes.
+The overlay reuses pinned compiled engine objects and recompiles the FFI runtime, V8
+adapter with test-only collection probes. It is a targeted acceptance build, not a clean
+full-engine GN build. `build.json` records the selected native source and hashes.
 `matching_sdk.py --help` describes creating an isolated Flutter framework checkout for
 engines whose pinned Dart UI differs from the current Flutter framework. It defaults to
 `--target ios-simulator`; use `--target macos` for a separate macOS SDK. The runner
@@ -80,6 +80,8 @@ finalizers. The historical receipt contains the exact sources and measurements. 
 package promotion reruns correctness and short stress checks; it does not establish a
 new performance baseline or bound the time taken by arbitrary native destructors.
 
-Physical iOS, distribution signing, other-platform FFI ABIs, whole-engine sanitizers,
-long-running stability and clean full-engine builds require separate acceptance. Raw
+The production iOS application gate separately checks static process calls, structs,
+precompiled callbacks, bytes and teardown against the normal engine. Full physical-iOS
+dynamic-asset acceptance, distribution signing, other-platform FFI ABIs, whole-engine
+sanitizers and arbitrary native-producer stability require separate acceptance. Raw
 native pointers remain an application ownership contract, not a memory sandbox.

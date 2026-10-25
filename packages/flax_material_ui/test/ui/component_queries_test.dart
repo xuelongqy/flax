@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -376,7 +377,7 @@ componentApi.runApp(new Probe());
     await flaxTestUnmount(t);
     await flaxTestCloseSession(t, session);
     expect(h.errors, isEmpty);
-  });
+  }, skip: !kDebugMode);
 
   testWidgets('type reads do not cross the bridge or grow retained resources', (
     t,

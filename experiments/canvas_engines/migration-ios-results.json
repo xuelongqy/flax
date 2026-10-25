@@ -1,0 +1,814 @@
+{
+  "order": ["hermes", "v8", "v8", "hermes", "v8", "hermes", "hermes", "v8"],
+  "total_measured_frames": 4800,
+  "source_sha256": "cb2f0757872db72f5881271be598041cf9fffd675818b7a6c416a05fa8f1ce9d",
+  "identical_output_png_sha256": {
+    "weave-crisp": "bed74fda6739e54dcd2e871aff11607475900228681badadc4c94cd7c11c79d3",
+    "bloom-soft": "bd0880bd8ce927285bd698012e7f6b706f86c1d8104d9f2b9d10dc41dde222c4"
+  },
+  "engines": {
+    "hermes": {
+      "processes": 4,
+      "startup_ms": {
+        "assets_us": {
+          "median": 17.874000000000002,
+          "min": 13.458,
+          "max": 20.624
+        },
+        "runtime_us": {
+          "median": 2.8419999999999996,
+          "min": 2.258,
+          "max": 3.473
+        },
+        "session_to_ready_us": {
+          "median": 766.178,
+          "min": 701.595,
+          "max": 867.114
+        },
+        "main_to_ready_us": {
+          "median": 790.413,
+          "min": 724.211,
+          "max": 883.578
+        },
+        "main_to_first_raster_us": {
+          "median": 835.3575000000001,
+          "min": 763.971,
+          "max": 924.205
+        }
+      },
+      "first_raster_footprint_mib": {
+        "median": 366.4082565307617,
+        "min": 362.9238586425781,
+        "max": 375.5645294189453
+      },
+      "scenes": {
+        "weave-crisp": {
+          "fps": {
+            "median": 119.50852982632637,
+            "min": 118.71170406085345,
+            "max": 119.91191487296756
+          },
+          "cpu_ms": {
+            "p50": {
+              "median": 1.286,
+              "min": 1.281,
+              "max": 1.307
+            },
+            "p95": {
+              "median": 3.846,
+              "min": 3.815,
+              "max": 3.87
+            },
+            "max": {
+              "median": 4.09,
+              "min": 3.943,
+              "max": 4.815
+            }
+          },
+          "encode_ms": {
+            "p50": {
+              "median": 1.1404999999999998,
+              "min": 1.137,
+              "max": 1.157
+            },
+            "p95": {
+              "median": 3.682,
+              "min": 3.659,
+              "max": 3.715
+            },
+            "max": {
+              "median": 3.843,
+              "min": 3.798,
+              "max": 4.401
+            }
+          },
+          "commit_ms": {
+            "p50": {
+              "median": 0.142,
+              "min": 0.141,
+              "max": 0.146
+            },
+            "p95": {
+              "median": 0.164,
+              "min": 0.157,
+              "max": 0.198
+            },
+            "max": {
+              "median": 2.5540000000000003,
+              "min": 2.443,
+              "max": 2.646
+            }
+          },
+          "build_ms": {
+            "p50": {
+              "median": 1.3115,
+              "min": 1.307,
+              "max": 1.336
+            },
+            "p95": {
+              "median": 3.8705,
+              "min": 3.845,
+              "max": 3.898
+            },
+            "max": {
+              "median": 4.1615,
+              "min": 3.969,
+              "max": 4.943
+            }
+          },
+          "raster_ms": {
+            "p50": {
+              "median": 2.4895,
+              "min": 2.409,
+              "max": 2.543
+            },
+            "p95": {
+              "median": 6.6745,
+              "min": 6.516,
+              "max": 6.764
+            },
+            "max": {
+              "median": 7.1665,
+              "min": 7.087,
+              "max": 7.241
+            }
+          },
+          "total_span_ms": {
+            "p50": {
+              "median": 4.779,
+              "min": 4.736,
+              "max": 4.877
+            },
+            "p95": {
+              "median": 8.2165,
+              "min": 8.209,
+              "max": 8.285
+            },
+            "max": {
+              "median": 8.660499999999999,
+              "min": 8.535,
+              "max": 8.812
+            }
+          },
+          "interval_ms": {
+            "p50": {
+              "median": 8.339500000000001,
+              "min": 8.339,
+              "max": 8.34
+            },
+            "p95": {
+              "median": 8.439499999999999,
+              "min": 8.405,
+              "max": 8.453
+            },
+            "max": {
+              "median": 15.317,
+              "min": 8.476,
+              "max": 31.182
+            }
+          },
+          "callback_intervals": {
+            "count": 1196,
+            "over_1_5_refresh_periods": 2,
+            "longest_ms": 31.182
+          },
+          "footprint_peak_mib": {
+            "median": 657.4552230834961,
+            "min": 656.4864730834961,
+            "max": 662.2989959716797
+          },
+          "rss_peak_mib": {
+            "median": 378.2265625,
+            "min": 375.890625,
+            "max": 381.65625
+          }
+        },
+        "bloom-soft": {
+          "fps": {
+            "median": 50.88954559360158,
+            "min": 50.78125,
+            "max": 51.06982748475634
+          },
+          "cpu_ms": {
+            "p50": {
+              "median": 5.7725,
+              "min": 5.712,
+              "max": 5.886
+            },
+            "p95": {
+              "median": 5.99,
+              "min": 5.976,
+              "max": 6.121
+            },
+            "max": {
+              "median": 6.266,
+              "min": 6.196,
+              "max": 7.367
+            }
+          },
+          "encode_ms": {
+            "p50": {
+              "median": 5.241,
+              "min": 5.188,
+              "max": 5.348
+            },
+            "p95": {
+              "median": 5.4405,
+              "min": 5.426,
+              "max": 5.574
+            },
+            "max": {
+              "median": 5.708,
+              "min": 5.65,
+              "max": 6.7
+            }
+          },
+          "commit_ms": {
+            "p50": {
+              "median": 0.531,
+              "min": 0.528,
+              "max": 0.533
+            },
+            "p95": {
+              "median": 0.5765,
+              "min": 0.567,
+              "max": 0.583
+            },
+            "max": {
+              "median": 3.2185,
+              "min": 3.127,
+              "max": 3.277
+            }
+          },
+          "build_ms": {
+            "p50": {
+              "median": 5.8195,
+              "min": 5.758,
+              "max": 5.937
+            },
+            "p95": {
+              "median": 6.061,
+              "min": 6.039,
+              "max": 6.191
+            },
+            "max": {
+              "median": 6.332,
+              "min": 6.247,
+              "max": 7.448
+            }
+          },
+          "raster_ms": {
+            "p50": {
+              "median": 19.5815,
+              "min": 19.577,
+              "max": 19.592
+            },
+            "p95": {
+              "median": 21.027,
+              "min": 20.948,
+              "max": 21.232
+            },
+            "max": {
+              "median": 22.187,
+              "min": 21.667,
+              "max": 22.326
+            }
+          },
+          "total_span_ms": {
+            "p50": {
+              "median": 34.935500000000005,
+              "min": 34.766,
+              "max": 35.007
+            },
+            "p95": {
+              "median": 40.047,
+              "min": 39.939,
+              "max": 40.185
+            },
+            "max": {
+              "median": 40.775999999999996,
+              "min": 40.539,
+              "max": 44.04
+            }
+          },
+          "interval_ms": {
+            "p50": {
+              "median": 16.731,
+              "min": 16.73,
+              "max": 16.732
+            },
+            "p95": {
+              "median": 25.09,
+              "min": 25.08,
+              "max": 25.124
+            },
+            "max": {
+              "median": 25.253,
+              "min": 25.245,
+              "max": 30.801
+            }
+          },
+          "callback_intervals": {
+            "count": 1196,
+            "over_1_5_refresh_periods": 1196,
+            "longest_ms": 30.801
+          },
+          "footprint_peak_mib": {
+            "median": 1038.463035583496,
+            "min": 1019.2364730834961,
+            "max": 1055.8146209716797
+          },
+          "rss_peak_mib": {
+            "median": 380.1171875,
+            "min": 371.421875,
+            "max": 388.609375
+          }
+        }
+      }
+    },
+    "v8": {
+      "processes": 4,
+      "startup_ms": {
+        "assets_us": {
+          "median": 16.247,
+          "min": 12.42,
+          "max": 26.173
+        },
+        "runtime_us": {
+          "median": 4.5425,
+          "min": 3.9,
+          "max": 21.749
+        },
+        "session_to_ready_us": {
+          "median": 241.829,
+          "min": 240.561,
+          "max": 280.594
+        },
+        "main_to_ready_us": {
+          "median": 261.909,
+          "min": 256.852,
+          "max": 333.555
+        },
+        "main_to_first_raster_us": {
+          "median": 300.1085,
+          "min": 290.219,
+          "max": 400.385
+        }
+      },
+      "first_raster_footprint_mib": {
+        "median": 265.0957221984863,
+        "min": 246.78314208984375,
+        "max": 290.6738815307617
+      },
+      "scenes": {
+        "weave-crisp": {
+          "fps": {
+            "median": 119.70238434165556,
+            "min": 119.11221167076587,
+            "max": 119.90662522201774
+          },
+          "cpu_ms": {
+            "p50": {
+              "median": 1.126,
+              "min": 1.064,
+              "max": 1.147
+            },
+            "p95": {
+              "median": 1.537,
+              "min": 1.512,
+              "max": 1.604
+            },
+            "max": {
+              "median": 1.945,
+              "min": 1.784,
+              "max": 2.595
+            }
+          },
+          "encode_ms": {
+            "p50": {
+              "median": 0.9385,
+              "min": 0.899,
+              "max": 0.96
+            },
+            "p95": {
+              "median": 1.306,
+              "min": 1.284,
+              "max": 1.334
+            },
+            "max": {
+              "median": 1.6760000000000002,
+              "min": 1.537,
+              "max": 2.353
+            }
+          },
+          "commit_ms": {
+            "p50": {
+              "median": 0.181,
+              "min": 0.169,
+              "max": 0.184
+            },
+            "p95": {
+              "median": 0.242,
+              "min": 0.237,
+              "max": 0.255
+            },
+            "max": {
+              "median": 0.36,
+              "min": 0.261,
+              "max": 0.56
+            }
+          },
+          "build_ms": {
+            "p50": {
+              "median": 1.1675,
+              "min": 1.098,
+              "max": 1.198
+            },
+            "p95": {
+              "median": 1.583,
+              "min": 1.556,
+              "max": 1.648
+            },
+            "max": {
+              "median": 2.061,
+              "min": 1.831,
+              "max": 2.685
+            }
+          },
+          "raster_ms": {
+            "p50": {
+              "median": 2.739,
+              "min": 2.479,
+              "max": 3.24
+            },
+            "p95": {
+              "median": 6.48,
+              "min": 6.146,
+              "max": 6.901
+            },
+            "max": {
+              "median": 6.864,
+              "min": 6.814,
+              "max": 7.337
+            }
+          },
+          "total_span_ms": {
+            "p50": {
+              "median": 4.0649999999999995,
+              "min": 3.872,
+              "max": 4.916
+            },
+            "p95": {
+              "median": 7.6585,
+              "min": 7.258,
+              "max": 8.084
+            },
+            "max": {
+              "median": 8.2975,
+              "min": 8.014,
+              "max": 8.853
+            }
+          },
+          "interval_ms": {
+            "p50": {
+              "median": 8.339,
+              "min": 8.339,
+              "max": 8.34
+            },
+            "p95": {
+              "median": 8.4255,
+              "min": 8.414,
+              "max": 8.433
+            },
+            "max": {
+              "median": 12.1425,
+              "min": 8.485,
+              "max": 26.175
+            }
+          },
+          "callback_intervals": {
+            "count": 1196,
+            "over_1_5_refresh_periods": 2,
+            "longest_ms": 26.175
+          },
+          "footprint_peak_mib": {
+            "median": 534.3379554748535,
+            "min": 527.4239273071289,
+            "max": 540.9083023071289
+          },
+          "rss_peak_mib": {
+            "median": 214.6640625,
+            "min": 211.109375,
+            "max": 217.203125
+          }
+        },
+        "bloom-soft": {
+          "fps": {
+            "median": 49.04474591750778,
+            "min": 48.844907779507224,
+            "max": 50.9266868613406
+          },
+          "cpu_ms": {
+            "p50": {
+              "median": 2.9859999999999998,
+              "min": 2.886,
+              "max": 3.035
+            },
+            "p95": {
+              "median": 3.2664999999999997,
+              "min": 3.239,
+              "max": 3.632
+            },
+            "max": {
+              "median": 3.4965,
+              "min": 3.384,
+              "max": 6.225
+            }
+          },
+          "encode_ms": {
+            "p50": {
+              "median": 2.323,
+              "min": 2.257,
+              "max": 2.375
+            },
+            "p95": {
+              "median": 2.5620000000000003,
+              "min": 2.557,
+              "max": 2.833
+            },
+            "max": {
+              "median": 2.819,
+              "min": 2.652,
+              "max": 4.919
+            }
+          },
+          "commit_ms": {
+            "p50": {
+              "median": 0.6525000000000001,
+              "min": 0.629,
+              "max": 0.657
+            },
+            "p95": {
+              "median": 0.7235,
+              "min": 0.7,
+              "max": 0.805
+            },
+            "max": {
+              "median": 0.7805,
+              "min": 0.753,
+              "max": 1.306
+            }
+          },
+          "build_ms": {
+            "p50": {
+              "median": 3.067,
+              "min": 2.971,
+              "max": 3.111
+            },
+            "p95": {
+              "median": 3.356,
+              "min": 3.314,
+              "max": 3.71
+            },
+            "max": {
+              "median": 3.6375,
+              "min": 3.465,
+              "max": 6.416
+            }
+          },
+          "raster_ms": {
+            "p50": {
+              "median": 20.314,
+              "min": 19.55,
+              "max": 20.386
+            },
+            "p95": {
+              "median": 21.9875,
+              "min": 21.417,
+              "max": 22.305
+            },
+            "max": {
+              "median": 22.836,
+              "min": 22.228,
+              "max": 23.085
+            }
+          },
+          "total_span_ms": {
+            "p50": {
+              "median": 35.8965,
+              "min": 35.033,
+              "max": 36.734
+            },
+            "p95": {
+              "median": 41.1435,
+              "min": 40.432,
+              "max": 41.525
+            },
+            "max": {
+              "median": 42.1345,
+              "min": 41.459,
+              "max": 42.619
+            }
+          },
+          "interval_ms": {
+            "p50": {
+              "median": 16.7535,
+              "min": 16.698,
+              "max": 16.783
+            },
+            "p95": {
+              "median": 25.0905,
+              "min": 25.064,
+              "max": 25.138
+            },
+            "max": {
+              "median": 25.172,
+              "min": 25.103,
+              "max": 25.219
+            }
+          },
+          "callback_intervals": {
+            "count": 1196,
+            "over_1_5_refresh_periods": 1196,
+            "longest_ms": 25.219
+          },
+          "footprint_peak_mib": {
+            "median": 916.1192169189453,
+            "min": 890.6114273071289,
+            "max": 941.4395294189453
+          },
+          "rss_peak_mib": {
+            "median": 220.09375,
+            "min": 202.75,
+            "max": 223.078125
+          }
+        }
+      }
+    }
+  },
+  "applications": {
+    "hermes": {
+      "framework_input_sha256": "d20241333f2353ae1aa9b354ea4ceebec1369e2f281d5011c45bbbf62bfd271e",
+      "framework_sha256": "ac678ebd5b0853eea49807cb4dc4128274b75e28a1e79f1d23b1a80a040fca8a",
+      "aot_sha256": "d0678faff7dd46b54f3123f8f64ab9f58b103040911240590911d2bdc21595e4",
+      "runner_input_sha256": "07fe7b075f30b2d7d1b250133922ebf0978a3434d566d7ff85a62555516e887e",
+      "runner_signed_sha256": "f890fe0f97ff8324c5672376b2936c8db4cb7c609ad6fa5f18ff0920a2841d46",
+      "source_assets": {
+        "Frameworks/App.framework/flutter_assets/assets/app.js": "46b0b72a30cb3ca61132f47adfbcbc5ba06b3e098ead6a672e12424814f7f9d4",
+        "Frameworks/App.framework/flutter_assets/assets/engine-benchmark.js": "cb2f0757872db72f5881271be598041cf9fffd675818b7a6c416a05fa8f1ce9d",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_canvas-b471e7fea32c.js": "fe2f5e65b9c046ce2311b7585cc66afcb35083e1fcaf0bc0d490d9bc29bbdc7f",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_core-14fe61593557.js": "62f1df65932c3c3bd50adf1414e9e467a31213d42066a1ca182179a7f61805a8",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js": "f52cff2792ee1ddce9a3de5e2ba680b8b239bcb5de83a3a3c1e3daf3676716cb",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_core_host-db4e650e2d12.js": "978f70d97cb371584fc231140c2fa6608b53ae63f494d5c7914178d7c8b50375",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_core_navigation-33b2cfc211d0.js": "dc146650bc73e2290a92dc15a07304c6c034fe255de38266544aaa10bb045a23",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_async-f3c6fbf57a76.js": "9d474b746d4bed15d2266723ea46672566413b2d65db64c77dcb75cdaed7d503",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_convert-2e960acaf5b1.js": "c373cb5706eada2b93a803dae69f46d473bd22031ad0f378859a03e2832abbb3",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_core-5ad127bf5c9b.js": "0f4bc4ee3bb35c79789b3c3b2d9d282446dfe9d52d369955a209d3a405d1a7b0",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_developer-b132e282c35a.js": "21a2270ba4b105401cc070b2d9db501a790917afbfadfafff9f7132940ea639d",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_io-b6b0bc0432dd.js": "00a3065454a80f67400515a2ca71506760b482e0a7a3a296750afa38ad7490ac",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_isolate-3816d6571ce3.js": "afff9488af10ad33a53d7a3292a6f4d7a77b8ab05129af58cc503ef8a0cfd657",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_ui-d45f9f8f648f.js": "ba0c388cbaa90c4c477c33663049b512b6c4d2c5e89a279185a9a4dd7b68d127",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_animation-0931461d3974.js": "62a3fc1fd41d0a1e6901f5203892b177cdac9883bfa84806a82d72019d297937",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_foundation-9748414906bc.js": "1e3ac115b6d5be191db40fd0b674422d98941652d89ca836a4a636ea43c0e319",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_gestures-9d8f5a03c3fd.js": "8c705dc6c31ead56358112c7ebddd000820a4021cde2b4c046b47fb6644a9b63",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_painting-41d4a1766431.js": "a4f87b1f6c458fc44b990fc0eca73549f0f62aa4f9e5bd7fa8a3d130efb14331",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_physics-2468e1e2f901.js": "b715308090a6e16dbfc56d017de54652971d632c4ee853e4c7b56661e63a0883",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_rendering-196b60669c98.js": "def19d4b38f60b9d14fa0b86a24c7fdd9fd6cb64aef0efc77f5cf45500ae5a45",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_scheduler-6129bf1d9d8b.js": "350696a445eccbfe3396dc1aa39cd3be3175a1ad23a6aa3e067893681458aff9",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_semantics-5fb05b76a77b.js": "ace91e48409bffa767ea65d79c503a344146c838bcef5d9593a5229addba2b43",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_services-e820dad87955.js": "8ab8a5e4ed0f4fa4c6ba4e6c0b797eba03bdf634d0f6bc9134fc57c8603af1df",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_vector_math-fd8f0cdb0a07.js": "325826bb7083dd6925f4c7dd2a88ca7d157b5a784e0ea9fe033356bfe97ca2e3",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js": "c053a50071368867a45ee767bc6e85efe38945f7e8b27821471bba3d5cf8883c",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/registry.js": "ea7296f7cea49c3981ad5ca958bca8701e3274b26a84014a091c9b7293ef374f"
+      }
+    },
+    "v8": {
+      "framework_input_sha256": "4b6819a5d599aa154bd97c052ad17d5cf83ff9d23961e41784e1a2a469c00f04",
+      "framework_sha256": "e43aee77f67295c2d26f8e6bce60f45739a886f823c894dae05495dcad970b21",
+      "aot_sha256": "d0678faff7dd46b54f3123f8f64ab9f58b103040911240590911d2bdc21595e4",
+      "runner_input_sha256": "07fe7b075f30b2d7d1b250133922ebf0978a3434d566d7ff85a62555516e887e",
+      "runner_signed_sha256": "e4a0af6398484c2c07a247c79ae88848da964d78adedad98c84821760e4d91b9",
+      "source_assets": {
+        "Frameworks/App.framework/flutter_assets/assets/app.js": "46b0b72a30cb3ca61132f47adfbcbc5ba06b3e098ead6a672e12424814f7f9d4",
+        "Frameworks/App.framework/flutter_assets/assets/engine-benchmark.js": "cb2f0757872db72f5881271be598041cf9fffd675818b7a6c416a05fa8f1ce9d",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_canvas-b471e7fea32c.js": "fe2f5e65b9c046ce2311b7585cc66afcb35083e1fcaf0bc0d490d9bc29bbdc7f",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_core-14fe61593557.js": "62f1df65932c3c3bd50adf1414e9e467a31213d42066a1ca182179a7f61805a8",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js": "f52cff2792ee1ddce9a3de5e2ba680b8b239bcb5de83a3a3c1e3daf3676716cb",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_core_host-db4e650e2d12.js": "978f70d97cb371584fc231140c2fa6608b53ae63f494d5c7914178d7c8b50375",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_core_navigation-33b2cfc211d0.js": "dc146650bc73e2290a92dc15a07304c6c034fe255de38266544aaa10bb045a23",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_async-f3c6fbf57a76.js": "9d474b746d4bed15d2266723ea46672566413b2d65db64c77dcb75cdaed7d503",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_convert-2e960acaf5b1.js": "c373cb5706eada2b93a803dae69f46d473bd22031ad0f378859a03e2832abbb3",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_core-5ad127bf5c9b.js": "0f4bc4ee3bb35c79789b3c3b2d9d282446dfe9d52d369955a209d3a405d1a7b0",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_developer-b132e282c35a.js": "21a2270ba4b105401cc070b2d9db501a790917afbfadfafff9f7132940ea639d",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_io-b6b0bc0432dd.js": "00a3065454a80f67400515a2ca71506760b482e0a7a3a296750afa38ad7490ac",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_isolate-3816d6571ce3.js": "afff9488af10ad33a53d7a3292a6f4d7a77b8ab05129af58cc503ef8a0cfd657",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_dart_ui-d45f9f8f648f.js": "ba0c388cbaa90c4c477c33663049b512b6c4d2c5e89a279185a9a4dd7b68d127",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_animation-0931461d3974.js": "62a3fc1fd41d0a1e6901f5203892b177cdac9883bfa84806a82d72019d297937",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_foundation-9748414906bc.js": "1e3ac115b6d5be191db40fd0b674422d98941652d89ca836a4a636ea43c0e319",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_gestures-9d8f5a03c3fd.js": "8c705dc6c31ead56358112c7ebddd000820a4021cde2b4c046b47fb6644a9b63",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_painting-41d4a1766431.js": "a4f87b1f6c458fc44b990fc0eca73549f0f62aa4f9e5bd7fa8a3d130efb14331",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_physics-2468e1e2f901.js": "b715308090a6e16dbfc56d017de54652971d632c4ee853e4c7b56661e63a0883",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_rendering-196b60669c98.js": "def19d4b38f60b9d14fa0b86a24c7fdd9fd6cb64aef0efc77f5cf45500ae5a45",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_scheduler-6129bf1d9d8b.js": "350696a445eccbfe3396dc1aa39cd3be3175a1ad23a6aa3e067893681458aff9",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_semantics-5fb05b76a77b.js": "ace91e48409bffa767ea65d79c503a344146c838bcef5d9593a5229addba2b43",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_services-e820dad87955.js": "8ab8a5e4ed0f4fa4c6ba4e6c0b797eba03bdf634d0f6bc9134fc57c8603af1df",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_vector_math-fd8f0cdb0a07.js": "325826bb7083dd6925f4c7dd2a88ca7d157b5a784e0ea9fe033356bfe97ca2e3",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js": "c053a50071368867a45ee767bc6e85efe38945f7e8b27821471bba3d5cf8883c",
+        "Frameworks/App.framework/flutter_assets/assets/flax_modules/registry.js": "ea7296f7cea49c3981ad5ca958bca8701e3274b26a84014a091c9b7293ef374f"
+      },
+      "v8_linkage": "static",
+      "sdk_manifest_sha256": "c2fe5b4558f550e0dfdee2426339b80d4b6085e2059f94fd583fa1485e4669f8",
+      "sdk_metadata": {
+        "revision": "e959d47215186f24e182a0503a52374c96569722",
+        "version": "15.4.80.15",
+        "gnArgs": "is_debug = false\ntarget_os = \"ios\"\ntarget_cpu = \"arm64\"\nv8_target_cpu = \"arm64\"\nis_component_build = false\nv8_monolithic = true\nv8_monolithic_for_shared_library = false\nv8_enable_temporal_support = false\n\nv8_jitless = true\nv8_enable_turbofan = false\nv8_enable_webassembly = false\ncppgc_enable_caged_heap = false\ncppgc_enable_pointer_compression = false\ncppgc_enable_young_generation = false\nuse_lld = false\nv8_use_external_startup_data = false\nv8_enable_i18n_support = false\nuse_custom_libcxx = false\n\nv8_enable_sandbox = false\nv8_enable_pointer_compression = false\nsymbol_level = 0\ntreat_warnings_as_errors = false\nuse_remoteexec = false\n\n\ntarget_environment = \"device\"\nios_deployment_target = \"15.0\"\nios_enable_code_signing = false\ncc_wrapper = \"\"\n",
+        "hostTools": {
+          "cmake": "4.4.4",
+          "ninja": "1.13.2",
+          "xcode": "27.1"
+        },
+        "patches": [
+          {
+            "file": "mac-component-headerpad.patch",
+            "sha256": "0ecce99b9bead022a3a59d90c903b6ab39d872e7a9937a8ee4aac3d2236b7596"
+          },
+          {
+            "file": "windows-sdk-26100.patch",
+            "sha256": "39d9337e6b1fc891549d017fda416ac779c69420e1fedeb4c0d406b27c12bcc6"
+          },
+          {
+            "file": "monolith-libplatform.patch",
+            "sha256": "871b839943fc12faaf1f12da37762963262570567961eb5a36ab2780790c1e2e",
+            "directory": "source"
+          },
+          {
+            "file": "backing-store-function-ref.patch",
+            "sha256": "8df8eeba9a5afc7020f8eca9b98b9b61f184e24721b7fcd1fe6225be731b5c2e",
+            "directory": "source"
+          },
+          {
+            "file": "windows-extended-map-torque-layout.patch",
+            "sha256": "3482b49af60a1e61156f42fd204c4d782abe10eff6acf22b740b99d5c8f95ebe",
+            "directory": "source"
+          },
+          {
+            "file": "ios-host-linker.patch",
+            "sha256": "56d732fad311fd0467f751d04898f60ff558742dbe5c80d8b50081ece08af6a9"
+          },
+          {
+            "file": "ios-static-symbols.patch",
+            "sha256": "eed24359f607bc9a8c528ca4bf35ca4fae21ae91137c8aecf824ea6c3aef39f5"
+          },
+          {
+            "file": "ios-static-abseil.patch",
+            "directory": "abseil",
+            "sha256": "993928367028afbb7e67c91bba46a3753db9d24807435fb37d70119666a61628"
+          }
+        ],
+        "jit": false,
+        "linkage": "static",
+        "cppgc": {
+          "cagedHeap": false,
+          "pointerCompression": false,
+          "youngGeneration": false
+        }
+      },
+      "sdk_libraries": {
+        "lib/libv8_monolith.a": "c96ed9dde86e1248330366458e342523c5cf010d94b83031aa165583598f7f95"
+      }
+    }
+  },
+  "calibration": {
+    "thermalRejectedProcesses": 2,
+    "validTrialsDiscarded": 0,
+    "coolingMinutesBeforeValidBatch": 5,
+    "coolingMinutesBeforeResumedTrial8": 5,
+    "resumedTrial8InputsMatchFirstSeven": true,
+    "tracing": false,
+    "verificationProbesInMeasuredRuns": false
+  },
+  "engineBaseRevision": "7073a17018976155fa123c5c9c627776e776dbeb",
+  "flaxBaseRevision": "74dab9f76c4d370dcbd924e9e8a036825f4e4683",
+  "implementationRevisions": {
+    "sdkProducer": "c3cf4e795ecb7727f8932aef206075e4be3801fb",
+    "flutter": "bb7e27654b9090e9f985b730915a6e33c9c60973"
+  },
+  "androidRegression": {
+    "completed": true,
+    "target": "Pixel 4 / Android 13 / 4 KB pages",
+    "fullBodies": 1057,
+    "fullInitialPassed": 1052,
+    "fullInitialFailed": 5,
+    "fixedClockFocusedPassed": 16,
+    "retainedBaselineFailures": [
+      "RefreshIndicator awaits the current JS Promise callback",
+      "unmount does not cancel an accepted refresh Future",
+      "keyed moves retain native State and type changes replace it",
+      "scrolling releases offscreen items, preserves native keep-alive and closes cleanly"
+    ],
+    "sameDeviceSameAssertionsReproduced": true,
+    "newMigrationFailures": 0,
+    "fullSuiteGreen": false,
+    "fixedClockReceiptNames": 13
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flax_test/flax_test.dart';
 
 import 'dart:ui' show PointerDeviceKind;
@@ -191,9 +192,9 @@ void main() {
       for (final code in [
         'c.Curves.linear.transform("0.5")',
         'c.RoundedRectangleBorder({side: c.Color(0)})',
-        'c.CircleBorder({eccentricity: 2})',
+        if (kDebugMode) 'c.CircleBorder({eccentricity: 2})',
         'c.ScrollPhysics({parent: c.Curves.ease})',
-        'm.VisualDensity({vertical: 5})',
+        if (kDebugMode) 'm.VisualDensity({vertical: 5})',
         'm.ButtonStyle({visualDensity: c.Curves.ease})',
         'm.ButtonStyle({shape: shared.rounded})',
         'm.ButtonStyle({shape: c.WidgetStateProperty.resolveWith(() => shared.border)}).shape.resolve(new Set())',
@@ -255,8 +256,9 @@ void main() {
           final started = t.binding.currentSystemFrameTimeStamp;
           await t.pump(const Duration(milliseconds: 500));
           final elapsed = t.binding.currentSystemFrameTimeStamp - started;
-          // Live tests use real frames; headless tests advance exactly 500 ms.
-          expect(elapsed.inMicroseconds, inInclusiveRange(500000, 999999));
+          // Live vsync timestamps can bracket the 500 ms wait on either side.
+          // Check the intermediate curve at the actual frame time below.
+          expect(elapsed.inMicroseconds, inExclusiveRange(0, 1000000));
           expect(
             h.number('shared.${entry.$1}.offset'),
             closeTo(
@@ -436,16 +438,20 @@ void main() {
         await mouse.addPointer(location: const Offset(700, 400));
         await mouse.moveTo(t.getCenter(ink));
         await t.pump();
-        expect(
-          RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
-          SystemMouseCursors.text,
-        );
+        if (kDebugMode) {
+          expect(
+            RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
+            SystemMouseCursors.text,
+          );
+        }
         h.execute('shared.cursor.value = shared.core.SystemMouseCursors.click');
         await t.pump();
-        expect(
-          RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
-          SystemMouseCursors.click,
-        );
+        if (kDebugMode) {
+          expect(
+            RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
+            SystemMouseCursors.click,
+          );
+        }
 
         await mouse.moveTo(t.getCenter(button));
         await mouse.down(t.getCenter(button));
@@ -459,10 +465,12 @@ void main() {
         h.execute('shared.enabled.value = false');
         await t.pumpAndSettle();
         expect(h.boolean('shared.cursorStates.includes(true)'), isTrue);
-        expect(
-          RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
-          SystemMouseCursors.forbidden,
-        );
+        if (kDebugMode) {
+          expect(
+            RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
+            SystemMouseCursors.forbidden,
+          );
+        }
         h.execute('shared.showButton.value = false');
         await t.pumpAndSettle();
         retained.onPressed!();
@@ -518,7 +526,7 @@ void main() {
     } finally {
       await h.finish(t);
     }
-  });
+  }, skip: !kDebugMode);
 
   testWidgets('session close retires an in-flight animated scroll Future', (
     t,

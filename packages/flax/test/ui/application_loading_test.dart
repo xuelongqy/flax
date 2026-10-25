@@ -395,11 +395,11 @@ void main() {
       await t.pumpAndSettle();
       expect(find.text('application loaded'), findsOneWidget);
       expect(host.loads['assets/flax/flax.json'], 1);
-      final pending = Completer<ByteData>();
+      final delayed = _DelayedBundle();
       var runtimes = 0;
       await t.pumpWidget(
         FlaxView.bundle(
-          assetBundle: _DelayedBundle(pending.future),
+          assetBundle: delayed,
           createRuntime: () {
             runtimes++;
             return createTestRuntime();
@@ -411,7 +411,7 @@ void main() {
       );
       expect(find.text('loading'), findsOneWidget);
       await t.pumpWidget(const SizedBox());
-      pending.completeError(const FormatException('cancelled load'));
+      delayed.pending.completeError(const FormatException('cancelled load'));
       await t.pumpAndSettle();
       expect(runtimes, 0);
       expect(t.takeException(), isNull);
@@ -570,10 +570,10 @@ runApp(FutureBuilder({
 """;
 
 class _DelayedBundle extends CachingAssetBundle {
-  _DelayedBundle(this.pending);
-  final Future<ByteData> pending;
+  // Native live frames load in their own error zone; create the Future there.
+  late final pending = Completer<ByteData>();
   @override
-  Future<ByteData> load(String key) => pending;
+  Future<ByteData> load(String key) => pending.future;
 }
 
 const _source = r"""

@@ -1,0 +1,369 @@
+{
+  "before": {
+    "source_sha256": "cb2f0757872db72f5881271be598041cf9fffd675818b7a6c416a05fa8f1ce9d",
+    "scenes": {
+      "weave-crisp": {
+        "trace_frames": 345,
+        "measured_frames": 300,
+        "active_collect_ms": {
+          "count": 12,
+          "median": 41.3805,
+          "max": 122.809
+        },
+        "active_idle_requests": 12,
+        "idle_requests_within_100ms_of_measured_vsync": 10,
+        "idle_requests": [
+          {
+            "step": 2,
+            "since_callback_ms": 18.029,
+            "since_vsync_ms": null
+          },
+          {
+            "step": 31,
+            "since_callback_ms": 12.587,
+            "since_vsync_ms": null
+          },
+          {
+            "step": 65,
+            "since_callback_ms": 6.117,
+            "since_vsync_ms": 7.894
+          },
+          {
+            "step": 98,
+            "since_callback_ms": 18.769,
+            "since_vsync_ms": 20.561
+          },
+          {
+            "step": 124,
+            "since_callback_ms": 28.077,
+            "since_vsync_ms": 30.327
+          },
+          {
+            "step": 149,
+            "since_callback_ms": 6.019,
+            "since_vsync_ms": 8.343
+          },
+          {
+            "step": 175,
+            "since_callback_ms": 4.323,
+            "since_vsync_ms": 6.519
+          },
+          {
+            "step": 201,
+            "since_callback_ms": 29.214,
+            "since_vsync_ms": 31.281
+          },
+          {
+            "step": 233,
+            "since_callback_ms": 8.671,
+            "since_vsync_ms": 10.47
+          },
+          {
+            "step": 267,
+            "since_callback_ms": 21.353,
+            "since_vsync_ms": 22.957
+          },
+          {
+            "step": 300,
+            "since_callback_ms": 33.299,
+            "since_vsync_ms": 35.379
+          },
+          {
+            "step": 334,
+            "since_callback_ms": 3.84,
+            "since_vsync_ms": 6.071
+          }
+        ],
+        "frame_deferrals": 0,
+        "v8_pressure_requests": 0,
+        "active_dart_gc_deferrals": 0,
+        "ui_collect_outside_callback": true
+      },
+      "bloom-soft": {
+        "trace_frames": 345,
+        "measured_frames": 300,
+        "active_collect_ms": {
+          "count": 39,
+          "median": 41.809,
+          "max": 47.718
+        },
+        "active_idle_requests": 39,
+        "idle_requests_within_100ms_of_measured_vsync": 24,
+        "idle_requests": [
+          {
+            "step": 3,
+            "since_callback_ms": 79.597,
+            "since_vsync_ms": null
+          },
+          {
+            "step": 11,
+            "since_callback_ms": 65.48,
+            "since_vsync_ms": null
+          },
+          {
+            "step": 19,
+            "since_callback_ms": 82.565,
+            "since_vsync_ms": null
+          },
+          {
+            "step": 27,
+            "since_callback_ms": 48.9,
+            "since_vsync_ms": null
+          },
+          {
+            "step": 35,
+            "since_callback_ms": 65.721,
+            "since_vsync_ms": null
+          },
+          {
+            "step": 44,
+            "since_callback_ms": 15.265,
+            "since_vsync_ms": null
+          },
+          {
+            "step": 52,
+            "since_callback_ms": 82.336,
+            "since_vsync_ms": 84.1
+          },
+          {
+            "step": 61,
+            "since_callback_ms": 51.604,
+            "since_vsync_ms": 53.284
+          },
+          {
+            "step": 70,
+            "since_callback_ms": 65.846,
+            "since_vsync_ms": 67.512
+          },
+          {
+            "step": 79,
+            "since_callback_ms": 33.306,
+            "since_vsync_ms": 35.088
+          },
+          {
+            "step": 88,
+            "since_callback_ms": 82.383,
+            "since_vsync_ms": 84.163
+          },
+          {
+            "step": 97,
+            "since_callback_ms": 57.164,
+            "since_vsync_ms": 59.514
+          },
+          {
+            "step": 105,
+            "since_callback_ms": 82.263,
+            "since_vsync_ms": 84.209
+          },
+          {
+            "step": 113,
+            "since_callback_ms": 79.705,
+            "since_vsync_ms": 81.384
+          },
+          {
+            "step": 121,
+            "since_callback_ms": 83.796,
+            "since_vsync_ms": 85.226
+          },
+          {
+            "step": 129,
+            "since_callback_ms": 48.636,
+            "since_vsync_ms": 50.839
+          },
+          {
+            "step": 137,
+            "since_callback_ms": 99.227,
+            "since_vsync_ms": 100.782
+          },
+          {
+            "step": 146,
+            "since_callback_ms": 95.935,
+            "since_vsync_ms": 98.066
+          },
+          {
+            "step": 155,
+            "since_callback_ms": 108.729,
+            "since_vsync_ms": 110.593
+          },
+          {
+            "step": 164,
+            "since_callback_ms": 71.457,
+            "since_vsync_ms": 73.068
+          },
+          {
+            "step": 173,
+            "since_callback_ms": 8.145,
+            "since_vsync_ms": 10.173
+          },
+          {
+            "step": 181,
+            "since_callback_ms": 65.705,
+            "since_vsync_ms": 67.521
+          },
+          {
+            "step": 189,
+            "since_callback_ms": 115.968,
+            "since_vsync_ms": 117.514
+          },
+          {
+            "step": 198,
+            "since_callback_ms": 10.784,
+            "since_vsync_ms": 12.391
+          },
+          {
+            "step": 207,
+            "since_callback_ms": 15.602,
+            "since_vsync_ms": 17.427
+          },
+          {
+            "step": 216,
+            "since_callback_ms": 99.069,
+            "since_vsync_ms": 100.759
+          },
+          {
+            "step": 226,
+            "since_callback_ms": 7.985,
+            "since_vsync_ms": 9.842
+          },
+          {
+            "step": 234,
+            "since_callback_ms": 99.374,
+            "since_vsync_ms": 100.902
+          },
+          {
+            "step": 244,
+            "since_callback_ms": 67.204,
+            "since_vsync_ms": 68.615
+          },
+          {
+            "step": 253,
+            "since_callback_ms": 100.148,
+            "since_vsync_ms": 101.856
+          },
+          {
+            "step": 262,
+            "since_callback_ms": 79.471,
+            "since_vsync_ms": 81.435
+          },
+          {
+            "step": 271,
+            "since_callback_ms": 53.499,
+            "since_vsync_ms": 55.391
+          },
+          {
+            "step": 280,
+            "since_callback_ms": 116.576,
+            "since_vsync_ms": 118.132
+          },
+          {
+            "step": 290,
+            "since_callback_ms": 8.332,
+            "since_vsync_ms": 10.122
+          },
+          {
+            "step": 300,
+            "since_callback_ms": 8.15,
+            "since_vsync_ms": 10.092
+          },
+          {
+            "step": 308,
+            "since_callback_ms": 100.107,
+            "since_vsync_ms": 102.111
+          },
+          {
+            "step": 317,
+            "since_callback_ms": 76.888,
+            "since_vsync_ms": 78.706
+          },
+          {
+            "step": 326,
+            "since_callback_ms": 76.04,
+            "since_vsync_ms": 77.808
+          },
+          {
+            "step": 335,
+            "since_callback_ms": 107.214,
+            "since_vsync_ms": 108.986
+          }
+        ],
+        "frame_deferrals": 0,
+        "v8_pressure_requests": 0,
+        "active_dart_gc_deferrals": 0,
+        "ui_collect_outside_callback": true
+      }
+    },
+    "idle_wrapper_reclaimed": true
+  },
+  "after": {
+    "source_sha256": "cb2f0757872db72f5881271be598041cf9fffd675818b7a6c416a05fa8f1ce9d",
+    "scenes": {
+      "weave-crisp": {
+        "trace_frames": 345,
+        "measured_frames": 300,
+        "active_collect_ms": {
+          "count": 0
+        },
+        "active_idle_requests": 0,
+        "idle_requests_within_100ms_of_measured_vsync": 0,
+        "idle_requests": [],
+        "frame_deferrals": 11,
+        "v8_pressure_requests": 0,
+        "active_dart_gc_deferrals": 0,
+        "ui_collect_outside_callback": true
+      },
+      "bloom-soft": {
+        "trace_frames": 345,
+        "measured_frames": 300,
+        "active_collect_ms": {
+          "count": 8,
+          "median": 41.732,
+          "max": 97.538
+        },
+        "active_idle_requests": 7,
+        "idle_requests_within_100ms_of_measured_vsync": 0,
+        "idle_requests": [
+          {
+            "step": 4,
+            "since_callback_ms": 105.804,
+            "since_vsync_ms": null
+          },
+          {
+            "step": 44,
+            "since_callback_ms": 111.778,
+            "since_vsync_ms": null
+          },
+          {
+            "step": 52,
+            "since_callback_ms": 109.565,
+            "since_vsync_ms": 111.338
+          },
+          {
+            "step": 60,
+            "since_callback_ms": 107.389,
+            "since_vsync_ms": 108.977
+          },
+          {
+            "step": 126,
+            "since_callback_ms": 99.63,
+            "since_vsync_ms": 101.318
+          },
+          {
+            "step": 231,
+            "since_callback_ms": 113.541,
+            "since_vsync_ms": 115.15
+          },
+          {
+            "step": 275,
+            "since_callback_ms": 114.569,
+            "since_vsync_ms": 117.029
+          }
+        ],
+        "frame_deferrals": 32,
+        "v8_pressure_requests": 1,
+        "active_dart_gc_deferrals": 0,
+        "ui_collect_outside_callback": true
+      }
+    },
+    "idle_wrapper_reclaimed": true
+  }
+}

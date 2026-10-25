@@ -182,6 +182,12 @@ void main() {
       );
       await t.pumpAndSettle();
       expect(a.number('events.length'), 0);
+      for (var i = 0; i < 100 && b.number('events.length') < 5; i++) {
+        await t.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 2)),
+        );
+        await t.pump();
+      }
       expect(b.number('events.length'), 5);
       expect(isolated.number('events.length'), 0);
       expect(
@@ -195,6 +201,12 @@ void main() {
       );
       a.execute("localStorage.echo = 'yes'; undefined;");
       await t.pumpAndSettle();
+      for (var i = 0; i < 100 && a.number('events.length') < 1; i++) {
+        await t.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 2)),
+        );
+        await t.pump();
+      }
       expect(
         a.number("localStorage.reply === 'yes' && events.length === 1 ? 1 : 0"),
         1,

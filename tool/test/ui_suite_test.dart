@@ -8,6 +8,9 @@ void main() {
   test(
     'device journal retains grouped plain tests, failures and unfinished cases',
     () {
+      final plain = UiResultJournal();
+      plain.collect('flutter: 00:00 +0: plain async failure [E]');
+      expect(plain.hasFailure, isTrue);
       final journal = UiResultJournal();
       journal.collect(
         'flutter: 00:00 +1: first/test/ui/a_test.dart plain assertion',

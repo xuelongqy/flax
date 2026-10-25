@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -67,9 +68,16 @@ void main() {
           "application.title.value = 'Latest'; application.title.value = 'Final'",
         );
         await t.pump();
-        expect(built, [const ValueKey('title')]);
+        if (kDebugMode) {
+          expect(built, [const ValueKey('title')]);
+        }
         debugOnRebuildDirtyWidget = null;
         final builds = h.number('application.builds');
+        // Initialize both native theme branches before comparing retained handles.
+        for (final mode in ['dark', 'light']) {
+          h.execute('application.mode.value = application.ThemeMode.$mode');
+          await t.pumpAndSettle();
+        }
         int? warmedHandles;
         final subscriptions = h.runtime.activeSubscriptions;
         for (var i = 0; i < 12; i++) {

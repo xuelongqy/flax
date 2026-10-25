@@ -221,7 +221,16 @@ void main() {
           topLevel.functions.ContextValues.setSelectedContextListener(callback);
         })();
       ''');
-      await t.runAsync(flaxTestCollectDartGarbage);
+      await flaxTestRunIdle(t, () async {
+        await flaxTestCollectDartGarbage();
+        for (
+          var i = 0;
+          i < 80 && fixture.lastCallbackContext!.target != null;
+          i++
+        ) {
+          await Future<void>.delayed(const Duration(milliseconds: 100));
+        }
+      });
       h.execute(flaxTestJsGarbagePressure);
       expect(h.boolean('weakContextListener.deref() !== undefined'), isTrue);
       expect(

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -119,7 +120,9 @@ void main() {
       expect(find.text('Count: 3'), findsNWidgets(2));
       expect(counts[staticKey], initialCounts[staticKey]);
       expect(counts[dynamicKey], initialCounts[dynamicKey]! + 2);
-      expect(rebuilt, [const ValueKey('count'), const ValueKey('count')]);
+      if (kDebugMode) {
+        expect(rebuilt, [const ValueKey('count'), const ValueKey('count')]);
+      }
       expect(runtime.activeSubscriptions, subscriptions);
       expect(tester.elementList(host('content')).toList(), elements);
       await tester.tap(find.text('Local: 0').first);

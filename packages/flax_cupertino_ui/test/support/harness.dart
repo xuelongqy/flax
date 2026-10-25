@@ -1,6 +1,6 @@
 import 'package:flax/flax.dart';
 import 'package:flax_cupertino_ui/flax_cupertino_ui.dart';
-import 'package:flax_engine_hermes/flax_engine_hermes.dart';
+import 'package:flax_engine_v8/flax_engine_v8.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:flutter/widgets.dart';
 
@@ -19,7 +19,7 @@ class CupertinoHarness {
   Widget view({Key? key}) => FlaxView(
     key: key,
     createRuntime: () {
-      final runtime = FlaxTestRuntimeTracker(FlaxHermesEngine.createRuntime());
+      final runtime = FlaxTestRuntimeTracker(FlaxV8Engine.createRuntime());
       runtimes.add(runtime);
       return runtime;
     },

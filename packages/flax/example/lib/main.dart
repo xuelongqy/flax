@@ -1,6 +1,6 @@
 import 'package:flax/flax.dart';
 import 'package:flax_example_support/flax_example_support.dart';
-import 'package:flax_engine_hermes/flax_engine_hermes.dart';
+import 'package:flax_engine_v8/flax_engine_v8.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -21,7 +21,7 @@ Future<void> startApplication() async {
     FlaxExampleApp(
       title: 'Core & signals',
       child: FlaxView(
-        createRuntime: FlaxHermesEngine.createRuntime,
+        createRuntime: FlaxV8Engine.createRuntime,
         source: source,
         sourceUrl: 'flax:flax:example',
         bindings: bindings,

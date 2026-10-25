@@ -1,6 +1,6 @@
 # Flax Fetch
 
-An optional session host plugin for macOS arm64 Hermes and V8. Register
+An optional session host plugin for the maintained V8 engine. Register
 `const FlaxFetchPlugin()` in `FlaxSession.plugins`, `FlaxView.plugins`, or the isolate
 defaults set by `Flax.registerPlugins`.
 

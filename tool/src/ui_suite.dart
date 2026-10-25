@@ -38,6 +38,7 @@ final class UiResultJournal {
     }
     _active = null;
     final name = match[4]!;
+    hasFailure |= name.endsWith(' [E]');
     if (RegExp(r'^[^/ ]+/test/ui/').hasMatch(name)) {
       if (name.endsWith(' [E]')) {
         cases[name.substring(0, name.length - 4)] = 'failure';

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -251,7 +252,9 @@ void main() {
         'themes.count.value = 1; themes.count.value = 2; themes.count.value = 3',
       );
       await t.pump();
-      expect(built, [const ValueKey('theme-count')]);
+      if (kDebugMode) {
+        expect(built, [const ValueKey('theme-count')]);
+      }
       expect(h.constructions, constructions);
       expect(
         h.runtime.hostCalls['__flaxInvokeOperation'],

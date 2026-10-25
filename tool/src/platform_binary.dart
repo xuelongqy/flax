@@ -133,20 +133,40 @@ Future<Map<String, Object?>> _verifyIosEngineApplication(
   final binary = File('$product/Frameworks/Flutter.framework/Flutter');
   final original = File('$output/Flutter.framework/Flutter');
   final args = File('$output/args.gn').readAsStringSync();
-  final build = RegExp(r'flax_hermes_build\s*=\s*"([^"]+)"')
+  final build = RegExp(r'flax_v8_sdk\s*=\s*"([^"]+)"')
       .firstMatch(args)
       ?.group(1);
   if (build == null) {
-    throw StateError('Hermes producer is missing from engine args');
+    throw StateError('V8 SDK is missing from engine args');
   }
-  // Verify the exact revision, joint-GC recipe and all linked producer inputs.
+  // Verify the pinned static archive, header defines and collector configuration.
   await _inspect('python3', [
     '$source/flutter/flax/tools/sdk_info.py',
     build,
     target.name,
   ]);
   final manifest =
-      jsonDecode(File('$build/flax-hermes.json').readAsStringSync()) as Map;
+      jsonDecode(File('$build/manifest.json').readAsStringSync()) as Map;
+  final notices = '$product/Frameworks/Flutter.framework/FlaxV8Notices';
+  final copiedManifest = File('$notices/sdk-manifest.json');
+  if (!copiedManifest.existsSync() ||
+      (await sha256.bind(copiedManifest.openRead()).first).toString() !=
+          (await sha256.bind(File('$build/manifest.json').openRead()).first)
+              .toString()) {
+    throw StateError(
+      'The iOS framework is missing the verified V8 SDK notice manifest',
+    );
+  }
+  for (final entry
+      in (manifest['files'] as Map).cast<String, String>().entries) {
+    if (!entry.key.startsWith('notices/')) continue;
+    final notice = File('$notices/${entry.key.substring('notices/'.length)}');
+    if (!notice.existsSync() ||
+        (await sha256.bind(notice.openRead()).first).toString() !=
+            entry.value) {
+      throw StateError('V8 notice changed or missing: ${entry.key}');
+    }
+  }
   final files = Directory(product)
       .listSync(recursive: true, followLinks: false)
       .whereType<File>();
@@ -205,6 +225,22 @@ Future<Map<String, Object?>> _verifyIosEngineApplication(
       );
     }
     final signatureText = '${signature.stdout}${signature.stderr}';
+    final entitlements = await _inspect('codesign', [
+      '--display',
+      '--entitlements',
+      ':-',
+      product,
+    ]);
+    for (final name in [
+      'dynamic-codesigning',
+      'com.apple.security.cs.allow-jit',
+      'com.apple.security.cs.allow-unsigned-executable-memory',
+    ]) {
+      if (RegExp('<key>${RegExp.escape(name)}</key>\\s*<true\\s*/>')
+          .hasMatch(entitlements)) {
+        throw StateError('The iOS jitless app must not enable $name');
+      }
+    }
     final adHoc = signatureText.contains('Signature=adhoc');
     final team = RegExp(
       r'^TeamIdentifier=([A-Z0-9]{10})$',
@@ -244,11 +280,13 @@ Future<Map<String, Object?>> _verifyIosEngineApplication(
                     )
                     .first)
                 .toString(),
-      'singleHermesClosure': true,
-      'hermesJit': false,
-      'hermesRevision': manifest['revision'],
-      'hermesRecipe': manifest['recipe'],
-      'hermesStaticLibrarySha256': {
+      'singleV8Closure': true,
+      'v8Jit': false,
+      'jsJitEntitlements': false,
+      'v8Revision': manifest['metadata']['revision'],
+      'v8Linkage': manifest['metadata']['linkage'],
+      'v8Cppgc': manifest['metadata']['cppgc'],
+      'v8StaticLibrarySha256': {
         for (final path in manifest['libraries'] as List)
           p.basename(path as String): (manifest['files'] as Map)[path],
       },

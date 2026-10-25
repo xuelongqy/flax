@@ -6,8 +6,8 @@
 Node FFI, extended for Dart FFI's native-library capabilities. This is a target, not a
 claim of complete behavioral parity. There is no developer-facing Dart package. Core
 owns the internal Session adapter and its versioned engine extension; the maintained
-Flutter fork owns JSI/libffi and the V8 and Hermes adapters. Native ABI 2 and the
-existing binding/GC table versions stay unchanged.
+Flutter fork owns JSI/libffi and the V8 adapter. Native ABI 2 and the existing
+binding/GC table versions stay unchanged.
 
 The [package guide](../../packages/flax_ffi/js/README.md) contains executable API
 shapes, ownership rules and native package metadata. The earlier
@@ -299,7 +299,7 @@ Acceptance for the implemented refinements covers:
 3. Check compiler ABI controls, callbacks, GC and Session/isolate retirement. Shared
    owner-thread closures and foreign-thread isolated computation have distinct
    contracts.
-4. Validate changes on V8/macOS and Hermes/iOS simulator with compiler-checked C
+4. Validate changes on V8/macOS and V8 jitless/iOS simulator with compiler-checked C
    controls. Track physical-device, distribution and additional-platform acceptance
    separately. Exact executed cases and source hashes are recorded in the acceptance
    receipt.
@@ -469,9 +469,11 @@ callback and finalizer lifetime, GC and real Core Session close. Its
 executed configurations and counts; earlier provider experiments are separate historical
 evidence.
 
-The platform target here is macOS arm64/V8 and iOS arm64/Hermes, with iOS runtime checks
-on the simulator. The iOS fixture uses framework sources matching its pinned engine
-because the shared development SDK has newer unrelated font APIs. Physical iOS,
-distribution/App Store signing, Android/Windows ports, full-engine sanitizer/stress and
-performance acceptance are not established by these checks. The raw pointer and native
-producer lifetime rules remain application responsibilities on every platform.
+The full seven-variant suite passes on macOS arm64 V8 Debug/Release and iOS arm64
+simulator V8 jitless Debug. The iOS fixture uses framework sources matching its pinned
+engine. A separate production-engine iOS smoke gate exercises static process calls,
+structs, precompiled callbacks, bytes and exactly-once teardown; it does not establish
+the full dynamic-asset suite on a physical phone. Distribution/App Store signing,
+Android/Windows ports, whole-engine sanitizers and arbitrary native-producer performance
+remain outside these checks. The raw pointer and native producer lifetime rules remain
+application responsibilities on every platform.

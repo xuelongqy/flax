@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax_material_ui/flax_material_ui.dart';
 
 import 'dart:convert';
@@ -539,10 +540,11 @@ var noEarlyCallbacks = lifecycleChecks.length === 0;
       expect(h.number('Number(noEarlyCallbacks)'), 1);
       expect(
         h.number(
-          'Number(lifecycleChecks.length === 5 && lifecycleChecks.every(Boolean))',
+          'Number(lifecycleChecks.length === 5 && lifecycleChecks.slice(0, 4).every(Boolean))',
         ),
         1,
       );
+      expect(h.number('Number(lifecycleChecks[4])'), kDebugMode ? 1 : 0);
       expect(h.errors, isEmpty);
       await flaxTestUnmount(t);
       expect(h.runtime.isDisposed, isTrue);
@@ -697,7 +699,9 @@ componentApi.runApp(new Broken());
         await t.pump();
       }
       debugOnRebuildDirtyWidget = null;
-      expect(rebuilt, List.filled(20, const ValueKey('cost:detail')));
+      if (kDebugMode) {
+        expect(rebuilt, List.filled(20, const ValueKey('cost:detail')));
+      }
       expect(t.widget(find.text('static')), same(staticWidget));
       expect((runtime.evaluate('cost.builds') as FlaxJsNumber).value, 2);
       for (var i = 0; i < 30; i++) {
@@ -789,7 +793,7 @@ componentApi.runApp(componentApi.Column({children:[new Left(), new Right('right'
       );
       h.execute('trigger = true; componentHooks.states[0].setState(() => {});');
       await t.pump();
-      expect(h.number('scheduling.length'), 1);
+      expect(h.number('scheduling.length'), kDebugMode ? 1 : 0);
       expect(find.text('ready'), findsOneWidget);
       await t.pump();
       expect(find.text('during build'), findsOneWidget);
@@ -894,8 +898,10 @@ componentApi.runApp(new Editor());
     expect(h.runtimes, hasLength(2));
     await flaxTestWaitForRuntimeDisposal(t, oldRuntime);
     expect(oldRuntime.isDisposed, isTrue);
-    expect(() => field.controller!.addListener(() {}), throwsFlutterError);
-    expect(() => field.focusNode!.addListener(() {}), throwsFlutterError);
+    if (kDebugMode) {
+      expect(() => field.controller!.addListener(() {}), throwsFlutterError);
+      expect(() => field.focusNode!.addListener(() {}), throwsFlutterError);
+    }
     expect(h.errors, isEmpty);
     await flaxTestUnmount(t);
     expect(h.runtime.isDisposed, isTrue);

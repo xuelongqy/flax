@@ -14,7 +14,7 @@ dependencies:
 
 dev_dependencies:
   flax_test: 0.0.0
-  flax_engine_hermes: 0.0.0
+  flax_engine_v8: 0.0.0
   flutter:
     sdk: flutter
   flutter_test:

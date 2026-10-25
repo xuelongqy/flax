@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -50,7 +51,9 @@ void main() {
           );
           await t.pump();
           expect(find.text('Row 0: 3 LTR'), findsOneWidget);
-          expect(rebuilt, [const ValueKey('label-0')]);
+          if (kDebugMode) {
+            expect(rebuilt, [const ValueKey('label-0')]);
+          }
           expect(h.runtime.hostCalls['__flaxInvalidate']! - calls, 3);
           expect(h.number('lazy.builds'), builds);
           expect(t.state(host('list')), same(parentState));

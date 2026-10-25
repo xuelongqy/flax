@@ -36,7 +36,7 @@ C++/CRT owner. See the [package guide](../../packages/flax_ffi/js/README.md).
 | `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                              |
 | `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                                |
 | `flax_canvas` / `@flax/canvas-runtime`               | Canvas host plugin and CanvasView binding                                                                             |
-| `flax_engine_hermes`                                 | Hermes adapter, locked shared SDK, and engine tests                                                                   |
+| `flax_engine_hermes`                                 | Deprecated iOS compatibility factory for the maintained V8 runtime                                                    |
 | `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                                          |
 | `flax_native_assets`                                 | Build-only owner of shared Android C++ and Windows CRT native assets                                                  |
 | `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                                  |
@@ -472,12 +472,13 @@ before allocation.
 
 Engine packages are compatibility factories. They have no native asset hooks and do not
 ship or build a second runtime. Existing SDK locks and notices are preserved;
-`flax_js_runtime` remains an internal source/build input. Platform policy is iOS Hermes
-and other native V8 JIT. macOS, Android arm64 and iOS arm64 have this integration. iOS
-supports simulator debug and physical-device release/AOT. Both frameworks contain one
-static Hermes interpreter closure. The device gate requires real development signing and
-provisioning, verifies the AOT snapshot and packaged engine content, and runs after
-source removal. Distribution signing and Hermes GC/frame performance remain separate.
+`flax_js_runtime` remains an internal source/build input. Platform policy is iOS V8
+jitless and other native V8 JIT. macOS, Android arm64 and iOS arm64 have this
+integration. iOS supports simulator debug and physical-device release/AOT. Both
+frameworks contain one static V8/JSI/CppGC closure and upstream notices. The device gate
+requires real development signing and provisioning, verifies the AOT snapshot and
+packaged engine content, and runs after source removal. Distribution signing remains
+separate.
 
 `check:runtime` runs shared contracts in the local Flutter engine. The real application
 gate covers debug, profile and release/AOT. Its release artifact contains exactly one V8

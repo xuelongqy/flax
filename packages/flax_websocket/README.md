@@ -1,6 +1,6 @@
 # Flax WebSocket
 
-Optional session WebSocket support for macOS arm64 Hermes and V8. Install independently
+Optional session WebSocket support for the maintained V8 engine. Install independently
 of Fetch; MessageEvent, Blob and binary types come from the base environment.
 
 Install Dart `flax_websocket` and npm `@flax/websocket` at the same exact version. The

@@ -6,8 +6,8 @@ Buffer-only imports remain JavaScript-only. The maintained Flutter engine owns t
 shared JSI/libffi implementation. See the [contract](../../docs/architecture/ffi.md).
 
 The package is private and unpublished. It is a maintained package in this workspace;
-its current runtime acceptance covers macOS arm64 V8 and iOS arm64 Simulator Hermes. Use
-the matching FFI-enabled Flax engine. An ordinary Flutter engine cannot execute it.
+its current runtime acceptance covers macOS arm64 V8 and iOS arm64 Simulator V8 jitless.
+Use the matching FFI-enabled Flax engine. An ordinary Flutter engine cannot execute it.
 
 ## Start here
 
@@ -16,7 +16,7 @@ the matching FFI-enabled Flax engine. An ordinary Flutter engine cannot execute 
 - [API guide](js/README.md): libraries, memory, layouts, callbacks and background calls.
 - [Runtime contract](../../docs/architecture/ffi.md): ownership and compatibility
   limits.
-- [Acceptance](test/runtime/README.md): archive consumers, both engines and optionality.
+- [Acceptance](test/runtime/README.md): archive consumers, macOS/iOS V8 and optionality.
 
 ## Package layout
 

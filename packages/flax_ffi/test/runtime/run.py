@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run JS dlopen file/process calls with the same JSI/libffi backend on V8/Hermes."""
+"""Run JS dlopen file/process calls on the maintained V8 engines."""
 import argparse
 import support as gate
 import json
@@ -339,7 +339,7 @@ analyzer:
             original = engine_source / 'out' / target_engine / binary
             if gate.binary_uuids(original) != gate.binary_uuids(packaged):
                 raise RuntimeError('Packaged engine differs from the selected overlay')
-            if result['engineNamespace'] != (1 if ios else 2): raise RuntimeError('Wrong JS engine')
+            if result['engineNamespace'] != 2: raise RuntimeError('Wrong JS engine')
             exported = subprocess.check_output(['xcrun', 'nm', '-gU', executable], text=True)
             if any('_flax_static_' + name not in exported for name in symbols):
                 raise RuntimeError('A static process symbol was stripped')

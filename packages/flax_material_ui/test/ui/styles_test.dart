@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -123,13 +124,15 @@ void main() {
       );
       await t.pump();
       expect(t.widget<Text>(find.text('Styled')).style!.fontSize, 26);
-      expect(
-        rebuilt,
-        unorderedEquals([
-          const ValueKey('styled'),
-          const ValueKey('decorated'),
-        ]),
-      );
+      if (kDebugMode) {
+        expect(
+          rebuilt,
+          unorderedEquals([
+            const ValueKey('styled'),
+            const ValueKey('decorated'),
+          ]),
+        );
+      }
       expect(h.number('styles.staticBuilds'), 1);
       expect(t.element(host('static')), same(staticElement));
       h.execute('styles.fail.value = true');

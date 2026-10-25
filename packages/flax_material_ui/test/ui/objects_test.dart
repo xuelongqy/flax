@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -41,11 +42,15 @@ void main() {
         (h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - memberCalls,
         h.number('objects.notifications'),
       );
-      expect(rebuilt, isNotEmpty);
-      expect(
-        rebuilt.every((host) => host.key == const ValueKey('offset')),
-        isTrue,
-      );
+      if (kDebugMode) {
+        expect(rebuilt, isNotEmpty);
+      }
+      if (kDebugMode) {
+        expect(
+          rebuilt.every((host) => host.key == const ValueKey('offset')),
+          isTrue,
+        );
+      }
       debugPrint(
         'Scroll locality: $constructorCount objects, $subscriptions subscriptions, ${rebuilt.length} Text rebuilds; one offset read per notification.',
       );
@@ -103,10 +108,12 @@ void main() {
       await t.pumpAndSettle();
       expect(old.hasClients, isFalse);
       expect(h.boolean('objects.replacement.hasClients'), isTrue);
-      expect(
-        () => h.execute('objects.controller.jumpTo(2)'),
-        throwsA(isA<FlaxJsException>()),
-      );
+      if (kDebugMode) {
+        expect(
+          () => h.execute('objects.controller.jumpTo(2)'),
+          throwsA(isA<FlaxJsException>()),
+        );
+      }
       h.execute('objects.selected.value = null');
       await t.pumpAndSettle();
       expect(h.boolean('objects.replacement.hasClients'), isFalse);
@@ -160,23 +167,25 @@ void main() {
       await t.pumpAndSettle();
       expect(h.number('objects.notifications'), 5);
       expect(h.runtime.handles, steadyHandles);
-      h.execute('''
+      if (kDebugMode) {
+        h.execute('''
       objects.listener = () => objects.controller.dispose();
       objects.controller.addListener(objects.listener); objects.controller.jumpTo(50);
     ''');
-      await t.pumpAndSettle();
-      expect(
-        h.errors.single.toString(),
-        contains('_notificationCallStackDepth'),
-      );
-      expect(h.boolean('objects.controller.hasClients'), isTrue);
-      h.execute(
-        'objects.controller.removeListener(objects.listener); objects.controller.dispose(); objects.controller.removeListener(objects.listener)',
-      );
-      expect(
-        () => h.execute('objects.controller.dispose()'),
-        throwsA(isA<FlaxJsException>()),
-      );
+        await t.pumpAndSettle();
+        expect(
+          h.errors.single.toString(),
+          contains('_notificationCallStackDepth'),
+        );
+        expect(h.boolean('objects.controller.hasClients'), isTrue);
+        h.execute(
+          'objects.controller.removeListener(objects.listener); objects.controller.dispose(); objects.controller.removeListener(objects.listener)',
+        );
+        expect(
+          () => h.execute('objects.controller.dispose()'),
+          throwsA(isA<FlaxJsException>()),
+        );
+      }
       await h.finish(t);
     },
   );

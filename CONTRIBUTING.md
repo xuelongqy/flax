@@ -110,25 +110,26 @@ validation because no Team ID exists. Receipts record this exception. Developer 
 distribution signing is not tested by this local gate; sign the app and its engine with
 the same real identity for distribution.
 
-For iOS arm64 simulator acceptance, build `flax_ios_debug_sim_arm64` with Hermes and
-matching `flax_mac_debug_arm64` host tools in the fork. Set
+For iOS arm64 simulator acceptance, build `flax_ios_debug_sim_arm64` with the verified
+static V8 jitless SDK and matching `flax_mac_debug_arm64` host tools in the fork. Set
 `FLAX_CHECK_TARGET=ios-simulator-arm64` and `FLAX_CHECK_DEVICE=<simulator-id>`, then run
 `dart run tool/check_engine_application.dart debug`. The temporary consumer targets iOS
 16.3 or later and audits the statically embedded interpreter and relocated app.
-Simulator profile/release is unsupported; physical devices and Hermes performance use a
-separate gate. For a connected arm64 iPhone, build `flax_ios_release_arm64` with Hermes
-and matching `flax_mac_release_arm64` host tools. Set
+Simulator profile/release is unsupported; physical devices use a separate gate. For a
+connected arm64 iPhone, build `flax_ios_release_arm64` with the verified static V8
+jitless SDK and matching `flax_mac_release_arm64` host tools. Set
 `FLAX_CHECK_TARGET=ios-device-arm64`, `FLAX_CHECK_DEVICE=<iphone-id>` and
 `FLAX_IOS_TEAM=<team-id>`, then run
 `dart run tool/check_engine_application.dart release`. This gate requires a real
 development signature and provisioning profile, verifies Dart AOT and the engine content
-hash, and installs after removing the temporary source. Physical-device debug/profile,
-distribution signing and Hermes GC/frame performance remain outside this gate.
+hash, and installs after removing the temporary source. Physical-device debug/profile
+and distribution signing remain outside this gate. Use `FLAX_CHECK_STRESS_SECONDS=900`
+for the separate sustained device joint-GC gate.
 
 `tool/check_hot_reload.dart` runs the focused development reload gate on macOS V8,
-Android V8 or iOS simulator Hermes using the same target/device environment variables.
-It starts Vite on the development host; Android uses a temporary `adb reverse` mapping.
-It does not certify physical iOS devices or release builds.
+Android V8 or iOS simulator V8 jitless using the same target/device environment
+variables. It starts Vite on the development host; Android uses a temporary
+`adb reverse` mapping. It does not certify physical iOS devices or release builds.
 
 The old multi-platform SDK matrix is historical; it does not certify this engine. See
 [platform verification](docs/testing-platforms.md). Other platforms require a maintained

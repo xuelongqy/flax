@@ -3,8 +3,8 @@
 `FlaxV8Engine.createRuntime()` delegates to `FlaxEngine.createRuntime()` in the
 maintained Flutter engine. macOS and Android arm64 use V8 15.4.80.15 JIT. Android debug
 and release/AOT correctness has emulator and Pixel 4 acceptance; Android GC/frame
-performance remains unmeasured. The factory rejects iOS and unsupported targets;
-platform policy uses Hermes on iOS.
+performance remains unmeasured. iOS arm64 uses V8 jitless with the same factory.
+Unsupported targets fail before runtime allocation.
 
 There is no native asset hook or independent bridge build. Published package staging
 contains the Dart factory and notices, without engine sources or duplicate libraries.

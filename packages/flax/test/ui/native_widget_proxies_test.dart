@@ -1,3 +1,4 @@
+import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Internal counts verify reclamation without an application GC API.
@@ -79,7 +80,7 @@ void main() {
     final probe = FlaxEngine.createRuntime();
     try {
       probe.registerHostFunction('keep', (_, _) => const FlaxJsUndefined());
-      await tester.runAsync(() async {
+      await flaxTestRunIdle(tester, () async {
         for (var i = 0; i < 80 && _runtimeAlive(runtime); i++) {
           await Future<void>.delayed(const Duration(milliseconds: 100));
         }
@@ -101,7 +102,8 @@ void main() {
     try {
       await tester.pumpWidget(harness.app('nativeGc'));
       await tester.pumpWidget(const SizedBox.shrink());
-      await tester.runAsync(
+      await flaxTestRunIdle(
+        tester,
         () => Future<void>.delayed(const Duration(milliseconds: 1500)),
       );
       final runtime = harness.runtime.inner as FlaxNativeJsRuntime;
@@ -115,7 +117,7 @@ void main() {
         }
       }
       expect(harness.number('gcDisposals()'), 1001);
-      await tester.runAsync(() async {
+      await flaxTestRunIdle(tester, () async {
         for (var i = 0; i < 80; i++) {
           await Future<void>.delayed(const Duration(milliseconds: 100));
           runtime.drainMicrotasks();
@@ -151,7 +153,8 @@ void main() {
         await tester.pumpAndSettle();
         expect(find.text('private GC state'), findsOneWidget);
         final (widget, state) = _weakNative(tester);
-        await tester.runAsync(
+        await flaxTestRunIdle(
+          tester,
           () => Future<void>.delayed(const Duration(milliseconds: 1200)),
         );
         expect(widget.target, isNotNull);
@@ -165,7 +168,7 @@ void main() {
         await tester.pumpWidget(const SizedBox.shrink());
         await tester.pumpAndSettle();
         expect(harness.number('gcDisposals()'), 1);
-        await tester.runAsync(() async {
+        await flaxTestRunIdle(tester, () async {
           for (var i = 0; i < 80; i++) {
             await Future<void>.delayed(const Duration(milliseconds: 100));
             harness.runtime.drainMicrotasks();

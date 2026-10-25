@@ -47,13 +47,13 @@ only checks source/CMake structure. Workspace commands never build an engine imp
 `check_engine_application.dart debug|profile|release` runs the real macOS application.
 With `FLAX_CHECK_TARGET=android-arm64`, it builds, audits and launches the debug or
 release/AOT APK. With `FLAX_CHECK_TARGET=ios-simulator-arm64`, it runs a debug simulator
-application using embedded Hermes; profile/release modes are rejected. With
+application using statically linked V8 jitless; profile/release modes are rejected. With
 `FLAX_CHECK_TARGET=ios-device-arm64`, it runs a release/AOT application with real
 development signing and provisioning; debug/profile modes are rejected. Set
 `FLAX_IOS_TEAM=<team-id>` for the device signing team. Mobile gates require
 `FLAX_CHECK_DEVICE`. The source staging tree is removed before the relocated application
 launches, and receipts retain per-case results, engine closure and signing checks. macOS
-and Android verify V8 JIT; iOS verifies the Hermes interpreter without JIT.
+and Android verify V8 JIT; iOS verifies that V8 executes without generated machine code.
 
 Commands return nonzero on failure. Ordinary `check` and `native:configure` do not
 invoke an engine build. See [all commands](../CONTRIBUTING.md#checks) and
@@ -132,10 +132,10 @@ the host and each test still owns its server, connections and temporary director
 each selected package's example once, and `check_aggregate.dart` once. It does not build
 engine source or rerun runtime, standalone, engine-coexistence, archive, or release
 gates. `example_run.dart` bundles and launches the aggregate gallery. It follows
-`FLAX_CHECK_TARGET` and `FLAX_CHECK_DEVICE`, selects iOS Hermes or other native V8, and
-accepts `--release` and `--build-only`. Build-only saves an audited product and receipt
-in `build/examples/<package>/<target>/<mode>/`. Applications are staged without
-`integration_test`; integration checks keep their test plugin. With
+`FLAX_CHECK_TARGET` and `FLAX_CHECK_DEVICE`, selects V8 jitless on iOS and V8 JIT
+elsewhere, and accepts `--release` and `--build-only`. Build-only saves an audited
+product and receipt in `build/examples/<package>/<target>/<mode>/`. Applications are
+staged without `integration_test`; integration checks keep their test plugin. With
 `--package=flax_material_ui`, it instead builds only the selected example and its JS
 dependencies, then launches that package's own Flutter host through the existing engine
 staging helper. It never bundles or starts the other example applications. Package
@@ -243,11 +243,10 @@ they drive desktop apps.
 
 ## Platform selection and CI
 
-`check_platform.dart` is the single native target validation owner. Legacy tools keep
-their Hermes default and share target/device selection. `--list` displays discovered
-assertions; mobile execution requires `--device`, and `--build-only` is a distinct
-result. The SDK helper and CMake builds are reused rather than introducing another cache
-or build system. `platform_changes.dart` runs before dependency installation, reads a
-complete Git diff and emits target/engine specialty jobs. Unit checks cover ordinary
-changes, platform changes, engine locks, shared ABI, deletions and renames. See
+`check_platform.dart` retains historical SDK plans through `--list`; it rejects
+execution under the maintained-engine model. Use the runtime, UI and application gates
+above with matching local engines and shared target/device selection.
+`platform_changes.dart` still classifies complete Git diffs for the retired SDK
+workflow, with unit coverage for engine locks, shared ABI, deletions and renames. These
+classifiers do not establish maintained-engine runtime CI. See
 [test categories and target commands](../docs/testing-platforms.md).

@@ -138,9 +138,16 @@ void main() {
         await tester.pumpWidget(const SizedBox());
         h.execute('nativeWidgets.expiredReferences()');
         await tester.pumpAndSettle();
-        await tester.runAsync(() async {
+        await flaxTestRunIdle(tester, () async {
           h.execute(flaxTestJsGarbagePressure);
           await flaxTestCollectDartGarbage();
+          for (var i = 0; i < 80; i++) {
+            if (states.every((reference) => reference.target == null) &&
+                elements.every((reference) => reference.target == null)) {
+              break;
+            }
+            await Future<void>.delayed(const Duration(milliseconds: 100));
+          }
         });
         expect(states.every((reference) => reference.target == null), isTrue);
         expect(elements.every((reference) => reference.target == null), isTrue);

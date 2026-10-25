@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -214,14 +215,16 @@ void main() {
         'nested.count.value=1; nested.count.value=2; nested.count.value=3',
       );
       await t.pump();
-      expect(
-        rebuilt,
-        unorderedEquals([
-          const ValueKey('nested-marker'),
-          const ValueKey('nested-label-0'),
-          const ValueKey('nested-label-1'),
-        ]),
-      );
+      if (kDebugMode) {
+        expect(
+          rebuilt,
+          unorderedEquals([
+            const ValueKey('nested-marker'),
+            const ValueKey('nested-label-0'),
+            const ValueKey('nested-label-1'),
+          ]),
+        );
+      }
       expect(t.state(host('batch')), same(parent));
     } finally {
       debugOnRebuildDirtyWidget = null;

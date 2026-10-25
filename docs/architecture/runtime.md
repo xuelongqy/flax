@@ -3,11 +3,11 @@
 ## Implemented scope
 
 Flax uses its maintained Flutter 3.47.6 engine: V8 15.4.80.15 JIT on macOS and Android
-arm64, and Hermes 260318099.0.4 without JIT on iOS arm64. `FlaxEngine.createRuntime()`
-is the common entry in `package:flax/runtime.dart`. It checks native ABI 2, internal GC
-extension 1, internal binding extension 8 and the exact Flutter/Dart revisions before
-allocation. Ordinary Flutter and incompatible engines fail explicitly. UI protocol 24
-rejects earlier generated packages.
+arm64, and V8 jitless on iOS arm64. `FlaxEngine.createRuntime()` is the common entry in
+`package:flax/runtime.dart`. It checks native ABI 2, internal GC extension 1, internal
+binding extension 8 and the exact Flutter/Dart revisions before allocation. Ordinary
+Flutter and incompatible engines fail explicitly. UI protocol 24 rejects earlier
+generated packages.
 
 The Flutter fork owns the C++ bridge, platform adapters and revision-checked Dart patch.
 One UI isolate owns one V8 heap/C++ heap; each runtime uses an independent Context and
@@ -15,38 +15,42 @@ microtask queue. Dart parallel marking and V8 conditional tracing reclaim rootle
 cross-language cycles. See [bridge references](references.md) and
 [ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md).
 
-Hermes sessions own separate VMs. One coordinator per Dart UI isolate traces VMs with
-joint edges together before weak processing, using Hermes's existing Hades marker. The
-FFI engine worktree indexes Dart origins and consumes the Dart marker's newly marked
-origin queue. It computes one shared fixed point while all participating VMs are paused,
-retaining only unresolved Dart targets between rounds; VMs without joint edges do not
-participate. Hermes currently exposes marked bits rather than a newly marked JS-object
-queue, so unresolved targets still require a scan. Ordinary Hermes marking remains
-concurrent; active JS jobs in any registered VM defer joint collection. Closing one
-session preserves the others. Hermes, JSI and Boost.Context are linked into
-`Flutter.framework`; the application carries no second standalone runtime.
+On iOS, the verified static SDK uses the same uncaged CppGC configuration on simulator
+and device. V8 and CppGC link into `Flutter.framework`; applications ship its SDK
+manifest and upstream notices, with no standalone JS engine library or JIT entitlement.
 
-Platform policy is iOS Hermes and other native V8 JIT. macOS and Android arm64 are
+The proactive one-second idle timer defers requests when the native frame clock is less
+than 100 ms old. A timer firing between animation frames does not establish an idle
+window. Deferral preserves pending JS changes; Dart/V8 pressure bypasses it. This is a
+frame-inactivity heuristic: gaps of 100 ms or more may admit proactive collection.
+
+Platform policy is iOS V8 jitless and other native V8 JIT. macOS and Android arm64 are
 implemented; Android debug and release/AOT acceptance covers an arm64 emulator and a
 Pixel 4 running Android 13. The iOS producer supports simulator debug and
 physical-device release/AOT applications on iOS 16.3 or later. Device debug/profile and
-simulator profile/release are unsupported; Hermes performance and distribution
-acceptance remain pending. Engine package factories delegate to the common entry and
-reject a wrong platform; they no longer build native assets. Earlier SDK platform
-validation remains historical evidence, not acceptance of this implementation.
+simulator profile/release are unsupported. Distribution acceptance remains pending. The
+deprecated iOS `FlaxHermesEngine` factory is a compatibility alias for the common V8
+entry. It preserves source imports, not Hermes-specific globals or HBC. Other engine
+package factories also delegate to the common entry and reject a wrong platform; they no
+longer build native assets. Earlier SDK platform validation remains historical evidence,
+not acceptance of this implementation.
 
-The Type-handle migration, including recursive generic bounds in extension 7, is
-validated on macOS arm64 V8. Android and iOS acceptance above predates this extension;
-their matching engines must be rebuilt and retested before using newly generated
-bindings.
+The iOS migration rebuilds the current binding-extension-8 engine and runs the
+package-owned UI contracts on the arm64 simulator, including generic Type handles and
+Widget interfaces. Historical Android acceptance predates these complete UI contracts;
+the expanded Android comparison retains four refresh/cleanup failures on Pixel 4 and
+eight failures on the emulator, all reproduced with the pre-migration engine. See the
+[migration acceptance](../../experiments/canvas_engines/migration-ios-results.md) for
+exact platform scope and remaining gates.
 
 ## Source compilation
 
 The maintained V8 adapter uses ordinary source compilation and preserves ES6 block
 scope, direct evaluation and Function construction. Runtime regressions include loop
 closures, source bundles, deferred callbacks and accessors. They are focused coverage,
-not complete ECMAScript conformance. The maintained Hermes adapter uses source
-compilation, ES6 block scoping and explicit microtask checkpoints.
+not complete ECMAScript conformance. The iOS SDK disables Intl, Temporal and
+WebAssembly; applications must not infer their availability from desktop V8. Native ESM
+and remote imports remain deferred. HBC inputs are unsupported.
 
 `FlaxJsSource` encodes reusable source text and its URL once, at first use, as immutable
 UTF-8 bytes. It then releases its source String rather than retaining both
@@ -79,11 +83,11 @@ arguments, explicit receivers, identity comparison, and retained references use 
 native value table. Cross-runtime arguments and released references fail before further
 native use.
 
-Native IDs reserve their high eight bits for an engine namespace (Hermes 1, V8 2), with
-a library-wide monotonic 56-bit sequence. The sequence never resets on runtime
-destruction and permanently rejects allocation on exhaustion. Direct C ABI calls reject
-foreign IDs as well as the Dart wrapper; an invalid release cannot release a same-number
-object in another engine. IDs remain opaque and process-local.
+Native IDs reserve their high eight bits for an engine namespace (legacy Hermes 1,
+maintained V8 2), with a library-wide monotonic 56-bit sequence. The sequence never
+resets on runtime destruction and permanently rejects allocation on exhaustion. Direct C
+ABI calls reject foreign IDs as well as the Dart wrapper; an invalid release cannot
+release a same-number object in another engine. IDs remain opaque and process-local.
 
 References returned to Dart follow the real Dart facade through conditional GC. Explicit
 `release()` ends that facade early. `retain()` creates an independent owned reference.
@@ -185,10 +189,10 @@ evidence is recorded in the [acceptance task](../tasks/engine-cross-heap-gc.md).
 For a physical arm64 iPhone, use `FLAX_CHECK_TARGET=ios-device-arm64`,
 `FLAX_CHECK_DEVICE=<iphone-id>` and `FLAX_IOS_TEAM=<team-id>`, then run the `release`
 gate with matching iOS release and macOS release host engines. It verifies real signing,
-provisioning, Dart AOT, the embedded Hermes interpreter and relocation before
-installing. The direct-launch fixture writes iOS release results to stdout so the device
-console can audit every case; ordinary Flutter logging is unchanged. Device
-debug/profile modes are rejected explicitly.
+provisioning, Dart AOT, statically embedded V8 jitless and relocation before installing.
+The direct-launch fixture writes iOS release results to stdout so the device console can
+audit every case; ordinary Flutter logging is unchanged. Device debug/profile modes are
+rejected explicitly.
 
 For Android arm64, set `ANDROID_HOME`, `FLAX_CHECK_TARGET=android-arm64` and
 `FLAX_CHECK_DEVICE=<adb-id>`, then run

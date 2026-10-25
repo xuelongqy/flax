@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -186,23 +187,29 @@ void main() {
         expect(h.number('counts.builders'), builders);
         expect(h.number('counts.built'), builds);
         expect(find.text('Local'), findsOneWidget);
-        expect(rebuilt.length, 1);
-        expect(
-          rebuilt.single.node.definition.id,
-          'flax.core/flutter#type:Text',
-        );
+        if (kDebugMode) {
+          expect(rebuilt.length, 1);
+        }
+        if (kDebugMode) {
+          expect(
+            rebuilt.single.node.definition.id,
+            'flax.core/flutter#type:Text',
+          );
+        }
         rebuilt.clear();
         h.execute('first.notify(2); first.notify(3); first.notify(4)');
         await t.pumpAndSettle();
         expect(find.text('Value 4'), findsOneWidget);
-        expect(
-          rebuilt.where(
-            (host) =>
-                host.node.definition.id ==
-                'flax.core/flutter#type:ValueListenableBuilder',
-          ),
-          isEmpty,
-        );
+        if (kDebugMode) {
+          expect(
+            rebuilt.where(
+              (host) =>
+                  host.node.definition.id ==
+                  'flax.core/flutter#type:ValueListenableBuilder',
+            ),
+            isEmpty,
+          );
+        }
         debugOnRebuildDirtyWidget = null;
         expect(h.number('counts.builders'), builders + 1);
         expect(h.number('counts.built'), builds);

@@ -1,6 +1,6 @@
 import 'package:flax/flax.dart';
 import 'package:flax_example_support/flax_example_support.dart';
-import 'package:flax_engine_hermes/flax_engine_hermes.dart';
+import 'package:flax_engine_v8/flax_engine_v8.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -35,7 +35,7 @@ Future<void> startApplication({String? storageDirectory}) async {
                   Expanded(
                     child: FlaxView(
                       namespace: entry.$2,
-                      createRuntime: FlaxHermesEngine.createRuntime,
+                      createRuntime: FlaxV8Engine.createRuntime,
                       source: source,
                       sourceUrl: 'flax:flax_local_storage:example/${entry.$2}',
                       bindings: bindings,

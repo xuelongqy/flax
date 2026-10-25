@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
+
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -687,5 +689,6 @@ void main() {
         FlutterError.onError = handler;
       }
     },
+    skip: !kDebugMode,
   );
 }

@@ -1,6 +1,6 @@
 import 'package:flax/flax.dart';
 import 'package:flax_example_support/flax_example_support.dart';
-import 'package:flax_engine_hermes/flax_engine_hermes.dart';
+import 'package:flax_engine_v8/flax_engine_v8.dart';
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -22,7 +22,7 @@ Future<void> startApplication() async {
     FlaxExampleApp(
       title: 'Material UI',
       child: FlaxView(
-        createRuntime: FlaxHermesEngine.createRuntime,
+        createRuntime: FlaxV8Engine.createRuntime,
         source: source,
         sourceUrl: 'flax:flax_material_ui:example',
         bindings: bindings,

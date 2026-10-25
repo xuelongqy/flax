@@ -16,7 +16,10 @@ void main() {
       h.execute('focus.nodes[0].requestFocus()');
       await t.pumpAndSettle();
       expect(h.boolean('focus.nodes[0].hasPrimaryFocus'), isTrue);
-      await t.sendKeyEvent(LogicalKeyboardKey.tab);
+      await t.sendKeyEvent(
+        LogicalKeyboardKey.tab,
+        physicalKey: PhysicalKeyboardKey.tab,
+      );
       await t.pumpAndSettle();
       expect(h.boolean('focus.nodes[1].hasPrimaryFocus'), isTrue);
       h.execute('focus.nodes[1].previousFocus()');

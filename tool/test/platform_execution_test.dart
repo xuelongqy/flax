@@ -119,6 +119,13 @@ void main(List<String> args) {
       final target = FlaxNativeTarget('linux-x64');
       await script('echo fresh-marker\nexit 0');
       await runDesktopApplication(target, work.path, 'fresh-marker');
+      await script(
+        'echo "00:00 +0: plain async failure [E]"\necho fresh-marker\nexit 0',
+      );
+      await expectLater(
+        runDesktopApplication(target, work.path, 'fresh-marker'),
+        throwsStateError,
+      );
       await script('echo old-marker\nexit 0');
       await expectLater(
         runDesktopApplication(target, work.path, 'fresh-marker'),

@@ -2,12 +2,13 @@
 
 ## Current scope
 
-Flax implements experimental macOS arm64 Hermes and V8 runtimes and embedded Flutter UI:
-generated bindings, explicit signals, dynamic keyed subtrees, and synchronous
-Builder/LayoutBuilder callbacks with real Context access. Explicit sessions support
-shared and nested Flutter navigation with ordinary callback ownership and UI Future
-delivery. Named page entries, reactive parameters, and Dart/JS declarative Pages support
-host Router integration. Read the [UI contract](docs/architecture/ui.md) and
+Flax implements a maintained V8 runtime with JIT on macOS/Android arm64 and jitless on
+iOS arm64 and embedded Flutter UI: generated bindings, explicit signals, dynamic keyed
+subtrees, and synchronous Builder/LayoutBuilder callbacks with real Context access.
+Explicit sessions support shared and nested Flutter navigation with ordinary callback
+ownership and UI Future delivery. Named page entries, reactive parameters, and Dart/JS
+declarative Pages support host Router integration. Read the
+[UI contract](docs/architecture/ui.md) and
 [package boundaries](docs/architecture/packaging.md). Generated owned objects and
 ScrollController and TextEditingController support explicit listeners and page cleanup.
 Material TextField supports generated focus and formatters. Ordinary Dart values use
@@ -80,9 +81,9 @@ dependency changes without frozen flags only when intentionally updating the man
 and lockfiles together.
 
 Runtime changes also require `dart run melos run check:runtime` on macOS arm64. This
-builds the Flax bridge against the locked Hermes SDK. Shared runtime changes also
-require `check:runtime:v8`; V8 is experimental and explicitly selected. Ordinary `check`
-and `native:configure` never fetch an engine.
+builds the Flax bridge against the locked V8 SDK. Shared runtime changes also require
+`check:runtime:v8`; V8 is the maintained backend. Ordinary `check` and
+`native:configure` never fetch an engine.
 
 ## Editing rules
 
@@ -138,8 +139,8 @@ See [application startup and packaging](docs/architecture/applications.md).
 
 Session host plugins add default basic APIs and optional Fetch. New public Dart host
 types use the `Flax` prefix. See [host contracts](docs/architecture/host.md). Regenerate
-embedded host scripts with `host:generate`; binary and host changes require the Hermes
-and V8 UI checks. Native ABI 2 is independent of UI protocol 24.
+embedded host scripts with `host:generate`; binary and host changes require the
+maintained V8 UI checks. Native ABI 2 is independent of UI protocol 24.
 
 Optional WebSocket uses the shared host checkpoint and base types; see
 [WebSocket contracts](docs/architecture/websocket.md). bufferedAmount is deferred.

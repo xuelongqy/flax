@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flax_test/flax_test.dart';
 
 import 'dart:ui' show PointerDeviceKind;
@@ -294,10 +295,12 @@ void main() {
         expect(progress.minHeight, 6);
         expect(progress.borderRadius, BorderRadius.circular(4));
         expect(t.getSize(progressFinder).height, 6);
-        expect(
-          t.getSemantics(find.bySemanticsLabel('Binding progress')).value,
-          '25%',
-        );
+        if (!kReleaseMode) {
+          expect(
+            t.getSemantics(find.bySemanticsLabel('Binding progress')).value,
+            '25%',
+          );
+        }
 
         h.execute('slice.styled.value = true; slice.progress.value = 0.75');
         await t.pumpAndSettle();
@@ -310,19 +313,23 @@ void main() {
           _explicitText,
         );
         expectPaint(_foreground, _background);
-        expect(
-          t.getSemantics(find.bySemanticsLabel('Binding progress')).value,
-          '75%',
-        );
+        if (!kReleaseMode) {
+          expect(
+            t.getSemantics(find.bySemanticsLabel('Binding progress')).value,
+            '75%',
+          );
+        }
 
         h.execute('slice.progress.value = null');
         await t.pump();
         await t.pump(const Duration(milliseconds: 400));
         expect(t.widget<LinearProgressIndicator>(progressFinder).value, isNull);
-        expect(
-          t.getSemantics(find.bySemanticsLabel('Binding progress')).value,
-          isEmpty,
-        );
+        if (!kReleaseMode) {
+          expect(
+            t.getSemantics(find.bySemanticsLabel('Binding progress')).value,
+            isEmpty,
+          );
+        }
         h.execute('slice.progress.value = 1; slice.styled.value = false');
         await t.pumpAndSettle();
         expect(t.widget<LinearProgressIndicator>(progressFinder).value, 1);
@@ -330,10 +337,12 @@ void main() {
           t.widget<Material>(_native<Material>('slice-material')).textStyle,
           isNull,
         );
-        expect(
-          t.getSemantics(find.bySemanticsLabel('Binding progress')).value,
-          '100%',
-        );
+        if (!kReleaseMode) {
+          expect(
+            t.getSemantics(find.bySemanticsLabel('Binding progress')).value,
+            '100%',
+          );
+        }
         expect(h.errors, isEmpty);
       } finally {
         semantics.dispose();

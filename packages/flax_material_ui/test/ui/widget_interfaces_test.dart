@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -284,10 +285,10 @@ void main() {
         final editing = field.controller!;
         final focus = field.focusNode!;
         await t.enterText(find.byType(TextField), 'Unchanged state');
-        editing.selection = const TextSelection(baseOffset: 1, extentOffset: 5);
         await t.tap(find.text('Count 0'));
         focus.requestFocus();
-        await t.pump();
+        await t.pumpAndSettle();
+        editing.selection = const TextSelection(baseOffset: 1, extentOffset: 5);
         final body = t.element(host('body'));
         final static = t.element(host('static-sibling'));
         final appbarState = t.state(find.byType(AppBar));
@@ -298,17 +299,25 @@ void main() {
         addTearDown(() => debugOnRebuildDirtyWidget = null);
         h.execute("interfaces.title.value = 'Updated title'");
         await t.pump();
-        expect(rebuilt, [const ValueKey('bar-title')]);
+        if (kDebugMode) {
+          expect(rebuilt, [const ValueKey('bar-title')]);
+        }
         expect(find.text('Updated title'), findsOneWidget);
         rebuilt.clear();
         h.execute('interfaces.height.value = 64; interfaces.height.value = 90');
         await t.pump();
-        expect(
-          rebuilt.where((k) => k == const ValueKey('scaffold')),
-          hasLength(1),
-        );
-        expect(rebuilt, isNot(contains(const ValueKey('body'))));
-        expect(rebuilt, isNot(contains(const ValueKey('static-sibling'))));
+        if (kDebugMode) {
+          expect(
+            rebuilt.where((k) => k == const ValueKey('scaffold')),
+            hasLength(1),
+          );
+        }
+        if (kDebugMode) {
+          expect(rebuilt, isNot(contains(const ValueKey('body'))));
+        }
+        if (kDebugMode) {
+          expect(rebuilt, isNot(contains(const ValueKey('static-sibling'))));
+        }
         expect(t.state(find.byType(AppBar)), same(appbarState));
         expect(t.element(host('body')), same(body));
         expect(t.element(host('static-sibling')), same(static));

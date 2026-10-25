@@ -46,7 +46,7 @@ Dart FlaxJsRuntime
   -> shared Dart FFI wrapper
   -> versioned C function table
   -> shared JSI operations
-  -> engine-owned V8 Context and shared CppHeap (macOS)
+  -> engine-owned V8 Context and shared CppHeap (all maintained targets)
   -> synchronous Dart host callback (which may reenter JS)
 ```
 
@@ -100,11 +100,11 @@ examples demonstrate one capability; top-level examples demonstrate composition.
 [package boundaries](packaging.md) and
 [ADR 0017](../decisions/0017-package-boundaries.md).
 
-Platform policy is iOS Hermes and other native V8 JIT. macOS, Android arm64 and iOS
+Platform policy is iOS V8 jitless and other native V8 JIT. macOS, Android arm64 and iOS
 arm64 are implemented with the maintained engine. iOS supports simulator debug and
 device release/AOT. Android debug and release/AOT correctness has emulator and Pixel 4
-acceptance. Android and Hermes performance remain unmeasured. See
-[ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md) and
+acceptance. Android performance remains unmeasured; iOS migration measurements are
+recorded separately. See [ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md) and
 [packaging](packaging.md).
 
 [Owned Dart objects](objects.md) describes generated Controller references, paired
@@ -154,9 +154,10 @@ native ValueListenable consumers.
 
 ## Direct JavaScript FFI
 
-[Optional FFI](ffi.md) provides direct shared JSI/libffi calls for V8 and Hermes, raw
-bigint pointers, native layouts, callbacks, explicit memory release and optional Buffer
-compatibility. Developers install `@flax/ffi`; Core owns internal Dart installation,
-checkpoints and retirement. Retained npm native inputs select source/static/prebuilt
-code assets. See the [package guide](../../packages/flax_ffi/js/README.md) and
+[Optional FFI](ffi.md) provides direct shared JSI/libffi calls for the maintained V8
+engine, raw bigint pointers, native layouts, callbacks, explicit memory release and
+optional Buffer compatibility. Developers install `@flax/ffi`; Core owns internal Dart
+installation, checkpoints and retirement. Retained npm native inputs select
+source/static/prebuilt code assets. See the
+[package guide](../../packages/flax_ffi/js/README.md) and
 [validation receipt](../../packages/flax_ffi/test/runtime/results.json).

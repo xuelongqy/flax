@@ -305,19 +305,18 @@ runtime. Storage sharing preserves bytes and ranges; repeated conversions may cr
 different Uint8Array wrappers or Dart view objects.
 
 Same-size ArrayBuffer transfer detaches the old JS buffer while retaining the shared
-allocation in V8 and Hermes. Resizing transfer follows JS copy semantics: the new buffer
-contains independent bytes, and existing Dart views remain valid. Retained Dart views
-also survive session close. JS facade access still requires a live session/runtime.
+allocation in V8. Resizing transfer follows JS copy semantics: the new buffer contains
+independent bytes, and existing Dart views remain valid. Retained Dart views also
+survive session close. JS facade access still requires a live session/runtime.
 
 Sharing requires fixed, writable, unshared storage. Readonly Dart views, detached JS
-buffers, SharedArrayBuffer, resizable buffers and incompatible views are rejected.
-Hermes retains its 32-bit buffer-size limit. The maintained V8 SDK must disable its
-sandbox, which cannot directly expose Dart heap addresses. No copy fallback or
-allocation mode is selected. The first share of young data can trigger promotion; pinned
-small objects temporarily prevent compaction of their whole 512 KiB page.
-External-memory accounting conservatively charges each imported JS view and each Hermes
-ArrayBuffer for its retained backing store. Hermes keeps that charge through adoption
-and same-size transfer, then removes it on detach or collection.
+buffers, SharedArrayBuffer, resizable buffers and incompatible views are rejected. The
+maintained V8 SDK must disable its sandbox, which cannot directly expose Dart heap
+addresses. No copy fallback or allocation mode is selected. The first share of young
+data can trigger promotion; pinned small objects temporarily prevent compaction of their
+whole 512 KiB page. External-memory accounting charges retained backing storage through
+the V8 adapter. Same-size transfer preserves storage ownership; detach and collection
+release the appropriate owner.
 
 `FlaxJsRuntime.createUint8Array` and `readUint8Array` expose the same sharing contract.
 The existing `createArrayBuffer` / `readBytes` operations retain their explicit copying
@@ -855,6 +854,6 @@ lifecycle/build overrides retain their declared synchronous signatures.
 `bindings:check` compiles SDK and independent plugin output without an engine.
 `ui:bundle` generates each fixture into its owning package's `.dart_tool/flax/ui` and
 bundles it with the same ES2019 IIFE pipeline. `ui:test` executes it from that package's
-UI suite. GC tests use real Hermes/V8 allocation/WeakRef observation and
-VM-service-requested Dart collection. They separately assert deterministic session
-cleanup and do not replace Finalizer observation with a direct cleanup call.
+UI suite. GC tests use real V8 allocation/WeakRef observation and VM-service-requested
+Dart collection. They separately assert deterministic session cleanup and do not replace
+Finalizer observation with a direct cleanup call.

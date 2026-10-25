@@ -4,12 +4,13 @@ Flax is an experimental framework for describing Flutter interfaces with JavaScr
 intended use cases are embedding mini-app-style interfaces in existing Flutter
 applications and developing standalone applications.
 
-**Current status: experimental embedded and standalone UI on macOS arm64.** Pure JS uses
-generated Flutter/Material bindings and explicit signals to update real Flutter widgets,
-including conditional and keyed subtrees. Owning FlaxViews create a runtime through
-their supplied factory; explicit FlaxSessions can span multiple Routes using the
-engine-owned C ABI/JSI bridge. Flax requires its maintained Flutter 3.47.6 engine; macOS
-arm64 uses V8 JIT. Dart and JS business references participate in joint GC. See the
+**Current status: experimental embedded and standalone UI with maintained arm64
+engines.** Pure JS uses generated Flutter/Material bindings and explicit signals to
+update real Flutter widgets, including conditional and keyed subtrees. Owning FlaxViews
+create a runtime through their supplied factory; explicit FlaxSessions can span multiple
+Routes using the engine-owned C ABI/JSI bridge. Flax requires its maintained Flutter
+3.47.6 engine; macOS and Android arm64 use V8 JIT, and iOS arm64 uses V8 jitless. Dart
+and JS business references participate in joint GC. See the
 [embedded example](examples/embedded/README.md) and
 [host contract](docs/architecture/ui.md).
 
@@ -43,8 +44,8 @@ StreamBuilder. They remain separate from Fetch Web Streams. See
 [Dart interop](docs/architecture/interop.md#dart-stream-and-futureor-ui-protocol-24).
 
 Optional [`@flax/ffi`](packages/flax_ffi/README.md) supports direct JavaScript calls to
-C ABI libraries through the shared V8/Hermes backend. Its npm package, Buffer support
-and library assets are selected on demand; Dart installation stays inside Core. See the
+C ABI libraries through the V8 backend. Its npm package, Buffer support and library
+assets are selected on demand; Dart installation stays inside Core. See the
 [runnable native-library example](packages/flax_ffi/example/README.md). The package is
 private and unpublished; current acceptance is macOS arm64 and iOS Simulator arm64.
 
@@ -97,7 +98,8 @@ dart run tool/check_engine_application.dart debug
 Build matching `profile` and `release` artifacts in the fork before selecting those
 modes in `check_engine_application.dart`. This gate runs runtime and real Widget/State,
 callback, Future and Stream contracts in a macOS application. Current acceptance is
-tracked in the [engine acceptance task](docs/tasks/engine-cross-heap-gc.md).
+recorded in the
+[iOS migration acceptance](experiments/canvas_engines/migration-ios-results.md).
 
 Android arm64 uses the same engine-owned V8 JIT and joint GC. Build matching debug and
 release Android engines in the Flutter fork with `--target android-arm64`, using its
@@ -111,16 +113,19 @@ dart run tool/check_engine_application.dart debug
 dart run tool/check_engine_application.dart release
 ```
 
-Android arm64 debug and release/AOT correctness passes on the API 37 emulator with 16 KB
-pages and a Pixel 4 running Android 13 with 4 KB pages. Both verify V8 JIT and joint GC.
-Android GC/frame performance and complete platform UI coverage remain pending. Use the
-phone's ADB ID in `FLAX_CHECK_DEVICE` for physical-device checks.
+Earlier Android arm64 native-runtime debug and release/AOT acceptance covers the API 37
+emulator with 16 KB pages and Pixel 4 / Android 13 with 4 KB pages. Both verify V8 JIT
+and joint GC. The expanded migration UI regression retains four baseline refresh/cleanup
+failures on Pixel 4 and eight on the emulator, reproduced with the old engine; see the
+[acceptance record](experiments/canvas_engines/migration-ios-results.md). Android frame
+performance and complete platform UI acceptance remain open. Use the phone's ADB ID in
+`FLAX_CHECK_DEVICE` for physical-device checks.
 
-For the iOS arm64 simulator, build the Hermes debug engine and matching macOS debug host
-tools in the Flutter fork:
+For the iOS arm64 simulator, build the V8 jitless debug engine and matching macOS debug
+host tools in the Flutter fork:
 
 ```sh
-python3 engine/src/flutter/flax/tools/build_engine.py --target ios-simulator-arm64 --mode debug
+python3 engine/src/flutter/flax/tools/build_engine.py --target ios-simulator-arm64 --mode debug --sdk /path/to/verified/v8-ios-simulator-arm64
 ```
 
 Then select a booted simulator from the Flax checkout:
@@ -132,11 +137,12 @@ dart run tool/check_engine_application.dart debug
 ```
 
 This gate builds a temporary application with an iOS 16.3 minimum, verifies the embedded
-Hermes interpreter without JIT, and exercises runtime, Widget and joint-GC contracts.
-For a physical arm64 iPhone, build the matching release engine in the Flutter fork:
+statically linked V8 jitless runtime, and exercises runtime, Widget and joint-GC
+contracts. For a physical arm64 iPhone, build the matching release engine in the Flutter
+fork:
 
 ```sh
-python3 engine/src/flutter/flax/tools/build_engine.py --target ios-device-arm64 --mode release
+python3 engine/src/flutter/flax/tools/build_engine.py --target ios-device-arm64 --mode release --sdk /path/to/verified/v8-ios-device-arm64
 ```
 
 Build `flax_mac_release_arm64` host tools first, then select the connected device and
@@ -151,10 +157,10 @@ dart run tool/check_engine_application.dart release
 
 The device gate verifies real signing, provisioning, Dart AOT and the relocated engine
 before installation. Simulator profile/release and physical-device debug/profile are
-currently unsupported. Hermes GC/frame performance and distribution signing require
-separate acceptance.
+currently unsupported. Distribution signing requires separate acceptance. Use
+`FLAX_CHECK_STRESS_SECONDS=900` for the separate sustained joint-GC device gate.
 
-Platform selection is fixed: iOS Hermes, other native targets V8 JIT. macOS, Android
+Platform selection is fixed: iOS V8 jitless, other native targets V8 JIT. macOS, Android
 arm64, iOS arm64 simulator debug and iOS arm64 device release are implemented. Ordinary
 Flutter, mismatched revisions and unsupported runtime isolates fail explicitly; there is
 no independent SDK runtime fallback. See

@@ -11,7 +11,7 @@ environment:
 dependencies:
   flax_example_support: 0.0.0
   flax: 0.0.0
-  flax_engine_hermes: 0.0.0
+  flax_engine_v8: 0.0.0
   flax_local_storage: 0.0.0
   flutter:
     sdk: flutter

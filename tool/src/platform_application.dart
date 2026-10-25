@@ -529,6 +529,19 @@ void configurePlatformProject(String app, FlaxNativeTarget target) {
   }
   if (target.os == 'ios') {
     final project = File('$app/ios/Runner.xcodeproj/project.pbxproj');
+    final delegate = File('$app/ios/Runner/AppDelegate.swift');
+    if (delegate.existsSync()) {
+      // Long device acceptance must not stop when the test phone auto-locks.
+      final source = delegate.readAsStringSync();
+      if (!source.contains('isIdleTimerDisabled')) {
+        delegate.writeAsStringSync(
+          source.replaceFirst(
+            'GeneratedPluginRegistrant.register',
+            'UIApplication.shared.isIdleTimerDisabled = true\n    GeneratedPluginRegistrant.register',
+          ),
+        );
+      }
+    }
     var text = project.readAsStringSync();
     final team = Platform.environment['FLAX_IOS_TEAM'];
     if (team != null) {
@@ -692,11 +705,13 @@ Future<String> runDesktopApplication(
   );
   var activated = target.os != 'macos';
   Future<ProcessResult>? activation;
+  final journal = UiResultJournal();
   final testLog = RegExp(r'^(?:flutter: )?\d+:\d+ \+');
   final output = process.stdout
       .transform(utf8.decoder)
       .transform(const LineSplitter())
       .map((line) {
+        journal.collect(line);
         if (!activated && testLog.hasMatch(line)) {
           activated = true;
           // Cocoa has registered the window by the first test log. Foreground
@@ -722,7 +737,7 @@ Future<String> runDesktopApplication(
     }
     stdout.write(out);
     stderr.write(err);
-    if (code != 0 || !out.contains(marker)) {
+    if (code != 0 || !out.contains(marker) || journal.hasFailure) {
       throw StateError('Application failed: $code $out $err');
     }
     return out;
@@ -784,17 +799,33 @@ Future<String> runMobileApplication(
     );
     // Tests may fail before launch returns; await the same failure below.
     waiting.ignore();
+    Process? launcher;
+    StreamSubscription<List<int>>? nativeOut;
+    StreamSubscription<List<int>>? nativeErr;
+    var finished = false;
     try {
-      await run('xcrun', [
+      launcher = await Process.start('xcrun', [
         'simctl',
         'launch',
+        '--console-pty',
         '--terminate-running-process',
         device,
         bundle,
       ]);
+      nativeOut = launcher.stdout.listen(stdout.add);
+      nativeErr = launcher.stderr.listen(stderr.add);
+      launcher.exitCode.then((_) async {
+        // os_log can deliver the final test marker after process exit.
+        await Future<void>.delayed(const Duration(seconds: 2));
+        if (!finished) monitor.kill();
+      });
       return await waiting;
     } finally {
+      finished = true;
       monitor.kill();
+      launcher?.kill();
+      await nativeOut?.cancel();
+      await nativeErr?.cancel();
       await Process.run('xcrun', ['simctl', 'terminate', device, bundle]);
     }
   }

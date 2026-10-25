@@ -29,7 +29,7 @@ Future<void> main() => command(() async {
   if (target.mobile && (device == null || device.isEmpty)) {
     throw ArgumentError('Mobile HMR acceptance requires FLAX_CHECK_DEVICE');
   }
-  final engine = target.os == 'ios' ? 'hermes' : 'v8';
+  const engine = 'v8';
   if (Platform.environment['FLAX_CHECK_PREPARED'] != '1') {
     await run('pnpm', ['--silent', 'run', 'js:build'], directory: root);
     await run('node', ['tool/ui_bundle.mjs'], directory: root);

@@ -7,7 +7,7 @@ platform projects are checked in. The example is private and is not published.
 ## Run
 
 Requirements: the repository's pinned Node/pnpm/Flutter tools, Xcode, and a matching
-FFI-enabled Flax engine. Use macOS arm64 V8 or an arm64 iOS Simulator with Hermes.
+FFI-enabled Flax engine. Use macOS arm64 V8 or an arm64 iOS Simulator with V8 jitless.
 Select a booted simulator with `xcrun simctl list devices booted`.
 
 From the repository root:

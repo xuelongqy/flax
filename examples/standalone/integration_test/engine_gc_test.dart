@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' show TimelineTask;
-import 'dart:ffi';
+import 'dart:ffi' hide Size;
 import 'dart:io';
 import 'dart:ui' show FrameTiming;
 
 import 'package:flax/runtime.dart';
+import 'package:flax/flax.dart'
+    show FlaxSession, FlaxView, FlaxBindingRegistry, flutterBindings;
+import 'package:flax/src/native/native_runtime.dart';
 import 'package:ffi/ffi.dart';
 import 'package:flax_test/runtime.dart';
 import 'package:flax_test/flax_test.dart';
@@ -80,7 +83,7 @@ void main() {
 
 void _registerTests() {
   final startup = Stopwatch()..start();
-  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  final binding = _EngineTestBinding();
   int? firstFrameMicros;
   binding.addPostFrameCallback(
     (_) => firstFrameMicros = startup.elapsedMicroseconds,
@@ -88,10 +91,15 @@ void _registerTests() {
   binding.reportData = {
     'scenario': 'engine-gc',
     'completed': true,
-    if (!kDebugMode)
+    if (!kDebugMode &&
+        const int.fromEnvironment('FLAX_ENGINE_STRESS_SECONDS') == 0)
       'notApplicable': [
         'local frame updates and parent rebuild preserve unaffected hosts: Flutter debug rebuild hook',
         'invalidations during build wait for the next frame: Flutter debug rebuild hook',
+        'constructor and paint failures keep their native diagnostic boundary: Flutter debug assertions',
+        'invalid ancestry and unbounded flex use Flutter diagnostics: Flutter debug assertions',
+        'Context.size preserves native build and non-RenderBox errors: Flutter debug assertions',
+        'Material retains its native shape and borderRadius constraint: Flutter debug assertions',
       ],
   };
   binding.allTestsPassed.future.then((passed) {
@@ -108,14 +116,15 @@ void _registerTests() {
     binding.reportData = result;
     if (Platform.isAndroid || Platform.isIOS) {
       // Keep result fragments within mobile system log limits.
-      final data = base64Encode(utf8.encode(jsonEncode(result)));
+      // Full suites exceed Android's log burst limit without compression.
+      final data = base64Encode(gzip.encode(utf8.encode(jsonEncode(result))));
       const chunkSize = 800;
       for (var offset = 0; offset < data.length; offset += chunkSize) {
         final end = offset + chunkSize < data.length
             ? offset + chunkSize
             : data.length;
         debugPrintSynchronously(
-          'FLAX_ENGINE_RESULT_BASE64:${data.substring(offset, end)}',
+          'FLAX_ENGINE_RESULT_GZIP_BASE64:${data.substring(offset, end)}',
         );
       }
     } else {
@@ -146,9 +155,7 @@ void _registerTests() {
             Int32 Function(Pointer<Utf8>),
             int Function(Pointer<Utf8>)
           >('unsetenv');
-      final probe = Platform.isIOS
-          ? 'FLAX_VERIFY_HERMES'
-          : 'FLAX_VERIFY_V8_JIT';
+      const probe = 'FLAX_VERIFY_V8_JIT';
       final previous = Platform.environment[probe];
       using((arena) {
         final name = probe.toNativeUtf8(allocator: arena);
@@ -158,18 +165,16 @@ void _registerTests() {
         try {
           final runtime = FlaxEngine.createRuntime();
           try {
+            binding.reportData!['jsFeatures'] = jsonDecode(
+              (runtime.evaluate(
+                'JSON.stringify({Date: typeof Date, RegExp: typeof RegExp, Intl: typeof Intl, Temporal: typeof Temporal, WebAssembly: typeof WebAssembly, WeakRef: typeof WeakRef, FinalizationRegistry: typeof FinalizationRegistry})',
+              ) as FlaxJsString).value,
+            );
             if (Platform.isIOS) {
-              final properties = jsonDecode(
-                (runtime.evaluate(
-                  'JSON.stringify(HermesInternal.getRuntimeProperties())',
-                ) as FlaxJsString).value,
-              ) as Map;
-              expect(properties['Bytecode Version'], 99);
-              expect(properties['GC'], 'hades (concurrent)');
-              expect(properties['JIT Enabled'], false);
-              binding.reportData!['hermesProperties'] = properties;
+              // Native creation rejects any generated code in the jitless probe.
+              binding.reportData!['v8JitlessVerified'] = true;
               debugPrintSynchronously(
-                'FLAX_HERMES: embedded interpreter, joint GC',
+                'FLAX_V8_JITLESS: probe executed without generated machine code',
               );
             } else {
               // Creation fails unless the native V8 probe observes machine code.
@@ -195,7 +200,10 @@ void _registerTests() {
       await rootBundle.loadString('assets/engine-fixtures.json'),
     ) as Map;
     final core = (fixtures['flax'] as Map).cast<String, String>();
-    flaxTestLoadFixturePackages({'flax': core});
+    flaxTestLoadFixturePackages({
+      for (final entry in fixtures.entries)
+        entry.key as String: (entry.value as Map).cast<String, String>(),
+    });
     await flaxTestLoadModuleAssets(core);
   });
   void register(String name, dynamic Function() body) {
@@ -203,8 +211,56 @@ void _registerTests() {
       await tester.pumpWidget(
         const MaterialApp(home: Scaffold(body: Text('Flax engine GC'))),
       );
-      await tester.runAsync(() async => await body());
+      await flaxTestRunIdle(tester, () async => await body());
     });
+  }
+
+  const stressSeconds = int.fromEnvironment('FLAX_ENGINE_STRESS_SECONDS');
+  if (stressSeconds > 0) {
+    _registerStress(binding, stressSeconds);
+    return;
+  }
+
+  if (Platform.isIOS) {
+    register(
+      'production FFI calls, structs, callbacks, bytes and teardown',
+      () async {
+        final source = await rootBundle.loadString('assets/ffi-smoke.js');
+        final observer = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+        observer.installNativeFfi(() => observer.checkpointNativeFfi());
+        try {
+          observer.evaluate(source);
+          List<dynamic> stats() => jsonDecode(
+            (observer.evaluate(
+              'JSON.stringify(flaxFfiSmokeStats())',
+            ) as FlaxJsString).value,
+          ) as List<dynamic>;
+          final before = stats();
+          final runtime = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+          runtime.installNativeFfi(() => runtime.checkpointNativeFfi());
+          try {
+            runtime.evaluate(source);
+            final result = jsonDecode(
+              (runtime.evaluate(
+                'JSON.stringify(flaxFfiSmoke())',
+              ) as FlaxJsString).value,
+            ) as Map;
+            expect(result['checks'], 7);
+            expect((result['stats'] as List)[0], (before[0] as int) + 1);
+            expect((result['stats'] as List)[1], before[1]);
+          } finally {
+            runtime.dispose();
+          }
+          final after = stats();
+          expect(after[0], (before[0] as int) + 1);
+          expect(after[1], (before[1] as int) + 1);
+          expect(after[2], before[2]);
+          binding.reportData!['productionFfiChecks'] = 10;
+        } finally {
+          observer.dispose();
+        }
+      },
+    );
   }
 
   flaxRuntimeContract(FlaxEngine.createRuntime, registerTest: register);
@@ -326,4 +382,198 @@ void _registerTests() {
       await tester.pumpWidget(const SizedBox.shrink());
     });
   }
+}
+
+class _EngineTestBinding extends IntegrationTestWidgetsFlutterBinding {
+  // AOT rejects the debug-only wildcard client used with an unregistered mock.
+  @override
+  bool get registerTestTextInput => true;
+}
+
+void _registerStress(
+  IntegrationTestWidgetsFlutterBinding binding,
+  int seconds,
+) {
+  final contracts = <({String name, dynamic Function() body})>[];
+  flaxEngineGcContract(
+    registerTest: (name, body) => contracts.add((name: name, body: body)),
+  );
+  testWidgets('sustained animation, pressure and joint GC', (tester) async {
+    final previousPolicy = binding.framePolicy;
+    final observer = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+    final baseline = observer.bridgeCellCount;
+    final clock = Stopwatch()..start();
+    final samples = <Map<String, Object?>>[];
+    var cycles = 0;
+    var completedContracts = 0;
+    var frames = 0;
+    var active = false;
+    var phase = 'idle';
+    final sampling = Timer.periodic(const Duration(seconds: 1), (_) {
+      samples.add({
+        'us': clock.elapsedMicroseconds,
+        'phase': phase,
+        'cycle': cycles,
+        'cells': observer.bridgeCellCount,
+        'rss': ProcessInfo.currentRss,
+      });
+    });
+    try {
+      while (clock.elapsed.inSeconds < seconds) {
+        binding.framePolicy =
+            LiveTestWidgetsFlutterBindingFramePolicy.onlyPumps;
+        final runtimes = <FlaxNativeJsRuntime>[];
+        final steps = <FlaxJsFunction>[];
+        final dartWindow = <List<int>>[];
+        final errors = <Object>[];
+        final sessions = [
+          for (var i = 0; i < 2; i++)
+            FlaxSession(
+              createRuntime: () {
+                final runtime =
+                    FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+                runtimes.add(runtime);
+                runtime.registerHostFunction('tick', (_, args) {
+                  dartWindow.add(List<int>.filled(8192, frames));
+                  if (dartWindow.length > 64) dartWindow.removeAt(0);
+                  return args.single;
+                });
+                return runtime;
+              },
+              bindings: FlaxBindingRegistry([flutterBindings]),
+              onError: (error, _) => errors.add(error),
+              source:
+                  '''
+            globalThis.sessionId = $i;
+            globalThis.window = [];
+            globalThis.step = () => {
+              window.push(new Uint8Array(32768));
+              if (window.length > 64) window.shift();
+              Promise.resolve().then(() => 1);
+              return tick(window.length);
+            };
+            const widgets = __flaxModules.require('@flax/flutter/widgets');
+            widgets.runApp(widgets.SizedBox());
+          ''',
+            ),
+        ];
+        try {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Column(
+                children: [
+                  const CircularProgressIndicator(),
+                  for (final session in sessions)
+                    SizedBox(
+                      width: 1,
+                      height: 1,
+                      child: FlaxView.session(session: session),
+                    ),
+                ],
+              ),
+            ),
+          );
+          expect(errors, isEmpty);
+          expect(runtimes, hasLength(2));
+          binding.framePolicy =
+              LiveTestWidgetsFlutterBindingFramePolicy.benchmarkLive;
+          await tester.runAsync(() async {
+            phase = 'animation';
+            Object? failure;
+            StackTrace? failureStack;
+            int? frameId;
+            active = true;
+            try {
+              for (var i = 0; i < runtimes.length; i++) {
+                expect(
+                  (runtimes[i].evaluate('sessionId') as FlaxJsNumber).value,
+                  i,
+                );
+                steps.add(runtimes[i].evaluate('step') as FlaxJsFunction);
+              }
+              void frame(Duration _) {
+                if (!active) return;
+                try {
+                  for (var i = 0; i < runtimes.length; i++) {
+                    steps[i].call([]);
+                    runtimes[i].drainMicrotasks();
+                  }
+                  frames++;
+                  frameId = binding.scheduleFrameCallback(frame);
+                } catch (error, stack) {
+                  failure = error;
+                  failureStack = stack;
+                  active = false;
+                }
+              }
+
+              frameId = binding.scheduleFrameCallback(frame);
+              final end = clock.elapsed + const Duration(seconds: 30);
+              while (active &&
+                  clock.elapsed < end &&
+                  clock.elapsed.inSeconds < seconds) {
+                await Future<void>.delayed(const Duration(milliseconds: 100));
+              }
+              if (failure != null) {
+                Error.throwWithStackTrace(failure!, failureStack!);
+              }
+            } finally {
+              active = false;
+              if (frameId != null) binding.cancelFrameCallbackWithId(frameId!);
+              for (final step in steps) {
+                step.release();
+              }
+            }
+          });
+        } finally {
+          binding.framePolicy =
+              LiveTestWidgetsFlutterBindingFramePolicy.onlyPumps;
+          await tester.pumpWidget(const SizedBox.shrink());
+          binding.framePolicy =
+              LiveTestWidgetsFlutterBindingFramePolicy.benchmark;
+          await tester.runAsync(() async {
+            for (final session in sessions) {
+              await session.close();
+            }
+            for (final runtime in runtimes) {
+              expect(runtime.bridgeCallbackCount, 0);
+            }
+          });
+        }
+        await tester.runAsync(() async {
+          phase = 'idle-contracts';
+          for (final contract in contracts) {
+            debugPrintSynchronously(
+              'FLAX_STRESS_CASE ${cycles + 1}: ${contract.name}',
+            );
+            await contract.body();
+            completedContracts++;
+          }
+          expect(
+            observer.bridgeCellCount,
+            baseline,
+            reason: 'Bridge metadata grew after stress cycle',
+          );
+        });
+        cycles++;
+      }
+      expect(frames, greaterThan(0));
+      expect(completedContracts, greaterThan(0));
+      binding.reportData!['stress'] = {
+        'seconds': seconds,
+        'elapsedUs': clock.elapsedMicroseconds,
+        'cycles': cycles,
+        'frames': frames,
+        'completedContracts': completedContracts,
+        'baselineCells': baseline,
+        'finalCells': observer.bridgeCellCount,
+        'samples': samples,
+      };
+    } finally {
+      active = false;
+      sampling.cancel();
+      observer.dispose();
+      binding.framePolicy = previousPolicy;
+    }
+  }, timeout: Timeout(Duration(seconds: seconds + 180)));
 }

@@ -2,6 +2,24 @@ import 'package:flax/flax.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+/// Wait for idle collection without LiveTest continuously requesting native frames.
+Future<void> flaxTestRunIdle(
+  WidgetTester tester,
+  Future<void> Function() body,
+) async {
+  final binding = tester.binding;
+  final live = binding is LiveTestWidgetsFlutterBinding ? binding : null;
+  final previous = live?.framePolicy;
+  if (live != null) {
+    live.framePolicy = LiveTestWidgetsFlutterBindingFramePolicy.benchmark;
+  }
+  try {
+    await tester.runAsync(body);
+  } finally {
+    if (live != null) live.framePolicy = previous!;
+  }
+}
+
 Finder flaxTestHost(Object key) => find.byWidgetPredicate(
   (widget) =>
       widget is FlaxWidgetHost &&

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flax/flax.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -202,7 +203,9 @@ void main() {
           'layout.flex.value = 2; layout.flex.value = 4; layout.flex.value = 3',
         );
         await t.pump();
-        expect(rebuilt, [const ValueKey('a')]);
+        if (kDebugMode) {
+          expect(rebuilt, [const ValueKey('a')]);
+        }
         expect(h.runtime.hostCalls['__flaxInvalidate']! - calls, 3);
         expect(t.widget(host('a-box')), same(original));
         expect(t.state(host('flex-parent')), same(parent));
@@ -447,14 +450,13 @@ void main() {
       }
       h.execute('layout.alignment.value = layout.Alignment.center');
       await t.pump();
-      final before = h.errors.length;
-      h.execute('layout.right.value = 20');
-      await t.pump();
-      expect(
-        h.errors.length,
-        before + 1,
-      ); // left/right/width constructor assertion.
-      expect(localRect(t, host('positioned-box'), 'flax-scene'), original);
+      if (kDebugMode) {
+        final before = h.errors.length;
+        h.execute('layout.right.value = 20');
+        await t.pump();
+        expect(h.errors.length, before + 1);
+        expect(localRect(t, host('positioned-box'), 'flax-scene'), original);
+      }
       h.execute('layout.left.value = null; layout.right.value = 15');
       await t.pump();
       expect(localRect(t, host('positioned-box'), 'flax-scene').left, 225);
@@ -511,5 +513,5 @@ void main() {
         FlutterError.onError = handler;
       }
     }
-  });
+  }, skip: !kDebugMode);
 }

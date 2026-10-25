@@ -21,22 +21,23 @@ runtime deployment.
 
 `FlaxEngine.createRuntime()` obtains the engine's native ABI 2 and internal GC extension
 1, checking their sizes and exact Flutter/Dart revisions before runtime allocation.
-Ordinary Flutter and incompatible engines fail explicitly. UI protocol 22 and generated
-JS calls are unchanged. iOS selects Hermes; other native platforms select V8 with JIT.
-macOS, Android arm64 and iOS arm64 are implemented. Android debug and release/AOT
-correctness passes on an arm64 emulator and a Pixel 4 running Android 13. iOS debug
-correctness passes on the iPhone 17 Pro arm64 simulator running iOS 26.5. iOS
-release/AOT correctness passes on an iPhone 14 Pro running iOS 26.6.2: 93 cases pass and
-two Flutter debug rebuild-hook cases are explicitly inapplicable. Other targets fail
-before allocation.
+Ordinary Flutter and incompatible engines fail explicitly. UI protocol 24 and generated
+JS calls are unchanged. iOS selects V8 jitless; other native platforms select V8 with
+JIT. macOS, Android arm64 and iOS arm64 are implemented. Android debug and release/AOT
+correctness was previously established on an arm64 emulator and a Pixel 4 running
+Android 13. Earlier iOS Hermes results are historical. The V8 migration rebuilds both
+iOS modes and expands the package-owned compatibility suite; its
+[acceptance record](../../experiments/canvas_engines/migration-ios-results.md) separates
+current results, pre-existing Android failures and unverified distribution behavior.
+Other targets fail before allocation.
 
-The iOS producer builds pinned Hermes 260318099.0.4 with an internal conditional-handle
-extension. It keeps the Hermes/JSI vtable, native ABI and UI protocol unchanged. Hermes
-has no Context API, so sessions own separate VMs under one Dart UI-isolate coordinator.
-The coordinator reaches a fixed point across all participating final mark phases before
-weak processing. It uses the existing Hades marker rather than a separate heap scanner;
-ordinary marking remains concurrent. Active JS jobs defer joint tracing, retaining peers
-conservatively until an owner-thread checkpoint.
+The iOS producer consumes verified static V8 SDKs with JIT, TurboFan, WebAssembly and
+CppGC cage/compression/young generation disabled. The same collector configuration is
+used on simulator and device. Private SDK dependency namespaces prevent collision with
+Flutter's own Abseil and regular-expression code. Native ABI 2, GC extension 1 and
+binding extension 8 remain unchanged. The deprecated `FlaxHermesEngine` factory is an
+iOS source compatibility alias for the maintained V8 entry, with no Hermes-specific API
+promise.
 
 One Dart UI isolate owns one V8 heap and CppHeap. Sessions have separate Contexts,
 microtask queues and module state. Dart retains its ordinary parallel marking, then
@@ -63,13 +64,19 @@ with Dart AOT in release. The accepted API 37 emulator uses 16 KB pages; the acc
 Pixel 4 uses 4 KB pages. These checks do not establish Android performance or
 distribution acceptance.
 
-The iOS simulator debug and device release frameworks link Hermes, JSI and Boost.Context
-statically. Consumers target iOS 16.3 or later and require no JS JIT entitlement. Patch
-and source hashes are verified before building, including reused caches; immutable SDK
-release attachments remain unchanged. The device gate verifies development signing,
-provisioning, Dart AOT and packaged engine content, then installs and runs after source
-removal. Simulator profile/release and device debug/profile are unsupported. These
-correctness checks do not certify distribution signing or Hermes GC/frame performance.
+The iOS simulator Debug and device Release frameworks link V8/JSI/CppGC statically.
+Consumers target iOS 16.3 or later and need no JS JIT entitlement. SDK manifests pin the
+archive, headers, recipe and notices. The framework carries its upstream notices and SDK
+manifest; the application carries no standalone engine library or archive. The device
+gate checks development signing, provisioning, Dart AOT and relocation. Device
+Debug/Profile and simulator Profile/Release remain unsupported. Distribution signing
+requires separate validation. Earlier Hermes acceptance describes the previous backend;
+migration acceptance is recorded separately.
+
+Proactive idle collection defers while native frames arrive within 100 ms, preserving
+pending work. Pressure collection bypasses that check, and stopped animation allows idle
+reclamation. This heuristic is not a guarantee of zero GC during animation. Native ESM,
+remote imports and application sandbox implementation are deferred.
 
 Flutter still owns Element/State lifecycles. GC does not call application `dispose`, pop
 Routes or reset static state. Applications retain their ordinary Flutter obligations;

@@ -47,7 +47,7 @@ void main() {
       }
     },
   );
-  test('iOS simulator selects Hermes engine artifacts and rejects AOT modes', () {
+  test('iOS simulator selects V8 jitless engine artifacts and rejects AOT modes', () {
     final source = Directory.systemTemp.createTempSync('flax-ios-engine-');
     addTearDown(() => source.deleteSync(recursive: true));
     final target = FlaxNativeTarget('ios-simulator-arm64');

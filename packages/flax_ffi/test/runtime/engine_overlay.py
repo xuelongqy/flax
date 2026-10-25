@@ -29,16 +29,16 @@ def available_sdk(command, cwd):
 def build(checkout, output_root, name, native_source, sanitize=False, extension_source=None,
           includes=(), libraries=(), cpp_transforms=None, platform_builder=None):
     source = checkout / "engine/src"
-    original = (source / "out" / name).resolve()
+    base = source / "out" / name
+    if not base.exists() and name in ('flax_mac_debug', 'flax_mac_release'):
+        base = source / "out" / (name + '_arm64')
+    original = base.resolve()
     output = output_root / name
     output.mkdir(parents=True, exist_ok=True)
     args = (original / "args.gn").read_text()
-    revision = re.search(r'engine_version = "([a-f0-9]+)"', args)[1]
-    # These macOS objects were rebuilt at this revision without rewriting args.gn.
-    if "mac_" in name:
-        revision = "183508ece44ae312a7339bd2ede245e16cf485f3"
-    if name == "flax_ios_release_arm64":
-        revision = "baa88711239"
+    if 'flax_v8_sdk = ' not in args:
+        raise RuntimeError('FFI acceptance requires a production V8 engine')
+    revision = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=checkout, text=True).strip()
     snapshot = output / "native"
     extension = output / "extension"
     shutil.copytree(extension_source, extension, dirs_exist_ok=True)
@@ -77,11 +77,10 @@ def build(checkout, output_root, name, native_source, sanitize=False, extension_
         compile_command = ["-D_FORTIFY_SOURCE=0" if c == "-D_FORTIFY_SOURCE=2" else c for c in compile_command]
         compile_command += ["-fsanitize=address,undefined", "-fno-omit-frame-pointer"]
     run(compile_command, cwd=original)
-    adapter_name = "hermes_engine.cpp" if "ios" in name else "v8-jsi/src/jsi_abi/jsi_abi_v8.cpp"
+    adapter_name = "v8-jsi/src/jsi_abi/jsi_abi_v8.cpp"
     adapter = snapshot / adapter_name
     adapter_code = adapter.read_text()
-    adapter.write_text(adapter_code + '\n#include "' + str(extension /
-        ("collect_hermes.inc" if "ios" in name else "collect_v8.inc")) + '"\n')
+    adapter.write_text(adapter_code + '\n#include "' + str(extension / "collect_v8.inc") + '"\n')
     adapter_commands = [shlex.split(c) for c in lines if " -c " in c and "/" + adapter_name + " " in c]
     if len(adapter_commands) != 1: raise ValueError("Expected one GC adapter compile command")
     adapter_command = adapter_commands[0]
