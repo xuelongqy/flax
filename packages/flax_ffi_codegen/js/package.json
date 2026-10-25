@@ -1,0 +1,40 @@
+{
+  "name": "@flax/ffi-codegen",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Optional C header to TypeScript bindings generator for Flax FFI.",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.mts",
+      "default": "./src/index.mjs"
+    }
+  },
+  "bin": {
+    "flax-ffi-codegen": "./bin/flax-ffi-codegen.mjs"
+  },
+  "files": [
+    "src",
+    "bin",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node --check src/index.mjs && node --check src/ast.mjs && node --check src/emit.mjs && node --check src/target.mjs && node --check src/tool.mjs && node --check bin/flax-ffi-codegen.mjs",
+    "typecheck": "pnpm run build && tsc --strict --noEmit --module NodeNext --moduleResolution NodeNext --target ES2022 src/index.d.mts",
+    "test": "node --test test/*.test.mjs ../test/package.test.mjs",
+    "check:archive": "node --test ../test/package.test.mjs",
+    "check:native": "node ../test/check-native.mjs"
+  },
+  "dependencies": {
+    "fast-xml-parser": "5.11.2"
+  },
+  "devDependencies": {
+    "@flax/ffi": "workspace:*",
+    "@flax/build": "workspace:*",
+    "esbuild": "0.28.2",
+    "vite": "8.3.1"
+  },
+  "engines": {
+    "node": ">=22.23.0"
+  }
+}

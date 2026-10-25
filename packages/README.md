@@ -21,6 +21,7 @@ and native code together when those parts exist. An extension depends on `flax` 
 | [flax_local_storage](flax_local_storage/README.md)     | Optional persistent localStorage session plugin                                                    |
 | [flax_canvas](flax_canvas/README.md)                   | Optional Canvas host plugin and generated CanvasView binding                                       |
 | [flax_ffi](flax_ffi/README.md)                         | Optional JS-only FFI package, native calls, memory and callbacks                                   |
+| [flax_ffi_codegen](flax_ffi_codegen/README.md)         | Optional Node development tool for C header definitions and resource bindings                      |
 
 The core JavaScript package is `@flax/core`. Runtime signals use its root entry;
 Flutter, binding types, and host declarations use `/flutter`, `/bindings`, and `/host`.

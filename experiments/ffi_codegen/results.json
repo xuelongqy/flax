@@ -1,0 +1,191 @@
+{
+  "status": "isolated feasibility experiment; not a production package",
+  "date": "2026-10-24",
+  "baseCommit": "74dab9f76c4d370dcbd924e9e8a036825f4e4683",
+  "branch": "feat/ffi-codegen-validation",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "tools": {
+    "castxml": {
+      "release": "v2026.01.30",
+      "url": "https://github.com/CastXML/CastXMLSuperbuild/releases/download/v2026.01.30/castxml-macos-15-arm64.tar.gz",
+      "sha256": "c30861b8e10941818e76187a546203e0cdc105671d98d1764525b254fb5ab644",
+      "archiveBytes": 46768342
+    },
+    "node": "v22.23.0",
+    "xmlParser": "fast-xml-parser@5.11.2",
+    "c2ffi": {
+      "commit": "f52a6c90651cd5f2f5239b67b41fb9a7e4de1f2e",
+      "upstreamBranch": "llvm-21.1.0",
+      "testedLlvm": "22.1.8",
+      "result": "Version resolution rejected LLVM 22; a forced compile probe then failed on removed Clang C++ APIs.",
+      "supportedLlvm21Tested": false
+    }
+  },
+  "frontend": {
+    "profiles": {
+      "macos-arm64": {
+        "triple": "arm64-apple-macos15.0",
+        "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "targetBytes": 8,
+        "functions": 21,
+        "layouts": 5,
+        "compilerAsserts": 27,
+        "sqliteFunctions": 9,
+        "fixtureCompiled": true,
+        "nodePrimitiveModule": true,
+        "deterministic": true,
+        "generatedSha256": {
+          "definitions.g.ts": "084b648f3b272681f94fabd74693379f7290b14f62bd8b48c0536149f1dc9e04",
+          "bindings.g.ts": "19b404085b6dafb800d112c410d5fa6fb1df1d10f9469b303366efaeeeacc4fb",
+          "model.json": "019194716c911611479eb7ef537808edd5d801176f3ba591ccd3ff47ce856cbb"
+        }
+      },
+      "ios-device-arm64": {
+        "triple": "arm64-apple-ios16.3",
+        "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.1.sdk",
+        "targetBytes": 2,
+        "functions": 21,
+        "layouts": 5,
+        "compilerAsserts": 27,
+        "sqliteFunctions": 9,
+        "fixtureCompiled": true,
+        "nodePrimitiveModule": true,
+        "deterministic": true,
+        "generatedSha256": {
+          "definitions.g.ts": "c0059cbe331c64cb35f043f8645451ae9261a30a538da80582c45196fa8f049a",
+          "bindings.g.ts": "19b404085b6dafb800d112c410d5fa6fb1df1d10f9469b303366efaeeeacc4fb",
+          "model.json": "23ca96564447751fdec272554798a88ff071ae1c0797e20c63ad40396a04f2e9"
+        }
+      },
+      "ios-simulator-arm64": {
+        "triple": "arm64-apple-ios16.3-simulator",
+        "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk",
+        "targetBytes": 4,
+        "functions": 21,
+        "layouts": 5,
+        "compilerAsserts": 27,
+        "sqliteFunctions": 9,
+        "fixtureCompiled": true,
+        "nodePrimitiveModule": true,
+        "deterministic": true,
+        "generatedSha256": {
+          "definitions.g.ts": "0c48b52a36c424db68cfd98f261ce0ffc8da88966d22eb8be1546aca54fc1f59",
+          "bindings.g.ts": "19b404085b6dafb800d112c410d5fa6fb1df1d10f9469b303366efaeeeacc4fb",
+          "model.json": "9e2c20383759f1d272e38e80aae2ba8e52438839906cfa41aefa2272562ce844"
+        }
+      }
+    },
+    "negativeChecks": [
+      {
+        "case": "cg_bad_bits",
+        "diagnostic": "unsupported.h:3 value: bitfields require a C wrapper"
+      },
+      {
+        "case": "cg_bad_alignment",
+        "diagnostic": "unsupported.h:4 : layout cannot be expressed by the current Flax descriptors"
+      },
+      {
+        "case": "untyped-varargs",
+        "diagnostic": "explicit promoted argument types"
+      },
+      {
+        "case": "missing-symbol",
+        "diagnostic": "Selected function missing"
+      },
+      {
+        "case": "function-like-macro",
+        "diagnostic": "Clang rejects nonconstant macro selection"
+      },
+      {
+        "case": "ios-device-arm64-wrong-profile",
+        "diagnostic": "Compiler rejects macOS model"
+      },
+      {
+        "case": "ios-simulator-arm64-wrong-profile",
+        "diagnostic": "Compiler rejects macOS model"
+      }
+    ],
+    "castxmlVersion": "castxml version 0.6.20260105-g9864b1e\n\nCastXML project maintained and supported by Kitware (kitware.com).\n\nclang version 21.1.8 (https://github.com/CastXML/CastXMLSuperbuild 0b677ec7bd49fa64bf7761aaed5a5129293c8094)\nTarget: arm64-apple-darwin27.0.0\nThread model: posix\nInstalledDir: \n"
+  },
+  "runtime": {
+    "macos": {
+      "target": "macos",
+      "engine": "V8",
+      "frameworkRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "engineSha256": "bd6e57f20136e57fa24e20d985f19bee355dc17fe39cc3509dc6a23882ea5bad",
+      "engineUuid": {
+        "arm64": "D819B7EB-0995-32AE-AA96-B8CED835FEBF"
+      },
+      "fixtureSha256": "8d2717174b1c421eb689833677e982a361217a3f2a4ebffadd20ad30dd44e9a5",
+      "typecheck": true,
+      "scriptSha256": "ccb70caf9d1c1ea284dc36ae509b2d730d4f2d96606262dffa0df6d78542cf4d",
+      "generatedSha256": {
+        "bindings.g.ts": "19b404085b6dafb800d112c410d5fa6fb1df1d10f9469b303366efaeeeacc4fb",
+        "definitions.g.ts": "084b648f3b272681f94fabd74693379f7290b14f62bd8b48c0536149f1dc9e04",
+        "sqlite/bindings.g.ts": "ffe2351551d8c4b89e2cc04943e3158ae62aeedb2efb6a997b7d0e91d0513fb6",
+        "sqlite/definitions.g.ts": "4525d51bb7db2e9b6a6ab9c438ce767986528064fd7dd62f6f9c08a2b82b4beb"
+      },
+      "result": {
+        "checks": 32,
+        "targetBytes": 8,
+        "aggregateLayouts": 5,
+        "sqliteFunctions": 9,
+        "lifecycleChecks": 7,
+        "allocated": 5,
+        "freed": 5,
+        "alive": 0
+      }
+    },
+    "ios-simulator": {
+      "target": "ios-simulator",
+      "engine": "Hermes",
+      "frameworkRevision": "56b02f722027fd1b1504e688cdaf58586e47e5bb",
+      "engineSha256": "93b40f95c891dbc93641207bddb273dc69b12322405c518db28405399beabf66",
+      "engineUuid": {
+        "arm64": "37AFF7C1-7948-36EE-84E5-6464C9FD822E"
+      },
+      "fixtureSha256": "727e1fd1164493cc4fac76699ac64f1bd38b7f4d607a70dd670259a1e67f3465",
+      "typecheck": true,
+      "scriptSha256": "d33b851a367ff353f60dd90192d020cc2bba0820a02c1e90d6cac03ab668965c",
+      "generatedSha256": {
+        "bindings.g.ts": "19b404085b6dafb800d112c410d5fa6fb1df1d10f9469b303366efaeeeacc4fb",
+        "definitions.g.ts": "0c48b52a36c424db68cfd98f261ce0ffc8da88966d22eb8be1546aca54fc1f59",
+        "sqlite/bindings.g.ts": "ffe2351551d8c4b89e2cc04943e3158ae62aeedb2efb6a997b7d0e91d0513fb6",
+        "sqlite/definitions.g.ts": "4525d51bb7db2e9b6a6ab9c438ce767986528064fd7dd62f6f9c08a2b82b4beb"
+      },
+      "result": {
+        "checks": 32,
+        "targetBytes": 4,
+        "aggregateLayouts": 5,
+        "sqliteFunctions": 9,
+        "lifecycleChecks": 7,
+        "allocated": 5,
+        "freed": 5,
+        "alive": 0
+      }
+    }
+  },
+  "inputSha256": {
+    "experiments/ffi_codegen/bundle.mjs": "eaef389d9c19db78fc8deb91ec3376c8d3b5dead78d021b384be1d52f05b2ef9",
+    "experiments/ffi_codegen/generate.mjs": "4f418a7bb47cdc5d6e1d3c520792c963ea408de85064d6f7ea864413ce3c73b8",
+    "experiments/ffi_codegen/host.dart": "b366916fa8beca82e7a4ba0a2da120a551b9997acec61c758162b2e5e0366e2e",
+    "experiments/ffi_codegen/native/api.c": "905184b2dbb51f7ea044e2dd9d8fac000881c0fee41d4577ed096adca4b15239",
+    "experiments/ffi_codegen/native/api.h": "70e3634afb3cc2f985908283f06de299921e9142e528fbcb869cd490d64b478d",
+    "experiments/ffi_codegen/native/unsupported.h": "03ab4480f3918f92198dd2221c3e9517347c73f106a011f9c757ccd1a27fdb82",
+    "experiments/ffi_codegen/probe.mjs": "7c906d1157acb54d70bdf1672cb62c39fb5355c39ebdfaa3c0744236c60d829e",
+    "experiments/ffi_codegen/run_runtime.py": "849c0ef3703ca7f21b2a5ba224c47c4eaaa41d90a0c088c3d8e5056a23866620",
+    "experiments/ffi_codegen/verify.py": "24416ddd0c9eecdb2510a352e3b01a4a231f7c9dab771cbc9cefe14df36c658c"
+  },
+  "notValidated": [
+    "Node built-in FFI native execution (primitive modules only loaded in Node)",
+    "iOS physical device execution (headers, fixture object and ABI assertions cross-compiled)",
+    "Non-Apple-arm64 targets or non-macOS-arm64 generator hosts",
+    "Production CLI, automatic target/native-hook handshake, incremental header caching, general resource recipes"
+  ],
+  "repositoryState": {
+    "committed": false,
+    "pushed": false,
+    "merged": false,
+    "published": false
+  }
+}

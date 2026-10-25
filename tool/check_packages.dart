@@ -16,6 +16,14 @@ Future<void> main(List<String> arguments) => command(() async {
     stdout.writeln('Archive checks already passed for this checkout: $proof');
     return;
   }
+  // Node development tools own archive checks outside runtime package inventories.
+  await run('pnpm', [
+    '--recursive',
+    '--workspace-concurrency=1',
+    '--if-present',
+    'run',
+    'check:archive',
+  ], directory: root);
   final packages = discoverPackages(root);
   final npmDeliverables = discoverNpmPackages(root);
   for (final package in packages) {

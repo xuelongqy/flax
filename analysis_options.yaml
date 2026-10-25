@@ -8,6 +8,9 @@ analyzer:
     - .local/**
     # Acceptance templates are copied and analyzed with their generated imports.
     - packages/flax_ffi/test/runtime/internal/**
+    # Apple example and copied FFI hosts are analyzed in their prepared applications.
+    - packages/flax_ffi_codegen/example/app/**
+    - packages/flax_ffi_codegen/test/**/host.dart
     # Historical FFI probes require their original generated acceptance inputs.
     - experiments/ffi_*/**
     # Copied into its own generated package and compiled by native-asset acceptance.

@@ -68,6 +68,13 @@ or `--dry-run` for a disposable receipt). `check_release.dart` asserts
 `publish_to: none` / `private: true`, then runs both checks. Melos entries:
 `packages:check`, `packages:pack`, and `release:check`. None of these publish.
 
+`packages:check` also runs package-owned `check:archive` npm scripts. Node development
+tools use these portable pack/install/API/CLI checks without entering the device runtime
+inventory. The optional FFI codegen package uses this gate and its ordinary JS tests.
+`pnpm run ffi-codegen:check` separately checks real Apple headers and the generated
+example on macOS arm64. Global JS build/typecheck excludes that Apple-dependent example,
+so Linux static CI never downloads CastXML or needs Xcode.
+
 `check_platform.dart` rejects the retired SDK matrix. Use the maintained-engine gates
 above for current runtime acceptance and `dart run melos run check` for engine-free
 static workspace validation.

@@ -64,3 +64,7 @@ examples/configured_bindings/**/assets/flax/
 packages/flax_ffi/test/runtime/native/*.inc
 packages/flax_ffi/example/app/assets/
 packages/flax_ffi/example/app/.flax/
+
+packages/flax_ffi_codegen/example/app/assets/
+packages/flax_ffi_codegen/example/app/.flax/
+packages/flax_ffi_codegen/example/js/src/generated/

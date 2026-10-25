@@ -236,6 +236,16 @@ drivers. It selects XCFramework slices and rewrites declared dylib dependencies,
 does not parse C headers or infer framework resource/Objective-C/Swift integration.
 Runtime lookup uses `DynamicLibrary.codeAsset(id)` from `@flax/ffi`.
 
+Apple universal images are reduced to the actual build architecture before inspecting
+their imports. The expected macOS, iOS device or iOS Simulator platform must appear
+among the image's declarations; both modern and legacy commands count. Zippered images
+can declare multiple platforms in any order. Matching arm64 CPU architecture alone is
+insufficient. Declared native dependencies are rewritten to the packaged code-asset
+frameworks. Swift `@rpath/libswift*.dylib` aliases are rewritten to system paths only
+when the selected SDK's stub declares that exact system install name; other undeclared
+or ambiguous imports fail. This does not package Swift code or arbitrary framework
+resources on behalf of a library.
+
 ## Host module preparation
 
 For generated application bindings, the default entry needs no handwritten module
@@ -410,3 +420,16 @@ and only managed application files, not unrelated output files. Failed packaging
 the previous archive. FlaxView.package installs it once per content digest and reads it
 through the same native AssetBundle as directory mode. This is local packaging and
 installation, not downloading or a complete update manager.
+
+## Optional FFI header generation
+
+Install `@flax/ffi-codegen` as a development dependency to generate bindings from
+`native.json` recipes automatically before esbuild/Vite compilation. Projects without
+recipes do not load the generator or fetch its frontend. Both adapters accept optional
+`ffiCodegen: {target, deploymentTarget, castxml, cacheDirectory}` or `false`.
+
+The normal `FLAX_TARGET` / `FLAX_CHECK_TARGET` selection supplies the compiler context;
+the native hook checks the eventual Flutter target before linking. Cross-builds must
+select their target before JS bundling. See the
+[codegen package guide](../../flax_ffi_codegen/js/README.md) and
+[runnable example](../../flax_ffi_codegen/example/README.md).

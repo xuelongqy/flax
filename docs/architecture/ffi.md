@@ -458,6 +458,11 @@ supplies the Apple SDK, architecture and deployment target. Framework resources,
 Objective-C/Swift integration and unknown toolchains remain host concerns. New native
 inputs need a Flutter rebuild; JS hot reload alone cannot embed new binaries.
 
+Optional [C header generation](ffi-codegen.md) adds compiler-derived definitions and
+explicit ownership classes through the separate `@flax/ffi-codegen` development package.
+Its recipes reuse this native descriptor and target profile; the runtime and ordinary
+projects do not load the header frontend.
+
 ## Validation and limits
 
 The [acceptance runner](../../packages/flax_ffi/test/runtime/README.md) installs real

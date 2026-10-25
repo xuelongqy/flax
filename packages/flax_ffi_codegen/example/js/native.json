@@ -1,0 +1,23 @@
+{
+  "formatVersion": 1,
+  "libraries": [
+    {
+      "id": "@flax/example-ffi-codegen/counter",
+      "kind": "sources",
+      "targets": ["macos", "ios"],
+      "sources": ["native/counter.c"],
+      "headers": ["native/counter.h"],
+      "codegen": {
+        "output": "src/generated/counter",
+        "functions": ["counter_*"],
+        "resources": {
+          "Counter": {
+            "create": "counter_create",
+            "destroy": "counter_destroy",
+            "methods": { "add": "counter_add" }
+          }
+        }
+      }
+    }
+  ]
+}

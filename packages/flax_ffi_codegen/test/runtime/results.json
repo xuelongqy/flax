@@ -1,0 +1,260 @@
+{
+  "formatVersion": 1,
+  "verifiedAt": "2026-10-24T06:33:38.457550+00:00",
+  "scope": "Review acceptance: C sources and a C++ CMake library, compiler/ABI consistency, incremental generation, Vite reload guards and generated-resource lifetimes.",
+  "worktreeBase": "74dab9f76c4d370dcbd924e9e8a036825f4e4683",
+  "uncommittedImplementation": true,
+  "published": false,
+  "toolchain": {
+    "host": "macOS arm64",
+    "castxmlRelease": "v2026.01.30",
+    "castxmlVersion": "0.6.20260105-g9864b1e",
+    "castxmlClangVersion": "21.1.8",
+    "castxmlXmlFormat": "1.4.0",
+    "castxmlArchiveSha256": "c30861b8e10941818e76187a546203e0cdc105671d98d1764525b254fb5ab644",
+    "castxmlExecutableSha256": "34910612e435a6d53138ff069f066a0c8c4c29a19f9a404db809e67485854b65",
+    "defaultPinnedDownloadVerified": true,
+    "nativeCompiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+    "nativeCompilerDigest": "b3ffab22ffd3642a0e90e918c8f7352909e3645f7a7812535d1a634abbcc5228"
+  },
+  "packageArchives": {
+    "ffi": {
+      "sha256": "7c62ed1ba4501e3f99bbcfff3d727668792052d08c4b09028099c63f11b76916",
+      "fileCount": 12
+    },
+    "ffi-codegen": {
+      "sha256": "8614050026ea440fd9fd7ce31a52446366d072dcec946131c77dceb0691058a9",
+      "fileCount": 9
+    }
+  },
+  "checks": {
+    "codegenNodeTests": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "buildNodeTests": {
+      "passed": 79,
+      "failed": 0,
+      "skipped": 0
+    },
+    "ffiNodeTests": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "realHeaderTargets": ["macos-arm64", "ios-arm64-device", "ios-arm64-simulator"],
+    "publicAdapters": ["esbuild", "vite"],
+    "generatedFunctionCount": 26,
+    "aggregateLayoutCount": 5,
+    "sqliteHeaderFunctionCount": 9,
+    "packageTypechecks": [
+      "@flax/build",
+      "@flax/ffi-codegen",
+      "@flax/example-ffi-codegen"
+    ],
+    "generatedTypeScriptStrict": true,
+    "dartAnalysis": "Passed for both packaged consumers and both example hosts, including the staged native hook.",
+    "projectCli": true,
+    "explicitOfflineFrontend": true,
+    "warningsAsErrors": true,
+    "unsupportedDeclarationsRejected": [
+      "bitfields",
+      "unrepresentable alignment",
+      "untyped variadic calls",
+      "non-C calling conventions",
+      "nontrivial C++ value records",
+      "mangled C++ exports",
+      "ambiguous aggregate/callback names"
+    ],
+    "cacheAndSafety": [
+      "transitive header invalidation",
+      "target invalidation",
+      "unchanged timestamps",
+      "prior output preservation on errors",
+      "unowned output rejection",
+      "compiler field/constant ABI mismatch rejection",
+      "new higher-priority include invalidation",
+      "dependency paths containing dollar signs",
+      "inputs changed during extraction rejected",
+      "CLI additional dependency preservation",
+      "declared include priority preserved",
+      "device build target alias accepted"
+    ],
+    "cmakeFunctionCount": 5,
+    "nativeLanguages": ["c", "c++"],
+    "cmakeTargetPrivateDefinesChecked": true,
+    "cmakeTargetPlainCharSignednessChecked": true,
+    "generatedOutputHmrRejected": true,
+    "runnableExampleJsBuildAndTypecheck": true,
+    "resourceLifecycle": [
+      "stable destructor identity for manual release, rollback and GC",
+      "detach failure preserves pointer and cleanup ownership",
+      "variadic GC destructors rejected",
+      "reentrant close rejected",
+      "callback exception restores receiver guard",
+      "constructor rollback and automatic GC",
+      "closed-library and Session-close exact-once cleanup"
+    ],
+    "documentation": {
+      "localLinks": 1043,
+      "markdownLintIssues": 0,
+      "scopedFormatting": true,
+      "gitDiffCheck": true
+    }
+  },
+  "runtime": [
+    {
+      "target": "macos",
+      "engine": "V8",
+      "result": {
+        "checks": 48,
+        "targetBytes": 8,
+        "aggregateLayouts": 5,
+        "sqliteFunctions": 9,
+        "lifecycleChecks": 7,
+        "allocated": 8,
+        "freed": 8,
+        "alive": 0
+      },
+      "frameworkRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "engineSha256": "bd6e57f20136e57fa24e20d985f19bee355dc17fe39cc3509dc6a23882ea5bad",
+      "engineUuid": {
+        "arm64": "D819B7EB-0995-32AE-AA96-B8CED835FEBF"
+      },
+      "wrongTargetRejected": true,
+      "cmakeAbiMismatchRejected": true,
+      "cmakeCharAbiMismatchRejected": true,
+      "generatorAbsentFromRuntime": true,
+      "sqliteIncrementalCache": true,
+      "generatedSha256": {
+        "cmake/definitions.g.ts": "b17b2921d6657a973fd38e20db1805c6afe316225eeb637f085c5b26f0e276d4",
+        "cmake/bindings.g.ts": "813d4568290c37ca87fe8f2d291d7fa72fcc9b4494a9fea75e84d8f33d1a3749",
+        "fixture/definitions.g.ts": "495863b9f34a8ab1cda7bf984184150e8ece643b12db34e6e9f2b725aa4da5b6",
+        "fixture/bindings.g.ts": "54872bdd7476f831cd0a45d3e12d163bef0196920051315f972a7fcd9acc5e99",
+        "sqlite/definitions.g.ts": "66debae75615b7f4f3af52422cc5528d90b97ebf167dcafc091ec17914b74dac",
+        "sqlite/bindings.g.ts": "813d4568290c37ca87fe8f2d291d7fa72fcc9b4494a9fea75e84d8f33d1a3749"
+      },
+      "nativeLibraries": 2,
+      "compilerProfile": {
+        "target": "macos-arm64",
+        "triple": "arm64-apple-macos15.0",
+        "deploymentTarget": "15.0",
+        "deploymentFlag": "-mmacosx-version-min=15.0",
+        "sdkName": "macosx",
+        "sdkDigest": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      }
+    },
+    {
+      "target": "ios-simulator",
+      "engine": "Hermes",
+      "result": {
+        "checks": 48,
+        "targetBytes": 4,
+        "aggregateLayouts": 5,
+        "sqliteFunctions": 9,
+        "lifecycleChecks": 7,
+        "allocated": 8,
+        "freed": 8,
+        "alive": 0
+      },
+      "frameworkRevision": "56b02f722027fd1b1504e688cdaf58586e47e5bb",
+      "engineSha256": "93b40f95c891dbc93641207bddb273dc69b12322405c518db28405399beabf66",
+      "engineUuid": {
+        "arm64": "37AFF7C1-7948-36EE-84E5-6464C9FD822E"
+      },
+      "wrongTargetRejected": true,
+      "cmakeAbiMismatchRejected": true,
+      "cmakeCharAbiMismatchRejected": true,
+      "generatorAbsentFromRuntime": true,
+      "sqliteIncrementalCache": true,
+      "generatedSha256": {
+        "cmake/definitions.g.ts": "b17b2921d6657a973fd38e20db1805c6afe316225eeb637f085c5b26f0e276d4",
+        "cmake/bindings.g.ts": "813d4568290c37ca87fe8f2d291d7fa72fcc9b4494a9fea75e84d8f33d1a3749",
+        "fixture/definitions.g.ts": "0f983c3382c65695180fc1fbc0277a8825fad0f773f1f385585a177f31c659e2",
+        "fixture/bindings.g.ts": "54872bdd7476f831cd0a45d3e12d163bef0196920051315f972a7fcd9acc5e99",
+        "sqlite/definitions.g.ts": "66debae75615b7f4f3af52422cc5528d90b97ebf167dcafc091ec17914b74dac",
+        "sqlite/bindings.g.ts": "813d4568290c37ca87fe8f2d291d7fa72fcc9b4494a9fea75e84d8f33d1a3749"
+      },
+      "nativeLibraries": 2,
+      "compilerProfile": {
+        "target": "ios-arm64-simulator",
+        "triple": "arm64-apple-ios16.3-simulator",
+        "deploymentTarget": "16.3",
+        "deploymentFlag": "-mios-simulator-version-min=16.3",
+        "sdkName": "iphonesimulator",
+        "sdkDigest": "e68503e5e534e9194af5efe8c636ca8b824e2d8237c5f38ec84aa4d155bc8418"
+      }
+    }
+  ],
+  "runnableExample": [
+    {
+      "target": "macos",
+      "engine": "V8",
+      "result": {
+        "value": 42
+      },
+      "engineUuid": {
+        "arm64": "D819B7EB-0995-32AE-AA96-B8CED835FEBF"
+      },
+      "sourceSha256": {
+        "packages/flax_ffi_codegen/example/js/src/main.ts": "4a3e350f00fa346119217dd9eb56b8662a0248f212f0bc7fd8114550baf53704",
+        "packages/flax_ffi_codegen/example/js/native/counter.h": "90d72b1d7259f4f786154b2e7db4f37e8a00e4dffe11f74dd7ae3184cae763c2",
+        "packages/flax_ffi_codegen/example/js/native/counter.c": "2f1bdf6c71b1822867877e7c1dedf9f77bfb66abbebb1b1e0e51389f5e0d408c",
+        "packages/flax_ffi_codegen/example/js/native.json": "3b4cf00844c5ad09a5827a2fd8905d5c2c23bfaca0a02ad897a55e81d2d5b9f7",
+        "packages/flax_ffi_codegen/example/app/lib/main.dart": "0c767e249933711cd15b1a208e6303a052d03e1dfc3171bc41ee85f5eba5f4b5"
+      }
+    },
+    {
+      "target": "ios-simulator",
+      "engine": "Hermes",
+      "result": {
+        "value": 42
+      },
+      "engineUuid": {
+        "arm64": "37AFF7C1-7948-36EE-84E5-6464C9FD822E"
+      },
+      "sourceSha256": {
+        "packages/flax_ffi_codegen/example/js/src/main.ts": "4a3e350f00fa346119217dd9eb56b8662a0248f212f0bc7fd8114550baf53704",
+        "packages/flax_ffi_codegen/example/js/native/counter.h": "90d72b1d7259f4f786154b2e7db4f37e8a00e4dffe11f74dd7ae3184cae763c2",
+        "packages/flax_ffi_codegen/example/js/native/counter.c": "2f1bdf6c71b1822867877e7c1dedf9f77bfb66abbebb1b1e0e51389f5e0d408c",
+        "packages/flax_ffi_codegen/example/js/native.json": "3b4cf00844c5ad09a5827a2fd8905d5c2c23bfaca0a02ad897a55e81d2d5b9f7",
+        "packages/flax_ffi_codegen/example/app/lib/main.dart": "0c767e249933711cd15b1a208e6303a052d03e1dfc3171bc41ee85f5eba5f4b5"
+      }
+    }
+  ],
+  "sourceSha256": {
+    "packages/flax_ffi_codegen/js/src/index.d.mts": "0eee47997c552df12b88eea9f9c99fdf7fca67bc86e84fcacab953b7526dccac",
+    "packages/flax_ffi_codegen/js/src/ast.mjs": "46c135b74df2804b7e584c3e937c6585a7d8a74bcfac6c2e3d542c8a03298ac4",
+    "packages/flax_ffi_codegen/js/src/tool.mjs": "fae2410c47cbd83994aa4c8372abc3e2e4beae30f66b62585543d6f1bf9b3edf",
+    "packages/flax_ffi_codegen/js/src/index.mjs": "bd6a5742919a03a368fa85d6156c30e991f9db08dd803e4a6b270e1f49f84407",
+    "packages/flax_ffi_codegen/js/src/emit.mjs": "495ade7d521b0ced19805407cb7b8cfb4865d38090832b3a9a28d0cf206e834c",
+    "packages/flax_ffi_codegen/js/src/target.mjs": "ed283135c6c98c251ed94bd5553bec69f9439bc8376e9e0ef4fe52ca91860a32",
+    "packages/flax_ffi_codegen/js/bin/flax-ffi-codegen.mjs": "75332a3f7d73bf78e966b49c4e199134a99d6028c4d0a9b61bb40674d3b2830e",
+    "packages/flax_ffi_codegen/js/test/codegen.test.mjs": "0e3a2c50fb0119f757e2543b8f2e6349e32bbf9a72aef361a0f2695d06686a35",
+    "packages/flax_ffi_codegen/test/native/unsupported.h": "03ab4480f3918f92198dd2221c3e9517347c73f106a011f9c757ccd1a27fdb82",
+    "packages/flax_ffi_codegen/test/native/api.c": "a394fe07ea482d0245d5549790a6f51111b9e6c9e5e783e2bee426209a62d24c",
+    "packages/flax_ffi_codegen/test/native/api.h": "e8329694d1f921411861b2086f68a4ff12b3a13df07cb8eb3fd582a4fe15ae5e",
+    "packages/flax_ffi_codegen/test/native/cmake/CMakeLists.txt": "af36047a30645cc3aa1e1e692f9d63f43a7446e66e6eeabde67a8ab6ba551d44",
+    "packages/flax_ffi_codegen/test/native/cmake/library.cpp": "89c4ff63d9c58b082286b896aa873db41b6827532d98787bbe90a827d270dc41",
+    "packages/flax_ffi_codegen/test/native/cmake/api.h": "54bf848bf89a98d1d5b532c97d17c86e8120068a369b81101acfc765e88fde4b",
+    "packages/flax_ffi_codegen/test/runtime/probe.mjs": "6011ea4634dea5349f5994f59b545cf3eab6bac94c7fb9b6c923c8891e10fc8f",
+    "packages/flax_ffi_codegen/test/runtime/run.py": "f5f1e7368edbf01218c6ac6009a1ec017105493081bb082e7e5ca5d62c734048",
+    "packages/flax_ffi_codegen/test/runtime/host.dart": "354822c51ccfe673d6d33879962aad89fdc6b63b052fb1f057143b77804e4053",
+    "packages/flax_ffi_codegen/test/runtime/bundle.mjs": "447df6154a3290118819a8f5dd53240d01986aafbb4bac3021c32226fd19347a",
+    "packages/flax_build/js/src/ffi-codegen.mjs": "11434d79cc73f7608f5793d5ad2f4b05864bb34ef30941d132fcb1142f29853f",
+    "packages/flax_build/js/src/esbuild.mjs": "ddf5de81c51698071414e75a4887b295211734d891d98800d1ce5a93c45762e7",
+    "packages/flax_build/js/src/vite.mjs": "44921d88c3bc13b03de2a3cb885bd546f9391513567ba4c6fe767ddc570caa65",
+    "packages/flax_build/js/src/native-assets.mjs": "cce9f9707702ba8f8d971cc72bf914e55b6ab1f230c48467e36d6e03bb04bf7b",
+    "packages/flax_build/js/src/native/build.dart": "9c6fba963e5b7606e5923e94535114fbd4251c1d93a30db2dbc3646a5042afc4"
+  },
+  "notValidated": [
+    "physical iOS device runtime",
+    "non-Apple target",
+    "non-macOS-arm64 frontend host",
+    "Node native FFI runtime",
+    "arbitrary vendor binary ABI"
+  ],
+  "cleanup": "Disposable apps and their Simulator installations removed; source changes, receipts and maintained tools/SDKs retained.",
+  "runnableExampleVerifiedAt": "2026-10-24T05:37:33.800638+00:00"
+}

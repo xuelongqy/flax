@@ -10,8 +10,9 @@
   },
   "scripts": {
     "format:check": "prettier --check .",
-    "js:typecheck": "pnpm --silent --recursive --workspace-concurrency=1 run typecheck",
-    "js:build": "node tool/public_types.mjs && pnpm --silent --recursive --workspace-concurrency=1 --filter='!./packages/*/js-types' --filter='!@flax/flutter' --filter='!@flax/dart' run build",
+    "js:typecheck": "pnpm --silent --recursive --workspace-concurrency=1 --filter='!@flax/example-ffi-codegen' run typecheck",
+    "js:build": "node tool/public_types.mjs && pnpm --silent --recursive --workspace-concurrency=1 --filter='!./packages/*/js-types' --filter='!@flax/flutter' --filter='!@flax/dart' --filter='!@flax/example-ffi-codegen' run build",
+    "ffi-codegen:check": "pnpm --filter @flax/ffi-codegen run check:native",
     "docs:lint": "markdownlint-cli2",
     "docs:links": "node tool/check-doc-links.mjs",
     "test:tooling": "node --test tool/check-doc-links.test.mjs",

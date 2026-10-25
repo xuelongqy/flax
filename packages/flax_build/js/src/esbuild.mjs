@@ -3,12 +3,14 @@ import { FlaxCompiler } from './compiler.mjs';
 import { flaxHostModulesPlugin } from './modules.mjs';
 import { flaxFfiPlugin } from './ffi.mjs';
 import { prepareNativeAssetsForBuild } from './native-assets.mjs';
+import { prepareFfiCodegen } from './ffi-codegen.mjs';
 
 /** Compile before esbuild erases TS types, then resolve prepared host modules. */
 export function flaxEsbuildPlugin(manifest = null, options = {}) {
   return {
     name: 'flax-build',
     setup(builder) {
+      let generations = [];
       const compiler = new FlaxCompiler({
         root: builder.initialOptions.absWorkingDir,
         ...options,
@@ -26,7 +28,11 @@ export function flaxEsbuildPlugin(manifest = null, options = {}) {
           );
         });
       }
-      builder.onStart(() => {
+      builder.onStart(async () => {
+        generations = await prepareFfiCodegen(
+          builder.initialOptions.absWorkingDir ?? process.cwd(),
+          options.ffiCodegen,
+        );
         const files = new Set(compiler.openFiles);
         for (const dependencies of compiler.dependencies.values())
           for (const file of dependencies) files.add(file);
@@ -41,7 +47,12 @@ export function flaxEsbuildPlugin(manifest = null, options = {}) {
             result.code +
             (result.map ? `\n//# sourceMappingURL=${result.map.toUrl()}` : ''),
           loader: args.path.endsWith('.tsx') ? 'tsx' : 'ts',
-          watchFiles: result.dependencies,
+          watchFiles: [
+            ...result.dependencies,
+            ...generations
+              .filter((g) => Object.hasOwn(g.outputs, args.path))
+              .flatMap((g) => Object.keys(g.dependencies)),
+          ],
         };
       });
     },

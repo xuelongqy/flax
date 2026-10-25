@@ -1,0 +1,365 @@
+{
+  "formatVersion": 1,
+  "verifiedAt": "2026-10-25T09:16:42.435038+00:00",
+  "worktreeBase": "74dab9f76c4d370dcbd924e9e8a036825f4e4683",
+  "uncommittedImplementation": true,
+  "published": false,
+  "scope": "Follow-up review: legal legacy/multiple/mixed Mach-O platforms and exact-once cleanup for null allocations, thrown calls and errors after release.",
+  "walletCore": {
+    "version": "4.8.4",
+    "bindingsRevision": "a4fe993486cae59418970b0da985ba8fbbb3fe8a",
+    "headers": 83,
+    "headerManifestSha256": "3a2bb1e25b41a885e6a4a65800cc654a059e444406c74d7994f3a2dc7e8bec94",
+    "dartBindingsSha256": "d4347f1179ea337e1a9ebdd4ff71810b962022007d4ae8a28ed1a99473bda0e7",
+    "functions": 464,
+    "enumerators": 435,
+    "integerConstants": 7,
+    "completeRecordLayouts": 3,
+    "functionsMatchDartFfigen": true,
+    "functionsMatchNativeExports": true,
+    "primitiveTypes": [
+      "c_bool",
+      "int16",
+      "int32",
+      "int64",
+      "int8",
+      "pointer",
+      "uint16",
+      "uint32",
+      "uint64",
+      "uint8",
+      "void"
+    ],
+    "oldCocoaPodsVersion": "4.2.10",
+    "oldCocoaPodsMissingFunctions": [
+      "TWBizGetEncodedHash",
+      "TWBizGetSignedHash",
+      "TWBizPasskeySessionEncodeExecuteWithPasskeySessionCall",
+      "TWBizPasskeySessionEncodePasskeySessionNonce",
+      "TWBizPasskeySessionEncodeRegisterSessionCall",
+      "TWBizPasskeySessionEncodeRemoveSessionCall",
+      "TWBizPasskeySessionSignExecuteWithSignatureCall",
+      "TWBizSignExecuteWithSignatureCall",
+      "TWCoinTypeConfigurationGetNativeTokenName",
+      "TWEip7702GetAuthorizationHash",
+      "TWEip7702SignAuthorization",
+      "TWEthereumAddressChecksummed",
+      "TWEthereumEip1014Create2Address",
+      "TWEthereumEip1967ProxyInitCode",
+      "TWSolanaTransactionInsertInstruction",
+      "TWSolanaTransactionInsertTransferInstruction",
+      "TWStoredKeyDecryptPrivateKeyEncoded",
+      "TWStoredKeyFixEncryption",
+      "TWStoredKeyHasPrivateKeyEncoded",
+      "TWStoredKeyImportPrivateKeyEncoded",
+      "TWStoredKeyImportPrivateKeyEncodedWithEncryption",
+      "TWStoredKeyImportPrivateKeyEncodedWithEncryptionAndDerivation",
+      "TWStoredKeyImportPrivateKeyWithEncryptionAndDerivation",
+      "TWStoredKeyStoreWithTemporaryFile",
+      "TWTONWalletBuildV5R1StateInit",
+      "TWWebAuthnSolidityGetFormattedSignature",
+      "TWWebAuthnSolidityGetMessageHash"
+    ],
+    "signaturesMatchDartFfigen": true
+  },
+  "checks": {
+    "node": {
+      "build": {
+        "tests": 79,
+        "pass": 79,
+        "fail": 0,
+        "skipped": 0
+      },
+      "codegen": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "skipped": 0
+      },
+      "ffi": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "strictGeneratedTypeScript": true,
+    "dartAnalysis": "Both consumer hosts and staged native hooks passed.",
+    "compilerHeaderPreflight": [
+      "macos-arm64",
+      "ios-arm64-simulator",
+      "ios-arm64-device"
+    ],
+    "incrementalCache": true,
+    "unchangedOutputTimestamps": true,
+    "stringConstantsRejected": true,
+    "generatorAbsentFromRuntime": true,
+    "automaticNativePackaging": true,
+    "embeddedImagesArm64Only": true,
+    "comparedDartSignatures": 464,
+    "embeddedImagePlatforms": true,
+    "embeddedDependencyImports": true,
+    "exceptionalSigningCleanup": true,
+    "exceptionalDerivedKeyCleanup": true,
+    "legalPlatformVariants": [
+      "legacy minimum OS",
+      "multiple modern platforms, target second",
+      "mixed legacy and modern platforms"
+    ],
+    "allocationFailuresPerEngine": 16,
+    "cleanupFailuresAfterReleasePerEngine": 7,
+    "perPointerReleaseLedger": true,
+    "nullPointersNeverReleased": true
+  },
+  "runtime": [
+    {
+      "target": "macos",
+      "engine": "V8",
+      "checks": 230,
+      "allocationFailureCases": 16,
+      "cleanupFailureCases": 7,
+      "legalPlatformLibraries": 3,
+      "boundFunctions": 464,
+      "vectors": [
+        "UTF-8",
+        "native buffers",
+        "SHA-256",
+        "Keccak-256",
+        "Base58",
+        "secp256k1",
+        "BIP39/BIP84",
+        "Ethereum ABI integers"
+      ],
+      "lifecycleChecks": 7,
+      "allocated": 4,
+      "freed": 4,
+      "alive": 0,
+      "negativeChecks": {
+        "wrongNativePlatformRejected": true
+      },
+      "frameworkRevision": "183508ece44ae312a7339bd2ede245e16cf485f3",
+      "engineUuid": {
+        "arm64": "D819B7EB-0995-32AE-AA96-B8CED835FEBF"
+      },
+      "binaryInputs": {
+        "TrustWalletCore": {
+          "sha256": "4cc664beb75aee6f24739fc64ed37b4abbd24b0163ff535ecec8f88eeb75bfdc",
+          "uuid": {
+            "arm64": "26771CA0-6CDD-32EC-A3A4-8C00E182AF2A"
+          }
+        }
+      },
+      "embedded": {
+        "wallet-core/core": {
+          "sha256": "95b1fcd82ebf60452af61f9cb90f5e5b4d62c62f3ec59dbe906f15e382ee7d08",
+          "uuid": {
+            "arm64": "26771CA0-6CDD-32EC-A3A4-8C00E182AF2A"
+          },
+          "platform": "MACOS",
+          "declaredPlatforms": ["MACOS"],
+          "imports": [
+            "@rpath/flax_native_88fd369c34c68e12.framework/flax_native_88fd369c34c68e12",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libSystem.B.dylib"
+          ]
+        },
+        "wallet-core/lifecycle": {
+          "sha256": "b57bdb96296ae76f69a85ed04643c033632076f17f6eb7783aaeca2fb104506d",
+          "uuid": {
+            "arm64": "9208CDFD-F2C6-32C7-ADC7-9758268167D3"
+          },
+          "platform": "MACOS",
+          "declaredPlatforms": ["MACOS"],
+          "imports": [
+            "@rpath/flax_native_80e3eabe10bfa999.framework/flax_native_80e3eabe10bfa999",
+            "@rpath/flax_native_88fd369c34c68e12.framework/flax_native_88fd369c34c68e12",
+            "/usr/lib/libSystem.B.dylib"
+          ]
+        },
+        "wallet-core/platform-legacy": {
+          "sha256": "7b409084fd4f67e9bca7e6678c5eaa508eb5ed37b287d15acdae3beead706c2e",
+          "uuid": {
+            "arm64": "BCEE3318-7C97-30ED-B064-33044730C64F"
+          },
+          "platform": "MACOS",
+          "declaredPlatforms": ["MACOS"],
+          "imports": [
+            "@rpath/flax_native_bd11413164fbbb12.framework/flax_native_bd11413164fbbb12",
+            "/usr/lib/libSystem.B.dylib"
+          ]
+        },
+        "wallet-core/platform-zippered": {
+          "sha256": "e0c3b74e788f51e0e8029d3c687f2078a7a7775bcc77d86adc052aafc65dcb45",
+          "uuid": {
+            "arm64": "BCEE3318-7C97-30ED-B064-33044730C64F"
+          },
+          "platform": "MACOS",
+          "declaredPlatforms": ["MACCATALYST", "MACOS"],
+          "imports": [
+            "@rpath/flax_native_95e7a166fbf42812.framework/flax_native_95e7a166fbf42812",
+            "/usr/lib/libSystem.B.dylib"
+          ]
+        },
+        "wallet-core/platform-mixed": {
+          "sha256": "8a530e1113515c0085a5426905a2649c331c030b3ee24329435c83cd37b09536",
+          "uuid": {
+            "arm64": "BCEE3318-7C97-30ED-B064-33044730C64F"
+          },
+          "platform": "MACOS",
+          "declaredPlatforms": ["MACCATALYST", "MACOS"],
+          "imports": [
+            "@rpath/flax_native_5a7acff65f1afc8d.framework/flax_native_5a7acff65f1afc8d",
+            "/usr/lib/libSystem.B.dylib"
+          ]
+        }
+      }
+    },
+    {
+      "target": "ios-simulator",
+      "engine": "Hermes",
+      "checks": 227,
+      "allocationFailureCases": 16,
+      "cleanupFailureCases": 7,
+      "legalPlatformLibraries": 0,
+      "boundFunctions": 464,
+      "vectors": [
+        "UTF-8",
+        "native buffers",
+        "SHA-256",
+        "Keccak-256",
+        "Base58",
+        "secp256k1",
+        "BIP39/BIP84",
+        "Ethereum ABI integers"
+      ],
+      "lifecycleChecks": 7,
+      "allocated": 4,
+      "freed": 4,
+      "alive": 0,
+      "negativeChecks": {
+        "wrongNativePlatformRejected": true,
+        "undeclaredDependencyRejected": true,
+        "unknownSwiftAliasRejected": true
+      },
+      "frameworkRevision": "56b02f722027fd1b1504e688cdaf58586e47e5bb",
+      "engineUuid": {
+        "arm64": "37AFF7C1-7948-36EE-84E5-6464C9FD822E"
+      },
+      "binaryInputs": {
+        "WalletCoreSwiftProtobuf": {
+          "sha256": "532ae08a67ff9855aa697319313871386ea65cf1ffb12bc4b0d40101ce24374d",
+          "uuid": {
+            "x86_64": "31490913-5467-3F8A-BE26-0723F139E193",
+            "arm64": "222F9D10-EBFD-3214-B628-DA8FD16CB88F"
+          }
+        },
+        "WalletCore": {
+          "sha256": "e364beaa1c684183686b8871f1327e0fe4e7b70631067d1ddfad949722be47dc",
+          "uuid": {
+            "x86_64": "1243DEB5-A08E-3067-84AA-06B9D4C4E490",
+            "arm64": "6B2E57AE-3B61-362C-84C5-8E1987447ED3"
+          }
+        }
+      },
+      "embedded": {
+        "wallet-core/swift-protobuf": {
+          "sha256": "9062e43917039742cb5842ee212d31fefba279a1bdb4e134f92d7f4e073fc670",
+          "uuid": {
+            "arm64": "222F9D10-EBFD-3214-B628-DA8FD16CB88F"
+          },
+          "platform": "IOSSIMULATOR",
+          "declaredPlatforms": ["IOSSIMULATOR"],
+          "imports": [
+            "@rpath/flax_native_467b94a0e3697eab.framework/flax_native_467b94a0e3697eab",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/swift/libswiftCore.dylib",
+            "/usr/lib/swift/libswiftCoreFoundation.dylib",
+            "/usr/lib/swift/libswiftCoreImage.dylib",
+            "/usr/lib/swift/libswiftDarwin.dylib",
+            "/usr/lib/swift/libswiftDispatch.dylib",
+            "/usr/lib/swift/libswiftMetal.dylib",
+            "/usr/lib/swift/libswiftOSLog.dylib",
+            "/usr/lib/swift/libswiftObjectiveC.dylib",
+            "/usr/lib/swift/libswiftQuartzCore.dylib",
+            "/usr/lib/swift/libswiftSpatial.dylib",
+            "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+            "/usr/lib/swift/libswiftXPC.dylib",
+            "/usr/lib/swift/libswiftos.dylib",
+            "/usr/lib/swift/libswiftsimd.dylib",
+            "/usr/lib/swift/libswift_Concurrency.dylib",
+            "/usr/lib/swift/libswiftFoundation.dylib",
+            "/usr/lib/swift/libswiftUIKit.dylib"
+          ]
+        },
+        "wallet-core/core": {
+          "sha256": "188e34d12b7e65acabcee81bb984bb82519c799fb3b44e42a67dc5042bcdac98",
+          "uuid": {
+            "arm64": "6B2E57AE-3B61-362C-84C5-8E1987447ED3"
+          },
+          "platform": "IOSSIMULATOR",
+          "declaredPlatforms": ["IOSSIMULATOR"],
+          "imports": [
+            "@rpath/flax_native_88fd369c34c68e12.framework/flax_native_88fd369c34c68e12",
+            "@rpath/flax_native_467b94a0e3697eab.framework/flax_native_467b94a0e3697eab",
+            "/usr/lib/libc++.1.dylib",
+            "/System/Library/Frameworks/Foundation.framework/Foundation",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/System/Library/Frameworks/Security.framework/Security",
+            "/usr/lib/swift/libswiftCore.dylib",
+            "/usr/lib/swift/libswiftCoreFoundation.dylib",
+            "/usr/lib/swift/libswiftCoreImage.dylib",
+            "/usr/lib/swift/libswiftDarwin.dylib",
+            "/usr/lib/swift/libswiftDispatch.dylib",
+            "/usr/lib/swift/libswiftMetal.dylib",
+            "/usr/lib/swift/libswiftOSLog.dylib",
+            "/usr/lib/swift/libswiftObjectiveC.dylib",
+            "/usr/lib/swift/libswiftQuartzCore.dylib",
+            "/usr/lib/swift/libswiftSpatial.dylib",
+            "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+            "/usr/lib/swift/libswiftXPC.dylib",
+            "/usr/lib/swift/libswiftos.dylib",
+            "/usr/lib/swift/libswiftsimd.dylib",
+            "/usr/lib/swift/libswiftFoundation.dylib",
+            "/usr/lib/swift/libswiftUIKit.dylib"
+          ]
+        },
+        "wallet-core/lifecycle": {
+          "sha256": "8492b08449623ffa527d01c201647210d29bbe0f848231d401f44aa93bfd415c",
+          "uuid": {
+            "arm64": "05962956-2600-38D9-B2A1-B91CC056A4CC"
+          },
+          "platform": "IOSSIMULATOR",
+          "declaredPlatforms": ["IOSSIMULATOR"],
+          "imports": [
+            "@rpath/flax_native_80e3eabe10bfa999.framework/flax_native_80e3eabe10bfa999",
+            "@rpath/flax_native_88fd369c34c68e12.framework/flax_native_88fd369c34c68e12",
+            "/usr/lib/libSystem.B.dylib"
+          ]
+        }
+      }
+    }
+  ],
+  "packageSha256": {
+    "ffi": "7c62ed1ba4501e3f99bbcfff3d727668792052d08c4b09028099c63f11b76916",
+    "ffi-codegen": "8614050026ea440fd9fd7ce31a52446366d072dcec946131c77dceb0691058a9"
+  },
+  "buildHookSha256": "91faea128d20c06657b0ecd4e6a50f57e85dd333d2188088bb57757b7839d992",
+  "sourceSha256": {
+    "probe.mjs": "30461906d3fe6e91ebf2ef98eb1fd0f6fdc8bb24a1c49fee009ac4584fdd7af8",
+    "run.py": "2098e9b76a46572ce12b192b5a85230a51b3e6fe770787ff5e05cff4e4a53e61",
+    "lifecycle.h": "b35a9f115f3eb879fe50961aada73b45d0d8de76712a30933a488b1f73f44d2a",
+    "lifecycle.c": "60f96b85bd7cea103c84becbeef68fcfea9514c3f22a99eaa1c37d97495c6f67",
+    "host.dart": "84e7b1abd0789907d396536b3b419f8024eadf557cf123c4ece13413c8175329",
+    "bundle.mjs": "5fc66916f62f89a4660c6f528ea29b55f16ec17e4b5aa6a9eb014515ff7185bc"
+  },
+  "limitations": [
+    "Resolving 464 functions does not execute all 464 operations.",
+    "Wallet Core does not exercise complex by-value aggregates, floats, callbacks or varargs; separate synthetic fixtures cover these.",
+    "Header-local string constants TWStellarPassphrase_Stellar and TWStellarPassphrase_Kin require explicit C accessors.",
+    "Observed exact-once cleanup covers four instrumented real private-key allocations, not an audit of all vendor internal allocations.",
+    "No iOS device execution, Android, Windows, WASM, or Node native FFI certification."
+  ]
+}

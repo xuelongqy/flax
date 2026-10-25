@@ -61,6 +61,8 @@ keep the maintained engine/SDK outputs for subsequent checks.
 | JS package output                                      | `dart run melos run js:build`                                          |
 | Markdown or local documentation links                  | `dart run melos run docs:check`                                        |
 | JS FFI package/archive optionality                     | `pnpm --filter @flax/ffi test`                                         |
+| FFI codegen portable package/archive checks            | `pnpm --filter @flax/ffi-codegen run check:archive`                    |
+| FFI codegen headers, ABI, cache and Apple example      | `pnpm run ffi-codegen:check` (macOS arm64 with Xcode)                  |
 | FFI native calls, callbacks and lifecycle              | [Package runtime acceptance](packages/flax_ffi/test/runtime/README.md) |
 | Native CMake configuration                             | `dart run melos run native:configure`                                  |
 | C ABI header changes                                   | `dart run melos run ffi:generate`                                      |

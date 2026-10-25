@@ -32,6 +32,7 @@ C++/CRT owner. See the [package guide](../../packages/flax_ffi/js/README.md).
 | `flax_material_ui` / `@flax/material-ui-runtime`     | Third-party material_ui binding delivery and native Route/Page bindings                                               |
 | `flax_cupertino_ui` / `@flax/cupertino-ui-runtime`   | Third-party cupertino_ui bindings, module plugin, and package-local example                                           |
 | `@flax/ffi`                                          | Optional direct native calls, layouts, callbacks and memory helpers; JS-only public package                           |
+| `@flax/ffi-codegen`                                  | Optional Node development tool for C header definitions and ownership-driven FFI classes; no device runtime           |
 | `flax_fetch` / `@flax/fetch-runtime`                 | Fetch session plugin                                                                                                  |
 | `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                              |
 | `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                                |
@@ -44,6 +45,10 @@ C++/CRT owner. See the [package guide](../../packages/flax_ffi/js/README.md).
 | `flax_codegen`                                       | Analyzer model, manifest format, and Dart/TypeScript emitters                                                         |
 | `flax_cli`                                           | Optional host project initialization and legacy Builder configuration helper                                          |
 | `flax_test`                                          | Development-only engine-neutral runtime contracts and shared test harnesses                                           |
+
+`@flax/ffi-codegen` is a separate optional development dependency. The build adapters
+load it only for declared native codegen recipes; it is excluded from runtime module
+delivery and has no Dart package. See [header code generation](ffi-codegen.md).
 
 `flax_test` is not a published product API. `@flax/build` is a developer-facing Node
 package with typed root, `./esbuild` and `./vite` exports and the

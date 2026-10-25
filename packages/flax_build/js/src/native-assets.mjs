@@ -124,6 +124,10 @@ export async function prepareNativeAssets({
                 'xcframework',
                 'cmake',
                 'dependencies',
+                'std',
+                'defines',
+                'flags',
+                'codegen',
               ].includes(key),
           ) ||
           ['sources', 'headers', 'includes'].some(
@@ -151,11 +155,92 @@ export async function prepareNativeAssets({
         )
           throw new Error(`Invalid native library in ${descriptorPath}`);
         lib = await nativeInputs(directory, lib, inputFile);
+        if (
+          lib.std !== undefined &&
+          (typeof lib.std !== 'string' ||
+            !/^(c|gnu)(\+\+)?(89|90|99|11|14|17|20|23|26)$/.test(lib.std))
+        )
+          throw new Error(`Invalid native language standard: ${lib.id}`);
+        if (
+          lib.flags !== undefined &&
+          (!Array.isArray(lib.flags) ||
+            lib.flags.some(
+              (flag) =>
+                typeof flag !== 'string' || !flag.startsWith('-') || /\0/.test(flag),
+            ))
+        )
+          throw new Error(`Invalid native flags: ${lib.id}`);
+        if (
+          lib.defines !== undefined &&
+          (!lib.defines ||
+            typeof lib.defines !== 'object' ||
+            Array.isArray(lib.defines) ||
+            Object.entries(lib.defines).some(
+              ([name, value]) =>
+                !/^[A-Za-z_]\w*$/.test(name) ||
+                (value !== null && typeof value !== 'string') ||
+                value?.includes('\0'),
+            ))
+        )
+          throw new Error(`Invalid native defines: ${lib.id}`);
+        let generation;
+        const discovered = [];
+        let abiSource;
+        if (lib.codegen) {
+          const output = await inputFile(directory, lib.codegen.output);
+          generation = JSON.parse(
+            await readFile(resolve(output, '.flax-ffi-codegen.json'), 'utf8'),
+          );
+          if (
+            generation.formatVersion !== 1 ||
+            !generation.profile ||
+            !generation.dependencies ||
+            !generation.outputs
+          )
+            throw new Error(`Invalid FFI generation receipt: ${lib.id}`);
+          for (const [path, expected] of Object.entries(generation.dependencies)) {
+            const source = isAbsolute(path) ? path : await inputFile(directory, path);
+            if (hash(await readFile(source)) !== expected)
+              throw new Error(
+                `Stale FFI generation input; rebuild JavaScript: ${source}`,
+              );
+            if (!isAbsolute(path)) discovered.push(path);
+            else {
+              if (
+                !inside(generation.profile.sdk, source) &&
+                !inside(resolve(dirname(generation.profile.compiler), '../lib'), source)
+              )
+                throw new Error(
+                  `FFI header must belong to its package or compiler SDK: ${source}`,
+                );
+              (plan.externalInputs ??= {})[source] = expected;
+            }
+          }
+          for (const [path, expected] of Object.entries(generation.outputs)) {
+            const source = await inputFile(directory, `${lib.codegen.output}/${path}`);
+            if (hash(await readFile(source)) !== expected)
+              throw new Error(`Generated FFI output changed; regenerate: ${source}`);
+          }
+          abiSource = `${lib.codegen.output}/abi.g.c`;
+          discovered.push(abiSource);
+          const profile = generation.profile;
+          if (
+            hash(await readFile(resolve(profile.sdk, 'SDKSettings.json'))) !==
+            profile.sdkDigest
+          )
+            throw new Error('FFI generation SDK changed; rebuild JavaScript');
+          if (plan.profile && JSON.stringify(plan.profile) !== JSON.stringify(profile))
+            throw new Error(
+              'Selected FFI libraries have incompatible generation targets',
+            );
+          plan.profile = profile;
+        }
         const name = `flax_native_${hash(lib.id).slice(0, 16)}`;
         const files = [
           ...(lib.sources ?? []),
           ...(lib.headers ?? []),
           ...Object.values(lib.binaries ?? {}),
+          ...discovered,
         ];
         if (
           (lib.kind === 'sources' && !lib.sources?.length) ||
@@ -180,12 +265,17 @@ export async function prepareNativeAssets({
         }
         // Header directories must already be represented by selected header inputs.
         const includePaths = includes;
+        if (generation) includePaths.push(prefix);
         plan.libraries.push({
           id: lib.id,
           name,
           kind: lib.kind,
           targets: lib.targets,
           language: lib.language ?? 'c',
+          ...(lib.std === undefined ? {} : { std: lib.std }),
+          ...(lib.defines === undefined ? {} : { defines: lib.defines }),
+          ...(lib.flags === undefined ? {} : { flags: lib.flags }),
+          ...(generation ? { codegen: true, abiSource: `${prefix}/${abiSource}` } : {}),
           dependencies: lib.dependencies ?? [],
           ...(lib.cmake
             ? { cmake: { ...lib.cmake, directory: `${prefix}/${lib.cmake.directory}` } }

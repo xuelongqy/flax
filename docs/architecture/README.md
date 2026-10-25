@@ -78,6 +78,13 @@ Public Dart APIs + package-owned binding rules and dependency manifests
   -> package-owned JS/TS bindings, Dart factories, and metadata
 ```
 
+Optional [C header FFI generation](ffi-codegen.md):
+
+```text
+native.json + target compiler context -> CastXML -> @flax/ffi-codegen
+  -> TS signatures and resource classes + ABI checks -> existing @flax/ffi
+```
+
 These are separate tools and ownership boundaries; see
 [binding generation](bindings.md).
 [External Binding Verification](external-binding-verification.md) defines the current

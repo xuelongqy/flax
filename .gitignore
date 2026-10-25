@@ -5,6 +5,7 @@ node_modules/
 .pnpm-store/
 .cache/
 .local/
+**/.flax/ffi-codegen/
 .hermes/
 
 # Build outputs

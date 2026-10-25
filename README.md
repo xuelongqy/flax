@@ -49,6 +49,11 @@ assets are selected on demand; Dart installation stays inside Core. See the
 [runnable native-library example](packages/flax_ffi/example/README.md). The package is
 private and unpublished; current acceptance is macOS arm64 and iOS Simulator arm64.
 
+Optional [`@flax/ffi-codegen`](packages/flax_ffi_codegen/README.md) generates C header
+definitions and resource classes. The existing build adapters share target/compiler
+inputs with native compilation. See the
+[generated-binding example](packages/flax_ffi_codegen/example/README.md).
+
 ## Quick start
 
 Use the pinned toolchain below, plus CMake 3.24 or newer and a C/C++ compiler. Run these
