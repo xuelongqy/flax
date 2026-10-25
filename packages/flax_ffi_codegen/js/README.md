@@ -244,4 +244,5 @@ runs the real header/cache/ABI tests and builds/typechecks the checked-in exampl
 macOS and iOS Simulator. This is an engine-free Apple tooling gate. The example's own
 typecheck generates missing bindings first. Global JS build/typecheck commands exclude
 this Apple-dependent example explicitly; they still check the generator package itself.
-The separate [runtime acceptance](../test/runtime/README.md) executes V8 and Hermes.
+The separate [runtime acceptance](../test/runtime/README.md) executes macOS V8 JIT and
+iOS Simulator V8 jitless.

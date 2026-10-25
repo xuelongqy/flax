@@ -4,7 +4,7 @@
   "bootstrap": "assets/flax_modules/registry.js",
   "lock": {
     "manager": "pnpm",
-    "digest": "5fbc5a007467ca58684cf7348361c00e3296bbb44bee5cdd1006498f7239c967"
+    "digest": "b33a5a722ffe92b85ad5ac193bcd50328b68295aef5ec6486edf31e024f3c216"
   },
   "modules": [
     {

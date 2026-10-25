@@ -33,7 +33,7 @@ to a compatible local executable. The example displays `Counter: 42` and logs
 Counter without a manual `close()`.
 
 For an iOS Simulator build, select that target for the normal JS build and then use the
-matching Hermes engine:
+matching V8 jitless engine:
 
 ```sh
 FLAX_TARGET=ios-arm64-simulator pnpm --filter @flax/example-ffi-codegen build

@@ -3,7 +3,7 @@
 `@flax/ffi-codegen` is a separate optional Node development package under
 `packages/flax_ffi_codegen/js`. It uses pinned CastXML to generate definitions and
 resource bindings for the existing [FFI runtime](ffi.md). It has no Dart public package,
-runtime bootstrap, or new V8/Hermes call path. The package is private and unpublished.
+runtime bootstrap, or new V8 call path. The package is private and unpublished.
 
 The [package guide](../../packages/flax_ffi_codegen/js/README.md) defines configuration
 and CLI usage; the [runnable example](../../packages/flax_ffi_codegen/example/README.md)
@@ -126,10 +126,10 @@ backup.
 
 The [acceptance runner](../../packages/flax_ffi_codegen/test/runtime/README.md) installs
 packed npm artifacts into disposable consumers, generates real headers, packages the
-native library automatically and executes it in V8/macOS and Hermes/iOS Simulator. It
-also runs generated SQLite calls, real Session GC, constructor failure, repeated cleanup
-and a negative Flutter target check. Exact tool versions, binary identities and counts
-are in the maintained
+native library automatically and executes it in macOS V8 JIT and iOS Simulator V8
+jitless. It also runs generated SQLite calls, real Session GC, constructor failure,
+repeated cleanup and a negative Flutter target check. Exact tool versions, binary
+identities and counts are in the maintained
 [results](../../packages/flax_ffi_codegen/test/runtime/results.json).
 
 The separate

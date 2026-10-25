@@ -34,6 +34,7 @@ def main():
     scratch_root.mkdir(parents=True, exist_ok=True)
     scratch = Path(tempfile.mkdtemp(prefix='ffi-codegen-package-', dir=scratch_root))
     env = dict(os.environ, TMPDIR=str(scratch), TMP=str(scratch), TEMP=str(scratch),
+               FLAX_VERIFY_V8_JIT='1', SIMCTL_CHILD_FLAX_VERIFY_V8_JIT='1',
                FLAX_CHECK_TARGET='ios-simulator-arm64' if ios else 'macos-arm64',
                npm_config_cache=str(ROOT / '.local/ffi-codegen/npm-cache'))
     env.pop('FLAX_TARGET', None)
@@ -139,6 +140,8 @@ Future<void> main() async {
         engine_name = 'flax_ios_debug_sim_arm64' if ios else 'flax_mac_debug'
         engine = 'ffi_' + engine_name + ('' if ios else '_arm64')
         engine_receipt = json.loads((args.engine_output / engine_name / 'build.json').read_text())
+        if '-DFLAX_ENGINE_ID=2' not in engine_receipt['compile']:
+            raise RuntimeError('Codegen acceptance requires a maintained V8 engine overlay')
         revision = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=args.flutter_root, text=True).strip()
         if revision != engine_receipt['revision']:
             raise RuntimeError('Flutter framework does not match selected engine')
@@ -165,6 +168,9 @@ Future<void> main() async {
         result = gate.launch(launch, env, output / 'run.log', 'FLAX_FFI_CODEGEN_RESULT ')
         if 'error' in result:
             raise RuntimeError(result['error'])
+        proof = ('FLAX_V8_JITLESS: probe executed without generated machine code' if ios
+                 else 'FLAX_V8_JIT: machine code generated')
+        assert proof in (output / 'run.log').read_text(), 'V8 execution mode proof is missing'
         plan_file = app / '.flax/ffi_assets/native-plan.json'
         plan = json.loads(plan_file.read_text())
         for option, log in [('FLAX_TEST_ABI_MISMATCH', 'cmake-abi-mismatch.log'),
@@ -181,7 +187,7 @@ Future<void> main() async {
         mismatch = subprocess.run(list(map(str, command)), cwd=app, env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         (output / 'mismatch.log').write_text(mismatch.stdout)
         assert mismatch.returncode != 0 and 'does not match Flutter target' in mismatch.stdout, mismatch.stdout[-6000:]
-        receipt = {'target': args.target, 'engine': 'Hermes' if ios else 'V8', 'result': result,
+        receipt = {'target': args.target, 'engine': 'V8', 'v8Mode': 'jitless' if ios else 'jit', 'result': result,
             'frameworkRevision': revision, 'engineSha256': gate.digest(original), 'engineUuid': gate.binary_uuids(packaged),
             'archives': {name: {k:v for k,v in info.items() if k != 'path'} for name,info in archive_info.items()},
             'profile': plan['profile'], 'nativeLibraries': len(plan['libraries']), 'wrongTargetRejected': True,

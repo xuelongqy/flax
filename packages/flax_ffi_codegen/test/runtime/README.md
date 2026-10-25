@@ -6,6 +6,9 @@ library through native assets, and executes the generated calls and classes in a
 Flax Session. It does not statically link a fixture into Runner or add Dart business
 bindings.
 
+Current acceptance uses macOS V8 JIT and iOS Simulator V8 jitless. The runner rejects
+non-V8 overlays and checks the actual engine execution proof in application output.
+
 From the repository root, with compatible maintained SDKs and FFI acceptance engines:
 
 ```sh

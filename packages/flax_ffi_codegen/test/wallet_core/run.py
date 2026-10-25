@@ -83,6 +83,7 @@ def main():
     scratch_root.mkdir(parents=True, exist_ok=True)
     scratch = Path(tempfile.mkdtemp(prefix='ffi-wallet-core-', dir=scratch_root))
     env = dict(os.environ, TMPDIR=str(scratch), TMP=str(scratch), TEMP=str(scratch),
+               FLAX_VERIFY_V8_JIT='1', SIMCTL_CHILD_FLAX_VERIFY_V8_JIT='1',
                PYTHONDONTWRITEBYTECODE='1',
                FLAX_CHECK_TARGET='ios-arm64-simulator' if ios else 'macos-arm64',
                npm_config_cache=str(ROOT / '.local/ffi-codegen/npm-cache'))
@@ -226,7 +227,10 @@ flutter:
         engine = 'ffi_' + engine_name + ('' if ios else '_arm64')
         engine_source = args.engine_output / 'engine-src'
         revision = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=args.flutter_root, text=True).strip()
-        assert revision == json.loads((args.engine_output / engine_name / 'build.json').read_text())['revision']
+        engine_receipt = json.loads((args.engine_output / engine_name / 'build.json').read_text())
+        assert revision == engine_receipt['revision']
+        if '-DFLAX_ENGINE_ID=2' not in engine_receipt['compile']:
+            raise RuntimeError('Codegen acceptance requires a maintained V8 engine overlay')
         command = [flutter, f'--local-engine-src-path={engine_source}', f'--local-engine={engine}',
                    '--local-engine-host=ffi_flax_mac_debug_arm64', 'build', 'ios' if ios else 'macos', '--debug', '--no-pub']
         if ios:
@@ -249,6 +253,9 @@ flutter:
         result = gate.launch(launch, env, output / 'run.log', 'FLAX_FFI_WALLET_CORE_RESULT ')
         if 'error' in result:
             raise RuntimeError(result['error'])
+        proof = ('FLAX_V8_JITLESS: probe executed without generated machine code' if ios
+                 else 'FLAX_V8_JIT: machine code generated')
+        assert proof in (output / 'run.log').read_text(), 'V8 execution mode proof is missing'
         assert result['allocated'] == result['freed'] == 4 and result['alive'] == 0
         assert result['allocationFailureCases'] == 16 and result['cleanupFailureCases'] == 7
         assert result['legalPlatformLibraries'] == (0 if ios else 3)
@@ -319,7 +326,7 @@ flutter:
             rejected(bad, 'unknown-swift', 'Undeclared or ambiguous dependency in wallet-core/swift-protobuf: @rpath/libswiftFlaxMissing.dylib')
             negative.update(undeclaredDependencyRejected=True, unknownSwiftAliasRejected=True)
         old = wallet / 'example/ios/Pods/TrustWalletCore/WalletCoreCommon.xcframework/ios-arm64_x86_64-simulator/WalletCoreCommon.framework/WalletCoreCommon'
-        receipt = {'target': args.target, 'engine': 'Hermes' if ios else 'V8', 'result': result,
+        receipt = {'target': args.target, 'engine': 'V8', 'v8Mode': 'jitless' if ios else 'jit', 'result': result,
             'selection': selection, 'headerCount': len(headers),
             'walletRevision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=wallet, text=True).strip(),
             'headerSha256': {str(p.relative_to(native / 'include')): gate.digest(p) for p in sorted((native / 'include').rglob('*.h'))},
