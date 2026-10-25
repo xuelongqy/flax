@@ -44,6 +44,11 @@ const nativeWeakMap = WeakMap;
 const nativeIsArray = Array.isArray;
 const nativeIsView = ArrayBuffer.isView;
 const nativeHasOwn = Object.hasOwn;
+const nativeFreeze = Object.freeze;
+const nativeObjectKeys = Object.keys;
+// Only construct() supplies immutable own data properties; foreign descriptors stay lazy.
+const argumentSnapshots = new nativeWeakMap<object, readonly (boolean | string)[]>();
+const widgetMetadata = new nativeWeakMap<object, true | string>();
 
 /** Experimental generated-binding extension. Independent of the native C ABI. */
 export const bindingVersion = 24;
@@ -614,30 +619,32 @@ export function construct(
     args[parameter.name] =
       kind === 'widget' && Array.isArray(value) ? Object.freeze([...value]) : value;
   }
+  nativeFreeze(args);
+  argumentSnapshots.set(args, nativeFreeze([true, ...nativeObjectKeys(args)]));
   const descriptor = {
     kind: kind === 'widget' ? ('widget' as const) : ('value' as const),
     type,
     ctor,
-    args: Object.freeze(args),
+    args,
   };
   if (parameters.some((p) => p.readonly)) {
-    return Object.freeze(
-      Object.assign(
-        descriptor,
-        Object.fromEntries(
-          parameters
-            .filter((p) => p.readonly)
-            .map((p) => [
-              p.name,
-              Object.prototype.hasOwnProperty.call(args, p.name)
-                ? args[p.name]
-                : p.defaultValue,
-            ]),
-        ),
+    Object.assign(
+      descriptor,
+      Object.fromEntries(
+        parameters
+          .filter((p) => p.readonly)
+          .map((p) => [
+            p.name,
+            Object.prototype.hasOwnProperty.call(args, p.name)
+              ? args[p.name]
+              : p.defaultValue,
+          ]),
       ),
     );
   }
-  return Object.freeze(descriptor);
+  nativeFreeze(descriptor);
+  if (descriptor.kind === 'widget') widgetMetadata.set(descriptor, true);
+  return descriptor;
 }
 
 /** Installs one shared prototype. Identity never occupies a business property. */
@@ -2100,6 +2107,7 @@ function proxyLayout(definition: ProxyDefinition): number {
 function completeProxyAccessors(receiver: object, definition: ProxyDefinition): void {
   const base = proxyLayouts.get(definition)?.prototype;
   if (!base) return;
+  initializeProxyNativeMembers(base);
   for (const name of definition.getters) {
     if (!definition.setters.includes(name)) continue;
     for (
@@ -2576,8 +2584,23 @@ export function defineProxyBase(
   }
   proxyLayouts.set(definition, { prototype });
   proxyDefinitions.set(flaxConstructor, definition);
-  if (objectTypes.has(definition.type))
+  if (
+    (globalThis as typeof globalThis & { __flaxStartupLazy?: boolean })
+      .__flaxStartupLazy === true
+  ) {
+    lazyProxyNativeMembers.set(prototype, definition);
+  } else if (objectTypes.has(definition.type)) {
     installProxyNativeMembers(prototype, definition);
+  }
+}
+
+// Experiment: native facade members are only needed when a proxy is constructed.
+const lazyProxyNativeMembers = new WeakMap<object, ProxyDefinition>();
+function initializeProxyNativeMembers(prototype: object): void {
+  const definition = lazyProxyNativeMembers.get(prototype);
+  if (!definition) return;
+  lazyProxyNativeMembers.delete(prototype);
+  installProxyNativeMembers(prototype, definition);
 }
 
 // ESM cycles can register a child before its ordinary native parent.
@@ -3150,6 +3173,43 @@ Object.assign(globalThis, {
     },
     version: bindingVersion,
     readBindingSnapshot,
+    widgetInfo(value: object): number | string | null {
+      const handle = tryObjectHandle(value);
+      if (handle !== null) return handle;
+      let info = widgetMetadata.get(value);
+      if (info === undefined) return null;
+      if (info === true) {
+        const { type, ctor } = value as WidgetDescription;
+        if (
+          typeof type !== 'string' ||
+          typeof ctor !== 'string' ||
+          type.length === 0 ||
+          type.includes('\u0000') ||
+          ctor.includes('\u0000')
+        ) {
+          return null;
+        }
+        info = type + '\u0000' + ctor;
+        widgetMetadata.set(value, info);
+      }
+      return info;
+    },
+    argumentKeys(value: object): readonly (boolean | string)[] {
+      return argumentSnapshots.get(value) ?? [false, ...nativeObjectKeys(value)];
+    },
+    readArguments(value: object): boolean {
+      const snapshot = argumentSnapshots.get(value);
+      if (!snapshot) return false;
+      const entries: unknown[] = [];
+      for (let i = 1; i < snapshot.length; i++) {
+        const name = snapshot[i] as string;
+        entries.push(name, (value as Record<string, unknown>)[name]);
+      }
+      (globalThis as unknown as { __flaxReadArguments: Function }).__flaxReadArguments(
+        ...entries,
+      );
+      return true;
+    },
     nativeDateMilliseconds(value: object): number {
       let milliseconds: number;
       try {
@@ -3620,6 +3680,12 @@ Object.assign(globalThis, {
     valueType,
     enumType(value: object): string | null {
       return enumIdentities.get(value)?.type ?? null;
+    },
+    typedReference(value: object): string | number | null {
+      const state = tryComponentStateId(value);
+      // Component IDs are disjoint from positive native object IDs on this wire.
+      if (state !== null) return -state;
+      return enumIdentities.get(value)?.type ?? tryObjectHandle(value);
     },
     enumName(value: object): string | null {
       return enumIdentities.get(value)?.name ?? null;

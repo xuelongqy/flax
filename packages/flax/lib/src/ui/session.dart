@@ -325,6 +325,7 @@ class _Session {
   bool _checkpointScheduled = false;
   bool _checkpointRunning = false;
   bool _checkpointJobsPending = false;
+  bool _loadingInStages = false;
   FlaxJsFunction? _objectKeys;
   FlaxJsFunction? _arrayCheck;
   _Value? _root;
@@ -337,6 +338,11 @@ class _Session {
   final _subscriptions = <int, _MountedProperty>{};
   final _dirty = <_NodeState, Set<String>>{};
   final _helpers = <String, FlaxJsFunction>{};
+  late final _argumentKeyReader = _loadHelper('argumentKeys');
+  late final _argumentSnapshotReader = _loadHelper('readArguments');
+  late final _typedReferenceReader = _loadHelper('typedReference');
+  late final _widgetInfoReader = _loadHelper('widgetInfo');
+  void Function(List<FlaxJsValue>)? _argumentSnapshotReceiver;
   final _enums = <String, FlaxJsObject>{};
   final _contexts = <int, _ContextReference>{};
 
@@ -363,120 +369,181 @@ class _Session {
     required FlaxModuleAssets? moduleAssets,
   }) {
     try {
-      _objectKeys = runtime.evaluate('Object.keys') as FlaxJsFunction;
-      _arrayCheck = runtime.evaluate('Array.isArray') as FlaxJsFunction;
-      registerComponents();
-      registerObjects();
-      registerStreams();
-      registerFunctions();
-      registerAsync();
-      runtime.registerHostFunction('__flaxAssetBundle', (_, args) {
-        if (args.isNotEmpty || !active) {
-          throw StateError('Invalid session asset bundle request');
-        }
-        return holdHostResult(
-          objectResult(
-            assetBundle,
-            const FlaxTypeRef(
-              'object',
-              id: 'flax.core/sdk_services#type:AssetBundle',
-            ),
-          ),
-        );
-      });
-      runtime.registerHostFunction('__flaxRegisterFont', (_, args) {
-        if (closing ||
-            args.length != 2 ||
-            args.any((value) => value is! FlaxJsString)) {
-          throw ArgumentError('Invalid module font registration');
-        }
-        final manifest = (args[0] as FlaxJsString).value;
-        final name = (args[1] as FlaxJsString).value;
-        final key = (manifest, name);
-        var font = _fonts[key];
-        if (font == null || font._disposed) {
-          _checkFontAsset(manifest);
-          if (name.isEmpty) throw ArgumentError('Invalid module font name');
-          font = FlaxFont._(assetBundle, manifest, name, _fontResources);
-          _fonts[key] = font;
-        }
-        return holdHostResult(
-          objectResult(
-            font,
-            const FlaxTypeRef('object', id: 'flax.core/flutter#type:FlaxFont'),
-          ),
-        );
-      });
-      installModules(moduleAssets, plugins);
-      installHost(plugins);
-      runtime.registerHostFunction('__flaxInvalidate', (_, args) {
-        if (args.length != 1 || args.single is! FlaxJsNumber) {
-          throw ArgumentError('Invalid binding notification');
-        }
-        invalidate((args.single as FlaxJsNumber).value.toInt());
-        return const FlaxJsUndefined();
-      });
-      runtime.registerHostFunction('__flaxMount', (_, args) {
-        if (_root != null) throw StateError('A root is already mounted');
-        if (args.length != 2 ||
-            args[1] is! FlaxJsNumber ||
-            (args[1] as FlaxJsNumber).value != flaxBindingVersion) {
-          throw ArgumentError('Incompatible JS binding protocol');
-        }
-        _root = decode(args[0], const FlaxTypeRef('widget'));
-        return const FlaxJsUndefined();
-      });
-      runtime.registerHostFunction('__flaxHotStage', (_, args) {
-        if (args.length != 2 || args[1] is! FlaxJsString) {
-          throw ArgumentError('Invalid hot reload stage');
-        }
-        _Value? root;
-        try {
-          if (args[0] is! FlaxJsUndefined) {
-            root = decode(args[0], const FlaxTypeRef('widget'))..validate();
-          }
-          final value = jsonDecode((args[1] as FlaxJsString).value);
-          if (value is! List || value.any((item) => item is! String)) {
-            throw ArgumentError('Invalid hot reload pages');
-          }
-          _hotRoot?.release();
-          _hotRoot = root;
-          root = null;
-          _hotPages = value.cast<String>().toSet();
-        } finally {
-          root?.release();
-        }
-        return const FlaxJsUndefined();
-      });
-      runtime.registerHostFunction('__flaxHotCommit', (_, args) {
-        if (args.isNotEmpty || _hotPages == null) {
-          throw StateError('No staged hot reload');
-        }
-        final root = _hotRoot;
-        _hotRoot = null;
-        if (root != null) {
-          final previous = _root;
-          _root = root;
-          _hotRootGeneration++;
-          if (previous != null) retireHot(previous.release);
-        }
-        for (final name in _hotPages!) {
-          _hotPageGenerations[name] = (_hotPageGenerations[name] ?? 0) + 1;
-        }
-        _hotPages = null;
-        unawaited(WidgetsBinding.instance.reassembleApplication());
-        return const FlaxJsUndefined();
-      });
-      _releaseJs(runtime.evaluate(source, sourceUrl: sourceUrl));
-      final pages = helper('finishRegistration').call(const []) as FlaxJsNumber;
-      if (_root == null && pages.value == 0) {
-        throw StateError('The script must call runApp or registerPage');
-      }
-      checkpoint();
+      for (final _ in loadSteps(
+        source,
+        sourceUrl,
+        plugins: plugins,
+        moduleAssets: moduleAssets,
+      )) {}
     } catch (_) {
       _dispose();
       rethrow;
     }
+  }
+
+  // Experimental scheduling: never suspend inside a JS call or host callback.
+  Future<void> loadStaged(
+    String source,
+    String sourceUrl, {
+    required List<FlaxPlugin> plugins,
+    required FlaxModuleAssets? moduleAssets,
+    void Function(String, int)? onStep,
+  }) async {
+    _loadingInStages = true;
+    final steps = loadSteps(
+      source,
+      sourceUrl,
+      plugins: plugins,
+      moduleAssets: moduleAssets,
+    ).iterator;
+    final budget = Stopwatch()..start();
+    try {
+      while (true) {
+        requireOpen();
+        final step = Stopwatch()..start();
+        if (!steps.moveNext()) break;
+        onStep?.call(steps.current, step.elapsedMicroseconds);
+        if (budget.elapsedMicroseconds >= 4000) {
+          await WidgetsBinding.instance.endOfFrame;
+          await Future<void>.delayed(Duration.zero);
+          budget.reset();
+        }
+      }
+    } catch (_) {
+      if (active) _dispose();
+      rethrow;
+    } finally {
+      _loadingInStages = false;
+    }
+  }
+
+  Iterable<String> loadSteps(
+    String source,
+    String sourceUrl, {
+    required List<FlaxPlugin> plugins,
+    required FlaxModuleAssets? moduleAssets,
+  }) sync* {
+    _objectKeys = runtime.evaluate('Object.keys') as FlaxJsFunction;
+    _arrayCheck = runtime.evaluate('Array.isArray') as FlaxJsFunction;
+    registerComponents();
+    registerObjects();
+    registerStreams();
+    registerFunctions();
+    registerAsync();
+    runtime.registerHostFunction('__flaxReadArguments', (_, values) {
+      final receive = _argumentSnapshotReceiver;
+      if (receive == null) throw StateError('No argument read in progress');
+      receive(values);
+      return const FlaxJsUndefined();
+    });
+    runtime.registerHostFunction('__flaxAssetBundle', (_, args) {
+      if (args.isNotEmpty || !active) {
+        throw StateError('Invalid session asset bundle request');
+      }
+      return holdHostResult(
+        objectResult(
+          assetBundle,
+          const FlaxTypeRef(
+            'object',
+            id: 'flax.core/sdk_services#type:AssetBundle',
+          ),
+        ),
+      );
+    });
+    runtime.registerHostFunction('__flaxRegisterFont', (_, args) {
+      if (closing ||
+          args.length != 2 ||
+          args.any((value) => value is! FlaxJsString)) {
+        throw ArgumentError('Invalid module font registration');
+      }
+      final manifest = (args[0] as FlaxJsString).value;
+      final name = (args[1] as FlaxJsString).value;
+      final key = (manifest, name);
+      var font = _fonts[key];
+      if (font == null || font._disposed) {
+        _checkFontAsset(manifest);
+        if (name.isEmpty) throw ArgumentError('Invalid module font name');
+        font = FlaxFont._(assetBundle, manifest, name, _fontResources);
+        _fonts[key] = font;
+      }
+      return holdHostResult(
+        objectResult(
+          font,
+          const FlaxTypeRef('object', id: 'flax.core/flutter#type:FlaxFont'),
+        ),
+      );
+    });
+    yield 'binding-hosts';
+    yield* installModuleSteps(moduleAssets, plugins);
+    installHost(plugins);
+    yield 'host-plugins';
+    runtime.registerHostFunction('__flaxInvalidate', (_, args) {
+      if (args.length != 1 || args.single is! FlaxJsNumber) {
+        throw ArgumentError('Invalid binding notification');
+      }
+      invalidate((args.single as FlaxJsNumber).value.toInt());
+      return const FlaxJsUndefined();
+    });
+    runtime.registerHostFunction('__flaxMount', (_, args) {
+      if (_root != null) throw StateError('A root is already mounted');
+      if (args.length != 2 ||
+          args[1] is! FlaxJsNumber ||
+          (args[1] as FlaxJsNumber).value != flaxBindingVersion) {
+        throw ArgumentError('Incompatible JS binding protocol');
+      }
+      _root = decode(args[0], const FlaxTypeRef('widget'));
+      return const FlaxJsUndefined();
+    });
+    runtime.registerHostFunction('__flaxHotStage', (_, args) {
+      if (args.length != 2 || args[1] is! FlaxJsString) {
+        throw ArgumentError('Invalid hot reload stage');
+      }
+      _Value? root;
+      try {
+        if (args[0] is! FlaxJsUndefined) {
+          root = decode(args[0], const FlaxTypeRef('widget'))..validate();
+        }
+        final value = jsonDecode((args[1] as FlaxJsString).value);
+        if (value is! List || value.any((item) => item is! String)) {
+          throw ArgumentError('Invalid hot reload pages');
+        }
+        _hotRoot?.release();
+        _hotRoot = root;
+        root = null;
+        _hotPages = value.cast<String>().toSet();
+      } finally {
+        root?.release();
+      }
+      return const FlaxJsUndefined();
+    });
+    runtime.registerHostFunction('__flaxHotCommit', (_, args) {
+      if (args.isNotEmpty || _hotPages == null) {
+        throw StateError('No staged hot reload');
+      }
+      final root = _hotRoot;
+      _hotRoot = null;
+      if (root != null) {
+        final previous = _root;
+        _root = root;
+        _hotRootGeneration++;
+        if (previous != null) retireHot(previous.release);
+      }
+      for (final name in _hotPages!) {
+        _hotPageGenerations[name] = (_hotPageGenerations[name] ?? 0) + 1;
+      }
+      _hotPages = null;
+      unawaited(WidgetsBinding.instance.reassembleApplication());
+      return const FlaxJsUndefined();
+    });
+    yield 'application-hosts';
+    _releaseJs(runtime.evaluate(source, sourceUrl: sourceUrl));
+    final pages = helper('finishRegistration').call(const []) as FlaxJsNumber;
+    if (_root == null && pages.value == 0) {
+      throw StateError('The script must call runApp or registerPage');
+    }
+    _loadingInStages = false;
+    checkpoint();
+    yield 'application-entry';
   }
 
   void report(Object error, StackTrace stack) {
@@ -543,6 +610,85 @@ class _Session {
       return [for (var i = 0; i < length; i++) _textProperty(result, '$i')];
     } finally {
       result.release();
+    }
+  }
+
+  (bool, Set<String>) _argumentKeys(FlaxJsObject object) {
+    final reader = _argumentKeyReader;
+    if (reader == null) return (false, keys(object).toSet());
+    final result = reader.call([object]);
+    if (result is! FlaxJsObject) {
+      throw ArgumentError('Invalid argument keys');
+    }
+    try {
+      final length = _property(result, 'length', (value) {
+        if (value is! FlaxJsNumber ||
+            !value.value.isFinite ||
+            value.value < 1 ||
+            value.value != value.value.truncateToDouble()) {
+          throw ArgumentError('Invalid argument keys length');
+        }
+        return value.value.toInt();
+      });
+      final own = _property(result, '0', (value) {
+        if (value is! FlaxJsBoolean) {
+          throw ArgumentError('Invalid argument snapshot');
+        }
+        return value.value;
+      });
+      return (
+        own,
+        {for (var i = 1; i < length; i++) _textProperty(result, '$i')},
+      );
+    } finally {
+      result.release();
+    }
+  }
+
+  bool _readArgumentSnapshot(
+    FlaxJsObject args,
+    void Function(Map<String, FlaxJsValue>) read,
+  ) {
+    final reader = _argumentSnapshotReader;
+    if (reader == null) return false;
+    final previous = _argumentSnapshotReceiver;
+    var received = false;
+    (Object, StackTrace)? failure;
+    _argumentSnapshotReceiver = (values) {
+      try {
+        if (received || values.length.isOdd) {
+          throw ArgumentError('Invalid argument snapshot');
+        }
+        received = true;
+        final snapshot = <String, FlaxJsValue>{};
+        for (var i = 0; i < values.length; i += 2) {
+          final name = values[i];
+          if (name is! FlaxJsString || snapshot.containsKey(name.value)) {
+            throw ArgumentError('Invalid argument snapshot key');
+          }
+          snapshot[name.value] = values[i + 1];
+        }
+        read(snapshot);
+      } catch (error, stack) {
+        // Rethrow on Dart's original stack, without a second JS exception wrapper.
+        failure ??= (error, stack);
+      }
+    };
+    try {
+      final result = reader.call([args]);
+      try {
+        if (failure case final error?) {
+          Error.throwWithStackTrace(error.$1, error.$2);
+        }
+        if (result is! FlaxJsBoolean || result.value != received) {
+          throw ArgumentError('Invalid argument snapshot result');
+        }
+        return result.value;
+      } finally {
+        _releaseJs(result);
+      }
+    } finally {
+      _argumentSnapshotReceiver = previous;
     }
   }
 
@@ -679,13 +825,60 @@ class _Session {
         rethrow;
       }
     }
+    String? widgetId, widgetConstructor;
     if (type.kind == 'widget' && value is FlaxJsObject) {
-      final reference = decodeDartWidget(value);
-      if (reference != null) return checkWidgetValue(reference, type);
+      final info = _widgetInfoReader?.call([value]);
+      if (info is FlaxJsString) {
+        final separator = info.value.indexOf('\u0000');
+        if (separator <= 0 ||
+            info.value.indexOf('\u0000', separator + 1) != -1) {
+          throw ArgumentError('Invalid Widget metadata');
+        }
+        widgetId = info.value.substring(0, separator);
+        widgetConstructor = info.value.substring(separator + 1);
+      } else if (info is FlaxJsNumber) {
+        if (!info.value.isFinite ||
+            info.value <= 0 ||
+            info.value.truncateToDouble() != info.value) {
+          throw ArgumentError('Invalid Dart Widget handle');
+        }
+        return checkWidgetValue(
+          decodeDartWidget(value, knownHandle: info.value.toInt())!,
+          type,
+        );
+      } else if (info == null) {
+        final reference = decodeDartWidget(value);
+        if (reference != null) return checkWidgetValue(reference, type);
+      } else if (info is! FlaxJsNull) {
+        _releaseJs(info);
+        throw ArgumentError('Invalid Widget metadata');
+      }
+    }
+    final identity =
+        value is FlaxJsObject &&
+            (type.kind == 'object' ||
+                type.kind == 'state' ||
+                type.kind == 'enum')
+        ? _typedReferenceReader?.call([value])
+        : null;
+    if (identity != null &&
+        identity is! FlaxJsNull &&
+        identity is! FlaxJsNumber &&
+        identity is! FlaxJsString) {
+      _releaseJs(identity);
+      throw ArgumentError('Invalid typed reference');
     }
     if ((type.kind == 'object' || type.kind == 'state') &&
         value is FlaxJsObject) {
-      final componentState = decodeComponentStateReference(value, type);
+      final componentState = decodeComponentStateReference(
+        value,
+        type,
+        knownId: identity == null
+            ? null
+            : identity is FlaxJsNumber && identity.value < 0
+            ? FlaxJsNumber(-identity.value)
+            : const FlaxJsNull(),
+      );
       if (componentState != null) return componentState;
       if (type.kind == 'state') {
         final id = helper('stateHandle').call([value, FlaxJsString(type.id!)]);
@@ -704,7 +897,7 @@ class _Session {
     }
     if ((type.kind == 'enum' || type.kind == 'object') &&
         value is FlaxJsObject) {
-      final enumType = helper('enumType').call([value]);
+      final enumType = identity ?? helper('enumType').call([value]);
       if (enumType is FlaxJsString) {
         final definition = _typeBinding(enumType.value);
         final name = helper('enumName').call([value]);
@@ -749,7 +942,7 @@ class _Session {
       if (value is! FlaxJsObject) {
         throw ArgumentError('Expected a Dart object reference');
       }
-      final handle = helper('tryObjectHandle').call([value]);
+      final handle = identity ?? helper('tryObjectHandle').call([value]);
       late final _ObjectReference object;
       if (handle is FlaxJsNumber) {
         validateDeferredObject(value, type);
@@ -978,7 +1171,7 @@ class _Session {
         rethrow;
       }
     }
-    final kind = _textProperty(value, 'kind');
+    final kind = widgetId == null ? _textProperty(value, 'kind') : 'widget';
     if (type.kind == 'widget' && kind == 'dart-widget') {
       return checkWidgetValue(
         decodeDartWidget(value) ?? (throw ArgumentError('Invalid Dart Widget')),
@@ -988,14 +1181,14 @@ class _Session {
     if (type.kind == 'widget' && kind == 'component') {
       return checkWidgetValue(decodeComponent(value), type);
     }
-    final id = _textProperty(value, 'type');
+    final id = widgetId ?? _textProperty(value, 'type');
     final definition = id == _pageContentBinding.id
         ? _pageContentBinding
         : _typeBinding(id);
     if (type.kind == 'widget' &&
         kind == 'widget' &&
         definition is FlaxWidgetBinding) {
-      final ctor = _textProperty(value, 'ctor');
+      final ctor = widgetConstructor ?? _textProperty(value, 'ctor');
       final parameters = definition.constructors[ctor];
       if (parameters == null) {
         throw ArgumentError('Unsupported constructor: $id.$ctor');
@@ -1009,7 +1202,8 @@ class _Session {
         final host = definition.createHost(node);
 
         // Validate constructor invariants before accepting the structural snapshot.
-        final validated = host.buildNative(
+        final validated = _traceNativeWidget(
+          host,
           sources.map((name, source) => MapEntry(name, source.initial.data)),
         );
         if (_typeBinding(type.id) is FlaxWidgetBinding) {
@@ -1043,97 +1237,136 @@ class _Session {
     required bool allowBindings,
     _CallbackScope callbackScope = _CallbackScope.member,
     List<String> uiCallbacks = const [],
-  }) => _property(descriptor, 'args', (args) {
-    if (args is! FlaxJsObject) {
-      throw ArgumentError('Descriptor args must be an object');
-    }
-    final expected = parameters.map((param) => param.name).toSet();
-    for (final name in keys(args)) {
-      if (!expected.contains(name)) {
-        throw ArgumentError('Unsupported argument: $name');
-      }
-    }
-    final sources = <String, _Source>{};
+  }) {
+    final tracing = Flax.traceForExperiment;
+    tracing?.call('dart:arguments', true);
     try {
-      for (final parameter in parameters) {
-        final scope = uiCallbacks.contains(parameter.name)
-            ? _CallbackScope.ui
-            : callbackScope;
-        if (parameter.omitWhenAbsent &&
-            _property(
-              args,
-              parameter.name,
-              (value) => value is FlaxJsUndefined,
-            )) {
-          continue;
+      return _property(descriptor, 'args', (args) {
+        if (args is! FlaxJsObject) {
+          throw ArgumentError('Descriptor args must be an object');
         }
-        sources[parameter.name] = _property(args, parameter.name, (value) {
-          if (value is FlaxJsUndefined) {
-            if (parameter.required) {
-              throw ArgumentError(
-                'Missing required argument: ${parameter.name}',
-              );
-            }
-            return _Source(
-              this,
-              parameter.type,
-              _Value(parameter.defaultValue),
-            );
-          }
-          final bound =
-              value is FlaxJsObject &&
-              _property(
-                value,
-                'kind',
-                (kind) => kind is FlaxJsString && kind.value == 'binding',
-              );
-          if (bound) {
-            if (!allowBindings || parameter.name == 'key') {
-              throw ArgumentError(
-                'This argument is fixed; bind the containing Widget parameter instead',
-              );
-            }
-            final object = value;
-            final initial = _property(object, 'read', (reader) {
-              if (reader is! FlaxJsFunction) {
-                throw ArgumentError('Invalid binding reader');
-              }
-              final result = helper('readBindingSnapshot').call([reader]);
-              try {
-                return decode(result, parameter.type, callbackScope: scope);
-              } finally {
-                _releaseJs(result);
-              }
-            });
-            try {
-              return _Source(
-                this,
-                parameter.type,
-                initial,
-                binding: object.retain(),
-              );
-            } catch (_) {
-              initial.release();
-              rethrow;
+        Map<String, _Source> convert(Map<String, FlaxJsValue>? batch) {
+          final (snapshot, provided) = batch == null
+              ? _argumentKeys(args)
+              : (true, batch.keys.toSet());
+          final expected = parameters.map((param) => param.name).toSet();
+          for (final name in provided) {
+            if (!expected.contains(name)) {
+              throw ArgumentError('Unsupported argument: $name');
             }
           }
-          return _Source(
-            this,
-            parameter.type,
-            decode(value, parameter.type, callbackScope: scope),
-          );
-        });
-      }
-      return sources;
-    } catch (_) {
-      for (final source in sources.values) {
-        source.release();
-      }
-      rethrow;
+          final sources = <String, _Source>{};
+          try {
+            for (final parameter in parameters) {
+              final scope = uiCallbacks.contains(parameter.name)
+                  ? _CallbackScope.ui
+                  : callbackScope;
+              _Source? read(FlaxJsValue value) {
+                if (value is FlaxJsUndefined) {
+                  if (parameter.omitWhenAbsent) return null;
+                  if (parameter.required) {
+                    throw ArgumentError(
+                      'Missing required argument: ${parameter.name}',
+                    );
+                  }
+                  return _Source(
+                    this,
+                    parameter.type,
+                    _Value(parameter.defaultValue),
+                  );
+                }
+                final bound =
+                    value is FlaxJsObject &&
+                    _property(
+                      value,
+                      'kind',
+                      (kind) => kind is FlaxJsString && kind.value == 'binding',
+                    );
+                if (bound) {
+                  if (!allowBindings || parameter.name == 'key') {
+                    throw ArgumentError(
+                      'This argument is fixed; bind the containing Widget parameter instead',
+                    );
+                  }
+                  final object = value;
+                  final initial = _property(object, 'read', (reader) {
+                    if (reader is! FlaxJsFunction) {
+                      throw ArgumentError('Invalid binding reader');
+                    }
+                    final result = helper('readBindingSnapshot').call([reader]);
+                    try {
+                      return decode(
+                        result,
+                        parameter.type,
+                        callbackScope: scope,
+                      );
+                    } finally {
+                      _releaseJs(result);
+                    }
+                  });
+                  try {
+                    return _Source(
+                      this,
+                      parameter.type,
+                      initial,
+                      binding: object.retain(),
+                    );
+                  } catch (_) {
+                    initial.release();
+                    rethrow;
+                  }
+                }
+                return _Source(
+                  this,
+                  parameter.type,
+                  decode(value, parameter.type, callbackScope: scope),
+                );
+              }
+
+              final source = batch != null
+                  ? read(batch[parameter.name] ?? const FlaxJsUndefined())
+                  : snapshot && !provided.contains(parameter.name)
+                  ? read(const FlaxJsUndefined())
+                  : _property(args, parameter.name, read);
+              if (source != null) sources[parameter.name] = source;
+            }
+            return sources;
+          } catch (_) {
+            for (final source in sources.values) {
+              source.release();
+            }
+            rethrow;
+          }
+        }
+
+        Map<String, _Source>? batched;
+        try {
+          if (_readArgumentSnapshot(
+            args,
+            (values) => batched = convert(values),
+          )) {
+            return batched!;
+          }
+          return convert(null);
+        } catch (_) {
+          if (batched case final values?) {
+            for (final source in values.values) {
+              source.release();
+            }
+          }
+          rethrow;
+        }
+      });
+    } finally {
+      tracing?.call('dart:arguments', false);
     }
-  });
+  }
 
   Future<void> requestClose() {
+    if (_loadingInStages) {
+      _status = _SessionStatus.closing;
+      return _closed.future;
+    }
     if (!closing) {
       _status = _SessionStatus.closing;
       // Close hooks may reenter; defer disposal until every hook has returned.

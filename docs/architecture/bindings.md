@@ -90,6 +90,32 @@ factories keep their existing scope. No global business-object cache, callback i
 or additional GC edge is introduced. Dart already canonicalizes identical const values,
 so source sharing alone is not an AOT-size or live-memory guarantee.
 
+Constructor transport records the names of generated immutable argument snapshots in a
+JS WeakMap. Known snapshots send their provided values to one synchronous Dart callback,
+instead of reading every field through a separate native entry. Arguments are borrowed
+only for that callback; conversion retains references through the existing ownership
+paths and follows Dart's canonical parameter order. Nested reads restore the previous
+receiver, and failed conversion releases completed sources. Defaults, explicit null,
+type checks and callback cleanup remain unchanged. Only names are cached, never argument
+values. Foreign descriptions keep ordinary property access, including inherited fields
+and accessors; each value is read once. Older JS without the optional snapshot helper
+uses the existing property-read fallback.
+
+Typed object conversion can obtain component State, enum or ordinary reference identity
+in one shared JS helper. It uses the existing weak identity tables, preserving their
+disposed-state checks without reading user properties. Dart still validates the actual
+binding, generic view, session and mounted state. Older JS uses the separate identity
+queries. Neither optimization changes the JS class API, generated declaration metadata,
+UI protocol or native ABI.
+
+Widget conversion also reads frozen generated description metadata through one optional
+shared helper instead of querying identity, kind, type and constructor separately. A
+weak-key cache holds only type/constructor text, never argument values or business
+objects. The text uses a NUL separator; descriptions containing NUL in either field use
+the ordinary path. Foreign descriptions retain their getter order and older JS uses the
+existing fallback. Native handles still pass Dart Widget and binding checks. This
+transport change preserves mounted ownership, callbacks and joint GC.
+
 Within one generated Dart module, identical closed conversion descriptors, parameter
 lists, proxy-member rows and callback adapters are emitted once. Non-generic ordinary
 objects and Widget object views can share an ancestor's selected getter, setter or

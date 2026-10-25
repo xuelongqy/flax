@@ -252,56 +252,70 @@ class _NodeState extends State<FlaxWidgetHost> with _ContextOwner {
   }
 
   void _adopt(FlaxWidgetHost host) {
-    final node = host.node;
-    final next = <String, _MountedProperty>{};
-    late Widget built;
+    final tracing = Flax.traceForExperiment;
+    tracing?.call('dart:mount-config', true);
     try {
-      if (!node._session.active) throw StateError('Closed Flax session');
-      for (final entry in node._sources.entries) {
-        final old = _properties[entry.key];
-        if (old != null && old.source.sameBinding(entry.value)) {
-          entry.value.discardPreview();
-          next[entry.key] = old;
-        } else {
-          next[entry.key] = _MountedProperty(this, entry.key, entry.value, old);
+      final node = host.node;
+      final next = <String, _MountedProperty>{};
+      late Widget built;
+      try {
+        if (!node._session.active) throw StateError('Closed Flax session');
+        for (final entry in node._sources.entries) {
+          final old = _properties[entry.key];
+          if (old != null && old.source.sameBinding(entry.value)) {
+            entry.value.discardPreview();
+            next[entry.key] = old;
+          } else {
+            next[entry.key] = _MountedProperty(
+              this,
+              entry.key,
+              entry.value,
+              old,
+            );
+          }
         }
+        for (final property in next.values) {
+          property.value.validate();
+        }
+        // Static inputs need no mounted callback adaptation or refreshed binding value.
+        built =
+            node._validatedWidget ??
+            node._session._traceNativeWidget(
+              host,
+              next.map((name, property) => MapEntry(name, property.value.data)),
+            );
+      } catch (error, stack) {
+        for (final property in next.values) {
+          if (!identical(_properties[property.name], property)) {
+            property.close();
+          }
+        }
+        node._session.report(error, stack);
+        if (_node == null) _built = _errorWidget(error);
+        return;
       }
-      for (final property in next.values) {
-        property.value.validate();
+      // Commit only after all parameters and the native constructor succeeded.
+      node.retain();
+      final previousSession = _retainedSession;
+      if (!identical(previousSession, node._session)) {
+        node._session.retainMount();
+        _retainedSession = node._session;
       }
-      // Static inputs need no mounted callback adaptation or refreshed binding value.
-      built =
-          node._validatedWidget ??
-          host.buildNative(
-            next.map((name, property) => MapEntry(name, property.value.data)),
-          );
-    } catch (error, stack) {
-      for (final property in next.values) {
-        if (!identical(_properties[property.name], property)) property.close();
+      final oldNode = _node;
+      final oldProperties = _properties;
+      _node = node;
+      _host = host;
+      _properties = next;
+      _built = built;
+      for (final old in oldProperties.values) {
+        if (!identical(next[old.name], old)) old.close();
       }
-      node._session.report(error, stack);
-      if (_node == null) _built = _errorWidget(error);
-      return;
-    }
-    // Commit only after all parameters and the native constructor succeeded.
-    node.retain();
-    final previousSession = _retainedSession;
-    if (!identical(previousSession, node._session)) {
-      node._session.retainMount();
-      _retainedSession = node._session;
-    }
-    final oldNode = _node;
-    final oldProperties = _properties;
-    _node = node;
-    _host = host;
-    _properties = next;
-    _built = built;
-    for (final old in oldProperties.values) {
-      if (!identical(next[old.name], old)) old.close();
-    }
-    oldNode?.release();
-    if (!identical(previousSession, _retainedSession)) {
-      previousSession?.releaseMount();
+      oldNode?.release();
+      if (!identical(previousSession, _retainedSession)) {
+        previousSession?.releaseMount();
+      }
+    } finally {
+      tracing?.call('dart:mount-config', false);
     }
   }
 
@@ -319,7 +333,8 @@ class _NodeState extends State<FlaxWidgetHost> with _ContextOwner {
       for (final entry in _properties.entries) {
         (next[entry.key] ?? entry.value.value).validate();
       }
-      built = _host!.buildNative(
+      built = _node!._session._traceNativeWidget(
+        _host!,
         _properties.map(
           (name, property) =>
               MapEntry(name, (next[name] ?? property.value).data),

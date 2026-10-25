@@ -396,10 +396,14 @@ extension _WidgetReferences on _Session {
     }
   }
 
-  _Value? decodeDartWidget(FlaxJsObject input) {
-    final id = helper('tryObjectHandle').call([input]);
-    if (id is! FlaxJsNumber) return null;
-    final reference = _objects[id.value.toInt()];
+  _Value? decodeDartWidget(FlaxJsObject input, {int? knownHandle}) {
+    final handle = knownHandle == null
+        ? helper('tryObjectHandle').call([input])
+        : null;
+    final id =
+        knownHandle ?? (handle is FlaxJsNumber ? handle.value.toInt() : null);
+    if (id == null) return null;
+    final reference = _objects[id];
     if (reference == null || reference.value is! Widget) {
       throw ArgumentError('Expected a Dart Widget');
     }

@@ -1,0 +1,182 @@
+--- a/runtime.cpp
++++ b/runtime.cpp
+@@ -6,6 +6,7 @@
+ #include <dart_flax_api.h>
+ #include "engine.h"
+ #include "flax/engine_binding.h"
++#include "flax/engine_results_experiment.h"
+ #include "flax/engine_gc.h"
+ #include "flutter/lib/ui/ui_dart_state.h"
+ #include "third_party/tonic/scopes/dart_isolate_scope.h"
+@@ -440,44 +441,68 @@
+   });
+ }
+ 
+-int32_t inspect(FlaxRuntime* runtime,
+-                FlaxValueId id,
+-                FlaxValueInfo* info,
++void describeValue(FlaxRuntime* runtime, const fbjsi::Value& v,
++                   FlaxValueInfo* info) {
++  *info = {};
++  if (v.isUndefined())
++    info->kind = FLAX_UNDEFINED;
++  else if (v.isNull())
++    info->kind = FLAX_NULL;
++  else if (v.isBool()) {
++    info->kind = FLAX_BOOLEAN;
++    info->number = v.getBool();
++  } else if (v.isNumber()) {
++    info->kind = FLAX_NUMBER;
++    info->number = v.getNumber();
++  } else if (v.isString() || v.isBigInt()) {
++    info->kind = v.isBigInt() ? FLAX_BIGINT : FLAX_STRING;
++    auto& js = *runtime->js;
++    auto string = v.isBigInt() ? js.call(*runtime->bigIntText, v, nullptr, 0)
++                                     .getString(js)
++                                     .utf16(js)
++                               : v.getString(js).utf16(js);
++    info->string_data = reinterpret_cast<uint16_t*>(
++        copyBytes(reinterpret_cast<const uint8_t*>(string.data()),
++                  string.size() * sizeof(char16_t)));
++    if (!info->string_data && !string.empty())
++      throw std::bad_alloc();
++    info->string_length = string.size();
++  } else if (v.isObject()) {
++    info->kind = v.getObject(*runtime->js).isFunction(*runtime->js)
++                     ? FLAX_FUNCTION
++                     : FLAX_OBJECT;
++  } else {
++    throw BridgeError(FLAX_ARGUMENT_ERROR,
++                      "Symbol conversion is not implemented");
++  }
++}
++
++int32_t inspect(FlaxRuntime* runtime, FlaxValueId id, FlaxValueInfo* info,
+                 FlaxError* error) {
+   return enter(runtime, error, [&] {
++    describeValue(runtime, value(runtime, id), info);
++  });
++}
++
++// Primitives cross by value; only objects need an owned table entry and GC peer.
++void resultValue(FlaxRuntime* runtime, fbjsi::Value result,
++                 FlaxValueId* output, FlaxValueInfo* info) {
++  describeValue(runtime, result, info);
++  if (result.isObject()) *output = keep(runtime, std::move(result));
++}
++
++int32_t getPropertyResult(FlaxRuntime* runtime, FlaxValueId id,
++                          const uint16_t* name, size_t length,
++                          FlaxValueId* output, FlaxValueInfo* info,
++                          FlaxError* error) {
++  return enter(runtime, error, [&] {
++    if (!output || !info)
++      throw BridgeError(FLAX_ARGUMENT_ERROR, "Null property result");
++    *output = 0;
+     *info = {};
+-    auto& v = value(runtime, id);
+-    if (v.isUndefined())
+-      info->kind = FLAX_UNDEFINED;
+-    else if (v.isNull())
+-      info->kind = FLAX_NULL;
+-    else if (v.isBool()) {
+-      info->kind = FLAX_BOOLEAN;
+-      info->number = v.getBool();
+-    } else if (v.isNumber()) {
+-      info->kind = FLAX_NUMBER;
+-      info->number = v.getNumber();
+-    } else if (v.isString() || v.isBigInt()) {
+-      info->kind = v.isBigInt() ? FLAX_BIGINT : FLAX_STRING;
+-      auto& js = *runtime->js;
+-      auto string = v.isBigInt() ? js.call(*runtime->bigIntText, v, nullptr, 0)
+-                                       .getString(js)
+-                                       .utf16(js)
+-                                 : v.getString(js).utf16(js);
+-      info->string_data = reinterpret_cast<uint16_t*>(
+-          copyBytes(reinterpret_cast<const uint8_t*>(string.data()),
+-                    string.size() * sizeof(char16_t)));
+-      if (!info->string_data && !string.empty())
+-        throw std::bad_alloc();
+-      info->string_length = string.size();
+-    } else if (v.isObject()) {
+-      info->kind = v.getObject(*runtime->js).isFunction(*runtime->js)
+-                       ? FLAX_FUNCTION
+-                       : FLAX_OBJECT;
+-    } else {
+-      throw BridgeError(FLAX_ARGUMENT_ERROR,
+-                        "Symbol conversion is not implemented");
+-    }
++    resultValue(runtime, object(runtime, id).getProperty(
++                             *runtime->js, propertyName(runtime, name, length)),
++                output, info);
+   });
+ }
+ 
+@@ -880,21 +905,40 @@
+   });
+ }
+ 
+-int32_t bindingCall(FlaxRuntime* runtime,
+-                    FlaxValueId id,
++fbjsi::Value callValue(FlaxRuntime* runtime, FlaxValueId id,
++                       const FlaxBindingArgument* receiver,
++                       const FlaxBindingArgument* arguments, size_t count) {
++  if (!receiver)
++    throw BridgeError(FLAX_ARGUMENT_ERROR, "Null call receiver");
++  auto& js = *runtime->js;
++  auto fn = object(runtime, id).getFunction(js);
++  auto args = bindingArguments(runtime, arguments, count);
++  auto target = bindingArgument(runtime, *receiver);
++  return js.call(fn, target, args.data(), args.size());
++}
++
++int32_t bindingCall(FlaxRuntime* runtime, FlaxValueId id,
+                     const FlaxBindingArgument* receiver,
+-                    const FlaxBindingArgument* arguments,
+-                    size_t count,
+-                    FlaxValueId* output,
+-                    FlaxError* error) {
+-  return enter(runtime, error, [&] {
+-    if (!output || !receiver)
+-      throw BridgeError(FLAX_ARGUMENT_ERROR, "Null call output or receiver");
+-    auto& js = *runtime->js;
+-    auto fn = object(runtime, id).getFunction(js);
+-    auto args = bindingArguments(runtime, arguments, count);
+-    auto target = bindingArgument(runtime, *receiver);
+-    *output = keep(runtime, js.call(fn, target, args.data(), args.size()));
++                    const FlaxBindingArgument* arguments, size_t count,
++                    FlaxValueId* output, FlaxError* error) {
++  return enter(runtime, error, [&] {
++    if (!output)
++      throw BridgeError(FLAX_ARGUMENT_ERROR, "Null call output");
++    *output = keep(runtime, callValue(runtime, id, receiver, arguments, count));
++  });
++}
++
++int32_t callResult(FlaxRuntime* runtime, FlaxValueId id,
++                   const FlaxBindingArgument* receiver,
++                   const FlaxBindingArgument* arguments, size_t count,
++                   FlaxValueId* output, FlaxValueInfo* info, FlaxError* error) {
++  return enter(runtime, error, [&] {
++    if (!output || !info)
++      throw BridgeError(FLAX_ARGUMENT_ERROR, "Null call result");
++    *output = 0;
++    *info = {};
++    resultValue(runtime, callValue(runtime, id, receiver, arguments, count),
++                output, info);
+   });
+ }
+ 
+@@ -1240,3 +1284,12 @@
+ #if defined(FLAX_ENABLE_FFI)
+ #include "ffi/runtime.inc"
+ #endif
++
++extern "C" __attribute__((visibility("default")))
++const FlaxEngineResultsExperimentApi* flax_experiment_get_results_api(
++    uint32_t version) {
++  static const FlaxEngineResultsExperimentApi results{
++      FLAX_ENGINE_RESULTS_EXPERIMENT_VERSION,
++      sizeof(FlaxEngineResultsExperimentApi), callResult, getPropertyResult};
++  return version == results.version ? &results : nullptr;
++}

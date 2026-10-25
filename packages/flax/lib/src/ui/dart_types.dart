@@ -64,6 +64,7 @@ class FlaxDartTypes {
   final _records = <String, FlaxTypeRef>{};
   var _serial = 0;
   bool _indexed = false;
+  bool _sourcesIndexed = false;
 
   // Flutter matching tokens and user runtimeType overrides are not VM types.
   Type instanceType(Object value) {
@@ -102,14 +103,23 @@ class FlaxDartTypes {
           throw StateError('Duplicate Dart type template: ${template.id}');
         }
         _classes[template.id] = template;
-        final info = parts(template.type);
-        (_sources[(info[2] as String, info[3] as String)] ??= []).add(template);
       }
     }
   }
 
-  FlaxDartClassTemplate? _template(List<Object?> info, Type type) {
+  void _indexSources() {
     _index();
+    if (_sourcesIndexed) return;
+    _sourcesIndexed = true;
+    // Known binding IDs need no VM decomposition of unrelated class templates.
+    for (final template in _classes.values) {
+      final info = parts(template.type);
+      (_sources[(info[2] as String, info[3] as String)] ??= []).add(template);
+    }
+  }
+
+  FlaxDartClassTemplate? _template(List<Object?> info, Type type) {
+    _indexSources();
     final candidates = _sources[(info[2] as String, info[3] as String)];
     if (candidates == null) return null;
     final context = _bindingContext;

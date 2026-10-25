@@ -9,6 +9,9 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   FlaxTestRuntimeTracker(this.inner);
 
   final FlaxJsRuntime inner;
+
+  /// Optional scalar-only experiment spans, balanced even when calls throw.
+  void Function(String, bool)? trace;
   @override
   Type dartInstanceType(Object value) => inner.dartInstanceType(value);
   @override
@@ -44,7 +47,8 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
 
   FlaxTypeBinding Function(FlaxTypeBinding)? mapDartBinding;
   // Diagnostics must not turn every facade into a business GC root.
-  final _owned = <WeakReference<_TrackedObject>>[];
+  final _owned = <WeakReference<_TrackedObject>>{};
+  int _pruneAt = 256;
   final hostCalls = <String, int>{};
   final evaluationMicroseconds = <String, int>{};
   final jsCalls = <String, int>{};
@@ -56,8 +60,11 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   int byteReads = 0;
   final hostOperations = <String, int>{};
   final _operationCategories = <int, String>{};
-  Iterable<_TrackedObject> get _live =>
-      _owned.map((entry) => entry.target).whereType<_TrackedObject>();
+  Iterable<_TrackedObject> get _live {
+    _owned.removeWhere((entry) => entry.target == null);
+    return _owned.map((entry) => entry.target).whereType<_TrackedObject>();
+  }
+
   int get handles => _live.length;
   List<String> get handleLabels => _live.map((value) => value.label).toList();
   final _futureIds = Expando<int>();
@@ -84,14 +91,24 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
 
   FlaxJsValue wrap(FlaxJsValue value, String label, {bool owned = true}) {
     if (value is! FlaxJsObject) return value;
-    final result = value is FlaxJsFunction
-        ? _TrackedFunction(this, value, label)
-        : _TrackedObject(this, value, label);
-    if (owned) {
-      _owned.removeWhere((entry) => entry.target == null);
-      _owned.add(WeakReference(result));
+    trace?.call('tracker:wrap', true);
+    try {
+      final result = value is FlaxJsFunction
+          ? _TrackedFunction(this, value, label)
+          : _TrackedObject(this, value, label);
+      if (owned) {
+        if (_owned.length >= _pruneAt) {
+          _owned.removeWhere((entry) => entry.target == null);
+          _pruneAt = _owned.length + 256;
+        }
+        final entry = WeakReference(result);
+        result._trackingEntry = entry;
+        _owned.add(entry);
+      }
+      return result;
+    } finally {
+      trace?.call('tracker:wrap', false);
     }
-    return result;
   }
 
   FlaxJsValue unwrap(FlaxJsValue value) =>
@@ -106,9 +123,13 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
 
   FlaxJsValue _evaluate(String sourceUrl, FlaxJsValue Function() evaluate) {
     final watch = Stopwatch()..start();
+    final tracing = trace;
+    final label = tracing == null ? '' : 'js:eval:$sourceUrl';
+    tracing?.call(label, true);
     try {
       return wrap(evaluate(), sourceUrl);
     } finally {
+      tracing?.call(label, false);
       evaluationMicroseconds.update(
         sourceUrl,
         (elapsed) => elapsed + watch.elapsedMicroseconds,
@@ -154,40 +175,47 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   @override
   void registerHostFunction(String name, FlaxJsHostFunction callback) {
     inner.registerHostFunction(name, (receiver, args) {
-      if (args.isNotEmpty && args.first is FlaxJsString) {
-        hostOperations.update(
-          '$name:${(args.first as FlaxJsString).value}',
-          (v) => v + 1,
-          ifAbsent: () => 1,
-        );
-      }
-      if (name == '__flaxInvokeOperation' &&
-          args.isNotEmpty &&
-          args.first is FlaxJsNumber) {
-        final category =
-            _operationCategories[(args.first as FlaxJsNumber).value.toInt()];
-        if (category != null) {
+      final tracing = trace;
+      final label = tracing == null ? '' : 'host:$name';
+      tracing?.call(label, true);
+      try {
+        if (args.isNotEmpty && args.first is FlaxJsString) {
           hostOperations.update(
-            '$name:$category',
+            '$name:${(args.first as FlaxJsString).value}',
             (v) => v + 1,
             ifAbsent: () => 1,
           );
         }
+        if (name == '__flaxInvokeOperation' &&
+            args.isNotEmpty &&
+            args.first is FlaxJsNumber) {
+          final category =
+              _operationCategories[(args.first as FlaxJsNumber).value.toInt()];
+          if (category != null) {
+            hostOperations.update(
+              '$name:$category',
+              (v) => v + 1,
+              ifAbsent: () => 1,
+            );
+          }
+        }
+        hostCalls.update(name, (n) => n + 1, ifAbsent: () => 1);
+        final result = unwrap(
+          callback(wrap(receiver, '$name.this', owned: false), [
+            for (final value in args) wrap(value, '$name.arg', owned: false),
+          ]),
+        );
+        if (name == '__flaxResolveOperation' &&
+            result is FlaxJsNumber &&
+            (args.length == 5 || args.length == 6) &&
+            args[2] is FlaxJsString) {
+          _operationCategories[result.value.toInt()] =
+              (args[2] as FlaxJsString).value;
+        }
+        return result;
+      } finally {
+        tracing?.call(label, false);
       }
-      hostCalls.update(name, (n) => n + 1, ifAbsent: () => 1);
-      final result = unwrap(
-        callback(wrap(receiver, '$name.this', owned: false), [
-          for (final value in args) wrap(value, '$name.arg', owned: false),
-        ]),
-      );
-      if (name == '__flaxResolveOperation' &&
-          result is FlaxJsNumber &&
-          (args.length == 5 || args.length == 6) &&
-          args[2] is FlaxJsString) {
-        _operationCategories[result.value.toInt()] =
-            (args[2] as FlaxJsString).value;
-      }
-      return result;
     });
   }
 
@@ -238,9 +266,20 @@ class _TrackedObject implements FlaxJsObject {
   final FlaxTestRuntimeTracker runtime;
   final FlaxJsObject inner;
   final String label;
+  WeakReference<_TrackedObject>? _trackingEntry;
   @override
-  FlaxJsValue getProperty(String name) =>
-      runtime.wrap(inner.getProperty(name), '$label.$name');
+  FlaxJsValue getProperty(String name) {
+    final tracing = runtime.trace;
+    tracing?.call('bridge:property', true);
+    final FlaxJsValue value;
+    try {
+      value = inner.getProperty(name);
+    } finally {
+      tracing?.call('bridge:property', false);
+    }
+    return runtime.wrap(value, '$label.$name');
+  }
+
   @override
   void setProperty(String name, FlaxJsValue value) =>
       inner.setProperty(name, runtime.unwrap(value));
@@ -248,13 +287,35 @@ class _TrackedObject implements FlaxJsObject {
   bool strictEquals(FlaxJsObject other) =>
       inner.strictEquals(runtime.unwrap(other) as FlaxJsObject);
   @override
-  FlaxJsObject retain() => runtime.wrap(inner.retain(), label) as FlaxJsObject;
+  FlaxJsObject retain() {
+    final tracing = runtime.trace;
+    tracing?.call('bridge:retain', true);
+    final FlaxJsObject value;
+    try {
+      value = inner.retain();
+    } finally {
+      tracing?.call('bridge:retain', false);
+    }
+    return runtime.wrap(value, label) as FlaxJsObject;
+  }
+
   @override
   void release() {
-    inner.release();
-    runtime._owned.removeWhere(
-      (entry) => entry.target == null || identical(entry.target, this),
-    );
+    final tracing = runtime.trace;
+    tracing?.call('bridge:release', true);
+    try {
+      inner.release();
+    } finally {
+      tracing?.call('bridge:release', false);
+    }
+    runtime.trace?.call('tracker:release', true);
+    try {
+      final entry = _trackingEntry;
+      if (entry != null) runtime._owned.remove(entry);
+      _trackingEntry = null;
+    } finally {
+      runtime.trace?.call('tracker:release', false);
+    }
   }
 
   @override
@@ -268,22 +329,32 @@ class _TrackedFunction extends _TrackedObject implements FlaxJsFunction {
     List<FlaxJsValue> arguments, {
     FlaxJsValue thisValue = const FlaxJsUndefined(),
   }) {
-    runtime.jsCalls.update(label, (n) => n + 1, ifAbsent: () => 1);
-    final result = runtime.wrap(
-      (inner as FlaxJsFunction).call(
-        arguments.map(runtime.unwrap).toList(),
-        thisValue: runtime.unwrap(thisValue),
-      ),
-      '$label.result',
-    );
-    if (label == '__flaxBindings.future' && result is FlaxJsObject) {
-      runtime._futureIds[result] = (arguments.first as FlaxJsNumber).value
-          .toInt();
-    } else if (label == '__flaxBindings.settleFuture') {
-      runtime._pendingFutureOwners.remove(
-        (arguments.first as FlaxJsNumber).value.toInt(),
-      );
+    final tracing = runtime.trace;
+    final traceLabel = tracing == null ? '' : 'js:$label';
+    tracing?.call(traceLabel, true);
+    try {
+      runtime.jsCalls.update(label, (n) => n + 1, ifAbsent: () => 1);
+      final values = arguments.map(runtime.unwrap).toList();
+      final receiver = runtime.unwrap(thisValue);
+      tracing?.call('bridge:call', true);
+      final FlaxJsValue value;
+      try {
+        value = (inner as FlaxJsFunction).call(values, thisValue: receiver);
+      } finally {
+        tracing?.call('bridge:call', false);
+      }
+      final result = runtime.wrap(value, '$label.result');
+      if (label == '__flaxBindings.future' && result is FlaxJsObject) {
+        runtime._futureIds[result] = (arguments.first as FlaxJsNumber).value
+            .toInt();
+      } else if (label == '__flaxBindings.settleFuture') {
+        runtime._pendingFutureOwners.remove(
+          (arguments.first as FlaxJsNumber).value.toInt(),
+        );
+      }
+      return result;
+    } finally {
+      tracing?.call(traceLabel, false);
     }
-    return result;
   }
 }

@@ -234,7 +234,12 @@ extension _AsyncCalls on _Session {
 
   /// Leave both the native entry stack and Flutter's frame before running JS jobs.
   void checkpoint() {
-    if (!active || _checkpointScheduled || _checkpointRunning) return;
+    if (!active ||
+        _loadingInStages ||
+        _checkpointScheduled ||
+        _checkpointRunning) {
+      return;
+    }
     _checkpointScheduled = true;
     void enqueue() => scheduleMicrotask(_runCheckpoint);
     if (SchedulerBinding.instance.schedulerPhase == SchedulerPhase.idle) {

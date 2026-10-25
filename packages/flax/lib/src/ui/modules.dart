@@ -12,6 +12,14 @@ class FlaxModuleAssets {
   List<String> get moduleSpecifiers =>
       List.unmodifiable(_modules.map((module) => module.specifier));
 
+  /// Experimental identity-pinned handoff; these contain no runtime references.
+  List<FlaxJsSource> get sourcesForExperiment => List.unmodifiable([
+    _bootstrap,
+    for (final module in _modules) module.source!,
+  ]);
+
+  FlaxJsSource get baseHostSourceForExperiment => _baseHostSource;
+
   /// Loads only the factory format emitted by @flax/build, never arbitrary ESM.
   static Future<FlaxModuleAssets> load({
     required AssetBundle bundle,
@@ -106,7 +114,10 @@ class FlaxModuleAssets {
 }
 
 extension _SessionModules on _Session {
-  void installModules(FlaxModuleAssets? assets, List<FlaxPlugin> plugins) {
+  Iterable<String> installModuleSteps(
+    FlaxModuleAssets? assets,
+    List<FlaxPlugin> plugins,
+  ) sync* {
     if (assets == null) {
       throw StateError('Missing prepared Flax module assets');
     }
@@ -135,8 +146,8 @@ extension _SessionModules on _Session {
     final context = _HostContext(this, const {'__flaxModules'});
     final installation = _ModuleInstallation(context);
     try {
-      installation.install(assets, selected);
       _moduleInstallation = installation;
+      yield* installation.installSteps(assets, selected);
     } catch (_) {
       installation.dispose();
       context.retired = true;
@@ -218,7 +229,10 @@ class _ModuleInstallation {
   FlaxJsObject? _registry;
   bool _closed = false;
 
-  void install(FlaxModuleAssets assets, List<_PreparedModule> modules) {
+  Iterable<String> installSteps(
+    FlaxModuleAssets assets,
+    List<_PreparedModule> modules,
+  ) sync* {
     final result = context.evaluateSource(assets._bootstrap);
     if (result is! FlaxJsObject) {
       throw StateError('Invalid prepared Flax module registry');
@@ -248,8 +262,10 @@ class _ModuleInstallation {
       rethrow;
     }
     _registry = result;
+    yield 'module-registry';
     for (final module in modules) {
       _releaseJs(context.evaluateSource(module.source!));
+      yield module.specifier;
     }
     final expected = jsonEncode([
       for (final module in modules) module.expectation,
@@ -260,6 +276,7 @@ class _ModuleInstallation {
         sourceUrl: 'flax:module-inventory',
       ),
     );
+    yield 'module-seal';
   }
 
   void _call(String name) {

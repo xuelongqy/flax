@@ -55,7 +55,65 @@ class FlaxSession {
   Object? _loadError;
   Future<void>? _closeFuture;
 
+  Future<void>? _preparation;
+  bool _preparing = false;
+
+  /// Experimental startup entry; the stable API remains synchronous.
+  Future<void> prepareForExperiment({void Function(String, int)? onStep}) =>
+      _preparation ??= _prepareForExperiment(onStep);
+
+  Future<void> _prepareForExperiment(void Function(String, int)? onStep) async {
+    if (_closeFuture != null) throw StateError('Closed Flax session');
+    if (_session != null) return;
+    _preparing = true;
+    try {
+      await WidgetsBinding.instance.endOfFrame;
+      if (_closeFuture != null) throw StateError('Closed Flax session');
+      final declarations = Stopwatch()..start();
+      final step = Stopwatch()..start();
+      for (final module in _defaultBindingModules) {
+        if (module.uiProtocol != flaxBindingVersion) {
+          throw ArgumentError('Incompatible binding module ${module.name}');
+        }
+        onStep?.call('declarations:${module.name}', step.elapsedMicroseconds);
+        if (declarations.elapsedMicroseconds >= 4000) {
+          await WidgetsBinding.instance.endOfFrame;
+          await Future<void>.delayed(Duration.zero);
+          declarations.reset();
+        }
+        if (_closeFuture != null) throw StateError('Closed Flax session');
+        step.reset();
+      }
+      step.reset();
+      final registry = _bindingsWithPlugins(bindings, plugins);
+      onStep?.call('registry', step.elapsedMicroseconds);
+      await WidgetsBinding.instance.endOfFrame;
+      if (_closeFuture != null) throw StateError('Closed Flax session');
+      final session = _Session(
+        createRuntime(),
+        registry,
+        onError,
+        namespace: namespace,
+        assetBundle: assetBundle,
+      );
+      _session = session;
+      await session.loadStaged(
+        source,
+        sourceUrl,
+        plugins: plugins,
+        moduleAssets: _moduleAssets,
+        onStep: onStep,
+      );
+    } catch (error) {
+      _loadError = error;
+      rethrow;
+    } finally {
+      _preparing = false;
+    }
+  }
+
   _Session _load({void Function(Object, StackTrace)? report}) {
+    if (_preparing) throw StateError('Flax session is still preparing');
     if (_closeFuture != null) {
       throw StateError('Closed Flax session');
     }

@@ -2,31 +2,341 @@ import 'dart:async';
 
 import 'package:flax/flax.dart';
 import 'package:flax_test/flax_test.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-FlaxOwnedTestHarness _harness(List<FlaxFunctionBinding> functions) =>
-    FlaxOwnedTestHarness(
-      createRuntime: FlaxEngine.createRuntime,
-      bindings: FlaxBindingRegistry([
-        FlaxBindingModule(
-          'call-arguments',
-          const [],
-          moduleId: 'test/call-arguments',
-          uiProtocol: flaxBindingVersion,
-          requiredCapabilities: const [],
-          functions: functions,
-        ),
-      ]),
-      source: '''
+FlaxOwnedTestHarness _harness(
+  List<FlaxFunctionBinding> functions, {
+  List<FlaxTypeBinding> types = const [],
+  bool legacy = false,
+}) => FlaxOwnedTestHarness(
+  createRuntime: FlaxEngine.createRuntime,
+  bindings: FlaxBindingRegistry([
+    FlaxBindingModule(
+      'call-arguments',
+      types,
+      moduleId: 'test/call-arguments',
+      uiProtocol: flaxBindingVersion,
+      requiredCapabilities: const [],
+      functions: functions,
+    ),
+  ]),
+  source:
+      '''
 const { invokeTopLevel } = __flaxModules.require('@flax/core/bindings');
 const widgets = __flaxModules.require('@flax/flutter/widgets');
+${legacy ? "globalThis.__flaxBindings = Object.freeze(Object.fromEntries(Object.entries(__flaxBindings).filter(([name]) => !['argumentKeys', 'readArguments', 'typedReference', 'widgetInfo'].includes(name))));" : ''}
 globalThis.callArguments = (name, values) =>
   invokeTopLevel('test/call-arguments#function:' + name, values);
 widgets.runApp(widgets.SizedBox());
 ''',
-    );
+);
 
 void main() {
+  for (final legacy in [false, true]) {
+    testWidgets(
+      'Widget metadata preserves foreign getter order (legacy=$legacy)',
+      (tester) async {
+        final builders = <Widget Function()>[];
+        final signature = FlaxTypeRef(
+          'callback',
+          callback: FlaxCallbackBinding(
+            const [],
+            const FlaxTypeRef('widget'),
+            (callback) =>
+                () => callback.call(const [], const {}) as Widget,
+            id: 'test/call-arguments#callback:metadata-builder',
+            invoke: (value, _, _) => (value as Widget Function())(),
+            matches: (value) => value is Widget Function(),
+          ),
+        );
+        final harness = _harness([
+          FlaxFunctionBinding(
+            'test/call-arguments#function:captureMetadata',
+            [FlaxParameter.required('builder', signature)],
+            flaxVoidType,
+            (values) => builders.add(values['builder'] as Widget Function()),
+          ),
+        ], legacy: legacy);
+        try {
+          await tester.pumpWidget(FlaxView.session(session: harness.session));
+          harness.execute('''
+const { SizedBox } = __flaxModules.require('@flax/flutter/widgets');
+const value = SizedBox({width:3, height:4});
+globalThis.metadataReads = [];
+const foreign = Object.freeze({
+  get kind() { metadataReads.push('kind'); return value.kind; },
+  get type() { metadataReads.push('type'); return value.type; },
+  get ctor() { metadataReads.push('ctor'); return value.ctor; },
+  get args() { metadataReads.push('args'); return value.args; },
+});
+callArguments('captureMetadata', [() => value]);
+callArguments('captureMetadata', [() => foreign]);
+''');
+          final known = builders[0]();
+          expect(harness.string('JSON.stringify(metadataReads)'), '[]');
+          final foreign = builders[1]();
+          expect(
+            harness.string('JSON.stringify(metadataReads)'),
+            '["kind","type","ctor","args"]',
+          );
+          await tester.pumpWidget(Center(child: known));
+          expect(tester.getSize(find.byWidget(known)), const Size(3, 4));
+          await tester.pumpWidget(Center(child: foreign));
+          expect(tester.getSize(find.byWidget(foreign)), const Size(3, 4));
+          expect(
+            harness.string('JSON.stringify(metadataReads)'),
+            '["kind","type","ctor","args"]',
+          );
+          expect(harness.errors, isEmpty);
+        } finally {
+          builders.clear();
+          await harness.finish(tester);
+        }
+      },
+    );
+  }
+  for (final legacy in [true, false]) {
+    testWidgets(
+      'constructor conversion preserves Dart errors (legacy=$legacy)',
+      (tester) async {
+        Widget Function()? build;
+        final error = StateError('argument conversion sentinel');
+        final rejected = FlaxTypeRef(
+          'callback',
+          callback: FlaxCallbackBinding(
+            const [],
+            flaxVoidType,
+            (_) => throw error,
+            id: 'test/call-arguments#callback:rejected',
+            invoke: (value, _, _) => (value as void Function())(),
+            matches: (value) => value is void Function(),
+          ),
+        );
+        final builder = FlaxTypeRef(
+          'callback',
+          callback: FlaxCallbackBinding(
+            const [],
+            const FlaxTypeRef('widget'),
+            (callback) =>
+                () => callback.call(const [], const {}) as Widget,
+            id: 'test/call-arguments#callback:builder',
+            invoke: (value, _, _) => (value as Widget Function())(),
+            matches: (value) => value is Widget Function(),
+          ),
+        );
+        final harness = _harness(
+          [
+            FlaxFunctionBinding(
+              'test/call-arguments#function:capture',
+              [FlaxParameter.required('builder', builder)],
+              flaxVoidType,
+              (values) => build = values['builder'] as Widget Function(),
+            ),
+          ],
+          legacy: legacy,
+          types: [
+            FlaxWidgetBinding(
+              'test/call-arguments#type:Rejected',
+              {
+                '': [FlaxParameter.required('callback', rejected)],
+              },
+              (_) => throw StateError(
+                'Conversion must reject before construction',
+              ),
+            ),
+          ],
+        );
+        try {
+          await tester.pumpWidget(FlaxView.session(session: harness.session));
+          harness.execute('''
+const { construct } = __flaxModules.require('@flax/core/bindings');
+const value = construct('widget', 'test/call-arguments#type:Rejected', '',
+  [{name:'callback', required:true}], [], {callback:() => {}});
+callArguments('capture', [() => value]);
+''');
+          expect(() => build!(), throwsA(same(error)));
+          expect(harness.errors, isEmpty);
+        } finally {
+          build = null;
+          await harness.finish(tester);
+        }
+      },
+    );
+  }
+  for (final legacy in [false, true]) {
+    testWidgets(
+      'constructor snapshots preserve defaults and foreign accessors (legacy=$legacy)',
+      (tester) async {
+        final received = <Map<String, Object?>>[];
+        final harness = _harness(
+          [
+            FlaxFunctionBinding(
+              'test/call-arguments#function:accept',
+              const [
+                FlaxParameter.required(
+                  'value',
+                  FlaxTypeRef('object', id: 'test/call-arguments#type:Probe'),
+                ),
+              ],
+              flaxBoolType,
+              (values) => values['value'] is _ArgumentProbe,
+            ),
+          ],
+          legacy: legacy,
+          types: [
+            FlaxObjectBinding(
+              'test/call-arguments#type:Probe',
+              const [],
+              const {},
+              constructors: const {
+                '': [
+                  FlaxParameter.required('value', flaxIntType),
+                  FlaxParameter(
+                    'optional',
+                    flaxNullableStringType,
+                    required: false,
+                    omitWhenAbsent: true,
+                  ),
+                  FlaxParameter(
+                    'fallback',
+                    flaxIntType,
+                    required: false,
+                    defaultValue: 7,
+                  ),
+                ],
+              },
+              create: (_, values) {
+                received.add(Map.of(values));
+                return _ArgumentProbe();
+              },
+              matches: (value) => value is _ArgumentProbe,
+            ),
+          ],
+        );
+        try {
+          await tester.pumpWidget(FlaxView.session(session: harness.session));
+          harness.execute('''
+const { construct, defineObject } = __flaxModules.require('@flax/core/bindings');
+const type = 'test/call-arguments#type:Probe';
+defineObject(type, [], [], {}, []);
+const parameters = [{name:'value', required:true}, {name:'optional'}, {name:'fallback'}];
+const create = args => __flaxCreateObject(24, type, {ctor:'', args});
+const reference = create(construct('value', type, '', parameters, [], {value:3, optional:null}).args);
+if (!callArguments('accept', [reference])) throw new Error('Typed reference rejected');
+create(construct('value', type, '', parameters, [], {value:5, optional:undefined}).args);
+globalThis.argumentReads = 0;
+const foreign = Object.create({value:8, fallback:9});
+Object.defineProperty(foreign, 'optional', {get() { argumentReads++; return null; }});
+create(foreign);
+globalThis.argumentFailures = 0;
+for (const args of [{}, {value:null}, {value:'bad'}, {value:1, unknown:2}]) {
+  try { create(args); } catch { argumentFailures++; }
+}
+''');
+          expect(received, [
+            {'value': 3, 'optional': null, 'fallback': 7},
+            {'value': 5, 'fallback': 7},
+            {'value': 8, 'optional': null, 'fallback': 9},
+          ]);
+          expect(
+            (harness.runtime.evaluate('argumentReads') as FlaxJsNumber).value,
+            1,
+          );
+          expect(
+            (harness.runtime.evaluate(
+              'argumentFailures',
+            ) as FlaxJsNumber).value,
+            4,
+          );
+          expect(harness.errors, isEmpty);
+          expect(
+            harness.runtime.jsCalls.containsKey('__flaxBindings.argumentKeys'),
+            !legacy,
+          );
+          expect(
+            harness.runtime.hostCalls.containsKey('__flaxReadArguments'),
+            !legacy,
+          );
+          expect(
+            harness.runtime.jsCalls.containsKey(
+              '__flaxBindings.typedReference',
+            ),
+            !legacy,
+          );
+          expect(
+            harness.runtime.jsCalls.containsKey('__flaxBindings.widgetInfo'),
+            !legacy,
+          );
+        } finally {
+          await harness.finish(tester);
+        }
+      },
+    );
+  }
+  testWidgets(
+    'argument batches restore nested reads and reject stale delivery',
+    (tester) async {
+      final received = <int>[];
+      final harness = _harness(
+        [],
+        types: [
+          FlaxObjectBinding(
+            'test/call-arguments#type:Reentrant',
+            const [],
+            const {},
+            constructors: const {
+              '': [
+                FlaxParameter.required('value', flaxIntType),
+                FlaxParameter(
+                  'callback',
+                  flaxVoidCallbackType,
+                  required: false,
+                  omitWhenAbsent: true,
+                ),
+              ],
+            },
+            create: (_, values) {
+              received.add(values['value'] as int);
+              (values['callback'] as void Function()?)?.call();
+              return _ArgumentProbe();
+            },
+            matches: (value) => value is _ArgumentProbe,
+          ),
+        ],
+      );
+      try {
+        await tester.pumpWidget(FlaxView.session(session: harness.session));
+        harness.execute('''
+const { construct, defineObject } = __flaxModules.require('@flax/core/bindings');
+const type = 'test/call-arguments#type:Reentrant';
+defineObject(type, [], [], {}, []);
+const parameters = [{name:'value', required:true}, {name:'callback'}];
+const create = options => __flaxCreateObject(24, type,
+  construct('value', type, '', parameters, [], options));
+globalThis.batchHits = 0;
+let nested = false;
+const callback = () => batchHits++;
+Object.defineProperty(callback, 'kind', {get() {
+  if (!nested) { nested = true; create({value:8}); }
+  return 'ordinary';
+}});
+create({value:3, callback});
+let failed = false;
+try { create({value:4, callback:'bad'}); } catch { failed = true; }
+if (!failed) throw new Error('Wrong callback must fail');
+create({value:5});
+try { __flaxReadArguments('value', 99); throw new Error('Stale batch accepted'); }
+catch (error) { if (!String(error).includes('No argument read in progress')) throw error; }
+''');
+        expect(received, [8, 3, 5]);
+        expect(harness.number('batchHits'), 1);
+        expect(harness.errors, isEmpty);
+      } finally {
+        await harness.finish(tester);
+      }
+    },
+  );
   testWidgets('call argument Maps stay mutable and isolated during reentry', (
     tester,
   ) async {
@@ -114,9 +424,16 @@ callArguments('inner', [7]);
       harness.execute('''
 const firstArgument = () => {};
 const secondArgument = () => {};
-try { callArguments('invalid', [firstArgument, secondArgument, 'wrong']); }
-catch (_) {}
 ''');
+      // Warm both fresh and memoized callback conversion before comparing handles.
+      for (var i = 0; i < 2; i++) {
+        expect(
+          () => harness.execute(
+            "callArguments('invalid', [firstArgument, secondArgument, 'wrong'])",
+          ),
+          throwsA(isA<FlaxJsException>()),
+        );
+      }
       // Error return handles drain at the next frame checkpoint.
       await tester.pump();
       final handles = harness.runtime.handles;
@@ -307,3 +624,5 @@ var argumentSubscription;
     }
   });
 }
+
+class _ArgumentProbe {}

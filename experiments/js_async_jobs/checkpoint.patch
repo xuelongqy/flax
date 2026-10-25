@@ -1,0 +1,39 @@
+diff --git a/packages/flax/lib/src/ui/host.dart b/packages/flax/lib/src/ui/host.dart
+--- a/packages/flax/lib/src/ui/host.dart
++++ b/packages/flax/lib/src/ui/host.dart
+@@ -5,6 +5,9 @@
+ /// Defaults used by subsequently created sessions in this Dart isolate.
+ abstract final class Flax {
+   static List<FlaxPlugin> _plugins = const [];
++
++  // Experiment-only shared job entry; the build helper restores this file.
++  static void Function(void Function())? experimentScheduleJsJob;
+ 
+   /// Modules this application can provide to subsequently created sessions.
+   ///
+diff --git a/packages/flax/lib/src/ui/async.dart b/packages/flax/lib/src/ui/async.dart
+--- a/packages/flax/lib/src/ui/async.dart
++++ b/packages/flax/lib/src/ui/async.dart
+@@ -241,7 +241,8 @@
+       return;
+     }
+     _checkpointScheduled = true;
+-    void enqueue() => scheduleMicrotask(_runCheckpoint);
++    void enqueue() =>
++        (Flax.experimentScheduleJsJob ?? scheduleMicrotask)(_runCheckpoint);
+     if (SchedulerBinding.instance.schedulerPhase == SchedulerPhase.idle) {
+       enqueue();
+     } else {
+@@ -323,7 +324,11 @@
+     if (!complete || _hostTasks.isNotEmpty || _readyFutures.isNotEmpty) {
+       // Yield to Dart events when an engine honors the best-effort job limit.
+       _checkpointScheduled = true;
+-      unawaited(Future<void>(() => _runCheckpoint()));
++      if (Flax.experimentScheduleJsJob case final schedule?) {
++        schedule(_runCheckpoint);
++      } else {
++        unawaited(Future<void>(() => _runCheckpoint()));
++      }
+     } else if (_hostResults.isNotEmpty) {
+       checkpoint();
+     } else {

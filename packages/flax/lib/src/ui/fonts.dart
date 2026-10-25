@@ -287,48 +287,66 @@ class _FlaxFontScopeState extends State<FlaxFontScope> {
 }
 
 extension _FontBindingCalls on _Session {
+  Widget _traceNativeWidget(FlaxWidgetHost host, Map<String, Object?> values) {
+    final tracing = Flax.traceForExperiment;
+    final label = tracing == null ? '' : 'create:${host.node.definition.id}';
+    tracing?.call(label, true);
+    try {
+      return host.buildNative(values);
+    } finally {
+      tracing?.call(label, false);
+    }
+  }
+
   Object createFontAwareObject(
     FlaxObjectBinding binding,
     String name,
     Map<String, Object?> values,
   ) {
-    if (binding.id == 'flax.core/sdk_dart_ui#type:ParagraphBuilder' &&
-        name.isEmpty) {
-      return ui.ParagraphBuilder(
-        values['style'] as ui.ParagraphStyle,
-        fontCollection: _fontResources.collection,
-      );
+    final tracing = Flax.traceForExperiment;
+    final label = tracing == null ? '' : 'create:${binding.id}';
+    tracing?.call(label, true);
+    try {
+      if (binding.id == 'flax.core/sdk_dart_ui#type:ParagraphBuilder' &&
+          name.isEmpty) {
+        return ui.ParagraphBuilder(
+          values['style'] as ui.ParagraphStyle,
+          fontCollection: _fontResources.collection,
+        );
+      }
+      if (binding.id == 'flax.core/sdk_widgets#type:BannerPainter' &&
+          name.isEmpty) {
+        return Function.apply(BannerPainter.new, const [], {
+          for (final entry in values.entries) Symbol(entry.key): entry.value,
+          #fontCollection: _fontResources.collection,
+        }) as BannerPainter;
+      }
+      final value = binding.create(name, values);
+      if (value is Widget) {
+        // Host-only SDK entry; applications cannot select another font domain.
+        // ignore: invalid_use_of_internal_member
+        Element.attachFlaxFontResources(value, _fontResources);
+      }
+      if (value is RenderParagraph) {
+        // ignore: invalid_use_of_internal_member
+        value.fontCollection = _fontResources.collection;
+      }
+      if (value is RenderEditable) {
+        // ignore: invalid_use_of_internal_member
+        value.fontCollection = _fontResources.collection;
+      }
+      if (value is TextPainter) {
+        // ignore: invalid_use_of_internal_member
+        value.fontCollection = _fontResources.collection;
+      }
+      if (value is FontLoader) {
+        // ignore: invalid_use_of_internal_member
+        value.fontCollection = _fontResources.collection;
+      }
+      return value;
+    } finally {
+      tracing?.call(label, false);
     }
-    if (binding.id == 'flax.core/sdk_widgets#type:BannerPainter' &&
-        name.isEmpty) {
-      return Function.apply(BannerPainter.new, const [], {
-        for (final entry in values.entries) Symbol(entry.key): entry.value,
-        #fontCollection: _fontResources.collection,
-      }) as BannerPainter;
-    }
-    final value = binding.create(name, values);
-    if (value is Widget) {
-      // Host-only SDK entry; applications cannot select another font domain.
-      // ignore: invalid_use_of_internal_member
-      Element.attachFlaxFontResources(value, _fontResources);
-    }
-    if (value is RenderParagraph) {
-      // ignore: invalid_use_of_internal_member
-      value.fontCollection = _fontResources.collection;
-    }
-    if (value is RenderEditable) {
-      // ignore: invalid_use_of_internal_member
-      value.fontCollection = _fontResources.collection;
-    }
-    if (value is TextPainter) {
-      // ignore: invalid_use_of_internal_member
-      value.fontCollection = _fontResources.collection;
-    }
-    if (value is FontLoader) {
-      // ignore: invalid_use_of_internal_member
-      value.fontCollection = _fontResources.collection;
-    }
-    return value;
   }
 
   Object? callFontAwareFunction(

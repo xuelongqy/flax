@@ -45,7 +45,7 @@ export async function discoverHostBundles() {
 
 export const hostBundles = await discoverHostBundles();
 
-export async function buildHost(bundle) {
+export async function buildHost(bundle, { prepareOnly = false } = {}) {
   if (bundle.base) {
     const require = createRequire(join(bundle.packageRoot, 'js', 'package.json'));
     const { version } = JSON.parse(
@@ -83,7 +83,10 @@ export async function buildHost(bundle) {
       throw new Error(`Duplicate base implementation in plugin: ${name}`);
     }
   }
-  return `(() => {${result.outputFiles[0].text}\nreturn FlaxBootstrap.install(globalThis, ${bundle.bridge});})()`;
+  const resultExpression = prepareOnly
+    ? 'FlaxBootstrap.install'
+    : `FlaxBootstrap.install(globalThis, ${bundle.bridge})`;
+  return `(() => {${result.outputFiles[0].text}\nreturn ${resultExpression};})()`;
 }
 
 export async function buildNotices(bundle) {

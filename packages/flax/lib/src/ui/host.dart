@@ -6,6 +6,9 @@ final _baseHostSource = FlaxJsSource(flaxBaseBootstrap, sourceUrl: 'flax:base');
 abstract final class Flax {
   static List<FlaxPlugin> _plugins = const [];
 
+  /// Scalar-only constructor timings for the isolated startup experiment.
+  static void Function(String, bool)? traceForExperiment;
+
   /// Modules this application can provide to subsequently created sessions.
   ///
   /// Sessions snapshot this value when they are constructed. The assets remain
@@ -18,21 +21,22 @@ abstract final class Flax {
   }
 }
 
-final _defaultBindingModules = <FlaxBindingModule>[
-  flutterBindings,
-  sdk_animationBindings,
-  sdk_dart_uiBindings,
-  sdk_dependenciesBindings,
-  sdk_foundationBindings,
-  sdk_gesturesBindings,
-  sdk_paintingBindings,
-  sdk_physicsBindings,
-  sdk_renderingBindings,
-  sdk_schedulerBindings,
-  sdk_semanticsBindings,
-  sdk_servicesBindings,
-  sdk_widgetsBindings,
-];
+// Initialize one declaration group at a time; the synchronous path still consumes all.
+Iterable<FlaxBindingModule> get _defaultBindingModules sync* {
+  yield flutterBindings;
+  yield sdk_animationBindings;
+  yield sdk_dart_uiBindings;
+  yield sdk_dependenciesBindings;
+  yield sdk_foundationBindings;
+  yield sdk_gesturesBindings;
+  yield sdk_paintingBindings;
+  yield sdk_physicsBindings;
+  yield sdk_renderingBindings;
+  yield sdk_schedulerBindings;
+  yield sdk_semanticsBindings;
+  yield sdk_servicesBindings;
+  yield sdk_widgetsBindings;
+}
 
 FlaxBindingRegistry _bindingsWithPlugins(
   FlaxBindingRegistry bindings,

@@ -238,7 +238,12 @@ extension _MemberCalls on _Session {
     }
   }
 
-  FlaxJsFunction helper(String name) => _helpers.putIfAbsent(name, () {
+  FlaxJsFunction helper(String name) =>
+      _helpers[name] ??
+      _loadHelper(name) ??
+      (throw ArgumentError('Missing binding helper: $name'));
+
+  FlaxJsFunction? _loadHelper(String name) {
     final helpers = runtime.getGlobal('__flaxBindings');
     try {
       if (helpers is! FlaxJsObject ||
@@ -250,15 +255,16 @@ extension _MemberCalls on _Session {
         throw ArgumentError('Incompatible JS binding helpers');
       }
       final function = helpers.getProperty(name);
+      if (function is FlaxJsUndefined) return null;
       if (function is! FlaxJsFunction) {
         _releaseJs(function);
         throw ArgumentError('Missing binding helper: $name');
       }
-      return function;
+      return _helpers[name] = function;
     } finally {
       _releaseJs(helpers);
     }
-  });
+  }
 
   void _checkCall(
     List<FlaxJsValue> args,
