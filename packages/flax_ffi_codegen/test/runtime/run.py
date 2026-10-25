@@ -133,7 +133,7 @@ Future<void> main() async {
 ''')
         empty_path = scratch / 'empty-path'
         empty_path.mkdir()
-        gate.run([args.flutter_root / 'bin/dart', '--packages=.dart_tool/package_config.json', missing_cmake],
+        gate.run([args.flutter_root / 'bin/cache/dart-sdk/bin/dart', '--packages=.dart_tool/package_config.json', missing_cmake],
                  app, {**env, 'PATH': str(empty_path)}, output / 'missing-cmake.log')
         missing_cmake.unlink()
         engine_name = 'flax_ios_debug_sim_arm64' if ios else 'flax_mac_debug'
