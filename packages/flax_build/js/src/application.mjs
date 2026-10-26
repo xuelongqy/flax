@@ -94,14 +94,12 @@ export async function prepareApplication({
     throw new Error('Application description must be a string');
   }
   const manifest = {
-    formatVersion: modules === undefined ? 1 : 2,
     id: text(id ?? metadata.flax?.id ?? metadata.name, 'id'),
     version: text(metadata.version, 'version'),
     entry: text(entry, 'entry'),
     ...(modules === undefined
       ? {}
       : {
-          entryFormat: 'module',
           requiredCapabilities: [
             'esm',
             ...(Object.values(modules).includes('json') ? ['json-modules'] : []),
@@ -182,7 +180,6 @@ export async function packApplication({ directory, outputFile = `${directory}.fl
   const root = await realpath(directory);
   const manifest = JSON.parse(await readFile(resolve(root, 'flax.json'), 'utf8'));
   if (
-    ![1, 2].includes(manifest.formatVersion) ||
     !validKey(manifest.entry) ||
     reserved.has(manifest.entry.split('/')[0].toLowerCase()) ||
     manifest.entry.split('/')[0].toLowerCase().startsWith('assetmanifest.')
@@ -274,24 +271,18 @@ export async function packApplication({ directory, outputFile = `${directory}.fl
 }
 
 function validateModules(manifest) {
-  if (manifest.formatVersion === 1) {
-    if (manifest.entryFormat !== undefined && manifest.entryFormat !== 'script')
-      throw new Error('Native module applications require formatVersion 2');
-    return;
-  }
   const modules = manifest.modules;
+  if (modules === undefined && manifest.requiredCapabilities === undefined) return;
+  const required = manifest.requiredCapabilities ?? [];
   if (
-    manifest.entryFormat !== 'module' ||
     !modules ||
     typeof modules !== 'object' ||
     Array.isArray(modules) ||
     Object.keys(modules).length > 256 ||
     modules[manifest.entry] !== 'javascript' ||
-    !Array.isArray(manifest.requiredCapabilities) ||
-    !manifest.requiredCapabilities.includes('esm') ||
-    new Set(manifest.requiredCapabilities).size !==
-      manifest.requiredCapabilities.length ||
-    manifest.requiredCapabilities.some(
+    !Array.isArray(required) ||
+    new Set(required).size !== required.length ||
+    required.some(
       (name) =>
         !['esm', 'json-modules', 'wasm-modules', 'wasm-source-imports'].includes(name),
     )

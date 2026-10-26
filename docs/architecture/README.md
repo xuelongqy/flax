@@ -63,8 +63,9 @@ Flutter reassemble applies the committed update. See
 [ADR 0040](../decisions/0040-vite-hot-reload.md).
 
 [Native ESM, JSON and Wasm](modules.md) adds runtime module loading, remote imports and
-interpreted Wasm on iOS jitless. Scripts retain synchronous direct evaluation, staged
-owning View startup and factory hot reload. See the
+interpreted Wasm on iOS jitless. Every application entry is ESM, with staged owning View
+startup and asynchronous readiness for imported dependencies and top-level await.
+Single-bundle builds retain factory hot reload. See the
 [implementation task](../tasks/native-esm-and-wasm.md) for platform acceptance and
 remaining gates.
 

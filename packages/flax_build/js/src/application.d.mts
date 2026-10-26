@@ -1,10 +1,8 @@
 export interface FlaxApplicationManifest {
-  formatVersion: 1 | 2;
   id: string;
   version: string;
   entry: string;
   description?: string;
-  entryFormat?: 'module';
   requiredCapabilities?: string[];
   modules?: Record<string, 'javascript' | 'json' | 'wasm'>;
 }

@@ -14,8 +14,10 @@ publication disabled.
 Owning FlaxViews automatically prepare their Session before first mount. The maintained
 macOS execution extension initializes pure JS modules on an available empty heap, then
 adopts that same Context on UI for real Dart calls. Existing explicit Session/page calls
-keep their synchronous contract. Loading cancellation and older-engine fallback require
-no application configuration; see [startup](../../docs/architecture/session-startup.md).
+execute entries without dependencies or top-level await synchronously; imported graphs
+expose `session.ready`. Every application entry is native ESM without a format flag.
+Loading cancellation and staged UI-thread preparation require no application setting;
+see [startup](../../docs/architecture/session-startup.md).
 
 ## Paired installation
 
@@ -110,14 +112,14 @@ lifecycle rules.
 
 `FlaxSession.assetBundle` selects the native resource source for its UI and business
 code. Source/file/network-JS Views select `assets/flax/` inside the inherited host
-bundle by default. Explicit Sessions and FlaxApplication script loaders use that prefix
-inside rootBundle. An explicit assetBundle is always used unchanged; pass rootBundle to
-retain host-root resource keys, or pass an inherited business bundle explicitly to avoid
-another prefix. Ordinary rebuilds retain the Session and its resource Bundle.
-`FlaxDirectoryAssetBundle` supplies installed directory resources using the same keys
-and native Image providers. `FlaxPrefixedAssetBundle` scopes built-in assets to
-`assets/flax/` by default; `FlaxManifest.load(bundle)` reads the shared `flax.json`
-descriptor. JS accesses the Session bundle through `getAssetBundle()` from
+bundle by default. Explicit Sessions and FlaxApplication file/network loaders use that
+prefix inside rootBundle. An explicit assetBundle is always used unchanged; pass
+rootBundle to retain host-root resource keys, or pass an inherited business bundle
+explicitly to avoid another prefix. Ordinary rebuilds retain the Session and its
+resource Bundle. `FlaxDirectoryAssetBundle` supplies installed directory resources using
+the same keys and native Image providers. `FlaxPrefixedAssetBundle` scopes built-in
+assets to `assets/flax/` by default; `FlaxManifest.load(bundle)` reads the shared
+`flax.json` descriptor. JS accesses the Session bundle through `getAssetBundle()` from
 `@flax/core/assets`. See
 [application resources](../../docs/architecture/applications.md#application-resources).
 

@@ -5,9 +5,6 @@ import 'dart:typed_data';
 
 import 'api.dart';
 
-/// The application entry is either an ordinary script or original JavaScript ESM.
-enum FlaxEntryFormat { script, module }
-
 enum FlaxModuleKind { javascript, json, wasm }
 
 /// Immutable source bytes; module state is owned by each loader, not by this value.
@@ -56,7 +53,10 @@ final class FlaxModuleLoader {
     final name = '__flaxModuleBridge${_nextBridge++}';
     runtime.registerHostFunction(name, _dispatch);
     final callback = runtime.getGlobal(name) as FlaxJsFunction;
-    final factory = runtime.evaluate(_bridgeSource) as FlaxJsFunction;
+    final factory = runtime.evaluate(
+      _bridgeSource,
+      sourceUrl: 'flax:module-bridge',
+    ) as FlaxJsFunction;
     final global = runtime.evaluate('globalThis') as FlaxJsObject;
     try {
       _helper = factory.call([callback]) as FlaxJsObject;
@@ -104,8 +104,36 @@ final class FlaxModuleLoader {
   int _bytes = 0;
   int _nextPromise = 0;
   bool _closed = false;
+  bool _started = false;
 
   Future<void> get cancelled => _cancelled.future;
+
+  /// Starts a native ESM application. Graphs without dependencies or top-level
+  /// await execute immediately; other entries complete asynchronously.
+  FutureOr<void> start(FlaxModuleSource entry) {
+    _check();
+    if (_started) throw StateError('The application entry was already started');
+    if (entry.kind != FlaxModuleKind.javascript) {
+      throw ArgumentError('An application entry must be JavaScript ESM');
+    }
+    _started = true;
+    final node = _compile(entry);
+    _loads[(node.uri, null)] = Future.value(node);
+    if (node.synchronous) {
+      _release(
+        _nativeCall('evaluate', [
+          FlaxJsString(node.key),
+          const FlaxJsNumber(0),
+        ]),
+      );
+      return null;
+    }
+    return () async {
+      await _graph(node);
+      final namespace = await _evaluate(node, false);
+      namespace.release();
+    }();
+  }
 
   void _check() {
     if (_closed || runtime.isDisposed) {
@@ -284,11 +312,17 @@ final class FlaxModuleLoader {
         ),
       ]) as FlaxJsObject;
       try {
+        final asynchronous = requests.getProperty('async');
+        final dependencies = _requests(requests);
         final node = _ModuleNode(
           key,
           uri,
-          _requests(requests),
+          dependencies,
           kind: source.kind,
+          synchronous:
+              dependencies.isEmpty &&
+              asynchronous is FlaxJsBoolean &&
+              !asynchronous.value,
         );
         _nodes[key] = node;
         return node;
@@ -607,8 +641,10 @@ final class FlaxModuleLoader {
     try {
       return _call(_controller!, method, args);
     } on FlaxJsException catch (error) {
-      final value = _call(_controller!, 'takeError', const []);
-      if (value is FlaxJsObject) _nativeErrors[error] = value;
+      if (!_closed) {
+        final value = _call(_controller!, 'takeError', const []);
+        if (value is FlaxJsObject) _nativeErrors[error] = value;
+      }
       rethrow;
     }
   }
@@ -666,11 +702,18 @@ final class FlaxModuleLoader {
 }
 
 final class _ModuleNode {
-  const _ModuleNode(this.key, this.uri, this.requests, {this.kind});
+  const _ModuleNode(
+    this.key,
+    this.uri,
+    this.requests, {
+    this.kind,
+    this.synchronous = false,
+  });
   final String key;
   final Uri uri;
   final List<(String, String, bool)> requests;
   final FlaxModuleKind? kind;
+  final bool synchronous;
 }
 
 final class _ModuleImport {

@@ -12,7 +12,6 @@ class FlaxManifest {
     required this.version,
     required this.entry,
     this.description,
-    this.entryFormat = FlaxEntryFormat.script,
     this.modules = const {},
     this.requiredCapabilities = const [],
   });
@@ -21,7 +20,7 @@ class FlaxManifest {
   final String version;
   final String entry;
   final String? description;
-  final FlaxEntryFormat entryFormat;
+
   final Map<String, FlaxModuleKind> modules;
   final List<String> requiredCapabilities;
 
@@ -29,9 +28,8 @@ class FlaxManifest {
       FlaxManifest.fromJson(jsonDecode(await bundle.loadString('flax.json')));
 
   factory FlaxManifest.fromJson(Object? json) {
-    if (json is! Map<String, dynamic> ||
-        !const [1, 2].contains(json['formatVersion'])) {
-      throw const FormatException('Unsupported flax.json formatVersion.');
+    if (json is! Map<String, dynamic>) {
+      throw const FormatException('Invalid flax.json descriptor.');
     }
     String requiredString(String key) {
       final value = json[key];
@@ -53,13 +51,11 @@ class FlaxManifest {
     }
     final modules = <String, FlaxModuleKind>{};
     final capabilities = <String>[];
-    if (json['formatVersion'] == 2) {
+    if (json['modules'] != null || json['requiredCapabilities'] != null) {
       final declared = json['modules'];
-      final required = json['requiredCapabilities'];
-      if (json['entryFormat'] != 'module' ||
-          declared is! Map ||
+      final required = json['requiredCapabilities'] ?? const <Object?>[];
+      if (declared is! Map ||
           required is! List ||
-          !required.contains('esm') ||
           required.toSet().length != required.length ||
           required.any(
             (item) => !const [
@@ -90,20 +86,12 @@ class FlaxManifest {
         throw const FormatException('Invalid module entry or module count.');
       }
       capabilities.addAll(required.cast<String>());
-    } else if (json.containsKey('entryFormat') &&
-        json['entryFormat'] != 'script') {
-      throw const FormatException(
-        'Native module applications require formatVersion 2.',
-      );
     }
     return FlaxManifest(
       id: requiredString('id'),
       version: requiredString('version'),
       entry: entry,
       description: description as String?,
-      entryFormat: json['formatVersion'] == 2
-          ? FlaxEntryFormat.module
-          : FlaxEntryFormat.script,
       modules: Map.unmodifiable(modules),
       requiredCapabilities: List.unmodifiable(capabilities),
     );

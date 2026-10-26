@@ -8,11 +8,11 @@ The existing `FlaxView(source: ...)` and automatic file/bundle/package entrances
 their Session before mounting its application root. No new application argument or JS
 API is required. Initial declaration groups yield between stages. On a supported engine,
 an otherwise unused runtime registers modules and initializes the maintained `@flax/`
-module factories on a worker, then compiles the business entry without executing it.
-Consumer factories retain require-time initialization, including access to globals set
-by the application before its first require. UI adoption installs the real Dart hosts
-and runs that entry on the owning isolate. Builder/LayoutBuilder, overrides and super
-calls remain synchronous there.
+module factories on a worker. The application entry is compiled separately as native ESM
+after UI adoption. Consumer factories retain require-time initialization, including
+access to globals set by the application before its first require. UI adoption installs
+the real Dart hosts and evaluates that entry on the owning isolate.
+Builder/LayoutBuilder, overrides and super calls remain synchronous there.
 
 This uses one shared heap, not a second runtime or a serialized copy of JS objects.
 Background preparation requires a pristine context, no Dart bridge peers and no other
@@ -31,9 +31,11 @@ when it arrives during an owning View's background work.
 An owning View leaving or replacing its source cancels preparation. Native termination
 and joining restore UI ownership before cleanup; a cancelled root never mounts or
 reports a stale loading error. Queued Views do not share contexts, module state or
-callbacks. The startup queue releases completed entries. Session close still rejects new
-work immediately. Explicit Session/page entrances retain their existing synchronous
-lazy-loading contract.
+callbacks. The startup queue releases SDK initialization before entry evaluation;
+top-level await and remote downloads do not serialize another View behind the waiting
+application. Session close still rejects new work immediately. Explicit Session/page
+entrances execute entries without dependencies or top-level await synchronously; other
+entries expose the same `ready` Future as owning Views.
 
 The execution extension also combines call/property results with value descriptions and
 bulk-describes borrowed callback inputs. Strings use the existing buffer ownership and

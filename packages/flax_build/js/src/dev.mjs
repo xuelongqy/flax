@@ -422,16 +422,9 @@ function entryUrl(root, file) {
     : `/@fs/${file.split(sep).join('/')}`;
 }
 
-/** Start Vite as Flax's watcher/transform server and emit one synchronous app asset. */
-export async function startFlaxDev({
-  entry,
-  out,
-  port = 5173,
-  root = process.cwd(),
-  entryFormat = 'script',
-}) {
-  if (entryFormat === 'module') return startFlaxModuleDev({ entry, out, port, root });
-  if (entryFormat !== 'script') throw new Error('Unsupported entry format');
+/** Serve a module directory or emit one factory-HMR bundle, selected by output path. */
+export async function startFlaxDev({ entry, out, port = 5173, root = process.cwd() }) {
+  if (!/\.[cm]?js$/i.test(out)) return startFlaxModuleDev({ entry, out, port, root });
   root = await realpath(resolve(root));
   const entryFile = resolve(root, entry);
   const state = {

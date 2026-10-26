@@ -39,7 +39,7 @@ void main() {
       t,
       h.app(
         code: script('''
-var contextState;
+globalThis.contextState = undefined;
 class ContextState extends componentApi.ContextInputState {
   initState() { super.initState(); contextState = this; }
   build(context) {
@@ -85,7 +85,7 @@ componentApi.runApp(new ContextWidget());
         bindings: registry,
         onError: (e, _) => h.errors.add(e),
         source: script("""
-var selected = componentApi.signal(new componentApi.Counter('a', 1));
+globalThis.selected = componentApi.signal(new componentApi.Counter('a', 1));
 componentApi.runApp(componentApi.Center({child: selected.bind}));
 """),
       );
@@ -180,8 +180,8 @@ componentApi.runApp(componentApi.Center({child: selected.bind}));
         t,
         h.app(
           code: script('''
-var retainedVariantState;
-var retainedPlainState;
+globalThis.retainedVariantState = undefined;
+globalThis.retainedPlainState = undefined;
 class AnimatedState extends componentApi.SingleTickerProviderState {
   initState() {
     super.initState();
@@ -204,7 +204,7 @@ class PlainState extends componentApi.State {
 class Plain extends componentApi.StatefulWidget {
   createState() { return new PlainState(); }
 }
-var variantRoot = componentApi.signal(componentApi.Column({
+globalThis.variantRoot = componentApi.signal(componentApi.Column({
   children: [new Animated(), new Plain()],
 }));
 componentApi.runApp(componentApi.Center({child: variantRoot.bind}));
@@ -216,7 +216,7 @@ componentApi.runApp(componentApi.Center({child: variantRoot.bind}));
       expect(h.errors, isEmpty);
 
       h.execute('''
-var plainStateRejected = false;
+globalThis.plainStateRejected = false;
 try {
   var invalidProbe = componentApi.TickerProviderProbe({vsync: retainedPlainState});
   invalidProbe.dispose();
@@ -230,7 +230,7 @@ try {
       await t.pump();
       expect(find.text('gone'), findsOneWidget);
       h.execute('''
-var disposedVariantRejected = false;
+globalThis.disposedVariantRejected = false;
 try {
   componentApi.TickerProviderProbe({vsync: retainedVariantState});
 } catch (_) {
@@ -258,9 +258,9 @@ try {
         t,
         h.app(
           code: script('''
-var keptCreated = 0;
-var keptDisposed = 0;
-var keptState;
+globalThis.keptCreated = 0;
+globalThis.keptDisposed = 0;
+globalThis.keptState = undefined;
 class KeptState extends componentApi.$variant {
   keep = true;
   initState() {
@@ -283,7 +283,7 @@ class KeptState extends componentApi.$variant {
 class Kept extends componentApi.StatefulWidget {
   createState() { return new KeptState(); }
 }
-var keptRoot = componentApi.signal(componentApi.ListView.builder({
+globalThis.keptRoot = componentApi.signal(componentApi.ListView.builder({
   itemCount: 40,
   itemExtent: 100,
   itemBuilder: (context, index) => index === 0
@@ -365,8 +365,8 @@ componentApi.runApp(new Missing());
       t,
       h.app(
         code: script('''
-var keptProbe;
-var rejectedSuperContexts;
+globalThis.keptProbe = undefined;
+globalThis.rejectedSuperContexts = undefined;
 class ProbeState extends componentApi.KeepAliveState {
   get wantKeepAlive() { return false; }
   build(context) {
@@ -414,9 +414,10 @@ componentApi.runApp(new Probe());
     (t) async {
       final h = Harness();
       final code = script('''
-var {Counter, Column, signal, ValueKey, runApp} = componentApi;
-var shared = new Counter('same', 1);
-var children = signal([shared, shared]);
+const {Counter, Column, signal, ValueKey, runApp} = componentApi;
+Object.assign(globalThis, {Counter, Column, signal, ValueKey, runApp});
+globalThis.shared = new Counter('same', 1);
+globalThis.children = signal([shared, shared]);
 runApp(Column({children: children.bind}));
 ''');
       await flaxTestPumpView(t, app(h, code));
@@ -483,8 +484,8 @@ runApp(Column({children: children.bind}));
     await t.pump();
     expect(find.text('a:4:ltr'), findsOneWidget);
     h.execute('''
-var before = componentHooks.states[0].builds;
-var errors = [];
+globalThis.before = componentHooks.states[0].builds;
+globalThis.errors = [];
 try { componentHooks.states[0].setState(() => { componentHooks.states[0].count = 8; throw Error('partial'); }); } catch (e) { errors.push(String(e)); }
 try { componentHooks.states[0].setState(async () => {}); } catch (e) { errors.push(String(e)); }
 ''');
@@ -520,7 +521,7 @@ try { componentHooks.states[0].setState(async () => {}); } catch (e) { errors.pu
         t,
         h.app(
           code: script("""
-var lifecycleChecks = [];
+globalThis.lifecycleChecks = [];
 class EarlyState extends componentApi.State {
   constructor() {
     super();
@@ -540,7 +541,7 @@ class EarlyState extends componentApi.State {
 }
 class Early extends componentApi.StatefulWidget { createState() { return new EarlyState(); } }
 componentApi.runApp(new Early());
-var noEarlyCallbacks = lifecycleChecks.length === 0;
+globalThis.noEarlyCallbacks = lifecycleChecks.length === 0;
 """),
         ),
       );
@@ -747,10 +748,11 @@ componentApi.runApp(new Broken());
         t,
         h.app(
           code: script("""
-var {Column, Expanded, SizedBox, Text, ValueKey, signal, runApp, Counter} = componentApi;
-var First = class Named extends Counter {};
-var Second = class Named extends Counter {};
-var choice = signal(new First('first', 1, {key: ValueKey('same')}));
+const {Column, Expanded, SizedBox, Text, ValueKey, signal, runApp, Counter} = componentApi;
+Object.assign(globalThis, {Column, Expanded, SizedBox, Text, ValueKey, signal, runApp, Counter});
+globalThis.First = class Named extends Counter {};
+globalThis.Second = class Named extends Counter {};
+globalThis.choice = signal(new First('first', 1, {key: ValueKey('same')}));
 class FillState extends componentApi.State {
   build() { return Expanded({child: SizedBox({key: ValueKey('filled'), child: Text('fill')})}); }
 }
@@ -780,9 +782,9 @@ runApp(SizedBox({height: 500, child: Column({children: [componentApi.Center({chi
         t,
         h.app(
           code: script("""
-var victim;
-var trigger = false;
-var scheduling = [];
+globalThis.victim = undefined;
+globalThis.trigger = false;
+globalThis.scheduling = [];
 class LeftState extends componentApi.State {
   initState() { super.initState(); victim = this; }
   build() { return componentApi.Text('left'); }
@@ -824,9 +826,10 @@ componentApi.runApp(componentApi.Column({children:[new Left(), new Right('right'
         bindings: registry,
         onError: (e, _) => h.errors.add(e),
         source: script('''
-var {Counter, MaterialPage, MaterialPageRoute, Navigator, ValueKey, signal, runApp, identical} = componentApi;
-var makePage = initial => MaterialPage({key: ValueKey('base'), maintainState: false, child: new Counter('page', initial)});
-var pages = signal([makePage(2)]);
+const {Counter, MaterialPage, MaterialPageRoute, Navigator, ValueKey, signal, runApp, identical} = componentApi;
+Object.assign(globalThis, {Counter, MaterialPage, MaterialPageRoute, Navigator, ValueKey, signal, runApp, identical});
+globalThis.makePage = initial => MaterialPage({key: ValueKey('base'), maintainState: false, child: new Counter('page', initial)});
+globalThis.pages = signal([makePage(2)]);
 runApp(Navigator({pages: pages.bind, onDidRemovePage: page => { pages.value = pages.value.filter(p => !identical(p, page)); }}));
 '''),
       );
@@ -838,7 +841,7 @@ runApp(Navigator({pages: pages.bind, onDidRemovePage: page => { pages.value = pa
       );
       await t.pumpAndSettle();
       h.execute('''
-var nav = Navigator.of(componentHooks.states[0].context);
+globalThis.nav = Navigator.of(componentHooks.states[0].context);
 componentHooks.states[0].setState(() => componentHooks.states[0].count = 9);
 nav.push(MaterialPageRoute({builder: () => new Counter('route', 4)}));
 ''');
@@ -960,7 +963,7 @@ componentApi.runApp(new Failing());
       t,
       h.app(
         code: script("""
-var reused = new componentApi.CounterState();
+globalThis.reused = new componentApi.CounterState();
 class Reused extends componentApi.Counter { createState() { return reused; } }
 componentApi.runApp(componentApi.Column({children:[new Reused('a'), new Reused('b')]}));
 """),

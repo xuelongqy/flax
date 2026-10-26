@@ -144,9 +144,9 @@ String get _source =>
   for (const id of ${jsonEncode([_baseId, _dogId, _boxId, _detailedId, 'test.selection/types#type:Alias', 'test.other/types#type:Dog'])}) {
     b.defineObject(id, ['kind'], [], {}, []);
   }
-  function returned(name) {
+  globalThis.returned = function returned(name) {
     return b.invokeTopLevel('test.selection/types#function:' + name, [], [], {});
-  }
+  };
   w.registerPage('selection', () => w.SizedBox());
 ''';
 

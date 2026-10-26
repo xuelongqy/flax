@@ -120,46 +120,52 @@ void main() {
     await flaxTestUnmount(tester);
   });
 
-  testWidgets('reentrant close drains plugin hooks before disposing', (
-    tester,
-  ) async {
-    final runtime = RuntimeTracker();
-    final events = <String>[];
-    final errors = <Object>[];
-    final disposedDuringClose = <bool>[];
-    Future<void>? reentrant;
-    late final FlaxSession session;
-    session = FlaxSession(
-      createRuntime: () => runtime,
-      source: source,
-      bindings: registry,
-      onError: (error, _) => errors.add(error),
-      plugins: [
-        _ClosePlugin(() {
-          events.add('close');
-          reentrant = session.close();
-          disposedDuringClose.add(runtime.isDisposed);
-          events.add('close returned');
-        }, () => events.add('dispose')),
-      ],
+  for (final prepared in [false, true]) {
+    testWidgets(
+      'reentrant close drains plugin hooks after preparation: $prepared',
+      (tester) async {
+        final runtime = RuntimeTracker();
+        final events = <String>[];
+        final errors = <Object>[];
+        final disposedDuringClose = <bool>[];
+        Future<void>? reentrant;
+        late final FlaxSession session;
+        session = FlaxSession(
+          createRuntime: () => runtime,
+          source: source,
+          bindings: registry,
+          onError: (error, _) => errors.add(error),
+          plugins: [
+            _ClosePlugin(() {
+              events.add('close');
+              reentrant = session.close();
+              disposedDuringClose.add(runtime.isDisposed);
+              events.add('close returned');
+            }, () => events.add('dispose')),
+          ],
+        );
+        final preparation = prepared ? session.prepareForExperiment() : null;
+        await flaxTestPumpView(
+          tester,
+          MaterialApp(
+            home: Scaffold(body: FlaxView.session(session: session)),
+          ),
+        );
+        await preparation;
+        await flaxTestUnmount(tester);
+        await tester.pumpAndSettle();
+        final closing = session.close();
+        expect(reentrant, same(closing));
+        expect(disposedDuringClose, [false]);
+        await tester.pumpAndSettle();
+        await closing;
+        expect(events, ['close', 'close returned', 'dispose']);
+        expect(runtime.isDisposed, isTrue);
+        expect(runtime.handlesAtDispose, 0);
+        expect(errors, isEmpty);
+      },
     );
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(body: FlaxView.session(session: session)),
-      ),
-    );
-    await flaxTestUnmount(tester);
-    await tester.pumpAndSettle();
-    final closing = session.close();
-    expect(reentrant, same(closing));
-    expect(disposedDuringClose, [false]);
-    await tester.pumpAndSettle();
-    await closing;
-    expect(events, ['close', 'close returned', 'dispose']);
-    expect(runtime.isDisposed, isTrue);
-    expect(runtime.handlesAtDispose, 0);
-    expect(errors, isEmpty);
-  });
+  }
 }
 
 class _ClosePlugin extends FlaxPlugin {

@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -19,7 +19,6 @@ class FlaxApplication {
     this.assetBundle,
     this.sourceUrl,
     this.manifest, {
-    this.entryFormat = FlaxEntryFormat.script,
     this.entryUri,
     this.loadModule,
     this.imports = const {},
@@ -29,7 +28,6 @@ class FlaxApplication {
   final AssetBundle assetBundle;
   final String sourceUrl;
   final FlaxManifest? manifest;
-  final FlaxEntryFormat entryFormat;
   final Uri? entryUri;
   final FlaxModuleSourceLoader? loadModule;
   final Map<String, Uri> imports;
@@ -56,7 +54,7 @@ class FlaxApplication {
     final entry = base.resolve(manifest.entry);
     Future<FlaxModuleSource> local(FlaxModuleRequest request) async {
       if (request.uri.scheme == 'http' || request.uri.scheme == 'https') {
-        return _remoteModule(
+        return loadRemoteModule(
           request,
           download: download,
           cacheDirectory: cacheDirectory,
@@ -66,12 +64,13 @@ class FlaxApplication {
         throw const FormatException('Module escapes its application root');
       }
       final key = request.uri.path.substring(base.path.length);
-      if (!isFlaxApplicationEntry(key) || !manifest.modules.containsKey(key)) {
+      if (!isFlaxApplicationEntry(key) ||
+          manifest.modules.isNotEmpty && !manifest.modules.containsKey(key)) {
         throw const FormatException('Undeclared application module');
       }
       return FlaxModuleSource(
         uri: request.uri,
-        kind: manifest.modules[key]!,
+        kind: manifest.modules[key] ?? _fileKind(key),
         bytes: Uint8List.sublistView(await bundle.load(key)),
       );
     }
@@ -81,7 +80,6 @@ class FlaxApplication {
       bundle,
       'flax:${manifest.id}/${manifest.version}/${manifest.entry}',
       manifest,
-      entryFormat: manifest.entryFormat,
       entryUri: entry,
       loadModule: loadModule ?? local,
       imports: Map.unmodifiable(imports),
@@ -128,12 +126,11 @@ class FlaxApplication {
     );
   }
 
-  /// Script-only mode does not discover a neighboring manifest or resource folder.
+  /// A file entry does not discover a neighboring manifest or resource folder.
   /// Resources default to assets/flax inside Flutter's rootBundle.
   static Future<FlaxApplication> file(
     File file, {
     AssetBundle? assetBundle,
-    FlaxEntryFormat entryFormat = FlaxEntryFormat.script,
     Map<String, Uri> imports = const {},
     FlaxModuleSourceLoader? loadModule,
     FlaxDownloader? download,
@@ -148,7 +145,7 @@ class FlaxApplication {
     final entry = resolved.uri;
     Future<FlaxModuleSource> local(FlaxModuleRequest request) async {
       if (request.uri.scheme == 'http' || request.uri.scheme == 'https') {
-        return _remoteModule(
+        return loadRemoteModule(
           request,
           download: download,
           cacheDirectory: cacheDirectory,
@@ -179,14 +176,13 @@ class FlaxApplication {
       assetBundle ?? FlaxPrefixedAssetBundle(),
       file.absolute.uri.toString(),
       null,
-      entryFormat: entryFormat,
       entryUri: entry,
       loadModule: loadModule ?? local,
       imports: Map.unmodifiable(imports),
     );
   }
 
-  /// Downloads once, then uses the same script reader or package installer.
+  /// Downloads an ESM entry or installs a business package.
   static Future<FlaxApplication> network({
     required Uri uri,
     required FlaxRemoteFormat format,
@@ -197,7 +193,6 @@ class FlaxApplication {
     Directory? installationDirectory,
     AssetBundle? assetBundle,
     Future<void>? cancelled,
-    FlaxEntryFormat entryFormat = FlaxEntryFormat.script,
     Map<String, Uri> imports = const {},
     FlaxModuleSourceLoader? loadModule,
     bool sandbox = false,
@@ -208,12 +203,15 @@ class FlaxApplication {
     if (format == FlaxRemoteFormat.package && assetBundle != null) {
       throw ArgumentError('Package resources come from the package itself');
     }
-    if (format == FlaxRemoteFormat.package &&
-        entryFormat != FlaxEntryFormat.script) {
-      throw ArgumentError('Package entry format comes from flax.json');
+    if (format == FlaxRemoteFormat.javascript &&
+        installationDirectory != null) {
+      throw ArgumentError(
+        'installationDirectory only applies to package format',
+      );
     }
-    if (entryFormat == FlaxEntryFormat.module) {
-      final source = await _remoteModule(
+    if (format == FlaxRemoteFormat.javascript) {
+      headers = Map.unmodifiable(headers);
+      final source = await loadRemoteModule(
         FlaxModuleRequest(
           uri: uri,
           expectedKind: null,
@@ -234,12 +232,11 @@ class FlaxApplication {
         assetBundle ?? FlaxPrefixedAssetBundle(),
         _diagnosticUrl(source.uri),
         null,
-        entryFormat: entryFormat,
         entryUri: source.uri,
         imports: Map.unmodifiable(imports),
         loadModule:
             loadModule ??
-            (request) => _remoteModule(
+            (request) => loadRemoteModule(
               request,
               headers: request.uri.origin == uri.origin ? headers : const {},
               download: download,
@@ -264,34 +261,77 @@ class FlaxApplication {
     late FlaxApplication application;
     try {
       cancellation.check();
-      if (format == FlaxRemoteFormat.package) {
-        application = await package(
-          downloaded.file,
-          installationDirectory: options.installationDirectory,
-          imports: imports,
-          loadModule: loadModule,
-          download: download,
-          cacheDirectory: cacheDirectory,
-        );
-      } else {
-        final loaded = await file(downloaded.file, assetBundle: assetBundle);
-        application = FlaxApplication._(
-          loaded.source,
-          loaded.assetBundle,
-          Uri(
-            scheme: uri.scheme,
-            host: uri.host,
-            port: uri.hasPort ? uri.port : null,
-            path: uri.path,
-          ).toString(),
-          null,
-        );
-      }
+      application = await package(
+        downloaded.file,
+        installationDirectory: options.installationDirectory,
+        imports: imports,
+        loadModule: loadModule,
+        download: download,
+        cacheDirectory: cacheDirectory,
+      );
     } finally {
       await downloaded.release();
     }
     cancellation.check();
     return application;
+  }
+
+  /// Default HTTP module transport, also used by source-backed Sessions.
+  static Future<FlaxModuleSource> loadRemoteModule(
+    FlaxModuleRequest request, {
+    Map<String, String> headers = const {},
+    String? expectedSha256,
+    FlaxDownloader? download,
+    Directory? cacheDirectory,
+  }) async {
+    final cancellation = FlaxLoadCancellation(request.cancelled);
+    final downloaded = await downloadFlaxApplication(
+      FlaxNetworkOptions(
+        uri: request.uri.removeFragment(),
+        format: FlaxRemoteFormat.javascript,
+        headers: {
+          for (final header in headers.entries)
+            if (header.key.toLowerCase() != 'accept') header.key: header.value,
+          'accept': request.expectedKind == FlaxModuleKind.json
+              ? 'application/json'
+              : 'text/javascript, application/javascript, application/wasm',
+        },
+        expectedSha256: expectedSha256,
+        download: download,
+        cacheDirectory: cacheDirectory,
+        modules: true,
+      ),
+      cancellation: cancellation,
+    );
+    try {
+      cancellation.check();
+      final mime = downloaded.contentType!
+          .split(';')
+          .first
+          .trim()
+          .toLowerCase();
+      final kind = mime == 'application/wasm'
+          ? FlaxModuleKind.wasm
+          : mime == 'application/json' || mime.endsWith('+json')
+          ? FlaxModuleKind.json
+          : FlaxModuleKind.javascript;
+      if (request.expectedKind == FlaxModuleKind.json &&
+              kind != FlaxModuleKind.json ||
+          request.expectedKind != FlaxModuleKind.json &&
+              kind == FlaxModuleKind.json) {
+        throw const FormatException(
+          'Module Content-Type does not match import attributes',
+        );
+      }
+      final uri = request.uri.hasFragment
+          ? downloaded.finalUri!.replace(fragment: request.uri.fragment)
+          : downloaded.finalUri!;
+      final bytes = await downloaded.file.readAsBytes();
+      cancellation.check();
+      return FlaxModuleSource(uri: uri, kind: kind, bytes: bytes);
+    } finally {
+      await downloaded.release();
+    }
   }
 }
 
@@ -310,57 +350,4 @@ FlaxModuleKind _fileKind(String path) {
     'wasm' => FlaxModuleKind.wasm,
     _ => throw const FormatException('Unsupported module file type'),
   };
-}
-
-Future<FlaxModuleSource> _remoteModule(
-  FlaxModuleRequest request, {
-  Map<String, String> headers = const {},
-  String? expectedSha256,
-  FlaxDownloader? download,
-  Directory? cacheDirectory,
-}) async {
-  final downloaded = await downloadFlaxApplication(
-    FlaxNetworkOptions(
-      uri: request.uri.removeFragment(),
-      format: FlaxRemoteFormat.javascript,
-      headers: {
-        for (final header in headers.entries)
-          if (header.key.toLowerCase() != 'accept') header.key: header.value,
-        'accept': request.expectedKind == FlaxModuleKind.json
-            ? 'application/json'
-            : 'text/javascript, application/javascript, application/wasm',
-      },
-      expectedSha256: expectedSha256,
-      download: download,
-      cacheDirectory: cacheDirectory,
-      modules: true,
-    ),
-    cancellation: FlaxLoadCancellation(request.cancelled),
-  );
-  try {
-    final mime = downloaded.contentType!.split(';').first.trim().toLowerCase();
-    final kind = mime == 'application/wasm'
-        ? FlaxModuleKind.wasm
-        : mime == 'application/json' || mime.endsWith('+json')
-        ? FlaxModuleKind.json
-        : FlaxModuleKind.javascript;
-    if (request.expectedKind == FlaxModuleKind.json &&
-            kind != FlaxModuleKind.json ||
-        request.expectedKind != FlaxModuleKind.json &&
-            kind == FlaxModuleKind.json) {
-      throw const FormatException(
-        'Module Content-Type does not match import attributes',
-      );
-    }
-    final uri = request.uri.hasFragment
-        ? downloaded.finalUri!.replace(fragment: request.uri.fragment)
-        : downloaded.finalUri!;
-    return FlaxModuleSource(
-      uri: uri,
-      kind: kind,
-      bytes: await downloaded.file.readAsBytes(),
-    );
-  } finally {
-    await downloaded.release();
-  }
 }

@@ -103,6 +103,84 @@ void flaxModuleContract(
   }
 
   test(
+    'a closing entry preserves its synchronous JavaScript failure',
+    () async {
+      final modules = loader([]);
+      runtime.registerHostFunction('closeModuleLoader', (_, _) {
+        modules.close();
+        return const FlaxJsUndefined();
+      });
+      tests.expect(
+        () => modules.start(
+          _source('closing-sync.js', '''
+        closeModuleLoader();
+        throw new Error('failure after close');
+      '''),
+        ),
+        tests.throwsA(
+          tests.isA<FlaxJsException>().having(
+            (error) => error.message,
+            'original failure',
+            tests.contains('failure after close'),
+          ),
+        ),
+      );
+      tests.expect((runtime.evaluate('21 * 2') as FlaxJsNumber).value, 42);
+    },
+  );
+
+  test(
+    'native close does not retain a failure raised during evaluation',
+    () async {
+      final importer = runtime.evaluate('() => {}') as FlaxJsFunction;
+      final controller = (runtime as FlaxJsModuleRuntime).installModuleLoader(
+        importer,
+      );
+      FlaxJsValue call(String name, [List<FlaxJsValue> args = const []]) {
+        final method = controller.getProperty(name) as FlaxJsFunction;
+        try {
+          return method.call(args, thisValue: controller);
+        } finally {
+          method.release();
+        }
+      }
+
+      runtime.registerHostFunction(
+        'closeModuleController',
+        (_, _) => call('close'),
+      );
+      try {
+        final requests = call('compile', [
+          const FlaxJsString('closing'),
+          const FlaxJsString('flax:closing'),
+          const FlaxJsNumber(0),
+          const FlaxJsString(
+            "closeModuleController(); throw new Error('closed');",
+          ),
+        ]) as FlaxJsObject;
+        requests.release();
+        tests.expect(
+          () => call('evaluate', [
+            const FlaxJsString('closing'),
+            const FlaxJsNumber(0),
+          ]),
+          tests.throwsA(tests.isA<FlaxJsException>()),
+        );
+        final failure = call('takeError');
+        try {
+          tests.expect(failure, tests.isA<FlaxJsUndefined>());
+        } finally {
+          if (failure is FlaxJsObject) failure.release();
+        }
+      } finally {
+        call('close');
+        controller.release();
+        importer.release();
+      }
+    },
+  );
+
+  test(
     'closing during asynchronous Wasm compilation retires the owning Context',
     () async {
       final modules = loader([]);

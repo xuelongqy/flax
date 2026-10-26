@@ -17,6 +17,135 @@ import '../support/engine.dart';
 import '../support/harness.dart' show registry;
 
 void main() {
+  test(
+    'application entries use module scope and preserve synchronous errors',
+    () async {
+      final runtime = FlaxTestRuntimeTracker(createTestRuntime());
+      final loader = FlaxModuleLoader(
+        runtime: runtime,
+        loadSource: (_) async => throw StateError('Unexpected fetch'),
+      );
+      try {
+        final pending = loader.start(
+          FlaxModuleSource(
+            uri: Uri.parse('flax://test/entry.js'),
+            kind: FlaxModuleKind.javascript,
+            bytes: utf8.encode("const local = 42; globalThis.result = local;"),
+          ),
+        );
+        expect(pending, isNull);
+        expect((runtime.getGlobal('result') as FlaxJsNumber).value, 42);
+        expect(runtime.getGlobal('local'), isA<FlaxJsUndefined>());
+      } finally {
+        loader.close();
+        expect(runtime.handles, 0);
+        runtime.dispose();
+      }
+      final throwing = FlaxTestRuntimeTracker(createTestRuntime());
+      final failures = FlaxModuleLoader(
+        runtime: throwing,
+        loadSource: (_) async => throw StateError('Unexpected fetch'),
+      );
+      try {
+        expect(
+          () => failures.start(
+            FlaxModuleSource(
+              uri: Uri.parse('flax://test/failure.js'),
+              kind: FlaxModuleKind.javascript,
+              bytes: utf8.encode(
+                "globalThis.attempts = (globalThis.attempts ?? 0) + 1; throw new SyntaxError('entry failure');",
+              ),
+            ),
+          ),
+          throwsA(isA<FlaxJsException>()),
+        );
+        expect((throwing.getGlobal('attempts') as FlaxJsNumber).value, 1);
+      } finally {
+        failures.close();
+        expect(throwing.handles, 0);
+        throwing.dispose();
+      }
+    },
+  );
+
+  testWidgets('top-level await does not hold another owning View startup', (
+    t,
+  ) async {
+    final runtimes = <FlaxTestRuntimeTracker>[];
+    final errors = <Object>[];
+    FlaxJsRuntime create() {
+      final runtime = FlaxTestRuntimeTracker(createTestRuntime());
+      runtimes.add(runtime);
+      return runtime;
+    }
+
+    addTearDown(() {
+      for (final runtime in runtimes) {
+        if (!runtime.isDisposed) runtime.dispose();
+      }
+    });
+    await t.pumpWidget(
+      Directionality(
+        textDirection: TextDirection.ltr,
+        child: Column(
+          children: [
+            FlaxView(
+              createRuntime: create,
+              bindings: registry,
+              source: """
+            import {Text, runApp} from '@flax/flutter/widgets';
+            await(new Promise(resolve => { globalThis.releaseEntry = resolve; }));
+            runApp(Text('await complete'));
+          """,
+              onError: (error, _) => errors.add(error),
+            ),
+            FlaxView(
+              createRuntime: create,
+              bindings: registry,
+              source: "const {Text, runApp} = __flaxModules.require('@flax/flutter/widgets'); runApp(Text('independent'));",
+              onError: (error, _) => errors.add(error),
+            ),
+          ],
+        ),
+      ),
+    );
+    try {
+      for (
+        var turn = 0;
+        turn < 5000 &&
+            find.text('independent').evaluate().isEmpty &&
+            errors.isEmpty;
+        turn++
+      ) {
+        await t.pump(const Duration(milliseconds: 16));
+        await t.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 1)),
+        );
+      }
+      expect(errors, isEmpty);
+      expect(find.text('independent'), findsOneWidget);
+      expect(find.text('await complete'), findsNothing);
+      runtimes.first.evaluate('releaseEntry()');
+      for (
+        var turn = 0;
+        turn < 100 && find.text('await complete').evaluate().isEmpty;
+        turn++
+      ) {
+        await t.pump(const Duration(milliseconds: 16));
+        await t.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 1)),
+        );
+      }
+      expect(find.text('await complete'), findsOneWidget);
+    } finally {
+      await flaxTestUnmount(t);
+      for (final runtime in runtimes) {
+        await flaxTestWaitForRuntimeDisposal(t, runtime);
+        expect(runtime.handlesAtDispose, 0);
+      }
+    }
+  });
+
   testWidgets('owning module Views preserve asynchronous application loading', (
     t,
   ) async {
@@ -113,7 +242,7 @@ void main() {
         runApp(Text('late SDK'));
       ''',
       sourceUrl: 'flax://test/late-sdk.js',
-      entryFormat: FlaxEntryFormat.module,
+
       createRuntime: () => runtime,
       bindings: registry,
       onError: (error, stack) => errors.add('$error\n$stack'),
@@ -236,14 +365,15 @@ void main() {
 
     try {
       for (var pass = 0; pass < 2; pass++) {
+        final headers = {'Authorization': 'private'};
         final application = await FlaxApplication.network(
           uri: initial,
           format: FlaxRemoteFormat.javascript,
-          entryFormat: FlaxEntryFormat.module,
-          headers: const {'Authorization': 'private'},
+          headers: headers,
           download: download,
           cacheDirectory: root,
         );
+        headers['Authorization'] = 'changed-account';
         expect(application.entryUri, finalUri.replace(fragment: 'entry'));
         expect(
           application.sourceUrl,
@@ -299,7 +429,7 @@ void main() {
           FlaxApplication.network(
             uri: Uri.parse('https://modules.invalid/$mode.js'),
             format: FlaxRemoteFormat.javascript,
-            entryFormat: FlaxEntryFormat.module,
+
             expectedSha256: mode == 'hash' ? '0' * 64 : null,
             cacheDirectory: root,
             download: (request) async => FlaxDownloadResponse(
@@ -335,7 +465,7 @@ void main() {
         FlaxApplication.network(
           uri: Uri.parse('https://modules.invalid/main.js'),
           format: FlaxRemoteFormat.javascript,
-          entryFormat: FlaxEntryFormat.module,
+
           sandbox: true,
           download: (_) async {
             sideEffects++;
@@ -366,7 +496,7 @@ void main() {
       final session = FlaxSession(
         source: 'await new Promise(() => {});',
         sourceUrl: 'https://modules.invalid/main.js',
-        entryFormat: FlaxEntryFormat.module,
+
         createRuntime: createTestRuntime,
         bindings: registry,
       );
@@ -385,11 +515,9 @@ class _ModulesBundle extends CachingAssetBundle {
     }
     final source = switch (key) {
       'flax.json' => jsonEncode({
-        'formatVersion': 2,
         'id': 'modules',
         'version': '1.0.0',
         'entry': 'main.js',
-        'entryFormat': 'module',
         'requiredCapabilities': ['esm', 'json-modules'],
         'modules': {
           'main.js': 'javascript',

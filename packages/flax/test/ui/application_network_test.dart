@@ -32,6 +32,7 @@ void main() {
         validators.add(request.headers.value('if-none-match'));
         authorization.add(request.headers.value('authorization'));
         final response = request.response;
+        response.headers.set('content-type', 'application/javascript');
         if (request.uri.path == '/redirect') {
           response.statusCode = 302;
           response.headers.set('location', '/artifact?secret=token');
@@ -203,8 +204,13 @@ void main() {
         calls++;
         seenHeaders.add(request.headers);
         return FlaxDownloadResponse(
+          finalUri: request.uri,
           statusCode: 200,
-          headers: {'Content-Length': length, 'ETag': '"a"'},
+          headers: {
+            'Content-Length': length,
+            'ETag': '"a"',
+            'Content-Type': 'application/javascript',
+          },
           body: Stream.value(utf8.encode('script')),
           onClose: () => closed++,
         );
@@ -230,6 +236,16 @@ void main() {
         expect(closed, 3);
         await expectLater(load(digest: 'invalid'), throwsArgumentError);
         expect(calls, 3);
+        await expectLater(
+          FlaxApplication.network(
+            uri: Uri.parse('https://example.invalid/no-extension'),
+            format: FlaxRemoteFormat.javascript,
+            installationDirectory: root,
+            download: download,
+          ),
+          throwsArgumentError,
+        );
+        expect(calls, 3);
         final cancelled = Completer<void>();
         final listening = Completer<void>();
         var bodyCancelled = false;
@@ -242,8 +258,12 @@ void main() {
           format: FlaxRemoteFormat.javascript,
           cacheDirectory: root,
           cancelled: cancelled.future,
-          download: (_) async =>
-              FlaxDownloadResponse(statusCode: 200, body: body.stream),
+          download: (request) async => FlaxDownloadResponse(
+            finalUri: request.uri,
+            statusCode: 200,
+            headers: {'content-type': 'application/javascript'},
+            body: body.stream,
+          ),
         );
         final failed = expectLater(active, throwsStateError);
         await listening.future;
@@ -311,10 +331,12 @@ void main() {
               format: FlaxRemoteFormat.javascript,
               cacheDirectory: cache,
               cancelled: cancelled.future,
-              download: (_) async {
+              download: (request) async {
                 calls++;
                 return FlaxDownloadResponse(
+                  finalUri: request.uri,
                   statusCode: 200,
+                  headers: {'content-type': 'application/javascript'},
                   body: Stream.value(utf8.encode('code')),
                   onClose: () {
                     if (!cancelled.isCompleted) cancelled.complete();
@@ -340,6 +362,7 @@ void main() {
     final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
     var target = '/first';
     server.listen((request) async {
+      request.response.headers.set('content-type', 'application/javascript');
       if (request.uri.path == '/entry') {
         request.response.statusCode = HttpStatus.found;
         request.response.headers.set('location', target);
@@ -385,10 +408,14 @@ void main() {
                 uri: Uri.parse('https://example.invalid/error-$status'),
                 format: FlaxRemoteFormat.javascript,
                 cacheDirectory: root,
-                download: (_) async => FlaxDownloadResponse(
+                download: (request) async => FlaxDownloadResponse(
+                  finalUri: request.uri,
                   statusCode: status,
                   body: body.stream,
-                  headers: status == 200 ? {'content-length': 'invalid'} : {},
+                  headers: {
+                    'content-type': 'application/javascript',
+                    if (status == 200) 'content-length': 'invalid',
+                  },
                 ),
               ),
               throwsA(anything),
@@ -419,9 +446,13 @@ void main() {
         uri: Uri.parse('https://example.invalid/oversized'),
         format: FlaxRemoteFormat.javascript,
         cacheDirectory: root,
-        download: (_) async => FlaxDownloadResponse(
+        download: (request) async => FlaxDownloadResponse(
+          finalUri: request.uri,
           statusCode: 200,
-          headers: {'content-length': '1'},
+          headers: {
+            'content-length': '1',
+            'content-type': 'application/javascript',
+          },
           body: body.stream,
           onClose: () {
             if (!released.isCompleted) released.complete();
@@ -455,8 +486,9 @@ void main() {
       Future<FlaxDownloadResponse> download(FlaxDownloadRequest request) async {
         if (!revalidate) {
           return FlaxDownloadResponse(
+            finalUri: request.uri,
             statusCode: 200,
-            headers: {'etag': '"v1"'},
+            headers: {'etag': '"v1"', 'content-type': 'application/javascript'},
             body: Stream.value(utf8.encode('code')),
           );
         }
@@ -464,6 +496,7 @@ void main() {
         if (callers == 6) ready.complete();
         await ready.future;
         return FlaxDownloadResponse(
+          finalUri: request.uri,
           statusCode: 304,
           headers: {'cache-control': 'no-store'},
           body: const Stream.empty(),
@@ -507,7 +540,9 @@ void main() {
       Future<FlaxDownloadResponse> download(FlaxDownloadRequest request) async {
         calls++;
         return FlaxDownloadResponse(
+          finalUri: request.uri,
           statusCode: 200,
+          headers: {'content-type': 'application/javascript'},
           body: Stream.value(utf8.encode(_source)),
         );
       }
@@ -567,7 +602,9 @@ void main() {
         await request.cancelled;
         pending.complete(
           FlaxDownloadResponse(
+            finalUri: request.uri,
             statusCode: 200,
+            headers: {'content-type': 'application/javascript'},
             body: lateBody.stream,
             onClose: () => closed = true,
           ),

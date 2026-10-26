@@ -18,7 +18,8 @@ For remote imports, run `pnpm --filter @flax/example-standalone run modules:dev`
 another terminal and add `--dart-define=FLAX_MODULE_URL=http://127.0.0.1:5173/main.js`
 to the Flutter command. Loopback reaches the Mac from the iOS simulator. The endpoint
 serves separate original modules with strict MIME types. Apply edits by restarting the
-owning Session; the existing script example retains its factory HMR.
+owning Session; the existing single-bundle example retains its factory HMR. Both
+application entries execute as ESM without a format flag.
 
 The generated `assets/flax_esm/` and `.flax` archive are build outputs. Sources and the
 small Wasm binary live in `js/esm/`; no offline HBC, code cache or snapshot is used. See
@@ -123,9 +124,9 @@ execution, not Developer ID distribution signing.
 The
 [Dart constructor examples](../../docs/architecture/applications.md#application-loading-modes)
 show every entrance with the required runtime factory and binding registry. Explicit
-assetBundle arguments on script entries are used unchanged. A script's directory or URL
-does not select companion resources; choose a package when code and resources must be
-updated together.
+assetBundle arguments on source/file/network entries are used unchanged. An entry's
+directory or URL does not select companion resources; choose a package when code and
+resources must be updated together.
 
 The default command uses FlaxView.bundle and reads built-in assets without extraction.
 `--sandbox-assets` demonstrates FlaxView.directory with the copied directory. The other
@@ -138,11 +139,12 @@ dart run tool/standalone_run.dart --script-assets
 
 Package mode copies the bundled `.flax` file to application support storage, then lets
 FlaxView.package install/cache it under `<ApplicationSupport>/flax/installed/<digest>/`.
-Script mode copies app.js and uses FlaxView.file's default built-in business Bundle; no
-flax.json is required by that entry. The scenario validates built-in, directory, package
-cold/warm cache loads and single-file entrances, including actual decoded image pixels,
-JSON and native image variants. The package cache has no automatic rollback or cleanup.
-Damaged completed installations fail without overwriting live files.
+The file example copies app.js and uses FlaxView.file's default built-in business
+Bundle; no flax.json is required by that entry. The scenario validates built-in,
+directory, package cold/warm cache loads and single-file entrances, including actual
+decoded image pixels, JSON and native image variants. The package cache has no automatic
+rollback or cleanup. Damaged completed installations fail without overwriting live
+files.
 
 Remote modes use the same constructors and resource rules:
 
@@ -165,7 +167,7 @@ Programmatic `startApplication(source: jsSource)` demonstrates the source-string
 with the same default business Bundle. The scenario verifies source/file/network-JS
 images and JSON without passing an assetBundle. A custom FLAX_ASSET_PREFIX still selects
 an explicit prefixed Bundle in the example. Host-root resources require an explicit
-assetBundle, such as rootBundle; a script's disk location does not select resources.
+assetBundle, such as rootBundle; an entry's disk location does not select resources.
 
 The sandbox demonstration selects `<ApplicationSupport>/flax/` directly. The directory
 API itself requires a caller-supplied Directory and reads it in place. Package

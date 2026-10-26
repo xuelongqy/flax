@@ -31,11 +31,11 @@ FlaxOwnedTestHarness _harness(List<WeakReference<RenderProxyBox>> peers) {
     },
     source:
         '''
-      var R = ${require('@flax/flutter/rendering')};
+      globalThis.R = ${require('@flax/flutter/rendering')};
       var W = ${require('@flax/flutter/widgets')};
-      var counts = {get: 0, compute: 0};
-      var captureVisitor = false;
-      var weakCallback;
+      globalThis.counts = {get: 0, compute: 0};
+      globalThis.captureVisitor = false;
+      globalThis.weakCallback = undefined;
       class Probe extends R.RenderProxyBox {
         #increment = 7;
         getMinIntrinsicWidth(height) {
@@ -54,11 +54,11 @@ FlaxOwnedTestHarness _harness(List<WeakReference<RenderProxyBox>> peers) {
           super.visitChildren(visitor);
         }
       }
-      var plain = R.RenderProxyBox.implement([], {});
-      var probe = new Probe();
-      var weakProbe = new WeakRef(probe);
-      var tight = R.BoxConstraints.tightFor({width: 32, height: 16});
-      function renderBatch(kind, iterations) {
+      globalThis.plain = R.RenderProxyBox.implement([], {});
+      globalThis.probe = new Probe();
+      globalThis.weakProbe = new WeakRef(probe);
+      globalThis.tight = R.BoxConstraints.tightFor({width: 32, height: 16});
+      globalThis.renderBatch = function renderBatch(kind, iterations) {
         const box = kind === 'plain' ? plain : probe;
         let checksum = 0;
         for (let i = 0; i < iterations; i++) {
@@ -67,7 +67,7 @@ FlaxOwnedTestHarness _harness(List<WeakReference<RenderProxyBox>> peers) {
           checksum += box.getMinIntrinsicWidth(i) + box.getDryLayout(tight).width;
         }
         return checksum;
-      }
+      };
       W.registerPage('renderBindings', () => W.SizedBox());
     ''',
   );

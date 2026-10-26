@@ -15,7 +15,7 @@ import '../support/harness.dart' show registry;
 
 void main() {
   test(
-    'script loaders and Sessions share the default business bundle',
+    'application loaders and Sessions share the default business bundle',
     () async {
       final root = await Directory.systemTemp.createTemp('flax-script-bundle-');
       final session = FlaxSession(
@@ -37,8 +37,10 @@ void main() {
               format: FlaxRemoteFormat.javascript,
               assetBundle: explicit,
               cacheDirectory: root,
-              download: (_) async => FlaxDownloadResponse(
+              download: (request) async => FlaxDownloadResponse(
+                finalUri: request.uri,
                 statusCode: 200,
+                headers: {'content-type': 'application/javascript'},
                 body: Stream.value(utf8.encode(_source)),
               ),
             ),
@@ -84,7 +86,9 @@ void main() {
       Future<FlaxDownloadResponse> download(FlaxDownloadRequest request) async {
         downloads++;
         return FlaxDownloadResponse(
+          finalUri: request.uri,
           statusCode: 200,
+          headers: {'content-type': 'application/javascript'},
           body: Stream.value(utf8.encode(_resourceSource)),
         );
       }
@@ -365,7 +369,7 @@ void main() {
         expect(
           bundle.loads['flax.json'],
           1,
-        ); // Script mode does not discover metadata.
+        ); // A file entry does not discover a companion descriptor.
         await t.pumpWidget(const SizedBox());
         await t.pumpAndSettle();
       } finally {
@@ -439,12 +443,7 @@ void main() {
 
 Map<String, List<int>> _files({String message = 'first'}) => {
   'flax.json': utf8.encode(
-    jsonEncode({
-      'formatVersion': 1,
-      'id': 'main',
-      'version': '1',
-      'entry': 'app.js',
-    }),
+    jsonEncode({'id': 'main', 'version': '1', 'entry': 'app.js'}),
   ),
   'app.js': utf8.encode(_source),
   'flax.assets.json': utf8.encode(

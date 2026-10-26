@@ -86,7 +86,7 @@ componentApi.runApp(new Parent());
           onError: (error, _) => errors.add(error),
           source:
               '''${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}
-var armed = ${hook == 'initialDependencies'};
+globalThis.armed = ${hook == 'initialDependencies'};
 class Probe extends componentApi.Counter {
   createState() { return new ProbeState(); }
 }
@@ -96,8 +96,8 @@ class ProbeState extends componentApi.CounterState {
     $body
   }
 }
-var makeProbe = value => new Probe('probe', value);
-var selected = componentApi.signal(makeProbe(1));
+globalThis.makeProbe = value => new Probe('probe', value);
+globalThis.selected = componentApi.signal(makeProbe(1));
 componentApi.runApp(componentApi.Column({children: [
   componentApi.Center({child: selected.bind}),
   new componentApi.Counter('sibling', 2),

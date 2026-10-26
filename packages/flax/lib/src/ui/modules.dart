@@ -306,11 +306,13 @@ class _ModuleInstallation {
     }
     _registry = result;
     yield 'module-registry';
-    if (preloaded) return;
     for (final module in modules) {
       for (final name in [module.specifier, ...module.subpaths]) {
         _namespaces[name] = module.specifier;
       }
+    }
+    if (preloaded) return;
+    for (final module in modules) {
       _releaseJs(context.evaluateSource(module.source!));
       yield module.specifier;
     }

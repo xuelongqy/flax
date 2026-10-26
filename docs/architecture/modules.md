@@ -8,19 +8,19 @@ are outside this contract.
 
 ## Application entries
 
-Script is the default and retains synchronous `evaluate` and direct Session loading.
-Owning Script Views use the maintained staged startup; module readiness does not hold
-that startup queue across top-level await. Source, file and network-JavaScript entries
-select `entryFormat: FlaxEntryFormat.module` explicitly. Bundles, directories and
-packages select the mode through `flax.json`:
+Every application entry is native ESM, including source strings, files, network entries,
+bundles, directories and packages. No entry-mode or descriptor-version option is needed.
+Entries without static dependencies or top-level await execute synchronously; other
+entries expose asynchronous readiness. Owning Views stage SDK initialization and release
+the startup queue before evaluating the application, so await and network delays do not
+hold another View's startup. The low-level `FlaxJsRuntime.evaluate` API remains Script
+evaluation for host/bootstrap code. A module inventory is optional in `flax.json`:
 
 ```json
 {
-  "formatVersion": 2,
   "id": "example",
   "version": "1.0.0",
   "entry": "main.js",
-  "entryFormat": "module",
   "requiredCapabilities": [
     "esm",
     "json-modules",
@@ -35,15 +35,21 @@ packages select the mode through `flax.json`:
 }
 ```
 
-Version 1 keeps script behavior. Older hosts reject version 2 before execution. A new
-host validates the declared module paths/kinds and capability names. Business versions,
-host SDK versions, native ABI 2 and UI protocol 24 remain independent.
+The host validates declared module paths/kinds and capability names. Without an
+inventory, dependencies resolve by extension inside the application root. Application
+code has module scope: use exports or `globalThis` for values that must be shared.
+Business versions, host SDK versions, native ABI 2 and UI protocol 24 remain
+independent.
 
 `await session.ready` completes after entry evaluation, including top-level await.
 Owning Views keep their loading/error presentation during that interval. A failed entry
 disposes its Session; a later failed dynamic import rejects only that import. Closing a
 Session cancels readiness and pending downloads without waiting for an unresolved user
-Promise. Borrowed root/page Views use the same readiness and ownership.
+Promise. Borrowed root/page Views use the same readiness and ownership. Network I/O and
+await release the event loop; source parsing, linking, SDK initialization and module
+evaluation remain synchronous work on the owning UI thread. Large modules and long
+synchronous code can miss frames. See the
+[physical entry measurements](../../experiments/module_loading/README.md).
 
 A Session entry still calls `runApp` or `registerPage`. For a library module graph with
 no UI entry, use `FlaxModuleLoader` directly, release returned namespaces and close the
@@ -84,10 +90,11 @@ npm lookup.
 
 ## Sources and transport
 
-Prepared applications load only declared modules inside their module root. File entries
-resolve local dependencies inside the entry's real parent directory; symlinks cannot
-escape it. File types are `.js`/`.mjs`, `.json` and `.wasm`. Business asset keys and the
-Session AssetBundle retain their existing resource contract.
+Prepared applications load dependencies inside their module root; an optional module
+inventory restricts them to declared files. File entries resolve local dependencies
+inside the entry's real parent directory; symlinks cannot escape it. File types are
+`.js`/`.mjs`, `.json` and `.wasm`. Business asset keys and the Session AssetBundle
+retain their existing resource contract.
 
 Remote imports support HTTP(S) without the optional Fetch plugin. Relative imports use
 the final response URL, including after cache revalidation. Queries and fragments belong
@@ -99,8 +106,9 @@ JavaScript responses require a JavaScript MIME type, JSON requires `application/
 an application `+json` type, and Wasm requires `application/wasm`. Suffixes do not
 override HTTP MIME types. The default downloader follows at most five same-origin
 redirects. Module adapters must supply `FlaxDownloadResponse.finalUri`; cross-origin
-redirects are rejected. Application headers apply only to dependencies on the entry
-origin. Other origins receive no entry credentials.
+redirects are rejected. Application headers are snapshotted before loading the entry and
+apply only to dependencies on the entry origin. Other origins receive no entry
+credentials.
 
 The existing artifact cache verifies byte hashes, honors `no-store`/`Vary: *`, and
 revalidates ETags. Records retain final URLs and MIME types, partitioned by headers and
@@ -125,17 +133,18 @@ types, budgets and redirect boundaries.
 
 ## Engine and build integration
 
-The optional module extension version 1 preserves native ABI 2. An engine without it
-continues to run scripts and explicitly rejects module mode. Context-owned module maps,
-roots, errors and promises retire before runtime/FFI shutdown. V8 retains its default
-foreground queues. Worker tasks notify the owning Dart event loop through a native port;
-the Session checkpoint pumps that queue and drains microtasks on the owning thread. This
-also delivers asynchronous Wasm results after entry readiness without polling. Closing
-the runtime unregisters notifications before releasing its context.
+The module extension version 1 preserves native ABI 2. Application startup requires
+native ESM capability and rejects engines without it before installing host plugins.
+Context-owned module maps, roots, errors and promises retire before runtime/FFI
+shutdown. V8 retains its default foreground queues. Worker tasks notify the owning Dart
+event loop through a native port; the Session checkpoint pumps that queue and drains
+microtasks on the owning thread. This also delivers asynchronous Wasm results after
+entry readiness without polling. Closing the runtime unregisters notifications before
+releasing its context.
 
 Host jobs and microtasks continue during entry loading, including before a delayed SDK
 import installs UI bindings. Binding sweeps start once those helpers are available;
-Session readiness retains the fixed cleanup helper set used by ordinary scripts.
+Session readiness installs its fixed cleanup helper set after the entry completes.
 
 iOS keeps JIT and TurboFan disabled. SDK 0.3.2 enables DrumBrake with explicit bounds
 checks and V8 pointer compression; CppGC remains uncaged with compression and young
@@ -148,23 +157,26 @@ execution; there is no isolation implementation or descriptor-controlled sandbox
 Physical iOS hosts must enable Xcode's **Extended Virtual Addressing** capability and
 use a provisioning profile containing
 `com.apple.developer.kernel.extended-virtual-addressing = true`. V8 pointer compression
-requires a 4 GiB virtual reservation, even for a script-only Session; it does not commit
-4 GiB of RAM. Without sufficient address space V8 aborts during process initialization.
-The example tools preserve existing entitlements when adding this capability, and the
-device gate checks the signed app before installation. Simulator execution does not
-establish this host requirement. See
+requires a 4 GiB virtual reservation, even for a Session without Wasm; it does not
+commit 4 GiB of RAM. Without sufficient address space V8 aborts during process
+initialization. The example tools preserve existing entitlements when adding this
+capability, and the device gate checks the signed app before installation. Simulator
+execution does not establish this host requirement. See
 [Apple's entitlement documentation](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.kernel.extended-virtual-addressing).
 
 `prepareModuleApplication()` from `@flax/build/application` stages a module directory,
-emits descriptor version 2 and includes all modules in `.flax` integrity inventories.
-JavaScript/JSON/Wasm bytes are preserved; TS uses the existing semantic compiler and
-esbuild in ESM mode without bundling. Use explicit runtime `.js` paths in TS imports.
-Runtime npm dependencies must be delivered as modules or explicit URL mappings.
+emits the application descriptor and includes all modules in `.flax` integrity
+inventories. JavaScript/JSON/Wasm bytes are preserved; TS uses the existing semantic
+compiler and esbuild in ESM mode without bundling. Use explicit runtime `.js` paths in
+TS imports. Runtime npm dependencies must be delivered as modules or explicit URL
+mappings.
 
-`flax-dev --entry-format module` uses Vite to watch and serve the emitted modules with
-their real MIME types, preserving host imports and JSON/Wasm syntax. Source changes emit
-`flax:restart`; replace the owning View/Session to apply them. Module mode does not
-patch an evaluated graph in place. Existing script factory HMR is unchanged.
+`flax-dev --entry src/main.js --out ../assets/flax_esm` uses Vite to watch and serve the
+emitted modules from an output directory with their real MIME types, preserving host
+imports and JSON/Wasm syntax. Source changes emit `flax:restart`; replace the owning
+View/Session to apply them. Module mode does not patch an evaluated graph in place. A
+file output such as `--out ../assets/flax/app.js` keeps the existing single-bundle
+factory HMR; the bundle also executes as an ESM entry.
 
 See the [runnable example](../../examples/standalone/README.md#native-esm-example) and
 [implementation task](../tasks/native-esm-and-wasm.md) for acceptance scope and limits.

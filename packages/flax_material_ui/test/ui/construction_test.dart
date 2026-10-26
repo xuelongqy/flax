@@ -177,13 +177,25 @@ void main() {
           )
           .length;
       expect(moduleHandles, 1);
+      final loaderHandles = runtime.handleLabels
+          .where(
+            (label) =>
+                label == 'module-loader' ||
+                label == 'flax:module-bridge.result',
+          )
+          .length;
+      expect(loaderHandles, 2);
       // Shared helper entries are fixed Session overhead, not business owners.
       expect(
-        handles - baseHandles - moduleHandles - sharedHelpers.length,
+        handles -
+            baseHandles -
+            moduleHandles -
+            loaderHandles -
+            sharedHelpers.length,
         lessThanOrEqualTo(32),
       );
       // Readiness retains two cleanup helpers so GC cannot create late owners.
-      expect(handles - 2, lessThanOrEqualTo(40));
+      expect(handles - 2 - loaderHandles, lessThanOrEqualTo(40));
       expect(calls['__flaxBaseCall'], 1); // Install the base clock origin once.
       expect(calls['__flaxMount'], 1);
       expect(calls['__flaxInvalidate'], 9);

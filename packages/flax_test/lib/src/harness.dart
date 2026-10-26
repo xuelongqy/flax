@@ -128,6 +128,9 @@ Future<void> flaxTestWaitForRuntimeDisposal(
 ) async {
   for (var turn = 0; turn < 100 && !runtime.isDisposed; turn++) {
     await tester.pump(const Duration(milliseconds: 1));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 1)),
+    );
   }
   expect(
     runtime.isDisposed,

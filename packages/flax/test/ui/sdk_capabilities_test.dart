@@ -45,17 +45,17 @@ void main() {
       final peers = <WeakReference<Object>>[];
       final h = _harness(
         '''
-      var calls = 0;
+      globalThis.calls = 0;
       class Order extends W.NumericFocusOrder {
         #offset = 0;
         doCompare(other) { calls++; return super.doCompare(other) + this.#offset; }
       }
-      var order = new Order(1);
-      var other = new Order(2);
-      var weak = new WeakRef(order);
+      globalThis.order = new Order(1);
+      globalThis.other = new Order(2);
+      globalThis.weak = new WeakRef(order);
       order.self = order;
-      var comparison = order.compareTo(other);
-      var callable = typeof new P.AssetImage('not-loaded.png').resolve === 'function' &&
+      globalThis.comparison = order.compareTo(other);
+      globalThis.callable = typeof new P.AssetImage('not-loaded.png').resolve === 'function' &&
         typeof new P.ImageStreamCompleter().maybeDispose === 'function';
       W.registerPage('sdk', () => W.SizedBox());
     ''',
@@ -92,17 +92,17 @@ void main() {
     'Context methods share typed calls, callbacks and checked generic queries',
     (tester) async {
       final h = _harness('''
-      var savedContext;
-      var visits = 0;
+      globalThis.savedContext = undefined;
+      globalThis.visits = 0;
       W.registerPage('sdk', () => W.Builder({builder: context => {
         savedContext = context;
         return W.SizedBox({width: 17, height: 19});
       }}));
-      function inspectContext() {
+      globalThis.inspectContext = function inspectContext() {
         savedContext.visitAncestorElements(element => { visits++; return true; });
         return savedContext.findRenderObject() !== null &&
           B.dartType(savedContext, 'findAncestorWidgetOfExactType', W.Directionality)() !== null;
-      }
+      };
     ''');
       try {
         await tester.pumpWidget(
@@ -138,12 +138,12 @@ void main() {
       var D = ${_require('@flax/dart/developer')};
       var Core = ${_require('@flax/dart/core')};
       var vector = V.Vector3(1, 2, 3);
-      var matrix = W.Matrix4.translation(vector);
+      globalThis.matrix = W.Matrix4.translation(vector);
       var encoding = C.Utf8Codec();
-      var decoded = encoding.decode(encoding.encode('Flax'));
-      var wrongListRejected = false;
+      globalThis.decoded = encoding.decode(encoding.encode('Flax'));
+      globalThis.wrongListRejected = false;
       try { encoding.decode(new Float64Array([65.5])); } catch (_) { wrongListRejected = true; }
-      var watch = Core.Stopwatch();
+      globalThis.watch = Core.Stopwatch();
       watch.start(); watch.stop();
       var flow = D.Flow.begin({id: 73});
       var decoration = B.asDart(P.BoxDecoration(), P.Decoration);
@@ -156,12 +156,12 @@ void main() {
       var painter = createPainter();
       painter.dispose();
       painter = createPainter(undefined); painter.dispose();
-      var rejectedNull = String(createPainter(null).error).includes('Unexpected null');
-      var constructors = typeof W.Action === 'function';
+      globalThis.rejectedNull = String(createPainter(null).error).includes('Unexpected null');
+      globalThis.constructors = typeof W.Action === 'function';
       class NativeAction extends W.Action {
         invoke(intent) { return 'handled'; }
       }
-      var actionResult = new W.ActionDispatcher().invokeAction(
+      globalThis.actionResult = new W.ActionDispatcher().invokeAction(
         new NativeAction(), new W.ActivateIntent());
       W.registerPage('sdk', () => W.SizedBox());
     ''');

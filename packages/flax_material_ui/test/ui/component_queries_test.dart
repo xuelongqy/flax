@@ -56,15 +56,15 @@ componentApi.runApp(new componentApi.Caption('old protocol'));
     (t) async {
       final h = Harness();
       final session = makeSession(h, '''
-var constructions = 0;
-var Label = class Label extends componentApi.StatelessWidget {
+globalThis.constructions = 0;
+globalThis.Label = class Label extends componentApi.StatelessWidget {
   constructor(options) { super(options); constructions++; }
   build() { return componentApi.SizedBox({width: 120, height: 40}); }
 }
-var OtherLabel = class Label extends componentApi.StatelessWidget {
+globalThis.OtherLabel = class Label extends componentApi.StatelessWidget {
   build() { return componentApi.Text('other'); }
 };
-var Unused = class Unused extends Label { constructor() { super(); throw new Error('must not construct'); } }
+globalThis.Unused = class Unused extends Label { constructor() { super(); throw new Error('must not construct'); } }
 componentApi.runApp(componentApi.Column({children: [new Label(), new Label({key: dartType(componentApi.ValueKey, dartTypes.string)('label')})]}));
 ''');
       await flaxTestPumpView(
@@ -160,14 +160,17 @@ componentApi.runApp(componentApi.Column({children: [new Label(), new Label({key:
     (t) async {
       final h = Harness();
       final session = makeSession(h, '''
-var contexts = [], found = [], builds = 0, changed = componentApi.signal(1);
-var Outer = class Outer extends componentApi.StatelessWidget {
+globalThis.contexts = [];
+globalThis.found = [];
+globalThis.builds = 0;
+globalThis.changed = componentApi.signal(1);
+globalThis.Outer = class Outer extends componentApi.StatelessWidget {
   constructor(value, child) { super(); this.value = value; this.child = child; }
   build(context) { contexts.push(context); return this.child; }
 }
-var Derived = class Derived extends Outer {}
-var Missing = class Missing extends Outer {}
-var Reader = class Reader extends componentApi.StatelessWidget {
+globalThis.Derived = class Derived extends Outer {}
+globalThis.Missing = class Missing extends Outer {}
+globalThis.Reader = class Reader extends componentApi.StatelessWidget {
   build(context) {
     builds++;
     contexts.push(context);
@@ -177,9 +180,9 @@ var Reader = class Reader extends componentApi.StatelessWidget {
     return componentApi.Text('query');
   }
 }
-var reader = new Reader();
-var nearest = new Outer(2, reader);
-var root = new Outer(1, new Derived(3, nearest));
+globalThis.reader = new Reader();
+globalThis.nearest = new Outer(2, reader);
+globalThis.root = new Outer(1, new Derived(3, nearest));
 componentApi.runApp(root);
 ''');
       await flaxTestPumpView(
@@ -221,11 +224,12 @@ componentApi.runApp(root);
     (t) async {
       final h = Harness();
       final session = makeSession(h, '''
-var measured = [], state;
-var Measuring = class Measuring extends componentApi.StatefulWidget {
+globalThis.measured = [];
+globalThis.state = undefined;
+globalThis.Measuring = class Measuring extends componentApi.StatefulWidget {
   createState() { return new MeasuringState(); }
 }
-var MeasuringState = class MeasuringState extends componentApi.State {
+globalThis.MeasuringState = class MeasuringState extends componentApi.State {
   initState() { super.initState(); state = this; this.readLater(); }
   async readLater() {
     await componentApi.SchedulerBinding.instance.endOfFrame;
@@ -273,12 +277,14 @@ componentApi.runApp(new Measuring());
     (t) async {
       final h = Harness();
       final session = makeSession(h, '''
-var context, builds = 0, inactive = 0;
-var Parent = class Parent extends componentApi.StatelessWidget {
+globalThis.context = undefined;
+globalThis.builds = 0;
+globalThis.inactive = 0;
+globalThis.Parent = class Parent extends componentApi.StatelessWidget {
   constructor(value, child) { super(); this.value = value; this.child = child; }
   build() { return this.child; }
 };
-var Child = class Child extends componentApi.StatefulWidget {
+globalThis.Child = class Child extends componentApi.StatefulWidget {
   createState() { return new ChildState(); }
 };
 class ChildState extends componentApi.State {
@@ -292,8 +298,8 @@ class ChildState extends componentApi.State {
     super.dispose();
   }
 }
-var child = new Child();
-var parent = componentApi.signal(new Parent(1, child));
+globalThis.child = new Child();
+globalThis.parent = componentApi.signal(new Parent(1, child));
 componentApi.runApp(componentApi.Center({child: parent.bind}));
 ''');
       await flaxTestPumpView(
@@ -331,8 +337,9 @@ componentApi.runApp(componentApi.Center({child: parent.bind}));
     Object? nativeBuildError;
     BuildContext? nativeSliver;
     final session = makeSession(h, '''
-var buildError = '', sliverContext;
-var Probe = class Probe extends componentApi.StatelessWidget {
+globalThis.buildError = '';
+globalThis.sliverContext = undefined;
+globalThis.Probe = class Probe extends componentApi.StatelessWidget {
   build(context) {
     try { context.size; } catch (e) { buildError = String(e); }
     return componentApi.ListView.builder({itemCount: 3, itemExtent: 20,
@@ -444,7 +451,8 @@ componentApi.runApp(new componentApi.Counter('types'));
   ) async {
     final h = Harness();
     final session = makeSession(h, '''
-var delivered = 0, cancelled = 0;
+globalThis.delivered = 0;
+globalThis.cancelled = 0;
 componentApi.runApp(new componentApi.Caption('closing'));
 ''');
     await flaxTestPumpView(

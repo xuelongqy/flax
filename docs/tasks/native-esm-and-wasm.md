@@ -1,8 +1,11 @@
 # Native ESM, JSON and Wasm acceptance
 
-Status: implemented and reviewed. Integration checks target Flax main `787f73867` and
-Flutter `flax/main` `8cff4500a7d`. SDK source main includes
-`3fa63023dd6e2c18bf41790dd8cd26428064ad25`. No push or publication is implied.
+Status: implemented and reviewed. The initial integration checks below used Flax main
+`787f73867` and Flutter `flax/main` `8cff4500a7d`. The follow-up default-entry changes
+and current validation are recorded in the
+[entry responsiveness experiment](../../experiments/module_loading/README.md). SDK
+source main includes `3fa63023dd6e2c18bf41790dd8cd26428064ad25`. No push or publication
+is implied.
 
 ## Delivered contract
 
@@ -14,17 +17,17 @@ use the default downloader without requiring the Fetch plugin. Final response UR
 types, credential partitions and integrity checks are retained. Each Session owns its
 instances, namespaces, failures and pending imports.
 
-Script remains the default. Descriptor version 1 and direct synchronous evaluation
-remain compatible; owning Script Views retain staged startup. Module readiness includes
-top-level await without holding the Script startup queue. The optional module extension
-preserves native ABI 2 and UI protocol 24 and does not add required methods to existing
-third-party runtime implementations. The host-owned `sandbox` option defaults to false;
-true fails before downloads, runtime allocation, plugin installation or execution.
+Every application entry now uses native ESM without entry-mode or descriptor-version
+settings. Owning Views retain staged SDK startup. Module readiness includes top-level
+await without holding the startup queue. The module extension preserves native ABI 2 and
+UI protocol 24. The separate low-level runtime Script API remains available for
+host/bootstrap code. The host-owned `sandbox` option defaults to false; true fails
+before downloads, runtime allocation, plugin installation or execution.
 
 The [standalone example](../../examples/standalone/README.md#native-esm-example) stages
-and runs a real module tree. Existing single-file Script bundling remains unchanged.
+and runs a real module tree. Single-file bundles also execute as ESM entries.
 `prepareModuleApplication()` preserves JS/JSON/Wasm and emits TypeScript as ESM without
-bundling. The explicit Vite module mode serves those modules and restarts the Session on
+bundling. A Vite output directory serves those modules and restarts the Session on
 changes. It does not rewrite imports for a browser or hot-patch an evaluated graph.
 
 ## SDK and integration review
@@ -36,9 +39,9 @@ own pointer compression or young generation. Both iOS targets pin producer revis
 These are local SDK candidates; release archives have not been published.
 
 Physical hosts require Extended Virtual Addressing in their signed entitlement and
-provisioning profile, including Script applications using this SDK. The example tools
-preserve other entitlements and verify this requirement before installation. Simulator
-execution does not establish physical-host signing compatibility.
+provisioning profile for every application using this SDK. The example tools preserve
+other entitlements and verify this requirement before installation. Simulator execution
+does not establish physical-host signing compatibility.
 
 The final review preserves both optional execution and module extensions. Native-port
 registration keeps the pristine context eligible for background Script preparation;
@@ -49,7 +52,11 @@ for user Promises. Cleanup helpers form a fixed pair of Session handles; constru
 checks retain the previous business handle budget and require zero handles at disposal.
 Failed entry loads share a bounded failure cache and release native exceptions on close.
 
-## Current verification
+## Initial integration verification
+
+The measurements below precede default ESM entry loading. Follow-up entry timing and
+current checks are recorded in the
+[entry responsiveness experiment](../../experiments/module_loading/README.md).
 
 - macOS: 423 Core UI tests pass, including owning module Views and staged Script
   startup. Both runtime commands pass the same 56 runtime/module/joint-GC contracts.

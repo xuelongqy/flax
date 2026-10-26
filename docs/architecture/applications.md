@@ -23,10 +23,10 @@ Flutter's own theme animation and inherited rebuilds are not additional Flax sch
 
 ## Application resources
 
-Native ESM entries use descriptor version 2 and asynchronous Session readiness; version
-1 retains script behavior. JS, JSON and Wasm dependencies share one runtime graph,
-including remote imports. See [native modules](modules.md) for mode selection, transport
-policy and source-provider APIs.
+Every application entry is native ESM without an entry-mode or descriptor-version
+setting. JS, JSON and Wasm dependencies share one runtime graph, including remote
+imports. Session readiness includes top-level await. See [native modules](modules.md)
+for transport policy and source-provider APIs.
 
 Main-project business code and resources form one directory, separate from prepared host
 modules. `prepareApplication()` from `@flax/build/application` stages resources from the
@@ -62,7 +62,6 @@ flutter:
 
 ```json
 {
-  "formatVersion": 1,
   "id": "main",
   "version": "1.0.0",
   "entry": "app.js",
@@ -284,12 +283,12 @@ development HMR does not implement them.
 `getApplicationSupportDirectory()` on the current platform. No absolute sandbox path is
 hard-coded into Flax.
 
-| Location                    | Default                                | Override and behavior                                                                                             |
-| --------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Built-in business resources | Flutter assets under `assets/flax/`    | `.bundle(prefix: ...)`, or an explicit `FlaxPrefixedAssetBundle` for script entries; no startup extraction        |
-| Prepared directory          | The Directory supplied to `.directory` | No implicit default, copy or id/version hierarchy; the sandbox demonstration chooses `<ApplicationSupport>/flax/` |
-| Package installation root   | `<ApplicationSupport>/flax/`           | `installationDirectory`; the installer appends `installed/<package-sha256>/`                                      |
-| Network artifact cache      | `<ApplicationSupport>/flax/downloads/` | `cacheDirectory`; the downloader appends `requests/` and `blobs/`                                                 |
+| Location                    | Default                                | Override and behavior                                                                                                   |
+| --------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Built-in business resources | Flutter assets under `assets/flax/`    | `.bundle(prefix: ...)`, or an explicit `FlaxPrefixedAssetBundle` for source/file/network entries; no startup extraction |
+| Prepared directory          | The Directory supplied to `.directory` | No implicit default, copy or id/version hierarchy; the sandbox demonstration chooses `<ApplicationSupport>/flax/`       |
+| Package installation root   | `<ApplicationSupport>/flax/`           | `installationDirectory`; the installer appends `installed/<package-sha256>/`                                            |
+| Network artifact cache      | `<ApplicationSupport>/flax/downloads/` | `cacheDirectory`; the downloader appends `requests/` and `blobs/`                                                       |
 
 ```text
 <ApplicationSupport>/flax/
@@ -400,26 +399,28 @@ when supplied, is a 64-character hexadecimal digest of the artifact bytes after 
 decompression; it is checked on both fresh and cached loads. A trusted expected digest
 can pin content; the package's own inventory is only an integrity check.
 
-`format` is required: `FlaxRemoteFormat.javascript` reads one JS file, while `.package`
-uses FlaxPackage.install and the directory loader. Script mode does not fetch companion
-images or JSON; it uses the built-in `assets/flax/` business Bundle by default, or an
-explicit resource Bundle. Remote JS therefore uses the resource version shipped with the
-host App by default; ship a remote package when code and resources need to change
-together. Package mode rejects an external assetBundle. `installationDirectory` only
-applies to package mode. The network JS source URL omits query parameters, which may
-contain tokens.
+`format` is required: `FlaxRemoteFormat.javascript` loads an ESM entry and its imported
+dependencies, while `.package` uses FlaxPackage.install and the directory loader.
+JavaScript responses require a JavaScript MIME type, and custom download adapters must
+supply their final response URL. Resource reads use the built-in `assets/flax/` business
+Bundle by default, or an explicit resource Bundle. Imported JSON is a module dependency;
+it does not change the Bundle used by Flutter assets. Remote JS therefore uses the
+resource version shipped with the host App by default; ship a remote package when code
+and resources need to change together. Package mode rejects an external assetBundle.
+`installationDirectory` only applies to package mode. The network JS source URL omits
+query parameters, which may contain tokens.
 
 `cacheDirectory` overrides the download cache root, defaulting to
-`<ApplicationSupport>/flax/downloads/`. Its `requests/<key>.json` records contain only
-content digest, size and ETag; `blobs/<sha256>` stores complete immutable payloads. The
-request key includes URL, format, canonical request headers and expected digest, so
-changing credentials or pinning a new digest does not reuse another request's validator.
-Metadata and payload files are staged then renamed; a failed download or digest check
-does not replace the previous record. Cached bytes are rehashed before sending
-If-None-Match. Cache metadata uses internal format version 2; earlier records trigger a
-full GET rather than reusing validators created without the redirect policy. A valid 304
-reuses the payload; missing ETag or corrupt cached bytes cause a full GET. Only 200 and
-a validated conditional 304 are accepted.
+`<ApplicationSupport>/flax/downloads/`. Its `requests/<key>.json` records contain
+content digest, size, ETag, final URL and MIME type; `blobs/<sha256>` stores complete
+immutable payloads. The request key includes URL, format, canonical request headers and
+expected digest, so changing credentials or pinning a new digest does not reuse another
+request's validator. Metadata and payload files are staged then renamed; a failed
+download or digest check does not replace the previous record. Cached bytes are rehashed
+before sending If-None-Match. Cache metadata uses internal format version 3; earlier
+records trigger a full GET rather than reusing validators created without the redirect
+policy. A valid 304 reuses the payload; missing ETag or corrupt cached bytes cause a
+full GET. Only 200 and a validated conditional 304 are accepted.
 
 This is an artifact revalidation cache: each new load contacts the server, regardless of
 HTTP freshness age. Ordinary Widget rebuilds retain the existing load and Session.

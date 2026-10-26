@@ -17,7 +17,6 @@ Future<void> main() async {
       : FlaxView.network(
           uri: Uri.parse(remote),
           format: FlaxRemoteFormat.javascript,
-          entryFormat: FlaxEntryFormat.module,
           createRuntime: FlaxEngine.createRuntime,
         );
   runApp(

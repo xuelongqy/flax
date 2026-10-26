@@ -375,43 +375,33 @@ class _Session {
 
   FlaxModuleLoader? _moduleLoader;
 
-  void load(
-    String source,
-    String sourceUrl, {
+  void initialize({
     required List<FlaxPlugin> plugins,
     required FlaxModuleAssets? moduleAssets,
+    required List<String> requiredCapabilities,
   }) {
     try {
-      for (final _ in loadSteps(
-        source,
-        sourceUrl,
-        plugins: plugins,
-        moduleAssets: moduleAssets,
-      )) {}
+      _checkCapabilities(requiredCapabilities);
+      for (final _ in _prepareSteps(plugins, moduleAssets)) {}
     } catch (_) {
       _dispose();
       rethrow;
     }
   }
 
-  // Yield only between stages; Builder/LayoutBuilder calls stay synchronous.
-  Future<void> loadStaged(
-    String source,
-    String sourceUrl, {
+  // Only initialization owns the startup queue; application await never does.
+  Future<void> initializeStaged({
     required List<FlaxPlugin> plugins,
     required FlaxModuleAssets? moduleAssets,
+    required List<String> requiredCapabilities,
     void Function(String, int)? onStep,
     bool Function()? cancelled,
   }) async {
     _loadingInStages = true;
-    final steps = loadSteps(
-      source,
-      sourceUrl,
-      plugins: plugins,
-      moduleAssets: moduleAssets,
-    ).iterator;
+    final steps = _prepareSteps(plugins, moduleAssets).iterator;
     final budget = Stopwatch()..start();
     try {
+      _checkCapabilities(requiredCapabilities);
       while (true) {
         if (cancelled?.call() == true) throw StateError('Closed Flax session');
         requireOpen();
@@ -432,31 +422,30 @@ class _Session {
     }
   }
 
-  Future<void> loadModule(
+  void _checkCapabilities(List<String> required) {
+    final capabilities = runtime is FlaxJsModuleRuntime
+        ? (runtime as FlaxJsModuleRuntime).moduleCapabilities
+        : 0;
+    const bits = {
+      'esm': 1,
+      'json-modules': 2,
+      'wasm-modules': 4,
+      'wasm-source-imports': 8,
+    };
+    for (final name in required) {
+      final bit = bits[name];
+      if (bit == null || capabilities & bit == 0) {
+        throw UnsupportedError('Missing native module capability: $name');
+      }
+    }
+  }
+
+  FutureOr<void> loadEntry(
     FlaxModuleSource entry, {
-    required List<FlaxPlugin> plugins,
-    required FlaxModuleAssets? moduleAssets,
     required FlaxModuleSourceLoader loadSource,
     required Map<String, Uri> imports,
-    required List<String> requiredCapabilities,
-  }) async {
+  }) {
     try {
-      final capabilities = runtime is FlaxJsModuleRuntime
-          ? (runtime as FlaxJsModuleRuntime).moduleCapabilities
-          : 0;
-      const bits = {
-        'esm': 1,
-        'json-modules': 2,
-        'wasm-modules': 4,
-        'wasm-source-imports': 8,
-      };
-      for (final name in ['esm', ...requiredCapabilities]) {
-        final bit = bits[name];
-        if (bit == null || capabilities & bit == 0) {
-          throw UnsupportedError('Missing native module capability: $name');
-        }
-      }
-      for (final _ in _prepareSteps(plugins, moduleAssets)) {}
       final loader = _moduleLoader = FlaxModuleLoader(
         runtime: runtime,
         loadSource: loadSource,
@@ -464,26 +453,27 @@ class _Session {
         onError: report,
         hostModule: (specifier) => _moduleInstallation?.namespace(specifier),
       );
-      final namespace = await loader.load(entry);
-      namespace.release();
-      requireOpen();
+      final pending = loader.start(entry);
+      if (pending is Future<void>) {
+        return () async {
+          try {
+            await pending;
+            requireOpen();
+            _finishLoading();
+          } catch (_) {
+            _dispose();
+            rethrow;
+          }
+        }();
+      }
+      // A synchronous host call may close after the entry created its root.
+      if (!active) throw StateError('Closed Flax session');
       _finishLoading();
+      return null;
     } catch (_) {
       _dispose();
       rethrow;
     }
-  }
-
-  Iterable<String> loadSteps(
-    String source,
-    String sourceUrl, {
-    required List<FlaxPlugin> plugins,
-    required FlaxModuleAssets? moduleAssets,
-  }) sync* {
-    yield* _prepareSteps(plugins, moduleAssets);
-    _releaseJs(runtime.evaluate(source, sourceUrl: sourceUrl));
-    _finishLoading();
-    yield 'application-entry';
   }
 
   Iterable<String> _prepareSteps(
@@ -630,7 +620,7 @@ class _Session {
     helper('sweepObjects');
     final pages = helper('finishRegistration').call(const []) as FlaxJsNumber;
     if (_root == null && pages.value == 0) {
-      throw StateError('The script must call runApp or registerPage');
+      throw StateError('The application must call runApp or registerPage');
     }
     _loadingInStages = false;
     checkpoint();

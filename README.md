@@ -15,7 +15,7 @@ and JS business references participate in joint GC. See the
 [host contract](docs/architecture/ui.md).
 
 Native [runtime modules](docs/architecture/modules.md) load original JavaScript ESM,
-JSON and Wasm from packaged files or HTTP(S). Script mode remains the default. iOS
+JSON and Wasm from packaged files or HTTP(S). Every application entry is ESM. iOS
 jitless enables Wasm through DrumBrake; sandbox isolation is not implemented.
 
 Core owns the public Flutter framework bindings. Material and Cupertino APIs come from

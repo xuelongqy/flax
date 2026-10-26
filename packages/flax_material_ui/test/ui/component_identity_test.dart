@@ -19,9 +19,9 @@ void main() {
           '''${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}
 class Notice extends componentApi.Counter {}
 class Counter extends componentApi.Counter {}
-var makeNotice = () => new Notice('notice');
-var makeCounter = () => new Counter('counter', 0, ${keyed ? "{key: componentApi.ValueKey('counter')}" : '{}'});
-var items = componentApi.signal([makeNotice(), makeCounter()]);
+globalThis.makeNotice = () => new Notice('notice');
+globalThis.makeCounter = () => new Counter('counter', 0, ${keyed ? "{key: componentApi.ValueKey('counter')}" : '{}'});
+globalThis.items = componentApi.signal([makeNotice(), makeCounter()]);
 componentApi.runApp(componentApi.Column({children: items.bind}));
 ''';
       Widget tree() => MaterialApp(

@@ -66,10 +66,10 @@ declaration or signature in the SDK.
 
 The [native ESM, JSON and Wasm task](../tasks/native-esm-and-wasm.md) records original
 JS/JSON/Wasm graphs, remote loading and iOS interpreted Wasm. The
-[module contract](../architecture/modules.md) defines the implemented extension,
-version-2 descriptor and readiness API. Focused macOS, simulator, physical iOS and
-Android gates pass, including Session cleanup and sustained physical iOS joint GC. The
-task records which evidence precedes the final integration review. CSS is excluded, the
+[module contract](../architecture/modules.md) defines the implemented extension, default
+ESM entry contract and readiness API. Focused macOS, simulator, physical iOS and Android
+gates pass, including Session cleanup and sustained physical iOS joint GC. The task
+records which evidence precedes the final integration review. CSS is excluded, the
 sandbox option is reserved only, and in-place ESM hot replacement remains deferred. SDK
 distribution and broader Wasm feature conformance require separate gates.
 

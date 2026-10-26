@@ -28,7 +28,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "bundle": "node tool/bundle.mjs",
     "modules": "node tool/modules.mjs",
-    "modules:dev": "flax-dev --entry esm/main.js --out ../assets/flax_esm --entry-format module"
+    "modules:dev": "flax-dev --entry esm/main.js --out ../assets/flax_esm"
   },
   "description": "Standalone Flax application with images and JSON resources.",
   "flax": {

@@ -60,9 +60,8 @@ void main() {
     },
   );
 
-  test('business manifest validates identity, format and relative entry', () {
+  test('business manifest validates identity and relative entry', () {
     final json = <String, Object?>{
-      'formatVersion': 1,
       'id': 'main',
       'version': '1.2.3',
       'entry': 'app.js',
@@ -74,7 +73,6 @@ void main() {
     expect(manifest.entry, 'app.js');
     expect(manifest.description, 'Example');
     for (final change in [
-      {'formatVersion': 2},
       {'id': ''},
       {'version': null},
       {'entry': '../app.js'},

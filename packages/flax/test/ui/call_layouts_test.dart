@@ -171,9 +171,9 @@ Future<FlaxOwnedTestHarness> _start(
     onCreate: onCreate,
     source: '''
 const w=__flaxModules.require('@flax/flutter/widgets'); w.runApp(w.SizedBox());
-var compat=__flaxModules.require('@flax/core/bindings');
-var oldLayout=Object.freeze([{name:'left'},{name:'right'}]);
-var reorderedLayout=Object.freeze([{name:'right'},{name:'left'}]);
+globalThis.compat=__flaxModules.require('@flax/core/bindings');
+globalThis.oldLayout=Object.freeze([{name:'left'},{name:'right'}]);
+globalThis.reorderedLayout=Object.freeze([{name:'right'},{name:'left'}]);
 ''',
   );
   await tester.pumpWidget(FlaxView.session(session: h.session));

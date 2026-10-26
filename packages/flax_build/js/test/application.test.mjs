@@ -42,7 +42,8 @@ test('native ESM staging preserves JS and binary bytes, lowers TS and packages e
       "import {value} from './main.js'; export const typed: number = value;",
     );
     const app = await prepareModuleApplication({ projectDirectory: project });
-    assert.equal(app.manifest.formatVersion, 2);
+    assert.equal(app.manifest.formatVersion, undefined);
+    assert.equal(app.manifest.entryFormat, undefined);
     assert.equal(await readFile(app.entryPath, 'utf8'), code);
     assert.match(
       await readFile(join(app.directory, 'typed.js'), 'utf8'),
@@ -60,7 +61,7 @@ test('native ESM staging preserves JS and binary bytes, lowers TS and packages e
     assert.equal(
       JSON.parse(await readFile(join(app.directory, 'flax.json'), 'utf8'))
         .formatVersion,
-      2,
+      undefined,
     );
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -131,7 +132,6 @@ test('native Vite endpoint serves original ESM, JSON and Wasm without browser im
       out: 'output',
       root,
       port: 0,
-      entryFormat: 'module',
     });
     const entry = await fetch(dev.url);
     assert.equal(await entry.text(), code);
@@ -173,7 +173,6 @@ test('application staging defaults, metadata, resource copies and configurable p
     assert.deepEqual(
       JSON.parse(await readFile(join(first.directory, 'flax.json'), 'utf8')),
       {
-        formatVersion: 1,
         id: 'main',
         version: '1.2.3',
         entry: 'app.js',
