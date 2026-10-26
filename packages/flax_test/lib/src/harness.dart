@@ -27,6 +27,34 @@ Finder flaxTestHost(Object key) => find.byWidgetPredicate(
       (widget.key as ValueKey).value == key,
 );
 
+/// Wait for owning Views to install their session asset scope or report a failure.
+Future<void> flaxTestPumpView(WidgetTester tester, Widget widget) async {
+  await tester.pumpWidget(widget);
+  await flaxTestWaitForViews(tester);
+}
+
+/// Advance frames and real worker polling without assuming a fixed load time.
+Future<void> flaxTestWaitForViews(WidgetTester tester) async {
+  bool ready() => find.byType(FlaxView).evaluate().every((view) {
+    return find
+        .descendant(
+          of: find.byElementPredicate((element) => identical(element, view)),
+          matching: find.byWidgetPredicate(
+            (widget) => widget is DefaultAssetBundle || widget is ErrorWidget,
+          ),
+        )
+        .evaluate()
+        .isNotEmpty;
+  });
+  for (var turn = 0; turn < 5000 && !ready(); turn++) {
+    await tester.pump(const Duration(milliseconds: 16));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 1)),
+    );
+  }
+  expect(ready(), isTrue, reason: 'Flax View initialization did not complete');
+}
+
 /// Mirror generated-call unwrapping when a test deliberately invokes the host directly.
 String flaxTestCheckedBinding(String expression) =>
     '(() => { const result = ($expression); '

@@ -87,6 +87,61 @@ class FlaxModuleAssets {
     );
   }
 
+  List<_PreparedModule> _forSession(
+    FlaxBindingRegistry registry,
+    List<FlaxPlugin> plugins,
+  ) {
+    final requested = <String>{
+      for (final plugin in _pluginsWithBase(plugins)) ...plugin.jsModules,
+      for (final module in _modules)
+        if (module.specifier == '@flax/core/assets' ||
+            module.specifier.startsWith('@flax/flutter/') ||
+            module.specifier.startsWith('@flax/dart/'))
+          module.specifier,
+    };
+    final selected = _select(requested);
+    if (selected.isEmpty) return const [];
+
+    final validated = _validatedBindings[registry] ?? <_PreparedModule>{};
+    final pending = selected
+        .where((module) => !validated.contains(module))
+        .toList();
+    if (pending.isNotEmpty) {
+      _validateModuleBindings(pending, registry.modules);
+      validated.addAll(pending);
+      _validatedBindings[registry] = validated;
+    }
+    return selected;
+  }
+
+  List<FlaxJsSource> _startupSources(
+    FlaxBindingRegistry registry,
+    List<FlaxPlugin> plugins,
+  ) {
+    final modules = _forSession(registry, plugins);
+    final expected = jsonEncode([
+      for (final module in modules) module.expectation,
+    ]);
+    final eager = modules
+        // Consumer factories can depend on application globals set before require.
+        // Only the maintained runtime namespace is initialized ahead of the entry.
+        .where((module) => module.specifier.startsWith('@flax/'))
+        .map(
+          (module) =>
+              'globalThis.__flaxModules.require(${jsonEncode(module.specifier)});',
+        )
+        .join();
+    return [
+      _bootstrap,
+      for (final module in modules) module.source!,
+      FlaxJsSource(
+        'globalThis.__flaxModules.seal($expected);$eager',
+        sourceUrl: 'flax:module-prepare',
+      ),
+      _baseHostPreparation,
+    ];
+  }
+
   List<_PreparedModule> _select(Set<String> requested) {
     if (requested.isEmpty) return const [];
     final available = {for (final module in _modules) module.specifier: module};
@@ -121,30 +176,14 @@ extension _SessionModules on _Session {
     if (assets == null) {
       throw StateError('Missing prepared Flax module assets');
     }
-    final requested = <String>{
-      for (final plugin in _pluginsWithBase(plugins)) ...plugin.jsModules,
-      for (final module in assets._modules)
-        if (module.specifier == '@flax/core/assets' ||
-            module.specifier.startsWith('@flax/flutter/') ||
-            module.specifier.startsWith('@flax/dart/'))
-          module.specifier,
-    };
-    final selected = assets._select(requested);
+    final selected = assets._forSession(registry, plugins);
     if (selected.isEmpty) return;
-
-    final validated =
-        assets._validatedBindings[registry] ?? <_PreparedModule>{};
-    final pending = selected
-        .where((module) => !validated.contains(module))
-        .toList();
-    if (pending.isNotEmpty) {
-      _validateModuleBindings(pending, registry.modules);
-      validated.addAll(pending);
-      assets._validatedBindings[registry] = validated;
-    }
-    claimGlobal('__flaxModules');
+    claimGlobal('__flaxModules', engineDefault: modulesPrepared);
     final context = _HostContext(this, const {'__flaxModules'});
-    final installation = _ModuleInstallation(context);
+    final installation = _ModuleInstallation(
+      context,
+      preloaded: modulesPrepared,
+    );
     try {
       _moduleInstallation = installation;
       yield* installation.installSteps(assets, selected);
@@ -224,7 +263,8 @@ void _validateModuleBindings(
 }
 
 class _ModuleInstallation {
-  _ModuleInstallation(this.context);
+  _ModuleInstallation(this.context, {this.preloaded = false});
+  final bool preloaded;
   final _HostContext context;
   FlaxJsObject? _registry;
   bool _closed = false;
@@ -233,7 +273,9 @@ class _ModuleInstallation {
     FlaxModuleAssets assets,
     List<_PreparedModule> modules,
   ) sync* {
-    final result = context.evaluateSource(assets._bootstrap);
+    final result = preloaded
+        ? context.runtime.getGlobal('__flaxModules')
+        : context.evaluateSource(assets._bootstrap);
     if (result is! FlaxJsObject) {
       throw StateError('Invalid prepared Flax module registry');
     }
@@ -263,6 +305,7 @@ class _ModuleInstallation {
     }
     _registry = result;
     yield 'module-registry';
+    if (preloaded) return;
     for (final module in modules) {
       _releaseJs(context.evaluateSource(module.source!));
       yield module.specifier;

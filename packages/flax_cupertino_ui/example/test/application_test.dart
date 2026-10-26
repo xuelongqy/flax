@@ -1,3 +1,4 @@
+import 'package:flax_test/flax_test.dart';
 import 'package:flax_cupertino_ui_example/main.dart' as app;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,6 +24,7 @@ Future<void> exerciseCupertinoExample(WidgetTester tester) async {
   addTearDown(tester.view.resetDevicePixelRatio);
   await tester.runAsync(app.startApplication);
   await tester.pumpAndSettle();
+  await flaxTestWaitForViews(tester);
   expect(find.text('Quiet details. Native feel.'), findsOneWidget);
   await _tap(tester, find.text('Filled button'));
   expect(find.text('Button presses: 1'), findsOneWidget);

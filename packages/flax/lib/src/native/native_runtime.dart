@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi';
 import 'dart:isolate';
@@ -34,14 +35,17 @@ class _HostCallback {
 /// Engine extension implementation. Construct through its checked engine API.
 /// Owns native resources and must be explicitly disposed. Finalizable prevents
 /// sending this object to another isolate and keeps it live during native calls.
-final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
+final class FlaxNativeJsRuntime
+    implements FlaxJsRuntime, FlaxJsSourcePreparer, Finalizable {
   factory FlaxNativeJsRuntime.fromEngine(
     Pointer<FlaxApi> table,
     Pointer<FlaxEngineGcApi> gc,
     Pointer<FlaxEngineBindingApi> binding, [
     Pointer<FlaxEngineFfiApi>? ffi,
+    Pointer<FlaxEngineExecutionApi>? execution,
   ]) {
     ffi ??= nullptr;
+    execution ??= nullptr;
     if (table == nullptr ||
         table.ref.version != FLAX_ABI_VERSION ||
         table.ref.struct_size != sizeOf<FlaxApi>()) {
@@ -89,15 +93,35 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
             ffi.ref.retire == nullptr)) {
       throw UnsupportedError('Incompatible Flax native FFI extension');
     }
+    if (execution != nullptr &&
+        (execution.ref.version != FLAX_ENGINE_EXECUTION_VERSION ||
+            execution.ref.struct_size != sizeOf<FlaxEngineExecutionApi>() ||
+            execution.ref.call == nullptr ||
+            execution.ref.get_property == nullptr ||
+            execution.ref.inspect_arguments == nullptr ||
+            execution.ref.prepare == nullptr ||
+            execution.ref.poll == nullptr ||
+            execution.ref.cancel == nullptr)) {
+      throw UnsupportedError('Incompatible Flax execution engine extension');
+    }
     return FlaxNativeJsRuntime._(
       NativeCalls(table.ref),
       gc.ref,
       binding.ref,
       ffi == nullptr ? null : ffi.ref,
+      execution == nullptr ? null : execution.ref,
     );
   }
 
-  FlaxNativeJsRuntime._(this._calls, this._gc, this._binding, this._ffi) {
+  FlaxNativeJsRuntime._(
+    this._calls,
+    this._gc,
+    this._binding,
+    this._ffi,
+    this._execution,
+  ) {
+    _results = _execution;
+    _batchArguments = _execution != null;
     using((arena) {
       final result = arena<Pointer<FlaxRuntime>>();
       _checked(arena, (error) => _calls.create(result, error));
@@ -109,10 +133,11 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
   final FlaxEngineGcApi _gc;
   final FlaxEngineBindingApi _binding;
   final FlaxEngineFfiApi? _ffi;
-  FlaxEngineResultsExperimentApi? _results;
+  final FlaxEngineExecutionApi? _execution;
+  FlaxEngineExecutionApi? _results;
   bool _batchArguments = false;
 
-  /// Selects the private engine experiment for matched measurements only.
+  /// Lets comparison probes select the original or combined execution path.
   void useEngineResultsForExperiment(bool enabled, {bool arguments = false}) {
     _ensureAlive();
     if (_depth != 0) throw StateError('Cannot change an active runtime');
@@ -121,21 +146,11 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
       _batchArguments = false;
       return;
     }
-    final getApi = DynamicLibrary.process()
-        .lookupFunction<
-          Pointer<FlaxEngineResultsExperimentApi> Function(Uint32),
-          Pointer<FlaxEngineResultsExperimentApi> Function(int)
-        >('flax_experiment_get_results_api');
-    final api = getApi(FLAX_ENGINE_RESULTS_EXPERIMENT_VERSION);
-    if (api == nullptr ||
-        api.ref.version != FLAX_ENGINE_RESULTS_EXPERIMENT_VERSION ||
-        api.ref.struct_size != sizeOf<FlaxEngineResultsExperimentApi>() ||
-        api.ref.call == nullptr ||
-        api.ref.get_property == nullptr ||
-        api.ref.inspect_arguments == nullptr) {
-      throw UnsupportedError('Incompatible private engine result experiment');
+    final api = _execution;
+    if (api == null) {
+      throw UnsupportedError('Engine execution extension is unavailable');
     }
-    _results = api.ref;
+    _results = api;
     _batchArguments = arguments;
   }
 
@@ -567,6 +582,98 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         final (url, urlLength) = _bytes(arena, sourceUrl);
         return _evaluate(arena, text, length, url, urlLength);
       });
+
+  bool _preparingSources = false;
+
+  @override
+  Future<bool> prepareSources(
+    List<FlaxJsSource> sources, {
+    required FlaxJsSource entry,
+    Future<void>? cancelled,
+  }) async {
+    _ensureAlive();
+    final api = _execution;
+    if (api == null) return false;
+    if (_preparingSources || _depth != 0) {
+      throw StateError('Runtime is already active');
+    }
+    final start = api.prepare
+        .asFunction<
+          int Function(
+            Pointer<FlaxRuntime>,
+            Pointer<FlaxSource>,
+            int,
+            Pointer<FlaxSource>,
+            Pointer<Int32>,
+            Pointer<FlaxError>,
+          )
+        >();
+    final poll = api.poll
+        .asFunction<
+          int Function(Pointer<FlaxRuntime>, Pointer<Int32>, Pointer<FlaxError>)
+        >();
+    final cancel = api.cancel
+        .asFunction<int Function(Pointer<FlaxRuntime>, Pointer<FlaxError>)>();
+    final started = using((arena) {
+      void encode(FlaxSource output, FlaxJsSource source) {
+        final (data, length) = _encodedBytes(arena, source.bytes);
+        final (url, urlLength) = _encodedBytes(arena, source.sourceUrlBytes);
+        output
+          ..data = data
+          ..length = length
+          ..url = url
+          ..url_length = urlLength;
+      }
+
+      final inputs = arena<FlaxSource>(sources.length);
+      for (var i = 0; i < sources.length; i++) {
+        encode(inputs[i], sources[i]);
+      }
+      final main = arena<FlaxSource>();
+      encode(main.ref, entry);
+      final result = arena<Int32>();
+      _checked(
+        arena,
+        (error) => start(_handle, inputs, sources.length, main, result, error),
+      );
+      return result.value != 0;
+    });
+    if (!started) return false;
+    _preparingSources = true;
+    var stop = false;
+    var requested = false;
+    cancelled?.then<void>(
+      (_) {
+        stop = true;
+      },
+      onError: (Object _) {
+        stop = true;
+      },
+    );
+    try {
+      while (true) {
+        _ensureAlive();
+        final ready = using((arena) {
+          if (stop && !requested) {
+            _checked(arena, (error) => cancel(_handle, error));
+            requested = true;
+          }
+          final result = arena<Int32>();
+          _checked(arena, (error) => poll(_handle, result, error));
+          return result.value;
+        });
+        if (ready != 0) {
+          if (requested) {
+            throw StateError('JavaScript initialization cancelled');
+          }
+          return ready > 0;
+        }
+        await Future<void>.delayed(const Duration(milliseconds: 2));
+      }
+    } finally {
+      _preparingSources = false;
+    }
+  }
 
   @override
   FlaxJsValue evaluateSource(FlaxJsSource source) => _entry((arena) {

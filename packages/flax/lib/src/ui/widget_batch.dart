@@ -104,7 +104,7 @@ _WidgetPacket _parseWidgetBatch(List<FlaxJsValue> values) {
   return result;
 }
 
-extension _WidgetBatchExperiment on _Session {
+extension _WidgetBatchTransport on _Session {
   _Value? _readWidgetBatch(
     FlaxJsObject value,
     FlaxTypeRef type,

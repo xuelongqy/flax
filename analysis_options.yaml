@@ -13,6 +13,8 @@ analyzer:
     - packages/flax_ffi_codegen/test/**/host.dart
     # Historical FFI probes require their original generated acceptance inputs.
     - experiments/ffi_*/**
+    # This template is compiled with its private checkpoint patch in an isolated copy.
+    - experiments/js_async_jobs/generated_app.dart
     # Copied into its own generated package and compiled by native-asset acceptance.
     - packages/flax_build/js/src/native/build.dart
     # A copied package with placeholder dependencies, analyzed independently.

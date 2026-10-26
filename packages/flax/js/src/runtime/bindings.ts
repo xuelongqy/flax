@@ -1655,7 +1655,7 @@ function createObject(
   const host = globalThis as ObjectHost;
   const fast = host.__flaxCreateObjectWithArguments;
   const snapshot = argumentSnapshots.get(descriptor.args);
-  if (host.__flaxObjectArguments && fast && snapshot) {
+  if (host.__flaxObjectArguments !== false && fast && snapshot) {
     const entries: unknown[] = [];
     for (let i = 1; i < snapshot.length; i++) {
       const name = snapshot[i] as string;

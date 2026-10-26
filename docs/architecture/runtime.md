@@ -104,11 +104,15 @@ below.
 
 ## Calls, scheduling, and errors
 
-One Dart isolate owns a runtime. The runtime cannot be sent to another isolate. Every
-engine operation starts synchronously from that isolate, without a JS worker thread.
-Native code rejects parallel access and allows same-stack reentry. Runtime creation
-requires the Flutter UI isolate and its owning platform thread. Background isolates and
-a second UI isolate in one isolate group are rejected.
+One Dart isolate owns a runtime. The runtime cannot be sent to another isolate. Ordinary
+engine operations start synchronously from that isolate. Before Dart hosts are
+installed, the optional execution extension can prepare pure JS on a worker with
+exclusive ownership of an unused heap. No Dart callback or peer may be present; adoption
+restores UI ownership before business execution. Other contexts select staged UI loading
+instead. An empty bridge needs no V8 lock during Dart GC. Native code rejects parallel
+access and allows same-stack reentry. Runtime creation requires the Flutter UI isolate
+and its owning platform thread. Background isolates and a second UI isolate in one
+isolate group are rejected.
 
 Dart host functions use `NativeCallable.isolateLocal`. Calls that can reach them are
 non-leaf FFI calls. A callback returns on the current stack and may call JS again,

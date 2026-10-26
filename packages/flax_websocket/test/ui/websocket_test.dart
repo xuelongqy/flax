@@ -83,7 +83,7 @@ void main() {
       Flax.registerPlugins([
         FlaxWebSocketPlugin(baseUrl: 'ws://127.0.0.1:${server.port}'),
       ]);
-      await tester.pumpWidget(h.app());
+      await flaxTestPumpView(tester, h.app());
       await flaxTestRunHostScript(tester, h, '''
         const events=[];
         const ws=new WebSocket('/');
@@ -113,7 +113,7 @@ void main() {
     Flax.registerPlugins([
       FlaxWebSocketPlugin(baseUrl: 'ws://127.0.0.1:${server.port}'),
     ]);
-    await tester.pumpWidget(h.app());
+    await flaxTestPumpView(tester, h.app());
     final baseline = h.tracker.handles;
     await flaxTestRunHostScript(tester, h, r'''
       const controller=new AbortController();
@@ -146,7 +146,7 @@ void main() {
     tester,
   ) async {
     final h = _Harness();
-    await tester.pumpWidget(h.app());
+    await flaxTestPumpView(tester, h.app());
     expect(h.errors, isEmpty);
     expect(
       h.number(
@@ -167,7 +167,7 @@ void main() {
     Flax.registerPlugins([
       FlaxWebSocketPlugin(baseUrl: 'ws://127.0.0.1:${server!.port}'),
     ]);
-    await tester.pumpWidget(h.app());
+    await flaxTestPumpView(tester, h.app());
     h.execute(
       flaxTestFixtureSource('websocket_wpt', packageName: 'flax_websocket'),
     );
@@ -207,7 +207,7 @@ void main() {
     Flax.registerPlugins([
       FlaxWebSocketPlugin(baseUrl: 'http://127.0.0.1:${server!.port}/'),
     ]);
-    await tester.pumpWidget(h.app());
+    await flaxTestPumpView(tester, h.app());
     await flaxTestRunHostScript(tester, h, r'''
       const check=(v,m)=>{if(!v)throw Error(m);};
       check(typeof fetch==='undefined','Fetch must remain absent');
@@ -251,7 +251,7 @@ void main() {
           ],
         ),
       );
-      await tester.pumpWidget(views(true));
+      await flaxTestPumpView(tester, views(true));
       await flaxTestRunHostScript(tester, a, r'''
       for(const mode of ['connecting','open','timeout']){
         const controller=new AbortController();
@@ -268,7 +268,7 @@ void main() {
         b,
         "globalThis.live=new WebSocket('/echo');await new Promise(r=>live.onopen=r);",
       );
-      await tester.pumpWidget(views(false));
+      await flaxTestPumpView(tester, views(false));
       await tester.pumpAndSettle();
       expect(a.tracker.isDisposed, isTrue);
       expect(a.tracker.handlesAtDispose, 0);
@@ -300,7 +300,8 @@ void main() {
         onError: (e, _) => a.errors.add(e),
       );
       Flax.registerPlugins([]);
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(home: FlaxView.session(session: session)),
       );
       expect(a.number("typeof WebSocket === 'function' ? 1 : 0"), 1);
@@ -337,7 +338,7 @@ void main() {
     Flax.registerPlugins([
       FlaxWebSocketPlugin(baseUrl: 'ws://127.0.0.1:${server!.port}'),
     ]);
-    await tester.pumpWidget(h.app());
+    await flaxTestPumpView(tester, h.app());
     await flaxTestRunHostScript(tester, h, r'''
       const ws=new WebSocket('/',{headers:{Authorization:'Bearer test',Cookie:['a=1','b=2'],Origin:'app://flax'}});
       await new Promise(r=>ws.onopen=r);ws.binaryType='arraybuffer';

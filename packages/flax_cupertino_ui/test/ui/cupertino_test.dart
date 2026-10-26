@@ -10,7 +10,7 @@ void main() {
   ) async {
     final harness = CupertinoHarness();
     try {
-      await tester.pumpWidget(harness.view());
+      await flaxTestPumpView(tester, harness.view());
       for (final (language, label) in [('en', 'Paste'), ('zh', '粘贴')]) {
         harness.number(
           '(() => { cupertinoPilot.setLanguage("$language"); return 0; })()',
@@ -30,7 +30,7 @@ void main() {
 
   testWidgets('plugin installs the public Cupertino bindings', (tester) async {
     final harness = CupertinoHarness();
-    await tester.pumpWidget(harness.view());
+    await flaxTestPumpView(tester, harness.view());
     await tester.pumpAndSettle();
 
     expect(harness.errors, isEmpty);
@@ -93,7 +93,7 @@ void main() {
     tester,
   ) async {
     final first = CupertinoHarness();
-    await tester.pumpWidget(first.view());
+    await flaxTestPumpView(tester, first.view());
     await tester.pumpAndSettle();
     await tester.tap(find.byType(CupertinoButton));
     await tester.pumpAndSettle();
@@ -105,7 +105,7 @@ void main() {
     expect(first.runtime.handlesAtDispose, 0);
 
     final second = CupertinoHarness();
-    await tester.pumpWidget(second.view());
+    await flaxTestPumpView(tester, second.view());
     await tester.pumpAndSettle();
     expect(second.errors, isEmpty);
     expect(second.number('cupertinoPilot.presses'), 0);

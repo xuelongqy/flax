@@ -88,7 +88,8 @@ void main() {
         );
       }
       try {
-        await tester.pumpWidget(
+        await flaxTestPumpView(
+          tester,
           Directionality(
             textDirection: TextDirection.ltr,
             child: Row(
@@ -161,7 +162,7 @@ void main() {
     (tester) async {
       Flax.registerPlugins(const [FlaxCanvasPlugin()]);
       final h = Harness();
-      await tester.pumpWidget(h.app());
+      await flaxTestPumpView(tester, h.app());
       try {
         await flaxTestRunHostScript(tester, h, r'''
           function check(value, message) { if (!value) throw Error(message); }

@@ -27,6 +27,11 @@ abstract final class FlaxEngine {
         library.providesSymbol('flax_engine_get_ffi_api')
             ? bindings.flax_engine_get_ffi_api(FLAX_ENGINE_FFI_VERSION)
             : nullptr,
+        library.providesSymbol('flax_get_engine_execution_api')
+            ? bindings.flax_get_engine_execution_api(
+                FLAX_ENGINE_EXECUTION_VERSION,
+              )
+            : nullptr,
       );
     } on ArgumentError catch (error) {
       throw UnsupportedError(

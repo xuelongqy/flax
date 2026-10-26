@@ -1,3 +1,5 @@
+import 'package:flax_test/flax_test.dart';
+
 import 'dart:io';
 
 import 'package:flax_local_storage/flax_local_storage.dart';
@@ -16,6 +18,7 @@ void main() {
         () => app.startApplication(storageDirectory: directory!.path),
       );
       await tester.pumpAndSettle();
+      await flaxTestWaitForViews(tester);
       expect(find.text('Shared 1'), findsOneWidget);
       expect(find.text('Shared 2'), findsOneWidget);
       expect(find.text('Isolated'), findsOneWidget);

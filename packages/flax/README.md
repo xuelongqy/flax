@@ -11,6 +11,12 @@ FlaxSession, FlaxView, generated base bindings, mounted-property subscriptions, 
 Flutter subtree reconciliation. The package is experimental, version 0.0.0, with
 publication disabled.
 
+Owning FlaxViews automatically prepare their Session before first mount. The maintained
+macOS execution extension initializes pure JS modules on an available empty heap, then
+adopts that same Context on UI for real Dart calls. Existing explicit Session/page calls
+keep their synchronous contract. Loading cancellation and older-engine fallback require
+no application configuration; see [startup](../../docs/architecture/session-startup.md).
+
 ## Paired installation
 
 Applications install `flax` from Pub and the physical `@flax/core` runtime package at

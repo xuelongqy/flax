@@ -32,7 +32,8 @@ void main() {
     t,
   ) async {
     final h = Harness();
-    await t.pumpWidget(
+    await flaxTestPumpView(
+      t,
       h.app(
         code:
             '''${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}
@@ -66,7 +67,10 @@ var OtherLabel = class Label extends componentApi.StatelessWidget {
 var Unused = class Unused extends Label { constructor() { super(); throw new Error('must not construct'); } }
 componentApi.runApp(componentApi.Column({children: [new Label(), new Label({key: dartType(componentApi.ValueKey, dartTypes.string)('label')})]}));
 ''');
-      await t.pumpWidget(MaterialApp(home: FlaxView.session(session: session)));
+      await flaxTestPumpView(
+        t,
+        MaterialApp(home: FlaxView.session(session: session)),
+      );
       final type = componentType(session, h, 'Label');
       expect(componentType(session, h, 'Label'), same(type));
       expect(componentType(session, h, 'OtherLabel'), isNot(type));
@@ -121,7 +125,8 @@ componentApi.runApp(componentApi.Column({children: [new Label(), new Label({key:
     const code = 'componentApi.runApp(new componentApi.Caption("shared"));';
     final first = makeSession(a, code);
     final second = makeSession(b, code);
-    await t.pumpWidget(
+    await flaxTestPumpView(
+      t,
       MaterialApp(
         home: Row(
           children: [
@@ -177,7 +182,10 @@ var nearest = new Outer(2, reader);
 var root = new Outer(1, new Derived(3, nearest));
 componentApi.runApp(root);
 ''');
-      await t.pumpWidget(MaterialApp(home: FlaxView.session(session: session)));
+      await flaxTestPumpView(
+        t,
+        MaterialApp(home: FlaxView.session(session: session)),
+      );
       expect(h.number('Number(found[0] === nearest)'), 1);
       expect(
         h.number(
@@ -238,7 +246,7 @@ componentApi.runApp(new Measuring());
           ),
         ),
       );
-      await t.pumpWidget(tree(180));
+      await flaxTestPumpView(t, tree(180));
       await t.pumpAndSettle();
       expect(h.number('measured[0][0]'), 180);
       expect(h.number('measured[0][1]'), 90);
@@ -246,7 +254,7 @@ componentApi.runApp(new Measuring());
         t.getSize(find.byType(componentType(session, h, 'Measuring'))),
         const Size(180, 90),
       );
-      await t.pumpWidget(tree(240));
+      await flaxTestPumpView(t, tree(240));
       h.execute('state.readLater(); state.readLater();');
       await t.pumpAndSettle();
       expect(h.number('measured.length'), 3);
@@ -288,7 +296,10 @@ var child = new Child();
 var parent = componentApi.signal(new Parent(1, child));
 componentApi.runApp(componentApi.Center({child: parent.bind}));
 ''');
-      await t.pumpWidget(MaterialApp(home: FlaxView.session(session: session)));
+      await flaxTestPumpView(
+        t,
+        MaterialApp(home: FlaxView.session(session: session)),
+      );
       expect(
         h.number('context.findAncestorWidgetOfExactType(Parent).value'),
         1,
@@ -331,7 +342,8 @@ var Probe = class Probe extends componentApi.StatelessWidget {
 };
 componentApi.runApp(new Probe());
 ''');
-    await t.pumpWidget(
+    await flaxTestPumpView(
+      t,
       MaterialApp(
         home: Row(
           children: [
@@ -394,7 +406,10 @@ componentApi.runApp(new componentApi.Counter('types'));
       bindings: registry,
       onError: (error, _) => errors.add(error),
     );
-    await t.pumpWidget(MaterialApp(home: FlaxView.session(session: session)));
+    await flaxTestPumpView(
+      t,
+      MaterialApp(home: FlaxView.session(session: session)),
+    );
     final constructor =
         runtime.evaluate('componentApi.Counter') as FlaxJsFunction;
     final type = session.componentType(constructor);
@@ -432,7 +447,10 @@ componentApi.runApp(new componentApi.Counter('types'));
 var delivered = 0, cancelled = 0;
 componentApi.runApp(new componentApi.Caption('closing'));
 ''');
-    await t.pumpWidget(MaterialApp(home: FlaxView.session(session: session)));
+    await flaxTestPumpView(
+      t,
+      MaterialApp(home: FlaxView.session(session: session)),
+    );
     h.execute(
       'componentApi.SchedulerBinding.instance.endOfFrame.then(() => delivered++, error => { if (String(error).includes("FlaxSessionClosed")) cancelled++; });',
     );

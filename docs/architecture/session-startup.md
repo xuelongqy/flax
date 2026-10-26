@@ -1,6 +1,52 @@
 # Session Startup Reuse
 
-Status: implemented; macOS arm64 V8 debug validation.
+Status: implemented; maintained macOS arm64 V8 startup and shared source/index reuse.
+
+## Owning View startup
+
+The existing `FlaxView(source: ...)` and automatic file/bundle/package entrances prepare
+their Session before mounting its application root. No new application argument or JS
+API is required. Initial declaration groups yield between stages. On a supported engine,
+an otherwise unused runtime registers modules and initializes the maintained `@flax/`
+module factories on a worker, then compiles the business entry without executing it.
+Consumer factories retain require-time initialization, including access to globals set
+by the application before its first require. UI adoption installs the real Dart hosts
+and runs that entry on the owning isolate. Builder/LayoutBuilder, overrides and super
+calls remain synchronous there.
+
+This uses one shared heap, not a second runtime or a serialized copy of JS objects.
+Background preparation requires a pristine context, no Dart bridge peers and no other
+runtime using that heap. Preconfigured runtimes, already live Sessions and engines
+without the execution extension retain the UI-thread staged path. A module factory
+requiring Dart during initialization also falls back: native code restores the pristine
+context in place, so the host's runtime factory is still called only once. Current
+background adoption is enabled on macOS; other targets retain UI-thread preparation.
+
+A new synchronous runtime can interrupt pristine preparation. The worker terminates and
+releases the shared heap before that runtime is created; the first Session resets its
+incomplete context and uses UI initialization. Partial state remains inaccessible until
+its preparation Future completes. This keeps explicit Session creation synchronous even
+when it arrives during an owning View's background work.
+
+An owning View leaving or replacing its source cancels preparation. Native termination
+and joining restore UI ownership before cleanup; a cancelled root never mounts or
+reports a stale loading error. Queued Views do not share contexts, module state or
+callbacks. The startup queue releases completed entries. Session close still rejects new
+work immediately. Explicit Session/page entrances retain their existing synchronous
+lazy-loading contract.
+
+The execution extension also combines call/property results with value descriptions and
+bulk-describes borrowed callback inputs. Strings use the existing buffer ownership and
+objects use the original conditional GC edges. Immutable Widget/argument packets reuse
+the same conversion, type, key and lifecycle checks. ABI 2, UI protocol 24 and generated
+class APIs are unchanged. Larger packets and older JS helpers retain ordinary
+conversion.
+
+The maintained Flutter build includes the fixed-entry dependency-cache repair. Use the
+ordinary revision-checked `build_engine.py` and local-engine flags; no private frontend,
+helper dylib, copied engine, changed entitlements or runtime selector is required. The
+experiments under `experiments/gallery_handoff` retain historical comparison data; those
+timings are not measurements of every production loading path or mobile device.
 
 ## Goal and scope
 
@@ -27,6 +73,11 @@ source for lazy compilation, so borrowing Dart memory would require a different
 ownership contract.
 
 ## Measurement
+
+The source/index reuse measurements below predate the maintained two-stage integration.
+Their profile/AOT limitation describes that earlier measurement run; the maintained
+integration separately passes the complete gallery and joint-GC contracts in
+release/AOT.
 
 The private harness uses the maintained macOS arm64 V8 debug tester and the complete
 prepared SDK inventory, with Material enabled and a real Text mounted through FlaxView.

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flax_embedded/main.dart' as app;
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -27,7 +28,8 @@ void main() {
     tester,
   ) async {
     final errors = <Object>[];
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       app.EmbeddedApp(
         source: source,
         plugins: app.galleryPlugins
@@ -48,7 +50,8 @@ void main() {
   ) async {
     final runtimes = <RuntimeTracker>[];
     final errors = <Object>[];
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       app.EmbeddedApp(
         source: source,
         onFlaxError: (error, _) => errors.add(error),
@@ -93,7 +96,8 @@ void main() {
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
       late RuntimeTracker runtime;
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         app.EmbeddedApp(
           source: source,
           createRuntime: () => runtime = RuntimeTracker(),

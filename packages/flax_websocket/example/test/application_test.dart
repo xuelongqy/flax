@@ -1,3 +1,5 @@
+import 'package:flax_test/flax_test.dart';
+
 import 'dart:io';
 
 import 'package:flax_websocket_example/main.dart' as app;
@@ -26,6 +28,7 @@ void main() {
       );
     });
     await tester.pumpAndSettle();
+    await flaxTestWaitForViews(tester);
     expect(find.text('WebSocket ready'), findsOneWidget);
     await tester.ensureVisible(find.text('Connect'));
     await tester.tap(find.text('Connect'));

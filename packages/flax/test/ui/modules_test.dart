@@ -128,7 +128,8 @@ $source
 ''',
         onError: (error, _) => errors.add(error),
       );
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(home: FlaxView.session(session: session)),
       );
       expect(errors, isEmpty);
@@ -172,7 +173,8 @@ $source
     Flax.moduleAssets = await fixture.load();
     final runtime = RuntimeTracker();
     final errors = <Object>[];
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: () => runtime,
@@ -201,7 +203,8 @@ $source
     final errors = <Object>[];
     for (final value in [3, 11]) {
       final runtime = RuntimeTracker();
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(
           home: FlaxView(
             createRuntime: () => runtime,
@@ -214,6 +217,8 @@ $source
               ),
             ],
             source:
+                'if (globalThis.fixtureInitializations !== undefined) '
+                'throw Error("Eager consumer initialization");\n'
                 'globalThis.fixtureValue = $value;\n${fixture.business}\n$source',
             onError: (error, _) => errors.add(error),
           ),
@@ -248,7 +253,8 @@ $source
       Flax.moduleAssets = await fixture.load();
       final runtime = RuntimeTracker();
       final errors = <Object>[];
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(
           home: FlaxView(
             createRuntime: () => runtime,
@@ -296,7 +302,8 @@ $source
       Flax.moduleAssets = await fixture.load();
       final runtime = RuntimeTracker();
       final errors = <Object>[];
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(
           home: FlaxView(
             createRuntime: () => runtime,
@@ -341,7 +348,8 @@ $source
     for (var step = 0; step < 2; step++) {
       final runtime = RuntimeTracker();
       final errors = <Object>[];
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(
           home: FlaxView(
             createRuntime: () => runtime,
@@ -384,7 +392,8 @@ $source
     Flax.moduleAssets = await fixture.load();
     final runtime = RuntimeTracker();
     final errors = <Object>[];
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: () => runtime,
@@ -413,7 +422,8 @@ $source
     Flax.moduleAssets = await fixture.load();
     final runtime = RuntimeTracker();
     final errors = <Object>[];
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: () => runtime,
@@ -455,7 +465,8 @@ $source
         Flax.moduleAssets = await fixture.load();
         final runtime = RuntimeTracker();
         final errors = <Object>[];
-        await tester.pumpWidget(
+        await flaxTestPumpView(
+          tester,
           MaterialApp(
             home: FlaxView(
               createRuntime: () => runtime,

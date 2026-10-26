@@ -10,6 +10,28 @@ import 'engine_selection.dart';
 /// Single-package and combined runners discover the same package-owned sources.
 typedef UiTestFile = ({String packageName, String path});
 
+/// Flutter can exit successfully after cancellation, before running its tests.
+void validateUiSuiteResults(String jsonLines) {
+  int? expected;
+  var completed = 0;
+  var passed = false;
+  for (final line in const LineSplitter().convert(jsonLines)) {
+    final event = jsonDecode(line) as Map;
+    if (event['type'] == 'group' && event['group']['parentID'] == null) {
+      expected = event['group']['testCount'] as int;
+    } else if (event['type'] == 'testDone' && event['hidden'] == false) {
+      completed++;
+    } else if (event['type'] == 'done') {
+      passed = event['success'] == true;
+    }
+  }
+  if (!passed || expected == null || expected == 0 || completed != expected) {
+    throw StateError(
+      'Incomplete UI suite: $completed/$expected tests completed',
+    );
+  }
+}
+
 /// Preserve full grouped identities, including ordinary (non-widget) tests.
 final class UiResultJournal {
   final cases = <String, String>{};

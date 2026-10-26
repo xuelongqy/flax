@@ -207,7 +207,8 @@ void main() {
     'typed scalar member callbacks preserve enum identity, nullable results and nested errors',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         MaterialApp(
           home: Scaffold(
             body: FlaxView(

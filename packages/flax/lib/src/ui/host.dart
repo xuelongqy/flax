@@ -1,6 +1,13 @@
 part of '../../bindings.dart';
 
-final _baseHostSource = FlaxJsSource(flaxBaseBootstrap, sourceUrl: 'flax:base');
+final _baseHostSource = FlaxJsSource(
+  '($flaxBaseBootstrap)(globalThis, $flaxBaseBootstrapBridge)',
+  sourceUrl: 'flax:base',
+);
+final _baseHostPreparation = FlaxJsSource(
+  'globalThis.__flaxPreparedBase = $flaxBaseBootstrap',
+  sourceUrl: 'flax:base-prepare',
+);
 
 /// Defaults used by subsequently created sessions in this Dart isolate.
 abstract final class Flax {
@@ -494,7 +501,17 @@ class _BaseHost implements FlaxPluginInstance {
       }
       return const FlaxJsUndefined();
     }, allowClosing: true);
-    _state = context.evaluateSource(_baseHostSource) as FlaxJsObject;
+    final host = context;
+    _state =
+        (host is _HostContext && host.session.modulesPrepared
+                ? context.evaluate(
+                    '(() => {const install = globalThis.__flaxPreparedBase; '
+                    'delete globalThis.__flaxPreparedBase; '
+                    'return install(globalThis, $flaxBaseBootstrapBridge);})()',
+                    sourceUrl: 'flax:base',
+                  )
+                : context.evaluateSource(_baseHostSource))
+            as FlaxJsObject;
   }
 
   void _scheduleRaf() {

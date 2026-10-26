@@ -9,25 +9,38 @@ globalThis.busy = function (milliseconds) {
   return { elapsedMs: Date.now() - start, work };
 };
 class LocalBase {
-  describe() { return 'base'; }
+  describe() {
+    return 'base';
+  }
 }
 class LocalChild extends LocalBase {
   #suffix = 'child';
-  describe() { return `${super.describe()}/${this.#suffix}`; }
+  describe() {
+    return `${super.describe()}/${this.#suffix}`;
+  }
 }
 class DartBase {
-  constructor(id) { this.id = id; }
-  describe() { return nativeCall({ operation: 'base', id: this.id }); }
+  constructor(id) {
+    this.id = id;
+  }
+  describe() {
+    return nativeCall({ operation: 'base', id: this.id });
+  }
 }
 class DartChild extends DartBase {
   #suffix = 'override';
-  describe() { return `${super.describe()}/${this.#suffix}`; }
+  describe() {
+    return `${super.describe()}/${this.#suffix}`;
+  }
 }
 globalThis.localChild = new LocalChild();
 globalThis.dartChild = new DartChild(7);
-globalThis.describeLayout = width => ({ width, label: width < 300 ? 'narrow' : 'wide' });
+globalThis.describeLayout = (width) => ({
+  width,
+  label: width < 300 ? 'narrow' : 'wide',
+});
 globalThis.bridgeRoots = new Map();
-globalThis.createCycle = id => {
+globalThis.createCycle = (id) => {
   const peer = { dartId: id };
   const callback = () => nativeCall({ operation: 'node', id: peer.dartId });
   peer.callback = callback;

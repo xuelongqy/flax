@@ -32,7 +32,7 @@ componentApi.runApp(componentApi.Column({children: items.bind}));
           ],
         ),
       );
-      await t.pumpWidget(tree());
+      await flaxTestPumpView(t, tree());
       t.state<_CounterState>(find.byType(_Counter)).increment();
       h.execute(
         'componentHooks.states[1].setState(() => componentHooks.states[1].count++)',
@@ -42,7 +42,7 @@ componentApi.runApp(componentApi.Column({children: items.bind}));
       expect(find.text('counter:1:ltr'), findsOneWidget);
       native = [_Counter(key: keyed ? const ValueKey('counter') : null)];
       h.execute('items.value = [makeCounter()]');
-      await t.pumpWidget(tree());
+      await flaxTestPumpView(t, tree());
       expect(find.text('native:1'), findsOneWidget);
       if (keyed) {
         expect(find.text('counter:1:ltr'), findsOneWidget);

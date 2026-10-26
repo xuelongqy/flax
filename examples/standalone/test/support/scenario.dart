@@ -1,5 +1,6 @@
 import 'package:flax/flax.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter/services.dart';
 
 import 'dart:io';
@@ -27,7 +28,8 @@ Future<void> applicationScenario(WidgetTester t) async {
     ),
   );
   Flax.moduleAssets = moduleAssets!;
-  await t.pumpWidget(
+  await flaxTestPumpView(
+    t,
     FlaxView(
       createRuntime: () => baseRuntime = app.createRuntime(),
       source: '''

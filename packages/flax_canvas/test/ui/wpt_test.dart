@@ -488,7 +488,8 @@ _assert(globalThis.__wptGridChanged <= 33000, 'WPT fuzzy pixel count: ' + global
 
 Future<Harness> _mount(WidgetTester tester) async {
   final h = Harness();
-  await tester.pumpWidget(
+  await flaxTestPumpView(
+    tester,
     MaterialApp(
       home: FlaxView(
         createRuntime: h.create,

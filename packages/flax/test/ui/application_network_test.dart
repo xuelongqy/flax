@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 import 'package:flax/flax.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -632,11 +633,12 @@ void main() {
 }
 
 Future<void> _pumpUntil(WidgetTester t, Finder finder) async {
+  await flaxTestWaitForViews(t);
   for (var i = 0; i < 200 && finder.evaluate().isEmpty; i++) {
     await t.runAsync(
       () => Future<void>.delayed(const Duration(milliseconds: 5)),
     );
-    await t.pump();
+    await t.pump(const Duration(milliseconds: 16));
   }
   expect(finder, findsOneWidget);
 }

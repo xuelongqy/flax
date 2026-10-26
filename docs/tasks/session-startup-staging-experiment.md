@@ -1,12 +1,76 @@
 # Task: Staged Session Startup Experiment
 
-Status: validated macOS arm64 V8 experiments retained as a local checkpoint; not a
-production rollout.
+Status: adopted by normal owning FlaxViews and the maintained macOS engine. Historical
+measurement rounds below retain their original scope and limits. See
+[formal startup](../architecture/session-startup.md#owning-view-startup) for the current
+entry, fallback and cancellation contract.
 
 The checkpoint is based on main `a6ea2404b`. Earlier no-commit statements below describe
-the original measurement runs. Latest rebase acceptance passes 131 focused tests and
-five gallery tests. Native frameworks, private compiler outputs and detailed receipts
-stay outside Git; the executable gallery shell source is included.
+the original measurement runs. The earlier rebase acceptance passed 131 focused tests
+and five gallery tests. Native frameworks, private compiler outputs and detailed
+receipts stay outside Git; the executable gallery shell source is included.
+
+## Maintained integration
+
+Normal owning FlaxViews now prepare automatically. They register modules and initialize
+maintained runtime factories in one pristine background Context, compile the business
+entry, then install Dart hosts and activate it on UI. Consumer factories retain their
+require-time initialization. Explicit Session/page loading remains synchronous. Other
+live runtimes, preconfigured contexts, FFI installation and unsupported targets select
+the existing staged UI path. Cancellation and failed preparation retain the same runtime
+factory object and restore UI ownership before cleanup.
+
+A synchronous runtime created during pure preparation interrupts the worker, releases
+the shared heap and makes the first View retry on UI. Partial globals stay inaccessible
+until its preparation completes. Both contexts remain isolated, and disposing a pending
+runtime releases the worker before another runtime can use its heap.
+
+The maintained Flutter build and DEPS hook apply the consolidated fixed-entry compiler
+repair. Earlier patched checkouts receive the same tree through `dart-startup.patch`;
+fresh/upgrade patch equivalence is checked with isolated Git indexes. Debug and Release
+build the execution extension into the ordinary framework and tester exports. No private
+compiler, copied engine, helper dylib or V8 SDK rebuild is needed. ABI 2, UI protocol
+24, binding extension 8 and application call signatures remain unchanged.
+
+Shared Widget/argument transport and combined native results are selected automatically;
+older engines/helpers retain conversion fallbacks. Review corrected the automatic
+Session error callback, cleared completed startup queue entries, preserved custom
+runtime configuration, and kept background scope exit out of UI-owned GC idle state. GC
+tests continue to require actual rootless-cycle collection before close and zero handles
+at shutdown. Test result validation rejects interrupted Flutter suites even if their
+process returns zero, and copied package examples resolve their workspace test
+dependencies.
+
+Integration acceptance used the maintained Debug and Release engines, without private
+compiler or runtime paths:
+
+- All 1,079 framework cases passed, including generic and ordinary JS inheritance,
+  overrides, super, LayoutBuilder, session isolation and joint collection. The default
+  and explicit V8 runtime gates each passed 45 cases; the startup subset passed 25.
+- Release/AOT passed the complete seven-entrance gallery and all 14 joint-GC contracts,
+  including rootless cycles before close and 1,000 repeated bridge cycles. The app audit
+  verified its signature, JIT entitlement and single V8 library closure.
+- Three actual hot reloads preserved one State/runtime across four revisions and 44
+  checks. Three hot restarts produced four fresh isolate epochs.
+- The aggregate passed seven Widget cases and its native application scenario. Seven
+  package examples passed their Widget cases; six also passed native integration.
+- Both compiler modes passed 43 default-call checks and two invalid-program rejection
+  cases. Patch boundary/upgrade tests passed, and fresh versus upgraded source trees
+  matched. The workspace's 749 generator cases, 94 Core JS cases and remaining static,
+  archive, documentation and reproducible FFI gates passed.
+
+The first monolithic workspace run stopped at an isolated asynchronous-job template that
+requires its own private compiler patch. That template is now explicitly excluded from
+production analysis; the remaining workspace gates were resumed successfully. Local
+evidence is in `.local/startup-integration-20261026-111806/`, including retained initial
+failures and the final accepted journals. These correctness runs add no new performance
+claim to the historical timing tables below.
+
+The measurement rounds below are historical. Background preparation is accepted on macOS
+arm64; other platforms retain staged UI startup and are not recertified by this
+integration. Synchronous business evaluation, Dart declaration/JIT work and first-screen
+Flutter building can still occupy UI; this is not a guarantee for arbitrary scripts or
+120 Hz rendering.
 
 ## Goal and scope
 

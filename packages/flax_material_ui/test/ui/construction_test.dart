@@ -91,7 +91,7 @@ void main() {
         bindings: bindings,
         onError: (error, _) => errors.add(error),
       );
-      await tester.pumpWidget(MaterialApp(home: Scaffold(body: view)));
+      await flaxTestPumpView(tester, MaterialApp(home: Scaffold(body: view)));
       expect(errors, isEmpty);
       expect(find.text('Static'), findsNWidgets(2));
       final elements = tester.elementList(host('content')).toList();
@@ -152,41 +152,35 @@ void main() {
           .where((s) => s == 'flax:base')
           .length;
       expect(baseHandles, 1);
+      final sharedHelpers = <String, int>{};
+      for (final label in runtime.handleLabels) {
+        if (label.startsWith('__flaxBindings.') &&
+            label.split('.').length == 2) {
+          sharedHelpers.update(label, (count) => count + 1, ifAbsent: () => 1);
+        }
+      }
+      expect(sharedHelpers.values, everyElement(1));
       expect(
-        runtime.handleLabels
-            .where((label) => label == '__flaxBindings.invokeCallback')
-            .length,
-        1,
+        sharedHelpers.keys,
+        containsAll([
+          '__flaxBindings.invokeCallback',
+          '__flaxBindings.readBindingSnapshot',
+          '__flaxBindings.readWidgetBatch',
+        ]),
       );
-      final componentStateHelpers = runtime.handleLabels
-          .where((label) => label == '__flaxBindings.tryComponentStateId')
-          .length;
-      expect(componentStateHelpers, 1);
-      final bindingReadHelpers = runtime.handleLabels
-          .where((label) => label == '__flaxBindings.readBindingSnapshot')
-          .length;
-      expect(bindingReadHelpers, 1);
       final moduleHandles = runtime.handleLabels
-          .where((label) => label == 'modules/registry.js')
-          .length;
-      expect(moduleHandles, 1);
-      final callbackMemoHelpers = runtime.handleLabels
           .where(
             (label) =>
-                label == '__flaxBindings.callbackMemo' ||
-                label == '__flaxBindings.function',
+                label == 'modules/registry.js' || label == '__flaxModules',
           )
           .length;
-      expect(callbackMemoHelpers, 2);
+      expect(moduleHandles, 1);
+      // Shared helper entries are fixed Session overhead, not business owners.
       expect(
-        handles -
-            baseHandles -
-            componentStateHelpers -
-            bindingReadHelpers -
-            moduleHandles -
-            callbackMemoHelpers,
+        handles - baseHandles - moduleHandles - sharedHelpers.length,
         lessThanOrEqualTo(32),
       );
+      expect(handles, lessThanOrEqualTo(40));
       expect(calls['__flaxBaseCall'], 1); // Install the base clock origin once.
       expect(calls['__flaxMount'], 1);
       expect(calls['__flaxInvalidate'], 9);
@@ -194,7 +188,8 @@ void main() {
       expect(calls.keys.toSet(), {
         '__flaxMount',
         '__flaxInvalidate',
-        '__flaxCreateObject',
+        '__flaxCreateObjectWithArguments',
+        '__flaxReadWidgetBatch',
         '__flaxBaseCall',
         '__flaxDartType',
       });
@@ -206,7 +201,7 @@ void main() {
       // ignore: avoid_print
       print(
         'Construction cost: initial=$initialCounts; final=$counts; '
-        '$handles handles before unmount; host calls=$calls; '
+        '$handles handles before unmount; shared helpers=$sharedHelpers; host calls=$calls; '
         '$subscriptions mounted subscriptions; 0 handles at disposal.',
       );
     },

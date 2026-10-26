@@ -9,8 +9,13 @@ FlaxOwnedTestHarness _harness(
   List<FlaxFunctionBinding> functions, {
   List<FlaxTypeBinding> types = const [],
   bool legacy = false,
+  bool widgetBatch = true,
 }) => FlaxOwnedTestHarness(
-  createRuntime: FlaxEngine.createRuntime,
+  createRuntime: () {
+    final runtime = FlaxEngine.createRuntime();
+    if (!widgetBatch) runtime.evaluate('globalThis.__flaxWidgetBatch = false');
+    return runtime;
+  },
   bindings: FlaxBindingRegistry([
     FlaxBindingModule(
       'call-arguments',
@@ -184,6 +189,7 @@ callArguments('capture', [() => value]);
             ),
           ],
           legacy: legacy,
+          widgetBatch: false,
           types: [
             FlaxObjectBinding(
               'test/call-arguments#type:Probe',

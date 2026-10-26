@@ -27,7 +27,7 @@ void main() {
       onError: (error, _) => errors.add(error),
     );
     try {
-      await tester.pumpWidget(MaterialApp(home: Scaffold(body: view)));
+      await flaxTestPumpView(tester, MaterialApp(home: Scaffold(body: view)));
       expect(errors, isEmpty);
       final staticWidget = tester.widget(host('loop-static'));
       final rootWidget = tester.widget(host('loop-root'));

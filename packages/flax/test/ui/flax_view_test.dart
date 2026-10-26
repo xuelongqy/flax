@@ -25,7 +25,7 @@ hooks.callback.value = () => hooks.count.value += 2;
       onError: (error, _) => errors.add(error),
     );
     try {
-      await t.pumpWidget(MaterialApp(home: Scaffold(body: view)));
+      await flaxTestPumpView(t, MaterialApp(home: Scaffold(body: view)));
       expect(find.text('Count: 1'), findsOneWidget);
       expect(host('detail'), findsNothing);
       expect(find.text('Item 1'), findsNothing);
@@ -53,7 +53,10 @@ hooks.callback.value = () => hooks.count.value += 2;
     (t) async {
       final h = Harness();
       try {
-        await t.pumpWidget(h.app(code: '$source\nhooks.fail.value = true;'));
+        await flaxTestPumpView(
+          t,
+          h.app(code: '$source\nhooks.fail.value = true;'),
+        );
         expect(find.text('Count: 0'), findsOneWidget);
         expect(h.errors.single.toString(), contains('binding failed'));
         h.execute('hooks.count.value = 2; hooks.fail.value = false;');
@@ -73,7 +76,7 @@ hooks.callback.value = () => hooks.count.value += 2;
     'local frame updates and parent rebuild preserve unaffected hosts',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(h.app());
+      await flaxTestPumpView(t, h.app());
       expect(h.errors, isEmpty);
       expect(find.text('Count: 0'), findsOneWidget);
       h.execute('hooks.visible.value = false');
@@ -103,7 +106,7 @@ hooks.callback.value = () => hooks.count.value += 2;
       h.execute('hooks.batchWrite()');
       await t.pump();
       expect(find.text('Count: 30'), findsOneWidget);
-      await t.pumpWidget(h.app());
+      await flaxTestPumpView(t, h.app());
       expect(h.runtimes, hasLength(1));
       expect(find.text('Count: 30'), findsOneWidget);
       await flaxTestUnmount(t);
@@ -118,7 +121,7 @@ hooks.callback.value = () => hooks.count.value += 2;
     t,
   ) async {
     final h = Harness();
-    await t.pumpWidget(h.app());
+    await flaxTestPumpView(t, h.app());
     final elements = {
       for (final id in [1, 2, 3]) id: t.element(host(id)),
     };
@@ -171,7 +174,7 @@ hooks.callback.value = () => hooks.count.value += 2;
     'retired callbacks, nullable events and failed updates recover safely',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(h.app());
+      await flaxTestPumpView(t, h.app());
       Listener button() => t.widget(
         find.descendant(of: host('button'), matching: find.byType(Listener)),
       );
@@ -250,20 +253,20 @@ hooks.callback.value = () => hooks.count.value += 2;
           ),
         ),
       );
-      await t.pumpWidget(app(true));
+      await flaxTestPumpView(t, app(true));
       a.execute('hooks.count.value = 5');
       await t.pump();
       expect(find.text('Count: 5'), findsOneWidget);
       expect(find.text('Count: 0'), findsOneWidget);
       a.execute('hooks.count.value = 6');
-      await t.pumpWidget(app(false));
+      await flaxTestPumpView(t, app(false));
       await flaxTestWaitForRuntimeDisposal(t, a.runtime);
       expect(a.runtime.isDisposed, isTrue);
       expect(b.runtime.isDisposed, isFalse);
       b.execute('hooks.count.value = 7');
       await t.pump();
       expect(find.text('Count: 7'), findsOneWidget);
-      await t.pumpWidget(app(true));
+      await flaxTestPumpView(t, app(true));
       expect(a.runtimes, hasLength(2));
       expect(b.runtimes, hasLength(1));
       expect(find.text('Count: 0'), findsOneWidget);
@@ -279,20 +282,20 @@ hooks.callback.value = () => hooks.count.value += 2;
     'source replacement cleans old children; initialization failures recover',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(h.app());
+      await flaxTestPumpView(t, h.app());
       final old = h.runtime;
-      await t.pumpWidget(h.app(code: '$source\n// new session'));
+      await flaxTestPumpView(t, h.app(code: '$source\n// new session'));
       await flaxTestWaitForRuntimeDisposal(t, old);
       expect(old.isDisposed, isTrue);
       expect(h.runtimes, hasLength(2));
       expect(h.errors, isEmpty);
-      await t.pumpWidget(h.app(code: 'throw Error("load failed")'));
+      await flaxTestPumpView(t, h.app(code: 'throw Error("load failed")'));
       expect(h.runtime.isDisposed, isTrue);
       expect(find.byType(ErrorWidget), findsOneWidget);
       expect(h.errors.last.toString(), contains('load failed'));
-      await t.pumpWidget(h.app(code: '__flaxMount({}, 13)'));
+      await flaxTestPumpView(t, h.app(code: '__flaxMount({}, 13)'));
       expect(h.errors.last.toString(), contains('protocol'));
-      await t.pumpWidget(h.app());
+      await flaxTestPumpView(t, h.app());
       expect(find.text('Count: 0'), findsOneWidget);
       await flaxTestUnmount(t);
       await flaxTestWaitForRuntimeDisposal(t, h.runtime);
@@ -303,7 +306,8 @@ hooks.callback.value = () => hooks.count.value += 2;
     (t) async {
       final h = Harness();
       final theme = ThemeData(colorSchemeSeed: const Color(0xff00aa00));
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         MaterialApp(
           theme: theme,
           home: Scaffold(
@@ -325,7 +329,7 @@ hooks.callback.value = () => hooks.count.value += 2;
   );
   testWidgets('invalidations during build wait for the next frame', (t) async {
     final h = Harness();
-    await t.pumpWidget(h.app());
+    await flaxTestPumpView(t, h.app());
     var once = false;
     debugOnRebuildDirtyWidget = (element, built) {
       if (!once &&
@@ -350,7 +354,7 @@ hooks.callback.value = () => hooks.count.value += 2;
     t,
   ) async {
     final h = Harness();
-    await t.pumpWidget(h.app());
+    await flaxTestPumpView(t, h.app());
     final detail = t.element(host('detail'));
     h.execute('hooks.detailKey.value = "replacement"');
     await t.pump();

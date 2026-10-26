@@ -51,7 +51,9 @@ class _Session {
     this.onError, {
     this.namespace,
     required this.assetBundle,
+    this.modulesPrepared = false,
   });
+  final bool modulesPrepared;
   final String? namespace;
   final AssetBundle assetBundle;
   _BindingContext? _contextForBinding(String id) {
@@ -390,13 +392,14 @@ class _Session {
     }
   }
 
-  // Experimental scheduling: never suspend inside a JS call or host callback.
+  // Yield only between stages; Builder/LayoutBuilder calls stay synchronous.
   Future<void> loadStaged(
     String source,
     String sourceUrl, {
     required List<FlaxPlugin> plugins,
     required FlaxModuleAssets? moduleAssets,
     void Function(String, int)? onStep,
+    bool Function()? cancelled,
   }) async {
     _loadingInStages = true;
     final steps = loadSteps(
@@ -408,6 +411,7 @@ class _Session {
     final budget = Stopwatch()..start();
     try {
       while (true) {
+        if (cancelled?.call() == true) throw StateError('Closed Flax session');
         requireOpen();
         final step = Stopwatch()..start();
         if (!steps.moveNext()) break;
@@ -433,14 +437,14 @@ class _Session {
     required FlaxModuleAssets? moduleAssets,
   }) sync* {
     final widgetBatch = runtime.getGlobal('__flaxWidgetBatch');
-    _widgetBatchEnabled = widgetBatch is FlaxJsBoolean && widgetBatch.value;
+    _widgetBatchEnabled = widgetBatch is! FlaxJsBoolean || widgetBatch.value;
     _releaseJs(widgetBatch);
     final callbackMemo = runtime.getGlobal('__flaxCallbackMemo');
-    _callbackMemoEnabled = callbackMemo is FlaxJsBoolean && callbackMemo.value;
+    _callbackMemoEnabled = callbackMemo is! FlaxJsBoolean || callbackMemo.value;
     _releaseJs(callbackMemo);
     final argumentReferences = runtime.getGlobal('__flaxArgumentReferences');
     _argumentReferencesEnabled =
-        argumentReferences is FlaxJsBoolean && argumentReferences.value;
+        argumentReferences is! FlaxJsBoolean || argumentReferences.value;
     _releaseJs(argumentReferences);
     runtime.registerHostFunction('__flaxReadWidgetBatch', (_, values) {
       final receive = _widgetBatchReceiver;

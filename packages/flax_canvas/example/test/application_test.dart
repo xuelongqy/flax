@@ -1,3 +1,5 @@
+import 'package:flax_test/flax_test.dart';
+
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -16,6 +18,7 @@ void main() {
       addTearDown(tester.view.resetDevicePixelRatio);
       await tester.runAsync(app.startApplication);
       await tester.pumpAndSettle();
+      await flaxTestWaitForViews(tester);
       expect(find.text('Make light linger.'), findsOneWidget);
       final surface = tester
           .widget<FlaxCanvasView>(find.byType(FlaxCanvasView))

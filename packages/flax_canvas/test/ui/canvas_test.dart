@@ -16,7 +16,8 @@ void main() {
 
   testWidgets('Canvas plugin installs constructors', (tester) async {
     final h = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: h.create,
@@ -41,7 +42,8 @@ void main() {
     tester,
   ) async {
     final h = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: h.create,
@@ -77,7 +79,8 @@ void main() {
     tester,
   ) async {
     final h = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: h.create,
@@ -389,7 +392,8 @@ void main() {
     tester,
   ) async {
     final h = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: Scaffold(
           body: FlaxView(
@@ -465,7 +469,8 @@ void main() {
     tester,
   ) async {
     final h = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: h.create,
@@ -531,7 +536,8 @@ void main() {
     'native Canvas API overloads, stroke hits and synchronous pixels',
     (tester) async {
       final h = Harness();
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(
           home: FlaxView(
             createRuntime: h.create,
@@ -665,7 +671,8 @@ void main() {
 
   testWidgets('same-turn transfer and blob bitmap sizes', (tester) async {
     final h = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: h.create,

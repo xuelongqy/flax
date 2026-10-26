@@ -254,6 +254,7 @@ Future<void> _runIsolated(
       directory: temporary.path,
       timeout: const Duration(hours: 1),
     );
+    validateUiSuiteResults(results.readAsStringSync());
   } finally {
     try {
       // Keep each invocation's evidence and publish the compatibility copy with

@@ -16,7 +16,7 @@ void main() {
     'real scrolling only updates its text binding and cleanup follows detach',
     (t) async {
       final h = OwnedHarness();
-      await t.pumpWidget(h.app('scroll'));
+      await flaxTestPumpView(t, h.app('scroll'));
       await t.pumpAndSettle();
       expect(h.boolean('objects.controller.hasClients'), isTrue);
       final staticElement = t.element(host('static'));
@@ -65,7 +65,7 @@ void main() {
       await t.tap(find.text('Top'));
       await t.pumpAndSettle();
       expect(find.text('Offset 0'), findsOneWidget);
-      await t.pumpWidget(h.app('scroll', arguments: {'changed': true}));
+      await flaxTestPumpView(t, h.app('scroll', arguments: {'changed': true}));
       await t.pumpAndSettle();
       expect(h.number('objects.factories'), 1);
       await flaxTestUnmount(t);
@@ -85,7 +85,7 @@ void main() {
     'detached, shared positions, replacement and widget borrowing follow Flutter',
     (t) async {
       final h = OwnedHarness();
-      await t.pumpWidget(h.app('shared'));
+      await flaxTestPumpView(t, h.app('shared'));
       await t.pumpAndSettle();
       final controller = h.created.first as ScrollController;
       expect(controller.positions, hasLength(2));
@@ -101,7 +101,7 @@ void main() {
       expect(controller.positions, hasLength(1));
       expect(h.number('objects.controller.offset'), 40);
       expect(h.calls['dispose'], isNull);
-      await t.pumpWidget(h.app('scroll'));
+      await flaxTestPumpView(t, h.app('scroll'));
       await t.pumpAndSettle();
       final old = h.created.last as ScrollController;
       h.execute('objects.selected.value = objects.replacement');
@@ -130,7 +130,7 @@ void main() {
     'duplicate listeners retain closure identity and survive removal during notification',
     (t) async {
       final h = OwnedHarness();
-      await t.pumpWidget(h.app('shared'));
+      await flaxTestPumpView(t, h.app('shared'));
       await t.pumpAndSettle();
       h.execute('objects.showSecond.value = false');
       await t.pumpAndSettle();
@@ -194,7 +194,7 @@ void main() {
     'page failure rolls back objects, runs every cleanup, and recovers',
     (t) async {
       final h = OwnedHarness();
-      await t.pumpWidget(h.app('failure'));
+      await flaxTestPumpView(t, h.app('failure'));
       await t.pumpAndSettle();
       expect(h.number('objects.cleanup.join("") === "21" ? 1 : 0'), 1);
       expect(h.errors.length, 2);
@@ -202,11 +202,11 @@ void main() {
         () => h.execute('objects.controller.hasClients'),
         throwsA(isA<FlaxJsException>()),
       );
-      await t.pumpWidget(h.app('invalid'));
+      await flaxTestPumpView(t, h.app('invalid'));
       await t.pumpAndSettle();
       expect(h.number('objects.disposed'), 1);
       expect(h.errors.length, 3);
-      await t.pumpWidget(h.app('scroll'));
+      await flaxTestPumpView(t, h.app('scroll'));
       await t.pumpAndSettle();
       expect(find.text('Offset 0'), findsOneWidget);
       await h.finish(t);
@@ -217,7 +217,7 @@ void main() {
     'repeated content unmount releases listeners and initializes fresh objects',
     (t) async {
       final h = OwnedHarness();
-      await t.pumpWidget(h.app('holder'));
+      await flaxTestPumpView(t, h.app('holder'));
       await t.pumpAndSettle();
       // Warm one-time revocation helpers before measuring repeated lifetimes.
       h.execute('objects.showPage.value = false');
@@ -246,7 +246,7 @@ void main() {
     'a disposed reference is rejected before mounting a returned subtree',
     (t) async {
       final h = OwnedHarness();
-      await t.pumpWidget(h.app('cached'));
+      await flaxTestPumpView(t, h.app('cached'));
       await t.pumpAndSettle();
       expect(h.errors.single.toString(), contains('Released Dart object'));
       expect(find.byType(SingleChildScrollView), findsNothing);
@@ -258,7 +258,8 @@ void main() {
     (t) async {
       final h = OwnedHarness();
       final navigator = GlobalKey<NavigatorState>();
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         MaterialApp(navigatorKey: navigator, home: const SizedBox()),
       );
       navigator.currentState!.push(
@@ -298,7 +299,7 @@ void main() {
     'object members preserve identity and setters, reject foreign values, and clean throwing disposal',
     (t) async {
       final h = OwnedHarness(extra: [objectFixture()]);
-      await t.pumpWidget(h.app('shared'));
+      await flaxTestPumpView(t, h.app('shared'));
       await t.pumpAndSettle();
       h.execute(
         'globalThis.gauge = Gauge(); globalThis.second = Gauge({initial: 8});',
@@ -365,7 +366,7 @@ void main() {
     t,
   ) async {
     final first = OwnedHarness(extra: [objectFixture()]);
-    await t.pumpWidget(first.app('shared'));
+    await flaxTestPumpView(t, first.app('shared'));
     await t.pumpAndSettle();
     first.execute('globalThis.gauge = Gauge()');
     final foreign = first.created.whereType<Gauge>().single;
@@ -395,7 +396,7 @@ void main() {
         ]),
       ],
     );
-    await t.pumpWidget(second.app('shared'));
+    await flaxTestPumpView(t, second.app('shared'));
     await t.pumpAndSettle();
     second.execute(
       "var returned = __flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'fixture:Foreign', 'static', 'call', 'get'), 0)",
@@ -452,9 +453,9 @@ void main() {
           ),
         ),
       );
-      await t.pumpWidget(app(first, source));
+      await flaxTestPumpView(t, app(first, source));
       await t.pumpAndSettle();
-      await t.pumpWidget(app(second, '$source\n// Replacement source'));
+      await flaxTestPumpView(t, app(second, '$source\n// Replacement source'));
       await t.pumpAndSettle();
       // The native Route stays installed; its former JS content has finished cleanup.
       expect(first.runtime.isDisposed, isTrue);

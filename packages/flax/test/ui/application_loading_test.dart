@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:archive/archive.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flax/flax.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -332,12 +333,12 @@ void main() {
           ),
         ),
       );
-      await t.pumpWidget(build());
+      await flaxTestPumpView(t, build());
       await t.pumpAndSettle();
       expect(find.text('application loaded'), findsOneWidget);
       expect(bundle.loads['flax.json'], 1);
       expect(runtimes, 1);
-      await t.pumpWidget(build());
+      await flaxTestPumpView(t, build());
       await t.pumpAndSettle();
       expect(bundle.loads['flax.json'], 1);
       expect(runtimes, 1);
@@ -380,7 +381,8 @@ void main() {
         for (final entry in _files().entries)
           'assets/flax/${entry.key}': entry.value,
       });
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         Directionality(
           textDirection: TextDirection.ltr,
           child: DefaultAssetBundle(
@@ -513,11 +515,12 @@ int _indexOf(List<int> data, List<int> pattern) {
 }
 
 Future<void> _pumpUntil(WidgetTester t, Finder finder) async {
+  await flaxTestWaitForViews(t);
   for (var i = 0; i < 200 && finder.evaluate().isEmpty; i++) {
     await t.runAsync(
       () => Future<void>.delayed(const Duration(milliseconds: 5)),
     );
-    await t.pump();
+    await t.pump(const Duration(milliseconds: 16));
   }
   expect(finder, findsOneWidget);
 }

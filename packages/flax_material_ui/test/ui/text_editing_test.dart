@@ -16,7 +16,7 @@ void main() {
     'Dart references preserve defaults, nested identity and immutable history',
     (t) async {
       final h = OwnedHarness(fixture: 'text_editing');
-      await t.pumpWidget(h.app('editing'));
+      await flaxTestPumpView(t, h.app('editing'));
       await t.pumpAndSettle();
       expect(h.errors, isEmpty);
       expect(find.byType(TextField), findsOneWidget);
@@ -105,7 +105,7 @@ void main() {
     'real input updates only bound labels with one complete value read per notification',
     (t) async {
       final h = OwnedHarness(fixture: 'text_editing');
-      await t.pumpWidget(h.app('editing'));
+      await flaxTestPumpView(t, h.app('editing'));
       await t.pumpAndSettle();
       final staticElement = t.element(host('static'));
       final handles = h.runtime.handles;
@@ -191,7 +191,7 @@ void main() {
     'editing failures preserve values and recover without temporary references',
     (t) async {
       final h = OwnedHarness(fixture: 'text_editing');
-      await t.pumpWidget(h.app('editing'));
+      await flaxTestPumpView(t, h.app('editing'));
       await t.pumpAndSettle();
       h.execute("editing.controller.text = 'safe'");
       await t.pump();
@@ -253,7 +253,7 @@ void main() {
     'callback and controller replacement preserve page state and dispose after detach',
     (t) async {
       final h = OwnedHarness(fixture: 'text_editing');
-      await t.pumpWidget(h.app('editing', arguments: 'multiline'));
+      await flaxTestPumpView(t, h.app('editing', arguments: 'multiline'));
       await t.pumpAndSettle();
       await t.enterText(find.byType(TextField), 'one\n二🌱');
       await t.pump();
@@ -267,7 +267,7 @@ void main() {
       await t.testTextInput.receiveAction(TextInputAction.done);
       await t.pump();
       expect(h.number('editing.completions'), 1);
-      await t.pumpWidget(h.app('editing', arguments: {'updated': true}));
+      await flaxTestPumpView(t, h.app('editing', arguments: {'updated': true}));
       await t.pump();
       expect(h.number('editing.factories'), 1);
       expect(find.text('two\n三'), findsOneWidget);
@@ -292,7 +292,7 @@ void main() {
         throwsA(isA<FlaxJsException>()),
       );
       h.execute('replacement.dispose()');
-      await t.pumpWidget(h.app('editing'));
+      await flaxTestPumpView(t, h.app('editing'));
       await t.pumpAndSettle();
       expect(h.number('editing.factories'), 2);
       expect(find.text('Text: '), findsOneWidget);
@@ -305,7 +305,7 @@ void main() {
     t,
   ) async {
     final h = OwnedHarness(fixture: 'text_editing');
-    await t.pumpWidget(h.app('holder'));
+    await flaxTestPumpView(t, h.app('holder'));
     await t.pumpAndSettle();
     h.execute('editing.show.value = false');
     await t.pumpAndSettle();
@@ -313,7 +313,7 @@ void main() {
     h.execute('editing.show.value = true');
     await t.pumpAndSettle();
     expect(h.number('editing.factories'), 2);
-    await t.pumpWidget(h.app('failure'));
+    await flaxTestPumpView(t, h.app('failure'));
     await t.pumpAndSettle();
     expect(h.actualDisposals, 3);
     expect(h.errors.single.toString(), contains('editing factory failed'));
@@ -323,7 +323,7 @@ void main() {
     t,
   ) async {
     final h = OwnedHarness(fixture: 'text_editing');
-    await t.pumpWidget(h.app('shared'));
+    await flaxTestPumpView(t, h.app('shared'));
     await t.pumpAndSettle();
     final fields = t.widgetList<TextField>(find.byType(TextField)).toList();
     expect(fields[0].controller, same(fields[1].controller));
@@ -345,7 +345,8 @@ void main() {
     (t) async {
       final h = OwnedHarness(fixture: 'text_editing');
       final navigator = GlobalKey<NavigatorState>();
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         MaterialApp(
           navigatorKey: navigator,
           home: const Scaffold(body: Text('Native home')),
@@ -410,11 +411,11 @@ void main() {
           ),
         ),
       );
-      await t.pumpWidget(app(''));
+      await flaxTestPumpView(t, app(''));
       await t.pumpAndSettle();
       await t.enterText(find.byType(TextField), 'before replacement');
       await t.pump();
-      await t.pumpWidget(app('// replacement'));
+      await flaxTestPumpView(t, app('// replacement'));
       await t.pumpAndSettle();
       expect(runtimes, hasLength(2));
       // Cleanup completes before shutdown, without waiting for the native Route.

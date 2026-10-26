@@ -1,5 +1,11 @@
 # Two-phase loading of the complete gallery
 
+Status: historical comparison harness. Normal owning FlaxViews now use the maintained
+engine's preparation and execution extension directly; see
+[formal startup](../../docs/architecture/session-startup.md#owning-view-startup).
+Current application builds need no helper dylib, entitlement changes or private engine.
+Commands and measurements below describe the original isolated experiments.
+
 This macOS arm64 V8 experiment uses the unchanged bundled application from
 `examples/embedded`, its real 28 host modules, all seven package entrances, and the
 existing engine-owned joint GC. It extends the small ownership-handoff probe without

@@ -46,7 +46,10 @@ void main() {
   ) async {
     final h = _Harness();
     final failed = h.session();
-    await t.pumpWidget(MaterialApp(home: FlaxView.session(session: failed)));
+    await flaxTestPumpView(
+      t,
+      MaterialApp(home: FlaxView.session(session: failed)),
+    );
     expect(h.errors.single.toString(), contains('initialize()'));
     await flaxTestUnmount(t);
     await t.pumpAndSettle();
@@ -79,7 +82,10 @@ void main() {
     });
     expect(() => h.session(''), throwsArgumentError);
     final live = h.session('shop');
-    await t.pumpWidget(MaterialApp(home: FlaxView.session(session: live)));
+    await flaxTestPumpView(
+      t,
+      MaterialApp(home: FlaxView.session(session: live)),
+    );
     expect(() => FlaxLocalStoragePlugin.shutdown(), throwsStateError);
     await flaxTestUnmount(t);
     final liveClose = live.close();
@@ -110,22 +116,22 @@ void main() {
               onError: (e, _) => h.errors.add(e),
             ),
           );
-      await t.pumpWidget(view('shop'));
+      await flaxTestPumpView(t, view('shop'));
       h.execute("localStorage.setItem('x', 'shop'); undefined;");
       final first = h.tracker;
-      await t.pumpWidget(view('shop'));
+      await flaxTestPumpView(t, view('shop'));
       expect(h.runtimes, hasLength(1));
       expect(h.number("localStorage.getItem('x') === 'shop' ? 1 : 0"), 1);
-      await t.pumpWidget(view('other'));
+      await flaxTestPumpView(t, view('other'));
       await t.pumpAndSettle();
       expect(first.isDisposed, isTrue);
       expect(first.handlesAtDispose, 0);
       expect(h.number("localStorage.getItem('x') === null ? 1 : 0"), 1);
-      await t.pumpWidget(view('shop'));
+      await flaxTestPumpView(t, view('shop'));
       expect(h.number("localStorage.getItem('x') === 'shop' ? 1 : 0"), 1);
       await flaxTestUnmount(t);
       await t.pumpAndSettle();
-      await t.pumpWidget(view(null, plugins: const []));
+      await flaxTestPumpView(t, view(null, plugins: const []));
       expect(
         h.number(
           "typeof localStorage === 'undefined' && typeof addEventListener === 'function' ? 1 : 0",
@@ -152,7 +158,8 @@ void main() {
         b.session('shop'),
         isolated.session(),
       ];
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         MaterialApp(
           home: Stack(
             children: [
@@ -239,7 +246,10 @@ void main() {
       );
       final h = _Harness();
       final session = h.session();
-      await t.pumpWidget(MaterialApp(home: FlaxView.session(session: session)));
+      await flaxTestPumpView(
+        t,
+        MaterialApp(home: FlaxView.session(session: session)),
+      );
       h.execute(r'''
       const key = '😀\ud800\0'.repeat(70), value = '\udfff\0汉';
       localStorage.setItem(key, value);

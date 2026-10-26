@@ -373,8 +373,11 @@ dependencies:
             'class Flax${engine == 'hermes' ? 'Hermes' : 'V8'}Engine {}',
           );
           final runnable = package('runnable');
+          final support = package('fixture_support');
+          _write(support.directory, 'README.md', '# Fixture support');
           final original = '''${_flutterPubspec(engine)}
 dev_dependencies:
+  fixture_support: 0.0.0
   flutter_test:
     sdk: flutter
   integration_test:
@@ -389,6 +392,16 @@ dev_dependencies:
               expect(staged, isNot(runnable.example.path));
               final manifest = readYamlFile(File('$staged/pubspec.yaml'));
               expect(manifest['dev_dependencies'], contains('flutter_test'));
+              final support = manifest['dev_dependencies']['fixture_support'];
+              expect(support['path'], '../packages/fixture_support');
+              expect(
+                Directory('$staged/${support['path']}').existsSync(),
+                isTrue,
+              );
+              expect(
+                manifest['dependencies'],
+                isNot(contains('fixture_support')),
+              );
               expect(
                 manifest['dev_dependencies'],
                 isNot(contains('integration_test')),

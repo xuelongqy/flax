@@ -14,14 +14,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'support/gallery.dart';
 
 class _Runtime extends FlaxTestRuntimeTracker {
-  _Runtime() : super(FlaxEngine.createRuntime()) {
+  _Runtime({bool production = false}) : super(FlaxEngine.createRuntime()) {
     if (Platform.environment['FLAX_ENGINE_RESULTS'] == '1') {
       (inner as FlaxNativeJsRuntime).useEngineResultsForExperiment(
         true,
         arguments: Platform.environment['FLAX_ENGINE_ARGUMENTS'] == '1',
       );
     }
-    evaluate('globalThis.__flaxStartupLazy = true');
+    if (!production) evaluate('globalThis.__flaxStartupLazy = true');
     for (final (name, flag) in const [
       ('__flaxWidgetBatch', 'FLAX_WIDGET_BATCH'),
       ('__flaxObjectArguments', 'FLAX_OBJECT_ARGUMENTS'),
@@ -33,6 +33,17 @@ class _Runtime extends FlaxTestRuntimeTracker {
       }
     }
   }
+  bool? background;
+  @override
+  Future<bool> prepareSources(
+    List<FlaxJsSource> sources, {
+    required FlaxJsSource entry,
+    Future<void>? cancelled,
+  }) async => background = await super.prepareSources(
+    sources,
+    entry: entry,
+    cancelled: cancelled,
+  );
   void Function(String)? afterSource;
   final inspectedTypes = <Type>{};
   @override
@@ -77,6 +88,8 @@ void main() {
   late String source;
   setUpAll(() async {
     storage = await Directory.systemTemp.createTemp('flax-staged-gallery-');
+  });
+  setUp(() async {
     source = await gallery.loadAggregateSource(storageDirectory: storage.path);
   });
   tearDownAll(() async {
@@ -84,6 +97,41 @@ void main() {
       const Duration(seconds: 10),
     );
     await storage.delete(recursive: true);
+  });
+  testWidgets('ordinary FlaxView loads the full gallery and closes cleanly', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1200, 1000);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final runtime = _Runtime(production: true);
+    final errors = <Object>[];
+    try {
+      await flaxTestPumpView(
+        tester,
+        FlaxExampleApp(
+          title: 'Gallery',
+          child: FlaxView(
+            createRuntime: () => runtime,
+            source: source,
+            bindings: gallery.embeddedBindings,
+            plugins: gallery.galleryPlugins,
+            namespace: 'ordinary-gallery',
+            onError: (error, _) => errors.add(error),
+          ),
+        ),
+      );
+      expect(runtime.background, isTrue);
+      expect(errors, isEmpty);
+      await exerciseGallery(tester);
+    } finally {
+      await tester.pumpWidget(const SizedBox.shrink());
+      await pumpGalleryUntil(tester, () => runtime.isDisposed);
+      expect(runtime.handlesAtDispose, 0);
+      await waitGalleryIO(tester, FlaxLocalStoragePlugin.shutdown());
+    }
+    expect(errors, isEmpty);
   });
   testWidgets('staged full gallery retains all modules and cleans up', (
     tester,

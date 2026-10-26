@@ -310,10 +310,11 @@ Future<void> withPackageExample(
   );
   try {
     final known = {for (final item in discoverPackages(root)) item.name};
-    final direct = (sourcePubspec['dependencies'] as Map).keys
-        .cast<String>()
-        .where(known.contains)
-        .toSet();
+    final direct = {
+      ...(sourcePubspec['dependencies'] as Map).keys.cast<String>(),
+      ...((sourcePubspec['dev_dependencies'] as Map?) ?? const {}).keys
+          .cast<String>(),
+    }.where(known.contains).toSet();
     direct.removeWhere((name) => name.startsWith('flax_engine_'));
     direct.add('flax_engine_$engine');
     final packages = packageDependencyClosure(
@@ -336,8 +337,10 @@ Future<void> withPackageExample(
     }
     _replaceEngineDependencies(dependencies, engine);
     for (final name in packages) {
-      if (dependencies.containsKey(name) || name == 'flax_engine_$engine') {
-        dependencies[name] = {
+      final dev = pubspec['dev_dependencies'] as Map<String, dynamic>?;
+      final section = dev?.containsKey(name) == true ? dev! : dependencies;
+      if (section.containsKey(name) || name == 'flax_engine_$engine') {
+        section[name] = {
           'path': p.relative(
             p.join(temporary.path, 'packages', name),
             from: flutter.path,

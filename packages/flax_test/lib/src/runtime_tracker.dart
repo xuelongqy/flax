@@ -5,10 +5,23 @@ import 'package:flax/bindings.dart';
 import 'package:flutter/scheduler.dart';
 
 /// Counts owned handles around the real engine, without changing runtime behavior.
-class FlaxTestRuntimeTracker implements FlaxJsRuntime {
+class FlaxTestRuntimeTracker implements FlaxJsRuntime, FlaxJsSourcePreparer {
   FlaxTestRuntimeTracker(this.inner);
 
   final FlaxJsRuntime inner;
+
+  @override
+  Future<bool> prepareSources(
+    List<FlaxJsSource> sources, {
+    required FlaxJsSource entry,
+    Future<void>? cancelled,
+  }) => inner is FlaxJsSourcePreparer
+      ? (inner as FlaxJsSourcePreparer).prepareSources(
+          sources,
+          entry: entry,
+          cancelled: cancelled,
+        )
+      : Future.value(false);
 
   /// Optional scalar-only experiment spans, balanced even when calls throw.
   void Function(String, bool)? trace;

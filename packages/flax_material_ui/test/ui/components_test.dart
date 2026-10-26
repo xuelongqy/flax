@@ -35,7 +35,8 @@ void main() {
     t,
   ) async {
     final h = Harness();
-    await t.pumpWidget(
+    await flaxTestPumpView(
+      t,
       h.app(
         code: script('''
 var contextState;
@@ -109,13 +110,13 @@ componentApi.runApp(componentApi.Center({child: selected.bind}));
         ),
         events,
       );
-      await t.pumpWidget(tree(TextDirection.ltr));
+      await flaxTestPumpView(t, tree(TextDirection.ltr));
       compare();
       native = _NativeLifecycle(events, 2);
       h.execute('selected.value = new componentApi.Counter("a", 2);');
-      await t.pumpWidget(tree(TextDirection.ltr));
+      await flaxTestPumpView(t, tree(TextDirection.ltr));
       compare();
-      await t.pumpWidget(tree(TextDirection.rtl));
+      await flaxTestPumpView(t, tree(TextDirection.rtl));
       compare();
       await flaxTestUnmount(t);
       compare();
@@ -132,7 +133,7 @@ componentApi.runApp(componentApi.Center({child: selected.bind}));
       final code = script(
         'componentApi.runApp(new componentApi.Counter("a", 3));',
       );
-      await t.pumpWidget(app(h, code));
+      await flaxTestPumpView(t, app(h, code));
       expect(h.errors, isEmpty);
       expect(find.text('a:3:ltr'), findsOneWidget);
       expect(h.number('componentHooks.states[0].builds'), 1);
@@ -161,7 +162,7 @@ componentApi.runApp(componentApi.Center({child: selected.bind}));
       await t.pump();
       expect(h.number('s.builds'), 3);
       expect(find.text('a:6:ltr'), findsOneWidget);
-      await t.pumpWidget(app(h, code, direction: TextDirection.rtl));
+      await flaxTestPumpView(t, app(h, code, direction: TextDirection.rtl));
       expect(find.text('a:6:rtl'), findsOneWidget);
       expect(h.number('componentHooks.states.length'), 1);
       expect(h.number('Number(Object.isFrozen(s.widget))'), 1);
@@ -175,7 +176,8 @@ componentApi.runApp(componentApi.Center({child: selected.bind}));
     'State variants pass real Dart mixin capabilities and expire on dispose',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         h.app(
           code: script('''
 var retainedVariantState;
@@ -252,7 +254,8 @@ try {
       t,
     ) async {
       final h = Harness();
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         h.app(
           code: script('''
 var keptCreated = 0;
@@ -327,7 +330,8 @@ componentApi.runApp(componentApi.Center({child: keptRoot.bind}));
       t,
     ) async {
       final h = Harness();
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         h.app(
           code: script('''
 class MissingState extends componentApi.$variant {
@@ -357,7 +361,8 @@ componentApi.runApp(new Missing());
     t,
   ) async {
     final h = Harness();
-    await t.pumpWidget(
+    await flaxTestPumpView(
+      t,
       h.app(
         code: script('''
 var keptProbe;
@@ -414,7 +419,7 @@ var shared = new Counter('same', 1);
 var children = signal([shared, shared]);
 runApp(Column({children: children.bind}));
 ''');
-      await t.pumpWidget(app(h, code));
+      await flaxTestPumpView(t, app(h, code));
       expect(find.text('same:1:ltr'), findsNWidgets(2));
       expect(h.number('componentHooks.states.length'), 2);
       h.execute(
@@ -458,7 +463,8 @@ runApp(Column({children: children.bind}));
     t,
   ) async {
     final h = Harness();
-    await t.pumpWidget(
+    await flaxTestPumpView(
+      t,
       h.app(
         code: script('componentApi.runApp(new componentApi.Counter("a"));'),
       ),
@@ -496,9 +502,9 @@ try { componentHooks.states[0].setState(async () => {}); } catch (e) { errors.pu
       final code = script(
         'componentApi.runApp(new componentApi.Caption("caption"));',
       );
-      await t.pumpWidget(app(h, code));
+      await flaxTestPumpView(t, app(h, code));
       expect(find.text('caption:ltr'), findsOneWidget);
-      await t.pumpWidget(app(h, code, direction: TextDirection.rtl));
+      await flaxTestPumpView(t, app(h, code, direction: TextDirection.rtl));
       expect(find.text('caption:rtl'), findsOneWidget);
       expect(h.number('componentHooks.statelessBuilds'), 2);
       await flaxTestUnmount(t);
@@ -510,7 +516,8 @@ try { componentHooks.states[0].setState(async () => {}); } catch (e) { errors.pu
     'State access and dependency checks use the actual Flutter lifecycle',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         h.app(
           code: script("""
 var lifecycleChecks = [];
@@ -576,9 +583,9 @@ var noEarlyCallbacks = lifecycleChecks.length === 0;
         );
       }
 
-      await t.pumpWidget(tree(false));
+      await flaxTestPumpView(t, tree(false));
       h.execute('var originalContext = componentHooks.states[0].context;');
-      await t.pumpWidget(tree(true));
+      await flaxTestPumpView(t, tree(true));
       expect(h.number('componentHooks.states.length'), 1);
       expect(
         h.number(
@@ -613,7 +620,8 @@ var noEarlyCallbacks = lifecycleChecks.length === 0;
         'throw Error("creation failed");',
       ]) {
         final h = Harness();
-        await t.pumpWidget(
+        await flaxTestPumpView(
+          t,
           h.app(
             code: script('''
 class Broken extends componentApi.StatefulWidget { createState() { $body } }
@@ -628,7 +636,8 @@ componentApi.runApp(new Broken());
       }
       for (final hook in ['initState', 'dispose']) {
         final h = Harness();
-        await t.pumpWidget(
+        await flaxTestPumpView(
+          t,
           h.app(
             code: script('''
 class BrokenState extends componentApi.State {
@@ -672,7 +681,8 @@ componentApi.runApp(new Broken());
         bindings: registry,
         onError: (error, _) => errors.add(error),
       );
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         MaterialApp(
           home: Scaffold(body: FlaxView.session(session: session)),
         ),
@@ -733,7 +743,8 @@ componentApi.runApp(new Broken());
     'State build ParentData and same-named classes follow Flutter identity',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         h.app(
           code: script("""
 var {Column, Expanded, SizedBox, Text, ValueKey, signal, runApp, Counter} = componentApi;
@@ -765,7 +776,8 @@ runApp(SizedBox({height: 500, child: Column({children: [componentApi.Center({chi
     'build-time signals defer, while invalid build-time setState keeps Flutter checks',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         h.app(
           code: script("""
 var victim;
@@ -818,7 +830,8 @@ var pages = signal([makePage(2)]);
 runApp(Navigator({pages: pages.bind, onDidRemovePage: page => { pages.value = pages.value.filter(p => !identical(p, page)); }}));
 '''),
       );
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         MaterialApp(
           home: Scaffold(body: FlaxView.session(session: session)),
         ),
@@ -866,7 +879,8 @@ nav.push(MaterialPageRoute({builder: () => new Counter('route', 4)}));
     t,
   ) async {
     final h = Harness();
-    await t.pumpWidget(
+    await flaxTestPumpView(
+      t,
       h.app(
         code: script('''
 class EditorState extends componentApi.State {
@@ -889,7 +903,8 @@ componentApi.runApp(new Editor());
     );
     final field = t.widget<TextField>(find.byType(TextField));
     final oldRuntime = h.runtime;
-    await t.pumpWidget(
+    await flaxTestPumpView(
+      t,
       h.app(
         code: script('componentApi.runApp(new componentApi.Counter("new"));'),
       ),
@@ -930,7 +945,10 @@ class Failing extends componentApi.StatefulWidget { createState() { return new F
 componentApi.runApp(new Failing());
 '''),
       );
-      await t.pumpWidget(MaterialApp(home: FlaxView.session(session: session)));
+      await flaxTestPumpView(
+        t,
+        MaterialApp(home: FlaxView.session(session: session)),
+      );
       final closing = session.close();
       await flaxTestUnmount(t);
       await closing;
@@ -938,7 +956,8 @@ componentApi.runApp(new Failing());
       expect(runtime.handlesAtDispose, 0);
     }
     final h = Harness();
-    await t.pumpWidget(
+    await flaxTestPumpView(
+      t,
       h.app(
         code: script("""
 var reused = new componentApi.CounterState();

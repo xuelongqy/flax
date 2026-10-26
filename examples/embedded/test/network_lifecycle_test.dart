@@ -5,6 +5,7 @@ import 'package:flax/flax.dart';
 import 'package:flax_embedded/main.dart' as app;
 import 'package:flax_fetch/flax_fetch.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flax_websocket/flax_websocket.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -108,7 +109,8 @@ void main() {
       final errors = <Object>[];
       late RuntimeTracker runtime;
       final baseUrl = 'http://127.0.0.1:${server.port}/';
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         app.EmbeddedApp(
           source: '$probe\n$source',
           createRuntime: () => runtime = RuntimeTracker(),

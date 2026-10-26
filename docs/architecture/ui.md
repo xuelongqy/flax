@@ -209,6 +209,13 @@ destroyed after mounted JS content and active bridge calls drain. Owning views u
 separate engines. Borrowing views use their explicitly owned session. Dart Routes and
 escaped callbacks do not independently delay close; callbacks are revoked on completion.
 
+Owning Views prepare asynchronously before the first mount, using background pure JS
+initialization when the shared heap is available and staged UI loading otherwise. Source
+constructors need no new arguments; automatic entrances keep their existing loading and
+error builders. Leaving or replacing a loading View cancels it before mounting stale
+content. Explicit Session/page entrances keep synchronous lazy loading. See
+[Session startup](session-startup.md#owning-view-startup).
+
 Initial load failures clean up the runtime and display a bounded ErrorWidget.
 Event/binding failures reach `onError`, or FlutterError.reportError by default. Failed
 recoverable updates retain their last valid content, and later valid signal changes can

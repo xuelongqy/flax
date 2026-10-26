@@ -1,3 +1,5 @@
+import 'package:flax_test/flax_test.dart';
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -33,6 +35,7 @@ void main() {
         );
       });
       await tester.pumpAndSettle();
+      await flaxTestWaitForViews(tester);
       expect(find.text('Fetch ready'), findsOneWidget);
       await tester.ensureVisible(find.text('Send request'));
       await tester.tap(find.text('Send request'));

@@ -56,22 +56,40 @@ class FlaxSession {
   Future<void>? _closeFuture;
 
   Future<void>? _preparation;
+  Completer<void>? _cancelPreparation;
   bool _preparing = false;
+  static Future<void>? _startupQueue;
 
-  /// Experimental startup entry; the stable API remains synchronous.
+  /// Retained for the measurement harness; normal owning Views prepare automatically.
   Future<void> prepareForExperiment({void Function(String, int)? onStep}) =>
-      _preparation ??= _prepareForExperiment(onStep);
+      _prepare(onStep: onStep);
 
-  Future<void> _prepareForExperiment(void Function(String, int)? onStep) async {
-    if (_closeFuture != null) throw StateError('Closed Flax session');
-    if (_session != null) return;
+  Future<void> _prepare({void Function(String, int)? onStep}) {
+    if (_preparation case final existing?) return existing;
+    final previous = _startupQueue;
+    final finished = Completer<void>();
+    _startupQueue = finished.future;
+    _cancelPreparation = Completer<void>();
+    return _preparation = _prepareSession(previous, finished, onStep);
+  }
+
+  Future<void> _prepareSession(
+    Future<void>? previous,
+    Completer<void> finished,
+    void Function(String, int)? onStep,
+  ) async {
     _preparing = true;
+    FlaxJsRuntime? pendingRuntime;
     try {
-      await WidgetsBinding.instance.endOfFrame;
+      // Serialize creation/adoption; a worker must not hold another View's heap.
+      if (previous != null) await previous;
       if (_closeFuture != null) throw StateError('Closed Flax session');
+      if (_session != null) return;
+      await WidgetsBinding.instance.endOfFrame;
       final declarations = Stopwatch()..start();
       final step = Stopwatch()..start();
       for (final module in _defaultBindingModules) {
+        if (_closeFuture != null) throw StateError('Closed Flax session');
         if (module.uiProtocol != flaxBindingVersion) {
           throw ArgumentError('Incompatible binding module ${module.name}');
         }
@@ -81,34 +99,53 @@ class FlaxSession {
           await Future<void>.delayed(Duration.zero);
           declarations.reset();
         }
-        if (_closeFuture != null) throw StateError('Closed Flax session');
         step.reset();
       }
-      step.reset();
       final registry = _bindingsWithPlugins(bindings, plugins);
-      onStep?.call('registry', step.elapsedMicroseconds);
-      await WidgetsBinding.instance.endOfFrame;
+      final assets = _moduleAssets;
+      final runtime = createRuntime();
+      pendingRuntime = runtime;
+      var prepared = false;
+      if (runtime is FlaxJsSourcePreparer && assets != null) {
+        try {
+          prepared = await (runtime as FlaxJsSourcePreparer).prepareSources(
+            assets._startupSources(registry, plugins),
+            entry: FlaxJsSource(source, sourceUrl: sourceUrl),
+            cancelled: _cancelPreparation!.future,
+          );
+        } on FlaxJsException {
+          // Native restores a pristine context after a pure-JS failure. Keep the
+          // factory's runtime object and run Dart-dependent initialization on UI.
+          if (_closeFuture != null) throw StateError('Closed Flax session');
+        }
+      }
       if (_closeFuture != null) throw StateError('Closed Flax session');
       final session = _Session(
-        createRuntime(),
+        runtime,
         registry,
         onError,
         namespace: namespace,
         assetBundle: assetBundle,
+        modulesPrepared: prepared,
       );
       _session = session;
+      pendingRuntime = null;
       await session.loadStaged(
         source,
         sourceUrl,
         plugins: plugins,
-        moduleAssets: _moduleAssets,
+        moduleAssets: assets,
         onStep: onStep,
+        cancelled: () => _closeFuture != null,
       );
     } catch (error) {
       _loadError = error;
+      pendingRuntime?.dispose();
       rethrow;
     } finally {
       _preparing = false;
+      if (identical(_startupQueue, finished.future)) _startupQueue = null;
+      finished.complete();
     }
   }
 
@@ -164,8 +201,23 @@ class FlaxSession {
 
   /// Stops new content and drains mounted JS content and active bridge calls.
   /// Remaining callbacks are revoked on completion; Flutter still owns its routes.
-  Future<void> close() =>
-      _closeFuture ??= _session?.requestClose() ?? Future<void>.value();
+  Future<void> close() {
+    if (_closeFuture case final closing?) return closing;
+    _cancelPreparation?.complete();
+    final closing = _session?.requestClose();
+    if (!_preparing) {
+      return _closeFuture = closing ?? Future<void>.value();
+    }
+    return _closeFuture = () async {
+      // Preparation restores UI ownership before runtime disposal.
+      try {
+        await _preparation;
+      } catch (_) {
+        // The loading caller owns the failure; close still releases its resources.
+      }
+      await closing;
+    }();
+  }
 
   /// The type used by Flutter matching and find.byType for this JS class.
   /// Borrows [constructor]; does not initialize the session or construct a Widget.
@@ -497,7 +549,9 @@ class _SessionRoot extends StatefulWidget {
     super.key,
     required this.configuration,
     required this.assetBundle,
+    this.application,
   });
+  final FlaxApplication? application;
   final FlaxView configuration;
   final AssetBundle assetBundle;
   @override
@@ -506,8 +560,9 @@ class _SessionRoot extends StatefulWidget {
 
 class _SessionRootState extends State<_SessionRoot> {
   late final FlaxSession _session;
-  late Widget _root;
+  Widget _root = const SizedBox.shrink();
   bool _attached = false;
+  bool _preparationComplete = false;
   int _hotGeneration = 0;
 
   void _report(Object error, StackTrace stack) {
@@ -529,17 +584,47 @@ class _SessionRootState extends State<_SessionRoot> {
         configuration._session ??
         FlaxSession(
           createRuntime: configuration.createRuntime!,
-          source: configuration.source!,
-          sourceUrl: configuration.sourceUrl!,
+          source: widget.application?.source ?? configuration.source!,
+          sourceUrl: widget.application?.sourceUrl ?? configuration.sourceUrl!,
           bindings: configuration.bindings ?? FlaxBindingRegistry([]),
+          onError: configuration.onError,
           plugins: configuration.plugins,
           namespace: configuration.namespace,
           assetBundle:
+              widget.application?.assetBundle ??
               configuration.assetBundle ??
               FlaxPrefixedAssetBundle(bundle: widget.assetBundle),
         );
+    if (configuration._session == null) {
+      unawaited(_prepare());
+    } else {
+      _mount();
+    }
+  }
+
+  Future<void> _prepare() async {
     try {
-      _root = _session._mount(configuration._session == null ? _report : null);
+      await _session._prepare();
+    } catch (error, stack) {
+      if (!mounted) return;
+      setState(() {
+        _preparationComplete = true;
+        _root =
+            widget.configuration.errorBuilder?.call(context, error, stack) ??
+            _errorWidget(error);
+      });
+      _report(error, stack);
+      return;
+    }
+    if (mounted) setState(_mount);
+  }
+
+  void _mount() {
+    _preparationComplete = true;
+    try {
+      _root = _session._mount(
+        widget.configuration._session == null ? _report : null,
+      );
       _attached = true;
       _hotGeneration = _session._session!._hotRootGeneration;
     } catch (error, stack) {
@@ -549,8 +634,12 @@ class _SessionRootState extends State<_SessionRoot> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      _session._session?.scopeAssets(_root) ?? _root;
+  Widget build(BuildContext context) {
+    if (!_preparationComplete) {
+      return widget.configuration.loadingBuilder?.call(context) ?? _root;
+    }
+    return _session._session?.scopeAssets(_root) ?? _root;
+  }
 
   @override
   void reassemble() {
@@ -715,15 +804,10 @@ class _ApplicationViewState extends State<_ApplicationView> {
       return configuration.loadingBuilder?.call(context) ??
           const SizedBox.shrink();
     }
-    return FlaxView(
-      createRuntime: configuration.createRuntime!,
-      bindings: configuration.bindings,
-      source: application.source,
-      sourceUrl: application.sourceUrl,
+    return _SessionRoot(
+      configuration: configuration,
       assetBundle: application.assetBundle,
-      namespace: configuration.namespace,
-      plugins: configuration.plugins,
-      onError: configuration.onError,
+      application: application,
     );
   }
 }

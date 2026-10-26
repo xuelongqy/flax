@@ -248,7 +248,8 @@ void main() {
         ('second', true),
       ]) {
         final inherited = _NamedBundle(name);
-        await t.pumpWidget(
+        await flaxTestPumpView(
+          t,
           DefaultAssetBundle(
             bundle: inherited,
             child: MaterialApp(

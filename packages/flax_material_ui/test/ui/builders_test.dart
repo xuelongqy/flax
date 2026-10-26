@@ -37,7 +37,7 @@ void main() {
     'real build and layout callbacks inherit dependencies and preserve context identity',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(app(h));
+      await flaxTestPumpView(t, app(h));
       expect(h.errors, isEmpty);
       expect(find.text('LTR'), findsOneWidget);
       expect(find.text('Width 400'), findsOneWidget);
@@ -51,7 +51,7 @@ void main() {
       );
       final state = t.state(host(1));
       final staticWidget = t.widget(find.text('Static'));
-      await t.pumpWidget(app(h, direction: TextDirection.rtl));
+      await flaxTestPumpView(t, app(h, direction: TextDirection.rtl));
       expect(find.text('RTL'), findsOneWidget);
       expect(h.number('hooks.builds'), 2);
       expect(h.number('Number(hooks.context === hooks.latest)'), 1);
@@ -62,7 +62,10 @@ void main() {
       expect(find.text('Count 2'), findsOneWidget);
       final builds = h.number('hooks.builds');
       final layouts = h.number('hooks.layouts');
-      await t.pumpWidget(app(h, direction: TextDirection.rtl, width: 300));
+      await flaxTestPumpView(
+        t,
+        app(h, direction: TextDirection.rtl, width: 300),
+      );
       expect(find.text('Width 300'), findsOneWidget);
       expect(h.number('hooks.layouts'), layouts + 1);
       expect(h.number('hooks.builds'), builds);
@@ -79,7 +82,7 @@ void main() {
     'builder replacement isolates failures and keyed children recover',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(app(h));
+      await flaxTestPumpView(t, app(h));
       final state = t.state(host(1));
       h.execute('hooks.items.value = [2, 1, 3]');
       await t.pump();
@@ -139,7 +142,8 @@ void main() {
     'the same descriptor and JS callback own independent mounted results',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         app(h, code: 'globalThis.scenario = "shared";\n$builderSource'),
       );
       expect(h.number('hooks.active'), 2);
@@ -170,14 +174,14 @@ void main() {
     'layout failures recover and layout invalidations wait until the next frame',
     (t) async {
       final h = Harness();
-      await t.pumpWidget(app(h));
+      await flaxTestPumpView(t, app(h));
       h.execute('hooks.mode.value = "layout-throw"');
-      await t.pumpWidget(app(h, width: 300));
+      await flaxTestPumpView(t, app(h, width: 300));
       expect(find.text('Width 400'), findsNothing);
       expect(find.byType(ErrorWidget), findsOneWidget);
       expect(h.errors, hasLength(1));
       h.execute('hooks.mode.value = "write-during-layout"');
-      await t.pumpWidget(app(h, width: 320));
+      await flaxTestPumpView(t, app(h, width: 320));
       expect(find.text('Width 320'), findsOneWidget);
       expect(find.byType(ErrorWidget), findsNothing);
       expect(find.text('Count 0'), findsOneWidget);
@@ -185,7 +189,7 @@ void main() {
       await t.pump();
       expect(find.text('Count 1'), findsOneWidget);
       final layouts = h.number('hooks.layouts');
-      await t.pumpWidget(app(h, width: 320));
+      await flaxTestPumpView(t, app(h, width: 320));
       expect(h.number('hooks.layouts'), layouts);
       h.execute(
         'hooks.mode.value = "write-during-build"; hooks.callback.value = c => hooks.builder(c)',
@@ -205,7 +209,7 @@ void main() {
     (t) async {
       final h = Harness();
       final code = '$builderSource\nhooks.mode.value = "throw";';
-      await t.pumpWidget(app(h, code: code));
+      await flaxTestPumpView(t, app(h, code: code));
       expect(find.byType(ErrorWidget), findsOneWidget);
       expect(h.errors, hasLength(1));
       h.execute(
@@ -214,13 +218,13 @@ void main() {
       await t.pump();
       expect(find.text('LTR'), findsOneWidget);
       final old = h.runtime;
-      await t.pumpWidget(app(h));
+      await flaxTestPumpView(t, app(h));
       await flaxTestWaitForRuntimeDisposal(t, old);
       expect(old.isDisposed, isTrue);
       expect(h.runtimes, hasLength(2));
       expect(h.number('hooks.active'), 1);
       await flaxTestUnmount(t);
-      await t.pumpWidget(app(h, code: '__flaxMount({}, 1)'));
+      await flaxTestPumpView(t, app(h, code: '__flaxMount({}, 1)'));
       expect(h.errors.last.toString(), contains('protocol'));
       expect(h.runtime.isDisposed, isTrue);
       await flaxTestUnmount(t);
@@ -252,13 +256,14 @@ void main() {
         if (value is FlaxJsObject) value.release();
       }
 
-      await t.pumpWidget(trackedApp(TextDirection.ltr));
-      await t.pumpWidget(trackedApp(TextDirection.rtl));
+      await flaxTestPumpView(t, trackedApp(TextDirection.ltr));
+      await flaxTestPumpView(t, trackedApp(TextDirection.rtl));
       await collectWidgetConfigurations(t);
       final baseline = runtime.handles;
       final calls = runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
       for (var i = 0; i < 100; i++) {
-        await t.pumpWidget(
+        await flaxTestPumpView(
+          t,
           trackedApp(i.isEven ? TextDirection.ltr : TextDirection.rtl),
         );
       }
@@ -314,7 +319,7 @@ void main() {
       bindings: bindings,
       onError: (e, _) => h.errors.add(e),
     );
-    await t.pumpWidget(MaterialApp(home: Scaffold(body: view)));
+    await flaxTestPumpView(t, MaterialApp(home: Scaffold(body: view)));
     var deactivations = 0;
     onDeactivate = () {
       deactivations++;
@@ -354,7 +359,7 @@ void main() {
           ),
         ),
       );
-      await t.pumpWidget(regions(true));
+      await flaxTestPumpView(t, regions(true));
       final foreign = a.runtime.evaluate('hooks.context') as FlaxJsObject;
       final read = b.runtime.evaluate('(c) => c.mounted') as FlaxJsFunction;
       try {
@@ -367,7 +372,7 @@ void main() {
       await t.pump();
       expect(find.text('Count 7'), findsOneWidget);
       expect(find.text('Count 0'), findsOneWidget);
-      await t.pumpWidget(regions(false));
+      await flaxTestPumpView(t, regions(false));
       await flaxTestWaitForRuntimeDisposal(t, a.runtime);
       expect(a.runtime.isDisposed, isTrue);
       expect(b.number('Number(hooks.context.mounted)'), 1);

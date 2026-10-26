@@ -1,10 +1,10 @@
 # Shared Widget batch transport experiment
 
-Status: macOS arm64 V8 prototype, disabled unless the experimental runtime flag is set.
-This is not a production transport or a public application configuration. The preceding
-startup/bridge work is archived in local checkpoint `acfb213a` on top of main
-`a6ea2404b`; this batch follow-up is retained locally on the experimental branch and has
-not been pushed or enabled by default.
+Status: historical measurements of the shared Widget batch transport, now used by
+ordinary Session conversion with the same validation and fallback rules. The production
+implementation is `packages/flax/lib/src/ui/widget_batch.dart`; the flags below remain
+comparison controls, not application configuration. The preceding startup/bridge work is
+archived in local checkpoint `acfb213a` on top of main `a6ea2404b`.
 
 ## Mechanism
 

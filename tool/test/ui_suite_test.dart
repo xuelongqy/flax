@@ -5,6 +5,23 @@ import 'package:test/test.dart';
 import '../src/ui_suite.dart';
 
 void main() {
+  test('UI results require all declared cases, including skipped tests', () {
+    const complete = '''
+{"type":"group","group":{"parentID":null,"testCount":2}}
+{"type":"testDone","hidden":true}
+{"type":"testDone","hidden":false,"skipped":false}
+{"type":"testDone","hidden":false,"skipped":true}
+{"type":"done","success":true}
+''';
+    expect(() => validateUiSuiteResults(complete), returnsNormally);
+    for (final incomplete in [
+      '{"type":"testDone","hidden":true}\n{"type":"done","success":true}',
+      complete.replaceFirst('"testCount":2', '"testCount":3'),
+      complete.replaceFirst('"success":true', '"success":false'),
+    ]) {
+      expect(() => validateUiSuiteResults(incomplete), throwsStateError);
+    }
+  });
   test(
     'device journal retains grouped plain tests, failures and unfinished cases',
     () {

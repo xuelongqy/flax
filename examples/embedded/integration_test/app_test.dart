@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flax_embedded/main.dart' as app;
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -22,7 +23,8 @@ void main() {
         () => app.loadAggregateSource(storageDirectory: storage!.path),
       ))!;
       final runtimes = <RuntimeTracker>[];
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         app.EmbeddedApp(
           source: source,
           createRuntime: () {

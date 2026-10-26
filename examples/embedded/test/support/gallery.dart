@@ -1,4 +1,5 @@
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -97,6 +98,7 @@ Future<void> tapGallery(WidgetTester tester, Finder finder) async {
   await tester.ensureVisible(target);
   await tester.tap(target);
   await tester.pumpAndSettle();
+  await flaxTestWaitForViews(tester);
 }
 
 Future<void> pumpGalleryUntil(WidgetTester tester, bool Function() done) async {

@@ -1,5 +1,9 @@
 # Fixed entries in cached dependency libraries
 
+Status: the repair is incorporated into the maintained Flutter fork's revision-checked
+Dart patch and ordinary `build_engine.py` flow. The private build commands below are
+historical reproductions; current applications and tests use the ordinary local engine.
+
 This experiment repairs missing `_flaxFixed` procedures during mixed-file Flutter tests.
 It was first verified on the maintained Dart patch at Flutter fork revision
 `7073a17018976155fa123c5c9c627776e776dbeb`; that compiler source is unchanged at the

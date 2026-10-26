@@ -123,6 +123,17 @@ final class FlaxJsSource {
       .asUnmodifiableView();
 }
 
+/// Optional engine capability used before a Session installs Dart callbacks.
+/// Sources run as pure JS; entry is compiled and executes later on the UI thread.
+/// False selects UI initialization, including when a new runtime interrupts preparation.
+abstract interface class FlaxJsSourcePreparer {
+  Future<bool> prepareSources(
+    List<FlaxJsSource> sources, {
+    required FlaxJsSource entry,
+    Future<void>? cancelled,
+  });
+}
+
 abstract class FlaxJsRuntime {
   /// Internal maintained-engine Type operations. All handles stay in Dart.
   Type dartInstanceType(Object value);

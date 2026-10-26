@@ -145,13 +145,13 @@ void main() {
         bindings: registry,
         onError: (error, _) => errors.add(error),
       );
-      await t.pumpWidget(view(source));
+      await flaxTestPumpView(t, view(source));
       await t.pumpAndSettle();
       await t.tap(find.widgetWithText(TextButton, 'Count'));
       await t.pump();
       await t.tap(find.widgetWithText(TextButton, 'Details'));
       await t.pumpAndSettle();
-      await t.pumpWidget(view('$source\n// New source identity.'));
+      await flaxTestPumpView(t, view('$source\n// New source identity.'));
       await t.pumpAndSettle();
       expect(runtimes, hasLength(2));
       expect(runtimes.first.handlesAtDispose, 0);
@@ -232,10 +232,10 @@ void main() {
         bindings: registry,
         onError: (e, _) => errors.add(e),
       );
-      await t.pumpWidget(view("throw new Error('startup failed')"));
+      await flaxTestPumpView(t, view("throw new Error('startup failed')"));
       expect(find.byType(ErrorWidget), findsOneWidget);
       expect(errors.single.toString(), contains('startup failed'));
-      await t.pumpWidget(view("throw new Error('replacement')"));
+      await flaxTestPumpView(t, view("throw new Error('replacement')"));
       await t.pumpAndSettle();
       expect(runtimes.first.handlesAtDispose, 0);
       await flaxTestUnmount(t);

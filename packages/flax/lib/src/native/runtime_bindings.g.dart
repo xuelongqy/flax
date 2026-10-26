@@ -90,23 +90,18 @@ class FlaxBindings {
   late final _flax_engine_shutdown_current_isolate =
       _flax_engine_shutdown_current_isolatePtr.asFunction<void Function()>();
 
-  ffi.Pointer<FlaxEngineResultsExperimentApi> flax_experiment_get_results_api(
-    int arg0,
-  ) {
-    return _flax_experiment_get_results_api(arg0);
+  ffi.Pointer<FlaxEngineExecutionApi> flax_get_engine_execution_api(int arg0) {
+    return _flax_get_engine_execution_api(arg0);
   }
 
-  late final _flax_experiment_get_results_apiPtr =
+  late final _flax_get_engine_execution_apiPtr =
       _lookup<
         ffi.NativeFunction<
-          ffi.Pointer<FlaxEngineResultsExperimentApi> Function(ffi.Uint32)
+          ffi.Pointer<FlaxEngineExecutionApi> Function(ffi.Uint32)
         >
-      >('flax_experiment_get_results_api');
-  late final _flax_experiment_get_results_api =
-      _flax_experiment_get_results_apiPtr
-          .asFunction<
-            ffi.Pointer<FlaxEngineResultsExperimentApi> Function(int)
-          >();
+      >('flax_get_engine_execution_api');
+  late final _flax_get_engine_execution_api = _flax_get_engine_execution_apiPtr
+      .asFunction<ffi.Pointer<FlaxEngineExecutionApi> Function(int)>();
 }
 
 const int FLAX_ABI_VERSION = 2;
@@ -115,11 +110,11 @@ const int FLAX_CALLBACK_FAILURE = 4;
 
 const int FLAX_ENGINE_BINDING_VERSION = 8;
 
+const int FLAX_ENGINE_EXECUTION_VERSION = 1;
+
 const int FLAX_ENGINE_FFI_VERSION = 1;
 
 const int FLAX_ENGINE_GC_VERSION = 1;
-
-const int FLAX_ENGINE_RESULTS_EXPERIMENT_VERSION = 2;
 
 final class FlaxApi extends ffi.Struct {
   @ffi.Uint32()
@@ -973,6 +968,176 @@ final class FlaxEngineBindingApi extends ffi.Struct {
     ..ref.new_record = new_record;
 }
 
+final class FlaxEngineExecutionApi extends ffi.Struct {
+  @ffi.Uint32()
+  external int version;
+
+  @ffi.Size()
+  external int struct_size;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        FlaxValueId,
+        ffi.Pointer<FlaxBindingArgument>,
+        ffi.Pointer<FlaxBindingArgument>,
+        ffi.Size,
+        ffi.Pointer<FlaxValueId>,
+        ffi.Pointer<FlaxValueInfo>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  call;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        FlaxValueId,
+        ffi.Pointer<ffi.Uint16>,
+        ffi.Size,
+        ffi.Pointer<FlaxValueId>,
+        ffi.Pointer<FlaxValueInfo>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  get_property;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        FlaxValueId,
+        ffi.Pointer<FlaxValueId>,
+        ffi.Size,
+        ffi.Pointer<FlaxValueInfo>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  inspect_arguments;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Pointer<FlaxSource>,
+        ffi.Size,
+        ffi.Pointer<FlaxSource>,
+        ffi.Pointer<ffi.Int32>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  prepare;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Pointer<ffi.Int32>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  poll;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(ffi.Pointer<FlaxRuntime>, ffi.Pointer<FlaxError>)
+    >
+  >
+  cancel;
+
+  static ffi.Pointer<FlaxEngineExecutionApi> $allocate(
+    ffi.Allocator $allocator, {
+    required int version,
+    required int struct_size,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          FlaxValueId,
+          ffi.Pointer<FlaxBindingArgument>,
+          ffi.Pointer<FlaxBindingArgument>,
+          ffi.Size,
+          ffi.Pointer<FlaxValueId>,
+          ffi.Pointer<FlaxValueInfo>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    call,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          FlaxValueId,
+          ffi.Pointer<ffi.Uint16>,
+          ffi.Size,
+          ffi.Pointer<FlaxValueId>,
+          ffi.Pointer<FlaxValueInfo>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    get_property,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          FlaxValueId,
+          ffi.Pointer<FlaxValueId>,
+          ffi.Size,
+          ffi.Pointer<FlaxValueInfo>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    inspect_arguments,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Pointer<FlaxSource>,
+          ffi.Size,
+          ffi.Pointer<FlaxSource>,
+          ffi.Pointer<ffi.Int32>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    prepare,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Pointer<ffi.Int32>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    poll,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(ffi.Pointer<FlaxRuntime>, ffi.Pointer<FlaxError>)
+      >
+    >
+    cancel,
+  }) => $allocator<FlaxEngineExecutionApi>()
+    ..ref.version = version
+    ..ref.struct_size = struct_size
+    ..ref.call = call
+    ..ref.get_property = get_property
+    ..ref.inspect_arguments = inspect_arguments
+    ..ref.prepare = prepare
+    ..ref.poll = poll
+    ..ref.cancel = cancel;
+}
+
 final class FlaxEngineFfiApi extends ffi.Struct {
   @ffi.Uint32()
   external int version;
@@ -1161,112 +1326,6 @@ final class FlaxEngineGcApi extends ffi.Struct {
     ..ref.cell_count = cell_count;
 }
 
-final class FlaxEngineResultsExperimentApi extends ffi.Struct {
-  @ffi.Uint32()
-  external int version;
-
-  @ffi.Size()
-  external int struct_size;
-
-  external ffi.Pointer<
-    ffi.NativeFunction<
-      ffi.Int32 Function(
-        ffi.Pointer<FlaxRuntime>,
-        FlaxValueId,
-        ffi.Pointer<FlaxBindingArgument>,
-        ffi.Pointer<FlaxBindingArgument>,
-        ffi.Size,
-        ffi.Pointer<FlaxValueId>,
-        ffi.Pointer<FlaxValueInfo>,
-        ffi.Pointer<FlaxError>,
-      )
-    >
-  >
-  call;
-
-  external ffi.Pointer<
-    ffi.NativeFunction<
-      ffi.Int32 Function(
-        ffi.Pointer<FlaxRuntime>,
-        FlaxValueId,
-        ffi.Pointer<ffi.Uint16>,
-        ffi.Size,
-        ffi.Pointer<FlaxValueId>,
-        ffi.Pointer<FlaxValueInfo>,
-        ffi.Pointer<FlaxError>,
-      )
-    >
-  >
-  get_property;
-
-  external ffi.Pointer<
-    ffi.NativeFunction<
-      ffi.Int32 Function(
-        ffi.Pointer<FlaxRuntime>,
-        FlaxValueId,
-        ffi.Pointer<FlaxValueId>,
-        ffi.Size,
-        ffi.Pointer<FlaxValueInfo>,
-        ffi.Pointer<FlaxError>,
-      )
-    >
-  >
-  inspect_arguments;
-
-  static ffi.Pointer<FlaxEngineResultsExperimentApi> $allocate(
-    ffi.Allocator $allocator, {
-    required int version,
-    required int struct_size,
-    required ffi.Pointer<
-      ffi.NativeFunction<
-        ffi.Int32 Function(
-          ffi.Pointer<FlaxRuntime>,
-          FlaxValueId,
-          ffi.Pointer<FlaxBindingArgument>,
-          ffi.Pointer<FlaxBindingArgument>,
-          ffi.Size,
-          ffi.Pointer<FlaxValueId>,
-          ffi.Pointer<FlaxValueInfo>,
-          ffi.Pointer<FlaxError>,
-        )
-      >
-    >
-    call,
-    required ffi.Pointer<
-      ffi.NativeFunction<
-        ffi.Int32 Function(
-          ffi.Pointer<FlaxRuntime>,
-          FlaxValueId,
-          ffi.Pointer<ffi.Uint16>,
-          ffi.Size,
-          ffi.Pointer<FlaxValueId>,
-          ffi.Pointer<FlaxValueInfo>,
-          ffi.Pointer<FlaxError>,
-        )
-      >
-    >
-    get_property,
-    required ffi.Pointer<
-      ffi.NativeFunction<
-        ffi.Int32 Function(
-          ffi.Pointer<FlaxRuntime>,
-          FlaxValueId,
-          ffi.Pointer<FlaxValueId>,
-          ffi.Size,
-          ffi.Pointer<FlaxValueInfo>,
-          ffi.Pointer<FlaxError>,
-        )
-      >
-    >
-    inspect_arguments,
-  }) => $allocator<FlaxEngineResultsExperimentApi>()
-    ..ref.version = version
-    ..ref.struct_size = struct_size
-    ..ref.call = call
-    ..ref.get_property = get_property
-    ..ref.inspect_arguments = inspect_arguments;
-}
-
 final class FlaxError extends ffi.Struct {
   @ffi.Int32()
   external int code;
@@ -1318,6 +1377,30 @@ typedef DartFlaxHostCallbackFunction = int Function(
 );
 
 final class FlaxRuntime extends ffi.Opaque {}
+
+final class FlaxSource extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint8> data;
+
+  @ffi.Size()
+  external int length;
+
+  external ffi.Pointer<ffi.Uint8> url;
+
+  @ffi.Size()
+  external int url_length;
+
+  static ffi.Pointer<FlaxSource> $allocate(
+    ffi.Allocator $allocator, {
+    required ffi.Pointer<ffi.Uint8> data,
+    required int length,
+    required ffi.Pointer<ffi.Uint8> url,
+    required int url_length,
+  }) => $allocator<FlaxSource>()
+    ..ref.data = data
+    ..ref.length = length
+    ..ref.url = url
+    ..ref.url_length = url_length;
+}
 
 enum FlaxStatus {
   FLAX_OK(0),

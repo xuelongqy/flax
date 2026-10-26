@@ -59,7 +59,8 @@ void main() {
   ]) {
     testWidgets('Body stream contract: $name', (tester) async {
       final h = _TrackedHarness();
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(
           home: FlaxView(
             createRuntime: h.create,
@@ -90,7 +91,7 @@ void main() {
     'abort listeners survive real JS collection and release after removal',
     (tester) async {
       final h = _TrackedHarness();
-      await tester.pumpWidget(h.app());
+      await flaxTestPumpView(tester, h.app());
       h.execute(flaxTestFixtureSource('host_body', packageName: 'flax_fetch'));
       h.execute('prepareAbortProbes(); undefined;');
       Future<void> collect() async {
@@ -140,7 +141,8 @@ void main() {
     tester,
   ) async {
     final h = _TrackedHarness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: h.create,
@@ -174,7 +176,7 @@ void main() {
     tester,
   ) async {
     final h = _TrackedHarness();
-    await tester.pumpWidget(h.app());
+    await flaxTestPumpView(tester, h.app());
     expect(h.errors, isEmpty);
     stdout.writeln(
       'Base-only startup: ${h.tracker.evaluationMicroseconds}; calls=${h.tracker.hostCalls}; handles=${h.tracker.handles}',
@@ -262,7 +264,8 @@ void main() {
       onError: (e, _) => h.errors.add(e),
     );
     Flax.registerPlugins([b]);
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: Row(
           children: [
@@ -275,7 +278,8 @@ void main() {
     expect(h.errors, isEmpty);
     expect(log, ['install:a']);
     expect(h.number('probe_a()'), 1);
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: Row(
           children: [
@@ -287,7 +291,8 @@ void main() {
     );
     expect(log, ['install:a']);
     final second = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: Row(
           children: [
@@ -339,7 +344,8 @@ void main() {
       );
       selected.clear();
       expect(() => session.plugins.clear(), throwsUnsupportedError);
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(
           home: Row(
             children: [
@@ -384,7 +390,8 @@ void main() {
       throwsArgumentError,
     );
     final h = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: h.create,
@@ -415,7 +422,8 @@ void main() {
       '__flaxMount',
     ]) {
       final collision = Harness();
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(
           home: FlaxView(
             createRuntime: collision.create,
@@ -523,7 +531,8 @@ void main() {
       });
       try {
         final h = _TrackedHarness();
-        await tester.pumpWidget(
+        await flaxTestPumpView(
+          tester,
           MaterialApp(
             home: FlaxView(
               createRuntime: h.create,
@@ -721,7 +730,8 @@ void main() {
       onError: (e, _) => h.errors.add(e),
     );
     try {
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(home: FlaxView.session(session: session)),
       );
       await runScript(tester, h, r'''
@@ -761,7 +771,8 @@ void main() {
         ],
         onError: (e, _) => h.errors.add(e),
       );
-      await tester.pumpWidget(
+      await flaxTestPumpView(
+        tester,
         MaterialApp(home: FlaxView.session(session: session)),
       );
       await runScript(tester, h, r'''
@@ -821,7 +832,8 @@ void main() {
         for (final trusted in [false, true]) {
           HttpOverrides.global = trusted ? _TrustedHttp(cert) : null;
           final h = Harness();
-          await tester.pumpWidget(
+          await flaxTestPumpView(
+            tester,
             MaterialApp(
               home: FlaxView(
                 createRuntime: h.create,
@@ -872,7 +884,8 @@ void main() {
       requiredCapabilities: [],
     );
     final merged = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: merged.create,
@@ -893,7 +906,8 @@ void main() {
     await tester.pumpAndSettle();
 
     final duplicate = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: duplicate.create,
@@ -911,7 +925,8 @@ void main() {
     await flaxTestUnmount(tester);
 
     final conflicting = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: conflicting.create,
@@ -938,7 +953,8 @@ void main() {
     );
 
     final version = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: version.create,
@@ -968,7 +984,8 @@ void main() {
   testWidgets('exposeObject identity, type and cross-session', (tester) async {
     final box = _ExposeBox();
     final a = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: a.create,
@@ -997,7 +1014,8 @@ void main() {
       await tester.pump(const Duration(milliseconds: 1));
     }
     final b = Harness();
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       MaterialApp(
         home: FlaxView(
           createRuntime: b.create,
@@ -1025,7 +1043,7 @@ void main() {
     'rAF runs after script and microtasks then drains raf microtasks',
     (tester) async {
       final h = Harness();
-      await tester.pumpWidget(h.app());
+      await flaxTestPumpView(tester, h.app());
       expect(h.errors, isEmpty);
       h.execute(r'''
       globalThis.rafOrder = ['script'];
