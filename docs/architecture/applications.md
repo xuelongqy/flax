@@ -23,6 +23,11 @@ Flutter's own theme animation and inherited rebuilds are not additional Flax sch
 
 ## Application resources
 
+Native ESM entries use descriptor version 2 and asynchronous Session readiness; version
+1 retains script behavior. JS, JSON and Wasm dependencies share one runtime graph,
+including remote imports. See [native modules](modules.md) for mode selection, transport
+policy and source-provider APIs.
+
 Main-project business code and resources form one directory, separate from prepared host
 modules. `prepareApplication()` from `@flax/build/application` stages resources from the
 JS project's `assets/` directory and generates `flax.json`; the existing esbuild

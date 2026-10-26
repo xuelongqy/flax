@@ -14,6 +14,10 @@ and JS business references participate in joint GC. See the
 [embedded example](examples/embedded/README.md) and
 [host contract](docs/architecture/ui.md).
 
+Native [runtime modules](docs/architecture/modules.md) load original JavaScript ESM,
+JSON and Wasm from packaged files or HTTP(S). Script mode remains the default. iOS
+jitless enables Wasm through DrumBrake; sandbox isolation is not implemented.
+
 Core owns the public Flutter framework bindings. Material and Cupertino APIs come from
 the standalone `@flax/material-ui` and `@flax/cupertino-ui` packages with their host
 plugins. The former `@flax/flutter/material` and `@flax/flutter/cupertino` entries are
@@ -164,6 +168,14 @@ The device gate verifies real signing, provisioning, Dart AOT and the relocated 
 before installation. Simulator profile/release and physical-device debug/profile are
 currently unsupported. Distribution signing requires separate acceptance. Use
 `FLAX_CHECK_STRESS_SECONDS=900` for the separate sustained joint-GC device gate.
+
+The Wasm-enabled iOS SDK requires the app target's **Extended Virtual Addressing**
+capability (`com.apple.developer.kernel.extended-virtual-addressing = true`) and a
+matching provisioning profile. DrumBrake requires V8 pointer compression, which reserves
+a 4 GiB virtual address region. This reservation is not 4 GiB of physical memory. The
+example tools configure the entitlement and the device gate checks the signed app before
+installation. Existing hosts must enable the capability in Xcode; the previous SDK
+without Wasm did not require it. JIT remains disabled.
 
 Platform selection is fixed: iOS V8 jitless, other native targets V8 JIT. macOS, Android
 arm64, iOS arm64 simulator debug and iOS arm64 device release are implemented. Ordinary

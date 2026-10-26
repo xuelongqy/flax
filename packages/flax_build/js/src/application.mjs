@@ -14,6 +14,8 @@ import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { createHash } from 'node:crypto';
 import { zipSync } from 'fflate';
 
+export { prepareModuleApplication } from './esm.mjs';
+
 const reserved = new Set([
   'flax.json',
   'flax.assets.json',
@@ -84,6 +86,7 @@ export async function prepareApplication({
   assetsDirectory,
   id,
   entry = 'app.js',
+  modules,
 } = {}) {
   const project = await realpath(projectDirectory);
   const metadata = JSON.parse(await readFile(resolve(project, 'package.json'), 'utf8'));
@@ -91,10 +94,23 @@ export async function prepareApplication({
     throw new Error('Application description must be a string');
   }
   const manifest = {
-    formatVersion: 1,
+    formatVersion: modules === undefined ? 1 : 2,
     id: text(id ?? metadata.flax?.id ?? metadata.name, 'id'),
     version: text(metadata.version, 'version'),
     entry: text(entry, 'entry'),
+    ...(modules === undefined
+      ? {}
+      : {
+          entryFormat: 'module',
+          requiredCapabilities: [
+            'esm',
+            ...(Object.values(modules).includes('json') ? ['json-modules'] : []),
+            ...(Object.values(modules).includes('wasm')
+              ? ['wasm-modules', 'wasm-source-imports']
+              : []),
+          ],
+          modules,
+        }),
     ...(metadata.description === undefined
       ? {}
       : { description: metadata.description }),
@@ -109,6 +125,7 @@ export async function prepareApplication({
       'Application entry must be a relative file outside reserved resource paths',
     );
   }
+  validateModules(manifest);
   const source = resolve(project, assetsDirectory ?? 'assets');
   const output = resolve(project, outputDirectory);
   if (
@@ -165,7 +182,7 @@ export async function packApplication({ directory, outputFile = `${directory}.fl
   const root = await realpath(directory);
   const manifest = JSON.parse(await readFile(resolve(root, 'flax.json'), 'utf8'));
   if (
-    manifest.formatVersion !== 1 ||
+    ![1, 2].includes(manifest.formatVersion) ||
     !validKey(manifest.entry) ||
     reserved.has(manifest.entry.split('/')[0].toLowerCase()) ||
     manifest.entry.split('/')[0].toLowerCase().startsWith('assetmanifest.')
@@ -173,6 +190,7 @@ export async function packApplication({ directory, outputFile = `${directory}.fl
     throw new Error('Invalid application manifest or entry');
   }
   text(manifest.id, 'id');
+  validateModules(manifest);
   text(manifest.version, 'version');
   if (manifest.description !== undefined && typeof manifest.description !== 'string') {
     throw new Error('Application description must be a string');
@@ -187,6 +205,7 @@ export async function packApplication({ directory, outputFile = `${directory}.fl
     throw new Error('Invalid application resource index');
   }
   const keys = new Set(['flax.json', manifest.entry, 'flax.assets.json']);
+  for (const key of Object.keys(manifest.modules ?? {})) keys.add(key);
   for (const [key, variants] of Object.entries(index.assets)) {
     if (!validKey(key) || !Array.isArray(variants) || !variants.length) {
       throw new Error('Invalid application resource index');
@@ -252,4 +271,39 @@ export async function packApplication({ directory, outputFile = `${directory}.fl
     await rm(staging, { recursive: true, force: true });
   }
   return target;
+}
+
+function validateModules(manifest) {
+  if (manifest.formatVersion === 1) {
+    if (manifest.entryFormat !== undefined && manifest.entryFormat !== 'script')
+      throw new Error('Native module applications require formatVersion 2');
+    return;
+  }
+  const modules = manifest.modules;
+  if (
+    manifest.entryFormat !== 'module' ||
+    !modules ||
+    typeof modules !== 'object' ||
+    Array.isArray(modules) ||
+    Object.keys(modules).length > 256 ||
+    modules[manifest.entry] !== 'javascript' ||
+    !Array.isArray(manifest.requiredCapabilities) ||
+    !manifest.requiredCapabilities.includes('esm') ||
+    new Set(manifest.requiredCapabilities).size !==
+      manifest.requiredCapabilities.length ||
+    manifest.requiredCapabilities.some(
+      (name) =>
+        !['esm', 'json-modules', 'wasm-modules', 'wasm-source-imports'].includes(name),
+    )
+  )
+    throw new Error('Invalid native module descriptor');
+  for (const [key, kind] of Object.entries(modules)) {
+    if (
+      !validKey(key) ||
+      reserved.has(key.split('/')[0].toLowerCase()) ||
+      key.split('/')[0].toLowerCase().startsWith('assetmanifest.') ||
+      !['javascript', 'json', 'wasm'].includes(kind)
+    )
+      throw new Error(`Invalid application module: ${key}`);
+  }
 }

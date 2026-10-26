@@ -671,6 +671,7 @@ void main() {
   }
   group('shared runtime', () {
   flaxRuntimeContract(${engine == 'v8' ? 'FlaxV8Engine' : 'FlaxHermesEngine'}.createRuntime, registerTest: register);
+  flaxModuleContract(${engine == 'v8' ? 'FlaxV8Engine' : 'FlaxHermesEngine'}.createRuntime, registerTest: contract);
   });
   group('engine loop closures', () {
   flaxLoopClosureContract(${engine == 'v8' ? 'FlaxV8Engine' : 'FlaxHermesEngine'}.createRuntime, registerTest: register);
@@ -939,6 +940,7 @@ Future<String> _waitForMarker(
   }
 
   void collect(String line) {
+    stdout.writeln(line);
     log.writeln(line);
     if (journal.collect(line)) saveResults();
     final results = line.indexOf('FLAX_UI_RESULT:');
@@ -974,7 +976,6 @@ Future<String> _waitForMarker(
     if (!passed) throw StateError('Device application failed: $log');
     return log.toString();
   } finally {
-    stdout.write(log);
     process.kill();
     await out.cancel();
     await err.cancel();

@@ -7,13 +7,24 @@ class FlaxSession {
     required this.source,
     required this.bindings,
     this.sourceUrl = 'flax:app',
+    this.entryFormat = FlaxEntryFormat.script,
+    this.entryUri,
+    this.loadModule,
+    Map<String, Uri> imports = const {},
+    this.sandbox = false,
+    List<String> requiredCapabilities = const [],
     this.namespace,
     this.onError,
     AssetBundle? assetBundle,
     List<FlaxPlugin>? plugins,
   }) : plugins = _pluginSnapshot(plugins ?? Flax._plugins),
+       imports = Map.unmodifiable(imports),
+       _requiredCapabilities = List.unmodifiable(requiredCapabilities),
        assetBundle = assetBundle ?? FlaxPrefixedAssetBundle(),
        _moduleAssets = Flax.moduleAssets {
+    if (sandbox) {
+      throw UnsupportedError('Flax sandbox is reserved and not implemented');
+    }
     if (namespace != null && namespace!.isEmpty) {
       throw ArgumentError.value(namespace, 'namespace', 'Must not be empty');
     }
@@ -27,11 +38,19 @@ class FlaxSession {
     String? namespace,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
+    bool sandbox = false,
   }) : this(
          createRuntime: createRuntime,
          bindings: bindings,
          source: application.source,
          sourceUrl: application.sourceUrl,
+         entryFormat: application.entryFormat,
+         entryUri: application.entryUri,
+         loadModule: application.loadModule,
+         imports: application.imports,
+         requiredCapabilities:
+             application.manifest?.requiredCapabilities ?? const [],
+         sandbox: sandbox,
          assetBundle: application.assetBundle,
          namespace: namespace,
          onError: onError,
@@ -48,12 +67,30 @@ class FlaxSession {
   final FlaxJsRuntime Function() createRuntime;
   final String source;
   final String sourceUrl;
+  final FlaxEntryFormat entryFormat;
+  final Uri? entryUri;
+  final FlaxModuleSourceLoader? loadModule;
+  final Map<String, Uri> imports;
+  final bool sandbox;
+  final List<String> _requiredCapabilities;
   final FlaxBindingRegistry bindings;
   final void Function(Object, StackTrace)? onError;
   _Session? _session;
   bool _rootMounted = false;
   Object? _loadError;
   Future<void>? _closeFuture;
+  Future<void>? _ready;
+  bool _loaded = false;
+
+  /// Loads and evaluates the entry, including top-level await in module mode.
+  /// Closing the session cancels this operation without waiting for user Promises.
+  Future<void> get ready {
+    if (_closeFuture != null) throw StateError('Closed Flax session');
+    if (_ready case final ready?) return ready;
+    if (_preparation case final pending?) return _ready ??= pending;
+    _load();
+    return _ready ??= Future<void>.value();
+  }
 
   Future<void>? _preparation;
   Completer<void>? _cancelPreparation;
@@ -65,6 +102,8 @@ class FlaxSession {
       _prepare(onStep: onStep);
 
   Future<void> _prepare({void Function(String, int)? onStep}) {
+    // Module evaluation must not hold the script startup queue across user await.
+    if (entryFormat == FlaxEntryFormat.module) return ready;
     if (_preparation case final existing?) return existing;
     final previous = _startupQueue;
     final finished = Completer<void>();
@@ -138,6 +177,7 @@ class FlaxSession {
         onStep: onStep,
         cancelled: () => _closeFuture != null,
       );
+      _loaded = true;
     } catch (error) {
       _loadError = error;
       pendingRuntime?.dispose();
@@ -166,12 +206,42 @@ class FlaxSession {
           assetBundle: assetBundle,
         );
         _session = session;
-        session.load(
-          source,
-          sourceUrl,
-          plugins: plugins,
-          moduleAssets: _moduleAssets,
-        );
+        if (entryFormat == FlaxEntryFormat.module) {
+          _ready = session
+              .loadModule(
+                FlaxModuleSource(
+                  uri: entryUri ?? Uri.parse(sourceUrl),
+                  kind: FlaxModuleKind.javascript,
+                  bytes: utf8.encode(source),
+                ),
+                plugins: plugins,
+                moduleAssets: _moduleAssets,
+                loadSource:
+                    loadModule ??
+                    (request) async => throw StateError(
+                      'No module source loader for ${request.uri.path}',
+                    ),
+                imports: imports,
+                requiredCapabilities: _requiredCapabilities,
+              )
+              .then(
+                (_) {
+                  _loaded = true;
+                },
+                onError: (Object error, StackTrace stack) {
+                  _loadError = error;
+                  Error.throwWithStackTrace(error, stack);
+                },
+              );
+        } else {
+          session.load(
+            source,
+            sourceUrl,
+            plugins: plugins,
+            moduleAssets: _moduleAssets,
+          );
+          _loaded = true;
+        }
       }
       return _session!;
     } catch (error) {
@@ -185,6 +255,9 @@ class FlaxSession {
       throw StateError('The application root is already mounted');
     }
     final session = _load(report: report);
+    if (!_loaded) {
+      throw StateError('Await FlaxSession.ready before mounting modules');
+    }
     if (session._root == null) {
       throw StateError('The script did not call runApp');
     }
@@ -238,13 +311,18 @@ class FlaxView extends StatelessWidget {
     required this.source,
     this.bindings,
     this.sourceUrl = 'flax:app',
+    this.entryFormat = FlaxEntryFormat.script,
+    this.entryUri,
+    this.loadModule,
+    this.imports = const {},
+    this.sandbox = false,
+    this.loadingBuilder,
+    this.errorBuilder,
     this.namespace,
     this.onError,
     this.plugins,
     this.assetBundle,
   }) : _input = null,
-       loadingBuilder = null,
-       errorBuilder = null,
        _session = null,
        _pageName = null,
        _arguments = null;
@@ -254,6 +332,9 @@ class FlaxView extends StatelessWidget {
   factory FlaxView.bundle({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
+    bool sandbox = false,
+    Map<String, Uri> imports = const {},
+    FlaxModuleSourceLoader? loadModule,
     FlaxBindingRegistry? bindings,
     AssetBundle? assetBundle,
     String prefix = 'assets/flax',
@@ -269,6 +350,9 @@ class FlaxView extends StatelessWidget {
     return FlaxView._application(
       key: key,
       createRuntime: createRuntime,
+      sandbox: sandbox,
+      imports: imports,
+      loadModule: loadModule,
       bindings: bindings,
       assetBundle: assetBundle,
       namespace: namespace,
@@ -284,6 +368,9 @@ class FlaxView extends StatelessWidget {
   factory FlaxView.directory({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
+    bool sandbox = false,
+    Map<String, Uri> imports = const {},
+    FlaxModuleSourceLoader? loadModule,
     FlaxBindingRegistry? bindings,
     required Directory directory,
     String? namespace,
@@ -294,6 +381,9 @@ class FlaxView extends StatelessWidget {
   }) => FlaxView._application(
     key: key,
     createRuntime: createRuntime,
+    sandbox: sandbox,
+    imports: imports,
+    loadModule: loadModule,
     bindings: bindings,
     assetBundle: null,
     namespace: namespace,
@@ -309,6 +399,9 @@ class FlaxView extends StatelessWidget {
   factory FlaxView.package({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
+    bool sandbox = false,
+    Map<String, Uri> imports = const {},
+    FlaxModuleSourceLoader? loadModule,
     FlaxBindingRegistry? bindings,
     required File file,
     Directory? installationDirectory,
@@ -320,6 +413,9 @@ class FlaxView extends StatelessWidget {
   }) => FlaxView._application(
     key: key,
     createRuntime: createRuntime,
+    sandbox: sandbox,
+    imports: imports,
+    loadModule: loadModule,
     bindings: bindings,
     assetBundle: null,
     namespace: namespace,
@@ -338,8 +434,12 @@ class FlaxView extends StatelessWidget {
   factory FlaxView.file({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
+    bool sandbox = false,
+    Map<String, Uri> imports = const {},
+    FlaxModuleSourceLoader? loadModule,
     FlaxBindingRegistry? bindings,
     required File file,
+    FlaxEntryFormat entryFormat = FlaxEntryFormat.script,
     AssetBundle? assetBundle,
     String? namespace,
     void Function(Object, StackTrace)? onError,
@@ -349,6 +449,9 @@ class FlaxView extends StatelessWidget {
   }) => FlaxView._application(
     key: key,
     createRuntime: createRuntime,
+    sandbox: sandbox,
+    imports: imports,
+    loadModule: loadModule,
     bindings: bindings,
     assetBundle: assetBundle,
     namespace: namespace,
@@ -356,6 +459,7 @@ class FlaxView extends StatelessWidget {
     plugins: plugins,
     loadingBuilder: loadingBuilder,
     errorBuilder: errorBuilder,
+    entryFormat: entryFormat,
     input: _FileInput(file.absolute.path),
   );
 
@@ -364,9 +468,13 @@ class FlaxView extends StatelessWidget {
   factory FlaxView.network({
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
+    bool sandbox = false,
+    Map<String, Uri> imports = const {},
+    FlaxModuleSourceLoader? loadModule,
     FlaxBindingRegistry? bindings,
     required Uri uri,
     required FlaxRemoteFormat format,
+    FlaxEntryFormat entryFormat = FlaxEntryFormat.script,
     Map<String, String> headers = const {},
     String? expectedSha256,
     FlaxDownloader? download,
@@ -394,6 +502,9 @@ class FlaxView extends StatelessWidget {
     return FlaxView._application(
       key: key,
       createRuntime: createRuntime,
+      sandbox: sandbox,
+      imports: imports,
+      loadModule: loadModule,
       bindings: bindings,
       assetBundle: assetBundle,
       namespace: namespace,
@@ -401,6 +512,7 @@ class FlaxView extends StatelessWidget {
       plugins: plugins,
       loadingBuilder: loadingBuilder,
       errorBuilder: errorBuilder,
+      entryFormat: entryFormat,
       input: _NetworkInput(options),
     );
   }
@@ -416,7 +528,12 @@ class FlaxView extends StatelessWidget {
     this.plugins,
     this.loadingBuilder,
     this.errorBuilder,
+    this.entryFormat = FlaxEntryFormat.script,
+    this.sandbox = false,
+    this.imports = const {},
+    this.loadModule,
   }) : source = null,
+       entryUri = null,
        sourceUrl = null,
        _session = null,
        _pageName = null,
@@ -429,6 +546,11 @@ class FlaxView extends StatelessWidget {
       // Keep the public parameter named session rather than exposing the field.
       // ignore: prefer_initializing_formals
       _session = session,
+      entryFormat = FlaxEntryFormat.script,
+      entryUri = null,
+      loadModule = null,
+      imports = const {},
+      sandbox = false,
       createRuntime = null,
       source = null,
       bindings = null,
@@ -454,6 +576,11 @@ class FlaxView extends StatelessWidget {
        _pageName = name,
        // ignore: prefer_initializing_formals
        _arguments = arguments,
+       entryFormat = FlaxEntryFormat.script,
+       entryUri = null,
+       loadModule = null,
+       imports = const {},
+       sandbox = false,
        createRuntime = null,
        source = null,
        bindings = null,
@@ -462,6 +589,12 @@ class FlaxView extends StatelessWidget {
        assetBundle = null,
        sourceUrl = null,
        onError = null;
+
+  final FlaxEntryFormat entryFormat;
+  final Uri? entryUri;
+  final FlaxModuleSourceLoader? loadModule;
+  final Map<String, Uri> imports;
+  final bool sandbox;
 
   final _ApplicationInput? _input;
 
@@ -490,6 +623,9 @@ class FlaxView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (sandbox) {
+      throw UnsupportedError('Flax sandbox is reserved and not implemented');
+    }
     // An explicit business root can be the same object as the default host bundle.
     final input = _input;
     if (input != null) {
@@ -510,6 +646,10 @@ class FlaxView extends StatelessWidget {
           createRuntime,
           bindings,
           namespace,
+          entryFormat,
+          loadModule,
+          imports,
+          sandbox,
         )),
         configuration: this,
         inheritedBundle: bundle,
@@ -532,6 +672,11 @@ class FlaxView extends StatelessWidget {
               createRuntime,
               source,
               sourceUrl,
+              entryFormat,
+              entryUri,
+              loadModule,
+              imports,
+              sandbox,
               bindings,
               namespace,
               ObjectKey(bundle),
@@ -586,6 +731,15 @@ class _SessionRootState extends State<_SessionRoot> {
           createRuntime: configuration.createRuntime!,
           source: widget.application?.source ?? configuration.source!,
           sourceUrl: widget.application?.sourceUrl ?? configuration.sourceUrl!,
+          entryFormat:
+              widget.application?.entryFormat ?? configuration.entryFormat,
+          entryUri: widget.application?.entryUri ?? configuration.entryUri,
+          loadModule:
+              widget.application?.loadModule ?? configuration.loadModule,
+          imports: widget.application?.imports ?? configuration.imports,
+          requiredCapabilities:
+              widget.application?.manifest?.requiredCapabilities ?? const [],
+          sandbox: configuration.sandbox,
           bindings: configuration.bindings ?? FlaxBindingRegistry([]),
           onError: configuration.onError,
           plugins: configuration.plugins,
@@ -595,7 +749,8 @@ class _SessionRootState extends State<_SessionRoot> {
               configuration.assetBundle ??
               FlaxPrefixedAssetBundle(bundle: widget.assetBundle),
         );
-    if (configuration._session == null) {
+    if (configuration._session == null ||
+        _session.entryFormat == FlaxEntryFormat.module && !_session._loaded) {
       unawaited(_prepare());
     } else {
       _mount();
@@ -737,9 +892,15 @@ class _ApplicationViewState extends State<_ApplicationView> {
                 bundle: widget.inheritedBundle,
                 prefix: prefix,
               ),
+          imports: configuration.imports,
+          loadModule: configuration.loadModule,
+          sandbox: configuration.sandbox,
         ),
         _DirectoryInput(:final path) => FlaxApplication.directory(
           Directory(path),
+          imports: configuration.imports,
+          loadModule: configuration.loadModule,
+          sandbox: configuration.sandbox,
         ),
         _PackageInput(:final path, :final installationDirectory) =>
           FlaxApplication.package(
@@ -747,9 +908,16 @@ class _ApplicationViewState extends State<_ApplicationView> {
             installationDirectory: installationDirectory == null
                 ? null
                 : Directory(installationDirectory),
+            imports: configuration.imports,
+            loadModule: configuration.loadModule,
+            sandbox: configuration.sandbox,
           ),
         _FileInput(:final path) => FlaxApplication.file(
           File(path),
+          entryFormat: configuration.entryFormat,
+          imports: configuration.imports,
+          loadModule: configuration.loadModule,
+          sandbox: configuration.sandbox,
           assetBundle:
               configuration.assetBundle ??
               FlaxPrefixedAssetBundle(bundle: widget.inheritedBundle),
@@ -767,9 +935,14 @@ class _ApplicationViewState extends State<_ApplicationView> {
                     FlaxPrefixedAssetBundle(bundle: widget.inheritedBundle)
               : null,
           cancelled: _cancelled.future,
+          entryFormat: configuration.entryFormat,
+          imports: configuration.imports,
+          loadModule: configuration.loadModule,
+          sandbox: configuration.sandbox,
         ),
       };
-      if (mounted) setState(() => _application = application);
+      if (!mounted) return;
+      setState(() => _application = application);
     } catch (error, stack) {
       if (!mounted) return;
       setState(() {

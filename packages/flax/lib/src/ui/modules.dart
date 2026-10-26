@@ -266,6 +266,7 @@ class _ModuleInstallation {
   _ModuleInstallation(this.context, {this.preloaded = false});
   final bool preloaded;
   final _HostContext context;
+  final _namespaces = <String, String>{};
   FlaxJsObject? _registry;
   bool _closed = false;
 
@@ -307,6 +308,9 @@ class _ModuleInstallation {
     yield 'module-registry';
     if (preloaded) return;
     for (final module in modules) {
+      for (final name in [module.specifier, ...module.subpaths]) {
+        _namespaces[name] = module.specifier;
+      }
       _releaseJs(context.evaluateSource(module.source!));
       yield module.specifier;
     }
@@ -320,6 +324,25 @@ class _ModuleInstallation {
       ),
     );
     yield 'module-seal';
+  }
+
+  FlaxJsObject? namespace(String specifier) {
+    final registry = _registry;
+    final canonical = _namespaces[specifier];
+    if (registry == null || _closed || canonical == null) return null;
+    final require = registry.getProperty('require') as FlaxJsFunction;
+    try {
+      final result = require.call([
+        FlaxJsString(canonical),
+      ], thisValue: registry);
+      if (result is! FlaxJsObject) {
+        _releaseJs(result);
+        throw StateError('Invalid SDK namespace: $specifier');
+      }
+      return result;
+    } finally {
+      require.release();
+    }
   }
 
   void _call(String name) {
@@ -349,6 +372,7 @@ class _ModuleInstallation {
     } finally {
       _registry?.release();
       _registry = null;
+      _namespaces.clear();
     }
   }
 }

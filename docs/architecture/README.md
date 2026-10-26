@@ -62,6 +62,12 @@ factories, the existing module registry preserves compatible JS class identity, 
 Flutter reassemble applies the committed update. See
 [ADR 0040](../decisions/0040-vite-hot-reload.md).
 
+[Native ESM, JSON and Wasm](modules.md) adds runtime module loading, remote imports and
+interpreted Wasm on iOS jitless. Scripts retain synchronous direct evaluation, staged
+owning View startup and factory hot reload. See the
+[implementation task](../tasks/native-esm-and-wasm.md) for platform acceptance and
+remaining gates.
+
 ## Build-time paths
 
 Implemented C ABI generation:

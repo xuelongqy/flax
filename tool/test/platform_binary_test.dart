@@ -6,6 +6,58 @@ import '../src/platform_binary.dart';
 import '../src/example_engine.dart';
 
 void main() {
+  test('iOS V8 examples retain existing entitlements and configure every signing variant', () {
+    final example = Directory.systemTemp.createTempSync('flax-ios-signing-');
+    addTearDown(() => example.deleteSync(recursive: true));
+    final project = File('${example.path}/ios/Runner.xcodeproj/project.pbxproj')
+      ..parent.createSync(recursive: true);
+    for (final custom in [false, true]) {
+      final paths = custom
+          ? ['Runner/Debug.entitlements', 'Runner/Release.entitlements']
+          : ['Runner/Runner.entitlements'];
+      project.writeAsStringSync(
+        custom
+            ? paths
+                  .map(
+                    (path) =>
+                        'CODE_SIGN_ENTITLEMENTS = "$path"; PRODUCT_BUNDLE_IDENTIFIER = example;',
+                  )
+                  .join('\n')
+            : 'PRODUCT_BUNDLE_IDENTIFIER = example;\nPRODUCT_BUNDLE_IDENTIFIER = example;',
+      );
+      for (final path in paths) {
+        File('${example.path}/ios/$path')
+          ..parent.createSync(recursive: true)
+          ..writeAsStringSync(
+            '<plist><dict><key>existing</key><dict><key>nested</key><true/></dict></dict></plist>',
+          );
+      }
+      selectExampleEngine(Directory.current.path, example.path, 'v8');
+      final once = project.readAsStringSync();
+      final entitlements = [
+        for (final path in paths)
+          File('${example.path}/ios/$path').readAsStringSync(),
+      ];
+      selectExampleEngine(Directory.current.path, example.path, 'v8');
+      expect(project.readAsStringSync(), once);
+      expect(RegExp('CODE_SIGN_ENTITLEMENTS =').allMatches(once), hasLength(2));
+      for (final (index, path) in paths.indexed) {
+        final text = File('${example.path}/ios/$path').readAsStringSync();
+        expect(text, entitlements[index]);
+        expect(
+          text,
+          contains('<key>existing</key><dict><key>nested</key><true/></dict>'),
+        );
+        expect(
+          text,
+          contains(
+            '<key>com.apple.developer.kernel.extended-virtual-addressing</key><true/>',
+          ),
+        );
+        expect(text, isNot(contains('allow-jit')));
+      }
+    }
+  });
   test(
     'local example signing is idempotent and preserves real Team validation',
     () {

@@ -29,6 +29,7 @@ class FlaxDownloadResponse {
     required this.statusCode,
     required this.body,
     Map<String, String> headers = const {},
+    this.finalUri,
     this.onClose,
   }) : headers = Map.unmodifiable({
          for (final entry in headers.entries)
@@ -36,6 +37,9 @@ class FlaxDownloadResponse {
        });
 
   final int statusCode;
+
+  /// Required for module responses. Records the URL after redirects.
+  final Uri? finalUri;
 
   /// Artifact bytes, after transport decompression. Omit content-length if the
   /// HTTP adapter cannot provide the length of these decoded bytes.
@@ -67,6 +71,7 @@ class FlaxNetworkOptions {
     Map<String, String> headers = const {},
     String? expectedSha256,
     this.download,
+    this.modules = false,
     Directory? cacheDirectory,
     Directory? installationDirectory,
   }) : cacheDirectory = cacheDirectory?.absolute,
@@ -104,13 +109,20 @@ class FlaxNetworkOptions {
   final Map<String, String> headers;
   final String? expectedSha256;
   final FlaxDownloader? download;
+  final bool modules;
   final Directory? cacheDirectory;
   final Directory? installationDirectory;
 
   String get requestKey => sha256
       .convert(
         utf8.encode(
-          jsonEncode([uri.toString(), format.name, headers, expectedSha256]),
+          jsonEncode([
+            uri.toString(),
+            format.name,
+            headers,
+            expectedSha256,
+            if (modules) 'modules-v1',
+          ]),
         ),
       )
       .toString();
@@ -124,9 +136,29 @@ class FlaxNetworkOptions {
 }
 
 final _digestPattern = RegExp(r'^[a-f0-9]{64}$');
-const _cacheFormatVersion = 2;
+const _cacheFormatVersion = 3;
 const _timeout = Duration(seconds: 30);
 const _maxBytes = 512 * 1024 * 1024;
+
+int _moduleByteLimit(String? contentType) {
+  final mime = contentType?.split(';').first.trim().toLowerCase();
+  if (mime == 'application/wasm') return 16 * 1024 * 1024;
+  if (mime == 'application/json' ||
+      mime != null &&
+          mime.startsWith('application/') &&
+          mime.endsWith('+json')) {
+    return 1024 * 1024;
+  }
+  if (const {
+    'text/javascript',
+    'application/javascript',
+    'text/ecmascript',
+    'application/ecmascript',
+  }.contains(mime)) {
+    return 4 * 1024 * 1024;
+  }
+  throw const FormatException('Unsupported module Content-Type');
+}
 
 Map<String, String> _headers(Map<String, String> supplied) {
   final result = <String, String>{};
@@ -152,9 +184,16 @@ Map<String, String> _headers(Map<String, String> supplied) {
 }
 
 class FlaxDownloadedFile {
-  FlaxDownloadedFile(this.file, [this.temporaryDirectory]);
+  FlaxDownloadedFile(
+    this.file, [
+    this.temporaryDirectory,
+    this.finalUri,
+    this.contentType,
+  ]);
   final File file;
   final Directory? temporaryDirectory;
+  final Uri? finalUri;
+  final String? contentType;
   Future<void> release() async {
     if (temporaryDirectory case final directory?) {
       await directory.delete(recursive: true);
@@ -197,7 +236,9 @@ Future<FlaxDownloadedFile> downloadFlaxApplication(
   final cached = await _readCache(record, blobs, options.expectedSha256);
   cancellation.check();
   final headers = Map<String, String>.of(options.headers);
-  if (cached?.etag case final etag?) headers['if-none-match'] = etag;
+  if (cached != null && cached.finalUri == options.uri && cached.etag != null) {
+    headers['if-none-match'] = cached.etag!;
+  }
   final request = FlaxDownloadRequest._(
     options.uri,
     Map.unmodifiable(headers),
@@ -226,16 +267,43 @@ Future<FlaxDownloadedFile> downloadFlaxApplication(
   Directory? staging;
   try {
     cancellation.check();
+    final finalUri = response.finalUri ?? cached?.finalUri ?? options.uri;
+    if (options.modules && response.finalUri == null) {
+      throw const FormatException('Module downloader must provide finalUri');
+    }
+    if (!{'http', 'https'}.contains(finalUri.scheme) ||
+        finalUri.userInfo.isNotEmpty ||
+        finalUri.hasFragment ||
+        options.uri.scheme == 'https' && finalUri.scheme != 'https') {
+      throw const FormatException('Invalid final response URL');
+    }
+    if (options.modules && finalUri.origin != options.uri.origin) {
+      throw const FormatException(
+        'Module downloader must retain the request origin',
+      );
+    }
+    final contentType =
+        response.headers['content-type'] ??
+        (response.statusCode == HttpStatus.notModified
+            ? cached?.contentType
+            : null);
+    final maxBytes = options.modules
+        ? _moduleByteLimit(contentType)
+        : _maxBytes;
     if (response.statusCode == HttpStatus.notModified) {
       if (cached == null || !headers.containsKey('if-none-match')) {
         throw const HttpException('304 without a validated cached artifact');
+      }
+      if (cached.finalUri != finalUri ||
+          await cached.file.length() > maxBytes) {
+        throw const FormatException('Invalid cached module response');
       }
       // A server can revoke caching even when it returns a conditional hit.
       if (_noStore(response.headers)) {
         staging = await root.createTemp('.download-');
         final copy = await cached.file.copy(p.join(staging.path, 'artifact'));
         await _removeRecord(record);
-        final result = FlaxDownloadedFile(copy, staging);
+        final result = FlaxDownloadedFile(copy, staging, finalUri, contentType);
         await response.close();
         staging = null;
         return result;
@@ -249,9 +317,11 @@ Future<FlaxDownloadedFile> downloadFlaxApplication(
           digest: p.basename(cached.file.path),
           size: await cached.file.length(),
           etag: etag,
+          finalUri: finalUri,
+          contentType: contentType,
         );
       }
-      return FlaxDownloadedFile(cached.file);
+      return FlaxDownloadedFile(cached.file, null, finalUri, contentType);
     }
     if (response.statusCode != HttpStatus.ok) {
       throw HttpException(
@@ -260,7 +330,12 @@ Future<FlaxDownloadedFile> downloadFlaxApplication(
     }
     staging = await root.createTemp('.download-');
     final file = File(p.join(staging.path, 'artifact'));
-    final (digest, size) = await _writeResponse(file, response, cancellation);
+    final (digest, size) = await _writeResponse(
+      file,
+      response,
+      cancellation,
+      maxBytes,
+    );
     if (options.expectedSha256 case final expected?) {
       if (digest != expected) {
         throw const FormatException('Artifact SHA-256 mismatch');
@@ -269,7 +344,7 @@ Future<FlaxDownloadedFile> downloadFlaxApplication(
     cancellation.check();
     if (_noStore(response.headers)) {
       await _removeRecord(record);
-      final result = FlaxDownloadedFile(file, staging);
+      final result = FlaxDownloadedFile(file, staging, finalUri, contentType);
       await response.close();
       staging = null;
       return result;
@@ -280,9 +355,11 @@ Future<FlaxDownloadedFile> downloadFlaxApplication(
       staging,
       digest: digest,
       size: size,
-      etag: _etag(response.headers['etag']),
+      etag: finalUri == options.uri ? _etag(response.headers['etag']) : null,
+      finalUri: finalUri,
+      contentType: contentType,
     );
-    return FlaxDownloadedFile(blob);
+    return FlaxDownloadedFile(blob, null, finalUri, contentType);
   } finally {
     try {
       await response.close();
@@ -298,6 +375,8 @@ Future<void> _writeRecord(
   required String digest,
   required int size,
   String? etag,
+  required Uri finalUri,
+  String? contentType,
 }) async {
   final metadata = File(p.join(staging.path, 'record.json'));
   await metadata.writeAsString(
@@ -306,6 +385,8 @@ Future<void> _writeRecord(
       'sha256': digest,
       'size': size,
       'etag': etag,
+      'finalUri': finalUri.toString(),
+      'contentType': contentType,
     }),
     flush: true,
   );
@@ -334,11 +415,8 @@ Future<void> _removeRecord(File record) async {
   }
 }
 
-Future<({File file, String? etag})?> _readCache(
-  File record,
-  Directory blobs,
-  String? expected,
-) async {
+Future<({File file, String? etag, Uri finalUri, String? contentType})?>
+_readCache(File record, Directory blobs, String? expected) async {
   try {
     if (await FileSystemEntity.type(record.path, followLinks: false) !=
         FileSystemEntityType.file) {
@@ -351,13 +429,22 @@ Future<({File file, String? etag})?> _readCache(
         !_digestPattern.hasMatch(value['sha256'] as String) ||
         value['size'] is! int ||
         (value['size'] as int) < 0 ||
-        (value['size'] as int) > _maxBytes) {
+        (value['size'] as int) > _maxBytes ||
+        value['finalUri'] is! String ||
+        value['contentType'] != null && value['contentType'] is! String) {
       return null;
     }
     final etag = value['etag'] is String
         ? _etag(value['etag'] as String)
         : null;
     if (etag == null) return null;
+    final finalUri = Uri.tryParse(value['finalUri'] as String? ?? '');
+    if (finalUri == null ||
+        !{'http', 'https'}.contains(finalUri.scheme) ||
+        finalUri.userInfo.isNotEmpty ||
+        finalUri.hasFragment) {
+      return null;
+    }
     final digest = value['sha256'] as String;
     if (expected != null && expected != digest) return null;
     final file = File(p.join(blobs.path, digest));
@@ -368,7 +455,12 @@ Future<({File file, String? etag})?> _readCache(
     }
     // Recheck cached bytes before sending a validator; a 304 carries no payload.
     if (await Isolate.run(() => _hashFile(file.path)) != digest) return null;
-    return (file: file, etag: etag);
+    return (
+      file: file,
+      etag: etag,
+      finalUri: finalUri,
+      contentType: value['contentType'] as String?,
+    );
   } on FileSystemException {
     return null;
   } on FormatException {
@@ -383,11 +475,12 @@ Future<(String, int)> _writeResponse(
   File file,
   FlaxDownloadResponse response,
   FlaxLoadCancellation cancellation,
+  int maxBytes,
 ) async {
   final lengthHeader = response.headers['content-length'];
   final length = lengthHeader == null ? null : int.tryParse(lengthHeader);
   if (lengthHeader != null &&
-      (length == null || length < 0 || length > _maxBytes)) {
+      (length == null || length < 0 || length > maxBytes)) {
     throw const FormatException('Invalid artifact content-length');
   }
   final output = await file.open(mode: FileMode.write);
@@ -408,7 +501,7 @@ Future<(String, int)> _writeResponse(
       cancellation.check();
       final chunk = input.current;
       size += chunk.length;
-      if (size > _maxBytes || (length != null && size > length)) {
+      if (size > maxBytes || (length != null && size > length)) {
         throw const FormatException('Artifact exceeds its byte limit');
       }
       hash.add(chunk);
@@ -515,6 +608,7 @@ Future<FlaxDownloadResponse> _download(FlaxDownloadRequest request) async {
       }
       return FlaxDownloadResponse(
         statusCode: incoming.statusCode,
+        finalUri: uri,
         headers: headers,
         body: incoming,
         onClose: close,

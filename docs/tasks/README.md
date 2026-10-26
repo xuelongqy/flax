@@ -1,9 +1,15 @@
 # Active Tasks
 
-No durable implementation task is active. The completed
+The [native ESM, JSON and Wasm module task](native-esm-and-wasm.md) covers runtime
+module graphs, remote imports and Wasm under iOS V8 jitless. Its sandbox option is
+reserved only. The implementation and focused runtime acceptance are complete; the task
+record distinguishes current integration checks from earlier physical and simulator
+evidence, and lists the remaining release limits.
+
+The completed
 [iOS V8 jitless acceptance](../../experiments/canvas_engines/migration-ios-results.md)
 records the normal static SDK, compatibility, joint GC, final Canvas comparison and
-non-iOS regression scope. Native ESM and remote import work remain deferred.
+non-iOS regression scope; it does not establish ESM or Wasm support.
 
 Current behavior belongs in [architecture](../architecture/README.md), capability status
 in the [binding coverage map](../architecture/binding-coverage-map.md), verification

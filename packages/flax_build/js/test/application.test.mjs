@@ -13,9 +13,140 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { prepareApplication, packApplication } from '../src/application.mjs';
+import {
+  prepareApplication,
+  prepareModuleApplication,
+  packApplication,
+} from '../src/application.mjs';
+import { startFlaxDev } from '../src/dev.mjs';
 import { unzipSync } from 'fflate';
 import { createHash } from 'node:crypto';
+
+test('native ESM staging preserves JS and binary bytes, lowers TS and packages every module', async () => {
+  const root = await realpath(await mkdtemp(join(tmpdir(), 'flax-esm-')));
+  const project = join(root, 'js');
+  try {
+    await mkdir(join(project, 'src'), { recursive: true });
+    await writeFile(
+      join(project, 'package.json'),
+      JSON.stringify({ name: 'esm', version: '1.0.0' }),
+    );
+    const code =
+      "import source algorithm from './math.wasm';\nimport data from './data.json' with {type:'json'};\nexport const value = data.value;\n";
+    const wasm = new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0]);
+    await writeFile(join(project, 'src/main.js'), code);
+    await writeFile(join(project, 'src/math.wasm'), wasm);
+    await writeFile(join(project, 'src/data.json'), '{"value":42}');
+    await writeFile(
+      join(project, 'src/typed.ts'),
+      "import {value} from './main.js'; export const typed: number = value;",
+    );
+    const app = await prepareModuleApplication({ projectDirectory: project });
+    assert.equal(app.manifest.formatVersion, 2);
+    assert.equal(await readFile(app.entryPath, 'utf8'), code);
+    assert.match(
+      await readFile(join(app.directory, 'typed.js'), 'utf8'),
+      /from ["']\.\/main\.js["']/,
+    );
+    const archive = unzipSync(
+      await readFile(await packApplication({ directory: app.directory })),
+    );
+    for (const key of ['main.js', 'math.wasm', 'data.json', 'typed.js'])
+      assert.ok(archive[key]);
+    assert.deepEqual(archive['math.wasm'], wasm);
+    await writeFile(join(project, 'src/typed.ts'), 'export const invalid: = ;');
+    await assert.rejects(prepareModuleApplication({ projectDirectory: project }));
+    assert.equal(await readFile(app.entryPath, 'utf8'), code);
+    assert.equal(
+      JSON.parse(await readFile(join(app.directory, 'flax.json'), 'utf8'))
+        .formatVersion,
+      2,
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test(
+  'native ESM output rejects existing and dangling symlinks',
+  { skip: process.platform === 'win32' },
+  async () => {
+    const root = await realpath(await mkdtemp(join(tmpdir(), 'flax-esm-output-')));
+    try {
+      await mkdir(join(root, 'src'));
+      await mkdir(join(root, 'out'));
+      await mkdir(join(root, 'outside'));
+      await writeFile(
+        join(root, 'package.json'),
+        JSON.stringify({ name: 'esm', version: '1.0.0' }),
+      );
+      await writeFile(join(root, 'src/main.js'), 'export const value = 42;');
+      const application = await prepareModuleApplication({
+        projectDirectory: root,
+        outputDirectory: 'out',
+      });
+      const manifest = await readFile(join(application.directory, 'flax.json'), 'utf8');
+      await writeFile(join(root, 'src/extra.js'), 'export const extra = true;');
+      for (const existing of [true, false]) {
+        const target = join(root, 'outside', existing ? 'existing.js' : 'missing.js');
+        if (existing) await writeFile(target, 'preserve');
+        await symlink(target, join(root, 'out/extra.js'));
+        await assert.rejects(
+          prepareModuleApplication({ projectDirectory: root, outputDirectory: 'out' }),
+          /symbolic|escapes/i,
+        );
+        if (existing) assert.equal(await readFile(target, 'utf8'), 'preserve');
+        else await assert.rejects(readFile(target), { code: 'ENOENT' });
+        assert.equal(
+          await readFile(join(application.directory, 'flax.json'), 'utf8'),
+          manifest,
+        );
+        await rm(join(root, 'out/extra.js'));
+      }
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  },
+);
+
+test('native Vite endpoint serves original ESM, JSON and Wasm without browser import rewriting', async () => {
+  const root = await realpath(await mkdtemp(join(tmpdir(), 'flax-esm-dev-')));
+  let dev;
+  try {
+    await mkdir(join(root, 'src'));
+    await writeFile(
+      join(root, 'package.json'),
+      JSON.stringify({ name: 'esm', version: '1.0.0' }),
+    );
+    const code =
+      "import {Text} from '@flax/flutter/widgets'; import data from './data.json' with {type:'json'}; export {Text, data};";
+    await writeFile(join(root, 'src/main.js'), code);
+    await writeFile(join(root, 'src/data.json'), 'false');
+    await writeFile(
+      join(root, 'src/math.wasm'),
+      new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0]),
+    );
+    dev = await startFlaxDev({
+      entry: 'src/main.js',
+      out: 'output',
+      root,
+      port: 0,
+      entryFormat: 'module',
+    });
+    const entry = await fetch(dev.url);
+    assert.equal(await entry.text(), code);
+    assert.equal(entry.headers.get('content-type'), 'text/javascript');
+    const json = await fetch(new URL('./data.json', dev.url));
+    assert.equal(await json.json(), false);
+    assert.equal(json.headers.get('content-type'), 'application/json');
+    const wasm = await fetch(new URL('./math.wasm', dev.url));
+    assert.equal(wasm.headers.get('content-type'), 'application/wasm');
+    assert.equal(wasm.headers.get('cache-control'), 'no-store');
+  } finally {
+    await dev?.server.close();
+    await rm(root, { recursive: true, force: true });
+  }
+});
 
 test('application staging defaults, metadata, resource copies and configurable paths', async () => {
   const root = await realpath(await mkdtemp(join(tmpdir(), 'flax-application-')));

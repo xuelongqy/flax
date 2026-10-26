@@ -373,6 +373,8 @@ class _Session {
     _tryClose();
   }
 
+  FlaxModuleLoader? _moduleLoader;
+
   void load(
     String source,
     String sourceUrl, {
@@ -430,12 +432,67 @@ class _Session {
     }
   }
 
+  Future<void> loadModule(
+    FlaxModuleSource entry, {
+    required List<FlaxPlugin> plugins,
+    required FlaxModuleAssets? moduleAssets,
+    required FlaxModuleSourceLoader loadSource,
+    required Map<String, Uri> imports,
+    required List<String> requiredCapabilities,
+  }) async {
+    try {
+      final capabilities = runtime is FlaxJsModuleRuntime
+          ? (runtime as FlaxJsModuleRuntime).moduleCapabilities
+          : 0;
+      const bits = {
+        'esm': 1,
+        'json-modules': 2,
+        'wasm-modules': 4,
+        'wasm-source-imports': 8,
+      };
+      for (final name in ['esm', ...requiredCapabilities]) {
+        final bit = bits[name];
+        if (bit == null || capabilities & bit == 0) {
+          throw UnsupportedError('Missing native module capability: $name');
+        }
+      }
+      for (final _ in _prepareSteps(plugins, moduleAssets)) {}
+      final loader = _moduleLoader = FlaxModuleLoader(
+        runtime: runtime,
+        loadSource: loadSource,
+        imports: imports,
+        onError: report,
+        hostModule: (specifier) => _moduleInstallation?.namespace(specifier),
+      );
+      final namespace = await loader.load(entry);
+      namespace.release();
+      requireOpen();
+      _finishLoading();
+    } catch (_) {
+      _dispose();
+      rethrow;
+    }
+  }
+
   Iterable<String> loadSteps(
     String source,
     String sourceUrl, {
     required List<FlaxPlugin> plugins,
     required FlaxModuleAssets? moduleAssets,
   }) sync* {
+    yield* _prepareSteps(plugins, moduleAssets);
+    _releaseJs(runtime.evaluate(source, sourceUrl: sourceUrl));
+    _finishLoading();
+    yield 'application-entry';
+  }
+
+  Iterable<String> _prepareSteps(
+    List<FlaxPlugin> plugins,
+    FlaxModuleAssets? moduleAssets,
+  ) sync* {
+    if (runtime is FlaxJsModuleRuntime) {
+      (runtime as FlaxJsModuleRuntime).setHostJobHandler(checkpoint);
+    }
     final widgetBatch = runtime.getGlobal('__flaxWidgetBatch');
     _widgetBatchEnabled = widgetBatch is! FlaxJsBoolean || widgetBatch.value;
     _releaseJs(widgetBatch);
@@ -565,14 +622,18 @@ class _Session {
       return const FlaxJsUndefined();
     });
     yield 'application-hosts';
-    _releaseJs(runtime.evaluate(source, sourceUrl: sourceUrl));
+  }
+
+  void _finishLoading() {
+    // Keep checkpoint helpers in the fixed Session handle set.
+    helper('releaseContext');
+    helper('sweepObjects');
     final pages = helper('finishRegistration').call(const []) as FlaxJsNumber;
     if (_root == null && pages.value == 0) {
       throw StateError('The script must call runApp or registerPage');
     }
     _loadingInStages = false;
     checkpoint();
-    yield 'application-entry';
   }
 
   void report(Object error, StackTrace stack) {
@@ -1497,6 +1558,7 @@ class _Session {
     }
     if (!closing) {
       _status = _SessionStatus.closing;
+      _moduleLoader?.close();
       // Close hooks may reenter; defer disposal until every hook has returned.
       checkpoint();
       cancelFutures();
@@ -1527,6 +1589,8 @@ class _Session {
 
   void _dispose() {
     if (!active) return;
+    _moduleLoader?.close();
+    _moduleLoader = null;
     cancelPromises();
     cancelStreamIterators();
     cancelAsyncIterableSources();

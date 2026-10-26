@@ -313,8 +313,11 @@ extension _AsyncCalls on _Session {
           }
         }
       }
-      sweepContexts();
-      sweepObjects();
+      // ESM host jobs can run before an SDK import installs binding helpers.
+      if (_helpers.isNotEmpty) {
+        sweepContexts();
+        sweepObjects();
+      }
       // End the JS job after weak reads so deref does not keep wrappers alive.
       complete = runtime.drainMicrotasks(maxJobsHint: 1024);
     } catch (error, stack) {

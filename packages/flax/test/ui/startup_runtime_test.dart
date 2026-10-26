@@ -178,7 +178,7 @@ globalThis.peer = new Child();
   );
 
   test(
-    'failed preparation releases its worker and remains disposable',
+    'failed preparation restores its context and asynchronous Wasm wakeups',
     () async {
       final runtime = FlaxEngine.createRuntime();
       try {
@@ -189,6 +189,22 @@ globalThis.peer = new Child();
           throwsA(isA<FlaxJsException>()),
         );
         expect((runtime.evaluate('42') as FlaxJsNumber).value, 42);
+        final completed = Completer<double>();
+        runtime.registerHostFunction('completeWasm', (_, values) {
+          completed.complete((values.single as FlaxJsNumber).value);
+          return const FlaxJsUndefined();
+        });
+        (runtime as FlaxJsModuleRuntime).setHostJobHandler(
+          () => runtime.drainMicrotasks(),
+        );
+        final pending = runtime.evaluate('''
+          WebAssembly.compile(new Uint8Array([
+            0,97,115,109,1,0,0,0,1,5,1,96,0,1,127,3,2,1,0,
+            7,10,1,6,97,110,115,119,101,114,0,0,10,6,1,4,0,65,42,11
+          ])).then(module => completeWasm(new WebAssembly.Instance(module).exports.answer()));
+        ''') as FlaxJsObject;
+        pending.release();
+        expect(await completed.future.timeout(const Duration(seconds: 5)), 42);
       } finally {
         runtime.dispose();
       }

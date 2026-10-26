@@ -68,6 +68,19 @@ class FlaxBindings {
   late final _flax_engine_get_gc_api = _flax_engine_get_gc_apiPtr
       .asFunction<ffi.Pointer<FlaxEngineGcApi> Function(int)>();
 
+  ffi.Pointer<FlaxEngineModulesApi> flax_engine_get_modules_api(int version) {
+    return _flax_engine_get_modules_api(version);
+  }
+
+  late final _flax_engine_get_modules_apiPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Pointer<FlaxEngineModulesApi> Function(ffi.Uint32)
+        >
+      >('flax_engine_get_modules_api');
+  late final _flax_engine_get_modules_api = _flax_engine_get_modules_apiPtr
+      .asFunction<ffi.Pointer<FlaxEngineModulesApi> Function(int)>();
+
   void flax_engine_notify_idle_current_isolate() {
     return _flax_engine_notify_idle_current_isolate();
   }
@@ -115,6 +128,16 @@ const int FLAX_ENGINE_EXECUTION_VERSION = 1;
 const int FLAX_ENGINE_FFI_VERSION = 1;
 
 const int FLAX_ENGINE_GC_VERSION = 1;
+
+const int FLAX_ENGINE_MODULES_VERSION = 1;
+
+const int FLAX_MODULE_JAVASCRIPT = 1;
+
+const int FLAX_MODULE_JSON = 2;
+
+const int FLAX_MODULE_SOURCE_IMPORTS = 8;
+
+const int FLAX_MODULE_WASM = 4;
 
 final class FlaxApi extends ffi.Struct {
   @ffi.Uint32()
@@ -1324,6 +1347,73 @@ final class FlaxEngineGcApi extends ffi.Struct {
     ..ref.bind_peer = bind_peer
     ..ref.register_host = register_host
     ..ref.cell_count = cell_count;
+}
+
+final class FlaxEngineModulesApi extends ffi.Struct {
+  @ffi.Uint32()
+  external int version;
+
+  @ffi.Size()
+  external int struct_size;
+
+  @ffi.Uint32()
+  external int capabilities;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime> runtime,
+        FlaxValueId importer,
+        ffi.Pointer<FlaxValueId> controller,
+        ffi.Pointer<FlaxError> error,
+      )
+    >
+  >
+  install;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime> runtime,
+        ffi.Int64 port,
+        ffi.Pointer<FlaxError> error,
+      )
+    >
+  >
+  set_wakeup_port;
+
+  static ffi.Pointer<FlaxEngineModulesApi> $allocate(
+    ffi.Allocator $allocator, {
+    required int version,
+    required int struct_size,
+    required int capabilities,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime> runtime,
+          FlaxValueId importer,
+          ffi.Pointer<FlaxValueId> controller,
+          ffi.Pointer<FlaxError> error,
+        )
+      >
+    >
+    install,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime> runtime,
+          ffi.Int64 port,
+          ffi.Pointer<FlaxError> error,
+        )
+      >
+    >
+    set_wakeup_port,
+  }) => $allocator<FlaxEngineModulesApi>()
+    ..ref.version = version
+    ..ref.struct_size = struct_size
+    ..ref.capabilities = capabilities
+    ..ref.install = install
+    ..ref.set_wakeup_port = set_wakeup_port;
 }
 
 final class FlaxError extends ffi.Struct {

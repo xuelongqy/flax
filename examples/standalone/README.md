@@ -1,5 +1,29 @@
 # Standalone Flutter Host
 
+## Native ESM example
+
+The alternate `lib/main_esm.dart` entry uses the same prepared host SDK and runtime. Its
+original JS imports JSON, dynamic JS and Wasm in both source and evaluation phases.
+Prepare the ordinary host assets first, then the independent module tree:
+
+```sh
+pnpm --filter @flax/example-standalone run modules
+cd examples/standalone
+flutter --local-engine-src-path="$FLUTTER_ENGINE" \
+  --local-engine=flax_ios_debug_sim_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  run -d <simulator-id> -t lib/main_esm.dart
+```
+
+For remote imports, run `pnpm --filter @flax/example-standalone run modules:dev` in
+another terminal and add `--dart-define=FLAX_MODULE_URL=http://127.0.0.1:5173/main.js`
+to the Flutter command. Loopback reaches the Mac from the iOS simulator. The endpoint
+serves separate original modules with strict MIME types. Apply edits by restarting the
+owning Session; the existing script example retains its factory HMR.
+
+The generated `assets/flax_esm/` and `.flax` archive are build outputs. Sources and the
+small Wasm binary live in `js/esm/`; no offline HBC, code cache or snapshot is used. See
+the [module contract](../../docs/architecture/modules.md).
+
 The private flax_standalone application uses the maintained Flutter 3.47.6 / Dart 3.13.5
 engine and macOS arm64 (macOS 15 or newer). main.dart initializes Flutter and host
 plugins, then mounts FlaxView.bundle, which automatically reads `assets/flax/flax.json`

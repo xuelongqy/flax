@@ -36,16 +36,22 @@ class _HostCallback {
 /// Owns native resources and must be explicitly disposed. Finalizable prevents
 /// sending this object to another isolate and keeps it live during native calls.
 final class FlaxNativeJsRuntime
-    implements FlaxJsRuntime, FlaxJsSourcePreparer, Finalizable {
+    implements
+        FlaxJsRuntime,
+        FlaxJsSourcePreparer,
+        FlaxJsModuleRuntime,
+        Finalizable {
   factory FlaxNativeJsRuntime.fromEngine(
     Pointer<FlaxApi> table,
     Pointer<FlaxEngineGcApi> gc,
     Pointer<FlaxEngineBindingApi> binding, [
     Pointer<FlaxEngineFfiApi>? ffi,
     Pointer<FlaxEngineExecutionApi>? execution,
+    Pointer<FlaxEngineModulesApi>? modules,
   ]) {
     ffi ??= nullptr;
     execution ??= nullptr;
+    modules ??= nullptr;
     if (table == nullptr ||
         table.ref.version != FLAX_ABI_VERSION ||
         table.ref.struct_size != sizeOf<FlaxApi>()) {
@@ -104,12 +110,20 @@ final class FlaxNativeJsRuntime
             execution.ref.cancel == nullptr)) {
       throw UnsupportedError('Incompatible Flax execution engine extension');
     }
+    if (modules != nullptr &&
+        (modules.ref.version != FLAX_ENGINE_MODULES_VERSION ||
+            modules.ref.struct_size != sizeOf<FlaxEngineModulesApi>() ||
+            modules.ref.install == nullptr ||
+            modules.ref.set_wakeup_port == nullptr)) {
+      throw UnsupportedError('Incompatible Flax native module extension');
+    }
     return FlaxNativeJsRuntime._(
       NativeCalls(table.ref),
       gc.ref,
       binding.ref,
       ffi == nullptr ? null : ffi.ref,
       execution == nullptr ? null : execution.ref,
+      modules == nullptr ? null : modules.ref,
     );
   }
 
@@ -119,6 +133,7 @@ final class FlaxNativeJsRuntime
     this._binding,
     this._ffi,
     this._execution,
+    this._modules,
   ) {
     _results = _execution;
     _batchArguments = _execution != null;
@@ -127,6 +142,30 @@ final class FlaxNativeJsRuntime
       _checked(arena, (error) => _calls.create(result, error));
       _handle = result.value;
     });
+    if (_modules != null) {
+      final weak = WeakReference(this);
+      final port = _jobsPort = RawReceivePort(null, 'Flax V8 foreground tasks')
+        ..keepIsolateAlive = false;
+      port.handler = Zone.current.bindUnaryCallbackGuarded((dynamic _) {
+        final runtime = weak.target;
+        if (runtime == null || runtime.isDisposed) return;
+        (runtime._hostJobHandler ?? runtime._moduleJobHandler)?.call();
+      });
+      try {
+        using(
+          (arena) => _checked(
+            arena,
+            (error) => _modules.set_wakeup_port
+                .asFunction<
+                  int Function(Pointer<FlaxRuntime>, int, Pointer<FlaxError>)
+                >()(_handle, port.sendPort.nativePort, error),
+          ),
+        );
+      } catch (_) {
+        dispose();
+        rethrow;
+      }
+    }
   }
 
   final NativeCalls _calls;
@@ -190,6 +229,46 @@ final class FlaxNativeJsRuntime
           Pointer<FlaxError>,
         )
       >();
+  final FlaxEngineModulesApi? _modules;
+  RawReceivePort? _jobsPort;
+  void Function()? _hostJobHandler;
+  void Function()? _moduleJobHandler;
+
+  @override
+  void setHostJobHandler(void Function()? handler) => _hostJobHandler = handler;
+
+  @override
+  int get moduleCapabilities => _modules?.capabilities ?? 0;
+
+  @override
+  FlaxJsObject installModuleLoader(
+    FlaxJsFunction importer, {
+    void Function()? onWakeup,
+  }) => _entry((arena) {
+    final api = _modules;
+    if (api == null) {
+      throw UnsupportedError('This engine does not include native ESM');
+    }
+    if (importer is! _NativeObject) {
+      throw ArgumentError('Expected a native import callback');
+    }
+    (importer as _NativeObject)._check(this);
+    final result = arena<Uint64>();
+    _checked(
+      arena,
+      (error) => api.install
+          .asFunction<
+            int Function(
+              Pointer<FlaxRuntime>,
+              int,
+              Pointer<Uint64>,
+              Pointer<FlaxError>,
+            )
+          >()(_handle, (importer as _NativeObject)._id, result, error),
+    );
+    _moduleJobHandler = onWakeup;
+    return _read(arena, result.value) as FlaxJsObject;
+  });
   ReceivePort? _ffiPort;
   late final _registerMembers = _binding.register_members
       .asFunction<
@@ -1073,6 +1152,10 @@ final class FlaxNativeJsRuntime
         _checked(arena, (error) => _calls.destroy(_handle, error));
       });
       _disposed = true;
+      _jobsPort?.close();
+      _jobsPort = null;
+      _hostJobHandler = null;
+      _moduleJobHandler = null;
     } finally {
       _disposing = false;
     }

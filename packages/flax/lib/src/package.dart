@@ -249,6 +249,9 @@ void _checkApplication(Directory root) {
     jsonDecode(_installedFile(root, 'flax.json').readAsStringSync()),
   );
   _installedFile(root, manifest.entry);
+  for (final key in manifest.modules.keys) {
+    _installedFile(root, key);
+  }
   final assets = parseFlaxAssetManifest(
     _installedFile(root, 'flax.assets.json').readAsStringSync(),
   );
@@ -281,7 +284,12 @@ void _checkInstallation(Directory root, String digest) {
   final manifest = FlaxManifest.fromJson(
     jsonDecode(_installedFile(root, 'flax.json').readAsStringSync()),
   );
-  for (final key in ['flax.json', manifest.entry, 'flax.assets.json']) {
+  for (final key in [
+    'flax.json',
+    manifest.entry,
+    'flax.assets.json',
+    ...manifest.modules.keys,
+  ]) {
     if (sha256
             .convert(_installedFile(root, key).readAsBytesSync())
             .toString() !=

@@ -264,6 +264,7 @@ void _registerTests() {
   }
 
   flaxRuntimeContract(FlaxEngine.createRuntime, registerTest: register);
+  flaxModuleContract(FlaxEngine.createRuntime, registerTest: register);
   flaxEngineGcContract(registerTest: register);
   group('native Widgets and State', widgets.main);
   group('native callbacks', callbacks.main);

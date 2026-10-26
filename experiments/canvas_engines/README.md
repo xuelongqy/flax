@@ -11,6 +11,9 @@ and repeats both scenes on a dedicated simulator. The
 [fixed-engine device retest](fixed-ios-results.md) compares the repaired V8 jitless
 engine with Hermes on the same physical iPhone.
 
+The [native ESM SDK regression](esm-ios-simulator-results.md) compares the preserved
+static V8 control with the Wasm-enabled SDK on iOS Simulator.
+
 ## Workloads and measurements
 
 - **Weave crisp:** Afterglow composition 2 without the blur filter. This emphasizes

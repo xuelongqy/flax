@@ -47,6 +47,22 @@ class _NamedPageRootState extends State<_NamedPageRoot> {
   @override
   Widget build(BuildContext context) {
     final session = widget.session;
+    if (session.entryFormat == FlaxEntryFormat.module && !session._loaded) {
+      return FutureBuilder<void>(
+        future: session.ready,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) return _errorWidget(snapshot.error!);
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const SizedBox.shrink();
+          }
+          return _buildPage(session);
+        },
+      );
+    }
+    return _buildPage(session);
+  }
+
+  Widget _buildPage(FlaxSession session) {
     try {
       // Rebuilding an existing mount does not admit new content during close.
       final loaded = _loaded ??= session._load();

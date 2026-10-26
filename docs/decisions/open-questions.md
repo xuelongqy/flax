@@ -64,6 +64,15 @@ declaration or signature in the SDK.
 | Performance budgets and frame scheduling     | Broader device measurements and representative workloads                                                                                     |
 | Additional host and transport APIs           | Explicit contracts and tests; WebSocket `bufferedAmount` needs real transport-buffer accounting, not `flush` or timing estimates             |
 
+The [native ESM, JSON and Wasm task](../tasks/native-esm-and-wasm.md) records original
+JS/JSON/Wasm graphs, remote loading and iOS interpreted Wasm. The
+[module contract](../architecture/modules.md) defines the implemented extension,
+version-2 descriptor and readiness API. Focused macOS, simulator, physical iOS and
+Android gates pass, including Session cleanup and sustained physical iOS joint GC. The
+task records which evidence precedes the final integration review. CSS is excluded, the
+sandbox option is reserved only, and in-place ESM hot replacement remains deferred. SDK
+distribution and broader Wasm feature conformance require separate gates.
+
 [Direct JavaScript FFI](../architecture/ffi.md) now implements the optional npm package,
 shared runtime signatures, native layouts, typed varargs, raw bigint memory access,
 callbacks, optional allocation/finalization, Core Session retirement and native input

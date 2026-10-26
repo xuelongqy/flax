@@ -51,6 +51,10 @@ if (!selectedPackage) {
       cwd: standaloneRoot,
       stdio: 'inherit',
     });
+    execFileSync(process.execPath, [resolve(standaloneRoot, 'tool/modules.mjs')], {
+      cwd: standaloneRoot,
+      stdio: 'inherit',
+    });
   }
 }
 

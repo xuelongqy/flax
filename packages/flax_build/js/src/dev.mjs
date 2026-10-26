@@ -4,6 +4,7 @@ import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { build } from 'esbuild';
 import { createServer, parseSync } from 'vite';
 import { flaxVitePlugin } from './vite.mjs';
+import { startFlaxModuleDev } from './esm.mjs';
 
 function clean(value) {
   return value.replace(/[?#].*$/, '');
@@ -422,7 +423,15 @@ function entryUrl(root, file) {
 }
 
 /** Start Vite as Flax's watcher/transform server and emit one synchronous app asset. */
-export async function startFlaxDev({ entry, out, port = 5173, root = process.cwd() }) {
+export async function startFlaxDev({
+  entry,
+  out,
+  port = 5173,
+  root = process.cwd(),
+  entryFormat = 'script',
+}) {
+  if (entryFormat === 'module') return startFlaxModuleDev({ entry, out, port, root });
+  if (entryFormat !== 'script') throw new Error('Unsupported entry format');
   root = await realpath(resolve(root));
   const entryFile = resolve(root, entry);
   const state = {

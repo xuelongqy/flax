@@ -89,6 +89,23 @@ does not select Dart types. Both plugins retain source maps to the original TS s
 
 ## Business application directory
 
+For original runtime ESM, use
+`prepareModuleApplication({ modulesDirectory: 'src', entry: 'main.js' })` from
+`@flax/build/application`. It preserves JS/JSON/Wasm bytes and lowers TS into separate
+ESM files with the existing semantic compiler. Use explicit runtime `.js` import paths
+in TS; installed SDK names and remote URLs remain imports. The generated version-2
+descriptor declares module kinds and capabilities, and `packApplication()` includes
+every module in its integrity inventory. Source errors during TS lowering preserve the
+previous output. Modules are limited to 256 files and 64 MiB, with runtime per-kind
+limits. CSS and runtime npm discovery are unsupported.
+
+`flax-dev --entry src/main.js --out ../assets/flax_esm --entry-format module` starts
+Vite's native module endpoint with JavaScript, JSON and Wasm MIME types. It preserves
+original import syntax and emits `flax:restart` after a successful source rebuild.
+Replace the owning Session/View to apply a module update. Script mode keeps its existing
+factory hot reload. See the
+[native module contract](../../../docs/architecture/modules.md).
+
 ```javascript
 import { writeFile } from 'node:fs/promises';
 import { prepareApplication } from '@flax/build/application';

@@ -40,3 +40,4 @@ flutter:
     - assets/flax/assets/images/
     - assets/flax/assets/data/
     - assets/flax_modules/
+    - assets/flax_esm/

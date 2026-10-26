@@ -114,6 +114,58 @@ void selectExampleEngine(String root, String flutter, String engine) {
     file.writeAsStringSync(source);
   }
   if (engine == 'v8') {
+    final iosProject = File('$flutter/ios/Runner.xcodeproj/project.pbxproj');
+    if (iosProject.existsSync()) {
+      var source = iosProject.readAsStringSync();
+      final paths = RegExp(r'CODE_SIGN_ENTITLEMENTS = "?([^";]+)"?;')
+          .allMatches(source)
+          .map((match) => match.group(1)!)
+          .toSet();
+      if (paths.isEmpty) {
+        paths.add('Runner/Runner.entitlements');
+        source = source.replaceAll(
+          'PRODUCT_BUNDLE_IDENTIFIER =',
+          'CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements; PRODUCT_BUNDLE_IDENTIFIER =',
+        );
+      }
+      const key = 'com.apple.developer.kernel.extended-virtual-addressing';
+      for (final path in paths) {
+        final relative = path.replaceFirst(
+          RegExp(r'^\$\((SRCROOT|PROJECT_DIR)\)/'),
+          '',
+        );
+        final resolved = p.normalize(p.join('$flutter/ios', relative));
+        if (!p.isWithin(p.normalize('$flutter/ios'), resolved)) {
+          throw StateError(
+            'iOS entitlements must be inside the example: $path',
+          );
+        }
+        final file = File(resolved)..parent.createSync(recursive: true);
+        var text = file.existsSync()
+            ? file.readAsStringSync()
+            : '<?xml version="1.0" encoding="UTF-8"?>\n'
+                  '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n'
+                  '<plist version="1.0"><dict></dict></plist>\n';
+        // DrumBrake requires V8's 4 GiB pointer compression reservation on iOS.
+        final value = RegExp(
+          '<key>${RegExp.escape(key)}</key>\\s*<(?:true|false)\\s*/>',
+        );
+        if (text.contains('<key>$key</key>')) {
+          if (!value.hasMatch(text)) {
+            throw FormatException('Invalid iOS entitlement: $key');
+          }
+          text = text.replaceFirst(value, '<key>$key</key><true/>');
+        } else {
+          final rootEnd = text.lastIndexOf('</dict>');
+          if (rootEnd < 0) {
+            throw FormatException('Invalid iOS entitlements: $path');
+          }
+          text = text.replaceRange(rootEnd, rootEnd, '<key>$key</key><true/>');
+        }
+        file.writeAsStringSync(text);
+      }
+      iosProject.writeAsStringSync(source);
+    }
     final project = File('$flutter/macos/Runner.xcodeproj/project.pbxproj');
     var adHocSigning = false;
     if (project.existsSync()) {

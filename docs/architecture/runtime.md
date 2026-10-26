@@ -48,9 +48,11 @@ exact platform scope and remaining gates.
 The maintained V8 adapter uses ordinary source compilation and preserves ES6 block
 scope, direct evaluation and Function construction. Runtime regressions include loop
 closures, source bundles, deferred callbacks and accessors. They are focused coverage,
-not complete ECMAScript conformance. The iOS SDK disables Intl, Temporal and
-WebAssembly; applications must not infer their availability from desktop V8. Native ESM
-and remote imports remain deferred. HBC inputs are unsupported.
+not complete ECMAScript conformance. The iOS SDK disables Intl and Temporal; the 0.3.2
+candidate enables interpreted WebAssembly with explicit bounds checks. Original ESM,
+JSON modules and Wasm source/evaluation imports use the optional native module extension
+and asynchronous host loader; see [native modules](modules.md). Script evaluation
+remains synchronous. HBC inputs are unsupported.
 
 `FlaxJsSource` encodes reusable source text and its URL once, at first use, as immutable
 UTF-8 bytes. It then releases its source String rather than retaining both

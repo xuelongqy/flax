@@ -25,11 +25,13 @@ def main():
     parser.add_argument('--device', required=True)
     parser.add_argument('--identity', required=True)
     parser.add_argument('--app', type=Path, required=True)
-    parser.add_argument('--hermes', type=Path, required=True)
+    control = parser.add_mutually_exclusive_group(required=True)
+    control.add_argument('--hermes', type=Path)
+    control.add_argument('--baseline', type=Path, help='Preserved static V8 SDK control')
     parser.add_argument('--v8', type=Path, required=True)
     parser.add_argument('--v8-library', type=Path, help='Historical dynamic SDK only; omit for static V8')
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--order', default='hermes,v8,v8,hermes,v8,hermes,hermes,v8')
+    parser.add_argument('--order')
     parser.add_argument('--proof', action='store_true')
     parser.add_argument('--simulator', action='store_true')
     parser.add_argument('--trace', action='store_true')
@@ -39,10 +41,13 @@ def main():
         parser.error('Timeline capture currently requires the iOS simulator VM service')
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
+    baseline = 'baseline' if args.baseline else 'hermes'
+    labels = [baseline, 'v8']
+    order = args.order or f'{baseline},v8,v8,{baseline},v8,{baseline},{baseline},v8'
     apps = {}
     provenance = {}
     bundle = 'dev.flax.canvas.enginebench'
-    for engine in ['hermes', 'v8']:
+    for engine in labels:
         app = output / f'{engine}.app'
         run(['ditto', str(args.app.resolve()), str(app)])
         runner_input = digest(app / 'Runner')
@@ -50,8 +55,8 @@ def main():
         run(['cp', str(getattr(args, engine).resolve()), str(binary)])
         notices = binary.parent / 'FlaxV8Notices'
         if notices.exists(): shutil.rmtree(notices)
-        if engine == 'v8' and not args.v8_library:
-            shutil.copytree(args.v8.parent / 'FlaxV8Notices', notices)
+        if engine == 'baseline' or engine == 'v8' and not args.v8_library:
+            shutil.copytree(getattr(args, engine).parent / 'FlaxV8Notices', notices)
 
         if engine == 'v8' and args.v8_library:
             library = app / 'Frameworks/libv8.dylib'
@@ -69,8 +74,8 @@ def main():
         kernel = app / 'Frameworks/App.framework/flutter_assets/kernel_blob.bin'
         if kernel.exists():
             provenance[engine]['kernel_sha256'] = digest(kernel)
-        if engine == 'v8':
-            if args.v8_library:
+        if engine in ['baseline', 'v8']:
+            if engine == 'v8' and args.v8_library:
                 provenance[engine]['v8_library_sha256'] = digest(library)
                 provenance[engine]['v8_linkage'] = 'historical-dynamic'
             else:
@@ -78,7 +83,7 @@ def main():
                 dependencies = '\n'.join(run(['xcrun', 'otool', '-L', str(binary)], capture_output=True).stdout.splitlines()[1:])
                 assert 'libv8' not in dependencies and 'hermes' not in dependencies.lower()
                 assert not any(app.rglob('libv8*'))
-                manifest = args.v8.parent / 'FlaxV8Notices/sdk-manifest.json'
+                manifest = getattr(args, engine).parent / 'FlaxV8Notices/sdk-manifest.json'
                 sdk = json.loads(manifest.read_text())
                 assert sdk['metadata']['linkage'] == 'static' and sdk['metadata']['jit'] is False
                 provenance[engine]['v8_linkage'] = 'static'
@@ -88,11 +93,11 @@ def main():
                     p: sdk['files'][p] for p in sdk['libraries']}
 
         apps[engine] = app
-    assert provenance['hermes']['aot_sha256'] == provenance['v8']['aot_sha256']
-    assert provenance['hermes']['runner_input_sha256'] == provenance['v8']['runner_input_sha256']
-    assert provenance['hermes']['source_assets'] == provenance['v8']['source_assets']
+    assert provenance[baseline]['aot_sha256'] == provenance['v8']['aot_sha256']
+    assert provenance[baseline]['runner_input_sha256'] == provenance['v8']['runner_input_sha256']
+    assert provenance[baseline]['source_assets'] == provenance['v8']['source_assets']
     (output / 'applications.json').write_text(json.dumps(provenance, indent=2) + '\n')
-    for trial, engine in enumerate(args.order.split(','), args.start_index):
+    for trial, engine in enumerate(order.split(','), args.start_index):
         assert engine in apps
         prefix = f'{trial:02d}-{engine}'
         print('Installing', prefix, flush=True)
@@ -101,11 +106,12 @@ def main():
         else:
             run(['xcrun', 'devicectl', 'device', 'install', 'app', '--device', args.device, str(apps[engine])], capture_output=True)
         time.sleep(8)
-        env = {'BENCH_ENGINE': engine}
+        actual_engine = 'v8' if engine == 'baseline' else engine
+        env = {'BENCH_ENGINE': actual_engine}
         if args.trace:
             env['CANVAS_BENCH_TRACE'] = '1'
         if args.proof:
-            env['FLAX_VERIFY_V8_JIT' if engine == 'v8' else 'FLAX_VERIFY_HERMES'] = '1'
+            env['FLAX_VERIFY_V8_JIT' if actual_engine == 'v8' else 'FLAX_VERIFY_HERMES'] = '1'
         log = output / f'{prefix}.log'
         with log.open('w') as handle:
             if args.simulator:
@@ -144,7 +150,7 @@ def main():
         content = log.read_text()
         assert 'CANVAS_ENGINES_PASSED' in content, content[-4000:]
         if args.proof:
-            assert ('FLAX_V8_JITLESS: probe executed without generated machine code' if engine == 'v8'
+            assert ('FLAX_V8_JITLESS: probe executed without generated machine code' if actual_engine == 'v8'
                     else 'FLAX_HERMES:') in content, content[:2000]
         files = ['result.json', 'weave-crisp.png', 'bloom-soft.png']
         if args.trace and not args.simulator:
@@ -159,7 +165,10 @@ def main():
                      '--domain-type', 'appDataContainer', '--domain-identifier', bundle,
                      '--source', f'tmp/canvas-engines/{name}', '--destination', str(output / f'{prefix}-{name}')], capture_output=True)
         result = json.loads((output / f'{prefix}-result.json').read_text())
-        assert result['complete'] and result['engine'] == engine
+        assert result['complete'] and result['engine'] == actual_engine
+        if args.baseline:
+            result['variant'] = engine
+            (output / f'{prefix}-result.json').write_text(json.dumps(result, indent=2) + '\n')
         assert len(result['results']) == 2 and all(x['frames'] == 300 for x in result['results'])
         if any(x['thermal'] != 0 or x['lowPower'] for x in result['memory']):
             raise RuntimeError(f'{prefix}: invalid thermal or low-power state; raw receipt retained')

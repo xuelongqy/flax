@@ -17,15 +17,18 @@ def summary(values):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('directory', type=Path)
+    parser.add_argument('--simulator', action='store_true')
     args = parser.parse_args()
     paths = sorted(args.directory.glob('*-result.json'))
     assert len(paths) == 8, f'Expected eight independent trials, found {len(paths)}'
     runs = [json.loads(p.read_text()) for p in paths]
+    baseline = 'baseline' if any(r.get('variant') == 'baseline' for r in runs) else 'hermes'
+    labels = [baseline, 'v8']
     assert len({r['source_sha256'] for r in runs}) == 1
     assert len({json.dumps([r[k] for k in ['physical_size', 'dpr', 'display_hz', 'backing', 'raster_scale']]) for r in runs}) == 1
     for run in runs:
-        assert run['complete'] and run['mode'] == 'release' and not run['precompiled_hbc']
-        assert not run.get('simulator', False) and not run.get('tracing', False)
+        assert run['complete'] and run['mode'] == ('debug' if args.simulator else 'release') and not run['precompiled_hbc']
+        assert run.get('simulator', False) == args.simulator and not run.get('tracing', False)
         assert all(x['thermal'] == 0 and not x['lowPower'] for x in run['memory'])
         assert len(run['results']) == 2
         for scene in run['results']:
@@ -46,13 +49,13 @@ def main():
         assert len(set(hashes)) == 1, f'{name}: output differs; decoded-pixel review required'
         pixels[name] = hashes[0]
     apps = json.loads((args.directory / 'applications.json').read_text())
-    assert apps['hermes']['aot_sha256'] == apps['v8']['aot_sha256']
-    assert apps['hermes']['runner_input_sha256'] == apps['v8']['runner_input_sha256']
-    assert apps['hermes']['source_assets'] == apps['v8']['source_assets']
-    result = {'order': [r['engine'] for r in runs], 'total_measured_frames': 4800,
-              'source_sha256': runs[0]['source_sha256'], 'identical_output_png_sha256': pixels, 'engines': {}}
-    for engine in ['hermes', 'v8']:
-        selected = [r for r in runs if r['engine'] == engine]
+    assert apps[baseline]['aot_sha256'] == apps['v8']['aot_sha256']
+    assert apps[baseline]['runner_input_sha256'] == apps['v8']['runner_input_sha256']
+    assert apps[baseline]['source_assets'] == apps['v8']['source_assets']
+    result = {'order': [r.get('variant', r['engine']) for r in runs], 'total_measured_frames': 4800,
+              'simulator': args.simulator, 'source_sha256': runs[0]['source_sha256'], 'identical_output_png_sha256': pixels, 'engines': {}}
+    for engine in labels:
+        selected = [r for r in runs if r.get('variant', r['engine']) == engine]
         assert len(selected) == 4
         row = {'processes': 4,
                'startup_ms': {k: summary(r['startup'][k] / 1000 for r in selected) for k in selected[0]['startup']},

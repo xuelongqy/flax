@@ -5,7 +5,8 @@ import 'package:flax/bindings.dart';
 import 'package:flutter/scheduler.dart';
 
 /// Counts owned handles around the real engine, without changing runtime behavior.
-class FlaxTestRuntimeTracker implements FlaxJsRuntime, FlaxJsSourcePreparer {
+class FlaxTestRuntimeTracker
+    implements FlaxJsRuntime, FlaxJsSourcePreparer, FlaxJsModuleRuntime {
   FlaxTestRuntimeTracker(this.inner);
 
   final FlaxJsRuntime inner;
@@ -25,6 +26,34 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime, FlaxJsSourcePreparer {
 
   /// Optional scalar-only experiment spans, balanced even when calls throw.
   void Function(String, bool)? trace;
+  @override
+  int get moduleCapabilities => inner is FlaxJsModuleRuntime
+      ? (inner as FlaxJsModuleRuntime).moduleCapabilities
+      : 0;
+  @override
+  void setHostJobHandler(void Function()? handler) {
+    if (inner is FlaxJsModuleRuntime) {
+      (inner as FlaxJsModuleRuntime).setHostJobHandler(handler);
+    }
+  }
+
+  @override
+  FlaxJsObject installModuleLoader(
+    FlaxJsFunction importer, {
+    void Function()? onWakeup,
+  }) {
+    if (inner is! FlaxJsModuleRuntime) {
+      throw UnsupportedError('Native modules are unavailable');
+    }
+    return wrap(
+      (inner as FlaxJsModuleRuntime).installModuleLoader(
+        unwrap(importer) as FlaxJsFunction,
+        onWakeup: onWakeup,
+      ),
+      'module-loader',
+    ) as FlaxJsObject;
+  }
+
   @override
   Type dartInstanceType(Object value) => inner.dartInstanceType(value);
   @override

@@ -166,6 +166,8 @@ void main() {
           '__flaxBindings.invokeCallback',
           '__flaxBindings.readBindingSnapshot',
           '__flaxBindings.readWidgetBatch',
+          '__flaxBindings.releaseContext',
+          '__flaxBindings.sweepObjects',
         ]),
       );
       final moduleHandles = runtime.handleLabels
@@ -180,7 +182,8 @@ void main() {
         handles - baseHandles - moduleHandles - sharedHelpers.length,
         lessThanOrEqualTo(32),
       );
-      expect(handles, lessThanOrEqualTo(40));
+      // Readiness retains two cleanup helpers so GC cannot create late owners.
+      expect(handles - 2, lessThanOrEqualTo(40));
       expect(calls['__flaxBaseCall'], 1); // Install the base clock origin once.
       expect(calls['__flaxMount'], 1);
       expect(calls['__flaxInvalidate'], 9);

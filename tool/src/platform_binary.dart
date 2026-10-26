@@ -231,6 +231,19 @@ Future<Map<String, Object?>> _verifyIosEngineApplication(
       ':-',
       product,
     ]);
+    final extendedVirtualAddressing = RegExp(
+      r'<key>com\.apple\.developer\.kernel\.extended-virtual-addressing</key>\s*<true\s*/>',
+    ).hasMatch(entitlements);
+    if (!simulator &&
+        RegExp(
+          r'^v8_enable_pointer_compression\s*=\s*true\s*$',
+          multiLine: true,
+        ).hasMatch(manifest['metadata']['gnArgs'] as String) &&
+        !extendedVirtualAddressing) {
+      throw StateError(
+        'iOS V8 pointer compression requires the Extended Virtual Addressing capability',
+      );
+    }
     for (final name in [
       'dynamic-codesigning',
       'com.apple.security.cs.allow-jit',
@@ -283,6 +296,7 @@ Future<Map<String, Object?>> _verifyIosEngineApplication(
       'singleV8Closure': true,
       'v8Jit': false,
       'jsJitEntitlements': false,
+      'extendedVirtualAddressing': extendedVirtualAddressing,
       'v8Revision': manifest['metadata']['revision'],
       'v8Linkage': manifest['metadata']['linkage'],
       'v8Cppgc': manifest['metadata']['cppgc'],

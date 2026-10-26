@@ -122,6 +122,10 @@ current language support is in the
   is accepted. Marked types packages build independently of host artifacts; init and
   sync prepare host configuration while preserving Builder asset ownership.
 
+- [0051: Native ESM, JSON and Wasm](0051-native-esm-json-and-wasm.md) is an experimental
+  integration. Native module linking, asynchronous loading and iOS interpreted Wasm
+  preserve script compatibility; platform acceptance is recorded separately.
+
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,
 its reason and practical consequences, and update this index.

@@ -32,6 +32,9 @@ abstract final class FlaxEngine {
                 FLAX_ENGINE_EXECUTION_VERSION,
               )
             : nullptr,
+        library.providesSymbol('flax_engine_get_modules_api')
+            ? bindings.flax_engine_get_modules_api(FLAX_ENGINE_MODULES_VERSION)
+            : nullptr,
       );
     } on ArgumentError catch (error) {
       throw UnsupportedError(

@@ -134,6 +134,19 @@ abstract interface class FlaxJsSourcePreparer {
   });
 }
 
+/// Optional engine-author capability used by the native module loader.
+/// Existing runtime implementations remain valid without this interface.
+abstract interface class FlaxJsModuleRuntime {
+  int get moduleCapabilities;
+
+  /// A Session installs its ordinary checkpoint; raw runtimes remain explicit.
+  void setHostJobHandler(void Function()? handler);
+  FlaxJsObject installModuleLoader(
+    FlaxJsFunction importer, {
+    void Function()? onWakeup,
+  });
+}
+
 abstract class FlaxJsRuntime {
   /// Internal maintained-engine Type operations. All handles stay in Dart.
   Type dartInstanceType(Object value);

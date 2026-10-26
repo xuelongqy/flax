@@ -35,6 +35,7 @@ packages/flax_engine_hermes/native/generated/
 
 # Prepared example bundles
 examples/*/assets/flax/
+examples/*/assets/flax_esm/
 examples/*/assets/*.flax
 examples/*/assets/*.js
 examples/*/assets/*.js.map
