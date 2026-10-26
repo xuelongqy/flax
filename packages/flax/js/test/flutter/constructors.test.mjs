@@ -10,9 +10,228 @@ import {
   runApp,
 } from '../../dist/flutter/widgets.js';
 import { signal } from '../../dist/runtime/index.js';
-import { construct } from '../../dist/runtime/bindings.js';
+import { construct, constructObject } from '../../dist/runtime/bindings.js';
 
 const host = objectHost();
+
+test('shared callback lookup keeps memo scope and retired identity checks', () => {
+  const input = () => 42;
+  const canonical = host.api.functionWithMemo(
+    'fixture:callback',
+    700001,
+    '[]',
+    false,
+    input,
+    'session/module/signature',
+  );
+  assert.equal(host.api.callbackReference(input, 'other'), null);
+  assert.equal(host.api.callbackReference(input, 'session/module/signature'), -700001);
+  assert.equal(host.api.callbackReference(canonical), 700001);
+  assert.equal(
+    host.api.callbackReference(Object.assign(() => {}, { kind: 'dart-function' })),
+    0,
+  );
+  host.api.releaseObject(700001);
+  assert.throws(
+    () => host.api.callbackReference(input, 'session/module/signature'),
+    /Released/,
+  );
+});
+
+test('object creation sends provided arguments once and keeps the legacy fallback', () => {
+  const create = globalThis.__flaxCreateObject;
+  const fast = globalThis.__flaxCreateObjectWithArguments;
+  const enabled = globalThis.__flaxObjectArguments;
+  const received = [];
+  const callback = () => 42;
+  globalThis.__flaxObjectArguments = true;
+  globalThis.__flaxCreateObjectWithArguments = (
+    version,
+    type,
+    descriptor,
+    ctor,
+    ...values
+  ) => {
+    received.push({ ctor, values });
+    return {};
+  };
+  try {
+    constructObject(
+      'object',
+      'fixture:arguments',
+      'named',
+      [
+        { name: 'first', positional: true },
+        { name: 'absent' },
+        { name: 'nullable' },
+        { name: 'callback' },
+      ],
+      [3],
+      { absent: undefined, nullable: null, callback },
+    );
+    assert.deepEqual(received, [
+      { ctor: 'named', values: ['first', 3, 'nullable', null, 'callback', callback] },
+    ]);
+    delete globalThis.__flaxCreateObjectWithArguments;
+    assert.doesNotThrow(() => EdgeInsets.all(1));
+    assert.equal(received.length, 1);
+  } finally {
+    if (fast === undefined) delete globalThis.__flaxCreateObjectWithArguments;
+    else globalThis.__flaxCreateObjectWithArguments = fast;
+    if (enabled === undefined) delete globalThis.__flaxObjectArguments;
+    else globalThis.__flaxObjectArguments = enabled;
+  }
+});
+
+test('Widget batches preserve shared children and actual business references', () => {
+  const leaf = Text('shared');
+  const column = Column({ children: [leaf, leaf], textDirection: null });
+  let packet;
+  const previous = globalThis.__flaxReadWidgetBatch;
+  globalThis.__flaxReadWidgetBatch = (plan, ...values) => {
+    packet = { plan: JSON.parse(plan), values };
+  };
+  try {
+    assert.equal(host.api.readWidgetBatch(column), true);
+    const [root, nodes] = packet.plan;
+    assert.equal(root, 1);
+    assert.equal(nodes.length, 3);
+    const fields = nodes[0][4];
+    const children = nodes[fields[fields.indexOf('children') + 1] - 1];
+    assert.equal(children[0], 1);
+    assert.equal(children[2][0], children[2][1]);
+    assert.equal(packet.values[nodes[0][1]], column);
+    assert.equal(packet.values[nodes[2][1]], leaf);
+    const callback = () => {};
+    let reads = 0;
+    const foreign = {
+      toJSON() {
+        reads++;
+        throw Error('No serialization');
+      },
+    };
+    const values = [undefined, null, -0, NaN, Infinity, 2n, callback, foreign];
+    const custom = construct(
+      'widget',
+      'fixture:raw',
+      '',
+      values.map((_, i) => ({ name: `v${i}` })),
+      [],
+      Object.fromEntries(values.map((v, i) => [`v${i}`, v])),
+    );
+    assert.equal(host.api.readWidgetBatch(custom), true);
+    const rawFields = packet.plan[1][0][4];
+    assert.equal(rawFields.includes('v0'), false);
+    for (let i = 1; i < values.length; i++) {
+      const token = rawFields[rawFields.indexOf(`v${i}`) + 1];
+      assert.ok(token < 0);
+      assert.ok(Object.is(packet.values[-token - 1], values[i]));
+    }
+    assert.equal(reads, 0);
+    const overwritten = construct(
+      'widget',
+      'fixture:raw',
+      '',
+      [{ name: 'type', readonly: true }],
+      [],
+      { type: foreign },
+    );
+    assert.equal(host.api.readWidgetBatch(overwritten), false);
+    assert.equal(reads, 0);
+  } finally {
+    if (previous === undefined) delete globalThis.__flaxReadWidgetBatch;
+    else globalThis.__flaxReadWidgetBatch = previous;
+  }
+});
+
+test('argument metadata preserves getter order, binding tags and reference identity', () => {
+  const insets = EdgeInsets.all(3);
+  assert.equal(host.api.argumentReference(insets), host.api.objectHandle(insets));
+  assert.equal(host.api.argumentReference({ kind: 'binding' }), true);
+  let reads = 0;
+  assert.equal(
+    host.api.argumentReference({
+      get kind() {
+        reads++;
+      },
+    }),
+    null,
+  );
+  assert.equal(reads, 1);
+  const marker = Symbol('unsupported');
+  assert.equal(host.api.argumentReference({ kind: marker }), marker);
+  assert.equal(
+    host.api.callbackReference(Object.assign(() => {}, { kind: marker })),
+    marker,
+  );
+});
+
+test('Widget batches leave foreign getters lazy and bound oversized packets', () => {
+  let reads = 0;
+  assert.equal(
+    host.api.readWidgetBatch({
+      get kind() {
+        reads++;
+        return 'widget';
+      },
+    }),
+    false,
+  );
+  assert.equal(reads, 0);
+  const large = Column({
+    children: Array.from({ length: 513 }, (_, i) => Text(`${i}`)),
+  });
+  const previous = globalThis.__flaxReadWidgetBatch;
+  let calls = 0;
+  globalThis.__flaxReadWidgetBatch = () => calls++;
+  try {
+    assert.equal(host.api.readWidgetBatch(large), false);
+    assert.equal(calls, 0);
+    const previousToJson = Object.getOwnPropertyDescriptor(Array.prototype, 'toJSON');
+    Object.defineProperty(Array.prototype, 'toJSON', {
+      value() {
+        throw Error('Metadata must not invoke business serialization');
+      },
+      configurable: true,
+    });
+    try {
+      assert.equal(host.api.readWidgetBatch(Text('guard')), false);
+      assert.equal(calls, 0);
+    } finally {
+      if (previousToJson)
+        Object.defineProperty(Array.prototype, 'toJSON', previousToJson);
+      else delete Array.prototype.toJSON;
+    }
+  } finally {
+    if (previous === undefined) delete globalThis.__flaxReadWidgetBatch;
+    else globalThis.__flaxReadWidgetBatch = previous;
+  }
+});
+
+test('Widget batches bound repeated edges without invoking an array mapper', () => {
+  const leaf = Text('repeated');
+  const root = Column({ children: Array(5000).fill(leaf) });
+  const previous = globalThis.__flaxReadWidgetBatch;
+  const mapper = Array.prototype.map;
+  let mapperCalls = 0;
+  let deliveries = 0;
+  let handled;
+  globalThis.__flaxReadWidgetBatch = () => deliveries++;
+  try {
+    Array.prototype.map = function (...args) {
+      mapperCalls++;
+      return Reflect.apply(mapper, this, args);
+    };
+    handled = host.api.readWidgetBatch(root);
+  } finally {
+    Array.prototype.map = mapper;
+    if (previous === undefined) delete globalThis.__flaxReadWidgetBatch;
+    else globalThis.__flaxReadWidgetBatch = previous;
+  }
+  assert.equal(handled, false);
+  assert.equal(deliveries, 0);
+  assert.equal(mapperCalls, 0);
+});
 
 test('widget metadata keeps native handles, frozen descriptions and foreign reads distinct', () => {
   const description = Text('metadata');

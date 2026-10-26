@@ -1,7 +1,9 @@
+// ignore_for_file: implementation_imports
 import 'dart:async';
 import 'dart:io';
 
 import 'package:flax/flax.dart';
+import 'package:flax/src/native/native_runtime.dart';
 import 'package:flax_embedded/main.dart' as gallery;
 import 'package:flax_example_support/flax_example_support.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
@@ -13,7 +15,23 @@ import 'support/gallery.dart';
 
 class _Runtime extends FlaxTestRuntimeTracker {
   _Runtime() : super(FlaxEngine.createRuntime()) {
+    if (Platform.environment['FLAX_ENGINE_RESULTS'] == '1') {
+      (inner as FlaxNativeJsRuntime).useEngineResultsForExperiment(
+        true,
+        arguments: Platform.environment['FLAX_ENGINE_ARGUMENTS'] == '1',
+      );
+    }
     evaluate('globalThis.__flaxStartupLazy = true');
+    for (final (name, flag) in const [
+      ('__flaxWidgetBatch', 'FLAX_WIDGET_BATCH'),
+      ('__flaxObjectArguments', 'FLAX_OBJECT_ARGUMENTS'),
+      ('__flaxCallbackMemo', 'FLAX_CALLBACK_MEMO'),
+      ('__flaxArgumentReferences', 'FLAX_ARGUMENT_REFERENCES'),
+    ]) {
+      if (Platform.environment[flag] == '1') {
+        evaluate('globalThis.$name = true');
+      }
+    }
   }
   void Function(String)? afterSource;
   final inspectedTypes = <Type>{};

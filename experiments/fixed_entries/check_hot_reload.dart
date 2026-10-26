@@ -32,6 +32,7 @@ Future<void> main(List<String> arguments) async {
     '-d',
     'macos',
     '--dart-define=FLAX_ENGINE_RESULTS=$enabled',
+    '--dart-define=FLAX_ENGINE_ARGUMENTS=${Platform.environment['FLAX_ENGINE_ARGUMENTS'] == '1'}',
     '--target=$root/experiments/fixed_entries/reload_app.dart',
   ]);
   File('${output.path}/command.json').writeAsStringSync(jsonEncode(command));

@@ -110,13 +110,15 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
   final FlaxEngineBindingApi _binding;
   final FlaxEngineFfiApi? _ffi;
   FlaxEngineResultsExperimentApi? _results;
+  bool _batchArguments = false;
 
   /// Selects the private engine experiment for matched measurements only.
-  void useEngineResultsForExperiment(bool enabled) {
+  void useEngineResultsForExperiment(bool enabled, {bool arguments = false}) {
     _ensureAlive();
     if (_depth != 0) throw StateError('Cannot change an active runtime');
     if (!enabled) {
       _results = null;
+      _batchArguments = false;
       return;
     }
     final getApi = DynamicLibrary.process()
@@ -129,10 +131,12 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         api.ref.version != FLAX_ENGINE_RESULTS_EXPERIMENT_VERSION ||
         api.ref.struct_size != sizeOf<FlaxEngineResultsExperimentApi>() ||
         api.ref.call == nullptr ||
-        api.ref.get_property == nullptr) {
+        api.ref.get_property == nullptr ||
+        api.ref.inspect_arguments == nullptr) {
       throw UnsupportedError('Incompatible private engine result experiment');
     }
     _results = api.ref;
+    _batchArguments = arguments;
   }
 
   late final _callResult = _results!.call
@@ -156,6 +160,17 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
           Pointer<Uint16>,
           int,
           Pointer<Uint64>,
+          Pointer<FlaxValueInfo>,
+          Pointer<FlaxError>,
+        )
+      >();
+  late final _inspectArguments = _results!.inspect_arguments
+      .asFunction<
+        int Function(
+          Pointer<FlaxRuntime>,
+          int,
+          Pointer<Uint64>,
+          int,
           Pointer<FlaxValueInfo>,
           Pointer<FlaxError>,
         )
@@ -478,7 +493,12 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
               ? _NativeFunction(this, id, borrowed)
               : _NativeObject(this, id, borrowed);
           if (!borrowed) {
-            _checked(arena, (error) => _bindValue(_handle, id, value, error));
+            tracing?.call('native:bind-result', true);
+            try {
+              _checked(arena, (error) => _bindValue(_handle, id, value, error));
+            } finally {
+              tracing?.call('native:bind-result', false);
+            }
           }
           transferred = true;
           return value;
@@ -487,6 +507,7 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
       try {
         if (info.ref.string_data != nullptr) {
           _calls.bufferFree(info.ref.string_data.cast());
+          info.ref.string_data = nullptr;
         }
         if (!transferred && !borrowed && id != 0) _release(arena, id);
       } finally {
@@ -705,23 +726,55 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
           if (runtime != owner._handle) {
             throw StateError('Foreign runtime callback');
           }
-          FlaxJsValue read(int id) {
-            final value = owner._read(frame, id, borrowed: true);
+          // Zero arguments need only one receiver inspect; keep that cheaper path.
+          final infos = owner._batchArguments && count != 0
+              ? frame<FlaxValueInfo>(count + 1)
+              : null;
+          if (infos != null) {
+            owner._checked(
+              frame,
+              (error) => owner._inspectArguments(
+                owner._handle,
+                receiver,
+                arguments,
+                count,
+                infos,
+                error,
+              ),
+            );
+          }
+          FlaxJsValue read(int id, int index) {
+            final value = owner._read(
+              frame,
+              id,
+              borrowed: true,
+              prepared: infos == null ? null : infos + index,
+            );
             if (value is _NativeObject) borrowed.add(value);
             return value;
           }
 
-          final thisValue = read(receiver);
-          final args = List<FlaxJsValue>.generate(
-            count,
-            (i) => read(arguments[i]),
-            growable: false,
-          );
-          output.value = owner._encode(
-            frame,
-            function(thisValue, List.unmodifiable(args)),
-          );
-          return FlaxStatus.FLAX_OK.value;
+          try {
+            final thisValue = read(receiver, 0);
+            final args = List<FlaxJsValue>.generate(
+              count,
+              (i) => read(arguments[i], i + 1),
+              growable: false,
+            );
+            output.value = owner._encode(
+              frame,
+              function(thisValue, List.unmodifiable(args)),
+            );
+            return FlaxStatus.FLAX_OK.value;
+          } finally {
+            // A failed decode must also release descriptions not yet consumed.
+            if (infos != null) {
+              for (var i = 0; i <= count; i++) {
+                final data = (infos + i).ref.string_data;
+                if (data != nullptr) owner._calls.bufferFree(data.cast());
+              }
+            }
+          }
         });
       } catch (exception, stack) {
         using((frame) {
@@ -1051,9 +1104,11 @@ final class _NativeFunction extends _NativeObject implements FlaxJsFunction {
     FlaxJsValue thisValue = const FlaxJsUndefined(),
   }) => _runtime._entry((arena) {
     _check(_runtime);
-    final receiver = arena<FlaxBindingArgument>();
+    // The existing spare slot holds the receiver as well as the argument array.
+    final storage = arena<FlaxBindingArgument>(arguments.length + 1);
+    final receiver = storage;
+    final inputs = storage + 1;
     _runtime._bindingArgument(arena, receiver.ref, thisValue);
-    final inputs = arena<FlaxBindingArgument>(arguments.length + 1);
     for (var i = 0; i < arguments.length; i++) {
       _runtime._bindingArgument(arena, inputs[i], arguments[i]);
     }

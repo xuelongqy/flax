@@ -49,6 +49,8 @@ const nativeObjectKeys = Object.keys;
 // Only construct() supplies immutable own data properties; foreign descriptors stay lazy.
 const argumentSnapshots = new nativeWeakMap<object, readonly (boolean | string)[]>();
 const widgetMetadata = new nativeWeakMap<object, true | string>();
+const widgetArrays = new WeakSet<object>();
+const nativeStringify = JSON.stringify;
 
 /** Experimental generated-binding extension. Independent of the native C ABI. */
 export const bindingVersion = 24;
@@ -616,8 +618,13 @@ export function construct(
         'Bind widget properties, not keys or value constructor fields',
       );
     }
-    args[parameter.name] =
-      kind === 'widget' && Array.isArray(value) ? Object.freeze([...value]) : value;
+    if (kind === 'widget' && Array.isArray(value)) {
+      const copy = Object.freeze([...value]);
+      widgetArrays.add(copy);
+      args[parameter.name] = copy;
+    } else {
+      args[parameter.name] = value;
+    }
   }
   nativeFreeze(args);
   argumentSnapshots.set(args, nativeFreeze([true, ...nativeObjectKeys(args)]));
@@ -1623,6 +1630,14 @@ type ObjectHost = typeof globalThis & {
     type: string,
     descriptor: DartValue & { receiver?: object; layout?: number; widgetType?: number },
   ) => object;
+  __flaxObjectArguments?: boolean;
+  __flaxCreateObjectWithArguments?: (
+    version: number,
+    type: string,
+    descriptor: DartValue,
+    ctor: string,
+    ...arguments_: unknown[]
+  ) => object;
   __flaxPrepareProxy?: (
     version: number,
     type: string,
@@ -1631,6 +1646,25 @@ type ObjectHost = typeof globalThis & {
   ) => number;
   __flaxBindPeer?: (version: number, source: object, target: object) => void;
 };
+
+function createObject(
+  create: NonNullable<ObjectHost['__flaxCreateObject']>,
+  type: string,
+  descriptor: DartValue & { receiver?: object; layout?: number; widgetType?: number },
+): object {
+  const host = globalThis as ObjectHost;
+  const fast = host.__flaxCreateObjectWithArguments;
+  const snapshot = argumentSnapshots.get(descriptor.args);
+  if (host.__flaxObjectArguments && fast && snapshot) {
+    const entries: unknown[] = [];
+    for (let i = 1; i < snapshot.length; i++) {
+      const name = snapshot[i] as string;
+      entries.push(name, descriptor.args[name]);
+    }
+    return fast(bindingVersion, type, descriptor, descriptor.ctor, ...entries);
+  }
+  return create(bindingVersion, type, descriptor);
+}
 
 function cachedObject(type: string, id: number): object | null {
   return references.get(type, id);
@@ -2019,9 +2053,7 @@ export function constructObject(
   ) as DartValue;
   const create = (globalThis as ObjectHost).__flaxCreateObject;
   if (!create) throw new Error('Dart objects require a Flax host');
-  return withBindingSnapshots(() =>
-    unwrapCall(create(bindingVersion, type, descriptor)),
-  );
+  return withBindingSnapshots(() => unwrapCall(createObject(create, type, descriptor)));
 }
 
 /** Records a generic factory call until a concrete Dart parameter supplies T. */
@@ -2203,7 +2235,7 @@ export function constructProxy(
   if (!create) throw new Error('Dart proxies require a Flax host');
   return withBindingSnapshots(() =>
     unwrapCall(
-      create(bindingVersion, definition.type, {
+      createObject(create, definition.type, {
         ...descriptor,
         receiver: implementation,
         layout: proxyLayout(definition),
@@ -2697,7 +2729,7 @@ export function constructExtendedProxy(
   try {
     const created = withBindingSnapshots(() =>
       unwrapCall(
-        create(bindingVersion, definition.type, {
+        createObject(create, definition.type, {
           ...descriptor,
           receiver,
           layout: proxyLayout(definition),
@@ -3157,6 +3189,106 @@ function valueType(value: object): string | null {
   }
 }
 
+function typedReference(value: object): string | number | null {
+  const state = tryComponentStateId(value);
+  // Component IDs are disjoint from positive native object IDs on this wire.
+  if (state !== null) return -state;
+  return enumIdentities.get(value)?.type ?? tryObjectHandle(value);
+}
+
+function functionWrapper(
+  type: string,
+  id: number,
+  shape: string,
+  generic = false,
+): object {
+  const cached = cachedObject(type, id);
+  if (cached) return cached;
+  const parameters = JSON.parse(shape) as CallbackParameter[];
+  const positional = parameters.filter((parameter) => parameterIsPositional(parameter));
+  const named = parameters.filter((parameter) => !parameterIsPositional(parameter));
+  const requiredPositional = positional.filter((parameter) =>
+    parameterIsRequired(parameter),
+  ).length;
+  const value = (...args: unknown[]): unknown => {
+    if (!objectHandles.get(value)!.alive) throw new Error('Released Dart function');
+    if (named.length === 0) {
+      if (args.length < requiredPositional || args.length > positional.length)
+        throw new TypeError('Invalid Dart function arity');
+      let count = args.length;
+      while (count > requiredPositional && args[count - 1] === undefined) count--;
+      if (args.slice(requiredPositional, count).includes(undefined))
+        throw new TypeError('Optional positional arguments cannot contain holes');
+      args.length = count;
+    } else {
+      if (args.length < positional.length || args.length > positional.length + 1)
+        throw new TypeError('Invalid Dart function arity');
+    }
+    const call = (
+      globalThis as typeof globalThis & {
+        __flaxFunction?: (
+          version: number,
+          type: string,
+          id: number,
+          ...args: unknown[]
+        ) => unknown;
+      }
+    ).__flaxFunction;
+    if (!call) throw new Error('Dart functions require a Flax host');
+    const positionalValues = args.slice(0, positional.length);
+    const namedValues: unknown[] = [];
+    if (named.length !== 0) {
+      const input = args[positional.length];
+      if (input === undefined) {
+        if (named.some((parameter) => parameterIsRequired(parameter)))
+          throw new TypeError('Missing required named Dart function argument');
+      } else {
+        if (
+          input === null ||
+          typeof input !== 'object' ||
+          Array.isArray(input) ||
+          Object.getOwnPropertySymbols(input).length !== 0
+        )
+          throw new TypeError('Invalid named Dart function arguments');
+        const keys = Object.keys(input);
+        if (keys.some((key) => !named.some((parameter) => parameter.name === key)))
+          throw new TypeError('Unknown named Dart function argument');
+        for (const parameter of named) {
+          const present = Object.prototype.hasOwnProperty.call(input, parameter.name);
+          const field = present
+            ? Object.getOwnPropertyDescriptor(input, parameter.name)
+            : undefined;
+          if (field && !('value' in field))
+            throw new TypeError('Named Dart arguments require data properties');
+          const fieldValue = field?.value;
+          if (parameterIsRequired(parameter) && (!present || fieldValue === undefined))
+            throw new TypeError('Missing required named Dart function argument');
+          if (present && fieldValue !== undefined)
+            namedValues.push(parameter.name, fieldValue);
+        }
+      }
+    }
+    return withBindingSnapshots(() =>
+      unwrapCall(
+        call(
+          bindingVersion,
+          type,
+          id,
+          positionalValues.length,
+          ...positionalValues,
+          namedValues.length / 2,
+          ...namedValues,
+        ),
+      ),
+    );
+  };
+  Object.defineProperty(value, 'kind', { value: 'dart-function' });
+  if (generic) defineDartCallTypes(value, { id: type, parameters, callback: id });
+  const frozen = Object.freeze(value);
+  trackObject(frozen, type, id);
+  return frozen;
+}
+
 // One synchronous helper boundary per realm; no browser, Node, or module loader.
 Object.assign(globalThis, {
   __flaxBindings: Object.freeze({
@@ -3193,6 +3325,86 @@ Object.assign(globalThis, {
         widgetMetadata.set(value, info);
       }
       return info;
+    },
+    readWidgetBatch(value: object): boolean {
+      if (!widgetMetadata.has(value)) return false;
+      if ('toJSON' in [] || 'toJSON' in {}) return false;
+      const values: unknown[] = [];
+      const nodes: unknown[] = [];
+      const seen = new nativeWeakMap<object, number>();
+      const references = new nativeWeakMap<object, number>();
+      let overflow = false;
+      let visits = 0;
+      const raw = (input: unknown): number => {
+        const object =
+          input !== null && (typeof input === 'object' || typeof input === 'function');
+        const previous = object ? references.get(input as object) : undefined;
+        if (previous !== undefined) return previous;
+        if (values.length >= 4096) overflow = true;
+        const index = values.push(input) - 1;
+        if (object) references.set(input as object, index);
+        return index;
+      };
+      const visit = (input: unknown, depth: number): number => {
+        if (overflow) return 0;
+        // Shared nodes still have edges; bound work before serializing duplicates.
+        if (++visits > 4096) {
+          overflow = true;
+          return 0;
+        }
+        if (input === null || typeof input !== 'object') return -raw(input) - 1;
+        const widget = widgetMetadata.has(input);
+        const array = widgetArrays.has(input);
+        if (!widget && !array) return -raw(input) - 1;
+        const previous = seen.get(input);
+        if (previous !== undefined) return previous;
+        if (depth >= 64 || nodes.length >= 512) {
+          overflow = true;
+          return 0;
+        }
+        const index = nodes.length;
+        const token = index + 1;
+        seen.set(input, token);
+        nodes.push(null);
+        if (array) {
+          const items = input as readonly unknown[];
+          const children: number[] = [];
+          for (let i = 0; i < items.length && !overflow; i++) {
+            children.push(visit(items[i], depth + 1));
+          }
+          nodes[index] = [1, raw(input), children];
+        } else {
+          const descriptor = input as WidgetDescription;
+          if (
+            typeof descriptor.type !== 'string' ||
+            typeof descriptor.ctor !== 'string'
+          ) {
+            overflow = true;
+            return 0;
+          }
+          const names = argumentSnapshots.get(descriptor.args);
+          if (!names) {
+            overflow = true;
+            return 0;
+          }
+          const fields: unknown[] = [];
+          for (let i = 1; i < names.length && !overflow; i++) {
+            const name = names[i] as string;
+            fields.push(name, visit(descriptor.args[name], depth + 1));
+          }
+          nodes[index] = [0, raw(input), descriptor.type, descriptor.ctor, fields];
+        }
+        return token;
+      };
+      const token = visit(value, 0);
+      if (overflow) return false;
+      // Only immutable descriptor metadata is encoded; business values remain real references.
+      const plan = nativeStringify([token, nodes]);
+      if (plan.length > 262144) return false;
+      (
+        globalThis as unknown as { __flaxReadWidgetBatch: Function }
+      ).__flaxReadWidgetBatch(plan, ...values);
+      return true;
     },
     argumentKeys(value: object): readonly (boolean | string)[] {
       return argumentSnapshots.get(value) ?? [false, ...nativeObjectKeys(value)];
@@ -3569,100 +3781,31 @@ Object.assign(globalThis, {
       trackObject(value, 'flax:dart-widget', id);
       return value;
     },
-    function(type: string, id: number, shape: string, generic = false): object {
-      const cached = cachedObject(type, id);
-      if (cached) return cached;
-      const parameters = JSON.parse(shape) as CallbackParameter[];
-      const positional = parameters.filter((parameter) =>
-        parameterIsPositional(parameter),
-      );
-      const named = parameters.filter((parameter) => !parameterIsPositional(parameter));
-      const requiredPositional = positional.filter((parameter) =>
-        parameterIsRequired(parameter),
-      ).length;
-      const value = (...args: unknown[]): unknown => {
-        if (!objectHandles.get(value)!.alive) throw new Error('Released Dart function');
-        if (named.length === 0) {
-          if (args.length < requiredPositional || args.length > positional.length)
-            throw new TypeError('Invalid Dart function arity');
-          let count = args.length;
-          while (count > requiredPositional && args[count - 1] === undefined) count--;
-          if (args.slice(requiredPositional, count).includes(undefined))
-            throw new TypeError('Optional positional arguments cannot contain holes');
-          args.length = count;
-        } else {
-          if (args.length < positional.length || args.length > positional.length + 1)
-            throw new TypeError('Invalid Dart function arity');
-        }
-        const call = (
-          globalThis as typeof globalThis & {
-            __flaxFunction?: (
-              version: number,
-              type: string,
-              id: number,
-              ...args: unknown[]
-            ) => unknown;
-          }
-        ).__flaxFunction;
-        if (!call) throw new Error('Dart functions require a Flax host');
-        const positionalValues = args.slice(0, positional.length);
-        const namedValues: unknown[] = [];
-        if (named.length !== 0) {
-          const input = args[positional.length];
-          if (input === undefined) {
-            if (named.some((parameter) => parameterIsRequired(parameter)))
-              throw new TypeError('Missing required named Dart function argument');
-          } else {
-            if (
-              input === null ||
-              typeof input !== 'object' ||
-              Array.isArray(input) ||
-              Object.getOwnPropertySymbols(input).length !== 0
-            )
-              throw new TypeError('Invalid named Dart function arguments');
-            const keys = Object.keys(input);
-            if (keys.some((key) => !named.some((parameter) => parameter.name === key)))
-              throw new TypeError('Unknown named Dart function argument');
-            for (const parameter of named) {
-              const present = Object.prototype.hasOwnProperty.call(
-                input,
-                parameter.name,
-              );
-              const field = present
-                ? Object.getOwnPropertyDescriptor(input, parameter.name)
-                : undefined;
-              if (field && !('value' in field))
-                throw new TypeError('Named Dart arguments require data properties');
-              const fieldValue = field?.value;
-              if (
-                parameterIsRequired(parameter) &&
-                (!present || fieldValue === undefined)
-              )
-                throw new TypeError('Missing required named Dart function argument');
-              if (present && fieldValue !== undefined)
-                namedValues.push(parameter.name, fieldValue);
-            }
-          }
-        }
-        return withBindingSnapshots(() =>
-          unwrapCall(
-            call(
-              bindingVersion,
-              type,
-              id,
-              positionalValues.length,
-              ...positionalValues,
-              namedValues.length / 2,
-              ...namedValues,
-            ),
-          ),
-        );
-      };
-      Object.defineProperty(value, 'kind', { value: 'dart-function' });
-      if (generic) defineDartCallTypes(value, { id: type, parameters, callback: id });
-      const frozen = Object.freeze(value);
-      trackObject(frozen, type, id);
-      return frozen;
+    function: functionWrapper,
+    functionWithMemo(
+      type: string,
+      id: number,
+      shape: string,
+      generic: boolean,
+      input: Function,
+      key: string,
+    ): object {
+      const canonical = functionWrapper(type, id, shape, generic);
+      let signatures = callbackMemos.get(input);
+      if (!signatures) callbackMemos.set(input, (signatures = new Map()));
+      signatures.set(key, canonical as Function);
+      return canonical;
+    },
+    callbackReference(input: Function, key?: string): number | symbol | null {
+      const kind = (input as Function & { kind?: unknown }).kind;
+      if (typeof kind === 'symbol') return kind;
+      if (kind === 'dart-function') return tryObjectHandle(input) ?? 0;
+      const cached = key === undefined ? undefined : callbackMemos.get(input)?.get(key);
+      if (!cached || (cached as Function & { kind?: unknown }).kind !== 'dart-function')
+        return null;
+      const id = tryObjectHandle(cached);
+      // Negative IDs are memo hits: Dart may replace a retired callback adapter.
+      return id === null ? 0 : -id;
     },
     objectHandle(value: object): number {
       const ref = objectHandles.get(value);
@@ -3681,11 +3824,12 @@ Object.assign(globalThis, {
     enumType(value: object): string | null {
       return enumIdentities.get(value)?.type ?? null;
     },
-    typedReference(value: object): string | number | null {
-      const state = tryComponentStateId(value);
-      // Component IDs are disjoint from positive native object IDs on this wire.
-      if (state !== null) return -state;
-      return enumIdentities.get(value)?.type ?? tryObjectHandle(value);
+    typedReference,
+    argumentReference(value: object): string | number | boolean | symbol | null {
+      const kind = (value as { kind?: unknown }).kind;
+      if (typeof kind === 'symbol') return kind;
+      if (kind === 'binding') return true;
+      return typedReference(value);
     },
     enumName(value: object): string | null {
       return enumIdentities.get(value)?.name ?? null;

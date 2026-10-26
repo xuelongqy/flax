@@ -14,11 +14,26 @@ class GalleryRuntime extends FlaxTestRuntimeTracker {
     required this.inventory,
     required this.business,
     this.pinnedSources,
+    this.diagnostics = true,
   });
+  final bool diagnostics;
   final bool preloaded;
   final Map<String, Uint8List> sources;
   final Map<String, FlaxJsSource>? pinnedSources;
   final String bootstrap, inventory, business;
+  @override
+  FlaxJsValue wrap(FlaxJsValue value, String label, {bool owned = true}) =>
+      diagnostics ? super.wrap(value, label, owned: owned) : value;
+
+  @override
+  void registerHostFunction(String name, FlaxJsHostFunction callback) {
+    if (diagnostics) {
+      super.registerHostFunction(name, callback);
+    } else {
+      inner.registerHostFunction(name, callback);
+    }
+  }
+
   int skippedSources = 0, inventoryChecks = 0, compareUs = 0;
   int proxyCalls = 0;
   int typePartsCalls = 0, typePartsUs = 0;

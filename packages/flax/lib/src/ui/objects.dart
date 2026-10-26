@@ -792,121 +792,139 @@ extension _ObjectCalls on _Session {
         }
       }
     });
-    _registerBindingHostFunction('__flaxCreateObject', (_, args) {
-      _checkCall(args, 3);
-      if (args.length != 3 || args[2] is! FlaxJsObject) {
-        throw ArgumentError('Invalid object constructor');
-      }
-      final declaration = _typeBinding((args[1] as FlaxJsString).value);
-      final binding = _objectView(declaration);
-      if (binding is! FlaxObjectBinding) {
-        throw ArgumentError('Unknown object type');
-      }
-      final descriptor = args[2] as FlaxJsObject;
-      final ctor = _textProperty(descriptor, 'ctor');
-      final parameters = binding.constructors[ctor];
-      if (parameters == null) throw ArgumentError('Unknown object constructor');
-      final navigation =
-          binding.id == 'flax.core/flutter#type:Route' ||
-          binding.id == 'flax.core/flutter#type:Page' ||
-          binding.supertypes.any(
-            (id) =>
-                id == 'flax.core/flutter#type:Route' ||
-                id == 'flax.core/flutter#type:Page',
+    _registerBindingHostFunction(
+      '__flaxCreateObject',
+      (_, args) => _createObject(args, supplied: false),
+    );
+    _registerBindingHostFunction(
+      '__flaxCreateObjectWithArguments',
+      (_, args) => _createObject(args, supplied: true),
+    );
+  }
+
+  FlaxJsValue _createObject(List<FlaxJsValue> args, {required bool supplied}) {
+    _checkCall(args, supplied ? 4 : 3);
+    if ((!supplied && args.length != 3) ||
+        args[2] is! FlaxJsObject ||
+        (supplied && args[3] is! FlaxJsString)) {
+      throw ArgumentError('Invalid object constructor');
+    }
+    final declaration = _typeBinding((args[1] as FlaxJsString).value);
+    final binding = _objectView(declaration);
+    if (binding is! FlaxObjectBinding) {
+      throw ArgumentError('Unknown object type');
+    }
+    final descriptor = args[2] as FlaxJsObject;
+    final ctor = supplied
+        ? (args[3] as FlaxJsString).value
+        : _textProperty(descriptor, 'ctor');
+    final parameters = binding.constructors[ctor];
+    if (parameters == null) throw ArgumentError('Unknown object constructor');
+    final navigation =
+        binding.id == 'flax.core/flutter#type:Route' ||
+        binding.id == 'flax.core/flutter#type:Page' ||
+        binding.supertypes.any(
+          (id) =>
+              id == 'flax.core/flutter#type:Route' ||
+              id == 'flax.core/flutter#type:Page',
+        );
+    final scope = navigation ? _CallbackScope.ui : _CallbackScope.member;
+    final sources = supplied
+        ? _convertArguments(
+            null,
+            _argumentValues(args, 4),
+            parameters,
+            allowBindings: false,
+            callbackScope: scope,
+          )
+        : _arguments(
+            descriptor,
+            parameters,
+            allowBindings: false,
+            callbackScope: scope,
           );
-      final sources = _arguments(
-        descriptor,
-        parameters,
-        allowBindings: false,
-        callbackScope: navigation ? _CallbackScope.ui : _CallbackScope.member,
-      );
-      _ProxyPeer? peer;
-      var createdPeer = false;
-      try {
-        if (ctor == '@implementation' || ctor.startsWith('@implementation:')) {
-          final receiver = descriptor.getProperty('receiver');
-          final layout = descriptor.getProperty('layout');
-          try {
-            if (receiver is! FlaxJsObject ||
-                layout is! FlaxJsNumber ||
-                !layout.value.isFinite ||
-                layout.value != layout.value.truncateToDouble() ||
-                layout.value < 0 ||
-                layout.value >= _proxyLayouts.length) {
-              throw ArgumentError('Invalid proxy receiver or layout');
-            }
-            final prepared = _proxyLayouts[layout.value.toInt()];
-            if (!identical(prepared.$1, binding)) {
-              throw ArgumentError('Foreign proxy layout');
-            }
-            peer = _ProxyPeer(
-              this,
-              receiver.retain(),
-              binding.proxy!,
-              prepared.$2,
-              prepared.$3,
-            );
-          } finally {
-            _releaseJs(receiver);
+    _ProxyPeer? peer;
+    var createdPeer = false;
+    try {
+      if (ctor == '@implementation' || ctor.startsWith('@implementation:')) {
+        final receiver = descriptor.getProperty('receiver');
+        final layout = descriptor.getProperty('layout');
+        try {
+          if (receiver is! FlaxJsObject ||
+              layout is! FlaxJsNumber ||
+              !layout.value.isFinite ||
+              layout.value != layout.value.truncateToDouble() ||
+              layout.value < 0 ||
+              layout.value >= _proxyLayouts.length) {
+            throw ArgumentError('Invalid proxy receiver or layout');
           }
+          final prepared = _proxyLayouts[layout.value.toInt()];
+          if (!identical(prepared.$1, binding)) {
+            throw ArgumentError('Foreign proxy layout');
+          }
+          peer = _ProxyPeer(
+            this,
+            receiver.retain(),
+            binding.proxy!,
+            prepared.$2,
+            prepared.$3,
+          );
+        } finally {
+          _releaseJs(receiver);
         }
-        for (final source in sources.values) {
-          source.initial.escapeCallbacks();
-          escapeWidget(source.initial.data, source.type);
-        }
-        return bindingCall(() {
-          final value = createFontAwareObject(binding, ctor, {
-            ...sources.map((k, v) => MapEntry(k, v.initial.data)),
-            '@peer': ?peer,
-          });
-          // The peer's native facade already retains its receiver from Dart.
-          // Only the returned wrapper (or transferred extends alias) owns the proxy.
-          if (value is FlaxWidgetProxy) {
-            final identity = descriptor.getProperty('widgetType');
-            try {
-              if (identity is! FlaxJsUndefined) {
-                if (identity is! FlaxJsNumber ||
-                    !identity.value.isFinite ||
-                    identity.value <= 0 ||
-                    identity.value.truncateToDouble() != identity.value) {
-                  throw ArgumentError('Invalid Widget proxy identity');
-                }
-                final key = identity.value.toInt();
-                final existingType = _componentTypes[key];
-                if (existingType != null && existingType.name != binding.id) {
-                  throw ArgumentError(
-                    'Widget proxy identity belongs to another native class',
-                  );
-                }
-                _flaxWidgetProxyTypes[value] = _componentTypes.putIfAbsent(
-                  key,
-                  () => _ComponentType(
-                    _componentSessionId,
-                    key,
-                    binding.id,
-                    false,
-                  ),
+      }
+      for (final source in sources.values) {
+        source.initial.escapeCallbacks();
+        escapeWidget(source.initial.data, source.type);
+      }
+      return bindingCall(() {
+        final value = createFontAwareObject(binding, ctor, {
+          ...sources.map((k, v) => MapEntry(k, v.initial.data)),
+          '@peer': ?peer,
+        });
+        // The peer's native facade already retains its receiver from Dart.
+        // Only the returned wrapper (or transferred extends alias) owns the proxy.
+        if (value is FlaxWidgetProxy) {
+          final identity = descriptor.getProperty('widgetType');
+          try {
+            if (identity is! FlaxJsUndefined) {
+              if (identity is! FlaxJsNumber ||
+                  !identity.value.isFinite ||
+                  identity.value <= 0 ||
+                  identity.value.truncateToDouble() != identity.value) {
+                throw ArgumentError('Invalid Widget proxy identity');
+              }
+              final key = identity.value.toInt();
+              final existingType = _componentTypes[key];
+              if (existingType != null && existingType.name != binding.id) {
+                throw ArgumentError(
+                  'Widget proxy identity belongs to another native class',
                 );
               }
-            } finally {
-              _releaseJs(identity);
+              _flaxWidgetProxyTypes[value] = _componentTypes.putIfAbsent(
+                key,
+                () =>
+                    _ComponentType(_componentSessionId, key, binding.id, false),
+              );
             }
+          } finally {
+            _releaseJs(identity);
           }
-          final result = objectResult(
-            value,
-            FlaxTypeRef('object', id: binding.id),
-          );
-          final held = holdHostResult(result);
-          createdPeer = true;
-          return held;
-        });
-      } finally {
-        if (!createdPeer) peer?._handle.release();
-        for (final source in sources.values) {
-          source.release();
         }
+        final result = objectResult(
+          value,
+          FlaxTypeRef('object', id: binding.id),
+        );
+        final held = holdHostResult(result);
+        createdPeer = true;
+        return held;
+      });
+    } finally {
+      if (!createdPeer) peer?._handle.release();
+      for (final source in sources.values) {
+        source.release();
       }
-    });
+    }
   }
 
   _BindingOperation _objectOperation(

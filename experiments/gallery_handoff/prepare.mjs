@@ -3,12 +3,27 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
 import crypto from 'node:crypto';
+import { build } from 'esbuild';
 import { buildHost, hostBundles } from '../../tool/src/host_bundle.mjs';
+import { bundleOptionsFor } from '../../tool/src/bundle.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const assets = path.join(root, 'examples/embedded');
 const out = path.join(root, '.local/gallery-handoff');
 fs.mkdirSync(out, { recursive: true });
+await build({
+  ...(await bundleOptionsFor(path.join(assets, 'js'))),
+  stdin: {
+    contents: fs.readFileSync(
+      path.join(root, 'experiments/gallery_handoff/text_probe.ts'),
+      'utf8',
+    ),
+    resolveDir: path.join(assets, 'js'),
+    sourcefile: path.join(root, 'experiments/gallery_handoff/text_probe.ts'),
+    loader: 'ts',
+  },
+  outfile: path.join(out, 'text-probe.js'),
+});
 const manifest = JSON.parse(
   fs.readFileSync(path.join(assets, 'assets/flax_modules/modules.json')),
 );

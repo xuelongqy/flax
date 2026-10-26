@@ -891,3 +891,138 @@ an invalid temporary path relative to its subdirectory; it failed before any tes
 The corrected run uses the absolute worktree-local temporary directory. Full workspace
 checks, mobile loading measurements and a production handoff/cancel API remain outside
 this follow-up.
+
+The next [shared Widget batch experiment](../widget_batch/README.md) reduces repeated
+crossings across known immutable subtrees while reusing the same converters and
+constructors. Its same-AOT comparison passes 408 checks over 24 Sessions; five plain
+processes per path show first/subsequent drawFrame medians of 25.149/36.562 ms versus
+21.901/31.813 ms. The batch protocol is a local opt-in prototype, separate from the
+preceding local checkpoint `acfb213a`; it still exceeds a 16.7 ms frame.
+
+## Same-screen native Flutter release control
+
+This follow-up compares the aggregate entrance with the handwritten Dart version in
+`native_gallery.dart`. Both use the same maintained engine, Material package, AOT
+application, window, animation, scroll gesture, themes and first-screen content. The
+native branch creates no JS runtime or binding registry. Its detail routes are
+placeholders; the original seven-module Flax tour remains the functional and collection
+acceptance path.
+
+Each process mounts a first and subsequent screen. Repaint-boundary captures after
+timing and gesture completion have identical 940 by 764 raw RGBA hashes and
+render-object counts across the native and Flax paths, including the initial control.
+Text/layout snapshots are also retained. Screenshots, disk writes, tours and collection
+checks are outside the mount timing window. `drawFrame` measures the actual framework
+frame; persistent-frame and 2 ms Timer gaps include scheduling latency, rather than
+exclusive CPU stalls or direct display-presentation measurements. These are the
+content's first frames after preparation, not total startup latency.
+
+### Results and retained changes
+
+Five unprofiled processes per path alternate, followed by one separate traced process
+per path. A first matrix uses the original shared paths; the candidate matrix separates
+test-facade overhead and tests a static-mount shortcut. The final matrix compares native
+Flutter, fully tracked Flax and Flax without test facade wrappers. Paths within each
+matrix share identical AOT, engine, module and JS inputs. No compiler or test from this
+experiment runs during timing; host process snapshots retain other machine activity.
+Different matrices are not pooled.
+
+| Final release, median [min, max]                       |             Native Flutter | Flax without test wrappers |
+| ------------------------------------------------------ | -------------------------: | -------------------------: |
+| First content `drawFrame`                              |    5.673 [5.310, 7.341] ms | 14.575 [14.285, 16.233] ms |
+| Subsequent content `drawFrame`                         |    5.364 [2.443, 6.583] ms | 15.101 [13.672, 16.824] ms |
+| First maximum animation-callback gap during mount      | 13.945 [13.623, 15.635] ms | 22.334 [18.453, 23.727] ms |
+| Subsequent maximum animation-callback gap during mount | 13.272 [10.570, 14.464] ms | 19.745 [18.734, 21.095] ms |
+
+The final matrix has 18 processes, 36 mounts and 222 checks. Test wrappers are disabled
+only in the selected screen benchmark: no owned-handle count is claimed for that path.
+The fully tracked final path measures 16.310 [15.021, 21.503] ms initially and 14.862
+[14.536, 15.084] ms subsequently. The tracker is a diagnostic cost, but does not explain
+the remaining native/Flax difference.
+
+The shared example `text()` helper previously created a Context Builder even for an
+explicit immutable Color. It now creates Text directly for that case; named palette
+colors retain their Builder and actual MediaQuery dependency. The Dart mirror uses the
+equivalent direct Text path. This removes 48 unused Builders and their Flax hosts: Flax
+Elements decrease from 1,348 to 1,252 and Flax hosts from 205 to 157. The helper
+signature, actual Flutter layout and generated binding APIs are unchanged. The real
+JS/Flutter regression flips light/dark/light, checks dependent and fixed colors
+separately, then requires zero tracked handles at close.
+
+Before this helper change, the same unwrapped-runtime variant measured 19.572 [18.721,
+20.337] / 18.207 [17.183, 22.069] ms first/subsequent medians. Those earlier
+observations use another AOT build and remain a separate matrix. Traced helper calls
+change from 773 to 485, property reads from 100 to 52, owned-result bindings from 727 to
+487, and borrowed input decodes from 2,106 to 1,914. No required input or reference
+validation is skipped to obtain these counts.
+
+The native Dart function caller also uses the existing spare argument-array slot for its
+receiver, removing one native allocation per call without changing native structs,
+public ABI 2, UI protocol 24 or reentry/ownership rules. The existing AOT call probe
+passes 41 checks in each of three before and three after processes. Its small timings
+are not treated as an isolated frame-time saving.
+
+### Remaining cost and rejected probe
+
+An independently traced final first frame spends about 6.20 ms in the synchronous
+JS/native call path, 1.41 ms in object-constructor host handling, 0.86 ms in Widget
+packet/argument processing and 0.72 ms binding owned results into joint GC. These are
+exclusive diagnostic spans, not independent unprofiled wall-time medians. Recorded
+native Widget factory spans total about 0.14 ms, excluding argument conversion, result
+ownership and Flutter build/layout/paint. Synchronous bridge work remains the main
+difference; these profiles do not establish GC pauses as the dominant loading cost.
+
+The static-mount probe retained the same hosts and validation but avoided allocating
+mounted-property records for immutable inputs. Its first median regressed from 19.572 to
+20.585 ms; the subsequent median changed only 18.207 to 18.096 ms. It is removed,
+including its selector and temporary fixture. Raw receipts and its patch remain ignored
+evidence. No lifecycle shortcut, per-class patch or collector policy change is retained.
+
+The Flax medians fit a 60 Hz 16.7 ms budget in this workload, but one of the ten
+unwrapped samples takes 16.824 ms and animation gaps remain above the native control.
+This is not a zero-jank or 120 Hz guarantee. Mobile performance, full workspace
+acceptance and a production background-adoption API remain outside scope.
+
+### Acceptance and reproduction
+
+Focused verification passes 245 Dart/compiler/UI/provider/generic/collection/GC and HMR
+tests, six aggregate/Session/theme-helper tests, and 93 Core JS tests. Both official
+runtime entrypoints pass 45 tests, including 1,000 repeated bridge cycles. Actual VM hot
+reload passes three reloads, four revisions and 44 checks. The fully tracked release
+gallery passes 34 checks over two Sessions: all seven modules, six JS State lifetimes
+per Session, both weak peers collected before close, real inheritance/override/super
+behavior, and zero handles at close. Timing variants never replace this acceptance.
+
+Use the existing preparation/local-engine build and private result engine, then select
+`FLAX_GALLERY_SCREEN_ONLY=1`. Add `FLAX_GALLERY_NATIVE=1` for the native control. For
+Flax keep the transport flags from the
+[shared transport follow-up](../widget_batch/README.md#shared-constructor-callback-and-reference-follow-up)
+enabled; set `FLAX_GALLERY_TRACKING=0` only for the unwrapped benchmark. Use
+`FLAX_GALLERY_PROFILE=1` for separate diagnostics and `FLAX_HANDOFF_DEFER_GC=0` for
+ordinary collection. `prepare.mjs` also builds the shared-helper regression entry; run
+`../../experiments/gallery_handoff/text_helper_test.dart` from `examples/embedded`.
+
+The directory in `.local/latest-native-comparison-evidence` retains input hashes, all
+matrices and screenshots, slow/failed setup attempts, rejected code, validation logs and
+integrity/cleanup receipts. Maintained engine and SDK files are unchanged. No new push
+or CI run is made. Reviewed changes are archived as a local experimental checkpoint.
+
+The review adds a 4,096-entry traversal budget on both packet sides, including shared
+edges. Oversized trusted descriptions fall back before serialization; malformed incoming
+plans are rejected before native Widget construction and release all temporary handles.
+It also preserves the legacy rejection of a callback's Symbol-valued `kind`, and hashes
+and writes only the actual ByteData view when capturing comparison images. These are
+validation/capture fixes, without changing the application API or GC contract. The
+preceding timing matrix remains historical; release checks after review verify the image
+and complete lifecycle acceptance rather than establishing another timing distribution.
+
+Post-review verification passes 246 focused Dart/UI/HMR tests, 43 tests with the fast
+paths disabled, six gallery/theme tests, 94 Core JS tests and both 45-test runtime
+gates. The release tour passes all 34 checks, including both State peers collecting
+before Session close and zero tracked handles afterward. Separate native and Flax
+release controls pass another 19 checks; their two captures have identical pixels and
+render object counts, including the preceding matrix's RGBA hash. The earlier
+four-version, 44-check actual VM hot-reload result is retained; this review reruns the
+three HMR regressions inside the 246-test gate, without repeating that VM experiment.
+Analysis, strict TypeScript, reproducible FFI generation, formatting and documentation
+checks pass.

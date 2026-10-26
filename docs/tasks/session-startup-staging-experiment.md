@@ -259,6 +259,14 @@ probes and limitations are in the
 Receipts are retained in `.local/loading-main-release/`. The frame-budget and production
 handoff/cancel API remain open; no commit or push is made.
 
+Local checkpoint `acfb213a` retains the preceding experiment sources on main
+`a6ea2404b`. The uncommitted
+[Widget batch follow-up](../../experiments/widget_batch/README.md) reuses
+conversion/construction for multiple immutable descriptions in one borrowed call. It
+passes 133 focused tests, 90 Core JS tests and 408 complete-gallery checks; the
+five-pair release comparison improves drawFrame medians by about 13% while still missing
+the frame budget. Packet bounds and metadata decoding remain prototype costs.
+
 Raw JSON, logs, binary hashes, harnesses and summaries are in the ignored
 `.local/startup-staging/` directory. `measurements/` contains the final 24 processes;
 `pilot/` and the earlier root-level pilot logs are not part of the summary. Use
@@ -269,3 +277,47 @@ Local ad-hoc benchmark signing temporarily disables the sandbox to keep all scra
 storage on the workspace volume; `build.dart` restores the project entitlements. This is
 not distribution signing validation. Disposable app/compiler output is removed after
 recording the result; source, receipts and maintained engines are retained.
+
+The additional shared transport follow-up passes 241 focused Dart/runtime/UI tests, 93
+Core JS tests, five gallery tests, both 45-test official runtime gates and 44 checks
+across four actual VM hot-reload versions. A fixed-input 24-process / 48-Session release
+matrix passes 816 checks; first/subsequent drawFrame medians move 23.357/30.666 to
+21.199/26.045 ms. A slow 45.272 ms first-frame sample is retained. Sixteen additional
+Sessions diagnose RSS after close/collection without changing production GC policy; all
+248 checks pass and only the one intentional diagnostic peer remains. There is no
+memory-saving or 16.7 ms claim. See the
+[shared-path results and limits](../../experiments/widget_batch/README.md#shared-constructor-callback-and-reference-follow-up)
+and `.local/latest-bridge-next-evidence`. Business APIs, public ABI/protocol, generated
+class APIs and maintained engine artifacts are unchanged. The private native experiment
+table is version 2; this follow-up is archived locally on the experimental branch and
+has not been pushed.
+
+The
+[same-screen native control](../../experiments/gallery_handoff/README.md#same-screen-native-flutter-release-control)
+compares one AOT/engine/window with pixel-identical native Flutter and Flax entrances.
+Five unprofiled processes per final path measure first/subsequent frames at 5.673/5.364
+ms natively and 14.575/15.101 ms without test facade wrappers. Maximum
+animation-callback gap medians remain 13.945/13.272 versus 22.334/19.745 ms; one Flax
+frame takes 16.824 ms, so there is no zero-jank or 120 Hz guarantee. These are prepared
+content frames, not complete startup durations.
+
+The shared example text helper now avoids Context Builders for explicit immutable
+colors, while preserving theme-dependent colors. This removes 48 unused hosts and keeps
+the image unchanged. One redundant native receiver allocation is also removed. A
+static-mount shortcut with no stable benefit is withdrawn. Final acceptance passes 245
+focused Dart/UI/HMR tests, six gallery/theme tests, 93 JS tests, both 45-test official
+runtime gates, actual four-version VM reload and the tracked release gallery's 34
+checks, including both heaps collecting State peers before close. The directory in
+`.local/latest-native-comparison-evidence` retains matrices, rejected variants and
+integrity receipts. APIs and maintained engine/SDK artifacts are unchanged; nothing is
+pushed. Local review additionally bounds packet traversal, preserves callback Symbol
+rejection and respects ByteData capture views. Reviewed sources and tests are retained
+in the experimental checkpoint; the historical timing matrix is not relabeled as a new
+run.
+
+Post-review acceptance passes 246 focused Dart/UI/HMR tests, 43 fallback-path tests, six
+gallery/theme tests, 94 Core JS tests and both 45-test runtime gates. Three release
+processes pass 53 checks: the full two-Session tour collects both State peers before
+close, while native/Flax captures retain identical pixels and render object counts. The
+earlier actual four-version VM reload receipt is reused. No mobile or 120 Hz acceptance
+is inferred from this macOS review.

@@ -92,6 +92,7 @@ class _ProbeState extends State<_Probe> {
     runtime = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
     runtime.useEngineResultsForExperiment(
       const bool.fromEnvironment('FLAX_ENGINE_RESULTS', defaultValue: true),
+      arguments: const bool.fromEnvironment('FLAX_ENGINE_ARGUMENTS'),
     );
     echo = runtime.evaluate('(value) => value') as FlaxJsFunction;
     result = runtime.evaluate(

@@ -86,17 +86,18 @@ export function text(
   color: Color | keyof typeof exampleColors = 'ink',
   bold = false,
 ): Widget {
-  return Builder({
-    builder: (context) =>
-      Text(value, {
-        style: TextStyle({
-          fontSize: size,
-          color: typeof color === 'string' ? examplePalette(context)[color] : color,
-          height: 1.45,
-          ...(bold ? { fontWeight: FontWeight.w600 } : {}),
-        }),
+  const create = (resolved: Color): Widget =>
+    Text(value, {
+      style: TextStyle({
+        fontSize: size,
+        color: resolved,
+        height: 1.45,
+        ...(bold ? { fontWeight: FontWeight.w600 } : {}),
       }),
-  });
+    });
+  return typeof color === 'string'
+    ? Builder({ builder: (context) => create(examplePalette(context)[color]) })
+    : create(color);
 }
 
 export function input(

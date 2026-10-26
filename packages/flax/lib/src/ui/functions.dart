@@ -47,7 +47,19 @@ extension _FunctionCalls on _Session {
     if (!returned) return null;
     final id = helper('tryObjectHandle').call([input]);
     if (id is! FlaxJsNumber) throw ArgumentError('Invalid Dart function');
-    final reference = _objects[id.value.toInt()];
+    return _functionReference(
+      id.value.toInt(),
+      type,
+      ignoreRetired: ignoreRetired,
+    );
+  }
+
+  _FunctionReference? _functionReference(
+    int id,
+    FlaxCallbackBinding? type, {
+    required bool ignoreRetired,
+  }) {
+    final reference = _objects[id];
     if (reference is! _FunctionReference ||
         (type != null && !type.matches(reference.value))) {
       throw ArgumentError('Foreign or incompatible Dart function');
@@ -74,7 +86,12 @@ extension _FunctionCalls on _Session {
     ]);
   }
 
-  FlaxJsValue functionResult(Object value, FlaxCallbackBinding signature) {
+  FlaxJsValue functionResult(
+    Object value,
+    FlaxCallbackBinding signature, {
+    FlaxJsFunction? memoInput,
+    String? memoKey,
+  }) {
     if (!signature.matches(value)) {
       throw ArgumentError('Incompatible Dart function');
     }
@@ -91,7 +108,7 @@ extension _FunctionCalls on _Session {
     }
     try {
       return _peerResult(
-        helper('function').call([
+        (memoInput == null ? helper('function') : _memoFunctionReader!).call([
           FlaxJsString(signature.id),
           FlaxJsNumber(reference.id.toDouble()),
           FlaxJsString(
@@ -105,6 +122,7 @@ extension _FunctionCalls on _Session {
             ]),
           ),
           FlaxJsBoolean(signature.genericFactory != null),
+          if (memoInput != null) ...[memoInput, FlaxJsString(memoKey!)],
         ]),
         value,
         origin: value,

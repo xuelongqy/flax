@@ -342,6 +342,15 @@ class _Session {
   late final _argumentSnapshotReader = _loadHelper('readArguments');
   late final _typedReferenceReader = _loadHelper('typedReference');
   late final _widgetInfoReader = _loadHelper('widgetInfo');
+  late final _widgetBatchReader = _loadHelper('readWidgetBatch');
+  late final _callbackReferenceReader = _loadHelper('callbackReference');
+  late final _memoFunctionReader = _loadHelper('functionWithMemo');
+  late final _argumentReferenceReader = _loadHelper('argumentReference');
+  bool _argumentReferencesEnabled = false;
+  bool _callbackMemoEnabled = false;
+  bool _widgetBatchEnabled = false;
+  int _widgetBatchDepth = 0;
+  void Function(List<FlaxJsValue>)? _widgetBatchReceiver;
   void Function(List<FlaxJsValue>)? _argumentSnapshotReceiver;
   final _enums = <String, FlaxJsObject>{};
   final _contexts = <int, _ContextReference>{};
@@ -423,6 +432,22 @@ class _Session {
     required List<FlaxPlugin> plugins,
     required FlaxModuleAssets? moduleAssets,
   }) sync* {
+    final widgetBatch = runtime.getGlobal('__flaxWidgetBatch');
+    _widgetBatchEnabled = widgetBatch is FlaxJsBoolean && widgetBatch.value;
+    _releaseJs(widgetBatch);
+    final callbackMemo = runtime.getGlobal('__flaxCallbackMemo');
+    _callbackMemoEnabled = callbackMemo is FlaxJsBoolean && callbackMemo.value;
+    _releaseJs(callbackMemo);
+    final argumentReferences = runtime.getGlobal('__flaxArgumentReferences');
+    _argumentReferencesEnabled =
+        argumentReferences is FlaxJsBoolean && argumentReferences.value;
+    _releaseJs(argumentReferences);
+    runtime.registerHostFunction('__flaxReadWidgetBatch', (_, values) {
+      final receive = _widgetBatchReceiver;
+      if (receive == null) throw StateError('No Widget batch read in progress');
+      receive(values);
+      return const FlaxJsUndefined();
+    });
     _objectKeys = runtime.evaluate('Object.keys') as FlaxJsFunction;
     _arrayCheck = runtime.evaluate('Array.isArray') as FlaxJsFunction;
     registerComponents();
@@ -656,18 +681,9 @@ class _Session {
     (Object, StackTrace)? failure;
     _argumentSnapshotReceiver = (values) {
       try {
-        if (received || values.length.isOdd) {
-          throw ArgumentError('Invalid argument snapshot');
-        }
+        if (received) throw ArgumentError('Repeated argument snapshot');
         received = true;
-        final snapshot = <String, FlaxJsValue>{};
-        for (var i = 0; i < values.length; i += 2) {
-          final name = values[i];
-          if (name is! FlaxJsString || snapshot.containsKey(name.value)) {
-            throw ArgumentError('Invalid argument snapshot key');
-          }
-          snapshot[name.value] = values[i + 1];
-        }
+        final snapshot = _argumentValues(values, 0);
         read(snapshot);
       } catch (error, stack) {
         // Rethrow on Dart's original stack, without a second JS exception wrapper.
@@ -692,13 +708,35 @@ class _Session {
     }
   }
 
+  Map<String, FlaxJsValue> _argumentValues(
+    List<FlaxJsValue> values,
+    int start,
+  ) {
+    if ((values.length - start).isOdd) {
+      throw ArgumentError('Invalid argument snapshot');
+    }
+    final snapshot = <String, FlaxJsValue>{};
+    for (var i = start; i < values.length; i += 2) {
+      final name = values[i];
+      if (name is! FlaxJsString || snapshot.containsKey(name.value)) {
+        throw ArgumentError('Invalid argument snapshot key');
+      }
+      snapshot[name.value] = values[i + 1];
+    }
+    return snapshot;
+  }
+
   _Value decode(
     FlaxJsValue value,
     FlaxTypeRef type, {
     _CallbackScope callbackScope = _CallbackScope.member,
     _CollectionConversion? conversion,
+    FlaxJsValue? knownReference,
   }) {
     type = dartTypes._resolveRef(type);
+    if (value is _WidgetBatchValue) {
+      return _decodeWidgetBatchValue(value, type, callbackScope, conversion);
+    }
     if (type.kind == 'data') {
       if (value is FlaxJsNull && !type.nullable) {
         throw ArgumentError('Unexpected null for data');
@@ -827,7 +865,13 @@ class _Session {
     }
     String? widgetId, widgetConstructor;
     if (type.kind == 'widget' && value is FlaxJsObject) {
-      final info = _widgetInfoReader?.call([value]);
+      if (_widgetBatchEnabled && _widgetBatchDepth == 0) {
+        final batch = _readWidgetBatch(value, type, callbackScope, conversion);
+        if (batch != null) return batch;
+      }
+      final info = knownReference is FlaxJsNumber
+          ? knownReference
+          : _widgetInfoReader?.call([value]);
       if (info is FlaxJsString) {
         final separator = info.value.indexOf('\u0000');
         if (separator <= 0 ||
@@ -859,7 +903,7 @@ class _Session {
             (type.kind == 'object' ||
                 type.kind == 'state' ||
                 type.kind == 'enum')
-        ? _typedReferenceReader?.call([value])
+        ? knownReference ?? _typedReferenceReader?.call([value])
         : null;
     if (identity != null &&
         identity is! FlaxJsNull &&
@@ -1054,13 +1098,36 @@ class _Session {
     if (type.kind == 'callback' && value is FlaxJsFunction) {
       final signature = type.callback;
       if (signature == null) throw ArgumentError('Missing callback signature');
-      final returned = returnedFunction(value, signature);
-      if (returned != null) {
-        return borrowFunction(returned, value);
-      }
       final memoKey =
           '$_componentSessionId:${_bindingContext?.moduleId}:${signature.id}';
-      if (callbackScope == _CallbackScope.member) {
+      final combined =
+          _callbackMemoEnabled &&
+          _callbackReferenceReader != null &&
+          _memoFunctionReader != null;
+      if (combined) {
+        final identity = _callbackReferenceReader.call([
+          value,
+          if (callbackScope == _CallbackScope.member) FlaxJsString(memoKey),
+        ]);
+        if (identity is FlaxJsNumber &&
+            identity.value.isFinite &&
+            identity.value != 0 &&
+            identity.value.truncateToDouble() == identity.value) {
+          final reference = _functionReference(
+            identity.value.abs().toInt(),
+            signature,
+            ignoreRetired: identity.value < 0,
+          );
+          if (reference != null) return borrowFunction(reference, value);
+        } else if (identity is! FlaxJsNull) {
+          _releaseJs(identity);
+          throw ArgumentError('Invalid callback reference');
+        }
+      } else {
+        final returned = returnedFunction(value, signature);
+        if (returned != null) return borrowFunction(returned, value);
+      }
+      if (!combined && callbackScope == _CallbackScope.member) {
         final cached = helper('callbackMemo')
             .call([value, FlaxJsString(memoKey)]);
         try {
@@ -1087,10 +1154,17 @@ class _Session {
       try {
         final closure = callback.wrap();
         if (callbackScope == _CallbackScope.member) {
-          final canonical = functionResult(closure, signature);
+          final canonical = functionResult(
+            closure,
+            signature,
+            memoInput: combined ? value : null,
+            memoKey: memoKey,
+          );
           try {
-            helper('callbackMemo')
-                .call([value, FlaxJsString(memoKey), canonical]);
+            if (!combined) {
+              helper('callbackMemo')
+                  .call([value, FlaxJsString(memoKey), canonical]);
+            }
           } finally {
             if (canonical is FlaxJsObject) canonical.release();
           }
@@ -1197,38 +1271,48 @@ class _Session {
         definition.id,
         () => _arguments(value, parameters, allowBindings: true),
       );
-      final node = FlaxNode._(this, definition, ctor, sources);
-      try {
-        final host = definition.createHost(node);
-
-        // Validate constructor invariants before accepting the structural snapshot.
-        final validated = _traceNativeWidget(
-          host,
-          sources.map((name, source) => MapEntry(name, source.initial.data)),
-        );
-        if (_typeBinding(type.id) is FlaxWidgetBinding) {
-          checkWidgetType(validated, type);
-          // A concrete signature receives the immutable native configuration.
-          // Its weak lease keeps constructor callbacks and children alive.
-          final record = _WidgetConfiguration(this, node);
-          _widgetConfigurations[validated] = record;
-          record.attach(validated);
-          return _Value(validated, [node]);
-        }
-        checkWidgetType(host, type);
-        if (parameters.every((parameter) => !parameter.type.containsCallback) &&
-            sources.values.every((source) => source.binding == null)) {
-          node._validatedWidget = validated;
-        }
-        return _Value(host, [node]);
-      } catch (_) {
-        node.release();
-        rethrow;
-      }
+      return _createWidget(definition, ctor, parameters, sources, type);
     }
     throw ArgumentError(
       'Unknown or incompatible binding: $id (expected ${type.id ?? type.kind})',
     );
+  }
+
+  _Value _createWidget(
+    FlaxWidgetBinding definition,
+    String ctor,
+    List<FlaxParameter> parameters,
+    Map<String, _Source> sources,
+    FlaxTypeRef type,
+  ) {
+    final node = FlaxNode._(this, definition, ctor, sources);
+    try {
+      final host = definition.createHost(node);
+
+      // Validate constructor invariants before accepting the structural snapshot.
+      final validated = _traceNativeWidget(
+        host,
+        sources.map((name, source) => MapEntry(name, source.initial.data)),
+      );
+      if (_typeBinding(type.id) is FlaxWidgetBinding) {
+        checkWidgetType(validated, type);
+        // A concrete signature receives the immutable native configuration.
+        // Its weak lease keeps constructor callbacks and children alive.
+        final record = _WidgetConfiguration(this, node);
+        _widgetConfigurations[validated] = record;
+        record.attach(validated);
+        return _Value(validated, [node]);
+      }
+      checkWidgetType(host, type);
+      if (parameters.every((parameter) => !parameter.type.containsCallback) &&
+          sources.values.every((source) => source.binding == null)) {
+        node._validatedWidget = validated;
+      }
+      return _Value(host, [node]);
+    } catch (_) {
+      node.release();
+      rethrow;
+    }
   }
 
   Map<String, _Source> _arguments(
@@ -1245,109 +1329,30 @@ class _Session {
         if (args is! FlaxJsObject) {
           throw ArgumentError('Descriptor args must be an object');
         }
-        Map<String, _Source> convert(Map<String, FlaxJsValue>? batch) {
-          final (snapshot, provided) = batch == null
-              ? _argumentKeys(args)
-              : (true, batch.keys.toSet());
-          final expected = parameters.map((param) => param.name).toSet();
-          for (final name in provided) {
-            if (!expected.contains(name)) {
-              throw ArgumentError('Unsupported argument: $name');
-            }
-          }
-          final sources = <String, _Source>{};
-          try {
-            for (final parameter in parameters) {
-              final scope = uiCallbacks.contains(parameter.name)
-                  ? _CallbackScope.ui
-                  : callbackScope;
-              _Source? read(FlaxJsValue value) {
-                if (value is FlaxJsUndefined) {
-                  if (parameter.omitWhenAbsent) return null;
-                  if (parameter.required) {
-                    throw ArgumentError(
-                      'Missing required argument: ${parameter.name}',
-                    );
-                  }
-                  return _Source(
-                    this,
-                    parameter.type,
-                    _Value(parameter.defaultValue),
-                  );
-                }
-                final bound =
-                    value is FlaxJsObject &&
-                    _property(
-                      value,
-                      'kind',
-                      (kind) => kind is FlaxJsString && kind.value == 'binding',
-                    );
-                if (bound) {
-                  if (!allowBindings || parameter.name == 'key') {
-                    throw ArgumentError(
-                      'This argument is fixed; bind the containing Widget parameter instead',
-                    );
-                  }
-                  final object = value;
-                  final initial = _property(object, 'read', (reader) {
-                    if (reader is! FlaxJsFunction) {
-                      throw ArgumentError('Invalid binding reader');
-                    }
-                    final result = helper('readBindingSnapshot').call([reader]);
-                    try {
-                      return decode(
-                        result,
-                        parameter.type,
-                        callbackScope: scope,
-                      );
-                    } finally {
-                      _releaseJs(result);
-                    }
-                  });
-                  try {
-                    return _Source(
-                      this,
-                      parameter.type,
-                      initial,
-                      binding: object.retain(),
-                    );
-                  } catch (_) {
-                    initial.release();
-                    rethrow;
-                  }
-                }
-                return _Source(
-                  this,
-                  parameter.type,
-                  decode(value, parameter.type, callbackScope: scope),
-                );
-              }
-
-              final source = batch != null
-                  ? read(batch[parameter.name] ?? const FlaxJsUndefined())
-                  : snapshot && !provided.contains(parameter.name)
-                  ? read(const FlaxJsUndefined())
-                  : _property(args, parameter.name, read);
-              if (source != null) sources[parameter.name] = source;
-            }
-            return sources;
-          } catch (_) {
-            for (final source in sources.values) {
-              source.release();
-            }
-            rethrow;
-          }
-        }
 
         Map<String, _Source>? batched;
         try {
           if (_readArgumentSnapshot(
             args,
-            (values) => batched = convert(values),
+            (values) => batched = _convertArguments(
+              args,
+              values,
+              parameters,
+              allowBindings: allowBindings,
+              callbackScope: callbackScope,
+              uiCallbacks: uiCallbacks,
+            ),
           )) {
             return batched!;
           }
-          return convert(null);
+          return _convertArguments(
+            args,
+            null,
+            parameters,
+            allowBindings: allowBindings,
+            callbackScope: callbackScope,
+            uiCallbacks: uiCallbacks,
+          );
         } catch (_) {
           if (batched case final values?) {
             for (final source in values.values) {
@@ -1359,6 +1364,125 @@ class _Session {
       });
     } finally {
       tracing?.call('dart:arguments', false);
+    }
+  }
+
+  Map<String, _Source> _convertArguments(
+    FlaxJsObject? args,
+    Map<String, FlaxJsValue>? batch,
+    List<FlaxParameter> parameters, {
+    required bool allowBindings,
+    _CallbackScope callbackScope = _CallbackScope.member,
+    List<String> uiCallbacks = const [],
+  }) {
+    final (snapshot, provided) = batch == null
+        ? _argumentKeys(args!)
+        : (true, batch.keys);
+    final expected = parameters.map((param) => param.name).toSet();
+    for (final name in provided) {
+      if (!expected.contains(name)) {
+        throw ArgumentError('Unsupported argument: $name');
+      }
+    }
+    final sources = <String, _Source>{};
+    try {
+      for (final parameter in parameters) {
+        final scope = uiCallbacks.contains(parameter.name)
+            ? _CallbackScope.ui
+            : callbackScope;
+        _Source? read(FlaxJsValue value) {
+          if (value is FlaxJsUndefined) {
+            if (parameter.omitWhenAbsent) return null;
+            if (parameter.required) {
+              throw ArgumentError(
+                'Missing required argument: ${parameter.name}',
+              );
+            }
+            return _Source(
+              this,
+              parameter.type,
+              _Value(parameter.defaultValue),
+            );
+          }
+          FlaxJsValue? reference;
+          if (_argumentReferencesEnabled &&
+              value is FlaxJsObject &&
+              (parameter.type.kind == 'object' ||
+                  parameter.type.kind == 'state' ||
+                  parameter.type.kind == 'enum')) {
+            reference = _argumentReferenceReader?.call([value]);
+            if (reference != null &&
+                reference is! FlaxJsNull &&
+                reference is! FlaxJsNumber &&
+                reference is! FlaxJsString &&
+                !(reference is FlaxJsBoolean && reference.value)) {
+              _releaseJs(reference);
+              throw ArgumentError('Invalid argument reference');
+            }
+          }
+          final bound = reference != null
+              ? reference is FlaxJsBoolean
+              : value is FlaxJsObject &&
+                    _property(
+                      value,
+                      'kind',
+                      (kind) => kind is FlaxJsString && kind.value == 'binding',
+                    );
+          if (bound) {
+            if (!allowBindings || parameter.name == 'key') {
+              throw ArgumentError(
+                'This argument is fixed; bind the containing Widget parameter instead',
+              );
+            }
+            final object = value as FlaxJsObject;
+            final initial = _property(object, 'read', (reader) {
+              if (reader is! FlaxJsFunction) {
+                throw ArgumentError('Invalid binding reader');
+              }
+              final result = helper('readBindingSnapshot').call([reader]);
+              try {
+                return decode(result, parameter.type, callbackScope: scope);
+              } finally {
+                _releaseJs(result);
+              }
+            });
+            try {
+              return _Source(
+                this,
+                parameter.type,
+                initial,
+                binding: object.retain(),
+              );
+            } catch (_) {
+              initial.release();
+              rethrow;
+            }
+          }
+          return _Source(
+            this,
+            parameter.type,
+            decode(
+              value,
+              parameter.type,
+              callbackScope: scope,
+              knownReference: reference,
+            ),
+          );
+        }
+
+        final source = batch != null
+            ? read(batch[parameter.name] ?? const FlaxJsUndefined())
+            : snapshot && !provided.contains(parameter.name)
+            ? read(const FlaxJsUndefined())
+            : _property(args!, parameter.name, read);
+        if (source != null) sources[parameter.name] = source;
+      }
+      return sources;
+    } catch (_) {
+      for (final source in sources.values) {
+        source.release();
+      }
+      rethrow;
     }
   }
 

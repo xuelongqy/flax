@@ -49,6 +49,7 @@ part 'src/ui/functions.dart';
 part 'src/ui/collections.dart';
 part 'src/ui/session.dart';
 part 'src/ui/node.dart';
+part 'src/ui/widget_batch_experiment.dart';
 part 'src/ui/components.dart';
 part 'src/ui/view.dart';
 part 'src/ui/assets.dart';

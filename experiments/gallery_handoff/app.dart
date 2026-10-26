@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
+import 'dart:ui' as ui;
 
 import 'package:flax/flax.dart';
 import 'package:flax/src/native/native_runtime.dart';
@@ -13,6 +14,7 @@ import 'package:flax_test/src/gc.dart';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -23,6 +25,8 @@ import '../js_worker/app.dart' show gaps;
 import 'runtime.dart';
 import 'metrics.dart';
 import 'results_probe.dart';
+import 'arguments_probe.dart';
+import 'native_gallery.dart';
 
 final checks = <Map<String, Object?>>[];
 final errors = <String>[];
@@ -32,6 +36,7 @@ final scrollKey = GlobalKey();
 final view = ValueNotifier<Widget>(const SizedBox.shrink());
 final frameScroll = <Map<String, num>>[];
 final metrics = GalleryMetrics(shell.clock)..selfCheck();
+final screenKey = GlobalKey();
 void check(String name, bool passed, [Object? detail]) {
   checks.add({'name': name, 'passed': passed, 'detail': detail});
   stdout.writeln('GALLERY_CHECK ${jsonEncode(checks.last)}');
@@ -302,6 +307,135 @@ Future<void> tour(int sample, List<WeakReference<State>> states) async {
 int readInt(GalleryRuntime runtime, String field) =>
     (runtime.evaluate('galleryProbe.$field') as FlaxJsNumber).value.toInt();
 
+Future<Map<String, Object?>> screenSnapshot(int sample) async {
+  final boundary =
+      screenKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
+  final image = await boundary.toImage(pixelRatio: 1);
+  try {
+    final bytes = (await image.toByteData(format: ui.ImageByteFormat.rawRgba))!;
+    final output = Platform.environment['FLAX_GALLERY_OUTPUT'];
+    if (output != null) {
+      final png = (await image.toByteData(format: ui.ImageByteFormat.png))!;
+      await File('$output/screen-$sample.png').writeAsBytes(
+        png.buffer.asUint8List(png.offsetInBytes, png.lengthInBytes),
+      );
+    }
+    final renderTypes = <String, int>{};
+    void visit(RenderObject object) {
+      renderTypes.update(
+        object.runtimeType.toString(),
+        (n) => n + 1,
+        ifAbsent: () => 1,
+      );
+      object.visitChildren(visit);
+    }
+
+    visit(boundary);
+    final content = <Element>[];
+    void visitElement(Element element) {
+      if (element.widget case Offstage(offstage: true)) return;
+      content.add(element);
+      element.visitChildren(visitElement);
+    }
+
+    visitElement(screenKey.currentContext! as Element);
+    return {
+      'width': image.width,
+      'height': image.height,
+      'rgbaHash': crypto.sha256
+          .convert(
+            bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes),
+          )
+          .toString(),
+      'renderTypes': renderTypes,
+      'texts': [
+        for (final element in content)
+          if (element.widget case Text(:final data?))
+            {
+              'text': data,
+              'style': (element.widget as Text).style.toString(),
+              'size': element.findRenderObject() is RenderBox
+                  ? (element.findRenderObject()! as RenderBox).size.toString()
+                  : null,
+            },
+      ],
+    };
+  } finally {
+    image.dispose();
+  }
+}
+
+Map<String, Object?> mountMetrics(int start, int end) => {
+  'start': start,
+  'end': end,
+  'durationUs': end - start,
+  'frames': gaps(shell.tickTimes, start, end),
+  'timer': gaps(shell.timerTimes, start, end),
+  'profile': metrics.frames
+      .where(
+        (f) => (f['start']! as int) >= start && (f['start']! as int) <= end,
+      )
+      .toList(),
+};
+
+Future<void> runNativeGallery(bool profiling) async {
+  final samples = <Map<String, Object?>>[];
+  var passed = false;
+  try {
+    await Future<void>.delayed(const Duration(milliseconds: 700));
+    for (var sample = 0; sample < 2; sample++) {
+      scroll.jumpTo(0);
+      final gesture = drag();
+      await frame();
+      metrics.enabled = profiling;
+      final start = now;
+      final page = nativeGallery();
+      final constructed = now;
+      view.value = page;
+      await WidgetsBinding.instance.endOfFrame;
+      final end = now;
+      metrics.enabled = false;
+      await gesture;
+      await Future<void>.delayed(const Duration(milliseconds: 150));
+      check(
+        'sample $sample native seven entrances',
+        texts().containsAll({
+          '7 modules',
+          'Choose your playground',
+          'Core & signals',
+          'Material UI',
+          'Cupertino UI',
+          'Canvas 2D',
+          'Fetch',
+          'WebSocket',
+          'Local storage',
+        }),
+      );
+      samples.add({
+        'sample': sample,
+        'constructorUs': constructed - start,
+        'mount': mountMetrics(start, end),
+        'snapshot': await screenSnapshot(sample),
+        'rssAfter': ProcessInfo.currentRss,
+        'elements': elementCounts(),
+      });
+      view.value = const SizedBox.shrink();
+      await frame();
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+    }
+    check('no native Flutter errors', errors.isEmpty, errors);
+    passed = true;
+  } catch (error, stack) {
+    errors.add('$error\n$stack');
+    stderr.writeln('$error\n$stack');
+  } finally {
+    stdout.writeln(
+      'GALLERY_RESULT ${jsonEncode({'passed': passed, 'mode': 'native', 'profiling': profiling, 'build': kReleaseMode ? 'release' : 'debug', 'checks': checks, 'samples': samples, 'errors': errors})}',
+    );
+    exit(passed ? 0 : 1);
+  }
+}
+
 Future<void> main() async {
   if (Platform.environment['FLAX_ENGINE_RESULTS_PROBE'] == '1') {
     try {
@@ -312,8 +446,13 @@ Future<void> main() async {
       exit(1);
     }
   }
+  if (Platform.environment['FLAX_ENGINE_ARGUMENTS_PROBE'] == '1') {
+    runArgumentsProbe();
+    exit(0);
+  }
   final binding = GalleryBinding(metrics);
   final profiling = Platform.environment['FLAX_GALLERY_PROFILE'] == '1';
+  final screenOnly = Platform.environment['FLAX_GALLERY_SCREEN_ONLY'] == '1';
   final root = Platform.environment['FLAX_HANDOFF_ROOT']!;
   final mode = Platform.environment['FLAX_GALLERY_MODE'] ?? 'handoff';
   if (!{
@@ -362,12 +501,18 @@ Future<void> main() async {
       Expanded(
         child: ValueListenableBuilder<Widget>(
           valueListenable: view,
-          builder: (_, child, _) => child,
+          builder: (_, child, _) => screenOnly
+              ? RepaintBoundary(key: screenKey, child: child)
+              : child,
         ),
       ),
     ],
   );
   runApp(const shell.Shell());
+  if (screenOnly && Platform.environment['FLAX_GALLERY_NATIVE'] == '1') {
+    await runNativeGallery(profiling);
+    return;
+  }
   var passed = false;
   final samples = <Map<String, Object?>>[];
   try {
@@ -439,7 +584,9 @@ Future<void> main() async {
         warmed,
       );
     }
-    for (var sample = 0; sample < 2; sample++) {
+    final memoryCheck = Platform.environment['FLAX_GALLERY_MEMORY'] == '1';
+    final sampleCount = memoryCheck ? 8 : 2;
+    for (var sample = 0; sample < sampleCount; sample++) {
       final start = now;
       final firstTiming = shell.frameTimes.length;
       final steps = <Map<String, Object?>>[];
@@ -449,6 +596,13 @@ Future<void> main() async {
         () => (FlaxEngine.createRuntime() as FlaxNativeJsRuntime)
           ..useEngineResultsForExperiment(
             Platform.environment['FLAX_ENGINE_RESULTS'] == '1',
+            arguments: Platform.environment['FLAX_ENGINE_ARGUMENTS'] == '1',
+          )
+          ..evaluate(
+            'globalThis.__flaxWidgetBatch = ${Platform.environment['FLAX_WIDGET_BATCH'] == '1'}; '
+            'globalThis.__flaxObjectArguments = ${Platform.environment['FLAX_OBJECT_ARGUMENTS'] == '1'}; '
+            'globalThis.__flaxCallbackMemo = ${Platform.environment['FLAX_CALLBACK_MEMO'] == '1'}; '
+            'globalThis.__flaxArgumentReferences = ${Platform.environment['FLAX_ARGUMENT_REFERENCES'] == '1'}',
           ),
       );
       await phase(
@@ -494,6 +648,8 @@ Future<void> main() async {
         inventory: inputs.metadata['inventory'] as String,
         business: inputs.source,
         pinnedSources: pinnedSources,
+        diagnostics:
+            !screenOnly || Platform.environment['FLAX_GALLERY_TRACKING'] != '0',
       );
       metrics.enabled = profiling;
       runtime.trace = profiling ? metrics.event : null;
@@ -514,14 +670,17 @@ Future<void> main() async {
           },
         ),
       );
+      var mountStart = 0, mountEnd = 0;
       await phase('$sample:activation', () async {
         if (staged) {
           await session.prepareForExperiment(
             onStep: (name, us) => steps.add({'name': name, 'microseconds': us}),
           );
         }
+        mountStart = now;
         view.value = FlaxView.session(session: session);
         await binding.endOfFrame;
+        mountEnd = now;
       });
       final firstFrame = now;
       if (pinned) {
@@ -572,6 +731,7 @@ Future<void> main() async {
       );
       final loadMetrics = <String, Object?>{
         'sample': sample,
+        'tracked': runtime.diagnostics,
         'start': start,
         'firstFrame': firstFrame,
         'loadUs': firstFrame - start,
@@ -586,6 +746,8 @@ Future<void> main() async {
         'comparisonUs': runtime.compareUs,
         'typePartsCalls': runtime.typePartsCalls,
         'typePartsUs': runtime.typePartsUs,
+        'hostCalls': Map<String, int>.from(runtime.hostCalls),
+        'jsCalls': Map<String, int>.from(runtime.jsCalls),
         'evaluations': Map<String, int>.from(runtime.evaluationMicroseconds),
         'steps': steps,
         'frameTimings': [
@@ -597,6 +759,10 @@ Future<void> main() async {
         ],
       };
       samples.add(loadMetrics);
+      if (screenOnly) {
+        loadMetrics['mount'] = mountMetrics(mountStart, mountEnd);
+        loadMetrics['snapshot'] = await screenSnapshot(sample);
+      }
       loadMetrics['profile'] = metrics.frames
           .where(
             (f) =>
@@ -608,6 +774,22 @@ Future<void> main() async {
       runtime.trace = null;
       native.traceForExperiment = null;
       Flax.traceForExperiment = null;
+      if (screenOnly) {
+        view.value = const SizedBox.shrink();
+        await frame();
+        await session.close().timeout(const Duration(seconds: 15));
+        check('sample $sample screen runtime closes', runtime.isDisposed);
+        if (runtime.diagnostics) {
+          check(
+            'sample $sample screen close releases every tracked handle',
+            runtime.handlesAtDispose == 0,
+            {'handlesAtDispose': runtime.handlesAtDispose},
+          );
+        }
+        loadMetrics['completed'] = true;
+        await Future<void>.delayed(const Duration(milliseconds: 300));
+        continue;
+      }
       final dartStates = <WeakReference<State>>[];
       await tour(sample, dartStates);
       // The gallery becomes visible before the departing Route finishes disposal.
@@ -658,6 +840,28 @@ Future<void> main() async {
         {'handlesAtDispose': runtime.handlesAtDispose},
       );
       loadMetrics['completed'] = true;
+      if (memoryCheck) {
+        loadMetrics['rssAfterClose'] = ProcessInfo.currentRss;
+        // Diagnostic only: keep one separate peer so both heaps collect after close.
+        final sweep = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+        sweep.registerHostFunction(
+          '__memoryProbe',
+          (_, _) => const FlaxJsUndefined(),
+        );
+        try {
+          for (var i = 0; i < 3; i++) {
+            sweep.evaluate(flaxTestJsGarbagePressure);
+            sweep.drainMicrotasks();
+            await flaxTestCollectDartGarbage();
+            await Future<void>.delayed(const Duration(milliseconds: 40));
+          }
+          loadMetrics['rssAfterDiagnosticGc'] = ProcessInfo.currentRss;
+          loadMetrics['cellsAfterDiagnosticGc'] = sweep.bridgeCellCount;
+          loadMetrics['callbacksAfterDiagnosticGc'] = sweep.bridgeCallbackCount;
+        } finally {
+          sweep.dispose();
+        }
+      }
       await Future<void>.delayed(const Duration(milliseconds: 300));
     }
     await FlaxLocalStoragePlugin.shutdown();

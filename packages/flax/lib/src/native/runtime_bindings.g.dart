@@ -119,7 +119,7 @@ const int FLAX_ENGINE_FFI_VERSION = 1;
 
 const int FLAX_ENGINE_GC_VERSION = 1;
 
-const int FLAX_ENGINE_RESULTS_EXPERIMENT_VERSION = 1;
+const int FLAX_ENGINE_RESULTS_EXPERIMENT_VERSION = 2;
 
 final class FlaxApi extends ffi.Struct {
   @ffi.Uint32()
@@ -1199,6 +1199,20 @@ final class FlaxEngineResultsExperimentApi extends ffi.Struct {
   >
   get_property;
 
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        FlaxValueId,
+        ffi.Pointer<FlaxValueId>,
+        ffi.Size,
+        ffi.Pointer<FlaxValueInfo>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  inspect_arguments;
+
   static ffi.Pointer<FlaxEngineResultsExperimentApi> $allocate(
     ffi.Allocator $allocator, {
     required int version,
@@ -1232,11 +1246,25 @@ final class FlaxEngineResultsExperimentApi extends ffi.Struct {
       >
     >
     get_property,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          FlaxValueId,
+          ffi.Pointer<FlaxValueId>,
+          ffi.Size,
+          ffi.Pointer<FlaxValueInfo>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    inspect_arguments,
   }) => $allocator<FlaxEngineResultsExperimentApi>()
     ..ref.version = version
     ..ref.struct_size = struct_size
     ..ref.call = call
-    ..ref.get_property = get_property;
+    ..ref.get_property = get_property
+    ..ref.inspect_arguments = inspect_arguments;
 }
 
 final class FlaxError extends ffi.Struct {

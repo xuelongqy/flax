@@ -167,16 +167,38 @@
    });
  }
  
-@@ -1240,3 +1284,12 @@
+@@ -1235,3 +1279,34 @@
  #if defined(FLAX_ENABLE_FFI)
  #include "ffi/runtime.inc"
  #endif
++
++int32_t inspectArguments(FlaxRuntime* runtime, FlaxValueId receiver,
++                         const FlaxValueId* arguments, size_t count,
++                         FlaxValueInfo* infos, FlaxError* error) {
++  return enter(runtime, error, [&] {
++    if (!infos || (count && !arguments))
++      throw BridgeError(FLAX_ARGUMENT_ERROR, "Null host argument descriptions");
++    for (size_t i = 0; i <= count; ++i) infos[i] = {};
++    try {
++      describeValue(runtime, value(runtime, receiver), infos);
++      for (size_t i = 0; i < count; ++i)
++        describeValue(runtime, value(runtime, arguments[i]), infos + i + 1);
++    } catch (...) {
++      for (size_t i = 0; i <= count; ++i) {
++        free(infos[i].string_data);
++        infos[i] = {};
++      }
++      throw;
++    }
++  });
++}
 +
 +extern "C" __attribute__((visibility("default")))
 +const FlaxEngineResultsExperimentApi* flax_experiment_get_results_api(
 +    uint32_t version) {
 +  static const FlaxEngineResultsExperimentApi results{
 +      FLAX_ENGINE_RESULTS_EXPERIMENT_VERSION,
-+      sizeof(FlaxEngineResultsExperimentApi), callResult, getPropertyResult};
++      sizeof(FlaxEngineResultsExperimentApi), callResult, getPropertyResult,
++      inspectArguments};
 +  return version == results.version ? &results : nullptr;
 +}

@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 /* Private startup experiment; not part of the installed engine contract. */
-#define FLAX_ENGINE_RESULTS_EXPERIMENT_VERSION 1
+#define FLAX_ENGINE_RESULTS_EXPERIMENT_VERSION 2
 typedef struct FlaxEngineResultsExperimentApi {
   uint32_t version;
   size_t struct_size;
@@ -22,6 +22,11 @@ typedef struct FlaxEngineResultsExperimentApi {
   int32_t (*get_property)(FlaxRuntime*, FlaxValueId object,
                           const uint16_t* name, size_t length,
                           FlaxValueId* output, FlaxValueInfo* info, FlaxError*);
+  /* Describes the borrowed receiver followed by count arguments. Caller frees
+   * each string_data; on failure all count + 1 outputs own no resources. */
+  int32_t (*inspect_arguments)(FlaxRuntime*, FlaxValueId receiver,
+                              const FlaxValueId* arguments, size_t count,
+                              FlaxValueInfo* infos, FlaxError*);
 } FlaxEngineResultsExperimentApi;
 
 const FlaxEngineResultsExperimentApi* flax_experiment_get_results_api(uint32_t);
