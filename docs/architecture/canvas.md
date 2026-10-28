@@ -85,10 +85,15 @@ submitted command bytes. Path nesting is limited to 64; one dashed path is limit
 one million extracted segments.
 
 Canvas snapshots, history compression and pixel reads explicitly use premultiplied RGBA8
-storage. They do not inherit the display's HDR/10-bit offscreen format. Explicit
-snapshots retain MSAA and use lossless resolve textures. API 4 adds a host-independent
-snapshot operation that returns a Flutter-owned deferred image without a CPU pixel copy;
-ordinary Flutter Picture snapshots retain their existing format selection.
+storage. On Metal and GLES, Canvas-owned DisplayLists select this format for save-layer
+and filter allocations through the existing render-target cache. The selection is scoped
+to their replay, including nested source/effect lists, and restored before the caller
+resumes drawing. Flutter lists outside Canvas replay and the display target keep their
+default format. Vulkan retains its existing intermediate-format and resolve path pending
+platform validation. Explicit allocations retain MSAA and lossless resolve textures. API
+4 adds a host-independent snapshot operation that returns a Flutter-owned deferred image
+without a CPU pixel copy; ordinary Flutter Picture snapshots retain their existing
+format selection.
 
 Effects first materialize the source in a layer that cannot distribute its opacity into
 later shadow/source draws. Source coverage bounds this layer, preserving the RGBA8
@@ -97,19 +102,86 @@ allocations for small shapes. Ordinary source-over drawing retains its direct pa
 
 On Metal, save-layer blur/color-matrix chains prepare their inputs before opening the
 output encoder and share a command buffer with that output. The source is still
-submitted early; screen samples the completed output in its original order. This keeps
-the source resolve, directional blur, color output and screen quantization boundaries.
-Other filters, active output passes and other backends retain their existing scheduling.
+submitted early; screen samples the output in its original order. This keeps the source
+resolve, directional blur, color output and screen quantization boundaries. Other
+filters, active output passes and other backends retain their existing scheduling.
 
-An unused transparent Metal layer may hold the resolved source instead of copying it
-into another texture. Different extents are allowed only for an unclipped, integer
-placement under a translation-only, unity-scale decal-blur/matrix chain that preserves
-transparent black. Logical layer bounds stay intact. If another draw arrives, the
-original copy is materialized first. Rescaled, other-effect and clipped inputs retain
-the original path. This removes eligible copy encoders without removing the source
-quantization; it does not release render-target allocations early or reuse textures
-between operations. See the
-[measured fixture](../../experiments/canvas_native/afterglow.md).
+Within Canvas RGBA8 replay on macOS and iOS Metal, an eligible final color matrix can
+remain deferred until its parent performs a plain, unit-opacity screen blend. A
+dedicated shader combines those operations while reproducing the removed RGBA8
+attachment's store rounding and subsequent texture sample. Eligibility requires integer
+texel mapping, a single-mip RGBA8 input, a finite bounded alpha-preserving matrix
+without color offsets, and the parent's original outward-rounded integer scissor
+covering the output viewport. This matches `Canvas::SetClipScissor`, preserving the
+existing geometry, sample grid, transparent padding and pixel origins. A later draw
+first materializes the ordinary matrix output. Fractional mappings, other paints and
+unsupported configurations keep that ordinary path. Android and iOS Simulator retain the
+ordinary path; the simulator's existing capabilities disable framebuffer fetch.
+Attachment rounding and matched Release gains have been checked on Apple M2 Max and A16.
+See the
+[desktop measurements](../../experiments/canvas_native/afterglow.md#quantized-color-matrix-and-screen-fusion-2026-10-26)
+and
+[physical iOS validation](../../experiments/canvas_native/afterglow.md#physical-ios-color-matrix-and-screen-fusion-2026-10-26).
+
+Within Android GLES Canvas RGBA8 replay, a unit-opacity `screen` blend can use fixed
+function blending when its existing source snapshot is single-mip RGBA8, has nearest
+min/mag sampling and uses a regular 2D or multisample 2D texture. The destination must
+be RGBA8 and the device must support decal sampling. This keeps the source snapshot,
+resolve, MSAA, geometry, clip and draw order; it replaces only the final framebuffer
+fetch shader. Linear sampling and an additional fractional opacity multiply change
+rounding on the tested GLES device, so those cases keep framebuffer-fetch blending.
+Other platforms and backends keep their existing path. Pixel and Release checks cover
+Adreno 640; see the
+[Android experiments](../../experiments/canvas_native/afterglow.md#android-gles-screen-and-resource-experiments-2026-10-27).
+
+Remaining Android GLES Canvas `screen` blends can skip zero-alpha source fragments for
+unfiltered stroke geometry. The single-mip RGBA8 source and destination, disabled depth
+writes and ignored stencil mode keep this identity operation free of side effects.
+Nonzero fragments retain the existing sampling, opacity and blend math. Source
+snapshots, quantization, MSAA, clip and draw order stay intact. Filled, filtered and
+restored layers retain their existing paths. The compiled GLES shader may fetch the
+destination before discarding; the measured gain does not establish fetch removal. See
+the
+[Weave crisp measurements](../../experiments/canvas_native/afterglow.md#android-gles-weave-crisp-follow-up-2026-10-27).
+
+For translation-only unfiltered path strokes, Android GLES can further restrict the
+final sparse-screen draw to conservative tight path bounds, including stroke padding and
+two pass pixels for sampling. This requires over 20% reduction in the source quad area.
+Only the final scissor changes: source texture size/origin, MSAA, UVs, sampling and
+blend math remain intact. The pending or inherited clip is intersected with those bounds
+and restored after the draw, including failure. Geometry's optional bounds query uses an
+Android platform guard so class layout does not depend on a per-target GLES feature
+define. See the
+[tight-scissor measurements](../../experiments/canvas_native/afterglow.md#android-gles-tight-screen-scissor-2026-10-28).
+
+For Android GLES Canvas RGBA8 replay, a first unfiltered stroke in a fresh transparent
+pass may carry conservative ink bounds through plain unit-opacity layer copies and
+full-source snapshots. Another draw or a restarted pass invalidates that proof. An
+unscaled, translation-only RGBA8 decal Gaussian filter may use those bounds for its Y/X
+draw scissors only when each cut saves more than half of the target area. Every full
+clear, padding copy, texture size/origin, UV, MSAA resolve and RGBA8 store remains
+intact. No additional texture cache or shader is introduced, and other backends retain
+their existing paths. This cost guard is separate from the over-20% final-screen scissor
+above; small blur cuts do not necessarily improve throughput. See the
+[paired Orbit/Weave validation](../../experiments/canvas_native/afterglow.md#android-gles-orbitweave-paired-follow-up-2026-10-28).
+
+An unused transparent Metal or GLES layer may hold the resolved source instead of
+copying it into another texture. This requires identical extents, zero integer offset,
+matching lossless unorm8 formats and a parent clip that contains the entire texture.
+Logical layer bounds stay intact. If another draw arrives, the original copy is
+materialized first. Within Canvas's RGBA8 replay, a Metal decal blur input can also
+borrow a contained source bitmap at an integer offset. Its snapshot retains the original
+input viewport, including transparent padding, while the blur samples the existing
+quantized texels. This extension requires a translation-only device transform, no
+downsampling, and a parent clip containing the complete source; other cases retain the
+original path. Scaled input sampling can otherwise change intermediate rounding. This
+removes eligible copy encoders without removing source quantization. Canvas Metal/RGBA8
+layer attachments are allocated only when a render pass needs them; size, format and
+clear-color queries retain metadata without allocating textures. The captured format
+survives nested replay scopes, and a later draw materializes any borrowed source with
+the existing copy path. The blur padding-copy check uses the selected intermediate
+format, so an RGBA8 Canvas does not add a conversion pass just because the display uses
+XR10. See the [measured fixture](../../experiments/canvas_native/afterglow.md).
 
 Dart continues to own widgets, repaint/history composition, asynchronous image loading,
 and pixel/blob delivery. JPEG/WebP encoding uses Skia's existing encoders on a Dart

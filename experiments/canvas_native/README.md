@@ -57,7 +57,7 @@ export FLUTTER_ENGINE="$PWD/.local/canvas-native/engine-src"
 dart --packages=.dart_tool/package_config.json experiments/canvas_native/run.dart debug
 dart --packages=.dart_tool/package_config.json experiments/canvas_native/run.dart debug-app
 dart --packages=.dart_tool/package_config.json experiments/canvas_native/run.dart release
-dart --packages=.dart_tool/package_config.json tool/check_runtime.dart --engine=v8
+dart --packages=.dart_tool/package_config.json tool/check_runtime.dart
 ```
 
 The debug build produces both flutter_tester and FlutterMacOS.framework, then copies the

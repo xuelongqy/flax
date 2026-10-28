@@ -29,6 +29,10 @@ Future<void> main(List<String> arguments) => command(() async {
   final root = Directory.fromUri(Platform.script.resolve('../../')).path;
   final evidence = Directory('$root/.local/canvas-native')
     ..createSync(recursive: true);
+  final applicationReceipt = File('${evidence.path}/application-$mode.json');
+  if (applicationReceipt.existsSync()) applicationReceipt.deleteSync();
+  final benchmarkReceipt = File('${evidence.path}/benchmark-$mode.json');
+  if (benchmarkReceipt.existsSync()) benchmarkReceipt.deleteSync();
   await run('node', [
     'tool/ui_bundle.mjs',
     '--package',
@@ -81,6 +85,9 @@ void main() => experiment.main();
       ]);
       final manifest = File('$app/pubspec.yaml');
       final pubspec = readYamlFile(manifest);
+      (pubspec['dependencies'] as Map<String, dynamic>)['integration_test'] = {
+        'sdk': 'flutter',
+      };
       final development = pubspec['dev_dependencies'] as Map<String, dynamic>;
       development['flax_test'] = {'path': '../packages/flax_test'};
       development['path_drawing'] = '1.0.1';
@@ -216,7 +223,6 @@ void main() {
       'normalizedFrameworkSha256': hashes.first,
       'canvasExportsPresent': true,
     });
-    File('${evidence.path}/application-$mode.json')
-        .writeAsStringSync('$receipt\n');
-  });
+    applicationReceipt.writeAsStringSync('$receipt\n');
+  }, forApplication: true);
 });

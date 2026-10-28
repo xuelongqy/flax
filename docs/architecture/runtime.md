@@ -24,6 +24,11 @@ than 100 ms old. A timer firing between animation frames does not establish an i
 window. Deferral preserves pending JS changes; Dart/V8 pressure bypasses it. This is a
 frame-inactivity heuristic: gaps of 100 ms or more may admit proactive collection.
 
+On Android, a live Flax joint heap applies the same recent-frame guard to Dart's
+proactive idle-GC hint. Allocation-pressure collection and embedder idle callbacks
+remain enabled. Flutter isolates without Flax bridge cells and other platforms retain
+their ordinary Dart idle path. Pressure collection can still interrupt animation.
+
 Platform policy is iOS V8 jitless and other native V8 JIT. macOS and Android arm64 are
 implemented; Android debug and release/AOT acceptance covers an arm64 emulator and a
 Pixel 4 running Android 13. The iOS producer supports simulator debug and

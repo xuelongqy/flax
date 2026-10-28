@@ -118,6 +118,63 @@ void main() {
     await flaxTestUnmount(tester);
   }, timeout: const Timeout(Duration(seconds: 20)));
 
+  testWidgets('uniform screen images agree for nearest and linear sampling', (
+    tester,
+  ) async {
+    final h = Harness();
+    await flaxTestPumpView(
+      tester,
+      MaterialApp(
+        home: FlaxView(
+          createRuntime: h.create,
+          source: flaxTestFixtureSource('canvas', packageName: 'flax_canvas'),
+          bindings: registry,
+          plugins: const [FlaxCanvasPlugin()],
+          onError: (error, _) => h.errors.add(error),
+        ),
+      ),
+    );
+    await flaxTestRunHostScript(tester, h, r'''
+      for (const color of ['#4f98d147', '#e74d9180', '#80d12fcd', '#3b82f6ff']) {
+        const source = new OffscreenCanvas(16, 16);
+        const sc = source.getContext('2d');
+        sc.fillStyle = color; sc.fillRect(0, 0, 16, 16);
+        const bitmap = await createImageBitmap(source);
+        for (const trailing of [false, true]) {
+          const outputs = [];
+          for (const smoothing of [false, true]) {
+            const c = new OffscreenCanvas(16, 16).getContext('2d');
+            c.fillStyle = '#18324a'; c.fillRect(0, 0, 16, 16);
+            c.fillStyle = '#73347acc';
+            c.beginPath(); c.moveTo(.25, .125); c.lineTo(15.875, 9.375);
+            c.lineTo(3.125, 15.25); c.closePath(); c.fill();
+            c.globalCompositeOperation = 'screen';
+            c.imageSmoothingEnabled = smoothing; c.drawImage(bitmap, 0, 0);
+            if (trailing) {
+              c.globalCompositeOperation = 'source-over';
+              c.fillStyle = '#2674a199';
+              c.beginPath(); c.moveTo(.25, .125); c.lineTo(15.875, 9.375);
+              c.lineTo(3.125, 15.25); c.closePath(); c.fill();
+            }
+            outputs.push((await c.getImageDataAsync(0, 0, 16, 16)).data);
+          }
+          let differences = 0, first = -1;
+          for (let i = 0; i < outputs[0].length; i++) {
+            if (outputs[0][i] !== outputs[1][i]) {
+              differences++; if (first < 0) first = i;
+            }
+          }
+          if (differences) throw Error('uniform screen sampling changed pixels: ' +
+            color + '/' + trailing + '/' + differences + '/' + first + ': ' +
+            outputs[0][first] + ' vs ' + outputs[1][first]);
+        }
+        bitmap.close();
+      }
+    ''');
+    expect(h.errors, isEmpty);
+    await flaxTestUnmount(tester);
+  }, timeout: const Timeout(Duration(seconds: 45)));
+
   testWidgets('rotated screen draws preserve every backdrop pixel', (
     tester,
   ) async {

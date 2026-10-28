@@ -49,9 +49,10 @@ export FLAX_CHECK_TARGET=ios-simulator-arm64 FLAX_CHECK_DEVICE=<simulator-id>
 dart run tool/example_run.dart --package=flax_canvas
 ```
 
-The target selects V8 on Android/macOS and V8 jitless on iOS. Android supports Debug and
-Release; the iOS simulator uses Debug. Physical iOS uses Release and also requires
-`FLAX_IOS_TEAM`. The matching target engine and macOS host tools must be built first.
+The maintained engine uses V8 JIT on Android/macOS arm64 and V8 jitless on iOS. Android
+supports Debug and Release; the iOS simulator uses Debug. Physical iOS uses Release and
+also requires `FLAX_IOS_TEAM`. The matching target engine and macOS host tools must be
+built first.
 
 Add `--build-only` to build and audit without launching. Products and a verification
 receipt are saved under `build/examples/flax_canvas/<target>/<mode>/`. The audit checks

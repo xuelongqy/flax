@@ -40,7 +40,8 @@ void main() {
       source: source,
       bindings: registry,
     );
-    await tester.pumpWidget(
+    await flaxTestPumpView(
+      tester,
       Directionality(
         textDirection: TextDirection.ltr,
         child: FlaxView(
@@ -71,6 +72,7 @@ void main() {
       for (final mode in ['native', 'dart'])
         mode: hooks.getProperty(mode) as FlaxJsFunction,
     };
+    final results = <Map<String, Object>>[];
 
     ui.Picture frame(String mode, int count) {
       functions[mode]!.call([FlaxJsNumber(count.toDouble())]);
@@ -112,7 +114,6 @@ void main() {
         isA<FlaxJsString>().having((value) => value.value, 'type', 'undefined'),
       );
 
-      final results = <Map<String, Object>>[];
       for (final count in [1000, 10000]) {
         final modes = ['native', 'dart'];
         for (var warmup = 0; warmup < 30; warmup++) {
@@ -144,21 +145,6 @@ void main() {
         print('CANVAS_NATIVE_BENCHMARK ${jsonEncode(record)}');
       }
       expect(h.errors, isEmpty);
-      const receiptPath = String.fromEnvironment('CANVAS_NATIVE_RECEIPT');
-      File(receiptPath).writeAsStringSync(
-        const JsonEncoder.withIndent('  ').convert({
-          'mode': const bool.fromEnvironment('dart.vm.product')
-              ? 'release'
-              : 'debug',
-          'warmup_frames_per_mode': 30,
-          'samples_per_mode': 9,
-          'frames_per_sample': 10,
-          'scope': 'JS draw loop + commit + Flutter Picture; excludes raster/frame scheduling',
-          'pixel_equivalence': true,
-          'native_resource_cleanup': true,
-          'results': results,
-        }),
-      );
     } finally {
       reference.dispose();
       for (final function in functions.values) {
@@ -169,6 +155,21 @@ void main() {
       Flax.registerPlugins([]);
     }
     expect(nativeApi.flax_canvas_dispatch(0, 10, 0, 0, 0), resourcesBefore);
+    const receiptPath = String.fromEnvironment('CANVAS_NATIVE_RECEIPT');
+    File(receiptPath).writeAsStringSync(
+      const JsonEncoder.withIndent('  ').convert({
+        'mode': const bool.fromEnvironment('dart.vm.product')
+            ? 'release'
+            : 'debug',
+        'warmup_frames_per_mode': 30,
+        'samples_per_mode': 9,
+        'frames_per_sample': 10,
+        'scope': 'JS draw loop + commit + Flutter Picture; excludes raster/frame scheduling',
+        'pixel_equivalence': true,
+        'native_resource_cleanup': true,
+        'results': results,
+      }),
+    );
   }, timeout: const Timeout(Duration(minutes: 3)));
 
   testWidgets('Picture sync and async snapshot timing', (tester) async {

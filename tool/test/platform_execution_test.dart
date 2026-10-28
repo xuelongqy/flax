@@ -105,7 +105,7 @@ void main(List<String> args) {
   );
 
   test(
-    'desktop execution requires both a fresh marker and successful exit',
+    'desktop execution requires a fresh marker, successful exit and no failed tests',
     () async {
       final work = Directory.systemTemp.createTempSync('flax desktop launch ');
       addTearDown(() => work.deleteSync(recursive: true));
@@ -131,6 +131,17 @@ void main(List<String> args) {
         runDesktopApplication(target, work.path, 'fresh-marker'),
         throwsStateError,
       );
+      for (final failure in [
+        'flutter: 01:25 +150: timed out [E]',
+        '01:26 +150 -267: (tearDownAll)',
+        'flutter: 01:26 +150 ~2 -1: (tearDownAll)',
+      ]) {
+        await script("echo '$failure'\necho fresh-marker\nexit 0");
+        await expectLater(
+          runDesktopApplication(target, work.path, 'fresh-marker'),
+          throwsStateError,
+        );
+      }
       await script('echo fresh-marker\nexit 7');
       await expectLater(
         runDesktopApplication(target, work.path, 'fresh-marker'),

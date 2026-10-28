@@ -22,6 +22,18 @@ class FlaxBindings {
     ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) lookup,
   ) : _lookup = lookup;
 
+  int flax_engine_defer_idle_gc_current_isolate() {
+    return _flax_engine_defer_idle_gc_current_isolate();
+  }
+
+  late final _flax_engine_defer_idle_gc_current_isolatePtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function()>>(
+        'flax_engine_defer_idle_gc_current_isolate',
+      );
+  late final _flax_engine_defer_idle_gc_current_isolate =
+      _flax_engine_defer_idle_gc_current_isolatePtr
+          .asFunction<int Function()>();
+
   ffi.Pointer<FlaxApi> flax_engine_get_api(int version) {
     return _flax_engine_get_api(version);
   }
