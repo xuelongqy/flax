@@ -5,7 +5,7 @@ extension 7 and optional FFI extension 1 headers. The binding table registers sh
 member layouts, invokes current JS members with their actual receiver, and passes flat
 typed arguments for synchronous calls, and shares Uint8List/Uint8Array storage without a
 payload copy. FFI generation reads these declarations. The maintained Flutter fork owns
-the executable bridge, platform V8/Hermes adapters and Dart joint GC patch; see the
+the executable bridge, V8 adapters and Dart joint GC patch; see the
 [runtime contract](../../../docs/architecture/runtime.md).
 
 `engine_ffi.h` installs the optional direct C ABI frontend, performs safe owner

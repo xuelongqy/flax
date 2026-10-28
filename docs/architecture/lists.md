@@ -86,8 +86,8 @@ frame, and Future/microtask handling uses the existing UI contract.
 ## Validation
 
 Independent generated plugin fixtures cover repeated calls, shared descriptions,
-discarded results, nullable returns and errors. Real Hermes/V8 framework tests cover
-viewport costs, local updates, key moves, unkeyed positions, keep-alive, Context and
-closing. The existing example and macOS integration test exercise real scrolling and
-reentry. Run the existing bindings:check, ui:test, check and check:ui commands; no new
-command or test host package is required.
+discarded results, nullable returns and errors. Real V8 framework tests cover viewport
+costs, local updates, key moves, unkeyed positions, keep-alive, Context and closing. The
+existing example and macOS integration test exercise real scrolling and reentry. Run the
+existing bindings:check, ui:test, check and check:ui commands; no new command or test
+host package is required.

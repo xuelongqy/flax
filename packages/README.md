@@ -14,7 +14,6 @@ and native code together when those parts exist. An extension depends on `flax` 
 | [flax_codegen](flax_codegen/README.md)                 | Analyzer-based Dart/TypeScript binding generator                                                   |
 | [flax_test](flax_test/README.md)                       | Development-only engine-neutral runtime contracts and shared test harnesses                        |
 | [flax_example_support](flax_example_support/README.md) | Development-only Dart shell, settings drawer and FPS overlay for examples                          |
-| [flax_engine_hermes](flax_engine_hermes/README.md)     | Hermes adapter, pinned inputs, assets, and runtime tests                                           |
 | [flax_engine_v8](flax_engine_v8/README.md)             | Experimental V8 adapter, pinned inputs, assets, and runtime tests                                  |
 | [flax_fetch](flax_fetch/README.md)                     | Optional Fetch session plugin                                                                      |
 | [flax_websocket](flax_websocket/README.md)             | Optional WebSocket session plugin                                                                  |
@@ -48,7 +47,7 @@ dart run tool/package.dart check flax_fetch
 Run its real UI tests and macOS example with the locked SDK using:
 
 ```sh
-dart run tool/package.dart integration flax_fetch --engine=hermes
+dart run tool/package.dart integration flax_fetch
 ```
 
 See [package architecture](../docs/architecture/packaging.md) and the

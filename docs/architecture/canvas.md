@@ -1,9 +1,9 @@
 # Canvas 2D
 
 Optional `flax_canvas` / `@flax/canvas` adds OffscreenCanvas 2D without DOM, CSS, or
-`HTMLCanvasElement`. Hermes and V8 share one JS encoder, engine C++ decoder and command
-protocol. The UI protocol is unchanged; native ABI stays 2. Canvas `commandVersion`
-remains a private command-buffer version, not a host or UI protocol.
+`HTMLCanvasElement`. V8 uses one JS encoder, engine C++ decoder and command protocol.
+The UI protocol is unchanged; native ABI stays 2. Canvas `commandVersion` remains a
+private command-buffer version, not a host or UI protocol.
 
 ```text
 JavaScript Canvas 2D

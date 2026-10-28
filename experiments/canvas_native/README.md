@@ -75,8 +75,8 @@ runners, not distribution signing or sandbox configurations.
 
 ## Mobile acceptance
 
-The mobile runner reuses the package's command, UI, bitmap/font and WPT suites. It
-selects Hermes for iOS and V8 for Android, verifies the packaged engine and records
+The mobile runner reuses the package's command, UI, bitmap/font and WPT suites. It uses
+V8 jitless on iOS and V8 JIT on Android, verifies the packaged engine and records
 individual test results. Viewport and iOS semantics setup are shared with the normal
 platform runner; worker assertions and pixel thresholds are unchanged.
 
@@ -87,23 +87,17 @@ read-only from the base checkout; writable outputs remain in the paired worktree
 also refreshes the XCFramework or Android JAR used by Flutter application packaging.
 Source timestamps are matched to the base only when cloning an output for the first
 time; later source reverts must still invalidate the isolated Ninja objects. Android
-exports the same Canvas dispatch/probe symbols as macOS and iOS. The Hermes producer
-must include this branch's TypedArray index patch; use an isolated cache so the
-maintained SDK remains unchanged. Simulator and device builds may share a prepared cache
-with the same locked recipe. Cache validation unwinds overlapping patches in reverse
-order in a disposable copy; changed recipes still require a fresh cache.
+exports the same Canvas dispatch/probe symbols as macOS and iOS. V8 uses the maintained
+platform SDKs from the matching base outputs. Prepare those outputs with the Flutter
+fork's V8 build helper before running this overlay; no Hermes producer is used.
 
 With the workspace-local temporary environment above:
 
 ```sh
 node tool/ui_bundle.mjs --package flax_canvas
-python3 /path/to/flutter-prototype-worktree/engine/src/flutter/flax/tools/build_hermes.py \
-  --cache /path/to/flutter-prototype-worktree/.local/canvas-hermes \
-  --target ios-simulator-arm64 --jobs 8
 python3 experiments/canvas_native/build_mobile.py \
   --base "$FLUTTER_ROOT" --prototype /path/to/flutter-prototype-worktree \
-  --output "$PWD/.local/canvas-native" --target ios-simulator-arm64 \
-  --hermes-build /path/to/flutter-prototype-worktree/.local/canvas-hermes/ios-simulator-arm64
+  --output "$PWD/.local/canvas-native" --target ios-simulator-arm64
 export FLUTTER_ENGINE="$PWD/.local/canvas-native/engine-src"
 FLAX_CHECK_TARGET=ios-simulator-arm64 FLAX_CHECK_DEVICE=<simulator-udid> \
   dart --packages=.dart_tool/package_config.json experiments/canvas_native/run_mobile.dart
@@ -117,7 +111,7 @@ FLAX_CHECK_TARGET=android-arm64 FLAX_CHECK_DEVICE=<adb-serial> \
   dart --packages=.dart_tool/package_config.json experiments/canvas_native/run_mobile.dart
 ```
 
-For physical iOS, build `ios-device-arm64` Hermes in a separate cache, then select
+For physical iOS, prepare the maintained V8 jitless device output, then select
 `--target ios-device-arm64 --mode release` in `build_mobile.py`. Set `FLAX_IOS_TEAM` to
 the installed development team's identifier and use `FLAX_CHECK_TARGET=ios-device-arm64`
 with the physical device UDID when running `run_mobile.dart release`. The helper

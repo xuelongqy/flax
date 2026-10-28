@@ -14,7 +14,7 @@ Future<void> main(List<String> arguments) => command(() async {
   if (arguments.isEmpty) {
     throw ArgumentError(
       'Usage: dart run tool/package.dart '
-      '<check|integration|bindings|tests> [package] [--engine=<name>] [--check]',
+      '<check|integration|bindings|tests> [package] [--check]',
     );
   }
   final action = arguments.first;
@@ -72,7 +72,7 @@ Future<void> main(List<String> arguments) => command(() async {
   }
   if (action == 'integration') {
     final options = UiTestOptions(extra, packageName: package.name);
-    await _integration(root, package, options.engine, file: options.file);
+    await _integration(root, package, file: options.file);
     return;
   }
   throw ArgumentError('Unknown package action: $action');
@@ -211,10 +211,10 @@ Future<int> _runTests(
 
 Future<void> _integration(
   String root,
-  FlaxWorkspacePackage package,
-  String engine, {
+  FlaxWorkspacePackage package, {
   String? file,
 }) async {
+  const engine = 'v8';
   if (file != null) collectUiTests(root, packageName: package.name, file: file);
   requireUiAssets(root, engine: engine);
   var testCount = 0;

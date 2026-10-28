@@ -268,7 +268,7 @@ capabilities: [codegen]
       final nested = Directory(
         p.join(container.example.path, 'author_template'),
       );
-      _write(nested, 'pubspec.yaml', _flutterPubspec('hermes'));
+      _write(nested, 'pubspec.yaml', _flutterPubspec('v8'));
       _write(nested, 'test/widget_test.dart', '');
       expect(container.hasFlutterExample, isFalse);
       expect(
@@ -323,17 +323,17 @@ dependencies:
   test(
     'stages a missing platform project without modifying the source example',
     () async {
-      final engine = package('flax_engine_hermes');
+      final engine = package('flax_engine_v8');
       _write(engine.directory, 'README.md', '# Fixture');
       _write(
         engine.directory,
-        'lib/flax_engine_hermes.dart',
-        'class FlaxHermesEngine {}',
+        'lib/flax_engine_v8.dart',
+        'class FlaxV8Engine {}',
       );
       final runnable = package('runnable');
       Directory('${runnable.example.path}/${currentCheckTarget().os}')
           .deleteSync(recursive: true);
-      _write(runnable.example, 'pubspec.yaml', _flutterPubspec('hermes'));
+      _write(runnable.example, 'pubspec.yaml', _flutterPubspec('v8'));
       _write(runnable.example, 'test/widget_test.dart', '');
       final before = File('${runnable.example.path}/pubspec.yaml')
           .readAsStringSync();
@@ -341,7 +341,7 @@ dependencies:
         await runPackageExampleTests(
           temporary.path,
           runnable,
-          engine: 'hermes',
+          engine: 'v8',
           runCommand: record,
         ),
         1,
@@ -360,22 +360,22 @@ dependencies:
     },
   );
 
-  for (final engine in ['hermes', 'v8']) {
-    group('$engine example commands', () {
-      test(
-        'application staging excludes the test plugin and preserves source',
-        () async {
-          final runtime = package('flax_engine_$engine');
-          _write(runtime.directory, 'README.md', '# Test runtime');
-          _write(
-            runtime.directory,
-            'lib/flax_engine_$engine.dart',
-            'class Flax${engine == 'hermes' ? 'Hermes' : 'V8'}Engine {}',
-          );
-          final runnable = package('runnable');
-          final support = package('fixture_support');
-          _write(support.directory, 'README.md', '# Fixture support');
-          final original = '''${_flutterPubspec(engine)}
+  const engine = 'v8';
+  group('$engine example commands', () {
+    test(
+      'application staging excludes the test plugin and preserves source',
+      () async {
+        final runtime = package('flax_engine_$engine');
+        _write(runtime.directory, 'README.md', '# Test runtime');
+        _write(
+          runtime.directory,
+          'lib/flax_engine_$engine.dart',
+          'class FlaxV8Engine {}',
+        );
+        final runnable = package('runnable');
+        final support = package('fixture_support');
+        _write(support.directory, 'README.md', '# Fixture support');
+        final original = '''${_flutterPubspec(engine)}
 dev_dependencies:
   fixture_support: 0.0.0
   flutter_test:
@@ -383,123 +383,119 @@ dev_dependencies:
   integration_test:
     sdk: flutter
 ''';
-          _write(runnable.example, 'pubspec.yaml', original);
-          await withPackageExample(
-            temporary.path,
-            runnable,
-            engine,
-            (staged) async {
-              expect(staged, isNot(runnable.example.path));
-              final manifest = readYamlFile(File('$staged/pubspec.yaml'));
-              expect(manifest['dev_dependencies'], contains('flutter_test'));
-              final support = manifest['dev_dependencies']['fixture_support'];
-              expect(support['path'], '../packages/fixture_support');
-              expect(
-                Directory('$staged/${support['path']}').existsSync(),
-                isTrue,
-              );
-              expect(
-                manifest['dependencies'],
-                isNot(contains('fixture_support')),
-              );
-              expect(
-                manifest['dev_dependencies'],
-                isNot(contains('integration_test')),
-              );
-            },
-            forApplication: true,
-            runCommand: record,
-          );
-          expect(
-            File('${runnable.example.path}/pubspec.yaml').readAsStringSync(),
-            original,
-          );
-          expect(commands.last.$2, ['pub', 'get']);
-        },
-      );
+        _write(runnable.example, 'pubspec.yaml', original);
+        await withPackageExample(
+          temporary.path,
+          runnable,
+          engine,
+          (staged) async {
+            expect(staged, isNot(runnable.example.path));
+            final manifest = readYamlFile(File('$staged/pubspec.yaml'));
+            expect(manifest['dev_dependencies'], contains('flutter_test'));
+            final support = manifest['dev_dependencies']['fixture_support'];
+            expect(support['path'], '../packages/fixture_support');
+            expect(
+              Directory('$staged/${support['path']}').existsSync(),
+              isTrue,
+            );
+            expect(
+              manifest['dependencies'],
+              isNot(contains('fixture_support')),
+            );
+            expect(
+              manifest['dev_dependencies'],
+              isNot(contains('integration_test')),
+            );
+          },
+          forApplication: true,
+          runCommand: record,
+        );
+        expect(
+          File('${runnable.example.path}/pubspec.yaml').readAsStringSync(),
+          original,
+        );
+        expect(commands.last.$2, ['pub', 'get']);
+      },
+    );
 
-      test(
-        'runs sorted widget and current-platform integration tests',
-        () async {
-          final runnable = package('runnable');
-          _write(runnable.example, 'pubspec.yaml', _flutterPubspec(engine));
-          _write(runnable.example, 'test/z_test.dart', '');
-          _write(runnable.example, 'test/a_test.dart', '');
-          _write(runnable.example, 'test/helper.dart', '');
-          _write(runnable.example, 'integration_test/app_test.dart', '');
-          expect(runnable.hasFlutterExample, isTrue);
-          expect(
-            await runPackageExampleTests(
-              temporary.path,
-              runnable,
-              engine: engine,
-              runCommand: record,
-            ),
-            3,
-          );
-          expect(commands.map((call) => call.$1), ['flutter', 'flutter']);
-          expect(commands.map((call) => call.$2), [
-            ['test', '--no-pub', 'test/a_test.dart', 'test/z_test.dart'],
-            [
-              'test',
-              '--no-pub',
-              '-d',
-              currentCheckDevice(),
-              'integration_test/app_test.dart',
-            ],
-          ]);
-          expect(
-            commands.map((call) => call.$3),
-            everyElement(runnable.example.path),
-          );
-        },
+    test('runs sorted widget and current-platform integration tests', () async {
+      final runnable = package('runnable');
+      _write(runnable.example, 'pubspec.yaml', _flutterPubspec(engine));
+      _write(runnable.example, 'test/z_test.dart', '');
+      _write(runnable.example, 'test/a_test.dart', '');
+      _write(runnable.example, 'test/helper.dart', '');
+      _write(runnable.example, 'integration_test/app_test.dart', '');
+      expect(runnable.hasFlutterExample, isTrue);
+      expect(
+        await runPackageExampleTests(
+          temporary.path,
+          runnable,
+          engine: engine,
+          runCommand: record,
+        ),
+        3,
       );
-
-      test(
-        'aggregate runs valid examples alongside template containers',
-        () async {
-          final container = package('a_template');
-          _write(
-            container.example,
-            'author_template/pubspec.yaml',
-            _flutterPubspec(engine),
-          );
-          final runnable = package('b_runnable');
-          _write(runnable.example, 'pubspec.yaml', _flutterPubspec(engine));
-          _write(runnable.example, 'test/widget_test.dart', '');
-          expect(
-            await runAllPackageExamples(
-              temporary.path,
-              engine: engine,
-              runCommand: record,
-            ),
-            1,
-          );
-          expect(commands.single.$3, runnable.example.path);
-        },
+      expect(commands.map((call) => call.$1), ['flutter', 'flutter']);
+      expect(commands.map((call) => call.$2), [
+        ['test', '--no-pub', 'test/a_test.dart', 'test/z_test.dart'],
+        [
+          'test',
+          '--no-pub',
+          '-d',
+          currentCheckDevice(),
+          'integration_test/app_test.dart',
+        ],
+      ]);
+      expect(
+        commands.map((call) => call.$3),
+        everyElement(runnable.example.path),
       );
+    });
 
-      test('aggregate preserves a real command failure', () async {
-        final runnable = package('runnable');
+    test(
+      'aggregate runs valid examples alongside template containers',
+      () async {
+        final container = package('a_template');
+        _write(
+          container.example,
+          'author_template/pubspec.yaml',
+          _flutterPubspec(engine),
+        );
+        final runnable = package('b_runnable');
         _write(runnable.example, 'pubspec.yaml', _flutterPubspec(engine));
         _write(runnable.example, 'test/widget_test.dart', '');
-        _write(runnable.example, 'integration_test/app_test.dart', '');
-        final failure = ProcessException('flutter', ['test'], 'failed', 7);
-        await expectLater(
-          runAllPackageExamples(
+        expect(
+          await runAllPackageExamples(
             temporary.path,
             engine: engine,
-            runCommand: (executable, arguments, {directory}) async {
-              await record(executable, arguments, directory: directory);
-              throw failure;
-            },
+            runCommand: record,
           ),
-          throwsA(same(failure)),
+          1,
         );
-        expect(commands, hasLength(1));
-      });
+        expect(commands.single.$3, runnable.example.path);
+      },
+    );
+
+    test('aggregate preserves a real command failure', () async {
+      final runnable = package('runnable');
+      _write(runnable.example, 'pubspec.yaml', _flutterPubspec(engine));
+      _write(runnable.example, 'test/widget_test.dart', '');
+      _write(runnable.example, 'integration_test/app_test.dart', '');
+      final failure = ProcessException('flutter', ['test'], 'failed', 7);
+      await expectLater(
+        runAllPackageExamples(
+          temporary.path,
+          engine: engine,
+          runCommand: (executable, arguments, {directory}) async {
+            await record(executable, arguments, directory: directory);
+            throw failure;
+          },
+        ),
+        throwsA(same(failure)),
+      );
+      expect(commands, hasLength(1));
     });
-  }
+  });
 }
 
 void _write(Directory directory, String path, String content) {

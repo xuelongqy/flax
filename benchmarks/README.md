@@ -1,13 +1,9 @@
 # Benchmarks
 
-The [engine suite](engines/README.md) compares prepared Hermes and V8 assets through an
-independent Dart AOT consumer. It separates source loading, JS execution, Flax bridge
-workloads, signals, descriptor construction, process RSS, and library size.
+The [engine suite](engines/README.md) preserves historical Hermes/V8 comparisons from
+the retired independent Dart AOT deployment. The reports and engine-free statistical
+tests remain available; `bench:engines` and `bench:engines:smoke` reject execution.
 
-Use `dart run melos run bench:engines:smoke` to verify workloads and reports, or
-`dart run melos run bench:engines` for ten independent process samples per engine, case,
-and size. Neither command downloads or builds engines. See the suite README for
-prerequisites, timing boundaries, and result interpretation.
-
-Flutter layout, painting, and frame timings remain separate end-to-end measurements in
-the standalone application verification. They are not pure JS engine results.
+Use `dart run tool/check_engine_application.dart profile` for current V8 startup, GC,
+frame and memory measurements. Flutter layout and painting remain end-to-end
+measurements rather than pure JS engine results.

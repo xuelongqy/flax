@@ -20,7 +20,7 @@ From the repository root, open this example alone or test this package:
 
 ```sh
 dart run tool/example_run.dart --package=flax_material_ui
-dart run tool/package.dart integration flax_material_ui --engine=v8
+dart run tool/package.dart integration flax_material_ui
 ```
 
 Neither command starts the aggregate gallery or other package examples.

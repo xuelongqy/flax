@@ -22,9 +22,7 @@ Future<void> main(List<String> arguments) => command(() async {
       options.target.name == 'linux-x64';
   if (options.list) {
     stdout.writeln('Historical SDK plan; execution is retired.');
-    stdout.writeln(
-      '${options.target.name}: ${options.engines.join(', ')}; ${options.scope}',
-    );
+    stdout.writeln('${options.target.name}: v8; ${options.scope}');
     if (options.scope == 'all') {
       stdout.writeln(
         commonChecks

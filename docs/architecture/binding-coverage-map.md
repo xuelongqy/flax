@@ -202,8 +202,8 @@ mutation guard. Generated experimental modules passed strict TypeScript after th
 local-name correction. The release app ran after its temporary consumer sources were
 removed; signature, hardened runtime, JIT entitlement, a single V8 library closure and
 unchanged unsigned engine library hashes were verified. These results do not certify
-Hermes/iOS, Android, every SDK declaration, frame latency or the full workspace suite
-for the experimental additions.
+iOS, Android, every SDK declaration, frame latency or the full workspace suite for the
+experimental additions.
 
 | Scope                             | Verified result                                                                                                                                                                                                            | Remaining implementation boundary                                                                                                                                                                                                                                                                                            |
 | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -267,9 +267,9 @@ The preceding binding completion has macOS arm64 V8 debug/release-AOT evidence. 
 native Widget-interface update in ADR 0044 is separately validated with macOS arm64 V8
 debug tests; those earlier AOT and device results do not certify this update. Earlier
 Android/iOS acceptance is not evidence for all extension-7 generic paths. Profile,
-Android and iOS/Hermes need matching rebuilt artifacts and focused revalidation before
-making those claims. The feasibility audit above used existing engine binaries and
-targeted macOS UI scenarios; it did not rebuild an engine or run a whole platform
+Android and iOS V8 jitless need matching rebuilt artifacts and focused revalidation
+before making those claims. The feasibility audit above used existing engine binaries
+and targeted macOS UI scenarios; it did not rebuild an engine or run a whole platform
 matrix. Joint-GC tail latency and general Future overhead remain separate performance
 work; functional binding support does not establish a frame-time guarantee.
 
@@ -535,7 +535,6 @@ dart run melos run bindings:generate
 dart run melos run bindings:check
 dart run melos run check
 dart run melos run check:ui
-dart run melos run check:ui:v8
 git diff --check
 ```
 

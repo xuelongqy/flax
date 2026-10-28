@@ -27,7 +27,7 @@ void main() {
     manifest = {
       'schemaVersion': 3,
       'sdkVersion': '0.3.0',
-      'engine': 'hermes',
+      'engine': 'v8',
       'target': 'macos-arm64',
       'os': 'macos',
       'architecture': 'arm64',
@@ -35,7 +35,8 @@ void main() {
       'libraries': ['lib/libengine.dylib'],
       'files': files,
       'cmakeConfig': 'cmake/FlaxEngineSDKConfig.cmake',
-      'cmakeTarget': 'FlaxEngineSDK::hermes',
+      'cmakeTarget': 'FlaxEngineSDK::v8',
+      'metadata': {'jit': true},
       'dynamicDependencies': {
         'lib/libengine.dylib': ['/usr/lib/libSystem.B.dylib'],
       },
@@ -60,7 +61,7 @@ void main() {
     lock.writeAsStringSync(
       jsonEncode({
         'schemaVersion': 3,
-        'engine': 'hermes',
+        'engine': 'v8',
         'sdkVersion': '0.3.0',
         'targets': {
           'macos-arm64': {
@@ -76,7 +77,7 @@ void main() {
 
   Future<FlaxNativeSdkResult> prepare({String? hash, bool local = true}) =>
       buildFlaxNativeSdk(
-        engine: 'hermes',
+        engine: 'v8',
         target: FlaxNativeTarget('macos-arm64'),
         packageRoot: Directory('${work.path}/engine').uri,
         coreRoot: Directory('${work.path}/core').uri,
@@ -106,7 +107,7 @@ void main() {
     () async {
       await pack();
       final (sdk, sources) = await prepareFlaxEngineSdk(
-        engine: 'hermes',
+        engine: 'v8',
         target: FlaxNativeTarget('macos-arm64'),
         packageRoot: Directory('${work.path}/engine').uri,
         cacheRoot: Directory('${work.path}/cache').uri,
@@ -195,7 +196,7 @@ Future<void> main(List<String> args) async {
       Object? error;
       final preparation =
           prepareFlaxEngineSdk(
-            engine: 'hermes',
+            engine: 'v8',
             target: FlaxNativeTarget('macos-arm64'),
             packageRoot: Directory('${work.path}/engine').uri,
             cacheRoot: cache.uri,

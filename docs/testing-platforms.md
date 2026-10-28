@@ -28,17 +28,18 @@ Only `--list` remains available. Execution through this historical entry is reti
 fails before fetching or building SDKs; the commands below record the former deployment.
 
 ```sh
-dart run tool/check_platform.dart --target=linux-x64 --engine=all --scope=all
+dart run tool/check_platform.dart --target=linux-x64 --scope=all --list
 dart run tool/check_platform.dart --target=windows-arm64 --scope=platform --list
 dart run tool/check_platform.dart --target=android-arm64 --device=<flutter-device-id>
 dart run tool/check_platform.dart --target=ios-device-arm64 --build-only
 ```
 
-The default is the current desktop process target, both engines, and `all`.
-`--engine=hermes|v8|all`, `--scope=all|platform|ui`, `--list`, `--device` and
-`--build-only` are explicit options. A missing tool, incompatible process ABI, missing
-device or failed assertion is an error. `--list` does not build or fetch. Mobile
-execution requires a device ID from `flutter devices --machine`.
+The retained planner defaults to the current desktop process target, V8, and `all`.
+`--scope=all|platform|ui`, `--list`, `--device` and `--build-only` are explicit options.
+Engine selection is removed; passing `--engine` is an error. A missing tool,
+incompatible process ABI, missing device or failed assertion is an error. `--list` does
+not build or fetch. Mobile execution requires a device ID from
+`flutter devices --machine`.
 
 Supported target names are macOS/Linux/Windows with `-x64` or `-arm64`, Android with
 `-arm32`, `-arm64` or `-x64`, and `ios-device-arm64`, `ios-simulator-arm64`,
@@ -88,9 +89,9 @@ normal semantics and leak assertions.
 | Classification       | Owner and behavior                                                                                             | Execution and conditions                                                                                                                      |
 | -------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | Common logic         | Package `test/`, JS tests, `flax_codegen`, generated bindings, protocol and scheduling                         | `melos check`, once on Linux; does not fetch engines                                                                                          |
-| Shared runtime       | `flax_test` runtime/loop contracts and engine `integration_test/`                                              | Both engines; desktop Dart tests or device Flutter tests; identity, reentry, UTF-16, transfer, microtasks and disposal                        |
+| Shared runtime       | `flax_test` runtime/loop contracts and engine `integration_test/`                                              | Historical SDK desktop Dart tests or device Flutter tests; identity, reentry, UTF-16, transfer, microtasks and disposal                       |
 | Shared UI            | Discovered package `test/ui/*_test.dart`; core, Material, Cupertino, Fetch, WebSocket, localStorage and Canvas | Headless desktop with VM service or debug device app; test viewport is 800×600, assets preloaded; actual GC needs VM service                  |
-| Engine-specific      | Engine-native CTest and test-only native entry                                                                 | Hermes block scoping/transfer, V8 lifecycle and actual JIT or iOS jitless; native assertions remain enabled in release builds                 |
+| Engine-specific      | Engine-native CTest and test-only native entry                                                                 | V8 lifecycle and actual JIT or iOS jitless; native assertions remain enabled in release builds                                                |
 | Platform/application | `tool/src/platform_binary.dart`, external app, package examples and aggregate                                  | ELF/Mach-O/PE ABI and dependency checks, Linux glibc baseline, Windows DLL/CRT, APK ABI, Apple framework references/signatures and relocation |
 
 Core headless UI tests run unchanged from a temporary consumer root, avoiding the

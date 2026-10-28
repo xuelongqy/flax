@@ -367,18 +367,6 @@ importers:
         specifier: workspace:*
         version: link:../../flax/js-types
 
-  packages/flax_engine_hermes/example/js:
-    dependencies:
-      '@flax/core':
-        specifier: workspace:*
-        version: link:../../../flax/js-types
-      '@flax/core-runtime':
-        specifier: workspace:*
-        version: link:../../../flax/js
-      '@flax/flutter':
-        specifier: workspace:*
-        version: link:../../../flax_flutter/js
-
   packages/flax_engine_v8/example/js:
     dependencies:
       '@flax/core':

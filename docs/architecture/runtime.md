@@ -29,11 +29,11 @@ implemented; Android debug and release/AOT acceptance covers an arm64 emulator a
 Pixel 4 running Android 13. The iOS producer supports simulator debug and
 physical-device release/AOT applications on iOS 16.3 or later. Device debug/profile and
 simulator profile/release are unsupported. Distribution acceptance remains pending. The
-deprecated iOS `FlaxHermesEngine` factory is a compatibility alias for the common V8
-entry. It preserves source imports, not Hermes-specific globals or HBC. Other engine
-package factories also delegate to the common entry and reject a wrong platform; they no
-longer build native assets. Earlier SDK platform validation remains historical evidence,
-not acceptance of this implementation.
+`flax_engine_hermes` compatibility package is removed. Applications use
+`FlaxEngine.createRuntime()` or the delegating `FlaxV8Engine.createRuntime()` factory;
+engine selection is not a command-line option. These factories do not build native
+assets. Earlier SDK platform validation remains historical evidence, not acceptance of
+this implementation.
 
 The iOS migration rebuilds the current binding-extension-8 engine and runs the
 package-owned UI contracts on the arm64 simulator, including generic Type handles and
@@ -179,8 +179,8 @@ transfer and runtime disposal. See the
 ## Verification
 
 `dart run melos run check:runtime` runs the shared native API and joint GC contracts
-with the matching local Flutter test engine. `check:runtime:v8` and `check:engines`
-exercise the same fixed macOS platform selection, including Context isolation,
+with the matching local Flutter test engine. `check:engines` is a compatibility entry
+for the same fixed macOS platform selection, including Context isolation,
 foreign-reference rejection, reentry and recreation. No command downloads or rebuilds an
 SDK runtime. Ordinary `check` verifies source and package structure.
 

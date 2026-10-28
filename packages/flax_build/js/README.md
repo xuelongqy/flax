@@ -418,11 +418,11 @@ published, so fixing the importer also compiles its pending dependency changes. 
 members assigned after their declaration are captured when the module finishes; ordinary
 configurable assignments participate in commit and rollback.
 
-The maintained engine uses V8 on macOS and Android arm64 and Hermes on iOS arm64.
-Android USB development forwards the default port with `adb reverse tcp:5173 tcp:5173`;
-the iOS simulator can reach the host loopback directly. Keep staged module
-initialization free of business side effects: registry validation does not undo
-arbitrary effects.
+The maintained engine uses V8 JIT on macOS and Android arm64 and V8 jitless on iOS
+arm64. Android USB development forwards the default port with
+`adb reverse tcp:5173 tcp:5173`; the iOS simulator can reach the host loopback directly.
+Keep staged module initialization free of business side effects: registry validation
+does not undo arbitrary effects.
 
 ### Local application archives
 

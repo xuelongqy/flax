@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
 
-import 'engine_selection.dart';
 import 'package_discovery.dart';
 
 void copyTree(Directory source, Directory target) {
@@ -112,10 +111,7 @@ void copyDartPackages(
   }
 }
 
-Future<void> verifyPackage(
-  Directory root, {
-  String engine = defaultFlaxEngine,
-}) async {
+Future<void> verifyPackage(Directory root, {String engine = 'v8'}) async {
   throw UnsupportedError(
     'The Flax runtime requires a Flutter UI isolate. Standalone Dart SDK '
     'consumers are retired; use tool/check_engine_application.dart for '

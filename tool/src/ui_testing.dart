@@ -10,11 +10,10 @@ import 'package_discovery.dart';
 import 'package_verification.dart';
 import 'process.dart';
 import 'example_engine.dart';
-import 'engine_selection.dart';
 import 'ui_suite.dart';
 import 'consumer_workspace.dart';
 
-void requireUiAssets(String root, {String engine = defaultFlaxEngine}) {
+void requireUiAssets(String root, {String engine = 'v8'}) {
   if (currentCheckTarget().mobile) {
     throw UnsupportedError(
       'Use check_platform.dart with --device for mobile UI tests',
@@ -34,7 +33,7 @@ void requireUiAssets(String root, {String engine = defaultFlaxEngine}) {
 
 Future<int> runFrameworkTests(
   String root, {
-  String engine = defaultFlaxEngine,
+  String engine = 'v8',
   String? packageName,
   String? file,
   bool reverseOwners = false,
@@ -58,7 +57,7 @@ Future<int> runFrameworkTests(
 Future<int> runPackageExampleTests(
   String root,
   FlaxWorkspacePackage package, {
-  String engine = defaultFlaxEngine,
+  String engine = 'v8',
   Future<void> Function(String, List<String>, {String? directory}) runCommand =
       run,
 }) async {
@@ -91,7 +90,7 @@ Future<int> runPackageExampleTests(
 
 Future<int> runAllPackageExamples(
   String root, {
-  String engine = defaultFlaxEngine,
+  String engine = 'v8',
   Future<void> Function(String, List<String>, {String? directory}) runCommand =
       run,
 }) async {

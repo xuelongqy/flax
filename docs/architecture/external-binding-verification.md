@@ -28,9 +28,9 @@ A capability claim should cite the narrowest check that proves it:
    complete `flax_codegen` test suite.
 3. `dart run melos run check` proves static workspace integration, generated Dart and
    TypeScript checks, documentation links and outside-package consumption.
-4. `dart run melos run check:ui` and `check:ui:v8` prove the selected Flutter behavior
-   on the maintained macOS arm64 V8 runtime. The iOS simulator application gate verifies
-   Hermes against the same generated bindings.
+4. `dart run melos run check:ui` proves the selected Flutter behavior on the maintained
+   macOS arm64 V8 runtime. The iOS simulator application gate verifies V8 jitless
+   against the same generated bindings.
 5. Package-owned tests prove only the API surface named by those tests. Aggregate tests
    prove cross-package composition, not every member of every bound Dart declaration.
 

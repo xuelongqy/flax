@@ -7,7 +7,7 @@ import 'check_runtime.dart' as runtime;
 import 'src/platform_binary.dart';
 
 // Platform selection is fixed; the shared contract checks session isolation.
-Future<void> main() => runtime.main(['--engine=v8']);
+Future<void> main(List<String> arguments) => runtime.main(arguments);
 
 File builtBridge(Directory consumer, String engine) {
   final outputs = Directory(

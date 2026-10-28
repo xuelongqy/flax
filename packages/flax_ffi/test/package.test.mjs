@@ -193,7 +193,7 @@ test('static CommonJS and node:ffi resolve to the same public API', async () => 
   assert.equal(installed.name, '@flax/ffi');
 });
 
-test('standalone buffer retains its type on Hermes without an installed FFI package', async (t) => {
+test('standalone buffer retains its type without an installed FFI package', async (t) => {
   const project = await mkdtemp(resolve(tmpdir(), 'flax-buffer-only-'));
   t.after(() => rm(project, { recursive: true, force: true }));
   await mkdir(resolve(project, 'node_modules'));
@@ -222,16 +222,6 @@ test('standalone buffer retains its type on Hermes without an installed FFI pack
     plugins: [flaxEsbuildPlugin(null, { nativeAssets: false })],
   });
   const context = {};
-  runInNewContext(
-    `
-    const original = Uint8Array.prototype.subarray;
-    Uint8Array.prototype.subarray = function(...args) {
-      const view = original.apply(this, args);
-      return new Uint8Array(view.buffer, view.byteOffset, view.byteLength);
-    };
-    ${result.outputFiles[0].text}
-  `,
-    context,
-  );
+  runInNewContext(result.outputFiles[0].text, context);
   assert.equal(context.result, true);
 });

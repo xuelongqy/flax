@@ -31,7 +31,7 @@ Future<void> main(List<String> arguments) => command(() async {
   }
   final device = Platform.environment['FLAX_CHECK_DEVICE'];
   if (device == null) throw ArgumentError('FLAX_CHECK_DEVICE is required');
-  final engine = ios ? 'hermes' : 'v8';
+  const engine = 'v8';
   if (!ios) {
     if (Platform.environment['ANDROID_HOME'] == null) {
       throw ArgumentError('ANDROID_HOME is required for the APK audit');
@@ -160,10 +160,8 @@ void runTests() {
     await flaxTestLoadModuleAssets(files);
     final runtime = ${engineFactoryClass(root, engine)}.createRuntime();
     try {
-      final hermes = (runtime.evaluate('typeof HermesInternal') as FlaxJsString).value;
-      expect(hermes, ${ios ? "'object'" : "'undefined'"});
+      expect((runtime.evaluate('40 + 2') as FlaxJsNumber).value, 42);
       print('CANVAS_RUNTIME $engine');
-      ${ios ? "print((runtime.evaluate('JSON.stringify(HermesInternal.getRuntimeProperties())') as FlaxJsString).value);" : ''}
     } finally { runtime.dispose(); }
   });
   group('flax_canvas/test/commands_test.dart', commands.main);

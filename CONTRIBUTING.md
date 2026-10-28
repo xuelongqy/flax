@@ -85,14 +85,14 @@ keep the maintained engine/SDK outputs for subsequent checks.
 | Launch standalone macOS app                            | `dart run melos run standalone:run`                                    |
 | Workspace-wide or cross-layer changes                  | `dart run melos run check`                                             |
 | One package's static checks                            | `dart run tool/package.dart check NAME`                                |
-| One package's real UI checks                           | `dart run tool/package.dart integration NAME --engine=v8`              |
+| One package's real UI checks                           | `dart run tool/package.dart integration NAME`                          |
 | Temporary Dart/npm archive contents                    | `dart run melos run packages:check`                                    |
 | Stage packable archives with receipt (no publish)      | `dart run melos run packages:pack`                                     |
 | Pre-release archive dry-run (no engines/publish)       | `dart run melos run release:check`                                     |
 
-macOS arm64 selects V8 JIT automatically. `check:runtime:v8`, `ui:test:v8`,
-`check:aggregate:v8` and `check:ui:v8` select the same engine explicitly. Focused UI
-checks use `dart run tool/ui_test.dart --package=flax_fetch` and optionally
+All maintained targets use V8, with JIT on macOS/Android arm64 and jitless on iOS arm64.
+Workspace commands need no engine option. Focused UI checks use
+`dart run tool/ui_test.dart --package=flax_fetch` and optionally
 `--file=test/ui/host_test.dart`. The shared and full entries retain the original
 assertions. `check:ui` also runs package examples and aggregate composition.
 
@@ -221,7 +221,7 @@ executables reject the retired deployment model. Historical measurements stay in
 
 Host JavaScript changes require `dart run melos run host:generate` and `host:check`.
 Generated host scripts and dependency notices belong to the corresponding Dart package.
-Run `check:ui` and `check:ui:v8` for host scheduling, binary or network changes.
+Run `check:ui` for host scheduling, binary or network changes.
 
 For storage changes, run `dart run tool/package.dart check flax_local_storage` and its
 package integration command. Those owner checks contain the storage-specific Hive,

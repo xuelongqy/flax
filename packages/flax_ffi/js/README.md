@@ -28,7 +28,7 @@ namespace may retain more code. Buffer-only imports need no native FFI installat
 
 The runnable repository example is `packages/flax_ffi/example/`. Its checked-in native
 source, descriptor, build script and Flutter host work on macOS arm64 V8 and iOS arm64
-Simulator Hermes. Developers write only JS signatures and a native-input descriptor;
+Simulator V8 jitless. Developers write only JS signatures and a native-input descriptor;
 Core owns the internal Dart integration.
 
 ## Open a library

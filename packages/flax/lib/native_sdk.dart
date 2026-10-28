@@ -33,7 +33,7 @@ Future<(Directory, List<File>)> prepareFlaxEngineSdk({
   Uri? sdkArchive,
   String? sdkSha256,
 }) async {
-  if (!const {'hermes', 'v8'}.contains(engine)) {
+  if (engine != 'v8') {
     throw ArgumentError.value(engine, 'engine');
   }
   final package = Directory.fromUri(packageRoot);
@@ -445,8 +445,7 @@ Future<void> _verifySdk(Directory sdk, Map<String, dynamic> pinned) async {
       throw StateError('Missing Windows SDK import library');
     }
   }
-  if (pinned['engine'] == 'v8' &&
-      data['metadata']?['jit'] != (pinned['os'] != 'ios')) {
+  if (data['metadata']?['jit'] != (pinned['os'] != 'ios')) {
     throw StateError(
       'V8 SDK JIT configuration does not match ${pinned['target']}',
     );

@@ -21,5 +21,5 @@ checks:
 
 ```sh
 dart run tool/example_run.dart --package=flax_fetch
-dart run tool/package.dart integration flax_fetch --engine=v8
+dart run tool/package.dart integration flax_fetch
 ```

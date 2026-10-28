@@ -1,7 +1,8 @@
 # ADR 0012: Experimental V8 beside Hermes
 
-Status: Accepted for experimental macOS arm64 implementation. Native packaging and
-monolith linking are superseded by [ADR 0036](0036-shared-engine-sdk.md).
+Status: Superseded by [ADR 0039](0039-engine-owned-cross-heap-gc.md) and its V8-only
+platform policy. The former two-engine design below is historical. Native packaging and
+monolith linking were superseded by [ADR 0036](0036-shared-engine-sdk.md).
 
 ## Context
 

@@ -162,7 +162,7 @@ void main() {
   );
   test('relocation removes original outputs and warm reuse restores the latest build', () {
     final cache = Directory('${root.path}/cache');
-    final first = ConsumerWorkspace('target-hermes-all', cacheRoot: cache.path);
+    final first = ConsumerWorkspace('target-v8-all', cacheRoot: cache.path);
     final build = Directory('${first.directory.path}/app/build')
       ..createSync(recursive: true);
     File('${build.path}/output').writeAsStringSync('debug');
@@ -173,14 +173,11 @@ void main() {
     first.removeBuild(build);
     expect(build.existsSync(), isFalse);
     first.finish();
-    final second = ConsumerWorkspace(
-      'target-hermes-all',
-      cacheRoot: cache.path,
-    );
+    final second = ConsumerWorkspace('target-v8-all', cacheRoot: cache.path);
     expect(second.directory.path, first.directory.path);
     expect(File('${build.path}/output').readAsStringSync(), 'release');
     second.finish();
-    final other = ConsumerWorkspace('target-v8-all', cacheRoot: cache.path);
+    final other = ConsumerWorkspace('target-v8-ui', cacheRoot: cache.path);
     expect(other.directory.path, isNot(first.directory.path));
     other.finish();
   });

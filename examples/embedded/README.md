@@ -79,5 +79,5 @@ local storage verifies shared and isolated areas. These representative collectio
 not claim a demonstration of every generated SDK declaration.
 
 Run `dart run melos run check:aggregate` for the aggregate, or
-`dart run tool/package.dart integration flax_material_ui --engine=v8` for one owner. The
-full `check:ui` command runs owner checks and examples before the aggregate.
+`dart run tool/package.dart integration flax_material_ui` for one owner. The full
+`check:ui` command runs owner checks and examples before the aggregate.

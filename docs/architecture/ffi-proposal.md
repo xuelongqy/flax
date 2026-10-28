@@ -835,8 +835,7 @@ callback API.
 | E: packaging and reset    | Relocated iOS device release/AOT, simulator, Android and macOS; hot restart/partial install             | Precompiled symbols survive linking, no JIT requirement for FFI, old-generation events do not reach new sessions and shutdown hooks leave no runtime pointers. |
 
 Run the shared runtime and package application contracts appropriate to the changed
-areas. Existing command names include `dart run melos run check:runtime`,
-`dart run melos run check:runtime:v8` and
+areas. Existing command names include `dart run melos run check:runtime` and
 `dart run tool/check_engine_application.dart debug|release`; platform selection and
 available engine builds still follow the [runtime guide](runtime.md#verification). New
 FFI fixture/generator commands must be implemented before being documented as working

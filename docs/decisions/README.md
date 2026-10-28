@@ -28,7 +28,8 @@ current language support is in the
   accepted.
 - [0011: Fixed Widget interface configuration](0011-widget-interface-configuration.md)
   is accepted.
-- [0012: Experimental V8 beside Hermes](0012-experimental-v8.md) is accepted.
+- [0012: Experimental V8 beside Hermes](0012-experimental-v8.md) is superseded by
+  [0039](0039-engine-owned-cross-heap-gc.md) and its V8-only platform policy.
 - [0013: Session-scoped host plugins](0013-session-host-plugins.md) is accepted.
 - [0014: Native Route functions and explicit observation](0014-top-level-route-functions.md)
   is accepted.
@@ -77,9 +78,10 @@ current language support is in the
 - [0038: Class static properties](0038-class-static-properties.md) is accepted. It uses
   independent read/write operations in Manifest 14.
 
-- [0039: Engine-owned cross-heap GC](0039-engine-owned-cross-heap-gc.md) is accepted
-  with macOS arm64 acceptance in progress. It supersedes ADR 0036's independent runtime
-  deployment and fixes platform selection to iOS Hermes and other native V8 JIT.
+- [0039: Engine-owned cross-heap GC](0039-engine-owned-cross-heap-gc.md) is accepted. It
+  supersedes ADR 0036's independent runtime deployment. All maintained platforms use V8:
+  jitless on iOS and JIT elsewhere; the Hermes compatibility package and
+  engine-selection options are removed.
 
 - [0040: Vite-driven development hot reload](0040-vite-hot-reload.md) is accepted. It
   preserves compatible JS instances and Flutter State on the maintained engine.

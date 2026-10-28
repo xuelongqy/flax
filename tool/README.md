@@ -106,7 +106,7 @@ fixture preparation stays in package-owned hooks.
 
 `bindings:generate` / `bindings:check` invoke the analyzer generator and its SDK/plugin
 tests. The default-parameter fixture executes generated constructors with Flutter's test
-SDK and does not load Hermes.
+SDK and does not start an independent runtime.
 
 `example:bundle` builds JS packages and bundles the embedded, standalone, and
 package-example ES2019 assets. `ui:bundle` discovers fixture owners and writes each
@@ -135,14 +135,14 @@ entries embed prepared fixture data synchronously, retain real GC and semantics 
 and use the same 800x600 viewport as headless tests. TLS certificates are generated on
 the host and each test still owns its server, connections and temporary directory.
 
-`ui:test` runs UI only, in one test process per engine. `check_ui.dart` runs that entry,
-each selected package's example once, and `check_aggregate.dart` once. It does not build
-engine source or rerun runtime, standalone, engine-coexistence, archive, or release
-gates. `example_run.dart` bundles and launches the aggregate gallery. It follows
-`FLAX_CHECK_TARGET` and `FLAX_CHECK_DEVICE`, selects V8 jitless on iOS and V8 JIT
-elsewhere, and accepts `--release` and `--build-only`. Build-only saves an audited
-product and receipt in `build/examples/<package>/<target>/<mode>/`. Applications are
-staged without `integration_test`; integration checks keep their test plugin. With
+`ui:test` runs UI only, in one V8 test process. `check_ui.dart` runs that entry, each
+selected package's example once, and `check_aggregate.dart` once. It does not build
+engine source or rerun runtime, standalone, archive or release gates. `example_run.dart`
+bundles and launches the aggregate gallery. It follows `FLAX_CHECK_TARGET` and
+`FLAX_CHECK_DEVICE`, selects V8 jitless on iOS and V8 JIT elsewhere, and accepts
+`--release` and `--build-only`. Build-only saves an audited product and receipt in
+`build/examples/<package>/<target>/<mode>/`. Applications are staged without
+`integration_test`; integration checks keep their test plugin. With
 `--package=flax_material_ui`, it instead builds only the selected example and its JS
 dependencies, then launches that package's own Flutter host through the existing engine
 staging helper. It never bundles or starts the other example applications. Package
@@ -202,30 +202,25 @@ preparation, compilation, installation and test durations separately.
 source consumption, real macOS integration and relocated release assertions. See
 [application packaging](../docs/architecture/applications.md).
 
-## Engine selection
+## Maintained engine
 
-`native.dart`, `check_runtime.dart`, `ui_test.dart`, `check_ui.dart`,
-`example_run.dart`, `standalone_run.dart`, and `check_standalone.dart` accept
-`--engine=<name>`. The default is V8 for the maintained macOS arm64 Flutter engine.
-Engine packages are discovered by package name. Example staging selects the runtime at
-the existing factory boundary and uses the matching maintained local engine. It does not
-rebuild the engine. Mobile acceptance remains in the platform-specific gates.
+All workspace commands use V8. macOS and Android arm64 use JIT; iOS arm64 uses jitless.
+`--engine` is removed, and commands reject it instead of silently ignoring a selection.
+`example_run.dart`, `ui_test.dart` and `package.dart integration NAME` retain their
+package/file and application-mode options. Example staging uses the matching maintained
+local engine without rebuilding it. Mobile acceptance stays in platform-specific gates.
 
-Use `native:build:v8`, `check:runtime:v8`, `ui:test:v8`, `check:aggregate:v8`, and
-`check:ui:v8` for the V8 Melos entries. After preparing both assets, `check:engines`
-verifies coexistence. Independent AOT-host measurements now use `bench:engines`; see the
-benchmark section below. The standalone integration scenario reports first/second-pass
-frame build/raster medians and process RSS in its relocated release receipt. These are
-local workload measurements, not platform-wide performance guarantees.
+`check:runtime` verifies the runtime and joint GC. `check:engines` is a compatibility
+entry for the same V8 contract, including Context isolation and callback reentry.
+`ui:test`, `check:aggregate` and `check:ui` run package and composition checks.
 
 ## Engine benchmarks
 
-`benchmark_engines.dart` prepares an independent AOT consumer of existing engine assets,
-runs deterministic JS and Flax workloads in isolated processes, and emits raw JSON plus
-an offline HTML report. Use `bench:engines:smoke` for correctness and `bench:engines`
-for a full comparison. It does not build or download engines. See the
-[methodology and options](../benchmarks/engines/README.md). `check_engines.dart` remains
-a separate engine coexistence correctness check.
+`benchmark_engines.dart` rejects the retired standalone Dart deployment. Use
+`check_engine_application.dart profile` for current measurements. Historical benchmark
+reports and their engine-free analysis tests remain available; see the
+[recorded methodology](../benchmarks/engines/README.md). `check_engines.dart` remains a
+compatibility entry for the maintained V8 runtime checks.
 
 ## Host scripts
 
@@ -245,8 +240,8 @@ bundles use the prepared module inventory and cannot inline a missing implementa
 
 Run `dart test packages/flax_websocket/test` for local transport, TLS and proxy checks
 without an engine. Run the package integration command for its real host path;
-`check:ui` and `check:ui:v8` compose all UI owners plus the aggregate, serially because
-they drive desktop apps.
+`check:ui` composes all UI owners plus the aggregate, serially because they drive
+desktop apps.
 
 ## Platform selection and CI
 

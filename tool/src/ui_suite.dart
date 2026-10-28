@@ -5,7 +5,6 @@ import 'package:path/path.dart' as p;
 
 import 'package_discovery.dart';
 import 'process.dart';
-import 'engine_selection.dart';
 
 /// Single-package and combined runners discover the same package-owned sources.
 typedef UiTestFile = ({String packageName, String path});
@@ -83,8 +82,7 @@ final class UiTestOptions {
     for (var i = 0; i < arguments.length; i++) {
       final parts = arguments[i].split('=');
       final key = parts.first;
-      if (!{'--engine', '--package', '--file'}.contains(key) ||
-          values.containsKey(key)) {
+      if (!{'--package', '--file'}.contains(key) || values.containsKey(key)) {
         throw ArgumentError('Unknown or duplicate option: ${arguments[i]}');
       }
       final value = parts.length > 1
@@ -94,10 +92,6 @@ final class UiTestOptions {
         throw ArgumentError('Missing $key value');
       }
       values[key] = value;
-    }
-    engine = values['--engine'] ?? defaultFlaxEngine;
-    if (!{'hermes', 'v8'}.contains(engine)) {
-      throw ArgumentError('Unknown engine: $engine');
     }
     if (packageName != null && values.containsKey('--package')) {
       throw ArgumentError('Package is already selected by the command');
@@ -109,7 +103,6 @@ final class UiTestOptions {
     }
   }
 
-  late final String engine;
   late final String? packageName;
   late final String? file;
 }

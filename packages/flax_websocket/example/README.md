@@ -19,5 +19,5 @@ connection. From the repository root, open this example alone or run its package
 
 ```sh
 dart run tool/example_run.dart --package=flax_websocket
-dart run tool/package.dart integration flax_websocket --engine=v8
+dart run tool/package.dart integration flax_websocket
 ```

@@ -184,10 +184,8 @@ ArrayBuffer constructor when creating the runtime, allocates engine-owned storag
 copies the bytes in one operation. Replacing the global constructor cannot redirect
 bridge allocation. Freezing or sealing the buffer does not prevent transfer or BYOB; old
 buffer views are genuinely detached. Detached/shared/foreign/released inputs are
-rejected. Hermes uses the pinned source plus a recorded transfer patch using real VM
-detach. V8 uses its native transfer. The patch also corrects detached buffer/view length
-getters and rejects new views of detached buffers. Neither engine exposes a general
-structuredClone API through Flax.
+rejected. V8 uses native transfer and detached-buffer checks. Flax does not expose a
+general structuredClone API.
 
 ## Axios and application builds
 
@@ -196,10 +194,9 @@ Axios `postForm` for FormData: Axios's generic `post` applies a URL-encoded defa
 header in environments without browser globals. Flax preserves explicit headers rather
 than pretending to be a browser or rewriting that Axios behavior.
 
-Bundle browser-portable code as ES2019 IIFE with esbuild. The pinned Hermes parser
-requires `supported: { 'async-generator': false, 'for-await': false }`; the repository
-and portable standalone scripts apply those standard esbuild transformations. This
-changes emitted syntax, not Axios source or the Fetch adapter implementation.
+Build browser-portable code with the shared `@flax/build` adapters. The maintained V8
+engine supports async generators and `for await`; repository fixtures may still lower
+syntax through esbuild. This does not change Axios or its Fetch adapter.
 
 ```typescript
 import type {} from '@flax/fetch/globals';
@@ -226,9 +223,9 @@ and npm tarballs, including its relocated release test application.
 
 The pinned WPT [manifest](../../packages/flax_fetch/js/test/wpt/manifest.json) records
 four complete upstream Headers test files and their checksums. A small synchronous
-harness runs the same unmodified files in Node, Hermes and V8. Additional local
-transport, stream and lifecycle cases are targeted tests, not claims of passing the
-entire WPT suite.
+harness runs the same unmodified files in Node and V8. Additional local transport,
+stream and lifecycle cases are targeted tests, not claims of passing the entire WPT
+suite.
 
 This is a selected host API implementation, not a complete browser or Node environment.
 XHR, SSE, IndexedDB, sessionStorage, Crypto, Worker, FileReader and general

@@ -125,8 +125,8 @@ including the relocated release verification target.
 The [WPT manifest](../../packages/flax_websocket/js/test/wpt/manifest.json) pins four
 complete upstream protocol-rejection tests and their constants, checksums and license.
 Only server template variables are filled in by the test runner. The same subset runs in
-Node, Hermes and V8; Node's built-in WebSocket runs the reference assertions too. This
-is a selected subset, not a claim of complete browser or Node compatibility.
+Node and V8; Node's built-in WebSocket runs the reference assertions too. This is a
+selected subset, not a claim of complete browser or Node compatibility.
 
 See the [transport regressions](../../packages/flax_websocket/test/),
 [session host contract](host.md) and [contribution checks](../../CONTRIBUTING.md#checks)

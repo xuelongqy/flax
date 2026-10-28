@@ -45,17 +45,7 @@ test('Vite preserves standalone Buffer views without installing FFI', async (t) 
     },
   });
   const context = {};
-  runInNewContext(
-    `
-    const original = Uint8Array.prototype.subarray;
-    Uint8Array.prototype.subarray = function(...args) {
-      const view = original.apply(this, args);
-      return new Uint8Array(view.buffer, view.byteOffset, view.byteLength);
-    };
-    ${bundle.output[0].code}
-  `,
-    context,
-  );
+  runInNewContext(bundle.output[0].code, context);
   assert.equal(context.result, true);
 });
 

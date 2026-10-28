@@ -7,7 +7,7 @@ import 'src/prepared_checks.dart';
 
 Future<void> main(List<String> arguments) => command(() async {
   final options = UiTestOptions(arguments);
-  final engine = options.engine;
+  const engine = 'v8';
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
   collectUiTests(root, packageName: options.packageName, file: options.file);
   requireUiAssets(root, engine: engine);

@@ -23,18 +23,18 @@ Set<String> changedPaths(String diff) {
 }
 
 List<Map<String, Object>> platformJobs(Iterable<String> paths) {
-  final affected = <String, Set<String>>{};
-  void add(Iterable<String> targets, Iterable<String> engines) {
+  final affected = <String>{};
+  void add(Iterable<String> targets) {
     for (final target in targets) {
       if (target == 'linux-x64') continue; // Covered by the default full job.
-      affected.putIfAbsent(target, () => {}).addAll(engines);
+      affected.add(target);
     }
   }
 
   for (final path in paths) {
     if (path.endsWith('.md') || path.startsWith('docs/')) continue;
     if (path == '.gitattributes') {
-      add(['windows-x64', 'windows-arm64'], ['hermes', 'v8']);
+      add(['windows-x64', 'windows-arm64']);
       continue;
     }
     if (path.startsWith('packages/flax_native_assets/')) {
@@ -42,28 +42,24 @@ List<Map<String, Object>> platformJobs(Iterable<String> paths) {
         FlaxNativeTarget.names.where(
           (t) => t.startsWith('android-') || t.startsWith('windows-'),
         ),
-        ['hermes', 'v8'],
       );
       continue;
     }
     if (path == 'tool/start_android_emulator.py' ||
         path == 'tool/test/start_android_emulator_test.py') {
-      add(['android-x64'], ['hermes', 'v8']);
+      add(['android-x64']);
       continue;
     }
     if (path == 'tool/check_engines.dart' ||
         path == 'tests/runtime/native/engines_test.cpp') {
-      add(FlaxNativeTarget.names.where((t) => !FlaxNativeTarget(t).mobile), [
-        'hermes',
-        'v8',
-      ]);
+      add(FlaxNativeTarget.names.where((t) => !FlaxNativeTarget(t).mobile));
       continue;
     }
-    final engine = RegExp(
-      r'^packages/flax_engine_(hermes|v8)/(native/|hook/|lib/|pubspec.yaml)',
-    ).firstMatch(path)?.group(1);
-    if (engine != null) {
-      add(FlaxNativeTarget.names, [engine]);
+    final engineChanged = RegExp(
+      r'^packages/flax_engine_v8/(native/|hook/|lib/|pubspec.yaml)',
+    ).hasMatch(path);
+    if (engineChanged) {
+      add(FlaxNativeTarget.names);
       continue;
     }
     if (path.startsWith('packages/flax/native/') ||
@@ -94,29 +90,20 @@ List<Map<String, Object>> platformJobs(Iterable<String> paths) {
         path == 'pubspec.lock' ||
         path == '.github/workflows/runtime.yml' ||
         path == '.github/workflows/platform.yml') {
-      add(FlaxNativeTarget.names, ['hermes', 'v8']);
+      add(FlaxNativeTarget.names);
       continue;
     }
     for (final os in ['linux', 'windows', 'macos', 'android', 'ios']) {
       if (path.contains('/$os/') ||
           path.startsWith('tool/src/${os}_') ||
           path.startsWith('tests/platform/$os')) {
-        add(FlaxNativeTarget.names.where((t) => t.startsWith('$os-')), [
-          'hermes',
-          'v8',
-        ]);
+        add(FlaxNativeTarget.names.where((t) => t.startsWith('$os-')));
       }
     }
   }
   return [
     for (final target in FlaxNativeTarget.names)
-      if (affected.containsKey(target))
-        {
-          'target': target,
-          'engine': affected[target]!.length == 2
-              ? 'all'
-              : affected[target]!.single,
-        },
+      if (affected.contains(target)) {'target': target, 'engine': 'v8'},
   ];
 }
 

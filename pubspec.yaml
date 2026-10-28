@@ -40,7 +40,6 @@ melos:
       - packages/flax_material_ui
       - packages/flax_cupertino_ui
     engines:
-      - packages/flax_engine_hermes
       - packages/flax_engine_v8
     tools:
       - packages/flax_cli
@@ -100,12 +99,6 @@ melos:
     ffi:check:
       description: Regenerate FFI declarations in a temporary directory and compare.
       run: dart run tool/ffi.dart --check
-    native:build:v8:
-      description: Retired standalone bridge build; use the Flutter engine build helper.
-      run: dart run tool/native.dart --engine=v8
-    check:runtime:v8:
-      description: Verify runtime and joint GC in the matching Flutter engine.
-      run: dart run tool/check_runtime.dart --engine=v8
     check:engines:
       description: Verify Context isolation, reference rejection, reentry and joint GC.
       run: dart run tool/check_engines.dart
@@ -120,18 +113,6 @@ melos:
     bench:engines:test:
       description: Test benchmark scheduling and statistics without loading engines.
       run: dart test benchmarks/engines/test
-    check:ui:v8:
-      description: Verify all owner UI modules and aggregate behavior with V8.
-      run: dart run tool/check_ui.dart --engine=v8
-    check:aggregate:v8:
-      description: Verify only cross-module aggregate behavior with V8.
-      run: dart run tool/check_aggregate.dart --engine=v8
-    ui:test:v8:
-      description: Run shared Flutter framework tests with prepared V8 assets.
-      run: dart run tool/ui_test.dart --engine=v8
-    example:run:v8:
-      description: Run the embedded example with prepared V8 assets.
-      run: dart run tool/example_run.dart --engine=v8
     native:build:
       description: Retired standalone bridge build; use the Flutter engine build helper.
       run: dart run tool/native.dart
@@ -177,9 +158,6 @@ melos:
         Verify standalone source consumption and relocated release UI with prepared
         assets.
       run: dart run tool/check_standalone.dart
-    check:standalone:v8:
-      description: Verify standalone relocated release UI with prepared V8 assets.
-      run: dart run tool/check_standalone.dart --engine=v8
     check:aggregate:
       description: Verify cross-module aggregate behavior with the local V8 engine.
       run: dart run tool/check_aggregate.dart

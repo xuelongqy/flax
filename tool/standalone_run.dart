@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'src/process.dart';
-import 'src/engine_selection.dart';
 import 'src/example_engine.dart';
 import 'src/ui_testing.dart';
 
@@ -18,9 +17,12 @@ Future<void> main(List<String> arguments) => command(() async {
     throw ArgumentError('Select one application source.');
   }
   final mode = selected.isEmpty ? null : modes[selected.single];
-  final engine = selectedEngine(
-    arguments.where((argument) => !modes.containsKey(argument)).toList(),
-  );
+  for (final argument in arguments) {
+    if (!modes.containsKey(argument)) {
+      throw ArgumentError('Unknown option: $argument');
+    }
+  }
+  const engine = 'v8';
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
   requireUiAssets(root, engine: engine);
   await run('pnpm', ['--silent', 'run', 'js:build'], directory: root);

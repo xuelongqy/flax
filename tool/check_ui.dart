@@ -8,7 +8,7 @@ import 'src/prepared_checks.dart';
 
 Future<void> main(List<String> arguments) => command(() async {
   final options = UiTestOptions(arguments);
-  final engine = options.engine;
+  const engine = 'v8';
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
   requireUiAssets(root, engine: engine);
 
@@ -35,7 +35,7 @@ Future<void> main(List<String> arguments) => command(() async {
   }
   await run(
     Platform.resolvedExecutable,
-    ['run', 'tool/check_aggregate.dart', '--engine=$engine'],
+    ['run', 'tool/check_aggregate.dart'],
     directory: root,
     environment: {'FLAX_CHECK_PREPARED': '1'},
   );

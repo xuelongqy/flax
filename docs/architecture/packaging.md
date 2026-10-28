@@ -37,7 +37,6 @@ C++/CRT owner. See the [package guide](../../packages/flax_ffi/js/README.md).
 | `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                              |
 | `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                                |
 | `flax_canvas` / `@flax/canvas-runtime`               | Canvas host plugin and CanvasView binding                                                                             |
-| `flax_engine_hermes`                                 | Deprecated iOS compatibility factory for the maintained V8 runtime                                                    |
 | `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                                          |
 | `flax_native_assets`                                 | Build-only owner of shared Android C++ and Windows CRT native assets                                                  |
 | `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                                  |
@@ -546,7 +545,7 @@ The generic package commands are:
 
 ```sh
 dart run tool/package.dart check flax_fetch
-dart run tool/package.dart integration flax_fetch --engine=v8
+dart run tool/package.dart integration flax_fetch
 ```
 
 Discovery follows directory conventions. Adding a conforming package does not require a
@@ -612,15 +611,14 @@ dart run melos run host:check
 dart run melos run check
 dart run melos run check:aggregate
 dart run melos run check:ui
-dart run melos run check:ui:v8
 ```
 
 For daily package work, use `dart run tool/package.dart check NAME` and add
-`integration NAME --engine=hermes|v8` only when real UI behavior is needed.
-`check:aggregate` verifies the minimal cross-module application. `check:ui` runs every
-UI owner's original assertions in one entry, examples and the aggregate once each.
-Ordinary `check` never fetches or builds an engine; UI commands use the locked macOS
-arm64 SDK and run serially because they drive desktop apps.
+`integration NAME` only when real UI behavior is needed. `check:aggregate` verifies the
+minimal cross-module application. `check:ui` runs every UI owner's original assertions
+in one entry, examples and the aggregate once each. Ordinary `check` never fetches or
+builds an engine; UI commands use the locked macOS arm64 SDK and run serially because
+they drive desktop apps.
 
 Types-only SDK packages mark package.json with flax.hostBindings: true. Business esbuild
 builds derive public host module names from the installed npm exports without a host

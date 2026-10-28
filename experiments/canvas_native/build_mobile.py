@@ -25,14 +25,11 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--target', choices=['ios-simulator-arm64', 'ios-device-arm64', 'android-arm64'], required=True)
     parser.add_argument('--mode', choices=['debug', 'release'], default='debug')
-    parser.add_argument('--hermes-build', type=Path)
     args = parser.parse_args()
     ios = args.target.startswith('ios-')
     simulator = args.target == 'ios-simulator-arm64'
     if ios and args.mode != ('debug' if simulator else 'release'):
         parser.error('iOS requires simulator debug or device release/AOT')
-    if args.hermes_build and not ios:
-        parser.error('--hermes-build is only valid for iOS')
     base, prototype = args.base.resolve(), args.prototype.resolve()
     if base == prototype:
         parser.error('--prototype must be a separate engine worktree')
@@ -79,10 +76,6 @@ def main():
                              '--show-sdk-path'], capture_output=True, text=True).stdout.strip()
             assert Path(installed).is_dir(), 'Installed Apple SDK is unavailable'
             text = text[:sdk.start(1)] + installed + text[sdk.end(1):]
-    if args.hermes_build:
-        text, count = re.subn(r'flax_hermes_build = "[^"]+"',
-                             'flax_hermes_build = ' + json.dumps(str(args.hermes_build.resolve())), text)
-        assert count == 1, 'Expected one Hermes producer in args.gn'
     if text != configuration.read_text():
         configuration.write_text(text)
     env = os.environ.copy()
@@ -121,7 +114,7 @@ def main():
     sources += ['engine/src/flutter/' + name for name in [
         'shell/platform/android/android_exports.lst',
         'flax/native/include/flax/canvas.h',
-        'flax/native/hermes_engine.cpp',
+        'flax/native/v8_engine.cpp',
         'lib/ui/window/platform_configuration.h',
         'impeller/compiler/shader_lib/impeller/blending.glsl',
         'impeller/compiler/shader_lib/impeller/dithering.glsl',

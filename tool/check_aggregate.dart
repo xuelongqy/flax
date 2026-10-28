@@ -1,14 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'src/engine_selection.dart';
 import 'src/example_engine.dart';
 import 'src/process.dart';
 import 'src/ui_testing.dart';
 import 'src/platform_selection.dart';
 
 Future<void> main(List<String> arguments) => command(() async {
-  final engine = selectedEngine(arguments);
+  if (arguments.isNotEmpty) {
+    throw ArgumentError('This command does not accept arguments');
+  }
+  const engine = 'v8';
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
   requireUiAssets(root, engine: engine);
 

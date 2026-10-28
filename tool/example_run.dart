@@ -32,19 +32,9 @@ Future<void> main(List<String> arguments) => command(() async {
       Platform.environment['FLAX_CHECK_DEVICE'] == null) {
     throw ArgumentError('Set FLAX_CHECK_DEVICE to the target device ID');
   }
-  final options = UiTestOptions([
-    ...arguments.where((argument) => !flags.contains(argument)),
-    if (target.os == 'ios' &&
-        !arguments.any(
-          (arg) => arg == '--engine' || arg.startsWith('--engine='),
-        ))
-      '--engine=hermes',
-  ]);
-  if (options.engine != (target.os == 'ios' ? 'hermes' : 'v8')) {
-    throw ArgumentError(
-      '${target.name} requires ${target.os == 'ios' ? 'Hermes' : 'V8'}',
-    );
-  }
+  final options = UiTestOptions(
+    arguments.where((argument) => !flags.contains(argument)).toList(),
+  );
   if (options.file != null) {
     throw ArgumentError('--file applies to UI tests, not example applications');
   }
@@ -112,21 +102,9 @@ Future<void> main(List<String> arguments) => command(() async {
   }
 
   if (package == null) {
-    await withExample(
-      root,
-      options.engine,
-      'embedded',
-      launch,
-      forApplication: true,
-    );
+    await withExample(root, 'v8', 'embedded', launch, forApplication: true);
   } else {
-    await withPackageExample(
-      root,
-      package,
-      options.engine,
-      launch,
-      forApplication: true,
-    );
+    await withPackageExample(root, package, 'v8', launch, forApplication: true);
   }
 });
 

@@ -5,7 +5,11 @@ macOS 15 or newer. Both engines run the same JS source and input through the sam
 AOT executable. The suite does not add runtime APIs, change the default engine, or set a
 performance gate.
 
-## Run
+## Historical run procedure
+
+The procedure below records the former deployment and is not runnable with the current
+engine. Use `dart run tool/check_engine_application.dart profile` for current
+measurements; only `bench:engines:test` remains engine-free and executable.
 
 Install the repository's locked Dart and JS dependencies. Prepare engine assets
 explicitly with `dart run melos run native:build` and
@@ -17,8 +21,8 @@ dart run melos run bench:engines:test
 dart run melos run bench:engines:smoke
 dart run melos run bench:engines
 
-# Select a case or engine; use a new output directory on subsequent runs.
-dart run tool/benchmark_engines.dart --engine=v8 --case=array.sort --size=large --output=build/benchmarks/sort-v8
+# Historical case selection; use a new output directory on subsequent runs.
+dart run tool/benchmark_engines.dart --case=array.sort --size=large --output=build/benchmarks/sort-v8
 dart run tool/benchmark_engines.dart --help
 ```
 
@@ -34,7 +38,7 @@ Outputs are `results.json` and a self-contained `report.html` in
 `build/benchmarks/engines/full` or `build/benchmarks/engines/smoke`. Existing reports
 are not overwritten; select a new `--output` directory to repeat a run. Partial results
 are saved after each pair. Failures and incomplete runs return a nonzero exit code.
-`check:engines` separately verifies coexistence and reference safety.
+`check:engines` now delegates to the maintained V8 runtime contract.
 
 ## Cases and work units
 

@@ -14,7 +14,6 @@ dist/
 coverage/
 *.tsbuildinfo
 *.tgz
-packages/flax_engine_hermes/native/generated/
 .flutter-plugins
 .flutter-plugins-dependencies
 

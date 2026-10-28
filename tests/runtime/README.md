@@ -1,7 +1,6 @@
-# Shared runtime tests
+# Historical runtime fixtures
 
-`runtime_contract.dart` and `loop_closures_contract.dart` accept a runtime factory and
-are invoked by each engine package's integration tests. They exercise real native
-assets, not mocks. `engines.dart` is a standalone consumer fixture for same-process
-coexistence and fresh-process AOT-host measurements; run
-`dart run melos run check:engines` after building both engine assets.
+These factory-parameterized Dart fixtures record the former standalone SDK deployment.
+The independent `engines.dart` consumer is retired. Current runtime, loop-closure and
+session-isolation contracts belong to `flax_test` and use the maintained V8 Flutter
+engine. Run `dart run melos run check:runtime`; no engine-selection option is needed.

@@ -80,10 +80,9 @@ Use the [scoped command table](CONTRIBUTING.md#checks) for smaller changes. Reso
 dependency changes without frozen flags only when intentionally updating the manifests
 and lockfiles together.
 
-Runtime changes also require `dart run melos run check:runtime` on macOS arm64. This
-builds the Flax bridge against the locked V8 SDK. Shared runtime changes also require
-`check:runtime:v8`; V8 is the maintained backend. Ordinary `check` and
-`native:configure` never fetch an engine.
+Runtime changes also require `dart run melos run check:runtime` on macOS arm64 using the
+matching maintained V8 Flutter engine. Ordinary `check` and `native:configure` never
+fetch an engine.
 
 ## Editing rules
 

@@ -1,7 +1,7 @@
 #include "flax/runtime.h"
 #ifndef FLAX_ENGINE_HEADER
-#define FLAX_ENGINE_HEADER "flax_hermes.h"
-#define FLAX_ENGINE_API flax_hermes_get_api
+#define FLAX_ENGINE_HEADER "flax_v8.h"
+#define FLAX_ENGINE_API flax_v8_get_api
 #endif
 #include FLAX_ENGINE_HEADER
 #include <cstring>

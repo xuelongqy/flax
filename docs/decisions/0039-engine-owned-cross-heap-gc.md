@@ -35,9 +35,10 @@ The iOS producer consumes verified static V8 SDKs with JIT, TurboFan, WebAssembl
 CppGC cage/compression/young generation disabled. The same collector configuration is
 used on simulator and device. Private SDK dependency namespaces prevent collision with
 Flutter's own Abseil and regular-expression code. Native ABI 2, GC extension 1 and
-binding extension 8 remain unchanged. The deprecated `FlaxHermesEngine` factory is an
-iOS source compatibility alias for the maintained V8 entry, with no Hermes-specific API
-promise.
+binding extension 8 remain unchanged. The `flax_engine_hermes` compatibility package,
+Hermes build paths and `--engine` selection are removed. Applications use the common
+`FlaxEngine.createRuntime()` entry or the delegating V8 factory on every maintained
+target. Workspace commands use V8 without an engine option.
 
 One Dart UI isolate owns one V8 heap and CppHeap. Sessions have separate Contexts,
 microtask queues and module state. Dart retains its ordinary parallel marking, then

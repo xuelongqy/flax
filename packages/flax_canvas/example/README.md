@@ -23,8 +23,8 @@ layout and disposal. Detailed Canvas contracts remain in the package's WPT/UI te
 From the repository root:
 
 ```sh
-dart run tool/example_run.dart --package=flax_canvas --engine=v8
-dart run tool/package.dart integration flax_canvas --engine=v8
+dart run tool/example_run.dart --package=flax_canvas
+dart run tool/package.dart integration flax_canvas
 ```
 
 Use the maintained Flutter engine with the Canvas extension. `FLUTTER_ENGINE` may select
@@ -49,7 +49,7 @@ export FLAX_CHECK_TARGET=ios-simulator-arm64 FLAX_CHECK_DEVICE=<simulator-id>
 dart run tool/example_run.dart --package=flax_canvas
 ```
 
-The target selects V8 on Android/macOS and Hermes on iOS. Android supports Debug and
+The target selects V8 on Android/macOS and V8 jitless on iOS. Android supports Debug and
 Release; the iOS simulator uses Debug. Physical iOS uses Release and also requires
 `FLAX_IOS_TEAM`. The matching target engine and macOS host tools must be built first.
 

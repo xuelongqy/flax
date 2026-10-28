@@ -2,7 +2,6 @@ import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
 import { prepareNativeAssetsForBuild } from './native-assets.mjs';
 import { FlaxCompiler } from './compiler.mjs';
-import { bufferViewCompatibility } from './ffi.mjs';
 import { prepareFfiCodegen } from './ffi-codegen.mjs';
 
 /** Share semantic lowering and type-dependency invalidation with production builds. */
@@ -35,7 +34,7 @@ export function flaxVitePlugin(options = {}) {
       }
       try {
         const buffer = (ffi ? createRequire(ffi) : require).resolve('buffer/');
-        let adaptation = bufferViewCompatibility;
+        let adaptation = '';
         if (ffi) {
           const { installBufferCompatibility } = require(
             resolve(dirname(ffi), 'buffer-compat.js'),

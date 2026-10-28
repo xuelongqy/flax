@@ -52,13 +52,12 @@ void main() {
           'run',
           'tool/check_platform.dart',
           '--target=$target',
-          '--engine=all',
           '--scope=all',
           '--list',
         ]);
         expect(result.exitCode, 0, reason: result.stderr.toString());
         final plan = result.stdout.toString();
-        expect(plan, contains('$target: hermes, v8; all'));
+        expect(plan, contains('$target: v8; all'));
         expect(plan.contains('Host: melos check'), target == 'linux-x64');
         if (target != 'linux-x64') {
           expect(plan, contains('common logic uses melos check separately'));
@@ -132,32 +131,31 @@ void main() {
       unorderedEquals([receipt.path, stderr.path, sharedReceipt.path]),
     );
   });
-  test('native coexistence finds bridges outside SDK cache inputs', () {
+  test('native verification finds the bridge outside SDK cache inputs', () {
     final consumer = Directory.systemTemp.createTempSync('flax bridge lookup ');
     addTearDown(() => consumer.deleteSync(recursive: true));
-    for (final engine in ['hermes', 'v8']) {
-      final outputs = Directory(
-        '${consumer.path}/.dart_tool/hooks_runner/shared/flax_engine_$engine/build',
-      )..createSync(recursive: true);
-      final name = FlaxNativeTarget.host().bridgeName(engine);
-      expect(() => builtBridge(consumer, engine), throwsStateError);
-      final bridge = File('${outputs.path}/123/assets/$name')
-        ..parent.createSync(recursive: true)
-        ..writeAsStringSync('bridge output');
-      // Input notices can contain matching names and exceed Windows' MAX_PATH.
-      final cached =
-          File(
-              '${outputs.path}/sdk-${List.filled(64, 'a').join()}/notices/assets/$name',
-            )
-            ..parent.createSync(recursive: true)
-            ..writeAsStringSync('SDK input');
-      expect(builtBridge(consumer, engine).path, bridge.path);
-      expect(cached.readAsStringSync(), 'SDK input');
-      File('${outputs.path}/456/assets/$name')
-        ..parent.createSync(recursive: true)
-        ..writeAsStringSync('duplicate output');
-      expect(() => builtBridge(consumer, engine), throwsStateError);
-    }
+    const engine = 'v8';
+    final outputs = Directory(
+      '${consumer.path}/.dart_tool/hooks_runner/shared/flax_engine_$engine/build',
+    )..createSync(recursive: true);
+    final name = FlaxNativeTarget.host().bridgeName(engine);
+    expect(() => builtBridge(consumer, engine), throwsStateError);
+    final bridge = File('${outputs.path}/123/assets/$name')
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync('bridge output');
+    // Input notices can contain matching names and exceed Windows' MAX_PATH.
+    final cached =
+        File(
+            '${outputs.path}/sdk-${List.filled(64, 'a').join()}/notices/assets/$name',
+          )
+          ..parent.createSync(recursive: true)
+          ..writeAsStringSync('SDK input');
+    expect(builtBridge(consumer, engine).path, bridge.path);
+    expect(cached.readAsStringSync(), 'SDK input');
+    File('${outputs.path}/456/assets/$name')
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync('duplicate output');
+    expect(() => builtBridge(consumer, engine), throwsStateError);
   });
   test(
     'retired SDK matrix rejects before building or runtime acceptance',
@@ -166,7 +164,6 @@ void main() {
         'run',
         'tool/check_platform.dart',
         '--target=macos-arm64',
-        '--engine=all',
       ]);
       expect(result.exitCode, 1);
       expect(
@@ -285,6 +282,9 @@ void main() {
   });
   test('CLI rejects typos, duplicates and implicit device skips', () {
     for (final args in [
+      ['--engine=v8'],
+      ['--engine=hermes'],
+      ['--engine=all'],
       ['--engine=quickjs'],
       ['--scope=logic'],
       ['--target=android-x64'],
@@ -304,12 +304,12 @@ void main() {
       isTrue,
     );
     expect(
-      PlatformCheckOptions(['--target=ios-device-arm64', '--list']).engines,
-      ['hermes', 'v8'],
+      PlatformCheckOptions(['--target=ios-device-arm64', '--list']).list,
+      isTrue,
     );
     expect(
-      PlatformCheckOptions(['--target', 'linux-x64', '--engine=v8']).engines,
-      ['v8'],
+      PlatformCheckOptions(['--target', 'linux-x64']).target.name,
+      'linux-x64',
     );
   });
   test('renames and deletions retain every affected source path', () {
@@ -349,7 +349,7 @@ void main() {
     expect(
       platformJobs(['packages/flax/lib/native_sdk.dart'])
           .map((j) => j['engine']),
-      everyElement('all'),
+      everyElement('v8'),
     );
     expect(
       platformJobs(['examples/standalone/linux/CMakeLists.txt'])
@@ -377,16 +377,16 @@ void main() {
           'windows-x64',
           'windows-arm64',
         ])
-          {'target': target, 'engine': 'all'},
+          {'target': target, 'engine': 'v8'},
       ]);
     }
     final application = platformJobs([
       'examples/standalone/test/support/scenario.dart',
     ]);
     expect(application, hasLength(11));
-    expect(application.map((job) => job['engine']), everyElement('all'));
+    expect(application.map((job) => job['engine']), everyElement('v8'));
     expect(platformJobs(['tool/start_android_emulator.py']), [
-      {'target': 'android-x64', 'engine': 'all'},
+      {'target': 'android-x64', 'engine': 'v8'},
     ]);
     expect(
       platformJobs(['packages/flax_native_assets/hook/build.dart'])
@@ -411,24 +411,23 @@ void main() {
   test(
     'published locks contain precisely the 12 targets and separate tag/version',
     () {
-      for (final engine in ['hermes', 'v8']) {
-        final lock = jsonDecode(
-          File('packages/flax_engine_$engine/native/sdk.lock.json')
-              .readAsStringSync(),
-        ) as Map;
-        expect(lock['sdkVersion'], '0.3.0');
-        expect(lock['releaseTag'], 'v0.3.0-rc.3');
-        final targets = lock['targets'] as Map;
-        expect(targets.keys.toSet(), FlaxNativeTarget.names.toSet());
-        for (final entry in targets.entries) {
-          expect(
-            entry.value['url'],
-            endsWith(
-              '/v0.3.0-rc.3/flax-engine-sdk-0.3.0-$engine-${entry.key}.tar.gz',
-            ),
-          );
-          expect(entry.value['sha256'], matches(RegExp(r'^[a-f0-9]{64}$')));
-        }
+      const engine = 'v8';
+      final lock = jsonDecode(
+        File('packages/flax_engine_$engine/native/sdk.lock.json')
+            .readAsStringSync(),
+      ) as Map;
+      expect(lock['sdkVersion'], '0.3.0');
+      expect(lock['releaseTag'], 'v0.3.0-rc.3');
+      final targets = lock['targets'] as Map;
+      expect(targets.keys.toSet(), FlaxNativeTarget.names.toSet());
+      for (final entry in targets.entries) {
+        expect(
+          entry.value['url'],
+          endsWith(
+            '/v0.3.0-rc.3/flax-engine-sdk-0.3.0-$engine-${entry.key}.tar.gz',
+          ),
+        );
+        expect(entry.value['sha256'], matches(RegExp(r'^[a-f0-9]{64}$')));
       }
     },
   );

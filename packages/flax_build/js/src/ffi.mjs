@@ -3,15 +3,6 @@ import { dirname, isAbsolute, resolve } from 'node:path';
 import { readFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 
-// Hermes does not preserve Buffer's prototype through TypedArray.subarray.
-// This also applies when only upstream buffer is installed, without FFI.
-export const bufferViewCompatibility = `
-Buffer.prototype.subarray = function (start, end) {
-  const view = Uint8Array.prototype.subarray.call(this, start, end);
-  Object.setPrototypeOf(view, Buffer.prototype);
-  return view;
-};`;
-
 /** Portable FFI and Buffer aliases; no general Node environment is installed. */
 export function flaxFfiPlugin() {
   return {
@@ -50,7 +41,7 @@ export function flaxFfiPlugin() {
         };
       });
       builder.onLoad({ filter: /./, namespace: 'flax-buffer' }, async ({ path }) => {
-        let adaptation = bufferViewCompatibility;
+        let adaptation = '';
         try {
           const compatibility = await import(
             pathToFileURL(resolve(dirname(ffiEntry()), 'buffer-compat.js'))

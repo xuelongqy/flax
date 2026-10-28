@@ -121,14 +121,12 @@ void main() {
       );
     }
   });
-  test('CLI validates engine, duplicates, values and package-bound files', () {
+  test('CLI rejects engine selection and validates package-bound files', () {
     final options = UiTestOptions([
-      '--engine=v8',
       '--package',
       'first',
       '--file=test/ui/a_test.dart',
     ]);
-    expect(options.engine, 'v8');
     expect(options.packageName, 'first');
     expect(options.file, 'test/ui/a_test.dart');
     expect(
@@ -138,11 +136,13 @@ void main() {
       'first',
     );
     for (final args in [
+      ['--engine=v8'],
+      ['--engine=hermes'],
       ['--engine=all'],
       ['--file=test/ui/a_test.dart'],
       ['--package'],
       ['--package='],
-      ['--engine=hermes', '--engine=v8'],
+      ['--package=first', '--package=second'],
       ['--unknown'],
     ]) {
       expect(() => UiTestOptions(args), throwsArgumentError);

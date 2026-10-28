@@ -94,7 +94,8 @@ reference between runtimes. See the complete
 
 FFI declarations are generated from the canonical native headers. Run
 `dart run melos run ffi:generate` from the repository root after header changes; never
-edit generated declarations. The shared wrapper has no Hermes library name or path.
+edit generated declarations. The shared wrapper loads the maintained engine exports
+directly.
 
 Use `FlaxEngine.createRuntime()` with the maintained Flutter 3.47.6 engine. Shared
 runtime and GC tests live in core and `flax_test`; the standalone example executes those

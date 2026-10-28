@@ -147,7 +147,7 @@ JS passed 86/86. Scoped Dart analysis and documentation checks passed.
 
 Profile/AOT measurement stopped before application execution: the existing profile
 patched SDK lacks `FlaxFontCollection`, required by the current Flutter font source. No
-SDK rebuild was performed. These debug/JIT results do not establish AOT, Hermes,
-Android, iOS or cold-engine-after-last-Session-close performance. OS memory compression,
-swapping and concurrent processes make RSS and first-run wall time noisy; declaration
-cache savings apply to additional Sessions using the same live module combination.
+SDK rebuild was performed. These debug/JIT results do not establish AOT, Android, iOS or
+cold-engine-after-last-Session-close performance. OS memory compression, swapping and
+concurrent processes make RSS and first-run wall time noisy; declaration cache savings
+apply to additional Sessions using the same live module combination.

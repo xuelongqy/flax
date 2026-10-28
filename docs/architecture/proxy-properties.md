@@ -139,4 +139,4 @@ Framework tests use native Dart ValueListenableBuilder consumers in the existing
 embedded test project. Tests cover replacement, multiple consumers, explicit
 notifications, balanced listener removal, constructor-time property dispatch,
 synchronous errors, Flutter property identity and validity, Dart-retained Widget
-overrides, and actual JS/Dart collection on Hermes and V8.
+overrides, and actual JS/Dart collection on V8.

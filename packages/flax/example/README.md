@@ -17,5 +17,5 @@ From the repository root, open this example alone or run its package checks:
 
 ```sh
 dart run tool/example_run.dart --package=flax
-dart run tool/package.dart integration flax --engine=v8
+dart run tool/package.dart integration flax
 ```

@@ -123,9 +123,9 @@ Future<void> _captureWindowsCrash(
       // Catch first-chance AVs before Dart handles the exception itself.
       final captureCommands =
           '.exr -1; .ecxr; r; kv; lm f; '
-          'lm v m hermesvm; lm v m flax_hermes; !teb; '
+          'lm v m v8; lm v m flax_v8; !teb; '
           // Include referenced heap objects and the memory layout: stack-only
-          // dumps cannot explain an invalid Hermes object/property-map pointer.
+          // dumps cannot explain invalid heap pointers.
           'u @\$ip-20 @\$ip+40; .dump /miF /u $prefix-$attempt.dmp; gn';
       script.writeAsStringSync(
         // Child processes also stop at their initial loader breakpoint. CI has

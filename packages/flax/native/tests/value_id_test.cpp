@@ -9,16 +9,16 @@ void require(bool result) {
 }
 int main() {
   try {
-    flax::ValueIdAllocator<1> hermes;
-    flax::ValueIdAllocator<2> v8;
-    require(hermes.next() == (uint64_t{1} << 56) + 1);
-    require(v8.next() == (uint64_t{2} << 56) + 1);
+    flax::ValueIdAllocator<1> firstNamespace;
+    flax::ValueIdAllocator<2> secondNamespace;
+    require(firstNamespace.next() == (uint64_t{1} << 56) + 1);
+    require(secondNamespace.next() == (uint64_t{2} << 56) + 1);
     constexpr size_t threads = 8, count = 10000;
     std::vector<uint64_t> ids(threads * count);
     std::vector<std::thread> workers;
     for (size_t t = 0; t < threads; ++t) {
       workers.emplace_back([&, t] {
-        for (size_t i = 0; i < count; ++i) ids[t * count + i] = hermes.next();
+        for (size_t i = 0; i < count; ++i) ids[t * count + i] = firstNamespace.next();
       });
     }
     for (auto &worker : workers) worker.join();

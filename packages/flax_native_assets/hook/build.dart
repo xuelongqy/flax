@@ -17,19 +17,12 @@ Future<void> main(List<String> arguments) async {
       code.targetOS.name,
       code.targetArchitecture.name,
     );
-    Uri? entry;
-    var engine = 'hermes';
-    for (final candidate in ['hermes', 'v8']) {
-      entry = Isolate.resolvePackageUriSync(
-        Uri.parse('package:flax_engine_$candidate/flax_engine_$candidate.dart'),
-      );
-      if (entry != null) {
-        engine = candidate;
-        break;
-      }
-    }
+    const engine = 'v8';
+    final entry = Isolate.resolvePackageUriSync(
+      Uri.parse('package:flax_engine_v8/flax_engine_v8.dart'),
+    );
     if (entry == null) {
-      throw StateError('Shared native assets require an engine package');
+      throw StateError('Shared native assets require flax_engine_v8');
     }
     final (sdk, sources) = await prepareFlaxEngineSdk(
       engine: engine,

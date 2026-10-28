@@ -73,10 +73,10 @@ references; applications must dispose their own nodes/controllers. See
 
 ## Tests and limits
 
-Node tests validate transport wrappers; real Hermes/V8 Flutter tests validate
-construction, editing, focus traversal, formatting, replacement, exceptions and local
-signals updates. The macOS integration test operates real TextFields and focus nodes.
-Composition sequences are injected through Flutter's input channel, not a certified
-system-IME end-to-end test. Bridge getter calls and Flax host rebuilds are counted
-separately from Flutter editing internals. Cupertino input, validation, autofill and
-general two-way binding remain out of scope.
+Node tests validate transport wrappers; real V8 Flutter tests validate construction,
+editing, focus traversal, formatting, replacement, exceptions and local signals updates.
+The macOS integration test operates real TextFields and focus nodes. Composition
+sequences are injected through Flutter's input channel, not a certified system-IME
+end-to-end test. Bridge getter calls and Flax host rebuilds are counted separately from
+Flutter editing internals. Cupertino input, validation, autofill and general two-way
+binding remain out of scope.

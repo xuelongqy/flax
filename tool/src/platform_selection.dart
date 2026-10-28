@@ -18,7 +18,6 @@ final class PlatformCheckOptions {
       final key = split < 0 ? argument : argument.substring(0, split);
       if (!const {
             '--target',
-            '--engine',
             '--scope',
             '--device',
             '--package',
@@ -39,11 +38,6 @@ final class PlatformCheckOptions {
     target = FlaxNativeTarget(
       values['--target'] ?? FlaxNativeTarget.host().name,
     );
-    final engine = values['--engine'] ?? 'all';
-    if (!const {'hermes', 'v8', 'all'}.contains(engine)) {
-      throw ArgumentError('Unknown engine: $engine');
-    }
-    engines = engine == 'all' ? ['hermes', 'v8'] : [engine];
     scope = values['--scope'] ?? 'all';
     if (!const {'all', 'platform', 'ui'}.contains(scope)) {
       throw ArgumentError('Unknown scope: $scope');
@@ -72,7 +66,6 @@ final class PlatformCheckOptions {
   }
 
   late final FlaxNativeTarget target;
-  late final List<String> engines;
   late final String scope;
   late final String? device;
   late final String? packageName;

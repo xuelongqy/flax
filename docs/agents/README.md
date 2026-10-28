@@ -62,7 +62,6 @@ bootstrap, notices, and native code that the package owns.
 | Package              | Focus                                                                           |
 | -------------------- | ------------------------------------------------------------------------------- |
 | `flax`               | Engine-independent runtime, sessions/views, shared native ABI/JSI, `@flax/core` |
-| `flax_engine_hermes` | Hermes adapter, SDK consumption, bridge build, engine-specific tests            |
 | `flax_engine_v8`     | V8 adapter, SDK consumption, bridge build, engine-specific tests                |
 | `flax_material_ui`   | Generated Material bindings and package-local verification                      |
 | `flax_cupertino_ui`  | Cupertino bindings (scaffold today; keep ownership even while empty)            |
@@ -103,7 +102,7 @@ short, non-owned analysis that reports back to the parent chat.
 | Project lead            | Intake, priority, task routing, integration ownership, and acceptance |
 | Architecture            | Architecture, decisions, and cross-package contracts                  |
 | Core                    | `flax`, `@flax/core`, sessions, UI bridge, and shared native/JSI      |
-| Engines                 | `flax_engine_hermes` and `flax_engine_v8`                             |
+| Engines                 | `flax_engine_v8`                                                      |
 | Code generation         | `flax_codegen`                                                        |
 | UI bindings             | `flax_material_ui` and `flax_cupertino_ui`                            |
 | Host plugins            | `flax_fetch`, `flax_websocket`, and `flax_local_storage`              |

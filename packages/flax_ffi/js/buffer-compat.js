@@ -65,11 +65,6 @@ export function installBufferCompatibility(Buffer) {
     }
     return countOnly ? length : result + String.fromCharCode(...units);
   }
-  Buffer.prototype.subarray = function (start, end) {
-    const result = Uint8Array.prototype.subarray.call(this, start, end);
-    Object.setPrototypeOf(result, Buffer.prototype);
-    return result;
-  };
   Buffer.from = function (value, encodingOrOffset, length) {
     return from(
       value,

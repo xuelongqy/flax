@@ -7,12 +7,13 @@ native asset hook described below is retired.
 
 Experimental native runtime with target-specific schema 3 SDK locks. The adapter uses
 Microsoft's JSI ABI implementation and consumer-side JSI wrapper with the existing
-Hermes JSI headers. Flax's C ABI and shared bridge are unchanged. Hermes remains the
-default for repository commands and examples.
+upstream JSI headers. Flax's C ABI and shared bridge are unchanged. Repository commands
+and examples use the maintained V8 runtime without an engine-selection flag.
 
-Build with `dart run melos run native:build:v8` from the repository root. The hook and
-command use [sdk.lock.json](sdk.lock.json) to fetch a versioned V8 SDK. The adapted
-v8-jsi and JSI sources are packaged here; [v8.json](v8.json) and
+The retired standalone build consumed [sdk.lock.json](sdk.lock.json) to fetch a
+versioned V8 SDK. Current builds use the Flutter fork's helper described in the
+[workspace setup](../../../README.md#quick-start); `native:build` rejects the former
+deployment model. The adapted v8-jsi and JSI sources remain here; [v8.json](v8.json) and
 [the adapter patch](v8-jsi.patch) record their upstream provenance. V8 source, GN,
 depot_tools, Rust, and host tool pinning live in the SDK repository.
 

@@ -10,13 +10,9 @@ import 'process.dart';
 import 'ui_testing.dart';
 import 'example_engine.dart';
 import 'package_discovery.dart';
-import 'engine_selection.dart';
 import 'platform_binary.dart';
 
-Future<void> verifyStandalone(
-  String root, {
-  String engine = defaultFlaxEngine,
-}) async {
+Future<void> verifyStandalone(String root, {String engine = 'v8'}) async {
   final workspacePackages = {
     for (final package in discoverPackages(root)) package.name: package,
   };
@@ -301,9 +297,8 @@ console.log('External JS exports and singleton Flax dependencies verified.');
       '$flutter/$product',
       'release',
     );
-    final output = Directory(
-      '$root/build/standalone${engine == defaultFlaxEngine ? '' : '-$engine'}',
-    )..createSync(recursive: true);
+    final output = Directory('$root/build/standalone')
+      ..createSync(recursive: true);
     final production = Directory('${output.path}/flax_standalone.app');
     if (production.existsSync()) production.deleteSync(recursive: true);
     await execute('ditto', ['$flutter/$product', production.path], flutter);

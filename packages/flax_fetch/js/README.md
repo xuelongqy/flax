@@ -14,8 +14,8 @@ uses the standard global names. See the
 [host contract](../../../docs/architecture/host.md).
 
 The original Axios Fetch adapter is a test dependency, never part of the installed host
-bundle. Tests bundle its async generators using esbuild's standard lowering because the
-pinned Hermes parser does not accept that syntax.
+bundle. Tests use the repository's portable esbuild fixture configuration; the
+maintained V8 runtime supports async generators natively.
 
 This package owns only the HTTP API and Body adaptation. Import Blob, File, FormData and
 Streams types from `@flax/core/host`; the session base environment owns their

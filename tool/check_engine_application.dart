@@ -87,7 +87,6 @@ Future<void> main(List<String> arguments) => command(() async {
     final missing = owners
         .where((name) => !Directory('${packages.path}/$name').existsSync())
         .toList();
-    if (ios) missing.add('flax_engine_hermes');
     copyDartPackages(Directory(root), packages, missing);
     for (final owner in owners) {
       for (final directory in ['test', '.dart_tool/flax/ui']) {
@@ -103,10 +102,6 @@ Future<void> main(List<String> arguments) => command(() async {
         .writeAsStringSync(jsonEncode(fixtures));
     final entry = File('$example/integration_test/engine_gc_test.dart');
     var source = entry.readAsStringSync();
-    if (ios) {
-      source =
-          "import 'package:flax_engine_hermes/flax_engine_hermes.dart' as legacy;\n$source";
-    }
     final additional = tests
         .where(
           (test) =>
@@ -131,18 +126,7 @@ Future<void> main(List<String> arguments) => command(() async {
       registration,
       '${[for (var i = 0; i < additional.length; i++) "  group('${additional[i].packageName}/${additional[i].path}', extra$i.main);"].join('\n')}\n'
       '${mobile ? mobileViewportSetup : ''}\n${ios ? iosSemanticsSetup : ''}\n'
-      '${ios ? """
-  register('legacy iOS factory selects the maintained V8 engine', () {
-    // ignore: deprecated_member_use
-    final runtime = legacy.FlaxHermesEngine.createRuntime();
-    try {
-      expect((runtime.evaluate('typeof HermesInternal') as FlaxJsString).value, 'undefined');
-      binding.reportData!['legacyFactoryVerified'] = true;
-    } finally {
-      runtime.dispose();
-    }
-  });
-""" : ''}\n$registration',
+      '$registration',
     );
     entry.writeAsStringSync(source);
     final manifest = File('$example/pubspec.yaml');

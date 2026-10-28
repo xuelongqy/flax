@@ -38,8 +38,8 @@ emitting the fixture.
 ## Adapter and limits
 
 1. [wpt_test.dart](../ui/wpt_test.dart) executes worker bodies in real Flax sessions: V8
-   on macOS/Android and Hermes on iOS. The [small harness](harness.dart) implements only
-   the assertions and scheduling used by this selection. No worker assertions are
+   on macOS/Android and V8 jitless on iOS. The [small harness](harness.dart) implements
+   only the assertions and scheduling used by this selection. No worker assertions are
    removed or relaxed. DOMPoint is a dictionary-only fixture for the roundRect input
    tests. The two CSS scripts use a Canvas font property adapter: validity and round
    trips are checked after Canvas size resolution and line-height removal. They do not
@@ -87,7 +87,7 @@ export FLUTTER_ENGINE="$PWD/.local/canvas-native/engine-src"
 pnpm --filter @flax/canvas-runtime run build
 node tool/ui_bundle.mjs --package flax_canvas
 FLAX_CHECK_PREPARED=1 dart --packages=.dart_tool/package_config.json \
-  tool/ui_test.dart --package=flax_canvas --engine=v8
+  tool/ui_test.dart --package=flax_canvas
 ```
 
 The [application experiment](../../../../experiments/canvas_native/README.md) packages
@@ -95,7 +95,7 @@ the same worker/reference suite, ordinary Canvas integration tests, decoder test
 benchmark into actual Debug/Metal and Release/AOT/Metal applications using its debug-app
 and release modes. Their gates also verify the packaged and loaded framework. Its mobile
 runner reuses these sources in installed Android/V8 Debug or Release applications and
-iOS/Hermes simulator Debug or device Release applications, auditing their packaged
+iOS/V8 jitless simulator Debug or device Release applications, auditing their packaged
 engine and SDK libraries.
 
 ## Current reference-grid results

@@ -95,7 +95,7 @@ void main() {
             global.setProperty('snapshotResizable', resizable);
             final beforeResize = runtime.readBytes(resizable);
             expect(beforeResize, [0, 0]);
-            // Hermes ignores the options; resize is exercised only when supported.
+            // Exercise resize only when the runtime exposes resizable buffers.
             if ((runtime.evaluate(
               'snapshotResizable.resizable === true',
             ) as FlaxJsBoolean).value) {

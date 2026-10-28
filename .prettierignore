@@ -14,7 +14,6 @@ packages/*/bindings/manifest.json
 **/tsconfig.flax.json
 pubspec.lock
 pnpm-lock.yaml
-packages/flax_engine_hermes/native/generated/
 examples/*/assets/*.js
 examples/*/assets/*.js.map
 examples/*/assets/flax_modules/
