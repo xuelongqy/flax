@@ -24,8 +24,12 @@ void configurePlatformProject(String app, FlaxNativeTarget target) {
     )) {
       gradle.writeAsStringSync(
         '\nandroid.defaultConfig.ndk.abiFilters.add("${target.androidAbi}")\n'
-        // Preserve the verified SDK closure; Flutter itself may be stripped.
-        'android.packaging.jniLibs.keepDebugSymbols.addAll(listOf("**/libv8.so", "**/libc++_shared.so"))\n',
+        // Release uses AGP's NDK stripping; original symbols remain in the SDK.
+        'androidComponents.onVariants { variant ->\n'
+        '    if (variant.buildType != "release") {\n'
+        '        variant.packaging.jniLibs.keepDebugSymbols.addAll(listOf("**/libv8.so", "**/libc++_shared.so"))\n'
+        '    }\n'
+        '}\n',
         mode: FileMode.append,
       );
     }
@@ -187,13 +191,12 @@ Future<String> runDesktopApplication(
   var activated = target.os != 'macos';
   Future<ProcessResult>? activation;
   final journal = UiResultJournal();
-  final testLog = RegExp(r'^(?:flutter: )?\d+:\d+ \+');
   final output = process.stdout
       .transform(utf8.decoder)
       .transform(const LineSplitter())
       .map((line) {
-        journal.collect(line);
-        if (!activated && testLog.hasMatch(line)) {
+        final testLog = journal.collect(line);
+        if (!activated && testLog) {
           activated = true;
           // Cocoa has registered the window by the first test log. Foreground
           // activation keeps frame-driven integration tests advancing.

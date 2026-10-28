@@ -492,11 +492,22 @@ hosts and the former two-engine deployment are retired.
 
 Android packages the verified V8 and shared libc++ libraries in the existing Flutter
 engine JAR. The application gate builds an arm64-only APK, audits every native library's
-dependency closure and 16 KB alignment, preserves SDK bytes, verifies the APK signature,
-and installs the relocated APK after removing its source. Release adds Dart's AOT
-`libapp.so`. The same audited APKs pass on the API 37 emulator with 16 KB pages and a
-Pixel 4 running Android 13 with 4 KB pages. Performance and distribution validation
-remain separate from this correctness acceptance.
+dependency closure and 16 KB alignment, verifies the APK signature, and installs the
+relocated APK after removing its source. Release adds Dart's AOT `libapp.so`. Example
+and acceptance Release builds use Android's NDK symbol stripping; the audit requires
+byte-for-byte equality with `llvm-strip --strip-unneeded` applied to a disposable copy
+of each verified SDK library. Debug and Profile preserve SDK bytes. Original SDK files
+and checksum locks remain unchanged and retain the full symbols for native crash
+analysis. The same audited APKs pass on the API 37 emulator with 16 KB pages and a Pixel
+4 running Android 13 with 4 KB pages. Performance and distribution validation remain
+separate from this correctness acceptance.
+
+The maintained Apple Release build strips debug and local symbols from the delivered
+engine framework and its bundled V8 libraries, preserving global exports. Debug and
+Profile retain their original symbols. SDK inputs, unstripped linker outputs and dSYMs
+remain outside application bundles for native symbolication. Application audits compare
+the expected stripped SDK copies after normalizing code signatures; ordinary application
+signing still runs after framework preparation.
 
 The FFI package owns its API guide, engine-free archive tests, real-engine acceptance
 suite and runnable example under `packages/flax_ffi/`. The example's Flutter host has no

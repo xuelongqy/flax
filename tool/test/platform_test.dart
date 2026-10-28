@@ -14,31 +14,43 @@ import '../src/platform_selection.dart';
 import '../src/platform_binary.dart';
 
 void main() {
-  test('Android example configuration keeps one ABI and the verified SDK libraries', () {
-    final temporary = Directory.systemTemp.createTempSync(
-      'flax-android-config-',
-    );
-    addTearDown(() => temporary.deleteSync(recursive: true));
-    for (final name in ['android-arm64', 'android-x64']) {
-      final target = FlaxNativeTarget(name);
-      final app = Directory('${temporary.path}/$name');
-      final gradle = File('${app.path}/android/app/build.gradle.kts')
-        ..parent.createSync(recursive: true)
-        ..writeAsStringSync(
-          'ndkVersion = flutter.ndkVersion\nminSdk = flutter.minSdkVersion\n',
+  test(
+    'Android examples keep one ABI and strip SDK symbols only in release',
+    () {
+      final temporary = Directory.systemTemp.createTempSync(
+        'flax-android-config-',
+      );
+      addTearDown(() => temporary.deleteSync(recursive: true));
+      for (final name in ['android-arm64', 'android-x64']) {
+        final target = FlaxNativeTarget(name);
+        final app = Directory('${temporary.path}/$name');
+        final gradle = File('${app.path}/android/app/build.gradle.kts')
+          ..parent.createSync(recursive: true)
+          ..writeAsStringSync(
+            'ndkVersion = flutter.ndkVersion\nminSdk = flutter.minSdkVersion\n',
+          );
+        final properties = File('${app.path}/android/gradle.properties')
+          ..writeAsStringSync('');
+        configurePlatformProject(app.path, target);
+        final configured = gradle.readAsStringSync();
+        expect(configured, contains('abiFilters.add("${target.androidAbi}")'));
+        expect(configured, contains('minSdk = 24'));
+        expect(configured, contains('"**/libv8.so", "**/libc++_shared.so"'));
+        expect(configured, contains('if (variant.buildType != "release")'));
+        expect(
+          configured,
+          contains('variant.packaging.jniLibs.keepDebugSymbols'),
         );
-      final properties = File('${app.path}/android/gradle.properties')
-        ..writeAsStringSync('');
-      configurePlatformProject(app.path, target);
-      final configured = gradle.readAsStringSync();
-      expect(configured, contains('abiFilters.add("${target.androidAbi}")'));
-      expect(configured, contains('minSdk = 24'));
-      expect(configured, contains('"**/libv8.so", "**/libc++_shared.so"'));
-      configurePlatformProject(app.path, target);
-      expect(gradle.readAsStringSync(), configured);
-      expect(properties.readAsStringSync(), '\ndisable-abi-filtering=true\n');
-    }
-  });
+        expect(
+          configured,
+          isNot(contains('android.packaging.jniLibs.keepDebugSymbols')),
+        );
+        configurePlatformProject(app.path, target);
+        expect(gradle.readAsStringSync(), configured);
+        expect(properties.readAsStringSync(), '\ndisable-abi-filtering=true\n');
+      }
+    },
+  );
 
   test(
     'full target plans retain every UI owner and one Linux common gate',

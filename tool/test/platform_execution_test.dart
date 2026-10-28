@@ -135,6 +135,7 @@ void main(List<String> args) {
         'flutter: 01:25 +150: timed out [E]',
         '01:26 +150 -267: (tearDownAll)',
         'flutter: 01:26 +150 ~2 -1: (tearDownAll)',
+        'flutter: 01:26 \u001b[32m+150\u001b[0m\u001b[31m -1\u001b[0m: failure \u001b[1m\u001b[31m[E]\u001b[0m',
       ]) {
         await script("echo '$failure'\necho fresh-marker\nexit 0");
         await expectLater(

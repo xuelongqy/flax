@@ -28,6 +28,15 @@ void main() {
       final plain = UiResultJournal();
       plain.collect('flutter: 00:00 +0: plain async failure [E]');
       expect(plain.hasFailure, isTrue);
+      final colored = UiResultJournal();
+      expect(
+        colored.collect('flutter: 00:00 \u001b[32m+0\u001b[0m: first test'),
+        isTrue,
+      );
+      colored.collect(
+        'flutter: 00:01 \u001b[32m+0\u001b[31m -1\u001b[0m: first test \u001b[31m[E]\u001b[0m',
+      );
+      expect(colored.hasFailure, isTrue);
       final journal = UiResultJournal();
       journal.collect(
         'flutter: 00:00 +1: first/test/ui/a_test.dart plain assertion',

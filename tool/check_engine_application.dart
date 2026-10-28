@@ -224,19 +224,6 @@ Future<void> main(List<String> arguments) => command(() async {
       return;
     }
     if (android) {
-      final properties = File('$example/android/gradle.properties');
-      properties.writeAsStringSync(
-        '\ndisable-abi-filtering=true\n',
-        mode: FileMode.append,
-      );
-      final gradle = File('$example/android/app/build.gradle.kts');
-      gradle.writeAsStringSync('''
-${gradle.readAsStringSync()}
-// Preserve the immutable SDK libraries for the application hash audit.
-android.packaging.jniLibs.keepDebugSymbols.addAll(
-    listOf("**/libv8.so", "**/libc++_shared.so"))
-android.defaultConfig.ndk.abiFilters.add("arm64-v8a")
-''');
       await run('flutter', [
         'build',
         'apk',

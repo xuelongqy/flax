@@ -41,6 +41,7 @@ final class UiResultJournal {
   bool hasFailure = false;
 
   bool collect(String line) {
+    line = line.replaceAll(RegExp(r'\x1B\[[0-9;]*m'), '');
     final match = RegExp(r'\b\d+:\d+ \+(\d+)(?: ~(\d+))?(?: -(\d+))?: (.+)')
         .firstMatch(line);
     if (match == null) return false;

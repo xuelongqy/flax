@@ -77,7 +77,7 @@ Future<void> main(List<String> arguments) => command(() async {
       );
       gradle.writeAsStringSync('''$settings
 android.defaultConfig.ndk.abiFilters.add("arm64-v8a")
-android.packaging.jniLibs.keepDebugSymbols.addAll(listOf("**/libflutter.so", "**/libv8.so", "**/libc++_shared.so"))
+android.packaging.jniLibs.keepDebugSymbols.add("**/libflutter.so")
 ''');
       for (final file in Directory(
         '$app/android/app/src',

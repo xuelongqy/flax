@@ -32,10 +32,26 @@ Future<Map<String, Object?>> verifyEngineApplication(
   final expected = (lock['targets'][target.name]['libraries'] as Map)
       .cast<String, String>();
   if (target.name == 'android-arm64') {
-    return _verifyAndroidEngineApplication(product, mode, expected);
+    return _verifyAndroidEngineApplication(product, mode, source, expected);
   }
   final framework =
       '$product/Contents/Frameworks/FlutterMacOS.framework/Versions/A';
+  var libraryRoot =
+      '$source/out/flax_mac_${mode}_arm64/FlutterMacOS.framework/Versions/A/Libraries';
+  if (mode == 'release') {
+    final args = File('$source/out/flax_mac_release_arm64/args.gn')
+        .readAsStringSync();
+    final sdkPath = RegExp(r'flax_v8_sdk\s*=\s*"([^"]+)"')
+        .firstMatch(args)
+        ?.group(1);
+    if (sdkPath == null) throw StateError('V8 SDK is missing from engine args');
+    await _inspect('python3', [
+      '$source/flutter/flax/tools/sdk_info.py',
+      sdkPath,
+      target.name,
+    ]);
+    libraryRoot = '$sdkPath/lib';
+  }
   final files = Directory(product)
       .listSync(recursive: true, followLinks: false)
       .whereType<File>()
@@ -55,9 +71,7 @@ Future<Map<String, Object?>> verifyEngineApplication(
           matches.single.path != '$framework/Libraries/$name') {
         throw StateError('Expected one engine-owned $name in the application');
       }
-      final original = File(
-        '$source/out/flax_mac_${mode}_arm64/FlutterMacOS.framework/Versions/A/Libraries/$name',
-      );
+      final original = File('$libraryRoot/$name');
       if ((await sha256.bind(original.openRead()).first).toString() !=
           entry.value) {
         throw StateError('Engine SDK input changed: $name');
@@ -65,7 +79,10 @@ Future<Map<String, Object?>> verifyEngineApplication(
       final normalized = <String>[];
       for (final (index, file) in [original, matches.single].indexed) {
         final copy = file.copySync('${temporary.path}/$index-$name');
-        await normalizeAppleCodeSignature(copy);
+        await normalizeAppleCodeSignature(
+          copy,
+          stripSymbols: mode == 'release',
+        );
         normalized.add((await sha256.bind(copy.openRead()).first).toString());
       }
       if (normalized[0] != normalized[1]) {
@@ -207,7 +224,7 @@ Future<Map<String, Object?>> _verifyIosEngineApplication(
     final hashes = <String>[];
     for (final (index, input) in [original, binary].indexed) {
       final copy = input.copySync('${temporary.path}/$index-Flutter');
-      await normalizeAppleCodeSignature(copy);
+      await normalizeAppleCodeSignature(copy, stripSymbols: !simulator);
       hashes.add((await sha256.bind(copy.openRead()).first).toString());
     }
     if (hashes[0] != hashes[1]) {
@@ -314,9 +331,35 @@ Future<Map<String, Object?>> _verifyIosEngineApplication(
 Future<Map<String, Object?>> _verifyAndroidEngineApplication(
   String product,
   String mode,
+  String source,
   Map<String, String> expected,
 ) async {
   final target = FlaxNativeTarget('android-arm64');
+  final sdk =
+      Platform.environment['ANDROID_HOME'] ??
+      Platform.environment['ANDROID_SDK_ROOT'];
+  if (sdk == null) throw StateError('Set ANDROID_HOME for the APK audit');
+  String? sdkPath;
+  String? strip;
+  if (mode == 'release') {
+    final args = File('$source/out/flax_android_release_arm64/args.gn')
+        .readAsStringSync();
+    sdkPath = RegExp(r'flax_v8_sdk\s*=\s*"([^"]+)"').firstMatch(args)?.group(1);
+    if (sdkPath == null) throw StateError('V8 SDK is missing from engine args');
+    await _inspect('python3', [
+      '$source/flutter/flax/tools/sdk_info.py',
+      sdkPath,
+      target.name,
+    ]);
+    final manifest =
+        jsonDecode(File('$sdkPath/manifest.json').readAsStringSync()) as Map;
+    final ndk = manifest['metadata']['hostTools']['androidNdk'] as String;
+    final host = Directory('$sdk/ndk/$ndk/toolchains/llvm/prebuilt')
+        .listSync()
+        .whereType<Directory>()
+        .single;
+    strip = '${host.path}/bin/llvm-strip${Platform.isWindows ? '.exe' : ''}';
+  }
   final entries = (await _inspect('unzip', ['-Z1', product])).split('\n');
   final names = [
     'libflutter.so',
@@ -352,7 +395,22 @@ Future<Map<String, Object?>> _verifyAndroidEngineApplication(
       final name = p.basename(entry.key);
       final file = File('${extracted.path}/lib/arm64-v8a/$name');
       final hash = (await sha256.bind(file.openRead()).first).toString();
-      if (hash != entry.value) {
+      var expectedHash = entry.value;
+      if (strip != null) {
+        final original = File('$sdkPath/${entry.key}');
+        if ((await sha256.bind(original.openRead()).first).toString() !=
+            entry.value) {
+          throw StateError('Engine SDK input changed: $name');
+        }
+        // Compare exact NDK output, never accept arbitrary library changes.
+        final reference = original.copySync(
+          '${extracted.path}/reference-$name',
+        );
+        await _inspect(strip, ['--strip-unneeded', reference.path]);
+        expectedHash = (await sha256.bind(reference.openRead()).first)
+            .toString();
+      }
+      if (hash != expectedHash) {
         throw StateError('APK SDK library changed: $name');
       }
       hashes[name] = hash;
@@ -386,10 +444,6 @@ Future<Map<String, Object?>> _verifyAndroidEngineApplication(
         }
       }
     }
-    final sdk =
-        Platform.environment['ANDROID_HOME'] ??
-        Platform.environment['ANDROID_SDK_ROOT'];
-    if (sdk == null) throw StateError('Set ANDROID_HOME for the APK audit');
     final tools = '$sdk/build-tools/36.1.0';
     await _inspect('$tools/zipalign', ['-c', '-P', '16', '4', product]);
     await _inspect('$tools/apksigner', ['verify', '--verbose', product]);
@@ -399,6 +453,11 @@ Future<Map<String, Object?>> _verifyAndroidEngineApplication(
       'singleV8Closure': true,
       'nativeLibraries': paths.map(p.basename).toList()..sort(),
       'sdkLibrarySha256': hashes,
+      'sdkInputLibrarySha256': {
+        for (final entry in expected.entries)
+          p.basename(entry.key): entry.value,
+      },
+      'sdkLibrariesStripped': strip != null,
       'pageSize16k': true,
       'dartAot': mode != 'debug',
       'apkSha256': (await sha256.bind(File(product).openRead()).first)
@@ -409,8 +468,17 @@ Future<Map<String, Object?>> _verifyAndroidEngineApplication(
   }
 }
 
-/// Canonicalize signatures on disposable copies before comparing engine bytes.
-Future<void> normalizeAppleCodeSignature(File binary) async {
+/// Canonicalize packaging metadata on disposable copies before comparing bytes.
+Future<void> normalizeAppleCodeSignature(
+  File binary, {
+  bool stripSymbols = false,
+}) async {
+  if (stripSymbols) {
+    // A second pass stabilizes the symbol strings repacked by Xcode's copy phase.
+    for (var pass = 0; pass < 2; pass++) {
+      await _inspect('xcrun', ['strip', '-S', '-x', binary.path]);
+    }
+  }
   final strip = await Process.run('codesign', [
     '--remove-signature',
     binary.path,

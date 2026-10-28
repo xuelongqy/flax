@@ -189,7 +189,10 @@ void main() {
     try {
       for (final (index, path) in [original, framework].indexed) {
         final copy = File(path).copySync('${audit.path}/$index');
-        await normalizeAppleCodeSignature(copy);
+        await normalizeAppleCodeSignature(
+          copy,
+          stripSymbols: buildMode == 'release',
+        );
         hashes.add((await sha256.bind(copy.openRead()).first).toString());
       }
     } finally {
