@@ -149,6 +149,7 @@ const _snapshotFieldKeys = {
 };
 
 const _moduleKeys = {
+  'sandboxRules',
   'extensions',
   'publicLibraries',
   'topLevel',
@@ -2631,6 +2632,31 @@ Map<String, Object?> _encodeModule(FlaxCodegenModuleModel module) => {
     'extensions': [
       for (final extension in module.extensions) _encodeExtension(extension),
     ],
+  if (module.sandboxRules.isNotEmpty)
+    'sandboxRules': [
+      for (final rule in module.sandboxRules)
+        {
+          'owner': rule.owner,
+          'kind': rule.kind,
+          'name': rule.name,
+          'operation': rule.operation,
+          'policy': rule.policy,
+          'handler': rule.handler,
+          'deny': rule.deny,
+          'replace': rule.replace,
+          'receiver': rule.receiver,
+          'returnsVoid': rule.returnsVoid,
+          'parameters': [
+            for (final parameter in rule.parameters)
+              {
+                'name': parameter.name,
+                'required': parameter.required,
+                'positional': parameter.positional,
+                'omitWhenAbsent': parameter.omitWhenAbsent,
+              },
+          ],
+        },
+    ],
   'library': module.library,
   'jsPackage': module.jsPackage,
   if (module.publicLibraries.isNotEmpty)
@@ -2785,6 +2811,99 @@ FlaxCodegenModuleModel? _decodeModule(
     _moduleKeys,
   );
   if (object == null) return null;
+  final sandboxRules = value is Map && value.containsKey('sandboxRules')
+      ? object.requiredList('sandboxRules', (value, pointer) {
+          final rule = FlaxCodegenManifestObject.read(
+            diagnostics,
+            value,
+            pointer,
+            {
+              'owner',
+              'kind',
+              'name',
+              'operation',
+              'policy',
+              'handler',
+              'deny',
+              'replace',
+              'receiver',
+              'returnsVoid',
+              'parameters',
+            },
+          );
+          if (rule == null) return null;
+          final owner = rule.requiredString('owner');
+          final kind = rule.requiredString('kind');
+          final name = rule.requiredString('name');
+          final operation = rule.requiredString('operation');
+          final policy = rule.nullableString('policy');
+          final handler = rule.nullableString('handler');
+          final deny = rule.requiredBool('deny');
+          final replace = rule.requiredBool('replace');
+          final receiver = rule.requiredBool('receiver');
+          final returnsVoid = rule.requiredBool('returnsVoid');
+          final parameters = rule.requiredList('parameters', (value, pointer) {
+            final argument = FlaxCodegenManifestObject.read(
+              diagnostics,
+              value,
+              pointer,
+              {'name', 'required', 'positional', 'omitWhenAbsent'},
+            );
+            if (argument == null) return null;
+            final name = argument.requiredString('name');
+            final required = argument.requiredBool('required');
+            final positional = argument.requiredBool('positional');
+            final omit = argument.requiredBool('omitWhenAbsent');
+            if (name == null ||
+                required == null ||
+                positional == null ||
+                omit == null) {
+              return null;
+            }
+            return FlaxCodegenParameterModel(
+              name: name,
+              type: const FlaxCodegenTypeRef('any', nullable: true),
+              required: required,
+              positional: positional,
+              defaultCode: 'null',
+              omitWhenAbsent: omit,
+            );
+          });
+          if (owner == null ||
+              kind == null ||
+              name == null ||
+              operation == null ||
+              deny == null ||
+              replace == null ||
+              receiver == null ||
+              returnsVoid == null ||
+              parameters == null) {
+            return null;
+          }
+          if (!{'construct', 'call', 'get', 'set'}.contains(kind) ||
+              (!deny && (policy == null || handler == null)) ||
+              (deny && (!replace || policy != null || handler != null))) {
+            diagnostics.add(
+              pointer: pointer,
+              message: 'Invalid sandbox guard.',
+            );
+            return null;
+          }
+          return FlaxCodegenSandboxRule(
+            owner: owner,
+            kind: kind,
+            name: name,
+            operation: operation,
+            policy: policy,
+            handler: handler,
+            deny: deny,
+            replace: replace,
+            receiver: receiver,
+            returnsVoid: returnsVoid,
+            parameters: parameters,
+          );
+        })
+      : <FlaxCodegenSandboxRule>[];
   final library = object.requiredString('library');
   final topLevel = value is Map && value.containsKey('topLevel')
       ? object.requiredValue(
@@ -2877,6 +2996,7 @@ FlaxCodegenModuleModel? _decodeModule(
     typeLibraries: typeLibraries,
     functions: functions,
     extensions: extensions ?? const [],
+    sandboxRules: sandboxRules ?? const [],
     snapshots: snapshots,
     typedefs: typedefs,
     topLevel: topLevel,

@@ -356,6 +356,7 @@ extension FlaxCodegenAnnotationSelection on FlaxCodegenBindingParser {
         automaticFunctions: automaticFunctions.toList()..sort(),
         automaticExtensions: seed.automaticExtensions,
         overrides: seed.overrides,
+        sandbox: seed.sandbox,
       );
     }
   }

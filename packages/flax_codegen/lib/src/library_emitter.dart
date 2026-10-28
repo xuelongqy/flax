@@ -194,6 +194,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
             .where((type) => selected.contains(type.name))
             .toList(),
         typeLibraries: source.typeLibraries,
+        sandboxRules: source.sandboxRules,
         extensions: source.extensions
             .where((extension) => selected.contains(extension.name))
             .toList(),

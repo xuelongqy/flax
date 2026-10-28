@@ -81,3 +81,22 @@ overrides:
             registrar,
             devicePixelRatio,
           ]
+
+# Session resource isolation. Unmarked APIs keep ordinary binding behavior.
+sandbox:
+  'version': 1
+  'classes':
+    'RendererBinding':
+      'staticGetters':
+        'instance': 'deny'
+      'getters':
+        'window': 'deny'
+        'platformDispatcher': 'deny'
+        'defaultBinaryMessenger': 'deny'
+        'channelBuffers': 'deny'
+    'RenderingFlutterBinding':
+      'getters':
+        'window': 'deny'
+        'platformDispatcher': 'deny'
+        'defaultBinaryMessenger': 'deny'
+        'channelBuffers': 'deny'

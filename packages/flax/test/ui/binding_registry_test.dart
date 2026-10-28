@@ -142,6 +142,7 @@ void main() {
       'native-navigation-objects',
       'native-widget-proxies',
       'proxy-super-constructors',
+      'sandbox-guards',
       'shared-buffers',
       'shared-static-readers',
       'shared-uint8',

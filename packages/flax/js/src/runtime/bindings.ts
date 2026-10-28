@@ -56,6 +56,7 @@ const nativeStringify = JSON.stringify;
 export const bindingVersion = 24;
 
 const supportedBindingCapabilities = new Set([
+  'sandbox-guards',
   'call-layouts',
   'native-functions',
   'native-async-objects',
@@ -3757,10 +3758,23 @@ Object.assign(globalThis, {
     callFailure(value: object): object | null {
       return callFailures.has(value) ? value : null;
     },
-    dartError(id: number, message: string, stack: string | null): Error {
+    dartError(
+      id: number,
+      message: string,
+      stack: string | null,
+      code: string | null,
+      operation: string | null,
+    ): Error {
       const cached = cachedObject('flax:dart-error', id);
       if (cached) return cached as Error;
       const value = new NativeError(message);
+      if (code !== null) {
+        Object.defineProperties(value, {
+          name: { value: 'FlaxSandboxError', configurable: true },
+          code: { value: code, enumerable: true },
+          operation: { value: operation, enumerable: true },
+        });
+      }
       if (stack !== null) {
         try {
           value.stack = stack;

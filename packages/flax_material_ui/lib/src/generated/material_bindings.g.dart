@@ -25,6 +25,7 @@ import 'package:flutter/widgets.dart' as api13;
 import 'package:flutter/painting.dart' as api14;
 import 'package:flutter/animation.dart' as api15;
 import 'package:flutter/physics.dart' as api16;
+import 'package:flax/sandbox_ui.dart' as api17;
 import "package:flax_cupertino_ui/src/generated/cupertino_bindings.g.dart"
     as _flaxBindings0;
 
@@ -26424,6 +26425,7 @@ const materialBindings = FlaxBindingModule(
     "native-navigation-objects",
     "native-widget-proxies",
     "proxy-super-constructors",
+    "sandbox-guards",
     "shared-static-readers",
   ],
   stateVariants: [],
@@ -28668,6 +28670,10 @@ const materialBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  sandboxGuards: {
+    ("flax.material/material#type:CircleAvatar", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox0, replace: false),
+  },
 );
 final materialPlugin = FlaxBindingPlugin(
   id: "binding:flax.material/material",
@@ -234266,3 +234272,21 @@ const _flaxBinding9450 = <FlaxParameter>[
 const _flaxBinding9451 = <FlaxParameter>[
   FlaxParameter.required("localizations", _flaxBinding125),
 ];
+Object? _flaxSandbox0(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api17.checkSandboxCircleImages,
+    <Object?>[
+      context,
+      context.requirePolicy<api17.FlaxAssetBundlePolicy>(),
+      values["backgroundImage"],
+      values["foregroundImage"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "backgroundImage", "foregroundImage"],
+  );
+  return null;
+}

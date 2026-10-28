@@ -2,6 +2,14 @@ part of 'native_runtime.dart';
 
 /// Internal session adapter. There is no application-facing Dart FFI package.
 extension FlaxNativeFfi on FlaxNativeJsRuntime {
+  void disableNativeFfi() {
+    _ensureAlive();
+    if (_ffiPort != null) {
+      throw StateError('Cannot sandbox a runtime with active FFI');
+    }
+    _ffi = null;
+  }
+
   void installNativeFfi(void Function() wake) {
     _ensureAlive();
     if (_ffiPort != null) return;

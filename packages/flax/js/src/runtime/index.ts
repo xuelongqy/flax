@@ -143,3 +143,15 @@ export function computed<T>(read: () => T): ReadonlySignal<T> {
 export function batch<T>(action: () => T): T {
   return coreBatch(action);
 }
+
+/** The real absolute persistent data directory for the current application. */
+export async function getHomePath(): Promise<string> {
+  // Business code may request its home before importing any generated binding.
+  await import('./bindings.js');
+  const host = globalThis as typeof globalThis & {
+    __flaxHomePath?: () => Promise<string>;
+  };
+  if (!host.__flaxHomePath)
+    throw new Error('A Flax session is required to get its home path');
+  return host.__flaxHomePath();
+}

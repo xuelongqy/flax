@@ -326,7 +326,15 @@ extension _MemberCalls on _Session {
         final result = callFontAwareFunction(
           definition.id,
           input.values,
-          () => definition.invoke(input.values),
+          () => _sandboxCall(
+            type,
+            'call',
+            '',
+            null,
+            input.values,
+            () => definition.invoke(input.values),
+            resultType: definition.result,
+          ),
         );
         return holdHostResult(memberResult(result, definition.result));
       } finally {
@@ -357,7 +365,15 @@ extension _MemberCalls on _Session {
       final input = _callArguments(args, method.parameters, 0);
       try {
         input.escape(this);
-        final result = method.invoke(input.values);
+        final result = _sandboxCall(
+          type,
+          'call',
+          name,
+          null,
+          input.values,
+          () => method.invoke(input.values),
+          resultType: method.result,
+        );
         return holdHostResult(memberResult(result, method.result));
       } finally {
         checkpoint();
@@ -564,6 +580,8 @@ extension _MemberCalls on _Session {
           _context(FlaxJsNumber(id.toDouble()), type).requireActive(),
           method,
           args,
+          owner: type,
+          name: name,
         ),
         requireLayout: requireLayout,
       );
@@ -578,7 +596,18 @@ extension _MemberCalls on _Session {
         return FlaxJsBoolean(reference.context?.mounted ?? false);
       }
       return holdHostResult(
-        memberResult(getter.read(reference.requireActive()), getter.type),
+        memberResult(
+          _sandboxCall(
+            type,
+            'get',
+            name,
+            reference.requireActive(),
+            const {},
+            () => getter.read(reference.requireActive()),
+            resultType: getter.type,
+          ),
+          getter.type,
+        ),
       );
     };
   }
@@ -611,7 +640,18 @@ extension _MemberCalls on _Session {
         final actual = _typeBinding(ref!.type) as FlaxStateBinding;
         final selected = actual.getters.singleWhere((g) => g.name == name);
         return holdHostResult(
-          memberResult(selected.read(state), selected.type),
+          memberResult(
+            _sandboxCall(
+              type,
+              'get',
+              name,
+              state,
+              const {},
+              () => selected.read(state),
+              resultType: selected.type,
+            ),
+            selected.type,
+          ),
         );
       };
     }
@@ -629,15 +669,23 @@ extension _MemberCalls on _Session {
       final actual = _typeBinding(ref.type) as FlaxStateBinding;
       final selected =
           _genericMethod(type, name) ?? actual.instanceMethods[name]!;
-      return _invokeInstanceMethod(state, selected, args);
+      return _invokeInstanceMethod(
+        state,
+        selected,
+        args,
+        owner: type,
+        name: name,
+      );
     }, requireLayout: requireLayout);
   }
 
   FlaxJsValue _invokeInstanceMethod(
     Object receiver,
     FlaxInstanceMethod method,
-    List<FlaxJsValue> args,
-  ) {
+    List<FlaxJsValue> args, {
+    required String owner,
+    required String name,
+  }) {
     if (method.requiresTypeArguments) FlaxDartTypes.requireArguments();
     if (method.startsRoute) requireOpen();
     _CallArguments? input;
@@ -650,7 +698,18 @@ extension _MemberCalls on _Session {
       );
       input.escape(this);
       return holdHostResult(
-        memberResult(method.invoke(receiver, input.values), method.result),
+        memberResult(
+          _sandboxCall(
+            owner,
+            'call',
+            name,
+            receiver,
+            input.values,
+            () => method.invoke(receiver, input!.values),
+            resultType: method.result,
+          ),
+          method.result,
+        ),
       );
     } finally {
       input?.release();

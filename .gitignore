@@ -33,6 +33,7 @@ coverage/
 # Workspace lockfiles are intentionally tracked.
 
 # Prepared example bundles
+packages/flax_sandbox_example/assets/
 examples/*/assets/flax/
 examples/*/assets/flax_esm/
 examples/*/assets/*.flax

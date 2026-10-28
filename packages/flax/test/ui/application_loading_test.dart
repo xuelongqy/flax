@@ -195,7 +195,11 @@ void main() {
         ]);
         expect(results.first.path, results.last.path);
         final installed = results.first;
-        final receipt = File('${installed.path}/.flax-install.json');
+        final receipt = File('${installed.path}.install.json');
+        expect(
+          await File('${installed.path}/.flax-install.json').exists(),
+          isFalse,
+        );
         final before = await receipt.lastModified();
         final loaded = await FlaxApplication.package(
           file,
@@ -229,6 +233,18 @@ void main() {
         expect(explicit.assetBundle, same(loaded.assetBundle));
         await explicit.close();
 
+        final resource = File('${installed.path}/assets/data.json');
+        final original = await resource.readAsBytes();
+        final damaged = List<int>.filled(original.length, 0);
+        await resource.writeAsBytes(damaged);
+        await expectLater(
+          FlaxPackage.install(file, installationDirectory: destination),
+          throwsFormatException,
+        );
+        expect(await resource.readAsBytes(), damaged);
+        expect(await receipt.lastModified(), before);
+        await resource.writeAsBytes(original);
+
         // Same id/version, different bytes: both installations remain usable.
         await file.writeAsBytes(_zip(_files(message: 'second')));
         final next = await FlaxPackage.install(
@@ -246,6 +262,225 @@ void main() {
           throwsA(anything),
         );
         expect(await receipt.lastModified(), before);
+      } finally {
+        await root.delete(recursive: true);
+      }
+    },
+  );
+
+  test(
+    'flat bundles retain their hash and require explicit replacement',
+    () async {
+      final root = await Directory.systemTemp.createTemp('flax-flat-bundle-');
+      try {
+        final sandbox = await FlaxSandbox.create(
+          appId: 'flat.application',
+          appsDirectory: Directory('${root.path}/apps'),
+        );
+        final bytes = _zip(_files());
+        final archive = await File('${root.path}/app.flax').writeAsBytes(bytes);
+        final application = await FlaxApplication.package(
+          archive,
+          sandbox: sandbox,
+        );
+        final installed =
+            (application.assetBundle as FlaxDirectoryAssetBundle).directory;
+        expect(installed.path, '${sandbox.applicationPath}/bundle');
+        final receipt = File('${sandbox.applicationPath}/.flax-install.json');
+        expect(
+          await File('${installed.path}/.flax-install.json').exists(),
+          isFalse,
+        );
+        final receiptTime = await receipt.lastModified();
+        expect(
+          jsonDecode(await receipt.readAsString())['digest'],
+          sha256.convert(bytes).toString(),
+        );
+        final note = await File('${sandbox.homePath}/note.txt')
+            .writeAsString('saved data');
+        final session = FlaxSession.application(
+          application: application,
+          createRuntime: createTestRuntime,
+          bindings: registry,
+        );
+        final replacement = _zip(_files(message: 'updated'));
+        try {
+          await session.ready;
+          await archive.writeAsBytes(replacement);
+          await expectLater(
+            FlaxPackage.install(archive, sandbox: sandbox),
+            throwsStateError,
+          );
+          expect(await receipt.lastModified(), receiptTime);
+          expect(
+            await File('${installed.path}/assets/data.json').readAsString(),
+            '{"message":"first"}',
+          );
+          expect(await note.readAsString(), 'saved data');
+        } finally {
+          await session.close();
+        }
+
+        // The host owns stopping sessions and explicitly clearing the old code.
+        await installed.delete(recursive: true);
+        final updated = await FlaxApplication.package(
+          archive,
+          sandbox: sandbox,
+        );
+        expect(
+          (updated.assetBundle as FlaxDirectoryAssetBundle).directory.path,
+          installed.path,
+        );
+        expect(
+          jsonDecode(await receipt.readAsString())['digest'],
+          sha256.convert(replacement).toString(),
+        );
+        expect(
+          await updated.assetBundle.loadString('assets/data.json'),
+          '{"message":"updated"}',
+        );
+        expect(await note.readAsString(), 'saved data');
+      } finally {
+        await root.delete(recursive: true);
+      }
+    },
+  );
+
+  test(
+    'only complete validated package directories count as installed',
+    () async {
+      final root = await Directory.systemTemp.createTemp('flax-install-state-');
+      try {
+        final sandbox = await FlaxSandbox.create(
+          appId: 'install.state',
+          appsDirectory: Directory('${root.path}/apps'),
+        );
+        final incomplete = await Directory(
+          '${sandbox.applicationPath}/.install-interrupted',
+        ).create(recursive: true);
+        await File('${incomplete.path}/app.js').writeAsString('unfinished');
+        final file = await File('${root.path}/app.flax')
+            .writeAsBytes(_zip(_files()));
+        final installed = await FlaxPackage.install(file, sandbox: sandbox);
+        final receipt = File('${sandbox.applicationPath}/.flax-install.json');
+        expect(installed.path, isNot(incomplete.path));
+        expect(await receipt.exists(), isTrue);
+        expect(
+          await File('${incomplete.path}/app.js').readAsString(),
+          'unfinished',
+        );
+
+        await receipt.delete();
+        await expectLater(
+          FlaxPackage.install(file, sandbox: sandbox),
+          throwsA(anything),
+        );
+        expect(await receipt.exists(), isFalse);
+        expect(await File('${installed.path}/app.js').exists(), isTrue);
+
+        final link = await Link(receipt.path)
+            .create('${incomplete.path}/app.js');
+        await expectLater(
+          FlaxPackage.install(file, sandbox: sandbox),
+          throwsFormatException,
+        );
+        expect(
+          await File('${incomplete.path}/app.js').readAsString(),
+          'unfinished',
+        );
+        await link.delete();
+
+        await installed.delete(recursive: true);
+        final invalidReceipt = await Directory(receipt.path).create();
+        await expectLater(
+          FlaxPackage.install(file, sandbox: sandbox),
+          throwsFormatException,
+        );
+        expect(await installed.exists(), isFalse);
+        await invalidReceipt.delete();
+        final invalid = await File(installed.path)
+            .writeAsString('not a directory');
+        await expectLater(
+          FlaxPackage.install(file, sandbox: sandbox),
+          throwsFormatException,
+        );
+        expect(await invalid.readAsString(), 'not a directory');
+      } finally {
+        await root.delete(recursive: true);
+      }
+    },
+  );
+
+  test(
+    'sandbox packages and downloads stay inside their application root',
+    () async {
+      final root = await Directory.systemTemp.createTemp('flax-app-layout-');
+      try {
+        final bytes = _zip(_files());
+        final archive = await File('${root.path}/application.flax')
+            .writeAsBytes(bytes);
+        final installedPaths = <String>[];
+        for (final id in ['first', 'second']) {
+          final sandbox = await FlaxSandbox.create(
+            appId: id,
+            appsDirectory: Directory('${root.path}/apps'),
+          );
+          final local = await FlaxApplication.package(
+            archive,
+            sandbox: sandbox,
+          );
+          final installed =
+              (local.assetBundle as FlaxDirectoryAssetBundle).directory;
+          expect(installed.path, '${sandbox.applicationPath}/bundle');
+          expect(await File('${installed.path}/app.js').exists(), isTrue);
+          expect(
+            jsonDecode(
+              await File('${sandbox.applicationPath}/.flax-install.json')
+                  .readAsString(),
+            )['digest'],
+            sha256.convert(bytes).toString(),
+          );
+          expect(
+            (await FlaxPackage.install(archive, sandbox: sandbox)).path,
+            installed.path,
+          );
+          final remote = await FlaxApplication.network(
+            uri: Uri.parse('https://example.invalid/application.flax'),
+            format: FlaxRemoteFormat.package,
+            sandbox: sandbox,
+            download: (_) async => FlaxDownloadResponse(
+              statusCode: 200,
+              body: Stream.value(bytes),
+            ),
+          );
+          expect(
+            (remote.assetBundle as FlaxDirectoryAssetBundle).directory.path,
+            installed.path,
+          );
+          expect(
+            await Directory('${sandbox.applicationPath}/downloads/blobs')
+                .list()
+                .length,
+            1,
+          );
+          expect(
+            await Directory('${sandbox.applicationPath}/downloads/requests')
+                .list()
+                .length,
+            1,
+          );
+          expect(await Directory(sandbox.homePath).list().toList(), isEmpty);
+          installedPaths.add(installed.path);
+          await expectLater(
+            FlaxApplication.package(
+              archive,
+              sandbox: sandbox,
+              installationDirectory: Directory(sandbox.homePath),
+            ),
+            throwsArgumentError,
+          );
+        }
+        expect(installedPaths.first, isNot(installedPaths.last));
       } finally {
         await root.delete(recursive: true);
       }

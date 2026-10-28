@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:path/path.dart' as p;
 
 import 'directory_asset_bundle.dart';
 import 'manifest.dart';
@@ -11,6 +12,7 @@ import 'package.dart';
 import 'prefixed_asset_bundle.dart';
 import 'asset_key.dart';
 import 'runtime/modules.dart';
+import 'sandbox/sandbox.dart';
 
 /// A loaded application, reusable by an owning View or an explicit Session.
 class FlaxApplication {
@@ -22,8 +24,10 @@ class FlaxApplication {
     this.entryUri,
     this.loadModule,
     this.imports = const {},
+    this.sandbox,
   });
 
+  final FlaxSandbox? sandbox;
   final String source;
   final AssetBundle assetBundle;
   final String sourceUrl;
@@ -38,10 +42,16 @@ class FlaxApplication {
     FlaxModuleSourceLoader? loadModule,
     FlaxDownloader? download,
     Directory? cacheDirectory,
-    bool sandbox = false,
+    FlaxSandbox? sandbox,
   }) async {
-    if (sandbox) {
-      throw UnsupportedError('Flax sandbox is reserved and not implemented');
+    cacheDirectory ??= sandbox == null
+        ? null
+        : Directory(p.join(sandbox.applicationPath, 'downloads'));
+    if (bundle is FlaxDirectoryAssetBundle) {
+      _checkSandboxResources(
+        sandbox,
+        await bundle.directory.resolveSymbolicLinks(),
+      );
     }
     final manifest = await FlaxManifest.load(bundle);
     // Validate the resource index before executing application code.
@@ -80,6 +90,7 @@ class FlaxApplication {
       bundle,
       'flax:${manifest.id}/${manifest.version}/${manifest.entry}',
       manifest,
+      sandbox: sandbox,
       entryUri: entry,
       loadModule: loadModule ?? local,
       imports: Map.unmodifiable(imports),
@@ -92,7 +103,7 @@ class FlaxApplication {
     FlaxModuleSourceLoader? loadModule,
     FlaxDownloader? download,
     Directory? cacheDirectory,
-    bool sandbox = false,
+    FlaxSandbox? sandbox,
   }) => bundle(
     FlaxDirectoryAssetBundle(directory),
     imports: imports,
@@ -109,20 +120,19 @@ class FlaxApplication {
     FlaxModuleSourceLoader? loadModule,
     FlaxDownloader? download,
     Directory? cacheDirectory,
-    bool sandbox = false,
+    FlaxSandbox? sandbox,
   }) async {
-    if (sandbox) {
-      throw UnsupportedError('Flax sandbox is reserved and not implemented');
-    }
     return directory(
       await FlaxPackage.install(
         file,
         installationDirectory: installationDirectory,
+        sandbox: sandbox,
       ),
       imports: imports,
       loadModule: loadModule,
       download: download,
       cacheDirectory: cacheDirectory,
+      sandbox: sandbox,
     );
   }
 
@@ -135,13 +145,14 @@ class FlaxApplication {
     FlaxModuleSourceLoader? loadModule,
     FlaxDownloader? download,
     Directory? cacheDirectory,
-    bool sandbox = false,
+    FlaxSandbox? sandbox,
   }) async {
-    if (sandbox) {
-      throw UnsupportedError('Flax sandbox is reserved and not implemented');
-    }
+    cacheDirectory ??= sandbox == null
+        ? null
+        : Directory(p.join(sandbox.applicationPath, 'downloads'));
     final resolved = File(await file.resolveSymbolicLinks());
     final root = resolved.parent.path;
+    _checkSandboxResources(sandbox, root);
     final entry = resolved.uri;
     Future<FlaxModuleSource> local(FlaxModuleRequest request) async {
       if (request.uri.scheme == 'http' || request.uri.scheme == 'https') {
@@ -176,6 +187,7 @@ class FlaxApplication {
       assetBundle ?? FlaxPrefixedAssetBundle(),
       file.absolute.uri.toString(),
       null,
+      sandbox: sandbox,
       entryUri: entry,
       loadModule: loadModule ?? local,
       imports: Map.unmodifiable(imports),
@@ -195,11 +207,11 @@ class FlaxApplication {
     Future<void>? cancelled,
     Map<String, Uri> imports = const {},
     FlaxModuleSourceLoader? loadModule,
-    bool sandbox = false,
+    FlaxSandbox? sandbox,
   }) async {
-    if (sandbox) {
-      throw UnsupportedError('Flax sandbox is reserved and not implemented');
-    }
+    cacheDirectory ??= sandbox == null
+        ? null
+        : Directory(p.join(sandbox.applicationPath, 'downloads'));
     if (format == FlaxRemoteFormat.package && assetBundle != null) {
       throw ArgumentError('Package resources come from the package itself');
     }
@@ -232,6 +244,7 @@ class FlaxApplication {
         assetBundle ?? FlaxPrefixedAssetBundle(),
         _diagnosticUrl(source.uri),
         null,
+        sandbox: sandbox,
         entryUri: source.uri,
         imports: Map.unmodifiable(imports),
         loadModule:
@@ -268,6 +281,7 @@ class FlaxApplication {
         loadModule: loadModule,
         download: download,
         cacheDirectory: cacheDirectory,
+        sandbox: sandbox,
       );
     } finally {
       await downloaded.release();
@@ -332,6 +346,18 @@ class FlaxApplication {
     } finally {
       await downloaded.release();
     }
+  }
+}
+
+void _checkSandboxResources(FlaxSandbox? sandbox, String root) {
+  if (sandbox == null) return;
+  final home = sandbox.homePath;
+  if (p.equals(root, home) ||
+      p.isWithin(root, home) ||
+      p.isWithin(home, root)) {
+    throw ArgumentError(
+      'Sandbox data and application resources must not overlap',
+    );
   }
 }
 

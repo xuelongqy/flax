@@ -286,15 +286,33 @@ hard-coded into Flax.
 | Location                    | Default                                | Override and behavior                                                                                                   |
 | --------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | Built-in business resources | Flutter assets under `assets/flax/`    | `.bundle(prefix: ...)`, or an explicit `FlaxPrefixedAssetBundle` for source/file/network entries; no startup extraction |
-| Prepared directory          | The Directory supplied to `.directory` | No implicit default, copy or id/version hierarchy; the sandbox demonstration chooses `<ApplicationSupport>/flax/`       |
+| Prepared directory          | The Directory supplied to `.directory` | No implicit default, copy or id/version hierarchy                                                                       |
 | Package installation root   | `<ApplicationSupport>/flax/`           | `installationDirectory`; the installer appends `installed/<package-sha256>/`                                            |
 | Network artifact cache      | `<ApplicationSupport>/flax/downloads/` | `cacheDirectory`; the downloader appends `requests/` and `blobs/`                                                       |
 
+These installation/cache defaults apply without a sandbox. Supplying a `FlaxSandbox`
+groups the application's managed files under one root instead:
+
 ```text
 <ApplicationSupport>/flax/
+  apps/<sha256(appId)>/
+    .flax-install.json
+    bundle/
+      flax.json
+      app.js
+      flax.assets.json
+      assets/...
+    downloads/
+      requests/<request-key>.json
+      blobs/<artifact-sha256>
+    data/
+      local_storage/...
+
+  # Shared locations used by loaders without a sandbox:
   downloads/
     requests/<request-key>.json
     blobs/<artifact-sha256>
+  installed/<package-sha256>.install.json
   installed/<package-sha256>/
     flax.json
     app.js
@@ -303,10 +321,23 @@ hard-coded into Flax.
 ```
 
 A local or remote package uses the same installer. An unchanged package reuses its
-installation after basic integrity checks. Different package bytes select a different
-SHA256 directory even when id/version metadata is unchanged. An explicit installation
-root still contains the `installed/` child; it does not select an exact final business
-directory. The download and installation roots are independent settings.
+installation after integrity checks. With a sandbox, unpacked files sit directly in
+`bundle/`; the sibling `.flax-install.json` at the application root records the archive
+SHA-256. Different bytes are rejected while that bundle remains installed. The host must
+close its Sessions and remove the old bundle before installing a different package,
+keeping `data/` intact. Without a sandbox, the shared cache retains
+`installed/<archive-sha256>/`. With a sandbox, `installationDirectory` defaults to
+`sandbox.applicationPath` and `cacheDirectory` defaults to its `downloads/` child,
+including remote ESM/JSON/Wasm imports from bundle, file and network entries. The
+download and installation overrides remain independent settings.
+
+The sandbox's only writable home is `data/`; sibling bundle/download files cannot be
+opened through its File bindings. Creating the sandbox does not create `bundle` or copy
+externally supplied resources. `FlaxSandbox.create(appsDirectory: ...)` replaces the
+common apps parent. After all using Sessions, localStorage stores and outstanding loads
+close, the host can remove the complete `applicationPath` for uninstall. External
+resources and override locations need host cleanup. See
+[application isolation](sandbox.md#configuration-and-identity).
 
 ### Packaged resources and independent HTTP resources
 
@@ -466,20 +497,38 @@ packaging errors retain the previous archive. These generated files are reserved
 entries.
 
 `FlaxPackage.install(file, installationDirectory: ...)` returns the installed Directory.
-The root defaults to `<ApplicationSupport>/flax/`; packages reside in
-`installed/<archive-sha256>/`. This is an internal content cache, not a required
-business id/version hierarchy. Different content with the same id/version uses separate
-directories. Existing Sessions retain their immutable directories. Do not overwrite or
-delete live installations. The host owns cache cleanup after those Sessions close.
+Without a sandbox, the root defaults to `<ApplicationSupport>/flax/`; packages reside in
+`installed/<archive-sha256>/`. Passing `sandbox: sandbox` selects its application root
+and `bundle/`; application loaders pass this configuration through. Its completion
+receipt lives beside `bundle/` in the application root and stores the archive hash
+instead of adding a hash directory. Shared installations use a sibling
+`installed/<package-sha256>.install.json` receipt. Neither layout adds installer files
+to the package contents. Do not overwrite or delete live installations. A different
+sandbox package requires the host to close all affected Sessions, remove the old bundle
+and reload the application from the new package. Application data is separate and
+retained. Discard old FlaxApplication/AssetBundle instances after replacement because
+they cache source/resources. Ordinary shared caches continue to separate different
+contents by archive hash.
 
 Hashing, ZIP processing and installation validation run in a background isolate.
 Requests for the same file/root join one in-flight operation; installation operations in
 a root are serialized, with an OS file lock for cooperating processes. Each new
 operation reads the archive to compute SHA-256; file size and modification time are not
-content identity. A cache hit verifies the completion receipt, inventory digest, every
-expected file's presence/size, and the hashes of metadata, entry and resource index. It
-skips resource payload hashes, so same-size resource damage after installation is not
-always detected.
+content identity. A cache hit verifies the completion receipt, inventory digest, and
+every expected file's size and SHA-256, including resource payloads. Hashing streams
+file bytes in the installation isolate; it does not load the whole package into memory
+or block the UI isolate. Reuse still reads the archived and installed bytes, so its cost
+scales with package size; it avoids extraction and replacement.
+
+The application root, its `data/`, or an interrupted `.install-*` directory does not
+mean a package is installed. Only the requested archive's content directory with a valid
+completion receipt and inventory can be reused. The identity is the selected application
+or installation root plus the archive SHA-256, not only the app ID, version, filename or
+URL. Call the idempotent `install` operation directly; its existing queue and file lock
+keep validation and installation together. A mismatched sandbox receipt produces a
+StateError requiring explicit replacement; missing or damaged completion records are not
+reused. The hash remains the content identity even though it is no longer a sandbox
+directory name.
 
 A first installation validates normalized relative paths, duplicate/case-conflicting
 names, regular files, supported compression and size limits (10,000 entries / 512 MiB
@@ -487,10 +536,12 @@ uncompressed). Symlinks, encrypted entries and explicit directory entries are re
 Files are streamed to a fresh staging directory with explicit size and CRC checks; the
 ZIP library's verify flag alone is not relied upon. Every inventory SHA-256 and size is
 then verified, resource references and required files are checked, and the source
-archive is rehashed to reject concurrent replacement. The completion receipt is written
-last and the directory is renamed into place. Failed attempts remove only their own
-staging tree. A process interruption may leave an unused staging directory, which never
-counts as a completed installation.
+archive is rehashed to reject concurrent replacement. The contents and receipt are
+prepared separately in one staging directory. After the contents are renamed into place,
+the sibling completion receipt is atomically renamed last. If publishing the receipt
+fails, only that attempt's new contents are removed. Failed attempts clean up their own
+staging tree. A process interruption may leave staging files or a bundle without a
+matching receipt; neither is accepted as a completed installation.
 
 A damaged existing installation fails visibly and is never overwritten automatically.
 The host may remove that cache entry after its Sessions close, then retry installation.

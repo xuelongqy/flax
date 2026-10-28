@@ -102,6 +102,26 @@ capabilities: [codegen]
     return FlaxWorkspacePackage(name, directory);
   }
 
+  test('staged Dart packages retain shared Flutter assets', () {
+    final owner = package('flax_sandbox_example');
+    _write(owner.directory, 'README.md', '# Sandbox example\n');
+    _write(owner.directory, 'lib/flax_sandbox_example.dart', 'library;\n');
+    final payload = [0x50, 0x4b, 0x03, 0x04, 0x00, 0xff];
+    final archive = File('${owner.directory.path}/assets/app.flax');
+    archive.parent.createSync(recursive: true);
+    archive.writeAsBytesSync(payload);
+    File('${owner.directory.path}/pubspec.yaml').writeAsStringSync(
+      'flutter:\n  assets:\n    - assets/app.flax\n',
+      mode: FileMode.append,
+    );
+    final target = Directory('${temporary.path}/consumer/packages');
+    copyDartPackages(temporary, target, [owner.name]);
+    expect(
+      File('${target.path}/${owner.name}/assets/app.flax').readAsBytesSync(),
+      payload,
+    );
+  });
+
   test('launch preparation builds only the selected package example', () async {
     final material = package('flax_material_ui');
     _write(material.example, 'pubspec.yaml', _flutterPubspec('v8'));

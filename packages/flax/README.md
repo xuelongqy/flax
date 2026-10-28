@@ -248,8 +248,8 @@ resource default as source/file. Optional headers, expectedSha256, download call
 cacheDirectory configure its download and revalidation cache. Invalid combinations of
 prefix/Bundle or package/Bundle are rejected. All automatic entries provide optional
 loadingBuilder/errorBuilder and preserve the Session across ordinary rebuilds. Package
-installation defaults to ApplicationSupport/flax and accepts an explicit
-installationDirectory.
+installation without a sandbox defaults to ApplicationSupport/flax and accepts an
+explicit installationDirectory.
 
 Built-in business assets load directly from `assets/flax/`. A prepared directory is read
 in place. Local and remote packages share
@@ -258,6 +258,18 @@ separately under `<ApplicationSupport>/flax/downloads/`. `installationDirectory`
 replaces the installation root, while `cacheDirectory` replaces the download root.
 Remote JS continues to use the built-in business resources unless given an explicit
 assetBundle; use a remote package to update code and resources together.
+
+With `sandbox: sandbox`, application loaders instead keep installed packages under
+`<ApplicationSupport>/flax/apps/<sha256(appId)>/bundle/` and artifact downloads under
+the same application's `downloads/`. The writable sandbox home is its `data/` child,
+including localStorage. `FlaxSandbox.create(appsDirectory: ...)` replaces the common
+apps parent. Existing `installationDirectory` and `cacheDirectory` overrides remain
+available to trusted hosts; external source directories are not copied. The archive hash
+is recorded in `.flax-install.json` beside `bundle/` at the application root, keeping
+the bundle free of installer files. Matching contents are verified and reused; replacing
+different contents requires closing the affected Sessions and removing the old bundle
+first, preserving data. See
+[application isolation and cleanup](../../docs/architecture/sandbox.md#configuration-and-identity).
 
 Images and JSON inside either built-in resources or an installed package use
 `Image.asset('assets/images/flutter.png')` and

@@ -55,3 +55,13 @@ overrides:
       route:
         builders:
           - builder
+
+# Native navigation helpers stay inside the application boundary.
+sandbox:
+  'version': 1
+  'classes':
+    'CircleAvatar':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxCircleImages'

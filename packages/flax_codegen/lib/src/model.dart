@@ -1302,6 +1302,34 @@ class FlaxCodegenTypeAliasModel {
   }
 }
 
+/// One normalized guard target. Ownership freezing rewrites [owner] with other IDs.
+class FlaxCodegenSandboxRule {
+  const FlaxCodegenSandboxRule({
+    required this.owner,
+    required this.kind,
+    required this.name,
+    required this.operation,
+    this.policy,
+    this.handler,
+    this.deny = false,
+    this.replace = false,
+    this.receiver = false,
+    this.returnsVoid = false,
+    this.parameters = const [],
+  });
+  final String owner;
+  final String kind;
+  final String name;
+  final String operation;
+  final String? policy;
+  final String? handler;
+  final bool deny;
+  final bool replace;
+  final bool receiver;
+  final bool returnsVoid;
+  final List<FlaxCodegenParameterModel> parameters;
+}
+
 class FlaxCodegenModuleModel {
   const FlaxCodegenModuleModel({
     required this.name,
@@ -1327,6 +1355,7 @@ class FlaxCodegenModuleModel {
     ],
     this.internalTypeNames = const <String>{},
     this.stateVariants = const [],
+    this.sandboxRules = const [],
     // Keep the public parameter name while deriving built-in capabilities.
     // ignore: prefer_initializing_formals
   }) : _requiredCapabilities = requiredCapabilities;
@@ -1340,6 +1369,7 @@ class FlaxCodegenModuleModel {
   final Map<String, String> typeLibraries;
   final List<FlaxCodegenFunctionModel> functions;
   final List<FlaxCodegenExtensionModel> extensions;
+  final List<FlaxCodegenSandboxRule> sandboxRules;
 
   Iterable<FlaxCodegenFunctionModel> enumFunctions(
     FlaxCodegenClassModel type,
@@ -1394,8 +1424,11 @@ class FlaxCodegenModuleModel {
   /// Sorted capabilities required by emitted calls and declared providers.
   final List<String> _requiredCapabilities;
   List<String> get requiredCapabilities {
-    final required = {..._requiredCapabilities, 'call-layouts'}.toList()
-      ..sort();
+    final required = {
+      ..._requiredCapabilities,
+      'call-layouts',
+      if (sandboxRules.isNotEmpty) 'sandbox-guards',
+    }.toList()..sort();
     bool callback(FlaxCodegenTypeRef type) =>
         type.kind == 'callback' && type.typeParameters.isNotEmpty ||
         [

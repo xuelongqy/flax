@@ -1,6 +1,10 @@
 /// Optional persistent localStorage, selected by the session namespace.
 library;
 
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:crypto/crypto.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
@@ -12,34 +16,46 @@ import 'src/store.dart';
 class FlaxLocalStoragePlugin extends FlaxPlugin {
   const FlaxLocalStoragePlugin();
 
-  static FlaxLocalStorageStore? _store;
-  static Future<void>? _initializing;
-  static Future<void>? _shuttingDown;
-  static (String?, int)? _configuration;
+  static final _areas = <String?, _StorageArea>{};
 
-  /// Call and await this before installing the plugin in any session.
+  /// Initialize each application before installing its plugin. The host area is separate.
   static Future<void> initialize({
+    FlaxSandbox? sandbox,
     String? directory,
     int quotaBytes = 10485760,
   }) {
     if (quotaBytes <= 0) throw ArgumentError.value(quotaBytes, 'quotaBytes');
-    if (_shuttingDown != null) {
+    if (sandbox != null && directory != null) {
+      throw ArgumentError('Sandbox storage uses its application home');
+    }
+    final key = sandbox?.homePath;
+    final area = _areas.putIfAbsent(key, _StorageArea.new);
+    if (area.shuttingDown != null) {
       throw StateError('localStorage is shutting down');
     }
-    final path = directory == null ? null : p.normalize(p.absolute(directory));
+    final path = sandbox != null
+        ? p.join(sandbox.homePath, 'local_storage')
+        : directory == null
+        ? null
+        : p.normalize(p.absolute(directory));
     final configuration = (path, quotaBytes);
-    if (_configuration != null && _configuration != configuration) {
+    if (area.configuration != null && area.configuration != configuration) {
       throw StateError(
         'Shut down localStorage before changing its configuration',
       );
     }
-    if (_initializing != null) return _initializing!;
-    if (_store != null) return Future<void>.value();
-    _configuration = configuration;
-    return _initializing = _open(path, quotaBytes);
+    if (area.initializing != null) return area.initializing!;
+    if (area.store != null) return Future<void>.value();
+    area.configuration = configuration;
+    return area.initializing = _open(area, path, quotaBytes, sandbox != null);
   }
 
-  static Future<void> _open(String? directory, int quota) async {
+  static Future<void> _open(
+    _StorageArea area,
+    String? directory,
+    int quota,
+    bool sandboxed,
+  ) async {
     try {
       final path =
           directory ??
@@ -48,49 +64,82 @@ class FlaxLocalStoragePlugin extends FlaxPlugin {
             'flax',
             'local_storage',
           );
-      _store = await FlaxLocalStorageStore.open(path, quota);
+      final box = sandboxed
+          ? 'flax_storage_${sha256.convert(utf8.encode(path))}'
+          : FlaxLocalStorageStore.boxName;
+      if (sandboxed) {
+        final home = p.dirname(path);
+        if (await Directory(home).resolveSymbolicLinks() != home ||
+            FileSystemEntity.isLinkSync(path)) {
+          throw const FlaxSandboxException(
+            operation: 'localStorage.initialize',
+            message: 'Linked storage directories are unavailable',
+          );
+        }
+        await Directory(path).create();
+        if (Directory(path)
+            .listSync(followLinks: false)
+            .any((entry) => entry is Link)) {
+          throw const FlaxSandboxException(
+            operation: 'localStorage.initialize',
+            message: 'Linked storage files are unavailable',
+          );
+        }
+      }
+      area.store = await FlaxLocalStorageStore.open(
+        path,
+        quota,
+        name: box,
+        isolated: sandboxed,
+      );
     } catch (_) {
-      _configuration = null;
+      area.configuration = null;
       rethrow;
     } finally {
-      _initializing = null;
+      area.initializing = null;
     }
   }
 
-  static FlaxLocalStorageStore _requireStore() {
-    if (_store == null || _initializing != null || _shuttingDown != null) {
+  static FlaxLocalStorageStore _requireStore(String? key) {
+    final area = _areas[key];
+    if (area?.store == null ||
+        area!.initializing != null ||
+        area.shuttingDown != null) {
       throw StateError(
-        'Await FlaxLocalStoragePlugin.initialize() before using localStorage',
+        'Await FlaxLocalStoragePlugin.initialize() for this application before using localStorage',
       );
     }
-    return _store!;
+    return area.store!;
   }
 
-  static Future<void> flush() => _requireStore().flush();
+  static Future<void> flush({FlaxSandbox? sandbox}) =>
+      _requireStore(sandbox?.homePath).flush();
 
-  static Future<void> shutdown() {
-    if (_shuttingDown != null) return _shuttingDown!;
-    if (_initializing != null) {
+  static Future<void> shutdown({FlaxSandbox? sandbox}) {
+    final key = sandbox?.homePath;
+    final area = _areas[key];
+    if (area == null) return Future<void>.value();
+    if (area.shuttingDown != null) return area.shuttingDown!;
+    if (area.initializing != null) {
       throw StateError('Await localStorage initialization before shutdown');
     }
-    final store = _store;
-    if (store == null) return Future<void>.value();
+    final store = area.store;
+    if (store == null) {
+      _areas.remove(key);
+      return Future<void>.value();
+    }
     if (store.attachments != 0) {
       throw StateError(
         'Close the Flax sessions using localStorage before shutdown',
       );
     }
-    return _shuttingDown = _shutdown(store);
-  }
-
-  static Future<void> _shutdown(FlaxLocalStorageStore store) async {
-    try {
-      await store.close();
-    } finally {
-      _store = null;
-      _configuration = null;
-      _shuttingDown = null;
-    }
+    return area.shuttingDown = () async {
+      try {
+        await store.close();
+      } finally {
+        _areas.remove(key);
+      }
+    }();
   }
 
   @override
@@ -106,7 +155,10 @@ class FlaxLocalStoragePlugin extends FlaxPlugin {
   };
   @override
   FlaxPluginInstance install(FlaxHostContext context) {
-    final host = _StorageHost(context, _requireStore());
+    final host = _StorageHost(
+      context,
+      _requireStore(context.sandbox?.homePath),
+    );
     try {
       host.install();
       return host;
@@ -115,6 +167,13 @@ class FlaxLocalStoragePlugin extends FlaxPlugin {
       rethrow;
     }
   }
+}
+
+class _StorageArea {
+  FlaxLocalStorageStore? store;
+  Future<void>? initializing;
+  Future<void>? shuttingDown;
+  (String?, int)? configuration;
 }
 
 class _StorageHost implements FlaxPluginInstance {

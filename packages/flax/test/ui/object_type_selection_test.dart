@@ -188,7 +188,8 @@ void main() {
         onError: (error, _) => errors.add(error),
       );
       try {
-        await tester.pumpWidget(
+        await flaxTestPumpView(
+          tester,
           FlaxView.page(session: session, name: 'selection'),
         );
         for (final (function, kind) in [

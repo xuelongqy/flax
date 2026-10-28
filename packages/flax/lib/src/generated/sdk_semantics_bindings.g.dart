@@ -165,6 +165,7 @@ const sdk_semanticsBindings = FlaxBindingModule(
     "native-navigation-objects",
     "native-widget-proxies",
     "proxy-super-constructors",
+    "sandbox-guards",
     "shared-static-readers",
   ],
   stateVariants: [],
@@ -306,6 +307,17 @@ const sdk_semanticsBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  sandboxGuards: {
+    ("flax.core/sdk_semantics#type:SemanticsBinding", "get", "window"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_semantics#type:SemanticsBinding",
+      "get",
+      "platformDispatcher",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_semantics#read:SemanticsBinding.instance", "call", ""):
+        FlaxSandboxBinding.deny(),
+  },
 );
 final sdk_semanticsPlugin = FlaxBindingPlugin(
   id: "binding:flax.core/sdk_semantics",

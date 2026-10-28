@@ -146,7 +146,7 @@ void main() {
           await Link('${root.path}/escape').create(secret.path);
           await expectLater(
             bundle.load('escape'),
-            throwsA(isA<FlutterError>()),
+            throwsA(isA<FlaxSandboxException>()),
           );
         } finally {
           await outside.delete(recursive: true);

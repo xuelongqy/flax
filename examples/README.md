@@ -1,8 +1,8 @@
 # Examples
 
 - [Playground](embedded/README.md): the visual module directory, with entrances to Core,
-  Material, Cupertino, Canvas, Fetch, WebSocket and local storage. It reuses each
-  package's independently runnable example.
+  Material, Cupertino, Canvas, Fetch, WebSocket, local storage and sandbox isolation. It
+  reuses each package's independently runnable example.
 - [Standalone](standalone/README.md): a standalone JS application demonstrating
   application loading, assets, remote delivery and native navigation.
 
@@ -15,7 +15,7 @@ compose them. Framework contracts remain in package-owned tests. The playground'
 presentation helpers live in the private Core example package and do not add a
 production UI dependency.
 
-The seven module examples and Playground share the Dart
+The eight module examples and Playground share the Dart
 [`FlaxExampleApp`](../packages/flax_example_support/README.md) shell. Its toolbar opens
 one native settings drawer with **System**, **Light**, **Dark** and an **FPS** switch.
 The host theme also supplies MediaQuery brightness to JS pages and native controls. The

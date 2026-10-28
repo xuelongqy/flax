@@ -25,3 +25,5 @@ export declare function bind<T>(read: () => T): Binding<T>;
 export declare function signal<T>(value: T): Signal<T>;
 export declare function computed<T>(read: () => T): ReadonlySignal<T>;
 export declare function batch<T>(action: () => T): T;
+/** The real absolute persistent data directory for the current application. */
+export declare function getHomePath(): Promise<string>;

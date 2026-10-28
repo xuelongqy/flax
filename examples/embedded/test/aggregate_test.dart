@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flax_embedded/main.dart' as app;
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:flax_sandbox_example/flax_sandbox_example.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -32,6 +33,7 @@ void main() {
       tester,
       app.EmbeddedApp(
         source: source,
+        sandboxDemoDirectory: '${storage.path}/sandbox-demo',
         plugins: app.galleryPlugins
             .where((plugin) => plugin.id != 'flax.canvas')
             .toList(),
@@ -54,6 +56,7 @@ void main() {
       tester,
       app.EmbeddedApp(
         source: source,
+        sandboxDemoDirectory: '${storage.path}/sandbox-demo',
         onFlaxError: (error, _) => errors.add(error),
         createRuntime: () {
           final runtime = RuntimeTracker();
@@ -100,6 +103,7 @@ void main() {
         tester,
         app.EmbeddedApp(
           source: source,
+          sandboxDemoDirectory: '${storage.path}/sandbox-demo',
           createRuntime: () => runtime = RuntimeTracker(),
         ),
       );
@@ -112,6 +116,7 @@ void main() {
       await tester.pumpWidget(const SizedBox.shrink());
       await pumpGalleryUntil(tester, () => runtime.isDisposed);
       expect(runtime.handlesAtDispose, 0);
+      await waitGalleryIO(tester, FlaxSandboxExample.pendingLifecycle);
       await waitGalleryIO(tester, FlaxLocalStoragePlugin.shutdown());
     },
   );

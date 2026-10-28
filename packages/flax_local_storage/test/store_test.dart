@@ -2,24 +2,110 @@ import 'dart:io';
 
 import 'package:flax_local_storage/src/store.dart';
 import 'package:hive_ce/hive_ce.dart';
+// Assert that malicious built-in HiveLists never link host objects.
+// ignore: implementation_imports
+import 'package:hive_ce/src/object/hive_object.dart';
 import 'package:test/test.dart';
 
 import 'support/failing_io.dart';
 
+class _HostValue extends HiveObject {}
+
+class _HostValueAdapter extends TypeAdapter<_HostValue> {
+  const _HostValueAdapter(this.onRead);
+  final void Function() onRead;
+  @override
+  int get typeId => 197;
+  @override
+  _HostValue read(BinaryReader reader) {
+    onRead();
+    return _HostValue();
+  }
+
+  @override
+  void write(BinaryWriter writer, _HostValue value) {}
+}
+
 void main() {
   late Directory directory;
   late FlaxLocalStorageStore store;
+  var hostReads = 0;
   final errors = <Object>[];
   final owner = Object();
   void report(Object error, StackTrace stack) => errors.add(error);
+  setUpAll(() {
+    Hive.registerAdapter(_HostValueAdapter(() => hostReads++));
+  });
   setUp(() async {
     directory = await Directory.systemTemp.createTemp('flax-storage-test-');
     store = await FlaxLocalStorageStore.open(directory.path, 10485760);
     errors.clear();
+    hostReads = 0;
   });
   tearDown(() async {
     if (store.box.isOpen) await store.close();
     await directory.delete(recursive: true);
+  });
+
+  test('sandbox records never invoke host Hive adapters', () async {
+    final untrusted = await Hive.openBox<List<dynamic>>(
+      'untrusted',
+      path: directory.path,
+    );
+    await untrusted.put(0, [_HostValue()]);
+    await untrusted.close();
+    await expectLater(
+      FlaxLocalStorageStore.open(
+        directory.path,
+        10485760,
+        name: 'untrusted',
+        isolated: true,
+      ),
+      throwsA(isA<HiveError>()),
+    );
+    expect(hostReads, 0);
+  });
+
+  test('sandbox HiveLists never resolve objects from host boxes', () async {
+    final host = await Hive.openBox<_HostValue>(
+      'host_records',
+      path: '${directory.path}/host',
+    );
+    addTearDown(host.close);
+    final records = List.generate(3, (_) => _HostValue());
+    await host.addAll(records);
+    final untrusted = await Hive.openBox<List<dynamic>>(
+      'untrusted',
+      path: directory.path,
+    );
+    // ignore: experimental_member_use
+    final list = HiveList<_HostValue>(host, objects: records);
+    try {
+      await untrusted.put(0, list);
+    } finally {
+      await untrusted.close();
+      list.dispose();
+    }
+    expect(
+      records.map((record) => record.debugHiveLists),
+      everyElement(isEmpty),
+    );
+
+    await expectLater(
+      FlaxLocalStorageStore.open(
+        directory.path,
+        10485760,
+        name: 'untrusted',
+        isolated: true,
+      ),
+      throwsA(anything),
+    );
+    expect(
+      records.map((record) => record.debugHiveLists),
+      everyElement(isEmpty),
+    );
+    expect(host.isOpen, isTrue);
+    expect(hostReads, 0);
   });
 
   test(

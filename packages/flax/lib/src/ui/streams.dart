@@ -482,6 +482,12 @@ extension _StreamCalls on _Session {
         FlaxJsNumber(reference.id.toDouble()),
         FlaxJsString(message),
         text.isEmpty ? const FlaxJsNull() : FlaxJsString(text),
+        error is FlaxSandboxException
+            ? const FlaxJsString(FlaxSandboxException.deniedCode)
+            : const FlaxJsNull(),
+        error is FlaxSandboxException
+            ? FlaxJsString(error.operation)
+            : const FlaxJsNull(),
       ]),
       reference,
       origin: reference,
@@ -600,7 +606,18 @@ extension _StreamCalls on _Session {
           if (args.isNotEmpty) throw ArgumentError('Invalid Stream getter');
           final getter = actual.getters.singleWhere((g) => g.name == name);
           return holdHostResult(
-            memberResult(getter.read(reference.value!), getter.type),
+            memberResult(
+              _sandboxCall(
+                type,
+                'get',
+                name,
+                reference.value,
+                const {},
+                () => getter.read(reference.value!),
+                resultType: getter.type,
+              ),
+              getter.type,
+            ),
           );
         }
         final selected =
@@ -613,7 +630,15 @@ extension _StreamCalls on _Session {
         );
         try {
           input.escape(this);
-          var result = selected.invoke(reference.value!, input.values);
+          var result = _sandboxCall(
+            type,
+            'call',
+            name,
+            reference.value,
+            input.values,
+            () => selected.invoke(reference.value!, input.values),
+            resultType: selected.result,
+          );
           if (result is StreamSubscription<Object?>) {
             final template = dartTypes._template(
               dartTypes.parts(Stream<Object?>),
@@ -677,10 +702,17 @@ extension _StreamCalls on _Session {
           escapeWidget(source.initial.data, source.type);
         }
         return bindingCall(() {
-          final value = binding.create(
-            ctor,
-            sources.map((name, source) => MapEntry(name, source.initial.data)),
+          final values = sources.map(
+            (name, source) => MapEntry(name, source.initial.data),
           );
+          final value = _sandboxCall(
+            binding.id,
+            'construct',
+            ctor,
+            null,
+            values,
+            () => binding.create(ctor, values),
+          ) as Stream<Object?>;
           return holdHostResult(streamResult(value, binding.view));
         });
       } finally {

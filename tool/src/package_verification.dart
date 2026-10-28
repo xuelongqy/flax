@@ -56,7 +56,7 @@ void copyDartPackages(
     final source = Directory(p.join(root.path, 'packages', name));
     final target = Directory(p.join(targetRoot.path, name))
       ..createSync(recursive: true);
-    for (final directory in ['lib', 'hook', 'native']) {
+    for (final directory in ['lib', 'hook', 'native', 'assets']) {
       final input = Directory(p.join(source.path, directory));
       if (input.existsSync()) {
         copyTree(input, Directory(p.join(target.path, directory)));

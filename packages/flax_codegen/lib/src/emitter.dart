@@ -2213,6 +2213,7 @@ class FlaxCodegenBindingEmitter {
     FlaxCodegenMethodModel method,
     String Function(String) target, {
     String? tearOff,
+    bool dynamicDefaults = false,
   }) {
     if (method.requiresTypeArguments) {
       out.writeln('return FlaxDartTypes.requireArguments();');
@@ -2224,13 +2225,21 @@ class FlaxCodegenBindingEmitter {
       if (tearOff == null) {
         throw StateError('Missing callable tear-off: ${method.name}');
       }
-      final call = _fixedCall(
-        out,
-        tearOff,
-        method.parameters,
-        (p) => _cast('values[${_quote(p.name)}]', p.type),
-        (p) => 'values.containsKey(${_quote(p.name)})',
-      );
+      // A guard can substitute an interface implementation without compiler shims.
+      final call = dynamicDefaults
+          ? _applyCall(
+              tearOff,
+              method.parameters,
+              (p) => _cast('values[${_quote(p.name)}]', p.type),
+              (p) => 'values.containsKey(${_quote(p.name)})',
+            )
+          : _fixedCall(
+              out,
+              tearOff,
+              method.parameters,
+              (p) => _cast('values[${_quote(p.name)}]', p.type),
+              (p) => 'values.containsKey(${_quote(p.name)})',
+            );
       out.writeln(
         method.result.kind == 'void'
             ? '$call;'
@@ -2611,6 +2620,17 @@ class FlaxCodegenBindingEmitter {
       }
       out.writeln('),');
     }
+    final sandboxGuards = StringBuffer();
+    for (final (index, rule) in module.sandboxRules.indexed) {
+      sandboxGuards.write(
+        '(${_quote(rule.owner)}, ${_quote(rule.kind)}, ${_quote(rule.name)}): ',
+      );
+      sandboxGuards.write(
+        rule.deny
+            ? 'FlaxSandboxBinding.deny(),'
+            : 'FlaxSandboxBinding(_flaxSandbox$index, replace: ${rule.replace}),',
+      );
+    }
     out.writeln(
       '], constants: [${constantGroups.entries.map((group) => 'FlaxConstantGroup(${group.key}, {${group.value.entries.map((entry) => '${_quote(entry.key)}: ${entry.value}').join(',')}})').join(',')}], moduleId: ${_quote(_literalModuleId(module))}, '
       'dependencyModules: ${jsonEncode(dependencyIds)}, '
@@ -2618,7 +2638,8 @@ class FlaxCodegenBindingEmitter {
       'uiProtocol: $_generatedUiProtocol, '
       'requiredCapabilities: ${_capabilitiesDartLiteral(module.requiredCapabilities)}, '
       'stateVariants: [${module.stateVariants.map((variant) => '_stateVariant_${variant.name}').join(', ')}]'
-      ', dartTypes: [${_vmTypeTemplates(module).join(',')}], dartShapes: _flaxDartShapes);',
+      ', dartTypes: [${_vmTypeTemplates(module).join(',')}], dartShapes: _flaxDartShapes'
+      '${module.sandboxRules.isEmpty ? '' : ', sandboxGuards: {$sandboxGuards}'});',
     );
     out.writeln('final ${module.name}Plugin = FlaxBindingPlugin(');
     out.writeln('id: ${_quote('binding:${_literalModuleId(module)}')},');
@@ -3172,6 +3193,38 @@ T _genericCallbackResult<T>(Object? value) {
     }
     for (final entry in _constants.entries) {
       out.writeln('const ${entry.value} = ${entry.key};');
+    }
+    String sandboxSymbol(String reference) {
+      final split = reference.lastIndexOf('#');
+      final uri = reference.substring(0, split);
+      final prefix = _dartImports.putIfAbsent(
+        uri,
+        () => '$_dartApiPrefix${_dartImports.length}',
+      );
+      return '$prefix.${reference.substring(split + 1)}';
+    }
+
+    for (final (index, rule) in module.sandboxRules.indexed) {
+      if (rule.deny) continue;
+      final handler = sandboxSymbol(rule.handler!);
+      final policy = sandboxSymbol(rule.policy!);
+      out.writeln(
+        'Object? _flaxSandbox$index(FlaxSandboxContext context, Object? receiver, Map<String, Object?> values) {',
+      );
+      final call = _fixedCall(
+        out,
+        handler,
+        rule.parameters,
+        (parameter) => 'values[${_quote(parameter.name)}]',
+        (parameter) => 'values.containsKey(${_quote(parameter.name)})',
+        prefix: [
+          'context',
+          'context.requirePolicy<$policy>()',
+          if (rule.receiver) 'receiver',
+        ],
+      );
+      out.writeln(rule.returnsVoid ? '$call; return null;' : 'return $call;');
+      out.writeln('}');
     }
     // Nested provider views can discover imports while their members are emitted.
     final imports = StringBuffer(
@@ -3814,6 +3867,14 @@ import 'package:flax/bindings.dart';
         method,
         (args) => '$target($args)',
         tearOff: target,
+        dynamicDefaults:
+            method.instance &&
+            _dartModule.sandboxRules.any(
+              (rule) =>
+                  rule.owner == type.id &&
+                  rule.kind == 'call' &&
+                  rule.name == method.name,
+            ),
       );
     }
     out.writeln('}');
@@ -5736,7 +5797,7 @@ $_typescriptHostImport
           );
         }
         out.writeln(
-          '}, ${jsonEncode(type.getters.where((getter) => getter.cache).map((getter) => getter.name).toList())}, ${jsonEncode(type.supertypes)});',
+          '}, ${jsonEncode(type.getters.where((getter) => getter.cache && !module.sandboxRules.any((rule) => rule.operation == 'classes/${type.name}/getters/${getter.name}')).map((getter) => getter.name).toList())}, ${jsonEncode(type.supertypes)});',
         );
         for (final constant in constants.enumNames) {
           final methods = module

@@ -7,6 +7,7 @@ import {
 } from '@flax/example-cupertino-ui/showcase';
 import { createFetchExample } from '@flax/example-fetch/showcase';
 import { createStorageExample } from '@flax/example-local-storage/showcase';
+import { createSandboxExample } from '@flax/example-sandbox/showcase';
 import {
   createMaterialExample,
   materialCollections,
@@ -125,6 +126,15 @@ const examples = [
     tag: 'PERSIST',
     description: 'Save a note, keep a counter and pick up where you left off.',
     create: createStorageExample,
+  },
+  {
+    id: 'sandbox',
+    title: 'Sandbox',
+    mark: '◈',
+    color: 0xff466f91,
+    tag: 'ISOLATION',
+    description: 'Compare application homes, file images, storage and blocked access.',
+    create: createSandboxExample,
   },
 ] as const;
 

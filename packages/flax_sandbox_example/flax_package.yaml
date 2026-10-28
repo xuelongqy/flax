@@ -1,0 +1,4 @@
+format: 2
+dart:
+  entrypoint: package:flax_sandbox_example/flax_sandbox_example.dart
+capabilities: []

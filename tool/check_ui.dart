@@ -29,7 +29,7 @@ Future<void> main(List<String> arguments) => command(() async {
     if (options.packageName != null && package.name != options.packageName) {
       continue;
     }
-    if (package.uiTests.existsSync()) {
+    if (package.hasFlutterExample) {
       await runPackageExampleTests(root, package, engine: engine);
     }
   }

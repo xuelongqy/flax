@@ -17,3 +17,51 @@ publicLibraries:
   dart:ui:
     jsPackage: '@flax/dart/ui'
     tsOutput: js/src/dart/generated/libraries/ui/index.ts
+
+# Session resource isolation. Unmarked APIs keep ordinary binding behavior.
+sandbox:
+  'version': 1
+  'classes':
+    'ChannelBuffers':
+      'constructors':
+        '': 'deny'
+      'instanceMethods':
+        'push': 'deny'
+        'setListener': 'deny'
+        'clearListener': 'deny'
+        'sendChannelUpdate': 'deny'
+        'drain': 'deny'
+        'handleMessage': 'deny'
+        'resize': 'deny'
+        'allowOverflow': 'deny'
+    'ImmutableBuffer':
+      'methods':
+        'fromFilePath': 'deny'
+        'fromAsset':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxAssetBuffer'
+          'replace': true
+    'IsolateNameServer':
+      'methods':
+        'lookupPortByName': 'deny'
+        'registerPortWithName': 'deny'
+        'removePortNameMapping': 'deny'
+    'PlatformDispatcher':
+      'getters':
+        'onPlatformMessage': 'deny'
+      'setters':
+        'onPlatformMessage': 'deny'
+      'instanceMethods':
+        'sendPlatformMessage': 'deny'
+        'sendPortPlatformMessage': 'deny'
+        'registerBackgroundIsolate': 'deny'
+    'SingletonFlutterWindow':
+      'getters':
+        'onPlatformMessage': 'deny'
+      'setters':
+        'onPlatformMessage': 'deny'
+      'instanceMethods':
+        'sendPlatformMessage': 'deny'
+  'topLevel':
+    'getters':
+      'channelBuffers': 'deny'

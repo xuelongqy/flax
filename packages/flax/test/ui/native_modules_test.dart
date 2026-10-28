@@ -457,36 +457,121 @@ void main() {
     }
   });
 
-  test(
-    'reserved sandbox fails before downloads, runtime allocation or plugins',
-    () async {
-      var sideEffects = 0;
-      await expectLater(
-        FlaxApplication.network(
-          uri: Uri.parse('https://modules.invalid/main.js'),
-          format: FlaxRemoteFormat.javascript,
+  test('loaded module applications retain the sandbox configuration', () async {
+    final root = await Directory.systemTemp.createTemp('flax-module-sandbox-');
+    try {
+      final sandbox = await FlaxSandbox.create(
+        appId: 'test.module',
+        appsDirectory: Directory('${root.path}/apps'),
+      );
+      final application = await FlaxApplication.network(
+        uri: Uri.parse('https://modules.invalid/main.js'),
+        format: FlaxRemoteFormat.javascript,
+        sandbox: sandbox,
+        download: (request) async => FlaxDownloadResponse(
+          statusCode: 200,
+          finalUri: request.uri,
+          headers: const {'content-type': 'text/javascript'},
+          body: Stream.value(
+            utf8.encode(
+              request.uri.path == '/child.js' ? 'export const value = 42;' : "import {value} from './child.js'; import {getHomePath} from '@flax/core'; globalThis.moduleValue = value; globalThis.moduleHome = await getHomePath(); const {runApp, Text} = await import('@flax/flutter/widgets'); runApp(Text('home'));",
+            ),
+          ),
+        ),
+      );
+      expect(application.sandbox, same(sandbox));
+      final runtime = createTestRuntime();
+      final session = FlaxSession.application(
+        application: application,
+        createRuntime: () => runtime,
+        bindings: registry,
+      );
+      expect(session.sandbox, same(sandbox));
+      try {
+        await session.ready;
+        expect(
+          (runtime.getGlobal('moduleHome') as FlaxJsString).value,
+          sandbox.homePath,
+        );
+        expect((runtime.getGlobal('moduleValue') as FlaxJsNumber).value, 42);
+        expect(
+          await Directory('${sandbox.applicationPath}/downloads/blobs')
+              .list()
+              .length,
+          2,
+        );
+        expect(
+          (runtime.evaluate('typeof __flaxFfiDlopen') as FlaxJsString).value,
+          'undefined',
+        );
+      } finally {
+        await session.close();
+      }
+    } finally {
+      await root.delete(recursive: true);
+    }
+  });
 
-          sandbox: true,
-          download: (_) async {
-            sideEffects++;
-            throw StateError('Must not download');
-          },
-        ),
-        throwsUnsupportedError,
-      );
-      expect(
-        () => FlaxSession(
-          source: '',
+  test(
+    'local sandbox modules use ESM by default and reject resource links',
+    () async {
+      final root = await Directory.systemTemp.createTemp('flax-local-sandbox-');
+      try {
+        final code = await Directory('${root.path}/code').create();
+        final sandbox = await FlaxSandbox.create(
+          appId: 'test.local.modules',
+          appsDirectory: Directory('${root.path}/apps'),
+        );
+        final entry = await File('${code.path}/main.js').writeAsString(
+          "import {value} from './child.js'; import {runApp, Text} from '@flax/flutter/widgets'; globalThis.localModule = await Promise.resolve(value); runApp(Text(String(value)));",
+        );
+        await File('${code.path}/child.js')
+            .writeAsString('export const value = 42;');
+        final application = await FlaxApplication.file(entry, sandbox: sandbox);
+        final runtime = createTestRuntime();
+        final session = FlaxSession.application(
+          application: application,
+          createRuntime: () => runtime,
           bindings: registry,
-          sandbox: true,
-          createRuntime: () {
-            sideEffects++;
-            throw StateError('Must not allocate');
-          },
-        ),
-        throwsUnsupportedError,
-      );
-      expect(sideEffects, 0);
+        );
+        try {
+          await session.ready;
+          expect((runtime.getGlobal('localModule') as FlaxJsNumber).value, 42);
+        } finally {
+          await session.close();
+        }
+        await File('${code.path}/child.js').delete();
+        final host = await File('${root.path}/host.js')
+            .writeAsString('export const value = 99;');
+        await Link('${code.path}/child.js').create(host.path);
+        final linked = FlaxSession.application(
+          application: application,
+          createRuntime: createTestRuntime,
+          bindings: registry,
+        );
+        try {
+          await expectLater(
+            linked.ready,
+            throwsA(
+              predicate(
+                (error) =>
+                    error.toString().contains(FlaxSandboxException.deniedCode),
+              ),
+            ),
+          );
+        } finally {
+          await linked.close();
+        }
+        await expectLater(
+          FlaxApplication.file(
+            File('${sandbox.homePath}/main.js')..writeAsStringSync(''),
+            sandbox: sandbox,
+          ),
+          throwsArgumentError,
+        );
+      } finally {
+        await root.delete(recursive: true);
+      }
     },
   );
 

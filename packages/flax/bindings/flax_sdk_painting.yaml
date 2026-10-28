@@ -63,3 +63,273 @@ overrides:
           ]
         isHighSurrogate: [value]
         isLowSurrogate: [value]
+
+# Session resource isolation. Unmarked APIs keep ordinary binding behavior.
+sandbox:
+  'version': 1
+  'classes':
+    'AssetImage':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxAssetImage'
+          'replace': true
+      'instanceMethods':
+        'loadImage':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'loadBuffer':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'resolve':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'createStream':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainCacheStatus':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'resolveStreamForKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'evict':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxAssetImageKey'
+          'replace': true
+    'ExactAssetImage':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxExactAssetImage'
+          'replace': true
+      'instanceMethods':
+        'loadImage':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'loadBuffer':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'resolve':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'createStream':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainCacheStatus':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'resolveStreamForKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'evict':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxAssetImageKey'
+          'replace': true
+    'FileImage':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxFileImage'
+          'replace': true
+      'instanceMethods':
+        'resolve':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'createStream':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainCacheStatus':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'resolveStreamForKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'evict':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxFileImageKey'
+          'replace': true
+        'loadBuffer':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'loadImage':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+    'PaintingBinding':
+      'staticGetters':
+        'instance': 'deny'
+      'getters':
+        'window': 'deny'
+        'platformDispatcher': 'deny'
+        'defaultBinaryMessenger': 'deny'
+        'channelBuffers': 'deny'
+    'AssetBundleImageKey':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxAssetKeyBundle'
+    'AssetBundleImageProvider':
+      'instanceMethods':
+        'resolve':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'createStream':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainCacheStatus':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'resolveStreamForKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'evict':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxImageKey'
+          'replace': true
+        'loadBuffer':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'loadImage':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+    'DecorationImage':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageInput'
+    'ImageProvider':
+      'instanceMethods':
+        'resolve':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'createStream':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainCacheStatus':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'resolveStreamForKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'evict':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxImageKey'
+          'replace': true
+        'loadBuffer':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'loadImage':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+    'MemoryImage':
+      'instanceMethods':
+        'resolve':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'createStream':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainCacheStatus':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'resolveStreamForKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'evict':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxMemoryImageKey'
+          'replace': true
+        'loadBuffer':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'loadImage':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+    'NetworkImage':
+      'instanceMethods':
+        'resolve':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'createStream':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainCacheStatus':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'resolveStreamForKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'evict':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxImageKey'
+          'replace': true
+        'loadBuffer':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'loadImage':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+    'ResizeImage':
+      'instanceMethods':
+        'resolve':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'createStream':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainCacheStatus':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'resolveStreamForKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'evict':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxResizeImageKey'
+          'replace': true
+        'loadBuffer':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'loadImage':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxResizeImage'
+          'replace': true
+    'ImageConfiguration':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxImageConfiguration'
+          'replace': true
+      'instanceMethods':
+        'copyWith':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxCopyImageConfiguration'
+          'replace': true

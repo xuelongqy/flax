@@ -21,6 +21,7 @@ import 'dart:async' as api7;
 import 'package:vector_math/vector_math_64.dart' as api8;
 import 'package:flutter/scheduler.dart' as api9;
 import 'package:flutter/gestures.dart' as api10;
+import 'package:flax/sandbox_ui.dart' as api11;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
@@ -1842,6 +1843,7 @@ final sdk_servicesBindings = FlaxBindingModule(
     "native-navigation-objects",
     "native-widget-proxies",
     "proxy-super-constructors",
+    "sandbox-guards",
     "shared-buffers",
     "shared-static-readers",
     "shared-uint8",
@@ -2609,6 +2611,219 @@ final sdk_servicesBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  sandboxGuards: {
+    ("flax.core/sdk_services#type:AssetBundle", "call", "load"):
+        FlaxSandboxBinding(_flaxSandbox0, replace: false),
+    ("flax.core/sdk_services#type:AssetBundle", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox1, replace: false),
+    ("flax.core/sdk_services#type:AssetBundle", "call", "loadString"):
+        FlaxSandboxBinding(_flaxSandbox2, replace: false),
+    ("flax.core/sdk_services#type:AssetBundle", "call", "loadStructuredData"):
+        FlaxSandboxBinding(_flaxSandbox3, replace: false),
+    (
+      "flax.core/sdk_services#type:AssetBundle",
+      "call",
+      "loadStructuredBinaryData",
+    ): FlaxSandboxBinding(
+      _flaxSandbox4,
+      replace: false,
+    ),
+    ("flax.core/sdk_services#type:AssetBundle", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox5, replace: false),
+    ("flax.core/sdk_services#type:AssetBundle", "call", "clear"):
+        FlaxSandboxBinding(_flaxSandbox6, replace: false),
+    (
+      "package:flutter/src/services/asset_manifest.dart::AssetManifest.loadFromAssetBundle",
+      "call",
+      "",
+    ): FlaxSandboxBinding(
+      _flaxSandbox7,
+      replace: false,
+    ),
+    (
+      "package:flutter/src/services/_background_isolate_binary_messenger_io.dart::BackgroundIsolateBinaryMessenger.ensureInitialized",
+      "call",
+      "",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:BackgroundIsolateBinaryMessenger",
+      "call",
+      "handlePlatformMessage",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:BackgroundIsolateBinaryMessenger",
+      "call",
+      "send",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:BackgroundIsolateBinaryMessenger",
+      "call",
+      "setMessageHandler",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:BasicMessageChannel", "construct", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:BasicMessageChannel", "call", "send"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:BasicMessageChannel",
+      "call",
+      "setMessageHandler",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:BinaryMessenger",
+      "call",
+      "handlePlatformMessage",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:BinaryMessenger", "call", "send"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:BinaryMessenger",
+      "call",
+      "setMessageHandler",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:CachingAssetBundle", "call", "load"):
+        FlaxSandboxBinding(_flaxSandbox18, replace: false),
+    ("flax.core/sdk_services#type:CachingAssetBundle", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox19, replace: false),
+    ("flax.core/sdk_services#type:CachingAssetBundle", "call", "loadString"):
+        FlaxSandboxBinding(_flaxSandbox20, replace: false),
+    (
+      "flax.core/sdk_services#type:CachingAssetBundle",
+      "call",
+      "loadStructuredData",
+    ): FlaxSandboxBinding(
+      _flaxSandbox21,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_services#type:CachingAssetBundle",
+      "call",
+      "loadStructuredBinaryData",
+    ): FlaxSandboxBinding(
+      _flaxSandbox22,
+      replace: false,
+    ),
+    ("flax.core/sdk_services#type:CachingAssetBundle", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox23, replace: false),
+    ("flax.core/sdk_services#type:CachingAssetBundle", "call", "clear"):
+        FlaxSandboxBinding(_flaxSandbox24, replace: false),
+    ("flax.core/sdk_services#type:EventChannel", "construct", ""):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:EventChannel",
+      "call",
+      "receiveBroadcastStream",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:MethodChannel", "construct", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:MethodChannel", "call", "invokeMethod"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:MethodChannel", "call", "invokeListMethod"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:MethodChannel", "call", "invokeMapMethod"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:MethodChannel",
+      "call",
+      "setMethodCallHandler",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:NetworkAssetBundle", "call", "load"):
+        FlaxSandboxBinding(_flaxSandbox32, replace: false),
+    ("flax.core/sdk_services#type:NetworkAssetBundle", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox33, replace: false),
+    ("flax.core/sdk_services#type:NetworkAssetBundle", "call", "loadString"):
+        FlaxSandboxBinding(_flaxSandbox34, replace: false),
+    (
+      "flax.core/sdk_services#type:NetworkAssetBundle",
+      "call",
+      "loadStructuredData",
+    ): FlaxSandboxBinding(
+      _flaxSandbox35,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_services#type:NetworkAssetBundle",
+      "call",
+      "loadStructuredBinaryData",
+    ): FlaxSandboxBinding(
+      _flaxSandbox36,
+      replace: false,
+    ),
+    ("flax.core/sdk_services#type:NetworkAssetBundle", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox37, replace: false),
+    ("flax.core/sdk_services#type:NetworkAssetBundle", "call", "clear"):
+        FlaxSandboxBinding(_flaxSandbox38, replace: false),
+    ("flax.core/sdk_services#type:OptionalMethodChannel", "construct", ""):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:OptionalMethodChannel",
+      "call",
+      "invokeMethod",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:OptionalMethodChannel",
+      "call",
+      "invokeListMethod",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:OptionalMethodChannel",
+      "call",
+      "invokeMapMethod",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:OptionalMethodChannel",
+      "call",
+      "setMethodCallHandler",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:PlatformAssetBundle", "construct", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:PlatformAssetBundle", "call", "loadString"):
+        FlaxSandboxBinding(_flaxSandbox45, replace: false),
+    (
+      "flax.core/sdk_services#type:PlatformAssetBundle",
+      "call",
+      "loadStructuredData",
+    ): FlaxSandboxBinding(
+      _flaxSandbox46,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_services#type:PlatformAssetBundle",
+      "call",
+      "loadStructuredBinaryData",
+    ): FlaxSandboxBinding(
+      _flaxSandbox47,
+      replace: false,
+    ),
+    ("flax.core/sdk_services#type:PlatformAssetBundle", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox48, replace: false),
+    ("flax.core/sdk_services#type:PlatformAssetBundle", "call", "clear"):
+        FlaxSandboxBinding(_flaxSandbox49, replace: false),
+    ("flax.core/sdk_services#type:PlatformAssetBundle", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox50, replace: false),
+    ("flax.core/sdk_services#type:PlatformAssetBundle", "call", "load"):
+        FlaxSandboxBinding(_flaxSandbox51, replace: false),
+    ("flax.core/sdk_services#type:ServicesBinding", "get", "window"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:ServicesBinding",
+      "get",
+      "platformDispatcher",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_services#type:ServicesBinding",
+      "get",
+      "defaultBinaryMessenger",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#type:ServicesBinding", "get", "channelBuffers"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#read:ServicesBinding.instance", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_services#read:rootBundle", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox57,
+      replace: true,
+    ),
+  },
 );
 final sdk_servicesPlugin = FlaxBindingPlugin(
   id: "binding:flax.core/sdk_services",
@@ -4021,12 +4236,10 @@ Object? _EventChannel_receiveBroadcastStream(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas0 = values.containsKey("arguments");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.EventChannel).receiveBroadcastStream,
-    <Object?>[(_flaxHas0 ? values["arguments"] : null)],
-    <int>[(_flaxHas0 ? 1 : 0)],
-    const <String>[""],
+    <Object?>[if (values.containsKey("arguments")) values["arguments"]],
+    <Symbol, Object?>{},
   ) as api7.Stream<Object?>;
 }
 
@@ -5520,15 +5733,13 @@ Object? _MethodChannel_invokeMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas1 = values.containsKey("arguments");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.MethodChannel).invokeMethod<Object?>,
     <Object?>[
       values["method"] as String,
-      (_flaxHas1 ? values["arguments"] : null),
+      if (values.containsKey("arguments")) values["arguments"],
     ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["", ""],
+    <Symbol, Object?>{},
   ) as Future<Object?>;
 }
 
@@ -5536,15 +5747,13 @@ Object? _MethodChannel_invokeListMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas1 = values.containsKey("arguments");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.MethodChannel).invokeListMethod<Object?>,
     <Object?>[
       values["method"] as String,
-      (_flaxHas1 ? values["arguments"] : null),
+      if (values.containsKey("arguments")) values["arguments"],
     ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["", ""],
+    <Symbol, Object?>{},
   ) as Future<List<Object?>?>;
 }
 
@@ -5552,15 +5761,13 @@ Object? _MethodChannel_invokeMapMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas1 = values.containsKey("arguments");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.MethodChannel).invokeMapMethod<Object?, Object?>,
     <Object?>[
       values["method"] as String,
-      (_flaxHas1 ? values["arguments"] : null),
+      if (values.containsKey("arguments")) values["arguments"],
     ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["", ""],
+    <Symbol, Object?>{},
   ) as Future<Map<Object?, Object?>?>;
 }
 
@@ -6041,15 +6248,13 @@ Object? _OptionalMethodChannel_invokeMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas1 = values.containsKey("arguments");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.OptionalMethodChannel).invokeMethod<Object?>,
     <Object?>[
       values["method"] as String,
-      (_flaxHas1 ? values["arguments"] : null),
+      if (values.containsKey("arguments")) values["arguments"],
     ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["", ""],
+    <Symbol, Object?>{},
   ) as Future<Object?>;
 }
 
@@ -6057,15 +6262,13 @@ Object? _OptionalMethodChannel_invokeListMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas1 = values.containsKey("arguments");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.OptionalMethodChannel).invokeListMethod<Object?>,
     <Object?>[
       values["method"] as String,
-      (_flaxHas1 ? values["arguments"] : null),
+      if (values.containsKey("arguments")) values["arguments"],
     ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["", ""],
+    <Symbol, Object?>{},
   ) as Future<List<Object?>?>;
 }
 
@@ -6073,15 +6276,13 @@ Object? _OptionalMethodChannel_invokeMapMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas1 = values.containsKey("arguments");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.OptionalMethodChannel).invokeMapMethod<Object?, Object?>,
     <Object?>[
       values["method"] as String,
-      (_flaxHas1 ? values["arguments"] : null),
+      if (values.containsKey("arguments")) values["arguments"],
     ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["", ""],
+    <Symbol, Object?>{},
   ) as Future<Map<Object?, Object?>?>;
 }
 
@@ -39000,3 +39201,537 @@ const _flaxBinding1571 = FlaxTypeRef(
   id: "flax.core/sdk_services#type:UndoManagerClient",
   nullable: true,
 );
+Object? _flaxSandbox0(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox1(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox2(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox3(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox4(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox5(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox6(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox7(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundleInput,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      values["bundle"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox18(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox19(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox20(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox21(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox22(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox23(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox24(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox32(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox33(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox34(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox35(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox36(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox37(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox38(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox45(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox46(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox47(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox48(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox49(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox50(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox51(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api11.checkSandboxBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api11.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox57(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api11.sandboxRootBundle,
+    <Object?>[context, context.requirePolicy<api11.FlaxAssetBundlePolicy>()],
+    <int>[1 | 2],
+    const <String>["", ""],
+  );
+}

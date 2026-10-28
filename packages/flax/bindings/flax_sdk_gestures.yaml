@@ -9,3 +9,14 @@ publicLibraries:
   package:flutter/gestures.dart:
     jsPackage: '@flax/flutter/gestures'
     tsOutput: js/src/flutter/generated/libraries/gestures/index.ts
+
+# Session resource isolation. Unmarked APIs keep ordinary binding behavior.
+sandbox:
+  'version': 1
+  'classes':
+    'GestureBinding':
+      'staticGetters':
+        'instance': 'deny'
+      'getters':
+        'window': 'deny'
+        'platformDispatcher': 'deny'

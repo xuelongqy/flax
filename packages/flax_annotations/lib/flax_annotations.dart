@@ -19,3 +19,28 @@ class FlaxExport {
 class FlaxIgnore {
   const FlaxIgnore();
 }
+
+/// Applies a synchronous isolation check or replacement to an exported operation.
+///
+/// This annotation does not export the declaration or authorize ordinary Dart calls.
+class FlaxSandboxGuard {
+  const FlaxSandboxGuard({
+    required Type policyType,
+    required Function handler,
+    this.replace = false,
+    // Ordinary guards require both values; only deny stores null.
+    // ignore: prefer_initializing_formals
+  }) : policyType = policyType,
+       // ignore: prefer_initializing_formals
+       handler = handler,
+       deny = false;
+  const FlaxSandboxGuard.deny()
+    : policyType = null,
+      handler = null,
+      replace = true,
+      deny = true;
+  final Type? policyType;
+  final Function? handler;
+  final bool replace;
+  final bool deny;
+}

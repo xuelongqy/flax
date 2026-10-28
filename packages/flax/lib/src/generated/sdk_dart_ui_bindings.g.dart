@@ -11,6 +11,8 @@ import 'dart:core' as api2;
 import 'dart:async' as api3;
 import 'dart:isolate' as api4;
 
+import 'package:flax/sandbox_ui.dart' as api5;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const sdk_dart_uiBindings = FlaxBindingModule(
@@ -1227,6 +1229,7 @@ const sdk_dart_uiBindings = FlaxBindingModule(
     "native-navigation-objects",
     "native-widget-proxies",
     "proxy-super-constructors",
+    "sandbox-guards",
     "shared-buffers",
     "shared-static-readers",
     "shared-uint8",
@@ -1967,6 +1970,80 @@ const sdk_dart_uiBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  sandboxGuards: {
+    ("flax.core/sdk_dart_ui#type:ChannelBuffers", "construct", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dart_ui#type:ChannelBuffers", "call", "push"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dart_ui#type:ChannelBuffers", "call", "setListener"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dart_ui#type:ChannelBuffers", "call", "clearListener"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dart_ui#type:ChannelBuffers", "call", "sendChannelUpdate"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dart_ui#type:ChannelBuffers", "call", "drain"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dart_ui#type:ChannelBuffers", "call", "handleMessage"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dart_ui#type:ChannelBuffers", "call", "resize"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dart_ui#type:ChannelBuffers", "call", "allowOverflow"):
+        FlaxSandboxBinding.deny(),
+    ("dart:ui::ImmutableBuffer.fromAsset", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox9,
+      replace: true,
+    ),
+    ("dart:ui::ImmutableBuffer.fromFilePath", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("dart:ui::IsolateNameServer.lookupPortByName", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("dart:ui::IsolateNameServer.registerPortWithName", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("dart:ui::IsolateNameServer.removePortNameMapping", "call", ""):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#type:PlatformDispatcher",
+      "call",
+      "sendPlatformMessage",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#type:PlatformDispatcher",
+      "call",
+      "sendPortPlatformMessage",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#type:PlatformDispatcher",
+      "call",
+      "registerBackgroundIsolate",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#type:PlatformDispatcher",
+      "get",
+      "onPlatformMessage",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#type:PlatformDispatcher",
+      "set",
+      "onPlatformMessage",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#type:SingletonFlutterWindow",
+      "call",
+      "sendPlatformMessage",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#type:SingletonFlutterWindow",
+      "get",
+      "onPlatformMessage",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#type:SingletonFlutterWindow",
+      "set",
+      "onPlatformMessage",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dart_ui#read:channelBuffers", "call", ""):
+        FlaxSandboxBinding.deny(),
+  },
 );
 final sdk_dart_uiPlugin = FlaxBindingPlugin(
   id: "binding:flax.core/sdk_dart_ui",
@@ -27223,3 +27300,19 @@ const _flaxBinding1775 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:SystemColorPalette",
 );
+Object? _flaxSandbox9(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api5.sandboxAssetBuffer,
+    <Object?>[
+      context,
+      context.requirePolicy<api5.FlaxAssetBundlePolicy>(),
+      values["assetKey"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}

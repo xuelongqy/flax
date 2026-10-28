@@ -292,7 +292,14 @@ extension _FontBindingCalls on _Session {
     final label = tracing == null ? '' : 'create:${host.node.definition.id}';
     tracing?.call(label, true);
     try {
-      return host.buildNative(values);
+      return _sandboxCall(
+        host.node.definition.id,
+        'construct',
+        host.node.ctor,
+        null,
+        values,
+        () => host.buildNative(values),
+      ) as Widget;
     } finally {
       tracing?.call(label, false);
     }
@@ -321,7 +328,14 @@ extension _FontBindingCalls on _Session {
           #fontCollection: _fontResources.collection,
         }) as BannerPainter;
       }
-      final value = binding.create(name, values);
+      final value = _sandboxCall(
+        binding.id,
+        'construct',
+        name,
+        null,
+        values,
+        () => binding.create(name, values),
+      )!;
       if (value is Widget) {
         // Host-only SDK entry; applications cannot select another font domain.
         // ignore: invalid_use_of_internal_member

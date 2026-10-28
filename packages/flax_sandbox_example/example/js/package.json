@@ -1,0 +1,25 @@
+{
+  "name": "@flax/example-sandbox",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*",
+    "@flax/flutter": "workspace:*",
+    "@flax/dart": "workspace:*",
+    "@flax/local-storage": "workspace:*",
+    "@flax/core-runtime": "workspace:*",
+    "@flax/local-storage-runtime": "workspace:*",
+    "@flax/example-core": "workspace:*"
+  },
+  "exports": {
+    "./showcase": {
+      "types": "./dist/showcase.d.ts",
+      "import": "./src/showcase.ts"
+    }
+  }
+}

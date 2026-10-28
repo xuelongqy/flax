@@ -70,3 +70,433 @@ publicLibraries:
   dart:isolate:
     jsPackage: '@flax/dart/isolate'
     tsOutput: js/src/dart/generated/libraries/isolate/index.ts
+
+# Session resource isolation. Unmarked APIs keep ordinary binding behavior.
+sandbox:
+  'version': 1
+  'classes':
+    'Directory':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#createSandboxDirectory'
+          'replace': true
+        'fromRawPath': 'deny'
+        'fromUri':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#createSandboxDirectoryFromUri'
+          'replace': true
+      'getters':
+        'path':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'uri':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'isAbsolute':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'absolute':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'parent':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+      'instanceMethods':
+        'exists':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'existsSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'rename':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'renameSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'resolveSymbolicLinks':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'resolveSymbolicLinksSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'stat':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'statSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'delete':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'deleteSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'create':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'createSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'createTemp':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'createTempSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'list':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'listSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+      'staticGetters':
+        'current': 'deny'
+        'systemTemp': 'deny'
+      'staticSetters':
+        'current': 'deny'
+    'File':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#createSandboxFile'
+          'replace': true
+        'fromUri':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#createSandboxFileFromUri'
+          'replace': true
+        'fromRawPath': 'deny'
+      'getters':
+        'path':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'uri':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'isAbsolute':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'absolute':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'parent':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+      'instanceMethods':
+        'exists':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'existsSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'rename':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'renameSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'resolveSymbolicLinks':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'resolveSymbolicLinksSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'stat':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'statSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'delete':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'deleteSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'create':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'createSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'copy':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'copySync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'length':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'lengthSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'lastAccessed':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'lastAccessedSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'setLastAccessed':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'setLastAccessedSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'lastModified':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'lastModifiedSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'setLastModified':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'setLastModifiedSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'open': 'deny'
+        'openSync': 'deny'
+        'openRead':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'readAsBytes':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'readAsBytesSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'readAsString':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'readAsStringSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'readAsLines':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'readAsLinesSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'writeAsBytes':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'writeAsBytesSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'writeAsString':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'writeAsStringSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+    'FileStat':
+      'methods':
+        'stat':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxStat'
+          'replace': true
+        'statSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxStatSync'
+          'replace': true
+    'FileSystemEntity':
+      'getters':
+        'path':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'uri':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'isAbsolute':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'absolute':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'parent':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+      'methods':
+        'identical':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxIdentical'
+          'replace': true
+        'identicalSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxIdenticalSync'
+          'replace': true
+        'type':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxType'
+          'replace': true
+        'typeSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxTypeSync'
+          'replace': true
+        'isLink':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxIsLink'
+          'replace': true
+        'isFile':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxIsFile'
+          'replace': true
+        'isDirectory':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxIsDirectory'
+          'replace': true
+        'isLinkSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxIsLinkSync'
+          'replace': true
+        'isFileSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxIsFileSync'
+          'replace': true
+        'isDirectorySync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxIsDirectorySync'
+          'replace': true
+      'instanceMethods':
+        'exists':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'existsSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'rename':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'renameSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'resolveSymbolicLinks':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'resolveSymbolicLinksSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'stat':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'statSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'delete':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'deleteSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+    'Link':
+      'constructors':
+        '': 'deny'
+        'fromRawPath': 'deny'
+        'fromUri': 'deny'
+      'getters':
+        'path':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'uri':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'isAbsolute':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'absolute':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'parent':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+      'instanceMethods':
+        'exists':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'existsSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'rename':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'renameSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'resolveSymbolicLinks':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'resolveSymbolicLinksSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'stat':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'statSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'delete':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'deleteSync':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#checkSandboxEntity'
+        'create': 'deny'
+        'createSync': 'deny'
+        'updateSync': 'deny'
+        'update': 'deny'
+        'target': 'deny'
+        'targetSync': 'deny'
+    'RandomAccessFile':
+      'getters':
+        'path': 'deny'
+      'instanceMethods':
+        'close': 'deny'
+        'closeSync': 'deny'
+        'readByte': 'deny'
+        'readByteSync': 'deny'
+        'read': 'deny'
+        'readSync': 'deny'
+        'readInto': 'deny'
+        'readIntoSync': 'deny'
+        'writeByte': 'deny'
+        'writeByteSync': 'deny'
+        'writeFrom': 'deny'
+        'writeFromSync': 'deny'
+        'writeString': 'deny'
+        'writeStringSync': 'deny'
+        'position': 'deny'
+        'positionSync': 'deny'
+        'setPosition': 'deny'
+        'setPositionSync': 'deny'
+        'truncate': 'deny'
+        'truncateSync': 'deny'
+        'length': 'deny'
+        'lengthSync': 'deny'
+        'flush': 'deny'
+        'flushSync': 'deny'
+        'lock': 'deny'
+        'lockSync': 'deny'
+        'unlock': 'deny'
+        'unlockSync': 'deny'
+    'SecurityContext':
+      'staticGetters':
+        'defaultContext': 'deny'
+      'instanceMethods':
+        'usePrivateKey':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxPrivateKey'
+          'replace': true
+        'setTrustedCertificates':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxTrustedCertificates'
+          'replace': true
+        'useCertificateChain':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxCertificateChain'
+          'replace': true
+        'setClientAuthorities':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_io.dart#sandboxClientAuthorities'
+          'replace': true

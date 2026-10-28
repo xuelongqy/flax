@@ -1,10 +1,10 @@
 # flax_example_support
 
-Development-only Dart shell for the seven capability examples and the embedded
-Playground. `FlaxExampleApp` owns one native settings drawer, system/light/dark
-appearance and an optional FPS overlay above its Navigator. Example entry points wrap
-their content once; JS showcases only consume the inherited MediaQuery brightness.
-Production Flax packages do not depend on this package.
+Development-only Dart shell for the capability examples and the embedded Playground.
+`FlaxExampleApp` owns one native settings drawer, system/light/dark appearance and an
+optional FPS overlay above its Navigator. Example entry points wrap their content once;
+JS showcases only consume the inherited MediaQuery brightness. Production Flax packages
+do not depend on this package.
 
 The shell keeps settings across Flax Session remounts. FPS starts disabled, listens to
 completed Flutter frame timings and updates once per second without requesting frames.

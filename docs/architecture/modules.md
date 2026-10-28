@@ -150,9 +150,11 @@ iOS keeps JIT and TurboFan disabled. SDK 0.3.2 enables DrumBrake with explicit b
 checks and V8 pointer compression; CppGC remains uncaged with compression and young
 generation disabled. macOS and Android retain JIT. A copied Dart buffer can read Wasm
 memory; borrowed zero-copy reads reject it because memory growth can detach its backing
-store. Sandbox is a host-owned reserved `sandbox: false` option. `true` throws
-`UnsupportedError` before download, runtime allocation, plugins or application
-execution; there is no isolation implementation or descriptor-controlled sandbox policy.
+store. The host may supply an immutable [FlaxSandbox](sandbox.md); descriptors cannot
+enable or replace it. Every module in one Session shares its resource policies and
+lifetime. Local module bytes use rooted, no-follow resource reads; application data must
+not overlap file or directory resource roots. Network/module-origin permissions and a
+Wasm permission switch remain deferred.
 
 Physical iOS hosts must enable Xcode's **Extended Virtual Addressing** capability and
 use a provisioning profile containing

@@ -89,6 +89,10 @@ void main() {
       ]) {
         expect(preparedOutputPath(path), isFalse);
       }
+      expect(
+        preparedOutputPath('packages/flax_sandbox_example/assets/app.flax'),
+        isTrue,
+      );
     },
   );
   test('archive proof is bound to the actual checkout and source inputs', () {

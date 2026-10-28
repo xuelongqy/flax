@@ -618,6 +618,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         publicLibraries: seed.publicLibraries,
         annotations: seed.annotations,
         sources: seed.sources,
+        sandbox: seed.sandbox,
       ),
       typeCarriers: typeCarriers,
       skips: skips,

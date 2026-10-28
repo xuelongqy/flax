@@ -286,6 +286,8 @@ class _ProfileContext implements FlaxHostContext {
   @override
   String? get namespace => context.namespace;
   @override
+  FlaxSandboxContext? get sandbox => context.sandbox;
+  @override
   ui.FlaxFontCollection? get fontCollection => context.fontCollection;
   @override
   FlaxJsRuntime get runtime => context.runtime;

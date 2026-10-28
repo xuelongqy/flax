@@ -132,6 +132,7 @@ abstract class FlaxPluginInstance {
 /// Public engine-independent extension boundary for host plugins.
 abstract class FlaxHostContext {
   String? get namespace;
+  FlaxSandboxContext? get sandbox => null;
 
   /// Session-private fonts with Flutter public/system fallback.
   ui.FlaxFontCollection? get fontCollection => null;
@@ -170,6 +171,8 @@ class _HostContext implements FlaxHostContext {
   bool retired = false;
   @override
   String? get namespace => session.namespace;
+  @override
+  FlaxSandboxContext? get sandbox => session.sandbox;
   @override
   ui.FlaxFontCollection get fontCollection => session._fontResources.collection;
   @override
@@ -432,6 +435,12 @@ class _BaseHost implements FlaxPluginInstance {
       final operation = (args[0] as FlaxJsString).value;
       switch (operation) {
         case 'ffiInstall':
+          if (context.sandbox != null) {
+            throw const FlaxSandboxException(
+              operation: 'ffi.install',
+              message: 'Native FFI is unavailable in a sandbox',
+            );
+          }
           if (context.isClosing) throw StateError('FlaxSessionClosed');
           final runtime = context.runtime;
           if (runtime is! FlaxNativeJsRuntime) {
@@ -442,6 +451,12 @@ class _BaseHost implements FlaxPluginInstance {
           runtime.installNativeFfi(_queueFfi);
           _ffiInstalled = true;
         case 'ffiAsset':
+          if (context.sandbox != null) {
+            throw const FlaxSandboxException(
+              operation: 'ffi.asset',
+              message: 'Native FFI is unavailable in a sandbox',
+            );
+          }
           final id = (args[1] as FlaxJsString).value;
           if (id.isEmpty || id.contains('\u0000')) {
             throw ArgumentError('Invalid native code asset id');
@@ -501,6 +516,26 @@ class _BaseHost implements FlaxPluginInstance {
       }
       return const FlaxJsUndefined();
     }, allowClosing: true);
+    if (context.sandbox != null) {
+      final result = context.evaluate(r"""
+(() => {
+  const call = globalThis.__flaxBaseCall;
+  globalThis.__flaxBaseCall = (operation, ...args) => {
+    if (operation === 'ffiInstall' || operation === 'ffiAsset') {
+      const error = new Error('Native FFI is unavailable in a sandbox');
+      Object.defineProperties(error, {
+        name: {value: 'FlaxSandboxError'},
+        code: {value: 'FLAX_SANDBOX_DENIED', enumerable: true},
+        operation: {value: operation === 'ffiInstall' ? 'ffi.install' : 'ffi.asset', enumerable: true},
+      });
+      throw error;
+    }
+    return call(operation, ...args);
+  };
+})()
+""", sourceUrl: 'flax:sandbox-ffi');
+      _releaseJs(result);
+    }
     final host = context;
     _state =
         (host is _HostContext && host.session.modulesPrepared

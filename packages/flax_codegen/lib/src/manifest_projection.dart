@@ -162,6 +162,7 @@ final class _FrozenModule {
       moduleId: moduleId,
       requiredCapabilities: requiredCapabilities,
       stateVariants: decoded.stateVariants,
+      sandboxRules: decoded.sandboxRules,
     );
   }
 }

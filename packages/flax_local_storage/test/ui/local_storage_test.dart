@@ -41,6 +41,106 @@ void main() {
     await directory.delete(recursive: true);
   });
 
+  testWidgets(
+    'application homes isolate identical namespaces and physical stores',
+    (t) async {
+      late FlaxSandbox a, b;
+      await t.runAsync(() async {
+        a = await FlaxSandbox.create(
+          appId: 'storage.a',
+          appsDirectory: directory,
+        );
+        b = await FlaxSandbox.create(
+          appId: 'storage.b',
+          appsDirectory: directory,
+        );
+        final outside = await Directory('${directory.path}/host-data').create();
+        final secret = await File('${outside.path}/secret')
+            .writeAsString('host');
+        final storage = Directory('${a.homePath}/local_storage');
+        final linkedDirectory = Link(storage.path);
+        await linkedDirectory.create(outside.path);
+        await expectLater(
+          FlaxLocalStoragePlugin.initialize(sandbox: a),
+          throwsA(isA<FlaxSandboxException>()),
+        );
+        await linkedDirectory.delete();
+        await storage.create();
+        final linkedFile = Link('${storage.path}/old.hive');
+        await linkedFile.create(secret.path);
+        await expectLater(
+          FlaxLocalStoragePlugin.initialize(sandbox: a),
+          throwsA(isA<FlaxSandboxException>()),
+        );
+        await linkedFile.delete();
+        expect(await secret.readAsString(), 'host');
+        expect(outside.listSync(), hasLength(1));
+        await FlaxLocalStoragePlugin.initialize(sandbox: a);
+        await FlaxLocalStoragePlugin.initialize(sandbox: b);
+      });
+      final first = _Harness(), second = _Harness();
+      FlaxSession isolated(_Harness h, FlaxSandbox sandbox) => FlaxSession(
+        namespace: 'same',
+        sandbox: sandbox,
+        createRuntime: h.create,
+        source: source,
+        bindings: registry,
+        plugins: const [FlaxLocalStoragePlugin()],
+        onError: (error, _) => h.errors.add(error),
+      );
+      final sessions = [isolated(first, a), isolated(second, b)];
+      try {
+        await flaxTestPumpView(
+          t,
+          MaterialApp(
+            home: Stack(
+              children: [
+                for (final session in sessions)
+                  FlaxView.session(session: session),
+              ],
+            ),
+          ),
+        );
+        first.execute("localStorage.setItem('x', 'application a'); undefined;");
+        expect(second.number("localStorage.getItem('x') === null ? 1 : 0"), 1);
+        second.execute(
+          "localStorage.setItem('x', 'application b'); undefined;",
+        );
+        expect(
+          first.number("localStorage.getItem('x') === 'application a' ? 1 : 0"),
+          1,
+        );
+        await flushStorage(t, sandbox: a);
+        await flushStorage(t, sandbox: b);
+        await t.runAsync(() async {
+          expect(
+            Directory('${a.homePath}/local_storage')
+                .listSync()
+                .whereType<File>()
+                .where((f) => f.path.endsWith('.hive')),
+            hasLength(1),
+          );
+          expect(
+            Directory('${b.homePath}/local_storage')
+                .listSync()
+                .whereType<File>()
+                .where((f) => f.path.endsWith('.hive')),
+            hasLength(1),
+          );
+        });
+        expect(first.errors, isEmpty);
+        expect(second.errors, isEmpty);
+      } finally {
+        await flaxTestUnmount(t);
+        for (final session in sessions) {
+          await flaxTestCloseSession(t, session);
+        }
+        await closeStorage(t, sandbox: a);
+        await closeStorage(t, sandbox: b);
+      }
+    },
+  );
+
   testWidgets('initialization is explicit, shared and configuration checked', (
     t,
   ) async {

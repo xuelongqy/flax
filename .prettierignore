@@ -18,6 +18,7 @@ examples/*/assets/*.js
 examples/*/assets/*.js.map
 examples/*/assets/flax_modules/
 packages/*/example/assets/*.js
+packages/flax_sandbox_example/assets/
 packages/*/example/assets/*.js.map
 packages/*/example/assets/flax_modules/
 packages/*/js-types/types/

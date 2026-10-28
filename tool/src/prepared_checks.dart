@@ -75,8 +75,9 @@ bool preparedOutputPath(String path) =>
     !path.contains('\\') &&
     !path.split('/').contains('..') &&
     (path == 'build/prepared-ui-fixtures.json' ||
-        RegExp(r'^packages/[^/]+/(\.dart_tool/flax/ui|js/dist|example/assets)/')
-            .hasMatch(path) ||
+        RegExp(
+          r'^packages/[^/]+/(\.dart_tool/flax/ui|js/dist|assets|example/assets)/',
+        ).hasMatch(path) ||
         RegExp(r'^examples/[^/]+/assets/').hasMatch(path));
 
 void writePreparedChecks(String root, Directory output) {
@@ -88,6 +89,7 @@ void writePreparedChecks(String root, Directory output) {
     for (final owner in discoverPackages(root)) ...[
       Directory('${owner.directory.path}/.dart_tool/flax/ui'),
       Directory('${owner.directory.path}/js/dist'),
+      Directory('${owner.directory.path}/assets'),
       Directory('${owner.directory.path}/example/assets'),
     ],
     for (final entry in Directory(

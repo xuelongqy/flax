@@ -70,7 +70,8 @@ JS/JSON/Wasm graphs, remote loading and iOS interpreted Wasm. The
 ESM entry contract and readiness API. Focused macOS, simulator, physical iOS and Android
 gates pass, including Session cleanup and sustained physical iOS joint GC. The task
 records which evidence precedes the final integration review. CSS is excluded, the
-sandbox option is reserved only, and in-place ESM hot replacement remains deferred. SDK
+sandbox resource isolation is implemented separately from deferred permissions and
+navigation isolation, and in-place ESM hot replacement remains deferred. SDK
 distribution and broader Wasm feature conformance require separate gates.
 
 [Direct JavaScript FFI](../architecture/ffi.md) now implements the optional npm package,
@@ -93,10 +94,15 @@ tooling work. See the
 [acceptance runner](../../packages/flax_ffi/test/runtime/README.md) for the executed
 scope.
 
-The current bridge executes trusted application code; its module compatibility checks
-are not a security sandbox. Initial synchronous execution and local native asset loading
-are accepted in [ADR 0002](0002-experimental-runtime.md). Node, Python and Rust backend
-integrations, broader Canvas coverage and other platforms remain separate work.
+The [application data sandbox](../architecture/sandbox.md) scopes files, assets and
+localStorage and disables direct JS FFI. Native Flutter widgets can still reach host
+routes through internal Dart calls, so navigation and ancestor isolation remain open.
+Network/module permissions are a separate deferred capability layer.
+
+Custom host bindings and plugins execute trusted Dart code; module compatibility checks
+alone are not a security sandbox. Initial synchronous execution and local native asset
+loading are accepted in [ADR 0002](0002-experimental-runtime.md). Node, Python and Rust
+backend integrations, broader Canvas coverage and other platforms remain separate work.
 
 ## Known implementation gaps outside binding expansion
 

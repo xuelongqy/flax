@@ -94,6 +94,7 @@ class FlaxTestRuntimeTracker
   final hostCalls = <String, int>{};
   final evaluationMicroseconds = <String, int>{};
   final jsCalls = <String, int>{};
+  int _observedSubscriptions = 0;
   final checkpointPhases = <SchedulerPhase>[];
   int? handlesAtDispose;
   int copiedToJs = 0;
@@ -121,14 +122,9 @@ class FlaxTestRuntimeTracker
       (jsCalls['__flaxBindings.observePromise'] ?? 0) -
       (hostCalls['__flaxPromiseSettlement'] ?? 0);
   int get activeSubscriptions => jsCalls.entries.fold(
-    0,
+    _observedSubscriptions,
     (count, entry) =>
-        count +
-        (entry.key.endsWith('.observe')
-            ? entry.value
-            : entry.key.endsWith('.observe.result')
-            ? -entry.value
-            : 0),
+        count + (entry.key.endsWith('.observe.result') ? -entry.value : 0),
   );
 
   FlaxJsValue wrap(FlaxJsValue value, String label, {bool owned = true}) {
@@ -386,6 +382,9 @@ class _TrackedFunction extends _TrackedObject implements FlaxJsFunction {
         tracing?.call('bridge:call', false);
       }
       final result = runtime.wrap(value, '$label.result');
+      if (label.endsWith('.observe') && result is FlaxJsFunction) {
+        runtime._observedSubscriptions++;
+      }
       if (label == '__flaxBindings.future' && result is FlaxJsObject) {
         runtime._futureIds[result] = (arguments.first as FlaxJsNumber).value
             .toInt();

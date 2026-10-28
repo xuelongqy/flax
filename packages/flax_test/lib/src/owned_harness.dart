@@ -36,12 +36,14 @@ class FlaxOwnedTestHarness {
             functions: module.functions,
             dartTypes: module.dartTypes,
             dartShapes: module.dartShapes,
+            sandboxGuards: module.sandboxGuards,
           ),
         )
         .toList();
     session = FlaxSession(
       createRuntime: () => runtime,
       source: source,
+      // Generated IIFE fixtures exercise the synchronous bridge contract.
       bindings: FlaxBindingRegistry(modules),
       plugins: [
         for (final plugin in plugins)

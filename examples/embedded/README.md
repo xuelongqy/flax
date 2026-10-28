@@ -11,15 +11,16 @@ each capability in its package-owned example; see the
 
 ## Browse the examples
 
-| Entrance       | Package-owned example                 | What to try                                              |
-| -------------- | ------------------------------------- | -------------------------------------------------------- |
-| Core & signals | `packages/flax/example`               | Counter, computed values and callbacks                   |
-| Material UI    | `packages/flax_material_ui/example`   | Five collections, editing, selection, dialogs and routes |
-| Cupertino UI   | `packages/flax_cupertino_ui/example`  | Four collections, segmented controls, lists and overlays |
-| Canvas 2D      | `packages/flax_canvas/example`        | Palette changes and clearing a native drawing surface    |
-| Fetch          | `packages/flax_fetch/example`         | Requests, response content and cancellation              |
-| WebSocket      | `packages/flax_websocket/example`     | Connection state, messages and disconnecting             |
-| Local storage  | `packages/flax_local_storage/example` | Saved counter, notes and persistence across visits       |
+| Entrance       | Package-owned example                   | What to try                                                                |
+| -------------- | --------------------------------------- | -------------------------------------------------------------------------- |
+| Core & signals | `packages/flax/example`                 | Counter, computed values and callbacks                                     |
+| Material UI    | `packages/flax_material_ui/example`     | Five collections, editing, selection, dialogs and routes                   |
+| Cupertino UI   | `packages/flax_cupertino_ui/example`    | Four collections, segmented controls, lists and overlays                   |
+| Canvas 2D      | `packages/flax_canvas/example`          | Palette changes and clearing a native drawing surface                      |
+| Fetch          | `packages/flax_fetch/example`           | Requests, response content and cancellation                                |
+| WebSocket      | `packages/flax_websocket/example`       | Connection state, messages and disconnecting                               |
+| Local storage  | `packages/flax_local_storage/example`   | Saved counter, notes and persistence across visits                         |
+| Sandbox        | `packages/flax_sandbox_example/example` | File and Image.file access, isolated storage and live configuration reload |
 
 From the repository root, with the maintained Flutter SDK and local engine selected:
 
@@ -65,7 +66,7 @@ appearance and FPS disabled when the Dart shell is recreated.
 ## Verification
 
 `test/aggregate_test.dart` checks missing-plugin rejection, shared module identity, all
-seven entrances, state reset after remount, narrow layout and zero runtime handles at
+eight entrances, state reset after remount, narrow layout and zero runtime handles at
 Session disposal, including an open dialog during unmount.
 `test/network_lifecycle_test.dart` repeats Fetch and WebSocket page exits and reentry,
 checks transport closure and callback removal, and verifies zero handles at Session
@@ -77,6 +78,11 @@ Owner examples test their own controls. Material and Cupertino exercise their fu
 listed collections at desktop and phone widths. Network examples use loopback servers;
 local storage verifies shared and isolated areas. These representative collections do
 not claim a demonstration of every generated SDK declaration.
+
+The [sandbox playground](../../packages/flax_sandbox_example/README.md) embeds two
+packaged applications under a trusted Dart configuration panel. Change appIds, the apps
+parent directory or the sandbox switch and press **Apply & reload** to recreate their
+sessions. Its probes use demo fixtures to compare isolation and ordinary host access.
 
 Run `dart run melos run check:aggregate` for the aggregate, or
 `dart run tool/package.dart integration flax_material_ui` for one owner. The full

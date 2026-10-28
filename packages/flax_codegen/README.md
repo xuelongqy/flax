@@ -6,6 +6,11 @@ APIs with FlaxExport(), run dart run flax_codegen generate, and inject appPlugin
 YAML and output paths are optional for annotation scopes. The
 [host guide](../../docs/guides/host-bindings.md) covers separate scopes and SDKs.
 
+Selected operations can declare synchronous sandbox checks, replacements or direct
+`deny` through `FlaxSandboxGuard` annotations or provider YAML. The generator validates
+the policy/handler signature and records guards in the Manifest. See the
+[sandbox contract](../../docs/architecture/sandbox.md#binding-guards).
+
 Uses pinned analyzer 13.3.0 to generate selected public Dart APIs, TypeScript wrappers,
 and typed Dart calls from one model. Publication remains disabled.
 

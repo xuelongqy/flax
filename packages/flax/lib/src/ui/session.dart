@@ -52,7 +52,13 @@ class _Session {
     this.namespace,
     required this.assetBundle,
     this.modulesPrepared = false,
-  });
+    FlaxSandbox? sandbox,
+  }) {
+    this.sandbox = sandbox == null ? null : _SessionSandbox(this, sandbox);
+  }
+  late final _SessionSandbox? sandbox;
+  bool _closingSandbox = false;
+  Future<String>? _homePath;
   final bool modulesPrepared;
   final String? namespace;
   final AssetBundle assetBundle;
@@ -237,6 +243,7 @@ class _Session {
     '__flaxMount',
     '__flaxInvalidate',
     '__flaxAssetBundle',
+    '__flaxHomePath',
     '__flaxRegisterFont',
   };
   final _hostTasks = ListQueue<(_HostContext, void Function())>();
@@ -511,6 +518,14 @@ class _Session {
       if (receive == null) throw StateError('No argument read in progress');
       receive(values);
       return const FlaxJsUndefined();
+    });
+    runtime.registerHostFunction('__flaxHomePath', (_, args) {
+      if (args.isNotEmpty) {
+        throw ArgumentError('getHomePath takes no arguments');
+      }
+      return holdHostResult(
+        futureResult(_getHomePath(), const FlaxTypeRef('String')),
+      );
     });
     runtime.registerHostFunction('__flaxAssetBundle', (_, args) {
       if (args.isNotEmpty || !active) {
@@ -1542,6 +1557,21 @@ class _Session {
   }
 
   Future<void> requestClose() {
+    if (!_closingSandbox && sandbox != null) {
+      _closingSandbox = true;
+      _nativeRetirements++;
+      sandbox!.close().then(
+        (_) {
+          _nativeRetirements--;
+          _tryClose();
+        },
+        onError: (Object error, StackTrace stack) {
+          report(error, stack);
+          _nativeRetirements--;
+          _tryClose();
+        },
+      );
+    }
     if (_loadingInStages) {
       _status = _SessionStatus.closing;
       return _closed.future;
@@ -1661,7 +1691,19 @@ class _Session {
     _readyFutures.clear();
     _promises.clear();
     runtime.dispose();
-    if (!_closed.isCompleted) _closed.complete();
+    final closingFiles = sandbox?.close();
+    if (closingFiles == null) {
+      if (!_closed.isCompleted) _closed.complete();
+    } else {
+      closingFiles.then(
+        (_) {
+          if (!_closed.isCompleted) _closed.complete();
+        },
+        onError: (Object error, StackTrace stack) {
+          if (!_closed.isCompleted) _closed.completeError(error, stack);
+        },
+      );
+    }
   }
 }
 

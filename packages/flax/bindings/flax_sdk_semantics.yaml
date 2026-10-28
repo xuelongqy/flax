@@ -9,3 +9,14 @@ publicLibraries:
   package:flutter/semantics.dart:
     jsPackage: '@flax/flutter/semantics'
     tsOutput: js/src/flutter/generated/libraries/semantics/index.ts
+
+# Session resource isolation. Unmarked APIs keep ordinary binding behavior.
+sandbox:
+  'version': 1
+  'classes':
+    'SemanticsBinding':
+      'staticGetters':
+        'instance': 'deny'
+      'getters':
+        'window': 'deny'
+        'platformDispatcher': 'deny'

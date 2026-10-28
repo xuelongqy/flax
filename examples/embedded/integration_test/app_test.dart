@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flax_embedded/main.dart' as app;
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:flax_sandbox_example/flax_sandbox_example.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,17 +17,18 @@ void main() {
   testWidgets(
     'all owner examples compose, navigate and cleanly recreate the session',
     (tester) async {
-      final storage = await tester.runAsync(
+      final storage = (await tester.runAsync(
         () => Directory.systemTemp.createTemp('flax-gallery-app-'),
-      );
+      ))!;
       final source = (await tester.runAsync(
-        () => app.loadAggregateSource(storageDirectory: storage!.path),
+        () => app.loadAggregateSource(storageDirectory: storage.path),
       ))!;
       final runtimes = <RuntimeTracker>[];
       await flaxTestPumpView(
         tester,
         app.EmbeddedApp(
           source: source,
+          sandboxDemoDirectory: '${storage.path}/sandbox-demo',
           createRuntime: () {
             final runtime = RuntimeTracker();
             runtimes.add(runtime);
@@ -46,14 +48,15 @@ void main() {
       await tester.pumpWidget(const SizedBox.shrink());
       await pumpGalleryUntil(tester, () => runtimes.last.isDisposed);
       expect(runtimes.last.handlesAtDispose, 0);
+      await waitGalleryIO(tester, FlaxSandboxExample.pendingLifecycle);
       await waitGalleryIO(tester, FlaxLocalStoragePlugin.shutdown());
-      await tester.runAsync(() => storage!.delete(recursive: true));
+      await tester.runAsync(() => storage.delete(recursive: true));
       binding.reportData = {
         'scenario': 'embedded-module-aggregate',
         'moduleComposition': true,
         'sharedHostModules': true,
         'sessionRecreation': true,
-        'ownerEntrances': 7,
+        'ownerEntrances': 8,
         'zeroHandlesAtDispose': true,
         'completed': true,
       };

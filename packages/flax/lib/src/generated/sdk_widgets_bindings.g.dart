@@ -34,6 +34,9 @@ import 'package:flutter/semantics.dart' as api18;
 
 import 'dart:developer' as api19;
 
+import 'package:flax/sandbox_ui.dart' as api20;
+import 'package:flax/src/sandbox/file_system.dart' as api21;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const sdk_widgetsBindings = FlaxBindingModule(
@@ -15812,6 +15815,7 @@ const sdk_widgetsBindings = FlaxBindingModule(
     "native-widget-proxies",
     "proxy-native-members",
     "proxy-super-constructors",
+    "sandbox-guards",
     "shared-static-readers",
     "shared-uint8",
   ],
@@ -19463,6 +19467,124 @@ const sdk_widgetsBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  sandboxGuards: {
+    ("flax.core/sdk_widgets#type:DefaultAssetBundle", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox0, replace: false),
+    (
+      "package:flutter/src/widgets/basic.dart::DefaultAssetBundle.of",
+      "call",
+      "",
+    ): FlaxSandboxBinding(
+      _flaxSandbox1,
+      replace: true,
+    ),
+    ("flax.core/sdk_widgets#type:FadeInImage", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox2, replace: false),
+    ("flax.core/sdk_widgets#type:FadeInImage", "construct", "assetNetwork"):
+        FlaxSandboxBinding(_flaxSandbox3, replace: true),
+    ("flax.core/sdk_widgets#type:Image", "construct", ""): FlaxSandboxBinding(
+      _flaxSandbox4,
+      replace: false,
+    ),
+    ("flax.core/sdk_widgets#type:Image", "construct", "file"):
+        FlaxSandboxBinding(_flaxSandbox5, replace: false),
+    ("flax.core/sdk_widgets#type:Image", "construct", "asset"):
+        FlaxSandboxBinding(_flaxSandbox6, replace: true),
+    ("flax.core/sdk_widgets#type:ImageIcon", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox7, replace: false),
+    ("flax.core/sdk_widgets#type:ScrollAwareImageProvider", "construct", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_widgets#type:ScrollAwareImageProvider", "call", "resolve"):
+        FlaxSandboxBinding(_flaxSandbox9, replace: false),
+    (
+      "flax.core/sdk_widgets#type:ScrollAwareImageProvider",
+      "call",
+      "createStream",
+    ): FlaxSandboxBinding(
+      _flaxSandbox10,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_widgets#type:ScrollAwareImageProvider",
+      "call",
+      "obtainCacheStatus",
+    ): FlaxSandboxBinding(
+      _flaxSandbox11,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_widgets#type:ScrollAwareImageProvider",
+      "call",
+      "resolveStreamForKey",
+    ): FlaxSandboxBinding(
+      _flaxSandbox12,
+      replace: false,
+    ),
+    ("flax.core/sdk_widgets#type:ScrollAwareImageProvider", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox13, replace: false),
+    (
+      "flax.core/sdk_widgets#type:ScrollAwareImageProvider",
+      "call",
+      "obtainKey",
+    ): FlaxSandboxBinding(
+      _flaxSandbox14,
+      replace: true,
+    ),
+    (
+      "flax.core/sdk_widgets#type:ScrollAwareImageProvider",
+      "call",
+      "loadBuffer",
+    ): FlaxSandboxBinding(
+      _flaxSandbox15,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_widgets#type:ScrollAwareImageProvider",
+      "call",
+      "loadImage",
+    ): FlaxSandboxBinding(
+      _flaxSandbox16,
+      replace: false,
+    ),
+    ("flax.core/sdk_widgets#type:WidgetsBinding", "get", "window"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_widgets#type:WidgetsBinding", "get", "platformDispatcher"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_widgets#type:WidgetsBinding",
+      "get",
+      "defaultBinaryMessenger",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_widgets#type:WidgetsBinding", "get", "channelBuffers"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_widgets#read:WidgetsBinding.instance", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_widgets#type:WidgetsFlutterBinding", "get", "window"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_widgets#type:WidgetsFlutterBinding",
+      "get",
+      "platformDispatcher",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_widgets#type:WidgetsFlutterBinding",
+      "get",
+      "defaultBinaryMessenger",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_widgets#type:WidgetsFlutterBinding",
+      "get",
+      "channelBuffers",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_widgets#function:createLocalImageConfiguration",
+      "call",
+      "",
+    ): FlaxSandboxBinding(
+      _flaxSandbox26,
+      replace: true,
+    ),
+  },
 );
 final sdk_widgetsPlugin = FlaxBindingPlugin(
   id: "binding:flax.core/sdk_widgets",
@@ -69699,15 +69821,14 @@ Object? _ScrollAwareImageProvider_evict(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas1 = values.containsKey("configuration");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.ScrollAwareImageProvider<Object>).evict,
-    <Object?>[
-      values["cache"] as api3.ImageCache?,
-      (_flaxHas1 ? values["configuration"] as api3.ImageConfiguration : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["cache", "configuration"],
+    <Object?>[],
+    <Symbol, Object?>{
+      #cache: values["cache"] as api3.ImageCache?,
+      if (values.containsKey("configuration"))
+        #configuration: values["configuration"] as api3.ImageConfiguration,
+    },
   ) as Future<bool>;
 }
 
@@ -194895,15 +195016,14 @@ Function _flaxClass_ScrollAwareImageProvider<
     Object receiver,
     Map<String, Object?> values,
   ) {
-    final _flaxHas1 = values.containsKey("configuration");
-    return flaxInvokeWithDefaults(
+    return Function.apply(
       (receiver as api.ScrollAwareImageProvider<_Owner0>).evict,
-      <Object?>[
-        values["cache"] as api3.ImageCache?,
-        (_flaxHas1 ? values["configuration"] as api3.ImageConfiguration : null),
-      ],
-      <int>[1 | (_flaxHas1 ? 2 : 0)],
-      const <String>["cache", "configuration"],
+      <Object?>[],
+      <Symbol, Object?>{
+        #cache: values["cache"] as api3.ImageCache?,
+        if (values.containsKey("configuration"))
+          #configuration: values["configuration"] as api3.ImageConfiguration,
+      },
     ) as Future<bool>;
   }
 
@@ -301429,3 +301549,490 @@ const _flaxBinding11245 = <FlaxParameter>[
 const _flaxBinding11246 = <FlaxParameter>[
   FlaxParameter.required("routeAware", _flaxBinding787),
 ];
+Object? _flaxSandbox0(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxBundleInput,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      values["bundle"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox1(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api20.sandboxDefaultBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      values["context"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox2(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxFadeImages,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      values["image"],
+      values["placeholder"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "image", "placeholder"],
+  );
+  return null;
+}
+
+Object? _flaxSandbox3(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  final _flaxHas12 = values.containsKey("fadeOutDuration");
+  final _flaxHas13 = values.containsKey("fadeOutCurve");
+  final _flaxHas14 = values.containsKey("fadeInDuration");
+  final _flaxHas15 = values.containsKey("fadeInCurve");
+  final _flaxHas26 = values.containsKey("alignment");
+  return flaxInvokeWithDefaults(
+    api20.sandboxFadeAssetNetwork,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      values["key"],
+      values["placeholder"],
+      values["placeholderErrorBuilder"],
+      values["image"],
+      values["imageErrorBuilder"],
+      values["bundle"],
+      values["placeholderScale"],
+      values["imageScale"],
+      values["excludeFromSemantics"],
+      values["imageSemanticLabel"],
+      (_flaxHas12 ? values["fadeOutDuration"] : null),
+      (_flaxHas13 ? values["fadeOutCurve"] : null),
+      (_flaxHas14 ? values["fadeInDuration"] : null),
+      (_flaxHas15 ? values["fadeInCurve"] : null),
+      values["width"],
+      values["height"],
+      values["fit"],
+      values["color"],
+      values["colorBlendMode"],
+      values["placeholderColor"],
+      values["placeholderColorBlendMode"],
+      values["placeholderFit"],
+      values["filterQuality"],
+      values["placeholderFilterQuality"],
+      (_flaxHas26 ? values["alignment"] : null),
+      values["repeat"],
+      values["matchTextDirection"],
+      values["placeholderCacheWidth"],
+      values["placeholderCacheHeight"],
+      values["imageCacheWidth"],
+      values["imageCacheHeight"],
+    ],
+    <int>[
+      1 |
+          2 |
+          4 |
+          8 |
+          16 |
+          32 |
+          64 |
+          128 |
+          256 |
+          512 |
+          1024 |
+          2048 |
+          (_flaxHas12 ? 4096 : 0) |
+          (_flaxHas13 ? 8192 : 0) |
+          (_flaxHas14 ? 16384 : 0) |
+          (_flaxHas15 ? 32768 : 0) |
+          65536 |
+          131072 |
+          262144 |
+          524288 |
+          1048576 |
+          2097152 |
+          4194304 |
+          8388608 |
+          16777216 |
+          33554432 |
+          (_flaxHas26 ? 67108864 : 0) |
+          134217728 |
+          268435456 |
+          536870912 |
+          1073741824 |
+          2147483648,
+      1,
+    ],
+    const <String>[
+      "",
+      "",
+      "key",
+      "placeholder",
+      "placeholderErrorBuilder",
+      "image",
+      "imageErrorBuilder",
+      "bundle",
+      "placeholderScale",
+      "imageScale",
+      "excludeFromSemantics",
+      "imageSemanticLabel",
+      "fadeOutDuration",
+      "fadeOutCurve",
+      "fadeInDuration",
+      "fadeInCurve",
+      "width",
+      "height",
+      "fit",
+      "color",
+      "colorBlendMode",
+      "placeholderColor",
+      "placeholderColorBlendMode",
+      "placeholderFit",
+      "filterQuality",
+      "placeholderFilterQuality",
+      "alignment",
+      "repeat",
+      "matchTextDirection",
+      "placeholderCacheWidth",
+      "placeholderCacheHeight",
+      "imageCacheWidth",
+      "imageCacheHeight",
+    ],
+  );
+}
+
+Object? _flaxSandbox4(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxImageInput,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      values["image"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox5(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxFileImage,
+    <Object?>[
+      context,
+      context.requirePolicy<api21.FlaxFilePolicy>(),
+      values["file"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox6(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  final _flaxHas16 = values.containsKey("alignment");
+  return flaxInvokeWithDefaults(
+    api20.sandboxImageAsset,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      values["name"],
+      values["key"],
+      values["bundle"],
+      values["frameBuilder"],
+      values["errorBuilder"],
+      values["semanticLabel"],
+      values["excludeFromSemantics"],
+      values["scale"],
+      values["width"],
+      values["height"],
+      values["color"],
+      values["opacity"],
+      values["colorBlendMode"],
+      values["fit"],
+      (_flaxHas16 ? values["alignment"] : null),
+      values["repeat"],
+      values["centerSlice"],
+      values["matchTextDirection"],
+      values["gaplessPlayback"],
+      values["isAntiAlias"],
+      values["package"],
+      values["filterQuality"],
+      values["cacheWidth"],
+      values["cacheHeight"],
+    ],
+    <int>[
+      1 |
+          2 |
+          4 |
+          8 |
+          16 |
+          32 |
+          64 |
+          128 |
+          256 |
+          512 |
+          1024 |
+          2048 |
+          4096 |
+          8192 |
+          16384 |
+          32768 |
+          (_flaxHas16 ? 65536 : 0) |
+          131072 |
+          262144 |
+          524288 |
+          1048576 |
+          2097152 |
+          4194304 |
+          8388608 |
+          16777216 |
+          33554432,
+    ],
+    const <String>[
+      "",
+      "",
+      "",
+      "key",
+      "bundle",
+      "frameBuilder",
+      "errorBuilder",
+      "semanticLabel",
+      "excludeFromSemantics",
+      "scale",
+      "width",
+      "height",
+      "color",
+      "opacity",
+      "colorBlendMode",
+      "fit",
+      "alignment",
+      "repeat",
+      "centerSlice",
+      "matchTextDirection",
+      "gaplessPlayback",
+      "isAntiAlias",
+      "package",
+      "filterQuality",
+      "cacheWidth",
+      "cacheHeight",
+    ],
+  );
+}
+
+Object? _flaxSandbox7(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxImageInput,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      values["image"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox9(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox10(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox11(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox12(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox13(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox14(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api20.sandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["configuration"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox15(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox16(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api20.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox26(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api20.sandboxLocalImageConfiguration,
+    <Object?>[
+      context,
+      context.requirePolicy<api20.FlaxAssetBundlePolicy>(),
+      values["context"],
+      values["size"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", "size"],
+  );
+}

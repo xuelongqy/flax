@@ -6,15 +6,20 @@ import 'package:flax_example_support/flax_example_support.dart';
 import 'package:flax_fetch/flax_fetch.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flax_material_ui/flax_material_ui.dart';
+import 'package:flax_sandbox_example/flax_sandbox_example.dart';
 import 'package:flax_websocket/flax_websocket.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:material_ui/material_ui.dart' show TextButton;
 
-final embeddedBindings = FlaxBindingRegistry([
-  flutterBindings,
-  materialBindings,
-]);
+final embeddedBindings = createEmbeddedBindings();
+
+FlaxBindingRegistry createEmbeddedBindings({String? sandboxDemoDirectory}) =>
+    FlaxBindingRegistry([
+      flutterBindings,
+      materialBindings,
+      createSandboxExampleBindings(demoDirectory: sandboxDemoDirectory),
+    ]);
 
 final galleryPlugins = <FlaxPlugin>[
   const FlaxMaterialPlugin(),
@@ -56,18 +61,25 @@ class EmbeddedApp extends StatefulWidget {
     this.createRuntime,
     this.plugins,
     this.onFlaxError,
+    this.sandboxDemoDirectory,
   });
 
   final String source;
   final FlaxJsRuntime Function()? createRuntime;
   final List<FlaxPlugin>? plugins;
   final void Function(Object, StackTrace)? onFlaxError;
+  final String? sandboxDemoDirectory;
 
   @override
   State<EmbeddedApp> createState() => _EmbeddedAppState();
 }
 
 class _EmbeddedAppState extends State<EmbeddedApp> {
+  late final _bindings = widget.sandboxDemoDirectory == null
+      ? embeddedBindings
+      : createEmbeddedBindings(
+          sandboxDemoDirectory: widget.sandboxDemoDirectory,
+        );
   bool _mounted = true;
   var _generation = 0;
 
@@ -94,7 +106,7 @@ class _EmbeddedAppState extends State<EmbeddedApp> {
             createRuntime: widget.createRuntime ?? createExampleRuntime,
             source: widget.source,
             sourceUrl: 'flax:embedded/aggregate',
-            bindings: embeddedBindings,
+            bindings: _bindings,
             namespace: 'example-gallery',
             plugins: widget.plugins ?? galleryPlugins,
             onError: widget.onFlaxError,

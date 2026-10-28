@@ -562,6 +562,7 @@ const sdk_gesturesBindings = FlaxBindingModule(
     "native-navigation-objects",
     "native-widget-proxies",
     "proxy-super-constructors",
+    "sandbox-guards",
     "shared-static-readers",
   ],
   stateVariants: [],
@@ -1045,6 +1046,14 @@ const sdk_gesturesBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  sandboxGuards: {
+    ("flax.core/sdk_gestures#type:GestureBinding", "get", "window"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_gestures#type:GestureBinding", "get", "platformDispatcher"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_gestures#read:GestureBinding.instance", "call", ""):
+        FlaxSandboxBinding.deny(),
+  },
 );
 final sdk_gesturesPlugin = FlaxBindingPlugin(
   id: "binding:flax.core/sdk_gestures",

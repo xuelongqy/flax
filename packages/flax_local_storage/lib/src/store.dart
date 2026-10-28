@@ -3,6 +3,9 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:hive_ce/hive_ce.dart';
+// Hive exposes no public constructor for a registry isolated from host adapters.
+// ignore: implementation_imports
+import 'package:hive_ce/src/hive_impl.dart';
 import 'package:path/path.dart' as p;
 
 typedef FlaxStorageChange = ({String? key, String? oldValue, String? newValue});
@@ -26,19 +29,25 @@ class FlaxLocalStorageStore {
   (Object, StackTrace)? _unavailable;
   int _nextId = 0;
 
-  static Future<FlaxLocalStorageStore> open(String directory, int quota) async {
+  static Future<FlaxLocalStorageStore> open(
+    String directory,
+    int quota, {
+    String name = boxName,
+    bool isolated = false,
+  }) async {
     await Directory(directory).create(recursive: true);
-    if (Hive.isBoxOpen(boxName)) {
+    final hive = isolated ? HiveImpl() : Hive;
+    if (hive.isBoxOpen(name)) {
       throw StateError('The Flax localStorage box is already open');
     }
     // An explicit path works before or after the application's Hive.init().
     // Never change Hive's global home directory or close application boxes.
-    final box = await Hive.openBox<List<dynamic>>(boxName, path: directory);
+    final box = await hive.openBox<List<dynamic>>(name, path: directory);
     // Hive also deduplicates concurrently opening boxes by name, regardless of path.
     if (box.path == null ||
         !p.equals(
           p.absolute(box.path!),
-          p.absolute(p.join(directory, '$boxName.hive')),
+          p.absolute(p.join(directory, '$name.hive')),
         )) {
       throw StateError(
         'The Flax localStorage box name belongs to another directory',
@@ -262,7 +271,9 @@ class FlaxLocalStorageStore {
     var nextId = _nextId;
     for (final id in box.keys.cast<int>()) {
       final record = box.get(id)!;
-      if (record.length != 3) {
+      // Built-in HiveLists resolve through global Hive, even in an isolated registry.
+      // ignore: experimental_member_use
+      if (record is HiveList || record.length != 3) {
         throw StateError('Invalid Flax localStorage record');
       }
       final namespace = record[0] == null

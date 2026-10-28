@@ -98,6 +98,9 @@ importers:
       '@flax/example-material-ui':
         specifier: workspace:*
         version: link:../../../packages/flax_material_ui/example/js
+      '@flax/example-sandbox':
+        specifier: workspace:*
+        version: link:../../../packages/flax_sandbox_example/example/js
       '@flax/example-websocket':
         specifier: workspace:*
         version: link:../../../packages/flax_websocket/example/js
@@ -615,6 +618,30 @@ importers:
       '@flax/flutter':
         specifier: workspace:*
         version: link:../../flax_flutter/js
+
+  packages/flax_sandbox_example/example/js:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
+        version: link:../../../flax/js
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../../flax_dart/js
+      '@flax/example-core':
+        specifier: workspace:*
+        version: link:../../../flax/example/js
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../../flax_flutter/js
+      '@flax/local-storage':
+        specifier: workspace:*
+        version: link:../../../flax_local_storage/js-types
+      '@flax/local-storage-runtime':
+        specifier: workspace:*
+        version: link:../../../flax_local_storage/js
 
   packages/flax_websocket/example/js:
     dependencies:

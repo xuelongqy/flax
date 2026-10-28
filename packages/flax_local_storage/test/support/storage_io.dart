@@ -1,12 +1,13 @@
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /// Pump the test zone's continuations while real Hive file operations complete.
-Future<void> flushStorage(WidgetTester tester) =>
-    _wait(tester, FlaxLocalStoragePlugin.flush());
+Future<void> flushStorage(WidgetTester tester, {FlaxSandbox? sandbox}) =>
+    _wait(tester, FlaxLocalStoragePlugin.flush(sandbox: sandbox));
 
-Future<void> closeStorage(WidgetTester tester) =>
-    _wait(tester, FlaxLocalStoragePlugin.shutdown());
+Future<void> closeStorage(WidgetTester tester, {FlaxSandbox? sandbox}) =>
+    _wait(tester, FlaxLocalStoragePlugin.shutdown(sandbox: sandbox));
 
 Future<void> _wait(WidgetTester tester, Future<void> operation) async {
   var completed = false;

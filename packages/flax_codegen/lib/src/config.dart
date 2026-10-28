@@ -57,6 +57,7 @@ class FlaxCodegenBindingConfig {
     this.automaticFunctions = const [],
     this.automaticExtensions = const [],
     this.overrides = const FlaxCodegenAutoOverrides(),
+    this.sandbox = const {},
   });
   final String name;
   final String library;
@@ -87,6 +88,7 @@ class FlaxCodegenBindingConfig {
   final List<String> automaticFunctions;
   final List<String> automaticExtensions;
   final FlaxCodegenAutoOverrides overrides;
+  final Map<String, dynamic> sandbox;
 
   FlaxCodegenBindingConfig withOverrides(FlaxCodegenAutoOverrides value) =>
       copyWith(overrides: value);
@@ -119,6 +121,7 @@ class FlaxCodegenBindingConfig {
     automaticFunctions: automaticFunctions,
     automaticExtensions: automaticExtensions,
     overrides: overrides ?? this.overrides,
+    sandbox: sandbox,
   );
 
   bool get hasAutomaticSelection =>
@@ -298,6 +301,7 @@ class FlaxCodegenBindingConfig {
                 .cast<String>(),
       automaticFunctions: automaticFunctions,
       automaticExtensions: automaticExtensions,
+      sandbox: (data['sandbox'] as Map<String, dynamic>?) ?? const {},
       overrides: data['overrides'] == null
           ? const FlaxCodegenAutoOverrides()
           : FlaxCodegenAutoOverrides.parseStrict(

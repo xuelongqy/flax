@@ -1,10 +1,10 @@
 # Active Tasks
 
 The [native ESM, JSON and Wasm module task](native-esm-and-wasm.md) covers runtime
-module graphs, remote imports and Wasm under iOS V8 jitless. Its sandbox option is
-reserved only. The implementation and focused runtime acceptance are complete; the task
-record distinguishes current integration checks from earlier physical and simulator
-evidence, and lists the remaining release limits.
+module graphs, remote imports and Wasm under iOS V8 jitless. The module implementation
+and focused runtime acceptance are complete; the task record distinguishes current
+integration checks from earlier physical and simulator evidence, and lists the remaining
+release limits.
 
 The completed
 [iOS V8 jitless acceptance](../../experiments/canvas_engines/migration-ios-results.md)

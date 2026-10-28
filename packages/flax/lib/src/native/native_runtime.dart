@@ -171,7 +171,7 @@ final class FlaxNativeJsRuntime
   final NativeCalls _calls;
   final FlaxEngineGcApi _gc;
   final FlaxEngineBindingApi _binding;
-  final FlaxEngineFfiApi? _ffi;
+  FlaxEngineFfiApi? _ffi;
   final FlaxEngineExecutionApi? _execution;
   FlaxEngineExecutionApi? _results;
   bool _batchArguments = false;

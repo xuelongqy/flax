@@ -163,6 +163,7 @@ ordinary callback ownership during navigation.
 native ValueListenable consumers.
 
 - [Persistent localStorage and namespaces](local-storage.md).
+- [Application data sandbox and binding guards](sandbox.md).
 
 - [Canvas 2D](canvas.md): command buffer, rAF, and native input references.
 

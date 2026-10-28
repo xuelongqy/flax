@@ -515,6 +515,7 @@ void main() {
             functions: module.functions,
             dartTypes: module.dartTypes,
             dartShapes: module.dartShapes,
+            sandboxGuards: module.sandboxGuards,
           ),
         repeatedBindings,
       ]);
@@ -560,7 +561,7 @@ void main() {
         if (result is FlaxJsObject) result.release();
       }
 
-      await t.pumpWidget(app(red, 4));
+      await flaxTestPumpView(t, app(red, 4));
       expect(counts, {
         const ValueKey('static-box'): 1,
         const ValueKey('dynamic-box'): 2,

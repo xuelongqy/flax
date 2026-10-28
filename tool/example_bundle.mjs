@@ -1,7 +1,11 @@
 import { build } from 'esbuild';
 import { execFileSync } from 'node:child_process';
-import { access, readdir } from 'node:fs/promises';
+import { access, mkdir, mkdtemp, readdir, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import {
+  prepareApplication,
+  packApplication,
+} from '../packages/flax_build/js/src/application.mjs';
 import {
   bundleOptions,
   bundleOptionsFor,
@@ -32,6 +36,8 @@ if (process.env.FLAX_PREPARED_CHECKS && process.env.FLAX_CHECK_PREPARED === '1')
 }
 
 if (!selectedPackage) {
+  // The gallery's trusted Dart entrance installs this child-application package.
+  await bundlePackageExample('flax_sandbox_example');
   const embeddedRoot = resolve(bundleOptions.absWorkingDir, 'examples/embedded/js');
   await prepareBundleModulesFor(embeddedRoot);
   const embeddedOptions = await bundleOptionsFor(embeddedRoot);
@@ -63,23 +69,56 @@ if (!aggregateOnly) {
   for (const packageEntry of await readdir(packageRoot, { withFileTypes: true })) {
     if (!packageEntry.isDirectory()) continue;
     if (selectedPackage && packageEntry.name !== selectedPackage) continue;
-    const entry = resolve(packageRoot, packageEntry.name, 'example/js/src/main.ts');
-    try {
-      await access(resolve(packageRoot, packageEntry.name, 'example/pubspec.yaml'));
-      await access(entry);
-    } catch (error) {
-      if (error.code === 'ENOENT') continue;
-      throw error;
-    }
-    const projectRoot = resolve(packageRoot, packageEntry.name, 'example/js');
-    await prepareBundleModulesFor(projectRoot);
-    const options = await bundleOptionsFor(projectRoot);
-    await build({
-      ...options,
-      entryPoints: [entry],
-      outfile: resolve(packageRoot, packageEntry.name, 'example/assets/app.js'),
-    });
-    if (selectedPackage) process.exit(0);
+    if (!selectedPackage && packageEntry.name === 'flax_sandbox_example') continue;
+    if ((await bundlePackageExample(packageEntry.name)) && selectedPackage)
+      process.exit(0);
   }
 }
 if (selectedPackage) throw new Error(`Unknown package example: ${selectedPackage}`);
+
+async function bundlePackageExample(name) {
+  const example = resolve(bundleOptions.absWorkingDir, 'packages', name, 'example');
+  const entry = resolve(example, 'js/src/main.ts');
+  try {
+    await access(resolve(example, 'pubspec.yaml'));
+    await access(entry);
+  } catch (error) {
+    if (error.code === 'ENOENT') return false;
+    throw error;
+  }
+  await prepareBundleModulesFor(resolve(example, 'js'));
+  const options = await bundleOptionsFor(resolve(example, 'js'));
+  if (name === 'flax_sandbox_example') {
+    const temporaryRoot = resolve(bundleOptions.absWorkingDir, '.local/tmp');
+    await mkdir(temporaryRoot, { recursive: true });
+    const temporary = await mkdtemp(resolve(temporaryRoot, 'sandbox-package-'));
+    try {
+      const application = await prepareApplication({
+        projectDirectory: resolve(example, 'js'),
+        outputDirectory: temporary,
+        modules: { 'app.js': 'javascript' },
+      });
+      await build({
+        ...options,
+        format: 'esm',
+        target: 'es2022',
+        entryPoints: [entry],
+        outfile: application.entryPath,
+      });
+      await packApplication({
+        directory: application.directory,
+        outputFile: resolve(example, '../assets/app.flax'),
+      });
+      await rm(resolve(example, '../assets/app.js'), { force: true });
+    } finally {
+      await rm(temporary, { recursive: true, force: true });
+    }
+    return true;
+  }
+  await build({
+    ...options,
+    entryPoints: [entry],
+    outfile: resolve(example, 'assets/app.js'),
+  });
+  return true;
+}

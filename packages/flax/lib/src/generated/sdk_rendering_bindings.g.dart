@@ -6928,6 +6928,7 @@ const sdk_renderingBindings = FlaxBindingModule(
     "native-widget-proxies",
     "proxy-native-members",
     "proxy-super-constructors",
+    "sandbox-guards",
     "shared-buffers",
     "shared-static-readers",
   ],
@@ -8266,6 +8267,41 @@ const sdk_renderingBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  sandboxGuards: {
+    ("flax.core/sdk_rendering#type:RendererBinding", "get", "window"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_rendering#type:RendererBinding",
+      "get",
+      "platformDispatcher",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_rendering#type:RendererBinding",
+      "get",
+      "defaultBinaryMessenger",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_rendering#type:RendererBinding", "get", "channelBuffers"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_rendering#read:RendererBinding.instance", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_rendering#type:RenderingFlutterBinding", "get", "window"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_rendering#type:RenderingFlutterBinding",
+      "get",
+      "platformDispatcher",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_rendering#type:RenderingFlutterBinding",
+      "get",
+      "defaultBinaryMessenger",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_rendering#type:RenderingFlutterBinding",
+      "get",
+      "channelBuffers",
+    ): FlaxSandboxBinding.deny(),
+  },
 );
 final sdk_renderingPlugin = FlaxBindingPlugin(
   id: "binding:flax.core/sdk_rendering",

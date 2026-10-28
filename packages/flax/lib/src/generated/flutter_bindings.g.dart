@@ -8651,6 +8651,7 @@ const flutterBindings = FlaxBindingModule(
     "native-navigation-objects",
     "native-widget-proxies",
     "proxy-super-constructors",
+    "sandbox-guards",
     "shared-buffers",
     "shared-static-readers",
     "shared-uint8",
@@ -9528,6 +9529,14 @@ const flutterBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  sandboxGuards: {
+    ("flax.core/flutter#type:SchedulerBinding", "get", "window"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/flutter#type:SchedulerBinding", "get", "platformDispatcher"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/flutter#read:SchedulerBinding.instance", "call", ""):
+        FlaxSandboxBinding.deny(),
+  },
 );
 final flutterPlugin = FlaxBindingPlugin(
   id: "binding:flax.core/flutter",

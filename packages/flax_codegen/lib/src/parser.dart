@@ -25,6 +25,7 @@ import 'manifest_codec.dart';
 part 'bindability_impl.dart';
 part 'auto_binding.dart';
 part 'annotation_selection.dart';
+part 'sandbox_selection.dart';
 part 'package_scope.dart';
 part 'dependency_scope.dart';
 part 'type_scope.dart';
@@ -1492,6 +1493,7 @@ class FlaxCodegenBindingParser {
     FlaxCodegenBindingConfig config, {
     Map<String, String> automaticTypeCarriers = const {},
   }) async {
+    final sandboxSkippedTargets = <String>{};
     if (!config.hasAutomaticSelection &&
         (config.overrides.classes.isNotEmpty ||
             config.overrides.functions.isNotEmpty ||
@@ -1506,6 +1508,7 @@ class FlaxCodegenBindingParser {
         overrides: config.overrides,
       );
       automaticSkips.addAll(proposal.skips);
+      sandboxSkippedTargets.addAll(proposal.skips.map((skip) => skip.target));
       automaticNotices.addAll(proposal.notices);
       config = proposal.config;
       automaticTypeCarriers = {
@@ -4009,8 +4012,46 @@ class FlaxCodegenBindingParser {
       },
       stateVariants: stateVariants,
     );
-    module.validate();
-    return module;
+    final sandboxRules = await _sandboxRules(
+      config,
+      scope,
+      module,
+      sandboxSkippedTargets,
+    );
+    final guarded = FlaxCodegenModuleModel(
+      name: module.name,
+      library: module.library,
+      jsPackage: module.jsPackage,
+      dartOutput: module.dartOutput,
+      tsOutput: module.tsOutput,
+      classes: module.classes,
+      types: module.types,
+      functions: module.functions,
+      extensions: module.extensions,
+      snapshots: module.snapshots,
+      typedefs: module.typedefs,
+      topLevel: module.topLevel == null
+          ? null
+          : FlaxCodegenTopLevelModel(module.topLevel!.jsName, [
+              for (final getter in module.topLevel!.getters)
+                if (sandboxRules.any((rule) => rule.owner == getter.id))
+                  FlaxCodegenTopLevelGetterModel(
+                    getter.id,
+                    getter.name,
+                    getter.type,
+                    getter.kind,
+                    isReference: getter.isReference,
+                  )
+                else
+                  getter,
+            ], setters: module.topLevel!.setters),
+      publicLibraries: module.publicLibraries,
+      typeLibraries: module.typeLibraries,
+      stateVariants: module.stateVariants,
+      sandboxRules: sandboxRules,
+    );
+    guarded.validate();
+    return guarded;
   }
 
   Future<void> _validateTypeLibraryIdentityNames(

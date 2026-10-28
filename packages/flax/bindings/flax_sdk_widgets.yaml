@@ -29,3 +29,92 @@ overrides:
         '':
           [message, textDirection, location, layoutDirection, color, textStyle, shadow]
   exclude: [runApp, DefaultFontCollection, FlaxFontResources, FlaxFontResourceBoundary]
+
+# Session resource isolation. Unmarked APIs keep ordinary binding behavior.
+sandbox:
+  'version': 1
+  'functions':
+    'createLocalImageConfiguration':
+      'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+      'handler': 'package:flax/sandbox_ui.dart#sandboxLocalImageConfiguration'
+      'replace': true
+  'classes':
+    'DefaultAssetBundle':
+      'methods':
+        'of':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxDefaultBundle'
+          'replace': true
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxBundleInput'
+    'Image':
+      'constructors':
+        'file':
+          'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxFileImage'
+        'asset':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxImageAsset'
+          'replace': true
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageInput'
+    'WidgetsBinding':
+      'staticGetters':
+        'instance': 'deny'
+      'getters':
+        'window': 'deny'
+        'platformDispatcher': 'deny'
+        'defaultBinaryMessenger': 'deny'
+        'channelBuffers': 'deny'
+    'WidgetsFlutterBinding':
+      'getters':
+        'window': 'deny'
+        'platformDispatcher': 'deny'
+        'defaultBinaryMessenger': 'deny'
+        'channelBuffers': 'deny'
+    'FadeInImage':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxFadeImages'
+        'assetNetwork':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxFadeAssetNetwork'
+          'replace': true
+    'ImageIcon':
+      'constructors':
+        '':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageInput'
+    'ScrollAwareImageProvider':
+      'instanceMethods':
+        'resolve':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'createStream':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainCacheStatus':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'resolveStreamForKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'evict':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageProvider'
+        'obtainKey':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxImageKey'
+          'replace': true
+        'loadBuffer':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+        'loadImage':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
+      'constructors':
+        '': 'deny'

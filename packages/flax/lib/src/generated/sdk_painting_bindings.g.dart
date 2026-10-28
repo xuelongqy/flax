@@ -24,6 +24,8 @@ import 'package:flutter/scheduler.dart' as api11;
 import 'dart:typed_data' as api12;
 
 import 'package:vector_math/vector_math_64.dart' as api13;
+import 'package:flax/sandbox_ui.dart' as api14;
+import 'package:flax/src/sandbox/file_system.dart' as api15;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
@@ -1324,6 +1326,7 @@ const sdk_paintingBindings = FlaxBindingModule(
     "native-widget-proxies",
     "proxy-native-members",
     "proxy-super-constructors",
+    "sandbox-guards",
     "shared-static-readers",
     "shared-uint8",
   ],
@@ -1700,6 +1703,222 @@ const sdk_paintingBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  sandboxGuards: {
+    ("flax.core/sdk_painting#type:AssetBundleImageKey", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox0, replace: false),
+    ("flax.core/sdk_painting#type:AssetBundleImageProvider", "call", "resolve"):
+        FlaxSandboxBinding(_flaxSandbox1, replace: false),
+    (
+      "flax.core/sdk_painting#type:AssetBundleImageProvider",
+      "call",
+      "createStream",
+    ): FlaxSandboxBinding(
+      _flaxSandbox2,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_painting#type:AssetBundleImageProvider",
+      "call",
+      "obtainCacheStatus",
+    ): FlaxSandboxBinding(
+      _flaxSandbox3,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_painting#type:AssetBundleImageProvider",
+      "call",
+      "resolveStreamForKey",
+    ): FlaxSandboxBinding(
+      _flaxSandbox4,
+      replace: false,
+    ),
+    ("flax.core/sdk_painting#type:AssetBundleImageProvider", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox5, replace: false),
+    (
+      "flax.core/sdk_painting#type:AssetBundleImageProvider",
+      "call",
+      "obtainKey",
+    ): FlaxSandboxBinding(
+      _flaxSandbox6,
+      replace: true,
+    ),
+    (
+      "flax.core/sdk_painting#type:AssetBundleImageProvider",
+      "call",
+      "loadBuffer",
+    ): FlaxSandboxBinding(
+      _flaxSandbox7,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_painting#type:AssetBundleImageProvider",
+      "call",
+      "loadImage",
+    ): FlaxSandboxBinding(
+      _flaxSandbox8,
+      replace: false,
+    ),
+    ("flax.core/sdk_painting#type:AssetImage", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox9, replace: true),
+    ("flax.core/sdk_painting#type:AssetImage", "call", "loadImage"):
+        FlaxSandboxBinding(_flaxSandbox10, replace: false),
+    ("flax.core/sdk_painting#type:AssetImage", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox11, replace: false),
+    ("flax.core/sdk_painting#type:AssetImage", "call", "resolve"):
+        FlaxSandboxBinding(_flaxSandbox12, replace: false),
+    ("flax.core/sdk_painting#type:AssetImage", "call", "createStream"):
+        FlaxSandboxBinding(_flaxSandbox13, replace: false),
+    ("flax.core/sdk_painting#type:AssetImage", "call", "obtainCacheStatus"):
+        FlaxSandboxBinding(_flaxSandbox14, replace: false),
+    ("flax.core/sdk_painting#type:AssetImage", "call", "resolveStreamForKey"):
+        FlaxSandboxBinding(_flaxSandbox15, replace: false),
+    ("flax.core/sdk_painting#type:AssetImage", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox16, replace: false),
+    ("flax.core/sdk_painting#type:AssetImage", "call", "obtainKey"):
+        FlaxSandboxBinding(_flaxSandbox17, replace: true),
+    ("flax.core/sdk_painting#type:DecorationImage", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox18, replace: false),
+    ("flax.core/sdk_painting#type:ExactAssetImage", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox19, replace: true),
+    ("flax.core/sdk_painting#type:ExactAssetImage", "call", "loadImage"):
+        FlaxSandboxBinding(_flaxSandbox20, replace: false),
+    ("flax.core/sdk_painting#type:ExactAssetImage", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox21, replace: false),
+    ("flax.core/sdk_painting#type:ExactAssetImage", "call", "resolve"):
+        FlaxSandboxBinding(_flaxSandbox22, replace: false),
+    ("flax.core/sdk_painting#type:ExactAssetImage", "call", "createStream"):
+        FlaxSandboxBinding(_flaxSandbox23, replace: false),
+    (
+      "flax.core/sdk_painting#type:ExactAssetImage",
+      "call",
+      "obtainCacheStatus",
+    ): FlaxSandboxBinding(
+      _flaxSandbox24,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_painting#type:ExactAssetImage",
+      "call",
+      "resolveStreamForKey",
+    ): FlaxSandboxBinding(
+      _flaxSandbox25,
+      replace: false,
+    ),
+    ("flax.core/sdk_painting#type:ExactAssetImage", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox26, replace: false),
+    ("flax.core/sdk_painting#type:ExactAssetImage", "call", "obtainKey"):
+        FlaxSandboxBinding(_flaxSandbox27, replace: true),
+    ("flax.core/sdk_painting#type:FileImage", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox28, replace: true),
+    ("flax.core/sdk_painting#type:FileImage", "call", "resolve"):
+        FlaxSandboxBinding(_flaxSandbox29, replace: false),
+    ("flax.core/sdk_painting#type:FileImage", "call", "createStream"):
+        FlaxSandboxBinding(_flaxSandbox30, replace: false),
+    ("flax.core/sdk_painting#type:FileImage", "call", "obtainCacheStatus"):
+        FlaxSandboxBinding(_flaxSandbox31, replace: false),
+    ("flax.core/sdk_painting#type:FileImage", "call", "resolveStreamForKey"):
+        FlaxSandboxBinding(_flaxSandbox32, replace: false),
+    ("flax.core/sdk_painting#type:FileImage", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox33, replace: false),
+    ("flax.core/sdk_painting#type:FileImage", "call", "obtainKey"):
+        FlaxSandboxBinding(_flaxSandbox34, replace: true),
+    ("flax.core/sdk_painting#type:FileImage", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox35, replace: false),
+    ("flax.core/sdk_painting#type:FileImage", "call", "loadImage"):
+        FlaxSandboxBinding(_flaxSandbox36, replace: false),
+    ("flax.core/sdk_painting#type:ImageConfiguration", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox37, replace: true),
+    ("flax.core/sdk_painting#type:ImageConfiguration", "call", "copyWith"):
+        FlaxSandboxBinding(_flaxSandbox38, replace: true),
+    ("flax.core/sdk_painting#type:ImageProvider", "call", "resolve"):
+        FlaxSandboxBinding(_flaxSandbox39, replace: false),
+    ("flax.core/sdk_painting#type:ImageProvider", "call", "createStream"):
+        FlaxSandboxBinding(_flaxSandbox40, replace: false),
+    ("flax.core/sdk_painting#type:ImageProvider", "call", "obtainCacheStatus"):
+        FlaxSandboxBinding(_flaxSandbox41, replace: false),
+    (
+      "flax.core/sdk_painting#type:ImageProvider",
+      "call",
+      "resolveStreamForKey",
+    ): FlaxSandboxBinding(
+      _flaxSandbox42,
+      replace: false,
+    ),
+    ("flax.core/sdk_painting#type:ImageProvider", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox43, replace: false),
+    ("flax.core/sdk_painting#type:ImageProvider", "call", "obtainKey"):
+        FlaxSandboxBinding(_flaxSandbox44, replace: true),
+    ("flax.core/sdk_painting#type:ImageProvider", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox45, replace: false),
+    ("flax.core/sdk_painting#type:ImageProvider", "call", "loadImage"):
+        FlaxSandboxBinding(_flaxSandbox46, replace: false),
+    ("flax.core/sdk_painting#type:MemoryImage", "call", "resolve"):
+        FlaxSandboxBinding(_flaxSandbox47, replace: false),
+    ("flax.core/sdk_painting#type:MemoryImage", "call", "createStream"):
+        FlaxSandboxBinding(_flaxSandbox48, replace: false),
+    ("flax.core/sdk_painting#type:MemoryImage", "call", "obtainCacheStatus"):
+        FlaxSandboxBinding(_flaxSandbox49, replace: false),
+    ("flax.core/sdk_painting#type:MemoryImage", "call", "resolveStreamForKey"):
+        FlaxSandboxBinding(_flaxSandbox50, replace: false),
+    ("flax.core/sdk_painting#type:MemoryImage", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox51, replace: false),
+    ("flax.core/sdk_painting#type:MemoryImage", "call", "obtainKey"):
+        FlaxSandboxBinding(_flaxSandbox52, replace: true),
+    ("flax.core/sdk_painting#type:MemoryImage", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox53, replace: false),
+    ("flax.core/sdk_painting#type:MemoryImage", "call", "loadImage"):
+        FlaxSandboxBinding(_flaxSandbox54, replace: false),
+    ("flax.core/sdk_painting#type:NetworkImage", "call", "resolve"):
+        FlaxSandboxBinding(_flaxSandbox55, replace: false),
+    ("flax.core/sdk_painting#type:NetworkImage", "call", "createStream"):
+        FlaxSandboxBinding(_flaxSandbox56, replace: false),
+    ("flax.core/sdk_painting#type:NetworkImage", "call", "obtainCacheStatus"):
+        FlaxSandboxBinding(_flaxSandbox57, replace: false),
+    ("flax.core/sdk_painting#type:NetworkImage", "call", "resolveStreamForKey"):
+        FlaxSandboxBinding(_flaxSandbox58, replace: false),
+    ("flax.core/sdk_painting#type:NetworkImage", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox59, replace: false),
+    ("flax.core/sdk_painting#type:NetworkImage", "call", "obtainKey"):
+        FlaxSandboxBinding(_flaxSandbox60, replace: true),
+    ("flax.core/sdk_painting#type:NetworkImage", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox61, replace: false),
+    ("flax.core/sdk_painting#type:NetworkImage", "call", "loadImage"):
+        FlaxSandboxBinding(_flaxSandbox62, replace: false),
+    ("flax.core/sdk_painting#type:PaintingBinding", "get", "window"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_painting#type:PaintingBinding",
+      "get",
+      "platformDispatcher",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_painting#type:PaintingBinding",
+      "get",
+      "defaultBinaryMessenger",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_painting#type:PaintingBinding", "get", "channelBuffers"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_painting#read:PaintingBinding.instance", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_painting#type:ResizeImage", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox68, replace: true),
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "resolve"):
+        FlaxSandboxBinding(_flaxSandbox69, replace: false),
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "createStream"):
+        FlaxSandboxBinding(_flaxSandbox70, replace: false),
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "obtainCacheStatus"):
+        FlaxSandboxBinding(_flaxSandbox71, replace: false),
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "resolveStreamForKey"):
+        FlaxSandboxBinding(_flaxSandbox72, replace: false),
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox73, replace: false),
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "obtainKey"):
+        FlaxSandboxBinding(_flaxSandbox74, replace: true),
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "loadBuffer"):
+        FlaxSandboxBinding(_flaxSandbox75, replace: false),
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "loadImage"):
+        FlaxSandboxBinding(_flaxSandbox76, replace: false),
+  },
 );
 final sdk_paintingPlugin = FlaxBindingPlugin(
   id: "binding:flax.core/sdk_painting",
@@ -2080,15 +2299,14 @@ Object? _AssetBundleImageProvider_evict(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas1 = values.containsKey("configuration");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.AssetBundleImageProvider).evict,
-    <Object?>[
-      values["cache"] as api.ImageCache?,
-      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["cache", "configuration"],
+    <Object?>[],
+    <Symbol, Object?>{
+      #cache: values["cache"] as api.ImageCache?,
+      if (values.containsKey("configuration"))
+        #configuration: values["configuration"] as api.ImageConfiguration,
+    },
   ) as Future<bool>;
 }
 
@@ -4054,15 +4272,14 @@ Object? _FileImage_resolveStreamForKey(
 }
 
 Object? _FileImage_evict(Object receiver, Map<String, Object?> values) {
-  final _flaxHas1 = values.containsKey("configuration");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.FileImage).evict,
-    <Object?>[
-      values["cache"] as api.ImageCache?,
-      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["cache", "configuration"],
+    <Object?>[],
+    <Symbol, Object?>{
+      #cache: values["cache"] as api.ImageCache?,
+      if (values.containsKey("configuration"))
+        #configuration: values["configuration"] as api.ImageConfiguration,
+    },
   ) as Future<bool>;
 }
 
@@ -5474,15 +5691,14 @@ Object? _ImageProvider_resolveStreamForKey(
 }
 
 Object? _ImageProvider_evict(Object receiver, Map<String, Object?> values) {
-  final _flaxHas1 = values.containsKey("configuration");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.ImageProvider<Object>).evict,
-    <Object?>[
-      values["cache"] as api.ImageCache?,
-      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["cache", "configuration"],
+    <Object?>[],
+    <Symbol, Object?>{
+      #cache: values["cache"] as api.ImageCache?,
+      if (values.containsKey("configuration"))
+        #configuration: values["configuration"] as api.ImageConfiguration,
+    },
   ) as Future<bool>;
 }
 
@@ -7061,15 +7277,14 @@ Object? _MemoryImage_resolveStreamForKey(
 }
 
 Object? _MemoryImage_evict(Object receiver, Map<String, Object?> values) {
-  final _flaxHas1 = values.containsKey("configuration");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.MemoryImage).evict,
-    <Object?>[
-      values["cache"] as api.ImageCache?,
-      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["cache", "configuration"],
+    <Object?>[],
+    <Symbol, Object?>{
+      #cache: values["cache"] as api.ImageCache?,
+      if (values.containsKey("configuration"))
+        #configuration: values["configuration"] as api.ImageConfiguration,
+    },
   ) as Future<bool>;
 }
 
@@ -7277,15 +7492,14 @@ Object? _NetworkImage_resolveStreamForKey(
 }
 
 Object? _NetworkImage_evict(Object receiver, Map<String, Object?> values) {
-  final _flaxHas1 = values.containsKey("configuration");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.NetworkImage).evict,
-    <Object?>[
-      values["cache"] as api.ImageCache?,
-      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["cache", "configuration"],
+    <Object?>[],
+    <Symbol, Object?>{
+      #cache: values["cache"] as api.ImageCache?,
+      if (values.containsKey("configuration"))
+        #configuration: values["configuration"] as api.ImageConfiguration,
+    },
   ) as Future<bool>;
 }
 
@@ -8400,15 +8614,14 @@ Object? _ResizeImage_resolveStreamForKey(
 }
 
 Object? _ResizeImage_evict(Object receiver, Map<String, Object?> values) {
-  final _flaxHas1 = values.containsKey("configuration");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api.ResizeImage).evict,
-    <Object?>[
-      values["cache"] as api.ImageCache?,
-      (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["cache", "configuration"],
+    <Object?>[],
+    <Symbol, Object?>{
+      #cache: values["cache"] as api.ImageCache?,
+      if (values.containsKey("configuration"))
+        #configuration: values["configuration"] as api.ImageConfiguration,
+    },
   ) as Future<bool>;
 }
 
@@ -25018,15 +25231,14 @@ Function _flaxClass_ImageProvider<
   }
 
   Object? _ImageProvider_evict(Object receiver, Map<String, Object?> values) {
-    final _flaxHas1 = values.containsKey("configuration");
-    return flaxInvokeWithDefaults(
+    return Function.apply(
       (receiver as api.ImageProvider<_Owner0>).evict,
-      <Object?>[
-        values["cache"] as api.ImageCache?,
-        (_flaxHas1 ? values["configuration"] as api.ImageConfiguration : null),
-      ],
-      <int>[1 | (_flaxHas1 ? 2 : 0)],
-      const <String>["cache", "configuration"],
+      <Object?>[],
+      <Symbol, Object?>{
+        #cache: values["cache"] as api.ImageCache?,
+        if (values.containsKey("configuration"))
+          #configuration: values["configuration"] as api.ImageConfiguration,
+      },
     ) as Future<bool>;
   }
 
@@ -41259,3 +41471,1356 @@ const _flaxBinding1873 = <FlaxParameter>[
 const _flaxBinding1874 = <FlaxParameter>[
   FlaxParameter.required("b", flaxIntType),
 ];
+Object? _flaxSandbox0(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxAssetKeyBundle,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      values["bundle"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox1(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox2(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox3(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox4(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox5(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox6(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["configuration"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox7(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox8(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox9(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxAssetImage,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      values["assetName"],
+      values["bundle"],
+      values["package"],
+    ],
+    <int>[1 | 2 | 4 | 8 | 16],
+    const <String>["", "", "", "bundle", "package"],
+  );
+}
+
+Object? _flaxSandbox10(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox11(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox12(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox13(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox14(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox15(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox16(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox17(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxAssetImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["configuration"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox18(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageInput,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      values["image"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox19(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxExactAssetImage,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      values["assetName"],
+      values["bundle"],
+      values["scale"],
+      values["package"],
+    ],
+    <int>[1 | 2 | 4 | 8 | 16 | 32],
+    const <String>["", "", "", "bundle", "scale", "package"],
+  );
+}
+
+Object? _flaxSandbox20(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox21(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox22(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox23(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox24(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox25(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox26(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox27(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxAssetImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["configuration"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox28(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxFileImage,
+    <Object?>[
+      context,
+      context.requirePolicy<api15.FlaxFilePolicy>(),
+      values["file"],
+      values["scale"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", "scale"],
+  );
+}
+
+Object? _flaxSandbox29(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox30(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox31(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox32(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox33(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox34(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxFileImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["configuration"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox35(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox36(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox37(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxImageConfiguration,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      values["bundle"],
+      values["devicePixelRatio"],
+      values["locale"],
+      values["textDirection"],
+      values["size"],
+      values["platform"],
+    ],
+    <int>[1 | 2 | 4 | 8 | 16 | 32 | 64 | 128],
+    const <String>[
+      "",
+      "",
+      "bundle",
+      "devicePixelRatio",
+      "locale",
+      "textDirection",
+      "size",
+      "platform",
+    ],
+  );
+}
+
+Object? _flaxSandbox38(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxCopyImageConfiguration,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["bundle"],
+      values["devicePixelRatio"],
+      values["locale"],
+      values["textDirection"],
+      values["size"],
+      values["platform"],
+    ],
+    <int>[1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256],
+    const <String>[
+      "",
+      "",
+      "",
+      "bundle",
+      "devicePixelRatio",
+      "locale",
+      "textDirection",
+      "size",
+      "platform",
+    ],
+  );
+}
+
+Object? _flaxSandbox39(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox40(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox41(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox42(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox43(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox44(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["configuration"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox45(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox46(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox47(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox48(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox49(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox50(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox51(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox52(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxMemoryImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["configuration"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox53(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox54(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox55(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox56(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox57(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox58(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox59(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox60(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["configuration"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox61(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox62(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox68(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxResizeImage,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      values["imageProvider"],
+      values["width"],
+      values["height"],
+      values["policy"],
+      values["allowUpscaling"],
+    ],
+    <int>[1 | 2 | 4 | 8 | 16 | 32 | 64],
+    const <String>["", "", "", "width", "height", "policy", "allowUpscaling"],
+  );
+}
+
+Object? _flaxSandbox69(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox70(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox71(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox72(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox73(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox74(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api14.sandboxResizeImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["configuration"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox75(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox76(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api14.checkSandboxImageKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+      values["key"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+  return null;
+}

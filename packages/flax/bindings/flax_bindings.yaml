@@ -403,3 +403,14 @@ overrides:
     GestureDetector: *renderOnlyWidget
     Focus: *renderOnlyWidget
     StatefulBuilder: *renderOnlyWidget
+
+# Session resource isolation. Unmarked APIs keep ordinary binding behavior.
+sandbox:
+  'version': 1
+  'classes':
+    'SchedulerBinding':
+      'staticGetters':
+        'instance': 'deny'
+      'getters':
+        'window': 'deny'
+        'platformDispatcher': 'deny'

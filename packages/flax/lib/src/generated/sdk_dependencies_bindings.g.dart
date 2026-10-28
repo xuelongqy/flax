@@ -14,6 +14,8 @@ import 'dart:async' as api5;
 import 'dart:developer' as api6;
 import 'dart:isolate' as api7;
 
+import 'package:flax/src/sandbox/file_system.dart' as api8;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const sdk_dependenciesBindings = FlaxBindingModule(
@@ -736,6 +738,7 @@ const sdk_dependenciesBindings = FlaxBindingModule(
     "native-functions",
     "native-navigation-objects",
     "native-widget-proxies",
+    "sandbox-guards",
     "shared-buffers",
     "shared-static-readers",
     "shared-uint8",
@@ -939,6 +942,439 @@ const sdk_dependenciesBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  sandboxGuards: {
+    ("flax.core/sdk_dependencies#type:Directory", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox0, replace: true),
+    ("flax.core/sdk_dependencies#type:Directory", "construct", "fromRawPath"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:Directory", "construct", "fromUri"):
+        FlaxSandboxBinding(_flaxSandbox2, replace: true),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "exists"):
+        FlaxSandboxBinding(_flaxSandbox3, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "existsSync"):
+        FlaxSandboxBinding(_flaxSandbox4, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "rename"):
+        FlaxSandboxBinding(_flaxSandbox5, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "renameSync"):
+        FlaxSandboxBinding(_flaxSandbox6, replace: false),
+    (
+      "flax.core/sdk_dependencies#type:Directory",
+      "call",
+      "resolveSymbolicLinks",
+    ): FlaxSandboxBinding(
+      _flaxSandbox7,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_dependencies#type:Directory",
+      "call",
+      "resolveSymbolicLinksSync",
+    ): FlaxSandboxBinding(
+      _flaxSandbox8,
+      replace: false,
+    ),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "stat"):
+        FlaxSandboxBinding(_flaxSandbox9, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "statSync"):
+        FlaxSandboxBinding(_flaxSandbox10, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "delete"):
+        FlaxSandboxBinding(_flaxSandbox11, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "deleteSync"):
+        FlaxSandboxBinding(_flaxSandbox12, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "create"):
+        FlaxSandboxBinding(_flaxSandbox13, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "createSync"):
+        FlaxSandboxBinding(_flaxSandbox14, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "createTemp"):
+        FlaxSandboxBinding(_flaxSandbox15, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "createTempSync"):
+        FlaxSandboxBinding(_flaxSandbox16, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "list"):
+        FlaxSandboxBinding(_flaxSandbox17, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "call", "listSync"):
+        FlaxSandboxBinding(_flaxSandbox18, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "get", "path"):
+        FlaxSandboxBinding(_flaxSandbox19, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "get", "uri"):
+        FlaxSandboxBinding(_flaxSandbox20, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "get", "isAbsolute"):
+        FlaxSandboxBinding(_flaxSandbox21, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "get", "absolute"):
+        FlaxSandboxBinding(_flaxSandbox22, replace: false),
+    ("flax.core/sdk_dependencies#type:Directory", "get", "parent"):
+        FlaxSandboxBinding(_flaxSandbox23, replace: false),
+    ("flax.core/sdk_dependencies#read:Directory.current", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#read:Directory.systemTemp", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#function:Directory.current%3D", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:File", "construct", ""):
+        FlaxSandboxBinding(_flaxSandbox27, replace: true),
+    ("flax.core/sdk_dependencies#type:File", "construct", "fromUri"):
+        FlaxSandboxBinding(_flaxSandbox28, replace: true),
+    ("flax.core/sdk_dependencies#type:File", "construct", "fromRawPath"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:File", "call", "exists"):
+        FlaxSandboxBinding(_flaxSandbox30, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "existsSync"):
+        FlaxSandboxBinding(_flaxSandbox31, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "rename"):
+        FlaxSandboxBinding(_flaxSandbox32, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "renameSync"):
+        FlaxSandboxBinding(_flaxSandbox33, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "resolveSymbolicLinks"):
+        FlaxSandboxBinding(_flaxSandbox34, replace: false),
+    (
+      "flax.core/sdk_dependencies#type:File",
+      "call",
+      "resolveSymbolicLinksSync",
+    ): FlaxSandboxBinding(
+      _flaxSandbox35,
+      replace: false,
+    ),
+    ("flax.core/sdk_dependencies#type:File", "call", "stat"):
+        FlaxSandboxBinding(_flaxSandbox36, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "statSync"):
+        FlaxSandboxBinding(_flaxSandbox37, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "delete"):
+        FlaxSandboxBinding(_flaxSandbox38, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "deleteSync"):
+        FlaxSandboxBinding(_flaxSandbox39, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "create"):
+        FlaxSandboxBinding(_flaxSandbox40, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "createSync"):
+        FlaxSandboxBinding(_flaxSandbox41, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "copy"):
+        FlaxSandboxBinding(_flaxSandbox42, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "copySync"):
+        FlaxSandboxBinding(_flaxSandbox43, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "length"):
+        FlaxSandboxBinding(_flaxSandbox44, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "lengthSync"):
+        FlaxSandboxBinding(_flaxSandbox45, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "lastAccessed"):
+        FlaxSandboxBinding(_flaxSandbox46, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "lastAccessedSync"):
+        FlaxSandboxBinding(_flaxSandbox47, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "setLastAccessed"):
+        FlaxSandboxBinding(_flaxSandbox48, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "setLastAccessedSync"):
+        FlaxSandboxBinding(_flaxSandbox49, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "lastModified"):
+        FlaxSandboxBinding(_flaxSandbox50, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "lastModifiedSync"):
+        FlaxSandboxBinding(_flaxSandbox51, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "setLastModified"):
+        FlaxSandboxBinding(_flaxSandbox52, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "setLastModifiedSync"):
+        FlaxSandboxBinding(_flaxSandbox53, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "open"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:File", "call", "openSync"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:File", "call", "openRead"):
+        FlaxSandboxBinding(_flaxSandbox56, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "readAsBytes"):
+        FlaxSandboxBinding(_flaxSandbox57, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "readAsBytesSync"):
+        FlaxSandboxBinding(_flaxSandbox58, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "readAsString"):
+        FlaxSandboxBinding(_flaxSandbox59, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "readAsStringSync"):
+        FlaxSandboxBinding(_flaxSandbox60, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "readAsLines"):
+        FlaxSandboxBinding(_flaxSandbox61, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "readAsLinesSync"):
+        FlaxSandboxBinding(_flaxSandbox62, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "writeAsBytes"):
+        FlaxSandboxBinding(_flaxSandbox63, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "writeAsBytesSync"):
+        FlaxSandboxBinding(_flaxSandbox64, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "writeAsString"):
+        FlaxSandboxBinding(_flaxSandbox65, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "call", "writeAsStringSync"):
+        FlaxSandboxBinding(_flaxSandbox66, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "get", "path"): FlaxSandboxBinding(
+      _flaxSandbox67,
+      replace: false,
+    ),
+    ("flax.core/sdk_dependencies#type:File", "get", "uri"): FlaxSandboxBinding(
+      _flaxSandbox68,
+      replace: false,
+    ),
+    ("flax.core/sdk_dependencies#type:File", "get", "isAbsolute"):
+        FlaxSandboxBinding(_flaxSandbox69, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "get", "absolute"):
+        FlaxSandboxBinding(_flaxSandbox70, replace: false),
+    ("flax.core/sdk_dependencies#type:File", "get", "parent"):
+        FlaxSandboxBinding(_flaxSandbox71, replace: false),
+    ("dart:io::FileStat.statSync", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox72,
+      replace: true,
+    ),
+    ("dart:io::FileStat.stat", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox73,
+      replace: true,
+    ),
+    ("dart:io::FileSystemEntity.identical", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox74,
+      replace: true,
+    ),
+    ("dart:io::FileSystemEntity.identicalSync", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox75,
+      replace: true,
+    ),
+    ("dart:io::FileSystemEntity.type", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox76,
+      replace: true,
+    ),
+    ("dart:io::FileSystemEntity.typeSync", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox77,
+      replace: true,
+    ),
+    ("dart:io::FileSystemEntity.isLink", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox78,
+      replace: true,
+    ),
+    ("dart:io::FileSystemEntity.isFile", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox79,
+      replace: true,
+    ),
+    ("dart:io::FileSystemEntity.isDirectory", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox80,
+      replace: true,
+    ),
+    ("dart:io::FileSystemEntity.isLinkSync", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox81,
+      replace: true,
+    ),
+    ("dart:io::FileSystemEntity.isFileSync", "call", ""): FlaxSandboxBinding(
+      _flaxSandbox82,
+      replace: true,
+    ),
+    ("dart:io::FileSystemEntity.isDirectorySync", "call", ""):
+        FlaxSandboxBinding(_flaxSandbox83, replace: true),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "call", "exists"):
+        FlaxSandboxBinding(_flaxSandbox84, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "call", "existsSync"):
+        FlaxSandboxBinding(_flaxSandbox85, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "call", "rename"):
+        FlaxSandboxBinding(_flaxSandbox86, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "call", "renameSync"):
+        FlaxSandboxBinding(_flaxSandbox87, replace: false),
+    (
+      "flax.core/sdk_dependencies#type:FileSystemEntity",
+      "call",
+      "resolveSymbolicLinks",
+    ): FlaxSandboxBinding(
+      _flaxSandbox88,
+      replace: false,
+    ),
+    (
+      "flax.core/sdk_dependencies#type:FileSystemEntity",
+      "call",
+      "resolveSymbolicLinksSync",
+    ): FlaxSandboxBinding(
+      _flaxSandbox89,
+      replace: false,
+    ),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "call", "stat"):
+        FlaxSandboxBinding(_flaxSandbox90, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "call", "statSync"):
+        FlaxSandboxBinding(_flaxSandbox91, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "call", "delete"):
+        FlaxSandboxBinding(_flaxSandbox92, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "call", "deleteSync"):
+        FlaxSandboxBinding(_flaxSandbox93, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "get", "path"):
+        FlaxSandboxBinding(_flaxSandbox94, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "get", "uri"):
+        FlaxSandboxBinding(_flaxSandbox95, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "get", "isAbsolute"):
+        FlaxSandboxBinding(_flaxSandbox96, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "get", "absolute"):
+        FlaxSandboxBinding(_flaxSandbox97, replace: false),
+    ("flax.core/sdk_dependencies#type:FileSystemEntity", "get", "parent"):
+        FlaxSandboxBinding(_flaxSandbox98, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "construct", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:Link", "construct", "fromRawPath"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:Link", "construct", "fromUri"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:Link", "call", "exists"):
+        FlaxSandboxBinding(_flaxSandbox102, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "existsSync"):
+        FlaxSandboxBinding(_flaxSandbox103, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "rename"):
+        FlaxSandboxBinding(_flaxSandbox104, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "renameSync"):
+        FlaxSandboxBinding(_flaxSandbox105, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "resolveSymbolicLinks"):
+        FlaxSandboxBinding(_flaxSandbox106, replace: false),
+    (
+      "flax.core/sdk_dependencies#type:Link",
+      "call",
+      "resolveSymbolicLinksSync",
+    ): FlaxSandboxBinding(
+      _flaxSandbox107,
+      replace: false,
+    ),
+    ("flax.core/sdk_dependencies#type:Link", "call", "stat"):
+        FlaxSandboxBinding(_flaxSandbox108, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "statSync"):
+        FlaxSandboxBinding(_flaxSandbox109, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "delete"):
+        FlaxSandboxBinding(_flaxSandbox110, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "deleteSync"):
+        FlaxSandboxBinding(_flaxSandbox111, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "create"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:Link", "call", "createSync"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:Link", "call", "updateSync"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:Link", "call", "update"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:Link", "call", "target"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:Link", "call", "targetSync"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:Link", "get", "path"): FlaxSandboxBinding(
+      _flaxSandbox118,
+      replace: false,
+    ),
+    ("flax.core/sdk_dependencies#type:Link", "get", "uri"): FlaxSandboxBinding(
+      _flaxSandbox119,
+      replace: false,
+    ),
+    ("flax.core/sdk_dependencies#type:Link", "get", "isAbsolute"):
+        FlaxSandboxBinding(_flaxSandbox120, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "get", "absolute"):
+        FlaxSandboxBinding(_flaxSandbox121, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "get", "parent"):
+        FlaxSandboxBinding(_flaxSandbox122, replace: false),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "close"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "closeSync"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "readByte"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dependencies#type:RandomAccessFile",
+      "call",
+      "readByteSync",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "read"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "readSync"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "readInto"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dependencies#type:RandomAccessFile",
+      "call",
+      "readIntoSync",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "writeByte"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dependencies#type:RandomAccessFile",
+      "call",
+      "writeByteSync",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "writeFrom"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dependencies#type:RandomAccessFile",
+      "call",
+      "writeFromSync",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "writeString"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dependencies#type:RandomAccessFile",
+      "call",
+      "writeStringSync",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "position"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dependencies#type:RandomAccessFile",
+      "call",
+      "positionSync",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "setPosition"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dependencies#type:RandomAccessFile",
+      "call",
+      "setPositionSync",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "truncate"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dependencies#type:RandomAccessFile",
+      "call",
+      "truncateSync",
+    ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "length"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "lengthSync"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "flush"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "flushSync"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "lock"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "lockSync"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "unlock"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "unlockSync"):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:RandomAccessFile", "get", "path"):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dependencies#type:SecurityContext",
+      "call",
+      "usePrivateKey",
+    ): FlaxSandboxBinding(
+      _flaxSandbox152,
+      replace: true,
+    ),
+    (
+      "flax.core/sdk_dependencies#type:SecurityContext",
+      "call",
+      "setTrustedCertificates",
+    ): FlaxSandboxBinding(
+      _flaxSandbox153,
+      replace: true,
+    ),
+    (
+      "flax.core/sdk_dependencies#type:SecurityContext",
+      "call",
+      "useCertificateChain",
+    ): FlaxSandboxBinding(
+      _flaxSandbox154,
+      replace: true,
+    ),
+    (
+      "flax.core/sdk_dependencies#type:SecurityContext",
+      "call",
+      "setClientAuthorities",
+    ): FlaxSandboxBinding(
+      _flaxSandbox155,
+      replace: true,
+    ),
+    (
+      "flax.core/sdk_dependencies#read:SecurityContext.defaultContext",
+      "call",
+      "",
+    ): FlaxSandboxBinding.deny(),
+  },
 );
 final sdk_dependenciesPlugin = FlaxBindingPlugin(
   id: "binding:flax.core/sdk_dependencies",
@@ -1214,22 +1650,22 @@ Object? _File_setLastModifiedSync(
 }
 
 Object? _File_open(Object receiver, Map<String, Object?> values) {
-  final _flaxHas0 = values.containsKey("mode");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api3.File).open,
-    <Object?>[(_flaxHas0 ? values["mode"] as api3.FileMode : null)],
-    <int>[(_flaxHas0 ? 1 : 0)],
-    const <String>["mode"],
+    <Object?>[],
+    <Symbol, Object?>{
+      if (values.containsKey("mode")) #mode: values["mode"] as api3.FileMode,
+    },
   ) as Future<api3.RandomAccessFile>;
 }
 
 Object? _File_openSync(Object receiver, Map<String, Object?> values) {
-  final _flaxHas0 = values.containsKey("mode");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api3.File).openSync,
-    <Object?>[(_flaxHas0 ? values["mode"] as api3.FileMode : null)],
-    <int>[(_flaxHas0 ? 1 : 0)],
-    const <String>["mode"],
+    <Object?>[],
+    <Symbol, Object?>{
+      if (values.containsKey("mode")) #mode: values["mode"] as api3.FileMode,
+    },
   ) as api3.RandomAccessFile;
 }
 
@@ -1249,103 +1685,95 @@ Object? _File_readAsBytesSync(Object receiver, Map<String, Object?> values) {
 }
 
 Object? _File_readAsString(Object receiver, Map<String, Object?> values) {
-  final _flaxHas0 = values.containsKey("encoding");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api3.File).readAsString,
-    <Object?>[(_flaxHas0 ? values["encoding"] as api1.Encoding : null)],
-    <int>[(_flaxHas0 ? 1 : 0)],
-    const <String>["encoding"],
+    <Object?>[],
+    <Symbol, Object?>{
+      if (values.containsKey("encoding"))
+        #encoding: values["encoding"] as api1.Encoding,
+    },
   ) as Future<String>;
 }
 
 Object? _File_readAsStringSync(Object receiver, Map<String, Object?> values) {
-  final _flaxHas0 = values.containsKey("encoding");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api3.File).readAsStringSync,
-    <Object?>[(_flaxHas0 ? values["encoding"] as api1.Encoding : null)],
-    <int>[(_flaxHas0 ? 1 : 0)],
-    const <String>["encoding"],
+    <Object?>[],
+    <Symbol, Object?>{
+      if (values.containsKey("encoding"))
+        #encoding: values["encoding"] as api1.Encoding,
+    },
   ) as String;
 }
 
 Object? _File_readAsLines(Object receiver, Map<String, Object?> values) {
-  final _flaxHas0 = values.containsKey("encoding");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api3.File).readAsLines,
-    <Object?>[(_flaxHas0 ? values["encoding"] as api1.Encoding : null)],
-    <int>[(_flaxHas0 ? 1 : 0)],
-    const <String>["encoding"],
+    <Object?>[],
+    <Symbol, Object?>{
+      if (values.containsKey("encoding"))
+        #encoding: values["encoding"] as api1.Encoding,
+    },
   ) as Future<List<String>>;
 }
 
 Object? _File_readAsLinesSync(Object receiver, Map<String, Object?> values) {
-  final _flaxHas0 = values.containsKey("encoding");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api3.File).readAsLinesSync,
-    <Object?>[(_flaxHas0 ? values["encoding"] as api1.Encoding : null)],
-    <int>[(_flaxHas0 ? 1 : 0)],
-    const <String>["encoding"],
+    <Object?>[],
+    <Symbol, Object?>{
+      if (values.containsKey("encoding"))
+        #encoding: values["encoding"] as api1.Encoding,
+    },
   ) as List<String>;
 }
 
 Object? _File_writeAsBytes(Object receiver, Map<String, Object?> values) {
-  final _flaxHas2 = values.containsKey("mode");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api3.File).writeAsBytes,
-    <Object?>[
-      values["bytes"] as List<int>,
-      values["flush"] as bool,
-      (_flaxHas2 ? values["mode"] as api3.FileMode : null),
-    ],
-    <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
-    const <String>["", "flush", "mode"],
+    <Object?>[values["bytes"] as List<int>],
+    <Symbol, Object?>{
+      #flush: values["flush"] as bool,
+      if (values.containsKey("mode")) #mode: values["mode"] as api3.FileMode,
+    },
   ) as Future<api3.File>;
 }
 
 Object? _File_writeAsBytesSync(Object receiver, Map<String, Object?> values) {
-  final _flaxHas2 = values.containsKey("mode");
-  flaxInvokeWithDefaults(
+  Function.apply(
     (receiver as api3.File).writeAsBytesSync,
-    <Object?>[
-      values["bytes"] as List<int>,
-      values["flush"] as bool,
-      (_flaxHas2 ? values["mode"] as api3.FileMode : null),
-    ],
-    <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
-    const <String>["", "flush", "mode"],
+    <Object?>[values["bytes"] as List<int>],
+    <Symbol, Object?>{
+      #flush: values["flush"] as bool,
+      if (values.containsKey("mode")) #mode: values["mode"] as api3.FileMode,
+    },
   );
   return null;
 }
 
 Object? _File_writeAsString(Object receiver, Map<String, Object?> values) {
-  final _flaxHas1 = values.containsKey("encoding");
-  final _flaxHas3 = values.containsKey("mode");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api3.File).writeAsString,
-    <Object?>[
-      values["contents"] as String,
-      (_flaxHas1 ? values["encoding"] as api1.Encoding : null),
-      values["flush"] as bool,
-      (_flaxHas3 ? values["mode"] as api3.FileMode : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0)],
-    const <String>["", "encoding", "flush", "mode"],
+    <Object?>[values["contents"] as String],
+    <Symbol, Object?>{
+      if (values.containsKey("encoding"))
+        #encoding: values["encoding"] as api1.Encoding,
+      #flush: values["flush"] as bool,
+      if (values.containsKey("mode")) #mode: values["mode"] as api3.FileMode,
+    },
   ) as Future<api3.File>;
 }
 
 Object? _File_writeAsStringSync(Object receiver, Map<String, Object?> values) {
-  final _flaxHas1 = values.containsKey("encoding");
-  final _flaxHas3 = values.containsKey("mode");
-  flaxInvokeWithDefaults(
+  Function.apply(
     (receiver as api3.File).writeAsStringSync,
-    <Object?>[
-      values["contents"] as String,
-      (_flaxHas1 ? values["encoding"] as api1.Encoding : null),
-      values["flush"] as bool,
-      (_flaxHas3 ? values["mode"] as api3.FileMode : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0)],
-    const <String>["", "encoding", "flush", "mode"],
+    <Object?>[values["contents"] as String],
+    <Symbol, Object?>{
+      if (values.containsKey("encoding"))
+        #encoding: values["encoding"] as api1.Encoding,
+      #flush: values["flush"] as bool,
+      if (values.containsKey("mode")) #mode: values["mode"] as api3.FileMode,
+    },
   );
   return null;
 }
@@ -3675,15 +4103,13 @@ Object? _RandomAccessFile_writeString(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas1 = values.containsKey("encoding");
-  return flaxInvokeWithDefaults(
+  return Function.apply(
     (receiver as api3.RandomAccessFile).writeString,
-    <Object?>[
-      values["string"] as String,
-      (_flaxHas1 ? values["encoding"] as api1.Encoding : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["", "encoding"],
+    <Object?>[values["string"] as String],
+    <Symbol, Object?>{
+      if (values.containsKey("encoding"))
+        #encoding: values["encoding"] as api1.Encoding,
+    },
   ) as Future<api3.RandomAccessFile>;
 }
 
@@ -3691,15 +4117,13 @@ Object? _RandomAccessFile_writeStringSync(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  final _flaxHas1 = values.containsKey("encoding");
-  flaxInvokeWithDefaults(
+  Function.apply(
     (receiver as api3.RandomAccessFile).writeStringSync,
-    <Object?>[
-      values["string"] as String,
-      (_flaxHas1 ? values["encoding"] as api1.Encoding : null),
-    ],
-    <int>[1 | (_flaxHas1 ? 2 : 0)],
-    const <String>["", "encoding"],
+    <Object?>[values["string"] as String],
+    <Symbol, Object?>{
+      if (values.containsKey("encoding"))
+        #encoding: values["encoding"] as api1.Encoding,
+    },
   );
   return null;
 }
@@ -3785,19 +4209,11 @@ Object? _RandomAccessFile_lock(Object receiver, Map<String, Object?> values) {
     throw ArgumentError(
       'Optional positional arguments must omit a trailing suffix',
     );
-  final _flaxHas0 = values.containsKey("mode");
-  final _flaxHas1 = values.containsKey("start");
-  final _flaxHas2 = values.containsKey("end");
-  return flaxInvokeWithDefaults(
-    (receiver as api3.RandomAccessFile).lock,
-    <Object?>[
-      (_flaxHas0 ? values["mode"] as api3.FileLock : null),
-      (_flaxHas1 ? values["start"] as int : null),
-      (_flaxHas2 ? values["end"] as int : null),
-    ],
-    <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
-    const <String>["", "", ""],
-  ) as Future<api3.RandomAccessFile>;
+  return Function.apply((receiver as api3.RandomAccessFile).lock, <Object?>[
+    if (values.containsKey("mode")) values["mode"] as api3.FileLock,
+    if (values.containsKey("start")) values["start"] as int,
+    if (values.containsKey("end")) values["end"] as int,
+  ], <Symbol, Object?>{}) as Future<api3.RandomAccessFile>;
 }
 
 Object? _RandomAccessFile_lockSync(
@@ -3813,19 +4229,11 @@ Object? _RandomAccessFile_lockSync(
     throw ArgumentError(
       'Optional positional arguments must omit a trailing suffix',
     );
-  final _flaxHas0 = values.containsKey("mode");
-  final _flaxHas1 = values.containsKey("start");
-  final _flaxHas2 = values.containsKey("end");
-  flaxInvokeWithDefaults(
-    (receiver as api3.RandomAccessFile).lockSync,
-    <Object?>[
-      (_flaxHas0 ? values["mode"] as api3.FileLock : null),
-      (_flaxHas1 ? values["start"] as int : null),
-      (_flaxHas2 ? values["end"] as int : null),
-    ],
-    <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
-    const <String>["", "", ""],
-  );
+  Function.apply((receiver as api3.RandomAccessFile).lockSync, <Object?>[
+    if (values.containsKey("mode")) values["mode"] as api3.FileLock,
+    if (values.containsKey("start")) values["start"] as int,
+    if (values.containsKey("end")) values["end"] as int,
+  ], <Symbol, Object?>{});
   return null;
 }
 
@@ -24335,3 +24743,1632 @@ const _flaxBinding2804 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:SecurityContext",
 );
+Object? _flaxSandbox0(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.createSandboxDirectory,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox2(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.createSandboxDirectoryFromUri,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["uri"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox3(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox4(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox5(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox6(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox7(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox8(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox9(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox10(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox11(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox12(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox13(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox14(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox15(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox16(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox17(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox18(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox19(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox20(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox21(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox22(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox23(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox27(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.createSandboxFile,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox28(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.createSandboxFileFromUri,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["uri"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox30(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox31(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox32(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox33(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox34(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox35(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox36(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox37(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox38(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox39(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox40(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox41(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox42(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox43(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox44(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox45(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox46(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox47(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox48(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox49(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox50(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox51(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox52(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox53(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox56(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox57(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox58(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox59(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox60(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox61(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox62(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox63(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox64(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox65(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox66(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox67(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox68(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox69(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox70(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox71(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox72(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxStatSync,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox73(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxStat,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox74(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxIdentical,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path1"],
+      values["path2"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox75(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxIdenticalSync,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path1"],
+      values["path2"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", ""],
+  );
+}
+
+Object? _flaxSandbox76(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxType,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+      values["followLinks"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", "followLinks"],
+  );
+}
+
+Object? _flaxSandbox77(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxTypeSync,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+      values["followLinks"],
+    ],
+    <int>[1 | 2 | 4 | 8],
+    const <String>["", "", "", "followLinks"],
+  );
+}
+
+Object? _flaxSandbox78(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxIsLink,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox79(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxIsFile,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox80(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxIsDirectory,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox81(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxIsLinkSync,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox82(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxIsFileSync,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox83(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  return flaxInvokeWithDefaults(
+    api8.sandboxIsDirectorySync,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      values["path"],
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+}
+
+Object? _flaxSandbox84(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox85(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox86(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox87(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox88(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox89(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox90(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox91(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox92(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox93(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox94(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox95(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox96(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox97(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox98(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox102(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox103(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox104(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox105(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox106(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox107(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox108(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox109(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox110(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox111(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox118(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox119(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox120(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox121(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox122(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox152(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.sandboxPrivateKey,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      receiver,
+      values["file"],
+      values["password"],
+    ],
+    <int>[1 | 2 | 4 | 8 | 16],
+    const <String>["", "", "", "", "password"],
+  );
+  return null;
+}
+
+Object? _flaxSandbox153(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.sandboxTrustedCertificates,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      receiver,
+      values["file"],
+      values["password"],
+    ],
+    <int>[1 | 2 | 4 | 8 | 16],
+    const <String>["", "", "", "", "password"],
+  );
+  return null;
+}
+
+Object? _flaxSandbox154(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.sandboxCertificateChain,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      receiver,
+      values["file"],
+      values["password"],
+    ],
+    <int>[1 | 2 | 4 | 8 | 16],
+    const <String>["", "", "", "", "password"],
+  );
+  return null;
+}
+
+Object? _flaxSandbox155(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.sandboxClientAuthorities,
+    <Object?>[
+      context,
+      context.requirePolicy<api8.FlaxFilePolicy>(),
+      receiver,
+      values["file"],
+      values["password"],
+    ],
+    <int>[1 | 2 | 4 | 8 | 16],
+    const <String>["", "", "", "", "password"],
+  );
+  return null;
+}

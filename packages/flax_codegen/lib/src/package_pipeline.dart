@@ -2785,7 +2785,9 @@ Object? _rewriteIdEntries(Object? value, Map<String, String> idMap) {
     for (final entry in value.entries) {
       final key = entry.key as String;
       final child = entry.value;
-      if (key == 'id' && child is String && idMap.containsKey(child)) {
+      if ((key == 'id' || key == 'owner') &&
+          child is String &&
+          idMap.containsKey(child)) {
         out[key] = idMap[child];
       } else if (key == 'supertypes' && child is List) {
         // Class.supertypes stores originatingUri::name identity strings.
@@ -2847,6 +2849,7 @@ FlaxCodegenModuleModel _moduleFromEncoded(
     requiredCapabilities: template.requiredCapabilities,
     internalTypeNames: template.internalTypeNames,
     stateVariants: module.stateVariants,
+    sandboxRules: module.sandboxRules,
   );
 }
 
@@ -3035,6 +3038,7 @@ FlaxCodegenModuleModel _freezeModule(
     dartOutput: parsed.dartOutput,
     tsOutput: parsed.tsOutput,
     classes: [...parsed.classes, ...automaticClasses],
+    sandboxRules: parsed.sandboxRules,
     types: [
       for (final type in parsed.types)
         if (claimedNames.contains(type.name) ||

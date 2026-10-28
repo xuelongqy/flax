@@ -945,7 +945,20 @@ extension _ObjectCalls on _Session {
         if (id != 0 || args.isNotEmpty) {
           throw ArgumentError('Invalid static getter');
         }
-        return holdHostResult(memberResult(getter.read(), getter.type));
+        return holdHostResult(
+          memberResult(
+            _sandboxCall(
+              type,
+              'call',
+              name,
+              null,
+              const {},
+              () => getter.read(),
+              resultType: getter.type,
+            ),
+            getter.type,
+          ),
+        );
       };
     }
     final collectionName = name == '@collection:toArray' ? 'toArray' : name;
@@ -1019,7 +1032,15 @@ extension _ObjectCalls on _Session {
           if (getter == null || args.isNotEmpty) {
             throw ArgumentError('Unknown object getter');
           }
-          final value = getter.read(receiver);
+          final value = _sandboxCall(
+            type,
+            'get',
+            name,
+            receiver,
+            const {},
+            () => getter!.read(receiver),
+            resultType: getter.type,
+          );
           return holdHostResult(
             getter.encode.kind == 'error' && value != null
                 ? errorResult(value, StackTrace.current)
@@ -1034,7 +1055,17 @@ extension _ObjectCalls on _Session {
           try {
             value.escapeCallbacks();
             escapeWidget(value.data, setter.type);
-            setter.write(receiver, value.data);
+            _sandboxCall(
+              type,
+              'set',
+              name,
+              receiver,
+              {'value': value.data},
+              () {
+                setter!.write(receiver, value.data);
+                return null;
+              },
+            );
           } finally {
             value.release();
           }
@@ -1048,7 +1079,10 @@ extension _ObjectCalls on _Session {
           if (args.isNotEmpty) {
             throw ArgumentError('Disposal takes no arguments');
           }
-          object.dispose(binding);
+          _sandboxCall(type, 'call', name, receiver, const {}, () {
+            object.dispose(binding);
+            return null;
+          });
           return const FlaxJsUndefined();
         }
         final addName = binding.listenerPairs.containsKey(name)
@@ -1096,15 +1130,20 @@ extension _ObjectCalls on _Session {
               object.listeners.add(listener);
             }
             listener.registrations++;
+            var invoked = false;
             try {
-              method.invoke(receiver, {
-                method.parameters.single.name: listener.wrapped,
+              final values = {method.parameters.single.name: listener.wrapped};
+              _sandboxCall(type, 'call', name, receiver, values, () {
+                invoked = true;
+                return method!.invoke(receiver, values);
               });
             } catch (_) {
               try {
-                listener.remove.invoke(receiver, {
-                  listener.remove.parameters.single.name: listener.wrapped,
-                });
+                if (invoked) {
+                  listener.remove.invoke(receiver, {
+                    listener.remove.parameters.single.name: listener.wrapped,
+                  });
+                }
               } catch (error, stack) {
                 report(error, stack);
               }
@@ -1113,9 +1152,15 @@ extension _ObjectCalls on _Session {
               rethrow;
             }
           } else if (listener != null && listener.registrations > 0) {
-            method.invoke(receiver, {
-              method.parameters.single.name: listener.wrapped,
-            });
+            final values = {method.parameters.single.name: listener.wrapped};
+            _sandboxCall(
+              type,
+              'call',
+              name,
+              receiver,
+              values,
+              () => method!.invoke(receiver, values),
+            );
             listener.registrations--;
             listener.retire();
           }
@@ -1131,7 +1176,15 @@ extension _ObjectCalls on _Session {
         try {
           input.escape(this);
           final invoke = method.invoke;
-          final result = invoke(receiver, input.values);
+          final result = _sandboxCall(
+            type,
+            'call',
+            name,
+            receiver,
+            input.values,
+            () => invoke(receiver, input.values),
+            resultType: method.result,
+          );
           return holdHostResult(memberResult(result, method.result));
         } finally {
           input.release();

@@ -7,6 +7,7 @@ import 'package:flax/src/native/native_runtime.dart';
 import 'package:flax_embedded/main.dart' as gallery;
 import 'package:flax_example_support/flax_example_support.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:flax_sandbox_example/flax_sandbox_example.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -86,11 +87,15 @@ Future<Object?> _prepare(WidgetTester tester, FlaxSession session) async {
 void main() {
   late Directory storage;
   late String source;
+  late FlaxBindingRegistry bindings;
   setUpAll(() async {
     storage = await Directory.systemTemp.createTemp('flax-staged-gallery-');
   });
   setUp(() async {
     source = await gallery.loadAggregateSource(storageDirectory: storage.path);
+    bindings = gallery.createEmbeddedBindings(
+      sandboxDemoDirectory: '${storage.path}/sandbox-demo',
+    );
   });
   tearDownAll(() async {
     await FlaxLocalStoragePlugin.shutdown().timeout(
@@ -115,7 +120,7 @@ void main() {
           child: FlaxView(
             createRuntime: () => runtime,
             source: source,
-            bindings: gallery.embeddedBindings,
+            bindings: bindings,
             plugins: gallery.galleryPlugins,
             namespace: 'ordinary-gallery',
             onError: (error, _) => errors.add(error),
@@ -129,6 +134,7 @@ void main() {
       await tester.pumpWidget(const SizedBox.shrink());
       await pumpGalleryUntil(tester, () => runtime.isDisposed);
       expect(runtime.handlesAtDispose, 0);
+      await waitGalleryIO(tester, FlaxSandboxExample.pendingLifecycle);
       await waitGalleryIO(tester, FlaxLocalStoragePlugin.shutdown());
     }
     expect(errors, isEmpty);
@@ -145,7 +151,7 @@ void main() {
     final session = FlaxSession(
       source: source,
       createRuntime: () => runtime,
-      bindings: gallery.embeddedBindings,
+      bindings: bindings,
       plugins: gallery.galleryPlugins,
       namespace: 'staged-gallery',
       onError: (error, _) => errors.add(error),
@@ -173,6 +179,7 @@ void main() {
     await closed;
     expect(runtime.handlesAtDispose, 0);
     expect(errors, isEmpty);
+    await waitGalleryIO(tester, FlaxSandboxExample.pendingLifecycle);
     await waitGalleryIO(tester, FlaxLocalStoragePlugin.shutdown());
   });
   testWidgets(
@@ -192,7 +199,7 @@ void main() {
       session = FlaxSession(
         source: source,
         createRuntime: () => runtime,
-        bindings: gallery.embeddedBindings,
+        bindings: bindings,
         plugins: gallery.galleryPlugins,
         onError: (error, _) => errors.add(error),
       );

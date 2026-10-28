@@ -107,6 +107,7 @@ void main() {
             functions: module.functions,
             dartTypes: module.dartTypes,
             dartShapes: module.dartShapes,
+            sandboxGuards: module.sandboxGuards,
           ),
       ]);
       final session = FlaxSession(
@@ -115,7 +116,8 @@ void main() {
         bindings: bindings,
         onError: (e, _) => errors.add(e),
       );
-      await t.pumpWidget(
+      await flaxTestPumpView(
+        t,
         MaterialApp(
           home: FlaxView.page(session: session, name: 'cost'),
         ),

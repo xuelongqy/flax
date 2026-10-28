@@ -11,36 +11,58 @@ import 'package:path_provider/path_provider.dart';
 import 'asset_key.dart';
 import 'manifest.dart';
 import 'asset_manifest.dart';
+import 'sandbox/sandbox.dart';
 
 /// Installs local .flax ZIP files without replacing an active application's files.
 class FlaxPackage {
   static final _pending = <String, Future<Directory>>{};
   static final _queues = <String, Future<void>>{};
 
-  /// Defaults to ApplicationSupport/flax. Completed installations are immutable.
+  /// Defaults to the sandbox application root, or ApplicationSupport/flax.
+  /// Sandbox contents live in bundle; their receipt lives in the application root.
+  /// Different content requires closing its sessions and removing the old bundle first.
   /// Integrity checks detect damage; they do not authenticate a publisher.
-  /// Cache hits check file sizes and metadata/entry hashes, not all resource hashes.
+  /// Cache hits validate the completion receipt and every inventoried file.
   /// Damaged completed installations fail without overwriting their directories.
   static Future<Directory> install(
     File file, {
     Directory? installationDirectory,
+    FlaxSandbox? sandbox,
   }) async {
     final root =
         installationDirectory ??
         Directory(
-          p.join((await getApplicationSupportDirectory()).path, 'flax'),
+          sandbox?.applicationPath ??
+              p.join((await getApplicationSupportDirectory()).path, 'flax'),
         );
     await root.create(recursive: true);
     final rootPath = await root.resolveSymbolicLinks();
+    final installations = p.join(
+      rootPath,
+      sandbox == null ? 'installed' : 'bundle',
+    );
+    if (sandbox != null &&
+        (p.equals(installations, sandbox.homePath) ||
+            p.isWithin(installations, sandbox.homePath) ||
+            p.isWithin(sandbox.homePath, installations))) {
+      throw ArgumentError(
+        'Sandbox data and installed bundles must not overlap',
+      );
+    }
     final filePath = await file.resolveSymbolicLinks();
-    final key = '$rootPath\u0000$filePath';
+    final singleBundle = sandbox != null;
+    final key = '$installations\u0000$filePath';
     return _pending.putIfAbsent(key, () async {
       final previous = _queues[rootPath] ?? Future<void>.value();
       final completion = Completer<void>();
       _queues[rootPath] = completion.future;
       try {
         await previous;
-        return Directory(await Isolate.run(() => _install(filePath, rootPath)));
+        return Directory(
+          await Isolate.run(
+            () => _install(filePath, installations, singleBundle),
+          ),
+        );
       } finally {
         completion.complete();
         if (identical(_queues[rootPath], completion.future)) {
@@ -56,34 +78,66 @@ const _receiptName = '.flax-install.json';
 const _inventoryName = 'flax.files.json';
 const _maxFiles = 10000;
 const _maxBytes = 512 * 1024 * 1024;
+final _digestPattern = RegExp(r'^[a-f0-9]{64}$');
 
-Future<String> _install(String source, String root) async {
-  final installations = Directory(p.join(root, 'installed'));
+Future<String> _install(
+  String source,
+  String directory,
+  bool singleBundle,
+) async {
+  final installations = Directory(directory);
   if (FileSystemEntity.typeSync(installations.path, followLinks: false) ==
       FileSystemEntityType.link) {
     throw const FormatException(
       'Flax installation directory must not be a symlink.',
     );
   }
-  installations.createSync(recursive: true);
-  final lock = File(p.join(root, '.install.lock'))
+  if (!singleBundle) installations.createSync(recursive: true);
+  final lock = File(p.join(installations.parent.path, '.install.lock'))
       .openSync(mode: FileMode.append);
   try {
     lock.lockSync(FileLock.blockingExclusive);
     final digest = (await sha256.bind(File(source).openRead()).first)
         .toString();
-    final installed = Directory(p.join(root, 'installed', digest));
-    if (FileSystemEntity.typeSync(installed.path, followLinks: false) ==
-        FileSystemEntityType.link) {
-      throw const FormatException('Flax installation must not be a symlink.');
+    final installed = singleBundle
+        ? installations
+        : Directory(p.join(installations.path, digest));
+    final receipt = File(
+      p.join(
+        installed.parent.path,
+        singleBundle ? _receiptName : '$digest.install.json',
+      ),
+    );
+    final receiptType = FileSystemEntity.typeSync(
+      receipt.path,
+      followLinks: false,
+    );
+    if (receiptType != FileSystemEntityType.notFound &&
+        receiptType != FileSystemEntityType.file) {
+      throw const FormatException(
+        'Flax installation receipt must be a real file.',
+      );
     }
-    if (installed.existsSync()) {
-      _checkInstallation(installed, digest);
+    final installedType = FileSystemEntity.typeSync(
+      installed.path,
+      followLinks: false,
+    );
+    if (installedType != FileSystemEntityType.notFound &&
+        installedType != FileSystemEntityType.directory) {
+      throw const FormatException(
+        'Flax installation must be a real directory.',
+      );
+    }
+    if (installedType == FileSystemEntityType.directory) {
+      await _checkInstallation(installed, receipt, digest);
       return installed.path;
     }
     installed.parent.createSync(recursive: true);
     final staging = installed.parent.createTempSync('.install-');
+    final contents = Directory(p.join(staging.path, 'bundle'));
+    final stagedReceipt = File(p.join(staging.path, _receiptName));
     try {
+      contents.createSync();
       final input = InputFileStream(source);
       try {
         final directory = ZipDirectory()..read(input);
@@ -118,7 +172,10 @@ Future<String> _install(String source, String root) async {
               'Unsupported Flax package entry: ${header.filename}',
             );
           }
-          final path = p.joinAll([staging.path, ...header.filename.split('/')]);
+          final path = p.joinAll([
+            contents.path,
+            ...header.filename.split('/'),
+          ]);
           File(path).parent.createSync(recursive: true);
           final output = _CheckedOutput(path, header.uncompressedSize);
           try {
@@ -151,22 +208,15 @@ Future<String> _install(String source, String root) async {
             'Flax package is missing its file inventory.',
           );
         }
-        final inventory = _readInventory(staging);
+        final inventory = _readInventory(contents);
         if (names.length != inventory.length + 1 ||
             !names.containsAll(inventory.keys)) {
           throw const FormatException(
             'Flax package file inventory does not match.',
           );
         }
-        for (final item in inventory.entries) {
-          final file = _installedFile(staging, item.key);
-          final actual = (await sha256.bind(file.openRead()).first).toString();
-          if (file.lengthSync() != item.value.size ||
-              actual != item.value.digest) {
-            throw FormatException('Flax package integrity failed: ${item.key}');
-          }
-        }
-        _checkApplication(staging);
+        await _checkFiles(contents, inventory);
+        _checkApplication(contents);
         // Recheck after extraction so replacing the source during installation fails.
         if ((await sha256.bind(File(source).openRead()).first).toString() !=
             digest) {
@@ -176,10 +226,10 @@ Future<String> _install(String source, String root) async {
         }
         final inventoryDigest = sha256
             .convert(
-              File(p.join(staging.path, _inventoryName)).readAsBytesSync(),
+              File(p.join(contents.path, _inventoryName)).readAsBytesSync(),
             )
             .toString();
-        File(p.join(staging.path, _receiptName)).writeAsStringSync(
+        stagedReceipt.writeAsStringSync(
           jsonEncode({
             'formatVersion': 1,
             'digest': digest,
@@ -190,7 +240,14 @@ Future<String> _install(String source, String root) async {
       } finally {
         input.closeSync();
       }
-      staging.renameSync(installed.path);
+      contents.renameSync(installed.path);
+      try {
+        // Publish completion last, without adding installer files to the bundle.
+        stagedReceipt.renameSync(receipt.path);
+      } catch (_) {
+        installed.deleteSync(recursive: true);
+        rethrow;
+      }
       return installed.path;
     } finally {
       if (staging.existsSync()) staging.deleteSync(recursive: true);
@@ -220,7 +277,7 @@ Map<String, ({int size, String digest})> _readInventory(Directory directory) {
         value['size'] is! int ||
         (value['size'] as int) < 0 ||
         value['sha256'] is! String ||
-        !RegExp(r'^[a-f0-9]{64}$').hasMatch(value['sha256'] as String)) {
+        !_digestPattern.hasMatch(value['sha256'] as String)) {
       throw const FormatException('Invalid Flax package file inventory entry.');
     }
     result[item.key] = (
@@ -262,41 +319,48 @@ void _checkApplication(Directory root) {
   }
 }
 
-void _checkInstallation(Directory root, String digest) {
+Future<void> _checkFiles(
+  Directory root,
+  Map<String, ({int size, String digest})> inventory,
+) async {
+  for (final item in inventory.entries) {
+    final file = _installedFile(root, item.key);
+    if (file.lengthSync() != item.value.size ||
+        (await sha256.bind(file.openRead()).first).toString() !=
+            item.value.digest) {
+      throw FormatException('Flax package integrity failed: ${item.key}');
+    }
+  }
+}
+
+Future<void> _checkInstallation(
+  Directory root,
+  File receiptFile,
+  String digest,
+) async {
   final receipt = jsonDecode(
-    _installedFile(root, _receiptName).readAsStringSync(),
+    _installedFile(
+      receiptFile.parent,
+      p.basename(receiptFile.path),
+    ).readAsStringSync(),
   );
   final inventoryFile = _installedFile(root, _inventoryName);
   if (receipt is! Map<String, dynamic> ||
       receipt['formatVersion'] != 1 ||
-      receipt['digest'] != digest ||
+      receipt['digest'] is! String ||
+      !_digestPattern.hasMatch(receipt['digest'] as String) ||
       receipt['inventoryDigest'] !=
           sha256.convert(inventoryFile.readAsBytesSync()).toString()) {
     throw const FormatException('Invalid Flax installation receipt.');
   }
-  final inventory = _readInventory(root);
-  for (final entry in inventory.entries) {
-    if (_installedFile(root, entry.key).lengthSync() != entry.value.size) {
-      throw FormatException('Incomplete Flax installation: ${entry.key}');
-    }
+  if (receipt['digest'] != digest) {
+    throw StateError(
+      'A different package is already installed. Close its sessions and remove '
+      '${root.path} before installing new content.',
+    );
   }
+  await _checkFiles(root, _readInventory(root));
   _checkApplication(root);
-  final manifest = FlaxManifest.fromJson(
-    jsonDecode(_installedFile(root, 'flax.json').readAsStringSync()),
-  );
-  for (final key in [
-    'flax.json',
-    manifest.entry,
-    'flax.assets.json',
-    ...manifest.modules.keys,
-  ]) {
-    if (sha256
-            .convert(_installedFile(root, key).readAsBytesSync())
-            .toString() !=
-        inventory[key]?.digest) {
-      throw FormatException('Damaged Flax installation: $key');
-    }
-  }
 }
 
 class _CheckedOutput extends OutputFileStream {

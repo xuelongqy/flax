@@ -12,10 +12,10 @@ reads FlaxHostContext.namespace. Null selects the default application area; a no
 string selects exactly that case-sensitive area. The default area has no string alias.
 There is no hierarchy, fallback, route inference or Widget ancestor lookup.
 
-Same-namespace sessions in the isolate share data. An owned View replaces its session
-when namespace changes; ordinary rebuilds preserve it. Borrowed session/page Views use
-their existing session, with no namespace override. Closing a session deletes no data.
-An explicit empty namespace is rejected.
+Same-namespace sessions in the same application store share data. An owned View replaces
+its session when namespace changes; ordinary rebuilds preserve it. Borrowed session/page
+Views use their existing session, with no namespace override. Closing a session deletes
+no data. An explicit empty namespace is rejected.
 
 Await FlaxLocalStoragePlugin.initialize before installing any instance. It opens one
 Hive CE 2.19.3 ordinary box, loading records for all namespaces so subsequent installs
@@ -25,6 +25,21 @@ Concurrent or repeated initialization with identical configuration reuses the re
 Changing directory/quota requires shutdown; incomplete initialization is not silently
 awaited during plugin installation. Failed initialization may be retried explicitly.
 
+With a `FlaxSandbox`, initialize with `sandbox: sandbox` instead of `directory`. The
+home determines the physical `local_storage` directory and a SHA-256-derived box name.
+Its default location is `ApplicationSupport/flax/apps/sha256(appId)/data/local_storage`,
+alongside the application's ordinary sandbox files, outside its installed bundle.
+Different app IDs have separate stores, namespaces and storage events. Same-app Sessions
+share the explicitly initialized store. `flush(sandbox: sandbox)` and
+`shutdown(sandbox: sandbox)` select that application's store; omitted sandbox selects
+the ordinary host store. Initialization rejects linked storage directories and files.
+Sandbox stores use a separate Hive registry, so app-controlled bytes cannot invoke
+custom adapters registered by the host. Hive CE currently exposes that constructor only
+through its internal `HiveImpl`; the dependency is pinned and this boundary is covered
+by malicious-record tests. Built-in HiveList records are rejected before inspecting
+their contents, preventing their lazy lookup from reaching global host boxes. See
+[application data sandbox](sandbox.md).
+
 Flax opens its box with an explicit path and never calls Hive.init or Hive.close. The
 host's initialized directory and other boxes remain intact. The reserved box name
 `flax_local_storage_v1` must not already be open, including by application code. A box
@@ -33,9 +48,8 @@ belongs exclusively to Flax: application code must not open, close, delete or wr
 including during plugin initialization. Hive's public API cannot distinguish which
 caller created a same-name, same-path concurrently opened box, so that misuse is outside
 the ownership contract rather than reported as a detected conflict. Hive has no public
-"initialized" query; no private implementation state is required. Applications must
-close Flax sessions and await plugin shutdown before calling global Hive close or delete
-operations.
+"initialized" query. Applications using the ordinary host store must close Flax sessions
+and await plugin shutdown before calling global Hive close or delete operations.
 
 ## Strings, quota and persistence
 

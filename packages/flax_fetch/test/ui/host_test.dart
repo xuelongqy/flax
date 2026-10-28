@@ -1216,6 +1216,8 @@ class _QueuedFetch extends FlaxPlugin {
 
 class _QueueHook implements FlaxHostContext {
   @override
+  FlaxSandboxContext? get sandbox => inner.sandbox;
+  @override
   ui.FlaxFontCollection? get fontCollection => inner.fontCollection;
   @override
   String? get namespace => inner.namespace;
