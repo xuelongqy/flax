@@ -66,7 +66,6 @@ bootstrap, notices, and native code that the package owns.
 | `flax_material_ui`   | Generated Material bindings and package-local verification                      |
 | `flax_cupertino_ui`  | Cupertino bindings (scaffold today; keep ownership even while empty)            |
 | `flax_codegen`       | Binding/declaration generator and its package tests                             |
-| `flax_fetch`         | Optional Fetch session plugin                                                   |
 | `flax_websocket`     | Optional WebSocket session plugin                                               |
 | `flax_local_storage` | Optional localStorage session plugin                                            |
 | `flax_canvas`        | Optional Canvas 2D session support                                              |
@@ -105,7 +104,6 @@ short, non-owned analysis that reports back to the parent chat.
 | Engines                 | `flax_engine_v8`                                                      |
 | Code generation         | `flax_codegen`                                                        |
 | UI bindings             | `flax_material_ui` and `flax_cupertino_ui`                            |
-| Host plugins            | `flax_fetch`, `flax_websocket`, and `flax_local_storage`              |
 | Canvas                  | `flax_canvas`                                                         |
 | Workspace / Tooling     | Root orchestration, Melos, pnpm, tools, and CI                        |
 | Integration and Quality | `flax_test`, aggregate examples, compatibility tests, and benchmarks  |

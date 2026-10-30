@@ -1,4 +1,5 @@
 import * as streams from 'web-streams-polyfill';
+import { install as installFetch } from './fetch/bootstrap.js';
 import { Blob, File, FormData } from './data.js';
 import { encodingStreams } from './encoding-streams.js';
 import URL from 'core-js-pure/actual/url/index.js';
@@ -39,10 +40,7 @@ function btoa(input: string): string {
 }
 
 type Call = (operation: string, ...args: unknown[]) => unknown;
-export function install(
-  global: typeof globalThis,
-  call: Call,
-): { fire(id: number): void; fireRaf(time: number): void; close(): void } {
+export function install(global: typeof globalThis, call: Call) {
   let open = true;
   let next = 1;
   let nesting = 0;
@@ -249,8 +247,12 @@ export function install(
   };
   for (const [name, value] of Object.entries(globals))
     Object.defineProperty(global, name, { value, writable: true, configurable: true });
+  const fetch = installFetch(global, (operation, ...args) =>
+    call('fetch', operation, ...args),
+  );
   return {
-    fire(id) {
+    fetch,
+    fire(id: number) {
       const task = timers.get(id);
       if (!task || !open) return;
       if (!task.repeat) timers.delete(id);
@@ -287,6 +289,7 @@ export function install(
       }
     },
     close() {
+      fetch.close();
       open = false;
       timers.clear();
       animationFrames.clear();

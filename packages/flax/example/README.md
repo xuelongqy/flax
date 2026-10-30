@@ -1,8 +1,12 @@
 # Core example
 
 An independently runnable Core playground for signals, computed values, callbacks and
-native layout. `js/src/showcase.ts` exports the widget used by both this application and
-the top-level [module directory](../../../examples/embedded/README.md).
+native layout, plus built-in Fetch. Use the **Fetch** control to open the HTTP
+playground, send a request and cancel pending work. The launcher starts a loopback
+server and configures `fetchBaseUrl`; direct Flutter runs can set `FLAX_FETCH_BASE_URL`.
+HTTP clients are created only after a request is sent. `js/src/fetch.ts` and
+`js/src/showcase.ts` export the widget used by both this application and the top-level
+[module directory](../../../examples/embedded/README.md).
 
 `js/src/ui.ts` provides the private example-only page, section, field and keyboard
 control helpers reused by the other capability examples. Colors follow the inherited

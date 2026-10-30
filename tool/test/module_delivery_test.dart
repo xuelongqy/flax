@@ -51,7 +51,6 @@ void main() {
       File(p.join(root, path)).copySync(target.path);
     }
     for (final owner in [
-      'flax_fetch',
       'flax_websocket',
       'flax_local_storage',
       'flax_canvas',

@@ -3,7 +3,6 @@ import 'package:flax_canvas/flax_canvas.dart';
 import 'package:flax_cupertino_ui/flax_cupertino_ui.dart';
 import 'package:flax_embedded/engine.dart';
 import 'package:flax_example_support/flax_example_support.dart';
-import 'package:flax_fetch/flax_fetch.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax_sandbox_example/flax_sandbox_example.dart';
@@ -26,12 +25,6 @@ final galleryPlugins = <FlaxPlugin>[
   const FlaxCupertinoPlugin(),
   const FlaxCanvasPlugin(),
   const FlaxLocalStoragePlugin(),
-  FlaxFetchPlugin(
-    baseUrl: const String.fromEnvironment(
-      'FLAX_FETCH_BASE_URL',
-      defaultValue: 'http://127.0.0.1:8080/',
-    ),
-  ),
   FlaxWebSocketPlugin(
     baseUrl: const String.fromEnvironment(
       'FLAX_FETCH_BASE_URL',
@@ -60,6 +53,10 @@ class EmbeddedApp extends StatefulWidget {
     required this.source,
     this.createRuntime,
     this.plugins,
+    this.fetchBaseUrl = const String.fromEnvironment(
+      'FLAX_FETCH_BASE_URL',
+      defaultValue: 'http://127.0.0.1:8080/',
+    ),
     this.onFlaxError,
     this.sandboxDemoDirectory,
   });
@@ -67,6 +64,7 @@ class EmbeddedApp extends StatefulWidget {
   final String source;
   final FlaxJsRuntime Function()? createRuntime;
   final List<FlaxPlugin>? plugins;
+  final String? fetchBaseUrl;
   final void Function(Object, StackTrace)? onFlaxError;
   final String? sandboxDemoDirectory;
 
@@ -109,6 +107,7 @@ class _EmbeddedAppState extends State<EmbeddedApp> {
             bindings: _bindings,
             namespace: 'example-gallery',
             plugins: widget.plugins ?? galleryPlugins,
+            fetchBaseUrl: widget.fetchBaseUrl,
             onError: widget.onFlaxError,
           )
         : const Center(child: Text('Flax view unmounted')),

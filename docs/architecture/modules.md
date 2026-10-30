@@ -96,11 +96,11 @@ inside the entry's real parent directory; symlinks cannot escape it. File types 
 `.js`/`.mjs`, `.json` and `.wasm`. Business asset keys and the Session AssetBundle
 retain their existing resource contract.
 
-Remote imports support HTTP(S) without the optional Fetch plugin. Relative imports use
-the final response URL, including after cache revalidation. Queries and fragments belong
-to module identity; fragments are removed from HTTP requests. Diagnostic source URLs
-omit queries and fragments. Embedded URL credentials, HTTPS downgrades and
-remote-to-local imports are rejected.
+Remote imports support HTTP(S) independently of business Fetch. Relative imports use the
+final response URL, including after cache revalidation. Queries and fragments belong to
+module identity; fragments are removed from HTTP requests. Diagnostic source URLs omit
+queries and fragments. Embedded URL credentials, HTTPS downgrades and remote-to-local
+imports are rejected.
 
 JavaScript responses require a JavaScript MIME type, JSON requires `application/json` or
 an application `+json` type, and Wasm requires `application/wasm`. Suffixes do not

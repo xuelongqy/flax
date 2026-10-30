@@ -10,7 +10,6 @@ environment:
 
 dependencies:
   flax: 0.0.0
-  flax_fetch: 0.0.0
   flax_websocket: 0.0.0
   flax_local_storage: 0.0.0
   flax_canvas: 0.0.0

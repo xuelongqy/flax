@@ -136,10 +136,10 @@ rather than the agent session.
 Standalone MaterialApp roots and outside-repository consumers reuse the same runtime.
 See [application startup and packaging](docs/architecture/applications.md).
 
-Session host plugins add default basic APIs and optional Fetch. New public Dart host
-types use the `Flax` prefix. See [host contracts](docs/architecture/host.md). Regenerate
-embedded host scripts with `host:generate`; binary and host changes require the
-maintained V8 UI checks. Native ABI 2 is independent of UI protocol 24.
+Session host plugins add default basic APIs and Fetch. New public Dart host types use
+the `Flax` prefix. See [host contracts](docs/architecture/host.md). Regenerate embedded
+host scripts with `host:generate`; binary and host changes require the maintained V8 UI
+checks. Native ABI 2 is independent of UI protocol 24.
 
 Optional WebSocket uses the shared host checkpoint and base types; see
 [WebSocket contracts](docs/architecture/websocket.md). bufferedAmount is deferred.

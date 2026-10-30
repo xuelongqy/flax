@@ -39,16 +39,17 @@ From the repository root:
 | Test only Material's package and example    | `dart run tool/package.dart integration flax_material_ui`   |
 | Open the gallery with every module entrance | `dart run melos run example:run`                            |
 
-Replace `flax_material_ui` with another owner such as `flax_cupertino_ui` or
-`flax_fetch`. Single-package commands build that example and its dependency closure, and
-never start the gallery. Use the aggregate checks for cross-module changes and
-`check:ui` when a complete UI regression is needed; neither is the default for a
+Replace `flax_material_ui` with another owner such as `flax_cupertino_ui` or `flax`
+(which includes Fetch). Single-package commands build that example and its dependency
+closure, and never start the gallery. Use the aggregate checks for cross-module changes
+and `check:ui` when a complete UI regression is needed; neither is the default for a
 package-only edit.
 
-Fetch, WebSocket and the aggregate launch a loopback-only Dart demo server together with
-the application. It uses a random port, so examples can run side by side. Quitting or
-detaching the launch command stops its server; the service is development tooling and is
-not embedded in packaged apps. Public endpoint URLs can still be entered manually.
+Core (including Fetch), WebSocket and the aggregate launch a loopback-only Dart demo
+server together with the application. It uses a random port, so examples can run side by
+side. Quitting or detaching the launch command stops its server; the service is
+development tooling and is not embedded in packaged apps. Public endpoint URLs can still
+be entered manually.
 
 When opening multiple examples from one checkout, let one finish preparation before
 starting the next command: their JS dependency build outputs are shared.

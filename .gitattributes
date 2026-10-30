@@ -2,5 +2,5 @@
 * text=auto eol=lf
 
 # Vendored WPT hashes cover the upstream bytes, including line endings.
-packages/flax_fetch/js/test/wpt/** -text
+packages/flax/js/test/fetch/wpt/** -text
 packages/flax_websocket/js/test/wpt/** -text

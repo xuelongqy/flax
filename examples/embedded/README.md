@@ -17,7 +17,7 @@ each capability in its package-owned example; see the
 | Material UI    | `packages/flax_material_ui/example`     | Five collections, editing, selection, dialogs and routes                   |
 | Cupertino UI   | `packages/flax_cupertino_ui/example`    | Four collections, segmented controls, lists and overlays                   |
 | Canvas 2D      | `packages/flax_canvas/example`          | Palette changes and clearing a native drawing surface                      |
-| Fetch          | `packages/flax_fetch/example`           | Requests, response content and cancellation                                |
+| Fetch          | `packages/flax/example`                 | Requests, response content and cancellation                                |
 | WebSocket      | `packages/flax_websocket/example`       | Connection state, messages and disconnecting                               |
 | Local storage  | `packages/flax_local_storage/example`   | Saved counter, notes and persistence across visits                         |
 | Sandbox        | `packages/flax_sandbox_example/example` | File and Image.file access, isolated storage and live configuration reload |

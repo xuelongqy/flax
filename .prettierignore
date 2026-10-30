@@ -25,7 +25,7 @@ packages/*/js-types/types/
 
 packages/flax_engine_v8/native/generated/
 
-packages/flax_fetch/js/test/wpt/
+packages/flax/js/test/fetch/wpt/
 packages/flax_websocket/js/test/wpt/
 
 # Preserve the pinned upstream Canvas license verbatim.

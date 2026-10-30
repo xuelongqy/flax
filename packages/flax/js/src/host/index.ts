@@ -214,3 +214,29 @@ declare global {
     };
   };
 }
+
+import type * as FetchData from './fetch/data.js';
+import type * as FetchHttp from './fetch/http.js';
+export type { Headers, HeadersInit, BodyInit } from './fetch/data.js';
+export type {
+  Request,
+  Response,
+  RequestInit,
+  RequestRedirect,
+  RequestCredentials,
+  ResponseInit,
+} from './fetch/http.js';
+declare global {
+  var Headers: typeof FetchData.Headers;
+  var Request: typeof FetchHttp.Request;
+  var Response: typeof FetchHttp.Response;
+  type Headers = FetchData.Headers;
+  type Request = FetchHttp.Request;
+  type Response = FetchHttp.Response;
+  type RequestInit = FetchHttp.RequestInit;
+  type ResponseInit = FetchHttp.ResponseInit;
+  function fetch(
+    input: string | URL | FetchHttp.Request,
+    init?: FetchHttp.RequestInit,
+  ): Promise<FetchHttp.Response>;
+}

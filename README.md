@@ -41,9 +41,9 @@ explicit disposal. Named page factories can register synchronous cleanup after c
 unmount. See [owned Dart objects](docs/architecture/objects.md).
 
 Sessions install a [base host environment](docs/architecture/host.md) with Console,
-timers, URL, encoding, cancellation, data containers and Web Streams. Optional
-`flax_fetch` installs HTTP Fetch using those shared base types. Bare runtimes remain
-explicit and engine-only.
+timers, URL, encoding, cancellation, data containers, Web Streams and HTTP Fetch. Fetch
+creates its session HTTP client only on the first request. Bare runtimes remain explicit
+and engine-only.
 
 Generated dart:async bindings provide lazy, bidirectional Stream references,
 controllers, subscriptions, transforms, AsyncIterable conversion and native Flutter

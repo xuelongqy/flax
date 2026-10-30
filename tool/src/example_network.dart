@@ -2,23 +2,24 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-/// Loopback-only endpoints for examples declaring Fetch or WebSocket modules.
+/// Loopback-only endpoints for examples using Fetch or a WebSocket module.
 final class ExampleNetworkServer {
   ExampleNetworkServer._(this._server) {
     _server.listen(_handle);
   }
 
-  static Future<ExampleNetworkServer?> forExample(String project) async {
+  static Future<ExampleNetworkServer?> forExample(
+    String project, {
+    bool fetch = false,
+  }) async {
     final manifest = File('$project/js/flax.modules.json');
     if (!manifest.existsSync()) return null;
     final modules =
         (jsonDecode(manifest.readAsStringSync()) as Map)['modules'] as List;
-    if (!modules.any(
-      (entry) => const {
-        '@flax/fetch',
-        '@flax/websocket',
-      }.contains((entry as Map)['specifier']),
-    )) {
+    if (!fetch &&
+        !modules.any(
+          (entry) => (entry as Map)['specifier'] == '@flax/websocket',
+        )) {
       return null;
     }
     return start();

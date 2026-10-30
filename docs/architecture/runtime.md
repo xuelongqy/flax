@@ -164,8 +164,8 @@ this runtime through the public entry and does not extend the native ABI. Borrow
 Context access and [owned Controller bindings](objects.md) are implemented in the UI
 layer, preserving real Flutter-owned inherited dependencies and resource lifecycles.
 
-Session timers and optional Fetch belong to the [host environment](host.md), not the
-bare runtime. ABI 2 adds copied ArrayBuffer creation and byte-range reads for actual
+Session timers and Fetch belong to the [host environment](host.md), not the bare
+runtime. ABI 2 adds copied ArrayBuffer creation and byte-range reads for actual
 TypedArray/DataView views; callers never retain native byte pointers. Detached state
 comes from the engine, not an object's mutable `detached` property. A detached buffer is
 rejected even when its length is zero; an ordinary empty buffer remains valid. Binding

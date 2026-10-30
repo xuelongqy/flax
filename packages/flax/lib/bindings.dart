@@ -69,4 +69,5 @@ part 'src/ui/data.dart';
 part 'src/ui/pages.dart';
 
 part 'src/ui/host.dart';
+part 'src/ui/fetch.dart';
 part 'src/ui/modules.dart';

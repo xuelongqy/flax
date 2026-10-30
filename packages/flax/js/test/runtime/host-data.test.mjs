@@ -3,9 +3,10 @@ import test from 'node:test';
 import { createContext, runInContext } from 'node:vm';
 import { buildHost, hostBundles } from '../../../../../tool/src/host_bundle.mjs';
 
-test('base data and streams need no Fetch installation', async () => {
+test('base environment provides Fetch, data and streams by default', async () => {
   const context = createContext({
     __flaxBaseCall(op) {
+      if (op === 'fetch') return;
       if (op === 'timeOrigin') return 0;
       throw Error(`Unexpected host operation: ${op}`);
     },
@@ -19,7 +20,7 @@ test('base data and streams need no Fetch installation', async () => {
       await runInContext(
         `(async () => {
       const check = value => { if (!value) throw Error('Base data contract'); };
-      check([typeof fetch,typeof Headers,typeof Request,typeof Response].every(x=>x==='undefined'));
+      check([typeof fetch,typeof Headers,typeof Request,typeof Response].every(x=>x==='function'));
       const buffer = new Uint8Array([0,65,66,0]);
       const blob = new Blob([buffer.subarray(1,3)]); buffer.fill(0);
       check(await blob.text()==='AB'); check(await blob.slice(1).text()==='B');

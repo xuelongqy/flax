@@ -1,27 +1,28 @@
 # Session host environment
 
-FlaxSession installs a basic JavaScript environment before application code. Optional
-plugins add capabilities to the same session. Pure FlaxJsRuntime instances remain bare
-and require explicit microtask draining. The UI protocol is 24; copied binary transport
-requires native ABI 2. The host itself is not separately versioned.
+FlaxSession installs a basic JavaScript environment, including Fetch, before application
+code. Optional plugins add capabilities to the same session. Pure FlaxJsRuntime
+instances remain bare and require explicit microtask draining. The UI protocol is 24;
+copied binary transport requires native ABI 2. The host itself is not separately
+versioned.
 
 ## Registration and ownership
 
 ```dart
-Flax.registerPlugins([const FlaxFetchPlugin()]);
+// Fetch is built in; register only additional host capabilities.
 final session = FlaxSession(
   createRuntime: createRuntime,
   source: source,
   bindings: bindings,
-  plugins: [const FlaxFetchPlugin(baseUrl: 'https://api.example.com/')],
+  fetchBaseUrl: 'https://api.example.com/',
 );
 ```
 
 An omitted list snapshots the isolate defaults at session construction. An explicit list
-replaces them; an empty list installs only the basic environment. Re-registering
-defaults affects future sessions. Duplicate IDs and declared global names fail before
-installation. Engine-provided basic globals may be replaced by the standard base
-implementation; plugin conflicts are never silently overwritten.
+replaces them; an empty list still installs the basic environment and Fetch.
+Re-registering defaults affects future sessions. Duplicate IDs and declared global names
+fail before installation. Engine-provided basic globals may be replaced by the standard
+base implementation; plugin conflicts are never silently overwritten.
 
 FlaxView forwards plugins when creating its owned session. Ordinary rebuilds retain that
 installation; use a new session or change the View's key to change plugins. Borrowed
@@ -91,16 +92,16 @@ Dart host types use the Flax prefix.
 - Web Streams, including byte streams, BYOB, readers, writers, controllers and queuing
   strategies; TextEncoderStream and TextDecoderStream.
 
-These data and stream constructors are installed once by the base environment, including
-when `plugins: []`. They create no HTTP client. Fetch captures the existing
-constructors; it installs only fetch, Headers, Request and Response. File represents
-file data, not filesystem access. FormData is a container; multipart encoding/decoding
-remains in Fetch. The base environment does not provide FileReader, object URLs or
-structuredClone.
+These constructors and fetch, Headers, Request and Response are installed once by the
+base environment, including when `plugins: []`. Fetch reuses the base data and stream
+constructors. Creating a Session or using Headers, Request and Response creates no HTTP
+client; the first actual Fetch request creates one client owned by that Session. File
+represents file data, not filesystem access. FormData is a container; multipart
+encoding/decoding remains in Fetch. The base environment does not provide FileReader,
+object URLs or structuredClone.
 
-`@flax/core/host` owns the data and stream type exports and global declarations.
-`@flax/fetch/globals` references that entry and adds only HTTP declarations. The Fetch
-package no longer re-exports base data or stream types. Type imports install nothing.
+`@flax/core/host` owns all data, stream and Fetch type exports and global declarations.
+Type imports install nothing.
 
 Date, Promise, TypedArray and language collections remain engine implementations. There
 is no window, document, Node process, string timer, or Node timer handle. Console
@@ -124,7 +125,7 @@ removes its listener when its request/body completes or is cancelled.
 
 | Capability      | Contract                                                                        |
 | --------------- | ------------------------------------------------------------------------------- |
-| URLs            | Absolute HTTP/HTTPS; relative URLs require plugin baseUrl                       |
+| URLs            | Absolute HTTP/HTTPS; relative URLs require Session/View fetchBaseUrl            |
 | Errors          | HTTP error statuses return Response; transport failures reject TypeError        |
 | Cancellation    | AbortSignal reason is preserved; actual request and body are cancelled          |
 | Request body    | Text, URLSearchParams, Blob, File, FormData, binary views and streams           |
@@ -145,14 +146,15 @@ is synthesized; explicit headers are preserved. Credentials options do not enabl
 cookie store. Priority hints, non-default referrer policies and persistent requests are
 rejected because this transport cannot implement their browser semantics.
 
-Dart owns a separate HttpClient per installation. Upload writes await transport flush;
-downloads use a paused StreamIterator and read one chunk at a time. Copying occurs in
-bulk across the bridge; no byte arrays are serialized as JSON. Stream consumers control
-backpressure. Dart openUrl has no per-request cancellation handle during DNS/connection
-creation: abort rejects immediately and aborts the request as soon as that handle
-arrives; session close also force-closes its entire client. Body convenience readers
-necessarily accumulate the complete body, and tee follows the standard buffering
-behavior rather than imposing a hidden size limit.
+Dart lazily creates a separate HttpClient per Session and reuses it until that Session
+closes. A Session that never fetches creates no client, including during shutdown.
+Upload writes await transport flush; downloads use a paused StreamIterator and read one
+chunk at a time. Copying occurs in bulk across the bridge; no byte arrays are serialized
+as JSON. Stream consumers control backpressure. Dart openUrl has no per-request
+cancellation handle during DNS/connection creation: abort rejects immediately and aborts
+the request as soon as that handle arrives; session close also force-closes its entire
+client. Body convenience readers necessarily accumulate the complete body, and tee
+follows the standard buffering behavior rather than imposing a hidden size limit.
 
 Applications explicitly consume or cancel response bodies and unused clone branches.
 Receiving headers is not completion of the body resource's lifetime. The same session
@@ -168,12 +170,12 @@ one byte copy per accumulated payload byte to protect against producer buffer re
 streaming upload/download still works chunk by chunk.
 
 Body consumption state comes from web-streams-polyfill 4.3.0 through one read-only
-internal adapter in `packages/flax_fetch/js/src/streams.ts`. Host generation verifies
-that exact version in the runtime package; tests verify the `_disturbed` field shape and
-transitions. An unknown shape fails explicitly. There is no second used flag, stream
-prototype patch, or trial read. Locked or disturbed streams cannot be accepted, cloned
-or consumed again. Releasing a reader lock does not reset disturbance; an untouched
-closed stream is still usable. Request construction validates options before
+internal adapter in `packages/flax/js/src/host/fetch/streams.ts`. Host generation
+verifies that exact version in the runtime package; tests verify the `_disturbed` field
+shape and transitions. An unknown shape fails explicitly. There is no second used flag,
+stream prototype patch, or trial read. Locked or disturbed streams cannot be accepted,
+cloned or consumed again. Releasing a reader lock does not reset disturbance; an
+untouched closed stream is still usable. Request construction validates options before
 transferring an existing request body through an identity TransformStream. The source is
 immediately disturbed and locked; cancellation propagation uses the Streams pipe
 machinery. Clone uses native library tee branches, including their buffering semantics.
@@ -199,17 +201,20 @@ engine supports async generators and `for await`; repository fixtures may still 
 syntax through esbuild. This does not change Axios or its Fetch adapter.
 
 ```typescript
-import type {} from '@flax/fetch/globals';
+import type {} from '@flax/core/host';
 const response = await fetch('/orders');
 const orders = await response.json();
 ```
 
-Types do not install globals. Applications without Fetch omit that type entry and Dart
-plugin. `@flax/core/host` declares the always-installed base environment.
+Types do not install globals. `@flax/core/host` declares the always-installed base
+environment, including Fetch. Relative URLs require an absolute HTTP(S) `fetchBaseUrl`
+on the owning FlaxSession or FlaxView; the application entry URL is not used implicitly.
+Changing an owning View's fetchBaseUrl replaces its Session; a borrowed View uses its
+Session's configuration.
 
 Host source belongs to each capability package under `packages/*/js/src/host`. The core
-package owns and bundles web-streams-polyfill; Fetch imports base types only and uses
-session constructors. `host:generate` creates the committed IIFEs in the owning Dart
+package owns and bundles web-streams-polyfill and Fetch, sharing the same data and
+stream constructors. `host:generate` creates the committed IIFEs in the owning Dart
 packages and copies upstream license notices. `host:check` regenerates and compares
 without loading an engine. No runtime Node dependency or repository alias is required by
 installed Dart packages.
@@ -221,7 +226,7 @@ HTTP tests restore real Dart networking instead of Flutter's default mock HTTP c
 The standalone consumer performs a local request after installing copied Dart packages
 and npm tarballs, including its relocated release test application.
 
-The pinned WPT [manifest](../../packages/flax_fetch/js/test/wpt/manifest.json) records
+The pinned WPT [manifest](../../packages/flax/js/test/fetch/wpt/manifest.json) records
 four complete upstream Headers test files and their checksums. A small synchronous
 harness runs the same unmodified files in Node and V8. Additional local transport,
 stream and lifecycle cases are targeted tests, not claims of passing the entire WPT

@@ -26,10 +26,6 @@
       "package": "@flax/cupertino-ui-runtime"
     },
     {
-      "specifier": "@flax/fetch",
-      "package": "@flax/fetch-runtime"
-    },
-    {
       "specifier": "@flax/websocket",
       "package": "@flax/websocket-runtime"
     },

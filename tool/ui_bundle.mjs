@@ -69,7 +69,6 @@ const moduleEntries = [
   ]),
   ['@flax/material-ui', '@flax/material-ui-runtime'],
   ['@flax/cupertino-ui', '@flax/cupertino-ui-runtime'],
-  ['@flax/fetch', '@flax/fetch-runtime'],
   ['@flax/websocket', '@flax/websocket-runtime'],
   ['@flax/local-storage', '@flax/local-storage-runtime'],
   ['@flax/canvas', '@flax/canvas-runtime'],

@@ -92,7 +92,7 @@ keep the maintained engine/SDK outputs for subsequent checks.
 
 All maintained targets use V8, with JIT on macOS/Android arm64 and jitless on iOS arm64.
 Workspace commands need no engine option. Focused UI checks use
-`dart run tool/ui_test.dart --package=flax_fetch` and optionally
+`dart run tool/ui_test.dart --package=flax` and optionally
 `--file=test/ui/host_test.dart`. The shared and full entries retain the original
 assertions. `check:ui` also runs package examples and aggregate composition.
 

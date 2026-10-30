@@ -7,7 +7,7 @@
   "globs": ["**/*.md"],
   "ignores": [
     ".git/**",
-    "packages/flax_fetch/js/test/wpt/LICENSE.md",
+    "packages/flax/js/test/fetch/wpt/LICENSE.md",
     "packages/flax_websocket/js/test/wpt/LICENSE.md",
     ".dart_tool/**",
     ".fvm/**",

@@ -4,5 +4,10 @@
     "noEmit": true,
     "rootDir": "."
   },
-  "include": ["test/runtime/types.ts", "src/host/vendor.d.ts"]
+  "include": [
+    "test/runtime/types.ts",
+    "test/fetch/types.ts",
+    "test/fetch/axios-entry.ts",
+    "src/host/vendor.d.ts"
+  ]
 }

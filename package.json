@@ -29,7 +29,6 @@
     "@flax/core-runtime": "workspace:*",
     "@flax/material-ui": "workspace:*",
     "@flax/cupertino-ui": "workspace:*",
-    "@flax/fetch-runtime": "workspace:*",
     "@flax/websocket-runtime": "workspace:*",
     "@flax/local-storage-runtime": "workspace:*",
     "@flax/canvas-runtime": "workspace:*",

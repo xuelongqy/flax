@@ -10,7 +10,7 @@ import 'package:flax/flax.dart';
 import 'src/connection.dart';
 import 'src/generated/host_bootstrap.g.dart';
 
-/// Installs WebSocket without Fetch. Each connection owns a fresh HTTP client.
+/// Installs WebSocket alongside core Fetch. Each connection owns a fresh HTTP client.
 class FlaxWebSocketPlugin extends FlaxPlugin {
   const FlaxWebSocketPlugin({this.baseUrl, this.createHttpClient});
   final String? baseUrl;

@@ -1,4 +1,0 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/host","owner":"@flax/core-runtime:dist/host/index.js","version":"0.0.0","artifact":"b5e7c2b4dc630cd9f4dc8fbd0a3e347b0fd5494c13a91fc58a52415b3e02665f","dependencies":{}}, function(module, exports, require) {
-"use strict";var t=Object.defineProperty;var a=Object.getOwnPropertyDescriptor;var b=Object.getOwnPropertyNames;var c=Object.prototype.hasOwnProperty;var d=(o,e,x,r)=>{if(e&&typeof e=="object"||typeof e=="function")for(let p of b(e))!c.call(o,p)&&p!==x&&t(o,p,{get:()=>e[p],enumerable:!(r=a(e,p))||r.enumerable});return o};var f=o=>d(t({},"__esModule",{value:!0}),o);var g={};module.exports=f(g);
-
-});

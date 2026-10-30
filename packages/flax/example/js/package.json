@@ -21,6 +21,10 @@
     "./ui": {
       "types": "./dist/ui.d.ts",
       "import": "./src/ui.ts"
+    },
+    "./fetch": {
+      "types": "./dist/fetch.d.ts",
+      "import": "./src/fetch.ts"
     }
   }
 }

@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flax/flax.dart';
 import 'package:flax_embedded/main.dart' as app;
-import 'package:flax_fetch/flax_fetch.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:flax_websocket/flax_websocket.dart';
@@ -115,12 +114,11 @@ void main() {
           source: '$probe\n$source',
           createRuntime: () => runtime = RuntimeTracker(),
           onFlaxError: (error, _) => errors.add(error),
+          fetchBaseUrl: baseUrl,
           plugins: [
             ...app.galleryPlugins.where(
-              (plugin) =>
-                  plugin.id != 'flax.fetch' && plugin.id != 'flax.websocket',
+              (plugin) => plugin.id != 'flax.websocket',
             ),
-            FlaxFetchPlugin(baseUrl: baseUrl),
             FlaxWebSocketPlugin(baseUrl: baseUrl),
           ],
         ),

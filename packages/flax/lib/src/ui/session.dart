@@ -50,6 +50,7 @@ class _Session {
     this.registry,
     this.onError, {
     this.namespace,
+    this.fetchBaseUrl,
     required this.assetBundle,
     this.modulesPrepared = false,
     FlaxSandbox? sandbox,
@@ -57,6 +58,7 @@ class _Session {
     this.sandbox = sandbox == null ? null : _SessionSandbox(this, sandbox);
   }
   late final _SessionSandbox? sandbox;
+  final String? fetchBaseUrl;
   bool _closingSandbox = false;
   Future<String>? _homePath;
   final bool modulesPrepared;

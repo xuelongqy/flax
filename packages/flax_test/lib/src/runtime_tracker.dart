@@ -218,8 +218,15 @@ class FlaxTestRuntimeTracker
       tracing?.call(label, true);
       try {
         if (args.isNotEmpty && args.first is FlaxJsString) {
+          var operation = (args.first as FlaxJsString).value;
+          if (name == '__flaxBaseCall' &&
+              operation == 'fetch' &&
+              args.length > 1 &&
+              args[1] is FlaxJsString) {
+            operation = '$operation:${(args[1] as FlaxJsString).value}';
+          }
           hostOperations.update(
-            '$name:${(args.first as FlaxJsString).value}',
+            '$name:$operation',
             (v) => v + 1,
             ifAbsent: () => 1,
           );

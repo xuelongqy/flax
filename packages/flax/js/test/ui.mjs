@@ -1,3 +1,4 @@
+import { bundleUiFixtures as bundleFetchFixtures } from './fetch/ui.mjs';
 import { build } from 'esbuild';
 import { flaxEsbuildPlugin } from '../../../flax_build/js/src/esbuild.mjs';
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
@@ -6,6 +7,7 @@ import { resolve } from 'node:path';
 import { createMixedFixture } from '../../../flax_build/js/test/fixture.mjs';
 
 export async function bundleUiFixtures({ outdir, root }) {
+  await bundleFetchFixtures({ outdir, root });
   const jsxRoot = resolve(root, 'examples/jsx/js');
   const jsxInventory = JSON.parse(
     await readFile(

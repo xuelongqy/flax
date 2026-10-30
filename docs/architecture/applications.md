@@ -364,7 +364,7 @@ async function loadBundledConfiguration() {
 For an independent server resource, use an HTTP(S) URL:
 
 ```typescript
-import type {} from '@flax/fetch/globals';
+import type {} from '@flax/core/host';
 import { Image } from '@flax/flutter/widgets';
 
 Image.network('https://example.com/flutter.png');
@@ -379,12 +379,11 @@ async function loadRemoteConfiguration(signal: AbortSignal) {
 }
 ```
 
-Business `fetch` requires the Dart `flax_fetch` package and a registered
-`const FlaxFetchPlugin()` in the View/Session plugins, plus `@flax/fetch` for TypeScript
-declarations. Keep other plugins required by the application in that list. Relative
-Fetch URLs require the plugin's `baseUrl`. Give `Image.network` an absolute URL: it does
-not inherit that baseUrl or a remote JS artifact's URL. Image.network and the
-FlaxView.network artifact downloader do not require the Fetch plugin.
+Business `fetch` is available in every Session, including with `plugins: []`. Import
+`@flax/core/host` for its TypeScript declarations. Relative Fetch URLs require
+`fetchBaseUrl` on the owning Session or View. Give `Image.network` an absolute URL: it
+does not inherit fetchBaseUrl or a remote JS artifact's URL. Image.network, business
+Fetch and the FlaxView.network artifact downloader retain separate request lifetimes.
 
 Image.network follows Flutter's native image-cache behavior; Flax adds no persistent
 image cache. Fetch has no HTTP cache. FlaxView.network's `headers`, ETag handling,
@@ -593,8 +592,9 @@ This proves local source consumption and artifact loading, not registry availabi
 notarization, offline installation or reproducible binary hashes. CLI templates remain
 future work. See the [example](../../examples/standalone/README.md).
 
-The standalone example opts into Fetch and offers an explicit local-status request. Set
-`FLAX_FETCH_BASE_URL` when supplying a server. Its sandbox entitlements allow client
-networking. Only the temporary release integration build enables server networking for
-the local test server; the normal production build does not. Verification activates the
-exact app path because several temporary copies share a macOS bundle identifier.
+The standalone example uses the built-in Fetch and offers an explicit local-status
+request. Set `FLAX_FETCH_BASE_URL` when supplying a server. Its sandbox entitlements
+allow client networking. Only the temporary release integration build enables server
+networking for the local test server; the normal production build does not. Verification
+activates the exact app path because several temporary copies share a macOS bundle
+identifier.

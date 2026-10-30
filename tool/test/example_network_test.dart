@@ -21,7 +21,13 @@ void main() {
       }),
     );
     expect(await ExampleNetworkServer.forExample(project.path), isNull);
-    for (final specifier in ['@flax/fetch', '@flax/websocket']) {
+    final core = await ExampleNetworkServer.forExample(
+      project.path,
+      fetch: true,
+    );
+    expect(core, isNotNull);
+    await core!.close();
+    for (final specifier in ['@flax/websocket']) {
       manifest.writeAsStringSync(
         jsonEncode({
           'modules': [

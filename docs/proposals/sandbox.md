@@ -136,7 +136,7 @@ final sandbox = await FlaxSandbox.create(
 FlaxView.bundle(
   prefix: 'applications/reader',
   createRuntime: FlaxEngine.createRuntime,
-  plugins: [const FlaxFetchPlugin(), const FlaxWebSocketPlugin()],
+  plugins: [const FlaxWebSocketPlugin()],
   sandbox: sandbox,
   permissions: {
     FlaxNetworkPolicy: FlaxNetworkPolicy(

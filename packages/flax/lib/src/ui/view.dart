@@ -13,6 +13,7 @@ class FlaxSession {
     this.sandbox,
     List<String> requiredCapabilities = const [],
     this.namespace,
+    this.fetchBaseUrl,
     this.onError,
     AssetBundle? assetBundle,
     List<FlaxPlugin>? plugins,
@@ -24,6 +25,18 @@ class FlaxSession {
        ]),
        assetBundle = assetBundle ?? FlaxPrefixedAssetBundle(),
        _moduleAssets = Flax.moduleAssets {
+    if (fetchBaseUrl != null) {
+      final url = Uri.parse(fetchBaseUrl!);
+      if (!url.hasAuthority ||
+          url.host.isEmpty ||
+          !['http', 'https'].contains(url.scheme)) {
+        throw ArgumentError.value(
+          fetchBaseUrl,
+          'fetchBaseUrl',
+          'Must be an absolute HTTP(S) URL',
+        );
+      }
+    }
     if (namespace != null && namespace!.isEmpty) {
       throw ArgumentError.value(namespace, 'namespace', 'Must not be empty');
     }
@@ -35,6 +48,7 @@ class FlaxSession {
     required FlaxJsRuntime Function() createRuntime,
     required FlaxBindingRegistry bindings,
     String? namespace,
+    String? fetchBaseUrl,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
     FlaxSandbox? sandbox,
@@ -51,11 +65,15 @@ class FlaxSession {
          sandbox: sandbox ?? application.sandbox,
          assetBundle: application.assetBundle,
          namespace: namespace,
+         fetchBaseUrl: fetchBaseUrl,
          onError: onError,
          plugins: plugins,
        );
 
   final String? namespace;
+
+  /// Base URL for relative Fetch requests. Must be an absolute HTTP(S) URL.
+  final String? fetchBaseUrl;
 
   /// The stable resource source shared by this session's UI and business code.
   /// Defaults to assets/flax inside Flutter's rootBundle.
@@ -178,6 +196,7 @@ class FlaxSession {
         registry,
         onError,
         namespace: namespace,
+        fetchBaseUrl: fetchBaseUrl,
         assetBundle: assetBundle,
         modulesPrepared: prepared,
         sandbox: sandbox,
@@ -227,6 +246,7 @@ class FlaxSession {
             registry,
             report ?? onError,
             namespace: namespace,
+            fetchBaseUrl: fetchBaseUrl,
             assetBundle: assetBundle,
             sandbox: sandbox,
           );
@@ -348,6 +368,7 @@ class FlaxView extends StatelessWidget {
     this.errorBuilder,
     this.developmentMode = false,
     this.namespace,
+    this.fetchBaseUrl,
     this.onError,
     this.plugins,
     this.assetBundle,
@@ -368,6 +389,7 @@ class FlaxView extends StatelessWidget {
     AssetBundle? assetBundle,
     String prefix = 'assets/flax',
     String? namespace,
+    String? fetchBaseUrl,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
     bool developmentMode = false,
@@ -386,6 +408,7 @@ class FlaxView extends StatelessWidget {
       bindings: bindings,
       assetBundle: assetBundle,
       namespace: namespace,
+      fetchBaseUrl: fetchBaseUrl,
       onError: onError,
       plugins: plugins,
       developmentMode: developmentMode,
@@ -405,6 +428,7 @@ class FlaxView extends StatelessWidget {
     FlaxBindingRegistry? bindings,
     required Directory directory,
     String? namespace,
+    String? fetchBaseUrl,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
     bool developmentMode = false,
@@ -419,6 +443,7 @@ class FlaxView extends StatelessWidget {
     bindings: bindings,
     assetBundle: null,
     namespace: namespace,
+    fetchBaseUrl: fetchBaseUrl,
     onError: onError,
     plugins: plugins,
     developmentMode: developmentMode,
@@ -439,6 +464,7 @@ class FlaxView extends StatelessWidget {
     required File file,
     Directory? installationDirectory,
     String? namespace,
+    String? fetchBaseUrl,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
     bool developmentMode = false,
@@ -453,6 +479,7 @@ class FlaxView extends StatelessWidget {
     bindings: bindings,
     assetBundle: null,
     namespace: namespace,
+    fetchBaseUrl: fetchBaseUrl,
     onError: onError,
     plugins: plugins,
     developmentMode: developmentMode,
@@ -476,6 +503,7 @@ class FlaxView extends StatelessWidget {
     required File file,
     AssetBundle? assetBundle,
     String? namespace,
+    String? fetchBaseUrl,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
     bool developmentMode = false,
@@ -490,6 +518,7 @@ class FlaxView extends StatelessWidget {
     bindings: bindings,
     assetBundle: assetBundle,
     namespace: namespace,
+    fetchBaseUrl: fetchBaseUrl,
     onError: onError,
     plugins: plugins,
     developmentMode: developmentMode,
@@ -516,6 +545,7 @@ class FlaxView extends StatelessWidget {
     Directory? installationDirectory,
     AssetBundle? assetBundle,
     String? namespace,
+    String? fetchBaseUrl,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
     bool developmentMode = false,
@@ -543,6 +573,7 @@ class FlaxView extends StatelessWidget {
       bindings: bindings,
       assetBundle: assetBundle,
       namespace: namespace,
+      fetchBaseUrl: fetchBaseUrl,
       onError: onError,
       plugins: plugins,
       developmentMode: developmentMode,
@@ -559,6 +590,7 @@ class FlaxView extends StatelessWidget {
     required this._input,
     this.assetBundle,
     this.namespace,
+    this.fetchBaseUrl,
     this.onError,
     this.plugins,
     this.loadingBuilder,
@@ -591,6 +623,7 @@ class FlaxView extends StatelessWidget {
       bindings = null,
       plugins = null,
       namespace = null,
+      fetchBaseUrl = null,
       assetBundle = null,
       sourceUrl = null,
       onError = null,
@@ -621,6 +654,7 @@ class FlaxView extends StatelessWidget {
        bindings = null,
        plugins = null,
        namespace = null,
+       fetchBaseUrl = null,
        assetBundle = null,
        sourceUrl = null,
        onError = null;
@@ -644,6 +678,9 @@ class FlaxView extends StatelessWidget {
   final Widget Function(BuildContext, Object, StackTrace)? errorBuilder;
   final List<FlaxPlugin>? plugins;
   final String? namespace;
+
+  /// Base URL for relative Fetch requests. Must be an absolute HTTP(S) URL.
+  final String? fetchBaseUrl;
 
   /// Uses an explicit business-root bundle unchanged. Otherwise source/script
   /// entries select assets/flax inside the inherited DefaultAssetBundle.
@@ -691,6 +728,7 @@ class FlaxView extends StatelessWidget {
           createRuntime,
           bindings,
           namespace,
+          fetchBaseUrl,
           loadModule,
           imports,
           sandbox,
@@ -723,6 +761,7 @@ class FlaxView extends StatelessWidget {
               sandbox,
               bindings,
               namespace,
+              fetchBaseUrl,
               ObjectKey(bundle),
               assetBundle != null,
             ),
@@ -789,6 +828,7 @@ class _SessionRootState extends State<_SessionRoot> {
           onError: configuration.onError,
           plugins: configuration.plugins,
           namespace: configuration.namespace,
+          fetchBaseUrl: configuration.fetchBaseUrl,
           assetBundle:
               widget.application?.assetBundle ??
               configuration.assetBundle ??

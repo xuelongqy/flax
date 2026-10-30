@@ -202,12 +202,12 @@ Serve a PNG at that image URL, then launch from the repository root:
 FLAX_FETCH_BASE_URL=http://127.0.0.1:8080/ dart run tool/standalone_run.dart
 ```
 
-The existing host registers FlaxFetchPlugin and forwards that base URL to it. The
-relative JSON URL uses the plugin's baseUrl; Image.network uses the absolute URL from
-the JSON response. The page checks HTTP errors and JSON fields, keeps one loading
-Promise in State, and aborts a pending request on disposal. The application scenario
-provides both endpoints on a loopback server and verifies JSON, actual HTTP requests,
-and decoded PNG pixels, without a public network dependency.
+The existing host forwards that base URL to the View's `fetchBaseUrl`. Built-in Fetch
+uses it for the relative JSON URL; Image.network uses the absolute URL from the JSON
+response. The page checks HTTP errors and JSON fields, keeps one loading Promise in
+State, and aborts a pending request on disposal. The application scenario provides both
+endpoints on a loopback server and verifies JSON, actual HTTP requests, and decoded PNG
+pixels, without a public network dependency.
 
 HTTP failures abort the unread JSON response immediately, while the error remains
 visible on the page. Leaving the page aborts JSON loading even while waiting for headers

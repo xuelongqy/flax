@@ -23,6 +23,10 @@ entry in an ES-only TypeScript project; `lib.dom` declares a competing browser
 environment. `flax_modules.json` describes public modules physically delivered by this
 package for host preparation and bundler resolution.
 
+Sessions always provide fetch, Headers, Request and Response through this host entry,
+including with an empty plugin list. The first HTTP request creates a client owned by
+that Session. Configure `fetchBaseUrl` on the Dart Session or View for relative URLs.
+
 This package is private while Flax is under development.
 
 Signals support Widget-independent business subscriptions through `effect` and

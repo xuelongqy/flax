@@ -150,7 +150,7 @@ checks, aggregate checks and launches share dependency builds with visible failu
 output. Builds run sequentially because public type generation shares a staging
 directory.
 
-For an example declaring `@flax/fetch` or `@flax/websocket` in its existing module
+For the Core example and examples declaring `@flax/websocket` in their existing module
 inventory, the launcher also starts a loopback-only Dart server on a random port. It
 injects `FLAX_FETCH_BASE_URL` into Flutter and serves `/status` JSON, a five-second
 `/slow` response and `/socket` WebSocket echo. A `finally` block closes the listener,

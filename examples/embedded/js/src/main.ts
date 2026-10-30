@@ -5,7 +5,7 @@ import {
   createCupertinoExample,
   cupertinoCollections,
 } from '@flax/example-cupertino-ui/showcase';
-import { createFetchExample } from '@flax/example-fetch/showcase';
+import { createFetchExample } from '@flax/example-core/fetch';
 import { createStorageExample } from '@flax/example-local-storage/showcase';
 import { createSandboxExample } from '@flax/example-sandbox/showcase';
 import {

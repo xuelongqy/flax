@@ -162,7 +162,6 @@ const targets = [
 ];
 
 for (const [owner, publicName] of [
-  ['flax_fetch', '@flax/fetch'],
   ['flax_websocket', '@flax/websocket'],
   ['flax_local_storage', '@flax/local-storage'],
   ['flax_canvas', '@flax/canvas'],

@@ -55,10 +55,9 @@ const form = new FormData();
 form.append('file', new File([blob], 'file.txt'));
 void stream;
 void encoder;
-// @ts-expect-error Fetch is an optional plugin.
-fetch('https://example.test');
-// @ts-expect-error HTTP types are not installed by the base environment.
-new Headers();
+const fetched: Promise<Response> = fetch('https://example.test');
+const headers: Headers = new Headers();
+void [fetched, headers];
 
 import type {
   DartInput,

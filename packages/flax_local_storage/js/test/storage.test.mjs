@@ -13,6 +13,7 @@ function setup(quota = 10000) {
     errors = [];
   const context = createContext({
     __flaxBaseCall(op, ...args) {
+      if (op === 'fetch' && args[0] === 'baseUrl') return;
       if (op === 'timeOrigin' || op === 'now') return 0;
       if (op === 'error') {
         errors.push(args);

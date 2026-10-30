@@ -151,8 +151,8 @@ native preferred sizes and generated Scaffold/AppBar bindings.
 [Standalone applications](applications.md) create MaterialApp in JS and verify
 outside-repository package consumption and relocated macOS release UI.
 
-See [session host plugins and Fetch](host.md) for optional capabilities and the base
-environment.
+See [session host plugins and Fetch](host.md) for the default environment, including
+Fetch, and optional capabilities.
 
 - [WebSocket plugin](websocket.md): client options, transport observations and limits.
 

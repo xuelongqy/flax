@@ -24,26 +24,25 @@ package. It does not add a developer-authored Dart facade or per-library Pub pac
 This private generated package is separate from the existing `flax_native_assets` shared
 C++/CRT owner. See the [package guide](../../packages/flax_ffi/js/README.md).
 
-| Package                                              | Owned capability                                                                                                      |
-| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `flax` / `@flax/core-runtime`                        | Runtime interfaces, host base, supported Flutter SDK binding implementations, signals, sessions, and shared C ABI/JSI |
-| `flax_flutter` / `@flax/flutter`                     | Declaration-only public Flutter library surface (`foundation`, `widgets`, and related framework paths)                |
-| `flax_dart` / `@flax/dart`                           | Declaration-only public Dart SDK library surface (`core`, `async`)                                                    |
-| `flax_material_ui` / `@flax/material-ui-runtime`     | Third-party material_ui binding delivery and native Route/Page bindings                                               |
-| `flax_cupertino_ui` / `@flax/cupertino-ui-runtime`   | Third-party cupertino_ui bindings, module plugin, and package-local example                                           |
-| `@flax/ffi`                                          | Optional direct native calls, layouts, callbacks and memory helpers; JS-only public package                           |
-| `@flax/ffi-codegen`                                  | Optional Node development tool for C header definitions and ownership-driven FFI classes; no device runtime           |
-| `flax_fetch` / `@flax/fetch-runtime`                 | Fetch session plugin                                                                                                  |
-| `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                              |
-| `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                                |
-| `flax_canvas` / `@flax/canvas-runtime`               | Canvas host plugin and CanvasView binding                                                                             |
-| `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                                          |
-| `flax_native_assets`                                 | Build-only owner of shared Android C++ and Windows CRT native assets                                                  |
-| `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                                  |
-| `flax_annotations`                                   | Pure Dart FlaxExport scope and FlaxIgnore markers; no Flutter or analyzer dependency                                  |
-| `flax_codegen`                                       | Analyzer model, manifest format, and Dart/TypeScript emitters                                                         |
-| `flax_cli`                                           | Optional host project initialization and legacy Builder configuration helper                                          |
-| `flax_test`                                          | Development-only engine-neutral runtime contracts and shared test harnesses                                           |
+| Package                                              | Owned capability                                                                                                                      |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `flax` / `@flax/core-runtime`                        | Runtime interfaces, host base including Fetch, supported Flutter SDK binding implementations, signals, sessions, and shared C ABI/JSI |
+| `flax_flutter` / `@flax/flutter`                     | Declaration-only public Flutter library surface (`foundation`, `widgets`, and related framework paths)                                |
+| `flax_dart` / `@flax/dart`                           | Declaration-only public Dart SDK library surface (`core`, `async`)                                                                    |
+| `flax_material_ui` / `@flax/material-ui-runtime`     | Third-party material_ui binding delivery and native Route/Page bindings                                                               |
+| `flax_cupertino_ui` / `@flax/cupertino-ui-runtime`   | Third-party cupertino_ui bindings, module plugin, and package-local example                                                           |
+| `@flax/ffi`                                          | Optional direct native calls, layouts, callbacks and memory helpers; JS-only public package                                           |
+| `@flax/ffi-codegen`                                  | Optional Node development tool for C header definitions and ownership-driven FFI classes; no device runtime                           |
+| `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                                              |
+| `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                                                |
+| `flax_canvas` / `@flax/canvas-runtime`               | Canvas host plugin and CanvasView binding                                                                                             |
+| `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                                                          |
+| `flax_native_assets`                                 | Build-only owner of shared Android C++ and Windows CRT native assets                                                                  |
+| `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                                                  |
+| `flax_annotations`                                   | Pure Dart FlaxExport scope and FlaxIgnore markers; no Flutter or analyzer dependency                                                  |
+| `flax_codegen`                                       | Analyzer model, manifest format, and Dart/TypeScript emitters                                                                         |
+| `flax_cli`                                           | Optional host project initialization and legacy Builder configuration helper                                                          |
+| `flax_test`                                          | Development-only engine-neutral runtime contracts and shared test harnesses                                                           |
 
 `@flax/ffi-codegen` is a separate optional development dependency. The build adapters
 load it only for declared native codegen recipes; it is excluded from runtime module
@@ -70,17 +69,17 @@ only: it does not import code, instantiate plugins, or participate in session st
 ```yaml
 format: 2
 dart:
-  entrypoint: package:flax_fetch/flax_fetch.dart
+  entrypoint: package:flax_websocket/flax_websocket.dart
 javascript:
-  package: '@flax/fetch-runtime'
-  types: '@flax/fetch'
+  package: '@flax/websocket-runtime'
+  types: '@flax/websocket'
   version: same
   mode: runtime
 capabilities:
   - host-plugin
 registration:
   plugins:
-    - FlaxFetchPlugin
+    - FlaxWebSocketPlugin
 ```
 
 Capabilities are limited to `core`, `bindings`, `host-plugin`, `engine`, `codegen`, and
@@ -135,10 +134,10 @@ Those are different Dart classes. The upstream compatibility widgets can adapt t
 for mixed native subtrees without restoring a Core UI binding dependency.
 
 Host capabilities have separate public declarations and runtime delivery. `@flax/core`,
-`@flax/fetch`, `@flax/websocket`, `@flax/local-storage`, and `@flax/canvas` contain only
-TypeScript declarations; their implementations use the corresponding `-runtime` npm
-names. Flutter and Dart declarations remain `@flax/flutter` and `@flax/dart`. The
-independent Material/Cupertino plugins follow the same split: declarations use
+`@flax/websocket`, `@flax/local-storage`, and `@flax/canvas` contain only TypeScript
+declarations; their implementations use the corresponding `-runtime` npm names. Flutter
+and Dart declarations remain `@flax/flutter` and `@flax/dart`. The independent
+Material/Cupertino plugins follow the same split: declarations use
 `@flax/material-ui`/`@flax/cupertino-ui`, and source uses the corresponding `-runtime`
 packages. `javascript.package` identifies source delivery; `javascript.types` identifies
 the declaration package in metadata format 2.
@@ -335,7 +334,8 @@ the local views available to unrelated declarations.
 
 Generated dependency wiring supplies binding modules and follows prepared JS delivery
 dependencies. It never automatically constructs or activates a host-capability plugin;
-Fetch, storage and other host capabilities still require their explicit host setup.
+Fetch is installed by Core; storage and other optional capabilities retain explicit host
+setup.
 
 Object inputs are checked against actual Dart types and concrete generic arguments.
 Typed results expose the interface selected by the signature. Erased results retain the
@@ -555,8 +555,8 @@ panels or listeners. The shell and settings outlive individual Flax Sessions.
 The generic package commands are:
 
 ```sh
-dart run tool/package.dart check flax_fetch
-dart run tool/package.dart integration flax_fetch
+dart run tool/package.dart check flax
+dart run tool/package.dart integration flax
 ```
 
 Discovery follows directory conventions. Adding a conforming package does not require a

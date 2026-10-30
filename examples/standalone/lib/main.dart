@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flax/flax.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
-import 'package:flax_fetch/flax_fetch.dart';
 import 'package:flax_websocket/flax_websocket.dart';
 import 'package:flax_canvas/flax_canvas.dart';
 import 'package:flax_standalone/engine.dart';
@@ -127,7 +126,6 @@ Future<void> startApplication({
       FlaxWebSocketPlugin(
         baseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl,
       ),
-      FlaxFetchPlugin(baseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl),
     ];
     final Widget view;
     if (source != null) {
@@ -137,6 +135,7 @@ Future<void> startApplication({
         createRuntime: createRuntime,
         bindings: bindings,
         plugins: plugins,
+        fetchBaseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl,
       );
     } else if (networkUri != null) {
       view = FlaxView.network(
@@ -151,6 +150,7 @@ Future<void> startApplication({
         createRuntime: createRuntime,
         bindings: bindings,
         plugins: plugins,
+        fetchBaseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl,
       );
     } else if (packageFile != null) {
       view = FlaxView.package(
@@ -159,6 +159,7 @@ Future<void> startApplication({
         createRuntime: createRuntime,
         bindings: bindings,
         plugins: plugins,
+        fetchBaseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl,
       );
     } else if (applicationDirectory != null) {
       view = FlaxView.directory(
@@ -166,6 +167,7 @@ Future<void> startApplication({
         createRuntime: createRuntime,
         bindings: bindings,
         plugins: plugins,
+        fetchBaseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl,
       );
     } else if (scriptFile != null) {
       view = FlaxView.file(
@@ -174,6 +176,7 @@ Future<void> startApplication({
         createRuntime: createRuntime,
         bindings: bindings,
         plugins: plugins,
+        fetchBaseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl,
       );
     } else {
       view = FlaxView.bundle(
@@ -182,6 +185,7 @@ Future<void> startApplication({
         createRuntime: createRuntime,
         bindings: bindings,
         plugins: plugins,
+        fetchBaseUrl: apiBaseUrl?.isEmpty == true ? null : apiBaseUrl,
       );
     }
     runApp(view);

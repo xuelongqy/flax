@@ -74,7 +74,10 @@ Future<void> main(List<String> arguments) => command(() async {
       stdout.writeln('Verified example: $destination');
       return;
     }
-    final network = await ExampleNetworkServer.forExample(example);
+    final network = await ExampleNetworkServer.forExample(
+      example,
+      fetch: package?.name == 'flax',
+    );
     try {
       if (network != null) {
         stdout.writeln('Example HTTP: ${network.baseUrl}status');

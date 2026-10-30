@@ -290,7 +290,7 @@ extension _HostPlugins on _Session {
   }
 
   void installHost(List<FlaxPlugin> plugins) {
-    final all = _pluginsWithBase(plugins);
+    final all = _pluginsWithBase(plugins, fetchBaseUrl: fetchBaseUrl);
     for (final plugin in all) {
       for (final name in plugin.globals) {
         claimGlobal(name, engineDefault: plugin is _BaseHostPlugin);
@@ -338,7 +338,8 @@ extension _HostPlugins on _Session {
 }
 
 class _BaseHostPlugin extends FlaxPlugin {
-  const _BaseHostPlugin();
+  const _BaseHostPlugin({this.fetchBaseUrl});
+  final String? fetchBaseUrl;
   @override
   String get id => 'flax.base';
   @override
@@ -350,6 +351,10 @@ class _BaseHostPlugin extends FlaxPlugin {
   };
   @override
   Set<String> get globals => const {
+    'fetch',
+    'Headers',
+    'Request',
+    'Response',
     '__flaxFfiDlopen',
     '__flaxFfiMemory',
     '__flaxFfiPlatform',
@@ -399,7 +404,7 @@ class _BaseHostPlugin extends FlaxPlugin {
   };
   @override
   FlaxPluginInstance install(FlaxHostContext context) {
-    final instance = _BaseHost(context);
+    final instance = _BaseHost(context, fetchBaseUrl);
     try {
       instance.install();
       return instance;
@@ -410,14 +415,16 @@ class _BaseHostPlugin extends FlaxPlugin {
   }
 }
 
-List<FlaxPlugin> _pluginsWithBase(List<FlaxPlugin> plugins) => [
-  const _BaseHostPlugin(),
-  ...plugins,
-];
+List<FlaxPlugin> _pluginsWithBase(
+  List<FlaxPlugin> plugins, {
+  String? fetchBaseUrl,
+}) => [_BaseHostPlugin(fetchBaseUrl: fetchBaseUrl), ...plugins];
 
 class _BaseHost implements FlaxPluginInstance {
-  _BaseHost(this.context);
+  _BaseHost(this.context, String? fetchBaseUrl)
+    : _fetch = _FetchHost(context, fetchBaseUrl);
   final FlaxHostContext context;
+  final _FetchHost _fetch;
   final _clock = Stopwatch()..start();
   final _origin = DateTime.now().microsecondsSinceEpoch / 1000;
   final _timers = <int, Timer>{};
@@ -434,6 +441,8 @@ class _BaseHost implements FlaxPluginInstance {
     context.registerFunction('__flaxBaseCall', (_, args) {
       final operation = (args[0] as FlaxJsString).value;
       switch (operation) {
+        case 'fetch':
+          return _fetch.call(args);
         case 'ffiInstall':
           if (context.sandbox != null) {
             throw const FlaxSandboxException(
@@ -547,6 +556,7 @@ class _BaseHost implements FlaxPluginInstance {
                   )
                 : context.evaluateSource(_baseHostSource))
             as FlaxJsObject;
+    _fetch._state = _state!.getProperty('fetch') as FlaxJsObject;
   }
 
   void _scheduleRaf() {
@@ -598,6 +608,7 @@ class _BaseHost implements FlaxPluginInstance {
   void close() {
     if (_closed) return;
     _closed = true;
+    _fetch.close();
     for (final timer in _timers.values) {
       timer.cancel();
     }
@@ -623,6 +634,7 @@ class _BaseHost implements FlaxPluginInstance {
   @override
   void dispose() {
     close();
+    _fetch.dispose();
     _state?.release();
     _state = null;
     _clock.stop();

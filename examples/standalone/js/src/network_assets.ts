@@ -1,4 +1,4 @@
-import type {} from '@flax/fetch/globals';
+import type {} from '@flax/core/host';
 import {
   Column,
   FutureBuilder,

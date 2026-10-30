@@ -78,7 +78,6 @@ void main() {
           'flax',
           'flax_canvas',
           'flax_cupertino_ui',
-          'flax_fetch',
           'flax_local_storage',
           'flax_material_ui',
           'flax_websocket',

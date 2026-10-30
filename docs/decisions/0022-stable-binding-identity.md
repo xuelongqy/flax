@@ -81,7 +81,6 @@ Official packages that already include `bindings`:
 Assign these namespaces only once those packages include `bindings`:
 
 - `flax_cupertino_ui` → `flax.cupertino`
-- `flax_fetch` → `flax.fetch`
 - `flax_websocket` → `flax.websocket`
 - `flax_local_storage` → `flax.localstorage`
 

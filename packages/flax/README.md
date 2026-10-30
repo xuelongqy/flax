@@ -196,10 +196,10 @@ interface inputs. See
 [fixed configuration](../../docs/architecture/widget-interfaces.md).
 
 Sessions install the [base host environment](../../docs/architecture/host.md) before
-application source. FlaxPlugin configurations are snapshotted per session; optional
-capabilities such as Fetch use separate packages. The runtime host type entry has no
-installation side effects. Bare FlaxJsRuntime instances retain explicit microtask
-scheduling.
+application source. FlaxPlugin configurations are snapshotted per session; Fetch is
+included in the base environment and creates an HTTP client only when needed. Additional
+host capabilities use separate packages. The runtime host type entry has no installation
+side effects. Bare FlaxJsRuntime instances retain explicit microtask scheduling.
 
 Public `FlaxFunctionBinding` supports generated top-level calls and native Route
 functions. FlaxNavigatorObserver is optional and does not retain Sessions. Core selects
@@ -275,8 +275,8 @@ Images and JSON inside either built-in resources or an installed package use
 `Image.asset('assets/images/flutter.png')` and
 `getAssetBundle().loadString('assets/data/example.json')`. Independent URLs use
 `Image.network(url)` and `fetch(url)`; they do not use the Flax artifact cache. Business
-Fetch requires the optional FlaxFetchPlugin, independently of the application
-downloader. See the
+Fetch is built into the Session, independently of the application downloader. Configure
+`fetchBaseUrl` on the Session or View when using relative Fetch URLs. See the
 [loading examples](../../docs/architecture/applications.md#application-loading-modes),
 [directory and cache reference](../../docs/architecture/applications.md#resource-and-cache-locations),
 and

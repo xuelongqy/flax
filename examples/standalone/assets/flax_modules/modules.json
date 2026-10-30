@@ -4,7 +4,7 @@
   "bootstrap": "assets/flax_modules/registry.js",
   "lock": {
     "manager": "pnpm",
-    "digest": "bdd4bc6bc60d822c54e35d7140039a917530f05d4112c386f3092f07d815bc93"
+    "digest": "fb199b716ae986f3b5bba71c4348a805cc32b59ced791d505b45b950a1be5c97"
   },
   "modules": [
     {
@@ -7330,18 +7330,6 @@
       "subpaths": [
         "@flax/dart/ui/index"
       ]
-    },
-    {
-      "specifier": "@flax/fetch",
-      "owner": "@flax/fetch-runtime:dist/index.js",
-      "version": "0.0.0",
-      "artifact": "b5e7c2b4dc630cd9f4dc8fbd0a3e347b0fd5494c13a91fc58a52415b3e02665f",
-      "asset": "assets/flax_modules/_flax_fetch-d34de65f6c64.js",
-      "package": "@flax/fetch-runtime",
-      "source": "dist/index.js",
-      "dependencies": {},
-      "bindings": [],
-      "subpaths": []
     },
     {
       "specifier": "@flax/flutter/animation",

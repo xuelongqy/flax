@@ -52,8 +52,6 @@
     "../packages/flax/js/src/host/index.ts",
     "../packages/flax/js/src/host/vendor.d.ts",
     "../packages/flax/js/src/flutter/generated/libraries/navigation/index.ts",
-    "../packages/flax_fetch/js/src/index.ts",
-    "../packages/flax_fetch/js/src/globals.ts",
     "../packages/flax_websocket/js/src/index.ts",
     "../packages/flax_websocket/js/src/globals.ts",
     "../packages/flax_local_storage/js/src/index.ts",

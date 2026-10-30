@@ -8,7 +8,7 @@ final bindings = FlaxBindingRegistry([flutterBindings]);
 
 Future<void> main() => startApplication();
 
-Future<void> startApplication() async {
+Future<void> startApplication({String? apiBaseUrl}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Flax.moduleAssets = await FlaxModuleAssets.load(
@@ -25,6 +25,12 @@ Future<void> startApplication() async {
         source: source,
         sourceUrl: 'flax:flax:example',
         bindings: bindings,
+        fetchBaseUrl:
+            apiBaseUrl ??
+            const String.fromEnvironment(
+              'FLAX_FETCH_BASE_URL',
+              defaultValue: 'http://127.0.0.1:8080/',
+            ),
       ),
     ),
   );

@@ -5,7 +5,7 @@ import {
   type DartMapInput,
 } from '@flax/core/bindings';
 import type {} from '@flax/local-storage/globals';
-import type {} from '@flax/fetch/globals';
+import type {} from '@flax/core/host';
 import type {} from '@flax/websocket/globals';
 import type {} from '@flax/canvas/globals';
 import { signal } from '@flax/core';
