@@ -82,6 +82,13 @@ export declare function _PopupMenuDividerFactory(options?: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
 }): PopupMenuDivider;
+export declare namespace _PopupMenuDividerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _PopupMenuDividerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const PopupMenuDivider: typeof _PopupMenuDividerFactory & _FlaxInstanceType<PopupMenuDivider> & _FlaxDartType<PopupMenuDivider, readonly ["class", "flax.material/material#type:PopupMenuDivider", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "height" | "thickness" | "indent" | "endIndent" | "radius" | "color" | "key" | "represents" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/popup_menu.dart::PopupMenuDivider" | "__flaxBound:package:material_ui/src/popup_menu.dart::PopupMenuEntry" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

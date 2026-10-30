@@ -31,6 +31,19 @@ export declare function _VisibilityFactory(options: {
     maintainFocusability?: Bindable<boolean> | undefined;
 }): Visibility;
 export declare namespace _VisibilityFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _VisibilityFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _VisibilityFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _VisibilityFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _VisibilityFactory {
     function maintain(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -38,6 +51,19 @@ export declare namespace _VisibilityFactory {
         child: Bindable<Widget>;
         visible?: Bindable<boolean> | undefined;
     }): Visibility;
+    namespace maintain {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof maintain>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof maintain>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof maintain>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _VisibilityFactory {
     function of(context: upstream1.BuildContext): boolean;

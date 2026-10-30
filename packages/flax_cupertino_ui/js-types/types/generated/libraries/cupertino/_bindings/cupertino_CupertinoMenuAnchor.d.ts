@@ -123,6 +123,19 @@ export declare function _CupertinoMenuAnchorFactory(options: {
     }>) | null | undefined;
 }): CupertinoMenuAnchor;
 export declare namespace _CupertinoMenuAnchorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoMenuAnchorFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoMenuAnchorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoMenuAnchorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoMenuAnchorFactory {
     function maybeHasLeadingOf(context: upstream6.BuildContext): boolean | null;
 }
 export declare const CupertinoMenuAnchor: typeof _CupertinoMenuAnchorFactory & _FlaxInstanceType<CupertinoMenuAnchor> & _FlaxDartType<CupertinoMenuAnchor, readonly ["class", "flax.cupertino/cupertino#type:CupertinoMenuAnchor", readonly [], false]>;

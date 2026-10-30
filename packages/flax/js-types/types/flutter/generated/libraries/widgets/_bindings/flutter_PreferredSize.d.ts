@@ -73,6 +73,19 @@ export declare function _PreferredSizeFactory(options: {
     }>;
     child: Widget;
 }): PreferredSize;
+export declare namespace _PreferredSizeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _PreferredSizeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _PreferredSizeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _PreferredSizeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const PreferredSize: typeof _PreferredSizeFactory & _FlaxInstanceType<PreferredSize> & _FlaxDartType<PreferredSize, readonly ["class", "flax.core/flutter#type:PreferredSize", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "preferredSize" | "child" | "key" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "toString" | "build" | "createElement" | "__flaxBound:package:flutter/src/widgets/preferred_size.dart::PreferredSize" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/preferred_size.dart::PreferredSizeWidget";
 export {};

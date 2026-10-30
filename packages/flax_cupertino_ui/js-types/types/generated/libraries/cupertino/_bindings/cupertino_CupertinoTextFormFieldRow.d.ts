@@ -241,6 +241,13 @@ export declare function _CupertinoTextFormFieldRowFactory(options?: {
     selectionWidthStyle?: upstream29.BoxWidthStyle | null | undefined;
     restorationId?: string | null | undefined;
 }): CupertinoTextFormFieldRow;
+export declare namespace _CupertinoTextFormFieldRowFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTextFormFieldRowFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoTextFormFieldRow: typeof _CupertinoTextFormFieldRowFactory & _FlaxInstanceType<CupertinoTextFormFieldRow> & _FlaxDartType<CupertinoTextFormFieldRow, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTextFormFieldRow", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "prefix" | "padding" | "controller" | "onChanged" | "builder" | "onSaved" | "onReset" | "forceErrorText" | "validator" | "errorBuilder" | "initialValue" | "enabled" | "autovalidateMode" | "restorationId" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/text_form_field_row.dart::CupertinoTextFormFieldRow" | "__flaxBound:package:flutter/src/widgets/form.dart::FormField" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

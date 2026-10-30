@@ -75,6 +75,19 @@ export declare function _SnackBarThemeFactory(options: {
     child: Widget;
 }): SnackBarTheme;
 export declare namespace _SnackBarThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SnackBarThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SnackBarThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _SnackBarThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _SnackBarThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.SnackBarThemeData;
 }
 export declare const SnackBarTheme: typeof _SnackBarThemeFactory & _FlaxInstanceType<SnackBarTheme> & _FlaxDartType<SnackBarTheme, readonly ["class", "flax.material/material#type:SnackBarTheme", readonly [], false]>;

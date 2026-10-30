@@ -16,6 +16,7 @@ Start with the [project README](../README.md) for supported scope and setup, the
 | Flutter lifecycle and application startup | [UI](architecture/ui.md), [applications](architecture/applications.md)                                                                                     |
 | Values and ownership                      | [Interop](architecture/interop.md), [objects](architecture/objects.md)                                                                                     |
 | Navigation and components                 | [Navigation](architecture/navigation.md), [components](architecture/components.md)                                                                         |
+| Optional JSX and TSX                      | [Authoring guide](guides/jsx.md), [runnable example](../examples/jsx/README.md)                                                                            |
 | Optional services                         | [Host and Fetch](architecture/host.md), [WebSocket](architecture/websocket.md), [storage](architecture/local-storage.md), [Canvas](architecture/canvas.md) |
 
 Binding selection format 2, package metadata format 2, current-only Manifest 28, UI

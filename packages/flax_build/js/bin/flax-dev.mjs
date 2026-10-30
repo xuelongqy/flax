@@ -29,9 +29,7 @@ if (invalid || !entry || !out || !Number.isInteger(port) || port < 0 || port > 6
   try {
     const dev = await startFlaxDev({ entry, out, port });
     console.log(`Flax dev server: ws://127.0.0.1:${dev.port}`);
-    console.log(
-      dev.url ? `Flax module entry: ${dev.url}` : `Flax dev asset: ${dev.out}`,
-    );
+    console.log(dev.url ? `Flax dev entry: ${dev.url}` : `Flax dev asset: ${dev.out}`);
   } catch (error) {
     console.error(error instanceof Error ? error.message : error);
     process.exitCode = 1;

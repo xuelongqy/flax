@@ -75,6 +75,19 @@ export declare function _ProgressIndicatorThemeFactory(options: {
     child: Widget;
 }): ProgressIndicatorTheme;
 export declare namespace _ProgressIndicatorThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ProgressIndicatorThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ProgressIndicatorThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ProgressIndicatorThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ProgressIndicatorThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.ProgressIndicatorThemeData;
 }
 export declare const ProgressIndicatorTheme: typeof _ProgressIndicatorThemeFactory & _FlaxInstanceType<ProgressIndicatorTheme> & _FlaxDartType<ProgressIndicatorTheme, readonly ["class", "flax.material/material#type:ProgressIndicatorTheme", readonly [], false]>;

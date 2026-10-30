@@ -241,6 +241,13 @@ export declare function _SwitchListTileFactory(options: {
     internalAddSemanticForOnTap?: boolean | undefined;
 }): SwitchListTile;
 export declare namespace _SwitchListTileFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SwitchListTileFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SwitchListTileFactory {
     function adaptive(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -354,6 +361,13 @@ export declare namespace _SwitchListTileFactory {
         }> | null | undefined;
         internalAddSemanticForOnTap?: boolean | undefined;
     }): SwitchListTile;
+    namespace adaptive {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const SwitchListTile: typeof _SwitchListTileFactory & _FlaxInstanceType<SwitchListTile> & _FlaxDartType<SwitchListTile, readonly ["class", "flax.material/material#type:SwitchListTile", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "value" | "onChanged" | "activeColor" | "activeThumbColor" | "activeTrackColor" | "inactiveThumbColor" | "inactiveTrackColor" | "activeThumbImage" | "onActiveThumbImageError" | "inactiveThumbImage" | "onInactiveThumbImageError" | "thumbColor" | "trackColor" | "trackOutlineColor" | "thumbIcon" | "materialTapTargetSize" | "dragStartBehavior" | "mouseCursor" | "overlayColor" | "splashRadius" | "focusNode" | "statesController" | "onFocusChange" | "autofocus" | "tileColor" | "title" | "subtitle" | "secondary" | "isThreeLine" | "dense" | "contentPadding" | "selected" | "controlAffinity" | "shape" | "selectedTileColor" | "visualDensity" | "enableFeedback" | "horizontalTitleGap" | "minVerticalPadding" | "minLeadingWidth" | "minTileHeight" | "hoverColor" | "applyCupertinoTheme" | "internalAddSemanticForOnTap" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/switch_list_tile.dart::SwitchListTile" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

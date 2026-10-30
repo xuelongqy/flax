@@ -125,6 +125,19 @@ export declare function _TransformFactory(options: {
     child?: Widget | null | undefined;
 }): Transform;
 export declare namespace _TransformFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TransformFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _TransformFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _TransformFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _TransformFactory {
     function rotate(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -142,6 +155,19 @@ export declare namespace _TransformFactory {
         filterQuality?: upstream6.FilterQuality | null | undefined;
         child?: Widget | null | undefined;
     }): Transform;
+    namespace rotate {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof rotate>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof rotate>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof rotate>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _TransformFactory {
     function translate(options: {
@@ -157,6 +183,19 @@ export declare namespace _TransformFactory {
         filterQuality?: upstream6.FilterQuality | null | undefined;
         child?: Widget | null | undefined;
     }): Transform;
+    namespace translate {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof translate>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof translate>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof translate>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _TransformFactory {
     function scale(options?: {
@@ -178,6 +217,19 @@ export declare namespace _TransformFactory {
         filterQuality?: upstream6.FilterQuality | null | undefined;
         child?: Widget | null | undefined;
     }): Transform;
+    namespace scale {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof scale>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof scale>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof scale>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _TransformFactory {
     function flip(options?: {
@@ -195,6 +247,19 @@ export declare namespace _TransformFactory {
         filterQuality?: upstream6.FilterQuality | null | undefined;
         child?: Widget | null | undefined;
     }): Transform;
+    namespace flip {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof flip>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof flip>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof flip>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const Transform: typeof _TransformFactory & _FlaxInstanceType<Transform> & _FlaxDartType<Transform, readonly ["class", "flax.core/sdk_widgets#type:Transform", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "transform" | "origin" | "alignment" | "transformHitTests" | "filterQuality" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::Transform" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

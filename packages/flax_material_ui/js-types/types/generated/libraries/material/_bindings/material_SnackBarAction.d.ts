@@ -80,6 +80,13 @@ export declare function _SnackBarActionFactory(options: {
     label: string;
     onPressed: (() => void);
 }): SnackBarAction;
+export declare namespace _SnackBarActionFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SnackBarActionFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SnackBarAction: typeof _SnackBarActionFactory & _FlaxInstanceType<SnackBarAction> & _FlaxDartType<SnackBarAction, readonly ["class", "flax.material/material#type:SnackBarAction", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "textColor" | "backgroundColor" | "disabledTextColor" | "disabledBackgroundColor" | "label" | "onPressed" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/snack_bar.dart::SnackBarAction" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

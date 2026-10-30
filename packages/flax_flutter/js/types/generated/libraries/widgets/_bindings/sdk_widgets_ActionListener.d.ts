@@ -76,6 +76,19 @@ export declare function _ActionListenerFactory(options: {
     }>;
     child: Widget;
 }): ActionListener;
+export declare namespace _ActionListenerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ActionListenerFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ActionListenerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ActionListenerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const ActionListener: typeof _ActionListenerFactory & _FlaxInstanceType<ActionListener> & _FlaxDartType<ActionListener, readonly ["class", "flax.core/sdk_widgets#type:ActionListener", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "listener" | "action" | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/actions.dart::ActionListener" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

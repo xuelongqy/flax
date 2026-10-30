@@ -46,6 +46,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SharedAppData", "", [{"name":"key"},{"name":"child","required":true}], [], options) as SharedAppData;
 }
+export declare namespace _SharedAppDataFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SharedAppDataFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SharedAppDataFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _SharedAppDataFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _SharedAppDataFactory { function _flaxDefault_getValue<K extends {} = {}, V extends unknown | null = unknown | null>(context: upstream2.BuildContext, key: (K | _FlaxDartOutput<K>), init: (() => (V | _FlaxDartOutput<V>))): _FlaxDartOutput<V> {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:SharedAppData.getValue", [contextHandle(context, "flax.core/flutter#type:BuildContext"), key, init], _flaxMemberParameters427);

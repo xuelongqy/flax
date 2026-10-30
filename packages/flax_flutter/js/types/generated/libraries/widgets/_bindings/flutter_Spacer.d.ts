@@ -20,4 +20,11 @@ export declare function _SpacerFactory(options?: {
     }> | null | undefined;
     flex?: Bindable<number> | undefined;
 }): Spacer;
+export declare namespace _SpacerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SpacerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const Spacer: typeof _SpacerFactory & _FlaxInstanceType<Spacer> & _FlaxDartType<Spacer, readonly ["class", "flax.core/flutter#type:Spacer", readonly [], false]>;

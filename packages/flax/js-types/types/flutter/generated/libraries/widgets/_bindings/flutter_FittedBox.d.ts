@@ -32,4 +32,17 @@ export declare function _FittedBoxFactory(options?: {
     clipBehavior?: Bindable<upstream3.Clip> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): FittedBox;
+export declare namespace _FittedBoxFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FittedBoxFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _FittedBoxFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _FittedBoxFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const FittedBox: typeof _FittedBoxFactory & _FlaxInstanceType<FittedBox> & _FlaxDartType<FittedBox, readonly ["class", "flax.core/flutter#type:FittedBox", readonly [], false]>;

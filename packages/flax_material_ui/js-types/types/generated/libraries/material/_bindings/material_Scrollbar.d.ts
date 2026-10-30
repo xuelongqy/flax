@@ -99,6 +99,19 @@ export declare function _ScrollbarFactory(options: {
     interactive?: boolean | null | undefined;
     scrollbarOrientation?: upstream5.ScrollbarOrientation | null | undefined;
 }): Scrollbar;
+export declare namespace _ScrollbarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ScrollbarFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ScrollbarFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ScrollbarFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const Scrollbar: typeof _ScrollbarFactory & _FlaxInstanceType<Scrollbar> & _FlaxDartType<Scrollbar, readonly ["class", "flax.material/material#type:Scrollbar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "controller" | "thumbVisibility" | "trackVisibility" | "thickness" | "radius" | "interactive" | "notificationPredicate" | "scrollbarOrientation" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/scrollbar.dart::Scrollbar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

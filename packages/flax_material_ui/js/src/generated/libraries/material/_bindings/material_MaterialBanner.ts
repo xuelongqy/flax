@@ -74,6 +74,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:MaterialBanner", "", [{"name":"key"},{"name":"content","required":true},{"name":"contentTextStyle"},{"name":"actions","required":true},{"name":"elevation"},{"name":"leading"},{"name":"backgroundColor"},{"name":"surfaceTintColor"},{"name":"shadowColor"},{"name":"dividerColor"},{"name":"padding"},{"name":"margin"},{"name":"leadingPadding"},{"name":"forceActionsBelow"},{"name":"overflowAlignment"},{"name":"animation"},{"name":"onVisible"},{"name":"minActionBarHeight"}], [], options) as MaterialBanner;
 }
+export declare namespace _MaterialBannerFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialBannerFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _MaterialBannerFactory { export function createAnimationController(options: { vsync: Readonly<{ "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [] }> }): upstream7.AnimationController {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["vsync"].includes(k))) throw new TypeError('Invalid named method arguments');

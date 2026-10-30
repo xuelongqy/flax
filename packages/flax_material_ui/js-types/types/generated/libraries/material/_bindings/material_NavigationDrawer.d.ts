@@ -99,6 +99,15 @@ export declare function _NavigationDrawerFactory(options: {
         "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
     }> | undefined;
 }): NavigationDrawer;
+export declare namespace _NavigationDrawerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _NavigationDrawerFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationDrawerFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const NavigationDrawer: typeof _NavigationDrawerFactory & _FlaxInstanceType<NavigationDrawer> & _FlaxDartType<NavigationDrawer, readonly ["class", "flax.material/material#type:NavigationDrawer", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "backgroundColor" | "shadowColor" | "surfaceTintColor" | "elevation" | "indicatorColor" | "indicatorShape" | "children" | "header" | "footer" | "selectedIndex" | "onDestinationSelected" | "tilePadding" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/navigation_drawer.dart::NavigationDrawer" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

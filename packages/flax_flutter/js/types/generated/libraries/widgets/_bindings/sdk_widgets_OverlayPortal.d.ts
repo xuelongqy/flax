@@ -80,6 +80,19 @@ export declare function _OverlayPortalFactory(options: {
     child?: Widget | null | undefined;
 }): OverlayPortal;
 export declare namespace _OverlayPortalFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _OverlayPortalFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _OverlayPortalFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _OverlayPortalFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _OverlayPortalFactory {
     function targetsRootOverlay(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -90,6 +103,19 @@ export declare namespace _OverlayPortalFactory {
         overlayChildBuilder: ((context: upstream3.BuildContext) => Widget);
         child?: Widget | null | undefined;
     }): OverlayPortal;
+    namespace targetsRootOverlay {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof targetsRootOverlay>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof targetsRootOverlay>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof targetsRootOverlay>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _OverlayPortalFactory {
     function overlayChildLayoutBuilder(options: {
@@ -107,6 +133,19 @@ export declare namespace _OverlayPortalFactory {
         overlayLocation?: upstream4.OverlayChildLocation | undefined;
         child: Widget | null;
     }): OverlayPortal;
+    namespace overlayChildLayoutBuilder {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof overlayChildLayoutBuilder>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof overlayChildLayoutBuilder>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof overlayChildLayoutBuilder>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const OverlayPortal: typeof _OverlayPortalFactory & _FlaxInstanceType<OverlayPortal> & _FlaxDartType<OverlayPortal, readonly ["class", "flax.core/sdk_widgets#type:OverlayPortal", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "overlayChildBuilder" | "child" | "overlayLocation" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayPortal" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

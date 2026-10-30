@@ -35,4 +35,13 @@ export declare function _StackFactory(options?: {
     clipBehavior?: Bindable<upstream4.Clip> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Stack;
+export declare namespace _StackFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _StackFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _StackFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const Stack: typeof _StackFactory & _FlaxInstanceType<Stack> & _FlaxDartType<Stack, readonly ["class", "flax.core/flutter#type:Stack", readonly [], false]>;

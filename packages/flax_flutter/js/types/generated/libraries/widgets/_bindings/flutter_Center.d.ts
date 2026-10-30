@@ -26,4 +26,17 @@ export declare function _CenterFactory(options?: {
     heightFactor?: Bindable<number | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): Center;
+export declare namespace _CenterFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CenterFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _CenterFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _CenterFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const Center: typeof _CenterFactory & _FlaxInstanceType<Center> & _FlaxDartType<Center, readonly ["class", "flax.core/flutter#type:Center", readonly [], false]>;

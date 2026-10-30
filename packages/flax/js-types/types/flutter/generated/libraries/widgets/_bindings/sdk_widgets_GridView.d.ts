@@ -158,6 +158,15 @@ export declare function _GridViewFactory(options: {
     hitTestBehavior?: upstream13.HitTestBehavior | undefined;
 }): GridView;
 export declare namespace _GridViewFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _GridViewFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _GridViewFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _GridViewFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -199,6 +208,13 @@ export declare namespace _GridViewFactory {
         clipBehavior?: upstream11.Clip | undefined;
         hitTestBehavior?: upstream13.HitTestBehavior | undefined;
     }): GridView;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _GridViewFactory {
     function custom(options: {
@@ -239,6 +255,13 @@ export declare namespace _GridViewFactory {
         clipBehavior?: upstream11.Clip | undefined;
         hitTestBehavior?: upstream13.HitTestBehavior | undefined;
     }): GridView;
+    namespace custom {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof custom>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _GridViewFactory {
     function count(options: {
@@ -282,6 +305,15 @@ export declare namespace _GridViewFactory {
         clipBehavior?: upstream11.Clip | undefined;
         hitTestBehavior?: upstream13.HitTestBehavior | undefined;
     }): GridView;
+    namespace count {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof count>[0]>), "children"> & {
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof count>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare namespace _GridViewFactory {
     function extent(options: {
@@ -325,6 +357,15 @@ export declare namespace _GridViewFactory {
         clipBehavior?: upstream11.Clip | undefined;
         hitTestBehavior?: upstream13.HitTestBehavior | undefined;
     }): GridView;
+    namespace extent {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof extent>[0]>), "children"> & {
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof extent>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare const GridView: typeof _GridViewFactory & _FlaxInstanceType<GridView> & _FlaxDartType<GridView, readonly ["class", "flax.core/sdk_widgets#type:GridView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "gridDelegate" | "childrenDelegate" | "padding" | "scrollDirection" | "reverse" | "controller" | "primary" | "physics" | "scrollBehavior" | "shrinkWrap" | "center" | "anchor" | "cacheExtent" | "scrollCacheExtent" | "semanticChildCount" | "paintOrder" | "dragStartBehavior" | "keyboardDismissBehavior" | "restorationId" | "clipBehavior" | "hitTestBehavior" | "key" | "buildChildLayout" | "buildSlivers" | "debugFillProperties" | "getDirection" | "buildViewport" | "build" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/scroll_view.dart::GridView" | "__flaxBound:package:flutter/src/widgets/scroll_view.dart::BoxScrollView" | "__flaxBound:package:flutter/src/widgets/scroll_view.dart::ScrollView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

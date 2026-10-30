@@ -69,6 +69,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:RawTooltip", "", [{"name":"key"},{"name":"semanticsTooltip","required":true},{"name":"tooltipBuilder","required":true},{"name":"hoverDelay"},{"name":"touchDelay"},{"name":"dismissDelay"},{"name":"enableTapToDismiss"},{"name":"triggerMode"},{"name":"enableFeedback"},{"name":"onTriggered"},{"name":"animationStyle"},{"name":"positionDelegate"},{"name":"ignorePointer"},{"name":"child","required":true}], [], options) as RawTooltip;
 }
+export declare namespace _RawTooltipFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RawTooltipFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _RawTooltipFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _RawTooltipFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _RawTooltipFactory { export function dismissAllToolTips(): boolean {
 if (arguments.length > 0) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:RawTooltip.dismissAllToolTips", [], _flaxMemberParameters2);

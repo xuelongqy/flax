@@ -135,6 +135,13 @@ export declare function _ShrinkWrappingViewportFactory(options: {
     }> | null | undefined;
     slivers?: DartListInput<Widget, Widget> | undefined;
 }): ShrinkWrappingViewport;
+export declare namespace _ShrinkWrappingViewportFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ShrinkWrappingViewportFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const ShrinkWrappingViewport: typeof _ShrinkWrappingViewportFactory & _FlaxInstanceType<ShrinkWrappingViewport> & _FlaxDartType<ShrinkWrappingViewport, readonly ["class", "flax.core/sdk_widgets#type:ShrinkWrappingViewport", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "axisDirection" | "crossAxisDirection" | "offset" | "paintOrder" | "clipBehavior" | "cacheExtent" | "cacheExtentStyle" | "scrollCacheExtent" | "children" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/viewport.dart::ShrinkWrappingViewport" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -146,6 +146,19 @@ export declare function _CupertinoMenuItemFactory(options: {
     isDestructiveAction?: boolean | undefined;
 }): CupertinoMenuItem;
 export declare namespace _CupertinoMenuItemFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoMenuItemFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoMenuItemFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoMenuItemFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoMenuItemFactory {
     const kDefaultDecoration: upstream6.WidgetStateProperty<upstream7.BoxDecoration>;
 }
 export declare const CupertinoMenuItem: typeof _CupertinoMenuItemFactory & _FlaxInstanceType<CupertinoMenuItem> & _FlaxDartType<CupertinoMenuItem, readonly ["class", "flax.cupertino/cupertino#type:CupertinoMenuItem", readonly [], false]>;

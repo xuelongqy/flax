@@ -46,3 +46,4 @@ packages/flax_engine_v8/native/generated/
 
 # Built business applications in the configured binding example.
 examples/configured_bindings/host/applications/
+flax-jsx.generated.d.ts

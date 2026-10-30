@@ -75,6 +75,13 @@ export declare function _SliverSafeAreaFactory(options: {
     }>) | undefined;
     sliver: Widget;
 }): SliverSafeArea;
+export declare namespace _SliverSafeAreaFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverSafeAreaFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverSafeArea: typeof _SliverSafeAreaFactory & _FlaxInstanceType<SliverSafeArea> & _FlaxDartType<SliverSafeArea, readonly ["class", "flax.core/sdk_widgets#type:SliverSafeArea", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "left" | "top" | "right" | "bottom" | "minimum" | "sliver" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/safe_area.dart::SliverSafeArea" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

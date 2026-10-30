@@ -77,6 +77,19 @@ export declare function _AnimatedBuilderFactory(options: {
     builder: ((context: upstream4.BuildContext, child: Widget | null) => Widget);
     child?: Widget | null | undefined;
 }): AnimatedBuilder;
+export declare namespace _AnimatedBuilderFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedBuilderFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedBuilderFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedBuilderFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const AnimatedBuilder: typeof _AnimatedBuilderFactory & _FlaxInstanceType<AnimatedBuilder> & _FlaxDartType<AnimatedBuilder, readonly ["class", "flax.core/sdk_widgets#type:AnimatedBuilder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "animation" | "listenable" | "builder" | "child" | "key" | "build" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/transitions.dart::AnimatedBuilder" | "__flaxBound:package:flutter/src/widgets/transitions.dart::ListenableBuilder" | "__flaxBound:package:flutter/src/widgets/transitions.dart::AnimatedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -1,6 +1,9 @@
 import { existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import MagicString from 'magic-string';
+import remapping from '@jridgewell/remapping';
+import { TraceMap, originalPositionFor } from '@jridgewell/trace-mapping';
+import { FlaxJsxProject } from './jsx.mjs';
 import {
   API,
   DiagnosticCategory,
@@ -56,18 +59,29 @@ export class FlaxCompiler {
 
   invalidate(files) {
     files = new Set([...files].map((file) => resolve(file)));
-    if (files.size) this.compiled.clear();
+    const jsxChanged =
+      this.jsx?.enabled &&
+      [...files].some((file) => this.jsx.dependencies?.includes(file));
+    if (files.size) {
+      this.compiled.clear();
+      this.jsx?.invalidate();
+    }
     for (const file of files) {
       this.changed.add(file);
       this.sources.delete(file);
     }
     const affected = [...this.dependencies]
-      .filter(([, dependencies]) => [...files].some((file) => dependencies.has(file)))
+      .filter(
+        ([, dependencies]) =>
+          jsxChanged || [...files].some((file) => dependencies.has(file)),
+      )
       .map(([file]) => file);
     return affected;
   }
 
   close() {
+    this.jsx?.close();
+    this.jsx = undefined;
     this.snapshot?.dispose();
     this.api?.close();
     this.snapshot = this.api = undefined;
@@ -80,7 +94,65 @@ export class FlaxCompiler {
     this.compiled.clear();
   }
 
+  prepareJsx() {
+    this.jsx ??= new FlaxJsxProject(this.root);
+    this.jsx.prepare();
+    return this.jsx;
+  }
+
   transform(code, filename) {
+    if (/[?&](?:raw|url)(?:[=&]|$)/.test(filename)) return { code, dependencies: [] };
+    filename = resolve(filename.split(/[?#]/, 1)[0]);
+    if (!/\.[cm]?[jt]sx?$/.test(filename) || /\.d\.[cm]?ts$/.test(filename))
+      return { code, dependencies: [] };
+    const jsx = this.prepareJsx();
+    const prepared = jsx.transform(code, filename);
+    let result;
+    try {
+      result = this.transformTypes(prepared.code, filename);
+    } catch (error) {
+      if (prepared.map) {
+        error.message = error.message.replace(
+          /:(\d+):(\d+):/g,
+          (match, line, column) => {
+            const position = originalPositionFor(new TraceMap(prepared.map), {
+              line: Number(line),
+              column: Number(column) - 1,
+            });
+            return position.line === null
+              ? match
+              : `:${position.line}:${position.column + 1}:`;
+          },
+        );
+      }
+      throw error;
+    }
+    let map = result.map ?? prepared.map;
+    if (result.map && prepared.map) {
+      const composed = remapping([result.map, prepared.map], () => null);
+      map = {
+        ...composed,
+        toUrl: () =>
+          'data:application/json;charset=utf-8;base64,' +
+          Buffer.from(JSON.stringify(composed)).toString('base64'),
+      };
+    }
+    const dependencies = [
+      ...new Set([
+        ...result.dependencies,
+        ...(jsx.dependencies ?? []),
+        ...(jsx.enabled ? [jsx.generated] : []),
+      ]),
+    ];
+    if (jsx.enabled) this.dependencies.set(filename, new Set(dependencies));
+    return {
+      ...result,
+      ...(map ? { map } : {}),
+      dependencies,
+    };
+  }
+
+  transformTypes(code, filename) {
     if (/[?&](?:raw|url)(?:[=&]|$)/.test(filename)) return { code, dependencies: [] };
     filename = resolve(filename.split(/[?#]/, 1)[0]);
     if (!/\.[cm]?tsx?$/.test(filename) || /\.d\.[cm]?ts$/.test(filename))
@@ -91,6 +163,7 @@ export class FlaxCompiler {
     if (cached?.source === code && !this.changed.size) return cached.output;
     if (this.openFiles.has(filename) && this.sources.get(filename) !== code)
       this.invalidate([filename]);
+    if (this.api && this.sources.get(filename) !== code) this.changed.add(filename);
     this.sources.set(filename, code);
     this.api ??= new API({
       cwd: this.root,

@@ -36,6 +36,13 @@ export declare function _DividerFactory(options?: {
     }> | null> | undefined;
 }): Divider;
 export declare namespace _DividerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _DividerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _DividerFactory {
     function createBorderSide(context: upstream4.BuildContext | null, options?: {
         color?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];

@@ -22,4 +22,11 @@ export declare function _BuilderFactory(options: {
     }> | null | undefined;
     builder: Bindable<((context: upstream1.BuildContext) => Widget)>;
 }): Builder;
+export declare namespace _BuilderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _BuilderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const Builder: typeof _BuilderFactory & _FlaxInstanceType<Builder> & _FlaxDartType<Builder, readonly ["class", "flax.core/flutter#type:Builder", readonly [], false]>;

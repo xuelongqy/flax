@@ -64,6 +64,19 @@ export declare function _SharedAppDataFactory(options: {
     child: Widget;
 }): SharedAppData;
 export declare namespace _SharedAppDataFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SharedAppDataFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SharedAppDataFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _SharedAppDataFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _SharedAppDataFactory {
     function _flaxDefault_getValue<K extends {} = {}, V extends unknown | null = unknown | null>(context: upstream2.BuildContext, key: (K | _FlaxDartOutput<K>), init: (() => (V | _FlaxDartOutput<V>))): _FlaxDartOutput<V>;
     export const getValue: _FlaxDartCallable<typeof _flaxDefault_getValue, _FlaxSignature0>;
     export {};

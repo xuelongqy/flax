@@ -63,6 +63,19 @@ export declare function _SliverFillRemainingFactory(options?: {
     hasScrollBody?: boolean | undefined;
     fillOverscroll?: boolean | undefined;
 }): SliverFillRemaining;
+export declare namespace _SliverFillRemainingFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SliverFillRemainingFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverFillRemainingFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverFillRemainingFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const SliverFillRemaining: typeof _SliverFillRemainingFactory & _FlaxInstanceType<SliverFillRemaining> & _FlaxDartType<SliverFillRemaining, readonly ["class", "flax.core/sdk_widgets#type:SliverFillRemaining", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "hasScrollBody" | "fillOverscroll" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver_fill.dart::SliverFillRemaining" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

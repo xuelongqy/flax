@@ -47,6 +47,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:MenuAcceleratorLabel", "", [{"name":"label","required":true,"positional":true},{"name":"key"},{"name":"builder"}], [label], options) as MenuAcceleratorLabel;
 }
+export declare namespace _MenuAcceleratorLabelFactory { const __flaxJsx: { readonly props: ({ "label": globalThis.Parameters<typeof _MenuAcceleratorLabelFactory>[0] } & globalThis.NonNullable<globalThis.Parameters<typeof _MenuAcceleratorLabelFactory>[1]>); readonly slot: null; readonly many: false; }; }
 export namespace _MenuAcceleratorLabelFactory { export function defaultLabelBuilder(context: upstream2.BuildContext, label: string, index: number): Widget {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:MenuAcceleratorLabel.defaultLabelBuilder", [contextHandle(context, "flax.core/flutter#type:BuildContext"), label, index], _flaxMemberParameters228);

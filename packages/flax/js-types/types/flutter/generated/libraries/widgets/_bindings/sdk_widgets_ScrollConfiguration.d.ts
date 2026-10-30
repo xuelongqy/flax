@@ -69,6 +69,19 @@ export declare function _ScrollConfigurationFactory(options: {
     child: Widget;
 }): ScrollConfiguration;
 export declare namespace _ScrollConfigurationFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ScrollConfigurationFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ScrollConfigurationFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ScrollConfigurationFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ScrollConfigurationFactory {
     function of(context: upstream4.BuildContext): upstream3.ScrollBehavior;
 }
 export declare const ScrollConfiguration: typeof _ScrollConfigurationFactory & _FlaxInstanceType<ScrollConfiguration> & _FlaxDartType<ScrollConfiguration, readonly ["class", "flax.core/sdk_widgets#type:ScrollConfiguration", readonly [], false]>;

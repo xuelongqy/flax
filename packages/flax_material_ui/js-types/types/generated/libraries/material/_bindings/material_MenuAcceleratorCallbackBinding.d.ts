@@ -67,6 +67,19 @@ export declare function _MenuAcceleratorCallbackBindingFactory(options: {
     child: Widget;
 }): MenuAcceleratorCallbackBinding;
 export declare namespace _MenuAcceleratorCallbackBindingFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MenuAcceleratorCallbackBindingFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _MenuAcceleratorCallbackBindingFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _MenuAcceleratorCallbackBindingFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _MenuAcceleratorCallbackBindingFactory {
     function maybeOf(context: upstream3.BuildContext): MenuAcceleratorCallbackBinding | null;
 }
 export declare namespace _MenuAcceleratorCallbackBindingFactory {

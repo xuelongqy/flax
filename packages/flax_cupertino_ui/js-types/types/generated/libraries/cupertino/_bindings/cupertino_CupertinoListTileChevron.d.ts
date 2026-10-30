@@ -57,6 +57,13 @@ export declare function _CupertinoListTileChevronFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
 }): CupertinoListTileChevron;
+export declare namespace _CupertinoListTileChevronFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoListTileChevronFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoListTileChevron: typeof _CupertinoListTileChevronFactory & _FlaxInstanceType<CupertinoListTileChevron> & _FlaxDartType<CupertinoListTileChevron, readonly ["class", "flax.cupertino/cupertino#type:CupertinoListTileChevron", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/list_tile.dart::CupertinoListTileChevron" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

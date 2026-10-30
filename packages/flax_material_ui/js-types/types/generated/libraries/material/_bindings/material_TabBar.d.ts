@@ -219,6 +219,13 @@ export declare function _TabBarFactory(options: {
     indicatorAnimation?: upstream18.TabIndicatorAnimation | null | undefined;
 }): TabBar;
 export declare namespace _TabBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TabBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _TabBarFactory {
     function secondary(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -311,6 +318,13 @@ export declare namespace _TabBarFactory {
         }> | null | undefined;
         indicatorAnimation?: upstream18.TabIndicatorAnimation | null | undefined;
     }): TabBar;
+    namespace secondary {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof secondary>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const TabBar: typeof _TabBarFactory & _FlaxInstanceType<TabBar> & _FlaxDartType<TabBar, readonly ["class", "flax.material/material#type:TabBar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "preferredSize" | "tabs" | "controller" | "scrollController" | "isScrollable" | "padding" | "indicatorColor" | "indicatorWeight" | "indicatorPadding" | "indicator" | "automaticIndicatorColorAdjustment" | "indicatorSize" | "dividerColor" | "dividerHeight" | "labelColor" | "unselectedLabelColor" | "labelStyle" | "unselectedLabelStyle" | "labelPadding" | "overlayColor" | "dragStartBehavior" | "mouseCursor" | "enableFeedback" | "onTap" | "onHover" | "onFocusChange" | "physics" | "splashFactory" | "splashBorderRadius" | "tabAlignment" | "textScaler" | "indicatorAnimation" | "tabHasTextAndIcon" | "key" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "debugDescribeChildren" | "createState" | "createElement" | "__flaxBound:package:material_ui/src/tabs.dart::TabBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/preferred_size.dart::PreferredSizeWidget";

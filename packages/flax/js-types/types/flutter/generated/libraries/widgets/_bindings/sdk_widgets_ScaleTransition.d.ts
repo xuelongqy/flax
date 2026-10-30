@@ -98,6 +98,19 @@ export declare function _ScaleTransitionFactory(options: {
     filterQuality?: upstream6.FilterQuality | null | undefined;
     child?: Widget | null | undefined;
 }): ScaleTransition;
+export declare namespace _ScaleTransitionFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ScaleTransitionFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _ScaleTransitionFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ScaleTransitionFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const ScaleTransition: typeof _ScaleTransitionFactory & _FlaxInstanceType<ScaleTransition> & _FlaxDartType<ScaleTransition, readonly ["class", "flax.core/sdk_widgets#type:ScaleTransition", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "scale" | "onTransform" | "animation" | "alignment" | "filterQuality" | "child" | "listenable" | "key" | "build" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/transitions.dart::ScaleTransition" | "__flaxBound:package:flutter/src/widgets/transitions.dart::MatrixTransition" | "__flaxBound:package:flutter/src/widgets/transitions.dart::AnimatedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

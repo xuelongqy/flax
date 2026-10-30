@@ -113,6 +113,19 @@ export declare function _AnimatedPhysicalModelFactory(options: {
     }>;
     onEnd?: (() => void) | null | undefined;
 }): AnimatedPhysicalModel;
+export declare namespace _AnimatedPhysicalModelFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedPhysicalModelFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedPhysicalModelFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedPhysicalModelFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const AnimatedPhysicalModel: typeof _AnimatedPhysicalModelFactory & _FlaxInstanceType<AnimatedPhysicalModel> & _FlaxDartType<AnimatedPhysicalModel, readonly ["class", "flax.core/sdk_widgets#type:AnimatedPhysicalModel", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "shape" | "clipBehavior" | "borderRadius" | "elevation" | "color" | "animateColor" | "shadowColor" | "animateShadowColor" | "curve" | "duration" | "onEnd" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::AnimatedPhysicalModel" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::ImplicitlyAnimatedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

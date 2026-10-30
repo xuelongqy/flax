@@ -67,6 +67,13 @@ export declare function _SliverPersistentHeaderFactory(options: {
     pinned?: boolean | undefined;
     floating?: boolean | undefined;
 }): SliverPersistentHeader;
+export declare namespace _SliverPersistentHeaderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverPersistentHeaderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverPersistentHeader: typeof _SliverPersistentHeaderFactory & _FlaxInstanceType<SliverPersistentHeader> & _FlaxDartType<SliverPersistentHeader, readonly ["class", "flax.core/sdk_widgets#type:SliverPersistentHeader", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "delegate" | "pinned" | "floating" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver_persistent_header.dart::SliverPersistentHeader" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

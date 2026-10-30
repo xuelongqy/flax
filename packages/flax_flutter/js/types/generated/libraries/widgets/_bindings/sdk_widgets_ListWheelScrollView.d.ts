@@ -123,6 +123,15 @@ export declare function _ListWheelScrollViewFactory(options: {
     children: DartListInput<Widget, Widget>;
 }): ListWheelScrollView;
 export declare namespace _ListWheelScrollViewFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ListWheelScrollViewFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ListWheelScrollViewFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _ListWheelScrollViewFactory {
     function useDelegate(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -159,6 +168,13 @@ export declare namespace _ListWheelScrollViewFactory {
             "__flaxBound:package:flutter/src/widgets/list_wheel_scroll_view.dart::ListWheelChildDelegate": readonly [];
         }>;
     }): ListWheelScrollView;
+    namespace useDelegate {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof useDelegate>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const ListWheelScrollView: typeof _ListWheelScrollViewFactory & _FlaxInstanceType<ListWheelScrollView> & _FlaxDartType<ListWheelScrollView, readonly ["class", "flax.core/sdk_widgets#type:ListWheelScrollView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "physics" | "diameterRatio" | "perspective" | "offAxisFraction" | "useMagnifier" | "magnification" | "overAndUnderCenterOpacity" | "itemExtent" | "squeeze" | "onSelectedItemChanged" | "renderChildrenOutsideViewport" | "childDelegate" | "clipBehavior" | "hitTestBehavior" | "restorationId" | "scrollBehavior" | "dragStartBehavior" | "changeReportingBehavior" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/list_wheel_scroll_view.dart::ListWheelScrollView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

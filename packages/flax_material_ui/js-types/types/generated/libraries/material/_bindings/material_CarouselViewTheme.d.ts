@@ -75,6 +75,19 @@ export declare function _CarouselViewThemeFactory(options: {
     child: Widget;
 }): CarouselViewTheme;
 export declare namespace _CarouselViewThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CarouselViewThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CarouselViewThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CarouselViewThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CarouselViewThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.CarouselViewThemeData;
 }
 export declare const CarouselViewTheme: typeof _CarouselViewThemeFactory & _FlaxInstanceType<CarouselViewTheme> & _FlaxDartType<CarouselViewTheme, readonly ["class", "flax.material/material#type:CarouselViewTheme", readonly [], false]>;

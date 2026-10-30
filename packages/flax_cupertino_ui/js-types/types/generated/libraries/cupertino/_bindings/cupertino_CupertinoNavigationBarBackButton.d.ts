@@ -67,6 +67,13 @@ export declare function _CupertinoNavigationBarBackButtonFactory(options?: {
     previousPageTitle?: string | null | undefined;
     onPressed?: (() => void) | null | undefined;
 }): CupertinoNavigationBarBackButton;
+export declare namespace _CupertinoNavigationBarBackButtonFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoNavigationBarBackButtonFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoNavigationBarBackButton: typeof _CupertinoNavigationBarBackButtonFactory & _FlaxInstanceType<CupertinoNavigationBarBackButton> & _FlaxDartType<CupertinoNavigationBarBackButton, readonly ["class", "flax.cupertino/cupertino#type:CupertinoNavigationBarBackButton", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "color" | "previousPageTitle" | "onPressed" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/nav_bar.dart::CupertinoNavigationBarBackButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

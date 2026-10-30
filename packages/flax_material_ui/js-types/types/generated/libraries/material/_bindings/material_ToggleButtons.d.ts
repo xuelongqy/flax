@@ -173,6 +173,15 @@ export declare function _ToggleButtonsFactory(options: {
     direction?: upstream9.Axis | undefined;
     verticalDirection?: upstream10.VerticalDirection | undefined;
 }): ToggleButtons;
+export declare namespace _ToggleButtonsFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ToggleButtonsFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ToggleButtonsFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const ToggleButtons: typeof _ToggleButtonsFactory & _FlaxInstanceType<ToggleButtons> & _FlaxDartType<ToggleButtons, readonly ["class", "flax.material/material#type:ToggleButtons", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "children" | "isSelected" | "onPressed" | "mouseCursor" | "tapTargetSize" | "textStyle" | "constraints" | "color" | "selectedColor" | "disabledColor" | "fillColor" | "focusColor" | "highlightColor" | "splashColor" | "hoverColor" | "focusNodes" | "renderBorder" | "borderColor" | "selectedBorderColor" | "disabledBorderColor" | "borderWidth" | "borderRadius" | "direction" | "verticalDirection" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/toggle_buttons.dart::ToggleButtons" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

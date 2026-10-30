@@ -94,6 +94,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:ReorderableList", "", [{"name":"key"},{"name":"itemBuilder","required":true},{"name":"itemCount","required":true},{"name":"onReorder"},{"name":"onReorderItem"},{"name":"onReorderStart"},{"name":"onReorderEnd"},{"name":"itemExtent"},{"name":"itemExtentBuilder"},{"name":"prototypeItem"},{"name":"proxyDecorator"},{"name":"padding"},{"name":"scrollDirection"},{"name":"reverse"},{"name":"controller"},{"name":"primary"},{"name":"physics"},{"name":"shrinkWrap"},{"name":"anchor"},{"name":"cacheExtent"},{"name":"scrollCacheExtent"},{"name":"dragStartBehavior"},{"name":"keyboardDismissBehavior"},{"name":"restorationId"},{"name":"clipBehavior"},{"name":"autoScrollerVelocityScalar"},{"name":"dragBoundaryProvider"}], [], options) as ReorderableList;
 }
+export declare namespace _ReorderableListFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ReorderableListFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _ReorderableListFactory { export function of(context: upstream2.BuildContext): upstream15.ReorderableListState {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ReorderableList.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

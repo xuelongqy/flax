@@ -77,6 +77,19 @@ export declare function _MenuBarThemeFactory(options: {
     child: Widget;
 }): MenuBarTheme;
 export declare namespace _MenuBarThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MenuBarThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _MenuBarThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _MenuBarThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _MenuBarThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.MenuBarThemeData;
 }
 export declare const MenuBarTheme: typeof _MenuBarThemeFactory & _FlaxInstanceType<MenuBarTheme> & _FlaxDartType<MenuBarTheme, readonly ["class", "flax.material/material#type:MenuBarTheme", readonly [], false]>;

@@ -1354,6 +1354,7 @@ class FlaxCodegenModuleModel {
       'native-widget-proxies',
     ],
     this.internalTypeNames = const <String>{},
+    this.jsxContentSlots = const {},
     this.stateVariants = const [],
     this.sandboxRules = const [],
     // Keep the public parameter name while deriving built-in capabilities.
@@ -1605,6 +1606,9 @@ class FlaxCodegenModuleModel {
   /// have runtime owners, but aggregate TypeScript output keeps their nominal
   /// declarations private to the generated module.
   final Set<String> internalTypeNames;
+
+  /// Owner-selected JSX content slots, retained outside transport manifests.
+  final Map<String, String> jsxContentSlots;
   final List<FlaxCodegenStateVariantModel> stateVariants;
 
   void validate() {

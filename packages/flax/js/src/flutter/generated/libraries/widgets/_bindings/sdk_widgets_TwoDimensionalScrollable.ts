@@ -67,6 +67,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:TwoDimensionalScrollable", "", [{"name":"key"},{"name":"horizontalDetails","required":true},{"name":"verticalDetails","required":true},{"name":"viewportBuilder","required":true},{"name":"incrementCalculator"},{"name":"restorationId"},{"name":"excludeFromSemantics"},{"name":"diagonalDragBehavior"},{"name":"dragStartBehavior"},{"name":"hitTestBehavior"}], [], options) as TwoDimensionalScrollable;
 }
+export declare namespace _TwoDimensionalScrollableFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TwoDimensionalScrollableFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _TwoDimensionalScrollableFactory { export function maybeOf(context: upstream3.BuildContext): upstream9.TwoDimensionalScrollableState | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TwoDimensionalScrollable.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

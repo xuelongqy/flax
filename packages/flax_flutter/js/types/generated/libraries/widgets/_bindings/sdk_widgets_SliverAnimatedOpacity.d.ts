@@ -85,6 +85,13 @@ export declare function _SliverAnimatedOpacityFactory(options: {
     onEnd?: (() => void) | null | undefined;
     alwaysIncludeSemantics?: boolean | undefined;
 }): SliverAnimatedOpacity;
+export declare namespace _SliverAnimatedOpacityFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverAnimatedOpacityFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverAnimatedOpacity: typeof _SliverAnimatedOpacityFactory & _FlaxInstanceType<SliverAnimatedOpacity> & _FlaxDartType<SliverAnimatedOpacity, readonly ["class", "flax.core/sdk_widgets#type:SliverAnimatedOpacity", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "sliver" | "opacity" | "alwaysIncludeSemantics" | "curve" | "duration" | "onEnd" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::SliverAnimatedOpacity" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::ImplicitlyAnimatedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

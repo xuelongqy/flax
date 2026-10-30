@@ -75,6 +75,19 @@ export declare function _SliderThemeFactory(options: {
     child: Widget;
 }): SliderTheme;
 export declare namespace _SliderThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SliderThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SliderThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _SliderThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _SliderThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.SliderThemeData;
 }
 export declare const SliderTheme: typeof _SliderThemeFactory & _FlaxInstanceType<SliderTheme> & _FlaxDartType<SliderTheme, readonly ["class", "flax.material/material#type:SliderTheme", readonly [], false]>;

@@ -92,6 +92,19 @@ export declare function _DrawerControllerFactory(options: {
     drawerBarrierDismissible?: boolean | undefined;
 }): DrawerController;
 export declare namespace _DrawerControllerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DrawerControllerFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerControllerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerControllerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DrawerControllerFactory {
     function maybeOf(context: upstream7.BuildContext): DrawerController | null;
 }
 export declare namespace _DrawerControllerFactory {

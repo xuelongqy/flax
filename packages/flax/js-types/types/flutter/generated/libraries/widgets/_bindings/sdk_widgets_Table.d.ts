@@ -120,6 +120,13 @@ export declare function _TableFactory(options?: {
     defaultVerticalAlignment?: upstream6.TableCellVerticalAlignment | undefined;
     textBaseline?: upstream7.TextBaseline | null | undefined;
 }): Table;
+export declare namespace _TableFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TableFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const Table: typeof _TableFactory & _FlaxInstanceType<Table> & _FlaxDartType<Table, readonly ["class", "flax.core/sdk_widgets#type:Table", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "children" | "columnWidths" | "defaultColumnWidth" | "textDirection" | "border" | "defaultVerticalAlignment" | "textBaseline" | "key" | "createElement" | "createRenderObject" | "updateRenderObject" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/table.dart::Table" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

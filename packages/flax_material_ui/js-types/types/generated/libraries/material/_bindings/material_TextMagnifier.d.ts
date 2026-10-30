@@ -77,6 +77,13 @@ export declare function _TextMagnifierFactory(options: {
     }>;
 }): TextMagnifier;
 export declare namespace _TextMagnifierFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TextMagnifierFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _TextMagnifierFactory {
     function setAdaptiveMagnifierConfiguration(value: Readonly<{
         "__flaxBound:package:flutter/src/widgets/magnifier.dart::TextMagnifierConfiguration": readonly [];
     }>): void;

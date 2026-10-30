@@ -68,6 +68,15 @@ export declare function _MenuAcceleratorLabelFactory(label: string, options?: {
     builder?: ((context: upstream2.BuildContext, label: string, index: number) => Widget) | undefined;
 }): MenuAcceleratorLabel;
 export declare namespace _MenuAcceleratorLabelFactory {
+    const __flaxJsx: {
+        readonly props: ({
+            "label": globalThis.Parameters<typeof _MenuAcceleratorLabelFactory>[0];
+        } & globalThis.NonNullable<globalThis.Parameters<typeof _MenuAcceleratorLabelFactory>[1]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _MenuAcceleratorLabelFactory {
     function defaultLabelBuilder(context: upstream2.BuildContext, label: string, index: number): Widget;
 }
 export declare namespace _MenuAcceleratorLabelFactory {

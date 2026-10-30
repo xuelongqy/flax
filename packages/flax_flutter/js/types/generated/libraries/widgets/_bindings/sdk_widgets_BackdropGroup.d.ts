@@ -69,6 +69,19 @@ export declare function _BackdropGroupFactory(options: {
     }> | null | undefined;
 }): BackdropGroup;
 export declare namespace _BackdropGroupFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _BackdropGroupFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _BackdropGroupFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _BackdropGroupFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _BackdropGroupFactory {
     function of(context: upstream4.BuildContext): BackdropGroup | null;
 }
 export declare const BackdropGroup: typeof _BackdropGroupFactory & _FlaxInstanceType<BackdropGroup> & _FlaxDartType<BackdropGroup, readonly ["class", "flax.core/sdk_widgets#type:BackdropGroup", readonly [], false]>;

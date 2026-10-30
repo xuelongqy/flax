@@ -98,6 +98,13 @@ export declare function _CalendarDatePickerFactory(options: {
         "__flaxBound:package:material_ui/src/date.dart::CalendarDelegate": readonly [upstream2.DateTime];
     }> | undefined;
 }): CalendarDatePicker;
+export declare namespace _CalendarDatePickerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CalendarDatePickerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CalendarDatePicker: typeof _CalendarDatePickerFactory & _FlaxInstanceType<CalendarDatePicker> & _FlaxDartType<CalendarDatePicker, readonly ["class", "flax.material/material#type:CalendarDatePicker", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "initialDate" | "firstDate" | "lastDate" | "currentDate" | "onDateChanged" | "onDisplayedMonthChanged" | "initialCalendarMode" | "selectableDayPredicate" | "calendarDelegate" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/calendar_date_picker.dart::CalendarDatePicker" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

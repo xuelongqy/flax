@@ -145,6 +145,13 @@ export declare function _SliderFactory(options: {
     year2023?: boolean | null | undefined;
 }): Slider;
 export declare namespace _SliderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliderFactory {
     function adaptive(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -197,6 +204,13 @@ export declare namespace _SliderFactory {
         showValueIndicator?: upstream8.ShowValueIndicator | null | undefined;
         year2023?: boolean | null | undefined;
     }): Slider;
+    namespace adaptive {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const Slider: typeof _SliderFactory & _FlaxInstanceType<Slider> & _FlaxDartType<Slider, readonly ["class", "flax.material/material#type:Slider", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "value" | "secondaryTrackValue" | "onChanged" | "onChangeStart" | "onChangeEnd" | "min" | "max" | "divisions" | "label" | "activeColor" | "inactiveColor" | "secondaryActiveColor" | "thumbColor" | "overlayColor" | "mouseCursor" | "semanticFormatterCallback" | "focusNode" | "autofocus" | "allowedInteraction" | "padding" | "showValueIndicator" | "year2023" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/slider.dart::Slider" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

@@ -239,6 +239,19 @@ export declare function _InkResponseFactory(options?: {
         "__flaxBound:dart:core::Comparable": readonly [upstream13.Duration];
     }>) | null | undefined;
 }): InkResponse;
+export declare namespace _InkResponseFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _InkResponseFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _InkResponseFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _InkResponseFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const InkResponse: typeof _InkResponseFactory & _FlaxInstanceType<InkResponse> & _FlaxDartType<InkResponse, readonly ["class", "flax.material/material#type:InkResponse", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "onTap" | "onTapDown" | "onTapUp" | "onTapCancel" | "onDoubleTap" | "onLongPress" | "onLongPressUp" | "onSecondaryTap" | "onSecondaryTapDown" | "onSecondaryTapUp" | "onSecondaryTapCancel" | "onHighlightChanged" | "onHover" | "mouseCursor" | "containedInkWell" | "highlightShape" | "radius" | "borderRadius" | "customBorder" | "focusColor" | "hoverColor" | "highlightColor" | "overlayColor" | "splashColor" | "splashFactory" | "enableFeedback" | "excludeFromSemantics" | "onFocusChange" | "autofocus" | "focusNode" | "canRequestFocus" | "statesController" | "hoverDuration" | "key" | "getRectCallback" | "build" | "debugCheckContext" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/ink_well.dart::InkResponse" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

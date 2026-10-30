@@ -164,6 +164,19 @@ export declare function _TapRegionFactory(options: {
     consumeOutsideTaps?: boolean | undefined;
     debugLabel?: string | null | undefined;
 }): TapRegion;
+export declare namespace _TapRegionFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TapRegionFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TapRegionFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TapRegionFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const TapRegion: typeof _TapRegionFactory & _FlaxInstanceType<TapRegion> & _FlaxDartType<TapRegion, readonly ["class", "flax.core/sdk_widgets#type:TapRegion", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "enabled" | "behavior" | "onTapOutside" | "onTapInside" | "onTapUpOutside" | "onTapUpInside" | "groupId" | "consumeOutsideTaps" | "debugLabel" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/tap_region.dart::TapRegion" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

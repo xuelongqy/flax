@@ -186,6 +186,19 @@ export declare function _DialogThemeFactory(options?: {
     child?: Widget | null | undefined;
 }): DialogTheme;
 export declare namespace _DialogThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DialogThemeFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _DialogThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _DialogThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DialogThemeFactory {
     function of(context: upstream12.BuildContext): upstream11.DialogThemeData;
 }
 export declare namespace _DialogThemeFactory {

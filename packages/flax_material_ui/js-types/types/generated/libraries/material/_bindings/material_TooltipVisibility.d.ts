@@ -62,6 +62,19 @@ export declare function _TooltipVisibilityFactory(options: {
     child: Widget;
 }): TooltipVisibility;
 export declare namespace _TooltipVisibilityFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TooltipVisibilityFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TooltipVisibilityFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TooltipVisibilityFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _TooltipVisibilityFactory {
     function of(context: upstream2.BuildContext): boolean;
 }
 export declare const TooltipVisibility: typeof _TooltipVisibilityFactory & _FlaxInstanceType<TooltipVisibility> & _FlaxDartType<TooltipVisibility, readonly ["class", "flax.material/material#type:TooltipVisibility", readonly [], false]>;

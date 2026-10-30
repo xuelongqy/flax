@@ -54,12 +54,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoAdaptiveTextSelectionToolbar", "", [{"name":"key"},{"name":"children","required":true},{"name":"anchors","required":true}], [], options) as CupertinoAdaptiveTextSelectionToolbar;
 }
+export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoAdaptiveTextSelectionToolbarFactory>[0]>), "children"> & { children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoAdaptiveTextSelectionToolbarFactory>[0]>)["children"] | Widget }; readonly slot: "children"; readonly many: true; }; }
 export namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
 export function buttonItems(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; buttonItems: DartListInput<upstream3.ContextMenuButtonItem, Readonly<{ "__flaxBound:package:flutter/src/widgets/context_menu_button_item.dart::ContextMenuButtonItem": readonly [] }>> | null; anchors: Readonly<{ "__flaxBound:package:flutter/src/widgets/text_selection_toolbar_anchors.dart::TextSelectionToolbarAnchors": readonly [] }> }): CupertinoAdaptiveTextSelectionToolbar {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoAdaptiveTextSelectionToolbar", "buttonItems", [{"name":"key"},{"name":"buttonItems","required":true},{"name":"anchors","required":true}], [], options) as CupertinoAdaptiveTextSelectionToolbar;
 }
+export declare namespace buttonItems { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof buttonItems>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
 export function editable(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; clipboardStatus: upstream4.ClipboardStatus; onCopy: (() => void) | null; onCut: (() => void) | null; onPaste: (() => void) | null; onSelectAll: (() => void) | null; onLookUp: (() => void) | null; onSearchWeb: (() => void) | null; onShare: (() => void) | null; onLiveTextInput: (() => void) | null; anchors: Readonly<{ "__flaxBound:package:flutter/src/widgets/text_selection_toolbar_anchors.dart::TextSelectionToolbarAnchors": readonly [] }> }): CupertinoAdaptiveTextSelectionToolbar {
@@ -67,6 +69,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoAdaptiveTextSelectionToolbar", "editable", [{"name":"key"},{"name":"clipboardStatus","required":true},{"name":"onCopy","required":true},{"name":"onCut","required":true},{"name":"onPaste","required":true},{"name":"onSelectAll","required":true},{"name":"onLookUp","required":true},{"name":"onSearchWeb","required":true},{"name":"onShare","required":true},{"name":"onLiveTextInput","required":true},{"name":"anchors","required":true}], [], options) as CupertinoAdaptiveTextSelectionToolbar;
 }
+export declare namespace editable { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof editable>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
 export function editableText(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; editableTextState: Readonly<{ "__flaxBound:package:flutter/src/widgets/editable_text.dart::EditableTextState": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream13.EditableText] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/autofill.dart::AutofillClient": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin": readonly [upstream13.EditableText] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin": readonly [upstream13.EditableText] }> & Readonly<{ "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextInputClient": readonly [] }> }): CupertinoAdaptiveTextSelectionToolbar {
@@ -74,6 +77,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoAdaptiveTextSelectionToolbar", "editableText", [{"name":"key"},{"name":"editableTextState","required":true}], [], options) as CupertinoAdaptiveTextSelectionToolbar;
 }
+export declare namespace editableText { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof editableText>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
 export function selectable(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; onCopy: (() => void); onSelectAll: (() => void); selectionGeometry: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionGeometry": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; anchors: Readonly<{ "__flaxBound:package:flutter/src/widgets/text_selection_toolbar_anchors.dart::TextSelectionToolbarAnchors": readonly [] }> }): CupertinoAdaptiveTextSelectionToolbar {
@@ -81,6 +85,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoAdaptiveTextSelectionToolbar", "selectable", [{"name":"key"},{"name":"onCopy","required":true},{"name":"onSelectAll","required":true},{"name":"selectionGeometry","required":true},{"name":"anchors","required":true}], [], options) as CupertinoAdaptiveTextSelectionToolbar;
 }
+export declare namespace selectable { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof selectable>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _CupertinoAdaptiveTextSelectionToolbarFactory { export function getAdaptiveButtons(context: upstream7.BuildContext, buttonItems: DartListInput<upstream3.ContextMenuButtonItem, Readonly<{ "__flaxBound:package:flutter/src/widgets/context_menu_button_item.dart::ContextMenuButtonItem": readonly [] }>>): DartIterable<Widget> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');

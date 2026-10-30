@@ -57,6 +57,13 @@ export declare function _CloseButtonIconFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
 }): CloseButtonIcon;
+export declare namespace _CloseButtonIconFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CloseButtonIconFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CloseButtonIcon: typeof _CloseButtonIconFactory & _FlaxInstanceType<CloseButtonIcon> & _FlaxDartType<CloseButtonIcon, readonly ["class", "flax.material/material#type:CloseButtonIcon", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/action_buttons.dart::CloseButtonIcon" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

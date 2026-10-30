@@ -75,6 +75,19 @@ export declare function _DropdownMenuThemeFactory(options: {
     child: Widget;
 }): DropdownMenuTheme;
 export declare namespace _DropdownMenuThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DropdownMenuThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DropdownMenuThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DropdownMenuThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DropdownMenuThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.DropdownMenuThemeData;
 }
 export declare namespace _DropdownMenuThemeFactory {

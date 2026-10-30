@@ -80,6 +80,19 @@ export declare function _CupertinoFullscreenDialogTransitionFactory(options: {
     child: Widget;
     linearTransition: boolean;
 }): CupertinoFullscreenDialogTransition;
+export declare namespace _CupertinoFullscreenDialogTransitionFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoFullscreenDialogTransitionFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoFullscreenDialogTransitionFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoFullscreenDialogTransitionFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const CupertinoFullscreenDialogTransition: typeof _CupertinoFullscreenDialogTransitionFactory & _FlaxInstanceType<CupertinoFullscreenDialogTransition> & _FlaxDartType<CupertinoFullscreenDialogTransition, readonly ["class", "flax.cupertino/cupertino#type:CupertinoFullscreenDialogTransition", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "primaryRouteAnimation" | "secondaryRouteAnimation" | "linearTransition" | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/route.dart::CupertinoFullscreenDialogTransition" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -67,6 +67,19 @@ export declare function _CupertinoDesktopTextSelectionToolbarButtonFactory(optio
     child: Widget;
 }): CupertinoDesktopTextSelectionToolbarButton;
 export declare namespace _CupertinoDesktopTextSelectionToolbarButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoDesktopTextSelectionToolbarButtonFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoDesktopTextSelectionToolbarButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoDesktopTextSelectionToolbarButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoDesktopTextSelectionToolbarButtonFactory {
     function text(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -74,6 +87,13 @@ export declare namespace _CupertinoDesktopTextSelectionToolbarButtonFactory {
         onPressed: (() => void) | null;
         text: string | null;
     }): CupertinoDesktopTextSelectionToolbarButton;
+    namespace text {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof text>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoDesktopTextSelectionToolbarButtonFactory {
     function buttonItem(options: {
@@ -84,6 +104,13 @@ export declare namespace _CupertinoDesktopTextSelectionToolbarButtonFactory {
             "__flaxBound:package:flutter/src/widgets/context_menu_button_item.dart::ContextMenuButtonItem": readonly [];
         }>;
     }): CupertinoDesktopTextSelectionToolbarButton;
+    namespace buttonItem {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof buttonItem>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const CupertinoDesktopTextSelectionToolbarButton: typeof _CupertinoDesktopTextSelectionToolbarButtonFactory & _FlaxInstanceType<CupertinoDesktopTextSelectionToolbarButton> & _FlaxDartType<CupertinoDesktopTextSelectionToolbarButton, readonly ["class", "flax.cupertino/cupertino#type:CupertinoDesktopTextSelectionToolbarButton", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "onPressed" | "child" | "buttonItem" | "text" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/desktop_text_selection_toolbar_button.dart::CupertinoDesktopTextSelectionToolbarButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

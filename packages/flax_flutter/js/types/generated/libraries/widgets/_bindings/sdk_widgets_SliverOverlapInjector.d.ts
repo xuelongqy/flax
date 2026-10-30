@@ -101,6 +101,13 @@ export declare function _SliverOverlapInjectorFactory(options: {
     }>;
     sliver?: Widget | null | undefined;
 }): SliverOverlapInjector;
+export declare namespace _SliverOverlapInjectorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverOverlapInjectorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverOverlapInjector: typeof _SliverOverlapInjectorFactory & _FlaxInstanceType<SliverOverlapInjector> & _FlaxDartType<SliverOverlapInjector, readonly ["class", "flax.core/sdk_widgets#type:SliverOverlapInjector", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "handle" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapInjector" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

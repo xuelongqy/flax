@@ -43,4 +43,13 @@ export declare function _RowFactory(options?: {
     spacing?: Bindable<number> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Row;
+export declare namespace _RowFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RowFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _RowFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const Row: typeof _RowFactory & _FlaxInstanceType<Row> & _FlaxDartType<Row, readonly ["class", "flax.core/flutter#type:Row", readonly [], false]>;

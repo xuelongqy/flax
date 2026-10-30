@@ -114,6 +114,13 @@ export declare function _CupertinoMagnifierFactory(options?: {
     magnificationScale?: number | undefined;
 }): CupertinoMagnifier;
 export declare namespace _CupertinoMagnifierFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoMagnifierFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoMagnifierFactory {
     const kMagnifierAboveFocalPoint: number;
 }
 export declare namespace _CupertinoMagnifierFactory {

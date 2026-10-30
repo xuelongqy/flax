@@ -110,6 +110,13 @@ export declare function _SliverFadeTransitionFactory(options: {
     alwaysIncludeSemantics?: boolean | undefined;
     sliver?: Widget | null | undefined;
 }): SliverFadeTransition;
+export declare namespace _SliverFadeTransitionFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverFadeTransitionFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverFadeTransition: typeof _SliverFadeTransitionFactory & _FlaxInstanceType<SliverFadeTransition> & _FlaxDartType<SliverFadeTransition, readonly ["class", "flax.core/sdk_widgets#type:SliverFadeTransition", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "opacity" | "alwaysIncludeSemantics" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/transitions.dart::SliverFadeTransition" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

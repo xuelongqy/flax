@@ -84,12 +84,38 @@ export declare function _SelectionContainerFactory(options: {
     child: Widget;
 }): SelectionContainer;
 export declare namespace _SelectionContainerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SelectionContainerFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SelectionContainerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _SelectionContainerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _SelectionContainerFactory {
     function disabled(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
         child: Widget;
     }): SelectionContainer;
+    namespace disabled {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof disabled>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof disabled>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof disabled>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SelectionContainerFactory {
     function maybeOf(context: upstream4.BuildContext): upstream2.SelectionRegistrar | null;

@@ -84,6 +84,13 @@ export declare function _CupertinoActionSheetFactory(options?: {
     }>) | null | undefined;
     cancelButton?: Widget | null | undefined;
 }): CupertinoActionSheet;
+export declare namespace _CupertinoActionSheetFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoActionSheetFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoActionSheet: typeof _CupertinoActionSheetFactory & _FlaxInstanceType<CupertinoActionSheet> & _FlaxDartType<CupertinoActionSheet, readonly ["class", "flax.cupertino/cupertino#type:CupertinoActionSheet", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "title" | "message" | "actions" | "messageScrollController" | "actionScrollController" | "cancelButton" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/dialog.dart::CupertinoActionSheet" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

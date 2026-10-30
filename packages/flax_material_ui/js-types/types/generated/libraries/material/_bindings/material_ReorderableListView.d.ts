@@ -174,6 +174,15 @@ export declare function _ReorderableListViewFactory(options: {
     }>) | null | undefined;
 }): ReorderableListView;
 export declare namespace _ReorderableListViewFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ReorderableListViewFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ReorderableListViewFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _ReorderableListViewFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -229,6 +238,13 @@ export declare namespace _ReorderableListViewFactory {
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
     }): ReorderableListView;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const ReorderableListView: typeof _ReorderableListViewFactory & _FlaxInstanceType<ReorderableListView> & _FlaxDartType<ReorderableListView, readonly ["class", "flax.material/material#type:ReorderableListView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "itemBuilder" | "itemCount" | "onReorder" | "onReorderItem" | "onReorderStart" | "onReorderEnd" | "proxyDecorator" | "buildDefaultDragHandles" | "padding" | "header" | "footer" | "scrollDirection" | "reverse" | "scrollController" | "primary" | "physics" | "shrinkWrap" | "anchor" | "cacheExtent" | "scrollCacheExtent" | "dragStartBehavior" | "keyboardDismissBehavior" | "restorationId" | "clipBehavior" | "itemExtent" | "itemExtentBuilder" | "prototypeItem" | "autoScrollerVelocityScalar" | "dragBoundaryProvider" | "mouseCursor" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/reorderable_list.dart::ReorderableListView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

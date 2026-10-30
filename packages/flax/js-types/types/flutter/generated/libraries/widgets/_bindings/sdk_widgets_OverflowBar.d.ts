@@ -106,6 +106,15 @@ export declare function _OverflowBarFactory(options?: {
     textDirection?: upstream6.TextDirection | null | undefined;
     children?: DartListInput<Widget, Widget> | undefined;
 }): OverflowBar;
+export declare namespace _OverflowBarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _OverflowBarFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _OverflowBarFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const OverflowBar: typeof _OverflowBarFactory & _FlaxInstanceType<OverflowBar> & _FlaxDartType<OverflowBar, readonly ["class", "flax.core/sdk_widgets#type:OverflowBar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "spacing" | "alignment" | "overflowSpacing" | "overflowAlignment" | "overflowDirection" | "textDirection" | "children" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/overflow_bar.dart::OverflowBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

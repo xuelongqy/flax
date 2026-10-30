@@ -116,6 +116,13 @@ export declare function _CloseButtonFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
 }): CloseButton;
+export declare namespace _CloseButtonFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CloseButtonFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CloseButton: typeof _CloseButtonFactory & _FlaxInstanceType<CloseButton> & _FlaxDartType<CloseButton, readonly ["class", "flax.material/material#type:CloseButton", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "standardComponent" | "iconSize" | "visualDensity" | "padding" | "alignment" | "splashRadius" | "icon" | "focusColor" | "hoverColor" | "color" | "splashColor" | "highlightColor" | "disabledColor" | "onPressed" | "onHover" | "onLongPress" | "mouseCursor" | "focusNode" | "autofocus" | "tooltip" | "enableFeedback" | "constraints" | "style" | "isSelected" | "selectedIcon" | "statesController" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/action_buttons.dart::CloseButton" | "__flaxBound:package:material_ui/src/action_buttons.dart::_ActionButton" | "__flaxBound:package:material_ui/src/icon_button.dart::IconButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -178,6 +178,19 @@ export declare function _SubmenuButtonFactory(options: {
     child: Widget | null;
 }): SubmenuButton;
 export declare namespace _SubmenuButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SubmenuButtonFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SubmenuButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _SubmenuButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _SubmenuButtonFactory {
     function styleFrom(options?: {
         alignment?: Readonly<{
             "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];

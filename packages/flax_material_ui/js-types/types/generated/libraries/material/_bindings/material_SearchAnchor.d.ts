@@ -220,6 +220,13 @@ export declare function _SearchAnchorFactory(options: {
     smartQuotesType?: upstream14.SmartQuotesType | null | undefined;
 }): SearchAnchor;
 export declare namespace _SearchAnchorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SearchAnchorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SearchAnchorFactory {
     function bar(options: {
         barLeading?: Widget | null | undefined;
         barTrailing?: DartIterableInput<Widget, Widget> | null | undefined;
@@ -332,6 +339,13 @@ export declare namespace _SearchAnchorFactory {
         smartDashesType?: upstream13.SmartDashesType | null | undefined;
         smartQuotesType?: upstream14.SmartQuotesType | null | undefined;
     }): SearchAnchor;
+    namespace bar {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof bar>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const SearchAnchor: typeof _SearchAnchorFactory & _FlaxInstanceType<SearchAnchor> & _FlaxDartType<SearchAnchor, readonly ["class", "flax.material/material#type:SearchAnchor", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "isFullScreen" | "searchController" | "viewBuilder" | "viewLeading" | "viewTrailing" | "viewHintText" | "viewBackgroundColor" | "viewElevation" | "viewSurfaceTintColor" | "viewSide" | "viewShape" | "viewBarPadding" | "headerHeight" | "headerTextStyle" | "headerHintStyle" | "dividerColor" | "viewConstraints" | "viewPadding" | "shrinkWrap" | "textCapitalization" | "viewOnChanged" | "viewOnSubmitted" | "viewOnClose" | "viewOnOpen" | "builder" | "suggestionsBuilder" | "textInputAction" | "keyboardType" | "enabled" | "smartDashesType" | "smartQuotesType" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/search_anchor.dart::SearchAnchor" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

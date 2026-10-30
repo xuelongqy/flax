@@ -99,6 +99,13 @@ export declare function _SliverLayoutBuilderFactory(options: {
     }> | null | undefined;
     builder: ((context: upstream5.BuildContext, constraints: upstream1.SliverConstraints) => Widget);
 }): SliverLayoutBuilder;
+export declare namespace _SliverLayoutBuilderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverLayoutBuilderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverLayoutBuilder: typeof _SliverLayoutBuilderFactory & _FlaxInstanceType<SliverLayoutBuilder> & _FlaxDartType<SliverLayoutBuilder, readonly ["class", "flax.core/sdk_widgets#type:SliverLayoutBuilder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "builder" | "key" | "createRenderObject" | "createElement" | "updateShouldRebuild" | "updateRenderObject" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver_layout_builder.dart::SliverLayoutBuilder" | "__flaxBound:package:flutter/src/widgets/layout_builder.dart::ConstrainedLayoutBuilder" | "__flaxBound:package:flutter/src/widgets/layout_builder.dart::AbstractLayoutBuilder" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

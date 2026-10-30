@@ -75,6 +75,19 @@ export declare function _NavigationBarThemeFactory(options: {
     child: Widget;
 }): NavigationBarTheme;
 export declare namespace _NavigationBarThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _NavigationBarThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationBarThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationBarThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _NavigationBarThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.NavigationBarThemeData;
 }
 export declare const NavigationBarTheme: typeof _NavigationBarThemeFactory & _FlaxInstanceType<NavigationBarTheme> & _FlaxDartType<NavigationBarTheme, readonly ["class", "flax.material/material#type:NavigationBarTheme", readonly [], false]>;

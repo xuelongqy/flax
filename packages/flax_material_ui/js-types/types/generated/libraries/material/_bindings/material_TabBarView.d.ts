@@ -86,6 +86,15 @@ export declare function _TabBarViewFactory(options: {
     viewportFraction?: number | undefined;
     clipBehavior?: upstream5.Clip | undefined;
 }): TabBarView;
+export declare namespace _TabBarViewFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TabBarViewFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TabBarViewFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const TabBarView: typeof _TabBarViewFactory & _FlaxInstanceType<TabBarView> & _FlaxDartType<TabBarView, readonly ["class", "flax.material/material#type:TabBarView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "children" | "physics" | "dragStartBehavior" | "viewportFraction" | "clipBehavior" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/tabs.dart::TabBarView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

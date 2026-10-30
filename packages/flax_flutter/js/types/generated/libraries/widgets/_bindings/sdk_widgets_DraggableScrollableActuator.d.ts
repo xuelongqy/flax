@@ -63,6 +63,19 @@ export declare function _DraggableScrollableActuatorFactory(options: {
     child: Widget;
 }): DraggableScrollableActuator;
 export declare namespace _DraggableScrollableActuatorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DraggableScrollableActuatorFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DraggableScrollableActuatorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DraggableScrollableActuatorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DraggableScrollableActuatorFactory {
     function reset(context: upstream2.BuildContext): boolean;
 }
 export declare const DraggableScrollableActuator: typeof _DraggableScrollableActuatorFactory & _FlaxInstanceType<DraggableScrollableActuator> & _FlaxDartType<DraggableScrollableActuator, readonly ["class", "flax.core/sdk_widgets#type:DraggableScrollableActuator", readonly [], false]>;

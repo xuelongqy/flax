@@ -86,6 +86,19 @@ export declare function _SizeChangedLayoutNotifierFactory(options?: {
     }> | null | undefined;
     child?: Widget | null | undefined;
 }): SizeChangedLayoutNotifier;
+export declare namespace _SizeChangedLayoutNotifierFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SizeChangedLayoutNotifierFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _SizeChangedLayoutNotifierFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _SizeChangedLayoutNotifierFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const SizeChangedLayoutNotifier: typeof _SizeChangedLayoutNotifierFactory & _FlaxInstanceType<SizeChangedLayoutNotifier> & _FlaxDartType<SizeChangedLayoutNotifier, readonly ["class", "flax.core/sdk_widgets#type:SizeChangedLayoutNotifier", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "key" | "createRenderObject" | "createElement" | "updateRenderObject" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/size_changed_layout_notifier.dart::SizeChangedLayoutNotifier" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

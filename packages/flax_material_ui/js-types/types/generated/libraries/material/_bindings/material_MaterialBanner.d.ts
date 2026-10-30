@@ -141,6 +141,13 @@ export declare function _MaterialBannerFactory(options: {
     minActionBarHeight?: number | undefined;
 }): MaterialBanner;
 export declare namespace _MaterialBannerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialBannerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _MaterialBannerFactory {
     function createAnimationController(options: {
         vsync: Readonly<{
             "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];

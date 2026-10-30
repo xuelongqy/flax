@@ -63,12 +63,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "", [{"name":"key"},{"name":"data","required":true},{"name":"child","required":true}], [], options) as MediaQuery;
 }
+export declare namespace _MediaQueryFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MediaQueryFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _MediaQueryFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _MediaQueryFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _MediaQueryFactory {
 export function removePadding(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; context: upstream4.BuildContext; removeLeft?: boolean | undefined; removeTop?: boolean | undefined; removeRight?: boolean | undefined; removeBottom?: boolean | undefined; child: Widget }): MediaQuery {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "removePadding", [{"name":"key"},{"name":"context","required":true},{"name":"removeLeft"},{"name":"removeTop"},{"name":"removeRight"},{"name":"removeBottom"},{"name":"child","required":true}], [], options) as MediaQuery;
 }
+export declare namespace removePadding { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof removePadding>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof removePadding>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof removePadding>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _MediaQueryFactory {
 export function removeViewInsets(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; context: upstream4.BuildContext; removeLeft?: boolean | undefined; removeTop?: boolean | undefined; removeRight?: boolean | undefined; removeBottom?: boolean | undefined; child: Widget }): MediaQuery {
@@ -76,6 +78,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "removeViewInsets", [{"name":"key"},{"name":"context","required":true},{"name":"removeLeft"},{"name":"removeTop"},{"name":"removeRight"},{"name":"removeBottom"},{"name":"child","required":true}], [], options) as MediaQuery;
 }
+export declare namespace removeViewInsets { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof removeViewInsets>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof removeViewInsets>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof removeViewInsets>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _MediaQueryFactory {
 export function removeViewPadding(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; context: upstream4.BuildContext; removeLeft?: boolean | undefined; removeTop?: boolean | undefined; removeRight?: boolean | undefined; removeBottom?: boolean | undefined; child: Widget }): MediaQuery {
@@ -83,6 +86,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "removeViewPadding", [{"name":"key"},{"name":"context","required":true},{"name":"removeLeft"},{"name":"removeTop"},{"name":"removeRight"},{"name":"removeBottom"},{"name":"child","required":true}], [], options) as MediaQuery;
 }
+export declare namespace removeViewPadding { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof removeViewPadding>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof removeViewPadding>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof removeViewPadding>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _MediaQueryFactory { export function applyTextStyleOverrides(options: { child: Widget; key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; letterSpacingOverride: number | null; lineHeightScaleFactorOverride: number | null; paragraphSpacingOverride: number | null; wordSpacingOverride: number | null }): Widget {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

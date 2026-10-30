@@ -86,6 +86,15 @@ export interface ErrorWidget extends _FlaxDartWidget, Omit<upstream0.LeafRenderO
 }
 export declare function _ErrorWidgetFactory(exception: {}): ErrorWidget;
 export declare namespace _ErrorWidgetFactory {
+    const __flaxJsx: {
+        readonly props: ({
+            "exception": globalThis.Parameters<typeof _ErrorWidgetFactory>[0];
+        });
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _ErrorWidgetFactory {
     function withDetails(options?: {
         message?: string | undefined;
         error?: (Readonly<{
@@ -102,6 +111,13 @@ export declare namespace _ErrorWidgetFactory {
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
     }): ErrorWidget;
+    namespace withDetails {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof withDetails>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _ErrorWidgetFactory {
     function setBuilder(value: ((details: upstream4.FlutterErrorDetails) => Widget)): void;

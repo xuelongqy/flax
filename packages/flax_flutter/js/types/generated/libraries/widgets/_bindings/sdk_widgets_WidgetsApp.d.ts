@@ -278,6 +278,13 @@ export declare function _WidgetsAppFactory(options: {
     useInheritedMediaQuery?: boolean | undefined;
 }): WidgetsApp;
 export declare namespace _WidgetsAppFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _WidgetsAppFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _WidgetsAppFactory {
     function router(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -368,6 +375,13 @@ export declare namespace _WidgetsAppFactory {
         restorationScopeId?: string | null | undefined;
         useInheritedMediaQuery?: boolean | undefined;
     }): WidgetsApp;
+    namespace router {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof router>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _WidgetsAppFactory {
     function setShowPerformanceOverlayOverride(value: boolean): void;

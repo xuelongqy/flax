@@ -78,6 +78,15 @@ export declare function _ListViewFactory(options?: {
     hitTestBehavior?: Bindable<upstream10.HitTestBehavior> | undefined;
 }): ListView;
 export declare namespace _ListViewFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ListViewFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ListViewFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _ListViewFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -119,6 +128,13 @@ export declare namespace _ListViewFactory {
         clipBehavior?: Bindable<upstream9.Clip> | undefined;
         hitTestBehavior?: Bindable<upstream10.HitTestBehavior> | undefined;
     }): ListView;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _ListViewFactory {
     function separated(options: {
@@ -160,6 +176,13 @@ export declare namespace _ListViewFactory {
         clipBehavior?: Bindable<upstream9.Clip> | undefined;
         hitTestBehavior?: Bindable<upstream10.HitTestBehavior> | undefined;
     }): ListView;
+    namespace separated {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof separated>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _ListViewFactory {
     function custom(options: {
@@ -200,5 +223,12 @@ export declare namespace _ListViewFactory {
         clipBehavior?: Bindable<upstream9.Clip> | undefined;
         hitTestBehavior?: Bindable<upstream10.HitTestBehavior> | undefined;
     }): ListView;
+    namespace custom {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof custom>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const ListView: typeof _ListViewFactory & _FlaxInstanceType<ListView> & _FlaxDartType<ListView, readonly ["class", "flax.core/flutter#type:ListView", readonly [], false]>;

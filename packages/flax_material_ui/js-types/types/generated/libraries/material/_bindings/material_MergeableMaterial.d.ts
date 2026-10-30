@@ -78,6 +78,13 @@ export declare function _MergeableMaterialFactory(options?: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
 }): MergeableMaterial;
+export declare namespace _MergeableMaterialFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _MergeableMaterialFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const MergeableMaterial: typeof _MergeableMaterialFactory & _FlaxInstanceType<MergeableMaterial> & _FlaxDartType<MergeableMaterial, readonly ["class", "flax.material/material#type:MergeableMaterial", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "children" | "mainAxis" | "elevation" | "hasDividers" | "dividerColor" | "key" | "debugFillProperties" | "createState" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/mergeable_material.dart::MergeableMaterial" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -26,4 +26,17 @@ export declare function _PaddingFactory(options: {
     }>>;
     child?: Bindable<Widget | null> | undefined;
 }): Padding;
+export declare namespace _PaddingFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _PaddingFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _PaddingFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _PaddingFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const Padding: typeof _PaddingFactory & _FlaxInstanceType<Padding> & _FlaxDartType<Padding, readonly ["class", "flax.core/flutter#type:Padding", readonly [], false]>;

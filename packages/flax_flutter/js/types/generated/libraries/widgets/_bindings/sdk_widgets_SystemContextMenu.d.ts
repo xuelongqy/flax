@@ -94,6 +94,13 @@ export declare namespace _SystemContextMenuFactory {
             "__flaxBound:package:flutter/src/widgets/system_context_menu.dart::IOSSystemContextMenuItem": readonly [];
         }>> | null | undefined;
     }): SystemContextMenu;
+    namespace editableText {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof editableText>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SystemContextMenuFactory {
     function isSupported(context: upstream5.BuildContext): boolean;

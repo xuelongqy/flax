@@ -54,12 +54,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoContextMenu", "", [{"name":"key"},{"name":"actions","required":true},{"name":"child","required":true},{"name":"enableHapticFeedback"}], [], options) as CupertinoContextMenu;
 }
+export declare namespace _CupertinoContextMenuFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoContextMenuFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoContextMenuFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoContextMenuFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _CupertinoContextMenuFactory {
 export function builder(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; actions: DartListInput<Widget, Widget>; builder: ((context: upstream2.BuildContext, animation: upstream3.Animation<number>) => Widget); enableHapticFeedback?: boolean | undefined }): CupertinoContextMenu {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoContextMenu", "builder", [{"name":"key"},{"name":"actions","required":true},{"name":"builder","required":true},{"name":"enableHapticFeedback"}], [], options) as CupertinoContextMenu;
 }
+export declare namespace builder { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _CupertinoContextMenuFactory { export declare const kOpenBorderRadius: number; }
 export namespace _CupertinoContextMenuFactory { export declare const kEndBoxShadow: DartList<upstream4.BoxShadow>; }

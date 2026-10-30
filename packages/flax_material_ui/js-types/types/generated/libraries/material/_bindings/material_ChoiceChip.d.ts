@@ -223,6 +223,13 @@ export declare function _ChoiceChipFactory(options: {
     }>) | null | undefined;
 }): ChoiceChip;
 export declare namespace _ChoiceChipFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ChoiceChipFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _ChoiceChipFactory {
     function elevated(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -323,6 +330,13 @@ export declare namespace _ChoiceChipFactory {
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
     }): ChoiceChip;
+    namespace elevated {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof elevated>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const ChoiceChip: typeof _ChoiceChipFactory & _FlaxInstanceType<ChoiceChip> & _FlaxDartType<ChoiceChip, readonly ["class", "flax.material/material#type:ChoiceChip", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "avatar" | "label" | "labelStyle" | "labelPadding" | "onSelected" | "pressElevation" | "selected" | "disabledColor" | "selectedColor" | "tooltip" | "side" | "shape" | "clipBehavior" | "focusNode" | "autofocus" | "color" | "backgroundColor" | "padding" | "visualDensity" | "materialTapTargetSize" | "elevation" | "shadowColor" | "surfaceTintColor" | "selectedShadowColor" | "showCheckmark" | "checkmarkColor" | "avatarBorder" | "iconTheme" | "avatarBoxConstraints" | "chipAnimationStyle" | "mouseCursor" | "isEnabled" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/choice_chip.dart::ChoiceChip" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:material_ui/src/chip.dart::ChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::SelectableChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::CheckmarkableChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::DisabledChipAttributes";

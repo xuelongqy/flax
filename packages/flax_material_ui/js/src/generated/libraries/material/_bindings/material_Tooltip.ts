@@ -87,6 +87,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:Tooltip", "", [{"name":"key"},{"name":"message"},{"name":"richMessage"},{"name":"height"},{"name":"constraints"},{"name":"padding"},{"name":"margin"},{"name":"verticalOffset"},{"name":"preferBelow"},{"name":"excludeFromSemantics"},{"name":"decoration"},{"name":"textStyle"},{"name":"textAlign"},{"name":"waitDuration"},{"name":"showDuration"},{"name":"exitDuration"},{"name":"enableTapToDismiss"},{"name":"triggerMode"},{"name":"enableFeedback"},{"name":"onTriggered"},{"name":"mouseCursor"},{"name":"ignorePointer"},{"name":"positionDelegate"},{"name":"child"}], [], options) as Tooltip;
 }
+export declare namespace _TooltipFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TooltipFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _TooltipFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _TooltipFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _TooltipFactory { export function dismissAllToolTips(): boolean {
 if (arguments.length > 0) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:Tooltip.dismissAllToolTips", [], _flaxMemberParameters4);

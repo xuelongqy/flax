@@ -61,6 +61,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:CardTheme", "", [{"name":"key"},{"name":"clipBehavior"},{"name":"color"},{"name":"surfaceTintColor"},{"name":"shadowColor"},{"name":"elevation"},{"name":"margin"},{"name":"shape"},{"name":"data"},{"name":"child"}], [], options) as CardTheme;
 }
+export declare namespace _CardThemeFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CardThemeFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _CardThemeFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _CardThemeFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _CardThemeFactory { export function of(context: upstream8.BuildContext): upstream7.CardThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:CardTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

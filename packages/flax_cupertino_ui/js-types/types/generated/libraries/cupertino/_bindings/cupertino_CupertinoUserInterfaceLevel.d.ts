@@ -66,6 +66,19 @@ export declare function _CupertinoUserInterfaceLevelFactory(options: {
     child: Widget;
 }): CupertinoUserInterfaceLevel;
 export declare namespace _CupertinoUserInterfaceLevelFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoUserInterfaceLevelFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoUserInterfaceLevelFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoUserInterfaceLevelFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoUserInterfaceLevelFactory {
     function of(context: upstream4.BuildContext): upstream3.CupertinoUserInterfaceLevelData;
 }
 export declare namespace _CupertinoUserInterfaceLevelFactory {

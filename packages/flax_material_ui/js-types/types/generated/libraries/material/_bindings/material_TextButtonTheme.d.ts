@@ -75,6 +75,19 @@ export declare function _TextButtonThemeFactory(options: {
     child: Widget;
 }): TextButtonTheme;
 export declare namespace _TextButtonThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TextButtonThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TextButtonThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TextButtonThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _TextButtonThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.TextButtonThemeData;
 }
 export declare const TextButtonTheme: typeof _TextButtonThemeFactory & _FlaxInstanceType<TextButtonTheme> & _FlaxDartType<TextButtonTheme, readonly ["class", "flax.material/material#type:TextButtonTheme", readonly [], false]>;

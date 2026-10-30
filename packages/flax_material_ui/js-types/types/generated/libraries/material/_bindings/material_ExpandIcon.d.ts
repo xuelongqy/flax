@@ -92,6 +92,13 @@ export declare function _ExpandIconFactory(options: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
 }): ExpandIcon;
+export declare namespace _ExpandIconFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ExpandIconFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const ExpandIcon: typeof _ExpandIconFactory & _FlaxInstanceType<ExpandIcon> & _FlaxDartType<ExpandIcon, readonly ["class", "flax.material/material#type:ExpandIcon", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "isExpanded" | "size" | "onPressed" | "padding" | "color" | "disabledColor" | "expandedColor" | "splashColor" | "highlightColor" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/expand_icon.dart::ExpandIcon" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

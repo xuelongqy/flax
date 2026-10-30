@@ -52,6 +52,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:DefaultTabController", "", [{"name":"key"},{"name":"length","required":true},{"name":"initialIndex"},{"name":"child","required":true},{"name":"animationDuration"}], [], options) as DefaultTabController;
 }
+export declare namespace _DefaultTabControllerFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTabControllerFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTabControllerFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTabControllerFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _DefaultTabControllerFactory { export function maybeOf(context: upstream4.BuildContext): upstream3.TabController | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:DefaultTabController.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

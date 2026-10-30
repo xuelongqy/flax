@@ -61,6 +61,19 @@ export declare function _ExcludeFocusTraversalFactory(options: {
     excluding?: boolean | undefined;
     child: Widget;
 }): ExcludeFocusTraversal;
+export declare namespace _ExcludeFocusTraversalFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ExcludeFocusTraversalFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ExcludeFocusTraversalFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ExcludeFocusTraversalFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const ExcludeFocusTraversal: typeof _ExcludeFocusTraversalFactory & _FlaxInstanceType<ExcludeFocusTraversal> & _FlaxDartType<ExcludeFocusTraversal, readonly ["class", "flax.core/sdk_widgets#type:ExcludeFocusTraversal", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "excluding" | "child" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::ExcludeFocusTraversal" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

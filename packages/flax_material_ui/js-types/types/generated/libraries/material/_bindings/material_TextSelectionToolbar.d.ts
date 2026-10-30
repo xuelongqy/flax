@@ -76,6 +76,15 @@ export declare function _TextSelectionToolbarFactory(options: {
     children: DartListInput<Widget, Widget>;
 }): TextSelectionToolbar;
 export declare namespace _TextSelectionToolbarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionToolbarFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionToolbarFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _TextSelectionToolbarFactory {
     const kHandleSize: number;
 }
 export declare namespace _TextSelectionToolbarFactory {

@@ -1,4 +1,6 @@
 import { readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { FlaxCompiler } from './compiler.mjs';
 import { flaxHostModulesPlugin } from './modules.mjs';
 import { flaxFfiPlugin } from './ffi.mjs';
@@ -14,6 +16,24 @@ export function flaxEsbuildPlugin(manifest = null, options = {}) {
       const compiler = new FlaxCompiler({
         root: builder.initialOptions.absWorkingDir,
         ...options,
+      });
+      builder.onResolve({ filter: /^\.\.?\/.*\.js$/ }, async (args) => {
+        if (
+          args.pluginData?.flaxJsxResolving ||
+          args.pluginData?.flaxResolving ||
+          !compiler.prepareJsx().enabled
+        )
+          return;
+        const candidate = resolve(args.resolveDir, args.path.replace(/\.js$/, '.jsx'));
+        if (!existsSync(candidate)) return;
+        const settings = {
+          kind: args.kind,
+          resolveDir: args.resolveDir,
+          importer: args.importer,
+          pluginData: { ...args.pluginData, flaxJsxResolving: true },
+        };
+        const ordinary = await builder.resolve(args.path, settings);
+        return ordinary.errors.length ? builder.resolve(candidate, settings) : ordinary;
       });
       flaxFfiPlugin().setup(builder);
       flaxHostModulesPlugin(manifest).setup(builder);
@@ -37,16 +57,18 @@ export function flaxEsbuildPlugin(manifest = null, options = {}) {
         for (const dependencies of compiler.dependencies.values())
           for (const file of dependencies) files.add(file);
         compiler.invalidate(files);
+        compiler.jsx?.invalidate();
+        compiler.prepareJsx();
       });
       builder.onDispose(() => compiler.close());
-      builder.onLoad({ filter: /\.[cm]?tsx?$/, namespace: 'file' }, async (args) => {
+      builder.onLoad({ filter: /\.[cm]?[jt]sx?$/, namespace: 'file' }, async (args) => {
         const source = await readFile(args.path, 'utf8');
         const result = compiler.transform(source, args.path);
         return {
           contents:
             result.code +
             (result.map ? `\n//# sourceMappingURL=${result.map.toUrl()}` : ''),
-          loader: args.path.endsWith('.tsx') ? 'tsx' : 'ts',
+          loader: /\.[cm]?tsx?$/.test(args.path) ? 'ts' : 'js',
           watchFiles: [
             ...result.dependencies,
             ...generations

@@ -111,6 +111,13 @@ export declare function _NestedScrollViewFactory(options: {
     }> | null | undefined;
 }): NestedScrollView;
 export declare namespace _NestedScrollViewFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NestedScrollViewFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _NestedScrollViewFactory {
     function sliverOverlapAbsorberHandleFor(context: upstream5.BuildContext): upstream10.SliverOverlapAbsorberHandle;
 }
 export declare const NestedScrollView: typeof _NestedScrollViewFactory & _FlaxInstanceType<NestedScrollView> & _FlaxDartType<NestedScrollView, readonly ["class", "flax.core/sdk_widgets#type:NestedScrollView", readonly [], false]>;

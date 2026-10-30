@@ -84,6 +84,19 @@ export declare function _OutlinedButtonFactory(options: {
     child: Bindable<Widget | null>;
 }): OutlinedButton;
 export declare namespace _OutlinedButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _OutlinedButtonFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _OutlinedButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _OutlinedButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _OutlinedButtonFactory {
     function icon(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -127,6 +140,13 @@ export declare namespace _OutlinedButtonFactory {
         label: Bindable<Widget>;
         iconAlignment?: Bindable<upstream5.IconAlignment | null> | undefined;
     }): OutlinedButton;
+    namespace icon {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof icon>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _OutlinedButtonFactory {
     function styleFrom(options?: {

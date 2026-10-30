@@ -98,6 +98,19 @@ export declare function _WidgetInspectorFactory(options: {
         usesDefaultAlignment?: boolean | undefined;
     }) => Widget) | null;
 }): WidgetInspector;
+export declare namespace _WidgetInspectorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _WidgetInspectorFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _WidgetInspectorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _WidgetInspectorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const WidgetInspector: typeof _WidgetInspectorFactory & _FlaxInstanceType<WidgetInspector> & _FlaxDartType<WidgetInspector, readonly ["class", "flax.core/sdk_widgets#type:WidgetInspector", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "exitWidgetSelectionButtonBuilder" | "moveExitWidgetSelectionButtonBuilder" | "tapBehaviorButtonBuilder" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/widget_inspector.dart::WidgetInspector" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -33,6 +33,19 @@ export declare function _FormFactory(options: {
     autovalidateMode?: Bindable<upstream1.AutovalidateMode | null> | undefined;
 }): Form;
 export declare namespace _FormFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FormFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _FormFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _FormFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _FormFactory {
     function maybeOf(context: upstream3.BuildContext): upstream2.FormState | null;
 }
 export declare namespace _FormFactory {

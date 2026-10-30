@@ -146,6 +146,13 @@ export declare function _StepperFactory(options: {
         "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
     }> | null | undefined;
 }): Stepper;
+export declare namespace _StepperFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _StepperFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const Stepper: typeof _StepperFactory & _FlaxInstanceType<Stepper> & _FlaxDartType<Stepper, readonly ["class", "flax.material/material#type:Stepper", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "steps" | "physics" | "controller" | "type" | "currentStep" | "onStepTapped" | "onStepContinue" | "onStepCancel" | "controlsBuilder" | "elevation" | "margin" | "connectorColor" | "connectorThickness" | "stepIconBuilder" | "stepIconHeight" | "stepIconWidth" | "stepIconMargin" | "clipBehavior" | "headerPadding" | "contentPadding" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/stepper.dart::Stepper" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

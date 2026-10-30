@@ -75,6 +75,19 @@ export declare function _ChipThemeFactory(options: {
     child: Widget;
 }): ChipTheme;
 export declare namespace _ChipThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ChipThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ChipThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ChipThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ChipThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.ChipThemeData;
 }
 export declare const ChipTheme: typeof _ChipThemeFactory & _FlaxInstanceType<ChipTheme> & _FlaxDartType<ChipTheme, readonly ["class", "flax.material/material#type:ChipTheme", readonly [], false]>;

@@ -6429,6 +6429,70 @@ $_typescriptHostImport
           'return $construct(${jsonEncode(constructionKind)}, ${jsonEncode(type.id)}, ${jsonEncode(ctor.name)}, $parameters, [$positional], ${named.isEmpty ? '{}' : 'options'}) as $resultType;',
         );
         out.writeln('}');
+        if (type.isWidgetSubtype &&
+            type.typeParameters.isEmpty &&
+            overloads.isEmpty &&
+            !genericCallSignature) {
+          final positionalParameters = ctor.parameters
+              .where((parameter) => parameter.positional)
+              .toList();
+          final tuple = 'globalThis.Parameters<typeof $functionName>';
+          final fields = <String>[
+            for (final (index, parameter) in positionalParameters.indexed)
+              '${jsonEncode(_parameterLocalName(parameter))}${parameter.required ? '' : '?'}: $tuple[$index]',
+          ];
+          final native = [
+            if (fields.isNotEmpty) '{ ${fields.join('; ')} }',
+            if (named.isNotEmpty)
+              'globalThis.NonNullable<$tuple[${positionalParameters.length}]>',
+          ].join(' & ');
+          bool widgetInput(FlaxCodegenTypeRef input) =>
+              input.kind == 'widget' ||
+              _classes[input.id]?.isWidgetSubtype == true;
+          final candidates = ctor.parameters.where(
+            (parameter) =>
+                widgetInput(parameter.type) ||
+                {'list', 'iterable'}.contains(parameter.type.kind) &&
+                    parameter.type.item != null &&
+                    widgetInput(parameter.type.item!),
+          );
+          final contentOverride = module.jsxContentSlots[type.name];
+          final slot =
+              contentOverride ??
+              (candidates.any((p) => p.name == 'child' && widgetInput(p.type))
+                  ? 'child'
+                  : candidates.any((p) => p.name == 'children')
+                  ? 'children'
+                  : null);
+          final collision =
+              slot != null &&
+              slot != 'children' &&
+              ctor.parameters.any((p) => p.name == 'children');
+          if (contentOverride != null &&
+              !candidates.any((p) => p.name == contentOverride)) {
+            throw StateError(
+              'Unknown JSX content parameter: ${type.name}.$contentOverride',
+            );
+          }
+          if (!collision) {
+            var props = native.isEmpty
+                ? 'globalThis.Record<string, never>'
+                : '($native)';
+            if (slot != null) {
+              final parameter = ctor.parameters.firstWhere(
+                (p) => p.name == slot,
+              );
+              final optional = parameter.required ? '' : '?';
+              props = slot == 'children'
+                  ? 'globalThis.Omit<$props, "children"> & { children$optional: $props["children"] | Widget }'
+                  : 'globalThis.Omit<$props, ${jsonEncode(slot)}> & ({ ${jsonEncode(slot)}$optional: $props[${jsonEncode(slot)}]; children?: never } | { ${jsonEncode(slot)}?: never; children$optional: $props[${jsonEncode(slot)}] })';
+            }
+            // Ambient namespace metadata is erased; JSX never reads runtime properties.
+            out.writeln(
+              'export declare namespace $functionName { const __flaxJsx: { readonly props: $props; readonly slot: ${jsonEncode(slot)}; readonly many: ${slot == 'children'}; }; }',
+            );
+          }
+        }
         if (ctor.name.isNotEmpty) out.writeln('}');
       }
       if (delayedProxy) emitProxy(out, type, type.proxy!);

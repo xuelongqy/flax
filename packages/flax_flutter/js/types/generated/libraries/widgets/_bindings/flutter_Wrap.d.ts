@@ -43,4 +43,13 @@ export declare function _WrapFactory(options?: {
     clipBehavior?: Bindable<upstream6.Clip> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Wrap;
+export declare namespace _WrapFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _WrapFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _WrapFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const Wrap: typeof _WrapFactory & _FlaxInstanceType<Wrap> & _FlaxDartType<Wrap, readonly ["class", "flax.core/flutter#type:Wrap", readonly [], false]>;

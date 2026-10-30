@@ -83,6 +83,19 @@ export declare function _CupertinoPageTransitionFactory(options: {
     linearTransition: boolean;
 }): CupertinoPageTransition;
 export declare namespace _CupertinoPageTransitionFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageTransitionFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageTransitionFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageTransitionFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoPageTransitionFactory {
     function delegatedTransition(context: upstream3.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{

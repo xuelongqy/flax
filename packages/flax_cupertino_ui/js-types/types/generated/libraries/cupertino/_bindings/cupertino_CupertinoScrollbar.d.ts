@@ -130,6 +130,19 @@ export declare function _CupertinoScrollbarFactory(options: {
     mainAxisMargin?: number | undefined;
 }): CupertinoScrollbar;
 export declare namespace _CupertinoScrollbarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoScrollbarFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoScrollbarFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoScrollbarFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoScrollbarFactory {
     const defaultThickness: number;
 }
 export declare namespace _CupertinoScrollbarFactory {

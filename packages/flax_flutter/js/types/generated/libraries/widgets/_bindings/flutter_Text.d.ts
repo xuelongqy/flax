@@ -242,6 +242,15 @@ export declare function _TextFactory(data: Bindable<string>, options?: {
     }> | null> | undefined;
 }): Text;
 export declare namespace _TextFactory {
+    const __flaxJsx: {
+        readonly props: ({
+            "data": globalThis.Parameters<typeof _TextFactory>[0];
+        } & globalThis.NonNullable<globalThis.Parameters<typeof _TextFactory>[1]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _TextFactory {
     function rich(textSpan: Bindable<Readonly<{
         "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
     }> & Readonly<{
@@ -284,6 +293,15 @@ export declare namespace _TextFactory {
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null> | undefined;
     }): Text;
+    namespace rich {
+        const __flaxJsx: {
+            readonly props: ({
+                "textSpan": globalThis.Parameters<typeof rich>[0];
+            } & globalThis.NonNullable<globalThis.Parameters<typeof rich>[1]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 declare const _TextBinding: typeof _TextFactory & (new (data: string, options?: {
     key?: Readonly<{

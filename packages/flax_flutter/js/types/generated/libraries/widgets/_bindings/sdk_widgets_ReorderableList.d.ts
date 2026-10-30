@@ -159,6 +159,13 @@ export declare function _ReorderableListFactory(options: {
     }> | null) | null | undefined;
 }): ReorderableList;
 export declare namespace _ReorderableListFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ReorderableListFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _ReorderableListFactory {
     function of(context: upstream2.BuildContext): upstream15.ReorderableListState;
 }
 export declare namespace _ReorderableListFactory {

@@ -91,6 +91,13 @@ export declare function _CupertinoListTileFactory(options: {
     leadingToTitle?: number | undefined;
 }): CupertinoListTile;
 export declare namespace _CupertinoListTileFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoListTileFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoListTileFactory {
     function notched(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -113,6 +120,13 @@ export declare namespace _CupertinoListTileFactory {
         leadingSize?: number | undefined;
         leadingToTitle?: number | undefined;
     }): CupertinoListTile;
+    namespace notched {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof notched>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const CupertinoListTile: typeof _CupertinoListTileFactory & _FlaxInstanceType<CupertinoListTile> & _FlaxDartType<CupertinoListTile, readonly ["class", "flax.cupertino/cupertino#type:CupertinoListTile", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "title" | "subtitle" | "additionalInfo" | "leading" | "trailing" | "onTap" | "backgroundColor" | "backgroundColorActivated" | "padding" | "leadingSize" | "leadingToTitle" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/list_tile.dart::CupertinoListTile" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

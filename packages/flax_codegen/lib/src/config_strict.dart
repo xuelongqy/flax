@@ -54,6 +54,7 @@ const _classFields = {
   'getters',
   'methods',
   'jsName',
+  'jsxContent',
 };
 
 const _functionFields = {'parameters', 'typeArguments', 'data', 'route'};
@@ -459,6 +460,7 @@ FlaxCodegenClassSelection _readClass(_StrictMap selection) {
     getters: selection.stringList('getters'),
     methods: selection.stringListMap('methods'),
     jsName: selection.optionalString('jsName'),
+    jsxContent: selection.optionalString('jsxContent'),
   );
 }
 

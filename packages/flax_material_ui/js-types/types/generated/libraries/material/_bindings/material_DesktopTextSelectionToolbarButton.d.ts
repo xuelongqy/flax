@@ -62,6 +62,19 @@ export declare function _DesktopTextSelectionToolbarButtonFactory(options: {
     child: Widget;
 }): DesktopTextSelectionToolbarButton;
 export declare namespace _DesktopTextSelectionToolbarButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DesktopTextSelectionToolbarButtonFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DesktopTextSelectionToolbarButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DesktopTextSelectionToolbarButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DesktopTextSelectionToolbarButtonFactory {
     function text(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -70,6 +83,13 @@ export declare namespace _DesktopTextSelectionToolbarButtonFactory {
         onPressed: (() => void) | null;
         text: string;
     }): DesktopTextSelectionToolbarButton;
+    namespace text {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof text>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const DesktopTextSelectionToolbarButton: typeof _DesktopTextSelectionToolbarButtonFactory & _FlaxInstanceType<DesktopTextSelectionToolbarButton> & _FlaxDartType<DesktopTextSelectionToolbarButton, readonly ["class", "flax.material/material#type:DesktopTextSelectionToolbarButton", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "onPressed" | "child" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/desktop_text_selection_toolbar_button.dart::DesktopTextSelectionToolbarButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

@@ -93,6 +93,19 @@ export declare function _DefaultTextStyleTransitionFactory(options: {
     overflow?: upstream6.TextOverflow | undefined;
     maxLines?: number | null | undefined;
 }): DefaultTextStyleTransition;
+export declare namespace _DefaultTextStyleTransitionFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTextStyleTransitionFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTextStyleTransitionFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTextStyleTransitionFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const DefaultTextStyleTransition: typeof _DefaultTextStyleTransitionFactory & _FlaxInstanceType<DefaultTextStyleTransition> & _FlaxDartType<DefaultTextStyleTransition, readonly ["class", "flax.core/sdk_widgets#type:DefaultTextStyleTransition", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "style" | "textAlign" | "softWrap" | "overflow" | "maxLines" | "child" | "listenable" | "key" | "build" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/transitions.dart::DefaultTextStyleTransition" | "__flaxBound:package:flutter/src/widgets/transitions.dart::AnimatedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

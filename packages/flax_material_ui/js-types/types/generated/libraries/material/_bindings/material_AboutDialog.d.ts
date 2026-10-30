@@ -68,6 +68,15 @@ export declare function _AboutDialogFactory(options?: {
     children?: DartListInput<Widget, Widget> | null | undefined;
 }): AboutDialog;
 export declare namespace _AboutDialogFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AboutDialogFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _AboutDialogFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _AboutDialogFactory {
     function adaptive(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -78,6 +87,15 @@ export declare namespace _AboutDialogFactory {
         applicationLegalese?: string | null | undefined;
         children?: DartListInput<Widget, Widget> | null | undefined;
     }): AboutDialog;
+    namespace adaptive {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>), "children"> & {
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare const AboutDialog: typeof _AboutDialogFactory & _FlaxInstanceType<AboutDialog> & _FlaxDartType<AboutDialog, readonly ["class", "flax.material/material#type:AboutDialog", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "applicationName" | "applicationVersion" | "applicationIcon" | "applicationLegalese" | "children" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/about.dart::AboutDialog" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

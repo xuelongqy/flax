@@ -299,3 +299,12 @@ remains native, including private State implementations. An explicit JS
 `super.createState()` can forward a fresh native State; reused or mounted States are
 rejected. State variants must satisfy the actual Dart generic State type; incompatible
 variants fail instead of casting away that type.
+
+## Optional JSX authoring
+
+Enabled JS projects can use [JSX/TSX](../guides/jsx.md) with the same components.
+Build-time contracts derive named attributes from constructor parameters and preserve
+the original `new` call, key, State, callback, and cleanup behavior. The feature adds no
+runtime component boundary. SDK contracts are erased declarations; app declarations opt
+into standard TypeScript JSX checking. Existing JS/TS calls and default-off projects
+retain their contracts.

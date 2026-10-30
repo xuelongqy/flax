@@ -104,6 +104,13 @@ export declare function _CupertinoTabViewFactory(options?: {
     }>> | undefined;
     restorationScopeId?: string | null | undefined;
 }): CupertinoTabView;
+export declare namespace _CupertinoTabViewFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTabViewFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoTabView: typeof _CupertinoTabViewFactory & _FlaxInstanceType<CupertinoTabView> & _FlaxDartType<CupertinoTabView, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTabView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "builder" | "navigatorKey" | "defaultTitle" | "routes" | "onGenerateRoute" | "onUnknownRoute" | "navigatorObservers" | "restorationScopeId" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/tab_view.dart::CupertinoTabView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -81,12 +81,38 @@ export declare function _PrimaryScrollControllerFactory(options: {
     child: Widget;
 }): PrimaryScrollController;
 export declare namespace _PrimaryScrollControllerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _PrimaryScrollControllerFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _PrimaryScrollControllerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _PrimaryScrollControllerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _PrimaryScrollControllerFactory {
     function none(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
         child: Widget;
     }): PrimaryScrollController;
+    namespace none {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _PrimaryScrollControllerFactory {
     function shouldInherit(context: upstream6.BuildContext, scrollDirection: upstream5.Axis): boolean;

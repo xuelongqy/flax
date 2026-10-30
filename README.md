@@ -82,6 +82,9 @@ Application builds and Vite hot reload share
 existing checked Dart type handles. JS uses the same package; `$type` and `dartType`
 remain available for explicit runtime tokens.
 
+Optional [JSX and TSX](docs/guides/jsx.md) compile to these same APIs. The feature is
+disabled by default; see the [runnable JSX example](examples/jsx/README.md) for setup.
+
 For application-owned bindings, separate public/internal View plugins and types-only npm
 SDKs, follow the [integration guide](docs/guides/host-bindings.md) and
 [runnable example](examples/configured_bindings/README.md).

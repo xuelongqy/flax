@@ -68,6 +68,13 @@ export declare function _HtmlElementViewFactory(options: {
     hitTestBehavior?: upstream2.PlatformViewHitTestBehavior | undefined;
 }): HtmlElementView;
 export declare namespace _HtmlElementViewFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _HtmlElementViewFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _HtmlElementViewFactory {
     function fromTagName(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -77,6 +84,13 @@ export declare namespace _HtmlElementViewFactory {
         onElementCreated?: ((element: {}) => void) | null | undefined;
         hitTestBehavior?: upstream2.PlatformViewHitTestBehavior | undefined;
     }): HtmlElementView;
+    namespace fromTagName {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof fromTagName>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const HtmlElementView: typeof _HtmlElementViewFactory & _FlaxInstanceType<HtmlElementView> & _FlaxDartType<HtmlElementView, readonly ["class", "flax.core/sdk_widgets#type:HtmlElementView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "viewType" | "onPlatformViewCreated" | "creationParams" | "hitTestBehavior" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/platform_view.dart::HtmlElementView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

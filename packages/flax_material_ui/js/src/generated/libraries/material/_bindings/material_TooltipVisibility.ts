@@ -42,6 +42,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:TooltipVisibility", "", [{"name":"key"},{"name":"visible","required":true},{"name":"child","required":true}], [], options) as TooltipVisibility;
 }
+export declare namespace _TooltipVisibilityFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TooltipVisibilityFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TooltipVisibilityFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _TooltipVisibilityFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _TooltipVisibilityFactory { export function of(context: upstream2.BuildContext): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:TooltipVisibility.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

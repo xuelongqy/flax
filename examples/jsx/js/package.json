@@ -1,0 +1,28 @@
+{
+  "name": "@flax/example-jsx",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Optional JSX and TSX with original Flax components and native State.",
+  "flax": {
+    "id": "jsx-example",
+    "jsx": true
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*",
+    "@flax/dart": "workspace:*",
+    "@flax/flutter": "workspace:*"
+  },
+  "devDependencies": {
+    "@flax/build": "workspace:*",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  },
+  "scripts": {
+    "build": "flax-jsx && tsc --noEmit && node tool/modules.mjs",
+    "typecheck": "flax-jsx && tsc --noEmit",
+    "types:watch": "flax-jsx --watch",
+    "dev": "flax-dev --entry src/main.tsx --out ../assets/flax",
+    "dev:hmr": "flax-dev --entry src/main.tsx --out ../assets/jsx-hmr.js"
+  }
+}

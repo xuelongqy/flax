@@ -141,6 +141,13 @@ export declare function _CupertinoCheckboxFactory(options: {
     semanticLabel?: string | null | undefined;
 }): CupertinoCheckbox;
 export declare namespace _CupertinoCheckboxFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoCheckboxFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoCheckboxFactory {
     const width: number;
 }
 export declare const CupertinoCheckbox: typeof _CupertinoCheckboxFactory & _FlaxInstanceType<CupertinoCheckbox> & _FlaxDartType<CupertinoCheckbox, readonly ["class", "flax.cupertino/cupertino#type:CupertinoCheckbox", readonly [], false]>;

@@ -31,7 +31,8 @@
   },
   "bin": {
     "flax-dev": "./bin/flax-dev.mjs",
-    "flax-modules": "./bin/flax-modules.mjs"
+    "flax-modules": "./bin/flax-modules.mjs",
+    "flax-jsx": "./bin/flax-jsx.mjs"
   },
   "files": [
     "src",
@@ -39,13 +40,16 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node --check src/binding_setup.mjs && node --check src/application.mjs && node --check src/esm.mjs && node --check src/compiler.mjs && node --check src/esbuild.mjs && node --check src/vite.mjs && node --check src/modules.mjs && node --check src/registry.mjs && node --check src/dev.mjs && node --check src/node-loader.mjs && node --check src/register-node-loader.mjs && node --check bin/flax-dev.mjs && node --check bin/flax-modules.mjs && node --check src/binding_delivery.mjs && node --check src/binding_manifest.mjs && node --check src/ffi.mjs && node --check src/native-assets.mjs && node --check src/native-inputs.mjs && node --check src/ffi-codegen.mjs",
+    "build": "node --check src/binding_setup.mjs && node --check src/application.mjs && node --check src/esm.mjs && node --check src/compiler.mjs && node --check src/esbuild.mjs && node --check src/vite.mjs && node --check src/modules.mjs && node --check src/registry.mjs && node --check src/dev.mjs && node --check src/node-loader.mjs && node --check src/register-node-loader.mjs && node --check bin/flax-dev.mjs && node --check bin/flax-modules.mjs && node --check src/binding_delivery.mjs && node --check src/binding_manifest.mjs && node --check src/ffi.mjs && node --check src/native-assets.mjs && node --check src/native-inputs.mjs && node --check src/ffi-codegen.mjs && node --check src/jsx.mjs && node --check bin/flax-jsx.mjs",
     "typecheck": "pnpm run build && tsc --project tsconfig.json",
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
-    "fflate": "0.8.2",
+    "@jridgewell/remapping": "2.3.5",
+    "@jridgewell/trace-mapping": "0.3.31",
+    "@nodable/entities": "3.1.0",
     "esbuild": "0.28.2",
+    "fflate": "0.8.2",
     "js-yaml": "5.2.2",
     "magic-string": "1.4.3",
     "typescript": "7.0.2",

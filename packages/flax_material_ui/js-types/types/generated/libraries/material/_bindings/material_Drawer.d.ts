@@ -40,4 +40,17 @@ export declare function _DrawerFactory(options?: {
     semanticLabel?: Bindable<string | null> | undefined;
     clipBehavior?: Bindable<upstream3.Clip | null> | undefined;
 }): Drawer;
+export declare namespace _DrawerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DrawerFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const Drawer: typeof _DrawerFactory & _FlaxInstanceType<Drawer> & _FlaxDartType<Drawer, readonly ["class", "flax.material/material#type:Drawer", readonly [], false]>;

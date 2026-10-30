@@ -182,6 +182,7 @@ export function createFlaxModuleRegistry() {
       private: privateFields,
       init,
       context,
+      localInit: value?.localInit === true,
       super: Object.getPrototypeOf(candidate),
     };
   }
@@ -266,13 +267,14 @@ export function createFlaxModuleRegistry() {
     if (live.signature.init !== candidate.signature.init) {
       throw restartRequired(`class initialization changed: ${candidate.id}`);
     }
-    if (
+    // Only compiler-proven literals and parameter assignments are independent of imports.
+    const usesContext =
       live.signature.init.length > 0 &&
-      live.signature.context !== candidate.signature.context
-    ) {
+      !(live.signature.localInit && candidate.signature.localInit);
+    if (usesContext && live.signature.context !== candidate.signature.context) {
       throw restartRequired(`class initialization context changed: ${candidate.id}`);
     }
-    if (live.signature.init.length > 0) {
+    if (usesContext) {
       const record = transaction.records.get(candidate.moduleId);
       for (const target of Object.values(record?.dependencies ?? {})) {
         if (

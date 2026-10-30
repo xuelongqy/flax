@@ -110,6 +110,15 @@ export declare function _FlowFactory(options: {
     clipBehavior?: upstream5.Clip | undefined;
 }): Flow;
 export declare namespace _FlowFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FlowFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _FlowFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _FlowFactory {
     function unwrapped(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -120,6 +129,15 @@ export declare namespace _FlowFactory {
         children?: DartListInput<Widget, Widget> | undefined;
         clipBehavior?: upstream5.Clip | undefined;
     }): Flow;
+    namespace unwrapped {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof unwrapped>[0]>), "children"> & {
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof unwrapped>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare const Flow: typeof _FlowFactory & _FlaxInstanceType<Flow> & _FlaxDartType<Flow, readonly ["class", "flax.core/sdk_widgets#type:Flow", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "delegate" | "clipBehavior" | "children" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::Flow" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

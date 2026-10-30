@@ -70,6 +70,13 @@ export declare function _PlatformViewLinkFactory(options: {
     }>);
     viewType: string;
 }): PlatformViewLink;
+export declare namespace _PlatformViewLinkFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _PlatformViewLinkFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const PlatformViewLink: typeof _PlatformViewLinkFactory & _FlaxInstanceType<PlatformViewLink> & _FlaxDartType<PlatformViewLink, readonly ["class", "flax.core/sdk_widgets#type:PlatformViewLink", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "viewType" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/platform_view.dart::PlatformViewLink" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

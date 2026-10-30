@@ -77,6 +77,19 @@ export declare function _DefaultTabControllerFactory(options: {
     }>) | null | undefined;
 }): DefaultTabController;
 export declare namespace _DefaultTabControllerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTabControllerFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTabControllerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTabControllerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DefaultTabControllerFactory {
     function maybeOf(context: upstream4.BuildContext): upstream3.TabController | null;
 }
 export declare namespace _DefaultTabControllerFactory {

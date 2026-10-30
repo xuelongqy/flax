@@ -43,4 +43,13 @@ export declare function _ColumnFactory(options?: {
     spacing?: Bindable<number> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Column;
+export declare namespace _ColumnFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ColumnFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ColumnFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const Column: typeof _ColumnFactory & _FlaxInstanceType<Column> & _FlaxDartType<Column, readonly ["class", "flax.core/flutter#type:Column", readonly [], false]>;

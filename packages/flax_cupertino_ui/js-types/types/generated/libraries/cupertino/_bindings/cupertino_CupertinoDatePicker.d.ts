@@ -122,6 +122,13 @@ export declare function _CupertinoDatePickerFactory(options: {
     selectableDayPredicate?: ((day: upstream3.DateTime) => boolean) | null | undefined;
     changeReportingBehavior?: upstream7.ChangeReportingBehavior | undefined;
 }): CupertinoDatePicker;
+export declare namespace _CupertinoDatePickerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoDatePickerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoDatePicker: typeof _CupertinoDatePickerFactory & _FlaxInstanceType<CupertinoDatePicker> & _FlaxDartType<CupertinoDatePicker, readonly ["class", "flax.cupertino/cupertino#type:CupertinoDatePicker", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "mode" | "initialDateTime" | "minimumDate" | "maximumDate" | "minimumYear" | "maximumYear" | "minuteInterval" | "use24hFormat" | "dateOrder" | "onDateTimeChanged" | "backgroundColor" | "showDayOfWeek" | "showTimeSeparator" | "selectableDayPredicate" | "itemExtent" | "selectionOverlayBuilder" | "changeReportingBehavior" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/date_picker.dart::CupertinoDatePicker" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

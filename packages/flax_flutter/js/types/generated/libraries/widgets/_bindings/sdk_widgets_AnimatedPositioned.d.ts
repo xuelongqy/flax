@@ -95,6 +95,19 @@ export declare function _AnimatedPositionedFactory(options: {
     onEnd?: (() => void) | null | undefined;
 }): AnimatedPositioned;
 export declare namespace _AnimatedPositionedFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedPositionedFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedPositionedFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedPositionedFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _AnimatedPositionedFactory {
     function fromRect(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -115,6 +128,19 @@ export declare namespace _AnimatedPositionedFactory {
         }>;
         onEnd?: (() => void) | null | undefined;
     }): AnimatedPositioned;
+    namespace fromRect {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof fromRect>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof fromRect>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof fromRect>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const AnimatedPositioned: typeof _AnimatedPositionedFactory & _FlaxInstanceType<AnimatedPositioned> & _FlaxDartType<AnimatedPositioned, readonly ["class", "flax.core/sdk_widgets#type:AnimatedPositioned", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "left" | "top" | "right" | "bottom" | "width" | "height" | "curve" | "duration" | "onEnd" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::AnimatedPositioned" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::ImplicitlyAnimatedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

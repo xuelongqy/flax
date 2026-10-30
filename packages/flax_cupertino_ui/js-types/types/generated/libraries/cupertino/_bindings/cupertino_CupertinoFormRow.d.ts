@@ -71,6 +71,19 @@ export declare function _CupertinoFormRowFactory(options: {
     helper?: Widget | null | undefined;
     error?: Widget | null | undefined;
 }): CupertinoFormRow;
+export declare namespace _CupertinoFormRowFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoFormRowFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoFormRowFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoFormRowFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const CupertinoFormRow: typeof _CupertinoFormRowFactory & _FlaxInstanceType<CupertinoFormRow> & _FlaxDartType<CupertinoFormRow, readonly ["class", "flax.cupertino/cupertino#type:CupertinoFormRow", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "prefix" | "padding" | "helper" | "error" | "child" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/form_row.dart::CupertinoFormRow" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

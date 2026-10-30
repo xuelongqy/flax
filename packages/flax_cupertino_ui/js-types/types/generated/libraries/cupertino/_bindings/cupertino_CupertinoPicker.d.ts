@@ -104,6 +104,15 @@ export declare function _CupertinoPickerFactory(options: {
     looping?: boolean | undefined;
 }): CupertinoPicker;
 export declare namespace _CupertinoPickerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPickerFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPickerFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _CupertinoPickerFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -132,6 +141,13 @@ export declare namespace _CupertinoPickerFactory {
         childCount?: number | null | undefined;
         selectionOverlay?: Widget | null | undefined;
     }): CupertinoPicker;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const CupertinoPicker: typeof _CupertinoPickerFactory & _FlaxInstanceType<CupertinoPicker> & _FlaxDartType<CupertinoPicker, readonly ["class", "flax.cupertino/cupertino#type:CupertinoPicker", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "diameterRatio" | "backgroundColor" | "offAxisFraction" | "useMagnifier" | "magnification" | "scrollController" | "itemExtent" | "squeeze" | "changeReportingBehavior" | "onSelectedItemChanged" | "childDelegate" | "selectionOverlay" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/picker.dart::CupertinoPicker" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

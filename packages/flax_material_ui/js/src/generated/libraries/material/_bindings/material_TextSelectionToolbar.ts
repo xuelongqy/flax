@@ -45,6 +45,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:TextSelectionToolbar", "", [{"name":"key"},{"name":"anchorAbove","required":true},{"name":"anchorBelow","required":true},{"name":"toolbarBuilder"},{"name":"children","required":true}], [], options) as TextSelectionToolbar;
 }
+export declare namespace _TextSelectionToolbarFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionToolbarFactory>[0]>), "children"> & { children: (globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionToolbarFactory>[0]>)["children"] | Widget }; readonly slot: "children"; readonly many: true; }; }
 export namespace _TextSelectionToolbarFactory { export declare const kHandleSize: number; }
 export namespace _TextSelectionToolbarFactory { export declare const kToolbarContentDistanceBelow: number; }
 _flaxDefineStaticGetters(_TextSelectionToolbarFactory, "flax.material/material#read:TextSelectionToolbar.", ["kHandleSize","kToolbarContentDistanceBelow"]);

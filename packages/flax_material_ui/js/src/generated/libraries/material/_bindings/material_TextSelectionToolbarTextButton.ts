@@ -49,6 +49,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:TextSelectionToolbarTextButton", "", [{"name":"key"},{"name":"child","required":true},{"name":"padding","required":true},{"name":"onPressed"},{"name":"alignment"}], [], options) as TextSelectionToolbarTextButton;
 }
+export declare namespace _TextSelectionToolbarTextButtonFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionToolbarTextButtonFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionToolbarTextButtonFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionToolbarTextButtonFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _TextSelectionToolbarTextButtonFactory { export function getPadding(index: number, total: number): upstream2.EdgeInsetsGeometry {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:TextSelectionToolbarTextButton.getPadding", [index, total], _flaxMemberParameters336);

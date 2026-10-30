@@ -75,6 +75,19 @@ export declare function _ScrollbarThemeFactory(options: {
     child: Widget;
 }): ScrollbarTheme;
 export declare namespace _ScrollbarThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ScrollbarThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ScrollbarThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ScrollbarThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ScrollbarThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.ScrollbarThemeData;
 }
 export declare const ScrollbarTheme: typeof _ScrollbarThemeFactory & _FlaxInstanceType<ScrollbarTheme> & _FlaxDartType<ScrollbarTheme, readonly ["class", "flax.material/material#type:ScrollbarTheme", readonly [], false]>;

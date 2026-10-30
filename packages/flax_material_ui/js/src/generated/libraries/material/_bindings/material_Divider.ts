@@ -20,6 +20,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.material/material#type:Divider", "", [{"name":"key"},{"name":"height"},{"name":"thickness"},{"name":"indent"},{"name":"endIndent"},{"name":"color"},{"name":"radius"}], [], options) as Divider;
 }
+export declare namespace _DividerFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _DividerFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _DividerFactory { export function createBorderSide(context: upstream4.BuildContext | null, options: { color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; width?: number | null | undefined } = {}): upstream3.BorderSide {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["color","width"].includes(k))) throw new TypeError('Invalid named method arguments');

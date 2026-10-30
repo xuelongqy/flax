@@ -124,6 +124,13 @@ export declare function _InputDatePickerFormFieldFactory(options: {
         "__flaxBound:package:material_ui/src/date.dart::CalendarDelegate": readonly [upstream2.DateTime];
     }> | undefined;
 }): InputDatePickerFormField;
+export declare namespace _InputDatePickerFormFieldFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _InputDatePickerFormFieldFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const InputDatePickerFormField: typeof _InputDatePickerFormFieldFactory & _FlaxInstanceType<InputDatePickerFormField> & _FlaxDartType<InputDatePickerFormField, readonly ["class", "flax.material/material#type:InputDatePickerFormField", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "initialDate" | "firstDate" | "lastDate" | "onDateSubmitted" | "onDateSaved" | "selectableDayPredicate" | "errorFormatText" | "errorInvalidText" | "fieldHintText" | "fieldLabelText" | "keyboardType" | "autofocus" | "acceptEmptyDate" | "focusNode" | "calendarDelegate" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/input_date_picker_form_field.dart::InputDatePickerFormField" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

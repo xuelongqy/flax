@@ -46,6 +46,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoTheme", "", [{"name":"key"},{"name":"data","required":true},{"name":"child","required":true}], [], options) as CupertinoTheme;
 }
+export declare namespace _CupertinoThemeFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoThemeFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoThemeFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoThemeFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _CupertinoThemeFactory { export function of(context: upstream3.BuildContext): upstream2.CupertinoThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters26);

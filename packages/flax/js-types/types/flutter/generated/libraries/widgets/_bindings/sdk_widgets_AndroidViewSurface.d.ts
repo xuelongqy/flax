@@ -78,6 +78,13 @@ export declare function _AndroidViewSurfaceFactory(options: {
         "__flaxBound:package:flutter/src/foundation/basic_types.dart::Factory": readonly [upstream5.OneSequenceGestureRecognizer];
     }>>;
 }): AndroidViewSurface;
+export declare namespace _AndroidViewSurfaceFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AndroidViewSurfaceFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const AndroidViewSurface: typeof _AndroidViewSurfaceFactory & _FlaxInstanceType<AndroidViewSurface> & _FlaxDartType<AndroidViewSurface, readonly ["class", "flax.core/sdk_widgets#type:AndroidViewSurface", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "gestureRecognizers" | "hitTestBehavior" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/platform_view.dart::AndroidViewSurface" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

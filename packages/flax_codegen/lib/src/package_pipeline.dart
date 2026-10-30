@@ -2848,6 +2848,7 @@ FlaxCodegenModuleModel _moduleFromEncoded(
     moduleId: template.moduleId,
     requiredCapabilities: template.requiredCapabilities,
     internalTypeNames: template.internalTypeNames,
+    jsxContentSlots: Map.unmodifiable(template.jsxContentSlots),
     stateVariants: module.stateVariants,
     sandboxRules: module.sandboxRules,
   );
@@ -3038,6 +3039,7 @@ FlaxCodegenModuleModel _freezeModule(
     dartOutput: parsed.dartOutput,
     tsOutput: parsed.tsOutput,
     classes: [...parsed.classes, ...automaticClasses],
+    jsxContentSlots: parsed.jsxContentSlots,
     sandboxRules: parsed.sandboxRules,
     types: [
       for (final type in parsed.types)

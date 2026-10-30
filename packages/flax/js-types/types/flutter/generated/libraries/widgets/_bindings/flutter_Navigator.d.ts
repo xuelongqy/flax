@@ -73,6 +73,13 @@ export declare function _NavigatorFactory(options?: {
     onDidRemovePage?: Bindable<((page: upstream1.Page<unknown | null>) => void) | null> | undefined;
 }): Navigator;
 export declare namespace _NavigatorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigatorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _NavigatorFactory {
     const defaultRouteName: string;
 }
 export declare namespace _NavigatorFactory {

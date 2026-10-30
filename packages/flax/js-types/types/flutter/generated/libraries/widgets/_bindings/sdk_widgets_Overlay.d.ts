@@ -75,6 +75,13 @@ export declare function _OverlayFactory(options?: {
     alwaysSizeToContent?: boolean | undefined;
 }): Overlay;
 export declare namespace _OverlayFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _OverlayFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _OverlayFactory {
     function wrap(options: {
         alwaysSizeToContent?: boolean | undefined;
         child: Widget;

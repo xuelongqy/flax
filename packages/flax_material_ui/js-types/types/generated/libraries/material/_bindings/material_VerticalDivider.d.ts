@@ -31,4 +31,11 @@ export declare function _VerticalDividerFactory(options?: {
         "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
     }> | null> | undefined;
 }): VerticalDivider;
+export declare namespace _VerticalDividerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _VerticalDividerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const VerticalDivider: typeof _VerticalDividerFactory & _FlaxInstanceType<VerticalDivider> & _FlaxDartType<VerticalDivider, readonly ["class", "flax.material/material#type:VerticalDivider", readonly [], false]>;

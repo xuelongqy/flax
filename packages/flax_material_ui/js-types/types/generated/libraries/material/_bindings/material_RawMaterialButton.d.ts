@@ -179,6 +179,19 @@ export declare function _RawMaterialButtonFactory(options: {
     child?: Widget | null | undefined;
     enableFeedback?: boolean | undefined;
 }): RawMaterialButton;
+export declare namespace _RawMaterialButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RawMaterialButtonFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _RawMaterialButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _RawMaterialButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const RawMaterialButton: typeof _RawMaterialButtonFactory & _FlaxInstanceType<RawMaterialButton> & _FlaxDartType<RawMaterialButton, readonly ["class", "flax.material/material#type:RawMaterialButton", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "onPressed" | "onLongPress" | "onHighlightChanged" | "mouseCursor" | "textStyle" | "fillColor" | "focusColor" | "hoverColor" | "highlightColor" | "splashColor" | "elevation" | "hoverElevation" | "focusElevation" | "highlightElevation" | "disabledElevation" | "padding" | "visualDensity" | "constraints" | "shape" | "animationDuration" | "child" | "enabled" | "materialTapTargetSize" | "focusNode" | "autofocus" | "clipBehavior" | "enableFeedback" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/button.dart::RawMaterialButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

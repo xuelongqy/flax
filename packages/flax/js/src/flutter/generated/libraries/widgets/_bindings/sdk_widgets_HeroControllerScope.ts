@@ -45,12 +45,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:HeroControllerScope", "", [{"name":"key"},{"name":"controller","required":true},{"name":"child","required":true}], [], options) as HeroControllerScope;
 }
+export declare namespace _HeroControllerScopeFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _HeroControllerScopeFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _HeroControllerScopeFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _HeroControllerScopeFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _HeroControllerScopeFactory {
 export function none(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child: Widget }): HeroControllerScope {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:HeroControllerScope", "none", [{"name":"key"},{"name":"child","required":true}], [], options) as HeroControllerScope;
 }
+export declare namespace none { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _HeroControllerScopeFactory { export function maybeOf(context: upstream4.BuildContext): upstream3.HeroController | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

@@ -35,6 +35,19 @@ export declare function _PositionedFactory(options: {
     child: Bindable<Widget>;
 }): Positioned;
 export declare namespace _PositionedFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _PositionedFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _PositionedFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _PositionedFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _PositionedFactory {
     function fromRect(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -44,6 +57,19 @@ export declare namespace _PositionedFactory {
         }>>;
         child: Bindable<Widget>;
     }): Positioned;
+    namespace fromRect {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof fromRect>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof fromRect>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof fromRect>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _PositionedFactory {
     function fromRelativeRect(options: {
@@ -55,6 +81,19 @@ export declare namespace _PositionedFactory {
         }>>;
         child: Bindable<Widget>;
     }): Positioned;
+    namespace fromRelativeRect {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof fromRelativeRect>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof fromRelativeRect>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof fromRelativeRect>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _PositionedFactory {
     function fill(options: {
@@ -67,6 +106,19 @@ export declare namespace _PositionedFactory {
         bottom?: Bindable<number | null> | undefined;
         child: Bindable<Widget>;
     }): Positioned;
+    namespace fill {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof fill>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof fill>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof fill>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _PositionedFactory {
     function directional(options: {
@@ -82,5 +134,18 @@ export declare namespace _PositionedFactory {
         height?: Bindable<number | null> | undefined;
         child: Bindable<Widget>;
     }): Positioned;
+    namespace directional {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof directional>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof directional>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof directional>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const Positioned: typeof _PositionedFactory & _FlaxInstanceType<Positioned> & _FlaxDartType<Positioned, readonly ["class", "flax.core/flutter#type:Positioned", readonly [], false]>;

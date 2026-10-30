@@ -70,6 +70,13 @@ export declare function _CupertinoActivityIndicatorFactory(options?: {
     radius?: number | undefined;
 }): CupertinoActivityIndicator;
 export declare namespace _CupertinoActivityIndicatorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoActivityIndicatorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoActivityIndicatorFactory {
     function partiallyRevealed(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -80,6 +87,13 @@ export declare namespace _CupertinoActivityIndicatorFactory {
         radius?: number | undefined;
         progress?: number | undefined;
     }): CupertinoActivityIndicator;
+    namespace partiallyRevealed {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof partiallyRevealed>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const CupertinoActivityIndicator: typeof _CupertinoActivityIndicatorFactory & _FlaxInstanceType<CupertinoActivityIndicator> & _FlaxDartType<CupertinoActivityIndicator, readonly ["class", "flax.cupertino/cupertino#type:CupertinoActivityIndicator", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "color" | "animating" | "radius" | "progress" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/activity_indicator.dart::CupertinoActivityIndicator" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

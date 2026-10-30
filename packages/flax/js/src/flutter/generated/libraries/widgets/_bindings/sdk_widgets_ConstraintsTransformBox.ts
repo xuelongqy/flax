@@ -61,6 +61,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:ConstraintsTransformBox", "", [{"name":"key"},{"name":"child"},{"name":"textDirection"},{"name":"alignment"},{"name":"constraintsTransform","required":true},{"name":"clipBehavior"},{"name":"debugTransformType"}], [], options) as ConstraintsTransformBox;
 }
+export declare namespace _ConstraintsTransformBoxFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ConstraintsTransformBoxFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _ConstraintsTransformBoxFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ConstraintsTransformBoxFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _ConstraintsTransformBoxFactory { export function unmodified(constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): upstream5.BoxConstraints {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:ConstraintsTransformBox.unmodified", [constraints], _flaxMemberParameters67);

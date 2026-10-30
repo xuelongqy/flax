@@ -52,6 +52,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverAnimatedGrid", "", [{"name":"key"},{"name":"itemBuilder","required":true},{"name":"gridDelegate","required":true},{"name":"findChildIndexCallback"},{"name":"initialItemCount"}], [], options) as SliverAnimatedGrid;
 }
+export declare namespace _SliverAnimatedGridFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverAnimatedGridFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _SliverAnimatedGridFactory { export function of(context: upstream2.BuildContext): upstream5.SliverAnimatedGridState {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:SliverAnimatedGrid.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

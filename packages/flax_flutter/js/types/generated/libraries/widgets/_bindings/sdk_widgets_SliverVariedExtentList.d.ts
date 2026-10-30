@@ -123,6 +123,13 @@ export declare function _SliverVariedExtentListFactory(options: {
     itemExtentBuilder: ((index: number, dimensions: upstream5.SliverLayoutDimensions) => number | null);
 }): SliverVariedExtentList;
 export declare namespace _SliverVariedExtentListFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverVariedExtentListFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliverVariedExtentListFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -135,6 +142,13 @@ export declare namespace _SliverVariedExtentListFactory {
         addRepaintBoundaries?: boolean | undefined;
         addSemanticIndexes?: boolean | undefined;
     }): SliverVariedExtentList;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SliverVariedExtentListFactory {
     function list(options: {
@@ -147,6 +161,15 @@ export declare namespace _SliverVariedExtentListFactory {
         addRepaintBoundaries?: boolean | undefined;
         addSemanticIndexes?: boolean | undefined;
     }): SliverVariedExtentList;
+    namespace list {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>), "children"> & {
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare const SliverVariedExtentList: typeof _SliverVariedExtentListFactory & _FlaxInstanceType<SliverVariedExtentList> & _FlaxDartType<SliverVariedExtentList, readonly ["class", "flax.core/sdk_widgets#type:SliverVariedExtentList", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "itemExtentBuilder" | "delegate" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "estimateMaxScrollOffset" | "debugFillProperties" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverVariedExtentList" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverMultiBoxAdaptorWidget" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverWithKeepAliveWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

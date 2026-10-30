@@ -316,6 +316,13 @@ export declare function _TextFormFieldFactory(options?: {
         "__flaxBound:dart:ui::Locale": readonly [];
     }>> | null | undefined;
 }): TextFormField;
+export declare namespace _TextFormFieldFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TextFormFieldFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const TextFormField: typeof _TextFormFieldFactory & _FlaxInstanceType<TextFormField> & _FlaxDartType<TextFormField, readonly ["class", "flax.material/material#type:TextFormField", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "groupId" | "onChanged" | "builder" | "onSaved" | "onReset" | "forceErrorText" | "validator" | "errorBuilder" | "initialValue" | "enabled" | "autovalidateMode" | "restorationId" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/text_form_field.dart::TextFormField" | "__flaxBound:package:flutter/src/widgets/form.dart::FormField" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

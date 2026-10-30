@@ -85,6 +85,13 @@ export declare function _FlutterLogoFactory(options?: {
         "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
     }>) | undefined;
 }): FlutterLogo;
+export declare namespace _FlutterLogoFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _FlutterLogoFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const FlutterLogo: typeof _FlutterLogoFactory & _FlaxInstanceType<FlutterLogo> & _FlaxDartType<FlutterLogo, readonly ["class", "flax.core/sdk_widgets#type:FlutterLogo", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "size" | "textColor" | "style" | "duration" | "curve" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/flutter_logo.dart::FlutterLogo" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

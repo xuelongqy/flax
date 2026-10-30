@@ -75,6 +75,19 @@ export declare function _NavigationRailThemeFactory(options: {
     child: Widget;
 }): NavigationRailTheme;
 export declare namespace _NavigationRailThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _NavigationRailThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationRailThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationRailThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _NavigationRailThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.NavigationRailThemeData;
 }
 export declare const NavigationRailTheme: typeof _NavigationRailThemeFactory & _FlaxInstanceType<NavigationRailTheme> & _FlaxDartType<NavigationRailTheme, readonly ["class", "flax.material/material#type:NavigationRailTheme", readonly [], false]>;

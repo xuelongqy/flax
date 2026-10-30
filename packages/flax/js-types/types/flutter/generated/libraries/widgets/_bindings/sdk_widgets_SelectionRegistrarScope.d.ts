@@ -66,6 +66,19 @@ export declare function _SelectionRegistrarScopeFactory(options: {
     }>;
     child: Widget;
 }): SelectionRegistrarScope;
+export declare namespace _SelectionRegistrarScopeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SelectionRegistrarScopeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SelectionRegistrarScopeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _SelectionRegistrarScopeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const SelectionRegistrarScope: typeof _SelectionRegistrarScopeFactory & _FlaxInstanceType<SelectionRegistrarScope> & _FlaxDartType<SelectionRegistrarScope, readonly ["class", "flax.core/sdk_widgets#type:SelectionRegistrarScope", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "registrar" | "child" | "key" | "updateShouldNotify" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/selection_container.dart::SelectionRegistrarScope" | "__flaxBound:package:flutter/src/widgets/framework.dart::InheritedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -69,6 +69,13 @@ export declare function _SliverFillViewportFactory(options: {
     padEnds?: boolean | undefined;
     allowImplicitScrolling?: boolean | undefined;
 }): SliverFillViewport;
+export declare namespace _SliverFillViewportFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverFillViewportFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverFillViewport: typeof _SliverFillViewportFactory & _FlaxInstanceType<SliverFillViewport> & _FlaxDartType<SliverFillViewport, readonly ["class", "flax.core/sdk_widgets#type:SliverFillViewport", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "viewportFraction" | "padEnds" | "delegate" | "allowImplicitScrolling" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver_fill.dart::SliverFillViewport" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

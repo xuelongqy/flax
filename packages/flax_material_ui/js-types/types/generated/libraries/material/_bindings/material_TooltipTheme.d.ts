@@ -75,6 +75,19 @@ export declare function _TooltipThemeFactory(options: {
     child: Widget;
 }): TooltipTheme;
 export declare namespace _TooltipThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TooltipThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TooltipThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TooltipThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _TooltipThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.TooltipThemeData;
 }
 export declare const TooltipTheme: typeof _TooltipThemeFactory & _FlaxInstanceType<TooltipTheme> & _FlaxDartType<TooltipTheme, readonly ["class", "flax.material/material#type:TooltipTheme", readonly [], false]>;

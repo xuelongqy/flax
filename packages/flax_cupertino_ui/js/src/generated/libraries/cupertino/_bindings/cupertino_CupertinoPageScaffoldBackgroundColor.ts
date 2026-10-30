@@ -45,6 +45,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoPageScaffoldBackgroundColor", "", [{"name":"child","required":true},{"name":"color","required":true},{"name":"key"}], [], options) as CupertinoPageScaffoldBackgroundColor;
 }
+export declare namespace _CupertinoPageScaffoldBackgroundColorFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageScaffoldBackgroundColorFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageScaffoldBackgroundColorFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageScaffoldBackgroundColorFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _CupertinoPageScaffoldBackgroundColorFactory { export function maybeOf(context: upstream4.BuildContext): upstream2.Color | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoPageScaffoldBackgroundColor.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters26);

@@ -147,6 +147,19 @@ export declare function _InteractiveViewerFactory(options: {
     child: Widget;
 }): InteractiveViewer;
 export declare namespace _InteractiveViewerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _InteractiveViewerFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _InteractiveViewerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _InteractiveViewerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _InteractiveViewerFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -186,6 +199,13 @@ export declare namespace _InteractiveViewerFactory {
         trackpadScrollCausesScale?: boolean | undefined;
         builder: ((context: upstream10.BuildContext, viewport: upstream11.Quad) => Widget);
     }): InteractiveViewer;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const InteractiveViewer: typeof _InteractiveViewerFactory & _FlaxInstanceType<InteractiveViewer> & _FlaxDartType<InteractiveViewer, readonly ["class", "flax.core/sdk_widgets#type:InteractiveViewer", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "alignment" | "clipBehavior" | "panAxis" | "boundaryMargin" | "builder" | "child" | "constrained" | "panEnabled" | "scaleEnabled" | "trackpadScrollCausesScale" | "scaleFactor" | "maxScale" | "minScale" | "interactionEndFrictionCoefficient" | "onInteractionEnd" | "onInteractionStart" | "onInteractionUpdate" | "transformationController" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/interactive_viewer.dart::InteractiveViewer" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

@@ -11,4 +11,5 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:Spacer", "", [{"name":"key"},{"name":"flex"}], [], options) as Spacer;
 }
+export declare namespace _SpacerFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SpacerFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export const Spacer: typeof _SpacerFactory & _FlaxInstanceType<Spacer> & _FlaxDartType<Spacer, readonly ["class", "flax.core/flutter#type:Spacer", readonly [], false]> = _flaxBindInstanceType<Spacer, typeof _SpacerFactory>(_SpacerFactory, "flax.core/flutter#type:Spacer", ["flax.core/sdk_widgets#type:StatelessWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SpacerFactory & _FlaxInstanceType<Spacer> & _FlaxDartType<Spacer, readonly ["class", "flax.core/flutter#type:Spacer", readonly [], false]>;

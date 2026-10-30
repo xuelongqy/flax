@@ -66,6 +66,19 @@ export declare function _PageStorageFactory(options: {
     child: Widget;
 }): PageStorage;
 export declare namespace _PageStorageFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _PageStorageFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _PageStorageFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _PageStorageFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _PageStorageFactory {
     function maybeOf(context: upstream3.BuildContext): upstream2.PageStorageBucket | null;
 }
 export declare namespace _PageStorageFactory {

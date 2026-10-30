@@ -149,6 +149,15 @@ export declare function _FlaxCanvasViewConstruct(canvas: Bindable<Readonly<{
     width?: Bindable<number | null> | undefined;
     height?: Bindable<number | null> | undefined;
 }): FlaxCanvasView;
+export declare namespace _FlaxCanvasViewConstruct {
+    const __flaxJsx: {
+        readonly props: ({
+            "canvas": globalThis.Parameters<typeof _FlaxCanvasViewConstruct>[0];
+        } & globalThis.NonNullable<globalThis.Parameters<typeof _FlaxCanvasViewConstruct>[1]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare namespace _FlaxCanvasSurfaceFactory {
     const pictureLimit: number;
 }

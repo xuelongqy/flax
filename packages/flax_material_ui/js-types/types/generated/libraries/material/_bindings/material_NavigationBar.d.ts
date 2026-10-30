@@ -66,4 +66,11 @@ export declare function _NavigationBarFactory(options: {
     }> | null> | undefined;
     maintainBottomViewPadding?: Bindable<boolean> | undefined;
 }): NavigationBar;
+export declare namespace _NavigationBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const NavigationBar: typeof _NavigationBarFactory & _FlaxInstanceType<NavigationBar> & _FlaxDartType<NavigationBar, readonly ["class", "flax.material/material#type:NavigationBar", readonly [], false]>;

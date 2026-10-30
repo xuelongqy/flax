@@ -85,6 +85,13 @@ export declare function _CupertinoTabScaffoldFactory(options: {
     resizeToAvoidBottomInset?: boolean | undefined;
     restorationId?: string | null | undefined;
 }): CupertinoTabScaffold;
+export declare namespace _CupertinoTabScaffoldFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTabScaffoldFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoTabScaffold: typeof _CupertinoTabScaffoldFactory & _FlaxInstanceType<CupertinoTabScaffold> & _FlaxDartType<CupertinoTabScaffold, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTabScaffold", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "tabBar" | "controller" | "tabBuilder" | "backgroundColor" | "resizeToAvoidBottomInset" | "restorationId" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/tab_scaffold.dart::CupertinoTabScaffold" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -46,6 +46,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:AutocompleteHighlightedOption", "", [{"name":"key"},{"name":"highlightIndexNotifier","required":true},{"name":"child","required":true}], [], options) as AutocompleteHighlightedOption;
 }
+export declare namespace _AutocompleteHighlightedOptionFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AutocompleteHighlightedOptionFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _AutocompleteHighlightedOptionFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _AutocompleteHighlightedOptionFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _AutocompleteHighlightedOptionFactory { export function of(context: upstream5.BuildContext): number {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AutocompleteHighlightedOption.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

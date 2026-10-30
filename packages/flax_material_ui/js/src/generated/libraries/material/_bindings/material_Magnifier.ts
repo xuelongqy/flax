@@ -57,6 +57,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:Magnifier", "", [{"name":"key"},{"name":"additionalFocalPointOffset"},{"name":"borderRadius"},{"name":"filmColor"},{"name":"shadows"},{"name":"clipBehavior"},{"name":"size"}], [], options) as Magnifier;
 }
+export declare namespace _MagnifierFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _MagnifierFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _MagnifierFactory { export declare const kDefaultMagnifierSize: upstream7.Size; }
 export namespace _MagnifierFactory { export declare const kStandardVerticalFocalPointShift: number; }
 _flaxDefineStaticGetters(_MagnifierFactory, "flax.material/material#read:Magnifier.", ["kDefaultMagnifierSize","kStandardVerticalFocalPointShift"]);

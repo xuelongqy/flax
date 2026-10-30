@@ -109,6 +109,13 @@ export declare function _SwitchFactory(options: {
     }> | null> | undefined;
 }): Switch;
 export declare namespace _SwitchFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SwitchFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SwitchFactory {
     function adaptive(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -190,5 +197,12 @@ export declare namespace _SwitchFactory {
         }> | null> | undefined;
         applyCupertinoTheme?: Bindable<boolean | null> | undefined;
     }): Switch;
+    namespace adaptive {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const Switch: typeof _SwitchFactory & _FlaxInstanceType<Switch> & _FlaxDartType<Switch, readonly ["class", "flax.material/material#type:Switch", readonly [], false]>;

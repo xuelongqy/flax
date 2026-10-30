@@ -75,6 +75,19 @@ export declare function _SegmentedButtonThemeFactory(options: {
     child: Widget;
 }): SegmentedButtonTheme;
 export declare namespace _SegmentedButtonThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SegmentedButtonThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SegmentedButtonThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _SegmentedButtonThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _SegmentedButtonThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.SegmentedButtonThemeData;
 }
 export declare namespace _SegmentedButtonThemeFactory {

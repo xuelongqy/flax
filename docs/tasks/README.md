@@ -1,5 +1,10 @@
 # Active Tasks
 
+The [optional JSX/TSX task](optional-jsx-support.md) implements default-off syntax,
+generated constructor contracts, and direct-call lowering. Build and native parity
+checks pass. Basic VS Code and WebStorm attribute completion is verified; the task
+records the tested TypeScript versions and remaining editor coverage.
+
 The [native ESM, JSON and Wasm module task](native-esm-and-wasm.md) covers runtime
 module graphs, remote imports and Wasm under iOS V8 jitless. The module implementation
 and focused runtime acceptance are complete; the task record distinguishes current

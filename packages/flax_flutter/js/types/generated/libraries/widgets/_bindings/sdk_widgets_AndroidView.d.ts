@@ -90,6 +90,13 @@ export declare function _AndroidViewFactory(options: {
     }> | null | undefined;
     clipBehavior?: upstream7.Clip | undefined;
 }): AndroidView;
+export declare namespace _AndroidViewFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AndroidViewFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const AndroidView: typeof _AndroidViewFactory & _FlaxInstanceType<AndroidView> & _FlaxDartType<AndroidView, readonly ["class", "flax.core/sdk_widgets#type:AndroidView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "viewType" | "onPlatformViewCreated" | "hitTestBehavior" | "layoutDirection" | "gestureRecognizers" | "creationParams" | "creationParamsCodec" | "clipBehavior" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/platform_view.dart::AndroidView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -63,6 +63,19 @@ export declare function _SliverResizingHeaderFactory(options?: {
     maxExtentPrototype?: Widget | null | undefined;
     child?: Widget | null | undefined;
 }): SliverResizingHeader;
+export declare namespace _SliverResizingHeaderFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SliverResizingHeaderFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverResizingHeaderFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverResizingHeaderFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const SliverResizingHeader: typeof _SliverResizingHeaderFactory & _FlaxInstanceType<SliverResizingHeader> & _FlaxDartType<SliverResizingHeader, readonly ["class", "flax.core/sdk_widgets#type:SliverResizingHeader", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "minExtentPrototype" | "maxExtentPrototype" | "child" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver_resizing_header.dart::SliverResizingHeader" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

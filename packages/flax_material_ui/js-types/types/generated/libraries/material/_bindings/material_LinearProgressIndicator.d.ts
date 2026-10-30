@@ -70,6 +70,13 @@ export declare function _LinearProgressIndicatorFactory(options?: {
     }>) | null> | undefined;
 }): LinearProgressIndicator;
 export declare namespace _LinearProgressIndicatorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _LinearProgressIndicatorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _LinearProgressIndicatorFactory {
     const defaultAnimationDuration: upstream5.Duration;
 }
 export declare const LinearProgressIndicator: typeof _LinearProgressIndicatorFactory & _FlaxInstanceType<LinearProgressIndicator> & _FlaxDartType<LinearProgressIndicator, readonly ["class", "flax.material/material#type:LinearProgressIndicator", readonly [], false]>;

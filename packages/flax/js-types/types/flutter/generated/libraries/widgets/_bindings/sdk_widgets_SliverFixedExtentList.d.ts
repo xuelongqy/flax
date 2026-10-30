@@ -119,6 +119,13 @@ export declare function _SliverFixedExtentListFactory(options: {
     itemExtent: number;
 }): SliverFixedExtentList;
 export declare namespace _SliverFixedExtentListFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverFixedExtentListFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliverFixedExtentListFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -132,6 +139,13 @@ export declare namespace _SliverFixedExtentListFactory {
         addSemanticIndexes?: boolean | undefined;
         semanticIndexOffset?: number | undefined;
     }): SliverFixedExtentList;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SliverFixedExtentListFactory {
     function list(options: {
@@ -144,6 +158,15 @@ export declare namespace _SliverFixedExtentListFactory {
         addRepaintBoundaries?: boolean | undefined;
         addSemanticIndexes?: boolean | undefined;
     }): SliverFixedExtentList;
+    namespace list {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>), "children"> & {
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare const SliverFixedExtentList: typeof _SliverFixedExtentListFactory & _FlaxInstanceType<SliverFixedExtentList> & _FlaxDartType<SliverFixedExtentList, readonly ["class", "flax.core/sdk_widgets#type:SliverFixedExtentList", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "itemExtent" | "delegate" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "estimateMaxScrollOffset" | "debugFillProperties" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverFixedExtentList" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverMultiBoxAdaptorWidget" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverWithKeepAliveWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

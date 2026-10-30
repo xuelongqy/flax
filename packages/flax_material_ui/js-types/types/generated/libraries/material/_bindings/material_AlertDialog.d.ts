@@ -104,6 +104,13 @@ export declare function _AlertDialogFactory(options?: {
     scrollable?: Bindable<boolean> | undefined;
 }): AlertDialog;
 export declare namespace _AlertDialogFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AlertDialogFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _AlertDialogFactory {
     function adaptive(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -198,5 +205,12 @@ export declare namespace _AlertDialogFactory {
             "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
         }>> | undefined;
     }): AlertDialog;
+    namespace adaptive {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const AlertDialog: typeof _AlertDialogFactory & _FlaxInstanceType<AlertDialog> & _FlaxDartType<AlertDialog, readonly ["class", "flax.material/material#type:AlertDialog", readonly [], false]>;

@@ -409,6 +409,19 @@ export declare function _InputDecorationThemeFactory(options?: {
     child?: Widget | null | undefined;
 }): InputDecorationTheme;
 export declare namespace _InputDecorationThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _InputDecorationThemeFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _InputDecorationThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _InputDecorationThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _InputDecorationThemeFactory {
     function of(context: upstream15.BuildContext): upstream14.InputDecorationThemeData;
 }
 export declare const InputDecorationTheme: typeof _InputDecorationThemeFactory & _FlaxInstanceType<InputDecorationTheme> & _FlaxDartType<InputDecorationTheme, readonly ["class", "flax.material/material#type:InputDecorationTheme", readonly [], false]>;

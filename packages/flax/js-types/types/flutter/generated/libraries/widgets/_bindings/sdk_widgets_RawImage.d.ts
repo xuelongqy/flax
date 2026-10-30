@@ -156,6 +156,13 @@ export declare function _RawImageFactory(options?: {
     filterQuality?: upstream11.FilterQuality | undefined;
     isAntiAlias?: boolean | undefined;
 }): RawImage;
+export declare namespace _RawImageFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _RawImageFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const RawImage: typeof _RawImageFactory & _FlaxInstanceType<RawImage> & _FlaxDartType<RawImage, readonly ["class", "flax.core/sdk_widgets#type:RawImage", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "image" | "debugImageLabel" | "width" | "height" | "scale" | "color" | "opacity" | "filterQuality" | "colorBlendMode" | "fit" | "alignment" | "repeat" | "centerSlice" | "matchTextDirection" | "invertColors" | "isAntiAlias" | "key" | "createRenderObject" | "updateRenderObject" | "didUnmountRenderObject" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::RawImage" | "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

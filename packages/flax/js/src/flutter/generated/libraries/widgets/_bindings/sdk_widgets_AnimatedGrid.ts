@@ -73,6 +73,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:AnimatedGrid", "", [{"name":"key"},{"name":"itemBuilder","required":true},{"name":"gridDelegate","required":true},{"name":"initialItemCount"},{"name":"scrollDirection"},{"name":"reverse"},{"name":"controller"},{"name":"primary"},{"name":"physics"},{"name":"padding"},{"name":"clipBehavior"},{"name":"scrollCacheExtent"}], [], options) as AnimatedGrid;
 }
+export declare namespace _AnimatedGridFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedGridFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _AnimatedGridFactory { export function of(context: upstream2.BuildContext): upstream11.AnimatedGridState {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AnimatedGrid.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

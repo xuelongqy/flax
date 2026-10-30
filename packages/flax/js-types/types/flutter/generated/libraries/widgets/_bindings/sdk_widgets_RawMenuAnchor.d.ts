@@ -112,6 +112,19 @@ export declare function _RawMenuAnchorFactory(options: {
     overlayBuilder: ((context: upstream4.BuildContext, info: upstream6.RawMenuOverlayInfo) => Widget);
     child?: Widget | null | undefined;
 }): RawMenuAnchor;
+export declare namespace _RawMenuAnchorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RawMenuAnchorFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _RawMenuAnchorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _RawMenuAnchorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const RawMenuAnchor: typeof _RawMenuAnchorFactory & _FlaxInstanceType<RawMenuAnchor> & _FlaxDartType<RawMenuAnchor, readonly ["class", "flax.core/sdk_widgets#type:RawMenuAnchor", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "onOpen" | "onClose" | "onOpenRequested" | "onCloseRequested" | "builder" | "child" | "overlayBuilder" | "useRootOverlay" | "childFocusNode" | "consumeOutsideTaps" | "controller" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/raw_menu_anchor.dart::RawMenuAnchor" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

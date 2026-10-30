@@ -83,6 +83,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:Scrollable", "", [{"name":"key"},{"name":"axisDirection"},{"name":"controller"},{"name":"physics"},{"name":"viewportBuilder","required":true},{"name":"incrementCalculator"},{"name":"excludeFromSemantics"},{"name":"semanticChildCount"},{"name":"dragStartBehavior"},{"name":"restorationId"},{"name":"scrollBehavior"},{"name":"clipBehavior"},{"name":"hitTestBehavior"}], [], options) as Scrollable;
 }
+export declare namespace _ScrollableFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ScrollableFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _ScrollableFactory { export function maybeOf(context: upstream5.BuildContext, options: { axis?: upstream12.Axis | null | undefined } = {}): upstream13.ScrollableState | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["axis"].includes(k))) throw new TypeError('Invalid named method arguments');

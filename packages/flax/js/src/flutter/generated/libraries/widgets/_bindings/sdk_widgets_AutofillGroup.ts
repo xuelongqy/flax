@@ -48,6 +48,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:AutofillGroup", "", [{"name":"key"},{"name":"child","required":true},{"name":"onDisposeAction"}], [], options) as AutofillGroup;
 }
+export declare namespace _AutofillGroupFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AutofillGroupFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _AutofillGroupFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _AutofillGroupFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _AutofillGroupFactory { export function maybeOf(context: upstream4.BuildContext): upstream3.AutofillGroupState | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AutofillGroup.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

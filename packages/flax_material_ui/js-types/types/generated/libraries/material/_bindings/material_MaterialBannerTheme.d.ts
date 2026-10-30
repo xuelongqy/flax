@@ -75,6 +75,19 @@ export declare function _MaterialBannerThemeFactory(options: {
     child: Widget;
 }): MaterialBannerTheme;
 export declare namespace _MaterialBannerThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MaterialBannerThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialBannerThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialBannerThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _MaterialBannerThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.MaterialBannerThemeData;
 }
 export declare const MaterialBannerTheme: typeof _MaterialBannerThemeFactory & _FlaxInstanceType<MaterialBannerTheme> & _FlaxDartType<MaterialBannerTheme, readonly ["class", "flax.material/material#type:MaterialBannerTheme", readonly [], false]>;

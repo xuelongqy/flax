@@ -66,6 +66,13 @@ export declare function _LicensePageFactory(options?: {
     applicationIcon?: Widget | null | undefined;
     applicationLegalese?: string | null | undefined;
 }): LicensePage;
+export declare namespace _LicensePageFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _LicensePageFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const LicensePage: typeof _LicensePageFactory & _FlaxInstanceType<LicensePage> & _FlaxDartType<LicensePage, readonly ["class", "flax.material/material#type:LicensePage", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "applicationName" | "applicationVersion" | "applicationIcon" | "applicationLegalese" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/about.dart::LicensePage" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

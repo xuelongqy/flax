@@ -84,6 +84,19 @@ export declare function _RawGestureDetectorFactory(options?: {
         "__flaxBound:package:flutter/src/widgets/gesture_detector.dart::SemanticsGestureDelegate": readonly [];
     }> | null | undefined;
 }): RawGestureDetector;
+export declare namespace _RawGestureDetectorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RawGestureDetectorFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _RawGestureDetectorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _RawGestureDetectorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const RawGestureDetector: typeof _RawGestureDetectorFactory & _FlaxInstanceType<RawGestureDetector> & _FlaxDartType<RawGestureDetector, readonly ["class", "flax.core/sdk_widgets#type:RawGestureDetector", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "gestures" | "behavior" | "excludeFromSemantics" | "semantics" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/gesture_detector.dart::RawGestureDetector" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

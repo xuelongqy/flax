@@ -283,6 +283,7 @@ class FlaxCodegenBindingConfig {
                   MapEntry(name, (params as List<dynamic>).cast<String>()),
             ),
             jsName: selection['jsName'] as String?,
+            jsxContent: selection['jsxContent'] as String?,
           ),
         );
       }),
@@ -541,6 +542,7 @@ class FlaxCodegenClassSelection {
     this.operators = const {},
     this.data = const FlaxCodegenDataSelection(),
     this.jsName,
+    this.jsxContent,
   });
   final Map<String, List<String>> constructors;
   final List<String> widgetInterfaces;
@@ -575,6 +577,7 @@ class FlaxCodegenClassSelection {
   final Map<String, List<String>> methods;
   final Map<String, List<String>> operators;
   final FlaxCodegenDataSelection data;
+  final String? jsxContent;
   final String? jsName;
 }
 
@@ -620,7 +623,8 @@ bool flaxCodegenIsStateVariantOverlay(FlaxCodegenClassSelection selection) =>
     selection.data.getters.isEmpty &&
     selection.data.methods.isEmpty &&
     selection.data.results.isEmpty &&
-    selection.jsName == null;
+    selection.jsName == null &&
+    selection.jsxContent == null;
 
 Map<String, FlaxCodegenProxyVariantSelection> _proxyVariantsFromMap(
   Map<String, dynamic> values,

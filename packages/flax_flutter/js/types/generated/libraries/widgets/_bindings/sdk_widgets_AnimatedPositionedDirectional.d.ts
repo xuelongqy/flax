@@ -93,6 +93,19 @@ export declare function _AnimatedPositionedDirectionalFactory(options: {
     }>;
     onEnd?: (() => void) | null | undefined;
 }): AnimatedPositionedDirectional;
+export declare namespace _AnimatedPositionedDirectionalFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedPositionedDirectionalFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedPositionedDirectionalFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedPositionedDirectionalFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const AnimatedPositionedDirectional: typeof _AnimatedPositionedDirectionalFactory & _FlaxInstanceType<AnimatedPositionedDirectional> & _FlaxDartType<AnimatedPositionedDirectional, readonly ["class", "flax.core/sdk_widgets#type:AnimatedPositionedDirectional", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "start" | "top" | "end" | "bottom" | "width" | "height" | "curve" | "duration" | "onEnd" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::AnimatedPositionedDirectional" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::ImplicitlyAnimatedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

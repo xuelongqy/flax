@@ -120,6 +120,13 @@ export declare function _RangeSliderFactory(options: {
     }> | null | undefined;
     year2023?: boolean | null | undefined;
 }): RangeSlider;
+export declare namespace _RangeSliderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _RangeSliderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const RangeSlider: typeof _RangeSliderFactory & _FlaxInstanceType<RangeSlider> & _FlaxDartType<RangeSlider, readonly ["class", "flax.material/material#type:RangeSlider", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "values" | "onChanged" | "onChangeStart" | "onChangeEnd" | "min" | "max" | "divisions" | "labels" | "activeColor" | "inactiveColor" | "overlayColor" | "mouseCursor" | "semanticFormatterCallback" | "padding" | "year2023" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/range_slider.dart::RangeSlider" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

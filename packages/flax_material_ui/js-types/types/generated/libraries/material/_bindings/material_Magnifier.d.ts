@@ -100,6 +100,13 @@ export declare function _MagnifierFactory(options?: {
     }>) | undefined;
 }): Magnifier;
 export declare namespace _MagnifierFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _MagnifierFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _MagnifierFactory {
     const kDefaultMagnifierSize: upstream7.Size;
 }
 export declare namespace _MagnifierFactory {

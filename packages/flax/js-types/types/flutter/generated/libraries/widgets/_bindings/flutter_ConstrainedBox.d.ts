@@ -28,4 +28,17 @@ export declare function _ConstrainedBoxFactory(options: {
     }>>;
     child?: Bindable<Widget | null> | undefined;
 }): ConstrainedBox;
+export declare namespace _ConstrainedBoxFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ConstrainedBoxFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _ConstrainedBoxFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ConstrainedBoxFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const ConstrainedBox: typeof _ConstrainedBoxFactory & _FlaxInstanceType<ConstrainedBox> & _FlaxDartType<ConstrainedBox, readonly ["class", "flax.core/flutter#type:ConstrainedBox", readonly [], false]>;

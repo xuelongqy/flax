@@ -65,6 +65,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverReorderableList", "", [{"name":"key"},{"name":"itemBuilder","required":true},{"name":"findChildIndexCallback"},{"name":"itemCount","required":true},{"name":"onReorder"},{"name":"onReorderItem"},{"name":"onReorderStart"},{"name":"onReorderEnd"},{"name":"itemExtent"},{"name":"itemExtentBuilder"},{"name":"prototypeItem"},{"name":"proxyDecorator"},{"name":"dragBoundaryProvider"},{"name":"autoScrollerVelocityScalar"}], [], options) as SliverReorderableList;
 }
+export declare namespace _SliverReorderableListFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverReorderableListFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _SliverReorderableListFactory { export function of(context: upstream2.BuildContext): upstream7.SliverReorderableListState {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:SliverReorderableList.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

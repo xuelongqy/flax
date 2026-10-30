@@ -144,6 +144,13 @@ export declare function _CustomScrollViewFactory(options?: {
     clipBehavior?: upstream11.Clip | undefined;
     hitTestBehavior?: upstream12.HitTestBehavior | undefined;
 }): CustomScrollView;
+export declare namespace _CustomScrollViewFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CustomScrollViewFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CustomScrollView: typeof _CustomScrollViewFactory & _FlaxInstanceType<CustomScrollView> & _FlaxDartType<CustomScrollView, readonly ["class", "flax.core/sdk_widgets#type:CustomScrollView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "slivers" | "scrollDirection" | "reverse" | "controller" | "primary" | "physics" | "scrollBehavior" | "shrinkWrap" | "center" | "anchor" | "cacheExtent" | "scrollCacheExtent" | "semanticChildCount" | "paintOrder" | "dragStartBehavior" | "keyboardDismissBehavior" | "restorationId" | "clipBehavior" | "hitTestBehavior" | "key" | "buildSlivers" | "getDirection" | "buildViewport" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/scroll_view.dart::CustomScrollView" | "__flaxBound:package:flutter/src/widgets/scroll_view.dart::ScrollView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

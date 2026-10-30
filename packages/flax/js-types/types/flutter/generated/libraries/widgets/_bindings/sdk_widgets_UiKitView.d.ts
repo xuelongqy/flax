@@ -92,6 +92,13 @@ export declare function _UiKitViewFactory(options: {
         "__flaxBound:package:flutter/src/foundation/basic_types.dart::Factory": readonly [upstream7.OneSequenceGestureRecognizer];
     }>> | null | undefined;
 }): UiKitView;
+export declare namespace _UiKitViewFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _UiKitViewFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const UiKitView: typeof _UiKitViewFactory & _FlaxInstanceType<UiKitView> & _FlaxDartType<UiKitView, readonly ["class", "flax.core/sdk_widgets#type:UiKitView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "gestureBlockingPolicy" | "viewType" | "onPlatformViewCreated" | "hitTestBehavior" | "layoutDirection" | "creationParams" | "creationParamsCodec" | "gestureRecognizers" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/platform_view.dart::UiKitView" | "__flaxBound:package:flutter/src/widgets/platform_view.dart::_DarwinView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

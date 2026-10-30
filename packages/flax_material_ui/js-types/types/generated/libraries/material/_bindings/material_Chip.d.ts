@@ -201,6 +201,13 @@ export declare function _ChipFactory(options: {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
 }): Chip;
+export declare namespace _ChipFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ChipFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const Chip: typeof _ChipFactory & _FlaxInstanceType<Chip> & _FlaxDartType<Chip, readonly ["class", "flax.material/material#type:Chip", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "avatar" | "label" | "labelStyle" | "labelPadding" | "side" | "shape" | "clipBehavior" | "focusNode" | "autofocus" | "color" | "backgroundColor" | "padding" | "visualDensity" | "deleteIcon" | "onDeleted" | "deleteIconColor" | "deleteButtonTooltipMessage" | "materialTapTargetSize" | "elevation" | "shadowColor" | "surfaceTintColor" | "iconTheme" | "avatarBoxConstraints" | "deleteIconBoxConstraints" | "chipAnimationStyle" | "mouseCursor" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/chip.dart::Chip" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:material_ui/src/chip.dart::ChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::DeletableChipAttributes";
 export {};

@@ -82,6 +82,13 @@ export declare function _CupertinoSliderFactory(options: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | undefined;
 }): CupertinoSlider;
+export declare namespace _CupertinoSliderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoSliderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoSlider: typeof _CupertinoSliderFactory & _FlaxInstanceType<CupertinoSlider> & _FlaxDartType<CupertinoSlider, readonly ["class", "flax.cupertino/cupertino#type:CupertinoSlider", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "value" | "onChanged" | "onChangeStart" | "onChangeEnd" | "min" | "max" | "divisions" | "activeColor" | "thumbColor" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/slider.dart::CupertinoSlider" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

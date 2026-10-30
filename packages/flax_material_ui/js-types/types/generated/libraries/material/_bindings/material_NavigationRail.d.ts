@@ -147,6 +147,13 @@ export declare function _NavigationRailFactory(options: {
     mainAxisAlignment?: upstream8.MainAxisAlignment | null | undefined;
 }): NavigationRail;
 export declare namespace _NavigationRailFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationRailFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _NavigationRailFactory {
     function extendedAnimation(context: upstream10.BuildContext): upstream9.Animation<number>;
 }
 export declare const NavigationRail: typeof _NavigationRailFactory & _FlaxInstanceType<NavigationRail> & _FlaxDartType<NavigationRail, readonly ["class", "flax.material/material#type:NavigationRail", readonly [], false]>;

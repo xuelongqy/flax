@@ -120,6 +120,13 @@ export declare function _RefreshProgressIndicatorFactory(options?: {
     }> | undefined;
 }): RefreshProgressIndicator;
 export declare namespace _RefreshProgressIndicatorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _RefreshProgressIndicatorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _RefreshProgressIndicatorFactory {
     const defaultStrokeWidth: number;
 }
 export declare const RefreshProgressIndicator: typeof _RefreshProgressIndicatorFactory & _FlaxInstanceType<RefreshProgressIndicator> & _FlaxDartType<RefreshProgressIndicator, readonly ["class", "flax.material/material#type:RefreshProgressIndicator", readonly [], false]>;

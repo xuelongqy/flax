@@ -68,6 +68,13 @@ export declare function _NavigationToolbarFactory(options?: {
     middleSpacing?: number | undefined;
 }): NavigationToolbar;
 export declare namespace _NavigationToolbarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationToolbarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _NavigationToolbarFactory {
     const kMiddleSpacing: number;
 }
 export declare const NavigationToolbar: typeof _NavigationToolbarFactory & _FlaxInstanceType<NavigationToolbar> & _FlaxDartType<NavigationToolbar, readonly ["class", "flax.core/sdk_widgets#type:NavigationToolbar", readonly [], false]>;

@@ -103,6 +103,15 @@ export declare function _CustomMultiChildLayoutFactory(options: {
     }>;
     children?: DartListInput<Widget, Widget> | undefined;
 }): CustomMultiChildLayout;
+export declare namespace _CustomMultiChildLayoutFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CustomMultiChildLayoutFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _CustomMultiChildLayoutFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const CustomMultiChildLayout: typeof _CustomMultiChildLayoutFactory & _FlaxInstanceType<CustomMultiChildLayout> & _FlaxDartType<CustomMultiChildLayout, readonly ["class", "flax.core/sdk_widgets#type:CustomMultiChildLayout", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "delegate" | "children" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::CustomMultiChildLayout" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

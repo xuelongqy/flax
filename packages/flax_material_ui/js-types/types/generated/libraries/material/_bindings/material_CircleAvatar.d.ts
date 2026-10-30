@@ -95,6 +95,19 @@ export declare function _CircleAvatarFactory(options?: {
     minRadius?: number | null | undefined;
     maxRadius?: number | null | undefined;
 }): CircleAvatar;
+export declare namespace _CircleAvatarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CircleAvatarFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _CircleAvatarFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _CircleAvatarFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const CircleAvatar: typeof _CircleAvatarFactory & _FlaxInstanceType<CircleAvatar> & _FlaxDartType<CircleAvatar, readonly ["class", "flax.material/material#type:CircleAvatar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "backgroundColor" | "foregroundColor" | "backgroundImage" | "foregroundImage" | "onBackgroundImageError" | "onForegroundImageError" | "radius" | "minRadius" | "maxRadius" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/circle_avatar.dart::CircleAvatar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

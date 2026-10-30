@@ -71,6 +71,19 @@ export declare function _LookupBoundaryFactory(options: {
     child: Widget;
 }): LookupBoundary;
 export declare namespace _LookupBoundaryFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _LookupBoundaryFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _LookupBoundaryFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _LookupBoundaryFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _LookupBoundaryFactory {
     function _flaxDefault_dependOnInheritedWidgetOfExactType<T extends upstream0.InheritedWidget = upstream0.InheritedWidget>(context: upstream3.BuildContext, options?: {
         aspect?: unknown | null | undefined;
     }): T | null;

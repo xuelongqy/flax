@@ -167,6 +167,13 @@ export declare function _CupertinoSwitchFactory(options: {
     autofocus?: boolean | undefined;
     dragStartBehavior?: upstream9.DragStartBehavior | undefined;
 }): CupertinoSwitch;
+export declare namespace _CupertinoSwitchFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoSwitchFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoSwitch: typeof _CupertinoSwitchFactory & _FlaxInstanceType<CupertinoSwitch> & _FlaxDartType<CupertinoSwitch, readonly ["class", "flax.cupertino/cupertino#type:CupertinoSwitch", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "value" | "onChanged" | "activeColor" | "activeTrackColor" | "trackColor" | "inactiveTrackColor" | "thumbColor" | "inactiveThumbColor" | "focusColor" | "onLabelColor" | "offLabelColor" | "activeThumbImage" | "onActiveThumbImageError" | "inactiveThumbImage" | "onInactiveThumbImageError" | "trackOutlineColor" | "trackOutlineWidth" | "thumbIcon" | "mouseCursor" | "focusNode" | "onFocusChange" | "autofocus" | "applyTheme" | "dragStartBehavior" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/switch.dart::CupertinoSwitch" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

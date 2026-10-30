@@ -90,6 +90,15 @@ export declare function _CupertinoFormSectionFactory(options: {
     clipBehavior?: upstream5.Clip | undefined;
 }): CupertinoFormSection;
 export declare namespace _CupertinoFormSectionFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoFormSectionFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoFormSectionFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _CupertinoFormSectionFactory {
     function insetGrouped(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -112,6 +121,15 @@ export declare namespace _CupertinoFormSectionFactory {
         }>) | null | undefined;
         clipBehavior?: upstream5.Clip | undefined;
     }): CupertinoFormSection;
+    namespace insetGrouped {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof insetGrouped>[0]>), "children"> & {
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof insetGrouped>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare const CupertinoFormSection: typeof _CupertinoFormSectionFactory & _FlaxInstanceType<CupertinoFormSection> & _FlaxDartType<CupertinoFormSection, readonly ["class", "flax.cupertino/cupertino#type:CupertinoFormSection", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "header" | "footer" | "margin" | "children" | "decoration" | "backgroundColor" | "clipBehavior" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/form_section.dart::CupertinoFormSection" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

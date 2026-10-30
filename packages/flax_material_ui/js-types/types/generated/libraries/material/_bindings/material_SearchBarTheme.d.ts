@@ -71,6 +71,19 @@ export declare function _SearchBarThemeFactory(options: {
     child: Widget;
 }): SearchBarTheme;
 export declare namespace _SearchBarThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SearchBarThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SearchBarThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _SearchBarThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _SearchBarThemeFactory {
     function of(context: upstream4.BuildContext): upstream3.SearchBarThemeData;
 }
 export declare const SearchBarTheme: typeof _SearchBarThemeFactory & _FlaxInstanceType<SearchBarTheme> & _FlaxDartType<SearchBarTheme, readonly ["class", "flax.material/material#type:SearchBarTheme", readonly [], false]>;

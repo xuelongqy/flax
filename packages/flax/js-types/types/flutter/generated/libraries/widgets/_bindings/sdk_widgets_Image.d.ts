@@ -145,6 +145,13 @@ export declare function _ImageFactory(options: {
     filterQuality?: upstream14.FilterQuality | undefined;
 }): Image;
 export declare namespace _ImageFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ImageFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _ImageFactory {
     function network(src: string, options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -185,6 +192,15 @@ export declare namespace _ImageFactory {
         cacheHeight?: number | null | undefined;
         webHtmlElementStrategy?: upstream15.WebHtmlElementStrategy | undefined;
     }): Image;
+    namespace network {
+        const __flaxJsx: {
+            readonly props: ({
+                "src": globalThis.Parameters<typeof network>[0];
+            } & globalThis.NonNullable<globalThis.Parameters<typeof network>[1]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _ImageFactory {
     function file(file: Readonly<{
@@ -228,6 +244,15 @@ export declare namespace _ImageFactory {
         cacheWidth?: number | null | undefined;
         cacheHeight?: number | null | undefined;
     }): Image;
+    namespace file {
+        const __flaxJsx: {
+            readonly props: ({
+                "file": globalThis.Parameters<typeof file>[0];
+            } & globalThis.NonNullable<globalThis.Parameters<typeof file>[1]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _ImageFactory {
     function asset(name: string, options?: {
@@ -271,6 +296,15 @@ export declare namespace _ImageFactory {
         cacheWidth?: number | null | undefined;
         cacheHeight?: number | null | undefined;
     }): Image;
+    namespace asset {
+        const __flaxJsx: {
+            readonly props: ({
+                "name": globalThis.Parameters<typeof asset>[0];
+            } & globalThis.NonNullable<globalThis.Parameters<typeof asset>[1]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _ImageFactory {
     function memory(bytes: globalThis.Uint8Array, options?: {
@@ -310,6 +344,15 @@ export declare namespace _ImageFactory {
         cacheWidth?: number | null | undefined;
         cacheHeight?: number | null | undefined;
     }): Image;
+    namespace memory {
+        const __flaxJsx: {
+            readonly props: ({
+                "bytes": globalThis.Parameters<typeof memory>[0];
+            } & globalThis.NonNullable<globalThis.Parameters<typeof memory>[1]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const Image: typeof _ImageFactory & _FlaxInstanceType<Image> & _FlaxDartType<Image, readonly ["class", "flax.core/sdk_widgets#type:Image", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "image" | "frameBuilder" | "loadingBuilder" | "errorBuilder" | "width" | "height" | "color" | "opacity" | "filterQuality" | "colorBlendMode" | "fit" | "alignment" | "repeat" | "centerSlice" | "matchTextDirection" | "gaplessPlayback" | "semanticLabel" | "excludeFromSemantics" | "isAntiAlias" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/image.dart::Image" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

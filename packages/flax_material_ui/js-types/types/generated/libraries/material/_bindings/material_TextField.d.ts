@@ -248,6 +248,13 @@ export declare function _TextFieldFactory(options?: {
     }>> | null> | undefined;
 }): TextField;
 export declare namespace _TextFieldFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TextFieldFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _TextFieldFactory {
     const noMaxLength: number;
 }
 export declare namespace _TextFieldFactory {

@@ -51,6 +51,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:TextMagnifier", "", [{"name":"key"},{"name":"magnifierInfo","required":true}], [], options) as TextMagnifier;
 }
+export declare namespace _TextMagnifierFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TextMagnifierFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _TextMagnifierFactory { export function setAdaptiveMagnifierConfiguration(value: Readonly<{ "__flaxBound:package:flutter/src/widgets/magnifier.dart::TextMagnifierConfiguration": readonly [] }>): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:TextMagnifier.adaptiveMagnifierConfiguration%3D", [value], _flaxMemberParameters32);

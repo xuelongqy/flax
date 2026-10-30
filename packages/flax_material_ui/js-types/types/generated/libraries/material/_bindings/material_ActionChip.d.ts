@@ -199,6 +199,13 @@ export declare function _ActionChipFactory(options: {
     }>) | null | undefined;
 }): ActionChip;
 export declare namespace _ActionChipFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ActionChipFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _ActionChipFactory {
     function elevated(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -285,6 +292,13 @@ export declare namespace _ActionChipFactory {
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
     }): ActionChip;
+    namespace elevated {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof elevated>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const ActionChip: typeof _ActionChipFactory & _FlaxInstanceType<ActionChip> & _FlaxDartType<ActionChip, readonly ["class", "flax.material/material#type:ActionChip", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "avatar" | "label" | "labelStyle" | "labelPadding" | "onPressed" | "pressElevation" | "tooltip" | "side" | "shape" | "clipBehavior" | "focusNode" | "autofocus" | "color" | "backgroundColor" | "disabledColor" | "padding" | "visualDensity" | "materialTapTargetSize" | "elevation" | "shadowColor" | "surfaceTintColor" | "iconTheme" | "avatarBoxConstraints" | "chipAnimationStyle" | "mouseCursor" | "isEnabled" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/action_chip.dart::ActionChip" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:material_ui/src/chip.dart::ChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::TappableChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::DisabledChipAttributes";

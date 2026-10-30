@@ -67,6 +67,13 @@ export declare function _CupertinoLinearActivityIndicatorFactory(options: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
 }): CupertinoLinearActivityIndicator;
+export declare namespace _CupertinoLinearActivityIndicatorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoLinearActivityIndicatorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoLinearActivityIndicator: typeof _CupertinoLinearActivityIndicatorFactory & _FlaxInstanceType<CupertinoLinearActivityIndicator> & _FlaxDartType<CupertinoLinearActivityIndicator, readonly ["class", "flax.cupertino/cupertino#type:CupertinoLinearActivityIndicator", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "progress" | "height" | "color" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/activity_indicator.dart::CupertinoLinearActivityIndicator" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

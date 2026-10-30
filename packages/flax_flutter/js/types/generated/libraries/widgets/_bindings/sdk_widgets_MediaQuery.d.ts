@@ -94,6 +94,19 @@ export declare function _MediaQueryFactory(options: {
     child: Widget;
 }): MediaQuery;
 export declare namespace _MediaQueryFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MediaQueryFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _MediaQueryFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _MediaQueryFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _MediaQueryFactory {
     function removePadding(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -105,6 +118,19 @@ export declare namespace _MediaQueryFactory {
         removeBottom?: boolean | undefined;
         child: Widget;
     }): MediaQuery;
+    namespace removePadding {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof removePadding>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof removePadding>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof removePadding>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _MediaQueryFactory {
     function removeViewInsets(options: {
@@ -118,6 +144,19 @@ export declare namespace _MediaQueryFactory {
         removeBottom?: boolean | undefined;
         child: Widget;
     }): MediaQuery;
+    namespace removeViewInsets {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof removeViewInsets>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof removeViewInsets>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof removeViewInsets>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _MediaQueryFactory {
     function removeViewPadding(options: {
@@ -131,6 +170,19 @@ export declare namespace _MediaQueryFactory {
         removeBottom?: boolean | undefined;
         child: Widget;
     }): MediaQuery;
+    namespace removeViewPadding {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof removeViewPadding>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof removeViewPadding>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof removeViewPadding>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _MediaQueryFactory {
     function applyTextStyleOverrides(options: {

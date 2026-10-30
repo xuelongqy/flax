@@ -210,6 +210,19 @@ export declare function _AppBarThemeFactory(options?: {
     child?: Widget | null | undefined;
 }): AppBarTheme;
 export declare namespace _AppBarThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AppBarThemeFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _AppBarThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _AppBarThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _AppBarThemeFactory {
     function of(context: upstream11.BuildContext): upstream10.AppBarThemeData;
 }
 export declare namespace _AppBarThemeFactory {

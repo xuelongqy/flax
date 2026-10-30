@@ -60,7 +60,42 @@ export declare function _KeyedSubtreeFactory(options: {
     child: Widget;
 }): KeyedSubtree;
 export declare namespace _KeyedSubtreeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _KeyedSubtreeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _KeyedSubtreeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _KeyedSubtreeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _KeyedSubtreeFactory {
     function wrap(child: Widget, childIndex: number): KeyedSubtree;
+    namespace wrap {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<({
+                "child": globalThis.Parameters<typeof wrap>[0];
+                "childIndex": globalThis.Parameters<typeof wrap>[1];
+            }), "child"> & ({
+                "child": ({
+                    "child": globalThis.Parameters<typeof wrap>[0];
+                    "childIndex": globalThis.Parameters<typeof wrap>[1];
+                })["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: ({
+                    "child": globalThis.Parameters<typeof wrap>[0];
+                    "childIndex": globalThis.Parameters<typeof wrap>[1];
+                })["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _KeyedSubtreeFactory {
     function ensureUniqueKeysForList(items: DartListInput<Widget, Widget>, options?: {

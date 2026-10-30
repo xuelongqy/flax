@@ -34,4 +34,13 @@ export declare function _IndexedStackFactory(options?: {
     index?: Bindable<number | null> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): IndexedStack;
+export declare namespace _IndexedStackFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _IndexedStackFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _IndexedStackFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const IndexedStack: typeof _IndexedStackFactory & _FlaxInstanceType<IndexedStack> & _FlaxDartType<IndexedStack, readonly ["class", "flax.core/flutter#type:IndexedStack", readonly [], false]>;

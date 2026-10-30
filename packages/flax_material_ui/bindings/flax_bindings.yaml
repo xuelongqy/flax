@@ -30,7 +30,11 @@ overrides:
     LinearProgressIndicator: *renderOnlyWidget
     AlertDialog: *renderOnlyWidget
     MaterialApp: *renderOnlyWidget
-    Scaffold: *renderOnlyWidget
+    Scaffold:
+      getters: []
+      setters: []
+      instanceMethods: {}
+      jsxContent: body
     RefreshIndicator: *renderOnlyWidget
     Theme: *renderOnlyWidget
     TextField: *renderOnlyWidget

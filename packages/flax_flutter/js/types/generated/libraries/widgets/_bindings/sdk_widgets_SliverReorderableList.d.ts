@@ -107,6 +107,13 @@ export declare function _SliverReorderableListFactory(options: {
     autoScrollerVelocityScalar?: number | null | undefined;
 }): SliverReorderableList;
 export declare namespace _SliverReorderableListFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverReorderableListFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliverReorderableListFactory {
     function of(context: upstream2.BuildContext): upstream7.SliverReorderableListState;
 }
 export declare namespace _SliverReorderableListFactory {

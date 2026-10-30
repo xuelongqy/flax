@@ -70,6 +70,13 @@ export declare function _CupertinoMenuDividerFactory(options?: {
     }> | undefined;
 }): CupertinoMenuDivider;
 export declare namespace _CupertinoMenuDividerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoMenuDividerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoMenuDividerFactory {
     const kDefaultColor: upstream3.CupertinoDynamicColor;
 }
 export declare const CupertinoMenuDivider: typeof _CupertinoMenuDividerFactory & _FlaxInstanceType<CupertinoMenuDivider> & _FlaxDartType<CupertinoMenuDivider, readonly ["class", "flax.cupertino/cupertino#type:CupertinoMenuDivider", readonly [], false]>;

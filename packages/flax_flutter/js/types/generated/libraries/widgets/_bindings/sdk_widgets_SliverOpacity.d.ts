@@ -100,6 +100,13 @@ export declare function _SliverOpacityFactory(options: {
     alwaysIncludeSemantics?: boolean | undefined;
     sliver?: Widget | null | undefined;
 }): SliverOpacity;
+export declare namespace _SliverOpacityFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverOpacityFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverOpacity: typeof _SliverOpacityFactory & _FlaxInstanceType<SliverOpacity> & _FlaxDartType<SliverOpacity, readonly ["class", "flax.core/sdk_widgets#type:SliverOpacity", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "opacity" | "alwaysIncludeSemantics" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverOpacity" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

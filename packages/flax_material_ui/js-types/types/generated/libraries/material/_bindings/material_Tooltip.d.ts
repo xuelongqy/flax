@@ -171,6 +171,19 @@ export declare function _TooltipFactory(options?: {
     child?: Widget | null | undefined;
 }): Tooltip;
 export declare namespace _TooltipFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TooltipFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _TooltipFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _TooltipFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _TooltipFactory {
     function dismissAllToolTips(): boolean;
 }
 export declare const Tooltip: typeof _TooltipFactory & _FlaxInstanceType<Tooltip> & _FlaxDartType<Tooltip, readonly ["class", "flax.material/material#type:Tooltip", readonly [], false]>;

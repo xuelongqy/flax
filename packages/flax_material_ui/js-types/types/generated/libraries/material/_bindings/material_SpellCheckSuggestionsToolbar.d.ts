@@ -75,6 +75,13 @@ export declare function _SpellCheckSuggestionsToolbarFactory(options: {
     }>>;
 }): SpellCheckSuggestionsToolbar;
 export declare namespace _SpellCheckSuggestionsToolbarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SpellCheckSuggestionsToolbarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SpellCheckSuggestionsToolbarFactory {
     function editableText(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -101,6 +108,13 @@ export declare namespace _SpellCheckSuggestionsToolbarFactory {
             "__flaxBound:package:flutter/src/services/text_input.dart::TextInputClient": readonly [];
         }>;
     }): SpellCheckSuggestionsToolbar;
+    namespace editableText {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof editableText>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SpellCheckSuggestionsToolbarFactory {
     function buildButtonItems(editableTextState: Readonly<{

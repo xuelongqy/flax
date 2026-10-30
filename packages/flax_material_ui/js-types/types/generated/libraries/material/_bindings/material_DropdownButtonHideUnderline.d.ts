@@ -63,6 +63,19 @@ export declare function _DropdownButtonHideUnderlineFactory(options: {
     child: Widget;
 }): DropdownButtonHideUnderline;
 export declare namespace _DropdownButtonHideUnderlineFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DropdownButtonHideUnderlineFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DropdownButtonHideUnderlineFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DropdownButtonHideUnderlineFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DropdownButtonHideUnderlineFactory {
     function at(context: upstream3.BuildContext): boolean;
 }
 export declare const DropdownButtonHideUnderline: typeof _DropdownButtonHideUnderlineFactory & _FlaxInstanceType<DropdownButtonHideUnderline> & _FlaxDartType<DropdownButtonHideUnderline, readonly ["class", "flax.material/material#type:DropdownButtonHideUnderline", readonly [], false]>;

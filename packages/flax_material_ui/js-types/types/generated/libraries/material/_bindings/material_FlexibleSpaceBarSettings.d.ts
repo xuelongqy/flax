@@ -72,6 +72,19 @@ export declare function _FlexibleSpaceBarSettingsFactory(options: {
     isScrolledUnder?: boolean | null | undefined;
     hasLeading?: boolean | null | undefined;
 }): FlexibleSpaceBarSettings;
+export declare namespace _FlexibleSpaceBarSettingsFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FlexibleSpaceBarSettingsFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _FlexibleSpaceBarSettingsFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _FlexibleSpaceBarSettingsFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const FlexibleSpaceBarSettings: typeof _FlexibleSpaceBarSettingsFactory & _FlaxInstanceType<FlexibleSpaceBarSettings> & _FlaxDartType<FlexibleSpaceBarSettings, readonly ["class", "flax.material/material#type:FlexibleSpaceBarSettings", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "toolbarOpacity" | "minExtent" | "maxExtent" | "currentExtent" | "isScrolledUnder" | "hasLeading" | "child" | "key" | "updateShouldNotify" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/flexible_space_bar.dart::FlexibleSpaceBarSettings" | "__flaxBound:package:flutter/src/widgets/framework.dart::InheritedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

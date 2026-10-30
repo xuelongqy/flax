@@ -49,6 +49,57 @@ function classDeclaration(statement) {
   return null;
 }
 
+function localInitialValue(node, parameters = new Set()) {
+  if (!node || node.type === 'Literal') return true;
+  if (node.type === 'Identifier') return parameters.has(node.name);
+  if (node.type === 'ArrayExpression')
+    return node.elements.every((value) => localInitialValue(value, parameters));
+  if (node.type === 'ObjectExpression')
+    return node.properties.every(
+      (property) =>
+        property.type === 'Property' &&
+        !property.computed &&
+        !property.method &&
+        property.kind === 'init' &&
+        localInitialValue(property.value, parameters),
+    );
+  return false;
+}
+
+function localConstructor(node, fields) {
+  const parameters = new Set();
+  for (const parameter of node.params) {
+    const binding = parameter.type === 'AssignmentPattern' ? parameter.left : parameter;
+    if (binding.type !== 'Identifier') return false;
+    parameters.add(binding.name);
+  }
+  if (
+    node.params.some(
+      (parameter) =>
+        parameter.type === 'AssignmentPattern' &&
+        !localInitialValue(parameter.right, parameters),
+    )
+  )
+    return false;
+  return node.body.body.every((statement) => {
+    if (statement.type !== 'ExpressionStatement') return false;
+    const expression = statement.expression;
+    if (expression.type === 'CallExpression' && expression.callee.type === 'Super')
+      return expression.arguments.every((value) =>
+        localInitialValue(value, parameters),
+      );
+    return (
+      expression.type === 'AssignmentExpression' &&
+      expression.operator === '=' &&
+      expression.left.type === 'MemberExpression' &&
+      !expression.left.computed &&
+      expression.left.object.type === 'ThisExpression' &&
+      fields.has(expression.left.property.name) &&
+      localInitialValue(expression.right, parameters)
+    );
+  });
+}
+
 export function instrumentReloadableClasses(code, id) {
   if (id.split(sep).includes('node_modules')) return code;
   const ast = parseSync(id, code).program;
@@ -63,12 +114,24 @@ export function instrumentReloadableClasses(code, id) {
     const fields = [];
     const privateFields = [];
     const init = [];
+    // Assignments to undeclared properties can invoke an own or inherited setter.
+    const ownFields = new Set(
+      declaration.body.body
+        .filter(
+          (member) =>
+            member.type === 'PropertyDefinition' && !member.static && !member.computed,
+        )
+        .map((member) => propertyName(member, code)),
+    );
+    let localInit = true;
     for (const member of declaration.body.body) {
       if (member.type === 'MethodDefinition' && member.kind === 'constructor') {
         init.push(code.slice(member.start, member.end));
+        localInit &&= localConstructor(member.value, ownFields);
       }
       if (member.type === 'PropertyDefinition' && !member.static) {
         init.push(code.slice(member.start, member.end));
+        localInit &&= !member.computed && localInitialValue(member.value);
       }
       if (member.key?.type === 'PrivateIdentifier') {
         privateFields.push(propertyName(member, code));
@@ -91,7 +154,7 @@ export function instrumentReloadableClasses(code, id) {
       end: statement.end,
       source:
         `;\n${name} = globalThis.__flaxModules.dev.class(` +
-        `${JSON.stringify(name)}, ${name}, ${JSON.stringify({ fields, private: privateFields, init: init.join('\n'), context })});` +
+        `${JSON.stringify(name)}, ${name}, ${JSON.stringify({ fields, private: privateFields, init: init.join('\n'), context, localInit })});` +
         (statement.type === 'ExportDefaultDeclaration'
           ? `\nexport { ${name} as default };`
           : ''),
@@ -269,9 +332,11 @@ function acceptedRevisions(data) {
 
 async function writeStartupAsset(state, modules) {
   const temporary = `${state.out}.tmp`;
+  const source = initialSource(state.entryId, modules, state.socketUrl);
   try {
-    await writeFile(temporary, initialSource(state.entryId, modules, state.socketUrl));
+    await writeFile(temporary, source);
     await rename(temporary, state.out);
+    state.startupSource = source;
   } finally {
     await rm(temporary, { force: true });
   }
@@ -286,6 +351,24 @@ function hotPlugin(state) {
     name: 'flax-dev-hot',
     enforce: 'pre',
     configureServer(server) {
+      server.middlewares.use((request, response, next) => {
+        if (new URL(request.url, 'http://localhost').pathname !== '/@flax/dev.js')
+          return next();
+        if (!['GET', 'HEAD'].includes(request.method)) {
+          response.statusCode = 405;
+          response.setHeader('Allow', 'GET, HEAD');
+          response.end();
+          return;
+        }
+        response.setHeader('Cache-Control', 'no-store');
+        if (state.startupSource === null) {
+          response.statusCode = 503;
+          response.end('Flax startup is being prepared');
+          return;
+        }
+        response.setHeader('Content-Type', 'text/javascript; charset=utf-8');
+        response.end(request.method === 'HEAD' ? undefined : state.startupSource);
+      });
       server.ws.on('flax:ready', (data, client) => {
         const revisions = acceptedRevisions(data);
         if (!revisions) return;
@@ -438,6 +521,7 @@ export async function startFlaxDev({ entry, out, port = 5173, root = process.cwd
     pendingUpdate: Promise.resolve(),
     out: resolve(root, out),
     socketUrl: null,
+    startupSource: null,
     server: null,
   };
   const server = await createServer({
@@ -475,7 +559,13 @@ export async function startFlaxDev({ entry, out, port = 5173, root = process.cwd
     state.socketUrl = `ws://127.0.0.1:${actualPort}`;
     await mkdir(dirname(state.out), { recursive: true });
     await writeStartupAsset(state, modules);
-    return { server, entry: entryFile, out: state.out, port: actualPort };
+    return {
+      server,
+      entry: entryFile,
+      out: state.out,
+      port: actualPort,
+      url: `http://127.0.0.1:${actualPort}/@flax/dev.js`,
+    };
   } catch (error) {
     await server.close();
     throw error;

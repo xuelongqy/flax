@@ -23,4 +23,17 @@ export declare function _AspectRatioFactory(options: {
     aspectRatio: Bindable<number>;
     child?: Bindable<Widget | null> | undefined;
 }): AspectRatio;
+export declare namespace _AspectRatioFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AspectRatioFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _AspectRatioFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _AspectRatioFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const AspectRatio: typeof _AspectRatioFactory & _FlaxInstanceType<AspectRatio> & _FlaxDartType<AspectRatio, readonly ["class", "flax.core/flutter#type:AspectRatio", readonly [], false]>;

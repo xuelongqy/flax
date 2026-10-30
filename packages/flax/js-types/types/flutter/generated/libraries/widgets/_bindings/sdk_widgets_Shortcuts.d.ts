@@ -80,6 +80,19 @@ export declare function _ShortcutsFactory(options: {
     includeSemantics?: boolean | undefined;
 }): Shortcuts;
 export declare namespace _ShortcutsFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ShortcutsFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ShortcutsFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ShortcutsFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ShortcutsFactory {
     function manager(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -97,6 +110,19 @@ export declare namespace _ShortcutsFactory {
         debugLabel?: string | null | undefined;
         includeSemantics?: boolean | undefined;
     }): Shortcuts;
+    namespace manager {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof manager>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof manager>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof manager>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const Shortcuts: typeof _ShortcutsFactory & _FlaxInstanceType<Shortcuts> & _FlaxDartType<Shortcuts, readonly ["class", "flax.core/sdk_widgets#type:Shortcuts", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "manager" | "shortcuts" | "child" | "debugLabel" | "includeSemantics" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/shortcuts.dart::Shortcuts" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

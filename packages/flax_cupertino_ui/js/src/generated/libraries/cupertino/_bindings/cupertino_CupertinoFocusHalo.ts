@@ -46,6 +46,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoFocusHalo", "withRect", [{"name":"child","required":true},{"name":"key"}], [], options) as CupertinoFocusHalo;
 }
+export declare namespace withRect { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof withRect>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof withRect>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof withRect>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _CupertinoFocusHaloFactory {
 export function withRRect(options: { child: Widget; borderRadius: Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }>; key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined }): CupertinoFocusHalo {
@@ -53,6 +54,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoFocusHalo", "withRRect", [{"name":"child","required":true},{"name":"borderRadius","required":true},{"name":"key"}], [], options) as CupertinoFocusHalo;
 }
+export declare namespace withRRect { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof withRRect>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof withRRect>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof withRRect>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _CupertinoFocusHaloFactory {
 export function withRoundedSuperellipse(options: { child: Widget; borderRadius: Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }>; key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined }): CupertinoFocusHalo {
@@ -60,6 +62,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoFocusHalo", "withRoundedSuperellipse", [{"name":"child","required":true},{"name":"borderRadius","required":true},{"name":"key"}], [], options) as CupertinoFocusHalo;
 }
+export declare namespace withRoundedSuperellipse { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof withRoundedSuperellipse>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof withRoundedSuperellipse>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof withRoundedSuperellipse>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export const CupertinoFocusHalo: typeof _CupertinoFocusHaloFactory & _FlaxInstanceType<CupertinoFocusHalo> & _FlaxDartType<CupertinoFocusHalo, readonly ["class", "flax.cupertino/cupertino#type:CupertinoFocusHalo", readonly [], false]> = _flaxBindInstanceType<CupertinoFocusHalo, typeof _CupertinoFocusHaloFactory>(_CupertinoFocusHaloFactory, "flax.cupertino/cupertino#type:CupertinoFocusHalo", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _CupertinoFocusHaloFactory & _FlaxInstanceType<CupertinoFocusHalo> & _FlaxDartType<CupertinoFocusHalo, readonly ["class", "flax.cupertino/cupertino#type:CupertinoFocusHalo", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/cupertino_focus_halo.dart::CupertinoFocusHalo" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

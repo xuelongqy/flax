@@ -92,6 +92,13 @@ export declare function _CupertinoTextMagnifierFactory(options: {
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream5.MagnifierInfo];
     }>;
 }): CupertinoTextMagnifier;
+export declare namespace _CupertinoTextMagnifierFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTextMagnifierFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoTextMagnifier: typeof _CupertinoTextMagnifierFactory & _FlaxInstanceType<CupertinoTextMagnifier> & _FlaxDartType<CupertinoTextMagnifier, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTextMagnifier", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "animationCurve" | "controller" | "dragResistance" | "hideBelowThreshold" | "horizontalScreenEdgePadding" | "magnifierInfo" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/magnifier.dart::CupertinoTextMagnifier" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

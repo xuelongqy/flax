@@ -346,6 +346,7 @@ class FlaxView extends StatelessWidget {
     this.sandbox,
     this.loadingBuilder,
     this.errorBuilder,
+    this.developmentMode = false,
     this.namespace,
     this.onError,
     this.plugins,
@@ -369,6 +370,7 @@ class FlaxView extends StatelessWidget {
     String? namespace,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
+    bool developmentMode = false,
     WidgetBuilder? loadingBuilder,
     Widget Function(BuildContext, Object, StackTrace)? errorBuilder,
   }) {
@@ -386,6 +388,7 @@ class FlaxView extends StatelessWidget {
       namespace: namespace,
       onError: onError,
       plugins: plugins,
+      developmentMode: developmentMode,
       loadingBuilder: loadingBuilder,
       errorBuilder: errorBuilder,
       input: _BundleInput(prefix),
@@ -404,6 +407,7 @@ class FlaxView extends StatelessWidget {
     String? namespace,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
+    bool developmentMode = false,
     WidgetBuilder? loadingBuilder,
     Widget Function(BuildContext, Object, StackTrace)? errorBuilder,
   }) => FlaxView._application(
@@ -417,6 +421,7 @@ class FlaxView extends StatelessWidget {
     namespace: namespace,
     onError: onError,
     plugins: plugins,
+    developmentMode: developmentMode,
     loadingBuilder: loadingBuilder,
     errorBuilder: errorBuilder,
     input: _DirectoryInput(directory.absolute.path),
@@ -436,6 +441,7 @@ class FlaxView extends StatelessWidget {
     String? namespace,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
+    bool developmentMode = false,
     WidgetBuilder? loadingBuilder,
     Widget Function(BuildContext, Object, StackTrace)? errorBuilder,
   }) => FlaxView._application(
@@ -449,6 +455,7 @@ class FlaxView extends StatelessWidget {
     namespace: namespace,
     onError: onError,
     plugins: plugins,
+    developmentMode: developmentMode,
     loadingBuilder: loadingBuilder,
     errorBuilder: errorBuilder,
     input: _PackageInput(
@@ -471,6 +478,7 @@ class FlaxView extends StatelessWidget {
     String? namespace,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
+    bool developmentMode = false,
     WidgetBuilder? loadingBuilder,
     Widget Function(BuildContext, Object, StackTrace)? errorBuilder,
   }) => FlaxView._application(
@@ -484,6 +492,7 @@ class FlaxView extends StatelessWidget {
     namespace: namespace,
     onError: onError,
     plugins: plugins,
+    developmentMode: developmentMode,
     loadingBuilder: loadingBuilder,
     errorBuilder: errorBuilder,
     input: _FileInput(file.absolute.path),
@@ -509,6 +518,7 @@ class FlaxView extends StatelessWidget {
     String? namespace,
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
+    bool developmentMode = false,
     WidgetBuilder? loadingBuilder,
     Widget Function(BuildContext, Object, StackTrace)? errorBuilder,
   }) {
@@ -535,6 +545,7 @@ class FlaxView extends StatelessWidget {
       namespace: namespace,
       onError: onError,
       plugins: plugins,
+      developmentMode: developmentMode,
       loadingBuilder: loadingBuilder,
       errorBuilder: errorBuilder,
       input: _NetworkInput(options),
@@ -552,6 +563,7 @@ class FlaxView extends StatelessWidget {
     this.plugins,
     this.loadingBuilder,
     this.errorBuilder,
+    this.developmentMode = false,
     this.sandbox,
     this.imports = const {},
     this.loadModule,
@@ -566,6 +578,7 @@ class FlaxView extends StatelessWidget {
     : _input = null,
       loadingBuilder = null,
       errorBuilder = null,
+      developmentMode = false,
       // Keep the public parameter named session rather than exposing the field.
       // ignore: prefer_initializing_formals
       _session = session,
@@ -593,6 +606,7 @@ class FlaxView extends StatelessWidget {
   }) : _input = null,
        loadingBuilder = null,
        errorBuilder = null,
+       developmentMode = false,
        // ignore: prefer_initializing_formals
        _session = session,
        _pageName = name,
@@ -617,6 +631,11 @@ class FlaxView extends StatelessWidget {
   final FlaxSandbox? sandbox;
 
   final _ApplicationInput? _input;
+
+  /// Enables Flax development tools in debug builds for owning Views.
+  /// Currently includes a movable button that re-reads the configured input
+  /// and resets the session state. Ignored in profile and release builds.
+  final bool developmentMode;
 
   /// Optional presentation while an automatic entrance is reading or installing.
   final WidgetBuilder? loadingBuilder;
@@ -643,6 +662,15 @@ class FlaxView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (kDebugMode && developmentMode && _session == null) {
+      return _DevelopmentView(
+        builder: (onLoaded) => _build(context, onLoaded: onLoaded),
+      );
+    }
+    return _build(context);
+  }
+
+  Widget _build(BuildContext context, {VoidCallback? onLoaded}) {
     // An explicit business root can be the same object as the default host bundle.
     final input = _input;
     if (input != null) {
@@ -667,6 +695,7 @@ class FlaxView extends StatelessWidget {
           imports,
           sandbox,
         )),
+        onLoaded: onLoaded,
         configuration: this,
         inheritedBundle: bundle,
       );
@@ -698,6 +727,7 @@ class FlaxView extends StatelessWidget {
               assetBundle != null,
             ),
       ),
+      onLoaded: onLoaded,
       configuration: this,
       assetBundle: bundle,
     );
@@ -710,7 +740,9 @@ class _SessionRoot extends StatefulWidget {
     required this.configuration,
     required this.assetBundle,
     this.application,
+    this.onLoaded,
   });
+  final VoidCallback? onLoaded;
   final FlaxApplication? application;
   final FlaxView configuration;
   final AssetBundle assetBundle;
@@ -781,6 +813,7 @@ class _SessionRootState extends State<_SessionRoot> {
             widget.configuration.errorBuilder?.call(context, error, stack) ??
             _errorWidget(error);
       });
+      widget.onLoaded?.call();
       _report(error, stack);
       return;
     }
@@ -804,6 +837,8 @@ class _SessionRootState extends State<_SessionRoot> {
       _preparationComplete = true;
       _root = _errorWidget(error);
       _report(error, stack);
+    } finally {
+      if (_preparationComplete) widget.onLoaded?.call();
     }
   }
 
@@ -881,7 +916,9 @@ class _ApplicationView extends StatefulWidget {
     super.key,
     required this.configuration,
     required this.inheritedBundle,
+    this.onLoaded,
   });
+  final VoidCallback? onLoaded;
   final FlaxView configuration;
   final AssetBundle inheritedBundle;
   @override
@@ -966,6 +1003,7 @@ class _ApplicationViewState extends State<_ApplicationView> {
         _error = error;
         _stack = stack;
       });
+      widget.onLoaded?.call();
       if (widget.configuration.onError case final callback?) {
         callback(error, stack);
       } else {
@@ -998,6 +1036,7 @@ class _ApplicationViewState extends State<_ApplicationView> {
       configuration: configuration,
       assetBundle: application.assetBundle,
       application: application,
+      onLoaded: widget.onLoaded,
     );
   }
 }

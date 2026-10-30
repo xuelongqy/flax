@@ -37,4 +37,17 @@ export declare function _CupertinoPageScaffoldFactory(options: {
     resizeToAvoidBottomInset?: Bindable<boolean> | undefined;
     child: Bindable<Widget>;
 }): CupertinoPageScaffold;
+export declare namespace _CupertinoPageScaffoldFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageScaffoldFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageScaffoldFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageScaffoldFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const CupertinoPageScaffold: typeof _CupertinoPageScaffoldFactory & _FlaxInstanceType<CupertinoPageScaffold> & _FlaxDartType<CupertinoPageScaffold, readonly ["class", "flax.cupertino/cupertino#type:CupertinoPageScaffold", readonly [], false]>;

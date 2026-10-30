@@ -71,12 +71,38 @@ export declare function _HeroControllerScopeFactory(options: {
     child: Widget;
 }): HeroControllerScope;
 export declare namespace _HeroControllerScopeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _HeroControllerScopeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _HeroControllerScopeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _HeroControllerScopeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _HeroControllerScopeFactory {
     function none(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
         child: Widget;
     }): HeroControllerScope;
+    namespace none {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _HeroControllerScopeFactory {
     function maybeOf(context: upstream4.BuildContext): upstream3.HeroController | null;

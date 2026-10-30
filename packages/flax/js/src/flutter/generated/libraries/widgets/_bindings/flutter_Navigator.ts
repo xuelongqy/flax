@@ -31,6 +31,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:Navigator", "", [{"name":"key"},{"name":"pages"},{"name":"onPopPage"},{"name":"initialRoute"},{"name":"onGenerateInitialRoutes"},{"name":"onGenerateRoute"},{"name":"onUnknownRoute"},{"name":"transitionDelegate"},{"name":"reportsRouteUpdateToEngine"},{"name":"clipBehavior"},{"name":"observers"},{"name":"requestFocus"},{"name":"restorationScopeId"},{"name":"routeTraversalEdgeBehavior"},{"name":"routeDirectionalTraversalEdgeBehavior"},{"name":"onDidRemovePage"}], [], options) as Navigator;
 }
+export declare namespace _NavigatorFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigatorFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _NavigatorFactory { export declare const defaultRouteName: string; }
 _flaxDefineStaticGetters(_NavigatorFactory, "flax.core/flutter#read:Navigator.", ["defaultRouteName"]);
 export namespace _NavigatorFactory { function _flaxDefault_pushNamed<T extends unknown | null = unknown | null>(context: upstream9.BuildContext, routeName: string, options: { arguments?: unknown | null | undefined } = {}): Promise<_FlaxDartOutput<T> | null> {

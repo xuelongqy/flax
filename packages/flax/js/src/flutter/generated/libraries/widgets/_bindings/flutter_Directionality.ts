@@ -16,6 +16,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:Directionality", "", [{"name":"key"},{"name":"textDirection","required":true},{"name":"child","required":true}], [], options) as Directionality;
 }
+export declare namespace _DirectionalityFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DirectionalityFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DirectionalityFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _DirectionalityFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _DirectionalityFactory { export function of(context: upstream2.BuildContext): upstream1.TextDirection {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/flutter#function:Directionality.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters50);

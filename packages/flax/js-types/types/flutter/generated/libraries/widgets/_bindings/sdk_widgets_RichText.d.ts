@@ -168,6 +168,13 @@ export declare function _RichTextFactory(options: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
 }): RichText;
+export declare namespace _RichTextFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _RichTextFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const RichText: typeof _RichTextFactory & _FlaxInstanceType<RichText> & _FlaxDartType<RichText, readonly ["class", "flax.core/sdk_widgets#type:RichText", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "text" | "textAlign" | "textDirection" | "softWrap" | "overflow" | "textScaleFactor" | "textScaler" | "maxLines" | "locale" | "strutStyle" | "textWidthBasis" | "textHeightBehavior" | "selectionRegistrar" | "selectionColor" | "children" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::RichText" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -158,6 +158,13 @@ export declare function _FadeInImageFactory(options: {
     matchTextDirection?: boolean | undefined;
 }): FadeInImage;
 export declare namespace _FadeInImageFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _FadeInImageFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _FadeInImageFactory {
     function memoryNetwork(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -214,6 +221,13 @@ export declare namespace _FadeInImageFactory {
         imageCacheWidth?: number | null | undefined;
         imageCacheHeight?: number | null | undefined;
     }): FadeInImage;
+    namespace memoryNetwork {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof memoryNetwork>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _FadeInImageFactory {
     function assetNetwork(options: {
@@ -275,6 +289,13 @@ export declare namespace _FadeInImageFactory {
         imageCacheWidth?: number | null | undefined;
         imageCacheHeight?: number | null | undefined;
     }): FadeInImage;
+    namespace assetNetwork {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof assetNetwork>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const FadeInImage: typeof _FadeInImageFactory & _FlaxInstanceType<FadeInImage> & _FlaxDartType<FadeInImage, readonly ["class", "flax.core/sdk_widgets#type:FadeInImage", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "placeholder" | "placeholderErrorBuilder" | "image" | "imageErrorBuilder" | "fadeOutDuration" | "fadeOutCurve" | "fadeInDuration" | "fadeInCurve" | "width" | "color" | "colorBlendMode" | "placeholderColor" | "placeholderColorBlendMode" | "height" | "fit" | "placeholderFit" | "filterQuality" | "placeholderFilterQuality" | "alignment" | "repeat" | "matchTextDirection" | "excludeFromSemantics" | "imageSemanticLabel" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/fade_in_image.dart::FadeInImage" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

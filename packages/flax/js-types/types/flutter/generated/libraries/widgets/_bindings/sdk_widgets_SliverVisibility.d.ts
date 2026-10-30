@@ -74,6 +74,13 @@ export declare function _SliverVisibilityFactory(options: {
     maintainInteractivity?: boolean | undefined;
 }): SliverVisibility;
 export declare namespace _SliverVisibilityFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverVisibilityFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliverVisibilityFactory {
     function maintain(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -82,6 +89,13 @@ export declare namespace _SliverVisibilityFactory {
         replacementSliver?: Widget | undefined;
         visible?: boolean | undefined;
     }): SliverVisibility;
+    namespace maintain {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof maintain>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const SliverVisibility: typeof _SliverVisibilityFactory & _FlaxInstanceType<SliverVisibility> & _FlaxDartType<SliverVisibility, readonly ["class", "flax.core/sdk_widgets#type:SliverVisibility", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "sliver" | "replacementSliver" | "visible" | "maintainState" | "maintainAnimation" | "maintainSize" | "maintainSemantics" | "maintainInteractivity" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/indexed_stack.dart::SliverVisibility" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

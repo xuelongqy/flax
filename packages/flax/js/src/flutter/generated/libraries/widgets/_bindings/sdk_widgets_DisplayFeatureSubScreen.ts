@@ -48,6 +48,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:DisplayFeatureSubScreen", "", [{"name":"key"},{"name":"anchorPoint"},{"name":"child","required":true}], [], options) as DisplayFeatureSubScreen;
 }
+export declare namespace _DisplayFeatureSubScreenFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DisplayFeatureSubScreenFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DisplayFeatureSubScreenFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _DisplayFeatureSubScreenFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _DisplayFeatureSubScreenFactory { export function avoidBounds(mediaQuery: Readonly<{ "__flaxBound:package:flutter/src/widgets/media_query.dart::MediaQueryData": readonly [] }>): DartIterable<upstream3.Rect> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:DisplayFeatureSubScreen.avoidBounds", [mediaQuery], _flaxMemberParameters95);

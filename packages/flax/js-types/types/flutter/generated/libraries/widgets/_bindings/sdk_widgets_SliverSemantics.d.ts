@@ -238,6 +238,13 @@ export declare function _SliverSemanticsFactory(options: {
     maxValue?: string | null | undefined;
 }): SliverSemantics;
 export declare namespace _SliverSemanticsFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverSemanticsFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliverSemanticsFactory {
     function fromProperties(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -258,6 +265,19 @@ export declare namespace _SliverSemanticsFactory {
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>;
     }): SliverSemantics;
+    namespace fromProperties {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof fromProperties>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof fromProperties>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof fromProperties>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const SliverSemantics: typeof _SliverSemanticsFactory & _FlaxInstanceType<SliverSemantics> & _FlaxDartType<SliverSemantics, readonly ["class", "flax.core/sdk_widgets#type:SliverSemantics", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "properties" | "container" | "explicitChildNodes" | "localeForSubtree" | "excludeSemantics" | "blockUserActions" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::SliverSemantics" | "__flaxBound:package:flutter/src/widgets/basic.dart::_SemanticsBase" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

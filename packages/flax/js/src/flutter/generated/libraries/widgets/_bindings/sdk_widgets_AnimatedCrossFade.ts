@@ -65,6 +65,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:AnimatedCrossFade", "", [{"name":"key"},{"name":"firstChild","required":true},{"name":"secondChild","required":true},{"name":"firstCurve"},{"name":"secondCurve"},{"name":"sizeCurve"},{"name":"alignment"},{"name":"crossFadeState","required":true},{"name":"duration","required":true},{"name":"reverseDuration"},{"name":"layoutBuilder"},{"name":"excludeBottomFocus"},{"name":"clipBehavior"},{"name":"onEnd"}], [], options) as AnimatedCrossFade;
 }
+export declare namespace _AnimatedCrossFadeFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedCrossFadeFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _AnimatedCrossFadeFactory { export function defaultLayoutBuilder(topChild: Widget, topChildKey: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }>, bottomChild: Widget, bottomChildKey: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }>): Widget {
 if (arguments.length > 4) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AnimatedCrossFade.defaultLayoutBuilder", [topChild, topChildKey, bottomChild, bottomChildKey], _flaxMemberParameters16);

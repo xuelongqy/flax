@@ -61,6 +61,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoMagnifier", "", [{"name":"key"},{"name":"size"},{"name":"borderRadius"},{"name":"additionalFocalPointOffset"},{"name":"shadows"},{"name":"clipBehavior"},{"name":"borderSide"},{"name":"inOutAnimation"},{"name":"magnificationScale"}], [], options) as CupertinoMagnifier;
 }
+export declare namespace _CupertinoMagnifierFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoMagnifierFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _CupertinoMagnifierFactory { export declare const kMagnifierAboveFocalPoint: number; }
 export namespace _CupertinoMagnifierFactory { export declare const kDefaultSize: upstream2.Size; }
 _flaxDefineStaticGetters(_CupertinoMagnifierFactory, "flax.cupertino/cupertino#read:CupertinoMagnifier.", ["kMagnifierAboveFocalPoint","kDefaultSize"]);

@@ -62,6 +62,19 @@ export declare namespace _CupertinoFocusHaloFactory {
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
     }): CupertinoFocusHalo;
+    namespace withRect {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof withRect>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof withRect>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof withRect>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoFocusHaloFactory {
     function withRRect(options: {
@@ -73,6 +86,19 @@ export declare namespace _CupertinoFocusHaloFactory {
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
     }): CupertinoFocusHalo;
+    namespace withRRect {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof withRRect>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof withRRect>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof withRRect>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoFocusHaloFactory {
     function withRoundedSuperellipse(options: {
@@ -84,6 +110,19 @@ export declare namespace _CupertinoFocusHaloFactory {
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
     }): CupertinoFocusHalo;
+    namespace withRoundedSuperellipse {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof withRoundedSuperellipse>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof withRoundedSuperellipse>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof withRoundedSuperellipse>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const CupertinoFocusHalo: typeof _CupertinoFocusHaloFactory & _FlaxInstanceType<CupertinoFocusHalo> & _FlaxDartType<CupertinoFocusHalo, readonly ["class", "flax.cupertino/cupertino#type:CupertinoFocusHalo", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/cupertino_focus_halo.dart::CupertinoFocusHalo" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

@@ -103,6 +103,13 @@ export declare function _AnimatedModalBarrierFactory(options: {
     }>) | null | undefined;
     semanticsOnTapHint?: string | null | undefined;
 }): AnimatedModalBarrier;
+export declare namespace _AnimatedModalBarrierFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedModalBarrierFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const AnimatedModalBarrier: typeof _AnimatedModalBarrierFactory & _FlaxInstanceType<AnimatedModalBarrier> & _FlaxDartType<AnimatedModalBarrier, readonly ["class", "flax.core/sdk_widgets#type:AnimatedModalBarrier", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "color" | "dismissible" | "semanticsLabel" | "barrierSemanticsDismissible" | "onDismiss" | "clipDetailsNotifier" | "semanticsOnTapHint" | "listenable" | "key" | "build" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/modal_barrier.dart::AnimatedModalBarrier" | "__flaxBound:package:flutter/src/widgets/transitions.dart::AnimatedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

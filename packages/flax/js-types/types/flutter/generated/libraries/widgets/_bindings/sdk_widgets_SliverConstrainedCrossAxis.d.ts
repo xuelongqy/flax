@@ -61,6 +61,13 @@ export declare function _SliverConstrainedCrossAxisFactory(options: {
     maxExtent: number;
     sliver: Widget;
 }): SliverConstrainedCrossAxis;
+export declare namespace _SliverConstrainedCrossAxisFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverConstrainedCrossAxisFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverConstrainedCrossAxis: typeof _SliverConstrainedCrossAxisFactory & _FlaxInstanceType<SliverConstrainedCrossAxis> & _FlaxDartType<SliverConstrainedCrossAxis, readonly ["class", "flax.core/sdk_widgets#type:SliverConstrainedCrossAxis", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "maxExtent" | "sliver" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverConstrainedCrossAxis" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

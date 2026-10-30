@@ -71,6 +71,13 @@ export declare function _CupertinoSliverRefreshControlFactory(options?: {
     onRefresh?: (() => Promise<void>) | null | undefined;
 }): CupertinoSliverRefreshControl;
 export declare namespace _CupertinoSliverRefreshControlFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoSliverRefreshControlFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoSliverRefreshControlFactory {
     function buildRefreshIndicator(context: upstream2.BuildContext, refreshState: upstream3.RefreshIndicatorMode, pulledExtent: number, refreshTriggerPullDistance: number, refreshIndicatorExtent: number): Widget;
 }
 export declare const CupertinoSliverRefreshControl: typeof _CupertinoSliverRefreshControlFactory & _FlaxInstanceType<CupertinoSliverRefreshControl> & _FlaxDartType<CupertinoSliverRefreshControl, readonly ["class", "flax.cupertino/cupertino#type:CupertinoSliverRefreshControl", readonly [], false]>;

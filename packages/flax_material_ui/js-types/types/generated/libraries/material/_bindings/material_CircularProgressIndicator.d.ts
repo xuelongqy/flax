@@ -76,6 +76,13 @@ export declare function _CircularProgressIndicatorFactory(options?: {
     }>) | null> | undefined;
 }): CircularProgressIndicator;
 export declare namespace _CircularProgressIndicatorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CircularProgressIndicatorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CircularProgressIndicatorFactory {
     function adaptive(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -122,6 +129,13 @@ export declare namespace _CircularProgressIndicatorFactory {
             "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin": readonly [];
         }>) | null> | undefined;
     }): CircularProgressIndicator;
+    namespace adaptive {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CircularProgressIndicatorFactory {
     const strokeAlignInside: number;

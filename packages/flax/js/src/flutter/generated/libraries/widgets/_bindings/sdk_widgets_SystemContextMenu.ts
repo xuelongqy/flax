@@ -55,6 +55,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SystemContextMenu", "editableText", [{"name":"key"},{"name":"editableTextState","required":true},{"name":"items"}], [], options) as SystemContextMenu;
 }
+export declare namespace editableText { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof editableText>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _SystemContextMenuFactory { export function isSupported(context: upstream5.BuildContext): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

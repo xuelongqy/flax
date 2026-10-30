@@ -72,6 +72,19 @@ export declare function _SliverFloatingHeaderFactory(options: {
     snapMode?: upstream3.FloatingHeaderSnapMode | null | undefined;
     child: Widget;
 }): SliverFloatingHeader;
+export declare namespace _SliverFloatingHeaderFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SliverFloatingHeaderFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SliverFloatingHeaderFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverFloatingHeaderFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const SliverFloatingHeader: typeof _SliverFloatingHeaderFactory & _FlaxInstanceType<SliverFloatingHeader> & _FlaxDartType<SliverFloatingHeader, readonly ["class", "flax.core/sdk_widgets#type:SliverFloatingHeader", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "animationStyle" | "snapMode" | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver_floating_header.dart::SliverFloatingHeader" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -55,12 +55,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:Localizations", "", [{"name":"key"},{"name":"locale","required":true},{"name":"delegates","required":true},{"name":"child"},{"name":"isApplicationLevel"}], [], options) as Localizations;
 }
+export declare namespace _LocalizationsFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _LocalizationsFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _LocalizationsFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _LocalizationsFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _LocalizationsFactory {
 export function override(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; context: upstream4.BuildContext; locale?: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }> | null | undefined; delegates?: DartListInput<upstream3.LocalizationsDelegate<unknown | null>, Readonly<{ "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsDelegate": readonly [unknown | null] }>> | null | undefined; child?: Widget | null | undefined }): Localizations {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:Localizations", "override", [{"name":"key"},{"name":"context","required":true},{"name":"locale"},{"name":"delegates"},{"name":"child"}], [], options) as Localizations;
 }
+export declare namespace override { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof override>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof override>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof override>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _LocalizationsFactory { export function localeOf(context: upstream4.BuildContext): upstream2.Locale {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

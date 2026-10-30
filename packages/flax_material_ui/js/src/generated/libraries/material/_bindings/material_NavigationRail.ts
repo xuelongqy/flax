@@ -83,6 +83,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:NavigationRail", "", [{"name":"key"},{"name":"backgroundColor"},{"name":"extended"},{"name":"leading"},{"name":"trailing"},{"name":"destinations","required":true},{"name":"selectedIndex","required":true},{"name":"onDestinationSelected"},{"name":"elevation"},{"name":"groupAlignment"},{"name":"labelType"},{"name":"unselectedLabelTextStyle"},{"name":"selectedLabelTextStyle"},{"name":"unselectedIconTheme"},{"name":"selectedIconTheme"},{"name":"minWidth"},{"name":"minExtendedWidth"},{"name":"useIndicator"},{"name":"indicatorColor"},{"name":"indicatorShape"},{"name":"leadingAtTop"},{"name":"trailingAtBottom"},{"name":"scrollable"},{"name":"mainAxisAlignment"}], [], options) as NavigationRail;
 }
+export declare namespace _NavigationRailFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationRailFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _NavigationRailFactory { export function extendedAnimation(context: upstream10.BuildContext): upstream9.Animation<number> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:NavigationRail.extendedAnimation", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

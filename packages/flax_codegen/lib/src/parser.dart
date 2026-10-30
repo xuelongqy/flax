@@ -1289,6 +1289,7 @@ class FlaxCodegenBindingParser {
       own.constructors,
       widgetInterfaces: own.widgetInterfaces,
       jsName: own.jsName,
+      jsxContent: own.jsxContent,
       kind: kind,
       asyncIterableFactory: own.asyncIterableFactory,
       callbackSignatures: {
@@ -4011,6 +4012,11 @@ class FlaxCodegenBindingParser {
           name: _typeLibraryUri(name, scope),
       },
       stateVariants: stateVariants,
+      jsxContentSlots: {
+        for (final entry in config.classes.entries)
+          if (entry.value.jsxContent != null)
+            entry.key: entry.value.jsxContent!,
+      },
     );
     final sandboxRules = await _sandboxRules(
       config,
@@ -4025,6 +4031,7 @@ class FlaxCodegenBindingParser {
       dartOutput: module.dartOutput,
       tsOutput: module.tsOutput,
       classes: module.classes,
+      jsxContentSlots: module.jsxContentSlots,
       types: module.types,
       functions: module.functions,
       extensions: module.extensions,

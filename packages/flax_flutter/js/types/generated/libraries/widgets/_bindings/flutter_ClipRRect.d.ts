@@ -37,4 +37,17 @@ export declare function _ClipRRectFactory(options?: {
     clipBehavior?: Bindable<upstream4.Clip> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): ClipRRect;
+export declare namespace _ClipRRectFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ClipRRectFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _ClipRRectFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ClipRRectFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const ClipRRect: typeof _ClipRRectFactory & _FlaxInstanceType<ClipRRect> & _FlaxDartType<ClipRRect, readonly ["class", "flax.core/flutter#type:ClipRRect", readonly [], false]>;

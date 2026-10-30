@@ -200,6 +200,13 @@ export declare function _AppBarFactory(options?: {
     animateColor?: boolean | undefined;
 }): AppBar;
 export declare namespace _AppBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AppBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _AppBarFactory {
     function preferredHeightFor(context: upstream12.BuildContext, preferredSize: Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];
     }> & Readonly<{

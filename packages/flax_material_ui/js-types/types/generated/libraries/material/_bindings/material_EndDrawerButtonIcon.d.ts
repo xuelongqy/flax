@@ -57,6 +57,13 @@ export declare function _EndDrawerButtonIconFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
 }): EndDrawerButtonIcon;
+export declare namespace _EndDrawerButtonIconFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _EndDrawerButtonIconFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const EndDrawerButtonIcon: typeof _EndDrawerButtonIconFactory & _FlaxInstanceType<EndDrawerButtonIcon> & _FlaxDartType<EndDrawerButtonIcon, readonly ["class", "flax.material/material#type:EndDrawerButtonIcon", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/action_buttons.dart::EndDrawerButtonIcon" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

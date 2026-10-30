@@ -61,6 +61,13 @@ export declare function _OrientationBuilderFactory(options: {
     }> | null | undefined;
     builder: ((context: upstream2.BuildContext, orientation: upstream3.Orientation) => Widget);
 }): OrientationBuilder;
+export declare namespace _OrientationBuilderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _OrientationBuilderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const OrientationBuilder: typeof _OrientationBuilderFactory & _FlaxInstanceType<OrientationBuilder> & _FlaxDartType<OrientationBuilder, readonly ["class", "flax.core/sdk_widgets#type:OrientationBuilder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "builder" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/orientation_builder.dart::OrientationBuilder" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -93,6 +93,19 @@ export declare function _InkFactory(options?: {
     child?: Widget | null | undefined;
 }): Ink;
 export declare namespace _InkFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _InkFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _InkFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _InkFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _InkFactory {
     function image(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -122,6 +135,19 @@ export declare namespace _InkFactory {
         height?: number | null | undefined;
         child?: Widget | null | undefined;
     }): Ink;
+    namespace image {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof image>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof image>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof image>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const Ink: typeof _InkFactory & _FlaxInstanceType<Ink> & _FlaxDartType<Ink, readonly ["class", "flax.material/material#type:Ink", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "padding" | "decoration" | "width" | "height" | "key" | "debugFillProperties" | "createState" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/ink_decoration.dart::Ink" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

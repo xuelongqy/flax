@@ -78,6 +78,19 @@ export declare function _AutocompleteHighlightedOptionFactory(options: {
     child: Widget;
 }): AutocompleteHighlightedOption;
 export declare namespace _AutocompleteHighlightedOptionFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AutocompleteHighlightedOptionFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _AutocompleteHighlightedOptionFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _AutocompleteHighlightedOptionFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _AutocompleteHighlightedOptionFactory {
     function of(context: upstream5.BuildContext): number;
 }
 export declare const AutocompleteHighlightedOption: typeof _AutocompleteHighlightedOptionFactory & _FlaxInstanceType<AutocompleteHighlightedOption> & _FlaxDartType<AutocompleteHighlightedOption, readonly ["class", "flax.core/sdk_widgets#type:AutocompleteHighlightedOption", readonly [], false]>;

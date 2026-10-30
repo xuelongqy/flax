@@ -206,6 +206,13 @@ export declare function _CupertinoSearchTextFieldFactory(options?: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
 }): CupertinoSearchTextField;
+export declare namespace _CupertinoSearchTextFieldFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoSearchTextFieldFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoSearchTextField: typeof _CupertinoSearchTextFieldFactory & _FlaxInstanceType<CupertinoSearchTextField> & _FlaxDartType<CupertinoSearchTextField, readonly ["class", "flax.cupertino/cupertino#type:CupertinoSearchTextField", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "onChanged" | "onSubmitted" | "style" | "placeholder" | "placeholderStyle" | "decoration" | "backgroundColor" | "borderRadius" | "keyboardType" | "padding" | "itemColor" | "itemSize" | "prefixInsets" | "prefixIcon" | "suffixInsets" | "suffixIcon" | "suffixMode" | "onSuffixTap" | "restorationId" | "focusNode" | "autofocus" | "onTap" | "autocorrect" | "smartQuotesType" | "smartDashesType" | "enableIMEPersonalizedLearning" | "enabled" | "cursorWidth" | "cursorHeight" | "cursorRadius" | "cursorOpacityAnimates" | "cursorColor" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/search_field.dart::CupertinoSearchTextField" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

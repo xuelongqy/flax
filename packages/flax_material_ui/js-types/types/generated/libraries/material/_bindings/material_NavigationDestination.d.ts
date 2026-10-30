@@ -24,4 +24,11 @@ export declare function _NavigationDestinationFactory(options: {
     tooltip?: Bindable<string | null> | undefined;
     enabled?: Bindable<boolean> | undefined;
 }): NavigationDestination;
+export declare namespace _NavigationDestinationFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationDestinationFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const NavigationDestination: typeof _NavigationDestinationFactory & _FlaxInstanceType<NavigationDestination> & _FlaxDartType<NavigationDestination, readonly ["class", "flax.material/material#type:NavigationDestination", readonly [], false]>;

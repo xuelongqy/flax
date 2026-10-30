@@ -73,6 +73,19 @@ export declare function _AboutListTileFactory(options?: {
     aboutBoxChildren?: DartListInput<Widget, Widget> | null | undefined;
     dense?: boolean | null | undefined;
 }): AboutListTile;
+export declare namespace _AboutListTileFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AboutListTileFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _AboutListTileFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _AboutListTileFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const AboutListTile: typeof _AboutListTileFactory & _FlaxInstanceType<AboutListTile> & _FlaxDartType<AboutListTile, readonly ["class", "flax.material/material#type:AboutListTile", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "icon" | "child" | "applicationName" | "applicationVersion" | "applicationIcon" | "applicationLegalese" | "aboutBoxChildren" | "dense" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/about.dart::AboutListTile" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

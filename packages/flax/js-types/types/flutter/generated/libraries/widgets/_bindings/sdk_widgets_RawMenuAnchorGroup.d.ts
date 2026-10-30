@@ -66,6 +66,19 @@ export declare function _RawMenuAnchorGroupFactory(options: {
         "__flaxBound:package:flutter/src/widgets/raw_menu_anchor.dart::MenuController": readonly [];
     }>;
 }): RawMenuAnchorGroup;
+export declare namespace _RawMenuAnchorGroupFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RawMenuAnchorGroupFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _RawMenuAnchorGroupFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _RawMenuAnchorGroupFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const RawMenuAnchorGroup: typeof _RawMenuAnchorGroupFactory & _FlaxInstanceType<RawMenuAnchorGroup> & _FlaxDartType<RawMenuAnchorGroup, readonly ["class", "flax.core/sdk_widgets#type:RawMenuAnchorGroup", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "controller" | "key" | "debugFillProperties" | "createState" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/raw_menu_anchor.dart::RawMenuAnchorGroup" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

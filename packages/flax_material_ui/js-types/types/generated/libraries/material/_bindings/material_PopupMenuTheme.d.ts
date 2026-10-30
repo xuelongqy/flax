@@ -75,6 +75,19 @@ export declare function _PopupMenuThemeFactory(options: {
     child: Widget;
 }): PopupMenuTheme;
 export declare namespace _PopupMenuThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _PopupMenuThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _PopupMenuThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _PopupMenuThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _PopupMenuThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.PopupMenuThemeData;
 }
 export declare const PopupMenuTheme: typeof _PopupMenuThemeFactory & _FlaxInstanceType<PopupMenuTheme> & _FlaxDartType<PopupMenuTheme, readonly ["class", "flax.material/material#type:PopupMenuTheme", readonly [], false]>;

@@ -128,6 +128,19 @@ export declare function _CompositedTransformFollowerFactory(options: {
     }>) | undefined;
     child?: Widget | null | undefined;
 }): CompositedTransformFollower;
+export declare namespace _CompositedTransformFollowerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CompositedTransformFollowerFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _CompositedTransformFollowerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _CompositedTransformFollowerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const CompositedTransformFollower: typeof _CompositedTransformFollowerFactory & _FlaxInstanceType<CompositedTransformFollower> & _FlaxDartType<CompositedTransformFollower, readonly ["class", "flax.core/sdk_widgets#type:CompositedTransformFollower", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "link" | "showWhenUnlinked" | "targetAnchor" | "followerAnchor" | "offset" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::CompositedTransformFollower" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

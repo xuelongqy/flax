@@ -134,6 +134,13 @@ export declare function _ListTileFactory(options?: {
     }>) | null> | undefined;
 }): ListTile;
 export declare namespace _ListTileFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ListTileFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _ListTileFactory {
     function divideTiles(options: {
         color?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];

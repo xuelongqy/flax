@@ -66,6 +66,19 @@ export declare function _UnmanagedRestorationScopeFactory(options: {
     }> | null | undefined;
     child: Widget;
 }): UnmanagedRestorationScope;
+export declare namespace _UnmanagedRestorationScopeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _UnmanagedRestorationScopeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _UnmanagedRestorationScopeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _UnmanagedRestorationScopeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const UnmanagedRestorationScope: typeof _UnmanagedRestorationScopeFactory & _FlaxInstanceType<UnmanagedRestorationScope> & _FlaxDartType<UnmanagedRestorationScope, readonly ["class", "flax.core/sdk_widgets#type:UnmanagedRestorationScope", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "bucket" | "child" | "key" | "updateShouldNotify" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/restoration.dart::UnmanagedRestorationScope" | "__flaxBound:package:flutter/src/widgets/framework.dart::InheritedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

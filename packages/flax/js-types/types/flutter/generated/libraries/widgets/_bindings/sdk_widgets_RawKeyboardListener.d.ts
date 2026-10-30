@@ -88,6 +88,19 @@ export declare function _RawKeyboardListenerFactory(options: {
     onKey?: ((value: upstream3.RawKeyEvent) => void) | null | undefined;
     child: Widget;
 }): RawKeyboardListener;
+export declare namespace _RawKeyboardListenerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RawKeyboardListenerFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _RawKeyboardListenerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _RawKeyboardListenerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const RawKeyboardListener: typeof _RawKeyboardListenerFactory & _FlaxInstanceType<RawKeyboardListener> & _FlaxDartType<RawKeyboardListener, readonly ["class", "flax.core/sdk_widgets#type:RawKeyboardListener", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "focusNode" | "autofocus" | "includeSemantics" | "onKey" | "child" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/raw_keyboard_listener.dart::RawKeyboardListener" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

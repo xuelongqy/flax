@@ -1594,12 +1594,16 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         : const <String, List<String>>{};
     final kind = fields.contains('kind') ? selection.kind : null;
     final jsName = fields.contains('jsName') ? selection.jsName : null;
+    final jsxContent = fields.contains('jsxContent')
+        ? selection.jsxContent
+        : null;
     if (operators.isEmpty &&
         constructors.isEmpty &&
         typeArguments.isEmpty &&
         kind == null &&
         proxy == null &&
-        jsName == null) {
+        jsName == null &&
+        jsxContent == null) {
       return null;
     }
     return FlaxCodegenClassSelection(
@@ -1609,6 +1613,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       kind: kind,
       proxy: proxy,
       jsName: jsName,
+      jsxContent: jsxContent,
     );
   }
 
@@ -1677,6 +1682,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       operators: has('operators') ? value.operators : source.operators,
       data: has('data') ? value.data : source.data,
       jsName: has('jsName') ? value.jsName : source.jsName,
+      jsxContent: has('jsxContent') ? value.jsxContent : source.jsxContent,
     );
   }
 
@@ -1750,5 +1756,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     operators: source.operators,
     data: source.data,
     jsName: source.jsName,
+    jsxContent: source.jsxContent,
   );
 }

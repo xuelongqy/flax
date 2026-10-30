@@ -71,6 +71,13 @@ export declare function _NavigationDrawerDestinationFactory(options: {
     label: Widget;
     enabled?: boolean | undefined;
 }): NavigationDrawerDestination;
+export declare namespace _NavigationDrawerDestinationFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationDrawerDestinationFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const NavigationDrawerDestination: typeof _NavigationDrawerDestinationFactory & _FlaxInstanceType<NavigationDrawerDestination> & _FlaxDartType<NavigationDrawerDestination, readonly ["class", "flax.material/material#type:NavigationDrawerDestination", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "backgroundColor" | "icon" | "selectedIcon" | "label" | "enabled" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/navigation_drawer.dart::NavigationDrawerDestination" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

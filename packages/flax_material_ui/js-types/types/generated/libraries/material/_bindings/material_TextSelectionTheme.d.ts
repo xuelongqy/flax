@@ -75,6 +75,19 @@ export declare function _TextSelectionThemeFactory(options: {
     child: Widget;
 }): TextSelectionTheme;
 export declare namespace _TextSelectionThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _TextSelectionThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.TextSelectionThemeData;
 }
 export declare const TextSelectionTheme: typeof _TextSelectionThemeFactory & _FlaxInstanceType<TextSelectionTheme> & _FlaxDartType<TextSelectionTheme, readonly ["class", "flax.material/material#type:TextSelectionTheme", readonly [], false]>;

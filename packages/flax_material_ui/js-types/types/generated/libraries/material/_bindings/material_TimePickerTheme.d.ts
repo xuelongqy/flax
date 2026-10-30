@@ -75,6 +75,19 @@ export declare function _TimePickerThemeFactory(options: {
     child: Widget;
 }): TimePickerTheme;
 export declare namespace _TimePickerThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TimePickerThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TimePickerThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TimePickerThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _TimePickerThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.TimePickerThemeData;
 }
 export declare const TimePickerTheme: typeof _TimePickerThemeFactory & _FlaxInstanceType<TimePickerTheme> & _FlaxDartType<TimePickerTheme, readonly ["class", "flax.material/material#type:TimePickerTheme", readonly [], false]>;

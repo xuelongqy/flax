@@ -97,6 +97,13 @@ export declare function _TimePickerDialogFactory(options: {
     switchToTimerEntryModeIcon?: upstream5.Icon | null | undefined;
     emptyInitialInput?: boolean | undefined;
 }): TimePickerDialog;
+export declare namespace _TimePickerDialogFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TimePickerDialogFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const TimePickerDialog: typeof _TimePickerDialogFactory & _FlaxInstanceType<TimePickerDialog> & _FlaxDartType<TimePickerDialog, readonly ["class", "flax.material/material#type:TimePickerDialog", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "initialTime" | "cancelText" | "confirmText" | "helpText" | "errorInvalidText" | "hourLabelText" | "minuteLabelText" | "restorationId" | "initialEntryMode" | "orientation" | "onEntryModeChanged" | "switchToInputEntryModeIcon" | "switchToTimerEntryModeIcon" | "emptyInitialInput" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/time_picker.dart::TimePickerDialog" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

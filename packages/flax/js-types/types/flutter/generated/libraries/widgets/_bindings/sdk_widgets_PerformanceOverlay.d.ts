@@ -92,11 +92,25 @@ export declare function _PerformanceOverlayFactory(options?: {
     optionsMask?: number | undefined;
 }): PerformanceOverlay;
 export declare namespace _PerformanceOverlayFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _PerformanceOverlayFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _PerformanceOverlayFactory {
     function allEnabled(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
     }): PerformanceOverlay;
+    namespace allEnabled {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof allEnabled>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const PerformanceOverlay: typeof _PerformanceOverlayFactory & _FlaxInstanceType<PerformanceOverlay> & _FlaxDartType<PerformanceOverlay, readonly ["class", "flax.core/sdk_widgets#type:PerformanceOverlay", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "optionsMask" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/performance_overlay.dart::PerformanceOverlay" | "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

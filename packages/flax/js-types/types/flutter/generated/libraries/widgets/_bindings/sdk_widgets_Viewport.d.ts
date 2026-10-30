@@ -142,6 +142,13 @@ export declare function _ViewportFactory(options: {
     slivers?: DartListInput<Widget, Widget> | undefined;
 }): Viewport;
 export declare namespace _ViewportFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ViewportFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _ViewportFactory {
     function getDefaultCrossAxisDirection(context: upstream9.BuildContext, axisDirection: upstream3.AxisDirection): upstream3.AxisDirection;
 }
 export declare const Viewport: typeof _ViewportFactory & _FlaxInstanceType<Viewport> & _FlaxDartType<Viewport, readonly ["class", "flax.core/sdk_widgets#type:Viewport", readonly [], false]>;

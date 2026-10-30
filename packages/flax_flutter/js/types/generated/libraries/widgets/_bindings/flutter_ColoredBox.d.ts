@@ -27,4 +27,17 @@ export declare function _ColoredBoxFactory(options: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
 }): ColoredBox;
+export declare namespace _ColoredBoxFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ColoredBoxFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _ColoredBoxFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ColoredBoxFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const ColoredBox: typeof _ColoredBoxFactory & _FlaxInstanceType<ColoredBox> & _FlaxDartType<ColoredBox, readonly ["class", "flax.core/flutter#type:ColoredBox", readonly [], false]>;

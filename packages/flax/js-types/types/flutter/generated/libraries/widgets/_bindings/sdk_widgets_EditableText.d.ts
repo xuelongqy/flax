@@ -440,6 +440,13 @@ export declare function _EditableTextFactory(options: {
     enableInlinePrediction?: boolean | null | undefined;
 }): EditableText;
 export declare namespace _EditableTextFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _EditableTextFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _EditableTextFactory {
     function setDebugDeterministicCursor(value: boolean): void;
 }
 export declare namespace _EditableTextFactory {

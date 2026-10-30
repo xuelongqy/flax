@@ -87,6 +87,13 @@ export declare function _ModalBarrierFactory(options?: {
     }>) | null | undefined;
     semanticsOnTapHint?: string | null | undefined;
 }): ModalBarrier;
+export declare namespace _ModalBarrierFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ModalBarrierFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const ModalBarrier: typeof _ModalBarrierFactory & _FlaxInstanceType<ModalBarrier> & _FlaxDartType<ModalBarrier, readonly ["class", "flax.core/sdk_widgets#type:ModalBarrier", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "color" | "dismissible" | "onDismiss" | "barrierSemanticsDismissible" | "semanticsLabel" | "clipDetailsNotifier" | "semanticsOnTapHint" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/modal_barrier.dart::ModalBarrier" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

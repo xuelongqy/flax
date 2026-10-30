@@ -75,6 +75,19 @@ export declare function _FilledButtonThemeFactory(options: {
     child: Widget;
 }): FilledButtonTheme;
 export declare namespace _FilledButtonThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FilledButtonThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _FilledButtonThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _FilledButtonThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _FilledButtonThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.FilledButtonThemeData;
 }
 export declare const FilledButtonTheme: typeof _FilledButtonThemeFactory & _FlaxInstanceType<FilledButtonTheme> & _FlaxDartType<FilledButtonTheme, readonly ["class", "flax.material/material#type:FilledButtonTheme", readonly [], false]>;

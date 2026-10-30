@@ -76,6 +76,15 @@ export declare function _AdaptiveTextSelectionToolbarFactory(options: {
     }>;
 }): AdaptiveTextSelectionToolbar;
 export declare namespace _AdaptiveTextSelectionToolbarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AdaptiveTextSelectionToolbarFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _AdaptiveTextSelectionToolbarFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _AdaptiveTextSelectionToolbarFactory {
     function buttonItems(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -87,6 +96,13 @@ export declare namespace _AdaptiveTextSelectionToolbarFactory {
             "__flaxBound:package:flutter/src/widgets/text_selection_toolbar_anchors.dart::TextSelectionToolbarAnchors": readonly [];
         }>;
     }): AdaptiveTextSelectionToolbar;
+    namespace buttonItems {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof buttonItems>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _AdaptiveTextSelectionToolbarFactory {
     function editable(options: {
@@ -106,6 +122,13 @@ export declare namespace _AdaptiveTextSelectionToolbarFactory {
             "__flaxBound:package:flutter/src/widgets/text_selection_toolbar_anchors.dart::TextSelectionToolbarAnchors": readonly [];
         }>;
     }): AdaptiveTextSelectionToolbar;
+    namespace editable {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof editable>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _AdaptiveTextSelectionToolbarFactory {
     function editableText(options: {
@@ -134,6 +157,13 @@ export declare namespace _AdaptiveTextSelectionToolbarFactory {
             "__flaxBound:package:flutter/src/services/text_input.dart::TextInputClient": readonly [];
         }>;
     }): AdaptiveTextSelectionToolbar;
+    namespace editableText {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof editableText>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _AdaptiveTextSelectionToolbarFactory {
     function selectable(options: {
@@ -152,6 +182,13 @@ export declare namespace _AdaptiveTextSelectionToolbarFactory {
             "__flaxBound:package:flutter/src/widgets/text_selection_toolbar_anchors.dart::TextSelectionToolbarAnchors": readonly [];
         }>;
     }): AdaptiveTextSelectionToolbar;
+    namespace selectable {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof selectable>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _AdaptiveTextSelectionToolbarFactory {
     function selectableRegion(options: {
@@ -170,6 +207,13 @@ export declare namespace _AdaptiveTextSelectionToolbarFactory {
             "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
         }>;
     }): AdaptiveTextSelectionToolbar;
+    namespace selectableRegion {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof selectableRegion>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _AdaptiveTextSelectionToolbarFactory {
     function getButtonLabel(context: upstream8.BuildContext, buttonItem: Readonly<{

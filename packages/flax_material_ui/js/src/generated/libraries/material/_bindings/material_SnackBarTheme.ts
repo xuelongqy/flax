@@ -47,6 +47,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:SnackBarTheme", "", [{"name":"key"},{"name":"data","required":true},{"name":"child","required":true}], [], options) as SnackBarTheme;
 }
+export declare namespace _SnackBarThemeFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SnackBarThemeFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SnackBarThemeFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _SnackBarThemeFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _SnackBarThemeFactory { export function of(context: upstream5.BuildContext): upstream4.SnackBarThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:SnackBarTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

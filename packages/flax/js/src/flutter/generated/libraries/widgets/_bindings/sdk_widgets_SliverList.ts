@@ -54,12 +54,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "", [{"name":"key"},{"name":"delegate","required":true}], [], options) as SliverList;
 }
+export declare namespace _SliverListFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverListFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _SliverListFactory {
 export function builder(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; itemBuilder: ((context: upstream5.BuildContext, index: number) => Widget | null); findChildIndexCallback?: ((key: upstream3.Key) => number | null) | null | undefined; itemCount?: number | null | undefined; addAutomaticKeepAlives?: boolean | undefined; addRepaintBoundaries?: boolean | undefined; addSemanticIndexes?: boolean | undefined; semanticIndexOffset?: number | undefined }): SliverList {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "builder", [{"name":"key"},{"name":"itemBuilder","required":true},{"name":"findChildIndexCallback"},{"name":"itemCount"},{"name":"addAutomaticKeepAlives"},{"name":"addRepaintBoundaries"},{"name":"addSemanticIndexes"},{"name":"semanticIndexOffset"}], [], options) as SliverList;
 }
+export declare namespace builder { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _SliverListFactory {
 export function separated(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; itemBuilder: ((context: upstream5.BuildContext, index: number) => Widget | null); findChildIndexCallback?: ((key: upstream3.Key) => number | null) | null | undefined; findItemIndexCallback?: ((key: upstream3.Key) => number | null) | null | undefined; separatorBuilder: ((context: upstream5.BuildContext, index: number) => Widget | null); itemCount?: number | null | undefined; addAutomaticKeepAlives?: boolean | undefined; addRepaintBoundaries?: boolean | undefined; addSemanticIndexes?: boolean | undefined }): SliverList {
@@ -67,6 +69,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "separated", [{"name":"key"},{"name":"itemBuilder","required":true},{"name":"findChildIndexCallback"},{"name":"findItemIndexCallback"},{"name":"separatorBuilder","required":true},{"name":"itemCount"},{"name":"addAutomaticKeepAlives"},{"name":"addRepaintBoundaries"},{"name":"addSemanticIndexes"}], [], options) as SliverList;
 }
+export declare namespace separated { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof separated>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _SliverListFactory {
 export function list(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; children: DartListInput<Widget, Widget>; addAutomaticKeepAlives?: boolean | undefined; addRepaintBoundaries?: boolean | undefined; addSemanticIndexes?: boolean | undefined }): SliverList {
@@ -74,6 +77,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "list", [{"name":"key"},{"name":"children","required":true},{"name":"addAutomaticKeepAlives"},{"name":"addRepaintBoundaries"},{"name":"addSemanticIndexes"}], [], options) as SliverList;
 }
+export declare namespace list { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>), "children"> & { children: (globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>)["children"] | Widget }; readonly slot: "children"; readonly many: true; }; }
 }
 export const SliverList: typeof _SliverListFactory & _FlaxInstanceType<SliverList> & _FlaxDartType<SliverList, readonly ["class", "flax.core/sdk_widgets#type:SliverList", readonly [], false]> = _flaxBindInstanceType<SliverList, typeof _SliverListFactory>(_SliverListFactory, "flax.core/sdk_widgets#type:SliverList", ["flax.core/sdk_widgets#type:SliverMultiBoxAdaptorWidget","flax.core/sdk_widgets#type:SliverWithKeepAliveWidget","flax.core/sdk_widgets#type:RenderObjectWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SliverListFactory & _FlaxInstanceType<SliverList> & _FlaxDartType<SliverList, readonly ["class", "flax.core/sdk_widgets#type:SliverList", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "delegate" | "key" | "createElement" | "createRenderObject" | "estimateMaxScrollOffset" | "debugFillProperties" | "updateRenderObject" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverList" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverMultiBoxAdaptorWidget" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverWithKeepAliveWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

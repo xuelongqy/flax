@@ -86,6 +86,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.canvas/canvas#type:FlaxCanvasView", "", [{"name":"canvas","required":true,"positional":true},{"name":"key"},{"name":"width"},{"name":"height"}], [canvas], options) as FlaxCanvasView;
 }
+export declare namespace _FlaxCanvasViewConstruct { const __flaxJsx: { readonly props: ({ "canvas": globalThis.Parameters<typeof _FlaxCanvasViewConstruct>[0] } & globalThis.NonNullable<globalThis.Parameters<typeof _FlaxCanvasViewConstruct>[1]>); readonly slot: null; readonly many: false; }; }
 export namespace _FlaxCanvasSurfaceFactory { export declare const pictureLimit: number; }
 export namespace _FlaxCanvasSurfaceFactory { export declare const commandBytesLimit: number; }
 _flaxDefineStaticGetters(_FlaxCanvasSurfaceFactory, "flax.canvas/canvas#read:FlaxCanvasSurface.", ["pictureLimit","commandBytesLimit"]);

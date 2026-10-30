@@ -178,6 +178,13 @@ export declare function _MaterialAppFactory(options?: {
     }>) | null> | undefined;
 }): MaterialApp;
 export declare namespace _MaterialAppFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialAppFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _MaterialAppFactory {
     function router(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -294,6 +301,13 @@ export declare namespace _MaterialAppFactory {
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null> | undefined;
     }): MaterialApp;
+    namespace router {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof router>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _MaterialAppFactory {
     function createMaterialHeroController(): upstream27.HeroController;

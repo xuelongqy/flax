@@ -81,6 +81,19 @@ export declare function _FloatingActionButtonFactory(options: {
     enableFeedback?: Bindable<boolean | null> | undefined;
 }): FloatingActionButton;
 export declare namespace _FloatingActionButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FloatingActionButtonFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _FloatingActionButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _FloatingActionButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _FloatingActionButtonFactory {
     function small(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -135,6 +148,19 @@ export declare namespace _FloatingActionButtonFactory {
         materialTapTargetSize?: Bindable<upstream6.MaterialTapTargetSize | null> | undefined;
         enableFeedback?: Bindable<boolean | null> | undefined;
     }): FloatingActionButton;
+    namespace small {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof small>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof small>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof small>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _FloatingActionButtonFactory {
     function large(options: {
@@ -191,6 +217,19 @@ export declare namespace _FloatingActionButtonFactory {
         materialTapTargetSize?: Bindable<upstream6.MaterialTapTargetSize | null> | undefined;
         enableFeedback?: Bindable<boolean | null> | undefined;
     }): FloatingActionButton;
+    namespace large {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof large>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof large>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof large>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _FloatingActionButtonFactory {
     function extended(options: {
@@ -258,5 +297,12 @@ export declare namespace _FloatingActionButtonFactory {
         label: Bindable<Widget>;
         enableFeedback?: Bindable<boolean | null> | undefined;
     }): FloatingActionButton;
+    namespace extended {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof extended>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const FloatingActionButton: typeof _FloatingActionButtonFactory & _FlaxInstanceType<FloatingActionButton> & _FlaxDartType<FloatingActionButton, readonly ["class", "flax.material/material#type:FloatingActionButton", readonly [], false]>;

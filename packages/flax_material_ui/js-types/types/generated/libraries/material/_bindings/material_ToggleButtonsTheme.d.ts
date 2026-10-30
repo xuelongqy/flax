@@ -75,6 +75,19 @@ export declare function _ToggleButtonsThemeFactory(options: {
     child: Widget;
 }): ToggleButtonsTheme;
 export declare namespace _ToggleButtonsThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ToggleButtonsThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ToggleButtonsThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ToggleButtonsThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ToggleButtonsThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.ToggleButtonsThemeData;
 }
 export declare const ToggleButtonsTheme: typeof _ToggleButtonsThemeFactory & _FlaxInstanceType<ToggleButtonsTheme> & _FlaxDartType<ToggleButtonsTheme, readonly ["class", "flax.material/material#type:ToggleButtonsTheme", readonly [], false]>;

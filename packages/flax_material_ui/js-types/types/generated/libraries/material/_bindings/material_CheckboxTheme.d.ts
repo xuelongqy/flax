@@ -71,6 +71,19 @@ export declare function _CheckboxThemeFactory(options: {
     child: Widget;
 }): CheckboxTheme;
 export declare namespace _CheckboxThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CheckboxThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CheckboxThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CheckboxThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CheckboxThemeFactory {
     function of(context: upstream4.BuildContext): upstream3.CheckboxThemeData;
 }
 export declare const CheckboxTheme: typeof _CheckboxThemeFactory & _FlaxInstanceType<CheckboxTheme> & _FlaxDartType<CheckboxTheme, readonly ["class", "flax.material/material#type:CheckboxTheme", readonly [], false]>;

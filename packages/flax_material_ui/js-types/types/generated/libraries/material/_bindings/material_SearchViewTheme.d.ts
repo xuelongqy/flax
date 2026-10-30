@@ -75,6 +75,19 @@ export declare function _SearchViewThemeFactory(options: {
     child: Widget;
 }): SearchViewTheme;
 export declare namespace _SearchViewThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SearchViewThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SearchViewThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _SearchViewThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _SearchViewThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.SearchViewThemeData;
 }
 export declare const SearchViewTheme: typeof _SearchViewThemeFactory & _FlaxInstanceType<SearchViewTheme> & _FlaxDartType<SearchViewTheme, readonly ["class", "flax.material/material#type:SearchViewTheme", readonly [], false]>;

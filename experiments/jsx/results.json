@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "typescript": "7.0.2",
+  "checks": [
+    "default-off leaves ordinary source unchanged and rejects JSX without generating declarations",
+    "generated declarations accept real Flax SDK types in TSX and JSX, including JSDoc components",
+    "direct factory/new calls preserve reordered attribute evaluation, callback behavior, constructor defaults, child lists and body mapping",
+    "wrong types, missing required arguments and callback parameter errors are rejected",
+    "TypeScript language-service attribute completion exposes generated constructor properties",
+    "multiple single-slot children, unknown attributes and unsupported spreads fail explicitly",
+    "regeneration follows constructor renames and reports stale JSX usages",
+    "switching off removes only the generated declaration owned by the experiment",
+    "unowned declaration files are never overwritten or removed"
+  ],
+  "completionSample": ["child?", "children?", "onChanged?", "title"],
+  "limits": [
+    "isolated experiment; production adapters unchanged",
+    "named exports and simple signatures only",
+    "no attribute spreads, fragments, field initializers or generic tags",
+    "TypeScript service checked; VS Code and WebStorm UI untested",
+    "API test doubles used; no Flutter/native runtime validation"
+  ]
+}

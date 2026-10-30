@@ -121,6 +121,13 @@ export declare function _SliverGridFactory(options: {
     }>;
 }): SliverGrid;
 export declare namespace _SliverGridFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverGridFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliverGridFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -136,6 +143,13 @@ export declare namespace _SliverGridFactory {
         addSemanticIndexes?: boolean | undefined;
         semanticIndexOffset?: number | undefined;
     }): SliverGrid;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SliverGridFactory {
     function count(options: {
@@ -148,6 +162,15 @@ export declare namespace _SliverGridFactory {
         childAspectRatio?: number | undefined;
         children?: DartListInput<Widget, Widget> | undefined;
     }): SliverGrid;
+    namespace count {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof count>[0]>), "children"> & {
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof count>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare namespace _SliverGridFactory {
     function extent(options: {
@@ -160,6 +183,15 @@ export declare namespace _SliverGridFactory {
         childAspectRatio?: number | undefined;
         children?: DartListInput<Widget, Widget> | undefined;
     }): SliverGrid;
+    namespace extent {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof extent>[0]>), "children"> & {
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof extent>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare namespace _SliverGridFactory {
     function list(options: {
@@ -175,6 +207,15 @@ export declare namespace _SliverGridFactory {
         addSemanticIndexes?: boolean | undefined;
         semanticIndexOffset?: number | undefined;
     }): SliverGrid;
+    namespace list {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>), "children"> & {
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare const SliverGrid: typeof _SliverGridFactory & _FlaxInstanceType<SliverGrid> & _FlaxDartType<SliverGrid, readonly ["class", "flax.core/sdk_widgets#type:SliverGrid", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "gridDelegate" | "delegate" | "key" | "createRenderObject" | "updateRenderObject" | "estimateMaxScrollOffset" | "createElement" | "debugFillProperties" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverGrid" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverMultiBoxAdaptorWidget" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverWithKeepAliveWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

@@ -221,6 +221,13 @@ export declare function _CheckboxListTileFactory(options: {
     internalAddSemanticForOnTap?: boolean | undefined;
 }): CheckboxListTile;
 export declare namespace _CheckboxListTileFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CheckboxListTileFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CheckboxListTileFactory {
     function adaptive(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -322,6 +329,13 @@ export declare namespace _CheckboxListTileFactory {
         titleAlignment?: upstream14.ListTileTitleAlignment | null | undefined;
         internalAddSemanticForOnTap?: boolean | undefined;
     }): CheckboxListTile;
+    namespace adaptive {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const CheckboxListTile: typeof _CheckboxListTileFactory & _FlaxInstanceType<CheckboxListTile> & _FlaxDartType<CheckboxListTile, readonly ["class", "flax.material/material#type:CheckboxListTile", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "value" | "onChanged" | "mouseCursor" | "activeColor" | "fillColor" | "checkColor" | "hoverColor" | "overlayColor" | "splashRadius" | "materialTapTargetSize" | "visualDensity" | "focusNode" | "statesController" | "autofocus" | "shape" | "side" | "isError" | "tileColor" | "title" | "subtitle" | "secondary" | "isThreeLine" | "dense" | "selected" | "controlAffinity" | "contentPadding" | "tristate" | "checkboxShape" | "selectedTileColor" | "onFocusChange" | "enableFeedback" | "horizontalTitleGap" | "minVerticalPadding" | "minLeadingWidth" | "minTileHeight" | "enabled" | "titleAlignment" | "internalAddSemanticForOnTap" | "checkboxScaleFactor" | "checkboxSemanticLabel" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/checkbox_list_tile.dart::CheckboxListTile" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

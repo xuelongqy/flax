@@ -31,4 +31,17 @@ export declare function _DecoratedBoxFactory(options: {
     position?: Bindable<upstream2.DecorationPosition> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): DecoratedBox;
+export declare namespace _DecoratedBoxFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DecoratedBoxFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _DecoratedBoxFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _DecoratedBoxFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const DecoratedBox: typeof _DecoratedBoxFactory & _FlaxInstanceType<DecoratedBox> & _FlaxDartType<DecoratedBox, readonly ["class", "flax.core/flutter#type:DecoratedBox", readonly [], false]>;

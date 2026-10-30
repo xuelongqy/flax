@@ -102,6 +102,13 @@ export declare function _WidgetToRenderBoxAdapterFactory(options: {
     onBuild?: (() => void) | null | undefined;
     onUnmount?: (() => void) | null | undefined;
 }): WidgetToRenderBoxAdapter;
+export declare namespace _WidgetToRenderBoxAdapterFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _WidgetToRenderBoxAdapterFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const WidgetToRenderBoxAdapter: typeof _WidgetToRenderBoxAdapterFactory & _FlaxInstanceType<WidgetToRenderBoxAdapter> & _FlaxDartType<WidgetToRenderBoxAdapter, readonly ["class", "flax.core/sdk_widgets#type:WidgetToRenderBoxAdapter", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "renderBox" | "onBuild" | "onUnmount" | "key" | "createRenderObject" | "updateRenderObject" | "didUnmountRenderObject" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::WidgetToRenderBoxAdapter" | "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

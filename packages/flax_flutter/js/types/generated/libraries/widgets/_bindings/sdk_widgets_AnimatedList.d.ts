@@ -124,6 +124,13 @@ export declare function _AnimatedListFactory(options: {
     }> | null | undefined;
 }): AnimatedList;
 export declare namespace _AnimatedListFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedListFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _AnimatedListFactory {
     function separated(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -154,6 +161,13 @@ export declare namespace _AnimatedListFactory {
             "__flaxBound:package:flutter/src/rendering/viewport.dart::ScrollCacheExtent": readonly [];
         }> | null | undefined;
     }): AnimatedList;
+    namespace separated {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof separated>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _AnimatedListFactory {
     function of(context: upstream2.BuildContext): upstream10.AnimatedListState;

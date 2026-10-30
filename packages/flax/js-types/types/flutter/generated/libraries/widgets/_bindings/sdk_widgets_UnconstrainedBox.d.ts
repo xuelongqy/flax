@@ -77,6 +77,19 @@ export declare function _UnconstrainedBoxFactory(options?: {
     constrainedAxis?: upstream4.Axis | null | undefined;
     clipBehavior?: upstream5.Clip | undefined;
 }): UnconstrainedBox;
+export declare namespace _UnconstrainedBoxFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _UnconstrainedBoxFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _UnconstrainedBoxFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _UnconstrainedBoxFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const UnconstrainedBox: typeof _UnconstrainedBoxFactory & _FlaxInstanceType<UnconstrainedBox> & _FlaxDartType<UnconstrainedBox, readonly ["class", "flax.core/sdk_widgets#type:UnconstrainedBox", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "textDirection" | "alignment" | "constrainedAxis" | "clipBehavior" | "child" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::UnconstrainedBox" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -116,6 +116,13 @@ export declare function _BackButtonFactory(options?: {
     }>) | null | undefined;
     onPressed?: (() => void) | null | undefined;
 }): BackButton;
+export declare namespace _BackButtonFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _BackButtonFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const BackButton: typeof _BackButtonFactory & _FlaxInstanceType<BackButton> & _FlaxDartType<BackButton, readonly ["class", "flax.material/material#type:BackButton", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "standardComponent" | "iconSize" | "visualDensity" | "padding" | "alignment" | "splashRadius" | "icon" | "focusColor" | "hoverColor" | "color" | "splashColor" | "highlightColor" | "disabledColor" | "onPressed" | "onHover" | "onLongPress" | "mouseCursor" | "focusNode" | "autofocus" | "tooltip" | "enableFeedback" | "constraints" | "style" | "isSelected" | "selectedIcon" | "statesController" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/action_buttons.dart::BackButton" | "__flaxBound:package:material_ui/src/action_buttons.dart::_ActionButton" | "__flaxBound:package:material_ui/src/icon_button.dart::IconButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

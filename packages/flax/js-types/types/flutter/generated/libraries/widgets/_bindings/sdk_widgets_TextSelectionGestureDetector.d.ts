@@ -202,6 +202,19 @@ export declare function _TextSelectionGestureDetectorFactory(options: {
     behavior?: upstream12.HitTestBehavior | null | undefined;
     child: Widget;
 }): TextSelectionGestureDetector;
+export declare namespace _TextSelectionGestureDetectorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionGestureDetectorFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionGestureDetectorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionGestureDetectorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const TextSelectionGestureDetector: typeof _TextSelectionGestureDetectorFactory & _FlaxInstanceType<TextSelectionGestureDetector> & _FlaxDartType<TextSelectionGestureDetector, readonly ["class", "flax.core/sdk_widgets#type:TextSelectionGestureDetector", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "onTapTrackStart" | "onTapTrackReset" | "onTapDown" | "onForcePressStart" | "onForcePressEnd" | "onSecondaryTap" | "onSecondaryTapDown" | "onSingleTapUp" | "onSingleTapCancel" | "onUserTap" | "onSingleLongTapStart" | "onSingleLongTapMoveUpdate" | "onSingleLongTapEnd" | "onSingleLongTapCancel" | "onDoubleTapDown" | "onTripleTapDown" | "onDragSelectionStart" | "onDragSelectionUpdate" | "onDragSelectionEnd" | "onUserTapAlwaysCalled" | "behavior" | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionGestureDetector" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

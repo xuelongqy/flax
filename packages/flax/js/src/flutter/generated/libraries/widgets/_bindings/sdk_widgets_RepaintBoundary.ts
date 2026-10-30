@@ -48,12 +48,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:RepaintBoundary", "", [{"name":"key"},{"name":"child"}], [], options) as RepaintBoundary;
 }
+export declare namespace _RepaintBoundaryFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RepaintBoundaryFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _RepaintBoundaryFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _RepaintBoundaryFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _RepaintBoundaryFactory {
 export function wrap(child: Widget, childIndex: number): RepaintBoundary {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:RepaintBoundary", "wrap", [{"name":"child","required":true,"positional":true},{"name":"childIndex","required":true,"positional":true}], [child, childIndex], {}) as RepaintBoundary;
 }
+export declare namespace wrap { const __flaxJsx: { readonly props: globalThis.Omit<({ "child": globalThis.Parameters<typeof wrap>[0]; "childIndex": globalThis.Parameters<typeof wrap>[1] }), "child"> & ({ "child": ({ "child": globalThis.Parameters<typeof wrap>[0]; "childIndex": globalThis.Parameters<typeof wrap>[1] })["child"]; children?: never } | { "child"?: never; children: ({ "child": globalThis.Parameters<typeof wrap>[0]; "childIndex": globalThis.Parameters<typeof wrap>[1] })["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _RepaintBoundaryFactory { export function wrapAll(widgets: DartListInput<Widget, Widget>): DartList<RepaintBoundary> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

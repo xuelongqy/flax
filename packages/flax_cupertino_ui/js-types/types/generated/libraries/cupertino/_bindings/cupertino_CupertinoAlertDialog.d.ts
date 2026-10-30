@@ -98,6 +98,13 @@ export declare function _CupertinoAlertDialogFactory(options?: {
         "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
     }>) | undefined;
 }): CupertinoAlertDialog;
+export declare namespace _CupertinoAlertDialogFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoAlertDialogFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoAlertDialog: typeof _CupertinoAlertDialogFactory & _FlaxInstanceType<CupertinoAlertDialog> & _FlaxDartType<CupertinoAlertDialog, readonly ["class", "flax.cupertino/cupertino#type:CupertinoAlertDialog", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "title" | "content" | "actions" | "scrollController" | "actionScrollController" | "insetAnimationDuration" | "insetAnimationCurve" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/dialog.dart::CupertinoAlertDialog" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

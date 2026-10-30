@@ -88,6 +88,19 @@ export declare function _DualTransitionBuilderFactory(options: {
     reverseBuilder: ((context: upstream3.BuildContext, animation: upstream2.Animation<number>, child: Widget | null) => Widget);
     child?: Widget | null | undefined;
 }): DualTransitionBuilder;
+export declare namespace _DualTransitionBuilderFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DualTransitionBuilderFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _DualTransitionBuilderFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _DualTransitionBuilderFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const DualTransitionBuilder: typeof _DualTransitionBuilderFactory & _FlaxInstanceType<DualTransitionBuilder> & _FlaxDartType<DualTransitionBuilder, readonly ["class", "flax.core/sdk_widgets#type:DualTransitionBuilder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "animation" | "forwardBuilder" | "reverseBuilder" | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/dual_transition_builder.dart::DualTransitionBuilder" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

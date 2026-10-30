@@ -100,6 +100,13 @@ export declare function _SliverIgnorePointerFactory(options?: {
     ignoringSemantics?: boolean | null | undefined;
     sliver?: Widget | null | undefined;
 }): SliverIgnorePointer;
+export declare namespace _SliverIgnorePointerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverIgnorePointerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverIgnorePointer: typeof _SliverIgnorePointerFactory & _FlaxInstanceType<SliverIgnorePointer> & _FlaxDartType<SliverIgnorePointer, readonly ["class", "flax.core/sdk_widgets#type:SliverIgnorePointer", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "ignoring" | "ignoringSemantics" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverIgnorePointer" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

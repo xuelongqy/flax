@@ -146,6 +146,13 @@ export declare function _BottomNavigationBarFactory(options: {
     landscapeLayout?: upstream8.BottomNavigationBarLandscapeLayout | null | undefined;
     useLegacyColorScheme?: boolean | undefined;
 }): BottomNavigationBar;
+export declare namespace _BottomNavigationBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _BottomNavigationBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const BottomNavigationBar: typeof _BottomNavigationBarFactory & _FlaxInstanceType<BottomNavigationBar> & _FlaxDartType<BottomNavigationBar, readonly ["class", "flax.material/material#type:BottomNavigationBar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "items" | "onTap" | "currentIndex" | "elevation" | "type" | "fixedColor" | "backgroundColor" | "iconSize" | "selectedItemColor" | "unselectedItemColor" | "selectedIconTheme" | "unselectedIconTheme" | "selectedLabelStyle" | "unselectedLabelStyle" | "selectedFontSize" | "unselectedFontSize" | "showUnselectedLabels" | "showSelectedLabels" | "mouseCursor" | "enableFeedback" | "landscapeLayout" | "useLegacyColorScheme" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/bottom_navigation_bar.dart::BottomNavigationBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

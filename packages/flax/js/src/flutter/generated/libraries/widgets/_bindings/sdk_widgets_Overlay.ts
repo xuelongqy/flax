@@ -51,6 +51,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:Overlay", "", [{"name":"key"},{"name":"initialEntries"},{"name":"clipBehavior"},{"name":"alwaysSizeToContent"}], [], options) as Overlay;
 }
+export declare namespace _OverlayFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _OverlayFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _OverlayFactory { export function wrap(options: { alwaysSizeToContent?: boolean | undefined; child: Widget; clipBehavior?: upstream3.Clip | undefined; key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined }): Widget {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["alwaysSizeToContent","child","clipBehavior","key"].includes(k))) throw new TypeError('Invalid named method arguments');

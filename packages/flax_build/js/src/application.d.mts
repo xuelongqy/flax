@@ -33,7 +33,12 @@ export function prepareModuleApplication(options?: {
   assetsDirectory?: string;
   id?: string;
   entry?: string;
-}): ReturnType<typeof prepareApplication>;
+}): Promise<
+  Awaited<ReturnType<typeof prepareApplication>> & {
+    /** Source/type inputs used by the native module development watcher. */
+    watchFiles: string[];
+  }
+>;
 
 /** Packages the prepared directory after the caller has compiled its JS entry. */
 export function packApplication(options: {

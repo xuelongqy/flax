@@ -125,4 +125,17 @@ export declare function _GestureDetectorFactory(options?: {
     }>> | undefined;
     supportedDevices?: Bindable<DartSetInput<upstream19.PointerDeviceKind, upstream19.PointerDeviceKind> | null> | undefined;
 }): GestureDetector;
+export declare namespace _GestureDetectorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _GestureDetectorFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _GestureDetectorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _GestureDetectorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const GestureDetector: typeof _GestureDetectorFactory & _FlaxInstanceType<GestureDetector> & _FlaxDartType<GestureDetector, readonly ["class", "flax.core/flutter#type:GestureDetector", readonly [], false]>;

@@ -63,6 +63,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:DrawerController", "", [{"name":"key"},{"name":"child","required":true},{"name":"alignment","required":true},{"name":"isDrawerOpen"},{"name":"drawerCallback"},{"name":"dragStartBehavior"},{"name":"scrimColor"},{"name":"edgeDragWidth"},{"name":"enableOpenDragGesture"},{"name":"drawerBarrierDismissible"}], [], options) as DrawerController;
 }
+export declare namespace _DrawerControllerFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DrawerControllerFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerControllerFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerControllerFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _DrawerControllerFactory { export function maybeOf(context: upstream7.BuildContext): DrawerController | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:DrawerController.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

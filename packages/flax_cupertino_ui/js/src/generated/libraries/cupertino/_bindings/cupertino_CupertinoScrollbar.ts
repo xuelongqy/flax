@@ -82,6 +82,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoScrollbar", "", [{"name":"key"},{"name":"child","required":true},{"name":"controller"},{"name":"thumbVisibility"},{"name":"thickness"},{"name":"thicknessWhileDragging"},{"name":"radius"},{"name":"radiusWhileDragging"},{"name":"notificationPredicate"},{"name":"scrollbarOrientation"},{"name":"mainAxisMargin"}], [], options) as CupertinoScrollbar;
 }
+export declare namespace _CupertinoScrollbarFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoScrollbarFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoScrollbarFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoScrollbarFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _CupertinoScrollbarFactory { export declare const defaultThickness: number; }
 export namespace _CupertinoScrollbarFactory { export declare const defaultThicknessWhileDragging: number; }
 export namespace _CupertinoScrollbarFactory { export declare const defaultRadius: upstream4.Radius; }

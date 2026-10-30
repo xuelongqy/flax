@@ -127,6 +127,19 @@ export declare function _RawTooltipFactory(options: {
     child: Widget;
 }): RawTooltip;
 export declare namespace _RawTooltipFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RawTooltipFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _RawTooltipFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _RawTooltipFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _RawTooltipFactory {
     function dismissAllToolTips(): boolean;
 }
 export declare const RawTooltip: typeof _RawTooltipFactory & _FlaxInstanceType<RawTooltip> & _FlaxDartType<RawTooltip, readonly ["class", "flax.core/sdk_widgets#type:RawTooltip", readonly [], false]>;

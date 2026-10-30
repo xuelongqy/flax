@@ -116,6 +116,13 @@ export declare function _DrawerButtonFactory(options?: {
     }>) | null | undefined;
     onPressed?: (() => void) | null | undefined;
 }): DrawerButton;
+export declare namespace _DrawerButtonFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerButtonFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const DrawerButton: typeof _DrawerButtonFactory & _FlaxInstanceType<DrawerButton> & _FlaxDartType<DrawerButton, readonly ["class", "flax.material/material#type:DrawerButton", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "standardComponent" | "iconSize" | "visualDensity" | "padding" | "alignment" | "splashRadius" | "icon" | "focusColor" | "hoverColor" | "color" | "splashColor" | "highlightColor" | "disabledColor" | "onPressed" | "onHover" | "onLongPress" | "mouseCursor" | "focusNode" | "autofocus" | "tooltip" | "enableFeedback" | "constraints" | "style" | "isSelected" | "selectedIcon" | "statesController" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/action_buttons.dart::DrawerButton" | "__flaxBound:package:material_ui/src/action_buttons.dart::_ActionButton" | "__flaxBound:package:material_ui/src/icon_button.dart::IconButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

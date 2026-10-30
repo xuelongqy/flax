@@ -73,6 +73,13 @@ export declare function _TabPageSelectorIndicatorFactory(options: {
     size: number;
     borderStyle?: upstream3.BorderStyle | undefined;
 }): TabPageSelectorIndicator;
+export declare namespace _TabPageSelectorIndicatorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TabPageSelectorIndicatorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const TabPageSelectorIndicator: typeof _TabPageSelectorIndicatorFactory & _FlaxInstanceType<TabPageSelectorIndicator> & _FlaxDartType<TabPageSelectorIndicator, readonly ["class", "flax.material/material#type:TabPageSelectorIndicator", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "backgroundColor" | "borderColor" | "size" | "borderStyle" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/tabs.dart::TabPageSelectorIndicator" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

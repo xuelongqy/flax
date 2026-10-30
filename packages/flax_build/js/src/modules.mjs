@@ -656,7 +656,7 @@ class DeliveryPackages {
     await this.atFile(filename);
     const directory = this.nearest.get(dirname(await realpath(filename)));
     const entries = await this.packages.get(directory);
-    if (!/\.(?:[cm]?js|tsx?)$/.test(filename)) return false;
+    if (!/\.(?:[cm]?js|[jt]sx?)$/.test(filename)) return false;
     if (entries?.size > 0) return true;
     return (await readFile(filename, 'utf8')).startsWith(
       '// GENERATED CODE. Selected public API subset; do not edit.',

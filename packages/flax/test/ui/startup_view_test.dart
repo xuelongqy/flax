@@ -139,6 +139,7 @@ void main() {
       );
       expect(errors, isEmpty);
       expect(find.text('Prepared view'), findsOneWidget);
+      expect(find.bySemanticsLabel('Reload Flax application'), findsNothing);
       expect(runtimes, hasLength(1));
       expect(runtimes.single.background, isTrue);
       await tester.pumpWidget(const SizedBox.shrink());

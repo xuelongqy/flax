@@ -172,7 +172,7 @@ test('generic method edits preserve instances and type-only superclass changes r
 
 test('class instrumentation records stable structural metadata', () => {
   const source = instrumentReloadableClasses(
-    'export class Counter { count = 1; #secret = 2; constructor() { this.ready = true; } label() { return this.count; } }',
+    'export class Counter { count = 1; #secret = 2; constructor() { this.count = 1; } label() { return this.count; } }',
     '/src/counter.js',
   );
   assert.match(source, /dev\.class\("Counter", Counter/);
@@ -180,15 +180,134 @@ test('class instrumentation records stable structural metadata', () => {
   assert.match(source, /"private":\["#secret"\]/);
   assert.match(source, /"init":"count = 1;\\n#secret = 2;\\nconstructor\(\)/);
   assert.match(source, /"context":""/);
+  assert.match(source, /"localInit":true/);
 
   const changed = instrumentReloadableClasses(
-    'export class Counter { count = 2; #secret = 2; constructor() { this.ready = false; } label() { return this.count; } }',
+    'export class Counter { count = 2; #secret = 2; constructor() { this.count = 2; } label() { return this.count; } }',
     '/src/counter.js',
   );
   assert.notEqual(
     source.match(/"init":"([^"]*)"/)?.[1],
     changed.match(/"init":"([^"]*)"/)?.[1],
   );
+});
+
+test('initializer proof keeps external reads, calls and destructuring conservative', () => {
+  for (const body of [
+    'count = seed;',
+    'count = getSeed();',
+    'count = {value: seed};',
+    'count = {...seed};',
+    '[seed] = 0;',
+    'constructor(value = seed) { this.value = value; }',
+    'constructor({value}) { this.value = value; }',
+    'constructor(value) { this.value = value.seed; }',
+  ]) {
+    assert.match(
+      instrumentReloadableClasses(`class Counter { ${body} }`, '/counter.js'),
+      /"localInit":false/,
+      body,
+    );
+  }
+});
+
+test('constructor assignments through setters retain initialization context checks', () => {
+  for (const inherited of [false, true]) {
+    const context = createContext({});
+    runInContext(
+      `globalThis.__flaxModules = (${createFlaxModuleRegistry.toString()})();`,
+      context,
+    );
+    const registry = context.__flaxModules;
+    const module = (seed) => ({
+      id: '/counter.js',
+      revision: String(seed),
+      dependencies: {},
+      factory: `(module) => { ${instrumentReloadableClasses(
+        `const seed = ${seed};
+        ${inherited ? 'class Parent { set value(v) { this.cached = seed * v; } }' : ''}
+        class Counter ${inherited ? 'extends Parent' : ''} {
+          constructor(value) { ${inherited ? 'super();' : ''} this.value = value; }
+          ${inherited ? '' : 'set value(v) { this.cached = seed * v; }'}
+        }
+        module.exports.Counter = Counter;`,
+        '/counter.js',
+      )} }`,
+    });
+    registry.dev.load({ entry: '/counter.js', modules: [module(1)] });
+    const Counter = registry.dev.require('/counter.js').Counter;
+    const instance = new Counter(2);
+    assert.equal(instance.cached, 2);
+    assert.throws(
+      () => registry.dev.apply({ modules: [module(3)], inventory: ['/counter.js'] }),
+      /requires restart: class initialization context changed/,
+    );
+    assert.equal(new Counter(2).cached, instance.cached);
+  }
+});
+
+test('dependency method edits retain initialized parent classes and constructor edits still reject', async (t) => {
+  const root = await mkdtemp(join(tmpdir(), 'flax-dev-parent-'));
+  await mkdir(join(root, 'src'));
+  const child = join(root, 'src/counter.js');
+  const parent = join(root, 'src/main.js');
+  const childSource = (step) => `export class Counter {
+    count = 0;
+    increment() { this.count += ${step}; }
+  }`;
+  const parentSource = (value = 'active') => `import {Counter} from './counter.js';
+  export class Demo {
+    order = ['A', 'B'];
+    active;
+    constructor(active, options = {}) { this.active = ${value}; }
+    create() { return new Counter(); }
+  }`;
+  await writeFile(child, childSource(1));
+  await writeFile(parent, parentSource());
+  const dev = await startFlaxDev({
+    root,
+    entry: 'src/main.js',
+    out: 'app.js',
+    port: 0,
+  });
+  t.after(async () => {
+    await dev.server.close();
+    await rm(root, { recursive: true, force: true });
+  });
+  const client = await connectClient(dev, t);
+  const Demo = client.registry.dev.require('/src/main.js').Demo;
+  const startup = await fetch(dev.url);
+  assert.equal(startup.headers.get('cache-control'), 'no-store');
+  assert.equal(await startup.text(), await readFile(dev.out, 'utf8'));
+  assert.equal(await (await fetch(dev.url, { method: 'HEAD' })).text(), '');
+  assert.equal((await fetch(dev.url, { method: 'POST' })).status, 405);
+  const demo = new Demo(true);
+  const order = demo.order;
+  const counter = demo.create();
+  counter.increment();
+  assert.equal(counter.count, 1);
+  const applied = waitServerEvent(dev.server, 'flax:applied');
+  await writeFile(child, childSource(2));
+  await applied;
+  assert.equal(client.registry.dev.require('/src/main.js').Demo, Demo);
+  assert.equal(demo.order, order);
+  counter.increment();
+  assert.equal(counter.count, 3);
+  const rejected = waitServerEvent(dev.server, 'flax:runtime-error');
+  await writeFile(parent, parentSource('false'));
+  assert.match(
+    (await rejected).message,
+    /requires restart: class initialization changed/,
+  );
+  assert.equal(demo.active, true);
+  counter.increment();
+  assert.equal(counter.count, 5);
+  // A full reload must get the newest startup even when the live Session rejected it.
+  const current = await fetch(dev.url);
+  assert.equal(await current.text(), await readFile(dev.out, 'utf8'));
+  const restarted = await connectClient(dev, t);
+  const CurrentDemo = restarted.registry.dev.require('/src/main.js').Demo;
+  assert.equal(new CurrentDemo(true).active, false);
 });
 
 test('named class bodies retain canonical self references across Vite reloads', async (t) => {
@@ -393,25 +512,38 @@ test('new dependencies survive rejected batches, stay cached, and restart from c
   );
   const source = (version) =>
     `import { Secret } from './secret.ts';\nexport { Secret };\nexport const text = '${version}:' + new Secret().value();\nif (globalThis.rejectAddition) throw new Error('reject new module');\n`;
+  // Watchers can redeliver the previous snapshot before the saved version.
+  const waitVersion = (version) =>
+    waitCustom(socket, 'flax:update', (batch) =>
+      batch.modules.some(
+        (module) =>
+          module.id === '/src/main.ts' && module.factory.includes(`${version}:`),
+      ),
+    );
   context.rejectAddition = true;
-  let waiting = waitCustom(socket, 'flax:update');
+  let waiting = waitVersion('V2');
   await writeFile(main, source('V2'));
   const waitingBatch = await waiting;
   assert.throws(() => registry.dev.apply(waitingBatch), /reject new module/);
   assert.equal(text(), 'V1');
   context.rejectAddition = false;
-  waiting = waitCustom(socket, 'flax:update');
+  waiting = waitVersion('V3');
   await writeFile(main, source('V3'));
   registry.dev.apply(await waiting);
   assert.equal(text(), 'V3:1');
   const Secret = registry.dev.require('/src/main.ts').Secret;
-  waiting = waitCustom(socket, 'flax:update');
+  waiting = waitVersion('V4');
   await writeFile(main, source('V4'));
   registry.dev.apply(await waiting);
   assert.equal(text(), 'V4:1');
   assert.equal(registry.dev.require('/src/main.ts').Secret, Secret);
   assert.equal((await fresh()).__flaxModules.dev.require('/src/main.ts').text, 'V4:1');
-  waiting = waitCustom(socket, 'flax:update');
+  const privateRevision = registry.dev.revisions['/src/secret.ts'];
+  waiting = waitCustom(socket, 'flax:update', (batch) =>
+    batch.modules.some(
+      (module) => module.id === '/src/secret.ts' && module.revision !== privateRevision,
+    ),
+  );
   await writeFile(
     secret,
     'export class Secret { #value = 2; value() { return this.#value; } }\n',

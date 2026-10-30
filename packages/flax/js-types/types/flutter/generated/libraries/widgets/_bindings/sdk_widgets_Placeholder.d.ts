@@ -71,6 +71,19 @@ export declare function _PlaceholderFactory(options?: {
     fallbackHeight?: number | undefined;
     child?: Widget | null | undefined;
 }): Placeholder;
+export declare namespace _PlaceholderFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _PlaceholderFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _PlaceholderFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _PlaceholderFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const Placeholder: typeof _PlaceholderFactory & _FlaxInstanceType<Placeholder> & _FlaxDartType<Placeholder, readonly ["class", "flax.core/sdk_widgets#type:Placeholder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "color" | "strokeWidth" | "fallbackWidth" | "fallbackHeight" | "child" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/placeholder.dart::Placeholder" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

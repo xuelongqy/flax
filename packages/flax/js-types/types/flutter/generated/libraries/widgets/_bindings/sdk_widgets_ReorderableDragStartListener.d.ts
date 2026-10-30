@@ -66,6 +66,19 @@ export declare function _ReorderableDragStartListenerFactory(options: {
     index: number;
     enabled?: boolean | undefined;
 }): ReorderableDragStartListener;
+export declare namespace _ReorderableDragStartListenerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ReorderableDragStartListenerFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ReorderableDragStartListenerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ReorderableDragStartListenerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const ReorderableDragStartListener: typeof _ReorderableDragStartListenerFactory & _FlaxInstanceType<ReorderableDragStartListener> & _FlaxDartType<ReorderableDragStartListener, readonly ["class", "flax.core/sdk_widgets#type:ReorderableDragStartListener", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "index" | "enabled" | "key" | "build" | "createRecognizer" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/reorderable_list.dart::ReorderableDragStartListener" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

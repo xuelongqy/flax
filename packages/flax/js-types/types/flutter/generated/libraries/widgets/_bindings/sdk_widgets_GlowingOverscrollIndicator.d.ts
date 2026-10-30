@@ -89,6 +89,19 @@ export declare function _GlowingOverscrollIndicatorFactory(options: {
     notificationPredicate?: ((notification: upstream4.ScrollNotification) => boolean) | undefined;
     child?: Widget | null | undefined;
 }): GlowingOverscrollIndicator;
+export declare namespace _GlowingOverscrollIndicatorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _GlowingOverscrollIndicatorFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _GlowingOverscrollIndicatorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _GlowingOverscrollIndicatorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const GlowingOverscrollIndicator: typeof _GlowingOverscrollIndicatorFactory & _FlaxInstanceType<GlowingOverscrollIndicator> & _FlaxDartType<GlowingOverscrollIndicator, readonly ["class", "flax.core/sdk_widgets#type:GlowingOverscrollIndicator", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "showLeading" | "showTrailing" | "axisDirection" | "axis" | "color" | "notificationPredicate" | "child" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/overscroll_indicator.dart::GlowingOverscrollIndicator" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

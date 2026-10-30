@@ -63,6 +63,19 @@ export declare function _ScrollNotificationObserverFactory(options: {
     child: Widget;
 }): ScrollNotificationObserver;
 export declare namespace _ScrollNotificationObserverFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ScrollNotificationObserverFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ScrollNotificationObserverFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ScrollNotificationObserverFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ScrollNotificationObserverFactory {
     function maybeOf(context: upstream3.BuildContext): upstream2.ScrollNotificationObserverState | null;
 }
 export declare namespace _ScrollNotificationObserverFactory {

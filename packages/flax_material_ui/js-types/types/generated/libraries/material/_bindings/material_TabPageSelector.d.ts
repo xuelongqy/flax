@@ -84,6 +84,13 @@ export declare function _TabPageSelectorFactory(options?: {
     }> | null | undefined;
     borderStyle?: upstream4.BorderStyle | null | undefined;
 }): TabPageSelector;
+export declare namespace _TabPageSelectorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TabPageSelectorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const TabPageSelector: typeof _TabPageSelectorFactory & _FlaxInstanceType<TabPageSelector> & _FlaxDartType<TabPageSelector, readonly ["class", "flax.material/material#type:TabPageSelector", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "indicatorSize" | "color" | "selectedColor" | "borderStyle" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/tabs.dart::TabPageSelector" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

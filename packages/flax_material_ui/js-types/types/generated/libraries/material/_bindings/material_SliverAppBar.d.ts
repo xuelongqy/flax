@@ -191,6 +191,13 @@ export declare function _SliverAppBarFactory(options?: {
     }> | null | undefined;
 }): SliverAppBar;
 export declare namespace _SliverAppBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverAppBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliverAppBarFactory {
     function medium(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -274,6 +281,13 @@ export declare namespace _SliverAppBarFactory {
             "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
         }> | null | undefined;
     }): SliverAppBar;
+    namespace medium {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof medium>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SliverAppBarFactory {
     function large(options?: {
@@ -359,6 +373,13 @@ export declare namespace _SliverAppBarFactory {
             "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
         }> | null | undefined;
     }): SliverAppBar;
+    namespace large {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof large>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const SliverAppBar: typeof _SliverAppBarFactory & _FlaxInstanceType<SliverAppBar> & _FlaxDartType<SliverAppBar, readonly ["class", "flax.material/material#type:SliverAppBar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "leading" | "automaticallyImplyLeading" | "title" | "actions" | "automaticallyImplyActions" | "flexibleSpace" | "bottom" | "elevation" | "scrolledUnderElevation" | "shadowColor" | "surfaceTintColor" | "forceElevated" | "backgroundColor" | "foregroundColor" | "iconTheme" | "actionsIconTheme" | "primary" | "centerTitle" | "excludeHeaderSemantics" | "titleSpacing" | "collapsedHeight" | "expandedHeight" | "floating" | "pinned" | "shape" | "snap" | "stretch" | "stretchTriggerOffset" | "onStretchTrigger" | "toolbarHeight" | "leadingWidth" | "toolbarTextStyle" | "titleTextStyle" | "systemOverlayStyle" | "forceMaterialTransparency" | "useDefaultSemanticsOrder" | "clipBehavior" | "actionsPadding" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/app_bar.dart::SliverAppBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

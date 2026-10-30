@@ -87,6 +87,13 @@ export declare function _SliverCrossAxisGroupFactory(options: {
     }> | null | undefined;
     slivers: DartListInput<Widget, Widget>;
 }): SliverCrossAxisGroup;
+export declare namespace _SliverCrossAxisGroupFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverCrossAxisGroupFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverCrossAxisGroup: typeof _SliverCrossAxisGroupFactory & _FlaxInstanceType<SliverCrossAxisGroup> & _FlaxDartType<SliverCrossAxisGroup, readonly ["class", "flax.core/sdk_widgets#type:SliverCrossAxisGroup", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "children" | "key" | "createRenderObject" | "createElement" | "updateRenderObject" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverCrossAxisGroup" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

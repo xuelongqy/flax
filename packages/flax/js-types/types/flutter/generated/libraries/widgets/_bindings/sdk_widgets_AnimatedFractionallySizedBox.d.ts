@@ -91,6 +91,19 @@ export declare function _AnimatedFractionallySizedBoxFactory(options: {
     }>;
     onEnd?: (() => void) | null | undefined;
 }): AnimatedFractionallySizedBox;
+export declare namespace _AnimatedFractionallySizedBoxFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedFractionallySizedBoxFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedFractionallySizedBoxFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedFractionallySizedBoxFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const AnimatedFractionallySizedBox: typeof _AnimatedFractionallySizedBoxFactory & _FlaxInstanceType<AnimatedFractionallySizedBox> & _FlaxDartType<AnimatedFractionallySizedBox, readonly ["class", "flax.core/sdk_widgets#type:AnimatedFractionallySizedBox", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "heightFactor" | "widthFactor" | "alignment" | "curve" | "duration" | "onEnd" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::AnimatedFractionallySizedBox" | "__flaxBound:package:flutter/src/widgets/implicit_animations.dart::ImplicitlyAnimatedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

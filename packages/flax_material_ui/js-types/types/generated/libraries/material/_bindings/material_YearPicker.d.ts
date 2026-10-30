@@ -93,6 +93,13 @@ export declare function _YearPickerFactory(options: {
         "__flaxBound:package:material_ui/src/date.dart::CalendarDelegate": readonly [upstream2.DateTime];
     }> | undefined;
 }): YearPicker;
+export declare namespace _YearPickerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _YearPickerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const YearPicker: typeof _YearPickerFactory & _FlaxInstanceType<YearPicker> & _FlaxDartType<YearPicker, readonly ["class", "flax.material/material#type:YearPicker", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "currentDate" | "firstDate" | "lastDate" | "selectedDate" | "onChanged" | "dragStartBehavior" | "calendarDelegate" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/calendar_date_picker.dart::YearPicker" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

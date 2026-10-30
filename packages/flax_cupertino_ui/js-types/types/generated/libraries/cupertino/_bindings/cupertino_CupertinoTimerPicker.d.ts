@@ -108,6 +108,13 @@ export declare function _CupertinoTimerPickerFactory(options: {
         selectedIndex: number;
     }) => Widget | null) | null | undefined;
 }): CupertinoTimerPicker;
+export declare namespace _CupertinoTimerPickerFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTimerPickerFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoTimerPicker: typeof _CupertinoTimerPickerFactory & _FlaxInstanceType<CupertinoTimerPicker> & _FlaxDartType<CupertinoTimerPicker, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTimerPicker", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "mode" | "initialTimerDuration" | "minuteInterval" | "secondInterval" | "onTimerDurationChanged" | "alignment" | "backgroundColor" | "itemExtent" | "selectionOverlayBuilder" | "changeReportingBehavior" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/date_picker.dart::CupertinoTimerPicker" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

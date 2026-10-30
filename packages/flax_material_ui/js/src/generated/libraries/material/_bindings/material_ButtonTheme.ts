@@ -61,12 +61,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:ButtonTheme", "", [{"name":"key"},{"name":"textTheme"},{"name":"layoutBehavior"},{"name":"minWidth"},{"name":"height"},{"name":"padding"},{"name":"shape"},{"name":"alignedDropdown"},{"name":"buttonColor"},{"name":"disabledColor"},{"name":"focusColor"},{"name":"hoverColor"},{"name":"highlightColor"},{"name":"splashColor"},{"name":"colorScheme"},{"name":"materialTapTargetSize"},{"name":"child","required":true}], [], options) as ButtonTheme;
 }
+export declare namespace _ButtonThemeFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ButtonThemeFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ButtonThemeFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _ButtonThemeFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _ButtonThemeFactory {
 export function fromButtonThemeData(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; data: Readonly<{ "__flaxBound:package:material_ui/src/button_theme.dart::ButtonThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; child: Widget }): ButtonTheme {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:ButtonTheme", "fromButtonThemeData", [{"name":"key"},{"name":"data","required":true},{"name":"child","required":true}], [], options) as ButtonTheme;
 }
+export declare namespace fromButtonThemeData { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof fromButtonThemeData>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof fromButtonThemeData>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof fromButtonThemeData>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _ButtonThemeFactory { export function of(context: upstream12.BuildContext): upstream11.ButtonThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

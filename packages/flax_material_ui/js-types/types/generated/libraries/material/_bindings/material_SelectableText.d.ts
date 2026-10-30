@@ -235,6 +235,15 @@ export declare function _SelectableTextFactory(data: string, options?: {
     }> | null | undefined;
 }): SelectableText;
 export declare namespace _SelectableTextFactory {
+    const __flaxJsx: {
+        readonly props: ({
+            "data": globalThis.Parameters<typeof _SelectableTextFactory>[0];
+        } & globalThis.NonNullable<globalThis.Parameters<typeof _SelectableTextFactory>[1]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SelectableTextFactory {
     function rich(textSpan: Readonly<{
         "__flaxBound:package:flutter/src/painting/text_span.dart::TextSpan": readonly [];
     }> & Readonly<{
@@ -323,6 +332,15 @@ export declare namespace _SelectableTextFactory {
             "__flaxBound:package:flutter/src/widgets/magnifier.dart::TextMagnifierConfiguration": readonly [];
         }> | null | undefined;
     }): SelectableText;
+    namespace rich {
+        const __flaxJsx: {
+            readonly props: ({
+                "textSpan": globalThis.Parameters<typeof rich>[0];
+            } & globalThis.NonNullable<globalThis.Parameters<typeof rich>[1]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const SelectableText: typeof _SelectableTextFactory & _FlaxInstanceType<SelectableText> & _FlaxDartType<SelectableText, readonly ["class", "flax.material/material#type:SelectableText", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "data" | "textSpan" | "focusNode" | "style" | "strutStyle" | "textAlign" | "textDirection" | "textScaleFactor" | "textScaler" | "autofocus" | "minLines" | "maxLines" | "showCursor" | "cursorWidth" | "cursorHeight" | "cursorRadius" | "cursorColor" | "selectionColor" | "selectionHeightStyle" | "selectionWidthStyle" | "enableInteractiveSelection" | "selectionControls" | "dragStartBehavior" | "toolbarOptions" | "selectionEnabled" | "onTap" | "scrollPhysics" | "scrollBehavior" | "semanticsLabel" | "textHeightBehavior" | "textWidthBasis" | "onSelectionChanged" | "contextMenuBuilder" | "magnifierConfiguration" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/selectable_text.dart::SelectableText" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

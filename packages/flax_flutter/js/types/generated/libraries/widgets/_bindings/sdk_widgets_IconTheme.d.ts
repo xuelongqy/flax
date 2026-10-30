@@ -75,6 +75,19 @@ export declare function _IconThemeFactory(options: {
     child: Widget;
 }): IconTheme;
 export declare namespace _IconThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _IconThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _IconThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _IconThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _IconThemeFactory {
     function merge(options: {
         child: Widget;
         data: Readonly<{

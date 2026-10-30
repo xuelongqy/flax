@@ -84,6 +84,15 @@ export declare function _CupertinoTextSelectionToolbarFactory(options: {
     toolbarBuilder?: ((context: upstream3.BuildContext, anchorAbove: upstream2.Offset, anchorBelow: upstream2.Offset, child: Widget) => Widget) | undefined;
 }): CupertinoTextSelectionToolbar;
 export declare namespace _CupertinoTextSelectionToolbarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTextSelectionToolbarFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTextSelectionToolbarFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _CupertinoTextSelectionToolbarFactory {
     const kToolbarScreenPadding: number;
 }
 export declare const CupertinoTextSelectionToolbar: typeof _CupertinoTextSelectionToolbarFactory & _FlaxInstanceType<CupertinoTextSelectionToolbar> & _FlaxDartType<CupertinoTextSelectionToolbar, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTextSelectionToolbar", readonly [], false]>;

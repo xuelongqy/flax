@@ -129,6 +129,13 @@ export declare function _ScrollableFactory(options: {
     hitTestBehavior?: upstream11.HitTestBehavior | undefined;
 }): Scrollable;
 export declare namespace _ScrollableFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ScrollableFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _ScrollableFactory {
     function maybeOf(context: upstream5.BuildContext, options?: {
         axis?: upstream12.Axis | null | undefined;
     }): upstream13.ScrollableState | null;

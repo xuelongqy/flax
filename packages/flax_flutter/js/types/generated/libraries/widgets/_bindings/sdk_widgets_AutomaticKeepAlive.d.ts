@@ -60,6 +60,19 @@ export declare function _AutomaticKeepAliveFactory(options: {
     }> | null | undefined;
     child: Widget;
 }): AutomaticKeepAlive;
+export declare namespace _AutomaticKeepAliveFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AutomaticKeepAliveFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _AutomaticKeepAliveFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _AutomaticKeepAliveFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const AutomaticKeepAlive: typeof _AutomaticKeepAliveFactory & _FlaxInstanceType<AutomaticKeepAlive> & _FlaxDartType<AutomaticKeepAlive, readonly ["class", "flax.core/sdk_widgets#type:AutomaticKeepAlive", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAlive" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

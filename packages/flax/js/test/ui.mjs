@@ -1,9 +1,28 @@
+import { build } from 'esbuild';
+import { flaxEsbuildPlugin } from '../../../flax_build/js/src/esbuild.mjs';
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { createMixedFixture } from '../../../flax_build/js/test/fixture.mjs';
 
 export async function bundleUiFixtures({ outdir, root }) {
+  const jsxRoot = resolve(root, 'examples/jsx/js');
+  const jsxInventory = JSON.parse(
+    await readFile(
+      resolve(root, '.local/ui-module-inventory/modules/modules.json'),
+      'utf8',
+    ),
+  );
+  await build({
+    absWorkingDir: jsxRoot,
+    entryPoints: ['src/main.tsx'],
+    outfile: resolve(outdir, 'jsx.js'),
+    bundle: true,
+    format: 'iife',
+    platform: 'neutral',
+    target: 'es2022',
+    plugins: [flaxEsbuildPlugin(jsxInventory, { nativeAssets: false })],
+  });
   const source = await readFile(resolve(outdir, 'native_callbacks.js'), 'utf8');
   await writeFile(
     resolve(outdir, 'native_callbacks_source.dart'),

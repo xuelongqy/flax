@@ -96,6 +96,19 @@ export declare function _BottomAppBarFactory(options?: {
     }> | null | undefined;
     height?: number | null | undefined;
 }): BottomAppBar;
+export declare namespace _BottomAppBarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _BottomAppBarFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _BottomAppBarFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _BottomAppBarFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const BottomAppBar: typeof _BottomAppBarFactory & _FlaxInstanceType<BottomAppBar> & _FlaxDartType<BottomAppBar, readonly ["class", "flax.material/material#type:BottomAppBar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "padding" | "color" | "elevation" | "shape" | "clipBehavior" | "notchMargin" | "surfaceTintColor" | "shadowColor" | "height" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/bottom_app_bar.dart::BottomAppBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

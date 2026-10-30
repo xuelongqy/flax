@@ -74,6 +74,15 @@ export declare function _ImageIconFactory(image: Readonly<{
     semanticLabel?: string | null | undefined;
     useOriginalColors?: boolean | undefined;
 }): ImageIcon;
+export declare namespace _ImageIconFactory {
+    const __flaxJsx: {
+        readonly props: ({
+            "image": globalThis.Parameters<typeof _ImageIconFactory>[0];
+        } & globalThis.NonNullable<globalThis.Parameters<typeof _ImageIconFactory>[1]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const ImageIcon: typeof _ImageIconFactory & _FlaxInstanceType<ImageIcon> & _FlaxDartType<ImageIcon, readonly ["class", "flax.core/sdk_widgets#type:ImageIcon", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "image" | "size" | "color" | "semanticLabel" | "useOriginalColors" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/image_icon.dart::ImageIcon" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

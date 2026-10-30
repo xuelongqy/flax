@@ -30,6 +30,19 @@ export declare function _DirectionalityFactory(options: {
     child: Bindable<Widget>;
 }): Directionality;
 export declare namespace _DirectionalityFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DirectionalityFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DirectionalityFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DirectionalityFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DirectionalityFactory {
     function of(context: upstream2.BuildContext): upstream1.TextDirection;
 }
 export declare namespace _DirectionalityFactory {

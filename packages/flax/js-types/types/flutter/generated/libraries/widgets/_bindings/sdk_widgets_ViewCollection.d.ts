@@ -55,6 +55,13 @@ export declare function _ViewCollectionFactory(options: {
     }> | null | undefined;
     views: DartListInput<Widget, Widget>;
 }): ViewCollection;
+export declare namespace _ViewCollectionFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ViewCollectionFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const ViewCollection: typeof _ViewCollectionFactory & _FlaxInstanceType<ViewCollection> & _FlaxDartType<ViewCollection, readonly ["class", "flax.core/sdk_widgets#type:ViewCollection", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "views" | "key" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/view.dart::ViewCollection" | "__flaxBound:package:flutter/src/widgets/view.dart::_MultiChildComponentWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

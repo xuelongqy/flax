@@ -91,6 +91,13 @@ export declare function _NavigationIndicatorFactory(options: {
         "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
     }> | null | undefined;
 }): NavigationIndicator;
+export declare namespace _NavigationIndicatorFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationIndicatorFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const NavigationIndicator: typeof _NavigationIndicatorFactory & _FlaxInstanceType<NavigationIndicator> & _FlaxDartType<NavigationIndicator, readonly ["class", "flax.material/material#type:NavigationIndicator", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "animation" | "color" | "width" | "height" | "borderRadius" | "shape" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/navigation_bar.dart::NavigationIndicator" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

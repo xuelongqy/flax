@@ -135,6 +135,15 @@ export declare function _SimpleDialogFactory(options?: {
         "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
     }>) | null | undefined;
 }): SimpleDialog;
+export declare namespace _SimpleDialogFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SimpleDialogFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _SimpleDialogFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const SimpleDialog: typeof _SimpleDialogFactory & _FlaxInstanceType<SimpleDialog> & _FlaxDartType<SimpleDialog, readonly ["class", "flax.material/material#type:SimpleDialog", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "title" | "titlePadding" | "titleTextStyle" | "children" | "contentPadding" | "backgroundColor" | "elevation" | "shadowColor" | "surfaceTintColor" | "contentTextStyle" | "semanticLabel" | "insetPadding" | "clipBehavior" | "shape" | "alignment" | "constraints" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/dialog.dart::SimpleDialog" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

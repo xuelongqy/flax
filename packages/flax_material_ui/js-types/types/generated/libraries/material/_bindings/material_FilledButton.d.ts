@@ -84,6 +84,19 @@ export declare function _FilledButtonFactory(options: {
     child: Bindable<Widget | null>;
 }): FilledButton;
 export declare namespace _FilledButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FilledButtonFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _FilledButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _FilledButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _FilledButtonFactory {
     function icon(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -127,6 +140,13 @@ export declare namespace _FilledButtonFactory {
         label: Bindable<Widget>;
         iconAlignment?: Bindable<upstream5.IconAlignment | null> | undefined;
     }): FilledButton;
+    namespace icon {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof icon>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _FilledButtonFactory {
     function tonal(options: {
@@ -170,6 +190,19 @@ export declare namespace _FilledButtonFactory {
         }>) | null> | undefined;
         child: Bindable<Widget | null>;
     }): FilledButton;
+    namespace tonal {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof tonal>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof tonal>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof tonal>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _FilledButtonFactory {
     function tonalIcon(options: {
@@ -215,6 +248,13 @@ export declare namespace _FilledButtonFactory {
         label: Bindable<Widget>;
         iconAlignment?: Bindable<upstream5.IconAlignment | null> | undefined;
     }): FilledButton;
+    namespace tonalIcon {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof tonalIcon>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _FilledButtonFactory {
     function styleFrom(options?: {

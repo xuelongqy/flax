@@ -46,6 +46,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:DragBoundary", "", [{"name":"child","required":true},{"name":"key"}], [], options) as DragBoundary;
 }
+export declare namespace _DragBoundaryFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DragBoundaryFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DragBoundaryFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _DragBoundaryFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _DragBoundaryFactory { export function forRectOf(context: upstream5.BuildContext, options: { useGlobalPosition?: boolean | undefined } = {}): upstream3.DragBoundaryDelegate<upstream4.Rect> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["useGlobalPosition"].includes(k))) throw new TypeError('Invalid named method arguments');

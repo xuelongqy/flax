@@ -50,6 +50,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoSliverRefreshControl", "", [{"name":"key"},{"name":"refreshTriggerPullDistance"},{"name":"refreshIndicatorExtent"},{"name":"builder"},{"name":"onRefresh"}], [], options) as CupertinoSliverRefreshControl;
 }
+export declare namespace _CupertinoSliverRefreshControlFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoSliverRefreshControlFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _CupertinoSliverRefreshControlFactory { export function buildRefreshIndicator(context: upstream2.BuildContext, refreshState: upstream3.RefreshIndicatorMode, pulledExtent: number, refreshTriggerPullDistance: number, refreshIndicatorExtent: number): Widget {
 if (arguments.length > 5) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoSliverRefreshControl.buildRefreshIndicator", [contextHandle(context, "flax.core/flutter#type:BuildContext"), refreshState, pulledExtent, refreshTriggerPullDistance, refreshIndicatorExtent], _flaxMemberParameters57);

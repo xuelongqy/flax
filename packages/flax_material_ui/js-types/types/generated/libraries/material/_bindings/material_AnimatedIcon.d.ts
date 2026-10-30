@@ -87,6 +87,13 @@ export declare function _AnimatedIconFactory(options: {
     semanticLabel?: string | null | undefined;
     textDirection?: upstream5.TextDirection | null | undefined;
 }): AnimatedIcon;
+export declare namespace _AnimatedIconFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedIconFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const AnimatedIcon: typeof _AnimatedIconFactory & _FlaxInstanceType<AnimatedIcon> & _FlaxDartType<AnimatedIcon, readonly ["class", "flax.material/material#type:AnimatedIcon", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "progress" | "color" | "size" | "icon" | "semanticLabel" | "textDirection" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/animated_icons.dart::AnimatedIcon" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -91,6 +91,13 @@ export declare function _SliverCrossAxisExpandedFactory(options: {
     flex: number;
     sliver: Widget;
 }): SliverCrossAxisExpanded;
+export declare namespace _SliverCrossAxisExpandedFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverCrossAxisExpandedFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverCrossAxisExpanded: typeof _SliverCrossAxisExpandedFactory & _FlaxInstanceType<SliverCrossAxisExpanded> & _FlaxDartType<SliverCrossAxisExpanded, readonly ["class", "flax.core/sdk_widgets#type:SliverCrossAxisExpanded", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "flex" | "debugTypicalAncestorWidgetClass" | "debugTypicalAncestorWidgetDescription" | "child" | "key" | "applyParentData" | "createElement" | "debugIsValidRenderObject" | "debugCanApplyOutOfTurn" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverCrossAxisExpanded" | "__flaxBound:package:flutter/src/widgets/framework.dart::ParentDataWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -84,6 +84,19 @@ export declare function _TextSelectionToolbarTextButtonFactory(options: {
     }> | null | undefined;
 }): TextSelectionToolbarTextButton;
 export declare namespace _TextSelectionToolbarTextButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionToolbarTextButtonFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionToolbarTextButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TextSelectionToolbarTextButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _TextSelectionToolbarTextButtonFactory {
     function getPadding(index: number, total: number): upstream2.EdgeInsetsGeometry;
 }
 export declare const TextSelectionToolbarTextButton: typeof _TextSelectionToolbarTextButtonFactory & _FlaxInstanceType<TextSelectionToolbarTextButton> & _FlaxDartType<TextSelectionToolbarTextButton, readonly ["class", "flax.material/material#type:TextSelectionToolbarTextButton", readonly [], false]>;

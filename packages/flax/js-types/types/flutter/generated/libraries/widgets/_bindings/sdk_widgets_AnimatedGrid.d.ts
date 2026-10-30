@@ -129,6 +129,13 @@ export declare function _AnimatedGridFactory(options: {
     }> | null | undefined;
 }): AnimatedGrid;
 export declare namespace _AnimatedGridFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedGridFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _AnimatedGridFactory {
     function of(context: upstream2.BuildContext): upstream11.AnimatedGridState;
 }
 export declare namespace _AnimatedGridFactory {

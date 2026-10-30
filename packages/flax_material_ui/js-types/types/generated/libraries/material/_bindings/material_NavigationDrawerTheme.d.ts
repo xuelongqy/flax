@@ -75,6 +75,19 @@ export declare function _NavigationDrawerThemeFactory(options: {
     child: Widget;
 }): NavigationDrawerTheme;
 export declare namespace _NavigationDrawerThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _NavigationDrawerThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationDrawerThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _NavigationDrawerThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _NavigationDrawerThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.NavigationDrawerThemeData;
 }
 export declare const NavigationDrawerTheme: typeof _NavigationDrawerThemeFactory & _FlaxInstanceType<NavigationDrawerTheme> & _FlaxDartType<NavigationDrawerTheme, readonly ["class", "flax.material/material#type:NavigationDrawerTheme", readonly [], false]>;

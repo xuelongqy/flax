@@ -102,6 +102,13 @@ export declare function _DraggableScrollableSheetFactory(options: {
     shouldCloseOnMinExtent?: boolean | undefined;
     builder: ((context: upstream4.BuildContext, scrollController: upstream5.ScrollController) => Widget);
 }): DraggableScrollableSheet;
+export declare namespace _DraggableScrollableSheetFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _DraggableScrollableSheetFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const DraggableScrollableSheet: typeof _DraggableScrollableSheetFactory & _FlaxInstanceType<DraggableScrollableSheet> & _FlaxDartType<DraggableScrollableSheet, readonly ["class", "flax.core/sdk_widgets#type:DraggableScrollableSheet", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "initialChildSize" | "minChildSize" | "maxChildSize" | "expand" | "snap" | "snapSizes" | "snapAnimationDuration" | "controller" | "shouldCloseOnMinExtent" | "builder" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/draggable_scrollable_sheet.dart::DraggableScrollableSheet" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

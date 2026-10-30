@@ -118,6 +118,13 @@ export declare function _IconButtonFactory(options: {
     icon: Bindable<Widget>;
 }): IconButton;
 export declare namespace _IconButtonFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _IconButtonFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _IconButtonFactory {
     function filled(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -202,6 +209,13 @@ export declare namespace _IconButtonFactory {
         }>) | null> | undefined;
         icon: Bindable<Widget>;
     }): IconButton;
+    namespace filled {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof filled>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _IconButtonFactory {
     function filledTonal(options: {
@@ -288,6 +302,13 @@ export declare namespace _IconButtonFactory {
         }>) | null> | undefined;
         icon: Bindable<Widget>;
     }): IconButton;
+    namespace filledTonal {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof filledTonal>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _IconButtonFactory {
     function outlined(options: {
@@ -374,6 +395,13 @@ export declare namespace _IconButtonFactory {
         }>) | null> | undefined;
         icon: Bindable<Widget>;
     }): IconButton;
+    namespace outlined {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof outlined>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _IconButtonFactory {
     function styleFrom(options?: {

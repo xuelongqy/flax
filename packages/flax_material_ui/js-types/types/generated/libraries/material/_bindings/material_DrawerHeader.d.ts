@@ -93,6 +93,19 @@ export declare function _DrawerHeaderFactory(options: {
     }>) | undefined;
     child: Widget | null;
 }): DrawerHeader;
+export declare namespace _DrawerHeaderFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DrawerHeaderFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerHeaderFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerHeaderFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const DrawerHeader: typeof _DrawerHeaderFactory & _FlaxInstanceType<DrawerHeader> & _FlaxDartType<DrawerHeader, readonly ["class", "flax.material/material#type:DrawerHeader", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "decoration" | "padding" | "margin" | "duration" | "curve" | "child" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/drawer_header.dart::DrawerHeader" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

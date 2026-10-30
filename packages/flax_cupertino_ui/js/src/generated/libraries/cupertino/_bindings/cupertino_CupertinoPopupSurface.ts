@@ -43,6 +43,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoPopupSurface", "", [{"name":"key"},{"name":"blurSigma"},{"name":"isSurfacePainted"},{"name":"child","required":true}], [], options) as CupertinoPopupSurface;
 }
+export declare namespace _CupertinoPopupSurfaceFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPopupSurfaceFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPopupSurfaceFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPopupSurfaceFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _CupertinoPopupSurfaceFactory { export function setDebugIsVibrancePainted(value: boolean): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoPopupSurface.debugIsVibrancePainted%3D", [value], _flaxMemberParameters51);

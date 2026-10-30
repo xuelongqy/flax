@@ -75,6 +75,19 @@ export declare function _MenuThemeFactory(options: {
     child: Widget;
 }): MenuTheme;
 export declare namespace _MenuThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MenuThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _MenuThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _MenuThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _MenuThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.MenuThemeData;
 }
 export declare const MenuTheme: typeof _MenuThemeFactory & _FlaxInstanceType<MenuTheme> & _FlaxDartType<MenuTheme, readonly ["class", "flax.material/material#type:MenuTheme", readonly [], false]>;

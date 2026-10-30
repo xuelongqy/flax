@@ -61,6 +61,13 @@ export declare function _DeviceOrientationBuilderFactory(options: {
     }> | null | undefined;
     builder: ((context: upstream2.BuildContext, orientation: upstream3.Orientation) => Widget);
 }): DeviceOrientationBuilder;
+export declare namespace _DeviceOrientationBuilderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _DeviceOrientationBuilderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const DeviceOrientationBuilder: typeof _DeviceOrientationBuilderFactory & _FlaxInstanceType<DeviceOrientationBuilder> & _FlaxDartType<DeviceOrientationBuilder, readonly ["class", "flax.core/sdk_widgets#type:DeviceOrientationBuilder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "builder" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/orientation_builder.dart::DeviceOrientationBuilder" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

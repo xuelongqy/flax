@@ -139,6 +139,13 @@ export declare function _DataTableFactory(options: {
     }> | null | undefined;
     clipBehavior?: upstream9.Clip | undefined;
 }): DataTable;
+export declare namespace _DataTableFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _DataTableFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const DataTable: typeof _DataTableFactory & _FlaxInstanceType<DataTable> & _FlaxDartType<DataTable, readonly ["class", "flax.material/material#type:DataTable", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "columns" | "sortColumnIndex" | "sortAscending" | "onSelectAll" | "decoration" | "dataRowColor" | "dataRowHeight" | "dataRowMinHeight" | "dataRowMaxHeight" | "dataTextStyle" | "headingRowColor" | "headingRowHeight" | "headingTextStyle" | "horizontalMargin" | "columnSpacing" | "showCheckboxColumn" | "rows" | "dividerThickness" | "showBottomBorder" | "checkboxHorizontalMargin" | "border" | "clipBehavior" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/data_table.dart::DataTable" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

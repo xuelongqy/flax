@@ -88,7 +88,42 @@ export declare function _RepaintBoundaryFactory(options?: {
     child?: Widget | null | undefined;
 }): RepaintBoundary;
 export declare namespace _RepaintBoundaryFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RepaintBoundaryFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _RepaintBoundaryFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _RepaintBoundaryFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _RepaintBoundaryFactory {
     function wrap(child: Widget, childIndex: number): RepaintBoundary;
+    namespace wrap {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<({
+                "child": globalThis.Parameters<typeof wrap>[0];
+                "childIndex": globalThis.Parameters<typeof wrap>[1];
+            }), "child"> & ({
+                "child": ({
+                    "child": globalThis.Parameters<typeof wrap>[0];
+                    "childIndex": globalThis.Parameters<typeof wrap>[1];
+                })["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: ({
+                    "child": globalThis.Parameters<typeof wrap>[0];
+                    "childIndex": globalThis.Parameters<typeof wrap>[1];
+                })["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _RepaintBoundaryFactory {
     function wrapAll(widgets: DartListInput<Widget, Widget>): DartList<RepaintBoundary>;

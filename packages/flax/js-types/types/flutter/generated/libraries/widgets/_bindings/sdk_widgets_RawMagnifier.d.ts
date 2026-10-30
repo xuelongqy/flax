@@ -87,6 +87,19 @@ export declare function _RawMagnifierFactory(options: {
         "__flaxBound:dart:ui::OffsetBase": readonly [];
     }>;
 }): RawMagnifier;
+export declare namespace _RawMagnifierFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RawMagnifierFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _RawMagnifierFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _RawMagnifierFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const RawMagnifier: typeof _RawMagnifierFactory & _FlaxInstanceType<RawMagnifier> & _FlaxDartType<RawMagnifier, readonly ["class", "flax.core/sdk_widgets#type:RawMagnifier", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "decoration" | "clipBehavior" | "focalPointOffset" | "magnificationScale" | "size" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/magnifier.dart::RawMagnifier" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

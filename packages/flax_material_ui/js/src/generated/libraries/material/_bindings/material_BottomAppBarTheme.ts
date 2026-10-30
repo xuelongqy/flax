@@ -61,6 +61,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:BottomAppBarTheme", "", [{"name":"key"},{"name":"color"},{"name":"elevation"},{"name":"shape"},{"name":"height"},{"name":"surfaceTintColor"},{"name":"shadowColor"},{"name":"padding"},{"name":"data"},{"name":"child"}], [], options) as BottomAppBarTheme;
 }
+export declare namespace _BottomAppBarThemeFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _BottomAppBarThemeFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _BottomAppBarThemeFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _BottomAppBarThemeFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _BottomAppBarThemeFactory { export function of(context: upstream8.BuildContext): upstream7.BottomAppBarThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:BottomAppBarTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

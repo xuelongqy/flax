@@ -158,6 +158,19 @@ export declare function _FocusScopeFactory(options: {
     descendantsAreTraversable?: boolean | null | undefined;
 }): FocusScope;
 export declare namespace _FocusScopeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FocusScopeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _FocusScopeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _FocusScopeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _FocusScopeFactory {
     function withExternalFocusNode(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -195,6 +208,19 @@ export declare namespace _FocusScopeFactory {
         includeSemantics?: boolean | undefined;
         onFocusChange?: ((value: boolean) => void) | null | undefined;
     }): FocusScope;
+    namespace withExternalFocusNode {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof withExternalFocusNode>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof withExternalFocusNode>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof withExternalFocusNode>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _FocusScopeFactory {
     function of(context: upstream7.BuildContext, options?: {

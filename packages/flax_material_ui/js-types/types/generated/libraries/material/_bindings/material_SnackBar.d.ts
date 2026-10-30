@@ -150,6 +150,13 @@ export declare function _SnackBarFactory(options: {
     clipBehavior?: upstream11.Clip | undefined;
 }): SnackBar;
 export declare namespace _SnackBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SnackBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SnackBarFactory {
     function createAnimationController(options: {
         duration?: (Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];

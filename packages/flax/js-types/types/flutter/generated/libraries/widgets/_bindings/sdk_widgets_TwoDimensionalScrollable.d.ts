@@ -111,6 +111,13 @@ export declare function _TwoDimensionalScrollableFactory(options: {
     hitTestBehavior?: upstream8.HitTestBehavior | undefined;
 }): TwoDimensionalScrollable;
 export declare namespace _TwoDimensionalScrollableFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TwoDimensionalScrollableFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _TwoDimensionalScrollableFactory {
     function maybeOf(context: upstream3.BuildContext): upstream9.TwoDimensionalScrollableState | null;
 }
 export declare namespace _TwoDimensionalScrollableFactory {

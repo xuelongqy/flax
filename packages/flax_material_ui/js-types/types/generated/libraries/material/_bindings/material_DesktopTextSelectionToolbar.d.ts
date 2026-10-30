@@ -67,6 +67,15 @@ export declare function _DesktopTextSelectionToolbarFactory(options: {
     }>;
     children: DartListInput<Widget, Widget>;
 }): DesktopTextSelectionToolbar;
+export declare namespace _DesktopTextSelectionToolbarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DesktopTextSelectionToolbarFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DesktopTextSelectionToolbarFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const DesktopTextSelectionToolbar: typeof _DesktopTextSelectionToolbarFactory & _FlaxInstanceType<DesktopTextSelectionToolbar> & _FlaxDartType<DesktopTextSelectionToolbar, readonly ["class", "flax.material/material#type:DesktopTextSelectionToolbar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "anchor" | "children" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/desktop_text_selection_toolbar.dart::DesktopTextSelectionToolbar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

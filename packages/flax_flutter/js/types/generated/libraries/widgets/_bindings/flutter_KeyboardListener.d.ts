@@ -39,4 +39,17 @@ export declare function _KeyboardListenerFactory(options: {
     onKeyEvent?: Bindable<((value: upstream2.KeyEvent) => void) | null> | undefined;
     child: Bindable<Widget>;
 }): KeyboardListener;
+export declare namespace _KeyboardListenerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _KeyboardListenerFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _KeyboardListenerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _KeyboardListenerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const KeyboardListener: typeof _KeyboardListenerFactory & _FlaxInstanceType<KeyboardListener> & _FlaxDartType<KeyboardListener, readonly ["class", "flax.core/flutter#type:KeyboardListener", readonly [], false]>;

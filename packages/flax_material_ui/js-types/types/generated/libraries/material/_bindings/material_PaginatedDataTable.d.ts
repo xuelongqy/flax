@@ -145,6 +145,13 @@ export declare function _PaginatedDataTableFactory(options: {
     showEmptyRows?: boolean | undefined;
 }): PaginatedDataTable;
 export declare namespace _PaginatedDataTableFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _PaginatedDataTableFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _PaginatedDataTableFactory {
     const defaultRowsPerPage: number;
 }
 export declare const PaginatedDataTable: typeof _PaginatedDataTableFactory & _FlaxInstanceType<PaginatedDataTable> & _FlaxDartType<PaginatedDataTable, readonly ["class", "flax.material/material#type:PaginatedDataTable", readonly [], false]>;

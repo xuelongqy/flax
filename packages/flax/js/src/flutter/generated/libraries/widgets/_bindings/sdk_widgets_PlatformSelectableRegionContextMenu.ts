@@ -43,6 +43,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:PlatformSelectableRegionContextMenu", "", [{"name":"child","required":true},{"name":"key"}], [], options) as PlatformSelectableRegionContextMenu;
 }
+export declare namespace _PlatformSelectableRegionContextMenuFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _PlatformSelectableRegionContextMenuFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _PlatformSelectableRegionContextMenuFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _PlatformSelectableRegionContextMenuFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _PlatformSelectableRegionContextMenuFactory { export function setDebugOverrideRegisterViewFactory(value: ((p0: string, p1: ((viewId: number) => {}), options?: { isVisible?: boolean | undefined }) => void) | null): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:PlatformSelectableRegionContextMenu.debugOverrideRegisterViewFactory%3D", [value], _flaxMemberParameters38);

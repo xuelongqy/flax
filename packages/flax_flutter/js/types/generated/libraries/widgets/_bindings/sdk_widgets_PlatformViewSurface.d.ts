@@ -111,6 +111,13 @@ export declare function _PlatformViewSurfaceFactory(options: {
         "__flaxBound:package:flutter/src/foundation/basic_types.dart::Factory": readonly [upstream6.OneSequenceGestureRecognizer];
     }>>;
 }): PlatformViewSurface;
+export declare namespace _PlatformViewSurfaceFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _PlatformViewSurfaceFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const PlatformViewSurface: typeof _PlatformViewSurfaceFactory & _FlaxInstanceType<PlatformViewSurface> & _FlaxDartType<PlatformViewSurface, readonly ["class", "flax.core/sdk_widgets#type:PlatformViewSurface", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "gestureRecognizers" | "hitTestBehavior" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/platform_view.dart::PlatformViewSurface" | "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

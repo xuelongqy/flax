@@ -104,6 +104,15 @@ export declare function _CupertinoListSectionFactory(options?: {
     }> | null | undefined;
 }): CupertinoListSection;
 export declare namespace _CupertinoListSectionFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoListSectionFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoListSectionFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _CupertinoListSectionFactory {
     function insetGrouped(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -133,6 +142,15 @@ export declare namespace _CupertinoListSectionFactory {
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
     }): CupertinoListSection;
+    namespace insetGrouped {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof insetGrouped>[0]>), "children"> & {
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof insetGrouped>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare const CupertinoListSection: typeof _CupertinoListSectionFactory & _FlaxInstanceType<CupertinoListSection> & _FlaxDartType<CupertinoListSection, readonly ["class", "flax.cupertino/cupertino#type:CupertinoListSection", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "type" | "header" | "footer" | "margin" | "children" | "decoration" | "backgroundColor" | "clipBehavior" | "dividerMargin" | "additionalDividerMargin" | "topMargin" | "separatorColor" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/list_section.dart::CupertinoListSection" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

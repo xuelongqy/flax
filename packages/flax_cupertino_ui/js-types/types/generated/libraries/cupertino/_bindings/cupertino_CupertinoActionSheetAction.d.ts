@@ -96,6 +96,19 @@ export declare function _CupertinoActionSheetActionFactory(options: {
     }> | null | undefined;
     child: Widget;
 }): CupertinoActionSheetAction;
+export declare namespace _CupertinoActionSheetActionFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoActionSheetActionFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoActionSheetActionFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoActionSheetActionFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const CupertinoActionSheetAction: typeof _CupertinoActionSheetActionFactory & _FlaxInstanceType<CupertinoActionSheetAction> & _FlaxDartType<CupertinoActionSheetAction, readonly ["class", "flax.cupertino/cupertino#type:CupertinoActionSheetAction", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "onPressed" | "isDefaultAction" | "isDestructiveAction" | "mouseCursor" | "focusNode" | "focusColor" | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/dialog.dart::CupertinoActionSheetAction" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

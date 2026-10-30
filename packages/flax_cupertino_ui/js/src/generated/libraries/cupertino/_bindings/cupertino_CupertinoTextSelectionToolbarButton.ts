@@ -50,12 +50,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoTextSelectionToolbarButton", "", [{"name":"key"},{"name":"onPressed"},{"name":"child","required":true}], [], options) as CupertinoTextSelectionToolbarButton;
 }
+export declare namespace _CupertinoTextSelectionToolbarButtonFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTextSelectionToolbarButtonFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTextSelectionToolbarButtonFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTextSelectionToolbarButtonFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _CupertinoTextSelectionToolbarButtonFactory {
 export function text(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; onPressed?: (() => void) | null | undefined; text: string | null }): CupertinoTextSelectionToolbarButton {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoTextSelectionToolbarButton", "text", [{"name":"key"},{"name":"onPressed"},{"name":"text","required":true}], [], options) as CupertinoTextSelectionToolbarButton;
 }
+export declare namespace text { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof text>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _CupertinoTextSelectionToolbarButtonFactory {
 export function buttonItem(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; buttonItem: Readonly<{ "__flaxBound:package:flutter/src/widgets/context_menu_button_item.dart::ContextMenuButtonItem": readonly [] }> }): CupertinoTextSelectionToolbarButton {
@@ -63,6 +65,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoTextSelectionToolbarButton", "buttonItem", [{"name":"key"},{"name":"buttonItem","required":true}], [], options) as CupertinoTextSelectionToolbarButton;
 }
+export declare namespace buttonItem { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof buttonItem>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _CupertinoTextSelectionToolbarButtonFactory { export function getButtonLabel(context: upstream3.BuildContext, buttonItem: Readonly<{ "__flaxBound:package:flutter/src/widgets/context_menu_button_item.dart::ContextMenuButtonItem": readonly [] }>): string {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');

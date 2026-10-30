@@ -41,12 +41,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:KeyedSubtree", "", [{"name":"key"},{"name":"child","required":true}], [], options) as KeyedSubtree;
 }
+export declare namespace _KeyedSubtreeFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _KeyedSubtreeFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _KeyedSubtreeFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _KeyedSubtreeFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _KeyedSubtreeFactory {
 export function wrap(child: Widget, childIndex: number): KeyedSubtree {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:KeyedSubtree", "wrap", [{"name":"child","required":true,"positional":true},{"name":"childIndex","required":true,"positional":true}], [child, childIndex], {}) as KeyedSubtree;
 }
+export declare namespace wrap { const __flaxJsx: { readonly props: globalThis.Omit<({ "child": globalThis.Parameters<typeof wrap>[0]; "childIndex": globalThis.Parameters<typeof wrap>[1] }), "child"> & ({ "child": ({ "child": globalThis.Parameters<typeof wrap>[0]; "childIndex": globalThis.Parameters<typeof wrap>[1] })["child"]; children?: never } | { "child"?: never; children: ({ "child": globalThis.Parameters<typeof wrap>[0]; "childIndex": globalThis.Parameters<typeof wrap>[1] })["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _KeyedSubtreeFactory { export function ensureUniqueKeysForList(items: DartListInput<Widget, Widget>, options: { baseIndex?: number | undefined } = {}): DartList<Widget> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');

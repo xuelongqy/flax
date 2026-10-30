@@ -80,6 +80,19 @@ export declare function _CupertinoContextMenuFactory(options: {
     enableHapticFeedback?: boolean | undefined;
 }): CupertinoContextMenu;
 export declare namespace _CupertinoContextMenuFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoContextMenuFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoContextMenuFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoContextMenuFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoContextMenuFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -88,6 +101,13 @@ export declare namespace _CupertinoContextMenuFactory {
         builder: ((context: upstream2.BuildContext, animation: upstream3.Animation<number>) => Widget);
         enableHapticFeedback?: boolean | undefined;
     }): CupertinoContextMenu;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoContextMenuFactory {
     const kOpenBorderRadius: number;

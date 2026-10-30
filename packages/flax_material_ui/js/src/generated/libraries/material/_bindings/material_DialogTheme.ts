@@ -75,6 +75,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:DialogTheme", "", [{"name":"key"},{"name":"backgroundColor"},{"name":"elevation"},{"name":"shadowColor"},{"name":"surfaceTintColor"},{"name":"shape"},{"name":"alignment"},{"name":"iconColor"},{"name":"titleTextStyle"},{"name":"contentTextStyle"},{"name":"actionsPadding"},{"name":"barrierColor"},{"name":"insetPadding"},{"name":"clipBehavior"},{"name":"data"},{"name":"child"}], [], options) as DialogTheme;
 }
+export declare namespace _DialogThemeFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DialogThemeFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _DialogThemeFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _DialogThemeFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _DialogThemeFactory { export function of(context: upstream12.BuildContext): upstream11.DialogThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:DialogTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

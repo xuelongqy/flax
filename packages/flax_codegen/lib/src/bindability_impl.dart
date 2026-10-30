@@ -973,6 +973,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     disposeMethod: base?.disposeMethod ?? inferredDisposeMethod,
     proxyVariants: base?.proxyVariants ?? const {},
     jsName: base?.jsName,
+    jsxContent: base?.jsxContent,
   );
   return FlaxCodegenProposedBinding(
     name: name,

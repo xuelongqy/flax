@@ -73,6 +73,19 @@ export declare function _FocusTraversalOrderFactory(options: {
     child: Widget;
 }): FocusTraversalOrder;
 export declare namespace _FocusTraversalOrderFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FocusTraversalOrderFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _FocusTraversalOrderFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _FocusTraversalOrderFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _FocusTraversalOrderFactory {
     function of(context: upstream4.BuildContext): upstream3.FocusOrder;
 }
 export declare namespace _FocusTraversalOrderFactory {

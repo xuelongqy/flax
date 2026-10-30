@@ -72,6 +72,19 @@ export declare function _CupertinoThemeFactory(options: {
     child: Widget;
 }): CupertinoTheme;
 export declare namespace _CupertinoThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoThemeFactory {
     function of(context: upstream3.BuildContext): upstream2.CupertinoThemeData;
 }
 export declare namespace _CupertinoThemeFactory {

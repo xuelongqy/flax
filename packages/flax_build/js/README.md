@@ -6,6 +6,15 @@ former `@flax/tools` package and `packages/flax_tools` directory have been renam
 and TS use one toolchain. It runs in Node 22.23.0 or newer; emitted applications contain
 no Node, TypeScript compiler or Vite dependency.
 
+## Optional JSX and TSX
+
+Set `"flax": { "jsx": true }` in the owning JS project's package.json and include
+`flax-jsx.generated.d.ts` with an optional tsconfig include pattern. Run `flax-jsx`
+before type checking, or `flax-jsx --watch` for editing without running an application.
+Build adapters generate contracts automatically and lower JSX to the original calls.
+Existing projects remain disabled. See the [JSX guide](../../../docs/guides/jsx.md) and
+[example](../../../examples/jsx/README.md) for setup and supported forms.
+
 ## TypeScript compilation
 
 The esbuild and Vite plugins share one semantic compiler before TS types are erased:
@@ -383,6 +392,15 @@ uses Vite only for watching, module graph updates, transforms, and its HMR WebSo
 flax-dev --entry js/src/main.ts --out assets/app.js --port 5173
 ```
 
+File-output development also serves the complete startup script at
+`http://127.0.0.1:5173/@flax/dev.js`, without Vite's browser import rewriting. Responses
+use `Cache-Control: no-store`; compile errors preserve the last valid startup. A native
+`FlaxView.network` can load this URL with `FlaxRemoteFormat.javascript` and enable
+`developmentMode: true`. Its movable debug control re-reads the script and replaces only
+the owned Session, including after a constructor/field change rejected by HMR. This
+resets application state. The [JSX example](../../../examples/jsx/README.md) uses this
+mode; directory-output development keeps its original native module endpoint.
+
 `flax-dev` installs the same compiler as production builds. An existing Vite setup can
 install `flaxVitePlugin()` from `@flax/build/vite` before TS erasure. Type-only imports
 and provider declaration dependencies are watched without loading them as runtime
@@ -401,13 +419,20 @@ initialization changes (including changed module-level or imported inputs), fiel
 private brands, superclass, page inventory, and module removal require a session
 restart. Runtime reload failures are reported by `flax-dev`.
 
+The compiler recognizes initialization limited to literal values, constructor
+parameters, assignments to declared own instance fields, and `super` calls. Assignments
+to other properties may invoke setters and retain conservative checks. Proven classes do
+not reject an update merely because an imported module changed. Other initializer forms
+retain the conservative context and dependency checks; constructor text, field shape,
+superclass, and private-brand checks still apply to every class.
+
 Class methods retain canonical self references after a reload, including `new Counter()`
 and `instanceof Counter`. Named and default exports keep the same constructor identity,
 and development compilation preserves the original class names.
 
 Each successful compilation atomically refreshes the complete startup asset, even when
 the running Session rejects that update and requires a restart. Compile errors retain
-the last valid asset. Restart the Flutter host with the refreshed asset to load the
+the last valid asset. Restart the owning Session with the refreshed script to load the
 current source. Content revisions and per-Session commit acknowledgements keep live
 updates consistent with that asset: rejected dependencies are retried with the next
 update, while unchanged dependencies, including private-field classes, reuse their

@@ -132,6 +132,13 @@ export declare function _CupertinoSliverNavigationBarFactory(options?: {
     bottomMode?: upstream7.NavigationBarBottomMode | null | undefined;
 }): CupertinoSliverNavigationBar;
 export declare namespace _CupertinoSliverNavigationBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoSliverNavigationBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoSliverNavigationBarFactory {
     function search(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -169,6 +176,13 @@ export declare namespace _CupertinoSliverNavigationBarFactory {
         bottomMode?: upstream7.NavigationBarBottomMode | null | undefined;
         onSearchableBottomTap?: ((value: boolean) => void) | null | undefined;
     }): CupertinoSliverNavigationBar;
+    namespace search {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof search>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const CupertinoSliverNavigationBar: typeof _CupertinoSliverNavigationBarFactory & _FlaxInstanceType<CupertinoSliverNavigationBar> & _FlaxDartType<CupertinoSliverNavigationBar, readonly ["class", "flax.cupertino/cupertino#type:CupertinoSliverNavigationBar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "largeTitle" | "leading" | "automaticallyImplyLeading" | "automaticallyImplyTitle" | "alwaysShowMiddle" | "previousPageTitle" | "middle" | "trailing" | "backgroundColor" | "automaticBackgroundVisibility" | "enableBackgroundFilterBlur" | "brightness" | "padding" | "border" | "transitionBetweenRoutes" | "heroTag" | "bottom" | "bottomMode" | "onSearchableBottomTap" | "opaque" | "stretch" | "searchField" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/nav_bar.dart::CupertinoSliverNavigationBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

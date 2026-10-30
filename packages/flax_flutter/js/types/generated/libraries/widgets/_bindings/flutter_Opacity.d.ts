@@ -24,4 +24,17 @@ export declare function _OpacityFactory(options: {
     alwaysIncludeSemantics?: Bindable<boolean> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): Opacity;
+export declare namespace _OpacityFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _OpacityFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _OpacityFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _OpacityFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const Opacity: typeof _OpacityFactory & _FlaxInstanceType<Opacity> & _FlaxDartType<Opacity, readonly ["class", "flax.core/flutter#type:Opacity", readonly [], false]>;

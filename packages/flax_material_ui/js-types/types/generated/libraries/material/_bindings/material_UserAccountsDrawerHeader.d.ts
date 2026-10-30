@@ -102,6 +102,13 @@ export declare function _UserAccountsDrawerHeaderFactory(options: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | undefined;
 }): UserAccountsDrawerHeader;
+export declare namespace _UserAccountsDrawerHeaderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _UserAccountsDrawerHeaderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const UserAccountsDrawerHeader: typeof _UserAccountsDrawerHeaderFactory & _FlaxInstanceType<UserAccountsDrawerHeader> & _FlaxDartType<UserAccountsDrawerHeader, readonly ["class", "flax.material/material#type:UserAccountsDrawerHeader", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "decoration" | "margin" | "currentAccountPicture" | "otherAccountsPictures" | "currentAccountPictureSize" | "otherAccountsPicturesSize" | "accountName" | "accountEmail" | "onDetailsPressed" | "arrowColor" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/user_accounts_drawer_header.dart::UserAccountsDrawerHeader" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -61,12 +61,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:DefaultTextStyle", "", [{"name":"key"},{"name":"style","required":true},{"name":"textAlign"},{"name":"softWrap"},{"name":"overflow"},{"name":"maxLines"},{"name":"textWidthBasis"},{"name":"textHeightBehavior"},{"name":"child","required":true}], [], options) as DefaultTextStyle;
 }
+export declare namespace _DefaultTextStyleFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTextStyleFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTextStyleFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultTextStyleFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _DefaultTextStyleFactory {
 export function fallback(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined } = {}): DefaultTextStyle {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:DefaultTextStyle", "fallback", [{"name":"key"}], [], options) as DefaultTextStyle;
 }
+export declare namespace fallback { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof fallback>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _DefaultTextStyleFactory { export function merge(options: { child: Widget; key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; maxLines?: number | null | undefined; overflow?: upstream6.TextOverflow | null | undefined; softWrap?: boolean | null | undefined; style?: Readonly<{ "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; textAlign?: upstream5.TextAlign | null | undefined; textHeightBehavior?: Readonly<{ "__flaxBound:dart:ui::TextHeightBehavior": readonly [] }> | null | undefined; textWidthBasis?: upstream7.TextWidthBasis | null | undefined }): Widget {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

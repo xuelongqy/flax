@@ -75,6 +75,19 @@ export declare function _DrawerThemeFactory(options: {
     child: Widget;
 }): DrawerTheme;
 export declare namespace _DrawerThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DrawerThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DrawerThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DrawerThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.DrawerThemeData;
 }
 export declare const DrawerTheme: typeof _DrawerThemeFactory & _FlaxInstanceType<DrawerTheme> & _FlaxDartType<DrawerTheme, readonly ["class", "flax.material/material#type:DrawerTheme", readonly [], false]>;

@@ -75,6 +75,19 @@ export declare function _ElevatedButtonThemeFactory(options: {
     child: Widget;
 }): ElevatedButtonTheme;
 export declare namespace _ElevatedButtonThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ElevatedButtonThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ElevatedButtonThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ElevatedButtonThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ElevatedButtonThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.ElevatedButtonThemeData;
 }
 export declare const ElevatedButtonTheme: typeof _ElevatedButtonThemeFactory & _FlaxInstanceType<ElevatedButtonTheme> & _FlaxDartType<ElevatedButtonTheme, readonly ["class", "flax.material/material#type:ElevatedButtonTheme", readonly [], false]>;

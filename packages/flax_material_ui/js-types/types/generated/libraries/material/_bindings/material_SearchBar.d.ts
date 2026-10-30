@@ -238,6 +238,13 @@ export declare function _SearchBarFactory(options?: {
     smartDashesType?: upstream18.SmartDashesType | null | undefined;
     smartQuotesType?: upstream19.SmartQuotesType | null | undefined;
 }): SearchBar;
+export declare namespace _SearchBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SearchBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SearchBar: typeof _SearchBarFactory & _FlaxInstanceType<SearchBar> & _FlaxDartType<SearchBar, readonly ["class", "flax.material/material#type:SearchBar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "focusNode" | "hintText" | "leading" | "trailing" | "onTap" | "onTapOutside" | "onChanged" | "onSubmitted" | "constraints" | "elevation" | "backgroundColor" | "shadowColor" | "surfaceTintColor" | "overlayColor" | "side" | "shape" | "padding" | "textStyle" | "hintStyle" | "textCapitalization" | "enabled" | "autoFocus" | "textInputAction" | "keyboardType" | "scrollPadding" | "contextMenuBuilder" | "readOnly" | "smartDashesType" | "smartQuotesType" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/search_anchor.dart::SearchBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

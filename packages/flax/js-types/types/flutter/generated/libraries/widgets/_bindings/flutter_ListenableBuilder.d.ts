@@ -29,4 +29,17 @@ export declare function _ListenableBuilderFactory(options: {
     builder: Bindable<((context: upstream2.BuildContext, child: Widget | null) => Widget)>;
     child?: Bindable<Widget | null> | undefined;
 }): ListenableBuilder;
+export declare namespace _ListenableBuilderFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ListenableBuilderFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _ListenableBuilderFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ListenableBuilderFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const ListenableBuilder: typeof _ListenableBuilderFactory & _FlaxInstanceType<ListenableBuilder> & _FlaxDartType<ListenableBuilder, readonly ["class", "flax.core/flutter#type:ListenableBuilder", readonly [], false]>;

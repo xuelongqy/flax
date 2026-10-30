@@ -45,6 +45,19 @@ export declare function _CardFactory(options?: {
     semanticContainer?: Bindable<boolean> | undefined;
 }): Card;
 export declare namespace _CardFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CardFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _CardFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _CardFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CardFactory {
     function filled(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -70,6 +83,19 @@ export declare namespace _CardFactory {
         child?: Bindable<Widget | null> | undefined;
         semanticContainer?: Bindable<boolean> | undefined;
     }): Card;
+    namespace filled {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof filled>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof filled>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof filled>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CardFactory {
     function outlined(options?: {
@@ -97,5 +123,18 @@ export declare namespace _CardFactory {
         child?: Bindable<Widget | null> | undefined;
         semanticContainer?: Bindable<boolean> | undefined;
     }): Card;
+    namespace outlined {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof outlined>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof outlined>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof outlined>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const Card: typeof _CardFactory & _FlaxInstanceType<Card> & _FlaxDartType<Card, readonly ["class", "flax.material/material#type:Card", readonly [], false]>;

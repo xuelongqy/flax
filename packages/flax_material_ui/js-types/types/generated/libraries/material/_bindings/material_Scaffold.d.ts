@@ -91,6 +91,19 @@ export declare function _ScaffoldFactory(options?: {
     restorationId?: Bindable<string | null> | undefined;
 }): Scaffold;
 export declare namespace _ScaffoldFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ScaffoldFactory>[0]>), "body"> & ({
+            "body"?: (globalThis.NonNullable<globalThis.Parameters<typeof _ScaffoldFactory>[0]>)["body"];
+            children?: never;
+        } | {
+            "body"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ScaffoldFactory>[0]>)["body"];
+        });
+        readonly slot: "body";
+        readonly many: false;
+    };
+}
+export declare namespace _ScaffoldFactory {
     function of(context: upstream8.BuildContext): upstream10.ScaffoldState;
 }
 export declare namespace _ScaffoldFactory {

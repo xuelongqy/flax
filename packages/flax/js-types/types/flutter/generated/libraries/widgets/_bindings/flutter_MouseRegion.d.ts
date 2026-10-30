@@ -41,4 +41,17 @@ export declare function _MouseRegionFactory(options?: {
     hitTestBehavior?: Bindable<upstream5.HitTestBehavior | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): MouseRegion;
+export declare namespace _MouseRegionFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MouseRegionFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _MouseRegionFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _MouseRegionFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const MouseRegion: typeof _MouseRegionFactory & _FlaxInstanceType<MouseRegion> & _FlaxDartType<MouseRegion, readonly ["class", "flax.core/flutter#type:MouseRegion", readonly [], false]>;

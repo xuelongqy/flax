@@ -130,6 +130,13 @@ export declare function _ListWheelViewportFactory(options: {
     }>;
     clipBehavior?: upstream4.Clip | undefined;
 }): ListWheelViewport;
+export declare namespace _ListWheelViewportFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ListWheelViewportFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const ListWheelViewport: typeof _ListWheelViewportFactory & _FlaxInstanceType<ListWheelViewport> & _FlaxDartType<ListWheelViewport, readonly ["class", "flax.core/sdk_widgets#type:ListWheelViewport", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "diameterRatio" | "perspective" | "offAxisFraction" | "useMagnifier" | "magnification" | "overAndUnderCenterOpacity" | "itemExtent" | "squeeze" | "renderChildrenOutsideViewport" | "offset" | "childDelegate" | "clipBehavior" | "key" | "createElement" | "createRenderObject" | "updateRenderObject" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/list_wheel_scroll_view.dart::ListWheelViewport" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

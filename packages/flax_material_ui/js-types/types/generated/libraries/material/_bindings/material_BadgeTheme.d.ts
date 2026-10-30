@@ -75,6 +75,19 @@ export declare function _BadgeThemeFactory(options: {
     child: Widget;
 }): BadgeTheme;
 export declare namespace _BadgeThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _BadgeThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _BadgeThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _BadgeThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _BadgeThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.BadgeThemeData;
 }
 export declare const BadgeTheme: typeof _BadgeThemeFactory & _FlaxInstanceType<BadgeTheme> & _FlaxDartType<BadgeTheme, readonly ["class", "flax.material/material#type:BadgeTheme", readonly [], false]>;

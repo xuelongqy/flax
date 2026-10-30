@@ -49,6 +49,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverAnimatedList", "", [{"name":"key"},{"name":"itemBuilder","required":true},{"name":"findChildIndexCallback"},{"name":"initialItemCount"}], [], options) as SliverAnimatedList;
 }
+export declare namespace _SliverAnimatedListFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverAnimatedListFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _SliverAnimatedListFactory { export function of(context: upstream2.BuildContext): upstream4.SliverAnimatedListState {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:SliverAnimatedList.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

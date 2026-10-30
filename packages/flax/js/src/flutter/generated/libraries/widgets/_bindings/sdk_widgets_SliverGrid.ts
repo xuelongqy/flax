@@ -59,12 +59,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverGrid", "", [{"name":"key"},{"name":"delegate","required":true},{"name":"gridDelegate","required":true}], [], options) as SliverGrid;
 }
+export declare namespace _SliverGridFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverGridFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _SliverGridFactory {
 export function builder(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; gridDelegate: Readonly<{ "__flaxBound:package:flutter/src/rendering/sliver_grid.dart::SliverGridDelegate": readonly [] }>; itemBuilder: ((context: upstream6.BuildContext, index: number) => Widget | null); findChildIndexCallback?: ((key: upstream3.Key) => number | null) | null | undefined; itemCount?: number | null | undefined; addAutomaticKeepAlives?: boolean | undefined; addRepaintBoundaries?: boolean | undefined; addSemanticIndexes?: boolean | undefined; semanticIndexOffset?: number | undefined }): SliverGrid {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverGrid", "builder", [{"name":"key"},{"name":"gridDelegate","required":true},{"name":"itemBuilder","required":true},{"name":"findChildIndexCallback"},{"name":"itemCount"},{"name":"addAutomaticKeepAlives"},{"name":"addRepaintBoundaries"},{"name":"addSemanticIndexes"},{"name":"semanticIndexOffset"}], [], options) as SliverGrid;
 }
+export declare namespace builder { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _SliverGridFactory {
 export function count(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; crossAxisCount: number; mainAxisSpacing?: number | undefined; crossAxisSpacing?: number | undefined; childAspectRatio?: number | undefined; children?: DartListInput<Widget, Widget> | undefined }): SliverGrid {
@@ -72,6 +74,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverGrid", "count", [{"name":"key"},{"name":"crossAxisCount","required":true},{"name":"mainAxisSpacing"},{"name":"crossAxisSpacing"},{"name":"childAspectRatio"},{"name":"children"}], [], options) as SliverGrid;
 }
+export declare namespace count { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof count>[0]>), "children"> & { children?: (globalThis.NonNullable<globalThis.Parameters<typeof count>[0]>)["children"] | Widget }; readonly slot: "children"; readonly many: true; }; }
 }
 export namespace _SliverGridFactory {
 export function extent(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; maxCrossAxisExtent: number; mainAxisSpacing?: number | undefined; crossAxisSpacing?: number | undefined; childAspectRatio?: number | undefined; children?: DartListInput<Widget, Widget> | undefined }): SliverGrid {
@@ -79,6 +82,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverGrid", "extent", [{"name":"key"},{"name":"maxCrossAxisExtent","required":true},{"name":"mainAxisSpacing"},{"name":"crossAxisSpacing"},{"name":"childAspectRatio"},{"name":"children"}], [], options) as SliverGrid;
 }
+export declare namespace extent { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof extent>[0]>), "children"> & { children?: (globalThis.NonNullable<globalThis.Parameters<typeof extent>[0]>)["children"] | Widget }; readonly slot: "children"; readonly many: true; }; }
 }
 export namespace _SliverGridFactory {
 export function list(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; gridDelegate: Readonly<{ "__flaxBound:package:flutter/src/rendering/sliver_grid.dart::SliverGridDelegate": readonly [] }>; children: DartListInput<Widget, Widget>; addAutomaticKeepAlives?: boolean | undefined; addRepaintBoundaries?: boolean | undefined; addSemanticIndexes?: boolean | undefined; semanticIndexOffset?: number | undefined }): SliverGrid {
@@ -86,6 +90,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:SliverGrid", "list", [{"name":"key"},{"name":"gridDelegate","required":true},{"name":"children","required":true},{"name":"addAutomaticKeepAlives"},{"name":"addRepaintBoundaries"},{"name":"addSemanticIndexes"},{"name":"semanticIndexOffset"}], [], options) as SliverGrid;
 }
+export declare namespace list { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>), "children"> & { children: (globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>)["children"] | Widget }; readonly slot: "children"; readonly many: true; }; }
 }
 export const SliverGrid: typeof _SliverGridFactory & _FlaxInstanceType<SliverGrid> & _FlaxDartType<SliverGrid, readonly ["class", "flax.core/sdk_widgets#type:SliverGrid", readonly [], false]> = _flaxBindInstanceType<SliverGrid, typeof _SliverGridFactory>(_SliverGridFactory, "flax.core/sdk_widgets#type:SliverGrid", ["flax.core/sdk_widgets#type:SliverMultiBoxAdaptorWidget","flax.core/sdk_widgets#type:SliverWithKeepAliveWidget","flax.core/sdk_widgets#type:RenderObjectWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SliverGridFactory & _FlaxInstanceType<SliverGrid> & _FlaxDartType<SliverGrid, readonly ["class", "flax.core/sdk_widgets#type:SliverGrid", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "gridDelegate" | "delegate" | "key" | "createRenderObject" | "updateRenderObject" | "estimateMaxScrollOffset" | "createElement" | "debugFillProperties" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverGrid" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverMultiBoxAdaptorWidget" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverWithKeepAliveWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

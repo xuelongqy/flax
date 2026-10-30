@@ -83,6 +83,19 @@ export declare function _CupertinoButtonFactory(options: {
     onPressed: Bindable<(() => void) | null>;
 }): CupertinoButton;
 export declare namespace _CupertinoButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoButtonFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoButtonFactory {
     function tinted(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -142,6 +155,19 @@ export declare namespace _CupertinoButtonFactory {
         onLongPress?: Bindable<(() => void) | null> | undefined;
         onPressed: Bindable<(() => void) | null>;
     }): CupertinoButton;
+    namespace tinted {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof tinted>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof tinted>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof tinted>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoButtonFactory {
     function filled(options: {
@@ -203,6 +229,19 @@ export declare namespace _CupertinoButtonFactory {
         onLongPress?: Bindable<(() => void) | null> | undefined;
         onPressed: Bindable<(() => void) | null>;
     }): CupertinoButton;
+    namespace filled {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof filled>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof filled>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof filled>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoButtonFactory {
     function tapMoveSlop(): number;

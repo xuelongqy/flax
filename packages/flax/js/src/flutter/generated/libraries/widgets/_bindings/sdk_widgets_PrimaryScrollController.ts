@@ -51,12 +51,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:PrimaryScrollController", "", [{"name":"key"},{"name":"controller","required":true},{"name":"automaticallyInheritForPlatforms"},{"name":"scrollDirection"},{"name":"child","required":true}], [], options) as PrimaryScrollController;
 }
+export declare namespace _PrimaryScrollControllerFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _PrimaryScrollControllerFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _PrimaryScrollControllerFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _PrimaryScrollControllerFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _PrimaryScrollControllerFactory {
 export function none(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child: Widget }): PrimaryScrollController {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:PrimaryScrollController", "none", [{"name":"key"},{"name":"child","required":true}], [], options) as PrimaryScrollController;
 }
+export declare namespace none { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof none>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _PrimaryScrollControllerFactory { export function shouldInherit(context: upstream6.BuildContext, scrollDirection: upstream5.Axis): boolean {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');

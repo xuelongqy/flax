@@ -55,6 +55,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:FlexibleSpaceBar", "", [{"name":"key"},{"name":"title"},{"name":"background"},{"name":"centerTitle"},{"name":"titlePadding"},{"name":"collapseMode"},{"name":"stretchModes"},{"name":"expandedTitleScale"}], [], options) as FlexibleSpaceBar;
 }
+export declare namespace _FlexibleSpaceBarFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _FlexibleSpaceBarFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _FlexibleSpaceBarFactory { export function createSettings(options: { child: Widget; currentExtent: number; hasLeading?: boolean | null | undefined; isScrolledUnder?: boolean | null | undefined; maxExtent?: number | null | undefined; minExtent?: number | null | undefined; toolbarOpacity?: number | null | undefined }): Widget {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["child","currentExtent","hasLeading","isScrolledUnder","maxExtent","minExtent","toolbarOpacity"].includes(k))) throw new TypeError('Invalid named method arguments');

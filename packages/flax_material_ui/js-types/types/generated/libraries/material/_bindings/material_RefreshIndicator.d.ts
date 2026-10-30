@@ -43,6 +43,19 @@ export declare function _RefreshIndicatorFactory(options: {
     child: Bindable<Widget>;
 }): RefreshIndicator;
 export declare namespace _RefreshIndicatorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RefreshIndicatorFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _RefreshIndicatorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _RefreshIndicatorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _RefreshIndicatorFactory {
     function adaptive(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -64,6 +77,19 @@ export declare namespace _RefreshIndicatorFactory {
         elevation?: Bindable<number> | undefined;
         child: Bindable<Widget>;
     }): RefreshIndicator;
+    namespace adaptive {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _RefreshIndicatorFactory {
     function noSpinner(options: {
@@ -79,5 +105,18 @@ export declare namespace _RefreshIndicatorFactory {
         elevation?: Bindable<number> | undefined;
         child: Bindable<Widget>;
     }): RefreshIndicator;
+    namespace noSpinner {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof noSpinner>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof noSpinner>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof noSpinner>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const RefreshIndicator: typeof _RefreshIndicatorFactory & _FlaxInstanceType<RefreshIndicator> & _FlaxDartType<RefreshIndicator, readonly ["class", "flax.material/material#type:RefreshIndicator", readonly [], false]>;

@@ -18,6 +18,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:Form", "", [{"name":"key"},{"name":"child","required":true},{"name":"canPop"},{"name":"onPopInvoked"},{"name":"onPopInvokedWithResult"},{"name":"onWillPop"},{"name":"onChanged"},{"name":"autovalidateMode"}], [], options) as Form;
 }
+export declare namespace _FormFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FormFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _FormFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _FormFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _FormFactory { export function maybeOf(context: upstream3.BuildContext): upstream2.FormState | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/flutter#function:Form.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters50);

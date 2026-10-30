@@ -124,6 +124,19 @@ export declare function _BottomAppBarThemeFactory(options?: {
     child?: Widget | null | undefined;
 }): BottomAppBarTheme;
 export declare namespace _BottomAppBarThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _BottomAppBarThemeFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _BottomAppBarThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _BottomAppBarThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _BottomAppBarThemeFactory {
     function of(context: upstream8.BuildContext): upstream7.BottomAppBarThemeData;
 }
 export declare namespace _BottomAppBarThemeFactory {

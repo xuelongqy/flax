@@ -72,6 +72,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:NestedScrollView", "", [{"name":"key"},{"name":"controller"},{"name":"scrollDirection"},{"name":"reverse"},{"name":"physics"},{"name":"headerSliverBuilder","required":true},{"name":"body","required":true},{"name":"dragStartBehavior"},{"name":"floatHeaderSlivers"},{"name":"clipBehavior"},{"name":"hitTestBehavior"},{"name":"restorationId"},{"name":"scrollBehavior"}], [], options) as NestedScrollView;
 }
+export declare namespace _NestedScrollViewFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NestedScrollViewFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _NestedScrollViewFactory { export function sliverOverlapAbsorberHandleFor(context: upstream5.BuildContext): upstream10.SliverOverlapAbsorberHandle {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:NestedScrollView.sliverOverlapAbsorberHandleFor", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

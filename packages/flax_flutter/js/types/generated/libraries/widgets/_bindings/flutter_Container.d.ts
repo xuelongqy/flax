@@ -65,4 +65,17 @@ export declare function _ContainerFactory(options?: {
     child?: Bindable<Widget | null> | undefined;
     clipBehavior?: Bindable<upstream7.Clip> | undefined;
 }): Container;
+export declare namespace _ContainerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ContainerFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _ContainerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ContainerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const Container: typeof _ContainerFactory & _FlaxInstanceType<Container> & _FlaxDartType<Container, readonly ["class", "flax.core/flutter#type:Container", readonly [], false]>;

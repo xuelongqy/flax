@@ -123,6 +123,15 @@ export declare function _PageViewFactory(options?: {
     padEnds?: boolean | undefined;
 }): PageView;
 export declare namespace _PageViewFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _PageViewFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _PageViewFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _PageViewFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -159,6 +168,13 @@ export declare namespace _PageViewFactory {
         }> | null | undefined;
         padEnds?: boolean | undefined;
     }): PageView;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _PageViewFactory {
     function custom(options: {
@@ -197,6 +213,13 @@ export declare namespace _PageViewFactory {
         }> | null | undefined;
         padEnds?: boolean | undefined;
     }): PageView;
+    namespace custom {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof custom>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const PageView: typeof _PageViewFactory & _FlaxInstanceType<PageView> & _FlaxDartType<PageView, readonly ["class", "flax.core/sdk_widgets#type:PageView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "allowImplicitScrolling" | "scrollCacheExtent" | "restorationId" | "scrollDirection" | "reverse" | "controller" | "physics" | "pageSnapping" | "onPageChanged" | "childrenDelegate" | "dragStartBehavior" | "clipBehavior" | "hitTestBehavior" | "scrollBehavior" | "padEnds" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/page_view.dart::PageView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

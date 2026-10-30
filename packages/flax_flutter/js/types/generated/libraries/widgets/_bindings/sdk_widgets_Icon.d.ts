@@ -102,6 +102,15 @@ export declare function _IconFactory(icon: Readonly<{
         "__flaxBound:dart:ui::FontWeight": readonly [];
     }> | null | undefined;
 }): Icon;
+export declare namespace _IconFactory {
+    const __flaxJsx: {
+        readonly props: ({
+            "icon": globalThis.Parameters<typeof _IconFactory>[0];
+        } & globalThis.NonNullable<globalThis.Parameters<typeof _IconFactory>[1]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const Icon: typeof _IconFactory & _FlaxInstanceType<Icon> & _FlaxDartType<Icon, readonly ["class", "flax.core/sdk_widgets#type:Icon", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "icon" | "size" | "fill" | "weight" | "grade" | "opticalSize" | "color" | "shadows" | "semanticLabel" | "textDirection" | "applyTextScaling" | "blendMode" | "fontWeight" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/icon.dart::Icon" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

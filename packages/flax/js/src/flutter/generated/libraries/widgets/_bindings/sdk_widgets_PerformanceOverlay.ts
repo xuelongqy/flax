@@ -48,12 +48,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:PerformanceOverlay", "", [{"name":"key"},{"name":"optionsMask"}], [], options) as PerformanceOverlay;
 }
+export declare namespace _PerformanceOverlayFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _PerformanceOverlayFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _PerformanceOverlayFactory {
 export function allEnabled(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined } = {}): PerformanceOverlay {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:PerformanceOverlay", "allEnabled", [{"name":"key"}], [], options) as PerformanceOverlay;
 }
+export declare namespace allEnabled { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof allEnabled>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export const PerformanceOverlay: typeof _PerformanceOverlayFactory & _FlaxInstanceType<PerformanceOverlay> & _FlaxDartType<PerformanceOverlay, readonly ["class", "flax.core/sdk_widgets#type:PerformanceOverlay", readonly [], false]> = _flaxBindInstanceType<PerformanceOverlay, typeof _PerformanceOverlayFactory>(_PerformanceOverlayFactory, "flax.core/sdk_widgets#type:PerformanceOverlay", ["flax.core/sdk_widgets#type:LeafRenderObjectWidget","flax.core/sdk_widgets#type:RenderObjectWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _PerformanceOverlayFactory & _FlaxInstanceType<PerformanceOverlay> & _FlaxDartType<PerformanceOverlay, readonly ["class", "flax.core/sdk_widgets#type:PerformanceOverlay", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "optionsMask" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/performance_overlay.dart::PerformanceOverlay" | "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

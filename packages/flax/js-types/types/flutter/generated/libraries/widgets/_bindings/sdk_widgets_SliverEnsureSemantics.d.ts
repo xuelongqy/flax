@@ -86,6 +86,13 @@ export declare function _SliverEnsureSemanticsFactory(options: {
     }> | null | undefined;
     sliver: Widget;
 }): SliverEnsureSemantics;
+export declare namespace _SliverEnsureSemanticsFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverEnsureSemanticsFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverEnsureSemantics: typeof _SliverEnsureSemanticsFactory & _FlaxInstanceType<SliverEnsureSemantics> & _FlaxDartType<SliverEnsureSemantics, readonly ["class", "flax.core/sdk_widgets#type:SliverEnsureSemantics", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "key" | "createRenderObject" | "createElement" | "updateRenderObject" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverEnsureSemantics" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

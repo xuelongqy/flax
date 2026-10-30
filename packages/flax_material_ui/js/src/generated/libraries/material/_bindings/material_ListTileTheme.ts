@@ -81,6 +81,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:ListTileTheme", "", [{"name":"key"},{"name":"data"},{"name":"dense"},{"name":"shape"},{"name":"style"},{"name":"selectedColor"},{"name":"iconColor"},{"name":"textColor"},{"name":"contentPadding"},{"name":"tileColor"},{"name":"selectedTileColor"},{"name":"enableFeedback"},{"name":"mouseCursor"},{"name":"horizontalTitleGap"},{"name":"minVerticalPadding"},{"name":"minLeadingWidth"},{"name":"controlAffinity"},{"name":"child","required":true}], [], options) as ListTileTheme;
 }
+export declare namespace _ListTileThemeFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ListTileThemeFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ListTileThemeFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _ListTileThemeFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _ListTileThemeFactory { export function of(context: upstream12.BuildContext): upstream4.ListTileThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:ListTileTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

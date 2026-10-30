@@ -195,6 +195,15 @@ export declare function _ExpansionTileFactory(options: {
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream20.WidgetState>];
     }>) | null | undefined;
 }): ExpansionTile;
+export declare namespace _ExpansionTileFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ExpansionTileFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ExpansionTileFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const ExpansionTile: typeof _ExpansionTileFactory & _FlaxInstanceType<ExpansionTile> & _FlaxDartType<ExpansionTile, readonly ["class", "flax.material/material#type:ExpansionTile", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "leading" | "title" | "subtitle" | "onExpansionChanged" | "children" | "backgroundColor" | "collapsedBackgroundColor" | "trailing" | "showTrailingIcon" | "initiallyExpanded" | "maintainState" | "tilePadding" | "expandedAlignment" | "expandedCrossAxisAlignment" | "childrenPadding" | "iconColor" | "collapsedIconColor" | "textColor" | "collapsedTextColor" | "shape" | "collapsedShape" | "clipBehavior" | "controlAffinity" | "controller" | "dense" | "splashColor" | "visualDensity" | "minTileHeight" | "enableFeedback" | "enabled" | "expansionAnimationStyle" | "internalAddSemanticForOnTap" | "statesController" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/expansion_tile.dart::ExpansionTile" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

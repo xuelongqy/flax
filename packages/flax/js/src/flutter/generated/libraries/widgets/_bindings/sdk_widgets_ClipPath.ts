@@ -57,6 +57,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:ClipPath", "", [{"name":"key"},{"name":"clipper"},{"name":"clipBehavior"},{"name":"child"}], [], options) as ClipPath;
 }
+export declare namespace _ClipPathFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ClipPathFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _ClipPathFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _ClipPathFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _ClipPathFactory { export function shape(options: { child?: Widget | null | undefined; clipBehavior?: upstream5.Clip | undefined; key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; shape: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> }): Widget {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["child","clipBehavior","key","shape"].includes(k))) throw new TypeError('Invalid named method arguments');

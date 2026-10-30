@@ -54,4 +54,17 @@ export declare function _SingleChildScrollViewFactory(options?: {
     restorationId?: Bindable<string | null> | undefined;
     keyboardDismissBehavior?: Bindable<upstream8.ScrollViewKeyboardDismissBehavior | null> | undefined;
 }): SingleChildScrollView;
+export declare namespace _SingleChildScrollViewFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SingleChildScrollViewFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _SingleChildScrollViewFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _SingleChildScrollViewFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const SingleChildScrollView: typeof _SingleChildScrollViewFactory & _FlaxInstanceType<SingleChildScrollView> & _FlaxDartType<SingleChildScrollView, readonly ["class", "flax.core/flutter#type:SingleChildScrollView", readonly [], false]>;

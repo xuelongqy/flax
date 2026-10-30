@@ -81,6 +81,13 @@ export declare function _FlexibleSpaceBarFactory(options?: {
     expandedTitleScale?: number | undefined;
 }): FlexibleSpaceBar;
 export declare namespace _FlexibleSpaceBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _FlexibleSpaceBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _FlexibleSpaceBarFactory {
     function createSettings(options: {
         child: Widget;
         currentExtent: number;

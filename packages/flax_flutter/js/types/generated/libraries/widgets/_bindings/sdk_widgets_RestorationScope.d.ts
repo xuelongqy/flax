@@ -67,6 +67,19 @@ export declare function _RestorationScopeFactory(options: {
     child: Widget;
 }): RestorationScope;
 export declare namespace _RestorationScopeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _RestorationScopeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _RestorationScopeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _RestorationScopeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _RestorationScopeFactory {
     function maybeOf(context: upstream3.BuildContext): upstream2.RestorationBucket | null;
 }
 export declare namespace _RestorationScopeFactory {

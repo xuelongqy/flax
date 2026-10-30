@@ -57,7 +57,8 @@ melos:
           examples/embedded/integration_test examples/embedded/test_driver
           examples/standalone/lib examples/standalone/test
           examples/standalone/integration_test examples/standalone/test_driver
-          examples/configured_bindings/host/lib examples/configured_bindings/host/test
+          examples/jsx/tool examples/configured_bindings/host/lib
+          examples/configured_bindings/host/test
           examples/configured_bindings/provider/lib
           examples/configured_bindings/vendor/lib
           examples/configured_bindings/default_app/lib

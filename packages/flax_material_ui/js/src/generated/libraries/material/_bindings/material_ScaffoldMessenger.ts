@@ -45,6 +45,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:ScaffoldMessenger", "", [{"name":"key"},{"name":"child","required":true}], [], options) as ScaffoldMessenger;
 }
+export declare namespace _ScaffoldMessengerFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ScaffoldMessengerFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ScaffoldMessengerFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _ScaffoldMessengerFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _ScaffoldMessengerFactory { export function of(context: upstream3.BuildContext): upstream2.ScaffoldMessengerState {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:ScaffoldMessenger.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

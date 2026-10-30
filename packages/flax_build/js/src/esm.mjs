@@ -39,7 +39,12 @@ export async function prepareModuleApplication({
     throw new Error('Module source and output directories must not overlap');
   const files = new Map();
   const modules = Object.create(null);
+  const watchFiles = new Set([
+    resolve(project, 'tsconfig.json'),
+    resolve(project, 'package.json'),
+  ]);
   const compiler = new FlaxCompiler({ root: project });
+  compiler.prepareJsx();
   async function visit(directory, prefix = '') {
     const entries = await readdir(directory, { withFileTypes: true });
     for (const item of entries.sort((a, b) => a.name.localeCompare(b.name, 'en'))) {
@@ -52,8 +57,8 @@ export async function prepareModuleApplication({
       if (!item.isFile())
         throw new Error(`Module input must be a regular file: ${key}`);
       if (/\.d\.[cm]?ts$/.test(key) || /\.(?:map|md)$/.test(key)) continue;
-      const typescript = /\.[cm]?tsx?$/.test(key);
-      const target = typescript ? key.replace(/\.[cm]?tsx?$/, '.js') : key;
+      const typescript = /\.[cm]?[jt]sx$|\.[cm]?tsx?$/.test(key);
+      const target = typescript ? key.replace(/\.[cm]?[jt]sx?$/, '.js') : key;
       const kind = /\.[cm]?js$/.test(target)
         ? 'javascript'
         : target.endsWith('.json')
@@ -64,16 +69,24 @@ export async function prepareModuleApplication({
       if (!kind) throw new Error(`Unsupported module input: ${key}`);
       if (files.has(target)) throw new Error(`Conflicting module output: ${target}`);
       let bytes = await readFile(path);
-      if (typescript) {
+      if (typescript || (kind === 'javascript' && compiler.jsx.enabled)) {
         const compiled = compiler.transform(bytes.toString('utf8'), path);
-        const result = await transform(compiled.code, {
-          loader: key.endsWith('.tsx') ? 'tsx' : 'ts',
-          format: 'esm',
-          target: 'esnext',
-          sourcefile: key,
-          keepNames: true,
-        });
-        bytes = Buffer.from(result.code);
+        for (const dependency of compiled.dependencies) watchFiles.add(dependency);
+        if (typescript || compiled.code !== bytes.toString('utf8')) {
+          const result = await transform(
+            compiled.code +
+              (compiled.map ? `\n//# sourceMappingURL=${compiled.map.toUrl()}` : ''),
+            {
+              loader: /\.[cm]?tsx?$/.test(key) ? 'ts' : 'js',
+              sourcemap: 'inline',
+              format: 'esm',
+              target: 'esnext',
+              sourcefile: key,
+              keepNames: true,
+            },
+          );
+          bytes = Buffer.from(result.code);
+        }
       }
       const limit = kind === 'wasm' ? 16 : kind === 'json' ? 1 : 4;
       if (bytes.length > limit * 1024 * 1024)
@@ -110,7 +123,7 @@ export async function prepareModuleApplication({
     await mkdir(dirname(path), { recursive: true });
     await writeFile(path, bytes);
   }
-  return application;
+  return { ...application, watchFiles: [...watchFiles] };
 }
 
 /** Vite watches sources; the module endpoint serves ESM without browser rewriting. */
@@ -121,7 +134,7 @@ export async function startFlaxModuleDev({ entry, out, port, root }) {
   const options = {
     projectDirectory: root,
     modulesDirectory,
-    entry: basename(input).replace(/\.[cm]?tsx?$/, '.js'),
+    entry: basename(input).replace(/\.[cm]?[jt]sx?$/, '.js'),
     outputDirectory: resolve(root, out),
   };
   let application = await prepareModuleApplication(options);
@@ -158,14 +171,19 @@ export async function startFlaxModuleDev({ entry, out, port, root }) {
               response.end(error.message);
             });
           });
-          server.watcher.add(modulesDirectory);
+          server.watcher.add([modulesDirectory, ...application.watchFiles]);
           server.watcher.on('all', (_, path) => {
             const local = relative(modulesDirectory, path);
-            if (isAbsolute(local) || local === '..' || local.startsWith(`..${sep}`))
+            if (
+              path === resolve(root, 'flax-jsx.generated.d.ts') ||
+              (!application.watchFiles.includes(path) &&
+                (isAbsolute(local) || local === '..' || local.startsWith(`..${sep}`)))
+            )
               return;
             rebuilding = rebuilding
               .then(async () => {
                 application = await prepareModuleApplication(options);
+                server.watcher.add(application.watchFiles);
                 server.ws.send({
                   type: 'custom',
                   event: 'flax:restart',

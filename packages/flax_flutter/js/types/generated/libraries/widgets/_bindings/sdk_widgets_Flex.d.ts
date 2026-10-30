@@ -134,6 +134,15 @@ export declare function _FlexFactory(options: {
     spacing?: number | undefined;
     children?: DartListInput<Widget, Widget> | undefined;
 }): Flex;
+export declare namespace _FlexFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _FlexFactory>[0]>), "children"> & {
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _FlexFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const Flex: typeof _FlexFactory & _FlaxInstanceType<Flex> & _FlaxDartType<Flex, readonly ["class", "flax.core/sdk_widgets#type:Flex", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "direction" | "mainAxisAlignment" | "mainAxisSize" | "crossAxisAlignment" | "textDirection" | "verticalDirection" | "textBaseline" | "clipBehavior" | "spacing" | "children" | "key" | "getEffectiveTextDirection" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::Flex" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

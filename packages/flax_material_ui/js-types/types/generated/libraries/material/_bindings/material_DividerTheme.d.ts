@@ -75,6 +75,19 @@ export declare function _DividerThemeFactory(options: {
     child: Widget;
 }): DividerTheme;
 export declare namespace _DividerThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DividerThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DividerThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DividerThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DividerThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.DividerThemeData;
 }
 export declare const DividerTheme: typeof _DividerThemeFactory & _FlaxInstanceType<DividerTheme> & _FlaxDartType<DividerTheme, readonly ["class", "flax.material/material#type:DividerTheme", readonly [], false]>;

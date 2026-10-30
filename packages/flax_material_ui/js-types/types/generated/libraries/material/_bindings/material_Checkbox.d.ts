@@ -89,6 +89,13 @@ export declare function _CheckboxFactory(options: {
     semanticLabel?: Bindable<string | null> | undefined;
 }): Checkbox;
 export declare namespace _CheckboxFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CheckboxFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CheckboxFactory {
     function adaptive(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -153,6 +160,13 @@ export declare namespace _CheckboxFactory {
         isError?: Bindable<boolean> | undefined;
         semanticLabel?: Bindable<string | null> | undefined;
     }): Checkbox;
+    namespace adaptive {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof adaptive>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CheckboxFactory {
     const width: number;

@@ -30,6 +30,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.material/material#type:Material", "", [{"name":"key"},{"name":"type"},{"name":"elevation"},{"name":"color"},{"name":"shadowColor"},{"name":"surfaceTintColor"},{"name":"textStyle"},{"name":"borderRadius"},{"name":"shape"},{"name":"borderOnForeground"},{"name":"clipBehavior"},{"name":"animationDuration"},{"name":"child"},{"name":"animateColor"}], [], options) as Material;
 }
+export declare namespace _MaterialFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MaterialFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _MaterialFactory { export declare const defaultSplashRadius: number; }
 _flaxDefineStaticGetters(_MaterialFactory, "flax.material/material#read:Material.", ["defaultSplashRadius"]);
 export namespace _MaterialFactory { export function maybeOf(context: upstream9.BuildContext): upstream8.MaterialInkController | null {

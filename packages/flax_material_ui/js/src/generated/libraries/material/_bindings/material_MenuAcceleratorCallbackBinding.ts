@@ -44,6 +44,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:MenuAcceleratorCallbackBinding", "", [{"name":"key"},{"name":"onInvoke"},{"name":"hasSubmenu"},{"name":"child","required":true}], [], options) as MenuAcceleratorCallbackBinding;
 }
+export declare namespace _MenuAcceleratorCallbackBindingFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MenuAcceleratorCallbackBindingFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _MenuAcceleratorCallbackBindingFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _MenuAcceleratorCallbackBindingFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _MenuAcceleratorCallbackBindingFactory { export function maybeOf(context: upstream3.BuildContext): MenuAcceleratorCallbackBinding | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:MenuAcceleratorCallbackBinding.maybeOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

@@ -131,6 +131,15 @@ export declare function _CarouselViewFactory(options: {
     onIndexChanged?: ((value: number) => void) | null | undefined;
 }): CarouselView;
 export declare namespace _CarouselViewFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CarouselViewFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CarouselViewFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _CarouselViewFactory {
     function weighted(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -172,6 +181,15 @@ export declare namespace _CarouselViewFactory {
         children: DartListInput<Widget, Widget>;
         onIndexChanged?: ((value: number) => void) | null | undefined;
     }): CarouselView;
+    namespace weighted {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof weighted>[0]>), "children"> & {
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof weighted>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare namespace _CarouselViewFactory {
     function builder(options: {
@@ -215,6 +233,13 @@ export declare namespace _CarouselViewFactory {
         onIndexChanged?: ((value: number) => void) | null | undefined;
         infinite?: boolean | undefined;
     }): CarouselView;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CarouselViewFactory {
     function weightedBuilder(options: {
@@ -259,6 +284,13 @@ export declare namespace _CarouselViewFactory {
         onIndexChanged?: ((value: number) => void) | null | undefined;
         infinite?: boolean | undefined;
     }): CarouselView;
+    namespace weightedBuilder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof weightedBuilder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const CarouselView: typeof _CarouselViewFactory & _FlaxInstanceType<CarouselView> & _FlaxDartType<CarouselView, readonly ["class", "flax.material/material#type:CarouselView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "padding" | "backgroundColor" | "elevation" | "shape" | "itemClipBehavior" | "overlayColor" | "shrinkExtent" | "itemSnapping" | "controller" | "scrollDirection" | "reverse" | "consumeMaxWeight" | "onTap" | "enableSplash" | "itemExtent" | "flexWeights" | "children" | "onIndexChanged" | "itemBuilder" | "itemCount" | "infinite" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/carousel.dart::CarouselView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

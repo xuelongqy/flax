@@ -26,12 +26,38 @@ export declare function _SizedBoxFactory(options?: {
     child?: Bindable<Widget | null> | undefined;
 }): SizedBox;
 export declare namespace _SizedBoxFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SizedBoxFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _SizedBoxFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _SizedBoxFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _SizedBoxFactory {
     function expand(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
         child?: Bindable<Widget | null> | undefined;
     }): SizedBox;
+    namespace expand {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof expand>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof expand>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof expand>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SizedBoxFactory {
     function shrink(options?: {
@@ -40,6 +66,19 @@ export declare namespace _SizedBoxFactory {
         }> | null | undefined;
         child?: Bindable<Widget | null> | undefined;
     }): SizedBox;
+    namespace shrink {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof shrink>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof shrink>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof shrink>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SizedBoxFactory {
     function fromSize(options?: {
@@ -53,6 +92,19 @@ export declare namespace _SizedBoxFactory {
             "__flaxBound:dart:ui::OffsetBase": readonly [];
         }>) | null> | undefined;
     }): SizedBox;
+    namespace fromSize {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof fromSize>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof fromSize>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof fromSize>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SizedBoxFactory {
     function square(options?: {
@@ -62,5 +114,18 @@ export declare namespace _SizedBoxFactory {
         child?: Bindable<Widget | null> | undefined;
         dimension?: Bindable<number | null> | undefined;
     }): SizedBox;
+    namespace square {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof square>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof square>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof square>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare const SizedBox: typeof _SizedBoxFactory & _FlaxInstanceType<SizedBox> & _FlaxDartType<SizedBox, readonly ["class", "flax.core/flutter#type:SizedBox", readonly [], false]>;

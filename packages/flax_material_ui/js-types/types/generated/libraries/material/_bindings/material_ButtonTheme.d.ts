@@ -115,6 +115,19 @@ export declare function _ButtonThemeFactory(options: {
     child: Widget;
 }): ButtonTheme;
 export declare namespace _ButtonThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ButtonThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ButtonThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ButtonThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ButtonThemeFactory {
     function fromButtonThemeData(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -126,6 +139,19 @@ export declare namespace _ButtonThemeFactory {
         }>;
         child: Widget;
     }): ButtonTheme;
+    namespace fromButtonThemeData {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof fromButtonThemeData>[0]>), "child"> & ({
+                "child": (globalThis.NonNullable<globalThis.Parameters<typeof fromButtonThemeData>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof fromButtonThemeData>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _ButtonThemeFactory {
     function of(context: upstream12.BuildContext): upstream11.ButtonThemeData;

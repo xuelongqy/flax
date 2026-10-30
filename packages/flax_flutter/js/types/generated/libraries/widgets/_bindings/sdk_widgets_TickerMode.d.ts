@@ -71,6 +71,19 @@ export declare function _TickerModeFactory(options: {
     forceFrames?: boolean | undefined;
 }): TickerMode;
 export declare namespace _TickerModeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TickerModeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _TickerModeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _TickerModeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _TickerModeFactory {
     function of(context: upstream2.BuildContext): boolean;
 }
 export declare namespace _TickerModeFactory {

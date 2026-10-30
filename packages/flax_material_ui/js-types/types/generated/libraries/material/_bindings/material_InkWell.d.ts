@@ -117,4 +117,17 @@ export declare function _InkWellFactory(options?: {
         "__flaxBound:dart:core::Comparable": readonly [upstream11.Duration];
     }>) | null> | undefined;
 }): InkWell;
+export declare namespace _InkWellFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _InkWellFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _InkWellFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _InkWellFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const InkWell: typeof _InkWellFactory & _FlaxInstanceType<InkWell> & _FlaxDartType<InkWell, readonly ["class", "flax.material/material#type:InkWell", readonly [], false]>;

@@ -97,6 +97,19 @@ export declare function _InputDecoratorFactory(options: {
     child?: Widget | null | undefined;
 }): InputDecorator;
 export declare namespace _InputDecoratorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _InputDecoratorFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _InputDecoratorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _InputDecoratorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _InputDecoratorFactory {
     function containerOf(context: upstream7.BuildContext): upstream6.RenderBox | null;
 }
 export declare const InputDecorator: typeof _InputDecoratorFactory & _FlaxInstanceType<InputDecorator> & _FlaxDartType<InputDecorator, readonly ["class", "flax.material/material#type:InputDecorator", readonly [], false]>;

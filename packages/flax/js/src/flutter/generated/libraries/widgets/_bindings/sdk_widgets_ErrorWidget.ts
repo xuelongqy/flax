@@ -52,12 +52,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:ErrorWidget", "", [{"name":"exception","required":true,"positional":true}], [exception], {}) as ErrorWidget;
 }
+export declare namespace _ErrorWidgetFactory { const __flaxJsx: { readonly props: ({ "exception": globalThis.Parameters<typeof _ErrorWidgetFactory>[0] }); readonly slot: null; readonly many: false; }; }
 export namespace _ErrorWidgetFactory {
 export function withDetails(options: { message?: string | undefined; error?: Readonly<{ "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterError": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Error": readonly [] }> & Readonly<{ "__flaxBound:dart:core::AssertionError": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined } = {}): ErrorWidget {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:ErrorWidget", "withDetails", [{"name":"message"},{"name":"error"}], [], options) as ErrorWidget;
 }
+export declare namespace withDetails { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof withDetails>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _ErrorWidgetFactory { export function setBuilder(value: ((details: upstream4.FlutterErrorDetails) => Widget)): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

@@ -75,6 +75,19 @@ export declare function _ExpansionTileThemeFactory(options: {
     child: Widget;
 }): ExpansionTileTheme;
 export declare namespace _ExpansionTileThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ExpansionTileThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ExpansionTileThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ExpansionTileThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ExpansionTileThemeFactory {
     function of(context: upstream5.BuildContext): upstream4.ExpansionTileThemeData;
 }
 export declare const ExpansionTileTheme: typeof _ExpansionTileThemeFactory & _FlaxInstanceType<ExpansionTileTheme> & _FlaxDartType<ExpansionTileTheme, readonly ["class", "flax.material/material#type:ExpansionTileTheme", readonly [], false]>;

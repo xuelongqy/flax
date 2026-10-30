@@ -155,6 +155,13 @@ export declare function _BottomSheetFactory(options: {
     builder: ((context: upstream10.BuildContext) => Widget);
 }): BottomSheet;
 export declare namespace _BottomSheetFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _BottomSheetFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _BottomSheetFactory {
     function createAnimationController(vsync: Readonly<{
         "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
     }>, options?: {

@@ -174,6 +174,19 @@ export declare function _TableRowInkWellFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
 }): TableRowInkWell;
+export declare namespace _TableRowInkWellFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _TableRowInkWellFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _TableRowInkWellFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _TableRowInkWellFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const TableRowInkWell: typeof _TableRowInkWellFactory & _FlaxInstanceType<TableRowInkWell> & _FlaxDartType<TableRowInkWell, readonly ["class", "flax.material/material#type:TableRowInkWell", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "onTap" | "onTapDown" | "onTapUp" | "onTapCancel" | "onDoubleTap" | "onLongPress" | "onLongPressUp" | "onSecondaryTap" | "onSecondaryTapDown" | "onSecondaryTapUp" | "onSecondaryTapCancel" | "onHighlightChanged" | "onHover" | "mouseCursor" | "containedInkWell" | "highlightShape" | "radius" | "borderRadius" | "customBorder" | "focusColor" | "hoverColor" | "highlightColor" | "overlayColor" | "splashColor" | "splashFactory" | "enableFeedback" | "excludeFromSemantics" | "onFocusChange" | "autofocus" | "focusNode" | "canRequestFocus" | "statesController" | "hoverDuration" | "key" | "getRectCallback" | "debugCheckContext" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/data_table.dart::TableRowInkWell" | "__flaxBound:package:material_ui/src/ink_well.dart::InkResponse" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

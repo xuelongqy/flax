@@ -108,6 +108,13 @@ export declare function _DecoratedSliverFactory(options: {
     position?: upstream4.DecorationPosition | undefined;
     sliver?: Widget | null | undefined;
 }): DecoratedSliver;
+export declare namespace _DecoratedSliverFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _DecoratedSliverFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const DecoratedSliver: typeof _DecoratedSliverFactory & _FlaxInstanceType<DecoratedSliver> & _FlaxDartType<DecoratedSliver, readonly ["class", "flax.core/sdk_widgets#type:DecoratedSliver", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "decoration" | "position" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/decorated_sliver.dart::DecoratedSliver" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

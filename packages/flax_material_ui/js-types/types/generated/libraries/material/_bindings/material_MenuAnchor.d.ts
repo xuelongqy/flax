@@ -140,6 +140,19 @@ export declare function _MenuAnchorFactory(options: {
     builder?: ((context: upstream10.BuildContext, controller: upstream2.MenuController, child: Widget | null) => Widget) | null | undefined;
     child?: Widget | null | undefined;
 }): MenuAnchor;
+export declare namespace _MenuAnchorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MenuAnchorFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _MenuAnchorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _MenuAnchorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const MenuAnchor: typeof _MenuAnchorFactory & _FlaxInstanceType<MenuAnchor> & _FlaxDartType<MenuAnchor, readonly ["class", "flax.material/material#type:MenuAnchor", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "childFocusNode" | "style" | "alignmentOffset" | "layerLink" | "clipBehavior" | "anchorTapClosesMenu" | "consumeOutsideTap" | "onOpen" | "onClose" | "crossAxisUnconstrained" | "useRootOverlay" | "animated" | "onAnimationStatusChanged" | "menuChildren" | "builder" | "child" | "reservedPadding" | "key" | "createState" | "debugDescribeChildren" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "__flaxBound:package:material_ui/src/menu_anchor.dart::MenuAnchor" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

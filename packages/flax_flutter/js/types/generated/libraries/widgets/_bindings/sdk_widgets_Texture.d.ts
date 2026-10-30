@@ -97,6 +97,13 @@ export declare function _TextureFactory(options: {
     freeze?: boolean | undefined;
     filterQuality?: upstream3.FilterQuality | undefined;
 }): Texture;
+export declare namespace _TextureFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _TextureFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const Texture: typeof _TextureFactory & _FlaxInstanceType<Texture> & _FlaxDartType<Texture, readonly ["class", "flax.core/sdk_widgets#type:Texture", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "textureId" | "freeze" | "filterQuality" | "key" | "createRenderObject" | "updateRenderObject" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/texture.dart::Texture" | "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

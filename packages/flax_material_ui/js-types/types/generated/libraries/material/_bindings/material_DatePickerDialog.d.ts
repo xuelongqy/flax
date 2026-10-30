@@ -131,6 +131,13 @@ export declare function _DatePickerDialogFactory(options: {
         "__flaxBound:package:material_ui/src/date.dart::CalendarDelegate": readonly [upstream2.DateTime];
     }> | undefined;
 }): DatePickerDialog;
+export declare namespace _DatePickerDialogFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _DatePickerDialogFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const DatePickerDialog: typeof _DatePickerDialogFactory & _FlaxInstanceType<DatePickerDialog> & _FlaxDartType<DatePickerDialog, readonly ["class", "flax.material/material#type:DatePickerDialog", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "initialDate" | "firstDate" | "lastDate" | "currentDate" | "initialEntryMode" | "selectableDayPredicate" | "cancelText" | "confirmText" | "helpText" | "initialCalendarMode" | "errorFormatText" | "errorInvalidText" | "fieldHintText" | "fieldLabelText" | "keyboardType" | "restorationId" | "onDatePickerModeChange" | "switchToInputEntryModeIcon" | "switchToCalendarEntryModeIcon" | "insetPadding" | "calendarDelegate" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/date_picker.dart::DatePickerDialog" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

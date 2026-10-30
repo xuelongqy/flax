@@ -22,4 +22,11 @@ export declare function _StatefulBuilderFactory(options: {
     }> | null | undefined;
     builder: Bindable<((context: upstream1.BuildContext, setState: ((fn: (() => void)) => void)) => Widget)>;
 }): StatefulBuilder;
+export declare namespace _StatefulBuilderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _StatefulBuilderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const StatefulBuilder: typeof _StatefulBuilderFactory & _FlaxInstanceType<StatefulBuilder> & _FlaxDartType<StatefulBuilder, readonly ["class", "flax.core/flutter#type:StatefulBuilder", readonly [], false]>;

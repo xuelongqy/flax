@@ -63,6 +63,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:InputDecorator", "", [{"name":"key"},{"name":"decoration","required":true},{"name":"baseStyle"},{"name":"textAlign"},{"name":"textAlignVertical"},{"name":"isFocused"},{"name":"isHovering"},{"name":"expands"},{"name":"isEmpty"},{"name":"child"}], [], options) as InputDecorator;
 }
+export declare namespace _InputDecoratorFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _InputDecoratorFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _InputDecoratorFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _InputDecoratorFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _InputDecoratorFactory { export function containerOf(context: upstream7.BuildContext): upstream6.RenderBox | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:InputDecorator.containerOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);

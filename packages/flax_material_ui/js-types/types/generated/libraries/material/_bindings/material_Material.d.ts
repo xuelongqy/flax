@@ -65,6 +65,19 @@ export declare function _MaterialFactory(options?: {
     animateColor?: Bindable<boolean> | undefined;
 }): Material;
 export declare namespace _MaterialFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MaterialFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _MaterialFactory {
     const defaultSplashRadius: number;
 }
 export declare namespace _MaterialFactory {

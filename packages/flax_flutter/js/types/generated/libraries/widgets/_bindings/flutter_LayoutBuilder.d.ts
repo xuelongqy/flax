@@ -28,4 +28,11 @@ export declare function _LayoutBuilderFactory(options: {
     }> | null | undefined;
     builder: Bindable<((context: upstream2.BuildContext, constraints: upstream0.BoxConstraints) => Widget)>;
 }): LayoutBuilder;
+export declare namespace _LayoutBuilderFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _LayoutBuilderFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const LayoutBuilder: typeof _LayoutBuilderFactory & _FlaxInstanceType<LayoutBuilder> & _FlaxDartType<LayoutBuilder, readonly ["class", "flax.core/flutter#type:LayoutBuilder", readonly [], false]>;

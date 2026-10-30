@@ -28,4 +28,17 @@ export declare function _AlignFactory(options?: {
     heightFactor?: Bindable<number | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): Align;
+export declare namespace _AlignFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AlignFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _AlignFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _AlignFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const Align: typeof _AlignFactory & _FlaxInstanceType<Align> & _FlaxDartType<Align, readonly ["class", "flax.core/flutter#type:Align", readonly [], false]>;

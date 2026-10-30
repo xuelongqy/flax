@@ -72,6 +72,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:Viewport", "", [{"name":"key"},{"name":"axisDirection"},{"name":"crossAxisDirection"},{"name":"anchor"},{"name":"offset","required":true},{"name":"center"},{"name":"cacheExtent"},{"name":"cacheExtentStyle"},{"name":"scrollCacheExtent"},{"name":"paintOrder"},{"name":"clipBehavior"},{"name":"slivers"}], [], options) as Viewport;
 }
+export declare namespace _ViewportFactory { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ViewportFactory>[0]>); readonly slot: null; readonly many: false; }; }
 export namespace _ViewportFactory { export function getDefaultCrossAxisDirection(context: upstream9.BuildContext, axisDirection: upstream3.AxisDirection): upstream3.AxisDirection {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Viewport.getDefaultCrossAxisDirection", [contextHandle(context, "flax.core/flutter#type:BuildContext"), axisDirection], _flaxMemberParameters489);

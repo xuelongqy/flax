@@ -65,6 +65,19 @@ export declare function _CupertinoUiCompatibilityBridgeFactory(options: {
         "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsDelegate": readonly [unknown | null];
     }>> | null | undefined;
 }): CupertinoUiCompatibilityBridge;
+export declare namespace _CupertinoUiCompatibilityBridgeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoUiCompatibilityBridgeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoUiCompatibilityBridgeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoUiCompatibilityBridgeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const CupertinoUiCompatibilityBridge: typeof _CupertinoUiCompatibilityBridgeFactory & _FlaxInstanceType<CupertinoUiCompatibilityBridge> & _FlaxDartType<CupertinoUiCompatibilityBridge, readonly ["class", "flax.cupertino/cupertino#type:CupertinoUiCompatibilityBridge", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "delegates" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/migration_utility.dart::CupertinoUiCompatibilityBridge" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

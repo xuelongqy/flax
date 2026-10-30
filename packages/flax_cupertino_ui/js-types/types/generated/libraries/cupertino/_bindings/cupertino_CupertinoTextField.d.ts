@@ -405,6 +405,13 @@ export declare function _CupertinoTextFieldFactory(options?: {
     }> | null | undefined;
 }): CupertinoTextField;
 export declare namespace _CupertinoTextFieldFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTextFieldFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoTextFieldFactory {
     function borderless(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -566,6 +573,13 @@ export declare namespace _CupertinoTextFieldFactory {
             "__flaxBound:package:flutter/src/widgets/magnifier.dart::TextMagnifierConfiguration": readonly [];
         }> | null | undefined;
     }): CupertinoTextField;
+    namespace borderless {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof borderless>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoTextFieldFactory {
     const cupertinoMisspelledTextStyle: upstream7.TextStyle;

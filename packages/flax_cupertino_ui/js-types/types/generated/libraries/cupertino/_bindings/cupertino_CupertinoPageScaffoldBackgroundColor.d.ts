@@ -69,6 +69,19 @@ export declare function _CupertinoPageScaffoldBackgroundColorFactory(options: {
     }> | null | undefined;
 }): CupertinoPageScaffoldBackgroundColor;
 export declare namespace _CupertinoPageScaffoldBackgroundColorFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageScaffoldBackgroundColorFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageScaffoldBackgroundColorFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPageScaffoldBackgroundColorFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoPageScaffoldBackgroundColorFactory {
     function maybeOf(context: upstream4.BuildContext): upstream2.Color | null;
 }
 export declare const CupertinoPageScaffoldBackgroundColor: typeof _CupertinoPageScaffoldBackgroundColorFactory & _FlaxInstanceType<CupertinoPageScaffoldBackgroundColor> & _FlaxDartType<CupertinoPageScaffoldBackgroundColor, readonly ["class", "flax.cupertino/cupertino#type:CupertinoPageScaffoldBackgroundColor", readonly [], false]>;

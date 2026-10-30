@@ -153,6 +153,19 @@ export declare function _MenuItemButtonFactory(options?: {
     child?: Widget | null | undefined;
 }): MenuItemButton;
 export declare namespace _MenuItemButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MenuItemButtonFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _MenuItemButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _MenuItemButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _MenuItemButtonFactory {
     function styleFrom(options?: {
         alignment?: Readonly<{
             "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];

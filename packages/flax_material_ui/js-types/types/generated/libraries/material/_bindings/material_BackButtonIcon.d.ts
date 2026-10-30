@@ -57,6 +57,13 @@ export declare function _BackButtonIconFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
 }): BackButtonIcon;
+export declare namespace _BackButtonIconFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _BackButtonIconFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const BackButtonIcon: typeof _BackButtonIconFactory & _FlaxInstanceType<BackButtonIcon> & _FlaxDartType<BackButtonIcon, readonly ["class", "flax.material/material#type:BackButtonIcon", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/action_buttons.dart::BackButtonIcon" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -24,4 +24,17 @@ export declare function _IgnorePointerFactory(options?: {
     ignoringSemantics?: Bindable<boolean | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): IgnorePointer;
+export declare namespace _IgnorePointerFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _IgnorePointerFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _IgnorePointerFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _IgnorePointerFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const IgnorePointer: typeof _IgnorePointerFactory & _FlaxInstanceType<IgnorePointer> & _FlaxDartType<IgnorePointer, readonly ["class", "flax.core/flutter#type:IgnorePointer", readonly [], false]>;

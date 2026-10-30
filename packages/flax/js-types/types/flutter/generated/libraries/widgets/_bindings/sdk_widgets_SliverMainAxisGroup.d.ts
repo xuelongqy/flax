@@ -87,6 +87,13 @@ export declare function _SliverMainAxisGroupFactory(options: {
     }> | null | undefined;
     slivers: DartListInput<Widget, Widget>;
 }): SliverMainAxisGroup;
+export declare namespace _SliverMainAxisGroupFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverMainAxisGroupFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const SliverMainAxisGroup: typeof _SliverMainAxisGroupFactory & _FlaxInstanceType<SliverMainAxisGroup> & _FlaxDartType<SliverMainAxisGroup, readonly ["class", "flax.core/sdk_widgets#type:SliverMainAxisGroup", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "children" | "key" | "createElement" | "createRenderObject" | "updateRenderObject" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverMainAxisGroup" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

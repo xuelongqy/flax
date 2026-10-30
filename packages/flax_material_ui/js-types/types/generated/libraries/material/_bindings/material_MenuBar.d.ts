@@ -77,6 +77,15 @@ export declare function _MenuBarFactory(options: {
     }> | null | undefined;
     children: DartListInput<Widget, Widget>;
 }): MenuBar;
+export declare namespace _MenuBarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MenuBarFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _MenuBarFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const MenuBar: typeof _MenuBarFactory & _FlaxInstanceType<MenuBar> & _FlaxDartType<MenuBar, readonly ["class", "flax.material/material#type:MenuBar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "style" | "clipBehavior" | "controller" | "children" | "key" | "build" | "debugDescribeChildren" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "__flaxBound:package:material_ui/src/menu_anchor.dart::MenuBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

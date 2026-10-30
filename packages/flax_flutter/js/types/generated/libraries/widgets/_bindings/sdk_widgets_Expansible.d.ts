@@ -128,6 +128,13 @@ export declare function _ExpansibleFactory(options: {
     }>) | null | undefined;
     maintainState?: boolean | undefined;
 }): Expansible;
+export declare namespace _ExpansibleFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ExpansibleFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const Expansible: typeof _ExpansibleFactory & _FlaxInstanceType<Expansible> & _FlaxDartType<Expansible, readonly ["class", "flax.core/sdk_widgets#type:Expansible", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "headerBuilder" | "bodyBuilder" | "animationStyle" | "duration" | "curve" | "reverseCurve" | "maintainState" | "expansibleBuilder" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/expansible.dart::Expansible" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -94,6 +94,19 @@ export declare function _AnimatedSizeFactory(options: {
     clipBehavior?: upstream5.Clip | undefined;
     onEnd?: (() => void) | null | undefined;
 }): AnimatedSize;
+export declare namespace _AnimatedSizeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedSizeFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedSizeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedSizeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const AnimatedSize: typeof _AnimatedSizeFactory & _FlaxInstanceType<AnimatedSize> & _FlaxDartType<AnimatedSize, readonly ["class", "flax.core/sdk_widgets#type:AnimatedSize", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "alignment" | "curve" | "duration" | "reverseDuration" | "clipBehavior" | "onEnd" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/animated_size.dart::AnimatedSize" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

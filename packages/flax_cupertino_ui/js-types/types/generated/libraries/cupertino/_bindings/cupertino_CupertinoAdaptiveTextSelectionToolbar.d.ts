@@ -74,6 +74,15 @@ export declare function _CupertinoAdaptiveTextSelectionToolbarFactory(options: {
     }>;
 }): CupertinoAdaptiveTextSelectionToolbar;
 export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoAdaptiveTextSelectionToolbarFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoAdaptiveTextSelectionToolbarFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
+export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
     function buttonItems(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -85,6 +94,13 @@ export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
             "__flaxBound:package:flutter/src/widgets/text_selection_toolbar_anchors.dart::TextSelectionToolbarAnchors": readonly [];
         }>;
     }): CupertinoAdaptiveTextSelectionToolbar;
+    namespace buttonItems {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof buttonItems>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
     function editable(options: {
@@ -104,6 +120,13 @@ export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
             "__flaxBound:package:flutter/src/widgets/text_selection_toolbar_anchors.dart::TextSelectionToolbarAnchors": readonly [];
         }>;
     }): CupertinoAdaptiveTextSelectionToolbar;
+    namespace editable {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof editable>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
     function editableText(options: {
@@ -132,6 +155,13 @@ export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
             "__flaxBound:package:flutter/src/services/text_input.dart::TextInputClient": readonly [];
         }>;
     }): CupertinoAdaptiveTextSelectionToolbar;
+    namespace editableText {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof editableText>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
     function selectable(options: {
@@ -149,6 +179,13 @@ export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
             "__flaxBound:package:flutter/src/widgets/text_selection_toolbar_anchors.dart::TextSelectionToolbarAnchors": readonly [];
         }>;
     }): CupertinoAdaptiveTextSelectionToolbar;
+    namespace selectable {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof selectable>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoAdaptiveTextSelectionToolbarFactory {
     function getAdaptiveButtons(context: upstream7.BuildContext, buttonItems: DartListInput<upstream3.ContextMenuButtonItem, Readonly<{

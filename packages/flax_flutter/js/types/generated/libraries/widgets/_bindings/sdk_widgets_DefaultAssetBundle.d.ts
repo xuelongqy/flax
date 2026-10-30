@@ -69,6 +69,19 @@ export declare function _DefaultAssetBundleFactory(options: {
     child: Widget;
 }): DefaultAssetBundle;
 export declare namespace _DefaultAssetBundleFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DefaultAssetBundleFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultAssetBundleFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultAssetBundleFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _DefaultAssetBundleFactory {
     function of(context: upstream4.BuildContext): upstream3.AssetBundle;
 }
 export declare const DefaultAssetBundle: typeof _DefaultAssetBundleFactory & _FlaxInstanceType<DefaultAssetBundle> & _FlaxDartType<DefaultAssetBundle, readonly ["class", "flax.core/sdk_widgets#type:DefaultAssetBundle", readonly [], false]>;

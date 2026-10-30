@@ -85,6 +85,13 @@ export declare function _SliverAnimatedGridFactory(options: {
     initialItemCount?: number | undefined;
 }): SliverAnimatedGrid;
 export declare namespace _SliverAnimatedGridFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverAnimatedGridFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliverAnimatedGridFactory {
     function of(context: upstream2.BuildContext): upstream5.SliverAnimatedGridState;
 }
 export declare namespace _SliverAnimatedGridFactory {

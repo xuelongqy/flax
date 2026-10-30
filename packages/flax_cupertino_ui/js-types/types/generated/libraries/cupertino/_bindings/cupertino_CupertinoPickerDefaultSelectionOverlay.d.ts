@@ -67,6 +67,13 @@ export declare function _CupertinoPickerDefaultSelectionOverlayFactory(options?:
     capStartEdge?: boolean | undefined;
     capEndEdge?: boolean | undefined;
 }): CupertinoPickerDefaultSelectionOverlay;
+export declare namespace _CupertinoPickerDefaultSelectionOverlayFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoPickerDefaultSelectionOverlayFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoPickerDefaultSelectionOverlay: typeof _CupertinoPickerDefaultSelectionOverlayFactory & _FlaxInstanceType<CupertinoPickerDefaultSelectionOverlay> & _FlaxDartType<CupertinoPickerDefaultSelectionOverlay, readonly ["class", "flax.cupertino/cupertino#type:CupertinoPickerDefaultSelectionOverlay", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "capStartEdge" | "capEndEdge" | "background" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/picker.dart::CupertinoPickerDefaultSelectionOverlay" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

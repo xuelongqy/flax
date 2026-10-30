@@ -133,6 +133,13 @@ export declare function _CupertinoTabBarFactory(options: {
         "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
     }>) | null | undefined;
 }): CupertinoTabBar;
+export declare namespace _CupertinoTabBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoTabBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const CupertinoTabBar: typeof _CupertinoTabBarFactory & _FlaxInstanceType<CupertinoTabBar> & _FlaxDartType<CupertinoTabBar, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTabBar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "preferredSize" | "items" | "onTap" | "currentIndex" | "backgroundColor" | "activeColor" | "inactiveColor" | "iconSize" | "height" | "border" | "key" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "debugDescribeChildren" | "opaque" | "build" | "copyWith" | "createElement" | "__flaxBound:package:cupertino_ui/src/bottom_tab_bar.dart::CupertinoTabBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/preferred_size.dart::PreferredSizeWidget";
 export {};

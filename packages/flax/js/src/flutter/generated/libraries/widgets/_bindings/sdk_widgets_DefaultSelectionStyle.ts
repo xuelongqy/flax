@@ -51,12 +51,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:DefaultSelectionStyle", "", [{"name":"key"},{"name":"cursorColor"},{"name":"selectionColor"},{"name":"mouseCursor"},{"name":"child","required":true}], [], options) as DefaultSelectionStyle;
 }
+export declare namespace _DefaultSelectionStyleFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _DefaultSelectionStyleFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultSelectionStyleFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _DefaultSelectionStyleFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _DefaultSelectionStyleFactory {
 export function fallback(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined } = {}): DefaultSelectionStyle {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:DefaultSelectionStyle", "fallback", [{"name":"key"}], [], options) as DefaultSelectionStyle;
 }
+export declare namespace fallback { const __flaxJsx: { readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof fallback>[0]>); readonly slot: null; readonly many: false; }; }
 }
 export namespace _DefaultSelectionStyleFactory { export declare const defaultColor: upstream4.Color; }
 _flaxDefineStaticGetters(_DefaultSelectionStyleFactory, "flax.core/sdk_widgets#read:DefaultSelectionStyle.", ["defaultColor"]);

@@ -71,6 +71,13 @@ export declare function _GridTileBarFactory(options?: {
     subtitle?: Widget | null | undefined;
     trailing?: Widget | null | undefined;
 }): GridTileBar;
+export declare namespace _GridTileBarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _GridTileBarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const GridTileBar: typeof _GridTileBarFactory & _FlaxInstanceType<GridTileBar> & _FlaxDartType<GridTileBar, readonly ["class", "flax.material/material#type:GridTileBar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "backgroundColor" | "leading" | "title" | "subtitle" | "trailing" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/grid_tile_bar.dart::GridTileBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

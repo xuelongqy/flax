@@ -79,6 +79,19 @@ export declare function _LocalizationsFactory(options: {
     isApplicationLevel?: boolean | undefined;
 }): Localizations;
 export declare namespace _LocalizationsFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _LocalizationsFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _LocalizationsFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _LocalizationsFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _LocalizationsFactory {
     function override(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -92,6 +105,19 @@ export declare namespace _LocalizationsFactory {
         }>> | null | undefined;
         child?: Widget | null | undefined;
     }): Localizations;
+    namespace override {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof override>[0]>), "child"> & ({
+                "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof override>[0]>)["child"];
+                children?: never;
+            } | {
+                "child"?: never;
+                children?: (globalThis.NonNullable<globalThis.Parameters<typeof override>[0]>)["child"];
+            });
+            readonly slot: "child";
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _LocalizationsFactory {
     function localeOf(context: upstream4.BuildContext): upstream2.Locale;

@@ -67,6 +67,19 @@ export declare function _AutofillGroupFactory(options: {
     onDisposeAction?: upstream2.AutofillContextAction | undefined;
 }): AutofillGroup;
 export declare namespace _AutofillGroupFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AutofillGroupFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _AutofillGroupFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _AutofillGroupFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _AutofillGroupFactory {
     function maybeOf(context: upstream4.BuildContext): upstream3.AutofillGroupState | null;
 }
 export declare namespace _AutofillGroupFactory {

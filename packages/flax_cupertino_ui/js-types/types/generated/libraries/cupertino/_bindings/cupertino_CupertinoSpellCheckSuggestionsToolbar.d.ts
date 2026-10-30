@@ -72,6 +72,13 @@ export declare function _CupertinoSpellCheckSuggestionsToolbarFactory(options: {
     }>>;
 }): CupertinoSpellCheckSuggestionsToolbar;
 export declare namespace _CupertinoSpellCheckSuggestionsToolbarFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoSpellCheckSuggestionsToolbarFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoSpellCheckSuggestionsToolbarFactory {
     function editableText(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -98,6 +105,13 @@ export declare namespace _CupertinoSpellCheckSuggestionsToolbarFactory {
             "__flaxBound:package:flutter/src/services/text_input.dart::TextInputClient": readonly [];
         }>;
     }): CupertinoSpellCheckSuggestionsToolbar;
+    namespace editableText {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof editableText>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoSpellCheckSuggestionsToolbarFactory {
     function buildButtonItems(editableTextState: Readonly<{

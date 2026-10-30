@@ -79,6 +79,13 @@ export declare function _SliverAnimatedListFactory(options: {
     initialItemCount?: number | undefined;
 }): SliverAnimatedList;
 export declare namespace _SliverAnimatedListFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverAnimatedListFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliverAnimatedListFactory {
     function of(context: upstream2.BuildContext): upstream4.SliverAnimatedListState;
 }
 export declare namespace _SliverAnimatedListFactory {

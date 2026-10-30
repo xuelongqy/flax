@@ -88,6 +88,13 @@ export declare function _AppKitViewFactory(options: {
         "__flaxBound:package:flutter/src/foundation/basic_types.dart::Factory": readonly [upstream6.OneSequenceGestureRecognizer];
     }>> | null | undefined;
 }): AppKitView;
+export declare namespace _AppKitViewFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AppKitViewFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const AppKitView: typeof _AppKitViewFactory & _FlaxInstanceType<AppKitView> & _FlaxDartType<AppKitView, readonly ["class", "flax.core/sdk_widgets#type:AppKitView", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "viewType" | "onPlatformViewCreated" | "hitTestBehavior" | "layoutDirection" | "creationParams" | "creationParamsCodec" | "gestureRecognizers" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/platform_view.dart::AppKitView" | "__flaxBound:package:flutter/src/widgets/platform_view.dart::_DarwinView" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

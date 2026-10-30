@@ -186,6 +186,19 @@ export declare function _MaterialButtonFactory(options: {
     enableFeedback?: boolean | undefined;
     child?: Widget | null | undefined;
 }): MaterialButton;
+export declare namespace _MaterialButtonFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _MaterialButtonFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialButtonFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _MaterialButtonFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const MaterialButton: typeof _MaterialButtonFactory & _FlaxInstanceType<MaterialButton> & _FlaxDartType<MaterialButton, readonly ["class", "flax.material/material#type:MaterialButton", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "onPressed" | "onLongPress" | "onHighlightChanged" | "mouseCursor" | "textTheme" | "textColor" | "disabledTextColor" | "color" | "disabledColor" | "splashColor" | "focusColor" | "hoverColor" | "highlightColor" | "elevation" | "hoverElevation" | "focusElevation" | "highlightElevation" | "disabledElevation" | "colorBrightness" | "child" | "enabled" | "padding" | "visualDensity" | "shape" | "clipBehavior" | "focusNode" | "autofocus" | "animationDuration" | "materialTapTargetSize" | "minWidth" | "height" | "enableFeedback" | "key" | "build" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/material_button.dart::MaterialButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -67,6 +67,15 @@ export declare function _CupertinoDesktopTextSelectionToolbarFactory(options: {
     }>;
     children: DartListInput<Widget, Widget>;
 }): CupertinoDesktopTextSelectionToolbar;
+export declare namespace _CupertinoDesktopTextSelectionToolbarFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoDesktopTextSelectionToolbarFactory>[0]>), "children"> & {
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoDesktopTextSelectionToolbarFactory>[0]>)["children"] | Widget;
+        };
+        readonly slot: "children";
+        readonly many: true;
+    };
+}
 export declare const CupertinoDesktopTextSelectionToolbar: typeof _CupertinoDesktopTextSelectionToolbarFactory & _FlaxInstanceType<CupertinoDesktopTextSelectionToolbar> & _FlaxDartType<CupertinoDesktopTextSelectionToolbar, readonly ["class", "flax.cupertino/cupertino#type:CupertinoDesktopTextSelectionToolbar", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "anchor" | "children" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/desktop_text_selection_toolbar.dart::CupertinoDesktopTextSelectionToolbar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -131,6 +131,13 @@ export declare function _DateRangePickerDialogFactory(options: {
         "__flaxBound:package:material_ui/src/date.dart::CalendarDelegate": readonly [upstream3.DateTime];
     }> | undefined;
 }): DateRangePickerDialog;
+export declare namespace _DateRangePickerDialogFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _DateRangePickerDialogFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const DateRangePickerDialog: typeof _DateRangePickerDialogFactory & _FlaxInstanceType<DateRangePickerDialog> & _FlaxDartType<DateRangePickerDialog, readonly ["class", "flax.material/material#type:DateRangePickerDialog", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "initialDateRange" | "firstDate" | "lastDate" | "currentDate" | "initialEntryMode" | "cancelText" | "confirmText" | "saveText" | "helpText" | "errorInvalidRangeText" | "errorFormatText" | "errorInvalidText" | "fieldStartHintText" | "fieldEndHintText" | "fieldStartLabelText" | "fieldEndLabelText" | "keyboardType" | "restorationId" | "switchToInputEntryModeIcon" | "switchToCalendarEntryModeIcon" | "selectableDayPredicate" | "calendarDelegate" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/date_picker.dart::DateRangePickerDialog" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

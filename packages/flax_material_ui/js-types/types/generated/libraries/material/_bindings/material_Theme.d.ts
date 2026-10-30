@@ -32,6 +32,19 @@ export declare function _ThemeFactory(options: {
     child: Bindable<Widget>;
 }): Theme;
 export declare namespace _ThemeFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ThemeFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ThemeFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ThemeFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
+export declare namespace _ThemeFactory {
     function of(context: upstream2.BuildContext): upstream1.ThemeData;
 }
 export declare namespace _ThemeFactory {

@@ -38,6 +38,16 @@ imported inputs), private brands, superclass changes, removed classes or modules
 root/page inventory changes, and `@flax/*` host-module contract changes require a
 Session restart.
 
+The compiler marks initialization as independent of module context only for literal
+values, constructor parameters, assignments to declared own instance fields, and `super`
+calls with those values. Assignments to other properties can invoke setters and retain
+conservative checks. Both live and candidate classes must carry that proof before
+context and dependency checks can be skipped. This permits a component method edit
+through an importer whose fields and constructor do not read imported values. Unknown
+expressions, calls, destructuring, computed fields, and older metadata retain
+conservative checks. Changes to constructor or field initialization text, superclass,
+and private brands still require a restart.
+
 Named development classes compile to anonymous class expressions with a mutable outer
 binding. The binding is initialized before static fields evaluate and then replaced by
 the canonical constructor. Class methods that refer to their own name therefore resolve
@@ -97,6 +107,16 @@ The compiler uses erased constructor overloads and extension-owner type metadata
 `flax_codegen`. The Binding Manifest, UI protocol 24, native ABI 2 and Session startup
 semantics are unchanged. Production and development use the same generic lowering.
 Automatic Session restart and field/private-state migration remain deferred.
+
+Owning `FlaxView` entrances can opt into debug development tools with
+`developmentMode: true`. The current reload control replaces only the owned subtree,
+using the existing input loader and Session close/preparation lifecycle. It is absent
+from profile/release builds and borrowed Session/page Views. Factory development serves
+its last completely published startup at `/@flax/dev.js` with no-store responses, so a
+network entrance reloads current code even after the live Session rejected a structural
+change. This is an explicit state-reset action; it does not relax HMR validation or add
+automatic restart/migration. Source-string entrances continue to restart the supplied
+snapshot.
 
 ## Alternatives
 

@@ -101,6 +101,13 @@ export declare function _SliverListFactory(options: {
     }>;
 }): SliverList;
 export declare namespace _SliverListFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _SliverListFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _SliverListFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -113,6 +120,13 @@ export declare namespace _SliverListFactory {
         addSemanticIndexes?: boolean | undefined;
         semanticIndexOffset?: number | undefined;
     }): SliverList;
+    namespace builder {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof builder>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SliverListFactory {
     function separated(options: {
@@ -128,6 +142,13 @@ export declare namespace _SliverListFactory {
         addRepaintBoundaries?: boolean | undefined;
         addSemanticIndexes?: boolean | undefined;
     }): SliverList;
+    namespace separated {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof separated>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _SliverListFactory {
     function list(options: {
@@ -139,6 +160,15 @@ export declare namespace _SliverListFactory {
         addRepaintBoundaries?: boolean | undefined;
         addSemanticIndexes?: boolean | undefined;
     }): SliverList;
+    namespace list {
+        const __flaxJsx: {
+            readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>), "children"> & {
+                children: (globalThis.NonNullable<globalThis.Parameters<typeof list>[0]>)["children"] | Widget;
+            };
+            readonly slot: "children";
+            readonly many: true;
+        };
+    }
 }
 export declare const SliverList: typeof _SliverListFactory & _FlaxInstanceType<SliverList> & _FlaxDartType<SliverList, readonly ["class", "flax.core/sdk_widgets#type:SliverList", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "delegate" | "key" | "createElement" | "createRenderObject" | "estimateMaxScrollOffset" | "debugFillProperties" | "updateRenderObject" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverList" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverMultiBoxAdaptorWidget" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverWithKeepAliveWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

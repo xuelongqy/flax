@@ -133,6 +133,19 @@ export declare function _CustomPaintFactory(options?: {
     willChange?: boolean | undefined;
     child?: Widget | null | undefined;
 }): CustomPaint;
+export declare namespace _CustomPaintFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _CustomPaintFactory>[0]>), "child"> & ({
+            "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _CustomPaintFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children?: (globalThis.NonNullable<globalThis.Parameters<typeof _CustomPaintFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const CustomPaint: typeof _CustomPaintFactory & _FlaxInstanceType<CustomPaint> & _FlaxDartType<CustomPaint, readonly ["class", "flax.core/sdk_widgets#type:CustomPaint", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "painter" | "foregroundPainter" | "size" | "isComplex" | "willChange" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "didUnmountRenderObject" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::CustomPaint" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

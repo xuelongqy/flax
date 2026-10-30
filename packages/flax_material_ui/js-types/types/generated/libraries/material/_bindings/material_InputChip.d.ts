@@ -245,6 +245,13 @@ export declare function _InputChipFactory(options: {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
 }): InputChip;
+export declare namespace _InputChipFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _InputChipFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const InputChip: typeof _InputChipFactory & _FlaxInstanceType<InputChip> & _FlaxDartType<InputChip, readonly ["class", "flax.material/material#type:InputChip", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "avatar" | "label" | "labelStyle" | "labelPadding" | "selected" | "isEnabled" | "onSelected" | "deleteIcon" | "onDeleted" | "deleteIconColor" | "deleteButtonTooltipMessage" | "onPressed" | "pressElevation" | "disabledColor" | "selectedColor" | "tooltip" | "side" | "shape" | "clipBehavior" | "focusNode" | "autofocus" | "color" | "backgroundColor" | "padding" | "visualDensity" | "materialTapTargetSize" | "elevation" | "shadowColor" | "surfaceTintColor" | "selectedShadowColor" | "showCheckmark" | "checkmarkColor" | "avatarBorder" | "iconTheme" | "avatarBoxConstraints" | "deleteIconBoxConstraints" | "chipAnimationStyle" | "mouseCursor" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/input_chip.dart::InputChip" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:material_ui/src/chip.dart::ChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::DeletableChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::SelectableChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::CheckmarkableChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::DisabledChipAttributes" | "__flaxBound:package:material_ui/src/chip.dart::TappableChipAttributes";
 export {};

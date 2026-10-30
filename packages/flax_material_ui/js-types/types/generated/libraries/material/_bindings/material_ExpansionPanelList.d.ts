@@ -98,6 +98,13 @@ export declare function _ExpansionPanelListFactory(options?: {
     materialGapSize?: number | undefined;
 }): ExpansionPanelList;
 export declare namespace _ExpansionPanelListFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _ExpansionPanelListFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _ExpansionPanelListFactory {
     function radio(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -126,6 +133,13 @@ export declare namespace _ExpansionPanelListFactory {
         }> | null | undefined;
         materialGapSize?: number | undefined;
     }): ExpansionPanelList;
+    namespace radio {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof radio>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare const ExpansionPanelList: typeof _ExpansionPanelListFactory & _FlaxInstanceType<ExpansionPanelList> & _FlaxDartType<ExpansionPanelList, readonly ["class", "flax.material/material#type:ExpansionPanelList", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "children" | "expansionCallback" | "animationDuration" | "initialOpenPanelValue" | "expandedHeaderPadding" | "dividerColor" | "elevation" | "expandIconColor" | "materialGapSize" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/expansion_panel.dart::ExpansionPanelList" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

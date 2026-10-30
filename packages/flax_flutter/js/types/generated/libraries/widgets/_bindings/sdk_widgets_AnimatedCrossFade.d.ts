@@ -121,6 +121,13 @@ export declare function _AnimatedCrossFadeFactory(options: {
     onEnd?: (() => void) | null | undefined;
 }): AnimatedCrossFade;
 export declare namespace _AnimatedCrossFadeFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedCrossFadeFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _AnimatedCrossFadeFactory {
     function defaultLayoutBuilder(topChild: Widget, topChildKey: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }>, bottomChild: Widget, bottomChildKey: Readonly<{

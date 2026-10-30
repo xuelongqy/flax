@@ -150,6 +150,13 @@ export declare function _NestedScrollViewViewportFactory(options: {
     }>;
     clipBehavior?: upstream7.Clip | undefined;
 }): NestedScrollViewViewport;
+export declare namespace _NestedScrollViewViewportFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _NestedScrollViewViewportFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
 export declare const NestedScrollViewViewport: typeof _NestedScrollViewViewportFactory & _FlaxInstanceType<NestedScrollViewViewport> & _FlaxDartType<NestedScrollViewViewport, readonly ["class", "flax.core/sdk_widgets#type:NestedScrollViewViewport", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "handle" | "axisDirection" | "crossAxisDirection" | "anchor" | "offset" | "center" | "cacheExtent" | "cacheExtentStyle" | "scrollCacheExtent" | "paintOrder" | "clipBehavior" | "children" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::NestedScrollViewViewport" | "__flaxBound:package:flutter/src/widgets/viewport.dart::Viewport" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

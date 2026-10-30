@@ -16,6 +16,25 @@ return an already shared runtime. Register `flutterBindings` and, when needed,
 extension entry for generated modules. `package:flax/runtime.dart` remains independent
 of Flutter UI types.
 
+Owning Views can opt into `developmentMode: true` to enable Flax development tools. The
+option defaults to false and only takes effect in Flutter debug builds. It currently
+provides one movable native reload button within that View's bounds. Dragging preserves
+the Session; clicking replaces the owned subtree, re-reads its configured input, and
+creates a fresh Session. The old mount drains through the normal close path. The button
+retains its position across reloads, stays within safe bounds when resized, supports
+keyboard activation, and disables repeated reloads until loading completes. Loading
+failures keep retry available. Profile and release builds ignore this option. Borrowed
+`FlaxView.session` and `.page` do not expose it because their caller owns the Session.
+
+A `source` string remains a snapshot when restarted. For current development code, use a
+reloadable file/directory/network entrance. `flax-dev` file output also serves the last
+complete startup script at `/@flax/dev.js` with `Cache-Control: no-store`; a
+`FlaxView.network` pointed there can reload constructor/field edits that factory HMR
+requires a restart for. Compile failures retain the last valid script. This is a manual
+Session restart and resets that Session's state; it does not restart Flutter or migrate
+existing State. Give a full-page development View bounded space, such as
+`SizedBox.expand`, so its button can move throughout that viewport.
+
 The JS app calls `runApp(widget)` at most once, or only registers named pages. This
 supplies the root of the current view; it does not create a window. JS constructors
 preserve Flutter names, positional arguments, and a final options object for named

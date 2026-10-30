@@ -27,4 +27,17 @@ export declare function _ExpandedFactory(options: {
     flex?: Bindable<number> | undefined;
     child: Bindable<Widget>;
 }): Expanded;
+export declare namespace _ExpandedFactory {
+    const __flaxJsx: {
+        readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _ExpandedFactory>[0]>), "child"> & ({
+            "child": (globalThis.NonNullable<globalThis.Parameters<typeof _ExpandedFactory>[0]>)["child"];
+            children?: never;
+        } | {
+            "child"?: never;
+            children: (globalThis.NonNullable<globalThis.Parameters<typeof _ExpandedFactory>[0]>)["child"];
+        });
+        readonly slot: "child";
+        readonly many: false;
+    };
+}
 export declare const Expanded: typeof _ExpandedFactory & _FlaxInstanceType<Expanded> & _FlaxDartType<Expanded, readonly ["class", "flax.core/flutter#type:Expanded", readonly [], false]>;

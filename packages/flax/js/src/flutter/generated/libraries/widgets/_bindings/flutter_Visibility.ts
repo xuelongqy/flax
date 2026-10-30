@@ -14,12 +14,14 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:Visibility", "", [{"name":"key"},{"name":"child","required":true},{"name":"replacement"},{"name":"visible"},{"name":"maintainState"},{"name":"maintainAnimation"},{"name":"maintainSize"},{"name":"maintainSemantics"},{"name":"maintainInteractivity"},{"name":"maintainFocusability"}], [], options) as Visibility;
 }
+export declare namespace _VisibilityFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _VisibilityFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _VisibilityFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _VisibilityFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _VisibilityFactory {
 export function maintain(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child: Bindable<Widget>; visible?: Bindable<boolean> | undefined }): Visibility {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:Visibility", "maintain", [{"name":"key"},{"name":"child","required":true},{"name":"visible"}], [], options) as Visibility;
 }
+export declare namespace maintain { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof maintain>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof maintain>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof maintain>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 }
 export namespace _VisibilityFactory { export function of(context: upstream1.BuildContext): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

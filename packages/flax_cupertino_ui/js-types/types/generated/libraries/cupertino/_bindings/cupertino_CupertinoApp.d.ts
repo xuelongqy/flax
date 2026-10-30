@@ -135,6 +135,13 @@ export declare function _CupertinoAppFactory(options?: {
     useInheritedMediaQuery?: Bindable<boolean> | undefined;
 }): CupertinoApp;
 export declare namespace _CupertinoAppFactory {
+    const __flaxJsx: {
+        readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof _CupertinoAppFactory>[0]>);
+        readonly slot: null;
+        readonly many: false;
+    };
+}
+export declare namespace _CupertinoAppFactory {
     function router(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -216,6 +223,13 @@ export declare namespace _CupertinoAppFactory {
         }> | null> | undefined;
         useInheritedMediaQuery?: Bindable<boolean> | undefined;
     }): CupertinoApp;
+    namespace router {
+        const __flaxJsx: {
+            readonly props: (globalThis.NonNullable<globalThis.Parameters<typeof router>[0]>);
+            readonly slot: null;
+            readonly many: false;
+        };
+    }
 }
 export declare namespace _CupertinoAppFactory {
     function createCupertinoHeroController(): upstream22.HeroController;
