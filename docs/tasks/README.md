@@ -1,5 +1,10 @@
 # Active Tasks
 
+Planned: [Output-optional JavaScript development startup](automatic-esm-development.md).
+The existing server already transforms imports and serves startup code. The remaining
+plan makes factory-HMR file output optional and improves startup error recovery; this
+follow-up has not been implemented.
+
 The [optional JSX/TSX task](optional-jsx-support.md) implements default-off syntax,
 generated constructor contracts, and direct-call lowering. Build and native parity
 checks pass. Basic VS Code and WebStorm attribute completion is verified; the task
