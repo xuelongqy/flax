@@ -74,7 +74,7 @@ Future<void> main() => command(() async {
         },
         'version': '0.0.0',
         'publish_to': 'none',
-        'environment': {'sdk': '^3.13.2', 'flutter': '>=3.47.2'},
+        'environment': {'sdk': '^3.13.2', 'flutter': '>=3.47.9'},
         'dependencies': {
           'flutter': {'sdk': 'flutter'},
           'flax': {'path': '../packages/flax'},
@@ -85,7 +85,7 @@ Future<void> main() => command(() async {
             'configured_prices': {'path': '../provider'},
             'configured_delivery': {'path': '../vendor'},
             'flax_material_ui': {'path': '../packages/flax_material_ui'},
-            'material_ui': '1.1.1',
+            'material_ui': '1.9.0',
           },
         },
         'dev_dependencies': {

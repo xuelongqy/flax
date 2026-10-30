@@ -10,6 +10,7 @@ declare function _flaxTopLevel_showCupertinoSheet<T extends unknown | null = unk
     builder?: ((context: upstream0.BuildContext) => Widget) | null | undefined;
     context: upstream0.BuildContext;
     enableDrag?: boolean | undefined;
+    hasPlatformViews?: boolean | undefined;
     pageBuilder?: ((context: upstream0.BuildContext) => Widget) | null | undefined;
     scrollableBuilder?: ((context: upstream0.BuildContext, scrollController: upstream1.ScrollController) => Widget) | null | undefined;
     settings?: Readonly<{
@@ -26,6 +27,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
         builder?: ((context: upstream0.BuildContext) => Widget) | null | undefined;
         context: upstream0.BuildContext;
         enableDrag?: boolean | undefined;
+        hasPlatformViews?: boolean | undefined;
         pageBuilder?: ((context: upstream0.BuildContext) => Widget) | null | undefined;
         scrollableBuilder?: ((context: upstream0.BuildContext, scrollController: upstream1.ScrollController) => Widget) | null | undefined;
         settings?: Readonly<{

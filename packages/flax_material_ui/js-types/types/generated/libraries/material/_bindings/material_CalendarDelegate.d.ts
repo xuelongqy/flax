@@ -1,10 +1,12 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_DateTime';
 import '@flax/dart/core/_bindings/flutter_DateTime';
 import type * as upstream1 from '@flax/material-ui/_bindings/material_DateTimeRange';
 import '@flax/material-ui/_bindings/material_DateTimeRange';
 import type * as upstream2 from '@flax/material-ui/_bindings/material_MaterialLocalizations';
 import '@flax/material-ui/_bindings/material_MaterialLocalizations';
+import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_TextInputFormatter';
+import '@flax/flutter/services/_bindings/flutter_TextInputFormatter';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface CalendarDelegate<T extends upstream0.DateTime = upstream0.DateTime> extends Readonly<{
@@ -23,6 +25,9 @@ export interface CalendarDelegate<T extends upstream0.DateTime = upstream0.DateT
     formatYear(year: number, localizations: Readonly<{
         "__flaxBound:package:material_ui/src/material_localizations.dart::MaterialLocalizations": readonly [];
     }>): string;
+    keyboardInputFormatters(localizations: Readonly<{
+        "__flaxBound:package:material_ui/src/material_localizations.dart::MaterialLocalizations": readonly [];
+    }>): DartList<upstream3.TextInputFormatter> | null;
 }
 export declare abstract class CalendarDelegate<T extends upstream0.DateTime = upstream0.DateTime> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CalendarDelegate<upstream0.DateTime>>[typeof globalThis.Symbol.hasInstance];

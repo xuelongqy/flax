@@ -39,6 +39,7 @@ export interface CupertinoSheetTransition extends _FlaxDartWidget, Omit<upstream
     readonly child: Widget;
     readonly linearTransition: boolean;
     readonly topGap: number;
+    readonly hasPlatformViews: boolean;
     readonly key: upstream1.Key | null;
     createState(): upstream4.State<CupertinoSheetTransition>;
     createElement(): upstream5.StatefulElement;
@@ -82,6 +83,7 @@ export declare function _CupertinoSheetTransitionFactory(options: {
     }>;
     child: Widget;
     linearTransition: boolean;
+    hasPlatformViews?: boolean | undefined;
     topGap?: number | undefined;
 }): CupertinoSheetTransition;
 export declare namespace _CupertinoSheetTransitionFactory {
@@ -110,8 +112,10 @@ export declare namespace _CupertinoSheetTransitionFactory {
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
-    }>, allowSnapshotting: boolean, child: Widget | null): Widget;
+    }>, allowSnapshotting: boolean, child: Widget | null, options?: {
+        hasPlatformViews?: boolean | undefined;
+    }): Widget;
 }
 export declare const CupertinoSheetTransition: typeof _CupertinoSheetTransitionFactory & _FlaxInstanceType<CupertinoSheetTransition> & _FlaxDartType<CupertinoSheetTransition, readonly ["class", "flax.cupertino/cupertino#type:CupertinoSheetTransition", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "primaryRouteAnimation" | "secondaryRouteAnimation" | "child" | "linearTransition" | "topGap" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/sheet.dart::CupertinoSheetTransition" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "primaryRouteAnimation" | "secondaryRouteAnimation" | "child" | "linearTransition" | "topGap" | "hasPlatformViews" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:cupertino_ui/src/sheet.dart::CupertinoSheetTransition" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

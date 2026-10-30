@@ -31,6 +31,7 @@ export interface CupertinoPage<T extends unknown | null = unknown | null> extend
     readonly maintainState: boolean;
     readonly fullscreenDialog: boolean;
     readonly allowSnapshotting: boolean;
+    readonly includeRouteSemantics: boolean;
     toString(): string;
     canUpdate(other: Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::Page": readonly [unknown | null];
@@ -45,6 +46,7 @@ export declare function _CupertinoPageFactory<T extends unknown | null = unknown
     title?: string | null | undefined;
     fullscreenDialog?: boolean | undefined;
     allowSnapshotting?: boolean | undefined;
+    includeRouteSemantics?: boolean | undefined;
     canPop?: boolean | undefined;
     onPopInvoked?: ((didPop: boolean, result: _FlaxDartOutput<T> | null) => void) | undefined;
     key?: (Readonly<{
@@ -62,6 +64,7 @@ export declare function _CupertinoPageFactory(options: {
     title?: string | null | undefined;
     fullscreenDialog?: boolean | undefined;
     allowSnapshotting?: boolean | undefined;
+    includeRouteSemantics?: boolean | undefined;
     canPop?: boolean | undefined;
     onPopInvoked?: ((didPop: boolean, result: unknown | null) => void) | undefined;
     key?: (Readonly<{
@@ -74,7 +77,7 @@ export declare function _CupertinoPageFactory(options: {
     restorationId?: string | null | undefined;
 }): CupertinoPage<unknown | null>;
 export declare const CupertinoPage: typeof _CupertinoPageFactory & _FlaxInstanceType<CupertinoPage<unknown | null>> & _FlaxDartType<CupertinoPage<unknown | null>, readonly ["class", "flax.cupertino/cupertino#type:CupertinoPage", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "name" | "arguments" | "key" | "restorationId" | "onPopInvoked" | "canPop" | "child" | "title" | "maintainState" | "fullscreenDialog" | "allowSnapshotting" | "toString" | "canUpdate" | "createRoute" | "__flaxBound:package:cupertino_ui/src/route.dart::CupertinoPage" | "__flaxBound:package:flutter/src/widgets/navigator.dart::Page" | "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "name" | "arguments" | "key" | "restorationId" | "onPopInvoked" | "canPop" | "child" | "title" | "maintainState" | "fullscreenDialog" | "allowSnapshotting" | "includeRouteSemantics" | "toString" | "canUpdate" | "createRoute" | "__flaxBound:package:cupertino_ui/src/route.dart::CupertinoPage" | "__flaxBound:package:flutter/src/widgets/navigator.dart::Page" | "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         (options: {
@@ -83,6 +86,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             title?: string | null | undefined;
             fullscreenDialog?: boolean | undefined;
             allowSnapshotting?: boolean | undefined;
+            includeRouteSemantics?: boolean | undefined;
             canPop?: boolean | undefined;
             onPopInvoked?: ((didPop: boolean, result: _Selected0 | null) => void) | undefined;
             key?: (Readonly<{

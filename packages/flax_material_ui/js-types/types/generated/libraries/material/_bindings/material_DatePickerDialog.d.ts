@@ -14,18 +14,24 @@ import '@flax/flutter/services/_bindings/sdk_services_TextInputType';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/sdk_widgets_Icon';
 import type * as upstream7 from '@flax/flutter/painting/_bindings/flutter_EdgeInsets';
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsets';
-import type * as upstream8 from '@flax/material-ui/_bindings/material_CalendarDelegate';
+import type * as upstream8 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream9 from '@flax/material-ui/_bindings/material_CalendarDatePickerDayDetails';
+import '@flax/material-ui/_bindings/material_CalendarDatePickerDayDetails';
+import type * as upstream10 from '@flax/material-ui/_bindings/material_CalendarDatePickerWeekdayDetails';
+import '@flax/material-ui/_bindings/material_CalendarDatePickerWeekdayDetails';
+import type * as upstream11 from '@flax/material-ui/_bindings/material_CalendarDelegate';
 import '@flax/material-ui/_bindings/material_CalendarDelegate';
-import type * as upstream9 from '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream12 from '@flax/flutter/widgets/_bindings/components_State';
 import '@flax/flutter/widgets/_bindings/components_State';
-import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import type * as upstream13 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream15 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream16 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -65,29 +71,35 @@ export interface DatePickerDialog extends _FlaxDartWidget, Omit<upstream0.Statef
     readonly switchToInputEntryModeIcon: upstream6.Icon | null;
     readonly switchToCalendarEntryModeIcon: upstream6.Icon | null;
     readonly insetPadding: upstream7.EdgeInsets;
-    readonly calendarDelegate: upstream8.CalendarDelegate<upstream2.DateTime>;
+    readonly dayBuilder: ((context: upstream8.BuildContext, details: Readonly<{
+        "__flaxBound:package:material_ui/src/calendar_date_picker.dart::CalendarDatePickerDayDetails": readonly [];
+    }>) => Widget) | null;
+    readonly weekdayBuilder: ((context: upstream8.BuildContext, details: Readonly<{
+        "__flaxBound:package:material_ui/src/calendar_date_picker.dart::CalendarDatePickerWeekdayDetails": readonly [];
+    }>) => Widget) | null;
+    readonly calendarDelegate: upstream11.CalendarDelegate<upstream2.DateTime>;
     readonly key: upstream1.Key | null;
-    createState(): upstream9.State<DatePickerDialog>;
-    createElement(): upstream10.StatefulElement;
+    createState(): upstream12.State<DatePickerDialog>;
+    createElement(): upstream13.StatefulElement;
     toStringShort(): string;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
     toStringShallow(options?: {
         joiner?: string | undefined;
-        minLevel?: upstream12.DiagnosticLevel | undefined;
+        minLevel?: upstream15.DiagnosticLevel | undefined;
     }): string;
     toStringDeep(options?: {
-        minLevel?: upstream12.DiagnosticLevel | undefined;
+        minLevel?: upstream15.DiagnosticLevel | undefined;
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
         wrapWidth?: number | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream14.DiagnosticsTreeStyle | null | undefined;
-    }): upstream13.DiagnosticsNode;
-    debugDescribeChildren(): DartList<upstream13.DiagnosticsNode>;
+        style?: upstream17.DiagnosticsTreeStyle | null | undefined;
+    }): upstream16.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream16.DiagnosticsNode>;
 }
 export declare function _DatePickerDialogFactory(options: {
     key?: Readonly<{
@@ -127,6 +139,8 @@ export declare function _DatePickerDialogFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
     }>) | undefined;
+    dayBuilder?: ((context: upstream8.BuildContext, details: upstream9.CalendarDatePickerDayDetails) => Widget) | null | undefined;
+    weekdayBuilder?: ((context: upstream8.BuildContext, details: upstream10.CalendarDatePickerWeekdayDetails) => Widget) | null | undefined;
     calendarDelegate?: Readonly<{
         "__flaxBound:package:material_ui/src/date.dart::CalendarDelegate": readonly [upstream2.DateTime];
     }> | undefined;
@@ -139,5 +153,5 @@ export declare namespace _DatePickerDialogFactory {
     };
 }
 export declare const DatePickerDialog: typeof _DatePickerDialogFactory & _FlaxInstanceType<DatePickerDialog> & _FlaxDartType<DatePickerDialog, readonly ["class", "flax.material/material#type:DatePickerDialog", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "initialDate" | "firstDate" | "lastDate" | "currentDate" | "initialEntryMode" | "selectableDayPredicate" | "cancelText" | "confirmText" | "helpText" | "initialCalendarMode" | "errorFormatText" | "errorInvalidText" | "fieldHintText" | "fieldLabelText" | "keyboardType" | "restorationId" | "onDatePickerModeChange" | "switchToInputEntryModeIcon" | "switchToCalendarEntryModeIcon" | "insetPadding" | "calendarDelegate" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/date_picker.dart::DatePickerDialog" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "initialDate" | "firstDate" | "lastDate" | "currentDate" | "initialEntryMode" | "selectableDayPredicate" | "cancelText" | "confirmText" | "helpText" | "initialCalendarMode" | "errorFormatText" | "errorInvalidText" | "fieldHintText" | "fieldLabelText" | "keyboardType" | "restorationId" | "onDatePickerModeChange" | "switchToInputEntryModeIcon" | "switchToCalendarEntryModeIcon" | "insetPadding" | "dayBuilder" | "weekdayBuilder" | "calendarDelegate" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/date_picker.dart::DatePickerDialog" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

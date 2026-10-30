@@ -77,6 +77,7 @@ export interface DropdownButton<T extends unknown | null = unknown | null> exten
     readonly barrierDismissible: boolean;
     readonly mouseCursor: upstream10.MouseCursor | null;
     readonly dropdownMenuItemMouseCursor: upstream10.MouseCursor | null;
+    readonly isVerticallyExpanded: boolean;
     readonly key: upstream1.Key | null;
     createState(): upstream11.State<DropdownButton<T>>;
     createElement(): upstream12.StatefulElement;
@@ -251,7 +252,7 @@ export declare function _DropdownButtonFactory(options: {
     }>) | null | undefined;
 }): DropdownButton<unknown | null>;
 export declare const DropdownButton: typeof _DropdownButtonFactory & _FlaxInstanceType<DropdownButton<unknown | null>> & _FlaxDartType<DropdownButton<unknown | null>, readonly ["class", "flax.material/material#type:DropdownButton", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "items" | "value" | "hint" | "disabledHint" | "onChanged" | "onTap" | "selectedItemBuilder" | "elevation" | "style" | "underline" | "icon" | "iconDisabledColor" | "iconEnabledColor" | "iconSize" | "isDense" | "isExpanded" | "itemHeight" | "menuWidth" | "focusColor" | "focusNode" | "autofocus" | "dropdownColor" | "padding" | "menuMaxHeight" | "enableFeedback" | "alignment" | "borderRadius" | "barrierDismissible" | "mouseCursor" | "dropdownMenuItemMouseCursor" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/dropdown.dart::DropdownButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "items" | "value" | "hint" | "disabledHint" | "onChanged" | "onTap" | "selectedItemBuilder" | "elevation" | "style" | "underline" | "icon" | "iconDisabledColor" | "iconEnabledColor" | "iconSize" | "isDense" | "isExpanded" | "itemHeight" | "menuWidth" | "focusColor" | "focusNode" | "autofocus" | "dropdownColor" | "padding" | "menuMaxHeight" | "enableFeedback" | "alignment" | "borderRadius" | "barrierDismissible" | "mouseCursor" | "dropdownMenuItemMouseCursor" | "isVerticallyExpanded" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/dropdown.dart::DropdownButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         (options: {

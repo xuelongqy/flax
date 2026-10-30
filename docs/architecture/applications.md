@@ -565,7 +565,7 @@ guarantee that Flutter calls dispose. Deterministic cleanup is tested through un
 
 ## Outside-repository verification
 
-Applications use Flutter 3.47.6 from `flax/main` and its matching local engine.
+Applications use Flutter 3.47.9 from `flax/main` and its matching local engine.
 `FlaxEngine.createRuntime()` supplies the platform runtime without a package asset hook.
 Source consumers copy Dart packages with relative path dependencies, but their Flutter
 engine remains an explicit prerequisite. The engine application gate is

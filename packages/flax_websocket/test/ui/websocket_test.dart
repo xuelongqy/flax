@@ -210,7 +210,7 @@ void main() {
     await flaxTestPumpView(tester, h.app());
     await flaxTestRunHostScript(tester, h, r'''
       const check=(v,m)=>{if(!v)throw Error(m);};
-      check(typeof fetch==='undefined','Fetch must remain absent');
+      check(typeof fetch==='function','Base Fetch remains available');
       const ws=new WebSocket('/echo',['chat'],{headers:{Authorization:'local'},pingInterval:1000});
       check(!('bufferedAmount' in ws),'bufferedAmount is deferred');
       const log=[];let settled; const done=new Promise((r,j)=>{settled=r;ws.onerror=()=>j(Error('socket error'));});

@@ -4,7 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/material-ui/_bindings/material_ButtonStyle';
 import '@flax/material-ui/_bindings/material_ButtonStyle';
-import { _flaxMemberParameters138 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters139 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -27,7 +27,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:DropdownMenuEntry", "", [{"name":"value","required":true},{"name":"label","required":true},{"name":"labelWidget"},{"name":"leadingIcon"},{"name":"trailingIcon"},{"name":"enabled"},{"name":"style"}], [], options) as DropdownMenuEntry<unknown | null>;
 }
-const _DropdownMenuEntryProxy = {type: "flax.material/material#type:DropdownMenuEntry", parameters: _flaxMemberParameters138, constructors: {"": _flaxMemberParameters138}, methods: {}, getters: ["value","label","labelWidget","leadingIcon","trailingIcon","enabled","style"], setters: [], contextMembers: [], superMembers: ["get:value","get:label","get:labelWidget","get:leadingIcon","get:trailingIcon","get:enabled","get:style"]} as const;
+const _DropdownMenuEntryProxy = {type: "flax.material/material#type:DropdownMenuEntry", parameters: _flaxMemberParameters139, constructors: {"": _flaxMemberParameters139}, methods: {}, getters: ["value","label","labelWidget","leadingIcon","trailingIcon","enabled","style"], setters: [], contextMembers: [], superMembers: ["get:value","get:label","get:labelWidget","get:leadingIcon","get:trailingIcon","get:enabled","get:style"]} as const;
 export interface _DropdownMenuEntryNative<T extends unknown | null = unknown | null> extends DropdownMenuEntry<T> {
 readonly [_flaxDartTypeValue]: _DropdownMenuEntryNative<T>;
 

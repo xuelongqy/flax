@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_MouseC
 import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import type * as upstream3 from '@flax/flutter/rendering/_bindings/flutter_MainAxisAlignment';
 import '@flax/flutter/rendering/_bindings/flutter_MainAxisAlignment';
-import { _flaxMemberParameters83 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters84 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -30,7 +30,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:DataColumn", "", [{"name":"label","required":true},{"name":"columnWidth"},{"name":"tooltip"},{"name":"numeric"},{"name":"onSort"},{"name":"mouseCursor"},{"name":"headingRowAlignment"}], [], options) as DataColumn;
 }
-const _DataColumnProxy = {type: "flax.material/material#type:DataColumn", parameters: _flaxMemberParameters83, constructors: {"": _flaxMemberParameters83}, methods: {}, getters: ["label","columnWidth","tooltip","numeric","onSort","mouseCursor","headingRowAlignment"], setters: [], contextMembers: [], superMembers: ["get:label","get:columnWidth","get:tooltip","get:numeric","get:onSort","get:mouseCursor","get:headingRowAlignment"]} as const;
+const _DataColumnProxy = {type: "flax.material/material#type:DataColumn", parameters: _flaxMemberParameters84, constructors: {"": _flaxMemberParameters84}, methods: {}, getters: ["label","columnWidth","tooltip","numeric","onSort","mouseCursor","headingRowAlignment"], setters: [], contextMembers: [], superMembers: ["get:label","get:columnWidth","get:tooltip","get:numeric","get:onSort","get:mouseCursor","get:headingRowAlignment"]} as const;
 export interface _DataColumnNative extends DataColumn {
 readonly [_flaxDartTypeValue]: _DataColumnNative;
 

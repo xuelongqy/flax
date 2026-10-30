@@ -104,7 +104,7 @@ export declare function _DropdownButtonFormFieldFactory<T extends unknown | null
     initialValue?: (T | _FlaxDartOutput<T>) | null | undefined;
     hint?: Widget | null | undefined;
     disabledHint?: Widget | null | undefined;
-    onChanged: ((value: _FlaxDartOutput<T> | null) => void) | null;
+    onChanged?: ((value: _FlaxDartOutput<T> | null) => void) | null | undefined;
     onTap?: (() => void) | null | undefined;
     elevation?: number | undefined;
     style?: (Readonly<{
@@ -150,6 +150,7 @@ export declare function _DropdownButtonFormFieldFactory<T extends unknown | null
     validator?: ((value: _FlaxDartOutput<T> | null) => string | null) | null | undefined;
     errorBuilder?: ((context: upstream4.BuildContext, errorText: string) => Widget) | null | undefined;
     forceErrorText?: string | null | undefined;
+    enabled?: boolean | null | undefined;
     autovalidateMode?: upstream9.AutovalidateMode | null | undefined;
     menuMaxHeight?: number | null | undefined;
     enableFeedback?: boolean | null | undefined;
@@ -175,6 +176,7 @@ export declare function _DropdownButtonFormFieldFactory<T extends unknown | null
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
+    isVerticallyExpanded?: boolean | undefined;
 }): DropdownButtonFormField<T>;
 export declare function _DropdownButtonFormFieldFactory(options: {
     key?: Readonly<{
@@ -186,7 +188,7 @@ export declare function _DropdownButtonFormFieldFactory(options: {
     initialValue?: unknown | null | undefined;
     hint?: Widget | null | undefined;
     disabledHint?: Widget | null | undefined;
-    onChanged: ((value: unknown | null) => void) | null;
+    onChanged?: ((value: unknown | null) => void) | null | undefined;
     onTap?: (() => void) | null | undefined;
     elevation?: number | undefined;
     style?: (Readonly<{
@@ -232,6 +234,7 @@ export declare function _DropdownButtonFormFieldFactory(options: {
     validator?: ((value: unknown | null) => string | null) | null | undefined;
     errorBuilder?: ((context: upstream4.BuildContext, errorText: string) => Widget) | null | undefined;
     forceErrorText?: string | null | undefined;
+    enabled?: boolean | null | undefined;
     autovalidateMode?: upstream9.AutovalidateMode | null | undefined;
     menuMaxHeight?: number | null | undefined;
     enableFeedback?: boolean | null | undefined;
@@ -257,6 +260,7 @@ export declare function _DropdownButtonFormFieldFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
+    isVerticallyExpanded?: boolean | undefined;
 }): DropdownButtonFormField<unknown | null>;
 export declare const DropdownButtonFormField: typeof _DropdownButtonFormFieldFactory & _FlaxInstanceType<DropdownButtonFormField<unknown | null>> & _FlaxDartType<DropdownButtonFormField<unknown | null>, readonly ["class", "flax.material/material#type:DropdownButtonFormField", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "onChanged" | "decoration" | "barrierDismissible" | "mouseCursor" | "dropdownMenuItemMouseCursor" | "builder" | "onSaved" | "onReset" | "forceErrorText" | "validator" | "errorBuilder" | "initialValue" | "enabled" | "autovalidateMode" | "restorationId" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/dropdown.dart::DropdownButtonFormField" | "__flaxBound:package:flutter/src/widgets/form.dart::FormField" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
@@ -272,7 +276,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             initialValue?: (_Selected0 | DartInput<_Selected0>) | null | undefined;
             hint?: Widget | null | undefined;
             disabledHint?: Widget | null | undefined;
-            onChanged: ((value: _Selected0 | null) => void) | null;
+            onChanged?: ((value: _Selected0 | null) => void) | null | undefined;
             onTap?: (() => void) | null | undefined;
             elevation?: number | undefined;
             style?: (Readonly<{
@@ -318,6 +322,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             validator?: ((value: _Selected0 | null) => string | null) | null | undefined;
             errorBuilder?: ((context: upstream4.BuildContext, errorText: string) => Widget) | null | undefined;
             forceErrorText?: string | null | undefined;
+            enabled?: boolean | null | undefined;
             autovalidateMode?: upstream9.AutovalidateMode | null | undefined;
             menuMaxHeight?: number | null | undefined;
             enableFeedback?: boolean | null | undefined;
@@ -343,6 +348,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             }> & Readonly<{
                 "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
             }>) | null | undefined;
+            isVerticallyExpanded?: boolean | undefined;
         }): DropdownButtonFormField<_Selected0>;
         readonly prototype: DropdownButtonFormField<_Selected0>;
     } & _FlaxInstanceType<DropdownButtonFormField<_Selected0>> & _FlaxDartType<DropdownButtonFormField<_Selected0>> : never : never;

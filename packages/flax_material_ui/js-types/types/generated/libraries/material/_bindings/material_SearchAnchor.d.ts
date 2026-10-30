@@ -33,19 +33,20 @@ import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsets';
 import type * as upstream17 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableTextState';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_EditableTextState';
-import type * as upstream18 from '@flax/flutter/widgets/_bindings/components_State';
+import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import type * as upstream19 from '@flax/flutter/widgets/_bindings/components_State';
 import '@flax/flutter/widgets/_bindings/components_State';
-import type * as upstream19 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import type * as upstream20 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream21 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream22 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream22 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream23 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream23 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream24 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import type * as upstream25 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
+import type * as upstream26 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SearchAnchor extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
@@ -90,54 +91,55 @@ export interface SearchAnchor extends _FlaxDartWidget, Omit<upstream0.StatefulWi
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream25.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream26.TextEditingValue];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream25.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream26.TextEditingValue];
     }>) => Widget);
     readonly suggestionsBuilder: ((context: upstream10.BuildContext, controller: Readonly<{
         "__flaxBound:package:material_ui/src/search_anchor.dart::SearchController": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream25.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream26.TextEditingValue];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream25.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream26.TextEditingValue];
     }>) => DartIterable<Widget> | Promise<DartIterable<Widget>>);
     readonly textInputAction: upstream11.TextInputAction | null;
     readonly keyboardType: upstream12.TextInputType | null;
     readonly enabled: boolean;
     readonly smartDashesType: upstream13.SmartDashesType | null;
     readonly smartQuotesType: upstream14.SmartQuotesType | null;
+    readonly enableTapHandling: boolean;
     readonly key: upstream1.Key | null;
-    createState(): upstream18.State<SearchAnchor>;
-    createElement(): upstream19.StatefulElement;
+    createState(): upstream19.State<SearchAnchor>;
+    createElement(): upstream20.StatefulElement;
     toStringShort(): string;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
     toStringShallow(options?: {
         joiner?: string | undefined;
-        minLevel?: upstream21.DiagnosticLevel | undefined;
+        minLevel?: upstream22.DiagnosticLevel | undefined;
     }): string;
     toStringDeep(options?: {
-        minLevel?: upstream21.DiagnosticLevel | undefined;
+        minLevel?: upstream22.DiagnosticLevel | undefined;
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
         wrapWidth?: number | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream23.DiagnosticsTreeStyle | null | undefined;
-    }): upstream22.DiagnosticsNode;
-    debugDescribeChildren(): DartList<upstream22.DiagnosticsNode>;
+        style?: upstream24.DiagnosticsTreeStyle | null | undefined;
+    }): upstream23.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream23.DiagnosticsNode>;
 }
 export declare function _SearchAnchorFactory(options: {
     key?: Readonly<{
@@ -149,13 +151,13 @@ export declare function _SearchAnchorFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream25.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream26.TextEditingValue];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream25.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream26.TextEditingValue];
     }>) | null | undefined;
     viewBuilder?: ((suggestions: DartIterable<Widget>) => Widget) | null | undefined;
     viewLeading?: Widget | null | undefined;
@@ -218,6 +220,7 @@ export declare function _SearchAnchorFactory(options: {
     enabled?: boolean | undefined;
     smartDashesType?: upstream13.SmartDashesType | null | undefined;
     smartQuotesType?: upstream14.SmartQuotesType | null | undefined;
+    enableTapHandling?: boolean | undefined;
 }): SearchAnchor;
 export declare namespace _SearchAnchorFactory {
     const __flaxJsx: {
@@ -315,13 +318,13 @@ export declare namespace _SearchAnchorFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream25.TextEditingValue];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream26.TextEditingValue];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream25.TextEditingValue];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream26.TextEditingValue];
         }>) | undefined;
         textCapitalization?: upstream9.TextCapitalization | undefined;
         suggestionsBuilder: ((context: upstream10.BuildContext, controller: upstream2.SearchController) => DartIterableInput<Widget, Widget> | Promise<DartIterableInput<Widget, Widget>>);
@@ -338,6 +341,19 @@ export declare namespace _SearchAnchorFactory {
         enabled?: boolean | undefined;
         smartDashesType?: upstream13.SmartDashesType | null | undefined;
         smartQuotesType?: upstream14.SmartQuotesType | null | undefined;
+        barFocusNode?: (Readonly<{
+            "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }>) | null | undefined;
     }): SearchAnchor;
     namespace bar {
         const __flaxJsx: {
@@ -348,5 +364,5 @@ export declare namespace _SearchAnchorFactory {
     }
 }
 export declare const SearchAnchor: typeof _SearchAnchorFactory & _FlaxInstanceType<SearchAnchor> & _FlaxDartType<SearchAnchor, readonly ["class", "flax.material/material#type:SearchAnchor", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "isFullScreen" | "searchController" | "viewBuilder" | "viewLeading" | "viewTrailing" | "viewHintText" | "viewBackgroundColor" | "viewElevation" | "viewSurfaceTintColor" | "viewSide" | "viewShape" | "viewBarPadding" | "headerHeight" | "headerTextStyle" | "headerHintStyle" | "dividerColor" | "viewConstraints" | "viewPadding" | "shrinkWrap" | "textCapitalization" | "viewOnChanged" | "viewOnSubmitted" | "viewOnClose" | "viewOnOpen" | "builder" | "suggestionsBuilder" | "textInputAction" | "keyboardType" | "enabled" | "smartDashesType" | "smartQuotesType" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/search_anchor.dart::SearchAnchor" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "isFullScreen" | "searchController" | "viewBuilder" | "viewLeading" | "viewTrailing" | "viewHintText" | "viewBackgroundColor" | "viewElevation" | "viewSurfaceTintColor" | "viewSide" | "viewShape" | "viewBarPadding" | "headerHeight" | "headerTextStyle" | "headerHintStyle" | "dividerColor" | "viewConstraints" | "viewPadding" | "shrinkWrap" | "textCapitalization" | "viewOnChanged" | "viewOnSubmitted" | "viewOnClose" | "viewOnOpen" | "builder" | "suggestionsBuilder" | "textInputAction" | "keyboardType" | "enabled" | "smartDashesType" | "smartQuotesType" | "enableTapHandling" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/search_anchor.dart::SearchAnchor" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

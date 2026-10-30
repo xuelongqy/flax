@@ -37,6 +37,7 @@ export interface FadeForwardsPageTransitionsBuilder extends Omit<upstream0.PageT
     }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null;
     readonly transitionDuration: upstream4.Duration;
     readonly reverseTransitionDuration: upstream4.Duration;
+    readonly allowSnapshotting: boolean;
     readonly backgroundColor: upstream1.Color | null;
     buildTransitions<T extends unknown | null = unknown | null>(route: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute": readonly [_FlaxDartOutput<T>];
@@ -69,6 +70,7 @@ export interface FadeForwardsPageTransitionsBuilder extends Omit<upstream0.PageT
     }>, child: Widget): Widget;
 }
 export declare function _FadeForwardsPageTransitionsBuilderFactory(options?: {
+    allowSnapshotting?: boolean | undefined;
     backgroundColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
@@ -107,6 +109,7 @@ export interface _FadeForwardsPageTransitionsBuilderNative extends FadeForwardsP
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
     }>, child: Widget): Widget;
+    get allowSnapshotting(): boolean;
     get backgroundColor(): upstream1.Color | null;
     get transitionDuration(): upstream4.Duration;
     get delegatedTransition(): ((context: upstream2.BuildContext, animation: Readonly<{
@@ -129,6 +132,7 @@ export declare abstract class _FadeForwardsPageTransitionsBuilderNative extends 
     static [_flaxDartTypeValue]: FadeForwardsPageTransitionsBuilder;
     static [_flaxDartTypeKey]: readonly ["class", "flax.material/material#type:FadeForwardsPageTransitionsBuilder", readonly [], false];
     constructor(options?: {
+        allowSnapshotting?: boolean | undefined;
         backgroundColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
@@ -136,12 +140,14 @@ export declare abstract class _FadeForwardsPageTransitionsBuilderNative extends 
 }
 export declare namespace _FadeForwardsPageTransitionsBuilderFactory {
     function implement(args: [options?: {
+        allowSnapshotting?: boolean | undefined;
         backgroundColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
     }], implementation: {}): FadeForwardsPageTransitionsBuilder;
 }
 declare const _FadeForwardsPageTransitionsBuilderBinding: typeof _FadeForwardsPageTransitionsBuilderFactory & (new (options?: {
+    allowSnapshotting?: boolean | undefined;
     backgroundColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
@@ -150,7 +156,7 @@ export declare namespace _FadeForwardsPageTransitionsBuilderFactory {
     const kTransitionMilliseconds: number;
 }
 export declare const FadeForwardsPageTransitionsBuilder: typeof _FadeForwardsPageTransitionsBuilderBinding & _FlaxInstanceType<FadeForwardsPageTransitionsBuilder> & _FlaxDartType<FadeForwardsPageTransitionsBuilder, readonly ["class", "flax.material/material#type:FadeForwardsPageTransitionsBuilder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "delegatedTransition" | "transitionDuration" | "reverseTransitionDuration" | "backgroundColor" | "buildTransitions" | "__flaxBound:package:material_ui/src/page_transitions_theme.dart::FadeForwardsPageTransitionsBuilder" | "__flaxBound:package:flutter/src/widgets/page_transitions_builder.dart::PageTransitionsBuilder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "delegatedTransition" | "transitionDuration" | "reverseTransitionDuration" | "allowSnapshotting" | "backgroundColor" | "buildTransitions" | "__flaxBound:package:material_ui/src/page_transitions_theme.dart::FadeForwardsPageTransitionsBuilder" | "__flaxBound:package:flutter/src/widgets/page_transitions_builder.dart::PageTransitionsBuilder";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (route: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute": readonly [_Selected0];

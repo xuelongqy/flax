@@ -15,16 +15,18 @@ import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_ScrollC
 import '@flax/flutter/widgets/_bindings/flutter_ScrollController';
 import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
-import type * as upstream8 from '@flax/material-ui/_bindings/material_PaginatedDataTableState';
+import type * as upstream8 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream9 from '@flax/material-ui/_bindings/material_PaginatedDataTableState';
 import '@flax/material-ui/_bindings/material_PaginatedDataTableState';
-import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -70,28 +72,29 @@ export interface PaginatedDataTable extends _FlaxDartWidget, Omit<upstream0.Stat
     readonly primary: boolean | null;
     readonly headingRowColor: upstream7.WidgetStateProperty<upstream4.Color | null> | null;
     readonly showEmptyRows: boolean;
+    readonly sortIconBuilder: ((context: upstream8.BuildContext, visible: boolean, ascending: boolean) => Widget) | null;
     readonly key: upstream1.Key | null;
-    createState(): upstream8.PaginatedDataTableState;
-    createElement(): upstream9.StatefulElement;
+    createState(): upstream9.PaginatedDataTableState;
+    createElement(): upstream10.StatefulElement;
     toStringShort(): string;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
     toStringShallow(options?: {
         joiner?: string | undefined;
-        minLevel?: upstream11.DiagnosticLevel | undefined;
+        minLevel?: upstream12.DiagnosticLevel | undefined;
     }): string;
     toStringDeep(options?: {
-        minLevel?: upstream11.DiagnosticLevel | undefined;
+        minLevel?: upstream12.DiagnosticLevel | undefined;
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
         wrapWidth?: number | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream13.DiagnosticsTreeStyle | null | undefined;
-    }): upstream12.DiagnosticsNode;
-    debugDescribeChildren(): DartList<upstream12.DiagnosticsNode>;
+        style?: upstream14.DiagnosticsTreeStyle | null | undefined;
+    }): upstream13.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream13.DiagnosticsNode>;
 }
 export declare function _PaginatedDataTableFactory(options: {
     key?: Readonly<{
@@ -143,6 +146,7 @@ export declare function _PaginatedDataTableFactory(options: {
     }> | null | undefined;
     dividerThickness?: number | null | undefined;
     showEmptyRows?: boolean | undefined;
+    sortIconBuilder?: ((context: upstream8.BuildContext, visible: boolean, ascending: boolean) => Widget) | null | undefined;
 }): PaginatedDataTable;
 export declare namespace _PaginatedDataTableFactory {
     const __flaxJsx: {
@@ -155,5 +159,5 @@ export declare namespace _PaginatedDataTableFactory {
     const defaultRowsPerPage: number;
 }
 export declare const PaginatedDataTable: typeof _PaginatedDataTableFactory & _FlaxInstanceType<PaginatedDataTable> & _FlaxDartType<PaginatedDataTable, readonly ["class", "flax.material/material#type:PaginatedDataTable", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "header" | "actions" | "columns" | "sortColumnIndex" | "sortAscending" | "onSelectAll" | "dataRowHeight" | "dataRowMinHeight" | "dataRowMaxHeight" | "headingRowHeight" | "horizontalMargin" | "columnSpacing" | "showCheckboxColumn" | "showFirstLastButtons" | "initialFirstRowIndex" | "dividerThickness" | "onPageChanged" | "rowsPerPage" | "availableRowsPerPage" | "onRowsPerPageChanged" | "source" | "dragStartBehavior" | "checkboxHorizontalMargin" | "arrowHeadColor" | "controller" | "primary" | "headingRowColor" | "showEmptyRows" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/paginated_data_table.dart::PaginatedDataTable" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "header" | "actions" | "columns" | "sortColumnIndex" | "sortAscending" | "onSelectAll" | "dataRowHeight" | "dataRowMinHeight" | "dataRowMaxHeight" | "headingRowHeight" | "horizontalMargin" | "columnSpacing" | "showCheckboxColumn" | "showFirstLastButtons" | "initialFirstRowIndex" | "dividerThickness" | "onPageChanged" | "rowsPerPage" | "availableRowsPerPage" | "onRowsPerPageChanged" | "source" | "dragStartBehavior" | "checkboxHorizontalMargin" | "arrowHeadColor" | "controller" | "primary" | "headingRowColor" | "showEmptyRows" | "sortIconBuilder" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/paginated_data_table.dart::PaginatedDataTable" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

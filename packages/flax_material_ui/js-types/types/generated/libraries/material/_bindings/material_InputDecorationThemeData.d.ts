@@ -74,6 +74,7 @@ export interface InputDecorationThemeData extends Omit<upstream0.Diagnosticable,
     readonly alignLabelWithHint: boolean;
     readonly constraints: upstream7.BoxConstraints | null;
     readonly visualDensity: upstream10.VisualDensity | null;
+    readonly supportingTextPadding: upstream5.EdgeInsetsGeometry | null;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream11.DiagnosticLevel | undefined;
@@ -218,6 +219,9 @@ export interface InputDecorationThemeData extends Omit<upstream0.Diagnosticable,
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        supportingTextPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
         visualDensity?: (Readonly<{
             "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
         }> & Readonly<{
@@ -368,6 +372,9 @@ export declare function _InputDecorationThemeDataFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
+    supportingTextPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
 }): InputDecorationThemeData;
 export interface _InputDecorationThemeDataNative extends InputDecorationThemeData {
     readonly [_flaxDartTypeValue]: _InputDecorationThemeDataNative;
@@ -520,6 +527,9 @@ export interface _InputDecorationThemeDataNative extends InputDecorationThemeDat
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        supportingTextPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
     }): InputDecorationThemeData;
     merge(other: (Readonly<{
         "__flaxBound:package:material_ui/src/input_decorator.dart::InputDecorationThemeData": readonly [];
@@ -563,6 +573,7 @@ export interface _InputDecorationThemeDataNative extends InputDecorationThemeDat
     get alignLabelWithHint(): boolean;
     get constraints(): upstream7.BoxConstraints | null;
     get visualDensity(): upstream10.VisualDensity | null;
+    get supportingTextPadding(): upstream5.EdgeInsetsGeometry | null;
 }
 export declare abstract class _InputDecorationThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<InputDecorationThemeData>[typeof globalThis.Symbol.hasInstance];
@@ -706,6 +717,9 @@ export declare abstract class _InputDecorationThemeDataNative extends _FlaxProxy
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        supportingTextPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
     });
 }
 export declare namespace _InputDecorationThemeDataFactory {
@@ -847,6 +861,9 @@ export declare namespace _InputDecorationThemeDataFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        supportingTextPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
     }], implementation: {}): InputDecorationThemeData;
 }
 declare const _InputDecorationThemeDataBinding: typeof _InputDecorationThemeDataFactory & (new (options?: {
@@ -987,7 +1004,10 @@ declare const _InputDecorationThemeDataBinding: typeof _InputDecorationThemeData
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
+    supportingTextPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
 }) => _InputDecorationThemeDataNative);
 export declare const InputDecorationThemeData: typeof _InputDecorationThemeDataBinding & _FlaxInstanceType<InputDecorationThemeData> & _FlaxDartType<InputDecorationThemeData, readonly ["class", "flax.material/material#type:InputDecorationThemeData", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "labelStyle" | "floatingLabelStyle" | "helperStyle" | "helperMaxLines" | "hintStyle" | "hintFadeDuration" | "hintMaxLines" | "errorStyle" | "errorMaxLines" | "floatingLabelBehavior" | "floatingLabelAlignment" | "isDense" | "contentPadding" | "isCollapsed" | "iconColor" | "prefixStyle" | "prefixIconColor" | "prefixIconConstraints" | "suffixStyle" | "suffixIconColor" | "suffixIconConstraints" | "counterStyle" | "filled" | "fillColor" | "outlineBorder" | "activeIndicatorBorder" | "focusColor" | "hoverColor" | "errorBorder" | "focusedBorder" | "focusedErrorBorder" | "disabledBorder" | "enabledBorder" | "border" | "alignLabelWithHint" | "constraints" | "visualDensity" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "merge" | "__flaxBound:package:material_ui/src/input_decorator.dart::InputDecorationThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "labelStyle" | "floatingLabelStyle" | "helperStyle" | "helperMaxLines" | "hintStyle" | "hintFadeDuration" | "hintMaxLines" | "errorStyle" | "errorMaxLines" | "floatingLabelBehavior" | "floatingLabelAlignment" | "isDense" | "contentPadding" | "isCollapsed" | "iconColor" | "prefixStyle" | "prefixIconColor" | "prefixIconConstraints" | "suffixStyle" | "suffixIconColor" | "suffixIconConstraints" | "counterStyle" | "filled" | "fillColor" | "outlineBorder" | "activeIndicatorBorder" | "focusColor" | "hoverColor" | "errorBorder" | "focusedBorder" | "focusedErrorBorder" | "disabledBorder" | "enabledBorder" | "border" | "alignLabelWithHint" | "constraints" | "visualDensity" | "supportingTextPadding" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "merge" | "__flaxBound:package:material_ui/src/input_decorator.dart::InputDecorationThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

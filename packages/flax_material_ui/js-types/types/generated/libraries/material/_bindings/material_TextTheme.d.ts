@@ -16,6 +16,10 @@ import '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextDecoration';
 import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextDecorationStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextDecorationStyle';
+import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_FontFeature';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_FontFeature';
+import type * as upstream11 from '@flax/dart/ui/_bindings/sdk_dart_ui_FontVariation';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_FontVariation';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextTheme extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
@@ -149,8 +153,14 @@ export interface TextTheme extends Omit<upstream0.Diagnosticable, _flaxOwnMember
         }> | null | undefined;
         fontFamily?: string | null | undefined;
         fontFamilyFallback?: DartListInput<string, string> | null | undefined;
+        fontFeatures?: DartListInput<upstream10.FontFeature, Readonly<{
+            "__flaxBound:dart:ui::FontFeature": readonly [];
+        }>> | null | undefined;
         fontSizeDelta?: number | undefined;
         fontSizeFactor?: number | undefined;
+        fontVariations?: DartListInput<upstream11.FontVariation, Readonly<{
+            "__flaxBound:dart:ui::FontVariation": readonly [];
+        }>> | null | undefined;
         heightDelta?: number | undefined;
         heightFactor?: number | undefined;
         letterSpacingDelta?: number | undefined;
@@ -357,6 +367,12 @@ export interface _TextThemeNative extends TextTheme {
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
         decorationStyle?: upstream9.TextDecorationStyle | null | undefined;
+        fontFeatures?: DartListInput<upstream10.FontFeature, Readonly<{
+            "__flaxBound:dart:ui::FontFeature": readonly [];
+        }>> | null | undefined;
+        fontVariations?: DartListInput<upstream11.FontVariation, Readonly<{
+            "__flaxBound:dart:ui::FontVariation": readonly [];
+        }>> | null | undefined;
     }): TextTheme;
     get displayLarge(): upstream1.TextStyle | null;
     get displayMedium(): upstream1.TextStyle | null;

@@ -19,7 +19,7 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters228, _flaxMemberParameters229, _flaxMemberParameters4 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters234, _flaxMemberParameters235, _flaxMemberParameters4 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -50,13 +50,13 @@ return constructObject("object", "flax.material/material#type:MenuAcceleratorLab
 export declare namespace _MenuAcceleratorLabelFactory { const __flaxJsx: { readonly props: ({ "label": globalThis.Parameters<typeof _MenuAcceleratorLabelFactory>[0] } & globalThis.NonNullable<globalThis.Parameters<typeof _MenuAcceleratorLabelFactory>[1]>); readonly slot: null; readonly many: false; }; }
 export namespace _MenuAcceleratorLabelFactory { export function defaultLabelBuilder(context: upstream2.BuildContext, label: string, index: number): Widget {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:MenuAcceleratorLabel.defaultLabelBuilder", [contextHandle(context, "flax.core/flutter#type:BuildContext"), label, index], _flaxMemberParameters228);
+const _flaxResult = invokeTopLevel("flax.material/material#function:MenuAcceleratorLabel.defaultLabelBuilder", [contextHandle(context, "flax.core/flutter#type:BuildContext"), label, index], _flaxMemberParameters234);
 return _flaxResult as Widget;
 } }
 export namespace _MenuAcceleratorLabelFactory { export function stripAcceleratorMarkers(label: string, options: { setIndex?: ((index: number) => void) | null | undefined } = {}): string {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["setIndex"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:MenuAcceleratorLabel.stripAcceleratorMarkers", [label, options.setIndex], _flaxMemberParameters229);
+const _flaxResult = invokeTopLevel("flax.material/material#function:MenuAcceleratorLabel.stripAcceleratorMarkers", [label, options.setIndex], _flaxMemberParameters235);
 return _flaxResult as string;
 } }
 export const MenuAcceleratorLabel: typeof _MenuAcceleratorLabelFactory & _FlaxInstanceType<MenuAcceleratorLabel> & _FlaxDartType<MenuAcceleratorLabel, readonly ["class", "flax.material/material#type:MenuAcceleratorLabel", readonly [], false]> = _flaxBindInstanceType<MenuAcceleratorLabel, typeof _MenuAcceleratorLabelFactory>(_MenuAcceleratorLabelFactory, "flax.material/material#type:MenuAcceleratorLabel", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _MenuAcceleratorLabelFactory & _FlaxInstanceType<MenuAcceleratorLabel> & _FlaxDartType<MenuAcceleratorLabel, readonly ["class", "flax.material/material#type:MenuAcceleratorLabel", readonly [], false]>;

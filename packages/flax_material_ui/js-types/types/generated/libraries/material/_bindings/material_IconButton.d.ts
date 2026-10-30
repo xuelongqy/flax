@@ -13,12 +13,18 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_WidgetStatesController';
 import type * as upstream10 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/ui/_bindings/flutter_Size';
+import type * as upstream12 from '@flax/material-ui/_bindings/material_IconButtonWidthVariant';
+import '@flax/material-ui/_bindings/material_IconButtonWidthVariant';
 import '@flax/flutter/painting/_bindings/flutter_OutlinedBorder';
+import type * as upstream14 from '@flax/material-ui/_bindings/material_ButtonShapeVariant';
+import '@flax/material-ui/_bindings/material_ButtonShapeVariant';
 import '@flax/flutter/painting/_bindings/flutter_BorderSide';
+import type * as upstream16 from '@flax/material-ui/_bindings/material_ButtonSizeVariant';
+import '@flax/material-ui/_bindings/material_ButtonSizeVariant';
 import '@flax/material-ui/_bindings/material_InteractiveInkFeatureFactory';
-import type * as upstream15 from '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
+import type * as upstream18 from '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
 import '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
-import type * as upstream16 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
+import type * as upstream19 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface IconButton extends WidgetDescription, Omit<Readonly<{
     "__flaxBound:package:material_ui/src/icon_button.dart::IconButton": readonly [];
@@ -107,13 +113,13 @@ export declare function _IconButtonFactory(options: {
     statesController?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream16.WidgetState>];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream19.WidgetState>];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream16.WidgetState>];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream19.WidgetState>];
     }>) | null> | undefined;
     icon: Bindable<Widget>;
 }): IconButton;
@@ -199,13 +205,13 @@ export declare namespace _IconButtonFactory {
         statesController?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream16.WidgetState>];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream19.WidgetState>];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream16.WidgetState>];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream19.WidgetState>];
         }>) | null> | undefined;
         icon: Bindable<Widget>;
     }): IconButton;
@@ -292,13 +298,13 @@ export declare namespace _IconButtonFactory {
         statesController?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream16.WidgetState>];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream19.WidgetState>];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream16.WidgetState>];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream19.WidgetState>];
         }>) | null> | undefined;
         icon: Bindable<Widget>;
     }): IconButton;
@@ -385,13 +391,13 @@ export declare namespace _IconButtonFactory {
         statesController?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream16.WidgetState>];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream19.WidgetState>];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream16.WidgetState>];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream19.WidgetState>];
         }>) | null> | undefined;
         icon: Bindable<Widget>;
     }): IconButton;
@@ -451,6 +457,7 @@ export declare namespace _IconButtonFactory {
         hoverColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
+        iconButtonWidth?: upstream12.IconButtonWidthVariant | null | undefined;
         iconSize?: number | null | undefined;
         maximumSize?: (Readonly<{
             "__flaxBound:dart:ui::Size": readonly [];
@@ -476,18 +483,20 @@ export declare namespace _IconButtonFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
         }>) | null | undefined;
+        shapeVariant?: upstream14.ButtonShapeVariant | null | undefined;
         side?: (Readonly<{
             "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        sizeVariant?: upstream16.ButtonSizeVariant | null | undefined;
         splashFactory?: Readonly<{
             "__flaxBound:package:material_ui/src/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
         }> | null | undefined;
         surfaceTintColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
-        tapTargetSize?: upstream15.MaterialTapTargetSize | null | undefined;
+        tapTargetSize?: upstream18.MaterialTapTargetSize | null | undefined;
         visualDensity?: (Readonly<{
             "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
         }> & Readonly<{

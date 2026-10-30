@@ -6,13 +6,13 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream1 from '@flax/material-ui/_bindings/material_SearchDelegate';
 import '@flax/material-ui/_bindings/material_SearchDelegate';
-import { _flaxMemberParameters375 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters382 } from "@flax/material-ui/_bindings/material.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_showSearch<T extends unknown | null = unknown | null>(options: { context: upstream0.BuildContext; delegate: Readonly<{ "__flaxBound:package:material_ui/src/search.dart::SearchDelegate": readonly [_FlaxDartOutput<T>] }>; maintainState?: boolean | undefined; query?: string | null | undefined; useRootNavigator?: boolean | undefined }): Promise<_FlaxDartOutput<T> | null> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["context","delegate","maintainState","query","useRootNavigator"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:showSearch", [contextHandle(options.context, "flax.core/flutter#type:BuildContext"), options.delegate, options.maintainState, options.query, options.useRootNavigator], _flaxMemberParameters375);
+const _flaxResult = invokeTopLevel("flax.material/material#function:showSearch", [contextHandle(options.context, "flax.core/flutter#type:BuildContext"), options.delegate, options.maintainState, options.query, options.useRootNavigator], _flaxMemberParameters382);
 return _flaxResult as Promise<_FlaxDartOutput<T> | null>;
 }
 const _flaxGeneric_showSearch = _flaxDefineDartCallTypes(_flaxTopLevel_showSearch, {"id":"flax.material/material#function:showSearch","parameters":[{"name":"context","required":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"delegate","required":true},{"name":"maintainState"},{"name":"query"},{"name":"useRootNavigator"}]}) as _FlaxDartCallable<typeof _flaxTopLevel_showSearch, _FlaxSignature0>;

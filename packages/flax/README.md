@@ -97,7 +97,7 @@ FFI declarations are generated from the canonical native headers. Run
 edit generated declarations. The shared wrapper loads the maintained engine exports
 directly.
 
-Use `FlaxEngine.createRuntime()` with the maintained Flutter 3.47.6 engine. Shared
+Use `FlaxEngine.createRuntime()` with the maintained Flutter 3.47.9 engine. Shared
 runtime and GC tests live in core and `flax_test`; the standalone example executes those
 contracts in real debug, profile and release/AOT apps. See
 [scoped checks](../../CONTRIBUTING.md#checks).

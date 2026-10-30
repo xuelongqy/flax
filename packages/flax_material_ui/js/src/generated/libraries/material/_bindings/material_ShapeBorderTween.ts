@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_Animatable';
 import type * as upstream3 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
-import { _flaxMemberParameters177, _flaxMemberParameters213, _flaxMemberParameters214, _flaxMemberParameters4, _flaxMemberParameters215 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters179, _flaxMemberParameters216, _flaxMemberParameters217, _flaxMemberParameters4, _flaxMemberParameters218 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -27,13 +27,13 @@ toString(): string;
 set begin(value: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null);
 set end(value: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null);
 }
-defineObject("flax.material/material#type:ShapeBorderTween", ["begin","end"], ["begin","end"], _flaxBindingMethods("flax.material/material#type:ShapeBorderTween", "object", {"transform":_flaxMemberParameters177,"evaluate":_flaxMemberParameters213,"animate":_flaxMemberParameters214,"chain":_flaxMemberParameters214,"lerp":_flaxMemberParameters177,"toString":_flaxMemberParameters4}, {}), []);
+defineObject("flax.material/material#type:ShapeBorderTween", ["begin","end"], ["begin","end"], _flaxBindingMethods("flax.material/material#type:ShapeBorderTween", "object", {"transform":_flaxMemberParameters179,"evaluate":_flaxMemberParameters216,"animate":_flaxMemberParameters217,"chain":_flaxMemberParameters217,"lerp":_flaxMemberParameters179,"toString":_flaxMemberParameters4}, {}), []);
 export function _ShapeBorderTweenFactory(options: { begin?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null | undefined; end?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null | undefined } = {}): ShapeBorderTween {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:ShapeBorderTween", "", [{"name":"begin"},{"name":"end"}], [], options) as ShapeBorderTween;
 }
-const _ShapeBorderTweenProxy = {type: "flax.material/material#type:ShapeBorderTween", parameters: _flaxMemberParameters215, constructors: {"": _flaxMemberParameters215}, methods: {"transform":_flaxMemberParameters177,"evaluate":_flaxMemberParameters213,"animate":_flaxMemberParameters214,"chain":_flaxMemberParameters214,"lerp":_flaxMemberParameters177,"toString":_flaxMemberParameters4}, getters: ["begin","end"], setters: ["begin","end"], contextMembers: [], superMembers: ["get:begin","get:end","set:begin","set:end","transform","evaluate","animate","chain","lerp","toString"]} as const;
+const _ShapeBorderTweenProxy = {type: "flax.material/material#type:ShapeBorderTween", parameters: _flaxMemberParameters218, constructors: {"": _flaxMemberParameters218}, methods: {"transform":_flaxMemberParameters179,"evaluate":_flaxMemberParameters216,"animate":_flaxMemberParameters217,"chain":_flaxMemberParameters217,"lerp":_flaxMemberParameters179,"toString":_flaxMemberParameters4}, getters: ["begin","end"], setters: ["begin","end"], contextMembers: [], superMembers: ["get:begin","get:end","set:begin","set:end","transform","evaluate","animate","chain","lerp","toString"]} as const;
 export interface _ShapeBorderTweenNative extends ShapeBorderTween {
 readonly [_flaxDartTypeValue]: _ShapeBorderTweenNative;
 

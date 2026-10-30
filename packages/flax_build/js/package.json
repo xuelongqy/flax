@@ -49,11 +49,11 @@
     "@jridgewell/trace-mapping": "0.3.31",
     "@nodable/entities": "3.1.0",
     "esbuild": "0.28.2",
-    "fflate": "0.8.2",
-    "js-yaml": "5.2.2",
-    "magic-string": "1.4.3",
+    "fflate": "0.8.3",
+    "js-yaml": "5.5.0",
+    "magic-string": "1.4.5",
     "typescript": "7.0.2",
-    "vite": "8.3.1"
+    "vite": "8.3.5"
   },
   "engines": {
     "node": ">=22.23.0"

@@ -93,6 +93,21 @@ export interface InkResponse extends _FlaxDartWidget, Omit<upstream0.StatelessWi
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) => void) | null;
     readonly onSecondaryTapCancel: (() => void) | null;
+    readonly onTertiaryTapDown: ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/tap.dart::TapDownDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    readonly onTertiaryTapUp: ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/tap.dart::TapUpDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    readonly onTertiaryTapCancel: (() => void) | null;
     readonly onHighlightChanged: ((value: boolean) => void) | null;
     readonly onHover: ((value: boolean) => void) | null;
     readonly mouseCursor: upstream4.MouseCursor | null;
@@ -168,6 +183,9 @@ export declare function _InkResponseFactory(options?: {
     onSecondaryTapUp?: ((details: upstream3.TapUpDetails) => void) | null | undefined;
     onSecondaryTapDown?: ((details: upstream2.TapDownDetails) => void) | null | undefined;
     onSecondaryTapCancel?: (() => void) | null | undefined;
+    onTertiaryTapUp?: ((details: upstream3.TapUpDetails) => void) | null | undefined;
+    onTertiaryTapDown?: ((details: upstream2.TapDownDetails) => void) | null | undefined;
+    onTertiaryTapCancel?: (() => void) | null | undefined;
     onHighlightChanged?: ((value: boolean) => void) | null | undefined;
     onHover?: ((value: boolean) => void) | null | undefined;
     mouseCursor?: (Readonly<{
@@ -253,5 +271,5 @@ export declare namespace _InkResponseFactory {
     };
 }
 export declare const InkResponse: typeof _InkResponseFactory & _FlaxInstanceType<InkResponse> & _FlaxDartType<InkResponse, readonly ["class", "flax.material/material#type:InkResponse", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "onTap" | "onTapDown" | "onTapUp" | "onTapCancel" | "onDoubleTap" | "onLongPress" | "onLongPressUp" | "onSecondaryTap" | "onSecondaryTapDown" | "onSecondaryTapUp" | "onSecondaryTapCancel" | "onHighlightChanged" | "onHover" | "mouseCursor" | "containedInkWell" | "highlightShape" | "radius" | "borderRadius" | "customBorder" | "focusColor" | "hoverColor" | "highlightColor" | "overlayColor" | "splashColor" | "splashFactory" | "enableFeedback" | "excludeFromSemantics" | "onFocusChange" | "autofocus" | "focusNode" | "canRequestFocus" | "statesController" | "hoverDuration" | "key" | "getRectCallback" | "build" | "debugCheckContext" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/ink_well.dart::InkResponse" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "onTap" | "onTapDown" | "onTapUp" | "onTapCancel" | "onDoubleTap" | "onLongPress" | "onLongPressUp" | "onSecondaryTap" | "onSecondaryTapDown" | "onSecondaryTapUp" | "onSecondaryTapCancel" | "onTertiaryTapDown" | "onTertiaryTapUp" | "onTertiaryTapCancel" | "onHighlightChanged" | "onHover" | "mouseCursor" | "containedInkWell" | "highlightShape" | "radius" | "borderRadius" | "customBorder" | "focusColor" | "hoverColor" | "highlightColor" | "overlayColor" | "splashColor" | "splashFactory" | "enableFeedback" | "excludeFromSemantics" | "onFocusChange" | "autofocus" | "focusNode" | "canRequestFocus" | "statesController" | "hoverDuration" | "key" | "getRectCallback" | "build" | "debugCheckContext" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/ink_well.dart::InkResponse" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

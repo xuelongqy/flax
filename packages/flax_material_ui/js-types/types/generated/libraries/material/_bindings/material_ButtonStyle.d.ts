@@ -33,11 +33,17 @@ import type * as upstream15 from '@flax/flutter/widgets/_bindings/flutter_BuildC
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream16 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
-import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream17 from '@flax/material-ui/_bindings/material_ButtonSizeVariant';
+import '@flax/material-ui/_bindings/material_ButtonSizeVariant';
+import type * as upstream18 from '@flax/material-ui/_bindings/material_IconButtonWidthVariant';
+import '@flax/material-ui/_bindings/material_IconButtonWidthVariant';
+import type * as upstream19 from '@flax/material-ui/_bindings/material_ButtonShapeVariant';
+import '@flax/material-ui/_bindings/material_ButtonShapeVariant';
+import type * as upstream20 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream21 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream19 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream22 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
@@ -74,14 +80,17 @@ export interface ButtonStyle extends Omit<upstream0.Diagnosticable, _flaxOwnMemb
     readonly splashFactory: upstream14.InteractiveInkFeatureFactory | null;
     readonly backgroundBuilder: ((context: upstream15.BuildContext, states: DartSetInput<upstream16.WidgetState, upstream16.WidgetState>, child: Widget | null) => Widget) | null;
     readonly foregroundBuilder: ((context: upstream15.BuildContext, states: DartSetInput<upstream16.WidgetState, upstream16.WidgetState>, child: Widget | null) => Widget) | null;
+    readonly sizeVariant: upstream17.ButtonSizeVariant | null;
+    readonly iconButtonWidth: upstream18.IconButtonWidthVariant | null;
+    readonly shapeVariant: upstream19.ButtonShapeVariant | null;
     toStringShort(): string;
     toString(options?: {
-        minLevel?: upstream17.DiagnosticLevel | undefined;
+        minLevel?: upstream20.DiagnosticLevel | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream19.DiagnosticsTreeStyle | null | undefined;
-    }): upstream18.DiagnosticsNode;
+        style?: upstream22.DiagnosticsTreeStyle | null | undefined;
+    }): upstream21.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -110,6 +119,7 @@ export interface ButtonStyle extends Omit<upstream0.Diagnosticable, _flaxOwnMemb
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
         }> | null | undefined;
         iconAlignment?: upstream6.IconAlignment | null | undefined;
+        iconButtonWidth?: upstream18.IconButtonWidthVariant | null | undefined;
         iconColor?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
         }> | null | undefined;
@@ -137,9 +147,11 @@ export interface ButtonStyle extends Omit<upstream0.Diagnosticable, _flaxOwnMemb
         shape?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream8.OutlinedBorder | null];
         }> | null | undefined;
+        shapeVariant?: upstream19.ButtonShapeVariant | null | undefined;
         side?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.BorderSide | null];
         }> | null | undefined;
+        sizeVariant?: upstream17.ButtonSizeVariant | null | undefined;
         splashFactory?: Readonly<{
             "__flaxBound:package:material_ui/src/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
         }> | null | undefined;
@@ -232,17 +244,20 @@ export declare function _ButtonStyleFactory(options?: {
     }> | null | undefined;
     backgroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
     foregroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+    sizeVariant?: upstream17.ButtonSizeVariant | null | undefined;
+    iconButtonWidth?: upstream18.IconButtonWidthVariant | null | undefined;
+    shapeVariant?: upstream19.ButtonShapeVariant | null | undefined;
 }): ButtonStyle;
 export interface _ButtonStyleNative extends ButtonStyle {
     readonly [_flaxDartTypeValue]: _ButtonStyleNative;
     toStringShort(): string;
     toString(options?: {
-        minLevel?: upstream17.DiagnosticLevel | undefined;
+        minLevel?: upstream20.DiagnosticLevel | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream19.DiagnosticsTreeStyle | null | undefined;
-    }): upstream18.DiagnosticsNode;
+        style?: upstream22.DiagnosticsTreeStyle | null | undefined;
+    }): upstream21.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -316,6 +331,9 @@ export interface _ButtonStyleNative extends ButtonStyle {
         }> | null | undefined;
         backgroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
         foregroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+        sizeVariant?: upstream17.ButtonSizeVariant | null | undefined;
+        iconButtonWidth?: upstream18.IconButtonWidthVariant | null | undefined;
+        shapeVariant?: upstream19.ButtonShapeVariant | null | undefined;
     }): ButtonStyle;
     merge(style: (Readonly<{
         "__flaxBound:package:material_ui/src/button_style.dart::ButtonStyle": readonly [];
@@ -347,6 +365,9 @@ export interface _ButtonStyleNative extends ButtonStyle {
     get splashFactory(): upstream14.InteractiveInkFeatureFactory | null;
     get backgroundBuilder(): ((context: upstream15.BuildContext, states: DartSetInput<upstream16.WidgetState, upstream16.WidgetState>, child: Widget | null) => Widget) | null;
     get foregroundBuilder(): ((context: upstream15.BuildContext, states: DartSetInput<upstream16.WidgetState, upstream16.WidgetState>, child: Widget | null) => Widget) | null;
+    get sizeVariant(): upstream17.ButtonSizeVariant | null;
+    get iconButtonWidth(): upstream18.IconButtonWidthVariant | null;
+    get shapeVariant(): upstream19.ButtonShapeVariant | null;
 }
 export declare abstract class _ButtonStyleNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ButtonStyle>[typeof globalThis.Symbol.hasInstance];
@@ -422,6 +443,9 @@ export declare abstract class _ButtonStyleNative extends _FlaxProxyBase {
         }> | null | undefined;
         backgroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
         foregroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+        sizeVariant?: upstream17.ButtonSizeVariant | null | undefined;
+        iconButtonWidth?: upstream18.IconButtonWidthVariant | null | undefined;
+        shapeVariant?: upstream19.ButtonShapeVariant | null | undefined;
     });
 }
 export declare namespace _ButtonStyleFactory {
@@ -495,6 +519,9 @@ export declare namespace _ButtonStyleFactory {
         }> | null | undefined;
         backgroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
         foregroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+        sizeVariant?: upstream17.ButtonSizeVariant | null | undefined;
+        iconButtonWidth?: upstream18.IconButtonWidthVariant | null | undefined;
+        shapeVariant?: upstream19.ButtonShapeVariant | null | undefined;
     }], implementation: {}): ButtonStyle;
 }
 declare const _ButtonStyleBinding: typeof _ButtonStyleFactory & (new (options?: {
@@ -567,6 +594,9 @@ declare const _ButtonStyleBinding: typeof _ButtonStyleFactory & (new (options?: 
     }> | null | undefined;
     backgroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
     foregroundBuilder?: ((context: upstream15.BuildContext, states: DartSet<upstream16.WidgetState>, child: Widget | null) => Widget) | null | undefined;
+    sizeVariant?: upstream17.ButtonSizeVariant | null | undefined;
+    iconButtonWidth?: upstream18.IconButtonWidthVariant | null | undefined;
+    shapeVariant?: upstream19.ButtonShapeVariant | null | undefined;
 }) => _ButtonStyleNative);
 export declare namespace _ButtonStyleFactory {
     function lerp(a: (Readonly<{
@@ -580,5 +610,5 @@ export declare namespace _ButtonStyleFactory {
     }>) | null, t: number): ButtonStyle | null;
 }
 export declare const ButtonStyle: typeof _ButtonStyleBinding & _FlaxInstanceType<ButtonStyle> & _FlaxDartType<ButtonStyle, readonly ["class", "flax.material/material#type:ButtonStyle", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "textStyle" | "backgroundColor" | "foregroundColor" | "overlayColor" | "shadowColor" | "surfaceTintColor" | "elevation" | "padding" | "minimumSize" | "fixedSize" | "maximumSize" | "iconColor" | "iconSize" | "iconAlignment" | "side" | "shape" | "mouseCursor" | "visualDensity" | "tapTargetSize" | "animationDuration" | "enableFeedback" | "alignment" | "splashFactory" | "backgroundBuilder" | "foregroundBuilder" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "merge" | "__flaxBound:package:material_ui/src/button_style.dart::ButtonStyle" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "textStyle" | "backgroundColor" | "foregroundColor" | "overlayColor" | "shadowColor" | "surfaceTintColor" | "elevation" | "padding" | "minimumSize" | "fixedSize" | "maximumSize" | "iconColor" | "iconSize" | "iconAlignment" | "side" | "shape" | "mouseCursor" | "visualDensity" | "tapTargetSize" | "animationDuration" | "enableFeedback" | "alignment" | "splashFactory" | "backgroundBuilder" | "foregroundBuilder" | "sizeVariant" | "iconButtonWidth" | "shapeVariant" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "merge" | "__flaxBound:package:material_ui/src/button_style.dart::ButtonStyle" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

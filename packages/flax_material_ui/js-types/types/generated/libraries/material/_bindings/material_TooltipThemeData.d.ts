@@ -46,6 +46,7 @@ export interface TooltipThemeData extends Omit<upstream0.Diagnosticable, _flaxOw
     readonly exitDuration: upstream6.Duration | null;
     readonly triggerMode: upstream7.TooltipTriggerMode | null;
     readonly enableFeedback: boolean | null;
+    readonly ignorePointer: boolean | null;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream8.DiagnosticLevel | undefined;
@@ -76,6 +77,7 @@ export interface TooltipThemeData extends Omit<upstream0.Diagnosticable, _flaxOw
             "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
         }>) | null | undefined;
         height?: number | null | undefined;
+        ignorePointer?: boolean | null | undefined;
         margin?: Readonly<{
             "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
         }> | null | undefined;
@@ -147,6 +149,7 @@ export declare function _TooltipThemeDataFactory(options?: {
     }>) | null | undefined;
     triggerMode?: upstream7.TooltipTriggerMode | null | undefined;
     enableFeedback?: boolean | null | undefined;
+    ignorePointer?: boolean | null | undefined;
 }): TooltipThemeData;
 export interface _TooltipThemeDataNative extends TooltipThemeData {
     readonly [_flaxDartTypeValue]: _TooltipThemeDataNative;
@@ -205,6 +208,7 @@ export interface _TooltipThemeDataNative extends TooltipThemeData {
         }>) | null | undefined;
         triggerMode?: upstream7.TooltipTriggerMode | null | undefined;
         enableFeedback?: boolean | null | undefined;
+        ignorePointer?: boolean | null | undefined;
     }): TooltipThemeData;
     get height(): number | null;
     get constraints(): upstream1.BoxConstraints | null;
@@ -221,6 +225,7 @@ export interface _TooltipThemeDataNative extends TooltipThemeData {
     get exitDuration(): upstream6.Duration | null;
     get triggerMode(): upstream7.TooltipTriggerMode | null;
     get enableFeedback(): boolean | null;
+    get ignorePointer(): boolean | null;
 }
 export declare abstract class _TooltipThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TooltipThemeData>[typeof globalThis.Symbol.hasInstance];
@@ -270,6 +275,7 @@ export declare abstract class _TooltipThemeDataNative extends _FlaxProxyBase {
         }>) | null | undefined;
         triggerMode?: upstream7.TooltipTriggerMode | null | undefined;
         enableFeedback?: boolean | null | undefined;
+        ignorePointer?: boolean | null | undefined;
     });
 }
 export declare namespace _TooltipThemeDataFactory {
@@ -317,6 +323,7 @@ export declare namespace _TooltipThemeDataFactory {
         }>) | null | undefined;
         triggerMode?: upstream7.TooltipTriggerMode | null | undefined;
         enableFeedback?: boolean | null | undefined;
+        ignorePointer?: boolean | null | undefined;
     }], implementation: {}): TooltipThemeData;
 }
 declare const _TooltipThemeDataBinding: typeof _TooltipThemeDataFactory & (new (options?: {
@@ -363,6 +370,7 @@ declare const _TooltipThemeDataBinding: typeof _TooltipThemeDataFactory & (new (
     }>) | null | undefined;
     triggerMode?: upstream7.TooltipTriggerMode | null | undefined;
     enableFeedback?: boolean | null | undefined;
+    ignorePointer?: boolean | null | undefined;
 }) => _TooltipThemeDataNative);
 export declare namespace _TooltipThemeDataFactory {
     function lerp(a: (Readonly<{
@@ -376,5 +384,5 @@ export declare namespace _TooltipThemeDataFactory {
     }>) | null, t: number): TooltipThemeData | null;
 }
 export declare const TooltipThemeData: typeof _TooltipThemeDataBinding & _FlaxInstanceType<TooltipThemeData> & _FlaxDartType<TooltipThemeData, readonly ["class", "flax.material/material#type:TooltipThemeData", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "height" | "constraints" | "padding" | "margin" | "verticalOffset" | "preferBelow" | "excludeFromSemantics" | "decoration" | "textStyle" | "textAlign" | "waitDuration" | "showDuration" | "exitDuration" | "triggerMode" | "enableFeedback" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:material_ui/src/tooltip_theme.dart::TooltipThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "height" | "constraints" | "padding" | "margin" | "verticalOffset" | "preferBelow" | "excludeFromSemantics" | "decoration" | "textStyle" | "textAlign" | "waitDuration" | "showDuration" | "exitDuration" | "triggerMode" | "enableFeedback" | "ignorePointer" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:material_ui/src/tooltip_theme.dart::TooltipThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

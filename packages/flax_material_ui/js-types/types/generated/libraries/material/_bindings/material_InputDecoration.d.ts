@@ -33,6 +33,7 @@ export interface InputDecoration extends Readonly<{
     readonly labelText: string | null;
     readonly labelStyle: upstream1.TextStyle | null;
     readonly floatingLabelStyle: upstream1.TextStyle | null;
+    readonly labelTextDirection: upstream2.TextDirection | null;
     readonly helper: Widget | null;
     readonly helperText: string | null;
     readonly helperStyle: upstream1.TextStyle | null;
@@ -85,6 +86,7 @@ export interface InputDecoration extends Readonly<{
     readonly alignLabelWithHint: boolean | null;
     readonly constraints: upstream7.BoxConstraints | null;
     readonly visualDensity: upstream9.VisualDensity | null;
+    readonly supportingTextPadding: upstream6.EdgeInsetsGeometry | null;
     copyWith(options?: {
         alignLabelWithHint?: boolean | null | undefined;
         border?: (Readonly<{
@@ -195,6 +197,7 @@ export interface InputDecoration extends Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
         labelText?: string | null | undefined;
+        labelTextDirection?: upstream2.TextDirection | null | undefined;
         maintainHintHeight?: boolean | null | undefined;
         maintainHintSize?: boolean | null | undefined;
         maintainLabelSize?: boolean | null | undefined;
@@ -234,6 +237,9 @@ export interface InputDecoration extends Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
         suffixText?: string | null | undefined;
+        supportingTextPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
         visualDensity?: (Readonly<{
             "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
         }> & Readonly<{
@@ -260,6 +266,7 @@ export declare function _InputDecorationFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
+    labelTextDirection?: upstream2.TextDirection | null | undefined;
     helper?: Widget | null | undefined;
     helperText?: string | null | undefined;
     helperStyle?: (Readonly<{
@@ -394,6 +401,9 @@ export declare function _InputDecorationFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
+    supportingTextPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
 }): InputDecoration;
 export declare namespace _InputDecorationFactory {
     function collapsed(options: {
@@ -461,6 +471,7 @@ export interface _InputDecorationNative extends InputDecoration {
             }> & Readonly<{
                 "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
             }>) | null | undefined;
+            labelTextDirection?: upstream2.TextDirection | null | undefined;
             helper?: Widget | null | undefined;
             helperText?: string | null | undefined;
             helperStyle?: (Readonly<{
@@ -595,6 +606,9 @@ export interface _InputDecorationNative extends InputDecoration {
             }> & Readonly<{
                 "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
             }>) | null | undefined;
+            supportingTextPadding?: Readonly<{
+                "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+            }> | null | undefined;
         }) => void;
         "collapsed": (options: {
             hintText: string | null;
@@ -658,6 +672,7 @@ export interface _InputDecorationNative extends InputDecoration {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        labelTextDirection?: upstream2.TextDirection | null | undefined;
         helper?: Widget | null | undefined;
         helperText?: string | null | undefined;
         helperStyle?: (Readonly<{
@@ -795,6 +810,9 @@ export interface _InputDecorationNative extends InputDecoration {
         semanticsService?: Readonly<{
             "__flaxBound:package:flutter/src/semantics/semantics_service.dart::SemanticsService": readonly [];
         }> | null | undefined;
+        supportingTextPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
     }): InputDecoration;
     applyDefaults(inputDecorationTheme: {}): InputDecoration;
     toString(): string;
@@ -804,6 +822,7 @@ export interface _InputDecorationNative extends InputDecoration {
     get labelText(): string | null;
     get labelStyle(): upstream1.TextStyle | null;
     get floatingLabelStyle(): upstream1.TextStyle | null;
+    get labelTextDirection(): upstream2.TextDirection | null;
     get helper(): Widget | null;
     get helperText(): string | null;
     get helperStyle(): upstream1.TextStyle | null;
@@ -856,6 +875,7 @@ export interface _InputDecorationNative extends InputDecoration {
     get alignLabelWithHint(): boolean | null;
     get constraints(): upstream7.BoxConstraints | null;
     get visualDensity(): upstream9.VisualDensity | null;
+    get supportingTextPadding(): upstream6.EdgeInsetsGeometry | null;
 }
 export declare abstract class _InputDecorationNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<InputDecoration>[typeof globalThis.Symbol.hasInstance];
@@ -878,6 +898,7 @@ export declare abstract class _InputDecorationNative extends _FlaxProxyBase {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        labelTextDirection?: upstream2.TextDirection | null | undefined;
         helper?: Widget | null | undefined;
         helperText?: string | null | undefined;
         helperStyle?: (Readonly<{
@@ -1012,6 +1033,9 @@ export declare abstract class _InputDecorationNative extends _FlaxProxyBase {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        supportingTextPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
     });
     constructor(call: _FlaxProxySuper<_InputDecorationNative>);
 }
@@ -1033,6 +1057,7 @@ export declare namespace _InputDecorationFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        labelTextDirection?: upstream2.TextDirection | null | undefined;
         helper?: Widget | null | undefined;
         helperText?: string | null | undefined;
         helperStyle?: (Readonly<{
@@ -1167,6 +1192,9 @@ export declare namespace _InputDecorationFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        supportingTextPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
     }], implementation: {}): InputDecoration;
 }
 declare const _InputDecorationBinding: typeof _InputDecorationFactory & (new (options?: {
@@ -1186,6 +1214,7 @@ declare const _InputDecorationBinding: typeof _InputDecorationFactory & (new (op
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
+    labelTextDirection?: upstream2.TextDirection | null | undefined;
     helper?: Widget | null | undefined;
     helperText?: string | null | undefined;
     helperStyle?: (Readonly<{
@@ -1320,6 +1349,9 @@ declare const _InputDecorationBinding: typeof _InputDecorationFactory & (new (op
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
+    supportingTextPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
 }) => _InputDecorationNative) & (new (call: _FlaxProxySuper<_InputDecorationNative>) => _InputDecorationNative);
 export declare const InputDecoration: typeof _InputDecorationBinding & _FlaxInstanceType<InputDecoration> & _FlaxDartType<InputDecoration, readonly ["class", "flax.material/material#type:InputDecoration", readonly [], false]>;
 export {};

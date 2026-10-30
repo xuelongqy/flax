@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
 import type * as upstream1 from '@flax/flutter/painting/_bindings/flutter_Decoration';
@@ -13,11 +13,13 @@ import type * as upstream5 from '@flax/flutter/services/_bindings/flutter_MouseC
 import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import type * as upstream6 from '@flax/flutter/rendering/_bindings/flutter_MainAxisAlignment';
 import '@flax/flutter/rendering/_bindings/flutter_MainAxisAlignment';
-import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
@@ -45,14 +47,15 @@ export interface DataTableThemeData extends Omit<upstream0.Diagnosticable, _flax
     readonly headingCellCursor: upstream2.WidgetStateProperty<upstream5.MouseCursor | null> | null;
     readonly dataRowCursor: upstream2.WidgetStateProperty<upstream5.MouseCursor | null> | null;
     readonly headingRowAlignment: upstream6.MainAxisAlignment | null;
+    readonly sortIconBuilder: ((context: upstream7.BuildContext, visible: boolean, ascending: boolean) => Widget) | null;
     toStringShort(): string;
     toString(options?: {
-        minLevel?: upstream7.DiagnosticLevel | undefined;
+        minLevel?: upstream8.DiagnosticLevel | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream9.DiagnosticsTreeStyle | null | undefined;
-    }): upstream8.DiagnosticsNode;
+        style?: upstream10.DiagnosticsTreeStyle | null | undefined;
+    }): upstream9.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -93,6 +96,7 @@ export interface DataTableThemeData extends Omit<upstream0.Diagnosticable, _flax
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
         horizontalMargin?: number | null | undefined;
+        sortIconBuilder?: ((context: upstream7.BuildContext, visible: boolean, ascending: boolean) => Widget) | null | undefined;
     }): DataTableThemeData;
 }
 export declare function _DataTableThemeDataFactory(options?: {
@@ -132,17 +136,18 @@ export declare function _DataTableThemeDataFactory(options?: {
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.MouseCursor | null];
     }> | null | undefined;
     headingRowAlignment?: upstream6.MainAxisAlignment | null | undefined;
+    sortIconBuilder?: ((context: upstream7.BuildContext, visible: boolean, ascending: boolean) => Widget) | null | undefined;
 }): DataTableThemeData;
 export interface _DataTableThemeDataNative extends DataTableThemeData {
     readonly [_flaxDartTypeValue]: _DataTableThemeDataNative;
     toStringShort(): string;
     toString(options?: {
-        minLevel?: upstream7.DiagnosticLevel | undefined;
+        minLevel?: upstream8.DiagnosticLevel | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream9.DiagnosticsTreeStyle | null | undefined;
-    }): upstream8.DiagnosticsNode;
+        style?: upstream10.DiagnosticsTreeStyle | null | undefined;
+    }): upstream9.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -183,6 +188,7 @@ export interface _DataTableThemeDataNative extends DataTableThemeData {
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.MouseCursor | null];
         }> | null | undefined;
         headingRowAlignment?: upstream6.MainAxisAlignment | null | undefined;
+        sortIconBuilder?: ((context: upstream7.BuildContext, visible: boolean, ascending: boolean) => Widget) | null | undefined;
     }): DataTableThemeData;
     get decoration(): upstream1.Decoration | null;
     get dataRowColor(): upstream2.WidgetStateProperty<upstream3.Color | null> | null;
@@ -200,6 +206,7 @@ export interface _DataTableThemeDataNative extends DataTableThemeData {
     get headingCellCursor(): upstream2.WidgetStateProperty<upstream5.MouseCursor | null> | null;
     get dataRowCursor(): upstream2.WidgetStateProperty<upstream5.MouseCursor | null> | null;
     get headingRowAlignment(): upstream6.MainAxisAlignment | null;
+    get sortIconBuilder(): ((context: upstream7.BuildContext, visible: boolean, ascending: boolean) => Widget) | null;
 }
 export declare abstract class _DataTableThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<DataTableThemeData>[typeof globalThis.Symbol.hasInstance];
@@ -242,6 +249,7 @@ export declare abstract class _DataTableThemeDataNative extends _FlaxProxyBase {
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.MouseCursor | null];
         }> | null | undefined;
         headingRowAlignment?: upstream6.MainAxisAlignment | null | undefined;
+        sortIconBuilder?: ((context: upstream7.BuildContext, visible: boolean, ascending: boolean) => Widget) | null | undefined;
     });
 }
 export declare namespace _DataTableThemeDataFactory {
@@ -282,6 +290,7 @@ export declare namespace _DataTableThemeDataFactory {
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.MouseCursor | null];
         }> | null | undefined;
         headingRowAlignment?: upstream6.MainAxisAlignment | null | undefined;
+        sortIconBuilder?: ((context: upstream7.BuildContext, visible: boolean, ascending: boolean) => Widget) | null | undefined;
     }], implementation: {}): DataTableThemeData;
 }
 declare const _DataTableThemeDataBinding: typeof _DataTableThemeDataFactory & (new (options?: {
@@ -321,6 +330,7 @@ declare const _DataTableThemeDataBinding: typeof _DataTableThemeDataFactory & (n
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.MouseCursor | null];
     }> | null | undefined;
     headingRowAlignment?: upstream6.MainAxisAlignment | null | undefined;
+    sortIconBuilder?: ((context: upstream7.BuildContext, visible: boolean, ascending: boolean) => Widget) | null | undefined;
 }) => _DataTableThemeDataNative);
 export declare namespace _DataTableThemeDataFactory {
     function lerp(a: Readonly<{
@@ -334,5 +344,5 @@ export declare namespace _DataTableThemeDataFactory {
     }>, t: number): DataTableThemeData;
 }
 export declare const DataTableThemeData: typeof _DataTableThemeDataBinding & _FlaxInstanceType<DataTableThemeData> & _FlaxDartType<DataTableThemeData, readonly ["class", "flax.material/material#type:DataTableThemeData", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "decoration" | "dataRowColor" | "dataRowHeight" | "dataRowMinHeight" | "dataRowMaxHeight" | "dataTextStyle" | "headingRowColor" | "headingRowHeight" | "headingTextStyle" | "horizontalMargin" | "columnSpacing" | "dividerThickness" | "checkboxHorizontalMargin" | "headingCellCursor" | "dataRowCursor" | "headingRowAlignment" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:material_ui/src/data_table_theme.dart::DataTableThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "decoration" | "dataRowColor" | "dataRowHeight" | "dataRowMinHeight" | "dataRowMaxHeight" | "dataTextStyle" | "headingRowColor" | "headingRowHeight" | "headingTextStyle" | "horizontalMargin" | "columnSpacing" | "dividerThickness" | "checkboxHorizontalMargin" | "headingCellCursor" | "dataRowCursor" | "headingRowAlignment" | "sortIconBuilder" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:material_ui/src/data_table_theme.dart::DataTableThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

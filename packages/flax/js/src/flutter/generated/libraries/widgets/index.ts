@@ -502,6 +502,7 @@ import "@flax/flutter/widgets/_bindings/sdk_widgets_ComponentElement";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_ContentInsertionConfiguration";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_ContextAction";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_ContextMenuButtonItem";
+import "@flax/flutter/widgets/_bindings/sdk_widgets_ContextMenuButtonKind";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_ContextMenuController";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_CopySelectionTextIntent";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_DebugCreator";
@@ -951,6 +952,7 @@ export { ConstraintsTransformBox } from "@flax/flutter/widgets/_bindings/sdk_wid
 export { ContentInsertionConfiguration } from "@flax/flutter/widgets/_bindings/sdk_widgets_ContentInsertionConfiguration";
 export { ContextAction } from "@flax/flutter/widgets/_bindings/sdk_widgets_ContextAction";
 export { ContextMenuButtonItem } from "@flax/flutter/widgets/_bindings/sdk_widgets_ContextMenuButtonItem";
+export { ContextMenuButtonKind } from "@flax/flutter/widgets/_bindings/sdk_widgets_ContextMenuButtonKind";
 export { ContextMenuButtonType } from "@flax/flutter/widgets/_bindings/sdk_widgets_ContextMenuButtonType";
 export { ContextMenuController } from "@flax/flutter/widgets/_bindings/sdk_widgets_ContextMenuController";
 export { CopySelectionTextIntent } from "@flax/flutter/widgets/_bindings/sdk_widgets_CopySelectionTextIntent";

@@ -9,7 +9,7 @@ engines.** Pure JS uses generated Flutter/Material bindings and explicit signals
 update real Flutter widgets, including conditional and keyed subtrees. Owning FlaxViews
 create a runtime through their supplied factory; explicit FlaxSessions can span multiple
 Routes using the engine-owned C ABI/JSI bridge. Flax requires its maintained Flutter
-3.47.6 engine; macOS and Android arm64 use V8 JIT, and iOS arm64 uses V8 jitless. Dart
+3.47.9 engine; macOS and Android arm64 use V8 JIT, and iOS arm64 uses V8 jitless. Dart
 and JS business references participate in joint GC. See the
 [embedded example](examples/embedded/README.md) and
 [host contract](docs/architecture/ui.md).
@@ -193,11 +193,11 @@ no independent SDK runtime fallback. See
 
 | Tool    | Baseline                     | Configuration                  |
 | ------- | ---------------------------- | ------------------------------ |
-| Flutter | 3.47.6 stable                | [.fvmrc](.fvmrc)               |
-| Dart    | 3.13.5, bundled with Flutter | [pubspec.yaml](pubspec.yaml)   |
+| Flutter | 3.47.9 stable                | [.fvmrc](.fvmrc)               |
+| Dart    | 3.13.7, bundled with Flutter | [pubspec.yaml](pubspec.yaml)   |
 | Node.js | 22.23.0                      | [.node-version](.node-version) |
 | pnpm    | 11.24.0                      | [package.json](package.json)   |
-| Melos   | 8.6.0                        | [pubspec.yaml](pubspec.yaml)   |
+| Melos   | 8.10.0                       | [pubspec.yaml](pubspec.yaml)   |
 
 FVM is optional; the Flutter executable on PATH must use the configured version. Melos
 runs through `dart run`, so a global Melos installation is unnecessary. Commit both

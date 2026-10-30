@@ -138,6 +138,7 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
     readonly isFirst: boolean;
     readonly hasActiveRouteBelow: boolean;
     readonly isActive: boolean;
+    readonly includeRouteSemantics: boolean;
     readonly builder: ((context: upstream8.BuildContext) => Widget);
     setState(fn: (() => void)): void;
     buildPage(context: upstream8.BuildContext, animation: Readonly<{
@@ -264,6 +265,7 @@ export declare function _MaterialPageRouteFactory<T extends unknown | null = unk
     maintainState?: boolean | undefined;
     fullscreenDialog?: boolean | undefined;
     allowSnapshotting?: boolean | undefined;
+    includeRouteSemantics?: boolean | undefined;
     barrierDismissible?: boolean | undefined;
     traversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
     directionalTraversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
@@ -277,12 +279,13 @@ export declare function _MaterialPageRouteFactory(options: {
     maintainState?: boolean | undefined;
     fullscreenDialog?: boolean | undefined;
     allowSnapshotting?: boolean | undefined;
+    includeRouteSemantics?: boolean | undefined;
     barrierDismissible?: boolean | undefined;
     traversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
     directionalTraversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
 }): MaterialPageRoute<unknown | null>;
 export declare const MaterialPageRoute: typeof _MaterialPageRouteFactory & _FlaxInstanceType<MaterialPageRoute<unknown | null>> & _FlaxDartType<MaterialPageRoute<unknown | null>, readonly ["class", "flax.material/material#type:MaterialPageRoute", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "filter" | "traversalEdgeBehavior" | "directionalTraversalEdgeBehavior" | "delegatedTransition" | "receivedTransition" | "barrierDismissible" | "semanticsDismissible" | "barrierColor" | "barrierLabel" | "barrierCurve" | "maintainState" | "popGestureInProgress" | "popGestureEnabled" | "offstage" | "subtreeContext" | "animation" | "secondaryAnimation" | "popDisposition" | "hasScopedWillPopCallback" | "canPop" | "impliesAppBarDismissal" | "fullscreenDialog" | "completed" | "transitionDuration" | "reverseTransitionDuration" | "opaque" | "allowSnapshotting" | "finishedWhenPopped" | "controller" | "willDisposeAnimationController" | "debugLabel" | "overlayEntries" | "requestFocus" | "navigator" | "settings" | "restorationScopeId" | "willHandlePopInternally" | "currentResult" | "popped" | "isCurrent" | "isFirst" | "hasActiveRouteBelow" | "isActive" | "builder" | "setState" | "buildPage" | "buildTransitions" | "install" | "didPush" | "didAdd" | "willPop" | "onPopInvokedWithResult" | "addScopedWillPopCallback" | "removeScopedWillPopCallback" | "registerPopEntry" | "unregisterPopEntry" | "didChangePrevious" | "didChangeNext" | "didPopNext" | "changedInternalState" | "changedExternalState" | "buildModalBarrier" | "createOverlayEntries" | "toString" | "debugTransitionCompleted" | "createAnimationController" | "createAnimation" | "createSimulation" | "didReplace" | "didPop" | "canTransitionTo" | "canTransitionFrom" | "handleStartBackGesture" | "handleUpdateBackGestureProgress" | "handleCancelBackGesture" | "handleCommitBackGesture" | "dispose" | "onPopInvoked" | "didComplete" | "addLocalHistoryEntry" | "removeLocalHistoryEntry" | "buildContent" | "__flaxBound:package:material_ui/src/page.dart::MaterialPageRoute" | "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::ModalRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::TransitionRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::OverlayRoute" | "__flaxBound:package:flutter/src/widgets/navigator.dart::Route" | "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder" | "__flaxBound:package:flutter/src/widgets/routes.dart::PredictiveBackRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::LocalHistoryRoute" | "__flaxBound:package:material_ui/src/page.dart::MaterialRouteTransitionMixin";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "filter" | "traversalEdgeBehavior" | "directionalTraversalEdgeBehavior" | "delegatedTransition" | "receivedTransition" | "barrierDismissible" | "semanticsDismissible" | "barrierColor" | "barrierLabel" | "barrierCurve" | "maintainState" | "popGestureInProgress" | "popGestureEnabled" | "offstage" | "subtreeContext" | "animation" | "secondaryAnimation" | "popDisposition" | "hasScopedWillPopCallback" | "canPop" | "impliesAppBarDismissal" | "fullscreenDialog" | "completed" | "transitionDuration" | "reverseTransitionDuration" | "opaque" | "allowSnapshotting" | "finishedWhenPopped" | "controller" | "willDisposeAnimationController" | "debugLabel" | "overlayEntries" | "requestFocus" | "navigator" | "settings" | "restorationScopeId" | "willHandlePopInternally" | "currentResult" | "popped" | "isCurrent" | "isFirst" | "hasActiveRouteBelow" | "isActive" | "includeRouteSemantics" | "builder" | "setState" | "buildPage" | "buildTransitions" | "install" | "didPush" | "didAdd" | "willPop" | "onPopInvokedWithResult" | "addScopedWillPopCallback" | "removeScopedWillPopCallback" | "registerPopEntry" | "unregisterPopEntry" | "didChangePrevious" | "didChangeNext" | "didPopNext" | "changedInternalState" | "changedExternalState" | "buildModalBarrier" | "createOverlayEntries" | "toString" | "debugTransitionCompleted" | "createAnimationController" | "createAnimation" | "createSimulation" | "didReplace" | "didPop" | "canTransitionTo" | "canTransitionFrom" | "handleStartBackGesture" | "handleUpdateBackGestureProgress" | "handleCancelBackGesture" | "handleCommitBackGesture" | "dispose" | "onPopInvoked" | "didComplete" | "addLocalHistoryEntry" | "removeLocalHistoryEntry" | "buildContent" | "__flaxBound:package:material_ui/src/page.dart::MaterialPageRoute" | "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::ModalRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::TransitionRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::OverlayRoute" | "__flaxBound:package:flutter/src/widgets/navigator.dart::Route" | "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder" | "__flaxBound:package:flutter/src/widgets/routes.dart::PredictiveBackRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::LocalHistoryRoute" | "__flaxBound:package:material_ui/src/page.dart::MaterialRouteTransitionMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         (options: {
@@ -294,6 +297,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             maintainState?: boolean | undefined;
             fullscreenDialog?: boolean | undefined;
             allowSnapshotting?: boolean | undefined;
+            includeRouteSemantics?: boolean | undefined;
             barrierDismissible?: boolean | undefined;
             traversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
             directionalTraversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;

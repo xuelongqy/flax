@@ -1,0 +1,50 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/material-ui/_bindings/material_RoundedPolygon';
+import '@flax/material-ui/_bindings/material_RoundedPolygon';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface MaterialShapes extends Readonly<{
+    "__flaxBound:package:material_ui/src/material_shapes.dart::MaterialShapes": readonly [];
+}> {
+    readonly __MaterialShapes: unique symbol;
+    readonly [_flaxDartTypeValue]: MaterialShapes;
+}
+declare const _MaterialShapesFactory: {
+    readonly circle: upstream0.RoundedPolygon;
+    readonly square: upstream0.RoundedPolygon;
+    readonly slanted: upstream0.RoundedPolygon;
+    readonly arch: upstream0.RoundedPolygon;
+    readonly semiCircle: upstream0.RoundedPolygon;
+    readonly oval: upstream0.RoundedPolygon;
+    readonly pill: upstream0.RoundedPolygon;
+    readonly triangle: upstream0.RoundedPolygon;
+    readonly arrow: upstream0.RoundedPolygon;
+    readonly fan: upstream0.RoundedPolygon;
+    readonly diamond: upstream0.RoundedPolygon;
+    readonly clamShell: upstream0.RoundedPolygon;
+    readonly pentagon: upstream0.RoundedPolygon;
+    readonly gem: upstream0.RoundedPolygon;
+    readonly sunny: upstream0.RoundedPolygon;
+    readonly verySunny: upstream0.RoundedPolygon;
+    readonly cookie4Sided: upstream0.RoundedPolygon;
+    readonly cookie6Sided: upstream0.RoundedPolygon;
+    readonly cookie7Sided: upstream0.RoundedPolygon;
+    readonly cookie9Sided: upstream0.RoundedPolygon;
+    readonly cookie12Sided: upstream0.RoundedPolygon;
+    readonly clover4Leaf: upstream0.RoundedPolygon;
+    readonly clover8Leaf: upstream0.RoundedPolygon;
+    readonly burst: upstream0.RoundedPolygon;
+    readonly softBurst: upstream0.RoundedPolygon;
+    readonly boom: upstream0.RoundedPolygon;
+    readonly softBoom: upstream0.RoundedPolygon;
+    readonly flower: upstream0.RoundedPolygon;
+    readonly puffy: upstream0.RoundedPolygon;
+    readonly puffyDiamond: upstream0.RoundedPolygon;
+    readonly ghostish: upstream0.RoundedPolygon;
+    readonly pixelCircle: upstream0.RoundedPolygon;
+    readonly pixelTriangle: upstream0.RoundedPolygon;
+    readonly bun: upstream0.RoundedPolygon;
+    readonly heart: upstream0.RoundedPolygon;
+    readonly all: DartList<upstream0.RoundedPolygon>;
+};
+export declare const MaterialShapes: typeof _MaterialShapesFactory & _FlaxInstanceType<MaterialShapes> & _FlaxDartType<MaterialShapes, readonly ["class", "flax.material/material#type:MaterialShapes", readonly [], false]>;
+export {};

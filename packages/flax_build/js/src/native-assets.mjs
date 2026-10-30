@@ -300,7 +300,7 @@ export async function prepareNativeAssets({
     );
     await writeFile(
       resolve(stage, 'pubspec.yaml'),
-      `name: flax_ffi_assets\nversion: 0.0.0\npublish_to: none\nenvironment:\n  sdk: ^3.13.2\ndependencies:\n  code_assets: 1.2.1\n  hooks: 2.2.0\n  native_toolchain_c: 0.19.2\n  crypto: 3.0.7\n`,
+      `name: flax_ffi_assets\nversion: 0.0.0\npublish_to: none\nenvironment:\n  sdk: ^3.13.2\ndependencies:\n  code_assets: 2.1.0\n  hooks: 2.2.0\n  native_toolchain_c: 0.19.5\n  crypto: 3.0.8\n`,
     );
     await copyFile(
       fileURLToPath(new URL('./native/build.dart', import.meta.url)),

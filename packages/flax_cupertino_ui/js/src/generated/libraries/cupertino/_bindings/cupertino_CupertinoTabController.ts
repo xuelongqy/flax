@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
-import { _flaxMemberParameters60, _flaxMemberParameters61, _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
+import { _flaxMemberParameters61, _flaxMemberParameters62, _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -25,7 +25,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoTabController", "", [{"name":"initialIndex"}], [], options) as CupertinoTabController;
 }
-const _CupertinoTabControllerProxy = {type: "flax.cupertino/cupertino#type:CupertinoTabController", parameters: _flaxMemberParameters60, constructors: {"": _flaxMemberParameters60}, methods: {"addListener":_flaxMemberParameters61,"removeListener":_flaxMemberParameters61,"dispose":_flaxMemberParameters0}, getters: ["index","hasListeners"], setters: ["index"], contextMembers: [], superMembers: ["get:index","get:hasListeners","set:index","addListener","removeListener","dispose"]} as const;
+const _CupertinoTabControllerProxy = {type: "flax.cupertino/cupertino#type:CupertinoTabController", parameters: _flaxMemberParameters61, constructors: {"": _flaxMemberParameters61}, methods: {"addListener":_flaxMemberParameters62,"removeListener":_flaxMemberParameters62,"dispose":_flaxMemberParameters0}, getters: ["index","hasListeners"], setters: ["index"], contextMembers: [], superMembers: ["get:index","get:hasListeners","set:index","addListener","removeListener","dispose"]} as const;
 export interface _CupertinoTabControllerNative extends CupertinoTabController {
 readonly [_flaxDartTypeValue]: _CupertinoTabControllerNative;
 

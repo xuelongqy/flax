@@ -6,16 +6,20 @@ import '@flax/dart/ui/_bindings/flutter_Color';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/material-ui/_bindings/material_CalendarDelegate';
-import type * as upstream5 from '@flax/material-ui/_bindings/material_DatePickerMode';
+import type * as upstream5 from '@flax/material-ui/_bindings/material_CalendarDatePickerDayDetails';
+import '@flax/material-ui/_bindings/material_CalendarDatePickerDayDetails';
+import type * as upstream6 from '@flax/material-ui/_bindings/material_DatePickerMode';
 import '@flax/material-ui/_bindings/material_DatePickerMode';
-import type * as upstream6 from '@flax/material-ui/_bindings/material_DatePickerEntryMode';
+import type * as upstream7 from '@flax/material-ui/_bindings/material_DatePickerEntryMode';
 import '@flax/material-ui/_bindings/material_DatePickerEntryMode';
 import '@flax/flutter/services/_bindings/sdk_services_TextInputType';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
 import '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
-import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_Icon';
-import type * as upstream11 from '@flax/dart/ui/_bindings/flutter_TextDirection';
+import type * as upstream11 from '@flax/flutter/widgets/_bindings/sdk_widgets_Icon';
+import type * as upstream12 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import type * as upstream13 from '@flax/material-ui/_bindings/material_CalendarDatePickerWeekdayDetails';
+import '@flax/material-ui/_bindings/material_CalendarDatePickerWeekdayDetails';
 declare function _flaxTopLevel_showDatePicker(options: {
     anchorPoint?: (Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
@@ -37,6 +41,7 @@ declare function _flaxTopLevel_showDatePicker(options: {
     currentDate?: DartInput<Readonly<{
         "__flaxBound:dart:core::DateTime": readonly [];
     }>> | null | undefined;
+    dayBuilder?: ((context: upstream3.BuildContext, details: upstream5.CalendarDatePickerDayDetails) => Widget) | null | undefined;
     errorFormatText?: string | null | undefined;
     errorInvalidText?: string | null | undefined;
     fieldHintText?: string | null | undefined;
@@ -48,8 +53,8 @@ declare function _flaxTopLevel_showDatePicker(options: {
     initialDate?: DartInput<Readonly<{
         "__flaxBound:dart:core::DateTime": readonly [];
     }>> | null | undefined;
-    initialDatePickerMode?: upstream5.DatePickerMode | undefined;
-    initialEntryMode?: upstream6.DatePickerEntryMode | undefined;
+    initialDatePickerMode?: upstream6.DatePickerMode | undefined;
+    initialEntryMode?: upstream7.DatePickerEntryMode | undefined;
     keyboardType?: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextInputType": readonly [];
     }> | null | undefined;
@@ -59,14 +64,15 @@ declare function _flaxTopLevel_showDatePicker(options: {
     locale?: Readonly<{
         "__flaxBound:dart:ui::Locale": readonly [];
     }> | null | undefined;
-    onDatePickerModeChange?: ((value: upstream6.DatePickerEntryMode) => void) | null | undefined;
+    onDatePickerModeChange?: ((value: upstream7.DatePickerEntryMode) => void) | null | undefined;
     routeSettings?: Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
     }> | null | undefined;
     selectableDayPredicate?: ((day: upstream0.DateTime) => boolean) | null | undefined;
-    switchToCalendarEntryModeIcon?: upstream10.Icon | null | undefined;
-    switchToInputEntryModeIcon?: upstream10.Icon | null | undefined;
-    textDirection?: upstream11.TextDirection | null | undefined;
+    switchToCalendarEntryModeIcon?: upstream11.Icon | null | undefined;
+    switchToInputEntryModeIcon?: upstream11.Icon | null | undefined;
+    textDirection?: upstream12.TextDirection | null | undefined;
     useRootNavigator?: boolean | undefined;
+    weekdayBuilder?: ((context: upstream3.BuildContext, details: upstream13.CalendarDatePickerWeekdayDetails) => Widget) | null | undefined;
 }): Promise<upstream0.DateTime | null>;
 export { _flaxTopLevel_showDatePicker as showDatePicker };

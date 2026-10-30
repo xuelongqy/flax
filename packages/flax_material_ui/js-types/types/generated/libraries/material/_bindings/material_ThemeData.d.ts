@@ -644,6 +644,7 @@ export declare function _ThemeDataFactory(options?: {
     colorSchemeSeed?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
+    contrastLevel?: number | null | undefined;
     canvasColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;

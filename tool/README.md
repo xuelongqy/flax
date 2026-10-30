@@ -23,7 +23,7 @@ dart run melos run ffi:check
 ```
 
 The tool installs ffigen in repository-local `.cache/ffigen` through an isolated Pub
-cache. Melos 8.6.0 and ffigen 21.0.0 require incompatible `cli_util` versions, so the
+cache. Melos 8.10.0 and ffigen 21.0.0 require incompatible `cli_util` versions, so the
 workspace does not resolve them together or override either constraint. No extra
 workspace package or user-global tool installation is needed.
 

@@ -20,6 +20,7 @@ async function copy(source, destination) {
 async function files(directory, base = directory) {
   const result = new Map();
   for (const entry of await readdir(directory, { withFileTypes: true })) {
+    if (entry.name === '.DS_Store' && entry.isFile()) continue;
     const path = join(directory, entry.name);
     if (entry.isDirectory()) {
       for (const [name, contents] of await files(path, base)) {

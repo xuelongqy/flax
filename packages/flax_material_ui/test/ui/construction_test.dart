@@ -197,7 +197,10 @@ void main() {
       );
       // Readiness retains two cleanup helpers so GC cannot create late owners.
       expect(handles - 2 - loaderHandles, lessThanOrEqualTo(40));
-      expect(calls['__flaxBaseCall'], 1); // Install the base clock origin once.
+      // Base startup reads the clock origin and Fetch base URL once each.
+      expect(calls['__flaxBaseCall'], 2);
+      expect(runtime.hostOperations['__flaxBaseCall:timeOrigin'], 1);
+      expect(runtime.hostOperations['__flaxBaseCall:fetch:baseUrl'], 1);
       expect(calls['__flaxMount'], 1);
       expect(calls['__flaxInvalidate'], 9);
       expect(calls['__flaxDartType'], 1); // Cache ValueKey<String> once.

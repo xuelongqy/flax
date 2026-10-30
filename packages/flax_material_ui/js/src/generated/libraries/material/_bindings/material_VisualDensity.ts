@@ -17,7 +17,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream7 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
-import { _flaxMemberParameters244, _flaxMemberParameters2, _flaxMemberParameters363, _flaxMemberParameters320, _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters250, _flaxMemberParameters2, _flaxMemberParameters370, _flaxMemberParameters327, _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -34,13 +34,13 @@ debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foun
 copyWith(options?: {horizontal?: number | null | undefined; vertical?: number | null | undefined}): VisualDensity;
 effectiveConstraints(constraints: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }>): upstream7.BoxConstraints;
 }
-defineObject("flax.material/material#type:VisualDensity", ["horizontal","vertical","baseSizeAdjustment"], [], _flaxBindingMethods("flax.material/material#type:VisualDensity", "object", {"copyWith":_flaxMemberParameters363,"effectiveConstraints":_flaxMemberParameters320}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+defineObject("flax.material/material#type:VisualDensity", ["horizontal","vertical","baseSizeAdjustment"], [], _flaxBindingMethods("flax.material/material#type:VisualDensity", "object", {"copyWith":_flaxMemberParameters370,"effectiveConstraints":_flaxMemberParameters327}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
 export function _VisualDensityFactory(options: { horizontal?: number | undefined; vertical?: number | undefined } = {}): VisualDensity {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.material/material#type:VisualDensity", "", _flaxMemberParameters363, [], options) as VisualDensity;
+return constructObject("object", "flax.material/material#type:VisualDensity", "", _flaxMemberParameters370, [], options) as VisualDensity;
 }
-const _VisualDensityProxy = {type: "flax.material/material#type:VisualDensity", parameters: _flaxMemberParameters363, constructors: {"": _flaxMemberParameters363}, methods: {"toStringShort":_flaxMemberParameters4,"toString":_flaxMemberParameters5,"toDiagnosticsNode":_flaxMemberParameters6,"debugFillProperties":_flaxMemberParameters7,"copyWith":_flaxMemberParameters363,"effectiveConstraints":_flaxMemberParameters320}, getters: ["horizontal","vertical","baseSizeAdjustment"], setters: [], contextMembers: [], superMembers: ["get:horizontal","get:vertical","get:baseSizeAdjustment","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith","effectiveConstraints"]} as const;
+const _VisualDensityProxy = {type: "flax.material/material#type:VisualDensity", parameters: _flaxMemberParameters370, constructors: {"": _flaxMemberParameters370}, methods: {"toStringShort":_flaxMemberParameters4,"toString":_flaxMemberParameters5,"toDiagnosticsNode":_flaxMemberParameters6,"debugFillProperties":_flaxMemberParameters7,"copyWith":_flaxMemberParameters370,"effectiveConstraints":_flaxMemberParameters327}, getters: ["horizontal","vertical","baseSizeAdjustment"], setters: [], contextMembers: [], superMembers: ["get:horizontal","get:vertical","get:baseSizeAdjustment","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith","effectiveConstraints"]} as const;
 export interface _VisualDensityNative extends VisualDensity {
 readonly [_flaxDartTypeValue]: _VisualDensityNative;
 
@@ -73,7 +73,7 @@ export namespace _VisualDensityFactory { export declare const adaptivePlatformDe
 _flaxDefineStaticGetters(_VisualDensityFactory, "flax.material/material#read:VisualDensity.", ["minimumDensity","maximumDensity","standard","comfortable","compact","adaptivePlatformDensity"]);
 export namespace _VisualDensityFactory { export function defaultDensityForPlatform(platform: upstream2.TargetPlatform): VisualDensity {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:VisualDensity.defaultDensityForPlatform", [platform], _flaxMemberParameters244);
+const _flaxResult = invokeTopLevel("flax.material/material#function:VisualDensity.defaultDensityForPlatform", [platform], _flaxMemberParameters250);
 return _flaxResult as VisualDensity;
 } }
 export namespace _VisualDensityFactory { export function lerp(a: Readonly<{ "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, b: Readonly<{ "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, t: number): VisualDensity {

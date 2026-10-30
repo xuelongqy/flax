@@ -5,7 +5,7 @@ publish_to: none
 
 environment:
   sdk: ^3.13.2
-  flutter: '>=3.47.2'
+  flutter: '>=3.47.9'
 
 dependencies:
   flax: 0.0.0 # replace with path / git / packed archive

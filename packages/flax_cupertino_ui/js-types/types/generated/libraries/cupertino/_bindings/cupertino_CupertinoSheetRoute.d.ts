@@ -147,6 +147,7 @@ export interface CupertinoSheetRoute<T extends unknown | null = unknown | null> 
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }>) => Widget) | null;
     readonly enableDrag: boolean;
+    readonly hasPlatformViews: boolean;
     readonly topGap: number;
     readonly showDragHandle: boolean;
     setState(fn: (() => void)): void;
@@ -273,6 +274,7 @@ export declare function _CupertinoSheetRouteFactory<T extends unknown | null = u
     scrollableBuilder?: ((context: upstream8.BuildContext, scrollController: upstream9.ScrollController) => Widget) | null | undefined;
     enableDrag?: boolean | undefined;
     showDragHandle?: boolean | undefined;
+    hasPlatformViews?: boolean | undefined;
     topGap?: number | null | undefined;
 }): CupertinoSheetRoute<T>;
 export declare function _CupertinoSheetRouteFactory(options?: {
@@ -283,6 +285,7 @@ export declare function _CupertinoSheetRouteFactory(options?: {
     scrollableBuilder?: ((context: upstream8.BuildContext, scrollController: upstream9.ScrollController) => Widget) | null | undefined;
     enableDrag?: boolean | undefined;
     showDragHandle?: boolean | undefined;
+    hasPlatformViews?: boolean | undefined;
     topGap?: number | null | undefined;
 }): CupertinoSheetRoute<unknown | null>;
 export declare namespace _CupertinoSheetRouteFactory {
@@ -292,7 +295,7 @@ export declare namespace _CupertinoSheetRouteFactory {
     function popSheet(context: upstream8.BuildContext): void;
 }
 export declare const CupertinoSheetRoute: typeof _CupertinoSheetRouteFactory & _FlaxInstanceType<CupertinoSheetRoute<unknown | null>> & _FlaxDartType<CupertinoSheetRoute<unknown | null>, readonly ["class", "flax.cupertino/cupertino#type:CupertinoSheetRoute", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "filter" | "traversalEdgeBehavior" | "directionalTraversalEdgeBehavior" | "delegatedTransition" | "receivedTransition" | "barrierDismissible" | "semanticsDismissible" | "barrierColor" | "barrierLabel" | "barrierCurve" | "maintainState" | "popGestureInProgress" | "popGestureEnabled" | "offstage" | "subtreeContext" | "animation" | "secondaryAnimation" | "popDisposition" | "hasScopedWillPopCallback" | "canPop" | "impliesAppBarDismissal" | "fullscreenDialog" | "completed" | "transitionDuration" | "reverseTransitionDuration" | "opaque" | "allowSnapshotting" | "finishedWhenPopped" | "controller" | "willDisposeAnimationController" | "debugLabel" | "overlayEntries" | "requestFocus" | "navigator" | "settings" | "restorationScopeId" | "willHandlePopInternally" | "currentResult" | "popped" | "isCurrent" | "isFirst" | "hasActiveRouteBelow" | "isActive" | "builder" | "scrollableBuilder" | "enableDrag" | "topGap" | "showDragHandle" | "setState" | "buildPage" | "buildTransitions" | "install" | "didPush" | "didAdd" | "willPop" | "onPopInvokedWithResult" | "addScopedWillPopCallback" | "removeScopedWillPopCallback" | "registerPopEntry" | "unregisterPopEntry" | "didChangePrevious" | "didChangeNext" | "didPopNext" | "changedInternalState" | "changedExternalState" | "buildModalBarrier" | "createOverlayEntries" | "toString" | "debugTransitionCompleted" | "createAnimationController" | "createAnimation" | "createSimulation" | "didReplace" | "didPop" | "canTransitionTo" | "canTransitionFrom" | "handleStartBackGesture" | "handleUpdateBackGestureProgress" | "handleCancelBackGesture" | "handleCommitBackGesture" | "dispose" | "onPopInvoked" | "didComplete" | "addLocalHistoryEntry" | "removeLocalHistoryEntry" | "buildContent" | "__flaxBound:package:cupertino_ui/src/sheet.dart::CupertinoSheetRoute" | "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::ModalRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::TransitionRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::OverlayRoute" | "__flaxBound:package:flutter/src/widgets/navigator.dart::Route" | "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder" | "__flaxBound:package:flutter/src/widgets/routes.dart::PredictiveBackRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::LocalHistoryRoute" | "__flaxBound:package:cupertino_ui/src/sheet.dart::_CupertinoSheetRouteTransitionMixin";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "filter" | "traversalEdgeBehavior" | "directionalTraversalEdgeBehavior" | "delegatedTransition" | "receivedTransition" | "barrierDismissible" | "semanticsDismissible" | "barrierColor" | "barrierLabel" | "barrierCurve" | "maintainState" | "popGestureInProgress" | "popGestureEnabled" | "offstage" | "subtreeContext" | "animation" | "secondaryAnimation" | "popDisposition" | "hasScopedWillPopCallback" | "canPop" | "impliesAppBarDismissal" | "fullscreenDialog" | "completed" | "transitionDuration" | "reverseTransitionDuration" | "opaque" | "allowSnapshotting" | "finishedWhenPopped" | "controller" | "willDisposeAnimationController" | "debugLabel" | "overlayEntries" | "requestFocus" | "navigator" | "settings" | "restorationScopeId" | "willHandlePopInternally" | "currentResult" | "popped" | "isCurrent" | "isFirst" | "hasActiveRouteBelow" | "isActive" | "builder" | "scrollableBuilder" | "enableDrag" | "hasPlatformViews" | "topGap" | "showDragHandle" | "setState" | "buildPage" | "buildTransitions" | "install" | "didPush" | "didAdd" | "willPop" | "onPopInvokedWithResult" | "addScopedWillPopCallback" | "removeScopedWillPopCallback" | "registerPopEntry" | "unregisterPopEntry" | "didChangePrevious" | "didChangeNext" | "didPopNext" | "changedInternalState" | "changedExternalState" | "buildModalBarrier" | "createOverlayEntries" | "toString" | "debugTransitionCompleted" | "createAnimationController" | "createAnimation" | "createSimulation" | "didReplace" | "didPop" | "canTransitionTo" | "canTransitionFrom" | "handleStartBackGesture" | "handleUpdateBackGestureProgress" | "handleCancelBackGesture" | "handleCommitBackGesture" | "dispose" | "onPopInvoked" | "didComplete" | "addLocalHistoryEntry" | "removeLocalHistoryEntry" | "buildContent" | "__flaxBound:package:cupertino_ui/src/sheet.dart::CupertinoSheetRoute" | "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::ModalRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::TransitionRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::OverlayRoute" | "__flaxBound:package:flutter/src/widgets/navigator.dart::Route" | "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder" | "__flaxBound:package:flutter/src/widgets/routes.dart::PredictiveBackRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::LocalHistoryRoute" | "__flaxBound:package:cupertino_ui/src/sheet.dart::_CupertinoSheetRouteTransitionMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         (options?: {
@@ -303,6 +306,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             scrollableBuilder?: ((context: upstream8.BuildContext, scrollController: upstream9.ScrollController) => Widget) | null | undefined;
             enableDrag?: boolean | undefined;
             showDragHandle?: boolean | undefined;
+            hasPlatformViews?: boolean | undefined;
             topGap?: number | null | undefined;
         }): CupertinoSheetRoute<_Selected0>;
         readonly prototype: CupertinoSheetRoute<_Selected0>;

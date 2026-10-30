@@ -266,6 +266,7 @@ export declare function _TextFormFieldFactory(options?: {
     }>) | null | undefined;
     restorationId?: string | null | undefined;
     enableIMEPersonalizedLearning?: boolean | undefined;
+    enableInlinePrediction?: boolean | null | undefined;
     mouseCursor?: (Readonly<{
         "__flaxBound:package:flutter/src/services/mouse_cursor.dart::MouseCursor": readonly [];
     }> & Readonly<{

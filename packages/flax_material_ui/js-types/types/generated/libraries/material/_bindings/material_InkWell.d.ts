@@ -48,6 +48,9 @@ export declare function _InkWellFactory(options?: {
     onSecondaryTapUp?: Bindable<((details: upstream2.TapUpDetails) => void) | null> | undefined;
     onSecondaryTapDown?: Bindable<((details: upstream1.TapDownDetails) => void) | null> | undefined;
     onSecondaryTapCancel?: Bindable<(() => void) | null> | undefined;
+    onTertiaryTapUp?: Bindable<((details: upstream2.TapUpDetails) => void) | null> | undefined;
+    onTertiaryTapDown?: Bindable<((details: upstream1.TapDownDetails) => void) | null> | undefined;
+    onTertiaryTapCancel?: Bindable<(() => void) | null> | undefined;
     onHighlightChanged?: Bindable<((value: boolean) => void) | null> | undefined;
     onHover?: Bindable<((value: boolean) => void) | null> | undefined;
     mouseCursor?: Bindable<(Readonly<{

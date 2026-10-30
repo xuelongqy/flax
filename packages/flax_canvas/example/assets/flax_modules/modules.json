@@ -4,7 +4,7 @@
   "bootstrap": "assets/flax_modules/registry.js",
   "lock": {
     "manager": "pnpm",
-    "digest": "fb199b716ae986f3b5bba71c4348a805cc32b59ced791d505b45b950a1be5c97"
+    "digest": "f9f80d442aa5939de1a6f47a92bd44e81195347ce6b49570112bc2b147e41ae2"
   },
   "modules": [
     {
@@ -48,7 +48,7 @@
       "specifier": "@flax/core",
       "owner": "@flax/core-runtime:dist/runtime/index.js",
       "version": "0.0.0",
-      "artifact": "fbe8c165e48fd29521c7a4eaba646fc6edf2bf7b66cf217c8a8a6e21b2345ef9",
+      "artifact": "de982f9b16aa67fda522f96c159a7b2995815226b752896906e77860eb3cf0ff",
       "asset": "assets/flax_modules/_flax_core-14fe61593557.js",
       "package": "@flax/core-runtime",
       "source": "dist/runtime/index.js",
@@ -21425,7 +21425,7 @@
       "specifier": "@flax/flutter/widgets",
       "owner": "@flax/core-runtime:dist/flutter/widgets.js",
       "version": "0.0.0",
-      "artifact": "b27e578efb276892f3aea479dfb3cf082f7262c94db5f7a272214fad7c452168",
+      "artifact": "30b5dc88a5da227a7fd0c4a9dc7031be87c2dbc34f36f2bf3bc9a131b137ae62",
       "asset": "assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/widgets.js",
@@ -24371,6 +24371,7 @@
             "flax.core/sdk_widgets#type:ContentInsertionConfiguration",
             "flax.core/sdk_widgets#type:ContextAction",
             "flax.core/sdk_widgets#type:ContextMenuButtonItem",
+            "flax.core/sdk_widgets#type:ContextMenuButtonKind",
             "flax.core/sdk_widgets#type:ContextMenuButtonType",
             "flax.core/sdk_widgets#type:ContextMenuController",
             "flax.core/sdk_widgets#type:CopySelectionTextIntent",
@@ -25029,6 +25030,17 @@
             "flax.core/sdk_widgets#function:showRawDialog",
             "flax.core/sdk_widgets#read:BouncingScrollSimulation.maxSpringTransferVelocity",
             "flax.core/sdk_widgets#read:ChildVicinity.invalid",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.copy",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.custom",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.cut",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.liveTextInput",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.lookUp",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.paste",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.searchWeb",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.selectAll",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.share",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.translate",
+            "flax.core/sdk_widgets#read:ContextMenuButtonKind.values",
             "flax.core/sdk_widgets#read:CopySelectionTextIntent.copy",
             "flax.core/sdk_widgets#read:DefaultSelectionStyle.defaultColor",
             "flax.core/sdk_widgets#read:DefaultWidgetsLocalizations.delegate",

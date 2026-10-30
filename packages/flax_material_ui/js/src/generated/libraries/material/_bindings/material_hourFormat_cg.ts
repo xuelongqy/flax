@@ -5,13 +5,13 @@ import type * as upstream0 from '@flax/material-ui/_bindings/material_HourFormat
 import '@flax/material-ui/_bindings/material_HourFormat_ch';
 import type * as upstream1 from '@flax/material-ui/_bindings/material_TimeOfDayFormat';
 import '@flax/material-ui/_bindings/material_TimeOfDayFormat';
-import { _flaxMemberParameters365 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters372 } from "@flax/material-ui/_bindings/material.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 function _flaxTopLevel_hourFormat(options: { of: upstream1.TimeOfDayFormat }): upstream0.HourFormat {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["of"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.material/material#function:hourFormat", [options.of], _flaxMemberParameters365);
+const _flaxResult = invokeTopLevel("flax.material/material#function:hourFormat", [options.of], _flaxMemberParameters372);
 return _flaxResult as upstream0.HourFormat;
 }
 export { _flaxTopLevel_hourFormat as hourFormat };

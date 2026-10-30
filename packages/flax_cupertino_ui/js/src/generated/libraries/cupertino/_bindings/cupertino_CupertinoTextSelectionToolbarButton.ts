@@ -23,7 +23,7 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters64, _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
+import { _flaxMemberParameters65, _flaxMemberParameters0 } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/cupertino-ui/_bindings/cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -69,7 +69,7 @@ export declare namespace buttonItem { const __flaxJsx: { readonly props: (global
 }
 export namespace _CupertinoTextSelectionToolbarButtonFactory { export function getButtonLabel(context: upstream3.BuildContext, buttonItem: Readonly<{ "__flaxBound:package:flutter/src/widgets/context_menu_button_item.dart::ContextMenuButtonItem": readonly [] }>): string {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoTextSelectionToolbarButton.getButtonLabel", [contextHandle(context, "flax.core/flutter#type:BuildContext"), buttonItem], _flaxMemberParameters64);
+const _flaxResult = invokeTopLevel("flax.cupertino/cupertino#function:CupertinoTextSelectionToolbarButton.getButtonLabel", [contextHandle(context, "flax.core/flutter#type:BuildContext"), buttonItem], _flaxMemberParameters65);
 return _flaxResult as string;
 } }
 export const CupertinoTextSelectionToolbarButton: typeof _CupertinoTextSelectionToolbarButtonFactory & _FlaxInstanceType<CupertinoTextSelectionToolbarButton> & _FlaxDartType<CupertinoTextSelectionToolbarButton, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTextSelectionToolbarButton", readonly [], false]> = _flaxBindInstanceType<CupertinoTextSelectionToolbarButton, typeof _CupertinoTextSelectionToolbarButtonFactory>(_CupertinoTextSelectionToolbarButtonFactory, "flax.cupertino/cupertino#type:CupertinoTextSelectionToolbarButton", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _CupertinoTextSelectionToolbarButtonFactory & _FlaxInstanceType<CupertinoTextSelectionToolbarButton> & _FlaxDartType<CupertinoTextSelectionToolbarButton, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTextSelectionToolbarButton", readonly [], false]>;

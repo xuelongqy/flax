@@ -2,7 +2,7 @@
 
 ## Implemented scope
 
-Flax uses its maintained Flutter 3.47.6 engine: V8 15.4.80.15 JIT on macOS and Android
+Flax uses its maintained Flutter 3.47.9 engine: V8 15.4.80.15 JIT on macOS and Android
 arm64, and V8 jitless on iOS arm64. `FlaxEngine.createRuntime()` is the common entry in
 `package:flax/runtime.dart`. It checks native ABI 2, internal GC extension 1, internal
 binding extension 8 and the exact Flutter/Dart revisions before allocation. Ordinary

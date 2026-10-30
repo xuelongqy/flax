@@ -94,6 +94,21 @@ export interface TableRowInkWell extends _FlaxDartWidget, Omit<upstream0.InkResp
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) => void) | null;
     readonly onSecondaryTapCancel: (() => void) | null;
+    readonly onTertiaryTapDown: ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/tap.dart::TapDownDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    readonly onTertiaryTapUp: ((details: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/tap.dart::TapUpDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/gesture_details.dart::PositionedGestureDetails": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => void) | null;
+    readonly onTertiaryTapCancel: (() => void) | null;
     readonly onHighlightChanged: ((value: boolean) => void) | null;
     readonly onHover: ((value: boolean) => void) | null;
     readonly mouseCursor: upstream6.MouseCursor | null;
@@ -188,5 +203,5 @@ export declare namespace _TableRowInkWellFactory {
     };
 }
 export declare const TableRowInkWell: typeof _TableRowInkWellFactory & _FlaxInstanceType<TableRowInkWell> & _FlaxDartType<TableRowInkWell, readonly ["class", "flax.material/material#type:TableRowInkWell", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "onTap" | "onTapDown" | "onTapUp" | "onTapCancel" | "onDoubleTap" | "onLongPress" | "onLongPressUp" | "onSecondaryTap" | "onSecondaryTapDown" | "onSecondaryTapUp" | "onSecondaryTapCancel" | "onHighlightChanged" | "onHover" | "mouseCursor" | "containedInkWell" | "highlightShape" | "radius" | "borderRadius" | "customBorder" | "focusColor" | "hoverColor" | "highlightColor" | "overlayColor" | "splashColor" | "splashFactory" | "enableFeedback" | "excludeFromSemantics" | "onFocusChange" | "autofocus" | "focusNode" | "canRequestFocus" | "statesController" | "hoverDuration" | "key" | "getRectCallback" | "debugCheckContext" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/data_table.dart::TableRowInkWell" | "__flaxBound:package:material_ui/src/ink_well.dart::InkResponse" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "onTap" | "onTapDown" | "onTapUp" | "onTapCancel" | "onDoubleTap" | "onLongPress" | "onLongPressUp" | "onSecondaryTap" | "onSecondaryTapDown" | "onSecondaryTapUp" | "onSecondaryTapCancel" | "onTertiaryTapDown" | "onTertiaryTapUp" | "onTertiaryTapCancel" | "onHighlightChanged" | "onHover" | "mouseCursor" | "containedInkWell" | "highlightShape" | "radius" | "borderRadius" | "customBorder" | "focusColor" | "hoverColor" | "highlightColor" | "overlayColor" | "splashColor" | "splashFactory" | "enableFeedback" | "excludeFromSemantics" | "onFocusChange" | "autofocus" | "focusNode" | "canRequestFocus" | "statesController" | "hoverDuration" | "key" | "getRectCallback" | "debugCheckContext" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/data_table.dart::TableRowInkWell" | "__flaxBound:package:material_ui/src/ink_well.dart::InkResponse" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -66,6 +66,7 @@ export interface MenuAnchor extends _FlaxDartWidget, Omit<upstream0.StatefulWidg
     readonly builder: ((context: upstream10.BuildContext, controller: Readonly<{
         "__flaxBound:package:flutter/src/widgets/raw_menu_anchor.dart::MenuController": readonly [];
     }>, child: Widget | null) => Widget) | null;
+    readonly semanticLabel: string | null;
     readonly child: Widget | null;
     readonly reservedPadding: upstream6.EdgeInsetsGeometry | null;
     readonly key: upstream1.Key | null;
@@ -138,6 +139,7 @@ export declare function _MenuAnchorFactory(options: {
     onAnimationStatusChanged?: ((value: upstream9.AnimationStatus) => void) | null | undefined;
     menuChildren: DartListInput<Widget, Widget>;
     builder?: ((context: upstream10.BuildContext, controller: upstream2.MenuController, child: Widget | null) => Widget) | null | undefined;
+    semanticLabel?: string | null | undefined;
     child?: Widget | null | undefined;
 }): MenuAnchor;
 export declare namespace _MenuAnchorFactory {
@@ -154,5 +156,5 @@ export declare namespace _MenuAnchorFactory {
     };
 }
 export declare const MenuAnchor: typeof _MenuAnchorFactory & _FlaxInstanceType<MenuAnchor> & _FlaxDartType<MenuAnchor, readonly ["class", "flax.material/material#type:MenuAnchor", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "childFocusNode" | "style" | "alignmentOffset" | "layerLink" | "clipBehavior" | "anchorTapClosesMenu" | "consumeOutsideTap" | "onOpen" | "onClose" | "crossAxisUnconstrained" | "useRootOverlay" | "animated" | "onAnimationStatusChanged" | "menuChildren" | "builder" | "child" | "reservedPadding" | "key" | "createState" | "debugDescribeChildren" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "__flaxBound:package:material_ui/src/menu_anchor.dart::MenuAnchor" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "childFocusNode" | "style" | "alignmentOffset" | "layerLink" | "clipBehavior" | "anchorTapClosesMenu" | "consumeOutsideTap" | "onOpen" | "onClose" | "crossAxisUnconstrained" | "useRootOverlay" | "animated" | "onAnimationStatusChanged" | "menuChildren" | "builder" | "semanticLabel" | "child" | "reservedPadding" | "key" | "createState" | "debugDescribeChildren" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "__flaxBound:package:material_ui/src/menu_anchor.dart::MenuAnchor" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -30,6 +30,7 @@ export interface MaterialPage<T extends unknown | null = unknown | null> extends
     readonly maintainState: boolean;
     readonly fullscreenDialog: boolean;
     readonly allowSnapshotting: boolean;
+    readonly includeRouteSemantics: boolean;
     toString(): string;
     canUpdate(other: Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::Page": readonly [unknown | null];
@@ -43,6 +44,7 @@ export declare function _MaterialPageFactory<T extends unknown | null = unknown 
     maintainState?: boolean | undefined;
     fullscreenDialog?: boolean | undefined;
     allowSnapshotting?: boolean | undefined;
+    includeRouteSemantics?: boolean | undefined;
     key?: (Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::LocalKey": readonly [];
     }> & Readonly<{
@@ -59,6 +61,7 @@ export declare function _MaterialPageFactory(options: {
     maintainState?: boolean | undefined;
     fullscreenDialog?: boolean | undefined;
     allowSnapshotting?: boolean | undefined;
+    includeRouteSemantics?: boolean | undefined;
     key?: (Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::LocalKey": readonly [];
     }> & Readonly<{
@@ -71,7 +74,7 @@ export declare function _MaterialPageFactory(options: {
     restorationId?: string | null | undefined;
 }): MaterialPage<unknown | null>;
 export declare const MaterialPage: typeof _MaterialPageFactory & _FlaxInstanceType<MaterialPage<unknown | null>> & _FlaxDartType<MaterialPage<unknown | null>, readonly ["class", "flax.material/material#type:MaterialPage", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "name" | "arguments" | "key" | "restorationId" | "onPopInvoked" | "canPop" | "child" | "maintainState" | "fullscreenDialog" | "allowSnapshotting" | "toString" | "canUpdate" | "createRoute" | "__flaxBound:package:material_ui/src/page.dart::MaterialPage" | "__flaxBound:package:flutter/src/widgets/navigator.dart::Page" | "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "name" | "arguments" | "key" | "restorationId" | "onPopInvoked" | "canPop" | "child" | "maintainState" | "fullscreenDialog" | "allowSnapshotting" | "includeRouteSemantics" | "toString" | "canUpdate" | "createRoute" | "__flaxBound:package:material_ui/src/page.dart::MaterialPage" | "__flaxBound:package:flutter/src/widgets/navigator.dart::Page" | "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         (options: {
@@ -79,6 +82,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             maintainState?: boolean | undefined;
             fullscreenDialog?: boolean | undefined;
             allowSnapshotting?: boolean | undefined;
+            includeRouteSemantics?: boolean | undefined;
             key?: (Readonly<{
                 "__flaxBound:package:flutter/src/foundation/key.dart::LocalKey": readonly [];
             }> & Readonly<{

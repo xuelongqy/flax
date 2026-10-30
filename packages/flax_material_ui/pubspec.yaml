@@ -6,16 +6,16 @@ resolution: workspace
 
 environment:
   sdk: ^3.13.2
-  flutter: '>=3.47.2'
+  flutter: '>=3.47.9'
 
 dependencies:
-  cupertino_ui: 1.0.2
+  cupertino_ui: 1.1.5
   flax: 0.0.0
   flax_cupertino_ui: 0.0.0
   flutter:
     sdk: flutter
-  material_ui: 1.1.1
-  vector_math: ^2.4.2
+  material_ui: 1.9.0
+  vector_math: ^2.4.4
 
 dev_dependencies:
   flax_test: 0.0.0

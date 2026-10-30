@@ -48,6 +48,7 @@ export interface DataTable extends _FlaxDartWidget, Omit<upstream0.StatelessWidg
     readonly columns: DartList<upstream2.DataColumn>;
     readonly sortColumnIndex: number | null;
     readonly sortAscending: boolean;
+    readonly sortIconBuilder: ((context: upstream10.BuildContext, visible: boolean, ascending: boolean) => Widget) | null;
     readonly onSelectAll: ((value: boolean | null) => void) | null;
     readonly decoration: upstream3.Decoration | null;
     readonly dataRowColor: upstream4.WidgetStateProperty<upstream5.Color | null> | null;
@@ -138,6 +139,7 @@ export declare function _DataTableFactory(options: {
         "__flaxBound:package:flutter/src/rendering/table_border.dart::TableBorder": readonly [];
     }> | null | undefined;
     clipBehavior?: upstream9.Clip | undefined;
+    sortIconBuilder?: ((context: upstream10.BuildContext, visible: boolean, ascending: boolean) => Widget) | null | undefined;
 }): DataTable;
 export declare namespace _DataTableFactory {
     const __flaxJsx: {
@@ -147,5 +149,5 @@ export declare namespace _DataTableFactory {
     };
 }
 export declare const DataTable: typeof _DataTableFactory & _FlaxInstanceType<DataTable> & _FlaxDartType<DataTable, readonly ["class", "flax.material/material#type:DataTable", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "columns" | "sortColumnIndex" | "sortAscending" | "onSelectAll" | "decoration" | "dataRowColor" | "dataRowHeight" | "dataRowMinHeight" | "dataRowMaxHeight" | "dataTextStyle" | "headingRowColor" | "headingRowHeight" | "headingTextStyle" | "horizontalMargin" | "columnSpacing" | "showCheckboxColumn" | "rows" | "dividerThickness" | "showBottomBorder" | "checkboxHorizontalMargin" | "border" | "clipBehavior" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/data_table.dart::DataTable" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "columns" | "sortColumnIndex" | "sortAscending" | "sortIconBuilder" | "onSelectAll" | "decoration" | "dataRowColor" | "dataRowHeight" | "dataRowMinHeight" | "dataRowMaxHeight" | "dataTextStyle" | "headingRowColor" | "headingRowHeight" | "headingTextStyle" | "horizontalMargin" | "columnSpacing" | "showCheckboxColumn" | "rows" | "dividerThickness" | "showBottomBorder" | "checkboxHorizontalMargin" | "border" | "clipBehavior" | "key" | "build" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/data_table.dart::DataTable" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

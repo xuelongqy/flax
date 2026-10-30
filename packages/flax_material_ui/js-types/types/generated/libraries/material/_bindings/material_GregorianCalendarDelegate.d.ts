@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/material-ui/_bindings/material_CalendarDelegate';
 import '@flax/material-ui/_bindings/material_CalendarDelegate';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_DateTime';
@@ -6,6 +6,8 @@ import '@flax/dart/core/_bindings/flutter_DateTime';
 import type * as upstream2 from '@flax/material-ui/_bindings/material_DateTimeRange';
 import '@flax/material-ui/_bindings/material_DateTimeRange';
 import '@flax/material-ui/_bindings/material_MaterialLocalizations';
+import type * as upstream4 from '@flax/flutter/services/_bindings/flutter_TextInputFormatter';
+import '@flax/flutter/services/_bindings/flutter_TextInputFormatter';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface GregorianCalendarDelegate extends Omit<upstream0.CalendarDelegate<upstream1.DateTime>, _flaxOwnMembers0>, Readonly<{
@@ -88,6 +90,9 @@ export interface GregorianCalendarDelegate extends Omit<upstream0.CalendarDelega
     dateHelpText(localizations: Readonly<{
         "__flaxBound:package:material_ui/src/material_localizations.dart::MaterialLocalizations": readonly [];
     }>): string;
+    keyboardInputFormatters(localizations: Readonly<{
+        "__flaxBound:package:material_ui/src/material_localizations.dart::MaterialLocalizations": readonly [];
+    }>): DartList<upstream4.TextInputFormatter> | null;
 }
 export declare function _GregorianCalendarDelegateFactory(): GregorianCalendarDelegate;
 export interface _GregorianCalendarDelegateNative extends GregorianCalendarDelegate {
@@ -165,6 +170,9 @@ export interface _GregorianCalendarDelegateNative extends GregorianCalendarDeleg
     dateHelpText(localizations: Readonly<{
         "__flaxBound:package:material_ui/src/material_localizations.dart::MaterialLocalizations": readonly [];
     }>): string;
+    keyboardInputFormatters(localizations: Readonly<{
+        "__flaxBound:package:material_ui/src/material_localizations.dart::MaterialLocalizations": readonly [];
+    }>): DartList<upstream4.TextInputFormatter> | null;
 }
 export declare abstract class _GregorianCalendarDelegateNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<GregorianCalendarDelegate>[typeof globalThis.Symbol.hasInstance];
@@ -177,5 +185,5 @@ export declare namespace _GregorianCalendarDelegateFactory {
 }
 declare const _GregorianCalendarDelegateBinding: typeof _GregorianCalendarDelegateFactory & (new () => _GregorianCalendarDelegateNative);
 export declare const GregorianCalendarDelegate: typeof _GregorianCalendarDelegateBinding & _FlaxInstanceType<GregorianCalendarDelegate> & _FlaxDartType<GregorianCalendarDelegate, readonly ["class", "flax.material/material#type:GregorianCalendarDelegate", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "now" | "dateOnly" | "datesOnly" | "isSameDay" | "isSameMonth" | "monthDelta" | "addMonthsToMonthDate" | "addDaysToDate" | "firstDayOffset" | "getDaysInMonth" | "getMonth" | "getDay" | "formatMonthYear" | "formatYear" | "formatMediumDate" | "formatShortMonthDay" | "formatShortDate" | "formatFullDate" | "formatCompactDate" | "parseCompactDate" | "dateHelpText" | "__flaxBound:package:material_ui/src/date.dart::GregorianCalendarDelegate" | "__flaxBound:package:material_ui/src/date.dart::CalendarDelegate";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "now" | "dateOnly" | "datesOnly" | "isSameDay" | "isSameMonth" | "monthDelta" | "addMonthsToMonthDate" | "addDaysToDate" | "firstDayOffset" | "getDaysInMonth" | "getMonth" | "getDay" | "formatMonthYear" | "formatYear" | "formatMediumDate" | "formatShortMonthDay" | "formatShortDate" | "formatFullDate" | "formatCompactDate" | "parseCompactDate" | "dateHelpText" | "keyboardInputFormatters" | "__flaxBound:package:material_ui/src/date.dart::GregorianCalendarDelegate" | "__flaxBound:package:material_ui/src/date.dart::CalendarDelegate";
 export {};

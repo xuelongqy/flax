@@ -37,6 +37,7 @@ export interface PredictiveBackPageTransitionsBuilder extends Omit<upstream0.Pag
     }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null;
     readonly transitionDuration: upstream4.Duration;
     readonly reverseTransitionDuration: upstream4.Duration;
+    readonly allowSnapshotting: boolean;
     readonly fallbackColor: upstream1.Color | null;
     buildTransitions<T extends unknown | null = unknown | null>(route: Readonly<{
         "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute": readonly [_FlaxDartOutput<T>];
@@ -72,6 +73,7 @@ export declare function _PredictiveBackPageTransitionsBuilderFactory(options?: {
     fallbackColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
+    allowSnapshotting?: boolean | undefined;
 }): PredictiveBackPageTransitionsBuilder;
 export interface _PredictiveBackPageTransitionsBuilderNative extends PredictiveBackPageTransitionsBuilder {
     readonly [_flaxDartTypeValue]: _PredictiveBackPageTransitionsBuilderNative;
@@ -107,6 +109,7 @@ export interface _PredictiveBackPageTransitionsBuilderNative extends PredictiveB
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
     }>, child: Widget): Widget;
+    get allowSnapshotting(): boolean;
     get fallbackColor(): upstream1.Color | null;
     get transitionDuration(): upstream4.Duration;
     get delegatedTransition(): ((context: upstream2.BuildContext, animation: Readonly<{
@@ -132,6 +135,7 @@ export declare abstract class _PredictiveBackPageTransitionsBuilderNative extend
         fallbackColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
+        allowSnapshotting?: boolean | undefined;
     });
 }
 export declare namespace _PredictiveBackPageTransitionsBuilderFactory {
@@ -139,15 +143,17 @@ export declare namespace _PredictiveBackPageTransitionsBuilderFactory {
         fallbackColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
+        allowSnapshotting?: boolean | undefined;
     }], implementation: {}): PredictiveBackPageTransitionsBuilder;
 }
 declare const _PredictiveBackPageTransitionsBuilderBinding: typeof _PredictiveBackPageTransitionsBuilderFactory & (new (options?: {
     fallbackColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
+    allowSnapshotting?: boolean | undefined;
 }) => _PredictiveBackPageTransitionsBuilderNative);
 export declare const PredictiveBackPageTransitionsBuilder: typeof _PredictiveBackPageTransitionsBuilderBinding & _FlaxInstanceType<PredictiveBackPageTransitionsBuilder> & _FlaxDartType<PredictiveBackPageTransitionsBuilder, readonly ["class", "flax.material/material#type:PredictiveBackPageTransitionsBuilder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "delegatedTransition" | "transitionDuration" | "reverseTransitionDuration" | "fallbackColor" | "buildTransitions" | "__flaxBound:package:material_ui/src/predictive_back_page_transitions_builder.dart::PredictiveBackPageTransitionsBuilder" | "__flaxBound:package:flutter/src/widgets/page_transitions_builder.dart::PageTransitionsBuilder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "delegatedTransition" | "transitionDuration" | "reverseTransitionDuration" | "allowSnapshotting" | "fallbackColor" | "buildTransitions" | "__flaxBound:package:material_ui/src/predictive_back_page_transitions_builder.dart::PredictiveBackPageTransitionsBuilder" | "__flaxBound:package:flutter/src/widgets/page_transitions_builder.dart::PageTransitionsBuilder";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (route: Readonly<{
         "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute": readonly [_Selected0];

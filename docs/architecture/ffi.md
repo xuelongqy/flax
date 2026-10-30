@@ -86,7 +86,7 @@ not reproduce Dart class hierarchies, annotations or isolate APIs merely to matc
 spelling. Sharing an API style does not require identical VM machinery.
 
 The comparison baseline is Node v26.12.1's built-in `node:ffi`, not `ffi-napi`, and the
-pinned Dart 3.13.5 SDK plus `package:ffi`. Review upstream API changes deliberately;
+pinned Dart 3.13.7 SDK plus `package:ffi`. Review upstream API changes deliberately;
 experimental Dart APIs have separate capability and acceptance decisions.
 
 ### Portable Node contract

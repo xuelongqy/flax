@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Loca
 import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Color';
-import { _flaxMemberParameters4, _flaxMemberParameters219 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters4, _flaxMemberParameters225 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -25,7 +25,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:MaterialSlice", "", [{"name":"key","required":true},{"name":"child","required":true},{"name":"color"}], [], options) as MaterialSlice;
 }
-const _MaterialSliceProxy = {type: "flax.material/material#type:MaterialSlice", parameters: _flaxMemberParameters219, constructors: {"": _flaxMemberParameters219}, methods: {"toString":_flaxMemberParameters4}, getters: ["child","color","key"], setters: [], contextMembers: [], superMembers: ["get:child","get:color","get:key","toString"]} as const;
+const _MaterialSliceProxy = {type: "flax.material/material#type:MaterialSlice", parameters: _flaxMemberParameters225, constructors: {"": _flaxMemberParameters225}, methods: {"toString":_flaxMemberParameters4}, getters: ["child","color","key"], setters: [], contextMembers: [], superMembers: ["get:child","get:color","get:key","toString"]} as const;
 export interface _MaterialSliceNative extends MaterialSlice {
 readonly [_flaxDartTypeValue]: _MaterialSliceNative;
 

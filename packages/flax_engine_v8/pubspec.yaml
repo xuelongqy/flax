@@ -6,11 +6,11 @@ resolution: workspace
 
 environment:
   sdk: ^3.13.2
-  flutter: '>=3.47.2'
+  flutter: '>=3.47.9'
 
 dependencies:
-  code_assets: 1.2.1
-  crypto: 3.0.7
+  code_assets: 2.1.0
+  crypto: 3.0.8
   flax: 0.0.0
   flax_native_assets: 0.0.0
   hooks: 2.2.0
